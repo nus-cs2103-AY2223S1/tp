@@ -1,7 +1,9 @@
 package seedu.address.model.team;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.team.Description.DEFAULT_DESCRIPTION;
+import static seedu.address.model.team.Description.NO_DESCRIPTION;
+import static seedu.address.model.team.TeamName.DEFAULT_NAME;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -17,18 +19,11 @@ import seedu.address.model.person.UniquePersonList;
 
 /**
  * Represents a Team in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTeamName(String)}
  */
 public class Team {
 
-    public static final String MESSAGE_CONSTRAINTS = "Team names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-    public static final String DESCRIPTION_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-
-    public static final String DEFAULT_DESCRIPTION = "No description added";
-
-    private final String teamName;
-    private final String description;
+    private final TeamName teamName;
+    private final Description description;
     private final UniquePersonList teamMembers = new UniquePersonList();
 
     private final DisplayList<Person> filteredMembers;
@@ -42,11 +37,10 @@ public class Team {
      *
      * @param teamName A valid team name.
      */
-    public Team(String teamName) {
+    public Team(TeamName teamName) {
         requireNonNull(teamName);
-        checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
-        this.description = DEFAULT_DESCRIPTION;
+        this.description = NO_DESCRIPTION;
         filteredMembers = new DisplayList<>(getTeamMembers());
         filteredTasks = new DisplayList<>(getTaskList());
     }
@@ -57,10 +51,8 @@ public class Team {
      * @param teamName    A valid team name.
      * @param description A valid team description.
      */
-    public Team(String teamName, String description) {
+    public Team(TeamName teamName, Description description) {
         requireNonNull(teamName);
-        checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
-        checkArgument(isValidTeamDescription(description), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
         this.description = description;
         filteredMembers = new DisplayList<>(getTeamMembers());
@@ -74,7 +66,7 @@ public class Team {
      * @param description A valid team description.
      * @param teamMembers A list of persons to be added as members.
      */
-    public Team(String teamName, String description, List<Person> teamMembers) {
+    public Team(TeamName teamName, Description description, List<Person> teamMembers) {
         this(teamName, description);
         this.teamMembers.setPersons(teamMembers);
     }
@@ -87,7 +79,7 @@ public class Team {
      * @param teamMembers A list of persons to be added as members
      * @param tasks       A list of tasks for the team to do
      */
-    public Team(String teamName, String description, List<Person> teamMembers, List<Task> tasks) {
+    public Team(TeamName teamName, Description description, List<Person> teamMembers, List<Task> tasks) {
         this(teamName, description, teamMembers);
         this.taskList.setTasks(tasks);
     }
@@ -101,7 +93,8 @@ public class Team {
      * @param tasks       A list of tasks for the team to do
      * @param links       A list of links that the team should keep track of
      */
-    public Team(String teamName, String description, List<Person> teamMembers, List<Task> tasks, List<Link> links) {
+    public Team(TeamName teamName, Description description,
+                List<Person> teamMembers, List<Task> tasks, List<Link> links) {
         this(teamName, description, teamMembers, tasks);
         this.links.setLinks(links);
     }
@@ -110,15 +103,15 @@ public class Team {
      * This method creates a default team in TruthTable.
      */
     public static Team createDefaultTeam() {
-        return new Team("default", "A default team created just for you",
+        return new Team(DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
-    public String getTeamName() {
+    public TeamName getTeamName() {
         return teamName;
     }
 
-    public String getDescription() {
+    public Description getDescription() {
         return description;
     }
 
@@ -245,20 +238,6 @@ public class Team {
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
-     */
-    public static boolean isValidTeamName(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if a given string is a valid description name.
-     */
-    public static boolean isValidTeamDescription(String test) {
-        return test.matches(DESCRIPTION_VALIDATION_REGEX);
-    }
-
-    /**
      * Returns true if both teams have the same name.
      */
     public boolean isSameTeam(Team otherTeam) {
@@ -281,7 +260,11 @@ public class Team {
         }
 
         Team otherTeam = (Team) other;
-        return otherTeam.getTeamName().equals(getTeamName());
+        return otherTeam.getTeamName().equals(getTeamName())
+                && otherTeam.getDescription().equals(getDescription())
+                && otherTeam.getTeamMembers().equals(getTeamMembers())
+                && otherTeam.getTaskList().equals(getTaskList())
+                && otherTeam.getLinkList().equals(getLinkList());
     }
 
     @Override
@@ -323,12 +306,6 @@ public class Team {
         builder.append(getTeamName());
         builder.append("; Description: ");
         builder.append(getDescription());
-        List<Person> members = getTeamMembers();
-        if (!members.isEmpty()) {
-            builder.append("; Members: ");
-            members.forEach(builder::append);
-        }
-        builder.append(getTasksAsString());
         return builder.toString();
     }
 

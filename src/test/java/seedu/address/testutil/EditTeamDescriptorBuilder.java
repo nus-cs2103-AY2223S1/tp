@@ -1,7 +1,9 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditTeamCommand.EditTeamDescriptor;
+import seedu.address.model.team.Description;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 
 /**
  * A utility class to help with building EditTeamDescriptor objects.
@@ -31,7 +33,7 @@ public class EditTeamDescriptorBuilder {
      * Sets the {@code name} of the {@code EditTeamDescriptor} that we are building.
      */
     public EditTeamDescriptorBuilder withName(String name) {
-        descriptor.setName(name);
+        descriptor.setName(new TeamName(name));
         return this;
     }
 
@@ -39,7 +41,7 @@ public class EditTeamDescriptorBuilder {
      * Sets the {@code description} of the {@code EditTeamDescriptor} that we are building.
      */
     public EditTeamDescriptorBuilder withDescription(String description) {
-        descriptor.setDescription(description);
+        descriptor.setDescription(new Description(description));
         return this;
     }
 

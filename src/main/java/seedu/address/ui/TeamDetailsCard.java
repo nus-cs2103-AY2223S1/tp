@@ -39,8 +39,8 @@ public class TeamDetailsCard extends UiPart<Region> {
     public TeamDetailsCard(Logic logic, Team team, ResultDisplay resultDisplay) {
         super(FXML);
         this.logic = logic;
-        teamNameDisplay.setText(team.getTeamName());
-        teamDescription.setText(team.getDescription());
+        teamNameDisplay.setText(team.getTeamName().teamName);
+        teamDescription.setText(team.getDescription().description);
         MemberListPanel members = new MemberListPanel(logic.getFilteredMemberList());
 
         memberListPanel.getChildren().add(members.getRoot());

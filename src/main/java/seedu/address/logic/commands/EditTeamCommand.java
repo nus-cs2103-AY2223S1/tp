@@ -20,9 +20,11 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.team.Description;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 
 /**
  * Edits the currently set team.
@@ -72,8 +74,8 @@ public class EditTeamCommand extends Command {
     private static Team createEditedTeam(Team teamToEdit, EditTeamDescriptor editTeamDescriptor) {
         assert editTeamDescriptor != null;
 
-        String updatedName = editTeamDescriptor.getName().orElse(teamToEdit.getTeamName());
-        String updatedDescription = editTeamDescriptor.getDescription().orElse(teamToEdit.getDescription());
+        TeamName updatedName = editTeamDescriptor.getName().orElse(teamToEdit.getTeamName());
+        Description updatedDescription = editTeamDescriptor.getDescription().orElse(teamToEdit.getDescription());
         List<Person> members = teamToEdit.getTeamMembers();
         List<Task> tasks = teamToEdit.getTaskList();
         List<Link> links = teamToEdit.getLinkList();
@@ -131,11 +133,11 @@ public class EditTeamCommand extends Command {
 
     private static class Arguments {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_TEAM_NAME_DESCRIPTION)
-        private String name;
+        private TeamName name;
 
         @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG},
                 description = FLAG_TEAM_DESCRIPTION_DESCRIPTION)
-        private String description;
+        private Description description;
     }
 
     /**
@@ -143,9 +145,9 @@ public class EditTeamCommand extends Command {
      * corresponding field value of the team.
      */
     public static class EditTeamDescriptor {
-        private String name;
+        private TeamName name;
 
-        private String description;
+        private Description description;
 
         public EditTeamDescriptor() {
         }
@@ -165,19 +167,19 @@ public class EditTeamCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, description);
         }
 
-        public Optional<String> getName() {
+        public Optional<TeamName> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setName(String name) {
+        public void setName(TeamName name) {
             this.name = name;
         }
 
-        public Optional<String> getDescription() {
+        public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
         }
 
-        public void setDescription(String description) {
+        public void setDescription(Description description) {
             this.description = description;
         }
 

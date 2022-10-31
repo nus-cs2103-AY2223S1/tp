@@ -7,11 +7,13 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_NAME_DESCRIPTION;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 
 /**
  * Deletes a team from the addressbook.
@@ -30,7 +32,7 @@ public class DeleteTeamCommand extends Command {
     public static final String MESSAGE_TEAM_NOT_EXISTS = "This team you are trying to delete does not exist!";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TEAM_NAME_DESCRIPTION)
-    private String targetTeamName;
+    private TeamName targetTeamName;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -52,22 +54,24 @@ public class DeleteTeamCommand extends Command {
         Team currentTeam = model.getTeam();
         Team targetTeam = new Team(targetTeamName);
 
-        int teamIndex = teamList.indexOf(targetTeam);
-        if (teamIndex == -1) {
+        List<Team> filteredListWithTargetTeam = teamList.stream()
+                .filter(targetTeam::isSameTeam).collect(Collectors.toList());
+
+        if (filteredListWithTargetTeam.size() == 0) {
             throw new CommandException(MESSAGE_TEAM_NOT_EXISTS);
         }
 
         if (teamList.size() == 1) {
             throw new CommandException(MESSAGE_AT_LEAST_ONE_TEAM);
         }
+        assert filteredListWithTargetTeam.size() == 1;
+        Team targetTeamInTeamList = filteredListWithTargetTeam.get(0);
 
-        Team deletedTeam = teamList.get(teamIndex);
-
-        model.deleteTeam(deletedTeam);
+        model.deleteTeam(targetTeamInTeamList);
         if (currentTeam.equals(targetTeam)) {
             model.setTeam(model.getTeamList().get(0));
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_TEAM_SUCCESS, deletedTeam));
+        return new CommandResult(String.format(MESSAGE_DELETE_TEAM_SUCCESS, targetTeamInTeamList));
     }
 
     @Override

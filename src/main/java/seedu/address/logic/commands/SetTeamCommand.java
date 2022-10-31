@@ -9,11 +9,13 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 
 /**
  * Sets the current team to an existing team.
@@ -34,7 +36,7 @@ public class SetTeamCommand extends Command {
     public static final String MESSAGE_TEAM_NOT_EXISTS = "This team you are trying to set does not exist!";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TEAM_NAME_DESCRIPTION)
-    private String targetTeamName;
+    private TeamName targetTeamName;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -55,20 +57,23 @@ public class SetTeamCommand extends Command {
         List<Team> teamList = model.getTeamList();
         Team currentTeam = model.getTeam();
         Team targetTeam = new Team(targetTeamName);
-        int teamIndex = teamList.indexOf(targetTeam);
+        List<Team> filteredListWithTargetTeam = teamList.stream()
+                .filter(targetTeam::isSameTeam).collect(Collectors.toList());
 
-        if (teamIndex == -1) {
+        if (filteredListWithTargetTeam.size() == 0) {
             throw new CommandException(MESSAGE_TEAM_NOT_EXISTS);
         }
+        assert filteredListWithTargetTeam.size() == 1;
+        Team targetTeamInTeamList = filteredListWithTargetTeam.get(0);
 
-        if (currentTeam.equals(targetTeam)) {
+        if (currentTeam.equals(targetTeamInTeamList)) {
             throw new CommandException(MESSAGE_TEAM_ALREADY_SET);
         }
-        Team existingTeam = teamList.get(teamIndex);
-        model.setTeam(existingTeam);
+
+        model.setTeam(targetTeamInTeamList);
         model.updateFilteredMembersList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_SET_TEAM_SUCCESS, targetTeam));
+        return new CommandResult(String.format(MESSAGE_SET_TEAM_SUCCESS, targetTeamInTeamList));
     }
 
     @Override

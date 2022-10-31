@@ -15,7 +15,9 @@ import java.util.List;
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.team.Description;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 
 /**
  * Adds a new team to the address book.
@@ -41,11 +43,11 @@ public class AddTeamCommand extends Command {
     public static final String MESSAGE_TEAM_EXISTS = "There is already an existing team with the same name!";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TEAM_NAME_DESCRIPTION)
-    private String teamName;
+    private TeamName teamName;
 
     @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG}, defaultValue =
-            Team.DEFAULT_DESCRIPTION, description = FLAG_TEAM_DESCRIPTION_DESCRIPTION)
-    private String description;
+            Description.NO_DESCRIPTION_STRING, description = FLAG_TEAM_DESCRIPTION_DESCRIPTION)
+    private Description description;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
