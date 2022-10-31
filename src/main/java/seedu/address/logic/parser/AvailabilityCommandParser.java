@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 
+import java.util.NoSuchElementException;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AvailabilityCommand;
@@ -29,6 +31,9 @@ public class AvailabilityCommandParser implements Parser<AvailabilityCommand> {
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AvailabilityCommand.MESSAGE_USAGE), ive);
+        } catch (NoSuchElementException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AvailabilityCommand.MESSAGE_USAGE), e);
         }
 
         String availability = argMultimap.getValue(PREFIX_AVAILABILITY).orElse("");

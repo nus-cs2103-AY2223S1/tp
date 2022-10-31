@@ -6,6 +6,8 @@ import static seedu.address.logic.commands.GradeCommand.EMPTY_FIELD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 
+import java.util.NoSuchElementException;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.GradeCommand;
@@ -33,6 +35,9 @@ public class GradeCommandParser implements Parser<GradeCommand> {
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     GradeCommand.MESSAGE_USAGE), ive);
+        } catch (NoSuchElementException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    GradeCommand.MESSAGE_USAGE), e);
         }
 
         Index indexOfAssignment;
@@ -41,6 +46,9 @@ public class GradeCommandParser implements Parser<GradeCommand> {
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     GradeCommand.MESSAGE_USAGE), ive);
+        } catch (NoSuchElementException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    GradeCommand.MESSAGE_USAGE), e);
         }
 
         String grade = argMultimap.getValue(PREFIX_GRADE).orElse("");

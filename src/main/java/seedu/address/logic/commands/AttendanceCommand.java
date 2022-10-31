@@ -24,7 +24,7 @@ public class AttendanceCommand extends Command {
             + "by the index number used in the last person listing.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_ATTENDANCE
-            + "ATTENDANCE ([integer (0-100)]/[integer (1-100)])\n"
+            + "ATTENDANCE ([integer (0-100)]/[integer (0-100)])\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_ATTENDANCE + "1/2.";
     public static final String MESSAGE_PERSON_NOT_STUDENT = "The person to edit is not a student, there is no "
