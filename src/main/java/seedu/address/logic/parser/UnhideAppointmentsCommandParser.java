@@ -34,7 +34,7 @@ public class UnhideAppointmentsCommandParser implements Parser<UnhideAppointment
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, HideAppointmentsCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnhideAppointmentsCommand.MESSAGE_USAGE));
         }
 
         HideAppointmentPredicate.HideBy cond;
@@ -60,7 +60,7 @@ public class UnhideAppointmentsCommandParser implements Parser<UnhideAppointment
             }
         } else {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, HideAppointmentsCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnhideAppointmentsCommand.MESSAGE_USAGE));
         }
         return new UnhideAppointmentsCommand(new HideAppointmentPredicate(cond, val));
     }
