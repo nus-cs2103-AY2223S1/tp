@@ -1,4 +1,3 @@
-
 ---
 layout: page
 title: User Guide
@@ -11,7 +10,7 @@ DevEnable is a **desktop app for managing developer projects, optimized for use 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -36,7 +35,7 @@ DevEnable is a **desktop app for managing developer projects, optimized for use 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -59,6 +58,8 @@ DevEnable is a **desktop app for managing developer projects, optimized for use 
 
 </div>
 
+## General Commands
+
 ### Viewing help : `help`
 
 Displays a list of commands and functionalities.
@@ -71,6 +72,9 @@ Clears all entries from the list.
 
 Format: `clear`
 
+## Project Commands
+
+> NOTE: Clicking the Repository Link of a project will copy it to the clipboard
 ### Adding a project: `project -a`
 
 Adds a project to the AddressBook. A unique project ID will be automatically generated.
@@ -139,9 +143,9 @@ Format: `project -l`
 
 Finds and lists all the projects matching the search criteria.
 
-Format: `project -f [n/PROJECT_NAME] [r/REPOSITORY]`
+Format: `project -f [n/PROJECT_NAME] [r/REPOSITORY] [p/PROJECT_ID] [c/CLIENT_ID] [l/CLIENT_LABEL]`
 
-* Finds all the projects with the specified `PROJECT_NAME` and `REPOSITORY`.
+* Finds all the projects with the specified `PROJECT_NAME`, `REPOSITORY`, `PROJECT_ID`, `CLIENT_ID` and `CLIENT_LABEL`.
 * Finds all the projects such that the fields under the project contain at least one word from the keywords provided
   after each search criteria.
 * The keywords provided must be valid arguments for their respective search criteria.
@@ -150,6 +154,9 @@ Examples:
 * `project -f n/DevEnable` Finds and lists all the projects whose `PROJECT_NAME` contains the word DevEnable.
 * `project -f n/DevEnable AB3` Finds and lists all the projects whose `PROJECT_NAME` contains the word DevEnable or AB3.
 * `project -f r/tp/F13` Finds and lists all the projects with `REPOSITORY` tp/F13.
+* `project -f l/Amy` Finds and lists all the projects with the client whose `CLIENT_NAME` Amy labelled (tagged) to it.
+* `project -f c/3` Finds and lists all the projects with the client whose `CLIENT_ID` is 3.
+* `project -f p/1` Finds and lists the project with `PROJECT_ID` 1.
 * `project -f n/AB4 AB3 r/tp/F13` Finds and lists all the projects whose `PROJECT_NAME` contains the word AB4 or AB3 
   and with `REPOSITORY` tp/F13.
 
@@ -191,6 +198,8 @@ Examples:
 Sets list of projects to be the default view when application is re-opened.
 
 Format: `project -v`
+
+## Client Commands
 
 ### Adding a client : `client -a`
 
@@ -257,22 +266,23 @@ Format: `client -l`
 
 Finds and lists all the clients matching the search criteria.
 
-Format: `client -f [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`
+Format: `client -f [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL] [c/CLIENT_ID]`
 
-* Finds all the clients with the specified `CLIENT_NAME`, `CLIENT_MOBILE` and `CLIENT_EMAIL`.
+* Finds all the clients with the specified `CLIENT_NAME`, `CLIENT_ID`, `CLIENT_MOBILE` and `CLIENT_EMAIL`.
 * Finds all the clients such that the fields under the client contain at least one word from the keywords provided 
   after each search criteria.
 * The keywords provided must be valid arguments for their respective search criteria.
 
 Examples:
-* `client -f n/Amy` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy`.
-* `client -f n/Amy Bob` Finds and lists all the clients with the `CLIENT_NAME` contains the word `Amy` or `Bob`.
-* `client -f n/Amy e/amy@gmail.com` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy` and 
+* `client -f n/Amy` Finds and lists all the clients whose `CLIENT_NAME` contains the word Amy.
+* `client -f c/1` Finds and lists the client whose `CLIENT_ID` is 1.
+* `client -f n/Amy Bob` Finds and lists all the clients with the `CLIENT_NAME` contains the word Amy or Bob.
+* `client -f n/Amy e/amy@gmail.com` Finds and lists all the clients whose `CLIENT_NAME` contains the word Amy and 
   with `CLIENT_EMAIL` amy@gmail.com.
 * `client -f n/Amy e/amy@gmail.com m/12345678` Finds and lists all the clients whose `CLIENT_NAME` contains the word 
-  `Amy` and with `CLIENT_EMAIL` amy@gmail.com and with `CLIENT_MOBILE` 12345678.
+  Amy and with `CLIENT_EMAIL` amy@gmail.com and with `CLIENT_MOBILE` 12345678.
 * `client -f n/Amy Bob e/amy@gmail.com bobamy@gmail.com m/12345678` Finds and lists all the clients whose 
-  `CLIENT_NAME` contains the word `Amy` or `Bob` and with `CLIENT_EMAIL` amy@gmail.com or bobamy@gmail.com and with 
+  `CLIENT_NAME` contains the word Amy or Bob and with `CLIENT_EMAIL` amy@gmail.com or bobamy@gmail.com and with 
   `CLIENT_MOBILE` 12345678.
 
 ### Pin a client: `client -p`
@@ -308,6 +318,8 @@ Examples:
 Sets list of clients to be the default view when application is re-opened.
 
 Format: `client -v`
+
+## Issue Commands
 
 ### Adding an issue : `issue -a`
 
@@ -367,21 +379,23 @@ Examples:
 
 Finds and lists all the issues matching the search criteria.
 
-Format: `issue -f [t/TITLE] [pn/PROJECT_NAME] [u/URGENCY] [s/STATUS]`
+Format: `issue -f [t/TITLE] [n/PROJECT_NAME] [p/PROJECT_ID] [u/URGENCY] [s/STATUS] [i/ISSUE_ID]`
 
-* Finds all the issues with the specified `TITLE`, `PROJECT_NAME`, `URGENCY` and `STATUS`.
+* Finds all the issues with the specified `TITLE`, `PROJECT_ID`, `PROJECT_NAME`, `URGENCY`, `STATUS` and `ISSUE_ID`.
 * Finds all the issues such that the fields under the issue contain at least one word from the keywords provided
   after each search criteria.
 * The keywords provided must be valid arguments for their respective search criteria.
 
 Examples:
-* `issue -f pn/DevEnable` Finds and lists all the issues tied to the project with `PROJECT_NAME` containing DevEnable.
-* `issue -f pn/DevEnable AB3` Finds and lists all the issues tied to the project with `PROJECT_NAME` containing 
+* `issue -f n/DevEnable` Finds and lists all the issues tied to the project with `PROJECT_NAME` containing DevEnable.
+* `issue -f n/DevEnable AB3` Finds and lists all the issues tied to the project with `PROJECT_NAME` containing 
   DevEnable or AB3.
-* `issue -f pn/DevEnable AB3 p/LOW` Finds and lists all the issues with `URGENCY` as LOW and tied to the project with 
+* `issue -f i/3` Finds and lists the issue with `ISSUE_ID` 3.
+* `issue -f p/3` Finds and lists the issue tied to project with `PROJECT_ID` 3.
+* `issue -f n/DevEnable AB3 u/LOW` Finds and lists all the issues with `URGENCY` as LOW and tied to the project with 
   `PROJECT_NAME` containing DevEnable or AB3.
-* `issue -f t/enhancement pn/DevEnable AB3 p/HIGH LOW` Finds and lists all the issues with `TITLE` 
-  enhancement and `URGENCY` HIGH or LOW and tied to project with `PROJECT_NAME` containing DevEnable or AB3.
+* `issue -f t/enhancement p/DevEnable AB3 u/HIGH LOW` Finds and lists all the issues with `TITLE` enhancement and 
+  `URGENCY` HIGH or LOW and tied to project with `PROJECT_NAME` containing DevEnable or AB3.
 * `issue -f s/Incomplete` Finds and lists all the issues with `STATUS` Incomplete.
 
 ### Pin an issue: `issue -p`
@@ -448,6 +462,8 @@ Sets list of issues to be the default view when application is re-opened.
 
 Format: `issue -v`
 
+## Others
+
 ### Saving the data
 
 DevEnable data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -460,20 +476,16 @@ DevEnable data is saved as a JSON file `[JAR file location]/data/addressbook.jso
 If your changes to the data file makes its format invalid, DevEnable will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the data file it creates with the file that contains the data of your previous DevEnable home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Command summary
 
 | Action                         | Format, Examples |
 |--------------------------------|------------------|
