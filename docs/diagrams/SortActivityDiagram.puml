@@ -1,0 +1,8 @@
+@startuml
+start
+:User executes sort by deadline/id command;
+
+:Sorts task list;
+:Task list keeps track of sort status;
+stop
+@enduml

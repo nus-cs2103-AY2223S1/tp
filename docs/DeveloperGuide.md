@@ -421,6 +421,10 @@ Step 3. The user has seen the most urgent tasks to be completed but realises tha
 
 Step 4. The user now decides that the initial order of the task list looks much better after finding out the tasks to do. The user executes `sortI` to sort the task list by id. The `sortI` command calls `Model#sortById()` to sort the task list based on id.
 
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/SortActivityDiagram.png" width="250" />
+
 #### Design considerations:
 
 **Aspect: How the sort methods executes:**
