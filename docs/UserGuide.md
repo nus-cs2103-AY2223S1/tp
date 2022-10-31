@@ -13,10 +13,17 @@ title: InterNUS User Guide
 
 InterNUS is a desktop app for **managing internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InterNUS can get your internship management tasks done faster than traditional GUI apps.
 
+## 1.2 Person List
 
-## 1.2 Persons
+Store the information of key contacts in InterNUS. During the internship-hunting period, add the contacts of hiring managers and link them to your bookmarked internship positions. What about the multiple colleagues you'll meet during your internship stints? InterNUS makes it easy to manage these contacts and lets you see at a glance where you worked at together.
 
-## 1.3 Internships
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** Each person can be linked to a maximum of one internship, and vice  versa.
+</div>
+
+## 1.3 Internship List
+
+Track the internships you're interested in and all the relevant information -- the company, role, contact person and interview date. Awaiting a reply, or have you been accepted? With InterNUS, you can monitor and update the statuses of your internship applications effortlessly.
 
 --------------------------------------------------------------------------------------------------------------------
 # 2. How to use this User Guide?
@@ -122,10 +129,13 @@ Examples:
 Adds an Internship to InterNUS.
 
 Format: `add -i c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]`
-* The link index (in add -i) refers to the index number shown in the person list.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Date of interview can be left blank, since it is possible that an interview is not scheduled yet.
+* The link index (in add -i) refers to the index number shown in the person list.
+* Valid statuses are `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED` or `REJECTED` (case insensitive).
+* Date of interview is optional as interviews might not be scheduled yet.
+* `LINK_INDEX` refers to the index number shown in the person list and is optional. Specifying this parameter will define the current person at the specified index in the person list as the contact person of the newly added internship. 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** Instead of typing the full status name, just enter the first letter of the intended status (e.g. `s/b` is a shortcut for `s/BOOKMARKED`)**
 </div>
 
 Examples:
@@ -164,7 +174,7 @@ Examples:
 - `list -p` followed by `edit -p 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 - `list -p` followed by `edit -p 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### 4.3.2 Editing a internship : `edit -i`
+### 4.3.2 Editing an internship : `edit -i`
 
 Edits an existing internship in InterNUS.
 
@@ -172,6 +182,7 @@ Format: `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`
 - Edits the internship at the specified `INDEX`. The index refers to the index number shown in the displayed internship list. The index must be a positive integer 1, 2, 3, …
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
+- Valid statuses are `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED` or `REJECTED` (case insensitive). Similar to the `add  -i` command, the shortcuts can be used here.
 
 Examples:
 - `list -i` followed by `edit -i 1 s/ACCEPTED` Edits the status of the 1st internship to be `ACCEPTED`.
@@ -245,6 +256,10 @@ Then,
 - `find -i c/inc ltd` returns **Apple Inc**, **Alphabet Inc**, **Shopee Pte Ltd** and **Sea Ltd**
 - `find -i c/g` returns **Google Inc** and **Garena**
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** The shortcuts for internship statuses don't work here.
+</div>
+
 ## 4.6 Delete Command
 
 ### 4.6.1 Deleting a person by index : `delete -p`
@@ -273,7 +288,7 @@ Format: `delete -i INDEX`
 
 Examples:
 * `list -i` followed by `delete -i 2` deletes the 2nd internship in InterNUS.
-* `find -i ABC Pte Ltd` followed by `delete -i 1` deletes the 1st internship in the results of the `find` command.
+* `find -i Meta` followed by `delete -i 1` deletes the 1st internship in the results of the `find` command.
 
 ## 4.7 Sort Command
 
@@ -302,11 +317,15 @@ Sorts the internship list given a sorting criterion.
 
 Format: `sort -i [c/] [d/] [s/]`
 - Exactly one of the optional fields must be provided.
-- `c/` sorts internships by company name (in lexicographic order).
+- `c/` sorts internships by company name (in alphabetical order).
 - `d/` sorts internships by interview date.
 - `s/` sorts internships by status in the given order: `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED`, `REJECTED`.
 - When sorted by interview date, internships with no interview dates are listed at the bottom of the list.
-- The list will remain sorted by the last given criterion until InterNUS is closed.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note: ** <br>
+Both the person list and internship list will remain sorted by the last given criterion until InterNUS is closed. The sorted order persists during additions, deletions and editing of persons and internships.
+</div>
 
 ## 4.8 General
 
