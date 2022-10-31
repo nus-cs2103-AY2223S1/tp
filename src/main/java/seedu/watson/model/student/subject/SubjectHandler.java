@@ -26,7 +26,7 @@ public class SubjectHandler {
     public SubjectHandler(Set<Subject> subjects) {
         subjectsTaken = new HashMap<>();
         for (Subject subject : subjects) {
-            subjectsTaken.put(subject.dataString(), subject);
+            subjectsTaken.put(subject.getSubjectName(), subject);
         }
     }
 
