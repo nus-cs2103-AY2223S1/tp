@@ -67,6 +67,10 @@ and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**.
 Adds an item to the list of tracked inventory.
 
 Format: `addi n/ITEM_NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE`
+- `SELL_PRICE` is the price that the user sells the item for
+- `COST_PRICE` is the price that the user purchased the item for
+- `SELL_PRICE` and `COST_PRICE` should be given as a number rounded to the nearest cent
+- TrackO allows users to input a `COST_PRICE` that is greater than the `SELL_PRICE` although user will be selling at a loss
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An inventory item can have any number of tags (including 0)
@@ -74,7 +78,7 @@ An inventory item can have any number of tags (including 0)
 
 Examples:
 * `addi n/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1`
-* `addi n/Chair q/10 d/This is a wooden dining chair t/Furniture sp/50 cp/20`
+* `addi n/Chair q/10 d/This is a wooden dining chair t/Furniture t/Mahogany sp/50 cp/20`
 
 ### Listing all inventory items: `listi`
 
@@ -96,8 +100,8 @@ Format: `findi KEYWORD [MORE_KEYWORDS]`
   e.g. `shirt` will return `dress shirt`, `collared shirt`
 
 Examples:
-- `findi oil` returns `Olive Oil` and `Vegetable Oil`
-- `findi blue` returns `Blue Shirt`, `Blue Pants`
+- `findi oil` returns orders with the keyword `oil` such as `Olive Oil` and `Vegetable Oil`
+- `findi yellow pillow` returns orders with the keywords `yellow` and `pillow` such as `yellow blanket`, `ergonomic pillow` and `yellow pillow`
 
 ### Deleting an inventory item : `deletei`
 
@@ -106,8 +110,8 @@ Deletes the specified item from the list of tracked inventory.
 Format: `deletei INDEX`
 
 * Deletes the item at the specified `INDEX`.
-* The index refers to the index number shown in the displayed inventory list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* `INDEX` refers to the index number shown in the displayed inventory list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `listi` followed by `deletei 2` deletes the 2nd item in the list of tracked inventory.
@@ -120,8 +124,8 @@ Edits an existing item in the inventory list.
 Format: `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`
 
 * Edits the item at the specified `INDEX`.
-* The index refers to the index number shown in the displayed inventory list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* `INDEX` refers to the index number shown in the displayed inventory list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
 * You can remove all the item’s tags by typing `t/` without
   specifying any tags after it.
 
@@ -130,6 +134,7 @@ Examples:
   Edits the item name, quantity, description and tag of the 1st item to be
   `Table`, `200`, `Metal Table` and `Fragile` respectively.
 * `editi 3 t/` removes the tags of the item at index 3.
+* `editi 3 t/bedroom t/premium` updates the tags of the item at index 3 to be `bedroom` and `premium`
 
 ### Adding an order: `addo`
 
@@ -166,7 +171,7 @@ Lists all the orders a store has.
 
 Format: `listo`
 
-### Locating orders by keyword: `findo`
+### Locating orders by keyword and delivery/payment status: `findo`
 
 Finds an order with item names containing any of the given keywords.
 
@@ -177,7 +182,7 @@ Format: `findo [-d OR -D] [-p OR -P] [i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]] [a/AD
   * `-D`: search for orders which are not delivered
   * `-p`: search for orders which are paid
   * `-P`: search for orders which are not paid
-* There are 3 prefixes (`a/`, `n/`, `i/`). At least one of the 3 prefixes must be used in the `findo` command
+* There are 3 prefixes (`a/`, `n/`, `i/`). If there are no flags present, at least one of the 3 prefixes must be used in the `findo` command
   * `a/`: searches by address
   * `n/`: searches by name
   * `i/`: searches by order item
@@ -187,17 +192,23 @@ in their address.
 <br><br/>
 * The search keywords used are case-insensitive. e.g. `keychain` will match `Keychain`
 * The order of the keywords does not matter. e.g. `apple keychain` will match `Keychain Apple`
-* Only full words will be matched e.g. `keychains` will not match `keychain`
+* Only full words will be matched e.g. `Gardens,` will not match `Gardens` and `keychain` will not match `keychains`
 * Orders matching at least one keyword will be returned (i.e. `OR` search).<br>
   e.g. `findo apple keychain` will return `apple painting`, `banana keychain`
 
 Examples:
-* `findo n/Alex` returns all orders with the name Alex 
-* `findo n/Alex a/Clementi` returns all orders with the name Alex and an address including the word Clementi
-* `findo n/Alex Barbara Clyde a/Clementi` returns all orders with the name Alex, Barbara or Clyde and an address including the word Clementi
-* `findo n/Alex Barbara a/Clementi Geylang` returns all orders with the name Alex or Barbara and an address including the word Clementi or Geylang
-* `findo -d n/Alex` returns all orders with the name Alex which have been delivered
-* `findo -d -p n/Alex` returns all orders with Alex which have been paid and delivered
+* `findo n/Alex` returns all orders with the name `Alex` 
+* `findo n/Alex a/Clementi` returns all orders with the name `Alex` and an address including the word `Clementi`
+* `findo n/Alex Barbara a/Clementi Geylang` returns all orders with the name `Alex` or `Barbara` and an address including the word `Clementi` or `Geylang`
+* `findo -D` returns all orders which have been delivered 
+* `findo -d n/Alex` returns all orders with the name `Alex` which have been delivered
+* `findo -d -p n/Alex` returns all orders with `Alex` which have been paid and delivered
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Completed orders are orders which have been paid **and** delivered. You can search using both -p **and** -d to find completed orders! 
+</div>
+
+
 
 ### Sorting orders by time created: `sorto`
 
@@ -222,8 +233,8 @@ Deletes an order from the list of tracked orders.
 Format: `deleteo INDEX`
 
 * Deletes the order at the specified INDEX.
-* The index refers to the index number shown in the displayed order list.
-* The index must be a positive integer 1, 2, 3, …
+* `INDEX` refers to the index number shown in the displayed order list.
+* `INDEX` must be a positive integer 1, 2, 3, …
 
 Examples:
 * `listo` followed by `deleteo 2` deletes the 2nd order from the order list.
