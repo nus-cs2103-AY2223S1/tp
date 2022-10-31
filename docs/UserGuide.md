@@ -205,26 +205,24 @@ Example:
 
 ### Splitting a debt: `splitdebt`
 
-Splits a debt among several people in PayMeLah such that each person owes the same amount (rounded up to the closest cent).
+Splits a debt among several people in PayMeLah for you to track. <br>  
+This command will help you with the Maths of dividing shared costs equally among people in PayMeLah. Sharing is made easy as PayMeLah does the Maths for you!
+
+Format: `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can split a debt among as many people as you want. You can even include yourself with index '0'. But you cannot split a debt between just yourself.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Splitting a debt is just like adding a debt to multiple people; however, here we divide the money of the debt over the people who shared it. Sharing is made easy as we do the Maths for you!
+Splitting a debt is just like [adding a debt](#adding-a-debt-adddebt) to multiple people; however, here we divide the money of the debt over the people who shared it (and round up to the closest cent). Thus, similarly, You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including '++' at the back of the amount. A single '+' will add only GST instead.
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Since `splitdebt` works very similarly to `adddebt`, you can skip the following bullet points if you are already familiar with how `adddebt` works.
-</div>
 
-* You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including '++' at the back of the amount. A single '+' will add only GST instead.
 * If you do not specify date and time, they will conveniently default to the current date and time.
 * If you specify the date but not the time, the time will default to midnight. Be careful that this default behaviour is different from the previous.
 * One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of these items being the same.
 
-Format: `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
 
 Examples:
 * `splitdebt 1 2 d/Pizza m/33.99 date/2022-10-12 time/13:00`
@@ -232,7 +230,8 @@ Examples:
 
 ### Clearing debts: `cleardebts`
 
-Clears all of a debtor's debts from PayMeLah such that he has no debts(paid and unpaid) left.
+Clears all of a debtor's debts from PayMeLah. <br>
+You can use this command to delete all of a person’s debts and your relationship can start afresh!
 
 Format: `cleardebts <person index>`
 
@@ -257,14 +256,15 @@ Format: `unmark <person index> debt/<debt index…>`
 Example:
 * `unmark 2 debt/2 3`
 
-### Deleting debts: `deletedebts`
+### Deleting debts: `deletedebt`
 
-Deletes the debts specified from a person in PayMeLah. Multiple debts can be specified for deletion. 
+Deletes the specified debts from a person in PayMeLah. Specifying multiple debts will delete those debts from the person specified. <br>
+This command will help you fully remove debts from people in PayMeLah, so that their current debts can be better organised.
 
-Format: `deletedebts <person index> debt/<debt index…>`
+Format: `deletedebt <person index> debt/<debt index…>`
 
 Example:
-* `deletedebts 2 debt/2 3`
+* `deletedebt 2 debt/2 3`
 
 ### Getting the statement: `statement`
 
@@ -469,7 +469,7 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 | **Mark debts**    | `mark <person index> debt/<debt index…>` <br> e.g., `mark 2 debt/2 3`                                                                                                                                                                                   |
 | **Unmark debts**  | `unmark <person index> debt/<debt index…>` <br> e.g., `unmark 2 debt/2 3`                                                                                                                                                                               |
 | **Clear debts**   | `cleardebts <person index>` <br> e.g., `cleardebts 3`                                                                                                                                                                                                   |
-| **Delete debts**  | `deletedebts <person index> debt/<debt index…>` <br> e.g., `deletedebts 2 debt/2 3`                                                                                                                                                                     |
+| **Delete debts**  | `deletedebt <person index> debt/<debt index…>` <br> e.g., `deletedebt 2 debt/2 3`                                                                                                                                                                       |
 | **Clear**         | `clear`                                                                                                                                                                                                                                                 |
 | **Delete**        | `delete <index>`<br> e.g., `delete 3`                                                                                                                                                                                                                   |
 | **Edit**          | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                                                                                                    |
