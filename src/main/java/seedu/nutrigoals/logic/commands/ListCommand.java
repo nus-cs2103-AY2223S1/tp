@@ -14,7 +14,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists all the foods added on a specific date.\n"
-            + "Parameters: [DATE (must be in this format: yyyy-MM-dd)]\n"
+            + "Parameters: [DATE (must be valid and in this format: yyyy-MM-dd)]\n"
             + "Example: " + COMMAND_WORD + " 2022-10-11";
 
     public static final String MESSAGE_SUCCESS = "Listed all foods on %s";

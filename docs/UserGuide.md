@@ -17,7 +17,7 @@ NutriGoals is a desktop app that tracks a user’s diet and calorie consumption.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your NutriGoals.
 
-4. Double-click the file to start the app. A screen similar to the below should appear in a few seconds. 
+4. Double-click the file to start the app. A screen similar to the one below should appear in a few seconds. 
 Note how the app contains some sample data.
 ![sampleUi](images/sampleUi.png)
 
@@ -180,9 +180,10 @@ Example:
 
 **:information_source: Note:**<br>
 
-`DATE` must be a valid date for the command to be executed.
+`DATE` must be a valid date for the command to be executed. Note that entering `0000` as the year is considered invalid.
 
 * E.g. `list 2022-02-31` is an invalid command.
+* E.g. `list 0000-01-01` is an invalid command. 
 
 </div>
 
