@@ -48,6 +48,10 @@ public class Date {
             // may change to DateTimeParseException
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS_FORMAT);
         }
+        // The year 0000 does not exist in the Gregorian calendar.
+        if (parsedDate.getYear() == 0) {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS_INVALID);
+        }
         this.date = parsedDate;
     }
 
