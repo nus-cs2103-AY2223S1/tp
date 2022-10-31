@@ -313,8 +313,8 @@ Examples:
     <td>After executing mark command</td>
   </tr>
   <tr>
-    <td><img src="images/UnmarkedReminder.png" width=350 height=400></td>
-    <td><img src="images/MarkedReminder.png" width=350 height=400></td>
+    <td><img src="images/UnmarkedReminder.png" width=350></td>
+    <td><img src="images/MarkedReminder.png" width=350></td>
   </tr>
  </table>
 
