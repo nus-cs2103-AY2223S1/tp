@@ -4,18 +4,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-//import java.util.Arrays;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-//import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
-import seedu.address.testutil.*;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.TypicalBuyers;
+import seedu.address.testutil.TypicalDeliverers;
+import seedu.address.testutil.TypicalOrders;
+import seedu.address.testutil.TypicalPets;
+import seedu.address.testutil.TypicalSuppliers;
+
+
 
 public class ModelManagerTest {
 
@@ -178,42 +183,42 @@ public class ModelManagerTest {
     public void getFilteredOrderList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredOrderList().remove(0));
     }
-    
-//
-//    @Test
-//    public void equals() {
-//        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-//        AddressBook differentAddressBook = new AddressBook();
-//        UserPrefs userPrefs = new UserPrefs();
-//
-//        // same values -> returns true
-//        modelManager = new ModelManager(addressBook, userPrefs);
-//        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
-//        assertTrue(modelManager.equals(modelManagerCopy));
-//
-//        // same object -> returns true
-//        assertTrue(modelManager.equals(modelManager));
-//
-//        // null -> returns false
-//        assertFalse(modelManager.equals(null));
-//
-//        // different types -> returns false
-//        assertFalse(modelManager.equals(5));
-//
-//        // different addressBook -> returns false
-//        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
-//
-//        // different filteredList -> returns false
-//        String[] keywords = ALICE.getName().fullName.split("\\s+");
-//        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-//        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
-//
-//        // resets modelManager to initial state for upcoming tests
-//        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-//
-//        // different userPrefs -> returns false
-//        UserPrefs differentUserPrefs = new UserPrefs();
-//        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-//        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
-//    }
+
+    @Test
+    public void equals() {
+        AddressBook addressBook = new AddressBookBuilder().withBuyer(TypicalBuyers.ALICE)
+                .withBuyer(TypicalBuyers.BENSON).build();
+        AddressBook differentAddressBook = new AddressBook();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // same values -> returns true
+        modelManager = new ModelManager(addressBook, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        assertTrue(modelManager.equals(modelManagerCopy));
+
+        // same object -> returns true
+        assertTrue(modelManager.equals(modelManager));
+
+        // null -> returns false
+        assertFalse(modelManager.equals(null));
+
+        // different types -> returns false
+        assertFalse(modelManager.equals(5));
+
+        // different addressBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+
+        // different filteredList -> returns false
+        String[] keywords = TypicalBuyers.ALICE.getName().fullName.split("\\s+");
+        modelManager.updateFilteredBuyerList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredBuyerList(Model.PREDICATE_SHOW_ALL_BUYERS);
+
+        // different userPrefs -> returns false
+        UserPrefs differentUserPrefs = new UserPrefs();
+        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    }
 }
