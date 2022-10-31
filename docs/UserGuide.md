@@ -371,7 +371,7 @@ Example:
 
 * `nextsem` moves all current modules into the previous modules list of the user and all contacts and removes all modules in the current modules list.
 
-<img src="images/After NextSem.png" width="600" />
+<img src="images/After NextSem.png" width="800" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -475,11 +475,11 @@ Examples:
 
 * `filtertag friends` lists all contacts with a family tag.
 
-<img src="images/filtertag friends.png" width="600" />
+<img src="images/filtertag friends.png" width="800" />
 
 `filtertag friends family` lists all contacts with either a friends or family tag.
 
-<img src="images/filtertag friends family.png" width="600" />
+<img src="images/filtertag friends family.png" width="800" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -496,7 +496,7 @@ Examples:
 
 `filtercurrmod CS1000` lists all contacts with module code CS1000 in their current modules list.
 
-<img src="images/filtercurrmod CS1000.png" width="600" />
+<img src="images/filtercurrmod CS1000.png" width="800" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -513,7 +513,7 @@ Examples:
 
 `filterprevmod CS2000` lists all contacts with module code CS2000 in their previous modules list.
 
-<img src="images/filterprevmod CS2000.png" width="600" />
+<img src="images/filterprevmod CS2000.png" width="800" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -530,7 +530,7 @@ Examples:
 
 `filterplanmod CS23333` lists all contacts with module code CS3333 in their planned modules list.
 
-<img src="images/filterplanmod CS3333.png" width="600" />
+<img src="images/filterplanmod CS3333.png" width="800" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -546,15 +546,15 @@ Examples:
 
 * `add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue g/rjkoh t/Classmate curr/CS2100 prev/CS1101S plan/CS2109`adds module contact Ruijie to your contact list with all the details specified.
 
-<img src="images/UndoRedoExample0.png" width="600" />
+<img src="images/UndoRedoExample0.png" width="800" />
 
 * `undo` undoes the latest action of adding "Ruijie" as a contact.
 
-<img src="images/UndoRedoExample1.png" width="600" />
+<img src="images/UndoRedoExample1.png" width="800" />
 
 * `redo` redoes the latest undo action of undoing "Ruijie" as a contact.
 
-<img src="images/UndoRedoExample2.png" width="600" />
+<img src="images/UndoRedoExample2.png" width="800" />
 
 
 ### GitHub URL button
