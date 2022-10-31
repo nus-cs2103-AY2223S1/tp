@@ -1,19 +1,19 @@
-package seedu.address.model.event;
+package seedu.address.model.date;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents an Event's starting date in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidStartDate(String)}
+ * Represents a date in the application.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class StartDate implements Comparable<StartDate> {
-
-    public static final String MESSAGE_CONSTRAINTS = "Start date must be in format: dd/MM/yyyy";
+public class Date implements Comparable<Date> {
+    public static final String MESSAGE_CONSTRAINTS = "Dates must be in format: DD/MM/YYYY";
 
     //for checking if valid input date format
     private static final DateTimeFormatter checkFormatter = DateTimeFormatter
@@ -29,23 +29,22 @@ public class StartDate implements Comparable<StartDate> {
 
 
     /**
-     * Constructs a {@code StartDate}.
+     * Constructs a {@code Date}.
      *
-     * @param date A valid date.
+     * @param date a valid date.
      */
-    public StartDate(String date) {
+    public Date(String date) {
         requireNonNull(date);
-        assert !date.isBlank();
-        checkArgument(isValidStartDate(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         this.date = LocalDate.parse(date, logFormatter);
     }
 
     /**
-     * Returns true if a given string is a valid StartDate input.
+     * Returns true if a given string is a valid Date input.
      * @return boolean
      */
-    //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
-    public static boolean isValidStartDate(String test) {
+    //Solution below adapted from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
+    public static boolean isValidDate(String test) {
         try {
             LocalDate.parse(test, checkFormatter);
         } catch (DateTimeParseException e) {
@@ -55,16 +54,24 @@ public class StartDate implements Comparable<StartDate> {
     }
 
     @Override
-    public int compareTo(StartDate d) {
+    public int compareTo(Date d) {
         return this.date.compareTo(d.date);
     }
 
     /**
-     * Returns the String representation of the StartDate in format suitable for storage logging
-     * @return String
+     * Returns the String representation of the Date in a format suitable for storage logging.
+     * @return String the string that is in the correct format for logging.
      */
     public String toLogFormat() {
         return this.date.format(logFormatter);
+    }
+
+    /**
+     * Returns the integer age of a person.
+     */
+    public int toAge() {
+        LocalDate currDate = LocalDate.now();
+        return Period.between(this.date, currDate).getYears();
     }
 
     @Override
@@ -73,11 +80,11 @@ public class StartDate implements Comparable<StartDate> {
             return true;
         }
 
-        if (!(other instanceof StartDate)) {
+        if (!(other instanceof Date)) {
             return false;
         }
 
-        StartDate sd = (StartDate) other;
+        Date sd = (Date) other;
         return this.date.equals(sd.date);
     }
 

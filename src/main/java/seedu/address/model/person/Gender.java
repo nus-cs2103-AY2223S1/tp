@@ -13,8 +13,8 @@ import java.util.Set;
  */
 public class Gender implements Comparable<Gender> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Gender is an optional field, it should be one of the following"
-        + " format: m / M / male / Male for male, f / F / female / Female for female.";
+    public static final String MESSAGE_CONSTRAINTS = "Gender must be in one of the following"
+        + " formats: m / M / male / Male for male, f / F / female / Female for female.";
 
     private static final Set<String> VALID_GENDERS = new HashSet<>(Arrays.asList("m", "M",
             "f", "F", "male", "Male", "female", "Female")); //NA is removed from the valid gender list
@@ -36,6 +36,7 @@ public class Gender implements Comparable<Gender> {
      * Returns if a given string is a valid gender.
      */
     public static boolean isValidGender(String test) {
+        requireNonNull(test);
         return VALID_GENDERS.contains(test);
     }
     /**

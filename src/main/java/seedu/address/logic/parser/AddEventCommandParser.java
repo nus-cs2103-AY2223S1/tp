@@ -10,10 +10,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.date.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventTitle;
 import seedu.address.model.event.Purpose;
-import seedu.address.model.event.StartDate;
 import seedu.address.model.event.StartTime;
 
 /**
@@ -39,7 +39,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         }
 
         EventTitle eventTitle = ParserUtil.parseEventTitle(argMultimap.getValue(PREFIX_EVENT_TITLE).get());
-        StartDate startDate = ParserUtil.parseStartDate(argMultimap.getValue(PREFIX_START_DATE).get());
+        Date startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
         StartTime startTime = ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_START_TIME).get());
         Purpose purpose = ParserUtil.parsePurpose(argMultimap.getValue(PREFIX_PURPOSE).get());
 

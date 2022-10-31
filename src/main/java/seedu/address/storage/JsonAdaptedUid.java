@@ -20,9 +20,6 @@ public class JsonAdaptedUid {
         this.uid = uid;
     }
 
-    /**
-     * Converts a given {@code Tag} into this class for Jackson use.
-     */
     public JsonAdaptedUid(Uid source) {
         uid = source.getUid();
     }

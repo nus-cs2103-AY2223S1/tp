@@ -6,7 +6,6 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "gender" : "Female",
     "dob" : "1/1/2000",
-    "tagged": [ "friends" ],
     "uid" : "0ae8093a-6367-4060-bf1d-437646cb26c6"
   }, {
     "name": "Alice Pauline",

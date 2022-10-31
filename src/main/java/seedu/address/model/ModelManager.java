@@ -7,8 +7,10 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
@@ -26,6 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Event> filteredEvents;
+    private final ObservableList<PieChart.Data> data;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,14 +42,14 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredEvents = new FilteredList<>(this.addressBook.getEventList());
+        data = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
     }
 
-
-    //=========== UserPrefs ===================================================================================
+    //=========== UserPrefs ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -213,8 +216,16 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    @Override
+    public ObservableList<PieChart.Data> getPieChartData() {
+        return data;
+    }
 
-    //=========== Utility Methods =============================================================================
+    @Override
+    public void setData(ObservableList<PieChart.Data> newData) {
+        requireNonNull(newData);
+        this.data.setAll(newData);
+    }
 
     @Override
     public boolean equals(Object obj) {

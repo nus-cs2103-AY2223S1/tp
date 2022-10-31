@@ -14,11 +14,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.date.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventTitle;
 import seedu.address.model.event.Purpose;
-import seedu.address.model.event.StartDate;
 import seedu.address.model.event.StartTime;
+import seedu.address.model.event.UidList;
 
 /**
  * Edits the details of an existing event in the application.
@@ -31,9 +32,9 @@ public class EditEventCommand extends Command {
             + "by the index number used in the displayed event list. "
             + "Existing values will be overwritten by the input values. \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_EVENT_TITLE + "EVENT_TITLE]"
-            + "[" + PREFIX_START_DATE + "DATE]"
-            + "[" + PREFIX_START_TIME + "TIME]"
+            + "[" + PREFIX_EVENT_TITLE + "EVENT_TITLE] "
+            + "[" + PREFIX_START_DATE + "DATE] "
+            + "[" + PREFIX_START_TIME + "TIME] "
             + "[" + PREFIX_PURPOSE + "PURPOSE] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EVENT_TITLE + "Banana Sale "
@@ -91,12 +92,12 @@ public class EditEventCommand extends Command {
      */
     private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
         assert eventToEdit != null;
-
         EventTitle updatedEventTitle = editEventDescriptor.getEventTitle().orElse(eventToEdit.getEventTitle());
-        StartDate updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getStartDate());
+        Date updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getStartDate());
         StartTime updatedTime = editEventDescriptor.getTime().orElse(eventToEdit.getStartTime());
         Purpose updatedPurpose = editEventDescriptor.getPurpose().orElse(eventToEdit.getPurpose());
-        return new Event(updatedEventTitle, updatedDate, updatedTime, updatedPurpose);
+        UidList uids = eventToEdit.getUids();
+        return new Event(updatedEventTitle, updatedDate, updatedTime, updatedPurpose, uids);
     }
 
     @Override
@@ -120,7 +121,7 @@ public class EditEventCommand extends Command {
      */
     public static class EditEventDescriptor {
         private EventTitle eventTitle;
-        private StartDate date;
+        private Date date;
         private StartTime time;
         private Purpose purpose;
 
@@ -151,11 +152,11 @@ public class EditEventCommand extends Command {
             return Optional.ofNullable(eventTitle);
         }
 
-        public void setDate(StartDate date) {
+        public void setDate(Date date) {
             this.date = date;
         }
 
-        public Optional<StartDate> getDate() {
+        public Optional<Date> getDate() {
             return Optional.ofNullable(date);
         }
 

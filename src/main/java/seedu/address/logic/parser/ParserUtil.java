@@ -4,27 +4,22 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.date.Date;
 import seedu.address.model.event.EventSortField;
 import seedu.address.model.event.EventTitle;
 import seedu.address.model.event.Purpose;
-import seedu.address.model.event.StartDate;
 import seedu.address.model.event.StartTime;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonSortField;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 
 /**
@@ -116,21 +111,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dob} into a {@code DateOfBirth}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code dob} is invalid.
-     */
-    public static DateOfBirth parseDob(String dob) throws ParseException {
-        requireNonNull(dob);
-        String trimmedDob = dob.trim();
-        if (!DateOfBirth.isValidDateOfBirth(dob)) {
-            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
-        }
-        return new DateOfBirth(trimmedDob);
-    }
-
-    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -176,33 +156,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
-    }
-
-    /**
      * Parses {@code eventTitle} into a {@code EventTitle}.
      */
     public static EventTitle parseEventTitle(String eventTitle) throws ParseException {
@@ -215,16 +168,16 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String startDate} into a {@code StartDate}.
+     * Parses a {@code String Date} into a {@code Date}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static StartDate parseStartDate(String startDate) throws ParseException {
-        requireNonNull(startDate);
-        String trimmedStartDate = startDate.trim();
-        if (!StartDate.isValidStartDate(startDate)) {
-            throw new ParseException(StartDate.MESSAGE_CONSTRAINTS);
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(date)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new StartDate(trimmedStartDate);
+        return new Date(trimmedDate);
     }
 
     /**
