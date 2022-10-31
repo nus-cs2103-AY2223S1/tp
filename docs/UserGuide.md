@@ -252,7 +252,6 @@ Format: `task mark TASK_INDEX`
 Examples:
 * `task list` followed by `task mark 1` marks the 1st task in the task list as complete.
 
-
 ### Unmarking tasks: `task unmark`
 
 Unmarks a task and sets it as incomplete.
