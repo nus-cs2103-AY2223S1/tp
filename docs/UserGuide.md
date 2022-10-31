@@ -46,6 +46,7 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
+![Format](images/Format.png)
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
