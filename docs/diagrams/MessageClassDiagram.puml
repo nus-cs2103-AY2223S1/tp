@@ -3,31 +3,32 @@
 show members
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
+skinparam classAttributeIconSize 0
 skinparam classBackgroundColor MODEL_COLOR
 
 
 Class ModelManager {
-    void createMessage(Message)
-    void deleteMessage(Message)
-    boolean hasMessage(Message)
-    List<Message> getMessages()
+    +createMessage(Message): void
+    +deleteMessage(Message): void
+    +hasMessage(Message): boolean
+    +getMessages(): List<Message>
 }
 
 Class AddressBook {
-    void createMessage(Message)
-    void deleteMessage(Message)
-    boolean hasMessage(Message)
+    +createMessage(Message): void
+    +deleteMessage(Message): void
+    +hasMessage(Message): boolean
 }
 
 Class MessageList {
-    void add(Message)
-    void remove(Message)
-    boolean contains(Message)
+    +add(Message): void
+    +remove(Message): void
+    +contains(Message): boolean
 }
 
 Class Message {
-    String message
-    String generate(Message)
+    -message: String
+    +generate(Person): String
 }
 
 ModelManager -down-> AddressBook

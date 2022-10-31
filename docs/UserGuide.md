@@ -1,8 +1,3 @@
----
-layout: page
-title: User Guide
----
-
 <div align="center">
 
 <h1>Rapportbook User Guide</h1>
