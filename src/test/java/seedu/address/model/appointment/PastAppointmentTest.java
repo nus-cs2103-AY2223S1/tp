@@ -134,16 +134,6 @@ class PastAppointmentTest {
     }
 
     @Test
-    public void getDiagnosis_nullDiagnosis_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new PastAppointmentBuilder().withDiagnosis(null).build());
-    }
-
-    @Test
-    public void getDiagnosis_emptyDiagnosis_returnsEmptyString() {
-        assertEquals("", new PastAppointmentBuilder().withDiagnosis("").build().getDiagnosis());
-    }
-
-    @Test
     public void getMedicationString_validMedication_returnsMedicationString() {
         assertEquals("Medication: paracetamol", new PastAppointmentBuilder()
                 .withMedication(new String[] { "Paracetamol" }).build().getMedicationString());

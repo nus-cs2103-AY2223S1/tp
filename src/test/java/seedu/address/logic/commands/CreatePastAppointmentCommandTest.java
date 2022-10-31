@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -10,6 +11,9 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -43,5 +47,16 @@ class CreatePastAppointmentCommandTest {
 
         // remove the appointment from the model for tear down
         expectedModel.getFilteredPersonList().get(0).getPastAppointments().remove(pastAppointment);
+    }
+
+    @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        Set<Medication> medication = new HashSet<>();
+        medication.add(new Medication("Paracetamol"));
+        PastAppointment pastAppointment = new PastAppointment(LocalDate.now(), medication, "Fever");
+        CreatePastAppointmentCommand createPastAppointmentCommand =
+                new CreatePastAppointmentCommand(Index.fromZeroBased(20), pastAppointment);
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () ->
+                createPastAppointmentCommand.execute(model));
     }
 }
