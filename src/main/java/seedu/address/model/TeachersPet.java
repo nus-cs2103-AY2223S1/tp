@@ -10,7 +10,7 @@ import seedu.address.model.student.Class;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueScheduleList;
 import seedu.address.model.student.UniqueStudentList;
-import seedu.address.model.timeRange.TimeRange;
+import seedu.address.model.timerange.TimeRange;
 
 /**
  * Wraps all data at the address-book level

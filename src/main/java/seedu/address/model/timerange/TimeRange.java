@@ -1,4 +1,4 @@
-package seedu.address.model.timeRange;
+package seedu.address.model.timerange;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
