@@ -189,7 +189,7 @@ The Add Review mechanism is facilitated by `AddressBook`. This feature enhances 
 * `AddressBook#addReview(Review)` —  Adds the `Review` to `UniqueReviewList`
 
 For the command, the feature extends `command`, and is implemented as such:
-* `radd s/INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`
+* `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`
 
 #### Implementation Flow of Review Adding feature
 
@@ -247,7 +247,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 The Delete Review mechanism is facilitated by `AddressBook`. This feature allows the user to delete a review.
 
 For the command, the feature extends `command`, and is implemented as such:
-* `rdel INDEX`
+* `rdel REVIEW_INDEX`
 
 #### Implementation Flow of Review Deleting feature
 
