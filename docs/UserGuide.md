@@ -304,7 +304,8 @@ Need to update your application status or change your assessment date? Edit the 
 Format: `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK] [t/TAG]…​`
 
 * Edit the details of internship at the specified `INDEX`.
-  Examples:
+
+Examples:
 * `list` followed by `edit 2 p/quant researcher d/01-01-2023` will edit the position and assignment date of the 1st internship in the list to quant researcher and 1 January 2023 respectively.
 * `find google` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
 
@@ -332,7 +333,7 @@ _After executing command: `view 1`_
 
 ### Copy details of internship : `copy`
 
-Your friend is asking for one of your internship application details? Copy all details of internship into your system's [clipboard](#glossary).
+Your friend is asking for one of your internship application details? Copy all the details of internship application into your computer's [clipboard](#glossary).
 
 Format: `copy INDEX`
 
