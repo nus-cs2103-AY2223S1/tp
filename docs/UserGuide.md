@@ -29,6 +29,7 @@ Here are some of the symbols and text formatting to look out for as you make use
 
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+
 ## Table of Contents
 
 * Table of Contents
@@ -36,6 +37,7 @@ Here are some of the symbols and text formatting to look out for as you make use
 
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+
 ## Quick start
 
 ### Installing PayMeLah
