@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-NutriGoals is a desktop app that tracks a user’s diet and calorie consumption. It is targeted at NUS students who wish to improve their current lifestyle by adopting a healthier one. Studies have shown the benefits of keeping 
+NutriGoals is a desktop app that tracks a user’s diet and calorie consumption. It is targeted at NUS students who wish 
+to improve their current lifestyle by adopting a healthier one. Studies have shown the benefits of keeping 
 track of your daily food consumption – the more consistent you are, the more likely you are to achieve the various 
 fitness goals that you have set for yourself! However, without the right tools, tracking what you have consumed can be 
 tedious and at times disorganised. With NutriGoals, you can keep track of your consumption quickly and easily, without 
@@ -63,9 +64,11 @@ as `nutrigoals.jar`. Do not delete or edit these files.
 * Food items displayed in Food List are sorted according to meal type, in the order: breakfast, lunch, dinner.
 * Upon launching the application, Food List will display food items recorded on the current day.
 * Progress Bar changes based on the total calorie intake for the current day as compared to the target calorie intake.
-  Refer to the `target` command [here](#setting-a-target-calorie-intake-target).
-* The percentage of Progress Bar can go beyond 100%, but note that if the target calorie intake is set to 0, the 
+* To check the total calorie intake for the current day and the target calorie intake, refer to the `review` command 
+[here](#viewing-a-summary-of-the-daily-calorie-intake-review).
+* The Progress Bar percentage can go beyond 100%, but note that if the target calorie intake is set to 0, the 
 percentage will be fixed at 100%.
+* To set the target calorie intake, refer to the `target` command [here](#setting-a-target-calorie-intake-target).
 
 </div>
 
@@ -111,7 +114,6 @@ Format: `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`
 * `FOOD_NAME` should only contain alphanumeric characters and spaces, and should not be blank. Names should also not 
 exceed 27 characters.
 
-
 Example:
 
 * `add n/bread c/100 t/breakfast` adds bread into the food list, and tags it as a breakfast item with 100 calories.
@@ -120,11 +122,15 @@ Example:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+**:information_source: Notes about the parameters:**<br>
 
 `MEAL_TYPE` is **not** case-sensitive.
 
 * E.g. `add n/hotpot c/500 t/dinner` is the same as `add n/hotpot c/500 t/dInNeR`.
+
+**:information_source: Notes about adding food items:**<br>
+
+A food item will not be added into the food list if the resulting total calorie intake for the day exceeds 2147483647 calories.
 
 </div>
 
@@ -166,11 +172,15 @@ Example:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+**:information_source: Notes about the parameters:**<br>
 
 `MEAL_TYPE` is **not** case-sensitive.
 
 * E.g. `edit 2 t/dinner` is the same as `edit 2 t/dInNeR`.
+
+**:information_source: Notes about editing food items:**<br>
+
+A food item will not be edited if the resulting total calorie intake for the day exceeds 2147483647 calories.
 
 </div>
 
