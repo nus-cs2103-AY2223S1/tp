@@ -4,10 +4,8 @@ title: User Guide
 ---
 <div align="center">
 <h1> Pupilist User Guide</h1>
-Welcome to Pupilist User Guide!
+Welcome to Pupilist's User Guide!
 </div>
-
-## Introducing Pupilist
 
 <p align="center">
   <img src="images/pupilist.png" alt="Pupilist's app icon"/>
