@@ -40,7 +40,7 @@ We are developing NutriGoals - a free-to-use CLI nutritional tracker for beginne
 
 <img src="images/tanpingzhi.png" width="200px">
 
-[[GitHub](http://github.com/jtanpingzhi)][[Portfolio](team/tanpingzhi.md)]
+[[GitHub](https://github.com/TanPingZhi)][[Portfolio](team/tanpingzhi.md)]
 
 
 * Role: Developer
