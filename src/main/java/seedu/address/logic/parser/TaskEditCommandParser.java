@@ -34,10 +34,10 @@ public class TaskEditCommandParser implements Parser<TaskEditCommand> {
 
         Index taskIndex;
         Index teamIndex;
-        Name newName;
-        LocalDate newDeadline;
+        Name newName = null;
+        LocalDate newDeadline = null;
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TEAM_INDEX, PREFIX_TASK_INDEX, PREFIX_TASK_NAME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TEAM_INDEX, PREFIX_TASK_INDEX)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskEditCommand.MESSAGE_USAGE));
         }
@@ -50,9 +50,17 @@ public class TaskEditCommandParser implements Parser<TaskEditCommand> {
                     TaskEditCommand.MESSAGE_USAGE), pe);
         }
 
-        newName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASK_NAME).get());
+        if (!argMultimap.getValue(PREFIX_TASK_NAME).isEmpty()) {
+            newName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASK_NAME).get());
+        }
+
         newDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).orElse(null))
                 .orElse(null);
+
+
+        if (newName == null && newDeadline == null) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskEditCommand.MESSAGE_USAGE));
+        }
 
         return new TaskEditCommand(teamIndex, taskIndex, newName, newDeadline);
     }
