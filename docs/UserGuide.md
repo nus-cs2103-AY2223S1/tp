@@ -286,6 +286,7 @@ If you do not like the names of the command, you can select `preferences` in the
 If you do not want to use your mouse, you can press the `F2` key to open the window, and switch fields to edit by pressing the `tab` key. Pressing `enter` while any field is in focus will save and close your settings.
 
 If you really want to, you can shorten the commands to a single character to speed up typing commands, like the example below:
+
 ![Example alias settings](images/ExampleAliases.png)
 </div>
 
