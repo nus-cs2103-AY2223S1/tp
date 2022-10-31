@@ -168,7 +168,14 @@ public class ParserUtil {
         requireNonNull(reminder);
         String trimmedReminder = reminder.trim();
         Set<Reminder> reminderArrayList = new HashSet<>();
-        reminderArrayList.add(new Reminder(trimmedReminder, date));
+        LocalDate birthday = LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)
+                .withResolverStyle(ResolverStyle.STRICT));
+        birthday = birthday.withYear(2022);
+        if (birthday.isBefore(LocalDate.now())) {
+            birthday = birthday.plusYears(1);
+        }
+        reminderArrayList.add(new Reminder(trimmedReminder, birthday.format(
+                DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN))));
         return reminderArrayList;
     }
 }
