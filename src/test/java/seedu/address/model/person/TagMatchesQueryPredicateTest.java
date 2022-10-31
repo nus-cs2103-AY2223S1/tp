@@ -52,7 +52,7 @@ public class TagMatchesQueryPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Keywords match name, phone, email and address, but does not match tag
-        Person testPerson = new PersonBuilder().withName("Alice").withPhone("12345")
+        Person testPerson = new PersonBuilder().withName("Alice").withPhone("1234567")
                 .withEmail("alice@email.com").withAddress("Main Street").withTags("second").build();
 
         predicate = new TagMatchesQueryPredicate(new Tag("Alice"));
