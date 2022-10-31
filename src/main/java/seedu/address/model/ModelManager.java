@@ -171,7 +171,7 @@ public class ModelManager implements Model {
     @Override
     public void editTask(Index teamIndex, Index taskIndex,
                          seedu.address.model.task.Name newName, LocalDate newDeadline) {
-        requireAllNonNull(teamIndex, taskIndex, newName);
+        requireAllNonNull(teamIndex, taskIndex);
         addressBook.editTask(teamIndex, taskIndex, newName, newDeadline);
         updateFilteredTeamList(unused -> false);
         updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);

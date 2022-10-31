@@ -56,7 +56,6 @@ public class UniqueTeamList implements Iterable<Team> {
      * @return {@code Team} at the specified index.
      */
     public Team get(int index) {
-        requireNonNull(index);
         return internalList.get(index);
     }
 
@@ -119,7 +118,6 @@ public class UniqueTeamList implements Iterable<Team> {
      *
      */
     public void editTask(int teamIndex, int taskIndex, seedu.address.model.task.Name newName, LocalDate newDeadline) {
-        requireNonNull(newName);
         internalList.get(teamIndex).editTask(taskIndex, newName, newDeadline);
     }
 

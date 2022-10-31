@@ -1,5 +1,6 @@
 package seedu.address.model.team;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
@@ -78,7 +79,13 @@ public class Team {
         return tasks.get(n);
     }
 
+    /**
+     * Add a person into the team.
+     *
+     * @param p person to add.
+     */
     public void addMember(Person p) {
+        requireNonNull(p);
         members.add(p);
     }
 

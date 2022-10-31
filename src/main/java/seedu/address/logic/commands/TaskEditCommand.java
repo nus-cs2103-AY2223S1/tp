@@ -26,7 +26,7 @@ public class TaskEditCommand extends Command {
             + "by the index number used in the displayed team list.\n"
             + "Parameters: " + PREFIX_TEAM_INDEX + "TEAM-INDEX (must be a positive integer), "
             + PREFIX_TASK_INDEX + "TASK-INDEX (must be a positive integer) "
-            + PREFIX_TASK_NAME + "NEW-TASK-NAME \n"
+            + " [" + PREFIX_TASK_NAME + "NEW-TASK-NAME] \n"
             + " [" + PREFIX_TASK_DEADLINE + "dd-MM-yyyy]"
             + " (It's optional to include deadline for a task!) \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_TEAM_INDEX + "1 "
@@ -49,7 +49,6 @@ public class TaskEditCommand extends Command {
     public TaskEditCommand(Index teamIndex, Index taskIndex, Name newName, LocalDate newDeadline) {
         requireNonNull(taskIndex);
         requireNonNull(teamIndex);
-        requireNonNull(newName);
 
         this.teamIndex = teamIndex;
         this.taskIndex = taskIndex;
@@ -71,8 +70,9 @@ public class TaskEditCommand extends Command {
         }
 
         model.editTask(teamIndex, taskIndex, newName, newDeadline);
-        String val = newDeadline == null ? "" : newDeadline.toString();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newName, val));
+        String deadlineString = newDeadline == null ? "" : newDeadline.toString();
+        String nameString = newName == null ? "" : newName.toString();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, newName, deadlineString));
     }
 
     @Override

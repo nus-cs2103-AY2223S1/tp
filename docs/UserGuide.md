@@ -186,9 +186,9 @@ Examples:
 
 ### Updating a task description: `taskedit`
 
-Updates a task's description.
+Updates a task's description. Require at least one optional parameters.
 
-Format: `taskedit t/TEAM-INDEX task/TASK-INDEX n/NEW-TASK-NAME [d/NEW DD-MM-YYYY]`
+Format: `taskedit t/TEAM-INDEX task/TASK-INDEX [n/NEW-TASK-NAME] [d/NEW DD-MM-YYYY]`
 
 Examples:
 * `taskedit t/1 task/1 n/Finish assignment d/12-12-2022` Updates the first task in the first team with new description 
