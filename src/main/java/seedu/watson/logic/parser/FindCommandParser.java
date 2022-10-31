@@ -1,5 +1,6 @@
 package seedu.watson.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.watson.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
@@ -8,14 +9,13 @@ import static seedu.watson.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import java.util.ArrayList;
 
 import seedu.watson.logic.commands.FindCommand;
-import seedu.watson.logic.commands.FindNameCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
 import seedu.watson.model.student.FindCommandPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
  */
-public class FindCommandParser implements Parser<FindNameCommand> {
+public class FindCommandParser implements Parser<FindCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -23,11 +23,9 @@ public class FindCommandParser implements Parser<FindNameCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FindNameCommand parse(String args) throws ParseException {
-
-        args = args.trim();
+    public FindCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArrayList<String> findCommandKeywords = new ArrayList<>();
-
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENTCLASS, PREFIX_SUBJECT);
 
@@ -51,7 +49,7 @@ public class FindCommandParser implements Parser<FindNameCommand> {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        return new FindNameCommand(new FindCommandPredicate(findCommandKeywords));
+        return new FindCommand(new FindCommandPredicate(findCommandKeywords));
     }
 
 }
