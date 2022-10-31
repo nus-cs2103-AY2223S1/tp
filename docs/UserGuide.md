@@ -11,7 +11,11 @@ title: InterNUS User Guide
 
 ## 1.1 What is InterNUS?
 
-InterNUS is a desktop app for **managing internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InterNUS can get your internship management tasks done faster than traditional GUI apps.
+Welcome to the InterNUS user guide!
+
+InterNUS is a convenient and powerful desktop app for **managing internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It has a sleek design to track your internship status at one glance. 
+
+Having troubles finding who to contact for your various internship applications? Don’t worry! InterNUS also allows you to manage contact person during your applications. After your internship, InterNUS can still be used to manage your work contact list!
 
 ## 1.2 Person List
 
@@ -26,33 +30,34 @@ Store the information of key contacts in InterNUS. During the internship-hunting
 Track the internships you're interested in and all the relevant information -- the company, role, contact person and interview date. Awaiting a reply, or have you been accepted? With InterNUS, you can monitor and update the statuses of your internship applications effortlessly.
 
 --------------------------------------------------------------------------------------------------------------------
-# 2.How to use this User Guide?
+# 2. How to use this User Guide?
+
+1. For new users, proceed to our [Quick start](#3-quick-start). 
+
+1. For returning users, skip to our [Command summary](#command-summary) for a summary of our feature.
+
 
 ## 2.1 Icons and symbols
+| Symbol               | Meaning                                                                                      |
+|----------------------|----------------------------------------------------------------------------------------------|
+| :information_source: | Additional information that may be useful to know when using InterNUS                        |
+| :exclamation:        | Important information or warnings that you should take note of when using InterNUS           |
 
 ## 2.2 Graphical User Interface (GUI) of InterNUS
+![Ui](images/interNUS.png)
+
+The UI component description:
+
+| Components             | Purpose                                |
+|------------------------|----------------------------------------|
+| Menu Bar               | Consists of File, Help and Color Theme |
+| Color Theme Button     | To switch between Light/Dark mode      | 
+| Command Input          | To enter commands to be executed       |
+| System Message Display | Displays results of executed command   |
+| Person List            | Displays contact information of person |
+| Internship List        | Displays information of internship     |
 
 ## 2.3 Command format
-
---------------------------------------------------------------------------------------------------------------------
-# 3. Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `InterNUS.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-1/tp/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your app.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-
-1. Refer to the [Features](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
-
-# 4. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -78,18 +83,44 @@ Track the internships you're interested in and all the relevant information -- t
 
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+# 3. Quick start
+
+1. Ensure you have Java `11` or above installed in your Computer.
+
+1. Download the latest `InterNUS.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-1/tp/releases).
+
+1. Copy the file to the folder you want to use as the _home folder_ for your app.
+
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)
+
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+
+1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+# 4. Features
+
 ## 4.1 Add Command
 
 ### 4.1.1 Adding a person: `add -p`
 
-Adds a person to InterNUS.
+Adds a person to InterNUS. This person refers to the contact person you want to save. 
+During internship application this person could be the hiring manager. 
+After the application, this person could be the senior engineer who you want to keep contact at work.
 
 Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c/[COMPANY]`
+* The link index (in add -p) refers to the index number shown in the internship list.
+* The company refers to the company the contact person is working at.
 
-<div markdown="span" class="alert alert-primary">:bulb: **![img.png](img.png)**
-A person can have any number of tags (including 0). Link index is optional.
-The link index refers to the index number shown in the internship list. Company is optional.
-The company refers to the company the contact person is working at. 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person can have any number of tags (including 0). 
+New added person will be added in current sorted order.
+Only one contact person can be in-charge of one internship position.
+Phone number allows more than 2 digits without the need of any specific pattern.
+A person is only considered duplicated if the name is exactly the same including casing. 
 </div>
 
 Examples:
@@ -101,9 +132,11 @@ Examples:
 Adds an Internship to InterNUS.
 
 Format: `add -i c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]`
-- Valid statuses are `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED` or `REJECTED` (case insensitive).
-- Date of interview is optional as interviews might not be scheduled yet.
-- `LINK_INDEX` refers to the index number shown in the person list and is optional. Specifying this parameter will define the current person at the specified index in the person list as the contact person of the newly added internship. 
+
+* The link index (in add -i) refers to the index number shown in the person list.
+* Valid statuses are `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED` or `REJECTED` (case insensitive).
+* Date of interview is optional as interviews might not be scheduled yet.
+* `LINK_INDEX` refers to the index number shown in the person list and is optional. Specifying this parameter will define the current person at the specified index in the person list as the contact person of the newly added internship. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** Instead of typing the full status name, just enter the first letter of the intended status (e.g. `s/b` is a shortcut for `s/BOOKMARKED`)**
 </div>
@@ -138,6 +171,7 @@ Format: `edit -p INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/COMPANY] [t/TAG]…​`
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 - You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+- Does not allow duplicate name when editing name of person
 
 Examples:
 - `list -p` followed by `edit -p 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -318,6 +352,16 @@ Format: `exit`
 ## 4.9 User Interface
 
 ### 4.9.1 Light and Dark Mode
+
+Clicking on the Color Theme button in the Menu Bar displays a dropdown list to select between Light/Dark mode.
+
+- Dark Mode GUI
+
+![Ui](images/darktheme.png)
+
+- Light Mode GUI
+
+![Ui](images/lightheme.png)
 
 ## 4.10 Data files
 
