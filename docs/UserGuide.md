@@ -150,6 +150,8 @@ Format: `addresponse INDEX m/MESSAGE_COUNT`
 * The `INDEX` refers to the index number shown in the displayed student list.
 * The `INDEX` must be a positive integer 1, 2, 3, ... 
 * The `MESSAGE_COUNT` must be a positive integer 1, 2, 3, ...
+* If `m\0000000000` is given as an input, 0s will not be truncated and response will be displayed as
+`response: 000000000`
 
 Example:
 
