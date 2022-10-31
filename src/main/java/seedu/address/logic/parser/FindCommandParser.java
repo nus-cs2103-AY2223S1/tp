@@ -26,7 +26,8 @@ import seedu.address.model.person.TagContainsKeywordsPredicate;
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
-    public static final String MESSAGE_NO_ALPHANUMERIC = "Parameters for the find command must contain an alphanumeric character";
+    public static final String MESSAGE_NO_ALPHANUMERIC = "Parameters for " +
+            "the find command must contain an alphanumeric character";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
