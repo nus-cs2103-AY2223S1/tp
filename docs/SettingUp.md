@@ -10,7 +10,7 @@ title: Setting up and getting started
 
 ## Setting up the project in your computer
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution** <br>
+<div markdown="span" class="alert alert-warning">:warning: **Caution** <br>
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
 </div>
 
