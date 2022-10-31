@@ -113,14 +113,15 @@ Things to note:
 
 1. On startup of the application, this panel shows Coydir logo.
 2. To view an employee's particulars, refer to the [view command]([#view-details-of-an-employee--view).
-3. If you delete an employee that you are currently viewing, the next employee's details will be viewed.
+3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's 
+particulars.
 4. If there is no next employee, this panel will revert to the Coydir logo.
 
 
 #### Command Box
 ![](images/ui-screenshots/Command.png)
 
-You can enter your user commands in the bottom section labeled as `Enter command here`.
+You can enter your user commands in the bottom section labeled as `Enter command here...`.
 
 The top section displays relevant messages/errors after the command is entered.
 
