@@ -133,11 +133,15 @@ Format: `tag create t/TAG`
 Example:
 * `tag create t/family` creates a `family` tag.
 
-### Edit a tag: `tag edit`
+### Edit a Tag: `tag edit`
 
 Renames an existing tag.
 
 Format: `tag edit t/TAG1 t/TAG2`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** The new Tag must not have the same name as any other existing tags.
+</div>
 
 * `TAG1` is the current name of the tag and `TAG2` is the new name of the tag.
 
@@ -377,6 +381,10 @@ If your changes to the data file makes its format invalid, SoConnect will discar
 </div>
 
 ### Archiving data files `[coming in v2.0]`
+
+_Details coming soon ..._
+
+### Viewing tags `[coming in v2.0]`
 
 _Details coming soon ..._
 
