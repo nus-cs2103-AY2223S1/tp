@@ -10,7 +10,7 @@ title: Chan Chung Loong's Project Portfolio Page
 Given below are my contributions to the project.
 
 * **New Features**
-  * Implemented `Rating` class, which adds a rating for a `Review` for critics to rate a stall from 0 to 5 inclusive ([#151](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/151)) 
+  * Implemented `Rating` class, which adds a rating for a `Review` for critics to rate a stall from 0 to 5 inclusive. ([#151](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/151)) 
   * Implemented copying of `Stall` and `Review` data onto the computer clipboard, which enables the user to right-click on either a `Stall` or `Review` to copy the name, address, or any other information such as tags to the system clipboard. ([#169](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/169]), [#237](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/237))
     * Justification: This feature allows the user to easily edit the content without typing out the entire review if the data is very long into the command text box.
 * **Enhancements to Graphical User Interface (GUI)**
@@ -23,9 +23,9 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**
   * Refactoring `Address`, `Name` and `Tag` into `model.commons` package ([#119](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/119), [#224](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/224))
   * Justification:
-    * Refactoring these fields into their own common packages helped to reduce confusion as all these fields are shared by both `Stall` and `Review`, and hence, they should be in a common package rather than situated in either `model.stall` or `model.review`
+    * Refactoring these fields into their own common packages helped to reduce confusion as all these fields are shared by both `Stall` and `Review`, and hence, they should be in a common package rather than situated in either `model.stall` or `model.review`.
 * **Enhancements to new features**
-  * Added error messages for any missing mandatory fields in RAddCommand and SAddCommand ([#216](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/216))
+  * Added error messages for any missing mandatory fields in RAddCommand and SAddCommand. ([#216](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/216))
 * **Enhancements to validation checks and error messages**
   * Ensured that all validation checks and exceptions are handled properly.
   * Ensured that all error messages shown to the user upon execution of an incorrect command or missing fields are correct and easy to understand, so that the user can recover from any errors and continue using the application.
@@ -36,13 +36,17 @@ Given below are my contributions to the project.
 * **Documentation**
   * User Guide
     * Updated name to FoodWhere and modify introduction of application. ([#22](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/22))
-    * Added new commands into command summary table and updated screenshots of User Interface ([#125](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/125), [#227](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/227))
+    * Added new commands into command summary table and updated screenshots of User Interface. ([#125](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/125), [#227](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/227))
   * Developer Guide
     * Added use cases 1 to 5, 8 and table of user stories. ([#38](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/38), [#259](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/259))
+    * Added implementation of Review class and updated User Interface UML diagrams ([#180](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/180))
+    * Added use case for clear command ([#259](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/259))
 * **Community**
   * Updated the user guide URL in the HelpWindow. ([#44](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/44))
   * Modify the default package name to `foodwhere`. ([#71](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/71))
-  * Enable assertions and modified build.gradle to create the correct JAR filename ([#81](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/81), [#184](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/184)) 
+  * Enable assertions and modified build.gradle to create the correct JAR filename. ([#81](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/81), [#184](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/184)) 
+  * Reviewed PRs with non-trivial review comments. ([#95](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/95))
+  * Reported bugs and suggestions for other team in the same CS2103/T class. ([PE-Dry Run](https://github.com/Hikoya/ped/issues))
 * **Tools**
   * IntelliJ IDEA
   * JavaFX Scene Builder
