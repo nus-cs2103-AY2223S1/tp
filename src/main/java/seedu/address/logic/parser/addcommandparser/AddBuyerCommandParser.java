@@ -62,7 +62,7 @@ public class AddBuyerCommandParser implements Parser<AddBuyerCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
-        Buyer buyer = new Buyer(PersonCategory.BUYER, name, phone, email, address, new ArrayList<>());
+        Buyer buyer = new Buyer(PersonCategory.BUYER, name, phone, email, address, null);
 
         List<Order> orders = ParserUtil.parseOrders(argMultimap.getAllValues(PREFIX_ORDER), false);
 

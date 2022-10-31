@@ -62,7 +62,7 @@ public class AddSupplierCommandParser implements Parser<AddSupplierCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
-        Supplier supplier = new Supplier(PersonCategory.SUPPLIER, name, phone, email, address, new ArrayList<>());
+        Supplier supplier = new Supplier(PersonCategory.SUPPLIER, name, phone, email, address, null);
 
         List<Pet> pets = ParserUtil.parsePets(argMultimap.getAllValues(PREFIX_PET), false);
 

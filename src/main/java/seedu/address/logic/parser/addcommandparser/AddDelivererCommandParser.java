@@ -60,7 +60,7 @@ public class AddDelivererCommandParser implements Parser<AddDelivererCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
 
-        Deliverer deliverer = new Deliverer(name, phone, email, address, new ArrayList<>());
+        Deliverer deliverer = new Deliverer(name, phone, email, address, null);
 
         return new AddDelivererCommand(deliverer);
     }
