@@ -44,7 +44,7 @@ REal-Time is a **desktop app for real estate agents to manage client contacts, o
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addC n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addC n/NAME`, `NAME` is a parameter which can be used as `addC n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -55,7 +55,7 @@ REal-Time is a **desktop app for real estate agents to manage client contacts, o
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -67,11 +67,13 @@ ___
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
+
+Format - `help`
+
 
 ![help message](images/helpMessage.png)
 
-Format - `help`
 
 ___
 
@@ -95,16 +97,17 @@ ___
 
 Adds a listing to the address book.
 
-Format - `addL id/ID a/ADDRESS n/OWNER_NAME ap/ASKING_PRICE [t/TAG]…​`
+Format - `addL l/LISTING_ID a/ADDRESS n/OWNER_NAME ap/ASKING_PRICE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A listing can have any number of tags (including 0)
 </div>
 
 Examples:
-* `addL id/1 a/John street, block 123, #01-01 n/John Doe ap/500000 t/4_bedroom t/2_storey`
-* `addL id/abc a/Changi Prison n/Betsy Crowe ap/1 t/no_MRT_access t/dangerous_neighborhood`
+* `addL l/567 a/John street, block 123, #01-01 n/John Doe ap/500000 t/4_bedroom t/2_storey`
+* `addL l/haunted a/Changi Prison n/Betsy Crowe ap/1 t/no_MRT_access t/dangerous_neighborhood`
 
+![addL example](images/addL.png)
 ___
 
 ### Adding an offer: `addO`
@@ -219,18 +222,6 @@ Examples:
 
 ___
 
-### Finding listings by tag: `findL`
-
-Finds listings whose contain any of the given tags.
-
-Format - `findL KEYWORD [MORE_KEYWORDS]`
-
-Examples:
-* `findL 4_bedroom`
-* `findL fun_neighborhood no_MRT_access`
-
-___
-
 ### Finding an offer : `[Coming soon]`
 
 ___
@@ -257,24 +248,13 @@ ___
 
 ### Deleting a listing : `deleteL`
 
-Format: `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`
-* Edits the offer at the specified `INDEX`. The index refers to the index number shown in the displayed offer list. 
-The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+Format: `deleteL [l/ LISTING_ID]`
+* Deletes the listing with the given ListingId.
 
 Examples:
-* `editO 1 o/600000` Edits the offer price of the 1st offer to be `600000`.
-* `editO 2 n/Betsy Crower o/123456` Edits the name and offer price of the 2nd offer to be `Betsy Crower` and `123456`
-* respectively.
+* `deleteL l/001` Deletes the Listing with ListingId of `001`.
 
-Deletes the specified listing from the address book.
-
-Format - `deleteL INDEX`
-
-Examples:
-* `listL` followed by `deleteL 2` deletes the 2nd listing in the address book.
-* `findL 4_bedroom` followed by `deleteL 1` deletes the 1st listing in the results of the `findL` command.
+![deleteL example](images/deleteL.png)
 
 ___
 

@@ -81,7 +81,7 @@ public class UniqueListingList implements Iterable<Listing> {
         }
 
         if (!target.isSameListing(editedListing) && contains(editedListing)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateListingException();
         }
 
         internalList.set(index, editedListing);
