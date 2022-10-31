@@ -72,7 +72,7 @@ Given below are my contributions to the project.
   * Worked on Overview.
   * Writeup of use cases 1 - 4.
   * Design diagrams and writeup for ```Add Interest``` feature.
-  * Align UML diagrams to project scope.
+  * Refactored UML diagrams to align with project scope.
   * Writeup of Future Developments.
   * Proofread developer guide for bugs.
 
