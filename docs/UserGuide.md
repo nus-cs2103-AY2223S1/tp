@@ -95,27 +95,33 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
 6. Refer to the [Features](#features) below for details of each command.
 
 ### The User Interface
+
 Below is an image of Coydir User Interface with the main components labelled.
 
 ![](images/ui-screenshots/Labelled GUI.png)
 
 #### Toolbar
+
 ![](images/ui-screenshots/Toolbar.png)
 This Toolbar can be used to :
+
 1. Exit the application through the **File** button
 2. Access the Help guide through the **Help** button
 3. Change from Dark mode to Light Mode or vice versa through the **Theme** button
 
 #### Employee List Panel
+
 ![](images/ui-screenshots/Employee List Panel.png)
 This shows the whole employee list with basic information such as _Name_, _Employee ID_ and _Position_.
 
 This will come in handy if:
-1. You want a general overview of the employees in the company as 
-of this moment 
+
+1. You want a general overview of the employees in the company as
+   of this moment
 2. You want to quickly find out their Employee ID to view more details.
 
 #### Employee Info Panel
+
 ![](images/ui-screenshots/Employee Info Panel.png)
 This shows a specific employee's particulars.
 
@@ -123,18 +129,17 @@ Things to note:
 
 1. On startup of the application, this panel shows Coydir logo.
 2. To view an employee's particulars, refer to the [view command]([#view-details-of-an-employee--view).
-3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's 
-particulars.
+3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's
+   particulars.
 4. If there is no next employee, this panel will revert to the Coydir logo.
 
-
 #### Command Box
+
 ![](images/ui-screenshots/Command.png)
 
 You can enter your user commands in the bottom section labeled as `Enter command here...`.
 
 The top section displays relevant messages/errors after the command is entered.
-
 
 ---
 
@@ -210,22 +215,14 @@ The complete employee profile allows you to specify _a fair amount_ of details f
 | **Leaves Left**  | No. of leaves left for employee        | **Cannot Set** | 14            |
 | **Rating**       | Latest performance rating for employee | **Cannot Set** | _None_        |
 
-<div markdown="span" class="alert alert-info">:bulb:
-  <h5>Bonus Information on the Profile</h5>
-  <ul>
-    <li><strong>Employee ID</strong> is a unique number assigned to each employee, and is used for several powerful commands. To ensure the uniqueness of the IDs, Coydir <strong>does not support</strong> any editing/manipulation of the employee IDs.</li>
-      <ul>
-        <li>If you really wish to, you can <a href="#editing-the-data-file">edit the data file</a> directly to "control" the employee IDs. However, this is <em>strongly discouraged</em>.</li>
-      </ul>
-    <li>For simplicity, Coydir (<em>in v1.4</em>) currently supports a fixed list of departments.</li>
-      <ul>
-        <li>You can find out more about this in the <a href="#managing-departments">Department Management section here</a>.</li>
-      </ul>
-    <li>For each employee, Coydir supports managing individual employee leaves, as well as performance ratings, helping you to track the particulars that are not meant to be set (no. of leaves left, employee rating).</li>
-      <ul>
-        <li>You can find out more about <a href="managing-employee-leaves">employee leave management here</a>, and about <a href="#managing-employee-performance">performance ratings here</a>.</li>
-      </ul>
-  </ul>
+<div markdown="block" class="alert alert-info">:bulb:
+##### Bonus Information on the Profile
+- **Employee ID** is a unique number assigned to each employee, and is used for several powerful commands. To ensure the uniqueness of the IDs, Coydir **does not support** any editing/manipulation of the employee IDs.
+  - If you really wish to, you can [edit the data file](#editing-the-data-file) directly to "control" the employee IDs. However, this is _strongly discouraged_.
+- For simplicity, Coydir (_in v1.4_) currently supports a fixed list of departments.
+  - You can find out more about this in the [Department Management section here](#managing-departments).
+- For each employee, Coydir supports managing individual employee leaves, as well as performance ratings, helping you to track the particulars that are not meant to be set (no. of leaves left, employee rating)
+  - You can find out more about [employee leave management here](#managing-employee-leaves), and about [performance ratings here](#managing-employee-performance).
 </div>
 
 #### Adding an employee: `add`
@@ -234,16 +231,16 @@ Adds an employee to Coydir.
 
 Format: `add n/NAME [p/PHONE] [e/EMAIL] j/POSITION d/DEPARTMENT [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
 
-Field |TAG | Description | Requirement| Default Value
---------------|---------------|---------------|------------------------ | --------
-`NAME`|n/|Name|**Compulsory**| -
-`PHONE` |p/|Phone number|**Optional**| N/A
-`EMAIL` |e/|Email|**Optional**| N/A
-`POSITION` |j/|Job position|**Compulsory**| -
-`DEPARTMENT` |d/|Company Department|**Compulsory**| -
-`ADDRESS` |a/|Address|**Optional**| N/A
-`LEAVE` |l/|Total number of entitled leaves|**Optional**| 14
-`TAG` |t/|Information tags|**Optional**| _None_
+| Field        | TAG | Description                     | Requirement    | Default Value |
+| ------------ | --- | ------------------------------- | -------------- | ------------- |
+| `NAME`       | n/  | Name                            | **Compulsory** | -             |
+| `PHONE`      | p/  | Phone number                    | **Optional**   | N/A           |
+| `EMAIL`      | e/  | Email                           | **Optional**   | N/A           |
+| `POSITION`   | j/  | Job position                    | **Compulsory** | -             |
+| `DEPARTMENT` | d/  | Company Department              | **Compulsory** | -             |
+| `ADDRESS`    | a/  | Address                         | **Optional**   | N/A           |
+| `LEAVE`      | l/  | Total number of entitled leaves | **Optional**   | 14            |
+| `TAG`        | t/  | Information tags                | **Optional**   | _None_        |
 
 <div markdown="span" class="alert alert-primary">:bulb:
 An employee can have any number of tags (including 0).
@@ -284,7 +281,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/POSITION] [d/DEPARTMENT] [a/
 | `TAG`        | t/  | Updated tag(s) of employee          | **Optional**   | -             |
 
 <div markdown="span" class="alert alert-primary">:bulb:
-  <p>There must be <em>at least one</em> update parameter provided (such as name, phone, email, etc.). Otherwise, Coydir will not run the command, as you would not be editing anything at all!</p>
+  There must be _at least one_ update parameter provided (such as name, phone, email, etc.). Otherwise, Coydir will not run the command, as you would not be editing anything at all!
 </div>
 
 Example:
@@ -384,12 +381,10 @@ Format: `find [n/NAME_KEYWORD] [j/POSITION_KEYWORD] [d/DEPARTMENT_KEYWORD]`
 | `POSITION`   | j/  | Search keyword for position of employee   | **Optional** | -             |
 | `DEPARTMENT` | d/  | Search keyword for department of employee | **Optional** | -             |
 
-<div markdown="span" class="alert alert-primary">:bulb:
-  <h5>Important Tips!</h5>
-  <ul>
-    <li>There must be <em>at least one</em> parameter (and keyword) in the search, else Coydir will not know what to search for!</li>
-    <li>The keywords you input for searching are <strong>case-insensitive</strong>. Additionally, they need not be full words, just a segment will do. This means that searching for the department "tech" will show results for both "Technology and "Information Technology".</li>
-  </ul>
+<div markdown="block" class="alert alert-primary">:bulb:
+##### Important Tips!
+  - There must be _at least one_ parameter (and keyword) in the search, else Coydir will not know what to search for!
+  - The keywords you input for searching are **case-insensitive**. Additionally, they need not be full words, just a segment will do. This means that searching for the department "tech" will show results for both "Technology and "Information Technology".
 </div>
 
 Example:
@@ -523,10 +518,10 @@ If the rating given for any employee is invalid (is not an integer from 1-5 incl
 
 Format: `rate id/ID r/RATING`
 
-Field |TAG | Description | Requirement| Default Value
---------------|---------------|---------------|------------------------ | --------
-`ID`|id/|Employee ID|**Compulsory**| -
-`RATING` |r/|Performance rating of employee|**Compulsory**| -
+| Field    | TAG | Description                    | Requirement    | Default Value |
+| -------- | --- | ------------------------------ | -------------- | ------------- |
+| `ID`     | id/ | Employee ID                    | **Compulsory** | -             |
+| `RATING` | r/  | Performance rating of employee | **Compulsory** | -             |
 
 Example:
 
@@ -542,9 +537,9 @@ The individual rating values will be displayed beside each node in the performan
 
 **:information_source: Note:** You can only rate the performance of an employee once per day.<br>
 
-* Rating an employee who already has a `Rating` with `timestamp` of that same day with the `rate` command will throw a `employee already rated` error.
+- Rating an employee who already has a `Rating` with `timestamp` of that same day with the `rate` command will throw a `employee already rated` error.
 
-* This is to prevent multiple ratings per day, and avoid a distorted performance history graph.
+- This is to prevent multiple ratings per day, and avoid a distorted performance history graph.
 </div>
 
 ### Managing Departments
