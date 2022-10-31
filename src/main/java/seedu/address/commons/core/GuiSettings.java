@@ -1,6 +1,7 @@
 package seedu.address.commons.core;
 
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -10,8 +11,8 @@ import java.util.Objects;
  */
 public class GuiSettings implements Serializable {
 
-    private static final double DEFAULT_HEIGHT = 600;
-    private static final double DEFAULT_WIDTH = 740;
+    private static final double DEFAULT_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 0.9;
+    private static final double DEFAULT_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().getWidth() * 0.9;
 
     private final double windowWidth;
     private final double windowHeight;

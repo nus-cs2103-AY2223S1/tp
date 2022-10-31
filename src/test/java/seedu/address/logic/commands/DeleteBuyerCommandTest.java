@@ -25,7 +25,7 @@ import seedu.address.model.person.Buyer;
  */
 public class DeleteBuyerCommandTest {
 
-    private Model modelForBuyers = new ModelManager(getTypicalBuyerAddressBook(), new UserPrefs());
+    private final Model modelForBuyers = new ModelManager(getTypicalBuyerAddressBook(), new UserPrefs());
 
     // Buyer List Tests
     @Test
