@@ -129,7 +129,7 @@ class ViewCommandTest {
     }
 
     /**
-     * A model stub with two students in a focus mode, each having a grade for the same session.
+     * A model stub with a student in a focus mode, having two graded sessions.
      */
     private class ModelStubOneStudentWithGrades extends ModelStub {
 
