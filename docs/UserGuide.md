@@ -340,14 +340,14 @@ task within the task list of the module with the module code `CS2103T`.
 <br>
 
 ### 2.3. Links
-All links in Plannit are composed of a link URL and an alias (case-sensitive). :D 
+All links in Plannit are composed of a URL and a user-defined alias (case-sensitive).
 
 | :exclamation: Plannit provides no guarantee of the link URL's existence |
 |-------------------------------------------------------------------------|
 
 #### 2.3.1. Add link
 You may add link(s) to a specific module using the `add-link` command.
-Links will be added by its URL and user-defined alias.
+Links will be added by its URL and alias.
 
 If there exists a link URL or alias that is detected as invalid within a chained command,
 none of the links in the command will be added. 
