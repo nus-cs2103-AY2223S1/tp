@@ -31,7 +31,7 @@ public class PatientBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Uid uid;
-    private String category;
+    private final String category;
     private Name name;
     private Gender gender;
     private Phone phone;
@@ -95,9 +95,10 @@ public class PatientBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Patient} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code Patient} that we are building.
      */
-    public PatientBuilder withTags(String ... tags) {
+    public PatientBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -130,7 +131,7 @@ public class PatientBuilder {
      * Parses the {@code datesSlots} into a {@code Set<DateSlot>} and
      * set it to the {@code Patient} that we are building.
      */
-    public PatientBuilder withDatesSlots(String ... datesSlots) {
+    public PatientBuilder withDatesSlots(String... datesSlots) {
         this.dateSlots = SampleDataUtil.getDatesSlotsList(datesSlots);
         return this;
     }

@@ -52,6 +52,7 @@ class JsonAdaptedPerson {
     private final String pName;
     private final String pPhone;
     private final String pEmail;
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -114,13 +115,13 @@ class JsonAdaptedPerson {
             dateSlots.addAll(sourcePatient.getDatesSlots().stream()
                     .map(JsonAdaptedDateSlot::new)
                     .collect(Collectors.toList()));
-            String[] physNameArr = new String[]{"NA"};
+            String[] physNameArr = new String[] { "NA" };
             sourcePatient.getAttendingPhysician().ifPresent(x -> physNameArr[0] = x.getName().fullName);
             pName = physNameArr[0];
-            String[] physEmailArr = new String[]{"NA"};
+            String[] physEmailArr = new String[] { "NA" };
             sourcePatient.getAttendingPhysician().ifPresent(x -> physEmailArr[0] = x.getEmail().value);
             pEmail = physEmailArr[0];
-            String[] physPhoneArr = new String[]{"NA"};
+            String[] physPhoneArr = new String[] { "NA" };
             sourcePatient.getAttendingPhysician().ifPresent(x -> physPhoneArr[0] = x.getPhone().value);
             pPhone = physPhoneArr[0];
         } else {
@@ -230,12 +231,6 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final List<DateSlot> modelDatesSlots = patientHomeVisitDatesSlots;
-
-        final List<HomeVisit> modelHomeVisits = nurseHomeVisitList;
-        final List<Date> modelUnavailableDates = nurseUnavailableDate;
-        final List<Date> modelFullyScheduledDates = nurseFullySchedulledDates;
-
         if (category == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Category.class.getSimpleName()));
@@ -243,11 +238,11 @@ class JsonAdaptedPerson {
 
         if (category.equals(NURSE_SYMBOL)) {
             return new Nurse(modelUid, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags,
-                    modelUnavailableDates, modelHomeVisits, modelFullyScheduledDates);
+                    nurseUnavailableDate, nurseHomeVisitList, nurseFullySchedulledDates);
 
         } else if (category.equals(PATIENT_SYMBOL)) {
             return new Patient(modelUid, modelName, modelGender, modelPhone, modelEmail,
-                    modelAddress, modelTags, modelDatesSlots);
+                    modelAddress, modelTags, patientHomeVisitDatesSlots);
 
         } else {
             throw new IllegalValueException(Category.MESSAGE_CONSTRAINTS);
@@ -257,4 +252,3 @@ class JsonAdaptedPerson {
     }
 
 }
-

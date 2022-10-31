@@ -22,16 +22,18 @@ public class Uid implements Comparable<Uid> {
 
     /**
      * Constructor for Uid using a String as an input
+     *
      * @param uid
      */
     public Uid(String uid) {
-        Long parsedUid = Long.parseLong(uid);
+        long parsedUid = Long.parseLong(uid);
         this.uid = parsedUid;
         NEXT_UID.set(parsedUid + 1);
     }
 
     /**
      * Constructor for Uid using a Long as an input
+     *
      * @param uid
      */
     public Uid(Long uid) {
@@ -47,17 +49,21 @@ public class Uid implements Comparable<Uid> {
     }
 
     /**
-     * @return the id
-     */
-    public Long getUid() {
-        return uid;
-    }
-
-    /**
      * Returns true if a given string is a valid id.
      */
     public static boolean isValidUid(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public static Uid generateUniversalUid() {
+        return new Uid(UNIVERSAL_UID);
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getUid() {
+        return uid;
     }
 
     @Override
@@ -95,9 +101,5 @@ public class Uid implements Comparable<Uid> {
     @Override
     public int compareTo(Uid o) {
         return uid.compareTo(o.getUid());
-    }
-
-    public static Uid generateUniversalUid() {
-        return new Uid(UNIVERSAL_UID);
     }
 }

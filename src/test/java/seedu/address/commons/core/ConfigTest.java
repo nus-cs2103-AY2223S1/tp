@@ -23,5 +23,4 @@ public class ConfigTest {
         assertTrue(defaultConfig.equals(defaultConfig));
     }
 
-
 }

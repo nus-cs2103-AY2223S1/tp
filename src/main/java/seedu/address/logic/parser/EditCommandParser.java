@@ -36,17 +36,18 @@ import seedu.address.model.tag.Tag;
 public class EditCommandParser implements Parser<EditCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
+     * Parses the given {@code String} of arguments in the context of the
+     * EditCommand
      * and returns an EditCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_CATEGORY, PREFIX_NAME, PREFIX_GENDER,
-                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DATE_AND_SLOT, PREFIX_TAG,
-                        PREFIX_DATE_AND_SLOT_INDEX, PREFIX_UNAVAILABLE_DATE, PREFIX_UNAVAILABLE_DATE_INDEX);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_CATEGORY, PREFIX_NAME,
+                PREFIX_GENDER,
+                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DATE_AND_SLOT, PREFIX_TAG,
+                PREFIX_DATE_AND_SLOT_INDEX, PREFIX_UNAVAILABLE_DATE, PREFIX_UNAVAILABLE_DATE_INDEX);
 
         Uid uid;
 
@@ -113,8 +114,10 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> datesSlots} into a {@code List<DateSlot>} if {@code dateSlots} is non-empty.
-     * If {@code datesSlots} contain only one element which is an empty string, it will be parsed into a
+     * Parses {@code Collection<String> datesSlots} into a {@code List<DateSlot>} if
+     * {@code dateSlots} is non-empty.
+     * If {@code datesSlots} contain only one element which is an empty string, it
+     * will be parsed into a
      * {@code List<DateSlot>} containing zero dateTime.
      */
     private Optional<List<DateSlot>> parseDatesSlotsForEdit(Collection<String> datesSlots) throws ParseException {
@@ -124,13 +127,15 @@ public class EditCommandParser implements Parser<EditCommand> {
             return Optional.empty();
         }
         Collection<String> dateSlotList = datesSlots.size() == 1 && datesSlots.contains("")
-                ? Collections.emptyList() : datesSlots;
+                ? Collections.emptyList()
+                : datesSlots;
 
         return Optional.of(ParserUtil.parseDatesSlots(dateSlotList));
     }
 
     /**
-     * Parses {@code Collection<String> dateSlotIndexes} into a {@code List<Integer>}
+     * Parses {@code Collection<String> dateSlotIndexes} into a
+     * {@code List<Integer>}
      * if {@code dateSlotIndexes} is non-empty.
      */
     private Optional<List<Index>> parseDateSlotIndexesForEdit(Collection<String> dateSlotIndexes)
@@ -141,13 +146,16 @@ public class EditCommandParser implements Parser<EditCommand> {
             return Optional.empty();
         }
         Collection<String> dateSlotIndexList = dateSlotIndexes.size() == 1 && dateSlotIndexes.contains("")
-                ? Collections.emptyList() : dateSlotIndexes;
+                ? Collections.emptyList()
+                : dateSlotIndexes;
         return Optional.of(ParserUtil.parseIndexes(dateSlotIndexList));
     }
 
     /**
-     * Parses {@code Collection<String> dates} into a {@code List<Date>} if {@code date} is non-empty.
-     * If {@code dates} contain only one element which is an empty string, it will be parsed into a
+     * Parses {@code Collection<String> dates} into a {@code List<Date>} if
+     * {@code date} is non-empty.
+     * If {@code dates} contain only one element which is an empty string, it will
+     * be parsed into a
      * {@code List<Date>} containing zero date.
      */
     private Optional<List<Date>> parseDatesForEdit(Collection<String> dates) throws ParseException {
@@ -157,7 +165,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             return Optional.empty();
         }
         Collection<String> dateList = dates.size() == 1 && dates.contains("")
-                ? Collections.emptyList() : dates;
+                ? Collections.emptyList()
+                : dates;
 
         return Optional.of(ParserUtil.parseDates(dateList));
     }
@@ -174,10 +183,9 @@ public class EditCommandParser implements Parser<EditCommand> {
             return Optional.empty();
         }
         Collection<String> dateIndexList = dateIndexes.size() == 1 && dateIndexes.contains("")
-                ? Collections.emptyList() : dateIndexes;
+                ? Collections.emptyList()
+                : dateIndexes;
         return Optional.of(ParserUtil.parseIndexes(dateIndexList));
     }
 
 }
-
-

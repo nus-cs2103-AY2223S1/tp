@@ -2,14 +2,18 @@ package seedu.address.commons.core.index;
 
 /**
  * Represents a zero-based or one-based index.
- *
- * {@code Index} should be used right from the start (when parsing in a new user input), so that if the current
- * component wants to communicate with another component, it can send an {@code Index} to avoid having to know what
- * base the other component is using for its index. However, after receiving the {@code Index}, that component can
- * convert it back to an int if the index will not be passed to a different component again.
+ * <p>
+ * {@code Index} should be used right from the start (when parsing in a new user
+ * input), so that if the current
+ * component wants to communicate with another component, it can send an
+ * {@code Index} to avoid having to know what
+ * base the other component is using for its index. However, after receiving the
+ * {@code Index}, that component can
+ * convert it back to an int if the index will not be passed to a different
+ * component again.
  */
 public class Index {
-    private int zeroBasedIndex;
+    private final int zeroBasedIndex;
 
     /**
      * Index can only be created by calling {@link Index#fromZeroBased(int)} or
@@ -21,14 +25,6 @@ public class Index {
         }
 
         this.zeroBasedIndex = zeroBasedIndex;
-    }
-
-    public int getZeroBased() {
-        return zeroBasedIndex;
-    }
-
-    public int getOneBased() {
-        return zeroBasedIndex + 1;
     }
 
     /**
@@ -45,11 +41,19 @@ public class Index {
         return new Index(oneBasedIndex - 1);
     }
 
+    public int getZeroBased() {
+        return zeroBasedIndex;
+    }
+
+    public int getOneBased() {
+        return zeroBasedIndex + 1;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Index // instanceof handles nulls
-                && zeroBasedIndex == ((Index) other).zeroBasedIndex); // state check
+                        && zeroBasedIndex == ((Index) other).zeroBasedIndex); // state check
     }
 
 }

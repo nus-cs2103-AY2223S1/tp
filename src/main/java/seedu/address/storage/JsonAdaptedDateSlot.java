@@ -24,11 +24,7 @@ class JsonAdaptedDateSlot {
     public JsonAdaptedDateSlot(String dateSlot) {
         this.dateSlot = dateSlot;
         String[] s = dateSlot.split(":");
-        if (s[0].equals(DateSlot.SUCCESS_ASSIGNED_CHECK)) {
-            this.isAssigned = true;
-        } else {
-            this.isAssigned = false;
-        }
+        this.isAssigned = s[0].equals(DateSlot.SUCCESS_ASSIGNED_CHECK);
         if (s[1].equals(DateSlot.SUCCESS_VISIT_CHECK)) {
             this.isVisited = true;
             this.isSuccessVisit = true;
@@ -61,9 +57,11 @@ class JsonAdaptedDateSlot {
     }
 
     /**
-     * Converts this Jackson-friendly adapted date slot object into the model's {@code DateSlot} object.
+     * Converts this Jackson-friendly adapted date slot object into the model's
+     * {@code DateSlot} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted date slot.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted date slot.
      */
     public DateSlot toModelType() throws IllegalValueException {
         if (!DateSlot.isValidDateSlot(dateSlotInString)) {
@@ -73,4 +71,3 @@ class JsonAdaptedDateSlot {
     }
 
 }
-

@@ -20,7 +20,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Uid;
 
 /**
- * Deletes a patient/nurse identified using it's displayed index from the address book.
+ * Deletes a patient/nurse identified using it's displayed index from the
+ * address book.
  */
 public class DeleteCommand extends Command {
 
@@ -83,7 +84,7 @@ public class DeleteCommand extends Command {
         if (dateSlotList.size() == 0) {
             return hasDeleted;
         } else {
-            for (DateSlot dateSlot:dateSlotList) {
+            for (DateSlot dateSlot : dateSlotList) {
                 if (dateSlot.getHasAssigned()) {
                     removeHomeVisit(model, dateSlot, personList);
                     hasDeleted = true;
@@ -100,7 +101,7 @@ public class DeleteCommand extends Command {
         if (homeVisitList.size() == 0) {
             return hasUnmarked;
         } else {
-            for (HomeVisit homevisit:homeVisitList) {
+            for (HomeVisit homevisit : homeVisitList) {
                 Long patientUidNo = homevisit.getHomeVisitPatientUidNo();
                 DateSlot dateSlot = homevisit.getDateSlot();
                 unmarkDateSlot(model, dateSlot, patientUidNo, personList);
@@ -114,11 +115,9 @@ public class DeleteCommand extends Command {
         Long nurseUidNo = dateSlot.getNurseUidNo();
         Person nurse = personList.stream().filter(p -> p.getUid().getUid().equals(nurseUidNo)).findFirst().get();
         List<HomeVisit> nurseHomeVisitList = ((Nurse) nurse).getHomeVisits();
-        List<HomeVisit> updatedHomeVisitList = new ArrayList<>();
         List<Date> nurseFullyScheduledList = ((Nurse) nurse).getFullyScheduledDates();
-        List<Date> updatedFullyScheduledList = new ArrayList<>();
-        updatedHomeVisitList.addAll(nurseHomeVisitList);
-        updatedFullyScheduledList.addAll(nurseFullyScheduledList);
+        List<HomeVisit> updatedHomeVisitList = new ArrayList<>(nurseHomeVisitList);
+        List<Date> updatedFullyScheduledList = new ArrayList<>(nurseFullyScheduledList);
 
         HomeVisit homeVisitToBeDeleted = updatedHomeVisitList.stream().filter(
                 h -> h.getDateSlot().getDateTime().equals(dateSlot.getDateTime())).findFirst().get();
@@ -132,7 +131,6 @@ public class DeleteCommand extends Command {
             updatedFullyScheduledList.remove(dateToBeDeleted.get());
         }
 
-
         editNurse(model, nurse, updatedHomeVisitList, updatedFullyScheduledList);
     }
 
@@ -141,15 +139,14 @@ public class DeleteCommand extends Command {
         Person patient = personList.stream().filter(
                 p -> p.getUid().getUid().equals(patientUidNo)).findFirst().get();
         List<DateSlot> dateSlotList = ((Patient) patient).getDatesSlots();
-        List<DateSlot> updatedDateSlotList = new ArrayList<>();
-        updatedDateSlotList.addAll(dateSlotList);
+        List<DateSlot> updatedDateSlotList = new ArrayList<>(dateSlotList);
         DateSlot dateSlotToBeUnmarked = updatedDateSlotList.stream().filter(
                 d -> d.getDateTime().equals(dateslot.getDateTime())).findFirst().get();
         dateSlotToBeUnmarked.unmark();
         editPatient(model, patient, updatedDateSlotList);
     }
 
-    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) throws CommandException {
+    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) {
 
         Uid uid = patient.getUid();
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -162,9 +159,8 @@ public class DeleteCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
-
     private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
-                          List<Date> fullyScheduledDateList) throws CommandException {
+            List<Date> fullyScheduledDateList) throws CommandException {
         Uid uid = nurse.getUid();
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
         editPersonDescriptor.setHomeVisits(homeVisitList);

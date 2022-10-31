@@ -15,22 +15,21 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Uid;
 
-
 /**
  * Parses input arguments and creates a new Assign object
  */
 public class DeassignCommandParser implements Parser<DeassignCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeassignCommand
+     * Parses the given {@code String} of arguments in the context of the
+     * DeassignCommand
      * and returns a DeassignCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeassignCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_DATE_AND_SLOT_INDEX);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_DATE_AND_SLOT_INDEX);
 
         Uid uid;
 
@@ -40,13 +39,9 @@ public class DeassignCommandParser implements Parser<DeassignCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
-
         List<Index> indexList = parseIndexes(argMultimap.getAllValues(PREFIX_DATE_AND_SLOT_INDEX));
 
         return new DeassignCommand(uid, indexList);
     }
 
-
 }
-
-

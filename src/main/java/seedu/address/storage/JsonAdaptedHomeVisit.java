@@ -34,9 +34,11 @@ class JsonAdaptedHomeVisit {
     }
 
     /**
-     * Converts this Jackson-friendly adapted homeVisit object into the model's {@code HomeVisit} object.
+     * Converts this Jackson-friendly adapted homeVisit object into the model's
+     * {@code HomeVisit} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted home visit slot.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted home visit slot.
      */
     public HomeVisit toModelType() throws IllegalValueException {
         if (!HomeVisit.isValidHomeVisit(homeVisit)) {
@@ -46,4 +48,3 @@ class JsonAdaptedHomeVisit {
     }
 
 }
-

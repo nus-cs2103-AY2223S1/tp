@@ -89,4 +89,3 @@ public class PatientTest {
         assertFalse(ALICE.equals(editedAlice));
     }
 }
-

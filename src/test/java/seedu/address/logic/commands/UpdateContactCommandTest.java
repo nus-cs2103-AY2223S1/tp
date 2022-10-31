@@ -54,7 +54,8 @@ class UpdateContactCommandTest {
 
         assertCommandSuccess(setPhysCommand,
                 model, String.format(UpdateContactCommand.MESSAGE_UPDATE_CONTACT_SUCCESS, 3, DEFAULT_CONTACT_NAME,
-                        DEFAULT_CONTACT_PHONE, DEFAULT_CONTACT_EMAIL, Category.PHYSICIAN_SYMBOL), expectedModel);
+                        DEFAULT_CONTACT_PHONE, DEFAULT_CONTACT_EMAIL, Category.PHYSICIAN_SYMBOL),
+                expectedModel);
     }
 
     @Test
@@ -95,7 +96,8 @@ class UpdateContactCommandTest {
 
         assertCommandSuccess(command,
                 model, String.format(UpdateContactCommand.MESSAGE_UPDATE_CONTACT_SUCCESS, 3, DEFAULT_CONTACT_NAME,
-                        DEFAULT_CONTACT_PHONE, DEFAULT_CONTACT_EMAIL, Category.NEXTOFKIN_SYMBOL), expectedModel);
+                        DEFAULT_CONTACT_PHONE, DEFAULT_CONTACT_EMAIL, Category.NEXTOFKIN_SYMBOL),
+                expectedModel);
     }
 
     @Test

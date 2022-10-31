@@ -20,4 +20,8 @@ public class Physician extends BasePerson {
     public String toString() {
         return "Attending Physician " + super.toString();
     }
+
+    public boolean isPhysician() {
+        return true;
+    }
 }

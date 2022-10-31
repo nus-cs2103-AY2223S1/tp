@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Nurse's home-visit.
- * Guarantees: immutable; is valid as declared in {@link #isValidHomeVisit(String)}
+ * Guarantees: immutable; is valid as declared in
+ * {@link #isValidHomeVisit(String)}
  */
 public class HomeVisit {
 
@@ -12,10 +13,12 @@ public class HomeVisit {
             + "PATIENT_UID_NUMBER.\n" + "For example, 2022-11-11,1:2";
 
     /**
-     * The DateSlot can only be in YYYY-MM-DD,SLOT_NUMBER:PATIENT NUMBER format without any space.
+     * The DateSlot can only be in YYYY-MM-DD,SLOT_NUMBER:PATIENT NUMBER format
+     * without any space.
      */
     // @@author xhphoong-reused
-    // Reused from https://mkyong.com/regular-expressions/how-to-validate-date-with-regular-expression/
+    // Reused from
+    // https://mkyong.com/regular-expressions/how-to-validate-date-with-regular-expression/
     public static final String VALIDATION_REGEX = "((?:19|20)[0-9][0-9])-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])"
             + "," + "([1-4])" + ":" + "\\d{1,18}";
     // @@author
@@ -45,6 +48,13 @@ public class HomeVisit {
         this.homeVisitPatientUidNo = Long.parseLong(s[1]);
     }
 
+    /**
+     * Returns true if a given string is a valid home visit.
+     */
+    public static boolean isValidHomeVisit(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
     public String getString() {
         return this.homeVisitDateSlot.getDateSlotInString() + ":" + this.homeVisitPatientUidNo;
     }
@@ -52,13 +62,6 @@ public class HomeVisit {
     @Override
     public String toString() {
         return homeVisitDateSlot.getDateSlotFormatted() + " : [UID] " + this.homeVisitPatientUidNo;
-    }
-
-    /**
-     * Returns true if a given string is a valid home visit.
-     */
-    public static boolean isValidHomeVisit(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     public DateSlot getDateSlot() {
@@ -73,8 +76,8 @@ public class HomeVisit {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof HomeVisit // instanceof handles nulls
-                && homeVisitDateSlot.equals(((HomeVisit) other).homeVisitDateSlot)
-                && homeVisitPatientUidNo.equals(((HomeVisit) other).homeVisitPatientUidNo)); // state check
+                        && homeVisitDateSlot.equals(((HomeVisit) other).homeVisitDateSlot)
+                        && homeVisitPatientUidNo.equals(((HomeVisit) other).homeVisitPatientUidNo)); // state check
     }
 
     @Override
@@ -82,6 +85,4 @@ public class HomeVisit {
         return homeVisitDateSlot.hashCode() + homeVisitPatientUidNo.hashCode();
     }
 
-
 }
-

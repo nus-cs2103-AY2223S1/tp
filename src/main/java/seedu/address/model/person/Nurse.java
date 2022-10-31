@@ -24,7 +24,7 @@ public class Nurse extends Person {
      * Every field must be present and not null.
      */
     public Nurse(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address, Set<Tag> tags,
-                 List<Date> unavailableDates, List<HomeVisit> homeVisits, List<Date> fullyScheduledDates) {
+            List<Date> unavailableDates, List<HomeVisit> homeVisits, List<Date> fullyScheduledDates) {
         super(uid, name, gender, phone, email, address, tags);
         this.unavailableDateList.addAll(unavailableDates);
         this.homeVisitList.addAll(homeVisits);
@@ -111,4 +111,7 @@ public class Nurse extends Person {
                 + "; Home Visits:" + homeVisitList;
     }
 
+    public boolean isNurse() {
+        return true;
+    }
 }

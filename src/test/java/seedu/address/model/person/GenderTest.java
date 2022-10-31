@@ -37,4 +37,3 @@ public class GenderTest {
         assertTrue(Gender.isValidGender("M")); // Male
     }
 }
-

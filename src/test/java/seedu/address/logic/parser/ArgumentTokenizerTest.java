@@ -32,8 +32,10 @@ public class ArgumentTokenizerTest {
     }
 
     /**
-     * Asserts all the arguments in {@code argMultimap} with {@code prefix} match the {@code expectedValues}
-     * and only the last value is returned upon calling {@code ArgumentMultimap#getValue(Prefix)}.
+     * Asserts all the arguments in {@code argMultimap} with {@code prefix} match
+     * the {@code expectedValues}
+     * and only the last value is returned upon calling
+     * {@code ArgumentMultimap#getValue(Prefix)}.
      */
     private void assertArgumentPresent(ArgumentMultimap argMultimap, Prefix prefix, String... expectedValues) {
 
@@ -58,7 +60,8 @@ public class ArgumentTokenizerTest {
         String argsString = "  some random string /t tag with leading and trailing spaces ";
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString);
 
-        // Same string expected as preamble, but leading/trailing spaces should be trimmed
+        // Same string expected as preamble, but leading/trailing spaces should be
+        // trimmed
         assertPreamblePresent(argMultimap, argsString.trim());
 
     }
@@ -99,7 +102,8 @@ public class ArgumentTokenizerTest {
 
         /* Also covers: Reusing of the tokenizer multiple times */
 
-        // Reuse tokenizer on an empty string to ensure ArgumentMultimap is correctly reset
+        // Reuse tokenizer on an empty string to ensure ArgumentMultimap is correctly
+        // reset
         // (i.e. no stale values from the previous tokenizing remain)
         argsString = "";
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);

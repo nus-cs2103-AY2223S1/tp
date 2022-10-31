@@ -9,6 +9,7 @@ import java.util.Comparator;
 public class DateSlotComparator implements Comparator<DateSlot> {
     /**
      * Compare the home visits' date and time slot.
+     *
      * @param dateTimeSlot1 the first object to be compared.
      * @param dateTimeSlot2 the second object to be compared.
      */
