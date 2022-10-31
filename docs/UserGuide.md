@@ -333,7 +333,7 @@ Example: `ls -d 2022-11-11`
 Shows a list of all tasks with matching names.
 
 Format: `ls -n KEYWORD*`
-* `KEYWORD`: One keyword or multiple, which should be alphanumeric and separated by spaces.
+* `KEYWORD`: One or more keywords can be provided. Each keyword should consist of only letters and numbers, and are separated by spaces.
 
 Example: `ls -n task1`
 
