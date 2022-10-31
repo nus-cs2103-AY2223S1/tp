@@ -402,9 +402,15 @@ Examples:
 
 ### Next Semester
 
-Shifts the current modules in both the user and all persons in the contact list into their previous module during a new semester.
+Shifts all the current modules in both the user and all persons in the contact list into their previous modules during a new semester.
 
 Format: `nextsem`
+
+Example:
+
+* `nextsem` moves all current modules into the previous modules list of the user and all contacts and removes all modules in the current modules list.
+
+<img src="images/After NextSem.png" width="600" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -498,11 +504,13 @@ Format: `filtertag [tag names]`
 
 Examples:
 
-`filtertag family`
+* `filtertag friends` lists all contacts with a family tag.
 
-`filtertag colleagues`
+<img src="images/filtertag friends.png" width="600" />
 
-`filtertag friends family`
+`filtertag friends family` lists all contacts with either a friends or family tag.
+
+<img src="images/filtertag friends family.png" width="600" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -516,11 +524,9 @@ Format: `filtercurrmod [current module names]`
 
 Examples:
 
-`filtercurrmod CS2103T`
+`filtercurrmod CS1000` lists all contacts with module code CS1000 in their current modules list.
 
-`filtercurrmod CS2100`
-
-`filtercurrmod CS2103T CS2100`
+<img src="images/filtercurrmod CS1000.png" width="600" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -534,11 +540,9 @@ Format: `filterprevmod [previous module names]`
 
 Examples:
 
-`filterprevmod CS2103T`
+`filterprevmod CS2000` lists all contacts with module code CS2000 in their previous modules list.
 
-`filterprevmod CS2100`
-
-`filterprevmod CS2103T CS2100`
+<img src="images/filterprevmod CS2000.png" width="600" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -552,11 +556,9 @@ Format: `filterplanmod [planned module names]`
 
 Examples:
 
-`filterplanmod CS2103T`
+`filterplanmod CS23333` lists all contacts with module code CS3333 in their planned modules list.
 
-`filterplanmod CS2100`
-
-`filterplanmod CS2103T CS2100`
+<img src="images/filterplanmod CS3333.png" width="600" />
 
 [Scroll back to top](#table-of-contents)
 
