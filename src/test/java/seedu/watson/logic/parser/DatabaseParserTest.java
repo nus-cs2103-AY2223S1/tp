@@ -7,10 +7,6 @@ import static seedu.watson.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.watson.testutil.Assert.assertThrows;
 import static seedu.watson.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.watson.logic.commands.AddCommand;
@@ -19,11 +15,9 @@ import seedu.watson.logic.commands.DeleteCommand;
 import seedu.watson.logic.commands.EditCommand;
 import seedu.watson.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.watson.logic.commands.ExitCommand;
-import seedu.watson.logic.commands.FindCommand;
 import seedu.watson.logic.commands.HelpCommand;
 import seedu.watson.logic.commands.ListCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
-import seedu.watson.model.student.FindCommandPredicate;
 import seedu.watson.model.student.Student;
 import seedu.watson.testutil.EditStudentDescriptorBuilder;
 import seedu.watson.testutil.StudentBuilder;
