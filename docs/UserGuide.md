@@ -491,7 +491,14 @@ Understanding the performance of your employees is crucial for _talent developme
 Key performance indicators, productivity, and progression policies may differ from company to company.
 Here, Coydir offers a **simple yet powerful** way of keeping track of and making sense of your employees' performance in the company.
 
-**[Insert a brief overview of the 1-5 rating system]**
+<div markdown="span" class="alert alert-info">
+
+**:information_source: Note:** 5-point rating scale.<br><br>
+
+The 5 point performance appraisal ratings system is the most commonly used performance rating scale across the world.
+A 1 to 5 rating scale has a total of 5 categories with 2 negative and 2 positive options. A middle option is a neutral option for those who have met the expectations in terms of work performance. This rating scale is well-defined with a separate category for the employees who neither fall in the below expectations (requiring performance review) nor in the exceeds expectations categories.
+
+</div>
 
 #### Rating the performance of an employee: `rate`
 
