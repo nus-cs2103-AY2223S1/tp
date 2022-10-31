@@ -135,7 +135,9 @@ Examples:
 
 ### Adding a customer: `addcus`
 
-Adds a customer to ArtBuddy.
+Adds a customer to ArtBuddy. This can be done either by the command-line, or the graphical interface.
+
+**Adding by the Command-Line interface**
 
 Format: `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]...​`
 
@@ -149,6 +151,15 @@ Creates the customer entry for John Doe with his details including multiple tags
 * `addcus n/Betsy Crowe e/betsycrowe@example.com p/12345867`
 Creates the customer entry for Betsy Crowe with her email and phone number.
 
+**Adding by the Graphical Interface**
+
+Adding a customer can also be done via the graphical interface by clicking on the `Add Customer` button in the top right corner of the Customer List Panel.
+
+![addcus button](images/AddcusButton.png)
+
+A new window will then pop up, where you will be prompted to fill in the details of the new customer.
+
+![addcus popup](images/AddcusPopup.png)
 
 ### Editing a customer: `editcus`
 
@@ -197,7 +208,9 @@ Examples:
 
 ### Adding a commission: `addcom`
 
-Adds a commission to the currently opened customer.
+Adds a commission to the currently selected customer. Similar to `addcus`, this can be done via the command line or the graphical interface.
+
+**Adding by the Command-Line interface**
 
 Format: `addcom n/TITLE f/FEE d/DEADLINE s/STATUS [p/DESCRIPTION] [t/TAG]...​`
 * Fee is the amount you are charging the customer for this commission.
@@ -206,6 +219,16 @@ Format: `addcom n/TITLE f/FEE d/DEADLINE s/STATUS [p/DESCRIPTION] [t/TAG]...​`
 Examples:
 * `addcom n/Rimuru f/40 d/2022-11-01 t/traditional s/Y t/chibi` creates the commission entry titled "Rimuru" with the given fee, due date, completion status and tags.
 * `addcom n/Fate Archer f/60 d/2022-10-15 s/false p/Archery t/night t/city` creates a commission entry titled "Fate Archer" with the given fee, due date, completion status, description and tags.
+
+**Adding by the Graphical Interface**
+
+Adding an iteration can also be done via the graphical interface by clicking on the `Add Commission` button in the top right corner of the Commission List Panel. 
+
+![addcom button](images/AddcomButton.png)
+
+A new window will then pop up, where you will be prompted to fill in the details of the new commission.
+
+![addcom popup](images/AddcomPopup.png)
 
 ### Editing a commission: `editcom`
 
@@ -311,7 +334,7 @@ If you wish to upload the image, either rename the folder name, or upload the im
 </div>
 <br>
 
-**Adding by Graphical Interface**
+**Adding by the Graphical Interface**
 
 Adding an iteration can also be done via the graphical interface by clicking on
 the `Add Iteration` button inside the Commission you wish to add the iteration to.
