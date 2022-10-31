@@ -18,7 +18,7 @@ public class SortAppointmentCommand extends Command {
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Sorts the list of appointments according to the specified field"
                     + "by alphabetical order.\n"
-                    + "Parameters: c/CRITERIA (name, test, slot, doctor) o/ORDER (asc, desc) "
+                    + "Parameters: c/CRITERIA (name, test, slot, doctor) o/ORDER (asc, desc)\n"
                     + "Example: " + COMMAND_WORD + " " + "c/name o/asc";
 
     public static final String MESSAGE_SORT_SUCCESS = "Sorted according to %1$s";

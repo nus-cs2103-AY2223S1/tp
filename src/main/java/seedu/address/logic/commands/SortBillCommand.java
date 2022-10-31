@@ -19,7 +19,7 @@ public class SortBillCommand extends Command {
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Sorts the list of bills according to the specified field"
                     + "by alphabetical order.\n"
-                    + "Parameters: c/CRITERIA (name, amount, date, status) o/ORDER (asc, desc) "
+                    + "Parameters: c/CRITERIA (name, amount, date, status) o/ORDER (asc, desc)\n"
                     + "Example: " + COMMAND_WORD + " " + "c/name o/asc";
 
     public static final String MESSAGE_SORT_SUCCESS = "Sorted according to %1$s";

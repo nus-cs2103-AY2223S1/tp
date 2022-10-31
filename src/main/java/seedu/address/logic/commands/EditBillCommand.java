@@ -25,10 +25,10 @@ public class EditBillCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the bill identified "
             + "by the index number used in the displayed bill list. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "Existing values will be overwritten by the input values. At least one field must be provided.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_AMOUNT + "AMOUNT] "
-            + "[" + PREFIX_BILL_DATE + "BILL_DATE] "
+            + "[" + PREFIX_BILL_DATE + "BILL_DATE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_AMOUNT + "10.00 "
             + PREFIX_BILL_DATE + "2019-12-24";
