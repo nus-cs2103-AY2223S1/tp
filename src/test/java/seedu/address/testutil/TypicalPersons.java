@@ -32,7 +32,9 @@ public class TypicalPersons {
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends")
-            .withCountry("Singapore").build();
+            .withCountry("Singapore")
+            .withServers("server@111.222.333")
+            .withSocial("").build();
     public static final Person BENSON = new PersonBuilder()
             .withName("Benson Meier")
             .withMinecraftName("Benson123")
@@ -115,6 +117,10 @@ public class TypicalPersons {
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+
+    public static final String KEYWORD_MATCHING_SINGAPORE = "Singapore"; // A keyword that matches SINGAPORE
+
+    public static final String MONDAY_NOON_DAY_TIME_IN_WEEK = "mon@1200"; // A keyword for Monday Noon
 
     private TypicalPersons() {} // prevents instantiation
 

@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.KEYWORD_MATCHING_SINGAPORE;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -100,6 +101,23 @@ public class SuggestCommandTest {
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL),
                 model.getFilteredPersonList());
 
+    }
+
+    @Test
+    public void execute_keywordForCountry_multiplePersonsFound() {
+
+        Set<Keyword> keywordSet = new HashSet<>();
+        Set<DayTimeInWeek> dayTimeInWeekSet = new HashSet<>();
+        keywordSet.add(new Keyword(KEYWORD_MATCHING_SINGAPORE));
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        PersonSuggestionPredicate predicate =
+                new PersonSuggestionPredicate(dayTimeInWeekSet, keywordSet);
+        SuggestCommand command = new SuggestCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL),
+                model.getFilteredPersonList());
     }
 
 }
