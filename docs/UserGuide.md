@@ -31,17 +31,17 @@ Tuthub is a desktop app for NUS professors who wish to choose their next batch o
 
    * **`list`** : Lists all tutors.
 
-   * **`view`**`3` : Displays full details of the 3rd tutor shown in the current list.
+   * **`view`**` 3` : Displays full details of the 3rd tutor shown in the current list.
 
-   * **`add`**`n/John Doe p/98765432 e/e1234567 m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior` : Adds a tutor named `John Doe` to Tuthub.
+   * **`add`**` n/John Doe p/98765432 e/e1234567 m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior` : Adds a tutor named `John Doe` to Tuthub.
 
-   * **`find`**`n/alex` : Finds all tutors with names containing alex.
+   * **`find`**` n/alex` : Finds all tutors with names containing alex.
 
-   * **`delete`**`3` : Deletes the 3rd tutor shown in the current list.
+   * **`delete`**` 3` : Deletes the 3rd tutor shown in the current list.
    
    * **`clear`** : Deletes all tutors.
    
-   * **`comment`**`1 c/Always on time`: Adds a comment to the first tutor that he is always on time.
+   * **`comment`**` 1 c/Always on time`: Adds a comment to the first tutor that he is always on time.
 
    * **`exit`** : Exits the Tuthub app.
 
