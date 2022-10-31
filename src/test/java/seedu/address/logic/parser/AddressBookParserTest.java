@@ -83,6 +83,7 @@ public class AddressBookParserTest {
                 keywords,
                 Collections.emptyList(),
                 Collections.emptyList(),
+                Collections.emptyList(),
                 Collections.emptyList())), command);
     }
 

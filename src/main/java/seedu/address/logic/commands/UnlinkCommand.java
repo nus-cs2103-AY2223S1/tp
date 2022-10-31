@@ -93,13 +93,13 @@ public class UnlinkCommand extends Command {
                 : internshipToUnlink;
 
         if (personToUnlink == null) {
-            throw new CommandException(String.format(MESSAGE_UNLINKED_INTERNSHIP, internshipToUnlink.getCompanyName()));
+            throw new CommandException(String.format(MESSAGE_UNLINKED_INTERNSHIP, internshipToUnlink.getDisplayName()));
         } else if (internshipToUnlink == null) {
             throw new CommandException(String.format(MESSAGE_UNLINKED_PERSON, personToUnlink.getName()));
         }
 
         if (internshipToUnlink.getContactPersonId() == null) {
-            throw new CommandException(String.format(MESSAGE_UNLINKED_INTERNSHIP, internshipToUnlink.getCompanyName()));
+            throw new CommandException(String.format(MESSAGE_UNLINKED_INTERNSHIP, internshipToUnlink.getDisplayName()));
         } else if (personToUnlink.getInternshipId() == null) {
             throw new CommandException(String.format(MESSAGE_UNLINKED_PERSON, personToUnlink.getName()));
         }
@@ -108,12 +108,12 @@ public class UnlinkCommand extends Command {
             throw new CommandException(String.format(
                     MESSAGE_INCORRECT_LINK_PERSON,
                     personToUnlink.getName(),
-                    internshipToUnlink.getCompanyName()));
+                    internshipToUnlink.getDisplayName()));
         } else if (!internshipToUnlink.getContactPersonId().equals(personToUnlink.getPersonId())) {
             throw new CommandException(String.format(
                     MESSAGE_INCORRECT_LINK_INTERNSHIP,
                     personToUnlink.getName(),
-                    internshipToUnlink.getCompanyName()));
+                    internshipToUnlink.getDisplayName()));
         }
 
         Person unlinkedPerson = new Person(
@@ -148,7 +148,7 @@ public class UnlinkCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
         return new CommandResult(
-                String.format(MESSAGE_SUCCESS, unlinkedPerson.getName(), unlinkedInternship.getCompanyName()));
+                String.format(MESSAGE_SUCCESS, unlinkedPerson.getName(), unlinkedInternship.getDisplayName()));
     }
 
     @Override

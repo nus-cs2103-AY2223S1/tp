@@ -17,10 +17,11 @@
     <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
-    <Scene>
+    <Scene fx:id="mainScene">
       <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL fx:id="lightTheme" value="@LightTheme.css" />
+        <URL fx:id="darkTheme" value="@DarkTheme.css" />
+        <URL fx:id="extensions" value="@Extensions.css" />
       </stylesheets>
 
       <VBox>
@@ -30,6 +31,10 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Color Theme">
+            <MenuItem mnemonicParsing="false" onAction="#handleLightThemeSwitch" text="Light" />
+            <MenuItem mnemonicParsing="false" onAction="#handleDarkThemeSwitch" text="Dark" />
           </Menu>
         </MenuBar>
 
