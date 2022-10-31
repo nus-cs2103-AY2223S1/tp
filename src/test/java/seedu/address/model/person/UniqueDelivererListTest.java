@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDeliverers.ALICE;
 import static seedu.address.testutil.TypicalDeliverers.BENSON;
@@ -41,8 +40,7 @@ public class UniqueDelivererListTest {
     @Test
     public void contains_delivererWithSameIdentityFieldsInList_returnsTrue() {
         uniqueDelivererList.add(ALICE);
-        Deliverer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .buildDeliverer();
+        Deliverer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).buildDeliverer();
         assertTrue(uniqueDelivererList.contains(editedAlice));
     }
 
@@ -84,8 +82,7 @@ public class UniqueDelivererListTest {
     @Test
     public void setDeliverer_editedDelivererHasSameIdentity_success() {
         uniqueDelivererList.add(ALICE);
-        Deliverer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .buildDeliverer();
+        Deliverer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).buildDeliverer();
         uniqueDelivererList.setPerson(ALICE, editedAlice);
         UniqueDelivererList expectedUniqueDelivererList = new UniqueDelivererList();
         expectedUniqueDelivererList.add(editedAlice);

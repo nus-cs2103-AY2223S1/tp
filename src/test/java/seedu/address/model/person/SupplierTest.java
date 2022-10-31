@@ -7,8 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalSuppliers.ALICE;
 import static seedu.address.testutil.TypicalSuppliers.BOB;
 
@@ -20,11 +18,6 @@ import seedu.address.testutil.TypicalPersons;
 //import seedu.address.testutil.TypicalPets;
 
 public class SupplierTest {
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Supplier supplier = new PersonBuilder().buildSupplier();
-        assertThrows(UnsupportedOperationException.class, () -> supplier.getTags().remove(0));
-    }
 
     //    @Test
     //    public void addPet_success() {
@@ -43,7 +36,7 @@ public class SupplierTest {
 
         // same name, all other attributes different -> returns true
         Supplier editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).buildSupplier();
+                .withAddress(VALID_ADDRESS_BOB).buildSupplier();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -93,10 +86,6 @@ public class SupplierTest {
 
         // different address -> returns false
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).buildSupplier();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).buildSupplier();
         assertFalse(ALICE.equals(editedAlice));
     }
 

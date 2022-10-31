@@ -1,11 +1,10 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.PetCertificate;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPets;
 
@@ -21,7 +20,6 @@ public class JsonAdaptedPetTest {
     private static final Double INVALID_WEIGHT = -999999999.99999999999;
     private static final Double INVALID_HEIGHT = -0.00000000099994844;
     private static final Double INVALID_PRICE = -8888.674;
-    private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_PET_NAME = TypicalPets.DOJA.getName().toString();
     private static final Supplier VALID_SUPPLIER = TypicalPets.DOJA.getSupplier();
@@ -32,9 +30,7 @@ public class JsonAdaptedPetTest {
     private static final Double VALID_WEIGHT = TypicalPets.DOJA.getWeight().getValue();
     private static final Double VALID_HEIGHT = TypicalPets.DOJA.getHeight().getValue();
     private static final Double VALID_PRICE = TypicalPets.DOJA.getPrice().getPrice();
-    private static final List<PetCertificate> VALID_CERTIFICATES = TypicalPets.DOJA.getCertificates().stream()
-                                                                        .collect(Collectors.toList());
-    private static final List<Tag> VALID_TAGS = TypicalPets.DOJA.getTags().stream().collect(Collectors.toList());
+    private static final List<PetCertificate> VALID_CERTIFICATES = new ArrayList<>(TypicalPets.DOJA.getCertificates());
 
     /*
     @Test

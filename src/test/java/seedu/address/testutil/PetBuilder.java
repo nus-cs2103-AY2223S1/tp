@@ -16,7 +16,6 @@ import seedu.address.model.pet.PetName;
 import seedu.address.model.pet.Species;
 import seedu.address.model.pet.VaccinationStatus;
 import seedu.address.model.pet.Weight;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -44,7 +43,6 @@ public class PetBuilder {
     private Height height;
     private VaccinationStatus vaccinationStatus;
     private Price price;
-    private Set<Tag> tags;
     private Set<PetCertificate> certificates;
 
     /**
@@ -61,7 +59,6 @@ public class PetBuilder {
         height = new Height(DEFAULT_HEIGHT);
         vaccinationStatus = new VaccinationStatus(DEFAULT_VACCINATION_STATUS);
         price = new Price(DEFAULT_PRICE);
-        tags = new HashSet<>();
         certificates = new HashSet<>();
     }
 
@@ -79,7 +76,6 @@ public class PetBuilder {
         height = petToCopy.getHeight();
         vaccinationStatus = petToCopy.getVaccinationStatus();
         price = petToCopy.getPrice();
-        tags = new HashSet<>(petToCopy.getTags());
         certificates = new HashSet<>(petToCopy.getCertificates());
     }
 
@@ -167,14 +163,6 @@ public class PetBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Pet} that we are building.
      */
-    public PetBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Pet} that we are building.
-     */
     public PetBuilder withCertificates(String ... certificates) {
         this.certificates = SampleDataUtil.getCertificateSet(certificates);
         return this;
@@ -186,7 +174,7 @@ public class PetBuilder {
      */
     public Pet build() {
         return new Pet(name, supplier, color, colorPattern, dateOfBirth, species, weight, height, vaccinationStatus,
-                price, tags, certificates);
+                price, certificates);
     }
 }
 

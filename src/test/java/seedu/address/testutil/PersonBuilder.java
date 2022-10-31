@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.order.Order;
@@ -15,8 +14,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Supplier;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -35,7 +32,6 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Location location;
-    private Set<Tag> tags;
     private Set<Order> orders;
 
     /**
@@ -47,7 +43,6 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
     }
 
     /**
@@ -59,7 +54,6 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
     }
 
     /**
@@ -75,14 +69,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -119,7 +105,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(personCategory, name, phone, email, address, tags);
+        return new Person(personCategory, name, phone, email, address);
     }
 
     /**
@@ -128,7 +114,7 @@ public class PersonBuilder {
      */
     public Buyer buildBuyer() {
         personCategory = PersonCategory.BUYER;
-        return new Buyer(personCategory, name, phone, email, address, tags, new ArrayList<>());
+        return new Buyer(personCategory, name, phone, email, address, new ArrayList<>());
     }
 
     /**
@@ -137,7 +123,7 @@ public class PersonBuilder {
      */
     public Deliverer buildDeliverer() {
         personCategory = PersonCategory.DELIVERER;
-        return new Deliverer(personCategory, name, phone, email, address, tags, new ArrayList<>());
+        return new Deliverer(personCategory, name, phone, email, address, new ArrayList<>());
     }
 
     /**
@@ -146,6 +132,6 @@ public class PersonBuilder {
      */
     public Supplier buildSupplier() {
         personCategory = PersonCategory.SUPPLIER;
-        return new Supplier(personCategory, name, phone, email, address, tags, new ArrayList<>());
+        return new Supplier(personCategory, name, phone, email, address, new ArrayList<>());
     }
 }

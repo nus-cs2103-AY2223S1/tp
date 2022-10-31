@@ -80,17 +80,51 @@ class JsonAdaptedOrder {
      * @throws IllegalValueException if there were any data constraints violated in the adapted order.
      */
     public Order toModelType() throws IllegalValueException {
-        //TODO validate the data before converting
+        if (buyer == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Buyer.class.getSimpleName()));
+        }
         Buyer modelBuyer = buyer.toModelType();
+
+        if (requestedPriceRange == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PriceRange.class.getSimpleName()));
+        }
         PriceRange modelPriceRange = requestedPriceRange.toModelType();
+
+        if (request == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Request.class.getSimpleName()));
+        }
         Request modelRequest = request.toModelType();
+
+        if (additionalRequests == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    AdditionalRequests.class.getSimpleName()));
+        }
         AdditionalRequests modelAdditionalRequest = new AdditionalRequests(additionalRequests.toArray(new String[0]));
+
+        if (byDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LocalDate.class.getSimpleName()));
+        }
         LocalDate modelByDate = LocalDate.parse(byDate);
+
+        if (settledPrice == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Price.class.getSimpleName()));
+        }
         Price modelPrice = new Price(settledPrice);
+
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    OrderStatus.class.getSimpleName()));
+        }
         OrderStatus modelOrderStatus = Arrays.stream(OrderStatus.class.getEnumConstants())
                 .filter(x -> x.toString().equals(status))
                 .findFirst()
                 .orElse(OrderStatus.PENDING);
+
         if (uniqueId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     UniqueId.class.getSimpleName()));

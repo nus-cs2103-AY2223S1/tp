@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.commons.core.index.UniqueId;
 import seedu.address.model.order.Order;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a buyer that is also a person.
@@ -25,7 +23,6 @@ public class Buyer extends Person {
      * @param phone          The phone number in string.
      * @param email          The email, which will be checked against regex.
      * @param address        The address of this person, which will be checked against the regex.
-     * @param tags           The tags of this person.
      * @param orders         The orders that this buyer requests.
      */
     public Buyer(PersonCategory personCategory,
@@ -33,9 +30,8 @@ public class Buyer extends Person {
                  Phone phone,
                  Email email,
                  Address address,
-                 Set<Tag> tags,
                  Collection<? extends UniqueId> orders) {
-        super(PersonCategory.BUYER, name, phone, email, address, tags);
+        super(PersonCategory.BUYER, name, phone, email, address);
         if (orders != null) {
             this.orders.addAll(orders);
         }
@@ -49,16 +45,14 @@ public class Buyer extends Person {
      * @param phone   The phone number in string.
      * @param email   The email, which will be checked against regex.
      * @param address The address of this person, which will be checked against the regex.
-     * @param tags    The tags of this person.
      * @param orders  The orders that this buyer requests.
      */
     public Buyer(Name name,
                  Phone phone,
                  Email email,
                  Address address,
-                 Set<Tag> tags,
                  Collection<? extends UniqueId> orders) {
-        super(PersonCategory.BUYER, name, phone, email, address, tags);
+        super(PersonCategory.BUYER, name, phone, email, address);
         if (orders != null) {
             this.orders.addAll(orders);
         }
@@ -114,7 +108,7 @@ public class Buyer extends Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPersonCategory(), getName(), getPhone(), getEmail(), getAddress(), getTags(), orders);
+        return Objects.hash(getPersonCategory(), getName(), getPhone(), getEmail(), getAddress(), orders);
     }
 
     @Override

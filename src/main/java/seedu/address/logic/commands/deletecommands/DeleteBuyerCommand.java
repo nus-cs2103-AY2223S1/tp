@@ -50,7 +50,6 @@ public class DeleteBuyerCommand extends DeleteCommand {
 
         model.deleteBuyer(personToDelete);
 
-
         return new CommandResult(String.format(MESSAGE_DELETE_BUYER_SUCCESS, personToDelete));
     }
 

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalSuppliers.ALICE;
 import static seedu.address.testutil.TypicalSuppliers.BENSON;
@@ -41,8 +40,7 @@ public class UniqueSupplierListTest {
     @Test
     public void contains_supplierWithSameIdentityFieldsInList_returnsTrue() {
         uniqueSupplierList.add(ALICE);
-        Supplier editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .buildSupplier();
+        Supplier editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).buildSupplier();
         assertTrue(uniqueSupplierList.contains(editedAlice));
     }
 
@@ -84,8 +82,7 @@ public class UniqueSupplierListTest {
     @Test
     public void setSupplier_editedPersonHasSameIdentity_success() {
         uniqueSupplierList.add(ALICE);
-        Supplier editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .buildSupplier();
+        Supplier editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).buildSupplier();
         uniqueSupplierList.setPerson(ALICE, editedAlice);
         UniqueSupplierList expectedUniqueSupplierList = new UniqueSupplierList();
         expectedUniqueSupplierList.add(editedAlice);

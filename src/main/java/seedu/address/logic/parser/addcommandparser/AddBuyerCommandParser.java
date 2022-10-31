@@ -6,10 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.addcommands.AddBuyerCommand;
@@ -26,7 +24,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddBuyerCommand object
@@ -49,7 +46,6 @@ public class AddBuyerCommandParser implements Parser<AddBuyerCommand> {
                         PREFIX_PHONE,
                         PREFIX_EMAIL,
                         PREFIX_ADDRESS,
-                        PREFIX_TAG,
                         PREFIX_ORDER);
 
         if (!arePrefixesPresent(argMultimap,
@@ -65,8 +61,7 @@ public class AddBuyerCommandParser implements Parser<AddBuyerCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Buyer buyer = new Buyer(PersonCategory.BUYER, name, phone, email, address, tagList, null);
+        Buyer buyer = new Buyer(PersonCategory.BUYER, name, phone, email, address, null);
 
         List<Order> orders = ParserUtil.parseOrders(argMultimap.getAllValues(PREFIX_ORDER), false);
 
