@@ -7,7 +7,9 @@ title: User Guide
     <img src="images/LTNS_logo.png" width="200" height="200">
 </p>
 
-Long Time No See (LTNS) is a  **desktop app for managing clients, policies and events optimized for use via a [Command Line Interface](#command-line-interface-cli) (CLI)** while still having the benefits of an **intuitive and minimalistic [Graphical User Interface](#graphic-user-interface-gui) (GUI)**. With customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
+Long Time No See (LTNS) is a  **comprehensive desktop app built for financial advisors to manage their clients' financial policies and events**. It is optimized for use via a **[Command Line Interface](#command-line-interface-cli) (CLI)** while still having the benefits of an intuitive and minimalistic **[Graphical User Interface](#graphic-user-interface-gui) (GUI)**. With all the essential tools packed into one app, LTNS will enable you to streamline your financial advising journey immediately!
+
+This document is the official user guide of the Long Time No See (LTNS) app. This guide serves as an introduction to LTNS and a help menu should you have any doubts while using the app.
 
 # Table of Contents
 1. [Quickstart](#quick-start)
@@ -59,6 +61,7 @@ Long Time No See (LTNS) is a  **desktop app for managing clients, policies and e
 3. Copy the file to the folder you want to use as the _home folder_ for your Long Time No See application.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+![GUI.png](./images/GUI.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -97,7 +100,7 @@ As such, the features available to you are split into **4** main features:
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `n…` after them can be used multiple times and at least n times.<br>
-  e.g. `[t/TAG]0…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` (i.e. 2 times) etc.
+  e.g. `[t/TAG]0…​` can be used as `0…​` (i.e. 0 times).
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -105,8 +108,12 @@ As such, the features available to you are split into **4** main features:
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `clients`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`. 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Parameters refer to the information you type into the app to be stored. For example, `n/John` where John is the parameter
+</div>
 
 </div>
 
@@ -118,7 +125,7 @@ Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-        Format: `help`
+Format: `help`
 
 ### Clearing all entries : `clear`
 
@@ -146,8 +153,11 @@ LTNS application data is saved in the hard disk automatically after any command 
 
 LTNS application data is saved as a [JSON](#json-file) file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-Below is an example of what your JSON File should look like:
-![Json Example](./images/JsonExample.png)
+Below is an example of what your JSON File should look like: 
+<br>
+<p align="center">
+<img src="./images/JsonExample.png" width="230" height="450">
+</p>
 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -568,24 +578,23 @@ A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply wi
 
 | Action                      | Format, Examples                                                                                                                                                                                              |
 |-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Clear pre-existing data** | `clear`                                                                                                                                                                                                       |                                                                                                                                                                                                      
+| **Clear Pre-existing Data** | `clear`                                                                                                                                                                                                       |                                                                                                                                                                                                      
 | **Help**                    | `help`                                                                                                                                                                                                        |
-| **Exit application**        | `exit`                                                                                                                                                                                                        |
+| **Exit Application**        | `exit`                                                                                                                                                                                                        |
 
 
 ### Commands For Clients
 
-| Action                             | Format, Examples                                                                                                                                                                                           |
-|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Client**                    | `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br> e.g: `find n/Jim p/98765432` |
-| **Add Client**                     | `addClient [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`  <br> e.g: `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                        |
-| **Delete Client**                  | `deleteClient [INDEX]` <br> e.g: `delete 3`                                                                                                                                                                |
-| **Edit Client**                    | `editClient [INDEX] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g: `edit 2 n/James Lee e/jameslee@example.com`                                                                       |
-| **View Clients**                   | `allClients`                                                                                                                                                                                               |
-| **View Filtered Clients**          | `clients`                                                                                                                                                                                                  |                                                              
+| Action                    | Format, Examples                                                                                                                                                                                           |
+|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Find Client**           | `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br> e.g: `find n/Jim p/98765432` |
+| **Add Client**            | `addClient [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`  <br> e.g: `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                        |
+| **Delete Client**         | `deleteClient [INDEX]` <br> e.g: `delete 3`                                                                                                                                                                |
+| **Edit Client**           | `editClient [INDEX] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g: `edit 2 n/James Lee e/jameslee@example.com`                                                                       |
+| **View All Clients**      | `allClients`                                                                                                                                                                                               |
+| **View Filtered Clients** | `clients`                                                                                                                                                                                                  |                                                              
 
 Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter matrices placed previously.
-
 
 ### Commands For Policy
 
@@ -594,23 +603,27 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | **Find Policy**            | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE] [cmp/POLICY_COMPANY]` <br/> e.g: `findPolicy cov/LIFE`                                                      |        
 | **Add Policy**             | `addPolicy [ti/POLICY_TITLE] [cmp/POLICY_COMPANY] [cms/POLICY_COMMISSION] [cov/POLICY_COVERAGE]` <br> e.g: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE`  |                                                                                                                         
 | **Delete Policy**          | `deletePolicy [INDEX of POLICY]` <br> e.g: `deletePolicy 1`                                                                                                     |                                                                                                                                                                                             
-| **View policies**          | `policies`                                                                                                                                                      |
-| **View assigned policies** | `assign [INDEX of CONTACT] [INDEX of POLICY] [pr/PREMIUM_PAID] [sd/START_DATE] [ed/END_DATE]` <br> e.g: `assignPolicy 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01` |
+| **View All Policies**      | `allPolicies`                                                                                                                                                   |
+| **View Filtered Policies** | `policies`                                                                                                                                                      |
+| **View Assigned Policies** | `assign [INDEX of CONTACT] [INDEX of POLICY] [pr/PREMIUM_PAID] [sd/START_DATE] [ed/END_DATE]` <br> e.g: `assignPolicy 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01` |
 | **Delete Assigned**        | `deleteAssigned [INDEX of CONTACT] [INDEX of POLICY]` <br> e.g: `deleteAssigned 1 1`                                                                            |                                                                                                                                                                                                               
 | **List Assigned**          | `listAssigned`                                                                                                                                                  |
 | **View Income**            | `viewIncome [YEAR]`                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                           
 
+Note: `allPolicies` shows all existing policies inside LTNS, while `policies` show all policies based on filter matrices placed previously.
 
 ### Commands For Events
 
-| Action            | Format, Examples                                                                                                                                                                |
-|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Event**    | `findEvent [desc/DESCRIPTION] [n/PERSON_NAME] [date/DATE]` <br/> e.g: `findEvent date/2022-05-05`                                                                               |
-| **Add Event**     | `addEvent [desc/DESCRIPTION] [n/NAME] [date/DATE] [st/START_TIME] [et/END_TIME]` <br> e.g: `addEvent desc/Meet Clement at Noon n/Clement Tan date/2022-10-10 st/12:00 et/13:00` |
-| **Delete Event**  | `deleteEvent [INDEX]` <br> e.g: `deleteEvent 1`                                                                                                                                 |
-| **View events**   | `events`                                                                                                                                                                        |
-| **View calendar** | `calendar`                                                                                                                                                                      |                                                                                                                                                                                                     
+| Action                   | Format, Examples                                                                                                                                                                |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Find Event**           | `findEvent [desc/DESCRIPTION] [n/PERSON_NAME] [date/DATE]` <br/> e.g: `findEvent date/2022-05-05`                                                                               |
+| **Add Event**            | `addEvent [desc/DESCRIPTION] [n/NAME] [date/DATE] [st/START_TIME] [et/END_TIME]` <br> e.g: `addEvent desc/Meet Clement at Noon n/Clement Tan date/2022-10-10 st/12:00 et/13:00` |
+| **Delete Event**         | `deleteEvent [INDEX]` <br> e.g: `deleteEvent 1`                                                                                                                                 |
+| **View All Events**      | `allEvents`                                                                                                                                                                     |
+| **View Filtered Events** | `events`                                                                                                                                                                        |
+| **View Calendar**        | `calendar`                                                                                                                                                                      |                                                                                                                                                                                                     
 
+Note: `allEvents` shows all existing events inside LTNS, while `events` show all events based on filter matrices placed previously.
 
 ### Miscellaneous Commands
 
@@ -620,9 +633,10 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | **Pin**         | `pin [n/NAME]` <br> e.g: `pin n/Jim`                 |
 | **View Pinned** | `viewPin` <br> e.g: `viewPin`                        |
 
-
-
 ## Glossary 
+
+### Parameter
+
 
 #### Policy
 An insurance or investment package entailing the details of the insurance and/or investment

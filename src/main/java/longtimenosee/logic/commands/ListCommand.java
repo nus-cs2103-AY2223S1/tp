@@ -12,7 +12,7 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "allClients";
 
-    public static final String MESSAGE_SUCCESS = "Listed all clients in the Address Book";
+    public static final String MESSAGE_SUCCESS = "Listed all clients in the LTNS";
 
 
     @Override

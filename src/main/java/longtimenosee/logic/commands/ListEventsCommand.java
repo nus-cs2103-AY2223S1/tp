@@ -12,7 +12,7 @@ public class ListEventsCommand extends Command {
 
     public static final String COMMAND_WORD = "allEvents";
 
-    public static final String MESSAGE_SUCCESS = "Listed all events in Address Book";
+    public static final String MESSAGE_SUCCESS = "Listed all events in LTNS";
 
 
     @Override
