@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
 
 
 /**
- * An UI component that displays detailed information of a {@code Person}.
+ * An UI component that displays detailed information of a {@code Department}.
  */
 public class DepartmentInfo extends UiPart<Region> {
     private static final String FXML = "DepartmentInfo.fxml";
