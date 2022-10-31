@@ -46,17 +46,20 @@ class LessonPlanCommandTest {
     }
 
     @Test
-    public void execute_deleteLessonPlanUnfilteredList_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withLessonPlan("").build();
+    public void execute_addLessonPlanFilteredList_success() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        LessonPlanCommand lessonPlanCommand = new LessonPlanCommand(INDEX_FIRST_PERSON, new LessonPlan(
-                editedPerson.getLessonPlan().value));
+        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person editedPerson = new PersonBuilder(personInFilteredList).withLessonPlan(LESSON_PLAN_STUB).build();
 
-        String expectedMessage = String.format(LessonPlanCommand.MESSAGE_DELETE_LESSON_PLAN_SUCCESS, editedPerson);
+        LessonPlanCommand lessonPlanCommand = new LessonPlanCommand(INDEX_FIRST_PERSON,
+                new LessonPlan(LESSON_PLAN_STUB));
+
+        String expectedMessage = String.format(LessonPlanCommand.MESSAGE_ADD_LESSON_PLAN_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         assertCommandSuccess(lessonPlanCommand, model, expectedMessage, expectedModel);
     }
