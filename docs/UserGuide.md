@@ -10,25 +10,25 @@
     1. [Definitions](#definitions)
     2. [Scoping](#scoping)
     3. [Basic features](#basic-features)
-        1. [Contact commands](#contact-commands)
-            1. [Add a contact](#add-a-contact-person-new)
-            2. [Delete a contact](#delete-a-contact-person-delete)
-            3. [Listing all contacts](#listing-all-contacts-list)
-        2. [General commands](#general-commands)
-            1. [Clear command](#clear-command-clear)
-            2. [Find command](#find-command-find)
-            3. [Exit command](#exits-the-program-exit)
-        3. [Field commands]()
-        4. [Group commands](#group-commands)
-            1. [Creating a group](#creating-a-group-team-new)
-            2. [Deleting a group](#deleting-a-group-team-delete)
-            3. [Navigating to a group](#navigating-to-a-group-cg)
-            4. [Adding people to a group](#adding-contacts-to-a-group-assign)
-            5. [Removing people from group](#removing-contacts-from-group-team-remove)
-        5. [Task commands](#task-commands)
-            1. [Adding a task to a group](#adding-a-task-to-a-group-task-add)
-            2. [Deleting a task from group](#deleting-a-task-from-group-task-delete)
-            3. [Set progress for tasks](#set-progress-for-tasks-task-progress)
+       1. [Contact commands](#contact-commands)
+          1. [Add a contact](#add-a-contact-person-new)
+          2. [Delete a contact](#delete-a-contact-person-delete)
+          3. [Listing all contacts](#listing-all-contacts-list)
+       2. [General commands](#general-commands)
+          1. [Clear command](#clear-command-clear)
+          2. [Find command](#find-command-find)
+          3. [Exit command](#exits-the-program-exit)
+       3. [Field commands]()
+       4. [Group commands](#group-commands)
+          1. [Creating a group](#creating-a-group-team-new)
+          2. [Deleting a group](#deleting-a-group-team-delete)
+          3. [Navigating to a group](#navigating-to-a-group-cg)
+          4. [Adding people to a group](#adding-contacts-to-a-group-assign)
+          5. [Removing people from group](#removing-contacts-from-group-team-remove)
+       5. [Task commands](#task-commands)
+          1. [Adding a task to a group](#adding-a-task-to-a-group-task-add)
+          2. [Deleting a task from group](#deleting-a-task-from-group-task-delete)
+          3. [Set progress for tasks](#set-progress-for-tasks-task-progress)
     4. [Advanced features](#advanced-features)
         1. [Chaining](#advanced-features-overview-chaining)
         2. [Feature constraints](#advanced-feature-constraints)
@@ -44,11 +44,11 @@
 7. [Future plans](#future-plans)
 8. [Glossary](#glossary)
 9. [Commands summary](#commands-summary)
-    1. [General commands](#general-commands-summary)
-    2. [Contact commands](#contact-commands-summary)
-    3. [Group commands](#group-commands-summary)
-    4. [Task commands](#task-commands-summary)
-    5. [Advanced commands](#advanced-commands-summary)
+   1. [General commands](#general-commands-summary)
+   2. [Contact commands](#contact-commands-summary)
+   3. [Group commands](#group-commands-summary)
+   4. [Task commands](#task-commands-summary)
+   5. [Advanced commands](#advanced-commands-summary)
 
 ---
 
@@ -103,7 +103,6 @@ We will be referring to these terminologies throughout the user guide:
 ![Contactmation ui main window](images/ContactmationUiClean.png)
 
 > **Note:** If you wish to clear all default entries, use the [clear](#clear-command-clear) command.
-
 
 
 5. You may begin by referring to the [basic features](#basic-features) section to get started on using
@@ -180,7 +179,6 @@ Let us start off by adding a person to Contactmation. To add a contact, you can 
 
 **Format**: `person new n/<NAME> [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
-
 **Examples**:
 
 - `person new n/Spongebob`
@@ -194,66 +192,6 @@ Let us start off by adding a person to Contactmation. To add a contact, you can 
 
 You can use the `person delete` command to delete a contact from the list of persons in the current scope.
 
-**Format**: `person delete <INDEX>`
-
-**Example**:
-
-- `person delete 1`
-
-### Listing all contacts
-
-Contactmation supports the `list` command that displays all of your contacts into a list of persons.
-
-
-**Format**: `list`
-
-
----
-
-Now that you have finished setting up Contactmation, let’s start performing basic tasks with Contactmation.
-As Contactmation aims to help you manage your contacts, project groups and tasks, we will start off by performing
-a range of basic commands varying from adding a person to manipulating tasks and teams.
-
-## Contact commands
-
-### Constraints on contact information
-
-The following contact commands comply with these placeholder constraints:
-
-
-- The `NAME` of the contact must be alphanumeric and can contain whitespace.
-- The `PHONE_NUMBER` of the contact must be at least 3 digits long.
-- The `EMAIL` of the contact must be in the format `local-part@domain`.
-
-    - `Local-part`: Only contain alphanumeric characters and these special characters, excluding
-      the parentheses, (+\_.-). The local-part may not start or end with any special characters.
-    - `Domain`:
-        - Ends with a domain label at least 2 characters long.
-        - Have each domain label start and end with alphanumeric characters.
-        - Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-
-- The `ADDRESS` can take any values, but it should not be blank.
-- The `TAG` must be alphanumeric.
-- The `INDEX` must be a positive integer which cannot exceed the number of contacts currently displayed in the
-  application.
-- The `KEYWORD` and `MORE_KEYWORDS` must be alphanumeric.
-
-### Create a Contact
-
-Let us start off by adding a person to Contactmation. To add a contact, you can use the command `person new`, followed by the name of the person. You can also choose to provide the phone number, email and address to each person, or add a tag to identify each person.
-
-**Format**: `person new n/<NAME> [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
->>>>>>> master
-
-**Examples**:
-
-- `person new n/Spongebob`
-- `person new n/Squidward Tentacles p/01234567 e/squidward@gmail.com a/Bikini Bottom Krusty Krab t/Employee`
-
-![Add Person Screenshot](images/user-guide-img/PersonNewScreenshot.PNG)
-### Delete a contact
-
-You can use the `person delete` command to delete a contact from the list of persons in the current scope.
 
 **Format**: `person delete <INDEX>`
 
@@ -264,6 +202,7 @@ You can use the `person delete` command to delete a contact from the list of per
 ### Listing all contacts
 
 Contactmation supports the `list` command that displays all of your contacts into a list of persons.
+
 
 **Format**: `list`
 
@@ -360,8 +299,12 @@ the application window.
 ### Navigate to a Team
 
 To perform commands specific to a team, you will have to navigate first to that specific team. You can use the `cg`
-command to navigate to a specified team. This command updates the group scope that is currently being displayed in
-the application.
+command to navigate to a specified team. This command updates the group scope that is currently being displayed in 
+the application. 
+
+This command is similar to going into a folder on your desktop, or stepping
+out of it.
+
 
 > **Note:**
 > Please look at how [scoping](#scoping) works before continuing.
@@ -388,7 +331,7 @@ follows a similar syntax to the change directory command (`cd`)
 
 ### Add New Contacts within a Team
 
-Once you have navigated to a team, you can add a new contact within that team, which is done through the same command
+Once you have navigated to a team, you can add a new contact within that team, which is done through the same command 
 as adding a contact to Contactmation.
 
 
@@ -414,9 +357,8 @@ the person by using the `team remove` command.
 
 ### Creating and Deleting a Subteam
 
-Contactmation allows the creation and deletion of a subteam within a team using the same command as
+Contactmation allows the creation and deletion of a subteam within a team using the same command as 
 [creating a team](#create-a-team) and [deleting a team](#delete-a-team).
-
 
 
 ## Task commands
@@ -484,7 +426,6 @@ commands together like such:
 
 - `seq <command 1> [| command 3]...`
 - `seq <command 1> [; command 3]...`
-
 
 
 Whenever a pipe symbol (`|`) is encountered, the output of the previous commands is then passed to the next command.
@@ -573,6 +514,7 @@ then the command sequence will execute `COMMAND IF`, else it will execute `COMMA
 ensures that the application cannot run `COMMAND IF` and `COMMAND ELSE` in the same command sequence.
 
 >**Note:** If else commands cannot be nested in other if else commands directly.
+
 
 **Format:** `if [[CRITERIA]] ;; [[COMMAND IF]] ;; [[COMMAND ELSE]]`
 
