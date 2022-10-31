@@ -24,12 +24,9 @@ public class FindCommandParser implements Parser<FindNameCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindNameCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
+
+        args = args.trim();
         ArrayList<String> findCommandKeywords = new ArrayList<>();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
 
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENTCLASS, PREFIX_SUBJECT);
@@ -47,6 +44,11 @@ public class FindCommandParser implements Parser<FindNameCommand> {
         if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
             String foundSubjects = String.join(" ", argMultimap.getAllValues(PREFIX_SUBJECT));
             findCommandKeywords.add(foundSubjects);
+        }
+
+        if (findCommandKeywords.isEmpty()) {
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         return new FindNameCommand(new FindCommandPredicate(findCommandKeywords));

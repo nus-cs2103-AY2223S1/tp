@@ -20,7 +20,8 @@ public class GradeCommandParser implements Parser<GradeCommand> {
         // grade english_CA1_100_0.5_1.0 - format: subject-assessmentName_totalScore_weightage_difficulty
         // need to check for erroneous input
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        String[] parsedString = trimmedArgs.split("_");
+        if (trimmedArgs.isEmpty() || parsedString.length != 5) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE));
         }

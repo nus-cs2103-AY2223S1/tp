@@ -136,12 +136,22 @@ public class Attendance {
     public String guiString() {
         StringBuilder sb = new StringBuilder();
         if (personAttendance.isEmpty()) {
-            sb.append("0/0");
+            sb.append("No attendance recorded yet!");
             return sb.toString();
         }
         int[] attendance = this.getAttendanceDetails();
-        sb.append(attendance[0] + "/" + attendance[1]);
+        sb.append(attendance[0]).append("/").append(attendance[1]);
         return sb.toString();
+    }
+
+    /**
+     * Checks if a student has above 80% attendance.
+     *
+     * @return A boolean value.
+     */
+    public boolean hasGoodAttendance() {
+        int[] attendance = getAttendanceDetails();
+        return (attendance[0] / attendance[1] >= 0.8);
     }
 
     @Override

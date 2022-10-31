@@ -182,16 +182,16 @@ Examples:
 
 ### Sorting students by grade: `sort`
 
-Sort all student by grade in ascending or descending order.
+Sort all student by their subject grade in ascending or descending order.
 
-Format: `sort asc` or `sort desc`
+Format: `sort asc s/SUBJECT` or `sort desc s/SUBJECT`
 
-* The search is case-insensitive. e.g. `sort ASC` will return the same result as `sort asc`
-* The returned list is sorted by grade which refers to the total percentage the student scored in all the subjects.
+* The search is case-insensitive. e.g. `sort ASC s/SUBJECT` will return the same result as `sort asc s/SUBJECT`
+* The returned list is sorted by grade which refers to the total percentage the student scored in the subject searched.
 
 
 Examples:
-* `sort DESC` returns list of students whose grades are in descending order
+* `sort DESC s/english` returns list of students in descending order depending on their english grade.
 
 ### Add remark to a student: `remark`
 
