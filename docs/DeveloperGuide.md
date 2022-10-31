@@ -296,9 +296,9 @@ Step 4. `REditCommandParser` will parse the index to a `Index` object and parse 
 
 Step 5. In `LogicManager`, the returned `REditCommand` is executed.
 
-Step 6. A new `Review` object is created with the fields of `Review` to be edited, except the field(s) that are to be edited, which will be set by the parsed user input. In this case `Review` with index 2 is copied over to a new `Review` object expect its `Rating` field which is set as `5`.
+Step 6. In the execution of the `REditCommand`, a new `Review` object is created. This `Review` consists of the field(s) from the parsed user input, replacing some field(s) of the original `Review` object. In this case, the original `Review` with index 2 is copied over to a new `Review` object except its `Rating` field which is set as `5`.
 
-Step 7. A new `Stall` object will be created and its field copied over except the `Review` to be edited which will be replaced by the updated `Review`. This new `Stall` object will then replace the `Stall` object that contains the `Review` to be edited in the `Model` when `model.setReview()` is called.
+Step 7. `model.setReview()` will interact with the model to have it replace the immutable `Stall` which contained the original `Review` with a `Stall` containing the updated `Review`.
 
 ![EditReview](images/EditReview.png)
 
