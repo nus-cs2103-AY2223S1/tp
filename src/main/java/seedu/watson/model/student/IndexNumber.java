@@ -31,8 +31,12 @@ public class IndexNumber {
      * @return A boolean.
      */
     public static boolean isValidIndexNumber(String test) {
-        Integer ind = Integer.valueOf(test);
-        return ind >= 1 && ind <= 99;
+        try {
+            int ind = Integer.parseInt(test);
+            return ind >= 1 && ind <= 99;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     @Override
