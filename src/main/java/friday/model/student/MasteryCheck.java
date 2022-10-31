@@ -113,6 +113,10 @@ public class MasteryCheck implements Comparable<MasteryCheck> {
         this.isPassed = false;
     }
 
+    public boolean canPass() {
+        return this.value.isBefore(LocalDate.now());
+    }
+
     @Override
     public String toString() {
         String value = isEmpty() ? "" : this.value.toString();
