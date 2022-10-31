@@ -164,7 +164,7 @@ Examples:
 
 * `user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive g/SilasTSL curr/CS2100 prev/CS1101S plan/CS2109`adds your own user profile to your contact list with all the details specified.
 
-<img src="images/AddUserProfile.png" width="600" />
+<img src="images/AddUserProfile.png" width="800" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -253,7 +253,7 @@ Examples:
 * `find John` returns john and John Doe
 * `find alex david` returns `Alex Yeoh`, `David Li`
 
-<img src="images/FindCommand.png" width="600" />
+<img src="images/FindCommand.png" width="800" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -362,7 +362,7 @@ Examples:
 
 * `module 1 curr/CS2101 prev/CS2030S plan/CS2102 rm/GEA1000` adds the first 3 modules into the first contact's respective lists and removes GEA1000 from all module lists
 
-<img src="images/EditModules.png" width="600" />
+<img src="images/EditModules.png" width="800" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -396,7 +396,7 @@ Examples:
 
 * `modsleft 1` outputs the list of remaining CS Core Requirement modules that you have yet to clear.
 
-<img src="images/ModulesLeft.png" width="600" />
+<img src="images/ModulesLeft.png" width="800" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -578,7 +578,7 @@ The copy Github Profile URL button copies the user or contact's github profile U
 
 Shows a message explaining how to access the help page.
 
-<img src="images/HelpWindow.png" width="400" />
+<img src="images/HelpWindow.png" width="800" />
 
 Format: `help`
 
