@@ -359,7 +359,8 @@ Example:
 Apart from supporting the core HR functions, Coydir also supports *department-level management*, for other manpower staff and executives (*department heads, operations planning, etc.*).
 
 With these features, we offer a view that is broader than an individual employee profile and more specific than the full directory. 
-Complete with **real-time statistics and analytics**, Coydir makes department management much simpler.
+
+Complete with **real-time statistics and analytics**, Coydir makes department management much simpler. With these information, HR can easily observe the structure of a particular department, track the number of currently available employees for better tasks delegation, or even perform a department restructure to improve the overall efficiency of the company.
 
 Currently, our application only provides a list of default departments for the user to choose from. Future update will include customizable department name. Our current list of valid departments are:
 - Administration
