@@ -4,7 +4,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.ModuleCode;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.Year;
 import seedu.address.model.util.SampleDataUtil;
@@ -38,6 +40,12 @@ public class StudentBuilder extends PersonBuilder {
         this.year = personToCopy.getYear();
     }
 
+    @Override
+    public StudentBuilder withName(String name) {
+        super.withName(name);
+        return this;
+    }
+
     /**
      * Parses the {@code moduleCodes} into a {@code Set<moduleCode>}
      * and set it to the {@code Student} that we are building.
@@ -53,6 +61,16 @@ public class StudentBuilder extends PersonBuilder {
     public StudentBuilder withYear(String year) {
         this.year = new Year(year);
         return this;
+    }
+
+    @Override
+    public StudentBuilder withGithubUsername(String username) {
+        return (StudentBuilder) super.withGithubUsername(username);
+    }
+
+    @Override
+    public StudentBuilder withTags(String... tags) {
+        return (StudentBuilder) super.withTags(tags);
     }
 
     @Override

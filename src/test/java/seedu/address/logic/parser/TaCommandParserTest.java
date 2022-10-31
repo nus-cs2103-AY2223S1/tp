@@ -35,6 +35,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.Parser.DEFAULT_LOC_STRING;
 import static seedu.address.testutil.TypicalPersons.CABE;
 
 import org.junit.jupiter.api.Test;
@@ -128,7 +129,7 @@ public class TaCommandParserTest {
         // no year input
         Person expectedPerson = new TeachingAssistantBuilder(CABE).withRating(VALID_RATING_CABE)
                 .withModuleCode(VALID_MODULE_CODE_CABE).withGithubUsername(VALID_GITHUB_CABE)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_FRIEND).withLocation(DEFAULT_LOC_STRING).build();
         assertParseSuccess(taParser, NAME_DESC_CABE + PHONE_DESC_CABE + EMAIL_DESC_CABE + GENDER_DESC_CABE
                         + MODULE_CODE_DESC_CABE + RATING_DESC_CABE + TAG_DESC_FRIEND + GITHUB_USERNAME_DESC_CABE,
                 new TaCommand((TeachingAssistant) expectedPerson));

@@ -24,6 +24,8 @@ import seedu.address.model.person.TeachingAssistant;
 import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
+import static seedu.address.model.person.Specialisation.EMPTY_SPECIALISATION;
+
 /**
  * A utility class to help with building EditPersonDescriptor objects.
  */
@@ -49,6 +51,11 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setGender(person.getGender());
         descriptor.setTags(person.getTags());
+        descriptor.setModuleCodes(person.getModuleCodes());
+        descriptor.setYear(person.getYear());
+        descriptor.setLocation(person.getLocation());
+        descriptor.setGithubUsername(person.getUsername());
+        //descriptor.setModuleCode(person.ge);
     }
 
     /**
@@ -62,6 +69,11 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setGender(person.getGender());
         descriptor.setTags(person.getTags());
+        descriptor.setLocation(person.getLocation());
+        descriptor.setGithubUsername(person.getUsername());
+        descriptor.setRating(person.getRating());
+        descriptor.setSpecialisation(person.getSpecialisation());
+        descriptor.setOfficeHour(person.getOfficeHour());
     }
 
     /**
@@ -75,6 +87,9 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setGender(person.getGender());
         descriptor.setTags(person.getTags());
+        descriptor.setLocation(person.getLocation());
+        descriptor.setGithubUsername(person.getUsername());
+        descriptor.setRating(person.getRating());
     }
 
     /**
@@ -134,6 +149,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setModuleCode(moduleCodeList.get(moduleCodeList.size() - 1));
         return this;
     }
+
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
@@ -167,7 +183,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     public EditPersonDescriptorBuilder withSpecialisation(String specialisation) {
-        if (specialisation == null) {
+        if (specialisation == null || specialisation.equals(EMPTY_SPECIALISATION)) {
             descriptor.setSpecialisation(new Specialisation("", false));
         } else {
             descriptor.setSpecialisation(new Specialisation(specialisation));
