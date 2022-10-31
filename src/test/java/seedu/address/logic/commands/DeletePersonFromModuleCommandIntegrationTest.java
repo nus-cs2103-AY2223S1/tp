@@ -72,7 +72,7 @@ public class DeletePersonFromModuleCommandIntegrationTest {
         Predicate<Module> modulePredicate = module -> module.equals(validModuleWithAliceAndBenson);
         Predicate<Person> personPredicate = person -> person.equals(ALICE) || person.equals(BENSON);
 
-        // Stimulate not at home.
+        // Simulate not at home.
         model.updateFilteredModuleList(modulePredicate);
         model.updateFilteredPersonList(personPredicate);
         model.setHomeStatus(false);
@@ -82,7 +82,7 @@ public class DeletePersonFromModuleCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
-        // Stimulate not at home.
+        // Simulate not at home.
         expectedModel.updateFilteredModuleList(modulePredicate);
         expectedModel.updateFilteredPersonList(personPredicate);
         expectedModel.setHomeStatus(false);
