@@ -503,14 +503,14 @@ Format: `findTag TAG [MORE_TAGS]`
 * Only the tag is searched.
 * Only full words will be matched e.g. `Tech` will not match `Technology`
 * Persons and Notes matching at least one tag will be returned (i.e. `OR` search).
-  e.g. `Finance` will return
-* `John (tag: Finance)`,
-* `Caroline (tag: Finance) (tag: Tech)`,
-* `Bob (tag:Finance) (tag:HumanResources)`
+  e.g. `Operations` will return
+  * Person `Alex Yeoh` (tag: Friends) (tag: Operations),
+  * Person `Charlotte Oliveiro` (tag: Operations),
+  * Note `Collect funds from operations team` (tag: Operations)
 
 Examples:
-* `findTag Finance` returns `John`, `Caroline` and `Bob`
-  ![result for 'findTag Finance'](images/findTagFinance.png)
+* `findTag Operations` returns Person `Alex Yeoh`, Person `Charlotte Oliveiro` and Note `Collect funds from operations team`
+  ![result for 'findTag Operations'](images/findTagOperations.png)
 
 [Back to Top](#sectresbook)
 
