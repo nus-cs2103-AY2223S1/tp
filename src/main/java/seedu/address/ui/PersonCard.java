@@ -29,9 +29,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
-    @FXML
-    private Label minecraftName;
+    private Label names;
     @FXML
     private Label id;
     @FXML
@@ -54,8 +52,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
 
         id.setText(displayedIndex + ". ");
-        name.setText("[" + person.getName().toString() + "]");
-        minecraftName.setText(person.getMinecraftName().toString());
+        names.setText(person.getMinecraftName().toString() + " [" + person.getName().toString() + "]");
         information.setText(person.toDisplayString());
 
         person.getTags().stream()

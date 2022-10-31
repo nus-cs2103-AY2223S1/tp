@@ -64,6 +64,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private ImageView creeperImageView;
     private ImageView explosionImageView;
+    private boolean isCreeperAnimationRunning;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -77,6 +78,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        primaryStage.setMinWidth(800.0);
 
         setAccelerators();
 
@@ -141,6 +143,8 @@ public class MainWindow extends UiPart<Stage> {
                 new Image(getClass().getResource("/images/creeper_mob.png").toString()));
         explosionImageView = new ImageView(
                 new Image(getClass().getResource("/images/explosion2.png").toString()));
+        creeperImageView.setScaleX(1 / 1.2);
+        creeperImageView.setScaleY(1 / 1.2);
         creeperPlaceHolder.getChildren().add(creeperImageView);
         creeperPlaceHolder.getChildren().add(explosionImageView);
         explosionImageView.setVisible(false);
@@ -219,8 +223,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void executeAnimation() {
-        // start of creeper animation
         playSound();
+        if (isCreeperAnimationRunning) {
+            return;
+        }
+        // start of creeper animation
+        isCreeperAnimationRunning = true;
         ScaleTransition scaleTransitionExpand = new ScaleTransition();
         scaleTransitionExpand.setDuration(Duration.seconds(0.5));
         scaleTransitionExpand.setToX(1.2);
@@ -246,6 +254,7 @@ public class MainWindow extends UiPart<Stage> {
         );
         endOfExplosionPause.play();
         // end of creeper animation
+        isCreeperAnimationRunning = false;
     }
 
     private MediaPlayer loadSound(String soundFile) {

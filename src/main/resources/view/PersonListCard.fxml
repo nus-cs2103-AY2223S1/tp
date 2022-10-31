@@ -13,7 +13,7 @@
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+      <ColumnConstraints hgrow="SOMETIMES" prefWidth="150" />
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" prefWidth="259.0" GridPane.columnIndex="0">
       <padding>
@@ -26,8 +26,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-            <Label fx:id="minecraftName" styleClass="cell_big_label" text="\$mcName" />
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+            <Label fx:id="minecraftNameAndName" styleClass="cell_big_label" text="\$mcName" wrapText="true" />
       </HBox>
       <FlowPane fx:id="servers" styleClass="tagged">
             <VBox.margin>
