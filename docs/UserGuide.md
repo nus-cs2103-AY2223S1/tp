@@ -442,8 +442,19 @@ If your changes to the data file makes its format invalid, FABook will discard a
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FABook home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**:    1. Find the save file on the current computer. The save file can be found as `FABook.json` in the `data` folder created by the app.
+
+       
+   2. Transfer the save file to your new computer.
+       
+   3. Install FABook on the new computer.
+       
+   4. Launch FABook and exit.
+       
+   5. You should see a new `data` folder containing a new `FABook.json`. Replace this file with the save file copied over from your old computer.
+       
+   6. Launch FABook again. Your data should be there!
 
 **Q**: Why can I not undo the `sync` command?<br>
 **A**: Meetings that have passed should not need to be undone and be shown again. 
