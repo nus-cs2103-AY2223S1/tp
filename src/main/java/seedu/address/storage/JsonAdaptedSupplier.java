@@ -71,6 +71,10 @@ class JsonAdaptedSupplier {
 
         final ArrayList<UniqueId> modelIds = new ArrayList<>();
         for (String id : ids) {
+            if (id == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        UniqueId.class.getSimpleName()));
+            }
             modelIds.add(new UniqueId(id));
         }
 
