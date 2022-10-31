@@ -170,7 +170,7 @@ The complete employee profile allows you to specify _a fair amount_ of details f
 | **Leaves Left**  | No. of leaves left for employee        | **Cannot Set** | 14            |
 | **Rating**       | Latest performance rating for employee | **Cannot Set** | _None_        |
 
-<div markdown="span" class="alert alert-primary">:bulb:
+<div markdown="span" class="alert alert-info">:bulb:
   <h5>Bonus Information on the Profile</h5>
   <ul>
     <li><strong>Employee ID</strong> is a unique number assigned to each employee, and is used for several powerful commands. To ensure the uniqueness of the IDs, Coydir <strong>does not support</strong> any editing/manipulation of the employee IDs.</li>
@@ -337,11 +337,15 @@ Format: `find [n/NAME_KEYWORD] [j/POSITION_KEYWORD] [d/DEPARTMENT_KEYWORD]`
   </ul>
 </div>
 
-![Find Command - Example](./images/ui-screenshots/find-example.png)
-
 Example:
 
+![Find Command - Example](./images/ui-screenshots/find-example.png)
+
 - `find j/officer d/Management` displays 2 employees, who are "Officers" in the "General Management" department.
+
+![Find Command - Example](./images/ui-screenshots/find-example2.png)
+
+- `find n/Roy j/Design d/Tech` displays 1 employee, "Roy Balakrishnan" who is a "UI/UX Designer" in the "Information Technology" department.
 
 ### Managing Employee Leaves
 
