@@ -141,9 +141,11 @@ The `Schedule` component
 
 - represents a schedule of its corresponding module
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative design is to let `Schedule` object have a reference of the module it belongs to. The diagram is as follows:<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative design is to let `Schedule` object have a reference of the module it belongs to. The diagram is as follows: <br>
+  <div align=center><img src="images/NewScheduleUML.png" alt="NewScheduleUML" style="zoom: 50%; width=450; " /></div>
+</div>
 
-<img src="images/NewScheduleUML.png" alt="NewScheduleUML" style="zoom: 50%; width=450" />
+  
 
 ### Storage component
 
