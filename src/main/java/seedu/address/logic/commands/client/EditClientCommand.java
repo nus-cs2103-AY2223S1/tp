@@ -40,8 +40,6 @@ public class EditClientCommand extends ClientCommand {
             + PREFIX_MOBILE + "12345678 "
             + PREFIX_CLIENT_ID + "1 ";
 
-    public static final String MESSAGE_INVALID_CLIENT = "Client does not exist.";
-
     private final Name newName;
     private final ClientEmail newEmail;
     private final ClientMobile newMobile;

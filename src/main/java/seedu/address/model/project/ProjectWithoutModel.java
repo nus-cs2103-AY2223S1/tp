@@ -3,6 +3,7 @@ package seedu.address.model.project;
 import java.util.List;
 import java.util.function.Function;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Deadline;
 import seedu.address.model.Model;
 import seedu.address.model.Name;
@@ -49,12 +50,16 @@ public class ProjectWithoutModel implements Function<Model, Project> {
 
     @Override
     public Project apply(Model model) {
-        Client client;
-        try {
-            client = model.getClientById(clientId.getIdInt());
-        } catch (NotFoundException e) {
-            client = Client.EmptyClient.EMPTY_CLIENT;
+        Client client = Client.EmptyClient.EMPTY_CLIENT;
+
+        if (!clientId.isEmpty()) {
+            try {
+                client = model.getClientById(clientId.getIdInt());
+            } catch (NotFoundException e) {
+                client = null;
+            }
         }
+
         return new Project(name, repository, deadline,
                 client, issueList, new ProjectId(model.generateProjectId()), pin);
     }

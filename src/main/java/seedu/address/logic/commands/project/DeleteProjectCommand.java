@@ -49,13 +49,16 @@ public class DeleteProjectCommand extends ProjectCommand {
                 for (Issue i : listOfIssuesToDelete) {
                     model.deleteIssue(i);
                 }
+
                 Client projectClient = p.getClient();
-                if (!projectClient.isEmpty()) {
-                    projectClient.removeProject(p);
-                    if (projectClient.getProjectListSize() == 0) {
-                        model.deleteClient(projectClient);
+                Client clientInList = model.getClientById(projectClient.getClientIdInInt());
+                if (!clientInList.isEmpty()) {
+                    clientInList.removeProject(p);
+                    if (clientInList.getProjectListSize() == 0) {
+                        model.deleteClient(clientInList);
                     }
                 }
+
                 model.deleteProject(p);
                 ui.showProjects();
                 model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);

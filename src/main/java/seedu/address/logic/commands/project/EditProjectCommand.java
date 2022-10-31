@@ -46,7 +46,7 @@ public class EditProjectCommand extends ProjectCommand {
             + PREFIX_DEADLINE + "2022-03-05 ";
 
     public static final String MESSAGE_SUCCESS = "Project %1$s has been edited";
-    public static final String MESSAGE_INVALID_CLIENT = "Client does not exist.";
+    public static final String MESSAGE_INVALID_CLIENT = "This client id does not exist in the address book.";
 
     private final ProjectId projectToEditId;
     private final Name newName;

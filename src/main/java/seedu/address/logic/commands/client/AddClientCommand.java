@@ -30,7 +30,7 @@ public class AddClientCommand extends ClientCommand {
             + PREFIX_NAME + "NAME "
             + PREFIX_MOBILE + "MOBILE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_PROJECT_ID + "PROJECT ID: \n"
+            + PREFIX_PROJECT_ID + "PROJECT ID \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_NAME + "John Doe "

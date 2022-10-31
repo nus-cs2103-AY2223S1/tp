@@ -11,7 +11,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.ClientId;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectWithoutModel;
 import seedu.address.ui.Ui;
@@ -40,7 +39,7 @@ public class AddProjectCommand extends ProjectCommand {
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book";
-    public static final String MESSAGE_CLIENT_ID_NOT_FOUND = "This client id does not exist in the address book";
+    public static final String MESSAGE_CLIENT_NOT_FOUND = "This client id does not exist in the address book";
 
     private final ProjectWithoutModel toAddProjectWithoutModel;
 
@@ -57,14 +56,20 @@ public class AddProjectCommand extends ProjectCommand {
         requireNonNull(model);
 
         Project toAddProject = toAddProjectWithoutModel.apply(model);
-        Client projectClient = toAddProject.getClient();
 
         if (model.hasProject(toAddProject)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
 
-        if (!model.hasClientId(projectClient.getClientIdInInt())) {
-            throw new CommandException(MESSAGE_CLIENT_ID_NOT_FOUND);
+        Client projectClient = toAddProject.getClient();
+
+        if (projectClient == null) {
+            throw new CommandException(MESSAGE_CLIENT_NOT_FOUND);
+        }
+
+        if (!projectClient.isEmpty()) {
+            projectClient.addProjects(toAddProject);
+            model.setClient(projectClient, projectClient);
         }
 
         model.addProject(toAddProject);
