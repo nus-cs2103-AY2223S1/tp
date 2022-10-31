@@ -73,11 +73,11 @@ Healthcare Xpress is a **desktop app for managing patients that require home-vis
 
 **:information_source: Additional information:**<br>
 
-* The HomeVisits is the homevisits that the nurse have to attend to and it is displayed in the format of `Date and Time : [UID] Patient Uid`. This cannot be added using the add command. It can only be added using the assign command. 
+* The HomeVisits is the homevisits that the nurse have to attend to and it is displayed in the format of `Date and Time : [UID] Patient Uid`. This cannot be added using the add command. It can only be added using the assign command.
 
-* The HomeVisits DateSlot is the home visit date slot of the patient and it is displayed in the format of `[ ][ ] Date and Time`. 
+* The HomeVisits DateSlot is the home visit date slot of the patient and it is displayed in the format of `[ ][ ] Date and Time`.
 
-* The first bracket is to indicate whether this date slot has been assigned to a nurse. (Blank - not assigned, A - assigned). 
+* The first bracket is to indicate whether this date slot has been assigned to a nurse. (Blank - not assigned, A - assigned).
 
 * The second bracket is to indicate whether this date slot has pass and visited. (Blank - the date slot has not pass, V - the date slot has pass and autochange to visited, FV - the date slot has pass but fail to visit).
 
@@ -122,8 +122,8 @@ Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ [
 
 :bulb:**Tips**:
 * A nurse can have any number of tags (including 0).
-* A nurse can have any number of unavailable date (including 0). 
-* The unavailable date must be in `yyyy-MM-dd` format, eg `2022-11-11`. 
+* A nurse can have any number of unavailable date (including 0).
+* The unavailable date must be in `yyyy-MM-dd` format, eg `2022-11-11`.
 * You may type it in any order.
 * To add a nurse, type `c/N` specifically.
 
@@ -170,7 +170,7 @@ Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ds/D
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 - When changing a date slot in the existing list, if the old date slot is assigned, it will be deassigned and the new date slot will be in "not assigned status".
-- When changing an unavailable date in the existing list or add a new unavailable date in the existing list from a nurse, the date slot assigned to that nurse will be checked against the unavailable date. If the date slot is on the same day with the unavailable date, it will auto deassign that date slot from the nurse. 
+- When changing an unavailable date in the existing list or add a new unavailable date in the existing list from a nurse, the date slot assigned to that nurse will be checked against the unavailable date. If the date slot is on the same day with the unavailable date, it will auto deassign that date slot from the nurse.
 </div>
 
 Examples:
@@ -237,7 +237,7 @@ Format `assign id/NURSE_ID id/PATIENT_ID [dsi/DATE_AND_SLOT_INDEX]…​`
 * There **must be 2 IDs (only 2), 1 indicating a patient and 1 indicating a nurse**.
 * There is no specific order for the 2 IDs.
 * The assign command can have any number of date and slot index (including 0).
-* If the 'DATE_AND_SLOT_INDEX' not indicated (0), then all the date slot of the patients will be assigned to the nurse. 
+* If the 'DATE_AND_SLOT_INDEX' not indicated (0), then all the date slot of the patients will be assigned to the nurse.
 * If the 'DATE_AND_SLOT_INDEX(ES)' is indicated, then the date slot with the respective index(es) in the displayed dateslot list will be assigned to the nurse.
 * When assigning, it will check whether there are time crashes and check whether the nurse are unavailable on that day.
 
@@ -266,7 +266,7 @@ Examples:
 
 Unmarks a specific patient's specific dateslot in the records system as failed visited.
 
-Format: `unmark id/PATIENT_ID dsi/DATE_AND_SLOT_INDEX` 
+Format: `unmark id/PATIENT_ID dsi/DATE_AND_SLOT_INDEX`
 
 * Unmarks the patient with the specified 'ID' as having been failed visited.
 * The ID refers to the unique ID shown in the displayed person list.
@@ -292,17 +292,17 @@ Format: `exit`
 
 ### Saving the data
 
-HealthcareXpress data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Healthcare Xpress data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-HealthcareXpress data are saved as a JSON file `[JAR file location]/data/healthcarexpress.json`. Advanced users are welcome to update data directly by editing that data file.
+Healthcare Xpress data are saved as a JSON file `[JAR file location]/data/healthcarexpress.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 
 * If your changes to the data file makes its format invalid, Healthcare Xpress book will discard all data and start with an empty data file at the next run.
 
-* NOT RECOMMENDED : It is not recommended to change the 'date slot' of a patient and 'homevisits', 'unavailable date' and 'fully scheduled date' of a nurse in the file. The system is unable to check the correctness and whether there is time crash and other issues if you change it manually in the data file. 
+* NOT RECOMMENDED : It is not recommended to change the 'date slot' of a patient and 'homevisits', 'unavailable date' and 'fully scheduled date' of a nurse in the file. The system is unable to check the correctness and whether there is time crash and other issues if you change it manually in the data file.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
