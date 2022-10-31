@@ -19,7 +19,7 @@ public class AddressContainsKeywordsPredicate implements Predicate<Student> {
     @Override
     public boolean test(Student student) {
         for (String keyword : this.keywords) {
-             if (student.getAddress().value.contains(keyword)) {
+             if (student.getAddress().value.toLowerCase().contains(keyword.toLowerCase())) {
                  return true;
              }
         }
