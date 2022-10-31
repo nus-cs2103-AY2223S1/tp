@@ -25,6 +25,8 @@ public class GithubUsername {
      * Github username cannot begin or end with a hyphen.
      * Maximum is 39 characters.
      */
+    // @@author Jonaspng -reused
+    // Regex taken from https://github.com/shinnn/github-username-regex
     public static final String VALIDATION_REGEX = "^(?i)[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$";
 
     public final String value;

@@ -3,13 +3,11 @@ layout: page
 title: User Guide
 ---
 SOConnect is a **desktop application for NUS SOC students to keep track of their University social circle** which includes peers, Teaching Assistants and Professors.
-Since it is designed for SOC students, it is **optimized for use via a Command Line Interface (CLI)**
+Since it is designed for people with some computing background, it is **optimized for use via a Command Line Interface (CLI)**
 but it also has a Graphical User Interface for simpler and quicker task.
 
 * Table of Contents
 {:toc}
-
---------------------------------------------------------------------------------------------------------------------
 
 # 1. About the User Guide
 
@@ -35,16 +33,13 @@ This section will explain the parameters and the format of commands.
 | []()   | INDEX           | Index of item in the recent displayed item list                                                                |
 |        | FILENAME        | Name that you wish to name the export file or Name of file you wish to import from                             |
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 # 2. Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `SoConnect.jar` from [here](https://github.com/AY2223S1-CS2103T-W08-3/tp).
+1. Download the latest `SoConnect.jar` from [here](https://github.com/AY2223S1-CS2103T-W08-3/tp/releases).
 
   1. **Double-click** the file to start the app or  using **CLI** and type `java -jar SoConnect.jar`. The GUI similar to the below should appear in a few seconds. Below is an UI mockup.
      ![Ui](images/Ui.png)
@@ -62,7 +57,7 @@ This section will explain the parameters and the format of commands.
 * All prefixes must be preceded by a space.<br>
   e.g <code> t/</code>, <code> g/</code>
 
-* All commands are **lower-sensitive**.<br>
+* All commands are **lowercase-sensitive**.<br>
   e.g. `Find` will **not** be recognised as a valid syntax.
 
 * Words in `UPPER_CASE` are the parameters to be **supplied by you** and must be in **English Characters**.<br>
@@ -112,6 +107,8 @@ A student can have multiple module codes and tags. But a student must have at le
 Examples:
 * `student n/John Doe y/1 m/CS4226 m/CS5242 p/98765432 e/JohnD@example.com g/M t/friends t/owesMoney l/UTown Residences git/johnnyd`
 * `add n/Betsy Crowe t/friend m/CS2100 e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+<div style="page-break-after: always;"></div>
 
 ### 3.1.2 Add a new Professor Contact: `prof`
 
@@ -333,7 +330,6 @@ If there is no GitHub username associated with the person at the specified `INDE
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## 3.5 Pie Chart Feature
 
