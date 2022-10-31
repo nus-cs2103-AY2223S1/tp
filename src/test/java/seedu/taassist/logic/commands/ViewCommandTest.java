@@ -1,5 +1,7 @@
 package seedu.taassist.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
@@ -56,6 +58,28 @@ class ViewCommandTest {
             + "2. " + LAB_1.getSessionName() + ": 100.0";
         ModelStubOneStudentWithGrades expectedModel = new ModelStubOneStudentWithGrades();
         assertCommandSuccess(viewCommand, modelStub, expectedMessage, expectedModel);
+    }
+
+    @Test
+    void equals() {
+        ViewCommand viewFirstCommand = new ViewCommand(INDEX_FIRST_STUDENT);
+        ViewCommand viewSecondCommand = new ViewCommand(INDEX_THIRD_STUDENT);
+
+        // same object -> returns true
+        assertTrue(viewFirstCommand.equals(viewFirstCommand));
+
+        // same index -> returns true
+        ViewCommand viewFirstCommandCopy = new ViewCommand(INDEX_FIRST_STUDENT);
+        assertTrue(viewFirstCommand.equals(viewFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(viewFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(viewFirstCommand.equals(null));
+
+        // different index -> returns false
+        assertFalse(viewFirstCommand.equals(viewSecondCommand));
     }
 
     /**
