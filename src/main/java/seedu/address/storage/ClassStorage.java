@@ -21,7 +21,7 @@ import seedu.address.model.student.Student;
  */
 public class ClassStorage {
     public static final String MESSAGE_INITIALIZE_CLASS_STORAGE_FAILURE =
-            "Failed to initialize class due to class conflict";
+            "Failed to initialize class due to class conflict.";
 
     private static HashMap<LocalDate, List<Student>> classes = new HashMap<>();
     private static TeachersPet teachersPet;

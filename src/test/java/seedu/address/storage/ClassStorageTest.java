@@ -13,6 +13,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
@@ -24,7 +26,17 @@ import seedu.address.testutil.StudentBuilder;
 public class ClassStorageTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTeachersPetTest");
-    private static final Path PERSONS_FILE = TEST_DATA_FOLDER.resolve("studentsTeachersPet.json");
+    private static final Path STUDENTS_FILE = TEST_DATA_FOLDER.resolve("studentsTeachersPet.json");
+    private static final Path CLASS_CONFLICT_FILE = TEST_DATA_FOLDER.resolve("classConflictTeachersPet.json");
+
+    @Test
+    public void execute_initialiseClassFailure() throws DataConversionException, IllegalValueException {
+        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(CLASS_CONFLICT_FILE,
+                JsonSerializableTeachersPet.class).get();
+        TeachersPet teachersPetFromFile = dataFromFile.toModelType();
+        ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
+        assertThrows(DataConversionException.class, () -> new ClassStorage(modelManager));
+    }
 
     @Test
     public void execute_hasConflictSuccess() {
@@ -50,7 +62,7 @@ public class ClassStorageTest {
         Student student = new StudentBuilder().withName("Daniel Tan").withPhone("81201230").withNokPhone("97228333")
                 .withEmail("cornelia@example.com").withAddress("10th street")
                 .withClass("2022-05-05 1200-1400").build();
-        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
+        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(STUDENTS_FILE,
                 JsonSerializableTeachersPet.class).get();
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
@@ -64,7 +76,7 @@ public class ClassStorageTest {
         Student student = new StudentBuilder().withName("Alex Yeoh").withPhone("87438807").withNokPhone("67192213")
                 .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400")
                 .build();
-        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
+        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(STUDENTS_FILE,
                 JsonSerializableTeachersPet.class).get();
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
@@ -78,7 +90,7 @@ public class ClassStorageTest {
         Student student = new StudentBuilder().withName("Alex Yeoh").withPhone("87438811").withNokPhone("67192213")
                 .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400")
                 .build();
-        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
+        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(STUDENTS_FILE,
                 JsonSerializableTeachersPet.class).get();
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
@@ -97,7 +109,7 @@ public class ClassStorageTest {
                 .withNokPhone("97228333").withEmail("cornelia@example.com").withAddress("10th street")
                 .withClass("2022-05-05 1400-1430").withMoneyOwed(20).withMoneyPaid(10)
                 .withAdditionalNotes("Remind student to submit homework").withRatesPerClass(40).build();
-        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
+        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(STUDENTS_FILE,
                 JsonSerializableTeachersPet.class).get();
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
