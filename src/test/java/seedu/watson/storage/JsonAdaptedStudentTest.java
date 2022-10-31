@@ -130,7 +130,7 @@ public class JsonAdaptedStudentTest {
 
     @Test
     public void toModelType_nullStudentClass_throwsIllegalValueException() {
-        JsonAdaptedStudent person = new JsonAdaptedStudent(VALID_NAME,VALID_PHONE,
+        JsonAdaptedStudent person = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE,
                                                          VALID_EMAIL, VALID_ADDRESS, null,
                                                          VALID_ATTENDANCE, VALID_SUBJECTHANDLER,
                                                          VALID_REMARKS, VALID_TAGS);
