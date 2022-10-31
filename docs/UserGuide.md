@@ -542,6 +542,21 @@ Undo / Redo your latest action.
 
 Format: `undo` `redo`
 
+Examples:
+
+* `add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue g/rjkoh t/Classmate curr/CS2100 prev/CS1101S plan/CS2109`adds module contact Ruijie to your contact list with all the details specified.
+
+<img src="images/UndoRedoExample0.png" width="600" />
+
+* `undo` undoes the latest action of adding "Ruijie" as a contact.
+
+<img src="images/UndoRedoExample1.png" width="600" />
+
+* `redo` redoes the latest undo action of undoing "Ruijie" as a contact.
+
+<img src="images/UndoRedoExample2.png" width="600" />
+
+
 ### GitHub URL button
 
 The copy GitHub Profile URL button copies the user or contact's GitHub profile URL into your clipboard which you can then paste into your browser.
