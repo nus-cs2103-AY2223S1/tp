@@ -8,7 +8,7 @@ title: User Guide
 JeeqTracker is a desktop application created for **home-based business owners / resellers** that helps them manage the clients
 that they interact with by keeping track of their **`BUY / SELL`** transactions, and **`REMARKS`** of clients.
 
-While it has a GUI (Graphical User Interface), most of the user interactions happen using a CLI (Command Line Interface).
+While it has a GUI (Graphical User Interface), most of the user interactions happen by typing simple commands into a [CLI](#user-interface-overview). (Command Line Interface).
 If you can type fast, JeeqTracker can get business
 interactions recorded faster and simpler than traditional GUI applications.
 
@@ -141,6 +141,8 @@ Below are some symbols that you may encounter in the User Guide.
 |------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
 | <div markdown="span" class="alert alert-danger">:exclamation: Danger Message</div> | Danger, something that could cause irreversible damage when done incorrectly |
 | <div markdown="span" class="alert alert-warning">:warning: Warning Message</div>   | Warning, something that could go wrong and should be noted                   |
+| <div markdown="span" class="alert alert-bulb">:bulb: Tip Message</div>             | Tip, something that can aid you to optimally utilise JeeqTracker             |
+
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -164,8 +166,8 @@ Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`
 > <div markdown="span" class="alert alert-warning">:warning: **You cannot add a client with a name that already exists in JeeqTracker**: Names are considered duplicates even if they differ by case sensitivity or whitespaces!
 
 Examples:
-* `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com`
-* `add n/John a/Yishun Street 81 p/9876543 e/john@yahoo.com t/friends t/supplier`
+* `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com` creates a new Alice client with the inputted details.
+* `add n/John a/Yishun Street 81 p/9876543 e/john@yahoo.com t/friends t/supplier` creates a new John client with the inputted details.
 
 ![Ui](images/SampleAddCommand.png)
 
@@ -312,7 +314,7 @@ Format: `edit INDEX m/transaction FIELDS [MORE_FIELDS]...`
 
 Example:
 
-`edit 1 m/transaction q/100 g/Apples price/1.5`
+`edit 1 m/transaction q/100 g/Apples price/1.5` edits the transaction at index 1 in the displayed transaction list.
 
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a transaction.
 
@@ -329,7 +331,7 @@ Format: `delete INDEX m/transaction`
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can delete a transaction.
 Example:
 
-`delete 1 m/transaction`
+`delete 1 m/transaction` deletes the transaction at index 1 in the displayed transaction list.
 
 > <div markdown="span" class="alert alert-danger">❗ **Deleting a transaction is an irreversible process! It will be gone forever**: Be very careful here!
 
@@ -408,7 +410,7 @@ Format: `edit INDEX m/remark REMARK`
 
 Example:
 
-`edit 1 m/remark Client replies very fast`
+`edit 1 m/remark Client replies very fast` edits the remark at index 1 to 'Client replies very fast' in the displayed remark list. 
 
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
 
@@ -428,7 +430,7 @@ Format: `delete INDEX m/remark`
 
 Example:
 
-`delete 1 m/remark`
+`delete 1 m/remark` deletes the remark at index 1 in the displayed remark list.
 
 [Back to Table of Contents](#table-of-contents)
 
