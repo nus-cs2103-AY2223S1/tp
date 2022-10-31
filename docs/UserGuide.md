@@ -31,8 +31,9 @@ title: FinBook User Guide
    &emsp; 4.3.3. [Importing data: `import`](#433-importing-data--import)<br>
    &emsp; 4.3.4. [Exporting data: `export`](#434-exporting-data--export)<br>
    &emsp; 4.3.5. [Copying a client's data: `copy`](#435-copying-a-clients-data--copy)<br>
-   &emsp; 4.3.6. [Changing Light/Dark mode](#436-changing-lightdark-mode)<br>
-   &emsp; 4.3.7. [Exiting the application: `exit`](#437-exiting-the-application--exit)<br>
+   &emsp; 4.3.6. [Sorting clients: `sort`](#436-sorting-clients--sort)<br>
+   &emsp; 4.3.7. [Changing Light/Dark mode](#437-changing-lightdark-mode)<br>
+   &emsp; 4.3.8. [Exiting the application: `exit`](#437-exiting-the-application--exit)<br>
 5. [FAQ](#5-faq)<br>
 6. [Glossary](#6-glossary)<br>
 7. [Command Summary](#7-command-summary)<br>
@@ -175,13 +176,16 @@ Adds a client to the FinBook.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME [m/UPCOMING_MEETING_DATES] [t/TAGS r/RISK_LEVEL]
          [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
-* `add` command will refresh the portfolio panel to display "`no client selected for view yet!`".
+* `add` command will refresh the portfolio panel to display "no client selected for view yet!".
+* `m/UPCOMING_MEETING_DATES` can be in the `dd Mmm yyyy` or `dd Mmm yyyy HH:mm` format.
 
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12 Jan 2022 16:30 t/VIPClient
   r/high pl/Prudential Health note/Client is currently having COVID`
 * `add n/Betsy Crowe t/VIPPClient e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan`
+
+---
 
 ### 4.1.2. Editing a client : `edit`
 
@@ -202,6 +206,8 @@ Examples:
   and `johndoe@example.com` respectively and automatically displays the updated portfolio of the 1st client.
 * `edit 2 n/Betsy Crower` Edits the name of the 2nd client to be `Betsy Crower` and automatically displays the updated portfolio of `Betsy Crower`.
 
+---
+
 ### 4.1.3. Deleting a client : `delete`
 
 Four formats of deleting a client.
@@ -213,7 +219,7 @@ Four formats of deleting a client.
 
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `delete` commmand will refresh the portfolio panel to display "`no client selected for view yet!`".
+* `delete` command will refresh the portfolio panel to display "no client selected for view yet!".
 
 #### Deleting a single client
 
@@ -264,11 +270,15 @@ Examples:
 
 * `list` followed by `delete all` deletes the all clients in the FinBook.
 
+---
+
 ### 4.1.4. Listing all clients : `list`
 
 Shows a list of all clients in the FinBook.
 
 Format: `list`
+
+---
 
 ### 4.1.5. Finding a client : `find`
 
@@ -281,12 +291,14 @@ Format: `find [n/NAME] [t/TAG]`
   the left.
 * At least one of the parameters must be provided.
 * Only one type of parameter can be provided at one time.
-* `find` command will refresh the portfolio panel to display "`no client selected for view yet!`".
+* `find` command will refresh the portfolio panel to display "no client selected for view yet!".
 
 Examples:
 
 * `find n/John n/alex` will find all clients with John or Alex in their names.
 * `find t/VIPClient t/YuFamily` will find all clients with either `VIPClient` or `YuFamily` tags.
+
+---
 
 ### 4.1.6. Viewing Portfolio of a specific client: `view`
 
@@ -321,6 +333,8 @@ Format: `lock`
 **:information_source: If a password has not been set, leave the password field empty to unlock the application**
 </div>
 
+---
+
 ### 4.2.2. Setting or updating the password : `password`
 
 Sets or updates the FinBook password
@@ -341,6 +355,8 @@ Examples:
 **:information_source: It is recommended to take note of the warnings and follow the suggestions, if there are any**
 </div>
 
+---
+
 ### 4.2.3. Resetting the password
 
 Steps to reset the password:
@@ -350,6 +366,8 @@ Steps to reset the password:
 3. Open `preferences.json` with a text editor
 4. Change the line `"passwordHash" : "$argon2id$xxxxxxxx"` to `"passwordHash" : ""`
 5. Save `preferences.json`
+
+---
 
 ### 4.2.4. Hiding sensitive data
 
@@ -375,6 +393,8 @@ Financial book data are saved in the hard disk automatically after any command t
 to
 save manually.
 
+---
+
 ### 4.3.2. Editing the data file
 
 Financial book data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
@@ -383,6 +403,8 @@ update data directly by editing that data file.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FinBook will discard all data and start with an empty data file at the next run.
 </div>
+
+---
 
 ### 4.3.3. Importing data : `import`
 
@@ -418,6 +440,8 @@ Examples:
 * `import ../data.csv` imports data from the file `data.csv` which is located one level outside the directory of the
   FinBook executable
 
+---
+
 ### 4.3.4. Exporting data : `export`
 
 Exports data to a `CSV` file
@@ -434,6 +458,8 @@ Examples:
   executable
 * `export ../data.csv` exports data to the file `data.csv` which is located one level outside the directory of the
   FinBook executable
+
+---
 
 ### 4.3.5. Copying a client's data : `copy`
 
@@ -455,21 +481,27 @@ Tags: friends
 
 * Press `Ctrl-V` to paste the copied text.
 
-### Sorting clients : `sort`
+---
+
+### 4.3.6. Sorting clients : `sort`
 
 Sorts clients in the FinBook according to given parameter.
 
-Format: `sort n/ or i/ or m/ ​`
+Format: `sort n/ OR i/ OR m/​`
 
-* Sorts clients in ascending order according to parameter.
-* At least one of the parameters must be provided.
+* At least one parameter must be provided.
+* Only one type of parameter can be provided at one time.
+* Sorts clients in ascending order according to the parameter.
 
 Examples:
 
 * `sort n/` Sorts clients in ascending order according to name.
+* `sort i/` Sorts clients in ascending order according to income.
 * `sort m/` Sorts clients according to their meeting dates in chronological order.
 
-### 4.3.6. Changing Light/Dark mode
+---
+
+### 4.3.7. Changing Light/Dark mode
 
 Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top right of the application.
 
@@ -483,7 +515,9 @@ Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top r
 **:information_source: Your mode preference will be automatically saved**
 </div>
 
-### 4.3.7. Exiting the application : `exit`
+---
+
+### 4.3.8. Exiting the application : `exit`
 
 Exits the application.
 
