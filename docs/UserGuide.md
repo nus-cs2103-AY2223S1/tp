@@ -3,14 +3,46 @@ layout: page
 title: User Guide
 ---
 
-PayMeLah is a **desktop app for managing the debts your friends owe you, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PayMeLah can get your contact management tasks done faster than traditional GUI apps.
+Welcome to the PayMeLah user guide!
+
+Are you a student who enjoys participating in group buys? Or perhaps do you just need some way to remember how much money your friends owe you? PayMeLah is a desktop app for **keeping track of** and **managing the debts** your friends owe you. It can also help **do simple calculations** for you, such as including GST or splitting debts amongst your friends. What’s more, it is optimised for you to do everything from just your keyboard!
+
+### Using this guide
+If you are a new user looking to get started with PayMeLah, this user guide can help you with [the installation process](#quick-start), guide you through [adding your first debt to PayMeLah](#adding-your-first-debt), and familiarise you with how to use all of [PayMeLah’s features](#features).
+
+If you are already familiar with the basic features of PayMeLah, this guide can also provide you with tips and tricks to get the most out of PayMeLah!
+
+Here are some of the symbols and text formatting to look out for as you make use of this guide:
+
+| Symbol | Meaning |
+| :----: | ------- |
+| :information_source: | Essential Information for All Users |
+| :bulb: | Tips for Intermediate Users |
+| :star: | Tips for Advanced Users |
+| :exclamation: | Warning |
+
+| Text Formatting | Meaning |
+| :----: | ------- |
+| [Hyperlink to Table of Contents](#table-of-contents) | Clickable hyperlink to navigate to another section |
+| `Text` | Text relevant to PayMeLah user commands |
+| <kbd>Ctrl</kbd> | A keyboard key |
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of Contents
 
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
+
+### Installing PayMeLah
 
 1. Ensure you have Java `11` or above installed in your Computer ([Mac](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows](https://phoenixnap.com/kb/install-java-windows)).
 
@@ -37,6 +69,11 @@ PayMeLah is a **desktop app for managing the debts your friends owe you, optimiz
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Adding your first debt
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 
 ## Features
 
