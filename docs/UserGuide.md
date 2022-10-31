@@ -31,7 +31,7 @@ guide, head over to [Quick Start](#3-quick-start) or to learn about Class-ify's 
 Class-ify uses a Command Line Interface (CLI), which may be new to some users. If you are a new user, we strongly recommend you to look through
 the user guide from start to end to fully understand how to use Class-ify. However, you may also choose to skip to the relevant sections described below:
 * Refer to our <a href="#top">Table of Contents</a> to easily navigate between sections of the User Guide. There is also a link at the end of every section to bring you back to the Table of Contents.
-* Refer to our [Quick Start](#3-quick-start) guide to learn how to setup Class-ify.
+* Refer to our [Quick Start](#3-quick-start) guide to learn how to set up Class-ify.
 * Refer to our [Features](#4-features) section to learn in detail the different features and commands available in Class-ify.
 * Refer to our [Command Summary](#6-command-summary) to have a quick overview of the different commands and their respective formats.
 * Refer to our [Glossary](#7-glossary) to learn key terms that are used in this User Guide.
@@ -75,17 +75,15 @@ Tips are useful suggestions that will help you have a better experience with Cla
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:** Tips are useful!
-</div>
-<br>
+</div><br/>
 
 **Notes**
 
 Notes are important information that you should pay attention to when using Class-ify.
 
 <div markdown="span" class="alert alert-info">:information_source:
-**Note:** Take note when you see this icon!
-</div>
-<br>
+**Note:** Take notes when you see this icon!
+</div><br/>
 
 **Caution**
 
@@ -94,65 +92,70 @@ will delete all data stored locally and this action is irreversible. You will lo
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: Stop and read carefully when you see this!
-</div>
-<br>
+</div><br/>
 
 ### 4.1 Notes on the Command Format
+
 <div markdown="block" class="alert alert-info">:information_source:
-**Note:** <br>
+**Note:**<br/>
 
 * **Command Words**
-  * Command words and prefixes are case-sensitive. <br>
+  * Command words and prefixes are case-sensitive.<br/>
   e.g. `eXit` will not be accepted as the `exit` command.
   * Only the last occurrence of a repeated prefix input will be taken.
   e.g. `edit 1 nm/Jonathan nm/Ethan nm/Alice` is the same as `edit 1 nm/Alice`.
 
 * **Parameters**
-  * Words in `UPPER_CASE` refers to input from the user. <br>
+  * Words in `UPPER_CASE` refers to input from the user.<br/>
   e.g. For the `viewClass` command, the command format is `viewClass CLASS`<br>
   `CLASS` refers to the user input which can be `viewClass 17S68`.
   * Parameters can be written in any order
   e.g. `edit 1 nm/Jack id/111A` is the same as `edit 1 id/111A nm/Jack`.
   * Additional parameters for commands that do not require parameters will be ignored.<br>
   e.g. `exit hello123` will be accepted as the `exit` command.
-  * Optional parameters are indicated by square brackets `[]`. <br>
-  e.g. For the `addStudent` command, the command format is `addStudent nm/STUDENT-NAME id/ID class/CLASS [pn/PARENT-NAME] [hp/PHONE-NUMBER]...`<br>
+  * Optional parameters are indicated by square brackets `[]`.<br/>
+  e.g. For the `addStudent` command, the command format is `addStudent nm/STUDENT-NAME id/ID class/CLASS [pn/PARENT-NAME] [hp/PHONE-NUMBER]...`<br/>
   `[pn/PARENT-NAME]` and `[hp/PHONE-NUMBER]` refer to optional parameters that can be supplied by the user.
-</div><br>
+</div><br/>
 
 ### 4.2 Managing student records
 
 #### 4.2.1 Adding a new student record : `addStudent`
 
-Creates a new student record with the following details:
+Creates a new student record with the following parameters:
 
-* **Name of Student** `nm/`
-* **Student's ID (last 4 digits of NRIC)** `id/`
-  * ID should only contain 3 digits followed by 1 character.
-* **Student's Class** `class/`
-  * Similar to names, class name should only contain alphanumeric characters and spaces.
-* Exam Grades for CA1, CA2, SA1, and SA2 `exam/`
-* Name of Parent `pn/`
-* Mobile Number of Parent `hp/`
-  * Phone numbers should only contain numbers, and it should be at least 3 digits long. 
-* Email Address of Parent `e/`
-  * Email address should follow standard convention format local-part@domain.
+| **Parameter**       | **Prefix** | **Compulsory** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                             |
+|---------------------|------------|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Name**            | `nm/`      | Yes            | Student's name should be **alphanumeric**, consisting of both letters and numbers only. As student names are treated as unique, we recommend you to use the full name of the student.<br/><br/>For optimal viewing, the length of the name should be **at most 17 characters**. Any longer would result in the name being cut off from the application display, though it will not affect the actual record being saved in the application. |
+| **ID**              | `id/`      | Yes            | Student's id should contain **3 digits followed by 1 character** (e.g. `123A`). Do note that ids are unique, hence no two students should have the same ids.                                                                                                                                                                                                                                                                                |
+| **Class**           | `class/`   | Yes            | Class name should be **alphanumeric**, consisting of both letters and numbers only.                                                                                                                                                                                                                                                                                                                                                         |
+| **Exam**            | `exam/`    | No             | Exams should follow the format **exam name followed by score** (e.g. `CA1 90`). Current accepted exam names are _CA1_, _CA2_, _SA1_ and _SA2_. Future versions may allow custom exam or gradable items to be created.<br/><br/>In addition, scores should be an integer value between 0 to 100. Partial scores are currently not accepted.                                                                                                  |
+| **Parent's Name**   | `pn/`      | No             | Name of student's parent. Similar to the student's name, the parent's name should be **alphanumeric** also.                                                                                                                                                                                                                                                                                                                                 |
+| **Parent's Mobile** | `hp/`      | No             | Mobile number of student's parent. It should only contain numbers, and it should be **at least 3 digits long**.<br/><br/>Entries with country code can be prefixed without the plus sign. For example, `+65 91234567` can be entered as `6591234567` instead.                                                                                                                                                                               |
+| **Parent's Email**  | `e/`       | No             | Email address of student's parent should follow standard convention format _local-part@domain_.                                                                                                                                                                                                                                                                                                                                             |
 
-Format: `addStudent nm/STUDENT-NAME id/ID class/CLASS [exam/NAME SCORE] [pn/PARENT-NAME] [hp/PHONE-NUMBER] [e/EMAIL]`
-
-<div markdown="span" class="alert alert-primary">:bulb:
-**Tip #1:** All **bolded** fields are compulsory. Optional fields can be added later using the [edit command](#414-editing-a-student-record--edit).
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb:
-**Tip #2:** To add exam grades, specify the tag `exam/` followed by an exam name (CA1, CA2, SA1, or SA2) and score (a number from 0 to 100). Multiple exams can be added in a single line.<br>
-Example: `exam/CA1 50 exam/SA1 60 exam/CA1 80` will add grades 80 for CA1 and 60 for SA1. Notice the first score for CA1 is overridden by the second score for CA1.
-</div>
+Format: `addStudent nm/STUDENT-NAME id/ID class/CLASS [exam/EXAM-NAME SCORE] [pn/PARENT-NAME] [hp/PHONE-NUMBER] [e/EMAIL]`
 
 Examples:
 * `addStudent nm/Peter Tan id/452B class/1F`
 * `addStudent nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
 * `addStudent nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
+
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** All fields are capitalised when saved into the application. Therefore, parameters like `nm/john` and `nm/JoHn` are treated as _JOHN_ by default.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip:** Optional fields can be added later using the [edit command](#414-editing-a-student-record--edit).
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip:** Multiple exams can be added in a single line. For example, `exam/CA1 50 exam/SA1 60 exam/CA1 80` will add grades 80 for CA1 and 60 for SA1. Notice the first score for CA1 is overridden by the second score for CA1.
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation:
+**Caution:** If you are receiving an invalid command message, do check to ensure that you are using the correct prefix for the intended parameter.
+</div>
 
 #### 4.2.2 Clearing all student records : `clear`
 
@@ -186,7 +189,7 @@ Edits the respective details of an existing student.
 * Existing values will be updated to the new input values.
 * Refer to the complete list of tags for each field under [addStudent command](#421-adding-a-new-student-record--addstudent).
 
-Format: `edit INDEX [nm/STUDENT-NAME] [id/ID] [exam/NAME SCORE] [pn/PARENT-NAME] ...`
+Format: `edit INDEX [nm/STUDENT-NAME] [id/ID] [exam/EXAM-NAME SCORE] [pn/PARENT-NAME] ...`
 
 Examples:
 *  `edit 1 exam/CA2 70 exam/SA1 60` Adds or updates the CA2 and SA1 exam grades of the 1st student to be `70` and `60` respectively.
@@ -202,17 +205,23 @@ Examples:
 
 #### 4.3.1 Finding a student record : `find`
 
-Shows a list of students whose name contains the specified name keywords, or whose Id matches the given Id.
+Searches for students whose name contains the specified name keywords, or whose Id matches the given Id.
+
+<div markdown="span" class="alert alert-info">:information_source:
+   **Note:**
+   The `find` command searches through either the students' names, or the students' Ids, but not both. Therefore,
+   `find nm/Alice id/123A` is not a valid command. 
+</div>
 
 Format: `find nm/STUDENT-NAME` or `find id/ID`
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* Only the name or the id is searched, depending on the given input.
-* Only full names / full ids will be matched e.g. `Han` will not match `Hans`
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The search only recognises whole words, and searching for substrings is not valid. e.g. `Han` will not match `Hans`.
 
 Examples:
-* `find nm/John` returns the record students whose names contain `John`
-* `find nm/john alice` returns the records for the students whose name contains `john` or `alice`.
+* `find nm/John` returns the records for any student named `john` or any student with `john` in their name. 
+* `find nm/john alice` returns the records for the students whose names contain either `john` or `Alice` or both.
+* `find id/123A` returns the student record for the student with `123A` as their student Id.
 
 #### 4.3.2 Toggling view : `toggleView`
 
@@ -259,12 +268,12 @@ is set to "ON", only students whose score for the specified exam falls below the
 
 The list of students displayed will be arranged in ascending grades, using the grade for the specified exam.
 
-Format: `viewStats class/CLASS exam/EXAM filter/FILTER`
+Format: `viewStats class/CLASS exam/EXAM-NAME filter/FILTER`
 
 * Class name can only contain alphanumeric characters.
 * Class name is case-insensitive.
-* Exam name should be either "CA1", "CA2", "SA1" or "SA2".
-* Exam name is case-insensitive
+* Exam name should be either _CA1_, _CA2_, _SA1_ or _SA2_.
+* Exam name is case-insensitive.
 * Filter is either "ON" or "OFF", and is case-insensitive.
 
 Examples:
@@ -313,19 +322,19 @@ Click <a href="#top">here</a> to return to the top.
 
 ## 6. **Command summary**
 
-|              Action               | Format                                                                                                        | Example                                                                          |  
-|:---------------------------------:|:--------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|
-|     Add a new student record      | `addStudent nm/STUDENT-NAME id/ID class/CLASS [exam/EXAM SCORE] [pn/PARENT-NAME] [hp/PHONE-NUMBER] [e/EMAIL]` | _addStudent nm/Alex Yeoh id/123A class/1A pn/Bernice Yu hp/99272758 exam/CA1 90_ |
-|     View all student records      | `viewAll`                                                                                                     | _viewAll_                                                                        |
-| View student records from a class | `viewClass CLASS`                                                                                             | _viewClass 1A_                                                                   |
-|       Edit a student record       | `edit INDEX [nm/STUDENT-NAME] [id/ID] [exam/NAME SCORE] [pn/PARENT-NAME] ...`                                 | _edit 1 nm/Alexander Yeoh_                                                       |
-|      Delete a student record      | `delete nm/STUDENT-NAME` or `delete id/ID`                                                                    | _delete nm/Jonathan Tan or delete id/123A_                                       |
-|       Find a student record       | `find nm/STUDENT-NAME` or `find id/ID`                                                                        | _find nm/Jonathan Tan or find id/123A_                                           |
-| View exam statistics for a class  | `viewStats class/CLASS exam/EXAM filter/FILTER`                                                               | _viewStats class/1A exam/CA1 filter/on_                                          |
-|            Toggle view            | `toggleView`                                                                                                  | _toggleView_                                                                     |
-|     Clear all student records     | `clear`                                                                                                       | _clear_                                                                          |
-|    View command summary table     | `help`                                                                                                        | _help_                                                                           |
-|         Exit application          | `exit`                                                                                                        | _exit_                                                                           |
+|              Action               | Format                                                                                                             | Example                                                                          |  
+|:---------------------------------:|:-------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|
+|     Add a new student record      | `addStudent nm/STUDENT-NAME id/ID class/CLASS [exam/EXAM-NAME SCORE] [pn/PARENT-NAME] [hp/PHONE-NUMBER] [e/EMAIL]` | _addStudent nm/Alex Yeoh id/123A class/1A pn/Bernice Yu hp/99272758 exam/CA1 90_ |
+|     View all student records      | `viewAll`                                                                                                          | _viewAll_                                                                        |
+| View student records from a class | `viewClass CLASS`                                                                                                  | _viewClass 1A_                                                                   |
+|       Edit a student record       | `edit INDEX [nm/STUDENT-NAME] [id/ID] [exam/EXAM-NAME SCORE] [pn/PARENT-NAME] ...`                                 | _edit 1 nm/Alexander Yeoh_                                                       |
+|      Delete a student record      | `delete nm/STUDENT-NAME` or `delete id/ID`                                                                         | _delete nm/Jonathan Tan or delete id/123A_                                       |
+|       Find a student record       | `find nm/STUDENT-NAME` or `find id/ID`                                                                             | _find nm/Jonathan Tan or find id/123A_                                           |
+| View exam statistics for a class  | `viewStats class/CLASS exam/EXAM-NAME filter/FILTER`                                                               | _viewStats class/1A exam/CA1 filter/on_                                          |
+|            Toggle view            | `toggleView`                                                                                                       | _toggleView_                                                                     |
+|     Clear all student records     | `clear`                                                                                                            | _clear_                                                                          |
+|    View command summary table     | `help`                                                                                                             | _help_                                                                           |
+|         Exit application          | `exit`                                                                                                             | _exit_                                                                           |
 
 Click <a href="#top">here</a> to return to the top.
 
