@@ -162,7 +162,7 @@ Adds a task to the task list.
 
 Format: `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME]*`
 
-**Note**: Params in `[]` are **optional**, and `-t TAG_NAME` can be used multiple times.
+**Reminder**: Params in `[]` are **optional**, and `-t TAG_NAME` can be used multiple times.
 
 <div markdown="block" class="alert alert-info">
 Notes about usage of the add command:
@@ -189,7 +189,7 @@ Edits an existing task in the task list, at least one field needs to be edited.
 
 Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME]*`
 
-**Note**: Params in `[]` are **optional**, and `-t TAG_NAME` can be used multiple times.
+**Reminder**: Params in `[]` are **optional**, and `-t TAG_NAME` can be used multiple times.
 
 <div markdown="block" class="alert alert-info">
 Notes about usage of the edit command:
