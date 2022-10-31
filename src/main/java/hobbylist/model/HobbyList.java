@@ -36,11 +36,23 @@ public class HobbyList implements ReadOnlyHobbyList {
     public HobbyList() {}
 
     /**
-     * Creates a HobbyList using the Activities in the {@code toBeCopied}
+     * Creates a HobbyList using the Activities in the {@code toBeCopied}.
      */
     public HobbyList(ReadOnlyHobbyList toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    /**
+     * Reset the currently selected activity to null.
+     */
+    private void resetSelectedActivity() {
+        selectedActivity = null;
+    }
+
+    private void resetSelectedActivityList() {
+        ReadOnlyHobbyList emptyHobbyList = new HobbyList();
+        selectedActivityList.setActivities(emptyHobbyList.getActivityList());
     }
 
     //// list overwrite operations
@@ -58,8 +70,9 @@ public class HobbyList implements ReadOnlyHobbyList {
      */
     public void resetData(ReadOnlyHobbyList newData) {
         requireNonNull(newData);
-
         setActivities(newData.getActivityList());
+        resetSelectedActivityList();
+        resetSelectedActivity();
     }
 
     //// activity-level operations
@@ -81,17 +94,18 @@ public class HobbyList implements ReadOnlyHobbyList {
     }
 
     /**
-     * Replaces the given activity {@code target} in the list with {@code editedActivity}.
+     * Replaces the given activity {@code target} in the list with {@code editedActivity}. If the {@code target} is
+     * currently selected, HobbyList updates the selected activity accordingly.
      * {@code target} must exist in the HobbyList.
      * The activity identity of {@code editedActivity} must not be the same as another existing activity in the
-     * HobbyList
+     * HobbyList.
      */
     public void setActivity(Activity target, Activity editedActivity) {
         requireNonNull(editedActivity);
-
         activities.setActivity(target, editedActivity);
         if (selectedActivityList.contains(target)) {
             selectedActivityList.setActivity(target, editedActivity);
+            selectedActivity = editedActivity;
         }
     }
 
@@ -103,19 +117,20 @@ public class HobbyList implements ReadOnlyHobbyList {
         activities.remove(key);
         if (selectedActivityList.contains(key)) {
             selectedActivityList.remove(key);
+            this.resetSelectedActivity();
         }
     }
 
     /**
-     * Set selected activity to be {@code key}
-     * {@code key} must exist in the HobbyList
+     * Set selected activity to be {@code key}.
+     * {@code key} must exist in the HobbyList.
      */
     public void selectActivity(Activity key) {
         if (selectedActivity != null) {
             selectedActivityList.remove(selectedActivity);
         }
-        selectedActivity = key;
         selectedActivityList.add(key);
+        selectedActivity = key;
     }
 
     public ObservableList<Activity> getSelectedActivity() {

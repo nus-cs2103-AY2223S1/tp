@@ -36,6 +36,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of activities */
     ObservableList<Activity> getFilteredActivityList();
 
+    /**
+     * Returns an unmodifiable view of the current selected activity
+     */
     ObservableList<Activity> getSelectedActivity();
 
     /**
