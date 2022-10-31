@@ -87,7 +87,7 @@ public class OpsCommand extends Command {
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         if (additionalData == null) {
             throw new CommandException(RUNTIME_ERR);
         }
@@ -97,9 +97,10 @@ public class OpsCommand extends Command {
             } catch (NumberFormatException e) {
                 throw new CommandException(RUNTIME_ERR);
             }
-            return;
+            return this;
         }
 
         num = (Float) additionalData;
+        return this;
     }
 }

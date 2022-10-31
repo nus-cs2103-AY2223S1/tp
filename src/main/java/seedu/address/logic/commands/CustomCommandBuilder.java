@@ -40,14 +40,15 @@ public class CustomCommandBuilder {
             private Object o = null;
 
             @Override
-            public void setInput(Object additionalData) throws CommandException {
+            public Command setInput(Object additionalData) throws CommandException {
                 o = additionalData;
+                return this;
             }
 
             @Override
             public CommandResult execute(Model model) throws CommandException {
                 try {
-                    return AddressBookParser.get().parseCommand(commandData).execute(model);
+                    return AddressBookParser.get().parseCommand(commandData).setInput(o).execute(model);
                 } catch (ParseException e) {
                     throw new CommandException(e.getMessage());
                 }

@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Arrays;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Parser;
@@ -49,11 +50,12 @@ public class FindCommand extends PersonCommand {
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         if (additionalData == null || !(additionalData instanceof String)) {
-            return;
+            return this;
         }
         predicate = new NameContainsKeywordsPredicate<>(Arrays.asList(additionalData.toString().split("\\s+")));
+        return this;
     }
 
     /**

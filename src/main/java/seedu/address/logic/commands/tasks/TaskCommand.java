@@ -1,7 +1,10 @@
 package seedu.address.logic.commands.tasks;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 /**
@@ -24,12 +27,13 @@ public abstract class TaskCommand extends Command {
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         if (additionalData == null || !(additionalData instanceof Task)) {
             task = null;
-            return;
+            return this;
         }
 
         task = (Task) additionalData;
+        return this;
     }
 }

@@ -58,7 +58,7 @@ public class SelectTeamCommand extends TeamCommand implements PureCommandInterfa
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
-        return;
+    public Command setInput(Object additionalData) throws CommandException {
+        return this;
     }
 }

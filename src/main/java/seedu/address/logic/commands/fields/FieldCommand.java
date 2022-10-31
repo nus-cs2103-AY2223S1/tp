@@ -33,16 +33,17 @@ public abstract class FieldCommand extends Command {
 
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         if (additionalData == null || !(additionalData instanceof DisplayItem)) {
             sItem = null;
-            return;
+            return this;
         }
         sItem = (DisplayItem) additionalData;
+        return this;
     }
 
     protected DisplayItem selectFromRightModel(Model model, String type, Index targetIndex)
-            throws ParseException, CommandException {
+        throws ParseException, CommandException {
         List<? extends DisplayItem> lastShownList = null;
         switch (type) {
         case "g":

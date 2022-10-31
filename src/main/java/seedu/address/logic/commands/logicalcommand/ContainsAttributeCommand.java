@@ -23,11 +23,12 @@ public class ContainsAttributeCommand extends Command {
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         if (additionalData == null || !(additionalData instanceof DisplayItem)) {
             throw new CommandException(INVALID_INPUT);
         }
         item = (DisplayItem) additionalData;
+        return this;
     }
 
     @Override

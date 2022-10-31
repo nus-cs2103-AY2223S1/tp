@@ -7,6 +7,7 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -20,9 +21,9 @@ public class RemoveUserFromTeamCommand extends TeamCommand {
     public static final String SUBCOMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUBCOMMAND_WORD
-            + ": Removes the user specified by the index from the current team when in the team context\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " " + SUBCOMMAND_WORD + " 1\n";
+        + ": Removes the user specified by the index from the current team when in the team context\n"
+        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Example: " + COMMAND_WORD + " " + SUBCOMMAND_WORD + " 1\n";
 
     public static final String REMOVAL_SUCCESS = " User %s has been removed from %s%n";
     public static final String INVALID_INPUT = "This method takes in only Person types!";
@@ -35,12 +36,13 @@ public class RemoveUserFromTeamCommand extends TeamCommand {
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         if (additionalData == null || !(additionalData instanceof Person)) {
             toRemove = null;
-            return;
+            return this;
         }
         toRemove = (Person) additionalData;
+        return this;
     }
 
     @Override

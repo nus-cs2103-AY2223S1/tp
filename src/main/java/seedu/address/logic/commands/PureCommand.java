@@ -6,7 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 public abstract class PureCommand extends Command implements PureCommandInterface {
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
-        return;
+    public Command setInput(Object additionalData) throws CommandException {
+        return this;
     }
 }

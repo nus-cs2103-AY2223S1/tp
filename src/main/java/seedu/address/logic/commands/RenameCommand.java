@@ -18,7 +18,7 @@ import seedu.address.model.task.Task;
 public class RenameCommand extends Command {
 
     public static final String MESSAGE_USAGE = "rename :Renames a given item.\n"
-            + "[t|u|g]/id [new name]";
+        + "[t|u|g]/id [new name]";
 
     public static final String COMMAND_WORD = "rename";
 
@@ -52,10 +52,10 @@ public class RenameCommand extends Command {
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         if (additionalData == null || !(additionalData instanceof DisplayItem)) {
             itemToRename = null;
-            return;
+            return this;
         }
 
         if (((DisplayItem) additionalData).getTypeFlag() == AccessDisplayFlags.GROUP) {
@@ -69,6 +69,7 @@ public class RenameCommand extends Command {
         }
 
         itemToRename = (DisplayItem) additionalData;
+        return this;
     }
 
     @Override

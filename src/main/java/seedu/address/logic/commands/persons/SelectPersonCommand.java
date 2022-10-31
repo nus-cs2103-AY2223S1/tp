@@ -56,7 +56,7 @@ public class SelectPersonCommand extends PersonCommand implements PureCommandInt
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
-        return;
+    public Command setInput(Object additionalData) throws CommandException {
+        return this;
     }
 }
