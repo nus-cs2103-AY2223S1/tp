@@ -259,7 +259,7 @@ Step 1. The user launches the application for the first time. FoodWhere will be 
 
 Step 2. The user list all the reviews by entering the `rlist` command.
 
-Step 3. The user executes `rdel 2` command to delete the last review with index 2, 
+Step 3. The user executes `rdel 2` command to delete the last review with index 2.
 
 ![DeleteReview](images/DeleteReview.png)
 
