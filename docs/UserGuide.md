@@ -77,7 +77,7 @@ The following is the main user interface of NUScheduler.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `profile -a n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -240,7 +240,7 @@ Example:
 
 Adds one or more existing profiles as attendees to an existing event in NUScheduler.
 
-Format: `event -ap EVENT_INDEX pr/PROFILE_INDEX...`
+Format: `event -ap EVENT_INDEX pr/PROFILE_INDEX…`
 
 * Adds profiles at the specified `PROFILE_INDEX`. This index refers to the index number shown in the displayed profile list. The index **must be a positive integer** 1, 2, 3, ...
 * Profiles are added to the event at the specified `EVENT_INDEX`. This index refers to the index number shown in the displayed event list. It follows the same constraints as `PROFILE_INDEX`.
@@ -259,7 +259,7 @@ Example:
 
 Removes one or more attendees from an existing event in NUScheduler.
 
-Format: `event -dp EVENT_INDEX pr/ATTENDEE_INDEX...`
+Format: `event -dp EVENT_INDEX pr/ATTENDEE_INDEX…`
 
 * Removes attendees at the specified `ATTENDEE_INDEX`. This index refers to the index number shown in the displayed attendee list of the event. The index **must be a positive integer** 1, 2, 3, ...
 * Attendees are removed from the event at the specified `EVENT_INDEX`. This index refers to the index number shown in the displayed event list. It follows the same constraints as `ATTENDEE_INDEX`.
@@ -493,8 +493,8 @@ You can simply install the app in the other computer and overwrite the data file
 | **View Profiles**                  | `profile -v`                                                                           |
 | **Find Profile**                   | `profile -f KEYWORD [MORE_KEYWORDS]…`                                                  |
 | **Add Event**                      | `event -a n/TITLE s/START e/END [t/TAG]…`                                              |
-| **Add Profiles to an Event**       | `event -ap EVENT_INDEX pr/PROFILE_INDEX...`                                            |
-| **Delete Attendees from an Event** | `event -dp EVENT_INDEX pr/ATTENDEE_INDEX...`                                           |
+| **Add Profiles to an Event**       | `event -ap EVENT_INDEX pr/PROFILE_INDEX…`                                              |
+| **Delete Attendees from an Event** | `event -dp EVENT_INDEX pr/ATTENDEE_INDEX…`                                             |
 | **Delete Event**                   | `event -d INDEX`                                                                       |
 | **Edit Event**                     | `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`                                  |
 | **View Events**                    | `event -v`                                                                             |
