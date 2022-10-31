@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.SessionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -29,6 +31,12 @@ public class SessionCommandParser implements Parser<SessionCommand> {
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SessionCommand.MESSAGE_USAGE), pe);
+        }
+
+        Optional<String> optSession = argumentMultimap.getValue(PREFIX_SESSION);
+
+        if (optSession.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SessionCommand.MESSAGE_USAGE));
         }
         String session = argumentMultimap.getValue(PREFIX_SESSION).orElse("");
         return new SessionCommand(index, ParserUtil.parseSession(session));

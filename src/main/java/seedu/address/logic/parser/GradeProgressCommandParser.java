@@ -41,7 +41,11 @@ public class GradeProgressCommandParser implements Parser<GradeProgressCommand> 
 
         Optional<String> optGrade = argMultimap.getValue(PREFIX_GRADE_PROGRESS);
         // if no prefix g/ or field after g/ is empty, throw error
-        if (optGrade.isEmpty() || optGrade.get().equals("")) {
+        if (optGrade.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    GradeProgressCommand.MESSAGE_USAGE));
+        }
+        if (optGrade.get().equals("")) {
             throw new ParseException(MESSAGE_INVALID_EMPTY_FIELD);
         }
 

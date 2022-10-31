@@ -38,8 +38,12 @@ public class HomeworkCommandParser implements Parser<HomeworkCommand> {
         }
 
         Optional<String> optHomework = argMultimap.getValue(PREFIX_HOMEWORK);
+
         // if no prefix h/ or field after h/ is empty, throw error
-        if (optHomework.isEmpty() || optHomework.get().equals("")) {
+        if (optHomework.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HomeworkCommand.MESSAGE_USAGE));
+        }
+        if (optHomework.get().equals("")) {
             throw new ParseException(MESSAGE_INVALID_EMPTY_FIELD);
         }
 
