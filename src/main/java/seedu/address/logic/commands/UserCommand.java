@@ -44,7 +44,8 @@ public class UserCommand extends Command {
 
 
     public static final String MESSAGE_SUCCESS = "New user added: %1$s";
-    public static final String MESSAGE_USER_EXISTS = "There is already a user in the address book";
+    public static final String MESSAGE_USER_EXISTS = "There is already a user in the address book.\n"
+            + "Delete the current user first before adding a new user.";
 
     private final User toAdd;
 
