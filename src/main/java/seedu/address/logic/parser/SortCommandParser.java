@@ -53,6 +53,7 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         case "risk desc":
             return new SortCommand(new SortByRiskTag("desc"), "risk in descending order");
+
         case "client":
             return new SortCommand(new SortByClientTag("asc"), "client");
 
