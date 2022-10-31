@@ -197,8 +197,7 @@ public class AddressBookTest {
                 new Color("black"),
                 new ColorPattern("black and brown"),
                 new DateOfBirth(LocalDate.parse("2022-10-10")), new Species("cat"), new Weight(10.05),
-                new Height(100.5), new VaccinationStatus(true), new Price(66.66), new HashSet<>(),
-                new HashSet<>());
+                new Height(100.5), new VaccinationStatus(true), new Price(66.66), new HashSet<>());
         assertFalse(addressBook.hasPet(editedDoja));
     }
 

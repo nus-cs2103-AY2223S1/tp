@@ -35,13 +35,11 @@ public class TypicalBuyers {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withLocation("Singapore")
-            .withTags("friends")
             .buildBuyer();
     public static final Buyer BENSON = new PersonBuilder().withPersonCategory("Buyer").withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withLocation("Singapore")
-            .withTags("owesMoney", "friends")
             .buildBuyer();
     public static final Buyer CARL = new PersonBuilder().withPersonCategory("Buyer").withName("Carl Kurz")
             .withPhone("95352563")
@@ -53,7 +51,6 @@ public class TypicalBuyers {
             .withPhone("87652533")
             .withEmail("cornelia@example.com")
             .withAddress("10th street")
-            .withTags("friends")
             .withLocation("Singapore")
             .buildBuyer();
     public static final Buyer ELLE = new PersonBuilder().withPersonCategory("Buyer").withName("Elle Meyer")
@@ -84,10 +81,10 @@ public class TypicalBuyers {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withPersonCategory(VALID_PERSON_CATEGORY_AMY)
             .withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withAddress(VALID_ADDRESS_AMY).build();
     public static final Person BOB = new PersonBuilder().withPersonCategory(VALID_PERSON_CATEGORY_BOB)
             .withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withAddress(VALID_ADDRESS_BOB).build();
     public static final Person CAL = new PersonBuilder().withPersonCategory(VALID_PERSON_CATEGORY_CAL)
             .withName(VALID_NAME_CAL).withPhone(VALID_PHONE_CAL).withEmail(VALID_EMAIL_CAL)
             .withAddress(VALID_ADDRESS_CAL).build();

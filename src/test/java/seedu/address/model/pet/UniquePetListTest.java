@@ -8,14 +8,11 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.pet.exceptions.DuplicatePetException;
 import seedu.address.model.pet.exceptions.PetNotFoundException;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TypicalPets;
 
 public class UniquePetListTest {
@@ -168,9 +165,4 @@ public class UniquePetListTest {
                 -> uniquePetList.asUnmodifiableObservableList().remove(0));
     }
 
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
-    }
 }

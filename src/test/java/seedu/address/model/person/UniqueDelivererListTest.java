@@ -41,8 +41,7 @@ public class UniqueDelivererListTest {
     @Test
     public void contains_delivererWithSameIdentityFieldsInList_returnsTrue() {
         uniqueDelivererList.add(ALICE);
-        Deliverer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .buildDeliverer();
+        Deliverer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).buildDeliverer();
         assertTrue(uniqueDelivererList.contains(editedAlice));
     }
 
@@ -84,8 +83,7 @@ public class UniqueDelivererListTest {
     @Test
     public void setDeliverer_editedDelivererHasSameIdentity_success() {
         uniqueDelivererList.add(ALICE);
-        Deliverer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .buildDeliverer();
+        Deliverer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).buildDeliverer();
         uniqueDelivererList.setPerson(ALICE, editedAlice);
         UniqueDelivererList expectedUniqueDelivererList = new UniqueDelivererList();
         expectedUniqueDelivererList.add(editedAlice);

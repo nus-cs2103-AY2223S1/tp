@@ -66,7 +66,6 @@ import seedu.address.model.pet.PetName;
 import seedu.address.model.pet.Species;
 import seedu.address.model.pet.VaccinationStatus;
 import seedu.address.model.pet.Weight;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -150,21 +149,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
      * Parses a {@code String orderString} into an {@code Order}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -222,18 +206,6 @@ public class ParserUtil {
         OrderStatus orderStatus = parseOrderStatus(argMultimap.getValue(PREFIX_ORDER_STATUS).orElse(""));
 
         return new Order(null, priceRange, request, additionalRequests, byDate, price, orderStatus);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 
     /**
@@ -420,7 +392,6 @@ public class ParserUtil {
         Price price = parsePrice(argMultimap.getValue(PREFIX_PET_PRICE).orElse(""));
         VaccinationStatus vaccinationStatus =
                 parseVaccinationStatus(argMultimap.getValue(PREFIX_PET_VACCINATION_STATUS).orElse("false"));
-        Set<Tag> tags = parseTags(argMultimap.getAllValues(PREFIX_PET_TAG));
 
         Pet pet = new Pet(name,
                 null,
@@ -432,7 +403,6 @@ public class ParserUtil {
                 height,
                 vaccinationStatus,
                 price,
-                tags,
                 certificates);
 
         return pet;

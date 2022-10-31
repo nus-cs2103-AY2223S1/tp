@@ -1,11 +1,10 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.PetCertificate;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPets;
 
@@ -32,9 +31,7 @@ public class JsonAdaptedPetTest {
     private static final Double VALID_WEIGHT = TypicalPets.DOJA.getWeight().getValue();
     private static final Double VALID_HEIGHT = TypicalPets.DOJA.getHeight().getValue();
     private static final Double VALID_PRICE = TypicalPets.DOJA.getPrice().getPrice();
-    private static final List<PetCertificate> VALID_CERTIFICATES = TypicalPets.DOJA.getCertificates().stream()
-                                                                        .collect(Collectors.toList());
-    private static final List<Tag> VALID_TAGS = TypicalPets.DOJA.getTags().stream().collect(Collectors.toList());
+    private static final List<PetCertificate> VALID_CERTIFICATES = new ArrayList<>(TypicalPets.DOJA.getCertificates());
 
     /*
     @Test

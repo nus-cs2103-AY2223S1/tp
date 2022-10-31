@@ -20,11 +20,6 @@ import seedu.address.testutil.PersonBuilder;
 //import seedu.address.testutil.TypicalPets;
 
 public class SupplierTest {
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Supplier supplier = new PersonBuilder().buildSupplier();
-        assertThrows(UnsupportedOperationException.class, () -> supplier.getTags().remove(0));
-    }
 
     //    @Test
     //    public void addPet_success() {
@@ -43,7 +38,7 @@ public class SupplierTest {
 
         // same name, all other attributes different -> returns true
         Supplier editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).buildSupplier();
+                .withAddress(VALID_ADDRESS_BOB).buildSupplier();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false

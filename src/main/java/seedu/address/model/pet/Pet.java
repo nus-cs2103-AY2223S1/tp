@@ -13,7 +13,6 @@ import seedu.address.commons.core.index.UniqueIdGenerator;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Price;
 import seedu.address.model.person.Supplier;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a pet.
@@ -33,7 +32,6 @@ public class Pet {
     private final Height height;
     private final VaccinationStatus vaccinationStatus;
     private final Price price;
-    private final Set<Tag> tags = new HashSet<>();
     private final Set<PetCertificate> certificates = new HashSet<>();
 
     /**
@@ -50,7 +48,6 @@ public class Pet {
      * @param height Its height (or length if it walks on fours).
      * @param vaccinationStatus Its vaccination status (vaccinated or not).
      * @param price Its price for sale.
-     * @param tags Its tags that describe its traits.
      * @param certificates Its certificates, for example, noble blood.
      */
     public Pet(UniqueId id,
@@ -64,7 +61,6 @@ public class Pet {
                Height height,
                VaccinationStatus vaccinationStatus,
                Price price,
-               Set<Tag> tags,
                Set<PetCertificate> certificates) {
         requireAllNonNull(name, color, colorPattern, dateOfBirth, species, weight, height, vaccinationStatus, price);
         UniqueIdGenerator.addToStoredIdPet(id);
@@ -79,7 +75,6 @@ public class Pet {
         this.height = height;
         this.vaccinationStatus = vaccinationStatus;
         this.price = price;
-        this.tags.addAll(tags);
         this.certificates.addAll(certificates);
     }
 
@@ -96,7 +91,6 @@ public class Pet {
      * @param height Its height (or length if it walks on fours).
      * @param vaccinationStatus Its vaccination status (vaccinated or not).
      * @param price Its price for sale.
-     * @param tags Its tags that describe its traits.
      * @param certificates Its certificates, for example, noble blood.
      */
     public Pet(PetName name,
@@ -109,7 +103,6 @@ public class Pet {
                Height height,
                VaccinationStatus vaccinationStatus,
                Price price,
-               Set<Tag> tags,
                Set<PetCertificate> certificates) {
         requireAllNonNull(name, color, colorPattern, dateOfBirth, species, weight, height, vaccinationStatus, price);
         UniqueId currId = PET_ID_GENERATOR.next();
@@ -127,7 +120,6 @@ public class Pet {
         this.height = height;
         this.vaccinationStatus = vaccinationStatus;
         this.price = price;
-        this.tags.addAll(tags);
         this.certificates.addAll(certificates);
     }
 
@@ -142,7 +134,6 @@ public class Pet {
      * @param weight Its weight.
      * @param height Its height (or length if it walks on fours).
      * @param price Its price for sale.
-     * @param tags Its tags that describe its traits.
      * @param certificates Its certificates, for example, noble blood.
      */
     public Pet(PetName name,
@@ -153,7 +144,6 @@ public class Pet {
                Weight weight,
                Height height,
                Price price,
-               Set<Tag> tags,
                Set<PetCertificate> certificates) throws IllegalValueException {
         this(name,
                 null,
@@ -165,8 +155,8 @@ public class Pet {
                 height,
                 VaccinationStatus.defaultStatus(),
                 price,
-                tags,
                 certificates);
+
     }
 
     /**
@@ -199,8 +189,7 @@ public class Pet {
                 height,
                 VaccinationStatus.defaultStatus(),
                 price,
-                null,
-                null);
+                new HashSet<>());
     }
 
     /**
@@ -272,16 +261,10 @@ public class Pet {
                 .append("; ")
                 .append(getVaccinationStatus().toString());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-
         Set<PetCertificate> certificates = getCertificates();
         if (!certificates.isEmpty()) {
             builder.append("; Certificates: ");
-            tags.forEach(builder::append);
+            certificates.forEach(builder::append);
         }
         return builder.toString();
     }
@@ -387,14 +370,6 @@ public class Pet {
         return Collections.unmodifiableSet(certificates);
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }
-
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
     }
@@ -404,13 +379,6 @@ public class Pet {
      */
     public boolean hasId(UniqueId id) {
         return this.id.equals(id);
-    }
-
-    /**
-     * Compares two pets based on the number of tags.
-     */
-    public int compareTag(Pet pet) {
-        return Integer.compare(this.tags.size(), pet.tags.size());
     }
 
     /**

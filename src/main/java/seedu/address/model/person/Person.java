@@ -2,13 +2,9 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.model.order.Order;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -27,22 +23,20 @@ public class Person {
     // Data fields
     private final Address address;
     private final Location location;
-    private final Set<Tag> tags = new HashSet<>();
 
 
     /**
      * Every field must be present and not null, except Location, which is
      * set by default to Singapore.
      */
-    public Person(PersonCategory personCategory, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(personCategory, name, phone, email, address, tags);
+    public Person(PersonCategory personCategory, Name name, Phone phone, Email email, Address address) {
+        requireAllNonNull(personCategory, name, phone, email, address);
         this.personCategory = personCategory;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.location = new Location("Singapore");
-        this.tags.addAll(tags);
     }
 
     /**
@@ -53,16 +47,14 @@ public class Person {
                   Phone phone,
                   Email email,
                   Address address,
-                  Location location,
-                  Set<Tag> tags) {
-        requireAllNonNull(personCategory, name, phone, email, address, tags);
+                  Location location) {
+        requireAllNonNull(personCategory, name, phone, email, address);
         this.personCategory = personCategory;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.location = location;
-        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -88,15 +80,6 @@ public class Person {
 
     public PersonCategory getPersonCategory() {
         return personCategory;
-    }
-
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -131,14 +114,13 @@ public class Person {
                 && otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getAddress().equals(getAddress());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(personCategory, name, phone, email, address, tags);
+        return Objects.hash(personCategory, name, phone, email, address);
     }
 
     @Override

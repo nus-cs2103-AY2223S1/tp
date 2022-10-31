@@ -1,9 +1,7 @@
 package seedu.address.ui.popupwindow;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.event.ActionEvent;
@@ -25,7 +23,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
-import seedu.address.model.tag.Tag;
 
 /**
  * A panel for entering supplier information, which can be used to fill the placeholder in the pop-up window.
@@ -122,8 +119,7 @@ public class PopupPanelForSupplier extends PopUpPanel {
         Address address = ParserUtil.parseAddress(addressField.getText());
         // TODO: implement location in constructor
         Location location = new Location(countryField.getText());
-        Set<Tag> tags = new HashSet<>();
-        return new Supplier(name, phone, email, address, tags, null);
+        return new Supplier(name, phone, email, address, new ArrayList<>());
     }
 
     /**

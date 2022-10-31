@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.commons.core.index.UniqueId;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a supplier in the address book.
@@ -24,7 +22,6 @@ public class Supplier extends Person {
      * @param phone The phone number in string.
      * @param email The email, which will be checked against regex.
      * @param address The address of this person, which will be checked against the regex.
-     * @param tags The tags of this person.
      * @param pets The pets supplied by this supplier.
      */
     public Supplier(PersonCategory personCategory,
@@ -32,9 +29,8 @@ public class Supplier extends Person {
                     Phone phone,
                     Email email,
                     Address address,
-                    Set<Tag> tags,
                     Collection<? extends UniqueId> pets) {
-        super(PersonCategory.SUPPLIER, name, phone, email, address, tags);
+        super(PersonCategory.SUPPLIER, name, phone, email, address);
         if (pets != null) {
             this.pets.addAll(pets);
         }
@@ -48,16 +44,14 @@ public class Supplier extends Person {
      * @param phone The phone number in string.
      * @param email The email, which will be checked against regex.
      * @param address The address of this person, which will be checked against the regex.
-     * @param tags The tags of this person.
      * @param pets The pets supplied by this supplier.
      */
     public Supplier(Name name,
                     Phone phone,
                     Email email,
                     Address address,
-                    Set<Tag> tags,
                     Collection<UniqueId> pets) {
-        super(PersonCategory.SUPPLIER, name, phone, email, address, tags);
+        super(PersonCategory.SUPPLIER, name, phone, email, address);
         if (pets != null) {
             this.pets.addAll(pets);
         }
@@ -113,7 +107,6 @@ public class Supplier extends Person {
                 getPhone(),
                 getEmail(),
                 getAddress(),
-                getTags(),
                 pets);
     }
 

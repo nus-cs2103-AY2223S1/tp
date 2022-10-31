@@ -36,9 +36,7 @@ public class JsonAdaptedDelivererTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
-            .map(JsonAdaptedTag::new)
-            .collect(Collectors.toList());
+
     //    private static final List<JsonAdaptedOrder> VALID_ORDERS = BENSON.getOrders().stream()
     //            .map(JsonAdaptedOrder::new)
     //            .collect(Collectors.toList());

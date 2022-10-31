@@ -33,11 +33,6 @@ import seedu.address.model.pet.Species;
  */
 
 public class BuyerTest {
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Buyer buyer = new PersonBuilder().buildBuyer();
-        assertThrows(UnsupportedOperationException.class, () -> buyer.getTags().remove(0));
-    }
 
     //    @Test
     //    public void addOrder() {
@@ -61,7 +56,7 @@ public class BuyerTest {
 
         // same name, all other attributes different -> returns true
         Buyer editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).buildBuyer();
+                .withAddress(VALID_ADDRESS_BOB).buildBuyer();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -112,9 +107,6 @@ public class BuyerTest {
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).buildBuyer();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).buildBuyer();
-        assertFalse(ALICE.equals(editedAlice));
     }
 
     //    @Test
