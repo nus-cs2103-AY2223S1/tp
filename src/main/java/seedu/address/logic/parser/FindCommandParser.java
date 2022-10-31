@@ -26,6 +26,8 @@ import seedu.address.model.person.TagContainsKeywordsPredicate;
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
+    public static final String MESSAGE_NO_ALPHANUMERIC = "Parameters for the find command must contain an alphanumeric character";
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
@@ -57,6 +59,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             String noPrefixArgs = argMultimap.getValue(PREFIX_ADDRESS).get();
             checkEmptyField(noPrefixArgs);
+            checkAlphanumeric(noPrefixArgs);
             String[] addressKeywords = noPrefixArgs.split("\\s+");
             return new FindCommand(
                     new AddressContainsKeywordsPredicate(Arrays.asList(addressKeywords)));
@@ -76,12 +79,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             String noPrefixArgs = argMultimap.getValue(PREFIX_BIRTHDAY).get();
             checkEmptyField(noPrefixArgs);
             String[] birthdayInput = noPrefixArgs.split("\\s+");
-            String[] birthdayKeywords = new String[birthdayInput.length];
-            // try parsing birthdays
-            for (int i = 0; i < birthdayInput.length; i++) {
-                Birthday birthday = ParserUtil.parseBirthday(birthdayInput[i]);
-                birthdayKeywords[i] = birthday.toString();
-            }
+            String[] birthdayKeywords = parseBirthdayArray(birthdayInput);
             return new FindCommand(
                     new BirthdayContainsKeywordsPredicate(Arrays.asList(birthdayKeywords)));
         } else {
@@ -98,6 +96,31 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (args.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
+    }
+
+    /**
+     * Checks the given {@code String} of arguments.
+     * @throws ParseException if the user input is empty
+     */
+    public static void checkAlphanumeric(String args) throws ParseException {
+        String preppedArg = args.replaceAll("[^a-zA-Z0-9]", "").trim();
+        if (preppedArg.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_NO_ALPHANUMERIC));
+        }
+    }
+
+    /**
+     * Checks the given {@code Array} of birthdays.
+     * @throws ParseException if any birthday is in an invalid format
+     */
+    public static String[] parseBirthdayArray(String[] birthdayInput) throws ParseException {
+        String[] birthdayKeywords = new String[birthdayInput.length];
+        // try parsing birthdays
+        for (int i = 0; i < birthdayInput.length; i++) {
+            Birthday birthday = ParserUtil.parseBirthday(birthdayInput[i]);
+            birthdayKeywords[i] = birthday.toString();
+        }
+        return birthdayKeywords;
     }
 
 }
