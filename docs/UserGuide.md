@@ -128,6 +128,7 @@ Clears all data from your application.
 This action is irreversible! 
 </div>
 
+
 Format: `clear`
 
 ### Exiting the program : `exit`
@@ -553,7 +554,7 @@ Q: Why am I seeing a `Sorting metric does not exist` error when trying to sort m
 A : You may be typing a wrong <b>keyword</b> or calling a sorting metric which is not supported. You may refer to [this list](#sorting-all-clients--sort) for a list of supported **keywords**. If you would like to suggest more sorting **keywords**, do feel free to contact us! 
 
 Q: Why is a blank screen shown when I use the `calendar` feature? <br>
-A: You may not have added any upcoming events in the next 7 days! You may want to [Add an Event](#adding-an-event) first. Alternatively, you can choose to [view all Events](#viewing-all-events--listevents) instead.
+A: You may not have added any upcoming events in the next 7 days! You may want to [Add an Event](#adding-an-event--addevent) first. Alternatively, you can choose to [view all Events](#viewing-all-events--allevents) instead.
 
 Q: What do I do if the user guide does not address my concern? <br>
 A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply within three working days!
