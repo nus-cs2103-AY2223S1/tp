@@ -36,13 +36,7 @@ public class PersonListPanel extends UiPart<Region> {
         List<TitledPane> titledPanes = new ArrayList<TitledPane>();
         personList.addListener((ListChangeListener<Person>) c -> {
             TitledPane expandedPane = personListView.getExpandedPane();
-            String name = null;
-            if (expandedPane != null) {
-                HBox hBox = (HBox) expandedPane.getGraphic();
-                Label label = (Label) hBox.getChildren().get(0);
-                String text = label.getText();
-                name = text.substring(text.indexOf('.') + 2);
-            }
+            String name = getNameFromExpandedPane(expandedPane);
             personListView.getPanes().clear();
             titledPanes.clear();
             TitledPane newExpandedPane = null;
@@ -60,6 +54,18 @@ public class PersonListPanel extends UiPart<Region> {
             titledPanes.add(createTitledPane(person, personList));
         }
         personListView.getPanes().addAll(titledPanes);
+    }
+
+    private String getNameFromExpandedPane(TitledPane expandedPane) {
+        if (expandedPane == null) {
+            return null;
+        }
+
+        HBox hBox = (HBox) expandedPane.getGraphic();
+        Label label = (Label) hBox.getChildren().get(0);
+        String text = label.getText();
+        String name = text.substring(text.indexOf('.') + 2);
+        return name;
     }
 
     private TitledPane createTitledPane(Person person, ObservableList<? extends Person> observableList) {
