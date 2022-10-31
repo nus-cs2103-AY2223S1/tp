@@ -1445,25 +1445,60 @@ testers are expected to do more *exploratory* testing.
 
 ### Venue management
 
-#### Adding a venue
+#### Adding a venue (Buggy as of v1.3 - venue added does not show up immediately)
 
-[Comment]: <> (To be added)
+1. Adding a venue from Bookings tab.
+   1. Prerequisites: View the Bookings tab, with `Hall` being one of the existing venues while `Recreational Room` is not.
+   2. Test case: `venue add Recreational Room`<br>
+      Expected: Recreational Room is added to the venue list. Status message reflects the successful addition.
+   3. Test case: `venue add Hall`<br>
+      Expected: An error message indicating that the venue "Hall" already exists.
+   4. Other valid and invalid commands that vary the case of characters in `Hall` and `Recreational Room`.<br>
+      Expected: Same outcome as the original commands.
 
 #### Deleting a venue
 
-[Comment]: <> (To be added)
+1. Deleting a venue from Bookings tab.
+   1. Prerequisites: View the Bookings tab, with `Recreational Room` being one of the existing venues, while `Recre Room` is not.
+   2. Test case: `venue delete Recreational Room`<br>
+      Expected: Recreational Room is deleted from the venue list. Status message reflects the successful deletion.
+   3. Test case: `venue delete Recre Room` <br>
+      Expected: An error message indicating that the venue "Recre Room" does not exist.
+   4. Other valid and invalid commands that vary the case of characters in `Recreational Room` and `Recre Room`<br>
+      Expected: Same outcome as the original commands.
 
 #### Viewing a venue
 
-[Comment]: <> (To be added)
+1. Viewing a venue with existing Bookings.
+   1. Prerequisites: View the Bookings tab, with `Hall` and `Meeting Room` being 2 venues, both with valid Bookings. `Recreational Room` is not an existing venue.
+   2. Test case: `venue view Hall`, followed by `venue view Meeting Room`<br>
+      Expected: Booking details change from that of `Hall` to that of `Meeting Room`. Status message indicates the successful switching between the viewing of booking data of `Hall` and `Meeting Room`.
+   3. Test case: `venue view Recreational Room`<br>
+      Expected: An error message indicating that the venue "Recreational Room" does not exist.
 
 #### Adding a booking
 
-[Comment]: <> (To be added)
+1. Adding a Booking to a venue with no clashing Bookings.
+   1. Prerequisites: View the venue `Hall` in the Bookings tab. No Booking in the time slot `Monday` from `0800 to 1100`. At least one resident in the database.
+   2. Test case: `venue book 1 v/Hall tp/8-11 d/Mon`<br>
+      Expected: Booking made on`Monday` from `0800 to 1100` by the first resident in the database.
+   3. Other invalid commands which contain an invalid input in one of the parameters<br>
+      Expected: Booking not made. An error message indicating the error in the specified parameter.
+2. Adding a Booking to a venue with a clashing Booking.
+   1. Prerequisites: View the venue `Hall` in the Bookings tab. An existing Booking in the time slot `Monday` from `0800 to 1100`. At least one resident in the database.
+   2. Test case: `venue book 1 v/Hall tp/8-11 d/Mon`<br>
+      Expected: Booking not made. An error message indicating the clash with an existing Booking.
 
 #### Deleting a booking
 
-[Comment]: <> (To be added)
+1. Deleting a valid Booking to a venue.
+   1. Prerequisites: View the venue `Hall` in the Bookings tab. An existing Booking in the time slot `Monday` from `0800 to 1100`.
+   2. Test case: `venue unbook v/Hall tp/8-11 d/Mon`<br>
+      Expected: Booking successfully deleted. 
+   3. Test case: `venue unbook v/Hall tp/8-10 d/Mon`<br>
+      Expected: Booking not deleted. An error message indicating that the Booking at `Hall`, on `Monday` from `8 to 10` was not found.
+   4. Other invalid unbook commands to try: `unbook`, `unbook v/Hall tp/8-11 d/monday`, `...` (invalid `Venue`, `TimePeriod`, and `Day`s)<br>
+      Expected: Similar to previous.
 
 <br>
 
