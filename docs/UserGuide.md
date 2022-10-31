@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide (v1.3)
+title: User Guide 
 ---
 ## Table of Contents
 
@@ -9,26 +9,48 @@ title: User Guide (v1.3)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction
+## Introduction 
 
 #### What is TrackAScholar?
 
-TrackAScholar (TAS) is the **only** desktop app any university administrative staff needs for managing scholarship applications.
-TAS helps administrative staff manage scholarship applications by storing the applicant's contact details, scholarship applied and majors taken all in one place.
+TrackAScholar (TAS) helps university administrative staff manage scholarship applications.
+It stores all applicant's details such as contact info and scholarship applied etc. all in one place.
+TrackAScholar (TAS) is a one of a kind desktop app.It is the **only** application that any university administrative staff needs.
 
-TAS  presenting the administrative staff with the option to pin important applicants, edit their details easily,
- find or filter for applicants with ease and otherwise speeds up the application process.
+TAS have many functions that university administrative staff will find to be useful.
+
+These functions include:
+1. Pinning of important applicants 
+2. Easy edit of applicant's detail
+3. Finding a particular applicant  
+4. Filtering of applicants by a certain trait, for instance application status. 
+
+These functions help to speed up the application process immensely.
 
 TAS is **optimised for use via a Command Line Interface (CLI)** while simultaneously having the benefits of a **Graphical User Interface
 (GUI)**. If you can type fast, TAS can handle your scholarship application process faster than conventional GUI apps.
 
 #### Who is this User Guide for?
 
-We have created this user manual for people who want to learn how to use our app.
-It is best suited for administrative staff members who seek an app to streamline their scholarship management procedure.
+It is stated that on average 1.7 million university scholarships are given out each year in the United States alone.Furthermore, 
+it is found that only 1 in 8 student actually wins a scholarship.This brings us to about more than 10 million applications a year.
 
-Alternatively, you may read our [Developer Guide](https://ay2223s1-cs2103t-w10-3.github.io/tp/DeveloperGuide.html)
- to find out more about the technical components of our app.
+As such, many universities often take an extended period of many months to process these applications.
+University administrative staff often have to work overtime to process this large amount of applications.
+Poor scholarship management procedures employed in many of these universities further complicates the process. 
+
+TrackAScholar (TAS) is an app designed for university administrative staff members to streamline the scholarship management procedure. .
+
+TrackAScholar (TAS) seeks to 
+1. Reduce the time taken for university to process the scholarships
+2. Improve the current scholarship management process
+3. Decrease the number of times staff members work overtime 
+
+For technical upkeep, please refer to our [Developer Guide](https://ay2223s1-cs2103t-w10-3.github.io/tp/DeveloperGuide.html)
+
+#### Current version
+This is the third iteration of the user guide.
+The current version is version 1.3.
 
 [Return to top](#table-of-contents)
 
