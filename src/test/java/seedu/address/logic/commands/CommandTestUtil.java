@@ -10,6 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICEHOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -54,11 +56,17 @@ public class CommandTestUtil {
     public static final String VALID_GENDER_CABE = "M";
     public static final String VALID_GENDER_MALE = "M";
     public static final String VALID_GITHUB_AMY = "amyb";
+    public static final String VALID_GITHUB_BOB = "bob";
+    public static final String VALID_GITHUB_CABE = "cabe";
     public static final String VALID_LOCATION_AMY = "Comp 2";
     public static final String VALID_LOCATION_BOB = "Comp 3";
     public static final String VALID_LOCATION_CABE = "Comp 1";
+    public static final String VALID_OFFICE_HOURS_BOB = "TUESDAY, 03:00 PM - 05:00 PM";
+    public static final String VALID_SPECIALISATION_BOB = "Mathematics";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_RATING_BOB = "5";
+    public static final String VALID_RATING_CABE = "4";
     public static final String VALID_USERNAME = "test";
     public static final String VALID_YEAR_AMY = "1";
 
@@ -79,8 +87,16 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_CABE = " " + PREFIX_EMAIL + VALID_EMAIL_CABE;
     public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
+    public static final String RATING_DESC_BOB = " " + PREFIX_RATING + VALID_RATING_BOB;
+    public static final String RATING_DESC_CABE = " " + PREFIX_RATING + VALID_RATING_CABE;
     public static final String GITHUB_USERNAME_DESC_AMY = " " + PREFIX_GITHUBUSERNAME + VALID_GITHUB_AMY;
+    public static final String GITHUB_USERNAME_DESC_BOB = " " + PREFIX_GITHUBUSERNAME + VALID_GITHUB_BOB;
+    public static final String GITHUB_USERNAME_DESC_CABE = " " + PREFIX_GITHUBUSERNAME + VALID_GITHUB_CABE;
+
     public static final String GENDER_DESC_CABE = " " + PREFIX_GENDER + VALID_GENDER_CABE;
+    public static final String SPECIALISATION_DESC_BOB = " " + PREFIX_SPECIALISATION + VALID_SPECIALISATION_BOB;
+
+    public static final String OFFICE_HOURS_DESC_BOB = " " + PREFIX_OFFICEHOUR + VALID_OFFICE_HOURS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String OFFICE_HOUR_MONDAY = " " + PREFIX_OFFICEHOUR + "MONDAY, 4:00 PM - 5:00 PM";
