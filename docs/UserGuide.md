@@ -4,19 +4,21 @@ title: User Guide
 ---
 
 <div class="toc-no-bullet-points">
+
 * Table of Contents
 {:toc}
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Introduction to WorkBook
 
-WorkBook is an **internship application tracker** that helps Computing students **prepare sufficiently** for their upcoming interviews to **secure** that internship.
+Welcome to WorkBook! :wave: <br><br>WorkBook is an **internship application tracker** that helps Computing students **prepare sufficiently** for their upcoming interviews to **secure** that internship.
 It is optimized for fast typists and replicates a Command Line Interface (CLI) style.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. Get started
+## 2. Getting started
 
 1. Ensure you have [Java 11 or above](https://www.oracle.com/sg/java/technologies/downloads/#java11) installed on your Computer.
 
@@ -78,7 +80,7 @@ It is optimized for fast typists and replicates a Command Line Interface (CLI) s
 * Those with no `DATETIME` attached to it will be placed below those with upcoming dates.
 * Applications in the past (i.e. `DATETIME` is past current time) will be placed at the bottom of the list, sorted downwards as well from the most recently passed.
 * An example is shown below:
-* ![SortExample](images/SortExample.png)
+![SortExample](images/SortExample.png)
 
 </div>
 
@@ -88,7 +90,7 @@ It is optimized for fast typists and replicates a Command Line Interface (CLI) s
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG]… [t/TAG]…​` <br> e.g., `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Javascript` |
 | **Edit**   | `edit INDEX [c/COMPANY] [d/DATETIME] [e/COMPANY_EMAIL] [r/ROLE] [l/LANGUAGE TAG]… [t/TAG]…​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                      |
-| **Find**   | `find c/COMPANY`                                                                                                                                                                                          | r/ROLE | s/STAGE​​`<br> e.g.,`find c/Meta` 
+| **Find**   | `find [c/COMPANY] [r/ROLE] [s/STAGE]`<br> e.g., `find c/Meta`                                                                                                                                             | r/ROLE | s/STAGE​​`<br> e.g.,`find c/Meta` 
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                       |
 | **List**   | `list`                                                                                                                                                                                                    |
 | **Undo**   | `undo`                                                                                                                                                                                                    |
@@ -106,13 +108,12 @@ It is optimized for fast typists and replicates a Command Line Interface (CLI) s
 
 </div>
 
-### 4.1. Adding an internship application: `add`
+### 4.1. Adding your internship application:
 
-Adds an internship application to WorkBook.
+Adds your internship application to WorkBook in [sorted order](#3-things-to-note).
 
 Format: `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
 
-* Adds an internship application to the list in [sorted order](#3-things-to-note).
 * Date can represent:
   * The date it happened
   * The deadline of the corresponding `Stage`
@@ -122,9 +123,9 @@ Examples:
 * `add c/Meta r/Frontend Engineer s/Application Sent d/29-Oct-2022 12:00 e/hrmonkey@example.com`
 * `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Java l/Python`
 
-### 4.2. Editing an internship application : `edit`
+### 4.2. Editing your internship application:
 
-Edits an existing internship application in the WorkBook.
+Edits your existing internship application in the WorkBook.
 
 Format: `edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
 
@@ -139,13 +140,13 @@ Examples:
 * `edit 1 s/Behavioural Interview e/hr@meta.com` Edits the stage and email address of the first internship to be `Behavioural Interview` and `hr@meta.com` respectively.
 * `edit 2 l/golang t/` Adds `golang` as the only language tag for the second internship and clears all existing tags.
 
-### 4.3. Listing all existing internship applications : `list`
+### 4.3. Listing all existing internship applications: 
 
-Lists all internship applications in the Workbook.
+Lists all of your internship applications in WorkBook.
 
 Format: `list`
 
-### 4.4. Finds internships by company, stage or role name: `find`
+### 4.4. Finding your internships by company, stage or role name:
 
 Finds internships whose company, role or stage names contain any of the respective keywords.
 
@@ -162,7 +163,7 @@ Examples:
 * `find r/Engineer` returns `Software Engineer` and `Backend Engineer`.
 * `find s/Interview` returns `Technical Interview` and `Behavioural Interview`.
 
-### 4.5. Deleting an internship application : `delete`
+### 4.5. Deleting your internship application:
 
 Deletes the specified internship application from WorkBook.
 
@@ -176,22 +177,22 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd internship application in WorkBook.
 * `find Meta` followed by `delete 1` deletes the 1st internship application within the results of the `find` command.
 
-### 4.6. Clearing all existing internship applications : `clear`
+### 4.6. Clearing your existing internship applications:
 
-Clears all internship applications in the Workbook.
+Clears all internship applications in the WorkBook.
 
 Format: `clear`
 
 Example:
-* `clear` removes all internship applications in the workbook.
+* `clear` removes all internship applications in the WorkBook.
 
-### 4.7. Undoing previous command: `undo`
+### 4.7. Undoing your previous command:
 
-Restores the work book to the state before the previous <em>undoable</em> command was executed
+Restores the WorkBook to the state before the previous <em>undoable</em> command was executed
 
 Format: `undo`
 
-Undoable commands: commands that modify the work book's content (`add`, `delete`, `edit` and `clear`)
+Undoable commands: commands that modify the WorkBook's content (`add`, `delete`, `edit` and `clear`)
 
 Examples:
 * `delete 1`
@@ -218,7 +219,7 @@ Examples:
 
     `undo` (reverses the `delete 1` command )
 
-### 4.8. Redoing previous command: `redo`
+### 4.8. Redoing your previous command:
 
 Reverses the most recent `undo` command.
 
@@ -251,22 +252,19 @@ Examples:
 
   `redo`(reapplies the `clear` command)
 
-### 4.9. Viewing help : `help`
+### 4.9. Viewing help:
 
 Shows a summary of the commands as well as a link to this User Guide.
 
 Format: `help`
 
-Example:
-* `help`
-
-### 4.10. Exiting the program : `exit`
+### 4.10. Exiting the program:
 
 Exits the program.
 
 Format: `exit`
 
-### 4.11. Daily Tips `[coming soon]`
+### 4.11. Viewing daily tips
 
 _Details coming soon ..._
 
