@@ -28,6 +28,14 @@ public class ClassStorage {
     private static Model model;
 
     /**
+     * Gets the classes.
+     *
+     * @return HashMap with Key: LocalDate objects and Value: List of Student objects.
+     */
+    public HashMap<LocalDate, List<Student>> getClasses() {
+        return classes;
+    }
+    /**
      * Constructs a {@code ClassStorage} with the given model.
      *
      * @param model Model object.
