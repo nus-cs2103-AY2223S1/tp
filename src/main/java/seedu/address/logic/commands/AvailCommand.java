@@ -34,6 +34,6 @@ public class AvailCommand extends Command {
         requireNonNull(model);
         Class classToDisplay = model.findAvailableClass(timeRange);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, classToDisplay));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, classToDisplay.toAvailCommandString()));
     }
 }
