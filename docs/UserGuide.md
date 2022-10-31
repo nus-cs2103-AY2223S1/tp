@@ -68,6 +68,18 @@ The following is the main user interface of NUScheduler.
 * **Profile List**: Displays the list of profiles stored and the relevant details.
 * **Event List**: Displays the list of events stored and the relevant details.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the user interface:**<br>
+
+* `Profile`'s are listed in alphabetical order while `Event`'s are listed in chronological order, sorted by their starting date.
+
+* Under `Profile`, the `Name`, `Email` and `PhoneNumber` will always be displayed while `Telegram` and `Tag`s will only be displayed if they exist.
+
+* Under `Event`, the `Title`, `StartDate`, `EndDate` and duration of event will always be displayed while `Attendees`, the participants of an `Event` and `Tag`s will only be displayed if they exist.
+
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -77,7 +89,7 @@ The following is the main user interface of NUScheduler.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `profile -a n/John Doe`.
+  e.g. in `profile -a n/NAME`, `NAME` is a parameter which can be used as `profile -a n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -95,14 +107,6 @@ The following is the main user interface of NUScheduler.
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Command words and option flags are case-sensitive i.e. `profile -v` will work, but not `PROFILE -v` and `profile -V`. 
-
-**:information_source: Notes about the display:**<br>
-
-* `Profile`'s are listed in alphabetical order while `Event`'s are listed in chronological order, sorted by their starting date.
-
-* Under `Profile`, the `Name`, `Email` and `PhoneNumber` will always be displayed while `Telegram` and `Tag`s will only be displayed if they exist.
-
-* Under `Event`, the `Title`, `StartDate`, `EndDate` and duration of event will always be displayed while `Attendees`, the participants of an `Event` and `Tag`s will only be displayed if they exist.
 
 </div>
 
