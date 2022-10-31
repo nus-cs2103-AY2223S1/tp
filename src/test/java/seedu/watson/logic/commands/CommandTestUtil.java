@@ -9,12 +9,10 @@ import static seedu.watson.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
-import static seedu.watson.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.watson.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
