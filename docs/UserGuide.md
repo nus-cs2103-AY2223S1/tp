@@ -192,6 +192,11 @@ You might find it difficult to find the index of a specific person when your lis
 * If you specify **neither date nor time**, the date and time will conveniently default to the current date and time.
 * If you specify **only the time but not the date**, the date will conveniently default to the current date.
 * If you specify **only the date but not the time**, the time will default to midnight.
+
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+Be very careful! The default behaviour is slightly different across the different combinations of whether you provided date and time inputs.
+</div>
+
 * One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of description, money, date and time being the same.
 
 Example:
