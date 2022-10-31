@@ -191,6 +191,8 @@ The types of insurances are specified by prefixes inputted by the user:
 
 `Insurance` fields are stored in the `Person` class, and consist of the boolean `hasInsurance` which is set to true if `Person` object has the type of insurance.
 
+For prefixes not included in the command, the `Person` object is taken to not have the corresponding types of insurance.
+
 Below is an example usage scenario.
 
 #### Example Usage

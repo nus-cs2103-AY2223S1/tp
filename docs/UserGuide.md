@@ -84,7 +84,7 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/18-08-2000`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/01-01-1999`
 
 ### Listing all persons : `list`
 
@@ -96,7 +96,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [b/BIRTHDAY]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -196,6 +196,8 @@ Prefixes:
 * "li" - life insurance
 
 Format: `insurance INDEX [hi/] [di/] [ci/] [li/]` (Number of insurance prefixes can range from 0-4)
+
+For prefixes not included in the command, the `Person` object is taken to not have the corresponding types of insurance.
 
 Examples:
 * `insurance 1 hi/ ci/` sets the 1st person to have health insurance and critical illness insurance.
