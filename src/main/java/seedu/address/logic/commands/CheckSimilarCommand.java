@@ -33,7 +33,7 @@ public class CheckSimilarCommand extends Command {
             }
         }
         return new CommandResult(
-                String.format("No similar People Found!"));
+                String.format("No similar people found!"));
     }
 
     @Override

@@ -30,7 +30,7 @@ Healthcare Xpress is a **desktop app for managing patients that require home-vis
 
    * **`add`** **`c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block
      123, #01-01 t/Asthma ds/2022-12-12,3`** : Adds a patient named **`John`** to Healthcare Xpress book.
-   
+
    * **`assign`** **`id/1 id/3 dsi/1`** : Assigns the first dateslot of the patient with id of 3 to thhe nurse with id of 1.
 
    * **`delete`**`id/3` : Deletes the nurse of patient with an id of 3.
@@ -73,11 +73,11 @@ Healthcare Xpress is a **desktop app for managing patients that require home-vis
 
 **:information_source: Additional information:**<br>
 
-* The HomeVisits is the homevisits that the nurse have to attend to and it is displayed in the format of `Date and Time : [UID] Patient Uid`. This cannot be added using the add command. It can only be added using the assign command. 
+* The HomeVisits is the homevisits that the nurse have to attend to and it is displayed in the format of `Date and Time : [UID] Patient Uid`. This cannot be added using the add command. It can only be added using the assign command.
 
-* The HomeVisits DateSlot is the home visit date slot of the patient and it is displayed in the format of `[ ][ ] Date and Time`. 
+* The HomeVisits DateSlot is the home visit date slot of the patient and it is displayed in the format of `[ ][ ] Date and Time`.
 
-* The first bracket is to indicate whether this date slot has been assigned to a nurse. (Blank - not assigned, A - assigned). 
+* The first bracket is to indicate whether this date slot has been assigned to a nurse. (Blank - not assigned, A - assigned).
 
 * The second bracket is to indicate whether this date slot has pass and visited. (Blank - the date slot has not pass, V - the date slot has pass and autochange to visited, FV - the date slot has pass but fail to visit).
 
@@ -123,8 +123,8 @@ Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ [
 
 :bulb:**Tips**:
 * A nurse can have any number of tags (including 0).
-* A nurse can have any number of unavailable date (including 0). 
-* The unavailable date must be in `yyyy-MM-dd` format, eg `2022-11-11`. 
+* A nurse can have any number of unavailable date (including 0).
+* The unavailable date must be in `yyyy-MM-dd` format, eg `2022-11-11`.
 * You may type it in any order.
 * To add a nurse, type `c/N` specifically.
 
@@ -184,14 +184,14 @@ Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ds/D
 
 * When changing a date slot in the existing list, if the old date slot is assigned, it will be deassigned and the new date slot will be in "not assigned status".
 
-* When changing an unavailable date in the existing list or add a new unavailable date in the existing list from a nurse, the date slot assigned to that nurse will be checked against the unavailable date. If the date slot is on the same day with the unavailable date, it will auto deassign that date slot from the nurse. 
+* When changing an unavailable date in the existing list or add a new unavailable date in the existing list from a nurse, the date slot assigned to that nurse will be checked against the unavailable date. If the date slot is on the same day with the unavailable date, it will auto deassign that date slot from the nurse.
 </div>
 
 Examples:
 *  `edit id/1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the nurse/patient with id 1 to be `91234567` and `johndoe@example.com` respectively.
 *  `edit id/2 n/Betsy Crower t/` Edits the name of the nurse/patient with id 2 to be `Betsy Crower` and clears all existing tags.
 *  `edit id/2 dti/1 dt/2022-12-11,1` Change the first date and time of the patient with id 2 to `2022-12-11,1`.
-*  `edit id/1 e/bsy@gmail.com ud/2022-12-10 p/9029901` Change the email to `bsy@gmail.com` and phone to `9029901` and add unavailable date `2022-12-10` to the nurse with id 1. 
+*  `edit id/1 e/bsy@gmail.com ud/2022-12-10 p/9029901` Change the email to `bsy@gmail.com` and phone to `9029901` and add unavailable date `2022-12-10` to the nurse with id 1.
 
 ![edit](images/Edit.png)
 
@@ -244,7 +244,7 @@ Format `assign id/NURSE_ID id/PATIENT_ID [dsi/DATE_AND_SLOT_INDEX]…​`
 * There **must be 2 IDs (only 2), 1 indicating a patient and 1 indicating a nurse**.
 * There is no specific order for the 2 IDs.
 * The assign command can have any number of date and slot index (including 0).
-* If the **'DATE_AND_SLOT_INDEX' not indicated** (0), then all the date slot of the patients will be assigned to the nurse. 
+* If the **'DATE_AND_SLOT_INDEX' not indicated** (0), then all the date slot of the patients will be assigned to the nurse.
 * If the **'DATE_AND_SLOT_INDEX(ES)' is indicated**, then the date slot with the respective index(es) in the displayed dateslot list will be assigned to the nurse.
 * When assigning, it will check whether there are **time crashes** and check whether the nurse are **unavailable** on that day.
 
@@ -279,7 +279,7 @@ Examples:
 
 Unmarks a specific patient's specific dateslot in the records system as failed visited.
 
-Format: `unmark id/PATIENT_ID dsi/DATE_AND_SLOT_INDEX` 
+Format: `unmark id/PATIENT_ID dsi/DATE_AND_SLOT_INDEX`
 
 * Unmarks the patient with the specified 'ID' as having been failed visited.
 * The ID refers to the unique ID shown in the displayed person list.
@@ -332,13 +332,13 @@ Format: `updatecontact id/PATIENT_ID c/CATEGORY n/CONTACT_NAME p/CONTACT_PHONE e
 * CONTACT_EMAIL: Email address of the emergency contact.
 * Note: The UID must belong to a **patient**.
 * Note: Only `K` or `D` are accepted.
-* Note: This command replaces the current next-of-kin or attending physician contact info, 
+* Note: This command replaces the current next-of-kin or attending physician contact info,
   * if there is already an existing one.
 
 Examples:
-* `updatecontact id/3 c/K n/John Doe p/81234567 e/johndoe@example.com` 
+* `updatecontact id/3 c/K n/John Doe p/81234567 e/johndoe@example.com`
   * updates NoK contact information for patient UID 3.
-* `updatecontact id/3 c/D n/kw p/9013890 e/kw@gmail.com` 
+* `updatecontact id/3 c/D n/kw p/9013890 e/kw@gmail.com`
   * updates attending physician contact information for patient UID 3.
 
 ![updatecontact](images/updatecontact.png)
@@ -357,17 +357,17 @@ Format: `exit`
 
 ### Saving the data
 
-HealthcareXpress data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Healthcare Xpress data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-HealthcareXpress data are saved as a JSON file `[JAR file location]/data/healthcarexpress.json`. Advanced users are welcome to update data directly by editing that data file.
+Healthcare Xpress data are saved as a JSON file `[JAR file location]/data/healthcarexpress.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 
 * If your changes to the data file makes its format invalid, Healthcare Xpress book will discard all data and start with an empty data file at the next run.
 
-* NOT RECOMMENDED : It is not recommended to change the 'date slot' of a patient and 'homevisits', 'unavailable date' and 'fully scheduled date' of a nurse in the file. The system is unable to check the correctness and whether there is time crash and other issues if you change it manually in the data file. 
+* NOT RECOMMENDED : It is not recommended to change the 'date slot' of a patient and 'homevisits', 'unavailable date' and 'fully scheduled date' of a nurse in the file. The system is unable to check the correctness and whether there is time crash and other issues if you change it manually in the data file.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
