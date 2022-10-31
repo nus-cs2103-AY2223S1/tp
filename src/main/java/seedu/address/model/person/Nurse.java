@@ -105,10 +105,18 @@ public class Nurse extends Person {
 
     @Override
     public String toString() {
-        String homeVisitList = getHomesVisitsInString();
-        String unavailableDateList = getUnavailableDatesInString();
-        return "Category: " + getCategory() + " " + super.toString() + "; Unavailable Dates:" + unavailableDateList
-                + "; Home Visits:" + homeVisitList;
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Category: ")
+                .append(getCategory())
+                .append("; ")
+                .append(super.toString())
+                .append("Unavailable Dates: ")
+                .append(getUnavailableDatesInString())
+                .append("; Home Visits: ")
+                .append(getHomesVisitsInString())
+                .append("; ");
+
+        return builder.toString();
     }
 
     public boolean isNurse() {

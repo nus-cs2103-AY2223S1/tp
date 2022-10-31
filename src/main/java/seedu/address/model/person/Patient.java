@@ -122,9 +122,16 @@ public class Patient extends Person {
 
     @Override
     public String toString() {
-        String dateSlotList = getDatesSlotsInString();
-        return "Category: P " + super.toString()
-                + "; Home Visits Date and Time:" + dateSlotList;
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Category: ")
+                .append(getCategory())
+                .append("; ")
+                .append(super.toString())
+                .append("Home Visits Date and Time: ")
+                .append(getDatesSlotsInString())
+                .append("; ");
+
+        return builder.toString();
     }
 
     public boolean isPatient() {

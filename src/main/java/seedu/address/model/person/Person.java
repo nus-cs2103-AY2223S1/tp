@@ -124,8 +124,9 @@ public class Person extends BasePerson {
         final StringBuilder builder = new StringBuilder();
         builder.append("Uid: ")
                 .append(getUid())
+                .append("; ")
                 .append(super.toString())
-                .append("; Gender: ")
+                .append("Gender: ")
                 .append(getGender())
                 .append("; Address: ")
                 .append(getAddress());
