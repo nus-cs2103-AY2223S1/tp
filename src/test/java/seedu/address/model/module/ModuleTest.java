@@ -50,5 +50,10 @@ public class ModuleTest {
         assertTrue(Module.isValidModuleName("CS2040S")); // 2 letter prefix module name with suffix
         assertTrue(Module.isValidModuleName("UTR1000A")); // 3 letter prefix module name with suffix
         assertTrue(Module.isValidModuleName("GESS1025R")); // 4 letter prefix module name with suffix
+        assertTrue(Module.isValidModuleName("cs2040s")); // completely un-capitalised module name
+        assertTrue(Module.isValidModuleName("Cs2040s")); // first letter capitalised module name
+        assertTrue(Module.isValidModuleName("CS2040s")); // prefix capitalised module name
+        assertTrue(Module.isValidModuleName("cs2040S")); // suffix capitalised module name
+        assertTrue(Module.isValidModuleName("dAo1047X")); // random letters capitalised module name
     }
 }
