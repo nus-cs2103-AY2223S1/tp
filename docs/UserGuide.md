@@ -348,11 +348,11 @@ Format: `password [old/OLDPASSWORD] new/NEWPASSWORD`
 * Sets or updates the password to the specified new password
 * No need to specify old password if setting the password for the first time
 * When updating the password, the specified old password must match the current password
-* Be mindful of spaces (`&nbsp;`) at the start and end of the specified password, as they will be trimmed
-    * Specified password: `&nbsp;`
+* Be mindful of spaces (` `) at the start and end of the specified password, as they will be trimmed
+    * Specified password: ` `
 
       Effective password: a zero length string
-    * Specified password: `&nbsp;foobar&nbsp;`
+    * Specified password: ` ` `foobar` ` `
 
       Effective password: `foobar`
 
