@@ -12,7 +12,7 @@ Welcome to Coydir's User Guide!
 
 **Even Thanos had to read the User Guide before he learnt how to wield the power of the infinity stones...**
 
-**This guide will teach you the ropes so that you too can command the infinite power of Coydir the universe has never seen before!! Or simple feel free to look around! :p**
+**This guide will teach you the ropes so that you too can command the infinite power of Coydir the universe has never seen before!! Or simply feel free to look around! :p**
 
 ---
 
