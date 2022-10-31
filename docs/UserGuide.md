@@ -126,10 +126,26 @@ eg. `nw/$1234`.
 
 Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
 
+### Common Data Field Formats
+
+| Data Field           | Format, Example                 | Remarks                                                                             |
+|----------------------|---------------------------------|-------------------------------------------------------------------------------------|
+| **`n/NAME`**         | `n/[name]`                      | Name should only contain alphanumeric characters and spaces, and it should not be blank |
+| **`p/PHONE_NUMBER`** | `p/[phone_number]`              | Phone Number should only contain numbers and should be at least 3 digits long       |
+| **`e/EMAIL`**        | `e/[local_part]@[domain]`       | Local Part should only contain alphanumeric characters and these special characters +_.- |
+| **`a/ADDRESS`**      | `a/[address]`                   |                                                                                     |
+| **`d/DESCRIPTION`**  | `d/[description]`               |                                                                                     |
+| **`nw/NETWORTH`**    | `nw/$[net_worth]`               | Net worth should start with a $ sign, only contain numbers and should be at least 4 digits long |
+| **`mt/TIME`**        | `mt/[DD]-[MM]-[YYYY]-[HH]:[MM]` | DD: 01-31<br/>MM: 01-12<br/>YYYY: 0001-9999<br/>HH:MM: 00:00 - 23:59                |
+| **`t/TAG`**          | `t/[tag]`                       | Tag should only be `SECURED` or `POTENTIAL`                                         |
+
 ![create](images/UserGuide/create.png)
 
 :bulb: **Note:**
 `NAME` and `PHONE_NUMBER` are the only compulsory inputs. Other parameters can be left blank.
+
+:bulb: **Note:**
+It is recommended to only have 1`TAG` per client.
                   
 
 * If you have multiple meeting times with your client, simply repeat the field `mt/TIME`.
@@ -379,7 +395,7 @@ Format: `sync`
 As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
 Please note that undo cannot undo this command!
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries from your FABook.
 
