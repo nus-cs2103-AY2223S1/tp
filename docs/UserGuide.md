@@ -13,10 +13,18 @@ title: InterNUS User Guide
 
 InterNUS is a desktop app for **managing internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InterNUS can get your internship management tasks done faster than traditional GUI apps.
 
-
 ## 1.2 Persons
 
+Store the information of key contacts in InterNUS. During the internship-hunting period, add the contacts of hiring managers and link them to your bookmarked internship positions. What about the multiple colleagues you'll meet during your internship stints? InterNUS makes it easy to manage these contacts and lets you see at a glance where you worked at together.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
+Each person can be linked to a maximum of one internship, and vice  versa.
+</div>
+
 ## 1.3 Internships
+
+Track the internships you're interested in and all the relevant information -- the company, role, contact person and interview date. Awaiting a reply, or have you been accepted? With InterNUS, you can monitor and update the statuses of your internship applications effortlessly.
 
 --------------------------------------------------------------------------------------------------------------------
 # 2.How to use this User Guide?
@@ -79,7 +87,7 @@ Adds a person to InterNUS.
 
 Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c/[COMPANY]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **![img.png](img.png)**
 A person can have any number of tags (including 0). Link index is optional.
 The link index refers to the index number shown in the internship list. Company is optional.
 The company refers to the company the contact person is working at. 
