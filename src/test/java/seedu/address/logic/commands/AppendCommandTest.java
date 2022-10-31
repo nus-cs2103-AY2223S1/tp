@@ -28,9 +28,12 @@ public class AppendCommandTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AppendCommand(null, Collections.emptySet(), Collections.emptySet()));
-        assertThrows(NullPointerException.class, () -> new AppendCommand(Index.fromZeroBased(0), null, Collections.emptySet()));
-        assertThrows(NullPointerException.class, () -> new AppendCommand(Index.fromZeroBased(0), Collections.emptySet(), null));
+        assertThrows(NullPointerException.class, () ->
+                new AppendCommand(null, Collections.emptySet(), Collections.emptySet()));
+        assertThrows(NullPointerException.class, () ->
+                new AppendCommand(Index.fromZeroBased(0), null, Collections.emptySet()));
+        assertThrows(NullPointerException.class, () ->
+                new AppendCommand(Index.fromZeroBased(0), Collections.emptySet(), null));
     }
 
     @Test
