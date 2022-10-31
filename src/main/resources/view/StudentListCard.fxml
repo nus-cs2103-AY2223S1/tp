@@ -16,7 +16,7 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
-         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
          <ColumnConstraints />
          <ColumnConstraints />
     </columnConstraints>
@@ -78,7 +78,7 @@
             <Label fx:id="ft" styleClass="cell_small_label" text="\$ft" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <VBox minHeight="120.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowSpan="2">
+      <VBox minHeight="120.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowSpan="2">
          <padding>
             <Insets bottom="5" left="15" right="5" top="5" />
          </padding>
