@@ -257,7 +257,7 @@ Format: `delete -i INDEX`
 
 Examples:
 * `list -i` followed by `delete -i 2` deletes the 2nd internship in InterNUS.
-* `find -i ABC Pte Ltd` followed by `delete -i 1` deletes the 1st internship in the results of the `find` command.
+* `find -i Meta` followed by `delete -i 1` deletes the 1st internship in the results of the `find` command.
 
 ## 4.7 Sort Command
 
@@ -290,7 +290,11 @@ Format: `sort -i [c/] [d/] [s/]`
 - `d/` sorts internships by interview date.
 - `s/` sorts internships by status in the given order: `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED`, `REJECTED`.
 - When sorted by interview date, internships with no interview dates are listed at the bottom of the list.
-- The list will remain sorted by the last given criterion until InterNUS is closed.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note: ** <br>
+Both the person list and internship list will remain sorted by the last given criterion until InterNUS is closed. The sorted order persists during additions, deletions and editing of persons and internships.
+</div>
 
 ## 4.8 General
 
