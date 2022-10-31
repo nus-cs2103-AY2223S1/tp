@@ -767,8 +767,8 @@ Format: `exit`
       </td>
       <td>
         <code>exit</code>
-
+</td>
+</tr>
 </table>
-
 
 [Scroll back to top](#table-of-contents)
