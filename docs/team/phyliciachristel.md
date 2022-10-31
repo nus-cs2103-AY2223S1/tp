@@ -49,4 +49,4 @@ Pupilist is a desktop address book application used for private tutors to handle
     [\#75](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/75), [\#78](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/78), [\#87](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/87), [\#106](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/106),
     [\#109](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/109), [\#123](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/123), [\#125](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/125), [\#181](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/181), [\#184](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/184)
 
-* **Contributions beyond the project team**: to be added soon
+* **Contributions beyond the project team**: [Bugs reported](https://github.com/phyliciachristel/ped/issues)
