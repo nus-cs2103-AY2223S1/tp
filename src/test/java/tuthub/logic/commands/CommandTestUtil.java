@@ -98,12 +98,14 @@ public class CommandTestUtil {
                 .withModule(VALID_MODULE_AMY).withYear(VALID_YEAR_AMY)
                 .withStudentId(VALID_STUDENTID_AMY)
                 .withTeachingNomination(VALID_TEACHINGNOMINATION_AMY)
+                .withRating(VALID_RATING_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditTutorDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withModule(VALID_MODULE_BOB).withYear(VALID_YEAR_BOB)
                 .withStudentId(VALID_STUDENTID_BOB)
                 .withTeachingNomination(VALID_TEACHINGNOMINATION_BOB)
+                .withRating(VALID_RATING_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

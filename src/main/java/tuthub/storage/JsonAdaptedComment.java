@@ -3,7 +3,6 @@ package tuthub.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import tuthub.commons.exceptions.IllegalValueException;
 import tuthub.model.tutor.Comment;
 
 /**

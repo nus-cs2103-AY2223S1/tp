@@ -9,6 +9,7 @@
     "studentId": "A1234569L",
     "teachingNomination": "1",
     "rating": "4.5",
+    "comments" : [ "Finishes tasks quickly" ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -19,6 +20,7 @@
     "studentId": "A0000009Y",
     "teachingNomination": "1",
     "rating": "2.5",
+    "comments" : [ ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -29,6 +31,7 @@
     "studentId": "A9875647U",
     "teachingNomination": "1",
     "rating": "4.9",
+    "comments" : [ ],
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -39,6 +42,7 @@
     "studentId": "A9345647M",
     "teachingNomination": "1",
     "rating": "1.5",
+    "comments" : [ ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -49,6 +53,7 @@
     "studentId": "A8768974P",
     "teachingNomination": "1",
     "rating": "3.9",
+    "comments" : [ ],
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -59,6 +64,7 @@
     "studentId": "A9870921H",
     "teachingNomination": "1",
     "rating": "2.7",
+    "comments" : [ ],
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -69,6 +75,7 @@
     "studentId": "A0673201Y",
     "teachingNomination": "1",
     "rating": "4.2",
+    "comments" : [ ],
     "tagged" : [ ]
   } ]
 }

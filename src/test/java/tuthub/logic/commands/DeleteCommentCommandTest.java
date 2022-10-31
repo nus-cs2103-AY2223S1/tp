@@ -16,7 +16,6 @@ import tuthub.model.Model;
 import tuthub.model.ModelManager;
 import tuthub.model.UserPrefs;
 import tuthub.model.tutor.Tutor;
-import tuthub.testutil.TutorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -28,13 +27,6 @@ public class DeleteCommentCommandTest {
 
     @Test
     public void execute_invalidCommentIndex_throwsCommandException() {
-        // Add a comment to the first tutor
-        Tutor tutorToDelete = model.getFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
-
-        // Comment is at index 0
-        Tutor tutorWithComment = new TutorBuilder(tutorToDelete).withComment("Test").build();
-        model.setTutor(tutorToDelete, tutorWithComment);
-
         DeleteCommentCommand deleteCommentCommand = new DeleteCommentCommand(INDEX_FIRST_TUTOR,
                 Index.fromZeroBased(10));
 
@@ -47,18 +39,14 @@ public class DeleteCommentCommandTest {
     public void execute_validIndex_success() {
         // Add a comment to the first tutor
         Tutor tutorToDelete = model.getFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
-        String comment = "Test";
 
-        // Comment is at index 0
-        Tutor tutorWithComment = new TutorBuilder(tutorToDelete).withComment(comment).build();
-        model.setTutor(tutorToDelete, tutorWithComment);
-
+        int lastCommentPos = model.getFilteredTutorList().get(0).getComments().size() - 1;
         // Comment is at index 0
         DeleteCommentCommand deleteCommentCommand = new DeleteCommentCommand(INDEX_FIRST_TUTOR,
-                Index.fromZeroBased(0));
+                Index.fromZeroBased(lastCommentPos));
 
         String expectedMessage = String.format(DeleteCommentCommand.MESSAGE_DELETE_COMMENT_SUCCESS,
-                tutorToDelete.getName(), comment);
+                tutorToDelete.getName(), tutorToDelete.getComments().getList().get(lastCommentPos));
 
         Model expectedModel = new ModelManager(model.getTuthub(), new UserPrefs());
 

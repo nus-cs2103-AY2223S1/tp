@@ -86,5 +86,6 @@ public class CommentCommandTest {
                 editedTutor);
 
         assertCommandSuccess(commentCommand, model, expectedMessage, expectedModel);
+        System.out.println(model.getFilteredTutorList().get(0));
     }
 }

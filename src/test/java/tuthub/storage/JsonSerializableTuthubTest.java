@@ -26,6 +26,10 @@ public class JsonSerializableTuthubTest {
                 JsonSerializableTuthub.class).get();
         Tuthub tuthubFromFile = dataFromFile.toModelType();
         Tuthub typicalTutorsTuthub = TypicalTutors.getTypicalTuthub();
+        for (int i = 0; i < tuthubFromFile.getTutorList().size(); i++) {
+            System.out.println(tuthubFromFile.getTutorList().get(i));
+            System.out.println(typicalTutorsTuthub.getTutorList().get(i));
+        }
         assertEquals(tuthubFromFile, typicalTutorsTuthub);
     }
 
