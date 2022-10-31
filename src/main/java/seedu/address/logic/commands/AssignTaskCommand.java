@@ -9,6 +9,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -105,6 +108,20 @@ public class AssignTaskCommand extends Command {
                 personToAssignTask.getName(), personToAssignTask.getPhone(), personToAssignTask.getEmail(),
                 personToAssignTask.getAddress(), personToAssignTask.getTags(), assignments,
                 personToAssignTask.getPersonGroups());
+
+        //update person to every group
+        List<Group> groupListToEdit = model.getFilteredGroupList();
+        for (int i = 0; i < groupListToEdit.size(); i++) {
+            Group currGroup = groupListToEdit.get(i);
+            if (currGroup.contains(personToAssignTask)) {
+                Set<Person> currMembers = new HashSet<Person>(currGroup.getMembers());
+                currMembers.remove(personToAssignTask);
+                currMembers.add(editedPerson);
+
+                Group newGroup = new Group(currGroup.getName(), currMembers);
+                model.setGroup(currGroup, newGroup);
+            }
+        }
 
         editedPerson.setWorkloadScore();
         model.setPerson(personToAssignTask, editedPerson);

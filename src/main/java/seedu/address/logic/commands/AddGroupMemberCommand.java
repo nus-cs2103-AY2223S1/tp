@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
@@ -73,7 +74,7 @@ public class AddGroupMemberCommand extends Command {
         }
 
         //change field
-        ArrayList<PersonGroup> personGroupArrayList = personToGroup.getPersonGroups();
+        ArrayList<PersonGroup> personGroupArrayList = new ArrayList<>(personToGroup.getPersonGroups());
         personGroupArrayList.add(this.personGroup);
 
         Person editedPerson = new Person(
@@ -86,6 +87,20 @@ public class AddGroupMemberCommand extends Command {
         groupMembers.addAll(groupToAddPerson.getMembers());
         groupMembers.add(editedPerson);
         Group editedGroup = new Group(groupToAddPerson.getName(), groupMembers);
+
+        //update person to every group
+        List<Group> groupListToEdit = model.getFilteredGroupList();
+        for (int i = 0; i < groupListToEdit.size(); i++) {
+            Group currGroup = groupListToEdit.get(i);
+            if (currGroup.contains(personToGroup)) {
+                Set<Person> currMembers = new HashSet<Person>(currGroup.getMembers());
+                currMembers.remove(personToGroup);
+                currMembers.add(editedPerson);
+
+                Group newGroup = new Group(currGroup.getName(), currMembers);
+                model.setGroup(currGroup, newGroup);
+            }
+        }
 
         model.setGroup(groupToAddPerson, editedGroup);
         model.setPerson(personToGroup, editedPerson);
