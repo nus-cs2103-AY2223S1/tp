@@ -1,3 +1,8 @@
+---
+layout: page
+title: Developer Guide
+---
+
 <div align="center">
 
 <h1>Rapportbook Developer Guide</h1>
