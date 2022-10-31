@@ -17,16 +17,14 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to calculate the user's BMI (Pull request [\#65](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/65)).
   * What it does: Calculates the user's BMI immediately after setting up a profile.
   * Justification: This application aims to encourage healthy eating habits. The BMI is a useful indicator of the user's health status.
-  * Highlights: This automatically calculates the user's BMI when the user sets up a profile or updates existing information.
+  * Highlights: This calculates the user's BMI when the user sets up a profile or updates existing information.
 
 * **New Feature**: Added the ability to suggest a recommended calorie intake for the user (Pull requests [\#67](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/67) and [\#107](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/107)). 
   * What it does: Suggests an estimated recommended daily calorie intake so that the user can reach his/her ideal weight.
-  * Justification: The user can set a target calorie intake, but the user may not be aware of the amount of calories the user should be consuming to reach his/her goal. 
+  * Justification: The user can set a target calorie intake, but may not be aware of the amount of calories he/she should consume to reach his/her goal. 
   * Highlights: This allows the user to get an estimate of the amount of calories to consume in a day and complements the `target` command implemented.
 
-* **Code contributed**: 
-  * [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nicolelim02&breakdown=true)
-
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nicolelim02&breakdown=true)
 * **Project management**: 
   * Refactored [AB3's](https://github.com/nus-cs2103-AY2223S1/tp) codebase (Pull request [\#36](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/36)).
   * Managed the release of `v1.3.1` on [GitHub](https://github.com/AY2223S1-CS2103T-T17-2/tp/releases/tag/v1.3.1).
@@ -53,11 +51,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-      * Add documentation for the `edit`, `profile` and `suggest` features.
-      * Update documentation for the `help` feature.
+      * Add documentation for the `edit`, `profile`, `suggest` and `help` features.
     * Developer Guide:
       * Add use cases and user stories.
-      * Modify existing UML diagrams and links to match the project.
       * Add implementation details for `edit`, `profile` and `suggest` features, together with activity, object and sequence diagrams.
 
 * **Community**:
@@ -65,4 +61,4 @@ Given below are my contributions to the project.
   * Report [bugs](https://github.com/nicolelim02/ped/issues) found in CS2103T-F12-4's product during the practical exam dry run.
   * Fix issues that my team members face in the following pull requests: 
     * [\#48](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/48): Identify bugs in test cases. 
-    * [\#1](https://github.com/ruiqi7/tp/pull/1): Fix the width of the components (result box and list container) to be 50% each, relative to the size of the main window. 
+    * [\#91](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/91): Fix the width of the components (result box and list container) to be 50% each, relative to the size of the main window. Co-authored with [Tin Ruiqi](http://github.com/ruiqi7).
