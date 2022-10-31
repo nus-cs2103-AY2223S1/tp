@@ -411,7 +411,7 @@
      -fx-font-size: 20px;
 }
 
-#personDetails, #personDetails2, #riskLevel, #currentPlans, #notesBox {
+#personDetails, #personDetails2, #riskLevel, #currentPlans, #notesBox, #emptyVbox {
     -fx-background-color: -white-background;
     -fx-background-radius: 15;
     -fx-border-radius: 15;
@@ -448,11 +448,11 @@
     -fx-wrap-text: true;
 }
 
-#scroller, #cardPanePortfolio, #portfolioGridPane {
+#cardPanePortfolio {
     -fx-background-color: -second-background;
 }
 
-#portfolio {
+#portfolioVBox, #portfolioEmptyBox {
     -fx-background-color: -second-background;
 }
 
@@ -463,6 +463,13 @@
 #personDetailsSplitPane {
     -fx-background-color: -white-background;
 }
+
+#scroller, #portfolioGridPane {
+    -fx-background-color: transparent;
+    -fx-border-color: -second-background;
+}
+
+
 
 
 

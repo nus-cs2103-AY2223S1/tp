@@ -17,6 +17,7 @@ import seedu.address.model.person.Person;
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
+    public static final int DEFAULT_INDEX = -1;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the client identified by the index number used in the displayed person list.\n"
@@ -90,7 +91,7 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete), DEFAULT_INDEX);
     }
 
     /**
@@ -101,7 +102,7 @@ public class DeleteCommand extends Command {
      */
     public CommandResult deleteAll(Model model) {
         model.setAddressBook(new AddressBook());
-        return new CommandResult(MESSAGE_DELETE_ALL_SUCCESS);
+        return new CommandResult(MESSAGE_DELETE_ALL_SUCCESS, DEFAULT_INDEX);
     }
 
     /**
@@ -126,7 +127,7 @@ public class DeleteCommand extends Command {
                 output.append(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
             }
         }
-        return new CommandResult(output.toString());
+        return new CommandResult(output.toString(), DEFAULT_INDEX);
     }
 
     @Override

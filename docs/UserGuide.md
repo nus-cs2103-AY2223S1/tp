@@ -175,6 +175,7 @@ Adds a client to the FinBook.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME [m/UPCOMING_MEETING_DATES] [t/TAGS r/RISK_LEVEL]
          [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
+* `add` command will refresh the portfolio panel to display "`no client selected for view yet!`".
 
 Examples:
 
@@ -193,12 +194,13 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] 
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* `edit` command will automatically view the updated portfolio of the edited client.
 
 Examples:
 
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567`
-  and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower` Edits the name of the 2nd client to be `Betsy Crower`.
+  and `johndoe@example.com` respectively and automatically displays the updated portfolio of the 1st client.
+* `edit 2 n/Betsy Crower` Edits the name of the 2nd client to be `Betsy Crower` and automatically displays the updated portfolio of `Betsy Crower`.
 
 ### 4.1.3. Deleting a client : `delete`
 
@@ -211,6 +213,7 @@ Four formats of deleting a client.
 
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* `delete` commmand will refresh the portfolio panel to display "`no client selected for view yet!`".
 
 #### Deleting a single client
 
@@ -278,6 +281,7 @@ Format: `find [n/NAME] [t/TAG]`
   the left.
 * At least one of the parameters must be provided.
 * Only one type of parameter can be provided at one time.
+* `find` command will refresh the portfolio panel to display "`no client selected for view yet!`".
 
 Examples:
 
@@ -292,11 +296,15 @@ Format: `view INDEX`
 
 * Displays the portfolio of client at index `INDEX` on the Portfolio section
 * Portfolio includes risk level and current plans purchased by the client.
+* `find` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the updated client list.
+* `sort` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the updated client list.
 
 Examples:
 
 * `view 1` displays the risk level and current plans purchased by the 1st client of the Financial book data.
 * `view 2` displays the risk level and current plans purchased by the 2nd client of the Financial book data.
+* `find n/Alex` then `view 1` will display the portfolio of Alex.
+
 
 ---
 
