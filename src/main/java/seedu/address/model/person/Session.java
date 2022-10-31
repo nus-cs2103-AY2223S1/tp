@@ -18,7 +18,7 @@ import java.util.List;
 public class Session implements Comparable<Session> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Session should only be in the format of DAY HH:mm";
+            "Session should only be in the format of DDD HH:mm and range from 00:00 to 23:59";
     public static final String VALIDATION_REGEX_DAY = "^(\\w){3}$";
     public static final String VALIDATION_REGEX_TIME = "^(\\d){2}:(\\d){2}$";
     protected static final DateTimeFormatter DTF = new DateTimeFormatterBuilder()
