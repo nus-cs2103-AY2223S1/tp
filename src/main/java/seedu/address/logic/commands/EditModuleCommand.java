@@ -70,6 +70,7 @@ public class EditModuleCommand extends Command {
         }
 
         model.setModule(moduleToEdit, editedModule);
+        model.goToHomePage();
         return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
     }
 

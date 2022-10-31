@@ -111,6 +111,9 @@ public class AddPersonCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
+
+        @Override
+        public void goToHomePage() {}
     }
 
 }

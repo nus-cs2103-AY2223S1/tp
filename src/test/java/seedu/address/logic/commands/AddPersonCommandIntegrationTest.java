@@ -31,6 +31,7 @@ public class AddPersonCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
+        expectedModel.goToHomePage();
 
         assertCommandSuccess(new AddPersonCommand(validPerson), model,
                 String.format(AddPersonCommand.MESSAGE_SUCCESS, validPerson), expectedModel);

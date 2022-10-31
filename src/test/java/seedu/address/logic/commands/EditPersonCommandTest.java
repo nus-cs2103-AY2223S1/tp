@@ -13,6 +13,8 @@ import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookWit
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -45,6 +47,7 @@ public class EditPersonCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.goToHomePage();
 
         assertCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
     }
@@ -67,6 +70,7 @@ public class EditPersonCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
+        expectedModel.goToHomePage();
 
         assertCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
     }
@@ -81,6 +85,7 @@ public class EditPersonCommandTest {
         String expectedMessage = String.format(EditPersonCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.goToHomePage();
 
         assertCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
     }
@@ -100,6 +105,7 @@ public class EditPersonCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.goToHomePage();
 
         assertCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
     }

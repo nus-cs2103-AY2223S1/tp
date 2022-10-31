@@ -72,6 +72,7 @@ public class EditPersonCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
+        model.goToHomePage();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 

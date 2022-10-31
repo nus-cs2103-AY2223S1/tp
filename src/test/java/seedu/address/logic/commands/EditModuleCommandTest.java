@@ -50,6 +50,7 @@ public class EditModuleCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setModule(model.getFilteredModuleList().get(0), editedModule);
+        expectedModel.goToHomePage();
 
         assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
     }
@@ -74,6 +75,7 @@ public class EditModuleCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setModule(lastModule, editedModule);
+        expectedModel.goToHomePage();
 
         assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
     }
@@ -89,6 +91,7 @@ public class EditModuleCommandTest {
         String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.goToHomePage();
 
         assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
     }
@@ -115,6 +118,7 @@ public class EditModuleCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setModule(model.getFilteredModuleList().get(0), editedModule);
+        expectedModel.goToHomePage();
 
         assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
     }
