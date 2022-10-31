@@ -125,6 +125,8 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+        deletePersonReminders(target);
+        addPersonReminders(editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -184,6 +186,12 @@ public class ModelManager implements Model {
     @Override
     public void deletePersonReminders(Person personToDelete) {
         unsortedReminders.removeIf(pair -> pair.getKey().equals(personToDelete));
+    }
+
+    private void addPersonReminders(Person personToAdd) {
+        for (Reminder r : personToAdd.getReminders()) {
+            unsortedReminders.add(new Pair<>(personToAdd, r));
+        }
     }
 
     @Override
