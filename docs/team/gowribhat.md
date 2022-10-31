@@ -36,24 +36,16 @@ Given below are my contributions to the project.
     * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+    * Modified find command to make searching generic (Pull request [\#62](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/62))
+    * Modified add and edit commands to include class input (Pull request [\#59](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/59))
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+        * Added documentation for the features `class`, `find`, `Navigating User Input History` and `edit-task`: [\#103](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/103/files), [\#107](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/107), [\#189](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/189)
+        * Did cosmetic tweaks to existing documentation of features `add`, `edit`: [\#62](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/62/files)
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+        * Added implementation details of the `class` feature : [\#92](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/92/files)
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+    * PRs reviewed (with non-trivial review comments): [\#71](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/71)
+    * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2223S1-CS2103T-T09-4/tp/issues/270), [2](https://github.com/AY2223S1-CS2103T-T09-4/tp/issues/269), [3](https://github.com/AY2223S1-CS2103T-T09-4/tp/issues/268), [4](https://github.com/AY2223S1-CS2103T-T09-4/tp/issues/252), [5](https://github.com/AY2223S1-CS2103T-T09-4/tp/issues/243), [6](https://github.com/AY2223S1-CS2103T-T09-4/tp/issues/264))
