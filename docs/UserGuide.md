@@ -19,38 +19,38 @@ finding out about your friends' schedules, and focus on getting your projects an
 
 ## Quick Start
 
-1. Ensure you have Java 11 or above installed on your computer. You can refer to
+Step 1: Ensure you have Java 11 or above installed on your computer. You can refer to
 [this](https://www3.ntu.edu.sg/home/ehchua/programming/howto/jdk_howto.html#zz-2) guide to help you install and configure
 an appropriate version of Java. You can open a command window and run the `java -version` command to ensure you are using
 Java 11 (or above).
 
   <img src="images/QuickStart1.png" width="390" />
 
-2. Download the latest ConnectNUS.jar from [here](https://github.com/AY2223S1-CS2103T-T14-4/tp/releases/tag/v1.3).
+Step 2: Download the latest ConnectNUS.jar from [here](https://github.com/AY2223S1-CS2103T-T14-4/tp/releases/tag/v1.3).
 
   <img src="images/QuickStart2.png" width="390" />
 
-3. Copy the file to a new empty folder you want to use as the home folder for ConnectNUS. A JSON file will be created in
+Step 3: Copy the file to a new empty folder you want to use as the home folder for ConnectNUS. A JSON file will be created in
 the folder to store your data upon saving the jar file.
 
   <img src="images/QuickStart3.png" width="390" />
 
-4. In terminal (Mac) or command prompt (Windows), navigate to the folder's path. For Mac users, you can do it by right-clicking on the folder
+Step 4: In terminal (Mac) or command prompt (Windows), navigate to the folder's path. For Mac users, you can do it by right-clicking on the folder
 and click on `New Terminal at Folder` as illustrated below.
 
   <img src="images/QuickStart4.png" width="390" /> <br />
   <img src="images/QuickStart5.png" width="390" />
 
-5. Launch the jar file using the `java -jar ConnectNUS.jar` command in the terminal. Do not double-click
+Step 5: Launch the jar file using the `java -jar ConnectNUS.jar` command in the terminal. Do not double-click
 on the jar file in the folder. This to ensure the jar file is using the correct Java version verified in Step 1.
 
   <img src="images/QuickStart6.png" width="390" />
 
-6. The GUI similar to the below should appear in a few seconds. Do note that the app contains some sample data.
+Step 6: The GUI similar to the below should appear in a few seconds. Do note that the app contains some sample data.
 
   <img src="images/QuickStart7.png" width="390" />
 
-7. Refer to the [Features](#features) section below to for more details on how to use ConnectNUS.
+Step 7: Refer to the [Features](#features) section below to for more details on how to use ConnectNUS.
 
 ## Navigating the User Guide
 **Notes about the command format:**
