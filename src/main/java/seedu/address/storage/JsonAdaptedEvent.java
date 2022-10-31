@@ -1,5 +1,8 @@
 package seedu.address.storage;
 
+import static seedu.address.model.event.StartTime.MESSAGE_FORMAT_CONSTRAINTS;
+import static seedu.address.model.event.StartTime.MESSAGE_VALUE_CONSTRAINTS;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,9 +18,6 @@ import seedu.address.model.event.Purpose;
 import seedu.address.model.event.StartTime;
 import seedu.address.model.event.UidList;
 import seedu.address.model.person.Uid;
-
-import static seedu.address.model.event.StartTime.MESSAGE_FORMAT_CONSTRAINTS;
-import static seedu.address.model.event.StartTime.MESSAGE_VALUE_CONSTRAINTS;
 
 /**
  * Jackson-friendly version of Event
