@@ -244,6 +244,22 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Changing themes
+
+#### Implementation
+
+Implementing this feature will require the `MainWindow` to keep track of the current theme of Survin. This is done with an enum called `Theme` which is kept in a container class called `Themes`. `Themes` also stores static String variables to represent what users should type to swap to that theme.
+
+Currently, since there are only 2 themes, there is a toggle button in GUI to toggle between the 2 themes. The method that is called when the button is pressed is called `handleLightDarkTheme()` in `MainWindow`. When called it simply checks what the current theme is and sets the theme to the other one. To keep things simple, the `theme` command also uses this `handleLightDarkTheme()` command to change the themes. A user invoking the `theme` command will result in the call of the `handeThemeCommand(Theme)` method in `MainWindow` which will only call `handleLightDarkTheme()` if the specified theme to change to is different from the current theme. This gives the expected behavior of the `theme` command using the toggling nature of `handeLightDarkTheme()`.
+
+Below is the sequence diagram that explains how the `theme` command works:
+![ThemeSequenceDiagram](images/ThemeSequenceDiagram.png)
+(Note: Details of the creation of CommandResult is similar to the Delete Command just without the update to model. You can find the sequence diagram for that command under the Logic Component section.)
+
+#### Adding more themes (In the future)
+
+The `theme` command was implemented with the addition of more themes in mind. First, add the names of the new themes in the container class `Themes` and their stylesheets in `resources/view`. Then just edit the `handleThemeCommand(Theme)` method with a simple switch case to change the stylesheet based on the specified theme. And since there is more than 2 themes, a toggle button would no longer work so you might want to replace that with a ComboBox or something similar. This also means that then `handleLightDarkTheme()` command is obsolete and can be removed.
+
 ### Compactable and expandable PersonCard
 
 This feature is accomplished by recording the current state of the `PersonCard` with a boolean variable called `isExpanded`. `isExpanded` is true if `PersonCard` is expanded and false if `PersonCard` is compacted. `isExpanded` is set to `false` by default so that the application starts with all `PersonCard` compacted.
