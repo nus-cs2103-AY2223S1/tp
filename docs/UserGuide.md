@@ -45,7 +45,7 @@ This section introduces the different components of the display and their functi
 | No. | Component             | Description                                                                                                                    |
 |-----|-----------------------|--------------------------------------------------------------------------------------------------------------------------------|
 | 1   | Toolbar               | Provides convenient access to frequently used commands.                                                                        |
-| 2   | Student List Panel    | Displays the list of students. You can [manage this display](#42-managing-display-of-student-records) to suit your needs.      |
+| 2   | Student List Panel    | Displays the list of students. You can [manage this display](#43-managing-display-of-student-records) to suit your needs.      |
 | 3   | Student Card          | Displays the information of a student. The information includes the student's Name, Id, Class, Grades, and Parent Details.     | 
 | 4   | Result Box            | Displays the system message after the execution of a command. The system message describes the outcome of the entered command. |
 | 5   | Command Box           | Type in your commands here.                                                                                                    |
@@ -235,7 +235,7 @@ Format: `find nm/STUDENT-NAME` or `find id/ID`
 
 Examples:
 * `find nm/John` returns the records for any student named `john` or any student with `john` in their name. 
-* `find nm/john alice` returns the records for the students whose names contain either `john` or `Alice` or both.
+* `find nm/john alice` returns the records for the students whose names contain either `john` or `alice` or both.
 * `find id/123A` returns the student record for the student with `123A` as their student Id.
 
 #### 4.3.2 Toggling view : `toggleView`
