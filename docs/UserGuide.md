@@ -152,7 +152,7 @@ For example,
 
     * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$1000` : Adds a client
       named `John Doe` in FinBook.
-   
+
     * **`edit`**`1 r/Low pl/NTUC Income Plan` : Edits the 1st client portfolio risk
       and plans shown in the current list.
 
@@ -175,7 +175,8 @@ For example,
 Adds a client to the FinBook.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME [m/UPCOMING_MEETING_DATES] [t/TAGS r/RISK_LEVEL]
-         [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
+[pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
+
 * `add` command will refresh the portfolio panel to display "no client selected for view yet!".
 * `m/UPCOMING_MEETING_DATES` can be in the `dd Mmm yyyy` or `dd Mmm yyyy HH:mm` format.
 
@@ -192,7 +193,7 @@ Examples:
 Edits an existing client in the FinBook.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] [m/UPCOMING_MEETING_DATES]
-        [t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
+[t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -317,7 +318,6 @@ Examples:
 * `view 2` displays the risk level and current plans purchased by the 2nd client of the Financial book data.
 * `find n/Alex` then `view 1` will display the portfolio of Alex.
 
-
 ---
 
 ## 4.2. Data privacy
@@ -333,6 +333,10 @@ Format: `lock`
 **:information_source: If a password has not been set, leave the password field empty to unlock the application**
 </div>
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The lock feature only serves to prevent unauthorized usage of FinBook. Anyone with access to your PC is still able to view and edit the `JSON` files containing your data.
+</div>
+
 ---
 
 ### 4.2.2. Setting or updating the password : `password`
@@ -344,6 +348,13 @@ Format: `password [old/OLDPASSWORD] new/NEWPASSWORD`
 * Sets or updates the password to the specified new password
 * No need to specify old password if setting the password for the first time
 * When updating the password, the specified old password must match the current password
+* Be mindful of spaces (`&nbsp;`) at the start and end of the password, as they will be trimmed
+    * Specified password: `&nbsp;`
+
+      Effective password: a zero length string
+    * Specified password: `&nbsp;foobar&nbsp;`
+
+      Effective password: `foobar`
 
 Examples:
 
@@ -397,7 +408,7 @@ save manually.
 
 ### 4.3.2. Editing the data file
 
-Financial book data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
+Financial book data are saved as a `JSON` file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
 update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -535,15 +546,16 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 
 # 6. Glossary
 
-| Term                         | Meaning                                                                                            |
-|------------------------------|----------------------------------------------------------------------------------------------------|
-| Mainstream OS                | Common computer operating systems, Windows, Linux, Unix, OS-X.                                     |
-| Command-line Interface (CLI) | A application that users interact with by typing text.                                             |
-| Command                      | A sequence specified text typed by the user to perform an action.                                  |
-| Prefix                       | A tag to specify the field of data added. Each prefix always ends with a `/`.                      |                                                                                                  
-| Parameter                    | Users input to a command.                                                                          |
-| Field                        | The data type of client. For example, Name and Income are fields of a client.                      |
-| CSV                          | A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values. |
+| Term                         | Meaning                                                                                                                                                                                                                                       |
+|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command-line Interface (CLI) | A application that users interact with by typing text.                                                                                                                                                                                        |
+| Command                      | A sequence specified text typed by the user to perform an action.                                                                                                                                                                             |
+| Prefix                       | A tag to specify the field of data added. Each prefix always ends with a `/`.                                                                                                                                                                 |                                                                                                  
+| Parameter                    | Users input to a command.                                                                                                                                                                                                                     |
+| Field                        | The data type of client. For example, Name and Income are fields of a client.                                                                                                                                                                 |
+| JSON                         | JSON (JavaScript Object Notation) is an open standard file format and data interchange format that uses human-readable text to store and transmit data objects consisting of attribute–value pairs and arrays (or other serializable values). |
+| CSV                          | A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values.                                                                                                                                            |
+| Path                         | A path is a string of characters used to uniquely identify a location in a directory structure.                                                                                                                                               |
 
 ---
 
