@@ -3,6 +3,8 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.List;
 
+//@@author {gowribhat}-reused
+//Reused from https://github.com/AY2122S2-CS2103T-W13-3/tp
 /**
  * Represents a storage for the input history of the user.
  */
@@ -62,3 +64,4 @@ public class InputHistory {
         }
     }
 }
+//@@author
