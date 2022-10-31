@@ -61,7 +61,6 @@ public class SortCommandParserUtil {
     private static final Comparator<Pet> PET_VACCINATION_STATUS_COMPARATOR = Comparator.comparing(
             Pet::getVaccinationStatus);
     private static final Comparator<Pet> PET_PRICE_COMPARATOR = Comparator.comparing(Pet::getPrice);
-    private static final Comparator<Pet> PET_TAG_COMPARATOR = Pet::compareTag;
     private static final Comparator<Pet> PET_CERTIFICATE_COMPARATOR = Pet::compareCertificate;
 
     private static Comparator<? extends Person> parseToSelectedPersonComparator(String attribute) {
@@ -248,10 +247,6 @@ public class SortCommandParserUtil {
 
         if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_PRICE_PARAMETER, attribute)) {
             return PET_PRICE_COMPARATOR;
-        }
-
-        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_TAGS_PARAMETER, attribute)) {
-            return PET_TAG_COMPARATOR;
         }
 
         if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_CERTIFICATES_PARAMETER, attribute)) {

@@ -7,8 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDeliverers.ALICE;
 import static seedu.address.testutil.TypicalDeliverers.BOB;
 
@@ -20,11 +18,6 @@ import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPersons;
 
 public class DelivererTest {
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Deliverer deliverer = new PersonBuilder().buildDeliverer();
-        assertThrows(UnsupportedOperationException.class, () -> deliverer.getTags().remove(0));
-    }
 
     @Test
     public void getOrders_noParam() {
@@ -43,7 +36,7 @@ public class DelivererTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).buildDeliverer();
+                .withAddress(VALID_ADDRESS_BOB).buildDeliverer();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -94,9 +87,6 @@ public class DelivererTest {
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).buildDeliverer();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).buildDeliverer();
-        assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test

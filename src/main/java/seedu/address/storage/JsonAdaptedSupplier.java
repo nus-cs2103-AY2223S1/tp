@@ -1,9 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -17,7 +15,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Supplier;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Supplier}.
@@ -31,7 +28,6 @@ class JsonAdaptedSupplier {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<String> ids = new ArrayList<>();
 
     /**
@@ -41,16 +37,12 @@ class JsonAdaptedSupplier {
     public JsonAdaptedSupplier(@JsonProperty("personCategory") String personCategory, @JsonProperty("name") String name,
                                @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                                @JsonProperty("address") String address,
-                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                @JsonProperty("ids") List<String> ids) {
         this.personCategory = personCategory;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
         if (ids != null) {
             this.ids.addAll(ids);
         }
@@ -65,9 +57,6 @@ class JsonAdaptedSupplier {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
         ids.addAll(source.getPetIds().stream()
                 .map(UniqueId::getIdToString)
                 .collect(Collectors.toList()));
@@ -79,13 +68,13 @@ class JsonAdaptedSupplier {
      * @throws IllegalValueException if there were any data constraints violated in the adapted Supplier.
      */
     public Supplier toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
-        }
 
         final ArrayList<UniqueId> modelIds = new ArrayList<>();
         for (String id : ids) {
+            if (id == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        UniqueId.class.getSimpleName()));
+            }
             modelIds.add(new UniqueId(id));
         }
 
@@ -129,8 +118,6 @@ class JsonAdaptedSupplier {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-
-        return new Supplier(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelTags, modelIds);
+        return new Supplier(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelIds);
     }
 }

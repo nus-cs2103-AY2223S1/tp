@@ -25,7 +25,6 @@ import seedu.address.model.pet.PetName;
 import seedu.address.model.pet.Species;
 import seedu.address.model.pet.VaccinationStatus;
 import seedu.address.model.pet.Weight;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Pet}.
@@ -43,7 +42,6 @@ public class JsonAdaptedPet {
     private final Double height;
     private final boolean vaccinationStatus;
     private final Double price;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<String> certificates = new ArrayList<>();
     private final String uniqueId;
 
@@ -61,7 +59,6 @@ public class JsonAdaptedPet {
                           @JsonProperty("height") Double height,
                           @JsonProperty("vaccinationStatus") boolean vaccinationStatus,
                           @JsonProperty("price") Double price,
-                          @JsonProperty("tags") List<JsonAdaptedTag> tagged,
                           @JsonProperty("certificates") List<String> certificates,
                           @JsonProperty("uniqueId") String uniqueId) {
         this.name = name;
@@ -74,9 +71,6 @@ public class JsonAdaptedPet {
         this.height = height;
         this.vaccinationStatus = vaccinationStatus;
         this.price = price;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
         if (certificates != null) {
             this.certificates.addAll(certificates);
         }
@@ -97,9 +91,6 @@ public class JsonAdaptedPet {
         height = source.getHeight().getValue();
         vaccinationStatus = source.getVaccinationStatus().getVaccinationStatus();
         price = source.getPrice().getPrice();
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
         certificates.addAll(source.getCertificates().stream()
                 .map(PetCertificate::toString).collect(Collectors.toList()));
         uniqueId = source.getId().getIdToString();
@@ -111,11 +102,6 @@ public class JsonAdaptedPet {
      * @throws IllegalValueException if there were any data constraints violated in the adapted pet.
      */
     public Pet toModelType() throws IllegalValueException {
-        final List<Tag> petTags = new ArrayList<>();
-
-        for (JsonAdaptedTag tag : tagged) {
-            petTags.add(tag.toModelType());
-        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -165,13 +151,6 @@ public class JsonAdaptedPet {
 
         final VaccinationStatus modelVax = new VaccinationStatus(vaccinationStatus);
         final Price modelPrice = new Price(price);
-        final Set<Tag> modelTags = new HashSet<>();
-        if (tagged == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
-        }
-        for (JsonAdaptedTag jsonTag : tagged) {
-            modelTags.add(jsonTag.toModelType());
-        }
 
         final Set<PetCertificate> modelCerts = new HashSet<>();
         if (certificates == null) {
@@ -192,6 +171,6 @@ public class JsonAdaptedPet {
         }
 
         return new Pet(modelUniqueId, modelName, modelSupplier, modelColor, modelColorPattern, modelDateOfBirth,
-                modelSpecies, modelWeight, modelHeight, modelVax, modelPrice, modelTags, modelCerts);
+                modelSpecies, modelWeight, modelHeight, modelVax, modelPrice, modelCerts);
     }
 }

@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.order.Order;
@@ -11,8 +10,6 @@ import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Deliverer objects.
@@ -31,7 +28,6 @@ public class DelivererBuilder {
     private Email email;
     private Address address;
     private Location location;
-    private Set<Tag> tags;
     private Set<Order> orders;
 
     /**
@@ -43,7 +39,6 @@ public class DelivererBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
     }
 
     /**
@@ -55,7 +50,6 @@ public class DelivererBuilder {
         phone = delivererToCopy.getPhone();
         email = delivererToCopy.getEmail();
         address = delivererToCopy.getAddress();
-        tags = new HashSet<>(delivererToCopy.getTags());
     }
 
     /**
@@ -71,14 +65,6 @@ public class DelivererBuilder {
      */
     public DelivererBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Deliverer} that we are building.
-     */
-    public DelivererBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -115,7 +101,7 @@ public class DelivererBuilder {
     }
 
     public Deliverer build() {
-        return new Deliverer(name, phone, email, address, tags, null);
+        return new Deliverer(name, phone, email, address, null);
     }
 }
 

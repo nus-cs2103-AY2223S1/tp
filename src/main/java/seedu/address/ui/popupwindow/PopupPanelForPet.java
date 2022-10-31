@@ -20,7 +20,6 @@ import seedu.address.model.pet.PetName;
 import seedu.address.model.pet.Species;
 import seedu.address.model.pet.VaccinationStatus;
 import seedu.address.model.pet.Weight;
-import seedu.address.model.tag.Tag;
 
 /**
  * A panel for entering pet information, which can be part of the {@code PopupPanelForSupplier}.
@@ -88,10 +87,9 @@ public class PopupPanelForPet extends PopUpPanel {
         Price price = ParserUtil.parsePrice(priceField.getText());
         // TODO: update these dummy initialisation
         VaccinationStatus vaccinationStatus = new VaccinationStatus(false);
-        Set<Tag> tags = new HashSet<>();
         Set<PetCertificate> certificates = new HashSet<>();
         return new Pet(name, supplier, color, colorPattern, dateOfBirth, species,
-                weight, height, vaccinationStatus, price, tags, certificates);
+                weight, height, vaccinationStatus, price, certificates);
     }
 
     @Override

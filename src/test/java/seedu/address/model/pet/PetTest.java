@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Price;
-import seedu.address.model.tag.Tag;
 //import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPets;
 
@@ -30,17 +29,16 @@ public class PetTest {
         Species species = new Species("cat");
         Weight weight = new Weight(5);
         Height height = new Height(100);
-        Set<Tag> tags = new HashSet<>(Arrays.asList(new Tag("cat")));
         Set<PetCertificate> certs = new HashSet<>(Arrays.asList(new PetCertificate("AVA")));
 
         assertThrows(IllegalValueException.class, () -> new Pet(name, color, colorPattern, dob, species, weight,
-                height, new Price(66.6), tags, certs));
+                height, new Price(66.6), certs));
     }
 
     @Test
     public void toStringTest() {
         String expected = "Doja; Species: cat; Date of birth: 2022-10-10; Weight: 10.05 kg; Height: 50.0 cm; "
-                + "Color: white; Color pattern: none; Vaccination status: Vaccinated; Tags:  [ cat ] ";
+                + "Color: white; Color pattern: none; Vaccination status: Vaccinated";
         assertEquals(expected, TypicalPets.DOJA.toString());
     }
 
@@ -59,14 +57,13 @@ public class PetTest {
         Price price = new Price(66.66);
         Weight weight = new Weight(5);
         Height height = new Height(100);
-        Set<Tag> tags = new HashSet<>(Arrays.asList(new Tag("cat")));
         Set<PetCertificate> certs = new HashSet<>(Arrays.asList(new PetCertificate("AVA")));
 
         try {
             Pet pet1 = new Pet(name, color, colorPattern, dob, species, weight, height, price,
-                    tags, certs);
+                    certs);
             Pet pet2 = new Pet(name, color, colorPattern, dob, species, weight, height, price,
-                    tags, certs);
+                    certs);
             assertNotEquals(pet1, pet2);
         } catch (IllegalValueException e) {
             assert false;

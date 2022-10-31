@@ -3,7 +3,6 @@ package seedu.address.logic.commands.editcommands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -17,7 +16,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing buyer.
@@ -64,11 +62,9 @@ public class EditBuyerCommand extends EditCommand {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(buyerToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(buyerToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(buyerToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(buyerToEdit.getTags());
         List<UniqueId> updateOrders = buyerToEdit.getOrderIds();
 
-        return new Buyer(updatedPersonCategory, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                updateOrders);
+        return new Buyer(updatedPersonCategory, updatedName, updatedPhone, updatedEmail, updatedAddress, updateOrders);
     }
 
 }

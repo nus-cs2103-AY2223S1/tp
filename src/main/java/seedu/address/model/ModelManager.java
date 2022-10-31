@@ -157,26 +157,31 @@ public class ModelManager implements Model {
     @Override
     public void deleteBuyer(Buyer target) {
         addressBook.removeBuyer(target);
+        collect();
     }
 
     @Override
     public void deleteSupplier(Supplier target) {
         addressBook.removeSupplier(target);
+        collect();
     }
 
     @Override
     public void deleteDeliverer(Deliverer target) {
         addressBook.removeDeliverer(target);
+        collect();
     }
 
     @Override
     public void deletePet(Pet target) {
         addressBook.removePet(target);
+        collect();
     }
 
     @Override
     public void deleteOrder(Order target) {
         addressBook.removeOrder(target);
+        collect();
     }
 
     @Override
@@ -214,6 +219,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedBuyer);
 
         addressBook.setBuyer(target, editedBuyer);
+        collect();
     }
 
     @Override
@@ -221,6 +227,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedSupplier);
 
         addressBook.setSupplier(target, editedSupplier);
+        collect();
     }
 
     @Override
@@ -228,6 +235,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedDeliverer);
 
         addressBook.setDeliverer(target, editedDeliverer);
+        collect();
     }
 
     @Override
@@ -235,6 +243,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPet);
 
         addressBook.setPet(target, editedPet);
+        collect();
     }
 
     @Override
@@ -242,36 +251,42 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedOrder);
 
         addressBook.setOrder(target, editedOrder);
+        collect();
     }
 
     @Override
     public void sortBuyer(Comparator<Buyer> comparator) {
         requireNonNull(comparator);
         addressBook.sortBuyer(comparator);
+        collect();
     }
 
     @Override
     public void sortSupplier(Comparator<Supplier> comparator) {
         requireNonNull(comparator);
         addressBook.sortSupplier(comparator);
+        collect();
     }
 
     @Override
     public void sortDeliverer(Comparator<Deliverer> comparator) {
         requireNonNull(comparator);
         addressBook.sortDeliverer(comparator);
+        collect();
     }
 
     @Override
     public void sortOrder(Comparator<Order> comparator) {
         requireNonNull(comparator);
         addressBook.sortOrder(comparator);
+        collect();
     }
 
     @Override
     public void sortPet(Comparator<Pet> comparator) {
         requireNonNull(comparator);
         addressBook.sortPet(comparator);
+        collect();
     }
 
     //=========== Filtered Person List Accessors =============================================================

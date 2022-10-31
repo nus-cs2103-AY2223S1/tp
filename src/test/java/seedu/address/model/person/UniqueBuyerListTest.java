@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalBuyers.ALICE;
 import static seedu.address.testutil.TypicalBuyers.BENSON;
@@ -41,8 +40,7 @@ public class UniqueBuyerListTest {
     @Test
     public void contains_buyerWithSameIdentityFieldsInList_returnsTrue() {
         uniqueBuyerList.add(ALICE);
-        Buyer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .buildBuyer();
+        Buyer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).buildBuyer();
         assertTrue(uniqueBuyerList.contains(editedAlice));
     }
 
@@ -84,8 +82,7 @@ public class UniqueBuyerListTest {
     @Test
     public void setBuyer_editedPersonHasSameIdentity_success() {
         uniqueBuyerList.add(ALICE);
-        Buyer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .buildBuyer();
+        Buyer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).buildBuyer();
         uniqueBuyerList.setPerson(ALICE, editedAlice);
         UniqueBuyerList expectedUniqueBuyerList = new UniqueBuyerList();
         expectedUniqueBuyerList.add(editedAlice);

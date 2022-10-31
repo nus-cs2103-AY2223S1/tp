@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_HEIGHT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_VACCINATION_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_WEIGHT;
 
@@ -43,7 +42,6 @@ public class AddPetCommand extends Command {
                     + PREFIX_PET_WEIGHT + "WEIGHT "
                     + PREFIX_PET_PRICE + "PRICE"
                     + "[" + PREFIX_PET_CERTIFICATE + "CERTIFICATE]...\n"
-                    + "[" + PREFIX_PET_TAG + "TAG]...\n"
 
                     + "Example: " + COMMAND_WORD + " ";
 
@@ -57,9 +55,7 @@ public class AddPetCommand extends Command {
             + PREFIX_PET_WEIGHT + "15.3 "
             + PREFIX_PET_PRICE + "20"
             + PREFIX_PET_CERTIFICATE + "Good-Dog Cert. "
-            + PREFIX_PET_CERTIFICATE + "Royal Blood Cert. "
-            + PREFIX_PET_TAG + "naughty "
-            + PREFIX_PET_TAG + "sold\n";
+            + PREFIX_PET_CERTIFICATE + "Royal Blood Cert. ";
 
     public static final String MESSAGE_USAGE_EXISTING_SUPPLIER = COMMAND_WORD
             + ": Adds a new pet to an existing supplier. "
