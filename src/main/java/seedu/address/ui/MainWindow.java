@@ -189,14 +189,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void show() {
-        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 
         primaryStage.initStyle(StageStyle.DECORATED);
-        primaryStage.setX(bounds.getMinX());
-        primaryStage.setY(bounds.getMinY());
-        primaryStage.setWidth(bounds.getWidth());
-        primaryStage.setHeight(bounds.getHeight());
-        primaryStage.setMaxWidth(bounds.getWidth() * 2);
+        primaryStage.setWidth(screenBounds.getWidth());
+        primaryStage.setHeight(screenBounds.getHeight());
+        primaryStage.setX(screenBounds.getMinX());
+        primaryStage.setY(screenBounds.getMinY());
+        primaryStage.setMaxWidth(screenBounds.getWidth() * 2);
         primaryStage.show();
     }
 
