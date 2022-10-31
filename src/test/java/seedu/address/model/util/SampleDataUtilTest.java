@@ -1,11 +1,11 @@
 package seedu.address.model.util;
 
-import java.time.format.DateTimeFormatter;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
