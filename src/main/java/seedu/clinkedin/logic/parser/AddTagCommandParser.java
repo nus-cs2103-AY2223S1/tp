@@ -29,13 +29,13 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
                 .getAllValues(pref).size() > 0);
         if (!foundAny) {
             StringBuilder message = new StringBuilder();
-            message.append("No valid tag type found! Tag types must be one of the following:\n")
+            message.append("No valid tag type prefix found! Prefixes must be amongst the following:\n")
                     .append("\tTagType - Prefix\n");
             for (Prefix p : UniqueTagTypeMap.getPrefixMap().keySet()) {
                 message.append(String.format("\t%s - %s\n", UniqueTagTypeMap.getPrefixMap().get(p)
                                 .toString(), p.toString()));
             }
-            throw new ParseException(message.toString());
+            throw new ParseException(message);
         }
 
         Index index;
