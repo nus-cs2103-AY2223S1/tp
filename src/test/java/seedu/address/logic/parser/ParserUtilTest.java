@@ -118,25 +118,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStudentId(null));
     }
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_STUDENTID));
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudentId(INVALID_STUDENTID));
     }
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
         StudentId expectedStudentId = new StudentId(VALID_STUDENTID);
-        assertEquals(expectedStudentId, ParserUtil.parseAddress(VALID_STUDENTID));
+        assertEquals(expectedStudentId, ParserUtil.parseStudentId(VALID_STUDENTID));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_STUDENTID + WHITESPACE;
         StudentId expectedStudentId = new StudentId(VALID_STUDENTID);
-        assertEquals(expectedStudentId, ParserUtil.parseAddress(addressWithWhitespace));
+        assertEquals(expectedStudentId, ParserUtil.parseStudentId(addressWithWhitespace));
     }
 
     @Test
