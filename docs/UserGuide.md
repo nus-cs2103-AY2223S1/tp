@@ -9,25 +9,26 @@ title: User Guide
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-## 1. What is WorkBook?
+## 1. Introduction to WorkBook
 
-WorkBook is an internship application tracker that helps Computing students **prepare sufficiently** for their upcoming interviews to **secure** that internship. 
+WorkBook is an internship application tracker that helps Computing students **prepare sufficiently** for their upcoming interviews to **secure** that internship.
+It is optimized for fast typists and replicates a Command Line Interface (CLI) style.
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Get started
 
-1. Ensure you have Java `11` or above installed on your Computer.
+1. Ensure you have [Java 11 or above](https://www.oracle.com/sg/java/technologies/downloads/#java11) installed on your Computer.
 
 2. Download the latest `WorkBook.v1.3.1.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-3/tp/releases/tag/v1.3.1).
 
 3. Copy the file to a folder of your choice to store data from your WorkBook.
 
-4. Using your terminal, navigate to the folder where you placed your `jar` file and start WorkBook by inputting: `java -jar WorkBook.v1.3.1.jar` in your terminal. <br> The GUI with sample data as shown below should appear in a few seconds.<br>
+4. Using your command terminal, navigate to the folder where you placed your WorkBook at and fire it up by inputting: `java -jar WorkBook.v1.3.1.jar` in your terminal. <br> The GUI with sample data as shown below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
-5. Tell WorkBook what you want by typing the command in `Enter command here...` at the top of the application. <br>
+5. Tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application. <br>
    Some example commands you can try:
 
    * `add c/Meta d/18-Oct-2022 12:00 e/hrmonkey@example.com r/Frontend` : Adds an internship application from `Meta` to the WorkBook.
@@ -38,7 +39,7 @@ WorkBook is an internship application tracker that helps Computing students **pr
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [things to note](#3-things-to-note) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -60,7 +61,7 @@ WorkBook is an internship application tracker that helps Computing students **pr
 * Parameters can be in any order.<br>
   e.g. if the command specifies `c/COMPANY s/STAGE`, `s/STAGE c/COMPANY` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `r/Frontend r/Backend`, only `r/Backend` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -70,24 +71,25 @@ WorkBook is an internship application tracker that helps Computing students **pr
 
 ## 4. What you can do
 
-| Action     | Format, Examples                                                                                                                                                                                     |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action     | Command format <br> e.g. `Example command`                                                                                                                                                            |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add c/COMPANY r/ROLE s/STAGE [d/DATE] [e/COMPANY_EMAIL] [l/LANGUAGE TAG]… [t/TAG]…​` <br> e.g., `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Javascript` |
-| **Edit**   | `edit INDEX [c/COMPANY] [d/DATE] [e/COMPANY_EMAIL] [r/ROLE] [l/LANGUAGE TAG]… [t/TAG]…​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                                |
-| **Find**   | `find c/COMPANY | r/ROLE | s/STAGE​​`<br> e.g.,`find c/Meta` 
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                  |
-| **List**   | `list`                                                                                |
-| **Undo** | `undo`                                                                                                                                                                  |
-| **Redo** | `redo`                                                                                                                                                                  |
-| **Clear**  | `clear`                                                                                                                                                                                              |
-| **Help**   | `help`                                                                                                                                                                                               |
-| **Exit**   | `exit`                                                                                                                                                                                               |
+| **Edit**   | `edit INDEX [c/COMPANY] [d/DATE] [e/COMPANY_EMAIL] [r/ROLE] [l/LANGUAGE TAG]… [t/TAG]…​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                      |
+| **Find**   | `find c/COMPANY`                                                                                                                                                                                      | r/ROLE | s/STAGE​​`<br> e.g.,`find c/Meta` 
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                   |
+| **List**   | `list`                                                                                                                                                                                                |
+| **Undo**   | `undo`                                                                                                                                                                                                |
+| **Redo**   | `redo`                                                                                                                                                                                                |
+| **Clear**  | `clear`                                                                                                                                                                                               |
+| **Help**   | `help`                                                                                                                                                                                                |
+| **Exit**   | `exit`                                                                                                                                                                                                |
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
 
 * Commands without examples are considered trivial and can be executed by inputting the command without additional parameters.
+* Commands are **case-sensitive**!
 
 </div>
 
@@ -283,11 +285,15 @@ You are free to update any internship application directly by editing that JSON 
 If your changes to the data file makes its format invalid, WorkBook will discard all data and start with an empty data file at the next run.
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 6. Frequently asked questions
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous WorkBook home folder.
+**A**: [Install](#2-get-started) the app in the other computer, copy and override the JSON file in the new `data` subfolder, and you are done!
+
+**Q**: How do I change the theme of WorkBook?<br>
+**A**: It is not possible as of now, but will be coming soon!
 
 --------------------------------------------------------------------------------------------------------------------
 
