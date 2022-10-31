@@ -102,7 +102,7 @@ These are the components of TaskBook, arranged according to their locations as s
 
     * `task list` : Lists all tasks, including ones hidden by a previous command.
 
-    * `task todo m/John Doe d/Finish user guide` : Adds a todo with the description `Finish user guide` to the task list.
+    * `task todo m/Bernice Yu d/Create a Todo` : Adds a todo with the description `Create a Todo` to the task list.
 
     * `task delete i/3` : Deletes the 3rd task currently shown in the displayed task list.
 
