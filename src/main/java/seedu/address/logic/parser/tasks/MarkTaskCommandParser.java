@@ -8,7 +8,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-//@@author connlim
+// @@author connlim
 /**
  * Parses input arguments and creates a new MarkTaskCommand object
  */
@@ -16,16 +16,11 @@ public class MarkTaskCommandParser implements Parser<MarkTaskCommand> {
 
     @Override
     public MarkTaskCommand parse(String args) throws ParseException {
-        try {
-            if (args.trim().equals("")) {
-                return new MarkTaskCommand(null);
-            } else {
-                Index index = ParserUtil.parseIndex(args);
-                return new MarkTaskCommand(index);
-            }
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTaskCommand.MESSAGE_USAGE), pe);
+        if (args.trim().equals("")) {
+            return new MarkTaskCommand(null);
+        } else {
+            Index index = ParserUtil.parseIndex(args);
+            return new MarkTaskCommand(index);
         }
     }
 

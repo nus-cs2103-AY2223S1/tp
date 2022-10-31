@@ -3,9 +3,6 @@ package seedu.address.logic.commands.teams;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.List;
-
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -44,13 +41,7 @@ public class DeleteTeamCommand extends TeamCommand {
         }
 
         if (toDelete == null) {
-            List<Group> lastShownList = model.getFilteredTeamList();
-
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
-
-            toDelete = lastShownList.get(targetIndex.getZeroBased());
+            toDelete = model.getFromFilteredTeams(targetIndex);
         }
 
         model.deleteTeam(toDelete);

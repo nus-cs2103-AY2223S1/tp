@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.fields;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,7 +16,6 @@ import seedu.address.model.item.DisplayItem;
 public abstract class FieldCommand extends Command {
 
     public static final String COMMAND_WORD = "field";
-    private static final String INDEX_OUT_OF_BOUND = "The chosen index is out of range for %s list!";
     private static final Pattern PATTERN = Pattern.compile("(?<type>[gtl])/(?<id>[0-9]+)\\s+(?<rest>.*)");
     protected DisplayItem sItem = null;
 
@@ -44,6 +42,7 @@ public abstract class FieldCommand extends Command {
 
     protected DisplayItem selectFromRightModel(Model model, String type, Index targetIndex)
             throws ParseException, CommandException {
+
         switch (type) {
         case "g":
             return model.getFromFilteredTeams(targetIndex);
