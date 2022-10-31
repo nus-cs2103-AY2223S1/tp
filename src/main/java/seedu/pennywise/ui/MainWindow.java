@@ -141,7 +141,7 @@ public class MainWindow extends UiPart<Stage> {
                     expenditureGraphConfig);
             this.updateGraph(expenditureCommandResult);
         });
-        entryPane.getIncome().setOnSelectionChanged((EventHandler<Event>) t -> {
+        entryPane.getIncome().setOnSelectionChanged((EventHandler<Event>) evt -> {
             GraphConfiguration incomeGraphConfig = new GraphConfiguration(
                     new EntryType(EntryType.ENTRY_TYPE_INCOME),
                     this.currGraphPanel.getGraphType(),
