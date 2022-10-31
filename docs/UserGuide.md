@@ -142,11 +142,11 @@ Example:
 
 Adds the number of messages a specified student sent during tutorial.
 
-Format: `addresponse INDEX m\MESSAGE_COUNT`
+Format: `addresponse INDEX m/MESSAGE_COUNT`
 
 Example:
 
-* `addresponse 1 m\7`
+* `addresponse 1 m/7`
 
 ### Adding help tag: `helpstu`
 
