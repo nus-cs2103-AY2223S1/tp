@@ -262,14 +262,22 @@ Examples:
 Tag a student with one or more text labels. The tag should be short (i.e. no spaces) and limited to only alphabets
 and/or numbers.
 
-<div markdown="block" class="alert alert-info">
-  **:information_source: Note:** The tagging command is cumulative, that is, new tags are simply added to the student and
-  do not replace their previous tags. To remove tags from a student, see below [untag](https://ay2223s1-cs2103t-w13-1.github.io/tp/UserGuide.html#remove-tag-from-student-untag) <br>
+<  markdown="block" class="alert alert-info">
+
 </div>
 
 <div markdown="block" class="alert alert-info">
-  **:information_source: Note:** The tags are case-sensisitve. For example, `goodStudent` and `GoodStudent` will
+   
+  **:information_source: Note** The tagging command is cumulative, that is, new tags are simply added to the student and
+  do not replace their previous tags. To remove tags from a student, see below [untag](https://ay2223s1-cs2103t-w13-1.github.io/tp/UserGuide.html#remove-tag-from-student-untag) <br>
+   
+</div>
+
+<div markdown="block" class="alert alert-info">
+   
+  **:information_source: Note** The tags are case-sensisitve. For example, `goodStudent` and `GoodStudent` will
   be recognised as different labels. <br>
+
 </div>
 
 Format: `tag INDEX/ALL t/TAG [t/OTHER]`
@@ -277,6 +285,7 @@ Format: `tag INDEX/ALL t/TAG [t/OTHER]`
 - `INDEX` could be specified or use `ALL` to add the new tags to everyone in the list
 - `TAG` the label for the student to be added. There should be at least one new label to be added when you use this command
 - `OTHER` optional tags that you might also want to add to your students
+
 
 Examples:
 
@@ -287,11 +296,13 @@ Examples:
 
 Remove the specified tag(s) from the student(s).
 
+
 Format: `untag INDEX/ALL t/TAG [t/OTHER]`
 
 - `INDEX` could be specified or use `ALL` to record participation component for all students in the list
 - `TAG` the label for the student to be removed.There should be at least  one label to be removed when you use this command
 - `OTHER` optional tags that you might also want to remove from your student(s)
+
 
 Examples:
 
