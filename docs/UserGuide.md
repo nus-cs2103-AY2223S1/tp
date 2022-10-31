@@ -84,7 +84,7 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/18-08-2000`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/01-01-1999`
 
 ### Listing all persons : `list`
 
@@ -196,6 +196,8 @@ Prefixes:
 * "li" - life insurance
 
 Format: `insurance INDEX [hi/] [di/] [ci/] [li/]` (Number of insurance prefixes can range from 0-4)
+
+For prefixes not included in the command, the `Person` object is taken to not have the corresponding types of insurance.
 
 Examples:
 * `insurance 1 hi/ ci/` sets the 1st person to have health insurance and critical illness insurance.
