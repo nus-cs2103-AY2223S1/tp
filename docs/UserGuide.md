@@ -4,33 +4,32 @@ title: User Guide
 ---
 
 Are you a CS student struggling to keep track of your internship applications?
-Do you feel tired of using spreadsheets? We have just the right tool for you!
+Do you feel tired of using spreadsheets? We have just the right tool.
 
 Introducing PleaseHireUs (PHU), the internship tracking application made just for you!<br>
 
 ![Ui](images/icon.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
 
-Now you will never miss any application deadlines or internship interviews again!
+Now you will never miss any application deadlines or internship interviews again.
 PleaseHireUs has been optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PleaseHireUs can get your internship management tasks done faster than traditional GUI apps.
-We hope you find PleaseHireUs to be very useful in your internship hunt!
+We hope you find PleaseHireUs to be very useful in your internship hunt.
 
 <div style="page-break-after: always;"></div>
 
+## Table of Content
 * Table of Contents
 {:toc}
 <div style="page-break-after: always;"></div>
-
 
 ## About this User Guide
 
 This guides aims to: <br>
 
 1. Teach first-time users how to start using PleaseHireUs
-2. Show and explain to users how to use each command
-3. Provide users with a summary of the commands available
+2. Show and explain to users how to use the features available
+3. Provide users with a summary of the features available
 4. Provide advance users with tips to improve their experience
-
 
 ## Navigating the User Guide 
 **Information Box**
@@ -49,7 +48,7 @@ This guides aims to: <br>
 </div>
 
 **Highlights** <br>
-[`commands`](#glossary) or [`PARAMETERS`](#glossary) that users can type
+[`commands`](#glossary) or [`PARAMETERS`](#glossary) are inputs by users
 
 **Keyboard Inputs**<br>
 
@@ -68,7 +67,7 @@ This guides aims to: <br>
 4. Double-click the file to start the app. A [GUI](#glossary) similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press <button>enter</button> to execute it. e.g. typing **`help`** and pressing <button>enter</button> will open the help window.<br>
+5. Type the command in the [command box](#navigating-the-gui) and press <button>enter</button> to execute it. e.g. typing **`help`** and pressing <button>enter</button> will open the help window.<br>
 
 6. Some example commands you can try. You may refer to [this](#features) for more commands.
 
@@ -161,21 +160,21 @@ The reminder footer displays the number of interviews, assessments or pending of
 <div style="page-break-after: always;"></div>
 
 ## Parameters Requirement
-Here are the parameter requirements of commonly used parameters in the commands in the [Features](#features) section below.
+Here are the [parameter](#glossary) requirements of commonly used parameters in the [commands](#glossary) in the [**Features**](#features) section below.
 
-| Parameter                 | Description                                                                            | Requirement / Remarks                                                                                                                                                                                                                            |
-|---------------------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`COMPANY_NAME`**        | Name of company you are applying to                                                    | Alphanumeric and may contain spaces                                                                                                                                                                                                              |
-| **`POSITION`**            | Position of the internship you are applying for                                        | Alphanumeric and may contain spaces                                                                                                                                                                                                              |
-| **`APPLICATION_PROCESS`** | Current process of the internship you are applying for                                 | Can only be: `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED`                                                                                                                                                               |
-| **`DATE`**                | Date of upcoming application task                                                      | In **dd-mm-yyyy** format                                                                                                                                                                                                                         |
-| **`PHONE`**               | Contact number of HR                                                                   | In **[+COUNTRY_CODE] PHONE_NUMBER** format <br><br> - COUNTRY_CODE is optional <br> - COUNTRY_CODE must be 1 to 3 digits long <br> - PHONE_NUMBER must be 3 to 15 digits long <br> - Space in between COUNTRY_CODE and PHONE_NUMBER is optional  |
-| **`EMAIL`**               | Email address of HR                                                                    | Contains a `@` and `.com` symbol <br> Example: `example@example.com`                                                                                                                                                                             |
-| **`WEBSITE`**             | Website of company                                                                     | Start with `http://` or `https://`                                                                                                                                                                                                               |
-| **`REMARK`**              | Additional remarks to take note of                                                     |                                                                                                                                                                                                                                                  |
-| **`TAG`**                 | Additional tags to identify applications                                               | Must be alphanumeric and may **not** contain spaces <br> Maximum length of 20 characters                                                                                                                                                         |
-| **`CATEGORY`**            | Refers to the parameters above                                                         | Used in [`list`](#listing-all-internships--list) [`find`](#locating-internships-by-find) command. <br>Refer to respective commands for individual requirements.                                                                                  |
-| **`INDEX`**               | The index number of internship shown in displayed internship list under the Main Panel | Must be a **positive integer** eg.(1,2,3,...) <br>Used in [`delete`](#deleting-internships--delete) [`edit`](#listing-all-internships--list) [`view`](#view-details-of-an-internship-view) [`copy`](#copy-details-of-internship--copy)           |
+| Parameter                 | Description                                                                            | Requirement / Remarks                                                                                                                                                                                                                           |
+|---------------------------|----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`COMPANY_NAME`**        | Name of company you are applying to                                                    | [Alphanumeric](#glossary) and may contain spaces                                                                                                                                                                                                |
+| **`POSITION`**            | Position of the internship you are applying for                                        | [Alphanumeric](#glossary) and may contain spaces                                                                                                                                                                                                |
+| **`APPLICATION_PROCESS`** | Current process of the internship you are applying for                                 | Can only be: `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED`                                                                                                                                                              |
+| **`DATE`**                | Date of upcoming application task                                                      | In **dd-mm-yyyy** format                                                                                                                                                                                                                        |
+| **`PHONE`**               | Contact number of HR                                                                   | In **[+COUNTRY_CODE] PHONE_NUMBER** format <br><br> - COUNTRY_CODE is optional <br> - COUNTRY_CODE must be 1 to 3 digits long <br> - PHONE_NUMBER must be 3 to 15 digits long <br> - Space in between COUNTRY_CODE and PHONE_NUMBER is optional |
+| **`EMAIL`**               | Email address of HR                                                                    | Contains a `@` and `.com` symbol <br> Example: `example@example.com`                                                                                                                                                                            |
+| **`WEBSITE`**             | Website of company                                                                     | Start with `http://` or `https://`                                                                                                                                                                                                              |
+| **`REMARK`**              | Additional remarks to take note of                                                     |                                                                                                                                                                                                                                                 |
+| **`TAG`**                 | Additional tags to identify applications                                               | Must be [alphanumeric](#glossary) and may **not** contain spaces <br> Maximum length of 20 characters                                                                                                                                           |
+| **`CATEGORY`**            | Refers to the parameters above                                                         | Used in [`list`](#listing-all-internships--list) [`find`](#locating-internships-by-find) command. <br>Refer to respective commands for individual requirements.                                                                                 |
+| **`INDEX`**               | The index number of internship shown in displayed internship list under the Main Panel | Must be a **positive integer** eg.(1,2,3,...) <br>Used in [`delete`](#deleting-internships--delete) [`edit`](#listing-all-internships--list) [`view`](#view-details-of-an-internship-view) [`copy`](#copy-details-of-internship--copy)          |
 
 <div style="page-break-after: always;"></div>
 
@@ -190,7 +189,7 @@ Internships are uniquely identified by `COMPANY_NAME` and `POSITION`. You cannot
 
 ### Adding an internship: `add`
 
-Adds an internship into the list.
+Applied for an internship role at your dream company? Add your internship application into the list.
 
 Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​`
 
@@ -222,7 +221,8 @@ _After executing command: `add n/Gojek p/Mobile Intern`_
 
 ### Listing all internships : `list`
 
-Shows a list of all internships. List of internships can be sorted by category in ascending or descending order.
+Want to see all the internships you have applied to? List of all internship applications. <br>
+You may view your list of internships sorted by category in ascending or descending order.
 
 Format: `list [c/CATEGORY [DESCENDING]]`
 
@@ -231,9 +231,8 @@ Format: `list [c/CATEGORY [DESCENDING]]`
 * The `CATEGORY` is optional. By default, without stating the category, `list` will display all internships in no particular order
   * Possible options for `CATEGORY` : `company_name`, `position`, `application_process`, `date` (case-insensitive)
   * Case-insensitive: `company_name`, `Company_Name` are all acceptable inputs.
-* The `DESCENDING` parameter is optional. It can take on the value `true` or `false` (case-insensitive). 
-  * The `DESCENDING` parameter is set to `false` by default if not stated. List of internships will be shown in ascending order.
-  * The `DESCENDING` parameter can only be set to `true` if the `CATEGORY` is stated
+* The `DESCENDING` parameter is optional. It can take on the value `true` or `false` (case-insensitive).
+  * The `DESCENDING` parameter can only be declared if the `CATEGORY` is stated
   * If `DESCENDING` is set to `true`. List of internships will be displayed in descending order
 
 Examples:
@@ -243,7 +242,7 @@ Examples:
 <div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Info:** `DESCENDING` parameter will always default to `false` if the input is misspelt
+**:information_source: Info:** If the `DESCENDING` parameter is empty or is spelt incorrectly, it will be set to `false`
 </div>
 
 <div markdown="block" class="alert alert-success">
@@ -263,7 +262,7 @@ Examples:
 
 ### Locating internships by: `find`
 
-Find internships whose data in the target category matches the given keyword/s.
+Looking for some internship applications? Find internships whose data in the target category matches the given keyword/s.
 
 Format: `find [c/CATEGORY] KEYWORDS…`
 
@@ -272,7 +271,7 @@ Format: `find [c/CATEGORY] KEYWORDS…`
 * Possible options for `CATEGORY` : `company_name`, `position`, `application_process`, `date`, `tag` (case-insensitive)
 * If not specified, the `CATEGORY` parameter will be set to `company_name` as the default category.
 * Only the target category is searched.
-* A `KEYWORD` will match any string if the `KEYWORD` is contained in that string e.g. `Han` will match both `Reyhan` and `Handy`
+* A `KEYWORD` will match any word if the `KEYWORD` is contained in that word e.g. `Han` will match both `Reyhan` and `Handy`
 * Internships whose target category matches at least one keyword will be returned (i.e. OR search). e.g. `c/company_name Hans Bo` can return internships with company name of `Hans Gruber` or `Bo Yang`
 * To find an internship using the date category, all `KEYWORD` must be a valid date in `dd-mm-yyyy` format
 
@@ -299,7 +298,8 @@ Examples:
 <div style="page-break-after: always;"></div>
 
 ### Editing internship : `edit`
-Edit details of an internship
+
+Need to update your application status or change your assessment date? Edit the details of your internship application.
 
 Format: `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK] [t/TAG]…​`
 
@@ -312,7 +312,7 @@ Format: `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/DA
 
 ### View details of an internship: `view`
 
-View details of list item at index
+Need to contact the HR? View more details of internship application.
 
 Format: `view INDEX`
 
@@ -332,7 +332,7 @@ _After executing command: `view 1`_
 
 ### Copy details of internship : `copy`
 
-Copies all details of internship at index into clipboard
+Your friend is asking for one of your internship application details? Copy all details of internship into your system's [clipboard](#glossary).
 
 Format: `copy INDEX`
 
@@ -355,13 +355,13 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the internship tracker.
+Ready for a new internship season? Clears all entries from the internship tracker.
 
 Format: `clear`
 
 ### Undo previous command : `undo`
 
-Undo the most recent command that modified the internship book.
+Made a mistake? Undo the most recent command that modified the internship book.
 
 Format: `undo`
 
@@ -381,11 +381,12 @@ Format: `redo`
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Display the command summary and a message explaining how to access the help page.
+
+Format: `help`
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** <br>
@@ -475,6 +476,7 @@ _Details coming soon …​_
 | Term                           | Description                                                                                                                                        |
 |--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
 | Alphanumeric                   | Characters that are either a number or a letter.                                                                                                   |
+| Clipboard                      | A clipboard is a temporary storage area in the computer for data that the user wants to copy from one place to another.                            |
 | Command                        | Instruction typed by the user for PHU to execute.                                                                                                  |
 | Command Line Interface (CLI)   | CLI allows user to use text as commands to be executed by an application.                                                                          |
 | Graphical User Interface (GUI) | GUI allows user to interact with an application through graphics such as icons, menu, etc.                                                         |
