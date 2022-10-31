@@ -8,7 +8,6 @@ import seedu.address.logic.commands.FindStaffCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.staff.StaffNameContainsKeywordsPredicate;
 
-
 /**
  * Parses input arguments and creates a new FindStaffCommand object.
  */
