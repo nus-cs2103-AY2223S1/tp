@@ -57,6 +57,9 @@ public class PersonListPanel extends UiPart<Region> {
         titledPane.setAlignment(Pos.CENTER);
         titledPane.setMinHeight(300);
 
+        // @@author TheSoggy-reused
+        // Adapted from https://stackoverflow.com/a/52458162
+
         // Create HBox to hold our 2 labels
         HBox contentPane = new HBox();
         contentPane.setAlignment(Pos.CENTER);
@@ -89,6 +92,8 @@ public class PersonListPanel extends UiPart<Region> {
         // Add the contentPane as the graphic for the TitledPane
         titledPane.setGraphic(contentPane);
         titledPane.setContent(new PersonCard(person).personCardPane);
+        // @@author
+
         return titledPane;
     }
 }

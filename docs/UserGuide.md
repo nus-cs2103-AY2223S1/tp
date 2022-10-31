@@ -258,7 +258,7 @@ Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<
   e.g. `d/burger n/hans` will match `Hansel` if he owes money for a burger.
 * Only persons matching all conditions will be returned (i.e. `AND` search).
   e.g. `d/burger d/fries n/hans` will return `Hans Gruber` only if he owes money for a burger and fries,
-  but not `Hansel`  if he only owes money for a burger and not for fries. 
+  but not `Hansel`  if he only owes money for a burger and not for fries.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
@@ -307,6 +307,21 @@ Format: `clear`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 This is the command to use when you want to start using PayMeLah for real and delete all the sample data that exist when you first use PayMeLah!
+</div>
+
+### Undoing a command: `undo`
+
+This is the command to use when you made a mistake, and want to undo previous command(s) that modified PayMeLah's data.<br>
+Be careful though, your undo history will be gone when you close the app!
+
+Format: `undo`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+This command will only undo commands that directly modified PayMeLah's data contents (e.g., `adddebt`, `delete`, `sort`). It does not undo commands that only change the display (e.g., `listdebtors`, `find`). To view all the persons in PayMeLah, use the `list` command instead.
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The undo history of PayMeLah will only save your 10 most recent commands that modified its data! Make sure to check the list of persons regularly if you are making many changes in one session!
 </div>
 
 ### Exiting the program : `exit`
@@ -361,3 +376,4 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 | **Sort**          | `sort [n/<order>] OR [m/<order>] OR [date/<order>]`<br> e.g., `sort n/+`                                                                                                                                                                                |
 | **Get statement** | `statement`                                                                                                                                                                                                                                             |
 | **Help**          | `help`                                                                                                                                                                                                                                                  |
+| **Undo**          | `undo`                                                                                                                                                                                                                                                  |
