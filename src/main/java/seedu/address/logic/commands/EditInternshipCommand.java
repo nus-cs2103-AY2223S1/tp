@@ -80,6 +80,9 @@ public class EditInternshipCommand extends Command {
 
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        if (editedInternship.getContactPersonId() != null) {
+            model.refreshPersonList();
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship));
     }
 
