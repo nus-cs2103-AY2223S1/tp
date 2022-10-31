@@ -25,7 +25,7 @@ public class JsonAdaptedGrade {
      * Converts a given {@code Grade} into this class for Jackson use.
      */
     public JsonAdaptedGrade(Grade source) {
-        score = source.score;
+        score = source.getScore();
     }
 
     @JsonValue

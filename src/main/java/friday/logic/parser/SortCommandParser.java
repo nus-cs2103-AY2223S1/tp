@@ -50,170 +50,60 @@ public class SortCommandParser implements Parser<SortCommand> {
     }
 
     private SortCommand parseMain(ArgumentMultimap argMultimap) throws ParseException {
-        Comparator<Student> comparator = null;
-
         assert argMultimap.size() == 1;
 
-        // Since there is only one prefix in argMultimap, only one of the following getComparator methods will
-        // return a proper comparator
-        comparator = getNameComparator(argMultimap, comparator);
-        comparator = getTelegramHandleComparator(argMultimap, comparator);
-        comparator = getConsultationComparator(argMultimap, comparator);
-        comparator = getMasteryCheckComparator(argMultimap, comparator);
-        comparator = getRa1Comparator(argMultimap, comparator);
-        comparator = getRa2Comparator(argMultimap, comparator);
-        comparator = getMidtermComparator(argMultimap, comparator);
-        comparator = getPracticalComparator(argMultimap, comparator);
-        comparator = getFinalsComparator(argMultimap, comparator);
+        Prefix prefix = argMultimap.getFirstPrefix().orElse(null);
+
+        // Since parse asserts that there will be one valid prefix in the argMultimap, prefix object should not be null
+        assert !isNull(prefix);
+
+        Comparator<Student> comparator = getComparator(argMultimap, prefix);
 
         assert !isNull(comparator);
 
         return new SortCommand(comparator);
     }
 
-    private Comparator<Student> getNameComparator(ArgumentMultimap argMultimap,
-                                                  Comparator<Student> comparator) throws ParseException {
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_NAME).get());
-            comparator = getNameComparator(order);
+    private Comparator<Student> getComparator(ArgumentMultimap argMultimap, Prefix prefix) throws ParseException {
+        if (argMultimap.getValue(prefix).isPresent()) {
+            Order order = ParserUtil.parseOrder(argMultimap.getValue(prefix).get());
+            return (student1, student2) -> order.equals(ORDER_ASCENDING)
+                    ? compare(prefix, student1, student2)
+                    : compare(prefix, student2, student1);
         }
-        return comparator;
+        return null;
     }
 
-    private Comparator<Student> getNameComparator(Order order) {
-        return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? x.getName().compareTo(y.getName())
-                : y.getName().compareTo(x.getName());
-    }
-
-    private Comparator<Student> getTelegramHandleComparator(ArgumentMultimap argMultimap,
-                                                            Comparator<Student> comparator) throws ParseException {
-        if (argMultimap.getValue(PREFIX_TELEGRAMHANDLE).isPresent()) {
-            Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_TELEGRAMHANDLE).get());
-            comparator = getTelegramHandleComparator(order);
+    private int compare(Prefix prefix, Student student1, Student student2) {
+        if (prefix.equals(PREFIX_NAME)) {
+            return student1.getName().compareTo(student2.getName());
+        } else if (prefix.equals(PREFIX_TELEGRAMHANDLE)) {
+            return student1.getTelegramHandle().compareTo(student2.getTelegramHandle());
+        } else if (prefix.equals(PREFIX_CONSULTATION)) {
+            return student1.getConsultation().compareTo(student2.getConsultation());
+        } else if (prefix.equals(PREFIX_MASTERYCHECK)) {
+            return student1.getMasteryCheck().compareTo(student2.getMasteryCheck());
+        } else {
+            return compareGrades(prefix, student1, student2);
         }
-        return comparator;
     }
 
-    private Comparator<Student> getTelegramHandleComparator(Order order) {
-        return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? x.getTelegramHandle().compareTo(y.getTelegramHandle())
-                : y.getTelegramHandle().compareTo(x.getTelegramHandle());
-    }
-
-    private Comparator<Student> getConsultationComparator(ArgumentMultimap argMultimap,
-                                                          Comparator<Student> comparator) throws ParseException {
-        if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
-            Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_CONSULTATION).get());
-            comparator = getConsultationComparator(order);
+    private int compareGrades(Prefix prefix, Student student1, Student student2) {
+        String exam = "";
+        if (prefix.equals(PREFIX_RA1)) {
+            exam = "RA1";
+        } else if (prefix.equals(PREFIX_RA2)) {
+            exam = "RA2";
+        } else if (prefix.equals(PREFIX_MIDTERM)) {
+            exam = "Midterm";
+        } else if (prefix.equals(PREFIX_PRACTICAL)) {
+            exam = "Practical";
+        } else if (prefix.equals(PREFIX_FINALS)) {
+            exam = "Finals";
         }
-        return comparator;
-    }
-
-    private Comparator<Student> getConsultationComparator(Order order) {
-        return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? x.getConsultation().compareTo(y.getConsultation())
-                : y.getConsultation().compareTo(x.getConsultation());
-    }
-
-    private Comparator<Student> getMasteryCheckComparator(ArgumentMultimap argMultimap,
-                                                          Comparator<Student> comparator) throws ParseException {
-        if (argMultimap.getValue(PREFIX_MASTERYCHECK).isPresent()) {
-            Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_MASTERYCHECK).get());
-            comparator = getMasteryCheckComparator(order);
-        }
-        return comparator;
-    }
-
-    private Comparator<Student> getMasteryCheckComparator(Order order) {
-        return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? x.getMasteryCheck().compareTo(y.getMasteryCheck())
-                : y.getMasteryCheck().compareTo(x.getMasteryCheck());
-    }
-
-    private Comparator<Student> getRa1Comparator(ArgumentMultimap argMultimap,
-                                                 Comparator<Student> comparator) throws ParseException {
-        if (argMultimap.getValue(PREFIX_RA1).isPresent()) {
-            Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_RA1).get());
-            comparator = getRa1Comparator(order);
-        }
-        return comparator;
-    }
-
-    private Comparator<Student> getRa1Comparator(Order order) {
-        return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? Integer.compareUnsigned(Integer.parseInt( x.getGradesList().getGrade("RA1").score),
-                Integer.parseInt(y.getGradesList().getGrade("RA1").score))
-                : Integer.compareUnsigned(Integer.parseInt( y.getGradesList().getGrade("RA1").score),
-                Integer.parseInt(x.getGradesList().getGrade("RA1").score));
-    }
-
-    private Comparator<Student> getRa2Comparator(ArgumentMultimap argMultimap,
-                                                 Comparator<Student> comparator) throws ParseException {
-        if (argMultimap.getValue(PREFIX_RA2).isPresent()) {
-            Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_RA2).get());
-            comparator = getRa2Comparator(order);
-        }
-        return comparator;
-    }
-
-    private Comparator<Student> getRa2Comparator(Order order) {
-        return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? Integer.compareUnsigned(Integer.parseInt( x.getGradesList().getGrade("RA2").score),
-                  Integer.parseInt(y.getGradesList().getGrade("RA2").score))
-                : Integer.compareUnsigned(Integer.parseInt( y.getGradesList().getGrade("RA2").score),
-                  Integer.parseInt(x.getGradesList().getGrade("RA2").score));
-    }
-
-    private Comparator<Student> getMidtermComparator(ArgumentMultimap argMultimap,
-                                                     Comparator<Student> comparator) throws ParseException {
-        if (argMultimap.getValue(PREFIX_MIDTERM).isPresent()) {
-            Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_MIDTERM).get());
-            comparator = getMidtermComparator(order);
-        }
-        return comparator;
-    }
-
-    private Comparator<Student> getMidtermComparator(Order order) {
-        return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? Integer.compareUnsigned(Integer.parseInt( x.getGradesList().getGrade("Midterm").score),
-                Integer.parseInt(y.getGradesList().getGrade("Midterm").score))
-                : Integer.compareUnsigned(Integer.parseInt( y.getGradesList().getGrade("Midterm").score),
-                Integer.parseInt(x.getGradesList().getGrade("Midterm").score));
-    }
-
-    private Comparator<Student> getPracticalComparator(ArgumentMultimap argMultimap,
-                                                       Comparator<Student> comparator) throws ParseException {
-        if (argMultimap.getValue(PREFIX_PRACTICAL).isPresent()) {
-            Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_PRACTICAL).get());
-            comparator = getPracticalComparator(order);
-        }
-        return comparator;
-    }
-
-    private Comparator<Student> getPracticalComparator(Order order) {
-        return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? Integer.compareUnsigned(Integer.parseInt( x.getGradesList().getGrade("Practical").score),
-                Integer.parseInt(y.getGradesList().getGrade("Practical").score))
-                : Integer.compareUnsigned(Integer.parseInt( y.getGradesList().getGrade("Practical").score),
-                Integer.parseInt(x.getGradesList().getGrade("Practical").score));
-    }
-
-    private Comparator<Student> getFinalsComparator(ArgumentMultimap argMultimap,
-                                                    Comparator<Student> comparator) throws ParseException {
-        if (argMultimap.getValue(PREFIX_FINALS).isPresent()) {
-            Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_FINALS).get());
-            comparator = getFinalsComparator(order);
-        }
-        return comparator;
-    }
-
-    private Comparator<Student> getFinalsComparator(Order order) {
-        return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? Integer.compareUnsigned(Integer.parseInt( x.getGradesList().getGrade("Finals").score),
-                Integer.parseInt(y.getGradesList().getGrade("Finals").score))
-                : Integer.compareUnsigned(Integer.parseInt( y.getGradesList().getGrade("Finals").score),
-                Integer.parseInt(x.getGradesList().getGrade("Finals").score));
+        return Double.compare(
+                Double.parseDouble(student1.getGradesList().getGrade(exam).getScore()),
+                Double.parseDouble(student2.getGradesList().getGrade(exam).getScore()));
     }
 }
 

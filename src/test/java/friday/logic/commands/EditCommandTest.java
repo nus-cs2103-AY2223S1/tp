@@ -93,10 +93,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new Friday(model.getFriday()), new UserPrefs());
-        expectedModel.setStudent(model.getStudentList().get(0), editedStudent);
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, model);
     }
 
     @Test

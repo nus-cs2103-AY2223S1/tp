@@ -14,8 +14,8 @@ public class Grade {
             + "up to 2 decimal places, excluding the % sign.";
     public static final String VALIDATION_REGEX = "^(100(\\.0{1,2})?|[1-9]?\\d(\\.\\d{1,2})?)$";
 
-    public final String examName;
-    public final String score;
+    private final String examName;
+    private final String score;
 
     /**
      * Constructs a {@code Grade}.
@@ -36,6 +36,24 @@ public class Grade {
      */
     public static boolean isValidScore(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns the exam name of the given Grade.
+     *
+     * @return exam name.
+     */
+    public String getExamName() {
+        return examName;
+    }
+
+    /**
+     * Returns the score of the given Grade.
+     *
+     * @return score
+     */
+    public String getScore() {
+        return score;
     }
 
     @Override

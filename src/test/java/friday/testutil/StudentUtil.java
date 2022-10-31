@@ -74,11 +74,11 @@ public class StudentUtil {
      */
     public static String getEditGradesDescriptorDetails(EditGradeDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getRa1().ifPresent(ra1 -> sb.append(PREFIX_RA1).append(ra1.score).append(" "));
-        descriptor.getRa2().ifPresent(ra2 -> sb.append(PREFIX_RA2).append(ra2.score).append(" "));
-        descriptor.getMt().ifPresent(mt -> sb.append(PREFIX_MIDTERM).append(mt.score).append(" "));
-        descriptor.getFt().ifPresent(ft -> sb.append(PREFIX_FINALS).append(ft.score).append(" "));
-        descriptor.getPa().ifPresent(pa -> sb.append(PREFIX_PRACTICAL).append(pa.score).append(" "));
+        descriptor.getRa1().ifPresent(ra1 -> sb.append(PREFIX_RA1).append(ra1.getScore()).append(" "));
+        descriptor.getRa2().ifPresent(ra2 -> sb.append(PREFIX_RA2).append(ra2.getScore()).append(" "));
+        descriptor.getMt().ifPresent(mt -> sb.append(PREFIX_MIDTERM).append(mt.getScore()).append(" "));
+        descriptor.getFt().ifPresent(ft -> sb.append(PREFIX_FINALS).append(ft.getScore()).append(" "));
+        descriptor.getPa().ifPresent(pa -> sb.append(PREFIX_PRACTICAL).append(pa.getScore()).append(" "));
         return sb.toString();
     }
 }

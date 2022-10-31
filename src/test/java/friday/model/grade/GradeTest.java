@@ -21,7 +21,7 @@ public class GradeTest {
         assertTrue(grade.equals(grade));
 
         // same values -> returns true
-        Grade gradeCopy = new Grade(grade.examName, grade.score);
+        Grade gradeCopy = new Grade(grade.getExamName(), grade.getScore());
         assertTrue(grade.equals(gradeCopy));
 
         // different types -> returns false
