@@ -71,15 +71,16 @@ public class SortProjectCommand extends ProjectCommand {
         }
 
         if (sortKey.equals(PREFIX_NAME)) {
-            model.sortProjectsById(sortOrder);
+            model.sortProjectsByName(sortOrder);
             sortKeyString = "names.";
         }
-        model.sortProjectsByPin();
 
         if (sortKey.equals(PREFIX_PROJECT_ID)) {
             model.sortProjectsById(sortOrder);
             sortKeyString = "project id.";
         }
+
+        model.sortProjectsByPin();
 
         ui.showProjects();
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
