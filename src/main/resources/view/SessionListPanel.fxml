@@ -2,6 +2,6 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <ListView fx:id="sessionListView" VBox.vgrow="ALWAYS" />
 </VBox>
