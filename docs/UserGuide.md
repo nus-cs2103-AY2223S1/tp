@@ -79,12 +79,13 @@ If you can type fast, Plannit can help you track your module information and tas
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add m/MODULE`, `MODULE` is a parameter which can be used as `add m/MODULE`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [e/EMAIL]` can be used as `n/John Doe e/john@u.nus.edu` or as `n/John Doe`.
+* Items in square brackets are optional. The `*` after a set of square brackets means that it can be used multiple times<br>
+  e.g. `n/NAME [e/EMAIL]` can be used as `n/John Doe e/john@u.nus.edu` or as `n/John Doe`.
+  e.g. `[la/LINK_ALIAS]*` can be used as `la/google`, `la/facebook`, and `la/luminus` or just as `la/google`.
 
 * A round bracket surrounding multiple square brackets indicate a need for at least one of the items in square brackets
 to be present.  
-  e.g `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER`
+  e.g. `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER`
 to be present.
 
 * Parameters can be in any order.<br>
@@ -339,17 +340,18 @@ task within the task list of the module with the module code `CS2103T`.
 <br>
 
 ### 2.3. Links
-All links in Plannit are composed of a link URL and an (case-sensitive) alias.
-(Plannit provides no guarantee of the link URL's existence)
+All links in Plannit are composed of a link URL and an alias (case-sensitive). :D 
+
+| :exclamation: Plannit provides no guarantee of the link URL's existence |
+|-------------------------------------------------------------------------|
 
 #### 2.3.1. Add link
 You may add link(s) to a specific module using the `add-link` command.
-Links will be added by its link URL and link alias (both of which are unique within a module).
+Links will be added by its URL and user-defined alias.
 
-Multiple links can be added at once. Link aliases will be paired with link URLs according to their respective
-order of input (left-to-right).
 If there exists a link URL or alias that is detected as invalid within a chained command,
-none of the links in the command will be added.
+none of the links in the command will be added. 
+Link aliases will be paired with link URLs according to their respective order of input (left-to-right).
 
 <table>
 <tr>
@@ -361,7 +363,7 @@ none of the links in the command will be added.
   <td><b>Module Code</b></td>
   <td><code>m/</code></td>
   <td>
-    <li>Can only be non-empty string of alphanumeric characters</li>
+    Can only be non-empty string of alphanumeric characters
   </td>
 </tr>
 <tr>
@@ -369,6 +371,7 @@ none of the links in the command will be added.
   <td><code>la/</code></td>
   <td>
     <li>Alphanumeric and whitespace characters</li>
+    <li>Trailing and leading whitespace characters will be removed</li>
     <li>Character limit of 15</li>
     <li>At least 1 alphanumeric character</li>
   </td>
@@ -385,7 +388,7 @@ none of the links in the command will be added.
 </tr>
 </table>
 
-Format: `add-link m/MODULE_CODE l/LINK_URL la/LINK_ALIAS`
+Format: `add-link m/MODULE_CODE l/LINK_URL la/LINK_ALIAS [l/LINK_URL la/LINK_ALIAS]*`
 * You cannot add a link to a non-existent module code.
 * You cannot add a link using a link alias that already exists in the module represented by the module code.
 * You cannot add a link using a link URL that already exists in the module represented by the module code.
@@ -423,7 +426,7 @@ none of the links in the command will be deleted.
   <td><b>Module Code</b></td>
   <td><code>m/</code></td>
   <td>
-    <li>Can only be non-empty string of alphanumeric characters</li>
+    Can only be non-empty string of alphanumeric characters
   </td>
 </tr>
 <tr>
@@ -431,13 +434,14 @@ none of the links in the command will be deleted.
   <td><code>la/</code></td>
   <td>
     <li>Alphanumeric and whitespace characters</li>
+    <li>Trailing and leading whitespace characters will be removed</li>
     <li>Character limit of 15</li>
     <li>At least 1 alphanumeric character</li>
   </td>
 </tr>
 </table>
 
-Format: `delete-link m/MODULE_CODE la/LINK_ALIAS`
+Format: `delete-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
 * You cannot delete a link from a non-existent module code.
 * You cannot delete a link using a non-existent link alias from an existing module.
 
@@ -464,7 +468,8 @@ Multiple links can be opened at once using its corresponding alias according to 
 (left to right). If there exists a link alias that is detected as invalid within a chained command,
 the links to its left will be opened while the links to its right will not be opened.
 
-Permissions from your operating system may be required for some users to open links from Plannit using either way.
+| :exclamation: Permissions from your operating system may be required for some users to open links from Plannit using either way |
+|---------------------------------------------------------------------------------------------------------------------------------|
 
 <table>
 <tr>
@@ -476,7 +481,7 @@ Permissions from your operating system may be required for some users to open li
   <td><b>Module Code</b></td>
   <td><code>m/</code></td>
   <td>
-    <li>Can only be non-empty string of alphanumeric characters</li>
+    Can only be non-empty string of alphanumeric characters
   </td>
 </tr>
 <tr>
@@ -484,13 +489,14 @@ Permissions from your operating system may be required for some users to open li
   <td><code>la/</code></td>
   <td>
     <li>Alphanumeric and whitespace characters</li>
+    <li>Trailing and leading whitespace characters will be removed</li>
     <li>Character limit of 15</li>
     <li>At least 1 alphanumeric character</li>
   </td>
 </tr>
 </table>
 
-Format: `open-link m/MODULE_CODE la/LINK_ALIAS`
+Format: `open-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
 * You cannot open a link from a non-existent module code.
 * You cannot open a link using a non-existent link alias from an existing module.
 
