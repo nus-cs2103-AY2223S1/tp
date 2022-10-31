@@ -23,13 +23,7 @@ import seedu.address.model.commission.Commission;
  * {@code DeleteCommissionCommand}.
  */
 class DeleteCommissionCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
-    @Test
-    public void execute_noSelectedCustomer_throwsCommandException() {
-        model.selectCustomer(null);
-        assertCommandFailure(new DeleteCommissionCommand(INDEX_FIRST), model, Messages.MESSAGE_NO_ACTIVE_CUSTOMER);
-    }
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndex_success() {
