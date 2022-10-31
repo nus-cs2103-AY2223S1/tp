@@ -102,7 +102,7 @@ public class DelivererBuilder {
     }
 
     public Deliverer build() {
-        return new Deliverer(name, phone, email, address, new ArrayList<>());
+        return new Deliverer(name, phone, email, address, null);
     }
 }
 

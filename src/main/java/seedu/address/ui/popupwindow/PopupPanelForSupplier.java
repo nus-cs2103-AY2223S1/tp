@@ -119,7 +119,7 @@ public class PopupPanelForSupplier extends PopUpPanel {
         Address address = ParserUtil.parseAddress(addressField.getText());
         // TODO: implement location in constructor
         Location location = new Location(countryField.getText());
-        return new Supplier(name, phone, email, address, new ArrayList<>());
+        return new Supplier(name, phone, email, address, null);
     }
 
     /**

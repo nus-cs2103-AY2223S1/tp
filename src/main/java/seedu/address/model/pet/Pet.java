@@ -189,7 +189,7 @@ public class Pet {
                 height,
                 VaccinationStatus.defaultStatus(),
                 price,
-                new HashSet<>());
+                null);
     }
 
     /**
