@@ -194,8 +194,8 @@ Searches for students whose name contains the specified name keywords, or whose 
 
 Format: `find nm/[name]` or `find id/[id]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The search only recognises whole words, and searching for substrings is not valid. e.g. `Han` will not match `Hans`
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The search only recognises whole words, and searching for substrings is not valid. e.g. `Han` will not match `Hans`.
 
 Examples:
 * `find nm/John` returns the records for any student named `john` or any student with `john` in their name. 
@@ -247,7 +247,7 @@ Format: `viewStats class/CLASS exam/EXAM filter/FILTER`
 * Class name can only contain alphanumeric characters.
 * Class name is case-insensitive.
 * Exam name should be either "CA1", "CA2", "SA1" or "SA2".
-* Exam name is case-insensitive
+* Exam name is case-insensitive.
 * Filter is either "ON" or "OFF", and is case-insensitive.
 
 Examples:
