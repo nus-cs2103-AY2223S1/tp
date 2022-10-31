@@ -22,7 +22,7 @@ public class SortClientCommand extends ClientCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort clients in address book. \n"
             + "Sort by client id: "
-            + PREFIX_CLIENT_ID + "0 (ascending) or"
+            + PREFIX_CLIENT_ID + "0 (ascending) or "
             + PREFIX_CLIENT_ID + "1 (descending)."
             + "Sort by name: "
             + PREFIX_NAME + "0 (alphabetical) or "

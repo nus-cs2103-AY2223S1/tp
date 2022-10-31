@@ -3,7 +3,6 @@ package seedu.address.model.project;
 import java.util.List;
 import java.util.function.Function;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Deadline;
 import seedu.address.model.Model;
 import seedu.address.model.Name;
