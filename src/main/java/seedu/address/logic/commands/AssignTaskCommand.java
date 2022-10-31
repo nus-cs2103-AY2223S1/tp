@@ -30,7 +30,7 @@ public class AssignTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a task to a member with the given name in a "
             + "group.\n"
             + "Workload specified must be low, medium or high.\n"
-            + "Deadline must be in yyyy-MM-dd or yyyy-MM-dd HH:mm format\n"
+            + "Deadline must be in yyyy-MM-dd or yyyy-MM-dd HH:mm format.\n"
             + "Parameters: NAME "
             + PREFIX_GROUP + "GROUP "
             + PREFIX_TASK + "TASK "
@@ -40,6 +40,9 @@ public class AssignTaskCommand extends Command {
             + " Alice g/Group Alpha task/Coursework 0 w/High d/2022-01-01 23:59";
 
     public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Group: %2$s Task: %3$s";
+    public static final String MESSAGE_EMPTY_FIELDS = "Group must be existing and cannot be empty.\n"
+            + "Workload specified must be low, medium or high.\n"
+            + "Deadline must be in yyyy-MM-dd or yyyy-MM-dd HH:mm format if entered.\n";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_DUPLICATE_TASK = "This person already has a task of this name.";
     public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";

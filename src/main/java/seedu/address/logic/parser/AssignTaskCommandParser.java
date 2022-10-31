@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_EMPTY_FIELDS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
@@ -52,8 +53,8 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
             String workload = argMultimap.getValue(PREFIX_WORKLOAD).get().toUpperCase();
 
             inputName = ParserUtil.parseName(name);
-            inputGroup = ParserUtil.parseGroupName(group);
             inputWorkload = ParserUtil.parseWorkload(workload);
+            inputGroup = ParserUtil.parseGroupName(group);
             //Deadline field is present
             if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
                 String deadline = argMultimap.getValue(PREFIX_DEADLINE).get();
@@ -63,7 +64,7 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
                 inputTask = ParserUtil.parseAssignmentWithWorkload(task, inputWorkload);
             }
         } catch (ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
+            throw new ParseException(String.format(MESSAGE_EMPTY_FIELDS, e.getMessage()));
         }
 
         return new AssignTaskCommand(inputName, group, inputTask);
