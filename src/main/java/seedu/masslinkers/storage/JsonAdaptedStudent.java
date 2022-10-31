@@ -125,7 +125,7 @@ class JsonAdaptedStudent {
         final Telegram modelHandle = new Telegram(handle);
 
         // optional
-        if (phone != null && !Phone.isValidPhone(phone)) {
+        if (phone != null && Phone.isEmptyPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         if (phone != null) {

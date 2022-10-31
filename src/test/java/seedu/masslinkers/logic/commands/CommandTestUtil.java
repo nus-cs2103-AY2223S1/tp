@@ -30,8 +30,9 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PHONE_AMY = "+11111111"; // this is a valid number now
+    public static final String VALID_PHONE_BOB = "12345678"; // valid
+    public static final String VALID_PHONE_BOB_WARN = "this is a phone"; // valid but warn
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_TELEGRAM_AMY = "amy123";
@@ -61,7 +62,7 @@ public class CommandTestUtil {
     public static final String INVALID_MOD_DESC_CS2103 = " " + PREFIX_MOD + INVALID_MOD_CS2103;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "  "; // Blank phone numbers are not allowed
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_GITHUB_DESC = " " + PREFIX_GITHUB;
     // empty string not allowed for GitHub usernames

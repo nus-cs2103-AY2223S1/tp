@@ -26,7 +26,7 @@ import seedu.masslinkers.model.student.Telegram;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_PHONE = "   ";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_GITHUB = "-invalid-";
     private static final String INVALID_TELEGRAM = "s";
@@ -37,8 +37,9 @@ public class ParserUtilTest {
     private static final String VALID_GITHUB = "racheltan";
     private static final String VALID_TELEGRAM = "racheltan";
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_PHONE_1 = "12345678";
+    private static final String VALID_PHONE_2 = "+14782342";
+    private static final String VALID_PHONE_3 = "this is a valid phone";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_INTEREST_1 = "tennis";
     private static final String VALID_INTEREST_2 = "baking";
@@ -95,6 +96,8 @@ public class ParserUtilTest {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
     }
 
+    //the only time an exception is thrown is when phone is either null or blank after trimming
+    //otherwise all other inputs are considered valid, but a warning will be given if they fail the regex check
     @Test
     public void parsePhone_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
@@ -102,26 +105,39 @@ public class ParserUtilTest {
 
     @Test
     public void parseGitHub_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_GITHUB));
+        assertThrows(ParseException.class, () -> ParserUtil.parseGitHub(INVALID_GITHUB));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parsePhone_validSingapore_returnsPhone() throws Exception {
+        Phone expectedPhone = new Phone(VALID_PHONE_1);
+        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE_1));
+    }
+
+    @Test
+    public void parsePhone_validInternational_returnsPhone() throws Exception {
+        Phone expectedPhone = new Phone(VALID_PHONE_2);
+        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE_2));
+    }
+
+    //An "incorrect" number that is still considered a valid input (warning to user issued)
+    @Test
+    public void parsePhone_validButWithWarning_returnsPhone() throws Exception {
+        Phone expectedPhone = new Phone(VALID_PHONE_3);
+        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE_3));
+    }
+
+    @Test
+    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
+        String phoneWithWhitespace = WHITESPACE + VALID_PHONE_1 + WHITESPACE;
+        Phone expectedPhone = new Phone(VALID_PHONE_1);
+        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
     }
 
     @Test
     public void parseGitHub_valid_returnsGitHub() throws Exception {
         GitHub expectedGitHub = new GitHub(VALID_GITHUB);
         assertEquals(expectedGitHub, ParserUtil.parseGitHub(VALID_GITHUB));
-    }
-
-    @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
     }
 
     @Test
