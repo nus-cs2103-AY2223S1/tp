@@ -3,8 +3,10 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.isAnyNonNull;
 
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.TagMatchesQueryPredicate;
 
 /**
@@ -42,13 +44,74 @@ public class FilterCommandPredicate {
                 tagsPredicate == null ? null : Set.of(tagsPredicate));
     }
 
-
     public Set<NameContainsKeywordsPredicate> getNamePredicate() {
-        return namePredicate;
+        if (namePredicate == null) {
+            return null;
+        }
+        return Set.copyOf(namePredicate);
     }
 
     public Set<TagMatchesQueryPredicate> getTagPredicate() {
-        return tagsPredicate;
+        if (tagsPredicate == null) {
+            return null;
+        }
+        return Set.copyOf(tagsPredicate);
+    }
+
+    /**
+     * Adds {@code namePredicate} to {@code predicateSet}.
+     *
+     * @param predicateSet Set of predicate to add to.
+     * @return {@code true} if {@code predicateSet} was changed,
+     *      {@code false} if it did not change.
+     */
+    public boolean addNameFiltersToSet(Set<Predicate<Person>> predicateSet) {
+        if (namePredicate == null) {
+            return false;
+        }
+        return predicateSet.addAll(namePredicate);
+    }
+
+    /**
+     * Adds {@code tagsPredicate} to {@code predicateSet}.
+     *
+     * @param predicateSet Set of predicate to add to.
+     * @return {@code true} if {@code predicateSet} was changed,
+     *      {@code false} if it did not change.
+     */
+    public boolean addTagFiltersToSet(Set<Predicate<Person>> predicateSet) {
+        if (tagsPredicate == null) {
+            return false;
+        }
+        return predicateSet.addAll(tagsPredicate);
+    }
+
+    /**
+     * Removes {@code namePredicate} from {@code predicateSet}.
+     *
+     * @param predicateSet Set of predicate to remove from.
+     * @return {@code true} if {@code predicateSet} was changed,
+     *      {@code false} if it did not change.
+     */
+    public boolean removeNameFiltersFromSet(Set<Predicate<Person>> predicateSet) {
+        if (namePredicate == null) {
+            return false;
+        }
+        return predicateSet.removeAll(namePredicate);
+    }
+
+    /**
+     * Removes {@code tagsPredicate} from {@code predicateSet}.
+     *
+     * @param predicateSet Set of predicate to remove from.
+     * @return {@code true} if {@code predicateSet} was changed,
+     *      {@code false} if it did not change.
+     */
+    public boolean removeTagFiltersFromSet(Set<Predicate<Person>> predicateSet) {
+        if (tagsPredicate == null) {
+            return false;
+        }
+        return predicateSet.removeAll(tagsPredicate);
     }
 
     @Override

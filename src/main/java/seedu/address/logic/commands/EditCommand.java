@@ -33,6 +33,7 @@ import seedu.address.model.tag.Tag;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD_ALIAS = "e";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index in the list or the target person if no index provided. "
@@ -88,9 +89,20 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_NO_TARGET_PERSON);
         }
 
-        Person personToEdit = index.isPresent() ? lastShownList.get(index.get().getZeroBased())
-                : model.getTargetPerson();
+        Person personToEdit = index.map(i -> lastShownList.get(i.getZeroBased()))
+                .orElseGet(() -> model.getTargetPerson());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+
+        Set<Tag> notFound = new HashSet<>();
+        for (Tag tag: editedPerson.getTags()) {
+            if (!model.hasTag(tag)) {
+                notFound.add(tag);
+            }
+        }
+        if (!notFound.isEmpty()) {
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_TAGS_NOT_FOUND, Tag.toString(notFound)));
+        }
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

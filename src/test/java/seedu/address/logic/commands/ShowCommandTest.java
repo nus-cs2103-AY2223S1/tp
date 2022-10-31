@@ -17,6 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReminderList;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -24,16 +25,17 @@ import seedu.address.model.person.Person;
  */
 public class ShowCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ReminderList());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToShow = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         ShowCommand showCommand = new ShowCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(ShowCommand.MESSAGE_SHOW_PERSON_SUCCESS, personToShow);
+        String expectedMessage = String.format(ShowCommand.MESSAGE_SHOW_PERSON_SUCCESS,
+                personToShow.getName().fullName);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new ReminderList());
         expectedModel.setTargetPerson(personToShow);
 
         assertCommandSuccess(showCommand, model, expectedMessage, expectedModel);
@@ -54,9 +56,10 @@ public class ShowCommandTest {
         Person personToShow = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         ShowCommand showCommand = new ShowCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(ShowCommand.MESSAGE_SHOW_PERSON_SUCCESS, personToShow);
+        String expectedMessage = String.format(ShowCommand.MESSAGE_SHOW_PERSON_SUCCESS,
+                personToShow.getName().fullName);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new ReminderList());
         expectedModel.setTargetPerson(personToShow);
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
 

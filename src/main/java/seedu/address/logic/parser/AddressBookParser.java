@@ -14,7 +14,9 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HomeCommand;
 import seedu.address.logic.commands.MessageCommandGroup;
+import seedu.address.logic.commands.ReminderCommandGroup;
 import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.commands.TagCommandGroup;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -47,25 +49,42 @@ public class AddressBookParser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
+            // Fallthrough
+        case AddCommand.COMMAND_WORD_ALIAS:
             return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
+            // Fallthrough
+        case EditCommand.COMMAND_WORD_ALIAS:
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
+            // Fallthrough
+        case DeleteCommand.COMMAND_WORD_ALIAS:
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
         case FilterCommand.COMMAND_WORD:
+            // Fallthrough
+        case FilterCommand.COMMAND_WORD_ALIAS:
             return new FilterCommandParser().parse(arguments);
 
         case TagCommandGroup.COMMAND_GROUP:
+            // Fallthrough
+        case TagCommandGroup.COMMAND_GROUP_ALIAS:
             return new TagCommandGroupParser().parse(arguments);
 
         case MessageCommandGroup.COMMAND_GROUP:
+            // Fallthrough
+        case MessageCommandGroup.COMMAND_GROUP_ALIAS:
             return new MessageCommandGroupParser().parse(arguments);
+
+        case ReminderCommandGroup.COMMAND_GROUP:
+            // Fallthrough
+        case ReminderCommandGroup.COMMAND_GROUP_ALIAS:
+            return new ReminderCommandGroupParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -73,7 +92,14 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case HomeCommand.COMMAND_WORD:
+            // Fallthrough
+        case HomeCommand.COMMAND_WORD_ALIAS:
+            return new HomeCommand();
+
         case ShowCommand.COMMAND_WORD:
+            // Fallthrough
+        case ShowCommand.COMMAND_WORD_ALIAS:
             return new ShowCommandParser().parse(arguments);
 
         default:

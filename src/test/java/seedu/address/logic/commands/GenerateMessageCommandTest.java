@@ -8,9 +8,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalMessages.VALID_MESSAGE_HAPPY_BIRTHDAY;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
@@ -35,7 +32,7 @@ class GenerateMessageCommandTest {
         GenerateMessageCommandTest.ModelStubMessagesGenerating
                 modelStub = new GenerateMessageCommandTest.ModelStubMessagesGenerating();
         Index index = Index.fromZeroBased(0);
-        modelStub.addMessage(VALID_MESSAGE_HAPPY_BIRTHDAY);
+        modelStub.createMessage(VALID_MESSAGE_HAPPY_BIRTHDAY);
         assertThrows(CommandException.class, () -> new GenerateMessageCommand(index, index).execute(modelStub));
     }
 
@@ -55,7 +52,7 @@ class GenerateMessageCommandTest {
 
         Index index = Index.fromZeroBased(0);
         modelStub.addPerson(ALICE);
-        modelStub.addMessage(VALID_MESSAGE_HAPPY_BIRTHDAY);
+        modelStub.createMessage(VALID_MESSAGE_HAPPY_BIRTHDAY);
 
         CommandResult commandResult =
                 new GenerateMessageCommand(index, index).execute(modelStub);
@@ -88,7 +85,7 @@ class GenerateMessageCommandTest {
     }
 
     private class ModelStubMessagesGenerating extends CommandTestUtil.ModelStub {
-        private List<Message> messagesAdded = new ArrayList<>();
+        private ObservableList<Message> messagesAdded = FXCollections.observableArrayList();
         private ObservableList<Person> personList = FXCollections.observableArrayList();
         private TargetPerson targetPerson = new TargetPerson();
 
@@ -124,12 +121,12 @@ class GenerateMessageCommandTest {
         }
 
         @Override
-        public void addMessage(Message message) {
+        public void createMessage(Message message) {
             messagesAdded.add(message);
         }
 
         @Override
-        public List<Message> getMessages() {
+        public ObservableList<Message> getMessages() {
             return messagesAdded;
         }
 

@@ -30,7 +30,6 @@ public class TagCommand extends TagCommandGroup {
 
     public static final String MESSAGE_SUCCESS = "Tagged the person with: %1$s";
 
-    public static final String MESSAGE_TAGS_NOT_FOUND = "Tags do not exist: %1$s";
 
     public static final String MESSAGE_DUPLICATE_TAGS = "Person already has the tags: %1$s";
 
@@ -74,7 +73,7 @@ public class TagCommand extends TagCommandGroup {
 
         Set<Tag> notFoundTags = tagsToAdd.stream().filter(tag -> !model.hasTag(tag)).collect(Collectors.toSet());
         if (!notFoundTags.isEmpty()) {
-            return new CommandResult(String.format(MESSAGE_TAGS_NOT_FOUND, Tag.toString(notFoundTags)));
+            return new CommandResult(String.format(Messages.MESSAGE_TAGS_NOT_FOUND, Tag.toString(notFoundTags)));
         }
 
         Set<Tag> duplicateTags = tagsToAdd.stream().filter(personToTag::hasTag).collect(Collectors.toSet());

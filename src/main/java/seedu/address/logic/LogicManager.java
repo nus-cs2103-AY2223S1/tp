@@ -14,7 +14,11 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TargetPerson;
+import seedu.address.model.quote.Quote;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.storage.Storage;
 
 /**
@@ -47,6 +51,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveReminderList(model.getReminderList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -65,8 +70,23 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getTargetPersonList() {
-        return model.getTargetPersonAsObservableList();
+    public TargetPerson getTargetPerson() {
+        return model.getObservableTargetPerson();
+    }
+
+    @Override
+    public ObservableList<Reminder> getReminderListAsObservableList() {
+        return model.getReminderListAsObservableList();
+    }
+
+    @Override
+    public ObservableList<Reminder> getTargetPersonReminderListAsObservableList() {
+        return model.getTargetPersonReminderListAsObservableList();
+    }
+
+    @Override
+    public ObservableList<Message> getMessageTemplates() {
+        return model.getMessages();
     }
 
     @Override
@@ -82,5 +102,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public Quote getQuote() {
+        return model.getQuote();
     }
 }

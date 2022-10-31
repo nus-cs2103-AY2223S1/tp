@@ -22,22 +22,32 @@ Class JsonAdaptedPerson
 Class JsonAdaptedTag
 }
 
+package "Reminder Storage" #F4F6F6{
+Class "<<interface>>\nReminderListStorage" as ReminderStorage
+Class JsonReminderListStorage
+Class JsonSerializableReminderList
+Class JsonAdaptedReminder
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
-StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -left-> "1" UserPrefsStorage
+StorageManager -right-> "1" AddressBookStorage
+StorageManager -down-> "1 " ReminderStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -down-|> UserPrefsStorage
+Storage -down-|> AddressBookStorage
+Storage -down-|> ReminderStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
+JsonReminderListStorage .up.|> ReminderStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonReminderListStorage ..> JsonSerializableReminderList
+JsonSerializableReminderList --> "*" JsonAdaptedReminder
 
 @enduml

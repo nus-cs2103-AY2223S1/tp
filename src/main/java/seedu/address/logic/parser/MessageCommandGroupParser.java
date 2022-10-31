@@ -17,6 +17,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * in the MessageCommandGroup, as indicated by the commandSpecifier.
  */
 public class MessageCommandGroupParser implements Parser<MessageCommandGroup> {
+    // TODO: add complete list of commands
+    public static final String MESSAGE_USAGE = String.format("%s\n\n%s\n\n%s\n\n%s",
+            ListMessageCommand.MESSAGE_USAGE,
+            CreateMessageCommand.MESSAGE_USAGE,
+            DeleteMessageCommand.MESSAGE_USAGE,
+            GenerateMessageCommand.MESSAGE_USAGE);
 
     /**
      * Parses the given {@code String} of arguments in the context of the
@@ -26,15 +32,9 @@ public class MessageCommandGroupParser implements Parser<MessageCommandGroup> {
     public MessageCommandGroup parse(String args) throws ParseException {
         requireNonNull(args);
         String trimmedArgs = args.trim();
-        // TODO: add complete list of commands
-        String errorMessage = String.format("%s\n\n%s\n\n%s\n\n%s",
-                ListMessageCommand.MESSAGE_USAGE,
-                CreateMessageCommand.MESSAGE_USAGE,
-                DeleteMessageCommand.MESSAGE_USAGE,
-                GenerateMessageCommand.MESSAGE_USAGE);
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, errorMessage));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
         String[] argArray = trimmedArgs.split("\\s+");
@@ -42,19 +42,27 @@ public class MessageCommandGroupParser implements Parser<MessageCommandGroup> {
 
         switch (commandSpecifier) {
         case CreateMessageCommand.COMMAND_SPECIFIER:
+            // Fallthrough
+        case CreateMessageCommand.COMMAND_SPECIFIER_ALIAS:
             String[] argsToPass = Arrays.copyOfRange(argArray, 1, argArray.length);
             return new CreateMessageCommandParser().parse(String.join(" ", argsToPass));
         case DeleteMessageCommand.COMMAND_SPECIFIER:
+            // Fallthrough
+        case DeleteMessageCommand.COMMAND_SPECIFIER_ALIAS:
             argsToPass = Arrays.copyOfRange(argArray, 1, argArray.length);
             return new DeleteMessageCommandParser().parse(String.join(" ", argsToPass));
         case GenerateMessageCommand.COMMAND_SPECIFIER:
+            // Fallthrough
+        case GenerateMessageCommand.COMMAND_SPECIFIER_ALIAS:
             argsToPass = Arrays.copyOfRange(argArray, 1, argArray.length);
             return new GenerateMessageCommandParser().parse(String.join(" ", argsToPass));
         case ListMessageCommand.COMMAND_SPECIFIER:
+            // Fallthrough
+        case ListMessageCommand.COMMAND_SPECIFIER_ALIAS:
             return new ListMessageCommandParser().parse("");
         default:
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, errorMessage));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
     }
 }

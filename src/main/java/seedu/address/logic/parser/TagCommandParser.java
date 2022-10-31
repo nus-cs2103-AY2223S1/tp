@@ -38,9 +38,13 @@ public class TagCommandParser implements Parser<TagCommand> {
 
         try {
             index = parseIndex(argArray[0]);
-            tags = ParserUtil.parseTags(Arrays.asList(argArray).subList(index.isPresent() ? 1 : 0, argArray.length));
         } catch (ParseException e) {
             throw new ParseException(TagCommand.MESSAGE_USAGE);
+        }
+        try {
+            tags = ParserUtil.parseTags(Arrays.asList(argArray).subList(index.isPresent() ? 1 : 0, argArray.length));
+        } catch (ParseException e) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
 
         return index.map(i -> new TagCommand(i, tags)).orElse(new TagCommand(tags));

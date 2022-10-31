@@ -36,14 +36,15 @@ public class UiManager implements Ui {
     public void start(Stage primaryStage, String launchMessage) {
         logger.info("Starting UI...");
 
-        //Set the application icon.
+        // Set the application icon.
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
             mainWindow = new MainWindow(primaryStage, logic);
-            mainWindow.show(); //This should be called before creating other UI parts
+            mainWindow.show(); // This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-            mainWindow.displayMessage(launchMessage);
+            mainWindow.setWelcomeMessage(launchMessage);
+            mainWindow.setMotivationalQuote(logic.getQuote());
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
@@ -68,7 +69,7 @@ public class UiManager implements Ui {
      * This method only returns after the user has closed the alert dialog.
      */
     private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
-                                               String contentText) {
+            String contentText) {
         final Alert alert = new Alert(type);
         alert.getDialogPane().getStylesheets().add("view/LightTheme.css");
         alert.initOwner(owner);
@@ -89,5 +90,4 @@ public class UiManager implements Ui {
         Platform.exit();
         System.exit(1);
     }
-
 }

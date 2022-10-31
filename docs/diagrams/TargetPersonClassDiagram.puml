@@ -1,0 +1,31 @@
+@startuml
+!include style.puml
+show members
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+
+Class ModelManager {
+    ObservableList<Person> getTargetPersonAsObservableList()
+    public Person getTargetPerson()
+    public void setTargetPerson(Person)
+    public void clearTargetPerson()
+    public boolean isTargetPerson(Person)
+    public boolean hasTargetPerson()
+}
+
+Class TargetPerson {
+    Optional<Person> targetPerson
+
+    ObservableList<Person> getAsObservableList()
+    Person get()
+    void set(Person)
+    void clear()
+    boolean isSamePerson(Person)
+    boolean isPresent()
+}
+
+ModelManager -down-> "1 " TargetPerson
+
+@enduml

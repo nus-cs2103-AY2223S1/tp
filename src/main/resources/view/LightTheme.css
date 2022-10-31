@@ -1,3 +1,8 @@
+* {
+    -fx-primary-color: #9837d8;
+    -fx-secondary-color: #4737d9;
+}
+
 .background {
     -fx-background-color: #fff;
     background-color: #fff; /* Used in the default.html file */
@@ -89,7 +94,9 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#fff, 20%);
+    -fx-background-color: #f8f8f8;
+    -fx-border-width: 1;
+    -fx-border-color: #e0e0e0;
 }
 
 .list-cell {
@@ -194,7 +201,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#9837d9, 20%);
+    -fx-background-color: derive(-fx-primary-color, 20%);
 }
 
 .menu-bar-nav-button {
@@ -286,11 +293,14 @@
 }
 
 .scroll-bar {
-    -fx-background-color: #fff;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-border-color: #d8d8d8;
+    -fx-background-color: #f6f6f6;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #fff;
+    -fx-background-color: #e4e4e4;
     -fx-background-insets: 3;
 }
 
@@ -349,9 +359,126 @@
 
 #tags .label {
     -fx-text-fill: white;
-    -fx-background-color: #4737d9;
+    -fx-background-color: -fx-secondary-color;
     -fx-padding: 2 3 2 3;
     -fx-border-radius: 3;
     -fx-background-radius: 3;
     -fx-font-size: 11;
+}
+
+.secondary-pane {
+    -fx-background-color: #fff;
+    -fx-padding: 10 5;
+}
+
+.reminder-card {
+    -fx-padding: 10 6;
+}
+
+.reminder-card.expired {
+    -fx-background-color: #eab2b5;
+    -fx-text-fill: #fff;
+}
+
+.reminder-description {
+    -fx-font-size: 18px;
+    -fx-text-fill: #333 !important;
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 200;
+}
+
+.reminder-with {
+    -fx-font-size: 12px;
+    -fx-text-fill: rgb(108, 53, 122) !important;
+    -fx-font-style: italic;
+    -fx-font-family: "Roboto";
+    -fx-font-weight: lighter;
+}
+
+.reminder-date {
+    -fx-font-size: 12px;
+    -fx-text-fill: #4e4e4e !important;
+    -fx-font-family: "Roboto";
+    -fx-font-weight: lighter;
+}
+
+.welcome-message {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0;
+}
+
+.reminders-header {
+    -fx-font-size: 18px;
+    -fx-font-weight: 300;
+    -fx-padding: 0 0 6 0;
+}
+
+.pane-header {
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 700;
+    -fx-font-size: 36px;
+    -fx-padding: 0 0 10 0;
+}
+
+.pane-header-2 {
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 400;
+    -fx-font-size: 24px;
+    -fx-padding: 0 0 10 0;
+}
+
+.target-person-name {
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 400;
+    -fx-text-fill: #010504;
+    -fx-font-size: 24px;
+    -fx-padding: 8 0;
+}
+
+.target-person-tag-container {
+    -fx-padding: 8 0;
+}
+
+.target-person-tag {
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 300;
+    -fx-text-fill: #010504;
+    -fx-font-size: 14px;
+}
+
+.target-person-icon-container {
+    -fx-padding: 0 8 0 0;
+}
+
+.target-person-details {
+    -fx-padding: 8 0;
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 300;
+    -fx-text-fill: #010504;
+    -fx-font-size: 16px;
+}
+
+.message-template-card {
+    -fx-padding: 10 6;
+}
+
+.message-template-text {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 14px;
+}
+
+.message-name-placeholder {
+    -fx-font-style: italic;
+    -fx-fill: #0009a6;
+}
+
+.placeholder {
+    -fx-font-style: italic;
+    -fx-fill: #505050;
+}
+
+.motivational-quote {
+    -fx-font-style: italic;
+    -fx-padding: 0 0 6 0;
 }

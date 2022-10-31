@@ -6,4 +6,5 @@ package seedu.address.logic.commands;
  */
 public abstract class MessageCommandGroup extends Command {
     public static final String COMMAND_GROUP = "message";
+    public static final String COMMAND_GROUP_ALIAS = "m";
 }

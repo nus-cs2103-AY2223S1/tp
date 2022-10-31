@@ -1,0 +1,42 @@
+@startuml filter-parse-sequence
+!include style.puml
+
+box LOGIC_COLOR_T1
+participant ":FilterCommandParser" as FilterCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "p:FilterCommandPredicate" as FilterCommandPredicate LOGIC_COLOR
+participant "c:FilterCommandPredicate" as FilterCommand LOGIC_COLOR
+end box
+
+[->FilterCommandParser : parse(args)
+activate FilterCommandParser
+
+FilterCommandParser -> ParserUtil: parseNameQueryPredicats(names)
+activate ParserUtil
+ParserUtil --> FilterCommandParser: namePreds
+deactivate ParserUtil
+
+FilterCommandParser -> ParserUtil: parseTagQueryPredicats(tags)
+activate ParserUtil
+ParserUtil --> FilterCommandParser: tagPreds
+deactivate ParserUtil
+
+create FilterCommandPredicate
+FilterCommandParser -> FilterCommandPredicate : FilterCommandPredicate(namePreds)
+activate FilterCommandPredicate
+FilterCommandPredicate --> FilterCommandParser
+deactivate FilterCommandPredicate
+
+
+create FilterCommand
+FilterCommandParser -> FilterCommand : FilterCommand(p)
+activate FilterCommand
+
+FilterCommandParser <-- FilterCommand
+deactivate FilterCommand
+
+<-- FilterCommandParser : c
+deactivate FilterCommandParser
+
+
+@enduml

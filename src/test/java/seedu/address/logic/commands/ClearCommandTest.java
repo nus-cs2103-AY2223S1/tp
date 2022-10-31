@@ -13,6 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReminderList;
 
 public class ClearCommandTest {
 
@@ -26,8 +27,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ReminderList());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ReminderList());
         expectedModel.setAddressBook(new AddressBook());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
@@ -35,11 +36,11 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBookAndTargetPersonShouldBeCleared_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ReminderList());
         Person targetPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         // set target person
         model.setTargetPerson(targetPerson);
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ReminderList());
         expectedModel.setAddressBook(new AddressBook());
 
         assertTrue(model.hasTargetPerson());

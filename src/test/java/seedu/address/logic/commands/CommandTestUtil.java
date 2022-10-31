@@ -27,6 +27,10 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TargetPerson;
+import seedu.address.model.quote.Quote;
+import seedu.address.model.reminder.ReadOnlyReminderList;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -45,8 +49,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_REMARK_AMY = "Is a mother of 2.";
     public static final String VALID_REMARK_BOB = "Enjoys eating.";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_NAME_HUSBAND = "husband";
+    public static final String VALID_TAG_NAME_FRIEND = "friend";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -56,8 +60,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_NAME_FRIEND;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_NAME_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -74,10 +78,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_NAME_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_NAME_HUSBAND, VALID_TAG_NAME_FRIEND).build();
     }
 
     /**
@@ -90,6 +94,20 @@ public class CommandTestUtil {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, Model expectedModel) {
+        try {
+            command.execute(actualModel);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
@@ -132,7 +150,9 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.addNewFilterToFilteredPersonList(new NameContainsKeywordsPredicate(splitName[0]));
+        FilterCommandPredicate predicate =
+                new FilterCommandPredicate(new NameContainsKeywordsPredicate(splitName[0]), null);
+        model.addNewFilterToFilteredPersonList(predicate);
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
@@ -203,6 +223,11 @@ public class CommandTestUtil {
         }
 
         @Override
+        public String printTagsPrettily() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public void addTag(Tag tag) {
             throw new AssertionError("This method should not be called");
         }
@@ -228,7 +253,7 @@ public class CommandTestUtil {
         }
 
         @Override
-        public void addNewFilterToFilteredPersonList(Predicate<Person> predicate) {
+        public void addNewFilterToFilteredPersonList(FilterCommandPredicate predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -238,12 +263,12 @@ public class CommandTestUtil {
         }
 
         @Override
-        public void removeFilterFromFilteredPersonList(Predicate<Person> predicate) {
+        public void removeFilterFromFilteredPersonList(FilterCommandPredicate predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getTargetPersonAsObservableList() {
+        public TargetPerson getObservableTargetPerson() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -273,12 +298,32 @@ public class CommandTestUtil {
         }
 
         @Override
-        public List<Message> getMessages() {
+        public ReadOnlyReminderList getReminderList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addMessage(Message message) {
+        public ObservableList<Reminder> getReminderListAsObservableList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Message> getMessages() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Reminder> getTargetPersonReminderListAsObservableList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void createMessage(Message message) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteReminder(Reminder reminder) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -288,7 +333,47 @@ public class CommandTestUtil {
         }
 
         @Override
+        public void addReminder(Reminder reminder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean reminderExists(Reminder reminder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Reminder> getCurrentReminderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearCurrentReminderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearAllReminders() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasMessage(Message message) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Set<Predicate<Person>> getTagFilters() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Set<Predicate<Person>> getNameFilters() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Quote getQuote() {
             throw new AssertionError("This method should not be called.");
         }
     }

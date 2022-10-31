@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -17,6 +20,7 @@ import seedu.address.model.person.Person;
  */
 public class GenerateMessageCommand extends MessageCommandGroup {
     public static final String COMMAND_SPECIFIER = "generate";
+    public static final String COMMAND_SPECIFIER_ALIAS = "g";
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Generates a customised message for the person. "
@@ -24,7 +28,7 @@ public class GenerateMessageCommand extends MessageCommandGroup {
             + "[PERSON_INDEX] [MESSAGE_INDEX] \n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
-    public static final String MESSAGE_SUCCESS = "Message generated: %1$s";
+    public static final String MESSAGE_SUCCESS = "Message generated and copied to clipboard:\n%1$s";
 
     private final Index personIndex;
     private final Index messageIndex;
@@ -51,13 +55,17 @@ public class GenerateMessageCommand extends MessageCommandGroup {
         Person person = lastShownList.get(personIndex.getZeroBased());
 
         List<Message> messages = model.getMessages();
-        System.out.println(messageIndex.getZeroBased());
         if (messageIndex.getZeroBased() >= messages.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MESSAGE_INDEX);
         }
         Message message = messages.get(messageIndex.getZeroBased());
 
         String generatedMessage = message.generate(person);
+
+        StringSelection stringSelection = new StringSelection(generatedMessage);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, generatedMessage));
     }
 

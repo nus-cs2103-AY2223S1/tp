@@ -4,9 +4,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_TAGS_NOT_FOUND;
 import static seedu.address.logic.commands.CommandTestUtil.ModelStub;
 import static seedu.address.logic.commands.DeleteTagCommand.MESSAGE_SUCCESS;
-import static seedu.address.logic.commands.DeleteTagCommand.MESSAGE_TAGS_DONT_EXIST;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTags.VALID_TAG_FRIENDS;
 import static seedu.address.testutil.TypicalTags.VALID_TAG_OWES_MONEY;
@@ -50,7 +50,7 @@ public class DeleteTagCommandTest {
         CommandResult commandResult = new DeleteTagCommand(tagsToAdd).execute(modelStub);
 
         String duplicateMessage =
-                String.format(MESSAGE_TAGS_DONT_EXIST, Tag.toString(Set.of(VALID_TAG_FRIENDS))) + "\n";
+                String.format(MESSAGE_TAGS_NOT_FOUND, Tag.toString(Set.of(VALID_TAG_FRIENDS))) + "\n";
         String successMessage = String.format(MESSAGE_SUCCESS, Tag.toString(Set.of(VALID_TAG_OWES_MONEY)));
         assertEquals(duplicateMessage + successMessage, commandResult.getFeedbackToUser());
         assertEquals(tagsToAdd, modelStub.tagsRemoved);

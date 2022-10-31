@@ -25,19 +25,23 @@ public class FilterCommandPredicateTest {
         TagMatchesQueryPredicate secondTagPredicate =
                 new TagMatchesQueryPredicate(new Tag("neighbor"));
 
-        FilterCommandPredicate firstPredicate = new FilterCommandPredicate(firstNamePredicate, firstTagPredicate);
+        FilterCommandPredicate firstPredicate =
+                new FilterCommandPredicate(firstNamePredicate, firstTagPredicate);
         FilterCommandPredicate secondPredicate = new FilterCommandPredicate(
-                Set.of(firstNamePredicate, secondNamePredicate), Set.of(firstTagPredicate, secondTagPredicate));
+                Set.of(firstNamePredicate, secondNamePredicate),
+                Set.of(firstTagPredicate, secondTagPredicate));
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same value -> returns true
-        assertTrue(firstPredicate.equals(new FilterCommandPredicate(firstNamePredicate, firstTagPredicate)));
+        assertTrue(firstPredicate
+                .equals(new FilterCommandPredicate(firstNamePredicate, firstTagPredicate)));
 
         // same set -> returns true
         assertTrue(secondPredicate.equals(new FilterCommandPredicate(
-                Set.of(firstNamePredicate, secondNamePredicate), Set.of(firstTagPredicate, secondTagPredicate))));
+                Set.of(firstNamePredicate, secondNamePredicate),
+                Set.of(firstTagPredicate, secondTagPredicate))));
 
         // same name no tag -> returns true
         assertTrue(new FilterCommandPredicate(firstNamePredicate, null)
@@ -51,10 +55,12 @@ public class FilterCommandPredicateTest {
         assertFalse(firstPredicate.equals(5));
 
         // different name -> returns false
-        assertFalse(firstPredicate.equals(new FilterCommandPredicate(secondNamePredicate, firstTagPredicate)));
+        assertFalse(firstPredicate
+                .equals(new FilterCommandPredicate(secondNamePredicate, firstTagPredicate)));
 
         // different tag -> returns false
-        assertFalse(firstPredicate.equals(new FilterCommandPredicate(firstNamePredicate, secondTagPredicate)));
+        assertFalse(firstPredicate
+                .equals(new FilterCommandPredicate(firstNamePredicate, secondTagPredicate)));
 
         // different set -> return false
         assertFalse(firstPredicate.equals(secondPredicate));

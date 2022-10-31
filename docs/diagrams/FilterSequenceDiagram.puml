@@ -1,0 +1,37 @@
+@startuml filter-sequence
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":FilterCommand" as FilterCommand LOGIC_COLOR
+participant "pred:FilterCommandPredicate" as FilterCommandPredicate LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+[->FilterCommand : execute(model)
+activate FilterCommand
+
+FilterCommand -> Model : addNewFilterToFilteredPersonList(pred)
+activate Model
+
+Model -> FilterCommandPredicate: addNameFilters(namePreds)
+activate FilterCommandPredicate
+FilterCommandPredicate --> Model
+deactivate FilterCommandPredicate
+
+Model -> FilterCommandPredicate: addTagFilters(tagPreds)
+activate FilterCommandPredicate
+FilterCommandPredicate --> Model
+deactivate FilterCommandPredicate
+
+Model -> Model: updateFilteredPersonList()
+Model --> FilterCommand
+deactivate Model
+
+<-- FilterCommand : commandResult
+deactivate FilterCommand
+
+
+@enduml
