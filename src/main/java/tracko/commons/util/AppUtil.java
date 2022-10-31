@@ -39,4 +39,13 @@ public class AppUtil {
             throw new IllegalArgumentException(errorMessage);
         }
     }
+
+
+    public static boolean checkDoubleLessThanMaxInt(Double doubleValue) {
+        return (doubleValue < Integer.MAX_VALUE);
+    }
+
+    public static boolean isIntegerLessThanMaxInt(Integer integerValue) {
+        return (integerValue < Integer.MAX_VALUE);
+    }
 }

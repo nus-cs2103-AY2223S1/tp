@@ -92,11 +92,11 @@ public class StringUtil {
      * and " 2.343 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
      * @throws NullPointerException if {@code s} is null.
      */
-    public static boolean isNonNegativeUnsignedFloat(String s) {
+    public static boolean isNonNegativeUnsignedDouble(String s) {
         requireNonNull(s);
 
         try {
-            float value = Float.parseFloat(s);
+            double value = Double.parseDouble(s);
             return value >= 0 && !s.startsWith("+");
         } catch (NumberFormatException nfe) {
             return false;
