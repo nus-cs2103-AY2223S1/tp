@@ -30,6 +30,15 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
+     * Update the person card Ui of every person in the contact list when a next sem command is given by the user.
+     * @param personList The current person list consisting of all the current persons in the contact list.
+     */
+    public void updatePrevMods(ObservableList<Person> personList) {
+        personListView.setItems(personList);
+        personListView.setCellFactory(listView -> new PersonListViewCell());
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {
@@ -41,6 +50,18 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
+                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+            }
+        }
+
+        public void nextSem(Person person, boolean empty) {
+            super.updateItem(person, empty);
+
+            if (empty || person == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                person.updatePrevMods();
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
             }
         }
