@@ -57,9 +57,8 @@ public class DeletePersonFromModuleCommandIntegrationTest {
         expectedModel.setModule(validModuleWithAliceAndBenson, expectedModule);
 
         assertCommandSuccess(new DeletePersonFromModuleCommand(validModuleCode, aliceName), model,
-                String.format(DeletePersonFromModuleCommand.MESSAGE_DELETE_PERSON_FROM_MODULE_SUCCESS,
-                        validModuleCode, aliceName),
-                expectedModel);
+                String.format(DeletePersonFromModuleCommand.MESSAGE_DELETE_PERSON_FROM_MODULE_SUCCESS, validModuleCode,
+                        aliceName), expectedModel);
     }
 
     @Test
@@ -87,7 +86,7 @@ public class DeletePersonFromModuleCommandIntegrationTest {
         expectedModel.updateFilteredPersonList(personPredicate);
         expectedModel.setHomeStatus(false);
 
-        // After setting new module, the person list is updated to be now without the deleted person.
+        // After setting new module, the person list is now updated to be  without the deleted person.
         expectedModel.setModule(validModuleWithAliceAndBenson, expectedModule);
         Predicate<Person> newPersonPredicate = person -> person.equals(BENSON);
         expectedModel.updateFilteredPersonList(newPersonPredicate);
