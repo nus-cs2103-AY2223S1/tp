@@ -45,6 +45,7 @@ public class DeleteModuleCommand extends Command {
         }
         assert moduleToDelete != null;
         model.deleteModule(moduleToDelete);
+        model.goToHomePage();
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
     }
 
