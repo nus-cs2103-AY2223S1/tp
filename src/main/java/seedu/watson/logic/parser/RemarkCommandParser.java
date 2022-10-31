@@ -23,9 +23,9 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         requireNonNull(args);
         String trimmedArgs = args.trim();
 
-        if (trimmedArgs.isEmpty()) {
+        if (trimmedArgs.isEmpty() || trimmedArgs.split("\\s+").length < 2) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE));
         }
 
         String[] remarkKeywords = trimmedArgs.split("\\s+", 2);
