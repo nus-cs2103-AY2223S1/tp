@@ -139,7 +139,10 @@ Curious about the various commands? Refer to the [Features](#features) below to 
 
 Think of PennyWise as a notebook that has infinite number of pages. You can write as much data as you want on your 
 expenditure or income, PennyWise will keep track of them. An entry is what PennyWise terms as a particular expenditure
-or income logged into the application. Each entry is defined by the following items:
+or income logged into the application. PennyWise defines an expenditure and income as things that you spend money on,
+and things that make you money respectively!
+
+Each entry is defined by the following items:
 
 * Type: whether it is an expenditure or income
 * Description: what is this particular entry about
