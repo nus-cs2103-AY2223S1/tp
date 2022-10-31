@@ -4,10 +4,8 @@ title: User Guide
 ---
 <div align="center">
 <h1> Pupilist User Guide</h1>
-Welcome to Pupilist User Guide!
+Welcome to Pupilist's User Guide!
 </div>
-
-## Introducing Pupilist
 
 <p align="center">
   <img src="images/pupilist.png" alt="Pupilist's app icon"/>
@@ -23,15 +21,16 @@ If you are a private tutor struggling to:
 4. keep track of your students' contact information.<br>
 
 Pupilist can get your scheduling done faster with single line CLI command inputs to manage all your tutoring needs.
-
-## Table of Contents
-
+<br>
 * Table of Contents
-  {:toc}
+{:toc}
 
 ---
 
-### Glossary
+## Introducing Pupilist
+{to be added layout of ui and pointers to indicate where command box is etc}
+
+## Glossary
 
 
 | Term      | Description                                                                                                                                                                                                                                                                                                                                        |
@@ -387,9 +386,9 @@ _Details coming soon ..._
 
 ---
 
-### Summaries
+## Summaries
 
-## Command summary
+### Command summary
 
 
 | Action                 | Format, Examples                                                                                                                                                             |
@@ -413,7 +412,7 @@ _Details coming soon ..._
 | **Update Lesson plan** | `lesson INDEX lp/LESSON_PLAN`<br> e.g., `lesson 1 lp/Biology`                                                                                                                |
 | **View**               | `view NAME`<br> e.g., `view James Ho`                                                                                                                                        |
 
-## Prefixes summaries
+### Prefixes summaries
 
 
 | Prefix | Definition                             | Usage                                                                                                                                                                                      | Example        |
