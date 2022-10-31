@@ -42,6 +42,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label internship;
+    @FXML
+    private Label company;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -51,8 +53,8 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        email.setText(person.getEmail().value);
+        phone.setText(person.getPhone().toString());
+        email.setText(person.getEmail().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -61,6 +63,7 @@ public class PersonCard extends UiPart<Region> {
         } else {
             internship.setText("Internship: " + person.getInternshipId().toString());
         }
+        company.setText(person.getCompany().toString());
     }
 
     public InternshipId getInternshipId() {

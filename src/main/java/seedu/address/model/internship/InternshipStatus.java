@@ -1,39 +1,104 @@
 package seedu.address.model.internship;
 
 /**
- * Represents an Internship's status in the address book.
+ * Represents an Internship's status in InterNUS.
  * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}
  */
 public class InternshipStatus {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Status can only be PENDING, REJECTED, ACCEPTED or COMPLETED, and it should not be blank";
+            "Status can only be BOOKMARKED, PENDING, ACCEPTED, COMPLETED or REJECTED and it should not be blank";
 
     /**
      * Represents the possible states of an InternshipStatus.
+     * A lower level indicates a higher priority in the Internship list when sorted by InternshipStatus.
      */
-    public enum State { PENDING, REJECTED, ACCEPTED, COMPLETED }
+    public enum State {
+        BOOKMARKED(0),
+        PENDING(1),
+        ACCEPTED(2),
+        COMPLETED(3),
+        REJECTED(4);
+
+        private final int level;
+
+        State(int level) {
+            this.level = level;
+        }
+
+        public int getLevel() {
+            return level;
+        }
+
+        /**
+         * Constructs a State from trimmed user input.
+         * Handles shortcut inputs, given by the first character of the State.
+         *
+         * @param input that is trimmed and is uppercase.
+         * @return State enum of specified internship status.
+         */
+        public static State fromTrimmedInput(String input) {
+            if (input.length() == 1) {
+                return State.fromShortcut(input);
+            }
+            return State.valueOf(input);
+        }
+
+        private static State fromShortcut(String shortcut) {
+            assert shortcut.length() == 1;
+            switch (shortcut) {
+            case "B":
+                return State.valueOf("BOOKMARKED");
+            case "P":
+                return State.valueOf("PENDING");
+            case "A":
+                return State.valueOf("ACCEPTED");
+            case "C":
+                return State.valueOf("COMPLETED");
+            case "R":
+                return State.valueOf("REJECTED");
+            default:
+                return null;
+            }
+        }
+
+    }
 
     public final State currentState;
 
     /**
      * Constructs a {@code InternshipStatus}.
      *
-     * @param state A valid state as defined in the {@Code State} enum.
+     * @param state A valid state as defined in the {@code State} enum.
      */
     public InternshipStatus(State state) {
         this.currentState = state;
     }
 
     /**
-     * Returns true if the given String can be parsed to a valid state as defined in the {@Code State} enum.
+     * Returns true if the given String can be parsed to a valid state as defined in the {@code State} enum.
      */
     public static boolean isValidStatus(String test) {
         switch (test) {
-        case "PENDING":
-        case "REJECTED":
+        case "B":
+            // Fallthrough
+        case "P":
+            // Fallthrough
+        case "A":
+            // Fallthrough
+        case "C":
+            // Fallthrough
+        case "R":
+            // Fallthrough
+        case "BOOKMARKED":
+            // Fallthrough
         case "ACCEPTED":
+            // Fallthrough
         case "COMPLETED":
+            // Fallthrough
+        case "PENDING":
+            // Fallthrough
+        case "REJECTED":
             return true;
         default:
             return false;

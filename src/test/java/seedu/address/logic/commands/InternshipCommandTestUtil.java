@@ -10,6 +10,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -17,8 +18,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
 import seedu.address.model.internship.InternshipStatus;
-import seedu.address.model.internship.NameContainsKeywordsPredicate;
 
 /**
  * Contains helper methods for testing commands.
@@ -73,7 +74,7 @@ public class InternshipCommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -88,7 +89,7 @@ public class InternshipCommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -118,7 +119,11 @@ public class InternshipCommandTestUtil {
 
         Internship internship = model.getFilteredInternshipList().get(targetIndex.getZeroBased());
         final String[] splitName = internship.getCompanyName().fullName.split("\\s+");
-        model.updateFilteredInternshipList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredInternshipList(new InternshipContainsKeywordsPredicate(
+                Arrays.asList(splitName[0]),
+                Collections.emptyList(),
+                Collections.emptyList(),
+                Collections.emptyList()));
 
         assertEquals(1, model.getFilteredInternshipList().size());
     }

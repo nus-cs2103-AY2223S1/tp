@@ -7,7 +7,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonId;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of InterNUS
  */
 public interface ReadOnlyAddressBook {
 
@@ -18,8 +18,8 @@ public interface ReadOnlyAddressBook {
     ObservableList<Person> getPersonList();
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the internship list.
+     * This list will not contain any duplicate internships.
      */
     ObservableList<Internship> getInternshipList();
 

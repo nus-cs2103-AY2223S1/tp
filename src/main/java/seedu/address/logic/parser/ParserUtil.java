@@ -14,6 +14,7 @@ import seedu.address.model.internship.InternshipId;
 import seedu.address.model.internship.InternshipRole;
 import seedu.address.model.internship.InternshipStatus;
 import seedu.address.model.internship.InterviewDate;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonId;
@@ -98,14 +99,15 @@ public class ParserUtil {
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
+        if (phone == null || phone.isBlank()) {
+            return new Phone(null);
+        }
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
     }
-
 
     /**
      * Parses a {@code String email} into an {@code Email}.
@@ -114,7 +116,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
+        if (email == null || email.isBlank()) {
+            return new Email(null);
+        }
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
@@ -129,7 +133,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
+        if (tag == null || tag.isBlank()) {
+            return null;
+        }
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
@@ -141,12 +147,30 @@ public class ParserUtil {
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            if (tagName != null && !tagName.isBlank()) {
+                tagSet.add(parseTag(tagName));
+            }
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String company} into a {@code Company}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code company} is invalid.
+     */
+    public static Company parseCompany(String company) throws ParseException {
+        if (company == null || company.isBlank()) {
+            return new Company(null);
+        }
+        String trimmedCompany = company.trim();
+        if (!Company.isValidName(trimmedCompany)) {
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
+        }
+        return new Company(trimmedCompany);
     }
 
     // TODO: Remove this method.
@@ -157,7 +181,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code internshipId} is invalid.
      */
     public static InternshipId parseInternshipId(String internshipId) throws ParseException {
-        if (internshipId == null) {
+        if (internshipId.isBlank()) {
             return null;
         }
         String trimmedInternshipId = internshipId.trim();
@@ -209,7 +233,7 @@ public class ParserUtil {
         if (!InternshipStatus.isValidStatus(trimmedInternshipStatus)) {
             throw new ParseException(InternshipStatus.MESSAGE_CONSTRAINTS);
         }
-        return new InternshipStatus(InternshipStatus.State.valueOf(trimmedInternshipStatus));
+        return new InternshipStatus(InternshipStatus.State.fromTrimmedInput(trimmedInternshipStatus));
     }
 
     /**
@@ -219,7 +243,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code interviewDate} is invalid.
      */
     public static InterviewDate parseInterviewDate(String interviewDate) throws ParseException {
-        requireNonNull(interviewDate);
+        if (interviewDate == null || interviewDate.isBlank()) {
+            return new InterviewDate(null);
+        }
         String trimmedInterviewDate = interviewDate.trim();
         if (!InterviewDate.isValidDatetimeStr(trimmedInterviewDate)) {
             throw new ParseException(InterviewDate.MESSAGE_CONSTRAINTS);

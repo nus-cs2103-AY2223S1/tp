@@ -11,11 +11,11 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from the person list.
  */
 public class DeletePersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletep";
+    public static final String COMMAND_WORD = "delete -p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"

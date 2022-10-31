@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.internship.InternshipId;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final Integer internshipId;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String company;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -42,7 +44,8 @@ class JsonAdaptedPerson {
             @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
             @JsonProperty("internshipId") Integer internshipId,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("company") String company) {
         this.personId = personId;
         this.name = name;
         this.phone = phone;
@@ -51,6 +54,7 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.company = company;
     }
 
     /**
@@ -59,12 +63,13 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         personId = source.getPersonId().id;
         name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
+        phone = source.getPhone() != null ? source.getPhone().value : null;
+        email = source.getEmail() != null ? source.getEmail().value : null;
         internshipId = source.getInternshipId() != null ? source.getInternshipId().id : null;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        company = source.getCompany() != null ? source.getCompany().fullName : null;
     }
 
     /**
@@ -73,12 +78,13 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
+        //personId
         if (personId == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, PersonId.class.getSimpleName()));
         }
         final PersonId modelPersonId = new PersonId(personId);
-
+        //name
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -86,39 +92,49 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
-
+        //phone
+        final Phone modelPhone;
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
+            modelPhone = null;
+        } else if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        } else {
+            modelPhone = new Phone(phone);
         }
-        final Phone modelPhone = new Phone(phone);
-
+        //email
+        final Email modelEmail;
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
+            modelEmail = null;
+        } else if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        } else {
+            modelEmail = new Email(email);
         }
-        final Email modelEmail = new Email(email);
-
-
+        //internshipId
         final InternshipId modelInternshipId;
         if (internshipId == null || !InternshipId.isValidId(internshipId)) {
             modelInternshipId = null;
         } else {
             modelInternshipId = new InternshipId(internshipId);
         }
-
+        //tags
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
         final Set<Tag> modelTags = new HashSet<>(personTags);
+        //company
+        final Company modelCompany;
+        if (company == null) {
+            modelCompany = null;
+        } else if (!Company.isValidName(company)) {
+            throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
+        } else {
+            modelCompany = new Company(company);
+        }
 
-        return new Person(modelPersonId, modelName, modelPhone, modelEmail, modelInternshipId,
-                modelTags);
+        return new Person(modelPersonId, modelName, modelEmail, modelPhone, modelInternshipId,
+                modelTags, modelCompany);
     }
 }
 

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Internship's company name in the address book.
+ * Represents an Internship's company name in InterNUS.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class CompanyName {
@@ -12,8 +12,9 @@ public class CompanyName {
             "Company names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
+     * However, the parser would have ignored it anyway.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 

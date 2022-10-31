@@ -131,7 +131,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in InterNUS.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -139,7 +139,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if an internship with the same identity as {@code internship} exists in the address book.
+     * Returns true if an internship with the same identity as {@code internship} exists in InterNUS.
      */
     public boolean hasInternship(Internship internship) {
         requireNonNull(internship);
@@ -162,19 +162,16 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String findInternshipNameById(InternshipId internshipId) {
-        // TODO: Update getCompanyName to the auto generated Internship Name to be displayed
         Internship i = findInternshipById(internshipId);
-        return i == null ? null : i.getCompanyName().toString();
+        return i == null ? null : i.getDisplayName().toString();
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to InterNUS.
+     * The person must not already exist in InterNUS.
      * Updates the personIdCounter to avoid duplicate Ids.
      */
     public void addPerson(Person p) {
-        updateNextPersonId();
-
         persons.add(p);
 
         Internship i = findInternshipById(p.getInternshipId());
@@ -192,8 +189,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a internship to the address book.
-     * The internship must not already exist in the address book.
+     * Adds an internship to InterNUS.
+     * The internship must not already exist in InterNUS.
      * * Updates the internshipIdCounter to avoid duplicate Ids.
      */
     public void addInternship(Internship i) {
@@ -204,10 +201,11 @@ public class AddressBook implements ReadOnlyAddressBook {
             Person linkedP = new Person(
                     p.getPersonId(),
                     p.getName(),
-                    p.getPhone(),
                     p.getEmail(),
+                    p.getPhone(),
                     i.getInternshipId(),
-                    p.getTags()
+                    p.getTags(),
+                    p.getCompany()
             );
             setPerson(p, linkedP);
         }
@@ -215,8 +213,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in InterNUS.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in InterNUS.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -232,12 +230,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in InterNUS.
      */
     public void removePerson(Person key) {
         persons.remove(key);
-
-        updateNextPersonId();
 
         Internship i = findInternshipById(key.getInternshipId());
         if (i != null) {
@@ -255,7 +251,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in InterNUS.
      */
     public void removeInternship(Internship key) {
         internships.remove(key);
@@ -265,10 +261,11 @@ public class AddressBook implements ReadOnlyAddressBook {
             Person linkedP = new Person(
                     p.getPersonId(),
                     p.getName(),
-                    p.getPhone(),
                     p.getEmail(),
+                    p.getPhone(),
                     null,
-                    p.getTags()
+                    p.getTags(),
+                    p.getCompany()
             );
             setPerson(p, linkedP);
         }

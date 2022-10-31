@@ -11,7 +11,7 @@ import seedu.address.model.internship.InternshipId;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in InterNUS.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -22,27 +22,31 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final InternshipId internshipId;
+    private final Company company;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null except internship.
+     * Everything must be present and not purely null.
+     * However, optional fields can be an object wrapping null.
      */
     public Person(
             PersonId personId,
             Name name,
-            Phone phone,
             Email email,
+            Phone phone,
             InternshipId internshipId,
-            Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, tags);
+            Set<Tag> tags,
+            Company company) {
+        requireAllNonNull(name, tags);
         this.personId = personId;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.internshipId = internshipId;
         this.tags.addAll(tags);
+        this.company = company;
     }
 
     public PersonId getPersonId() {
@@ -54,15 +58,28 @@ public class Person {
     }
 
     public Phone getPhone() {
+        if (phone == null) {
+            return new Phone(null);
+        }
         return phone;
     }
 
     public Email getEmail() {
+        if (email == null) {
+            return new Email(null);
+        }
         return email;
     }
 
     public InternshipId getInternshipId() {
         return internshipId;
+    }
+
+    public Company getCompany() {
+        if (company == null) {
+            return new Company(null);
+        }
+        return company;
     }
 
     /**
@@ -112,23 +129,21 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(name, phone, email, tags, company);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail());
-
+                .append(("; Email: ")).append(getEmail())
+                .append(("; Phone: ")).append(getPhone());
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        builder.append(("; Company: ")).append(getCompany());
         return builder.toString();
     }
 
