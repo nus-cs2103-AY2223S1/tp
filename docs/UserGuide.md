@@ -7,22 +7,52 @@ title: User Guide
     <img src="images/LTNS_logo.png" width="200" height="200">
 </p>
 
-Long Time No See (LTNS) is a  **desktop app for managing clients, policies and events optimized for use via a Command Line Interface** (CLI) while still having the benefits of an **intuitive and minimalistic Graphical User Interface (GUI)**. With customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
+Long Time No See (LTNS) is a  **desktop app for managing clients, policies and events optimized for use via a [Command Line Interface](#command-line-interface-cli) (CLI)** while still having the benefits of an **intuitive and minimalistic [Graphical User Interface](#graphic-user-interface-gui) (GUI)**. With customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
 
 # Table of Contents
 1. [Quickstart](#quick-start)
 2. [Features](#features)<br>
-    a. [Common Features](#common-features)<br>
-    b. [Client Features](#client-features)<br>
-    c. [Policy Features](#policy-features)<br>
-    d. [Event Features](#event-features)
+   1. [Common Features](#common-features)<br>
+      1. [Viewing Help](#viewing-help--help)
+      2. [Clearing Entries](#clearing-all-entries--clear)
+      3. [Exiting the Program](#exiting-the-program--exit)
+      4. [Saving Data](#saving-the-data)
+      5. [Manually Editing Data File](#editing-the-data-file)
+   2. [Client Features](#client-features)<br>
+      1. [Adding a Client](#adding-a-client-addclient)
+      2. [Listing all Clients](#listing-all-clients--allclients)
+      3. [Editing a Client](#editing-a-client--editclient)
+      4. [Searching for a Client](#searching-for-clients-findclient)
+      5. [Deleting a Client](#deleting-a-client--deleteclient)
+      6. [Sorting all Clients](#sorting-all-clients--sort)
+      7. [Pin a Client](#pin-a-client-pin)
+   3. [Policy Features](#policy-features)<br>
+      1. [Adding a Policy](#adding-a-policy-addpolicy)
+      2. [Switching to Policy View](#switching-to-the-view-of-currently-listed-policies-policies)
+      3. [Listing all Policies](#viewing-all-policies-in-the-address-book-allpolicies)
+      4. [Deleting a Policy](#deleting-a-policy)
+      5. [Searching for a Policy](#searching-for-a-policy-findpolicy)
+      6. [Assigning a Policy to a Client](#assigning-a-policy-to-a-client-assign)
+      7. [Listing all Assigned Policies](#listing-out-policies-assigned-to-a-clientlistassigned)
+      8. [Deleting Assigned Policies from a Client](#deleting-assigned-policies-from-a-client-deleteassigned)
+      9. [Tracking your Income](#tracking-your-income---viewincome)
+   4. [Event Features](#event-features)
+      1. [Adding an Event](#adding-an-event--addevent)
+      2. [Listing all Events](#viewing-all-events--allevents)
+      3. [Searching for an Event](#searching-for-an-event--findevent)
+      4. [Viewing all Events in the next 7 days](#viewing-all-events-in-the-next-7-days--calendar)
 3. [Frequently Asked Questions](#faq)
 4. [Command Summary](#command-summary)
+5. [Glossary](#glossary)
+
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your Computer. (Installation Guides: [Mac User](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows User](https://phoenixnap.com/kb/install-java-windows))
 
 2. Download the latest `longtimenosee.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-2/tp/releases).
 
@@ -94,8 +124,10 @@ Shows a message explaning how to access the help page.
 
 Clears all data from your application. 
 
-| :warning: | This action is not reversible! |
-|-----------|:-------------------------------|
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+This action is irreversible! 
+</div>
+
 
 Format: `clear`
 
@@ -108,14 +140,14 @@ Format: `exit`
 ### Saving the data
 
 
-LTNS application data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+LTNS application data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-LTNS application data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+LTNS application data is saved as a [JSON](#json-file) file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 Below is an example of what your JSON File should look like:
-[JSONExample](./images/JsonExample.png)
+![Json Example](./images/JsonExample.png)
 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -194,9 +226,9 @@ Examples:
 *  `editClient 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 *  `editClient 3 b/2000-01-01` Edits the birthday of the 3rd client to be the 1st January 2000.
 
-### Search for clients: `findClient`
+### Searching for Clients: `findClient`
 
-Search for clients based on certain metrics
+Search for clients based on certain [metrics](#metric)
 
 Format: `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]`
 
@@ -270,18 +302,18 @@ Examples:
 
 Below is an example of what you will expect to see when you call `sort email`:
 
-:exclamation: Add picture here
+![SortEmailExample](./images/SortEmailExample.png)
 
 
 
-### Pin a user by name: `pin`
+### Pin a Client: `pin`
 * Format: `pin [CLIENT_INDEX]`
 * Description: Allows pinning of important clients to be viewed separately with command `viewPin`
 * Example Usage: `pin 1` pins the first client on list
 
 ### Assigning a Client to an Event/Policy 
 An existing client in your Client Book can be assigned to an Event or Policy.<br>
-To find out how to do so, you can refer to the [Adding an Event](#adding-an-event) guide to assign a Client to an Event or refer to the [Assigning a Policy to a Client](#assigning-a-policy-to-a-client) guide to find out how you can assign a Client to a Policy.
+To find out how to do so, you can refer to the [Adding an Event](#adding-an-event--addevent) guide to assign a Client to an Event or refer to the [Assigning a Policy to a Client](#assigning-a-policy-to-a-client-assign) guide to find out how you can assign a Client to a Policy.
 
 ## Policy Features
 Store policies from a large assortment of companies, with different coverages and customised customisable commissions! Assign them to a client when you secure a deal with ease.
@@ -367,7 +399,7 @@ Examples:
 * `findPolicy PruShield` followed by `delete 1` deletes the 1st policy in the results of the `findPolicy` command.
 
 
-### Search for a policy: `findPolicy`
+### Searching for a Policy: `findPolicy`
 
 Search for policies based on certain metrics
 
@@ -522,7 +554,7 @@ Q: Why am I seeing a `Sorting metric does not exist` error when trying to sort m
 A : You may be typing a wrong <b>keyword</b> or calling a sorting metric which is not supported. You may refer to [this list](#sorting-all-clients--sort) for a list of supported **keywords**. If you would like to suggest more sorting **keywords**, do feel free to contact us! 
 
 Q: Why is a blank screen shown when I use the `calendar` feature? <br>
-A: You may not have added any upcoming events in the next 7 days! You may want to [Add an Event](#adding-an-event) first. Alternatively, you can choose to [view all Events](#viewing-all-events--listevents) instead.
+A: You may not have added any upcoming events in the next 7 days! You may want to [Add an Event](#adding-an-event--addevent) first. Alternatively, you can choose to [view all Events](#viewing-all-events--allevents) instead.
 
 Q: What do I do if the user guide does not address my concern? <br>
 A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply within three working days!
@@ -587,6 +619,31 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | **Sort**        | `sort [COMPARABLE_METRIC]` <br> e.g: `sort AGE`      |
 | **Pin**         | `pin [n/NAME]` <br> e.g: `pin n/Jim`                 |
 | **View Pinned** | `viewPin` <br> e.g: `viewPin`                        |
+
+
+
+## Glossary 
+
+#### Policy
+An insurance or investment package entailing the details of the insurance and/or investment
+
+#### Coverage 
+Specific to an insurance policy, coverage describes the amount of risk or liability which is covered by the insurance policy
+
+#### Graphic User Interface (GUI)
+A User Interface that allows users to interact with the application through visual components
+
+#### Command-Line Interface (CLI)
+A Text-Based User Interface which allows you to use the application in the form of typing out "commands"
+
+#### JSON File 
+A file which is used to store data in text form. 
+
+#### Metric 
+A standard of measurement. In the case of LTNS, a metric in sorting or searching tells the application how to compare the clients
+
+#### Income Bracket
+Various income level ranges categorised by levels. LTNS uses the Inland Revenue Authority of Singapore's (IRAS) measurement of an income bracket.
 
 
 <br>    
