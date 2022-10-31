@@ -33,7 +33,7 @@ public interface Model {
      * {@code Comparator} that sorts by name
      */
     Comparator<Customer> CUSTOMER_NAME_COMPARATOR = Comparator.comparing(
-            customer-> customer.getName().fullName.toLowerCase());
+            customer -> customer.getName().fullName.toLowerCase());
 
     /**
      * {@code Comparator} that sorts by number of commissions
