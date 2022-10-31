@@ -156,7 +156,18 @@ Next, let us look at each feature in detail.
 
 Adds an employee to Coydir.
 
-Format: `add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​`
+Format: `add n/NAME [p/PHONE] [e/EMAIL] j/POSITION d/DEPARTMENT [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
+
+Field |TAG | Description | Requirement| Default Value
+--------------|---------------|---------------|------------------------ | --------
+`NAME`|n/|Name|**Compulsory**| -
+`PHONE` |p/|Phone number|**Optional**| N/A
+`EMAIL` |e/|Email|**Optional**| N/A
+`POSITION` |j/|Job position|**Compulsory**| -
+`DEPARTMENT` |d/|Company Department|**Compulsory**| -
+`ADDRESS` |a/|Address|**Optional**| N/A
+`LEAVE` |l/|Total number of entitled leaves|**Optional**| 14
+`TAG` |t/|Information tags|**Optional**| _None_
 
 <div markdown="span" class="alert alert-primary">:bulb:
 An employee can have any number of tags (including 0).
@@ -383,6 +394,11 @@ If the employee exists, and the rating given is valid (is a number from 1-5 incl
 If the rating given for any employee is invalid (is not an integer from 1-5 inclusive), Coydir will prompt the users accordingly, and the command will not execute.
 
 Format: `rate id/ID r/RATING`
+
+Field |TAG | Description | Requirement| Default Value
+--------------|---------------|---------------|------------------------ | --------
+`ID`|id/|Employee ID|**Compulsory**| -
+`RATING` |r/|Performance rating of employee|**Compulsory**| -
 
 Example:
 
