@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-
+## **Mass Linkers**
 Mass Linkers is a powerful Desktop application tool that helps **Computer Science (CS) students** find study support from batchmates, making it easier to form study groups and look for module-related guidance. 
 
 It provides a **centralised** platform for CS students to 
@@ -11,10 +11,21 @@ It provides a **centralised** platform for CS students to
 
 It is optimised for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
 
-In this *User Guide*, we will take you through the many useful features and functions of Mass Linkers, and provide you crucial information on how the different commands are used.
-
 * Table of Contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+## **Using the User Guide**
+In this *User Guide*, we will take you through the many useful features and functions of Mass Linkers, and provide you crucial information on how the different commands are used.
+
+We advise users to follow the User Guide sequentially as it provides a natural flow of how the sequence of commands should be executed.
+
+### Meaning of icons
+**:information_source:** additional information such as specific requirements of parameters and the nature of command
+
+**:bulb:** tip on how to carry out certain functionalities
+
+**:warning:** warning as the command can create drastic changes to the existing App data
 
 --------------------------------------------------------------------------------------------------------------------
 
