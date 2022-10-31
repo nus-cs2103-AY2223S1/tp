@@ -16,12 +16,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import foodwhere.model.review.comparator.ReviewsComparatorList;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.model.review.Review;
 import foodwhere.model.review.ReviewBuilder;
 import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.StallBuilder;
+import foodwhere.model.stall.comparator.StallsComparatorList;
 import foodwhere.model.stall.exceptions.DuplicateStallException;
 import foodwhere.model.stall.exceptions.StallNotFoundException;
 import javafx.collections.FXCollections;
@@ -294,6 +296,206 @@ public class AddressBookTest {
         Stall testStall = new StallBuilder().withName(testName).build();
         Review testReview = new ReviewBuilder().withName(testName).build();
         assertThrows(StallNotFoundException.class, () -> addressBook.addReviewToStall(testReview, testStall));
+    }
+
+    @Test
+    public void sortStall_generalTesting_success() {
+        Stall[] sampleStallsOrdered = new Stall[] {
+            new StallBuilder().withName("A for Apple").build(),
+            new StallBuilder().withName("B for Bee").build(),
+            new StallBuilder().withName("C for Cat").build(),
+            new StallBuilder().withName("D for Dog").build(),
+            new StallBuilder().withName("E for Elephant").build(),
+            new StallBuilder().withName("G for Giraffe").build()
+        };
+
+        Stall[] sampleStallsOrderedReversed = new Stall[] {
+            new StallBuilder().withName("G for Giraffe").build(),
+            new StallBuilder().withName("E for Elephant").build(),
+            new StallBuilder().withName("D for Dog").build(),
+            new StallBuilder().withName("C for Cat").build(),
+            new StallBuilder().withName("B for Bee").build(),
+            new StallBuilder().withName("A for Apple").build()
+        };
+
+        Stall[] sampleStallsUnOrdered = new Stall[] {
+            new StallBuilder().withName("E for Elephant").build(),
+            new StallBuilder().withName("D for Dog").build(),
+            new StallBuilder().withName("B for Bee").build(),
+            new StallBuilder().withName("G for Giraffe").build(),
+            new StallBuilder().withName("A for Apple").build(),
+            new StallBuilder().withName("C for Cat").build(),
+        };
+        List<Stall> sampleStallsListOrdered = List.of(sampleStallsOrdered);
+        List<Stall> sampleStallsListOrderedReversed = List.of(sampleStallsOrderedReversed);
+        List<Stall> sampleStallsListUnOrdered = List.of(sampleStallsUnOrdered);
+
+        for (Stall s: sampleStallsUnOrdered) {
+            addressBook.addStall(s);
+        }
+
+        // sort based on ascending order
+        addressBook.sortStalls(StallsComparatorList.NAME.getComparator());
+        assertEquals(sampleStallsListOrdered, addressBook.getStallList());
+
+        // make sure it's not equal to original
+        assertNotEquals(sampleStallsListUnOrdered, addressBook.getStallList());
+
+        // sort based on descending order
+        addressBook.sortStalls(StallsComparatorList.REVERSEDNAME.getComparator());
+        assertEquals(sampleStallsListOrderedReversed, addressBook.getStallList());
+    }
+
+    @Test
+    public void sortReviews_nameComparator_success() {
+        Review[] sampleReviewsOrdered = new Review[]{
+            new ReviewBuilder().withName("A for Apple").build(),
+            new ReviewBuilder().withName("B for Bee").build(),
+            new ReviewBuilder().withName("C for Cat").build(),
+            new ReviewBuilder().withName("D for Dog").build(),
+            new ReviewBuilder().withName("E for Elephant").build(),
+            new ReviewBuilder().withName("G for Giraffe").build()
+        };
+
+        Review[] sampleReviewsOrderedReversed = new Review[] {
+            new ReviewBuilder().withName("G for Giraffe").build(),
+            new ReviewBuilder().withName("E for Elephant").build(),
+            new ReviewBuilder().withName("D for Dog").build(),
+            new ReviewBuilder().withName("C for Cat").build(),
+            new ReviewBuilder().withName("B for Bee").build(),
+            new ReviewBuilder().withName("A for Apple").build()
+        };
+
+        Review[] sampleReviewsUnOrdered = new Review[] {
+            new ReviewBuilder().withName("E for Elephant").build(),
+            new ReviewBuilder().withName("D for Dog").build(),
+            new ReviewBuilder().withName("B for Bee").build(),
+            new ReviewBuilder().withName("G for Giraffe").build(),
+            new ReviewBuilder().withName("A for Apple").build(),
+            new ReviewBuilder().withName("C for Cat").build()
+        };
+
+        List<Review> sampleReviewListOrdered = List.of(sampleReviewsOrdered);
+        List<Review> sampleReviewListOrderedReversed = List.of(sampleReviewsOrderedReversed);
+        List<Review> sampleReviewListUnOrdered = List.of(sampleReviewsUnOrdered);
+
+        for (Review s: sampleReviewsUnOrdered) {
+            addressBook.addStall(new StallBuilder().withName(s.getName().fullName).build());
+            addressBook.addReview(s);
+        }
+
+        // sort based on ascending order
+        addressBook.sortReviews(ReviewsComparatorList.NAME.getComparator());
+        assertEquals(sampleReviewListOrdered, addressBook.getReviewList());
+
+        // make sure it's not equal to original
+        assertNotEquals(sampleReviewListUnOrdered, addressBook.getReviewList());
+
+        // sort based on descending order
+        addressBook.sortReviews(ReviewsComparatorList.REVERSEDNAME.getComparator());
+        assertEquals(sampleReviewListOrderedReversed, addressBook.getReviewList());
+    }
+
+    @Test
+    public void sortReviews_dateComparator_success() {
+        String testName = "test stall";
+        Review[] sampleReviewsOrdered = new Review[]{
+            new ReviewBuilder().withName(testName).withDate("20/09/2022").build(),
+            new ReviewBuilder().withName(testName).withDate("21/09/2022").build(),
+            new ReviewBuilder().withName(testName).withDate("22/09/2022").build(),
+            new ReviewBuilder().withName(testName).withDate("23/09/2022").build(),
+            new ReviewBuilder().withName(testName).withDate("24/09/2022").build(),
+            new ReviewBuilder().withName(testName).withDate("25/09/2022").build()
+        };
+
+        Review[] sampleReviewsOrderedReversed = new Review[] {
+            new ReviewBuilder().withName(testName).withDate("25/09/2022").build(),
+            new ReviewBuilder().withName(testName).withDate("24/09/2022").build(),
+            new ReviewBuilder().withName(testName).withDate("23/09/2022").build(),
+            new ReviewBuilder().withName(testName).withDate("22/09/2022").build(),
+            new ReviewBuilder().withName(testName).withDate("21/09/2022").build(),
+            new ReviewBuilder().withName(testName).withDate("20/09/2022").build()
+        };
+
+        Review[] sampleReviewsUnOrdered = new Review[] {
+            new ReviewBuilder().withName(testName).withDate("23/09/2022").build(),
+            new ReviewBuilder().withName(testName).withDate("25/09/2022").build(),
+            new ReviewBuilder().withName(testName).withDate("20/09/2022").build(),
+            new ReviewBuilder().withName(testName).withDate("21/09/2022").build(),
+            new ReviewBuilder().withName(testName).withDate("22/09/2022").build(),
+            new ReviewBuilder().withName(testName).withDate("24/09/2022").build()
+        };
+
+        List<Review> sampleReviewListOrdered = List.of(sampleReviewsOrdered);
+        List<Review> sampleReviewListOrderedReversed = List.of(sampleReviewsOrderedReversed);
+        List<Review> sampleReviewListUnOrdered = List.of(sampleReviewsUnOrdered);
+
+        addressBook.addStall(new StallBuilder().withName(testName).build());
+        for (Review s: sampleReviewsUnOrdered) {
+            addressBook.addReview(s);
+        }
+
+        // sort based on ascending order
+        addressBook.sortReviews(ReviewsComparatorList.DATE.getComparator());
+        assertEquals(sampleReviewListOrdered, addressBook.getReviewList());
+
+        // make sure it's not equal to original
+        assertNotEquals(sampleReviewListUnOrdered, addressBook.getReviewList());
+
+        // sort based on descending order
+        addressBook.sortReviews(ReviewsComparatorList.REVERSEDDATE.getComparator());
+        assertEquals(sampleReviewListOrderedReversed, addressBook.getReviewList());
+    }
+
+    @Test
+    public void sortReviews_ratingComparator_success() {
+        String testName = "test stall";
+        Review[] sampleReviewsOrdered = new Review[]{
+            new ReviewBuilder().withName(testName).withDate("20/09/2022").withRating(0).build(),
+            new ReviewBuilder().withName(testName).withDate("21/09/2022").withRating(1).build(),
+            new ReviewBuilder().withName(testName).withDate("22/09/2022").withRating(2).build(),
+            new ReviewBuilder().withName(testName).withDate("23/09/2022").withRating(3).build(),
+            new ReviewBuilder().withName(testName).withDate("24/09/2022").withRating(4).build(),
+            new ReviewBuilder().withName(testName).withDate("25/09/2022").withRating(5).build()
+        };
+
+        Review[] sampleReviewsOrderedReversed = new Review[] {
+            new ReviewBuilder().withName(testName).withDate("25/09/2022").withRating(5).build(),
+            new ReviewBuilder().withName(testName).withDate("24/09/2022").withRating(4).build(),
+            new ReviewBuilder().withName(testName).withDate("23/09/2022").withRating(3).build(),
+            new ReviewBuilder().withName(testName).withDate("22/09/2022").withRating(2).build(),
+            new ReviewBuilder().withName(testName).withDate("21/09/2022").withRating(1).build(),
+            new ReviewBuilder().withName(testName).withDate("20/09/2022").withRating(0).build()
+        };
+
+        Review[] sampleReviewsUnOrdered = new Review[] {
+            new ReviewBuilder().withName(testName).withDate("24/09/2022").withRating(4).build(),
+            new ReviewBuilder().withName(testName).withDate("22/09/2022").withRating(2).build(),
+            new ReviewBuilder().withName(testName).withDate("25/09/2022").withRating(5).build(),
+            new ReviewBuilder().withName(testName).withDate("21/09/2022").withRating(1).build(),
+            new ReviewBuilder().withName(testName).withDate("23/09/2022").withRating(3).build(),
+            new ReviewBuilder().withName(testName).withDate("20/09/2022").withRating(0).build()
+        };
+
+        List<Review> sampleReviewListOrdered = List.of(sampleReviewsOrdered);
+        List<Review> sampleReviewListOrderedReversed = List.of(sampleReviewsOrderedReversed);
+        List<Review> sampleReviewListUnOrdered = List.of(sampleReviewsUnOrdered);
+
+        addressBook.addStall(new StallBuilder().withName(testName).build());
+        for (Review s: sampleReviewsUnOrdered) {
+            addressBook.addReview(s);
+        }
+
+        // sort based on ascending order
+        addressBook.sortReviews(ReviewsComparatorList.RATING.getComparator());
+        assertEquals(sampleReviewListOrdered, addressBook.getReviewList());
+
+        // make sure it's not equal to original
+        assertNotEquals(sampleReviewListUnOrdered, addressBook.getReviewList());
+
+        // sort based on descending order
+        addressBook.sortReviews(ReviewsComparatorList.REVERSEDRATING.getComparator());
+        assertEquals(sampleReviewListOrderedReversed, addressBook.getReviewList());
     }
 
     @Test
