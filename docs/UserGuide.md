@@ -5,8 +5,8 @@ title: User Guide
 
 Survin is a desktop application for surveyors to use to keep track of people they have surveyed. The surveyor can easily follow up with people they have surveyed for additional information or for confirmation. The user interacts with the application using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
--   Table of Contents
-    {:toc}
+- Table of Contents
+{:toc}
 
 ---
 
@@ -120,25 +120,6 @@ Examples:
 -   `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 -   `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
--   The search is case-insensitive. e.g `hans` will match `Hans`
--   The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
--   Only the name is searched.
--   Only full words will be matched e.g. `Han` will not match `Hans`
--   Persons matching at least one keyword will be returned (i.e. `OR` search).
-    e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-
--   `find John` returns `john` and `John Doe`
--   `find alex david` returns `Alex Yeoh`, `David Li`<br>
-    ![result for 'find alex david'](images/findAlexDavidResult.png)
-
 ### Deleting a person : `delete`
 
 Delete an existing person in Survin by index or delete all persons satisfying the specified attributes.
@@ -155,7 +136,7 @@ Example:
 
 -   `list` followed by `delete 2` deletes the 2nd person in the app.
 -   `view n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `view` command.
--   `delete ra/Chinese re/christian` Deletes all surveyees that are Chinese and Christian.
+-   `delete ra/Chinese re/Christian` Deletes all surveyees that are Chinese and Christian.
 
 ### Clone a person : `clone`
 
@@ -163,12 +144,12 @@ Creates a new person with updated details based on an existing person in Survin,
 
 Format: `clone INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/SURVEY] [t/TAG]…`
 
--   Clones the surveyee at the specified INDEX. The index refers to the index number of the surveyee you wish to clone, as shown in the display list. The index must be a **positive integer**.
--   At least one of the unique optional fields has to be provided. (E.g. Phone or Email)
--   A new person with updated values in specified field will be added to the address book.
--   When updating tags or surveys, the existing tags or surveys of the person will be removed i.e adding of tags is not cumulative.
--   You can remove all the person’s tags by typing `t/` without specifying any tags after it.
--   You can remove all the person’s surveys by typing `s/` without specifying any surveys after it.
+- Clones the surveyee at the specified INDEX. The index refers to the index number of the surveyee you wish to clone, as shown in the display list. The index must be a **positive integer**.
+- At least one of the unique optional fields (Name, Phone or Email) has to be provided.
+- A new person with updated values in specified field will be added to the address book.
+- When updating tags or surveys, the existing tags or surveys of the person will be removed i.e adding of tags is not cumulative.
+- You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+- You can remove all the person’s surveys by typing `s/` without specifying any surveys after it.
 
 Examples:
 
