@@ -4,11 +4,11 @@ import static seedu.watson.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.watson.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.watson.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Arrays;
-
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.watson.logic.commands.FindCommand;
+import seedu.watson.logic.parser.exceptions.ParseException;
 import seedu.watson.model.student.FindCommandPredicate;
 
 public class FindCommandParserTest {
@@ -22,14 +22,11 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindCommand() throws ParseException {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-            new FindCommand(new FindCommandPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
-
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+            new FindCommand(new FindCommandPredicate(List.of("Alice")));
+        assertParseSuccess(parser, " n/Alice", expectedFindCommand);
     }
 
 }

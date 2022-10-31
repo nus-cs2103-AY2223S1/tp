@@ -24,12 +24,14 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
+        System.out.println(args);
         requireNonNull(args);
         ArrayList<String> findCommandKeywords = new ArrayList<>();
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENTCLASS, PREFIX_SUBJECT);
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            System.out.println("name");
             String foundName = String.join(" ", argMultimap.getAllValues(PREFIX_NAME));
             findCommandKeywords.add(foundName);
         }
