@@ -109,7 +109,7 @@ Edits an existing person in Survin.
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/SURVEY]… [t/TAG]…`
 
 -   Edits the surveyee at the specified INDEX. The index refers to the index number of the surveyee you wish to edit, as shown in the display list. The index must be a **positive integer**.
--   At least one of the optional fields has to be provided.
+-   At least one of the optional fields has to be provided. (E.g. Phone or Email)
 -   Existing value in specified field will be updated to the new value.
 -   When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 -   You can remove all the person’s tags by typing `t/` without
@@ -213,7 +213,7 @@ Format: `INDEX [s/SURVEYS]... [t/TAGS]...`
 
 -   Person should not already have any of the surveys or tags that you are appending.
 -   The append command is case-sensitive. e.g. you can append both `Food Survey` and `food survey`.
--   At least one of the optional fields has to be provided.
+-   At least one of the optional fields has to be provided. (Survey or Tag)
 -   Able to append multiple surveys and tags in a single command.
 -   Fields must be non-empty.
 
@@ -226,7 +226,7 @@ Unappend surveys or tags from the person identified by the index number in the c
 Format: `INDEX [s/SURVEYS]... [t/TAGS]...`
 
 -   The unappend command is case-sensitive. e.g. you can only unappend `Food Survey` by typing `Food Survey` and not `food survey`.
--   At least one of the optional fields has to be provided.
+-   At least one of the optional fields has to be provided. (Survey or Tag)
 -   Able to unappend multiple surveys and tags in a single command.
 -   Fields must be non-empty.
 
