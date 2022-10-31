@@ -15,7 +15,7 @@ public class StaffContact {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[8-9]{1}\\d{7}";
+    public static final String VALIDATION_REGEX = "[689]{1}\\d{7}";
 
     public final String staffContact;
 

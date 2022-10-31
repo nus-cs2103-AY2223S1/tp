@@ -33,15 +33,14 @@ public class StaffContactTest {
         assertFalse(StaffContact.isValidStaffContact("Capital Tan")); // with capital letters
         assertFalse(StaffContact.isValidStaffContact("David Roger Jackson Ray Jr 2nd")); // long names
         assertFalse(StaffContact.isValidStaffContact("peter jack")); // alphabets only
-        assertFalse(StaffContact.isValidStaffContact("912345678")); // 9 numbers beginning with 9
-        assertFalse(StaffContact.isValidStaffContact("812345678")); // 9 numbers beginning with 8
-        assertFalse(StaffContact.isValidStaffContact("9123456789")); // 7 numbers beginning with 9
-        assertFalse(StaffContact.isValidStaffContact("8123456789")); // 7 numbers beginning with 8
+        assertFalse(StaffContact.isValidStaffContact("912345678")); // 9 numbers
+        assertFalse(StaffContact.isValidStaffContact("9123456")); // 7 numbers
         assertFalse(StaffContact.isValidStaffContact("912")); // 3 numbers
 
         // valid staff contact
         assertTrue(StaffContact.isValidStaffContact("97412345")); // 8 numbers beginning with 9
         assertTrue(StaffContact.isValidStaffContact("87502912")); // 8 numbers beginning with 8
+        assertTrue(StaffContact.isValidStaffContact("67502912")); // 8 numbers beginning with 6
 
     }
 }
