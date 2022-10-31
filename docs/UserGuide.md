@@ -215,6 +215,10 @@ Format: `contact delete i/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 * Deletion of contact is blocked if the contact has tasks associated to it.
 
+**:information_source: Notes about contact delete:**<br>
+
+* A contact cannot be deleted if there are tasks assigned to or by the contact.
+
 Examples:
 * `contact list` followed by `contact delete i/2` deletes the 2nd contact in your contact list.
 
