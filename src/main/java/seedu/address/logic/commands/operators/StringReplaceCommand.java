@@ -17,7 +17,7 @@ public class StringReplaceCommand extends Command {
 
     public static final String COMMAND_WORD = "r";
     private static final String INVALID_INPUT = "Missing Strings";
-    private static final String USE_MESSAGE = "replace $replacement txt\\\\txt %s to replace";
+    private static final String USE_MESSAGE = "replace $replacement txt\\txt %s to replace";
 
     private String txt = null;
     private List<String> replacers;

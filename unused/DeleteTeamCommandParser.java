@@ -14,6 +14,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class DeleteTeamCommandParser implements Parser<DeleteTeamCommand> {
 
+    private static final String NUMBER = "\\s*[\\-+]?[0-9]+\\s*";
+
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand and returns a
      * DeleteCommand object for execution.
@@ -23,7 +25,7 @@ public class DeleteTeamCommandParser implements Parser<DeleteTeamCommand> {
     public DeleteTeamCommand parse(String args) throws ParseException {
         if (args == null || args.trim().length() == 0) {
             return new DeleteTeamCommand(null);
-        } else if (!args.matches("\\s*[\\-+]?[0-9]+\\s*")) {
+        } else if (!args.matches(NUMBER)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTeamCommand.MESSAGE_USAGE));
         }
         Index index = ParserUtil.parseIndex(args);

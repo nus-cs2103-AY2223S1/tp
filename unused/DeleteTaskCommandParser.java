@@ -15,11 +15,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
 
+    private static final String NUMBER = "\\s*[\\-+]?[0-9]+\\s*";
+
     @Override
     public DeleteTaskCommand parse(String args) throws ParseException {
         if (args.trim().equals("")) {
             return new DeleteTaskCommand(null);
-        } else if (!args.matches("\\s*[\\-+]?[0-9]+\\s*")) {
+        } else if (!args.matches(NUMBER)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
         }
         Index index = ParserUtil.parseIndex(args);
