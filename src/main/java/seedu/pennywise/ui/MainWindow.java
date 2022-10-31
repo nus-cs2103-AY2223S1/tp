@@ -129,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
 
         entryPane = new EntryPane(expenseEntryPanel, incomeEntryPanel);
         entryPanePlaceholder.getChildren().add(entryPane.getRoot());
-        entryPane.getExpenses().setOnSelectionChanged((EventHandler<Event>) t -> {
+        entryPane.getExpenses().setOnSelectionChanged((EventHandler<Event>) evt -> {
             GraphConfiguration expenditureGraphConfig = new GraphConfiguration(
                     new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
                     this.currGraphPanel.getGraphType(),
