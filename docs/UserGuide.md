@@ -197,7 +197,6 @@ Example:
 
 Splits a debt among several people in PayMeLah for you to track. <br>  
 This command will help you with the Maths of dividing shared costs equally among people in PayMeLah. Sharing is made easy as PayMeLah does the Maths for you!
-such that each person owes the same amount (rounded up to the closest cent).
 
 Format: `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
 
