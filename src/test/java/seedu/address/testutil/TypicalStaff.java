@@ -41,24 +41,24 @@ public class TypicalStaff {
             .withStaffLeave("true").withStaffDepartment("IT Department")
             .withTags("friends").build();
     public static final Staff STAFF_5 = new StaffBuilder().withStaffName("Elle Meyer")
-            .withStaffContact("9482224").withStaffTitle("Senior UX Designer")
+            .withStaffContact("94822246").withStaffTitle("Senior UX Designer")
             .withStaffLeave("false").withStaffDepartment("IT Department")
             .build();
     public static final Staff STAFF_6 = new StaffBuilder().withStaffName("Fiona Kunz")
-            .withStaffContact("9482427").withStaffTitle("Marketing Manager")
+            .withStaffContact("94824271").withStaffTitle("Marketing Manager")
             .withStaffLeave("true").withStaffDepartment("Marketing Department")
             .build();
     public static final Staff STAFF_7 = new StaffBuilder().withStaffName("George Best")
-            .withStaffContact("9482442").withStaffTitle("Senior Marketing Manager")
+            .withStaffContact("94824426").withStaffTitle("Senior Marketing Manager")
             .withStaffLeave("false").withStaffDepartment("Marketing Department")
             .build();
 
     // Manually added
     public static final Staff STAFF_HOON = new StaffBuilder().withStaffName("Hungry")
-            .withStaffContact("8482424").withStaffTitle("Hello").withStaffDepartment("Any department")
+            .withStaffContact("84824245").withStaffTitle("Hello").withStaffDepartment("Any department")
             .withStaffLeave("true").build();
     public static final Staff STAFF_IDA = new StaffBuilder().withStaffName("Ida Mueller")
-            .withStaffContact("8482131").withStaffTitle("Bye").withStaffDepartment("This department")
+            .withStaffContact("84821315").withStaffTitle("Bye").withStaffDepartment("This department")
             .withStaffLeave("false").build();
 
     // Manually added - Staff's details found in {@code CommandTestUtil}

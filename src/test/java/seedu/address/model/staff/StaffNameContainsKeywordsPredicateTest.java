@@ -66,6 +66,6 @@ public class StaffNameContainsKeywordsPredicateTest {
         predicate = new StaffNameContainsKeywordsPredicate("Secretary");
         assertFalse(predicate.test(new StaffBuilder().withStaffName("Andy Lau")
                 .withStaffDepartment("HR").withStaffTitle("Secretary")
-                .withStaffContact("1234567").withStaffLeave("false").build()));
+                .withStaffContact("82572816").withStaffLeave("false").build()));
     }
 }
