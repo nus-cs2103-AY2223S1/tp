@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" styleClass="cover2">
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="cover2" vbarPolicy="NEVER" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 
     <content>
         <VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="290.0" prefWidth="260.0" styleClass="cover">
@@ -40,7 +39,7 @@
          </HBox>
             <HBox layoutX="15.0" layoutY="137.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0">
                 <children>
-                    <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" text="Tags:" styleClass="select">
+                    <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="select" text="Tags:">
                         <padding>
                             <Insets left="10.0" top="5.0" />
                         </padding>
@@ -95,7 +94,7 @@
                    </Label>
             </children>
          </HBox>
-            <HBox layoutX="15.0" layoutY="107.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0">
+            <HBox layoutX="15.0" layoutY="107.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
                 <children>
                     <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="select" text="Review:">
                         <padding>
@@ -109,6 +108,7 @@
                     </Label>
                 </children>
             </HBox>
+            <HBox />
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
