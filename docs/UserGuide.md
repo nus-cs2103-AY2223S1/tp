@@ -99,7 +99,7 @@ Adds an item of a specified type with the given details
 * Tasks
 * Supply Item (item in inventory)
 
-***Format:***
+### 4.1.1 Format
 
 `add n/NAME p/PHONE(8 digits) pr/PRICE i/ITEM a/ADDRESS [t/TAG]` **(supplier)**
 
@@ -113,7 +113,7 @@ Adds an item of a specified type with the given details
 
 </div>
 
-**Examples:**
+### 4.1.2 Examples
 
 Add a supplier to Salesy’s address book
 
@@ -139,7 +139,7 @@ Deletes the specified item of the specified type from Salesy
 * Tasks
 * Supply items
 
-***Format:***
+### 4.2.1 Format
 
 `delete <supplier index>` (supplier)
 
@@ -147,7 +147,7 @@ Deletes the specified item of the specified type from Salesy
 
 `deleteItem <item index>` (supply item)
 
-**Examples**
+### 4.2.2 Examples
 
 Delete a supplier
 
@@ -169,11 +169,11 @@ Marks the specified task as done to keep task list updated
 **Things you can mark:**
 * Tasks
 
-***Format:***
+### 4.3.1 Format
 
 `mark <task index>`
 
-**Examples**
+### 4.3.2 Examples
 
 Mark a task that you have completed
 
@@ -187,11 +187,11 @@ Unmarks a previously marked task
 **Things you can unmark:**
 * Tasks
 
-***Format:***
+### 4.4.1 Format
 
 `unmark <task index>`
 
-**Examples**
+### 4.4.2 Examples
 
 Unmark a task that you have completed
 
@@ -207,7 +207,7 @@ Edits a specified item's details
 * Tasks
 * Item stock
 
-***Format:***
+### 4.5.1 Format
 
 `edit <supplier index> [n/NAME] [p/PHONE] [pr/PRICE] [i/ITEM] [a/ADDRESS] [t/TAG]` (supplier)
 
@@ -223,7 +223,7 @@ Tag rules apply for `edit` and `editTask`. Refer to [this section](#2-important-
 
 </div>
 
-**Examples**
+### 4.5.2 Examples
 
 * Edit supplier details
 
@@ -242,13 +242,13 @@ Tag rules apply for `edit` and `editTask`. Refer to [this section](#2-important-
 
 Finds suppliers based on name or item
 
-***Format:***
+### 4.6.1 Format
 
 `find n/NAMEVALUE` (supplier name)
 
 `find i/ITEMVALUE` (supplier item)
 
-**Examples**
+### 4.6.2 Examples
 
 * Find suppliers with name John Cena
 
@@ -263,22 +263,29 @@ Finds suppliers based on name or item
 
 Increases or decreases your stock for a particular item in the inventory
 
-**Steps**
+#### 4.7.1 Steps
 
 1. Take a look at the inventory panel at the bottom-middle section of the application.
 2. Decide on which item you want to modify the stock of.
-3. Hover your mouse over item and the white text box with a value `1` in it.
-4. Key in your desired amount to add or decrease by.
+3. Hover your mouse over item and the white text box with a value `1` in it. Take a look at [Figure 1](#472-figure-1-above-_initial-state_).
+4. Key in your desired amount to add or decrease by. Take a look at [Figure 2](#473-figure-2-above-_after-entering-desired-value_).
+5. Press the `+` icon to add your desired amount (or press the `-` icon to reduce by your desired amount). Take a look at [Figure 3](#474-figure-3-above-_after-pressing-the--button_).
+
+![Ui](images/initialStateIncEg.png)
+
+#### 4.7.2 Figure 1 (above): _Initial state_
 
 ![Ui](images/incdeckeyin.png)
 
-5. Press the `+` icon to add your desired amount (or press the `-` icon to reduce by your desired amount).
+#### 4.7.3 Figure 2 (above): _After entering desired value_
 
 ![Ui](images/afterinc.png)
 
+#### 4.7.4 Figure 3 (above): _After pressing the `+` button_
+
 ***Notice that the current stock of Ginger increased by your desired amount.***
 
-**Limitations**
+#### 4.7.5 Limitations
 
 * Only able to key in up to a 5 digit value.
 * Only able to key in positive values
@@ -287,11 +294,11 @@ Increases or decreases your stock for a particular item in the inventory
 
 Lists all items.
 
-***Format:***
+### 4.8.1 Format
 
 `listAll`
 
-**Examples**
+### 4.8.2 Examples
 
 * List all entities
 
@@ -306,29 +313,29 @@ Refreshes and lists all suppliers/tasks/items.
 - After using the `find` command for supplier contacts, `listAll` / `listSuppliers` will list all
 contacts in Salesy's address book.
 
-## 4.10 List all suppliers: `listSuppliers`
+## 4.9.1 List all suppliers: `listSuppliers`
 
 List all suppliers
 
-***Format:***
+### 4.9.1.1 Format
 
 `listSuppliers`
 
-**Examples**
+### 4.9.1.2 Examples
 
 * List all suppliers
 
 > `listSuppliers`
 
-## 4.11 List all tasks: `listTasks`
+## 4.9.2 List all tasks: `listTasks`
 
 Lists all tasks
 
-***Format:***
+### 4.9.2.1 Format
 
 `listTasks`
 
-**Examples**
+### 4.9.2.2 Examples
 
 * List all tasks
 
@@ -339,21 +346,21 @@ Note: All tasks displayed in the GUI is sorted by deadline.
 The task with the earliest deadline is found at the top of the list.
 </div>
 
-## 4.12 List everything in the inventory: `listInventory`
+## 4.9.3 List everything in the inventory: `listInventory`
 
 Lists the whole inventory.
 
-***Format:***
+### 4.9.3.1 Format
 
 `listInventory`
 
-**Examples**
+### 4.9.3.2 Examples
 
 * List all items
 
 > `listInventory`
 
-## 4.13 Clear Supplier Address Book: `clear`
+## 4.10 Clear Supplier Address Book: `clear`
 
 Clears and deletes all suppliers in Salesy. 
 
