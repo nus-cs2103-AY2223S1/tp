@@ -3,78 +3,34 @@ layout: page
 title: Koh Wei Quan Norman's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: SoConnect
 
-#### Overview : to be added soon
+#### Overview : 
+
+SoConnect is a desktop address book application designed for National University of Singapore (NUS) Computer Science Undergraduates to keep track of their University Social Circle. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 #### Summary of contributions :
-- Code Contributed: To be added soon
-- Enhancements implemented: To be added soon
-- Contributions to the UG: To be added soon
-- Contributions to the DG: To be added soon
-- Contributions to team-based tasks: To be added soon
-- Review/Mentoring Contributions: To be added soon
-- Contributions beyond the team project: To be added soon
 
+Given below are my contributions to the project.
 
-[//]: # (* **New Feature**: Added the ability to undo/redo previous commands.)
-
-[//]: # (  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.)
-
-[//]: # (  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.)
-
-[//]: # (  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.)
-
-[//]: # (  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*)
-
-[//]: # ()
-[//]: # (* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.)
-
-[//]: # ()
-[//]: # (* **Code contributed**: [RepoSense link]&#40;&#41;)
-
-[//]: # ()
-[//]: # (* **Project management**:)
-
-[//]: # (  * Managed releases `v1.3` - `v1.5rc` &#40;3 releases&#41; on GitHub)
-
-[//]: # ()
-[//]: # (* **Enhancements to existing features**:)
-
-[//]: # (  * Updated the GUI color scheme &#40;Pull requests [\#33]&#40;&#41;, [\#34]&#40;&#41;&#41;)
-
-[//]: # (  * Wrote additional tests for existing features to increase coverage from 88% to 92% &#40;Pull requests [\#36]&#40;&#41;, [\#38]&#40;&#41;&#41;)
-
-[//]: # ()
-[//]: # (* **Documentation**:)
-
-[//]: # (  * User Guide:)
-
-[//]: # (    * Added documentation for the features `delete` and `find` [\#72]&#40;&#41;)
-
-[//]: # (    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]&#40;&#41;)
-
-[//]: # (  * Developer Guide:)
-
-[//]: # (    * Added implementation details of the `delete` feature.)
-
-[//]: # ()
-[//]: # (* **Community**:)
-
-[//]: # (  * PRs reviewed &#40;with non-trivial review comments&#41;: [\#12]&#40;&#41;, [\#32]&#40;&#41;, [\#19]&#40;&#41;, [\#42]&#40;&#41;)
-
-[//]: # (  * Contributed to forum discussions &#40;examples: [1]&#40;&#41;, [2]&#40;&#41;, [3]&#40;&#41;, [4]&#40;&#41;&#41;)
-
-[//]: # (  * Reported bugs and suggestions for other teams in the class &#40;examples: [1]&#40;&#41;, [2]&#40;&#41;, [3]&#40;&#41;&#41;)
-
-[//]: # (  * Some parts of the history feature I added was adopted by several other class mates &#40;[1]&#40;&#41;, [2]&#40;&#41;&#41;)
-
-[//]: # ()
-[//]: # (* **Tools**:)
-
-[//]: # (  * Integrated a third party library &#40;Natty&#41; to the project &#40;[\#42]&#40;&#41;&#41;)
-
-[//]: # (  * Integrated a new Github plugin &#40;CircleCI&#41; to the team repo)
-
-[//]: # ()
-[//]: # (* _{you can add/remove categories in the list above}_)
+- **Code Contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=normkoh&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+- **New Feature**: Added a pie chart to the app.
+  - What it does: It integrates with the contact list to provide a visual overview of the user's social network.
+  - Justification: This feature improves the product as it provides a convenient way for users to get a sense of the spread and size of their social network without having to scroll through the contact list.
+  - Highlights: The implementation of this feature was challenging as it required deep knowledge of how to use javafx, in particular the javafx PieChart class. It was challenging to create a custom PieChart class from the javafx API that can integrate with the data in the contacts list.
+  - Credits: One of the methods in the custom PieChart class was reused with minor modifications from [this StackOverflow post](https://stackoverflow.com/questions/35479375)
+- **Project Role**
+  - In charge of managing the UI for most of the features.
+- **Enhancements to existing features**:
+  - Modified delete command to allow for multiple inputs (Pull request [#48](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/48))
+  - Added a new field that can be used when adding new contacts. (Pull request [#54](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/54))
+  - Updated GUI to accommodate new fields that were added. (Pull requests [#33](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/33) [#63](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/63) [#100](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/100))
+  - Wrote additional tests for existing features. (Pull requests[#191](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/191))
+- **Documentation**:
+  - User Guide:
+    - Added documentation for the features `student` `prof` `ta` `delete` and pie chart feature. [#104](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/104)
+  - Developer Guide:
+    - Added implementation details of the `delete` feature. [#69](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/69)
+    - Wrote use cases for adding a student and deleting a person from contact list. [#104](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/104)
+- **Community**:
+  - PRs reviewed(with non-trivial review comments): [#31](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/31) [#37](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/37)
