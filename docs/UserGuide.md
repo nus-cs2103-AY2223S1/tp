@@ -132,7 +132,7 @@ The top section displays relevant messages/errors after the command is entered.
 
    - **`add`** `n/John Doe p/98765432 e/johnd@example.com j/Recruiter d/Human Resources a/311, Clementi Ave 2, #02-25 l/20 t/friends t/owesMoney` : Adds an employee named `John Doe`, with fields phone number, email, job title, department, address, total leaves, and tags to Coydir.
 
-   - **`delete`**`3` : Deletes employee with ID 3.
+   - **`delete 3`** : Deletes employee with ID 3.
 
    - **`exit`** : Exits the app.
 
