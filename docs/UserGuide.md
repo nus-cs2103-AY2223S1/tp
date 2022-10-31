@@ -44,7 +44,7 @@ This section introduces the different components of the display and their functi
 
 | No. | Component             | Description                                                                                                                    |
 |-----|-----------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| 1   | Menu bar              | Provides convenient access to frequently used commands.                                                                        |
+| 1   | Toolbar               | Provides convenient access to frequently used commands.                                                                        |
 | 2   | Student List Panel    | Displays the list of students. You can [manage this display](#42-managing-display-of-student-records) to suit your needs.      |
 | 3   | Student Card          | Displays the information of a student. The information includes the student's Name, Id, Class, Grades, and Parent Details.     | 
 | 4   | Result Box            | Displays the system message after the execution of a command. The system message describes the outcome of the entered command. |
@@ -185,7 +185,7 @@ Examples:
 
 Edits the respective details of an existing student.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the current displayed list. The index **must be a positive integer** 1, 2, 3 ...
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the current displayed list. The index **must be a positive integer** 1, 2, 3 ...
 * Existing values will be updated to the new input values.
 * Refer to the complete list of tags for each field under [addStudent command](#411-adding-a-new-student-record--addstudent).
 
