@@ -286,7 +286,7 @@ Sorts the internship list given a sorting criterion.
 
 Format: `sort -i [c/] [d/] [s/]`
 - Exactly one of the optional fields must be provided.
-- `c/` sorts internships by company name (in lexicographic order).
+- `c/` sorts internships by company name (in alphabetical order).
 - `d/` sorts internships by interview date.
 - `s/` sorts internships by status in the given order: `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED`, `REJECTED`.
 - When sorted by interview date, internships with no interview dates are listed at the bottom of the list.
