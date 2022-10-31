@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
+import java.util.ArrayList;
 import java.util.List;
 import seedu.address.commons.util.FunctionalInterfaces.Retriever;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -42,7 +42,7 @@ public class ForEachCommand extends PureCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<? extends DisplayItem> lastShownList = retriever.apply(model);
+        List<? extends DisplayItem> lastShownList = new ArrayList<>(retriever.apply(model));
         int[] skipped = {0, lastShownList.size()};
         lastShownList.forEach(t -> {
             try {

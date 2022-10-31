@@ -47,6 +47,7 @@ public class TeamCommandParser implements Parser<Command> {
         switch (commandWord) {
         case AddTeamCommand.SUBCOMMAND_WORD:
             return new AddTeamCommandParser().parse(arguments);
+
         case DeleteCommand.SUBCOMMAND_WORD:
             return DeleteCommand
                 .<Group>parser(
@@ -54,14 +55,19 @@ public class TeamCommandParser implements Parser<Command> {
                     (m, i) -> m.deleteTeam(i),
                     o -> o instanceof Group)
                 .parse(arguments);
+
         case RemoveUserFromTeamCommand.SUBCOMMAND_WORD:
             return new RemoveUserFromTeamCommandParser().parse(arguments);
+
         case SelectCommand.SUBCOMMAND_WORD:
             return SelectCommand.parser((m, i) -> m.getFromFilteredTeams(i)).parse(arguments);
+
         case ForEachCommand.SUBCOMMAND_WORD:
             return ForEachCommand.parser(m -> m.getFilteredTeamList()).parse(arguments);
+
         case FindTeamCommand.SUBCOMMAND_WORD:
             return FindTeamCommand.parser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_USAGE);
         }
