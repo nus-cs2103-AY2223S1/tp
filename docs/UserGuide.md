@@ -158,13 +158,13 @@ The complete employee profile allows you to specify _a fair amount_ of details f
 
 | Particular       | Description                            | Requirement    | Default Value |
 | ---------------- | -------------------------------------- | -------------- | ------------- |
-| **Employee ID**  | Unique numerical ID of employee        | **Cannot Set** | N.A.          |
-| **Name**         | Name of employee                       | **Compulsory** | N.A.          |
-| **Position**     | Position/job title of employee         | **Compulsory** | N.A.          |
-| **Department**   | Department of employee                 | **Compulsory** | N.A.          |
-| **Phone Number** | Phone number of employee               | **Optional**   | _Blank_       |
-| **Email**        | Email of employee                      | **Optional**   | _Blank_       |
-| **Address**      | Address of employee                    | **Optional**   | _Blank_       |
+| **Employee ID**  | Unique numerical ID of employee        | **Cannot Set** | -             |
+| **Name**         | Name of employee                       | **Compulsory** | -             |
+| **Position**     | Position/job title of employee         | **Compulsory** | -             |
+| **Department**   | Department of employee                 | **Compulsory** | -             |
+| **Phone Number** | Phone number of employee               | **Optional**   | N/A           |
+| **Email**        | Email of employee                      | **Optional**   | N/A           |
+| **Address**      | Address of employee                    | **Optional**   | N/A           |
 | **Tag**          | Any tag(s) for simple remarks          | **Optional**   | _None_        |
 | **Total Leave**  | Total no. of leave for employee        | **Optional**   | 14            |
 | **Leaves Left**  | No. of leaves left for employee        | **Cannot Set** | 14            |
@@ -220,17 +220,17 @@ In any case, editing an employee's details can be done through a simple command.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/POSITION] [d/DEPARTMENT] [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
 
-| Field        | TAG  | Description                         | Requirement    | Default Value |
-| ------------ | ---- | ----------------------------------- | -------------- | ------------- |
-| `INDEX`      | N.A. | Index of employee in displayed list | **Compulsory** | N.A.          |
-| `NAME`       | n/   | Updated name of employee            | **Optional**   | _No Change_   |
-| `PHONE`      | p/   | Updated phone number of employee    | **Optional**   | _No Change_   |
-| `EMAIL`      | e/   | Updated email of employee           | **Optional**   | _No Change_   |
-| `POSITION`   | j/   | Updated position of employee        | **Optional**   | _No Change_   |
-| `DEPARTMENT` | d/   | Updated department of employee      | **Optional**   | _No Change_   |
-| `ADDRESS`    | a/   | Updated address of employee         | **Optional**   | _No Change_   |
-| `LEAVE`      | l/   | Updated total leave of employee     | **Optional**   | _No Change_   |
-| `TAG`        | t/   | Updated tag(s) of employee          | **Optional**   | _No Change_   |
+| Field        | TAG | Description                         | Requirement    | Default Value |
+| ------------ | --- | ----------------------------------- | -------------- | ------------- |
+| `INDEX`      | -   | Index of employee in displayed list | **Compulsory** | -             |
+| `NAME`       | n/  | Updated name of employee            | **Optional**   | -             |
+| `PHONE`      | p/  | Updated phone number of employee    | **Optional**   | -             |
+| `EMAIL`      | e/  | Updated email of employee           | **Optional**   | -             |
+| `POSITION`   | j/  | Updated position of employee        | **Optional**   | -             |
+| `DEPARTMENT` | d/  | Updated department of employee      | **Optional**   | -             |
+| `ADDRESS`    | a/  | Updated address of employee         | **Optional**   | -             |
+| `LEAVE`      | l/  | Updated total leave of employee     | **Optional**   | -             |
+| `TAG`        | t/  | Updated tag(s) of employee          | **Optional**   | -             |
 
 <div markdown="span" class="alert alert-primary">:bulb:
   <p>There must be <em>at least one</em> update parameter provided (such as name, phone, email, etc.). Otherwise, Coydir will not run the command, as you would not be editing anything at all!</p>
@@ -325,9 +325,9 @@ Format: `find [n/NAME_KEYWORD] [j/POSITION_KEYWORD] [d/DEPARTMENT_KEYWORD]`
 
 | Field        | TAG | Description                               | Requirement  | Default Value |
 | ------------ | --- | ----------------------------------------- | ------------ | ------------- |
-| `NAME`       | n/  | Search keyword for name of employee       | **Optional** | _Blank_       |
-| `POSITION`   | j/  | Search keyword for position of employee   | **Optional** | _Blank_       |
-| `DEPARTMENT` | d/  | Search keyword for department of employee | **Optional** | _Blank_       |
+| `NAME`       | n/  | Search keyword for name of employee       | **Optional** | -             |
+| `POSITION`   | j/  | Search keyword for position of employee   | **Optional** | -             |
+| `DEPARTMENT` | d/  | Search keyword for department of employee | **Optional** | -             |
 
 <div markdown="span" class="alert alert-primary">:bulb:
   <h5>Important Tips!</h5>
