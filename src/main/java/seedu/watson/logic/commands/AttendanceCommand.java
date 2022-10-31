@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.watson.model.Model;
-import seedu.watson.model.student.Phone;
 import seedu.watson.model.student.Student;
 
 /**

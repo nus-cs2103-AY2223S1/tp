@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.watson.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.watson.logic.parser.CliSyntax.PREFIX_INDEX_NUMBERS;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_REMARK;
