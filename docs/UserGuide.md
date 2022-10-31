@@ -75,7 +75,8 @@ Tips are useful suggestions that will help you have a better experience with Cla
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:** Tips are useful!
-</div><br>
+</div>
+<br>
 
 **Notes**
 
@@ -83,7 +84,8 @@ Notes are important information that you should pay attention to when using Clas
 
 <div markdown="span" class="alert alert-info">:information_source:
 **Note:** Take note when you see this icon!
-</div><br>
+</div>
+<br>
 
 **Caution**
 
@@ -159,7 +161,7 @@ Clears all student records from local storage.
 Format: `clear`
 
 <div markdown="span" class="alert alert-warning">
-:exclamation: **Caution:** This command will delete all data stored locally and this action is irreversible. You will lose your data permanently.!
+:exclamation: **Caution:** This command will delete all data stored locally and this action is irreversible. You will lose your data permanently!
 </div>
 
 #### 4.2.3 Deleting a student record : `delete`
@@ -171,6 +173,10 @@ Format: `delete nm/STUDENT-NAME` or `delete id/ID`
 Examples:
 * `delete nm/Jonathan Tan` deletes student record with student name as 'Jonathan Tan'.
 * `delete id/123A` deletes student record with student ID as '123A'.
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:** This command will delete a student record and this action is irreversible. Make sure you are deleting the correct student record!
+</div>
 
 #### 4.2.4 Editing a student record : `edit`
 
@@ -278,6 +284,8 @@ Format: `exit`
 #### 4.5.2 Viewing help : `help`
 
 Shows a summary of all commands available.
+
+![HelpWindow](images/HelpWindow.png)
 
 Format: `help`
 
