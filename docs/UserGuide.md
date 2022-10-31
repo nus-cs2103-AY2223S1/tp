@@ -10,8 +10,9 @@ do not hesitate checking them out in [Glossary](#glossary).
 
 **Arrow** is a **desktop app** that **help software project managers keep track of their members’ tasks and deliverables**. 
 By associating tasks to specific team members, users can **keep track of what needs to be done and have quick access to 
-contact information should they wish to reach out to the member**. **Arrow** uses a _Command Line Interface_ (CLI)
-at the same time possessing convenience of a _Graphical User Interface_ (GUI). The main target audiences are software
+contact information should they wish to reach out to the member**. 
+
+**Arrow** uses a _Command Line Interface_ (CLI)at the same time possessing convenience of a _Graphical User Interface_ (GUI). The main target audiences are software
 project managers, which assumptively equipped with _Command Line Interface_ (CLI) skills. And if you can type fast,
 **Arrow** can help you manage your team members in an exceptionally quick way.
 
@@ -27,22 +28,18 @@ click [here](#tutorial-for-cli) to learn more about what is CLI.
 
 ## Table of Contents
 
-* [Glossary](#glossary)
-* [Quick Start](#quick-start)
-* [Commands](#commands) `(Version 1.3)`
-    * Listing all students: [`list`](#listing-all-students--list)
-    * Adding a students: [`add`](#adding-a-student-add)
-    * Editing a students: [`edit`](#editing-a-student--edit)
-    * Deleting a student: [`delete`](#deleting-a-student--delete)
-    * Searching for students: [`find`](#searching-for-students-with-a-specified-criteria-find)
-    * Entering student grades: [`grade`](#entering-students-grades--grade)
-    * Sorting by grade: [`sort`](#sorting-students-by-grade-sort)
-    * Predicting a student's grade: [`predict`](#predicting-a-students-grade--predict)
-    * Adding remarks: [`remark`](#add-remark-to-a-student-remark)
-* [FAQ](#faq)
-* [Command Summary](#command-summary)
+[**Glossary**](#glossary)<br>
+[**Quick Start**](#quick-start)<br>
+[**Address Book**](#address-book-commands)<br>
+[**Task Management**](#task-management-commands)<br>
+[**Notes**](#notes)<br>
+[**FAQ**](#faq)<br>
+[**Command Summary**](#command-summary)<br>
+[**Tutorial for CLI**](#tutorial-for-cli)
 
+--------------------------------------------------------------------------------------------------------------------
 
+## Glossary
 
 * **CLI** : Command Line Interface
 * **GUI** : Graphical User Interface
@@ -50,12 +47,7 @@ click [here](#tutorial-for-cli) to learn more about what is CLI.
 * **Home Folder** : The folder where Watson will store student data.
 * **Command Box** : The text box where you can enter commands.
 
-[**Quick Start**](#quick-start)<br>
-[**Address Book**](#address-book-commands)<br>
-[**Task Management**](#task-management-commands)<br>
-[**Notes**](#notes)<br>
-[**FAQ**](#faq)<br>
-[**Command Summary**](#command-summary)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
