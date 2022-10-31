@@ -277,11 +277,11 @@ Increases or decreases your stock for a particular item in the inventory
 
 1. Take a look at the inventory panel at the **middle-bottom** section of the application.
 2. Decide on which item to change the stock.
-3. Hover your mouse over item and the white text box with a value `1` in it. (Refer to [Figure 1](#figure-1-below-_initial-state_))
-4. Key in your desired amount to add or decrease by. (Refer to [Figure 2](#figure-2-below-_after-entering-desired-value_))
-5. Press the `+` icon to add your desired amount (or press the `-` icon to reduce by your desired amount). (Refer to [Figure 3](#figure-3-below-_after-pressing-the--button_))
+3. Hover your mouse over item and the white text box with a value `1` in it. (Refer to [Figure 1](#figure-1-below-initial-state))
+4. Key in your desired amount to add or decrease by. (Refer to [Figure 2](#figure-2-below-after-entering-desired-value))
+5. Press the `+` icon to add your desired amount (or press the `-` icon to reduce by your desired amount). (Refer to [Figure 3](#figure-3-below-after-pressing-the--button))
 
-#### Figure 1 (below): _Initial state_
+#### Figure 1 (below): Initial state
 
 ![Ui](images/initialStateIncEg.png)
 
@@ -289,7 +289,7 @@ Increases or decreases your stock for a particular item in the inventory
 
 ![Ui](images/incdeckeyin.png)
 
-#### Figure 3 (below): _After pressing the `+` button_
+#### Figure 3 (below): After pressing the `+` button
 
 ![Ui](images/afterinc.png)
 
