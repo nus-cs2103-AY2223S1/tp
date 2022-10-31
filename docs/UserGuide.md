@@ -1,5 +1,6 @@
 ---
-span
+layout: page
+title: User Guide
 ---
 <div align="center">
 <h1> Pupilist User Guide</h1>
