@@ -32,7 +32,7 @@ guide, head over to [Quick Start](#3-quick-start) or to learn about Class-ify's 
 Class-ify uses a Command Line Interface (CLI), which may be new to some users. If you are a new user, we strongly recommend you to look through
 the user guide from start to end to fully understand how to use Class-ify. However, you may also choose to skip to the relevant sections described below:
 * Refer to our <a href="#top">Table of Contents</a> to easily navigate between sections of the User Guide. There is also a link at the end of every section to bring you back to the Table of Contents.
-* Refer to our [Quick Start](#3-quick-start) guide to learn how to setup Class-ify.
+* Refer to our [Quick Start](#3-quick-start) guide to learn how to set up Class-ify.
 * Refer to our [Features](#4-features) section to learn in detail the different features and commands available in Class-ify.
 * Refer to our [Command Summary](#6-command-summary) to have a quick overview of the different commands and their respective formats.
 * Refer to our [Glossary](#7-glossary) to learn key terms that are used in this User Guide.
@@ -179,7 +179,7 @@ Clears all student records from local storage.
 Format: `clear`
 
 <div markdown="span" class="alert alert-warning">
-:exclamation: **Caution:** This command will delete all data stored locally and this action is irreversible. You will lose your data permanently.!
+:exclamation: **Caution:** This command will delete all data stored locally and this action is irreversible. You will lose your data permanently!
 </div>
 
 #### 4.2.3 Deleting a student record : `delete`
@@ -191,6 +191,10 @@ Format: `delete nm/STUDENT-NAME` or `delete id/ID`
 Examples:
 * `delete nm/Jonathan Tan` deletes student record with student name as 'Jonathan Tan'.
 * `delete id/123A` deletes student record with student ID as '123A'.
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:** This command will delete a student record and this action is irreversible. Make sure you are deleting the correct student record!
+</div>
 
 #### 4.2.4 Editing a student record : `edit`
 
@@ -304,6 +308,8 @@ Format: `exit`
 #### 4.5.2 Viewing help : `help`
 
 Shows a summary of all commands available.
+
+![HelpWindow](images/HelpWindow.png)
 
 Format: `help`
 
