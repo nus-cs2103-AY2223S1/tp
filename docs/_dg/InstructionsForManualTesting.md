@@ -1,5 +1,5 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-Given below are instructions to test the app manually.
+This section provides you with instructions to test the app manually. It also covers how to launch and shut the application down.
 
 ```note
 These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.

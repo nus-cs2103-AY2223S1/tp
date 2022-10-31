@@ -1,4 +1,6 @@
 <!-- markdownlint-disable-file first-line-h1 -->
+This section shares with you about the difficulty in implementing FoodRem and the challenges faced.
+
 ### Difficulty Level
 
 The implementation of FoodRem was not a straightforward task.
