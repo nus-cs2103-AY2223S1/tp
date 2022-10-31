@@ -2,11 +2,11 @@ package soconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import soconnect.model.Model;
 import soconnect.model.SoConnect;
 import soconnect.model.tag.Tag;
-
-import java.util.List;
 
 /**
  * Clears the SoConnect.
