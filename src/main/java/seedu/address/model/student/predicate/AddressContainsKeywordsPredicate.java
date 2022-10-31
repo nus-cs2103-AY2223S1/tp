@@ -3,7 +3,6 @@ package seedu.address.model.student.predicate;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.model.student.Student;
 
 /**
@@ -19,9 +18,9 @@ public class AddressContainsKeywordsPredicate implements Predicate<Student> {
     @Override
     public boolean test(Student student) {
         for (String keyword : this.keywords) {
-             if (student.getAddress().value.toLowerCase().contains(keyword.toLowerCase())) {
-                 return true;
-             }
+            if (student.getAddress().value.toLowerCase().contains(keyword.toLowerCase())) {
+                return true;
+            }
         }
         return false;
     }
