@@ -140,9 +140,16 @@ Example:
 
 ### Adding student's response: `addresponse`
 
-Adds the number of messages a specified student sent during tutorial.
+Edits the number of messages a specified student sent during tutorial.
 
 Format: `addresponse INDEX m/MESSAGE_COUNT`
+
+* Edits response count of the student at the specified INDEX.
+  * If `addresponse 1 m/7` is keyed in after `addresponse 1 m/2`, the response count for the first
+    student in the student list will be 7 instead of 2.
+* The `INDEX` refers to the index number shown in the displayed student list.
+* The `INDEX` must be a positive integer 1, 2, 3, ... 
+* The `MESSAGE_COUNT` must be a positive integer 1, 2, 3, ...
 
 Example:
 
