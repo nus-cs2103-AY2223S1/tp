@@ -1,13 +1,13 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalTags.BIOLOGY_PROJECT;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTags.BIOLOGY_PROJECT;
 
 public class JsonAdaptedTagTest {
     private static final String INVALID_TAG = "#friend";
