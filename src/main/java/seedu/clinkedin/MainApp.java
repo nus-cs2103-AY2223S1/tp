@@ -82,9 +82,11 @@ public class MainApp extends Application {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
+                initialData = SampleDataUtil.getSampleAddressBook();
+            } else {
+                initialData = addressBookOptional.get();
             }
-            // initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-            initialData = SampleDataUtil.getSampleAddressBook();
+            // Might want to try doing the above using orElseGet().
             // Might want to keep.
             //            JFrame dialogFrame = new JFrame();
             //            JOptionPane.showMessageDialog(dialogFrame,
@@ -92,6 +94,7 @@ public class MainApp extends Application {
             //                    "Please Note",
             //                    JOptionPane.INFORMATION_MESSAGE);
         } catch (DataConversionException e) {
+            // Might want to change this for Sample Data DataConversionException.
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
             JFrame dialogFrame = new JFrame();

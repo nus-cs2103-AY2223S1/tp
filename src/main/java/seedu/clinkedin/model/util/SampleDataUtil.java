@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.clinkedin.commons.exceptions.DataConversionException;
 import seedu.clinkedin.logic.parser.Prefix;
 import seedu.clinkedin.model.AddressBook;
 import seedu.clinkedin.model.ReadOnlyAddressBook;
@@ -32,7 +33,7 @@ public class SampleDataUtil {
     public static final Set<Link> EMPTY_LINKS = new HashSet<>();
 
 
-    public static Person[] getSamplePersons() throws MalformedURLException {
+    public static Person[] getSamplePersons() throws DataConversionException {
         //        return null;
         //    to be rewritten.
         return new Person[] {
@@ -63,7 +64,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() throws MalformedURLException {
+    public static ReadOnlyAddressBook getSampleAddressBook() throws DataConversionException {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
@@ -86,9 +87,9 @@ public class SampleDataUtil {
      * Returns a set of links objects instantiated with the provided URLs.
      * @param strings URLs needed to instantiate Set of Links.
      * @return Set of links.
-     * @throws MalformedURLException
+     * @throws DataConversionException
      */
-    public static URL[] generateUrls(String... strings) throws MalformedURLException {
+    public static URL[] generateUrls(String... strings) throws DataConversionException {
         try {
             URL[] urls = new URL[strings.length];
             int i = 0;
@@ -97,8 +98,8 @@ public class SampleDataUtil {
                 i++;
             }
             return urls;
-        } catch (MalformedURLException e) {
-            throw new MalformedURLException();
+        } catch (MalformedURLException mue) {
+            throw new DataConversionException(mue);
         }
     }
 
