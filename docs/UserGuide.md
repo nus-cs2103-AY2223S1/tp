@@ -10,20 +10,20 @@ bobaBot is a **desktop application** for managing customers’ membership detail
 
 1. [Quick start](#quick-start) <br>
 1. <details><summary><a href="#4-features">Features</a></summary>
-      2.1. <a href="#viewing-help--help">Help</a><br>
-      2.2. <a href="#adding-a-customer-add">Add</a><br>
-      2.3. <a href="#editing-a-customers-details-edit">Edit</a><br>
-      2.4. <a href="#increasing-a-customers-reward-points-incr">Increase</a><br>
-      2.5. <a href="#decreasing-a-customers-reward-points-decr">Decrease</a><br>
-      2.6. <a href="#listing-all-customers--list">List</a><br>
-      2.7. <a href="#locating-customers-by-name-find">Find</a><br>
-      2.8. <a href="#deleting-a-customer--delete">Delete</a><br>
-      2.9. <a href="#undo-a-command--undo">Undo</a><br>
-      2.10. <a href="#redo-an-undocommand--redo">Redo</a><br>
-      2.11. <a href="#clearing-all-entries--clear">Clear</a><br>
-      2.12. <a href="#calculate-calc">Calculate</a><br>
-      2.13. <a href="#gui-calculator-calc-gui">Calculator</a><br>
-      2.14. <a href="#exiting-the-program--exit">Exit</a><br>
+      2.1. <a href="#21-viewing-help--help">Help</a><br>
+      2.2. <a href="#22-adding-a-customer-add">Add</a><br>
+      2.3. <a href="#23-editing-a-customers-details-edit">Edit</a><br>
+      2.4. <a href="#24-increasing-a-customers-reward-points-incr">Increase</a><br>
+      2.5. <a href="#25-decreasing-a-customers-reward-points-decr">Decrease</a><br>
+      2.6. <a href="#26-listing-all-customers--list">List</a><br>
+      2.7. <a href="#27-locating-customers-by-name-find">Find</a><br>
+      2.8. <a href="#28-deleting-a-customer--delete">Delete</a><br>
+      2.9. <a href="#29undo-a-command--undo">Undo</a><br>
+      2.10. <a href="#210-redo-an-undocommand--redo">Redo</a><br>
+      2.11. <a href="#211--clearing-all-entries--clear">Clear</a><br>
+      2.12. <a href="#212-calculate-calc">Calculate</a><br>
+      2.13. <a href="#213-gui-calculator-calc-gui">Calculator</a><br>
+      2.14. <a href="#214-exiting-the-program--exit">Exit</a><br>
    </details>
 1. [FAQ](#faq) <br>
 1. [Command summary](#command-summary) <br>
@@ -116,11 +116,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
     
-    Before executing the AddCommand:</br>
-    <img src="images/screenshots/AddCommand/AddCommand1.png"></br>
+    Before executing the AddCommand:<br>
+    <img src="images/screenshots/AddCommand/AddCommand1.png"><br>
 
-    After executing the AddCommand:</br>
-    <img src="images/screenshots/AddCommand/AddCommand1Result.png"></br>
+    After executing the AddCommand:<br>
+    <img src="images/screenshots/AddCommand/AddCommand1Result.png"><br>
     </details>
 
 
@@ -130,11 +130,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the AddCommand:</br>
-    <img src="images/screenshots/AddCommand/AddCommand.png"></br>
+    Before executing the AddCommand:<br>
+    <img src="images/screenshots/AddCommand/AddCommand.png"><br>
 
-    After executing the AddCommand:</br>
-    <img src="images/screenshots/AddCommand/AddCommandResult.png"></br>
+    After executing the AddCommand:<br>
+    <img src="images/screenshots/AddCommand/AddCommandResult.png"><br>
     </details>
 
 ### 2.3 Editing a Customer’s details: `edit`
@@ -155,11 +155,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the EditCommand via `PHONE_NUMBER`:</br>
-    <img src="images/screenshots/EditCommand/EditCommand_Phone.png"></br>
+    Before executing the EditCommand via `PHONE_NUMBER`:<br>
+    <img src="images/screenshots/EditCommand/EditCommand_Phone.png"><br>
 
-    After executing the EditCommand via `PHONE_NUMBER`:</br>
-    <img src="images/screenshots/EditCommand/EditCommand_PhoneResult.png"></br>
+    After executing the EditCommand via `PHONE_NUMBER`:<br>
+    <img src="images/screenshots/EditCommand/EditCommand_PhoneResult.png"><br>
     </details>
 
 
@@ -169,11 +169,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the EditCommand via `EMAIL`:</br>
-    <img src="images/screenshots/EditCommand/EditCommand_Email.png"></br>
+    Before executing the EditCommand via `EMAIL`:<br>
+    <img src="images/screenshots/EditCommand/EditCommand_Email.png"><br>
 
-    After executing the EditCommand via `EMAIL`:</br>
-    <img src="images/screenshots/EditCommand/EditCommand_EmailResult.png"></br>
+    After executing the EditCommand via `EMAIL`:<br>
+    <img src="images/screenshots/EditCommand/EditCommand_EmailResult.png"><br>
     </details>
 
 ### 2.4 Increasing a Customer’s Reward points: `incr`
@@ -189,11 +189,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the IncreaseCommand via `PHONE_NUMBER`:</br>
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhone.png"></br>
+    Before executing the IncreaseCommand via `PHONE_NUMBER`:<br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhone.png"><br>
 
-    After executing the IncreaseCommand via `PHONE_NUMBER`:</br>
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhoneResult.png"></br>
+    After executing the IncreaseCommand via `PHONE_NUMBER`:<br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhoneResult.png"><br>
     </details>
 
 
@@ -203,11 +203,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the IncreaseCommand via `EMAIL`:</br>
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmail.png"></br>
+    Before executing the IncreaseCommand via `EMAIL`:<br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmail.png"><br>
 
-    After executing the IncreaseCommand via `EMAIL`:</br>
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmailResult.png"></br>
+    After executing the IncreaseCommand via `EMAIL`:<br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmailResult.png"><br>
     </details>
 
 ### 2.5 Decreasing a Customer’s Reward points: `decr`
@@ -223,26 +223,25 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the IncreaseCommand via `PHONE_NUMBER`:</br>
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhone.png"></br>
+    Before executing the IncreaseCommand via `PHONE_NUMBER`:<br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhone.png"><br>
 
-    After executing the IncreaseCommand via `PHONE_NUMBER`:</br>
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhoneResult.png"></br>
+    After executing the IncreaseCommand via `PHONE_NUMBER`:<br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhoneResult.png"><br>
     </details>
 
 
 * `decr 500 e/taylor@swift.com`
-
     <details>
     <summary>
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the IncreaseCommand via `EMAIL`:</br>
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmail.png"></br>
+    Before executing the IncreaseCommand via `EMAIL`:<br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmail.png"><br>
 
-    After executing the IncreaseCommand via `EMAIL`:</br>
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmailResult.png"></br>
+    After executing the IncreaseCommand via `EMAIL`:<br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmailResult.png"><br>
     </details>
 
 ### 2.6 Listing all customers : `list`
@@ -256,11 +255,11 @@ Format: `list`
 <b>Walk-through with Images</b>
 </summary>
 
-Before executing the ListCommand:</br>
-<img src="images/screenshots/ListCommand/ListCommand.png"></br>
+Before executing the ListCommand:<br>
+<img src="images/screenshots/ListCommand/ListCommand.png"><br>
 
-After executing the ListCommand:</br>
-<img src="images/screenshots/ListCommand/ListCommandResult.png"></br>
+After executing the ListCommand:<br>
+<img src="images/screenshots/ListCommand/ListCommandResult.png"><br>
 </details>
 
 ### 2.7 Locating customers by name: `find`
@@ -286,11 +285,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the FindCommand:</br>
-    <img src="images/screenshots/FindCommand/FindCommandNormal.png"></br>
+    Before executing the FindCommand:<br>
+    <img src="images/screenshots/FindCommand/FindCommandNormal.png"><br>
 
-    After executing the FindCommand:</br>
-    <img src="images/screenshots/FindCommand/FindCommandNormalResult.png"></br>
+    After executing the FindCommand:<br>
+    <img src="images/screenshots/FindCommand/FindCommandNormalResult.png"><br>
     </details>
 
 
@@ -300,44 +299,42 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the FindCommand (with at least one keyword):</br>
-    <img src="images/screenshots/FindCommand/FindCommandMultiple.png"></br>
+    Before executing the FindCommand (with at least one keyword):<br>
+    <img src="images/screenshots/FindCommand/FindCommandMultiple.png"><br>
 
-    After executing the FindCommand (with at least one keyword):</br>
-    <img src="images/screenshots/FindCommand/FindCommandMultipleResult.png"></br>
+    After executing the FindCommand (with at least one keyword):<br>
+    <img src="images/screenshots/FindCommand/FindCommandMultipleResult.png"><br>
     </details>
 
 
 * `find Bob` returns `Bob` and `Bop`
-
     <details>
     <summary>
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the FindCommand (with FuzzySearch):</br>
-    <img src="images/screenshots/FindCommand/FindCommand_Fuzzy.png"></br>
+    Before executing the FindCommand (with FuzzySearch):<br>
+    <img src="images/screenshots/FindCommand/FindCommand_Fuzzy.png"><br>
 
-    After executing the FindCommand (with FuzzySearch):</br>
-    <img src="images/screenshots/FindCommand/FindCommand_FuzzyResult.png"></br>
+    After executing the FindCommand (with FuzzySearch):<br>
+    <img src="images/screenshots/FindCommand/FindCommand_FuzzyResult.png"><br>
     </details>
 
 
-* `find 8000` returns both `Roy Balakrishnan` and `Bob` 
-
+* `find 8000` returns both `Roy Balakrishnan` and `Bob`
     <details>
     <summary>
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the FindCommand (with matching keywords `8000`):</br>
-    <img src="images/screenshots/FindCommand/FindCommand_General.png"></br>
+    Before executing the FindCommand (with matching keywords `8000`):<br>
+    <img src="images/screenshots/FindCommand/FindCommand_General.png"><br>
 
-    After executing the FindCommand (with matching keywords `8000`):</br>
+    After executing the FindCommand (with matching keywords `8000`):<br>
     <ul>
       <li>Both `Roy` and `Bob` have `8000` reward points hence they show up in the search.</li>
-    </ul></br>
-    <img src="images/screenshots/FindCommand/FindCommand_GeneralResult.png"></br>
+    </ul><br>
+    <img src="images/screenshots/FindCommand/FindCommand_GeneralResult.png"><br>
     </details>
 
 
@@ -347,11 +344,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the FindCommand via `PHONE_NUMBER`:</br>
-    <img src="images/screenshots/FindCommand/FindCommand_Phone.png"></br>
+    Before executing the FindCommand via `PHONE_NUMBER`:<br>
+    <img src="images/screenshots/FindCommand/FindCommand_Phone.png"><br>
 
-    After executing the FindCommand via `PHONE_NUMBER`:</br>
-    <img src="images/screenshots/FindCommand/FindCommand_PhoneResult.png"></br>
+    After executing the FindCommand via `PHONE_NUMBER`:<br>
+    <img src="images/screenshots/FindCommand/FindCommand_PhoneResult.png"><br>
     </details>
 
 
@@ -361,11 +358,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the FindCommand via `EMAIL`:</br>
-    <img src="images/screenshots/FindCommand/FindCommand_Email.png"></br>
+    Before executing the FindCommand via `EMAIL`:<br>
+    <img src="images/screenshots/FindCommand/FindCommand_Email.png"><br>
 
-    After executing the FindCommand via `EMAIL`:</br>
-    <img src="images/screenshots/FindCommand/FindCommand_EmailResult.png"></br>
+    After executing the FindCommand via `EMAIL`:<br>
+    <img src="images/screenshots/FindCommand/FindCommand_EmailResult.png"><br>
     </details>
 
 ### 2.8 Deleting a Customer : `delete`
@@ -383,32 +380,30 @@ Format:
 
 Examples:
 * `delete p/88888888` removes the Customer with the phone number `88888888`.
-
     <details>
     <summary>
     <b>Walk-through with Images</b>
     </summary>
   
-    Before executing the DeleteCommand via `PHONE_NUMBER`:</br>
-    <img src="images/screenshots/DeleteCommand/DeleteCommand_Phone.png"></br>
+    Before executing the DeleteCommand via `PHONE_NUMBER`:<br>
+    <img src="images/screenshots/DeleteCommand/DeleteCommand_Phone.png"><br>
 
-    After executing the DeleteCommand via `PHONE_NUMBER`:</br>
-    <img src="images/screenshots/DeleteCommand/DeleteCommand_PhoneResult.png"></br>
+    After executing the DeleteCommand via `PHONE_NUMBER`:<br>
+    <img src="images/screenshots/DeleteCommand/DeleteCommand_PhoneResult.png"><br>
     </details>
 
 
 * `delete e/royb@example.com` removes the Customer with the email `royb@example.com`.
-  
     <details>
     <summary>
     <b>Walk-through with Images</b>
     </summary>
     
-    Before executing the DeleteCommand via `EMAIL`:</br>
-    <img src="images/screenshots/DeleteCommand/DeleteCommand_Email.png"></br>
+    Before executing the DeleteCommand via `EMAIL`:<br>
+    <img src="images/screenshots/DeleteCommand/DeleteCommand_Email.png"><br>
 
-    After executing the DeleteCommand via `EMAIL`:</br>
-    <img src="images/screenshots/DeleteCommand/DeleteCommand_EmailResult.png"></br>
+    After executing the DeleteCommand via `EMAIL`:<br>
+    <img src="images/screenshots/DeleteCommand/DeleteCommand_EmailResult.png"><br>
     </details>
 
 ### 2.9 Undo a Command : `undo`
@@ -422,11 +417,11 @@ Format: `undo`
 <b>Walk-through with Images</b>
 </summary>
     
-Before executing the UndoCommand (after a DeleteCommand):</br>
-<img src="images/screenshots/UndoAndRedoCommand/UndoCommand.png"></br>
+Before executing the UndoCommand (after a DeleteCommand):<br>
+<img src="images/screenshots/UndoAndRedoCommand/UndoCommand.png"><br>
 
-After executing the UndoCommand (Deleted Customer `Alex Yeoh` is back into bobaBot):</br>
-<img src="images/screenshots/UndoAndRedoCommand/UndoCommandResult.png"></br>
+After executing the UndoCommand (Deleted Customer `Alex Yeoh` is back into bobaBot):<br>
+<img src="images/screenshots/UndoAndRedoCommand/UndoCommandResult.png"><br>
 </details>
 
 :exclamation: Note: bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
@@ -442,14 +437,14 @@ Format: `redo`
 <b>Walk-through with Images</b>
 </summary>
 
-Before executing the RedoCommand:</br>
+Before executing the RedoCommand:<br>
 <ul>
   <li>This continues from the above example in UndoCommand (where we perform an UndoCommand on a DeleteCommand)</li>
 </ul>
-<img src="images/screenshots/UndoAndRedoCommand/RedoCommand.png"></br>
+<img src="images/screenshots/UndoAndRedoCommand/RedoCommand.png"><br>
 
-After executing the RedoCommand (The Customer `Alex Yeoh` is removed from bobaBot again):</br>
-<img src="images/screenshots/UndoAndRedoCommand/RedoCommandResult.png"></br>
+After executing the RedoCommand (The Customer `Alex Yeoh` is removed from bobaBot again):<br>
+<img src="images/screenshots/UndoAndRedoCommand/RedoCommandResult.png"><br>
 </details>
 
 :exclamation: Note: bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
@@ -465,11 +460,11 @@ Format: `clear`
 <b>Walk-through with Images</b>
 </summary>
 
-Before executing the ClearCommand:</br>
-<img src="images/screenshots/ClearCommand/ClearCommand.png"></br>
+Before executing the ClearCommand:<br>
+<img src="images/screenshots/ClearCommand/ClearCommand.png"><br>
 
-After executing the ClearCommand:</br>
-<img src="images/screenshots/ClearCommand/ClearCommandResult.png"></br>
+After executing the ClearCommand:<br>
+<img src="images/screenshots/ClearCommand/ClearCommandResult.png"><br>
 </details>
 
 ### 2.12 Calculate: `calc`
@@ -485,11 +480,11 @@ Example: `calc 5+2*(4-2)`
 <b>Walk-through with Images</b>
 </summary>
 
-Before executing the CalculateCommand:</br>
-<img src="images/screenshots/CalculateCommand/NewCalculateCommand.png"></br>
+Before executing the CalculateCommand:<br>
+<img src="images/screenshots/CalculateCommand/NewCalculateCommand.png"><br>
 
-After executing the CalculateCommand:</br>
-<img src="images/screenshots/CalculateCommand/NewCalculateCommandResult.png"></br>
+After executing the CalculateCommand:<br>
+<img src="images/screenshots/CalculateCommand/NewCalculateCommandResult.png"><br>
 </details>
 
 _Note: Please do not enter spaces, e.g.`1 + 1` does not work_
@@ -505,11 +500,11 @@ Format: `calc-gui`
 <b>Walk-through with Images</b>
 </summary>
 
-Before executing the CalculatorGuiCommand:</br>
-<img src="images/screenshots/CalculateCommand/NewCalculatorGUI.png"></br>
+Before executing the CalculatorGuiCommand:<br>
+<img src="images/screenshots/CalculateCommand/NewCalculatorGUI.png"><br>
 
-After executing the CalculatorGuiCommand:</br>
-<img src="images/screenshots/CalculateCommand/NewCalculatorGUIResult.png"></br>
+After executing the CalculatorGuiCommand:<br>
+<img src="images/screenshots/CalculateCommand/NewCalculatorGUIResult.png"><br>
 </details>
 
 ### 2.14 Exiting the program : `exit`
@@ -523,10 +518,10 @@ Format: `exit`
 <b>Walk-through with Images</b>
 </summary>
 
-Before executing the ExitCommand:</br>
-<img src="images/screenshots/ExitCommand/ExitCommand.png"></br>
+Before executing the ExitCommand:<br>
+<img src="images/screenshots/ExitCommand/ExitCommand.png"><br>
 
-After executing the ExitCommand:</br>
+After executing the ExitCommand:<br>
 <ul>
   <li>bobaBot Application Closed</li>
 </ul>
