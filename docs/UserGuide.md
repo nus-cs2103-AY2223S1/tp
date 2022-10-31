@@ -3,7 +3,6 @@ layout: page
 title: User Guide
 ---
 
-
 Welcome to the PayMeLah user guide!
 
 Are you a student who enjoys participating in group buys? Or perhaps do you just need some way to remember how much money your friends owe you? PayMeLah is a desktop app for **keeping track of** and **managing the debts** your friends owe you. It can also help **do simple calculations** for you, such as including GST or splitting debts amongst your friends. What’s more, it is optimised for you to do everything from just your keyboard!
