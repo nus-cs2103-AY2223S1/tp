@@ -36,7 +36,7 @@ public class UndoUnmarkCommand extends Command {
     public static final String MESSAGE_UNDO_UNMARK_PATIENT_SUCCESS = "Undo Unmarked Patient as success visit: %1$s";
     public static final String MESSAGE_INVALID_NURSE_UID = "This uid gives a nurse." + " Please recheck the uid. "
             + "Undo Unmark is only for patient.";
-    public static final String MESSAGE_OUT_OF_BOUND_DATE_AND_SLOT_INDEX = "The given date slot index is out of bound."
+    public static final String MESSAGE_OUT_OF_BOUND_DATE_AND_SLOT_INDEX = "The given date slot index is out of bounds."
             + "Please recheck the index.";
     public static final String MESSAGE_INVALID_DATE_AND_SLOT_INDEX = "The visit dates has not reached."
             + "Cannot undo unmark it as success visit.";

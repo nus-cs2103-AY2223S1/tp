@@ -103,7 +103,7 @@ Format: `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ 
 * A patient can have any number of tags (including 0).
 * A patient can have any number of home-visit date and slot (including 0).
 * Date and slot need to be in the format of `yyyy-MM-dd,SLOT_NUMBER`, eg `2022-11-11,2`.
-* The slot timing is fixed and slot is range from 10am to 4pm.
+* The slot timing is fixed and slots are only from 10am to 4pm.
 * **Slot 1: 10am, Slot 2: 12pm, Slot 3: 2pm, Slot 4: 4pm.** The `SLOT_NUMBER` can only be from 1 to 4.
 * To add a patient, type `c/P` specifically.
 
@@ -172,11 +172,11 @@ Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ds/D
 * You can **remove all the person’s tags** by typing `t/` without specifying any tags after it.
 * The `DATE_AND_SLOT_INDEX` is the index of the date and slot list of a patient starting from 1.
 * When **editing date and slot**, there are **4 options**:
-  1. To delete all the existing date and slot of a patient: you can type `ds/` or `dsi/` or `ds/ dsi/` without specifying any date and slot or its index after it.
+  1. To delete all the existing date and slot of a patient: you can type `ds/` or `dsi/` or `ds/ dsi/` without specifying a date and slot or its index after it.
   2. To delete a specific date and slot of a patient: you can type `ds/ dsi/TO_BE_DELETED_DATE_AND_TIME_INDEX` or `dsi/TO_BE_DELETED_DATE_AND_TIME_INDEX`. The to be deleted date and slot index is the index of the specific date and slot you want to delete.
   3. To add a new date and slot of a patient: you can type `ds/NEW_DATE_AND_SLOT dsi/` or `ds/NEW_DATE_AND_SLOT`.
   4. To change a specific date and slot of a patient: you can type `ds/UPDATE_DATE_AND_SLOT dsi/TO_BE_UPDATED_DATE_AND_SLOT_INDEX`. The date and slot at this index in the list will be updated to the new date and slot given by you.
-* You can only use `ds/` and `dsi/` for **patient**. Nurse do not have any home-visit date and slot.
+* You can only use `ds/` and `dsi/` for **patient**. Nurse do not have any home-visit dates and slots.
 * The unavailable date works similar to the date and time edit excepts using different indicator `ud/` and `udi/` to indicate the date and the index.
 * The **unavailable date** is only applicable to **nurse**.
 
@@ -184,7 +184,7 @@ Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ds/D
 
 * When changing a date slot in the existing list, if the old date slot is assigned, it will be deassigned and the new date slot will be in "not assigned status".
 
-* When changing an unavailable date in the existing list or add a new unavailable date in the existing list from a nurse, the date slot assigned to that nurse will be checked against the unavailable date. If the date slot is on the same day with the unavailable date, it will auto deassign that date slot from the nurse.
+* When changing an unavailable date in the existing list or adding a new unavailable date in the existing list from a nurse, the date slot assigned to that nurse will be checked against the unavailable date. If the date slot is on the same day with the unavailable date, it will auto deassign that date slot from the nurse.
 </div>
 
 Examples:
@@ -244,7 +244,7 @@ Format `assign id/NURSE_ID id/PATIENT_ID [dsi/DATE_AND_SLOT_INDEX]…​`
 * There **must be 2 IDs (only 2), 1 indicating a patient and 1 indicating a nurse**.
 * There is no specific order for the 2 IDs.
 * The assign command can have any number of date and slot index (including 0).
-* If the **'DATE_AND_SLOT_INDEX' not indicated** (0), then all the date slot of the patients will be assigned to the nurse.
+* If the **'DATE_AND_SLOT_INDEX' is not indicated** (0), then all the date slot of the patients will be assigned to the nurse.
 * If the **'DATE_AND_SLOT_INDEX(ES)' is indicated**, then the date slot with the respective index(es) in the displayed dateslot list will be assigned to the nurse.
 * When assigning, it will check whether there are **time crashes** and check whether the nurse are **unavailable** on that day.
 
