@@ -35,6 +35,10 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
         Index studentIndex = studentPrefix.isPresent() ? ParserUtil.parseIndex(studentPrefix.get()) : null;
         String note = argMultimap.getValue(PREFIX_NOTE).get();
 
+        if (note.trim().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_NOTE_EMPTY));
+        }
+
         return new AddNoteCommand(lessonIndex, studentIndex, note);
     }
 
