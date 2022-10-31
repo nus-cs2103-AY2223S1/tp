@@ -51,7 +51,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editActivityDescriptor::setTags);
         if (argMultimap.getValue(CliSyntax.PREFIX_DATE).isPresent()) {
-            editActivityDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(CliSyntax.PREFIX_DATE)));
+            if (argMultimap.getValue(CliSyntax.PREFIX_DATE).get().equals("")) {
+                editActivityDescriptor.setDate(Optional.empty());
+            } else {
+                editActivityDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(CliSyntax.PREFIX_DATE)));
+            }
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_STATUS).isPresent()) {
             editActivityDescriptor

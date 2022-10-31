@@ -106,9 +106,9 @@ public class EditCommand extends Command {
         Description updatedDescription = editActivityDescriptor.getDescription()
                 .orElse(activityToEdit.getDescription());
         Set<Tag> updatedTags = editActivityDescriptor.getTags().orElse(activityToEdit.getTags());
-        Optional<Date> date = Optional.empty();
-        if (editActivityDescriptor.getDate().isPresent()) {
-            date = editActivityDescriptor.getDate();
+        Optional<Date> date = null;
+        if (editActivityDescriptor.checkDate() != null) {
+            date = editActivityDescriptor.checkDate();
         } else {
             date = activityToEdit.getDate();
         }
@@ -143,7 +143,7 @@ public class EditCommand extends Command {
         private Name name;
         private Description description;
         private Set<Tag> tags;
-        private Optional<Date> date = Optional.empty();
+        private Optional<Date> date;
         private Status status;
 
         public EditActivityDescriptor() {}
@@ -164,10 +164,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            if (date.isPresent()) {
-                return true;
-            }
-            return CollectionUtil.isAnyNonNull(name, description, tags, status);
+
+            return CollectionUtil.isAnyNonNull(name, description, tags, date, status);
         }
 
         public void setName(Name name) {
@@ -208,6 +206,9 @@ public class EditCommand extends Command {
             if (this.date == null) {
                 return Optional.empty();
             }
+            return this.date;
+        }
+        public Optional<Date> checkDate() {
             return this.date;
         }
 

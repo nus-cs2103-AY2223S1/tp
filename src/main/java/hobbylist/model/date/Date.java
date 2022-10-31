@@ -11,7 +11,6 @@ import hobbylist.commons.util.AppUtil;
  * Guarantees: immutable; name is valid as declared in {@link #isValidDateString(String)}
  */
 public class Date {
-
     public static final String MESSAGE_EXCEPTION =
             "Invalid date! The input format should be like yyyy-mm-dd, eg 1921-04-12\n"
             + "The value of year should be greater or equal than 1000!\n";
@@ -53,7 +52,7 @@ public class Date {
         if (!test.matches(VALIDATION_REGEX)) {
             return false;
         }
-        if (Integer.valueOf(test.split("-")[0])<1000) {
+        if (Integer.valueOf(test.split("-")[0]) < 1000) {
             return false;
         }
         return true;
