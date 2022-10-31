@@ -150,30 +150,30 @@ class PastAppointmentTest {
         PastAppointment pastAppointment;
 
         pastAppointment = new PastAppointmentBuilder().build();
-        assertNotEquals(null, pastAppointment);
+        assertNotEquals(null, pastAppointment); // different type
 
         pastAppointment = new PastAppointmentBuilder().build();
-        assertEquals(pastAppointment, pastAppointment);
+        assertEquals(pastAppointment, pastAppointment); // same object
 
         pastAppointment = new PastAppointmentBuilder().build();
         PastAppointment sameDatePastAppointment = new PastAppointmentBuilder().withDate("06-12-2022").build();
-        assertEquals(pastAppointment, sameDatePastAppointment);
+        assertEquals(pastAppointment, sameDatePastAppointment); // same date
 
         pastAppointment = new PastAppointmentBuilder().build();
         PastAppointment differentDatePastAppointment = new PastAppointmentBuilder().withDate("01-01-2021").build();
-        assertNotEquals(pastAppointment, differentDatePastAppointment);
+        assertNotEquals(pastAppointment, differentDatePastAppointment); // different date
 
         pastAppointment = new PastAppointmentBuilder().build();
         PastAppointment differentMedicationPastAppointment = new PastAppointmentBuilder()
                 .withMedication(new String[] { "Paracetamol" })
                 .build();
-        assertNotEquals(pastAppointment, differentMedicationPastAppointment);
+        assertNotEquals(pastAppointment, differentMedicationPastAppointment); // different medication
 
         pastAppointment = new PastAppointmentBuilder().build();
         PastAppointment differentDiagnosisPastAppointment = new PastAppointmentBuilder()
                 .withDiagnosis("Sick")
                 .build();
-        assertNotEquals(pastAppointment, differentDiagnosisPastAppointment);
+        assertNotEquals(pastAppointment, differentDiagnosisPastAppointment); // different diagnosis
 
     }
 
