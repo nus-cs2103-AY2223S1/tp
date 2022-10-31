@@ -65,14 +65,58 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
 
 **[To be updated]**
 
+### The User Interface
+
+Below is an image of Coydir User Interface with the main components labelled.
+
+![Labelled GUI](images/ui-screenshots/Labelled-GUI.png)
+
+#### Toolbar
+
+![Toolbar](images/ui-screenshots/Toolbar.png)
+This Toolbar can be used to :
+
+1. Exit the application through the **File** button
+2. Access the Help guide through the **Help** button
+3. Change from Dark mode to Light Mode or vice versa through the **Theme** button
+
+#### Employee List Panel
+
+![Employee List Panel](images/ui-screenshots/Employee-List-Panel.png)
+This shows the whole employee list with basic information such as _Name_, _Employee ID_ and _Position_.
+
+This will come in handy if:
+
+1. You want a general overview of the employees in the company as of this moment.
+2. You want to quickly find out their Employee ID to view more details.
+
+#### Employee Info Panel
+
+![Employee Info Panel](images/ui-screenshots/Employee-Info-Panel.png)
+This shows a specific employee's particulars.
+
+Things to note:
+
+1. On startup of the application, this panel shows Coydir logo.
+2. To view an employee's particulars, refer to the [view command]([#view-details-of-an-employee--view).
+3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's particulars.
+4. If there is no next employee, this panel will revert to the Coydir logo.
+
+#### Command Box
+
+![Command Box](images/ui-screenshots/Command.png)
+
+You can enter your user commands in the bottom section labeled as `Enter command here...`.
+
+The top section displays relevant messages/errors after the command is entered.
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
    1. If you have installed Java before, check that you have the right version, which is Java `11`.
       - If you are using Windows, open up command prompt and type `java -version` and enter.
       - If you are using Mac, open up terminal and type `java -version` and enter.
-   2. If you do not have Java `11`: - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/). - If you are using Mac, you can install the Azul build of OpenJDK 11 version from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).  
-      <br />
+   2. If you do not have Java `11`: - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/). - If you are using Mac, you can install the Azul build of OpenJDK 11 version from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 2. Download the latest Coydir v1.3.0 jar file from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Coydir.
@@ -93,54 +137,6 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
    - **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
-
-### The User Interface
-
-Below is an image of Coydir User Interface with the main components labelled.
-
-![](images/ui-screenshots/Labelled GUI.png)
-
-#### Toolbar
-
-![](images/ui-screenshots/Toolbar.png)
-This Toolbar can be used to :
-
-1. Exit the application through the **File** button
-2. Access the Help guide through the **Help** button
-3. Change from Dark mode to Light Mode or vice versa through the **Theme** button
-
-#### Employee List Panel
-
-![](images/ui-screenshots/Employee List Panel.png)
-This shows the whole employee list with basic information such as _Name_, _Employee ID_ and _Position_.
-
-This will come in handy if:
-
-1. You want a general overview of the employees in the company as of this moment.
-2. You want to quickly find out their Employee ID to view more details.
-
-#### Employee Info Panel
-
-![](images/ui-screenshots/Employee Info Panel.png)
-This shows a specific employee's particulars.
-
-Things to note:
-
-1. On startup of the application, this panel shows Coydir logo.
-2. To view an employee's particulars, refer to the [view command]([#view-details-of-an-employee--view).
-3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's
-   particulars.
-4. If there is no next employee, this panel will revert to the Coydir logo.
-
-#### Command Box
-
-![](images/ui-screenshots/Command.png)
-
-You can enter your user commands in the bottom section labeled as `Enter command here...`.
-
-The top section displays relevant messages/errors after the command is entered.
-
----
 
 ## Features
 
@@ -537,8 +533,7 @@ The individual rating values will be displayed beside each node in the performan
 **:information_source: Note:** You can only rate the performance of an employee once per day.<br><br>
 
 - Rating an employee who already has a `Rating` with `timestamp` of that same day with the `rate` command will throw a `employee already rated` error.
-
-This is to prevent multiple ratings per day, and avoid a distorted performance history graph.
+- This is to prevent multiple ratings per day, and avoid a distorted performance history graph.
 
 </div>
 
@@ -663,17 +658,15 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Add**             | `add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal`                                                      |
 | **Edit**            | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal` |
+| **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                               |
 | **Batch Add**       | `batchadd FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                                                                                                        |
 | **View Details**    | `view INDEX` <br> e.g. `view 1`                                                                                                                                                                                                                  |
-| **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                               |
+| **List**            | `list`                                                                                                                                                                                                                                           |
 | **Find**            | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                                                                                             |
 | **Add leave**       | `add-leave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `add-leave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                                                                                |
 | **Delete leave**    | `delete-leave id/ID i/INDEX`<br> e.g. `delete-leave id/1 i/3`                                                                                                                                                                                    |
+| **rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                                                                                                                   |
 | **View Department** | `viewdepartment DEPARTMENT`<br> e.g. `view-department Finance`                                                                                                                                                                                   |
-
-> > > > > > > master
-> > > > > > > | **rate** | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3` |
-> > > > > > > | **List** | `list` |
-> > > > > > > | **Exit** | `exit` |
-> > > > > > > | **Clear** | `clear` |
-> > > > > > > | **Help** | `help` |
+| **Help**            | `help`                                                                                                                                                                                                                                           |
+| **Exit**            | `exit`                                                                                                                                                                                                                                           |
+| **Clear**           | `clear`                                                                                                                                                                                                                                          |
