@@ -81,7 +81,7 @@ public class OpenCustomerCommandTest {
     public void execute_noIndex_switchesTab() {
         model = new ModelManager();
         CommandResult result = assertDoesNotThrow(() -> new OpenCustomerCommand().execute(model));
-        assertEquals(result.getFeedbackToUser(), Messages.MESSAGE_OPEN_CUSTOMER_TAB_SUCCESS);
+        assertEquals(result.getFeedbackToUser(), OpenCustomerCommand.MESSAGE_USAGE);
         assertEquals(model.getSelectedTab(), GuiTab.CUSTOMER);
     }
 
@@ -105,14 +105,5 @@ public class OpenCustomerCommandTest {
 
         // different customer -> returns false
         assertFalse(openFirstCommand.equals(openSecondCommand));
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoCustomer(Model model) {
-        model.updateFilteredCustomerList(p -> false);
-
-        assertTrue(model.getSortedFilteredCustomerList().isEmpty());
     }
 }

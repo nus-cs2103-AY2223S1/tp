@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_OPEN_CUSTOMER_SUCCESS;
-import static seedu.address.commons.core.Messages.MESSAGE_OPEN_CUSTOMER_TAB_SUCCESS;
 
 import java.util.List;
 import java.util.Objects;
@@ -44,7 +43,7 @@ public class OpenCustomerCommand extends Command {
         model.selectTab(GuiTab.CUSTOMER);
         List<Customer> lastShownList = model.getSortedFilteredCustomerList();
         if (targetIndex == null) {
-            return new CommandResult(MESSAGE_OPEN_CUSTOMER_TAB_SUCCESS);
+            return new CommandResult(MESSAGE_USAGE);
         }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
