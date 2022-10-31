@@ -1,14 +1,6 @@
 package seedu.watson.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.watson.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.watson.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.watson.logic.parser.CliSyntax.PREFIX_INDEX_NUMBERS;
-import static seedu.watson.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.watson.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.watson.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.watson.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
-import static seedu.watson.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.List;
