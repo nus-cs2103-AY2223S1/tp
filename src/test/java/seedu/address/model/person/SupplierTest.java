@@ -87,10 +87,6 @@ public class SupplierTest {
         // different address -> returns false
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).buildSupplier();
         assertFalse(ALICE.equals(editedAlice));
-
-        // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).buildSupplier();
-        assertFalse(ALICE.equals(editedAlice));
     }
 
 
