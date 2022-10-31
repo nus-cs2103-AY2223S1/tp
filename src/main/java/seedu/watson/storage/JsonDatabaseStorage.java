@@ -9,10 +9,10 @@ import java.util.logging.Logger;
 
 import seedu.watson.commons.core.LogsCenter;
 import seedu.watson.commons.exceptions.DataConversionException;
-import seedu.watson.commons.exceptions.IllegalValueException;
 import seedu.watson.commons.util.FileUtil;
 import seedu.watson.commons.util.JsonUtil;
 import seedu.watson.model.ReadOnlyDatabase;
+import seedu.watson.model.util.SampleDataUtil;
 
 /**
  * A class to access Database data stored as a json file on the hard disk.
@@ -21,7 +21,7 @@ public class JsonDatabaseStorage implements DatabaseStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonDatabaseStorage.class);
 
-    private Path filePath;
+    private final Path filePath;
 
     public JsonDatabaseStorage(Path filePath) {
         this.filePath = filePath;
@@ -53,9 +53,9 @@ public class JsonDatabaseStorage implements DatabaseStorage {
 
         try {
             return Optional.of(jsonAddressBook.get().toModelType());
-        } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataConversionException(ive);
+        } catch (Exception ex) {
+            logger.info("There was an issue parsing the JSON file. Using sample data instead.");
+            return Optional.of(SampleDataUtil.getSampleAddressBook());
         }
     }
 

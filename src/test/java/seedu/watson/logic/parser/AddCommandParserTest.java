@@ -149,7 +149,7 @@ public class AddCommandParserTest {
                                    + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + STUDENTCLASS_DUMMY,
                            Email.MESSAGE_CONSTRAINTS);
 
-        // invalid watson
+        // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + INDEX_NUMBER_DESC_BOB + PHONE_DESC_BOB
                                    + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                                    + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + STUDENTCLASS_DUMMY,
@@ -158,7 +158,7 @@ public class AddCommandParserTest {
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + INDEX_NUMBER_DESC_BOB + PHONE_DESC_BOB
                                    + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                                   + INVALID_TAG_DESC + VALID_TAG_FRIEND
+                                   + INVALID_TAG_DESC
                                    + STUDENTCLASS_DUMMY, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported

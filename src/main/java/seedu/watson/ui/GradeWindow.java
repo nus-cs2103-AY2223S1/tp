@@ -148,7 +148,7 @@ public class GradeWindow extends UiPart<Stage> {
         double totalScore = Double.parseDouble(parsedString[2].trim());
         double weightage = Double.parseDouble(parsedString[3].trim());
         double difficulty = Double.parseDouble(parsedString[4].trim());
-        Assessment newAssessment = new Assessment(name, weightage, score, totalScore, difficulty);
+        Assessment newAssessment = new Assessment(name, score, totalScore, weightage, difficulty);
         Student currentStudent = studentList.get(index);
         Subject subject = currentStudent.getSubjectHandler().getSubject(subjectName);
         subject.updateGradeAssessment(newAssessment);
