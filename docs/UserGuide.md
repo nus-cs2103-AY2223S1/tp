@@ -66,7 +66,7 @@ This guide contains all you need to get started on working with GithubContact.
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by the user. The input formats for each attribute can be found [here](#parameter-input-formats)<br> 
   e.g. in `add name/NAME`, `NAME` is a parameter which can be used as `add name/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -112,9 +112,12 @@ This guide contains all you need to get started on working with GithubContact.
 
 #### Add a person : `add`
 
-Adds a person to the list. At least one of `NAME` or `GITHUB` must be provided.
+Adds a person to the list.
 
 Format: `add [name/NAME] [github/GITHUB] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `
+
+- At least one of `NAME` or `GITHUB` must be provided.
+- The input formats for each attribute can be found [here](#parameter-input-formats)
 
 Example:
 - `add github/johndoe`
@@ -251,16 +254,18 @@ Step 3: Press `<ENTER>` to enter the detail page.
 
 #### Set a Person's Details : `set`
 
-Set attribute of a person.
+Sets the attributes of a person.
 
-Format `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `
+Format `set [name/NAME] [github/GITHUB] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `
 
 - You can only run this command in a person's detail page. Please refer to [Show Person Details](#show-a-persons-details--enter-or-double-click) to enter person details page.
 - At least one optional attribute must be provided.
 - If an inputted attribute does not exist yet, it will be added.
 - If an inputted attribute already exists, its value will be updated to the given value.
+- The input formats for each attribute can be found [here](#parameter-input-formats)
 
 Example:
+- `set name/Mike github/mikelim address/21 Clementi phone/86609831 email/mike@gmail.com slack/mike123 telegram/@mike123 tag/friend timezone/+8 role/Frontend`
 - `set name/David Lee telegram/@davidlee123 slack/davidlee123`
 
 Before the command is executed:
@@ -385,3 +390,4 @@ After executing `help delete`:
 | Slack     | Should contain only numbers, underscores(_), and lowercase letters. Must be between 1 and 20 characters in length                                                                                                                                                                                                            |
 | Telegram  | Should be of the format @<USERNAME>. USERNAME should be between 5 and 32 characters long, with only alphanumeric characters and underscores. It cannot start or end with an underscore nor have consecutive underscores.                                                                                                     |
 | Tag       | Should be alphanumeric                                                                                                                                                                                                                                                                                                       |
+| Github    | Should contain only alphanumeric characters or dashes. It cannot start or end with a hyphen nor have consecutive hyphens. Its maximum length is 39 characters.                                                                                                                                                               | 
