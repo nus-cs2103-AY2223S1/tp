@@ -31,5 +31,12 @@ public class LessonPlanCommandParserTest {
     @Test
     public void parse_noPrefixField_failure() {
         assertParseFailure(parser, "1 " + VALID_LESSON_PLAN_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_emptyField_failure() {
+        assertParseFailure(parser, "1" + PREFIX_LESSON_PLAN, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + PREFIX_LESSON_PLAN + " ", MESSAGE_INVALID_FORMAT);
     }
 }
