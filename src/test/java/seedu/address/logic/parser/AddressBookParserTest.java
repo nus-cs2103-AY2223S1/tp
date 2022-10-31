@@ -23,7 +23,6 @@ import seedu.address.logic.commands.FindStuCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListStuCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.student.StuNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
