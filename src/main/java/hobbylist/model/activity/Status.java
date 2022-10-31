@@ -14,6 +14,7 @@ public class Status {
     public static final String STATUS_COMPLETED = "COMPLETED";
     public static final String MESSAGE_CONSTRAINT = "Completion status should be either UPCOMING"
             + ", ONGOING or COMPLETED.";
+    public static final String[] VALID_STATUSES = {STATUS_COMPLETED, STATUS_ONGOING, STATUS_UPCOMING};
 
     /**
      * Different status of an activity.
