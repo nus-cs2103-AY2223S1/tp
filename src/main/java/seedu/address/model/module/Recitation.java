@@ -33,4 +33,22 @@ public class Recitation extends Lesson {
         return super.getModule() + " " + typeToString() + " " + super.getStartTime() + " to " + super.getEndTime();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o instanceof Recitation) {
+            Recitation recitation = (Recitation) o;
+            boolean sameName = this.getModule().equals(recitation.getModule());
+            boolean sameStart = this.getStartTime().equals(recitation.getStartTime());
+            boolean sameEnd = this.getEndTime().equals(recitation.getEndTime());
+            boolean sameDay = this.getDay() == recitation.getDay();
+            return sameName && sameStart && sameDay && sameEnd;
+        }
+
+        return false;
+    }
+
 }

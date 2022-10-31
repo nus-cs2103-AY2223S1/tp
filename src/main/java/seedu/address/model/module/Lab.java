@@ -33,4 +33,22 @@ public class Lab extends Lesson {
         return super.getModule() + " " + typeToString() + " " + super.getStartTime() + " to " + super.getEndTime();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o instanceof Lab) {
+            Lab lab = (Lab) o;
+            boolean sameName = this.getModule().equals(lab.getModule());
+            boolean sameStart = this.getStartTime().equals(lab.getStartTime());
+            boolean sameEnd = this.getEndTime().equals(lab.getEndTime());
+            boolean sameDay = this.getDay() == lab.getDay();
+            return sameName && sameStart && sameDay && sameEnd;
+        }
+
+        return false;
+    }
+
 }
