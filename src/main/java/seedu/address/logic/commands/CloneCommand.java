@@ -66,8 +66,8 @@ public class CloneCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one of the unique optional fields (Name, Phone or Email)"
             + " has to be provided.";
     public static final String MESSAGE_DUPLICATE_CLONED_PERSON = "This person already exists in the address book, "
-            + "try again with different details, at least one of the unique optional fields (Name, Phone or Email) has to "
-            + "be provided.";
+            + "try again with different details, at least one of the unique optional fields (Name, Phone or Email) "
+            + "has to be provided.";
 
     private final Index index;
     private final ClonePersonDescriptor clonePersonDescriptor;
