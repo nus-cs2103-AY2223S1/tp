@@ -16,7 +16,10 @@ import static seedu.address.model.person.testutil.TypicalPersons.ORAL_PRESENTATI
 import static seedu.address.model.person.testutil.TypicalPersons.TEAM_PROJECT;
 import static seedu.address.model.person.testutil.TypicalPersons.getTypicalAddressBookWithGroups;
 
-import javafx.collections.ObservableList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -30,10 +33,6 @@ import seedu.address.model.group.Group;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.testutil.PersonBuilder;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class AssignTaskCommandTest {
 
