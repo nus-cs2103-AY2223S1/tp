@@ -44,29 +44,26 @@ Here are some of the symbols and text formatting to look out for as you make use
 
 ### Installing PayMeLah
 
-1. Ensure you have Java `11` or above installed in your Computer ([Mac](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows](https://phoenixnap.com/kb/install-java-windows)).
+1. To run the PayMeLah application, you will need to have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer ([Mac](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows](https://phoenixnap.com/kb/install-java-windows)).
 
-1. Download the latest `paymelah.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-3/tp/releases).
+1. Next, you will need to prepare an [empty folder](https://www.wikihow.com/Make-a-New-Folder-on-a-Computer) to download PayMeLah to.
 
-1. Copy the file to the folder you want to use as the _home folder_ for PayMeLah.
+1. Now, you will need to visit [this link](https://github.com/AY2223S1-CS2103T-W13-3/tp/releases) to click and download the latest version of *paymelah.jar*. Make sure to download it to the folder you created in step 2! <br>
+   <img src="images/howToDownload_1.png" width="500" /> <br>
+   <img src="images/howToDownload_2.png" width="500" /> <br>
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Finally, you are ready to use PayMeLah. Simply double-click the *paymelah.jar* in the folder you created to start the app. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features).  <br>
+   <img src="images/Ui.png" width="800" /> <br>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+<div markdown="block" class="alert alert-info">
 
-   * **`list`** : Lists all contacts.
+1. Now, let’s continue to learn how to [navigate the application](#navigating-the-application-interface) before familiarising ourselves with the [features](#features) you can use in PayMeLah.
 
-   * **`add`**`n/John Doe p/98765432 tele/johndoe a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+[Return to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
+--------------------------------------------------------------------------------------------------------------------
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+### Navigating the application interface
 
 --------------------------------------------------------------------------------------------------------------------
 ## Adding your first debt
@@ -390,6 +387,31 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+* _Command_: An instruction for PayMeLah to execute. All commands start with a _command phrase_ and any inputs the command may require.
+* _Command box_: A box in which you can enter _commands_. See [Navigating the application interface](#navigating-the-application-interface) to learn more.
+* _Command Line Interface (CLI)_: The method by which you instruct PayMeLah to perform tasks, which is by entering _commands_ into the _command box_.
+* _Command phrase_: The name of the instruction for PayMeLah to execute. For example, `list` is the command phrase to show the list of people added to PayMeLah.
+* _Debt_: A transaction event (e.g. group purchase, shared Grab food order) where someone owes you money.
+* _Debt card_: A card containing the details of a specific _debt_ that has been added to PayMeLah. See [Navigating the application interface](#navigating-the-application-interface) to learn more.
+* _Debt index_: The number that appears next to each _debt_’s description in a person’s _debt list_.
+* _Debt list_: A box containing a list of _debts_ owed by a person added to PayMeLah. See [Navigating the application interface](#navigating-the-application-interface) to learn more.
+* _Debtor_: A person who owes you money.
+* _Enter[ing]_ a command: Type the _command_ into the _command box_, and press the <kbd>Enter</kbd> key.
+* _Index_: The number that appears next to each person’s name or each _debt_’s description.
+* _Input_: Additional information supplied by you that is used to run a _command_.
+* _Keyboard shortcut_: A key or sequence of keys which you may press to perform actions without your mouse.
+* _Message box_: A box in which PayMeLah will inform you about the results of your _commands_. See [Navigating the application interface](#navigating-the-application-interface) to learn more.
+* _Person card_: A card containing the details and _debts_ of someone that has been added to PayMeLah. See [Navigating the application interface](#navigating-the-application-interface) to learn more.
+* _Person index_: The number that appears next to each person’s name in the _person list_.
+* _Person list_: A box which contains a list of people added to PayMeLah. See [Navigating the application interface](#navigating-the-application-interface) to learn more.
+* _Prefix_: A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.
+
+[Return to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
