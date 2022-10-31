@@ -65,10 +65,6 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
 
 **[To be updated]**
 
-### The User Interface
-
-**[To be updated]**
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -97,6 +93,48 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
    - **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
+
+### The User Interface
+Below is an image of Coydir User Interface with the main components labelled.
+
+![](images/ui-screenshots/Labelled GUI.png)
+
+#### Toolbar
+![](images/ui-screenshots/Toolbar.png)
+This Toolbar can be used to :
+1. Exit the application through the **File** button
+2. Access the Help guide through the **Help** button
+3. Change from Dark mode to Light Mode or vice versa through the **Theme** button
+
+#### Employee List Panel
+![](images/ui-screenshots/Employee List Panel.png)
+This shows the whole employee list with basic information such as _Name_, _Employee ID_ and _Position_.
+
+This will come in handy if:
+1. You want a general overview of the employees in the company as 
+of this moment 
+2. You want to quickly find out their Employee ID to view more details.
+
+#### Employee Info Panel
+![](images/ui-screenshots/Employee Info Panel.png)
+This shows a specific employee's particulars.
+
+Things to note:
+
+1. On startup of the application, this panel shows Coydir logo.
+2. To view an employee's particulars, refer to the [view command]([#view-details-of-an-employee--view).
+3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's 
+particulars.
+4. If there is no next employee, this panel will revert to the Coydir logo.
+
+
+#### Command Box
+![](images/ui-screenshots/Command.png)
+
+You can enter your user commands in the bottom section labeled as `Enter command here...`.
+
+The top section displays relevant messages/errors after the command is entered.
+
 
 ---
 
