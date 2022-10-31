@@ -151,7 +151,7 @@ Format: `find KEYWORDS`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
-Note: Multiple keywords can be entered.
+Note: Multiple keywords can be entered and each keyword is separated by a space.
 Note: when searching for exam grade use format `find [exam_name:EXAM_SCORE]`
 </div>
 
