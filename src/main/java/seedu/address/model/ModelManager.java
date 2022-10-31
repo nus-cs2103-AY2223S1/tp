@@ -170,7 +170,7 @@ public class ModelManager implements Model {
         clearFiltersInFilteredPersonList();
         Set<Tag> deletedTags = addressBook.deleteTags(tags);
         addressBook.getPersonList()
-                .forEach(person -> removeTags(person, deletedTags);
+                .forEach(person -> removeTags(person, deletedTags));
         return deletedTags;
     }
 
