@@ -184,17 +184,22 @@ Examples:
 
 #### 4.2.1 Finding a student record : `find`
 
-Shows a list of students whose name contains the specified name keywords, or whose Id matches the given Id.
+Searches for students whose name contains the specified name keywords, or whose Id matches the given Id.
+
+<div markdown="span" class="alert alert-info">:information_source:
+   **Note:**
+   The `find` command searches through either the students' names, or the students' Ids, but not both. Therefore,
+   `find nm/Alice id/123A` is not a valid command. 
+</div>
 
 Format: `find nm/[name]` or `find id/[id]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* Only the name or the id is searched, depending on the given input.
 * Only full names / full ids will be matched e.g. `Han` will not match `Hans`
 
 Examples:
-* `find nm/John` returns the record for the student named `john`
-* `find nm/john alice` returns the records for the students named `John` and the student named `Alice`.
+* `find nm/John` returns the records for any student named "john" or any student with 'john' in their name. 
+* `find nm/john alice` returns the records for the students whose names contain either `john` or `Alice` or both.
 
 #### 4.2.2 Toggling view : `toggleView`
 
