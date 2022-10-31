@@ -13,10 +13,10 @@
 <HBox id="cardPane" fx:id="cardPane" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
-         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
-         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
-         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="320.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="220.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="220.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
          <ColumnConstraints />
          <ColumnConstraints />
     </columnConstraints>
@@ -54,7 +54,7 @@
       <GridPane GridPane.columnIndex="2" GridPane.rowSpan="2">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
@@ -78,7 +78,7 @@
             <Label fx:id="ft" styleClass="cell_small_label" text="\$ft" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <VBox minHeight="120.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowSpan="2">
+      <VBox minHeight="120.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowSpan="2">
          <padding>
             <Insets bottom="5" left="15" right="5" top="5" />
          </padding>
