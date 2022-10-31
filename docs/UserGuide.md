@@ -2,45 +2,6 @@
 Well, hello there! Welcome to your personal budgeting assistant, PennyWise.
 After this guide, you will understand how to use PennyWise, and spend every penny wisely. 🤑
 
-# Table of Contents
-<div id="top">
-</div>
-
-<!-- TOC -->
-* [Introduction](#introduction)
-* [Quick start](#quick-start)
-* [Navigating the User Guide](#navigating-the-user-guide)
-  * [Information Box](#information-box)
-  * [Tip Box](#tip-box)
-  * [Danger Box](#danger-box)
-  * [Formatting](#formatting)
-* [Before Using](#before-using)
-  * [Familiarising yourself with the interface](#familiarising-yourself-with-the-interface)
-  * [Categorising your expenses and income](#categorising-your-expenses-and-income)
-  * [Guidelines on organising your expenses and income](#guidelines-on-organising-your-expenses-and-income)
-* [Features](#features)
-  * [Adding entries: `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY`](#adding-entries--add-tentry_type-ddescription-aamount-dadate-ccategory)
-    * [Add an expense entry to the expenditure list](#add-an-expense-entry-to-the-expenditure-list)
-    * [Add an income entry to the income list](#add-an-income-entry-to-the-income-list)
-  * [Deleting entries: `delete INDEX_OF_ENTRY t/ENTRY_TYPE`](#deleting-entries--delete-index_of_entry-tentry_type)
-    * [Delete an expense from the expenditure list](#delete-an-expense-from-the-expenditure-list)
-    * [Delete an income from the income list](#delete-an-income-from-the-income-list)
-  * [Editing entries: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`](#editing-entries--edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category)
-    * [Edits expenditure with specified fields](#edits-expenditure-with-specified-fields)
-    * [Edits income with specified fields](#edits-income-with-specified-fields)
-  * [Summary of entries: `summary [mo/MONTH]`](#summary-of-entries--summary-momonth)
-    * [Summary of all entries in the currently shown list](#summary-of-all-entries-in-the-currently-shown-list)
-    * [Summary of all entries the specified month](#summary-of-all-entries-the-specified-month)
-  * [View entries by category: `view t/ENTRY_TYPE`](#view-entries-by-category--view-tentry_type)
-  * [View entries by month: `view t/ENTRY_TYPE mo/MONTH`](#view-entries-by-month--view-tentry_type-momonth)
-  * [Clearing all entries: `clear`](#clearing-all-entries--clear)
-  * [Exiting the program: `exit`](#exiting-the-program--exit)
-  * [Saving the data](#saving-the-data)
-  * [Editing the data file](#editing-the-data-file)
-* [FAQ](#faq)
-* [Command summary](#command-summary)
-<!-- TOC -->
-
 ## Introduction
 
 PennyWise is a desktop application that **empowers students with the ability to make informed financial decisions**,
@@ -51,6 +12,52 @@ _Interested?_ Head over to [Quick Start](#quick-start) to get started. Enjoy!
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 Already an expert? Jump right straight to the [features](#features) section to see how you can get the most out of PennyWise!
 </div>
+
+# Table of Contents
+<div id="top">
+</div>
+
+<!-- TOC -->
+* [Purpose of Guide](#purpose-of-guide)
+* [How to use this User Guide](#how-to-use-this-user-guide)
+  * [Information Box](#information-box)
+  * [Tip Box](#tip-box)
+  * [Danger Box](#danger-box)
+  * [Formatting](#formatting)
+* [Quick start](#quick-start)
+* [Before Using PennyWise](#before-using-pennywise)
+  * [Familiarising yourself with the interface](#familiarising-yourself-with-the-interface)
+* [Understanding the command formats](#understanding-the-command-formats)
+  * [Categorising your expenses and income](#categorising-your-expenses-and-income)
+  * [Guidelines on organising your expenses and income](#guidelines-on-organising-your-expenses-and-income)
+* [Features](#features)
+  * [Adding entries:](#adding-entries)
+    * [Add an expense entry to the expenditure list](#add-an-expense-entry-to-the-expenditure-list)
+    * [Add an income entry to the income list](#add-an-income-entry-to-the-income-list)
+  * [Editing entries:](#editing-entries)
+    * [Edits expenditure with specified fields](#edits-expenditure-with-specified-fields)
+    * [Edits income with specified fields](#edits-income-with-specified-fields)
+  * [Deleting entries:](#deleting-entries)
+    * [Delete an expense from the expenditure list](#delete-an-expense-from-the-expenditure-list)
+    * [Delete an income from the income list](#delete-an-income-from-the-income-list)
+  * [Summary of entries:](#summary-of-entries)
+    * [Summary of all entries in the currently shown list](#summary-of-all-entries-in-the-currently-shown-list)
+    * [Summary of all entries the specified month](#summary-of-all-entries-the-specified-month)
+  * [View entries by category:](#view-entries-by-category)
+  * [View entries by month:](#view-entries-by-month)
+  * [Clearing all entries:](#clearing-all-entries)
+  * [Exiting the program:`](#exiting-the-program)
+  * [Saving the data](#saving-the-data)
+  * [Editing the data file](#editing-the-data-file)
+* [FAQ](#faq)
+* [Command summary](#command-summary)
+<!-- TOC -->
+
+
+## Purpose of Guide
+This guide aims to teach those entirely new to PennyWise how to navigate and utilise the application. It can also 
+provide experienced users or users familiar with similar command-line applications tips on how to maximise efficiency
+when using PennyWise. 
 
 ## How to use this User Guide
 These are some icons you may see throughout our user guide.
@@ -125,7 +132,7 @@ Curious about the various commands? Refer to the [Features](#features) below to 
 
 ---
 
-## Before Using
+## Before Using PennyWise
 
 ### Familiarising yourself with the interface
 
@@ -142,7 +149,7 @@ To familiarise yourself with our user interface, please refer to the following d
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 If the application is resized to a smaller screen, certain graphical components will no longer be visible. This is to ensure that
-that you are still able to get an overview of you finances. If these details are important, use PennyWise in fullscreen!
+that you are still able to get an overview of your finances. If these details are important, use PennyWise in fullscreen!
 
 1. Pie Chart Legend <br/>
 - The Pie Chart Legend would not be visible should the application be of a smaller size. This ensures your categorical overview
@@ -172,7 +179,7 @@ For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, l
 |  Optional Input  |                  NIL                   |
 
 - Letters followed by a forward slash is called a prefix and will be used to specify a specific parameter<br>
-  e.g `t\ ` refers to the entry type parameter.
+  e.g `t/ ` refers to the entry type parameter.
 
 - Words in `UPPER_CASE` are the parameters that you must supply<br>
   e.g. In `delete INDEX_OF_ENTRY t/ENTRY_TYPE`, `INDEX_OF_ENTRY` is a parameter which can be used as `delete 10 t/e`.
@@ -247,8 +254,8 @@ Having them differentiated will make it easier for you to recall what you spent 
 
 ## Features
 
-### Adding entries: `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY`
-
+### Adding entries
+Format: `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY` <br/>
 Adds an entry to the specified list.
 
 | Input               | Explanation                                                                                  |
@@ -273,8 +280,8 @@ Adds an entry to the specified list.
 
 ![AddCommandIncome](images/ug/AddCommandIncome.png)
 
-### Editing entries: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`
-
+### Editing entries
+Format: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]` <br/>
 Edits an entry, where at least **1** of the optional fields description/amount/date/category must be present.
 
 | Input                        | Explanation                                                                                          |
@@ -299,8 +306,8 @@ Edits an entry, where at least **1** of the optional fields description/amount/d
 
 ![EditCommandIncome](images/ug/EditCommandIncome.png)
 
-### Deleting entries: `delete INDEX_OF_ENTRY t/ENTRY_TYPE`
-
+### Deleting entries
+Format:  `delete INDEX_OF_ENTRY t/ENTRY_TYPE` <br/>
 Deletes an entry from the specified list.
 
 | Input                | Explanation                                                                                                   |
@@ -324,8 +331,8 @@ Deletes an entry from the specified list.
 
 ![DeleteCommandIncome](images/ug/DeleteCommandIncome.png)
 
-### Summary of entries: `summary [mo/MONTH]`
-
+### Summary of entries
+Format: `summary [mo/MONTH]` <br/>
 To summarise the entries in PennyWise, we compute 3 simple statistic to let you have a quick overview of your expenditure and income.
 
 | Statistic             | Explanation                                                 |
@@ -333,7 +340,6 @@ To summarise the entries in PennyWise, we compute 3 simple statistic to let you 
 | **Total Expenditure** | Sums up all the expenditure amounts                         |
 | **Total Income**      | Sums up all the income amounts                              |
 | **Total Balance**     | Amount of income left after deducting the total expenditure |
-
 
 The command format is provided below:
 
@@ -369,7 +375,8 @@ The command format is provided below:
 - Provides a financial summary recorded by the user in a month. The month refers to the month that is displayed to the user.
 - The `MONTH` field is optional, if no month is specified, the application displays the summary for all entries.
 
-### View entries by category: `view t/ENTRY_TYPE`
+### View entries by category
+Format: `view t/ENTRY_TYPE`
 
 | Input              | Explanation                                                              |
 |--------------------|--------------------------------------------------------------------------|
@@ -385,7 +392,8 @@ The command format is provided below:
    - Examples: `view t/i`
    - Expected: `Show graphically all income by category` and a Pie Chart on the right of the application
 
-### View entries by month: `view t/ENTRY_TYPE mo/MONTH`
+### View entries by month
+Format: `view t/ENTRY_TYPE mo/MONTH`
 
 | Input              | Explanation                                                                              |
 |--------------------|------------------------------------------------------------------------------------------|
@@ -404,22 +412,17 @@ The command format is provided below:
 
 - The `MONTH` field is optional. If a month is specified, the entry details for the corresponding month is shown, accompanied by a Line Graph on the right of the application. If no month is specified, the application displays an error.
 
-### Clearing all entries: `clear`
-
+### Clearing all entries
+Format: `clear` <br/>
 Clears all entries in PennyWise.
-
-Format: `clear`
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 Danger zone! This command is irreversible- it is not possible to retrieve entries that are cleared.
 </div>
 
-
-### Exiting the program: `exit`
-
+### Exiting the program
+Format: `exit` <br/>
 Exits the program.
-
-Format: `exit`
 
 ### Saving the data
 
