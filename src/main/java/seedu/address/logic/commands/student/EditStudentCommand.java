@@ -62,6 +62,7 @@ public class EditStudentCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the ModQuik.";
+    public static final String MESSAGE_UNCHANGED_FIELD = "New fields provided are exactly the same as current fields.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -103,7 +104,7 @@ public class EditStudentCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Student createEditedPerson(Student studentToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Student createEditedPerson(Student studentToEdit, EditPersonDescriptor editPersonDescriptor) throws CommandException {
         assert studentToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
@@ -123,10 +124,16 @@ public class EditStudentCommand extends Command {
                 .orElse(studentToEdit.getGrade());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedId, updatedPhone,
+        Student editedStudent = new Student(updatedName, updatedId, updatedPhone,
                 updatedEmail, updatedTelegramHandle, updatedModuleCode,
                 updatedTutorialName, updatedAttendance, updatedParticipation,
                 updatedGrade, updatedTags);
+
+        if (editedStudent.equals(studentToEdit)) {
+            throw new CommandException(MESSAGE_UNCHANGED_FIELD);
+        }
+
+        return editedStudent;
     }
 
     @Override
