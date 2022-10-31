@@ -40,7 +40,7 @@ Welcome to Coydir's User Guide!
     - [Rating the performance of an employee](#rating-the-performance-of-an-employee--rate)
     - [Employee Performance History](#employee-performance-history)
   - [Managing Departments](#managing-departments)
-    - [View details of a department](#view-details-of-a-department--viewdepartment)
+    - [View details of a department](#view-details-of-a-department--view-department)
   - [Additional Features](#additional-features)
     - [Exiting the program](#exiting-the-program--exit)
     - [Clearing the data](#clearing-the-data--clear)
@@ -379,17 +379,17 @@ Currently, our application only provides a list of default departments for the u
 - Sales
 - Technology
 
-#### View details of a department: `viewdepartment`
+#### View details of a department: `view-department`
 
 View the summarized details of a department given the name of the department.
 
 Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department with their corresponding performance ratings and availability.
 
-Format: `viewdepartment DEPARTMENT`
+Format: `view-department DEPARTMENT`
 
 Example:
 
-- `viewdepartment Finance` displays a brief summary of the Finance department's details on the right panel.
+- `view-department Finance` displays a brief summary of the Finance department's details on the right panel.
 
 This command results in one of the two cases below:
 
@@ -461,7 +461,7 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 | **Find**            | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                                                                                             |
 | **Add leave**       | `addleave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `addleave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                                                                                  |
 | **Delete leave**    | `deleteleave id/ID i/INDEX`<br> e.g. `deleteleave id/1 i/3`                                                                                                                                                                                      |
-| **View Department** | `viewdepartment DEPARTMENT`<br> e.g. `viewdepartment Finance`                                                                                                                                                                                    |
+| **View Department** | `view-department DEPARTMENT`<br> e.g. `view-department Finance`                                                                                                                                                                                    |
 | **rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                                                                                                                   |
 | **List**            | `list`                                                                                                                                                                                                                                           |
 | **Exit**            | `exit`                                                                                                                                                                                                                                           |
