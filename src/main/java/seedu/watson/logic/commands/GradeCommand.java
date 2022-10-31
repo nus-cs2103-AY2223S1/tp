@@ -1,10 +1,12 @@
 package seedu.watson.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.watson.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.watson.logic.parser.exceptions.ParseException;
 import seedu.watson.model.Model;
 import seedu.watson.model.student.Student;
 
@@ -33,6 +35,8 @@ public class GradeCommand extends Command {
             + "2";
 
 
+    public static final String NO_STUDENTS_TAKING_SUBJECT = "There are no students taking this subject.";
+
     public static final String MESSAGE_SUCCESS = "Updating Grades...";
 
     private final String subject;
@@ -57,6 +61,10 @@ public class GradeCommand extends Command {
             person.getSubjectHandler().getSubjectsTaken().toString().contains(subject));
 
         List<Student> studentList = new ArrayList<>(model.getFilteredPersonList());
+
+        if (studentList.isEmpty()) {
+            return new CommandResult(String.format(NO_STUDENTS_TAKING_SUBJECT));
+        }
 
         return new CommandResult(MESSAGE_SUCCESS, true, studentList, assessmentString);
     }
