@@ -129,6 +129,8 @@ The examples in this guide are formatted with the following conventions:
 
 * Commands, parameters and arguments are case-sensitive, unless otherwise specified.
 
+* Non-ascii characters are removed from user input.
+
 * Flags consisting of a character and `/` specify the type of parameter to be supplied.
   e.g. in `n/NAME`, `n/` is the flag for the `NAME` parameter.
 
