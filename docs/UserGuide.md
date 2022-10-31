@@ -197,7 +197,7 @@ Format: `remark INDEX REMARK`
 
 
 Examples:
-* `remark 1 she is active in class` adds the remark `she is active in class` to the student with index 1 in the list
+* `remark 1 active in class` adds the remark `active in class` to student `Alex Yeoh`
  ![add remark example](images/AddRemark.png)
 
 ### Deleting a student : `delete`
