@@ -121,15 +121,12 @@ class JsonAdaptedActivity {
         // Solution adapted from https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files
         if (status == null || status.equals("")) {
             modelStatus = new Status();
-        } else if (Arrays.stream(Status.VALID_STATUSES).anyMatch(s -> status.equals(s))) {
+        } else if (Arrays.asList(Status.VALID_STATUSES).contains(status)) {
             modelStatus = new Status(status);
         } else {
             throw new IllegalValueException(Status.MESSAGE_CONSTRAINT);
         }
 
-        if (!Review.isValidReview(review)) {
-            throw new IllegalValueException(Review.MESSAGE_CONSTRAINTS);
-        }
         final Optional<Review> modelReview;
         if (review == null) {
             modelReview = Optional.empty();
