@@ -3,15 +3,20 @@ layout: page
 title: User Guide
 ---
 
-WorkBook (WB) is a **desktop app for CS/tech students who are applying for internships to manage their internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, WB can get your internship management tasks done faster than traditional GUI apps.
-
-
+<div class="toc-no-bullet-points">
 * Table of Contents
 {:toc}
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+## 1. What is WorkBook?
+
+WorkBook is an internship application tracker that helps Computing students **prepare sufficiently** for their upcoming interviews to **secure** that internship. 
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 2. Get started
 
 1. Ensure you have Java `11` or above installed on your Computer.
 
@@ -22,10 +27,10 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 4. Using your terminal, navigate to the folder where you placed your `jar` file and start WorkBook by inputting: `java -jar WorkBook.v1.3.1.jar` in your terminal. <br> The GUI with sample data as shown below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Tell WorkBook what you want by typing the command in `Enter command here...` at the top of the application. <br>
    Some example commands you can try:
 
-   * `add c/Meta d/18-Oct-2022 12:00 e/hrmonkey@example.com r/Frontend` : Adds an internship from `Meta` to the WorkBook.
+   * `add c/Meta d/18-Oct-2022 12:00 e/hrmonkey@example.com r/Frontend` : Adds an internship application from `Meta` to the WorkBook.
 
    * `delete 3` : Deletes the 3rd internship shown in the current list.
 
@@ -37,7 +42,7 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 3. Things to note
 
 <div markdown="block" class="alert alert-info">
 
@@ -63,7 +68,7 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 
 </div>
 
-## Command summary
+## 4. What you can do
 
 | Action     | Format, Examples                                                                                                                                                                                     |
 |------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -86,7 +91,7 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 
 </div>
 
-### Adding an internship application: `add`
+### 4.1. Adding an internship application: `add`
 
 Adds an internship application to WorkBook.
 
@@ -105,7 +110,7 @@ Examples:
 * `add c/Meta r/Frontend Engineer s/Application Sent d/29-Oct-2022 12:00 e/hrmonkey@example.com`
 * `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Java l/Python`
 
-### Editing a person : `edit`
+### 4.2. Editing a person : `edit`
 
 Edits an existing person in the WorkBook.
 
@@ -122,13 +127,13 @@ Examples:
 * `edit 1 s/Behavioural Interview e/hr@meta.com` Edits the stage and email address of the first internship to be `Behavioural Interview` and `hr@meta.com` respectively.
 * `edit 2 l/golang t/` Adds `golang` as the only language tag for the second internship and clears all existing tags.
 
-### Listing all existing internship applications : `list`
+### 4.3. Listing all existing internship applications : `list`
 
 Lists all internship applications in the Workbook.
 
 Format: `list`
 
-### Finds internships by company, stage or role name: `find`
+### 4.4. Finds internships by company, stage or role name: `find`
 
 Finds internships whose company, role or stage names contain any of the respective keywords.
 
@@ -145,7 +150,7 @@ Examples:
 * `find r/Engineer` returns `Software Engineer` and `Backend Engineer`.
 * `find s/Interview` returns `Technical Interview` and `Behavioural Interview`.
 
-### Deleting an internship application : `delete`
+### 4.5. Deleting an internship application : `delete`
 
 Deletes the specified internship application from WorkBook.
 
@@ -159,7 +164,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd internship application in WorkBook.
 * `find Meta` followed by `delete 1` deletes the 1st internship application within the results of the `find` command.
 
-### Clearing all existing internship applications : `clear`
+### 4.6. Clearing all existing internship applications : `clear`
 
 Clears all internship applications in the Workbook.
 
@@ -168,7 +173,7 @@ Format: `clear`
 Example:
 * `clear` removes all internship applications in the workbook.
 
-### Undoing previous command: `undo`
+### 4.7. Undoing previous command: `undo`
 
 Restores the work book to the state before the previous <em>undoable</em> command was executed
 
@@ -201,7 +206,7 @@ Examples:
 
     `undo` (reverses the `delete 1` command )
 
-### Redoing previous command: `redo`
+### 4.8. Redoing previous command: `redo`
 
 Reverses the most recent `undo` command.
 
@@ -234,7 +239,7 @@ Examples:
 
   `redo`(reapplies the `clear` command)
 
-### Viewing help : `help`
+### 4.9. Viewing help : `help`
 
 Shows a summary of the commands as well as a link to this User Guide.
 
@@ -243,38 +248,41 @@ Format: `help`
 Example:
 * `help`
 
-### Exiting the program : `exit`
+### 4.10. Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### 4.11. Daily Tips `[coming soon]`
 
-WorkBook data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+_Details coming soon ..._
 
-### Editing the data file
+--------------------------------------------------------------------------------------------------------------------
 
-WorkBook data is saved as a JSON file [JAR file location]/data/workbook.json. Advanced users are welcome to update data directly by editing that data file.
+## 5. Managing your data
+
+### 5.1. Saving
+
+Conveniently, any inputted command that changes any part of your internship application is **automatically saved**!
+Hence, you need not worry about pressing `ctrl` and `s` everytime you update your list of internship applications.
+
+### 5.2. Editing
+
+All your internship applications are saved in a JSON file under the `data` subfolder. 
+You are free to update any internship application directly by editing that JSON file.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: JSON?:**<br>
+* JSON stands for JavaScript Object Notation, learn how to edit the file [here](https://www.softwaretestinghelp.com/how-to-open-a-json-file/)!
+
+</div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, WorkBook will discard all data and start with an empty data file at the next run.
 </div>
 
-
-### Ranking internships `[coming soon]`
-
-_Details coming soon ..._
-
-### Sorting internships `[coming soon]`
-
-_Details coming soon ..._
-
-### Daily Tips `[coming soon]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
