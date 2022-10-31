@@ -5,14 +5,14 @@ title: User Guide
 
 # ConnectNUS User Guide
 
-ConnectNUS is **designed for NUS Computer Science students** by providing a centralised platform for them to keep track 
-of their and their friends' modules and timetables. Capitalising on the features of adding previous, current and 
+ConnectNUS is **designed for NUS Computer Science students** by providing a centralised platform for them to keep track
+of their and their friends' modules and timetables. Capitalising on the features of adding previous, current and
 future modules, as well as timetables, ConnectNUS provides users with the convenience of viewing your friends' schedules
-and eliminates the problem of having to search through multiple group and private chats to know when your friends will 
-be free to meet up to do group projects. The module filter feature is a useful tool to help you find friends who are currently 
+and eliminates the problem of having to search through multiple group and private chats to know when your friends will
+be free to meet up to do group projects. The module filter feature is a useful tool to help you find friends who are currently
 taking the same modules as you now or friends who are interested in taking the same modules together in the next semester.
 
-ConnectNUS is **optimised for use via a Command Line Interface** (CLI) while still having the benefits of a 
+ConnectNUS is **optimised for use via a Command Line Interface** (CLI) while still having the benefits of a
 **Graphical User Interface** (GUI). For Computer Science students who are generally fast typers, ConnectNUS is an
 excellent platform for you to get your contact management tasks done quickly, so you can save time and effort
 finding out about your friends' schedules, and focus on getting your projects and module bidding done.
@@ -21,7 +21,7 @@ finding out about your friends' schedules, and focus on getting your projects an
 
 1. Ensure you have Java 11 or above installed on your computer. You can refer to
 [this](https://www3.ntu.edu.sg/home/ehchua/programming/howto/jdk_howto.html#zz-2) guide to help you install and configure
-an appropriate version of Java. You can open a command window and run the `java -version` command to ensure you are using 
+an appropriate version of Java. You can open a command window and run the `java -version` command to ensure you are using
 Java 11 (or above).
 
 ![](images/QuickStart1.png)
@@ -59,12 +59,12 @@ on the jar file in the folder. This to ensure the jar file is using the correct 
 * Words in `UPPER_CASE` are the parameters to be **supplied by the user**. \
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 * Items in square brackets are **optional**. \
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 * Items with `…`​ after them can be used **multiple times including zero times**. \
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 * Parameters can be **in any order**. \
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-* If a parameter is expected only once in the command but you specified it multiple times, **only the last occurrence of the parameter will be taken**. \
+* If a parameter is expected only once in the command, but you specified it multiple times, **only the last occurrence of the parameter will be taken**. \
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. \
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -101,7 +101,7 @@ on the jar file in the folder. This to ensure the jar file is using the correct 
     - [Filtering Previous Modules](#filtering-previous-modules)
   - [Other features](#other-features)
     - [Undo / Redo](#undo--redo--undo-redo)
-    - [Github URL button](#github-url-button)
+    - [GitHub URL button](#github-url-button)
     - [Viewing help](#viewing-help)
     - [Exiting the program](#exiting-the-program--exit)
 - [Command Summary](#command-summary)
@@ -111,17 +111,17 @@ on the jar file in the folder. This to ensure the jar file is using the correct 
 ## Features
 
 
-** Notes about the command format:**
+**Notes about the command format:**
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user. \
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 * Items in square brackets are optional. \
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 * Items with `…`​ after them can be used multiple times including zero times. \
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 * Parameters can be in any order. \
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken. \
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. \
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. \
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -150,7 +150,7 @@ ConnectNUS data is saved as a JSON file `[JAR file location]/data/connectnus.jso
 
 Add your own user profile into the contact list.
 
-Format: `user n/[your name] p/[your phone number] e/[your email] a/[your address] [g/your github username] [curr/current module]… [prev/previous module]… [plan/future module]…`
+Format: `user n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GITHUB_USERNAME] [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]…`
 
 
 * Adds your own user profile with specified details into your contact list.
@@ -158,7 +158,6 @@ Format: `user n/[your name] p/[your phone number] e/[your email] a/[your address
 * Current user profile has to be deleted before a new one is added.
 * You are able to specify the modules you are taking currently, have taken in the past, and are planning to take in the future.
 * Each of these module codes should be registered modules in NUS.
-
 
 Examples:
 
@@ -172,18 +171,15 @@ Examples:
 
 Edit the current user profile.
 
-Format: `edit user [n/your name] [p/your phone number] [e/your email] [a/your address] [g/your github username]`
-
-
+Format: `edit user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME]`
 
 * Edits the user profile with specified details.
 * You need to edit at least one field
-* You may edit multiple fields at once 
+* You may edit multiple fields at once
 
 💡 **Tip:** You cannot edit modules with this command, you must do so with the module commands.
 
 Examples:
-
 
 * `edit user p/92323232 a/Kent Ridge Crescent`edits your own user profile with all the details specified.
 
@@ -195,8 +191,6 @@ Deletes the current user profile from the contacts list.
 
 Format: `delete user`
 
-
-
 * Deletes the current user profile stored in the contact list.
 
 [Scroll back to top](#table-of-contents)
@@ -207,18 +201,14 @@ Format: `delete user`
 
 Add a contact to your contact list.
 
-Format: `add n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] [g/contact github username] [t/contact tag]… [curr/current module]… [prev/previous module]… [plan/future module]…`
-
-
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GITHUB_USERNAME] [t/TAG]… [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]…`
 
 * Adds contact with specified details into your contact list.
-* You can add as many tags to a contact as you want, you may also choose not add any tags.
+* You can add as many tags to a contact as you want, you may also choose to not add any tags.
 * You are able to specify the modules the contact is taking currently, taken in the past, and is planning to take in the future.
 * Each of these module codes should be registered modules in NUS.
 
 Examples:
-
-
 
 * `add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue g/rjkoh t/Classmate curr/CS2100 prev/CS1101S plan/CS2109`adds module contact Ruijie to your contact list with all the details specified.
 
@@ -230,8 +220,6 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-
-
 * The list of contacts is numbered based on the order that the contacts are added
 
 [Scroll back to top](#table-of-contents)
@@ -242,7 +230,7 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]…`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -261,7 +249,7 @@ Examples:
 
 Edit a specified contact from the user’s contacts list.
 
-Format: `edit INDEX [n/contact name] [p/contact phone number] [e/contact email] [a/contact address] [g/contact github username] [t/contact tag]…`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [t/TAG]…`
 
 
 
@@ -270,7 +258,7 @@ Format: `edit INDEX [n/contact name] [p/contact phone number] [e/contact email] 
 * The index **must be a positive integer** 1, 2, 3, …​
 * You need to edit at least one field
 * You may edit multiple fields at once
-* You can add as many tags to a contact as you want, you may also choose not add any tags
+* You can add as many tags to a contact as you want, you may also choose to not add any tags
 
 💡 **Tip:** You cannot edit modules with this command, you must do so with the module commands.
 
@@ -295,8 +283,6 @@ Format: `delete INDEX`
 
 Examples:
 
-
-
 * `list `followed by  `delete 1` deletes the first contact in the list of all contacts the user has added.
 
 [Scroll back to top](#table-of-contents)
@@ -318,8 +304,7 @@ Format: `clear`
 
 Directly edit your own module list by adding or deleting modules from the list.
 
-Format: `module user [curr/current module]… [prev/previous module]… [plan/future module]… [rm/module to remove]…`
-
+Format: `module user [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]… [rm/MODULE_TO_REMOVE]…`
 
 * You need to edit at least one list
 * You may edit multiple lists at once
@@ -331,8 +316,6 @@ Format: `module user [curr/current module]… [prev/previous module]… [plan/fu
 
 Examples:
 
-
-
 * `module user curr/CS2100 prev/CS1231S plan/CS2106 rm/ST2334` adds the first 3 modules into your respective lists and removes ST2334 from all module lists
 
 [Scroll back to top](#table-of-contents)
@@ -341,9 +324,7 @@ Examples:
 
 Directly edit your contact's module list by adding or deleting modules from their list.
 
-Format: `module INDEX [curr/current module]… [prev/previous module]… [plan/future module]… [rm/module to remove]…`
-
-
+Format: `module INDEX [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]… [rm/MODULE_TO_REMOVE]…`
 
 * Edits the module list of the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
@@ -358,8 +339,6 @@ Format: `module INDEX [curr/current module]… [prev/previous module]… [plan/f
 
 Examples:
 
-
-
 * `module 1 curr/CS2101 prev/CS2030S plan/CS2102 rm/GEA1000` adds the first 3 modules into the first contact's respective lists and removes GEA1000 from all module lists
 
 <img src="images/EditModules.png" width="600" />
@@ -371,8 +350,6 @@ Examples:
 Check which modules you need to clear in order to fulfill core requirements or focus area requirements.
 
 Format: `modsleft INDEX`
-
-
 
 * Compares your Current Modules and Previous Modules list with the list of modules required to clear requirements and outputs the remaining modules needed to clear it.
 * The index refers to the index number shown in the displayed focus area list.
@@ -414,19 +391,18 @@ Format: `nextsem`
 
 Add lessons to the user profile or contacts.
 
-Format for user: `lesson user l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
+Format for user: `lesson user l/TYPE m/MODULE_CODE day/DAY_NUMBER start/START_TIME end/END_TIME`
 
-Format for contact: `lesson INDEX l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
-
-
+Format for contact: `lesson INDEX l/TYPE m/MODULE_CODE day/DAY_NUMBER start/START_TIME end/END_TIME`
 
 * Adds the lesson to the user or specified `INDEX`.
   * The index refers to the index number shown in the displayed contact list.
   * The index **must be a positive integer** 1, 2, 3, …​
-* `type` is the type of lesson
+* `TYPE` is the type of lesson
   * `tut` for Tutorial, `lec` for Lecture, `rec` for Recitation and `lab` for Lab.
-* Day is a **positive integer between 1 to 7**, where 1 is for Monday and 7 is for Sunday.
+* Day is a **positive integer between 1 and 7**, where 1 is for Monday and 7 is for Sunday.
 * Start and End time in HH:mm format.
+* Start time must be before End time, and overlapping lessons are not allowed.
 
 Examples:
 
@@ -444,14 +420,24 @@ Format for user: `timetable user`
 
 Format for contact: `timetable INDEX`
 
+A window similar to this will be shown:
+
+![Timetable Window](images/TimetableWindow.png)
 
 * Shows the timetable of the user or specified `INDEX`.
   * The index refers to the index number shown in the displayed contact list.
   * The index **must be a positive integer** 1, 2, 3, …​
 * Must have at least one lesson added for the week.
+* Lessons will be sorted by start timing.
 
 💡 **Tip:** If you have added a new lesson while the timetable window is open, you can run the timetable
 command again to view the updated timetable!
+
+Examples:
+
+`timetable user`
+
+`timetable 1`
 
 [Scroll back to top](#table-of-contents)
 
@@ -459,18 +445,16 @@ command again to view the updated timetable!
 
 Deletes a lesson from the user or a contact.
 
-Format for user: `remove user l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
+Format for user: `remove user l/TYPE m/MODULE_CODE day/DAY_NUMBER start/START_TIME end/END_TIME`
 
-Format for contact: `remove INDEX l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
-
-
+Format for contact: `remove INDEX l/TYPE m/MODULE_CODE day/DAY_NUMBER start/START_TIME end/END_TIME`
 
 * Deletes the lesson from the user or specified `INDEX`.
   * The index refers to the index number shown in the displayed contact list.
   * The index **must be a positive integer** 1, 2, 3, …​
-* `type` is the type of lesson
+* `TYPE` is the type of lesson
   * `tut` for Tutorial, `lec` for Lecture, `rec` for Recitation and `lab` for Lab.
-* Day is a **positive integer between 1 to 7**, where 1 is for Monday and 7 is for Sunday.
+* Day is a **positive integer between 1 and 7**, where 1 is for Monday and 7 is for Sunday.
 * Start and End time in HH:mm format.
 * All fields must match lesson previously added.
 
@@ -492,9 +476,9 @@ Examples:
 
 Filters the tags of contacts to return a list of persons with any of the tags specified by the user.
 
-Format: `filtertag [tag names]`
+Format: `filtertag TAG_NAME [TAG_NAME]…`
 
-* Filters the contact list for person's with any of the specified `tag names`.
+* Filters the contact list for person's with any of the specified `TAG_NAME`.
 
 Examples:
 
@@ -510,9 +494,9 @@ Examples:
 
 Filters the current modules of contacts to return a list of persons with any of the current modules specified by the user.
 
-Format: `filtercurrmod [current module names]`
+Format: `filtercurrmod CURRENT_MODULE [CURRENT_MODULE]…`
 
-* Filters the contact list for person's with any of the specified `current module names`.
+* Filters the contact list for person's with any of the specified `CURRENT_MODULE`.
 
 Examples:
 
@@ -528,9 +512,9 @@ Examples:
 
 Filters the previous modules of contacts to return a list of persons with any of the previous modules specified by the user.
 
-Format: `filterprevmod [previous module names]`
+Format: `filterprevmod PREVIOUS_MODULE [PREVIOUS_MODULE]…`
 
-* Filters the contact list for person's with any of the specified `previous module names`.
+* Filters the contact list for person's with any of the specified `PREVIOUS_MODULE`.
 
 Examples:
 
@@ -546,9 +530,9 @@ Examples:
 
 Filters the planned modules of contacts to return a list of persons with any of the planned modules specified by the user.
 
-Format: `filterplanmod [planned module names]`
+Format: `filterplanmod PLANNED_MODULE [PLANNED_MODULE]…`
 
-* Filters the contact list for person's with any of the specified `planned module names`.
+* Filters the contact list for person's with any of the specified `PLANNED_MODULE`.
 
 Examples:
 
@@ -568,9 +552,9 @@ Undo / Redo your latest action.
 
 Format: `undo` `redo`
 
-### Github URL button
+### GitHub URL button
 
-The copy Github Profile URL button copies the user or contact's github profile URL into your clipboard which you can then paste into your browser.
+The copy GitHub Profile URL button copies the user or contact's GitHub profile URL into your clipboard which you can then paste into your browser.
 
 <img src="images/GithubButton.png" width="200" />
 
@@ -604,38 +588,51 @@ Format: `exit`
   <tr>
    <td><strong>Adding User</strong>
    </td>
-   <td><code>user n/[your name] p/[your phone number] e/[your email] a/[your address] [g/your github username] [curr/current module] [prev/previous module] [plan/future module]</code>
+   <td><code>user n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GITHUB_USERNAME] [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]…</code>
 <p>
 <code>Eg. user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive g/SilasTSL curr/CS2100 prev/CS1101S plan/CS2109</code>
 <tr>
    <td><strong>Editing User</strong>
    </td>
-   <td><code>edit user [n/your name] [p/your phone number] [e/your email] [a/your address] [g/your github username]</code>
+   <td><code>edit user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME]</code>
 <p>
 <code>Eg. edit user p/92323232 a/Kent Ridge Crescent</code>
   <tr>
    <td><strong>Delete User</strong>
    </td>
-   <td><code>delete user </code>
+   <td><code>delete user</code>
    
 <tr>
    <td><strong>Adding Contact</strong>
    </td>
-   <td><code>add n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] [g/contact github username] [t/contact tag] [curr/current module] [prev/previous module] [plan/future module]</code>
+   <td><code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GITHUB_USERNAME] [t/TAG]… [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]…</code>
 <p>
 <code>Eg. add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue g/rjkoh t/Classmate curr/CS2100 prev/CS1101S plan/CS2109</code>
-  
+
+  <tr>
+   <td><strong>Listing contacts</strong>
+   </td>
+   <td><code>list</code>
+
+<tr>
+   <td><strong>Finding contacts</strong>
+   </td>
+   <td><code>find KEYWORD [MORE_KEYWORDS]…</code>
+  <p>
+  <code>Eg. find John</code>
+  <code>Eg. find John alex</code>
+
 <tr>
    <td><strong>Editing Contact</strong>
    </td>
-   <td><code>edit INDEX [n/contact name] [p/contact phone number] [e/contact email] [a/contact address] [t/contact tag]</code>
+   <td><code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [t/TAG]…</code>
 <p>
 <code>Eg. edit 2 n/Laura Lee e/laura@nus.sg t/Hall</code>
-   
+
   <tr>
    <td><strong>Delete Contact</strong>
    </td>
-   <td><code>delete contact INDEX </code>
+   <td><code>delete contact INDEX</code>
 <p>
 <code>Eg. delete contact 2</code>
 
@@ -647,17 +644,17 @@ Format: `exit`
   <tr>
    <td><strong>Editing User's Modules</strong>
    </td>
-   <td><code>module user [curr/current module] [prev/previous module] [plan/future module] [rm/module to remove]</code>
+   <td><code>module user [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]… [rm/MODULE_TO_REMOVE]…</code>
 <p>
 <code>Eg. module user curr/CS2100 prev/CS1231S plan/CS2106 rm/ST2334</code>
    
   <tr>
    <td><strong>Editing Contact's Modules</strong>
    </td>
-   <td><code>module INDEX [curr/current module] [prev/previous module] [plan/future module] [rm/module to remove]</code>
+   <td><code>module INDEX [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]… [rm/MODULE_TO_REMOVE]…</code>
 <p>
 <code>Eg. module 1 curr/CS2101 prev/CS2030S plan/CS2102 rm/GEA1000</code>
-   
+
   <tr>
    <td><strong>Checking Modules Left</strong>
    </td>
@@ -671,22 +668,21 @@ Format: `exit`
       <td>
         <code>nextsem</code>
 
-
 <tr>
-    <td><strong>Add Lesson</strong>
+    <td><strong>Adding Lesson</strong>
     </td>
     <td>
-      <code>lesson user l/[type] m/[module] day/[day number] start/[start time] end/[end time]</code>
+      <code>lesson user l/TYPE m/MODULE_CODE day/DAY_NUMBER start/START_TIME end/END_TIME</code>
       <p>
       <code>Eg. lesson user l/tut m/CS2103T d/1 start/12:00 end/13:00</code>
       <p>
-      <code>lesson INDEX l/[type] m/[module] day/[day number] start/[start time] end/[end time]</code>
+      <code>lesson INDEX l/TYPE m/MODULE_CODE day/DAY_NUMBER start/START_TIME end/END_TIME</code>
       <p>
       <code>Eg. lesson 1 l/tut m/CS2103T d/1 start/12:00 end/13:00</code>
      
 
   <tr>
-    <td><strong>View Lessons / Timetable</strong>
+    <td><strong>Viewing Lessons / Timetable</strong>
     </td>
     <td>
       <code>timetable user</code>
@@ -694,55 +690,52 @@ Format: `exit`
       <code>timetable INDEX</code>
       <p>
       <code>Eg. timetable 2</code>
-     
 
   <tr>
-    <td><strong>Delete lesson</strong>
+    <td><strong>Deleting lesson</strong>
     </td>
     <td>
-      <code>remove user l/[type] m/[module] day/[day number] start/[start time] end/[end time]</code>
+      <code>remove user l/TYPE m/MODULE_CODE day/DAY_NUMBER start/START_TIME end/END_TIME</code>
       <p>
       <code>Eg. remove user l/tut m/CS2103T d/1 start/12:00 end/13:00</code>
       <p>
-      <code>remove INDEX l/[type] m/[module] day/[day number] start/[start time] end/[end time]</code>
+      <code>remove INDEX l/TYPE m/MODULE_CODE day/DAY_NUMBER start/START_TIME end/END_TIME</code>
       <p>
       <code>Eg. remove 1 l/tut m/CS2103T d/1 start/12:00 end/13:00</code>
-    
+
 <tr>
     <td><strong>Filter Tags</strong>
     </td>
     <td>
-      <code>filtertag [tag name] [more tag names]...</code>
+      <code>filtertag TAG_NAME [TAG_NAME]…</code>
       <p>
       <code>Eg. filtertag friends family</code>
-     
+
   <tr>
       <td><strong>Filter Current Modules</strong>
       </td>
       <td>
-        <code>filtercurrmod [current module name] [more current module names]...</code>
+        <code>filtercurrmod CURRENT_MODULE [CURRENT_MODULE]…</code>
         <p>
         <code>Eg. filtercurrmod CS2103T</code>
         <p>
         <code>Eg. filtercurrmod CS2103T CS2100</code>
-       
 
   <tr>
       <td><strong>Filter Previous Modules</strong>
       </td>
       <td>
-        <code>filterprevmod [previous module name] [more previous module names]...</code>
+        <code>filterprevmod PREVIOUS_MODULE [PREVIOUS_MODULE]…</code>
         <p>
         <code>Eg. filterprevmod CS2103T</code>
         <p>
         <code>Eg. filterprevmod CS2103T CS2100</code>
-       
 
 <tr>
       <td><strong>Filter Planned Modules</strong>
       </td>
       <td>
-        <code>filterplanmod [planned module names] [more planned module names]...</code>
+        <code>filterplanmod PLANNED_MODULE [PLANNED_MODULE]…</code>
         <p>
         <code>Eg. filterplanmod CS2109S</code>
         <p>
@@ -752,7 +745,8 @@ Format: `exit`
       <td><strong>Undo / Redo</strong>
       </td>
       <td>
-        <code>undo</code> <code>redo</code>
+        <code>undo</code> 
+        <code>redo</code>
 
   <tr>
       <td><strong>Viewing help</strong>
@@ -765,8 +759,8 @@ Format: `exit`
       </td>
       <td>
         <code>exit</code>
+      </td>
 
 </table>
-
 
 [Scroll back to top](#table-of-contents)
