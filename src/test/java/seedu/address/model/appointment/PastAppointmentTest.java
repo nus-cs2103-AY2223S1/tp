@@ -145,7 +145,7 @@ class PastAppointmentTest {
 
     @Test
     public void getMedicationString_validMedication_returnsMedicationString() {
-        assertEquals("Medication: Paracetamol", new PastAppointmentBuilder()
+        assertEquals("Medication: paracetamol", new PastAppointmentBuilder()
                 .withMedication(new String[] { "Paracetamol" }).build().getMedicationString());
     }
 
