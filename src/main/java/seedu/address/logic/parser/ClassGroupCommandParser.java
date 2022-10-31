@@ -14,6 +14,9 @@ import seedu.address.model.student.ClassGroup;
  * Parses input arguments and creates a new ClassGroupCommand object
  */
 public class ClassGroupCommandParser implements Parser<ClassGroupCommand> {
+
+    public static final String INFO_NOT_AVAILABLE = "NA";
+
     /**
      * Parses {@code userInput} into a command and returns it.
      *
@@ -33,8 +36,8 @@ public class ClassGroupCommandParser implements Parser<ClassGroupCommand> {
                     ClassGroupCommand.MESSAGE_USAGE), ive);
         }
 
-        String classGroup = argMultimap.getValue(PREFIX_CLASS_GROUP).orElse("");
+        String classGroup = argMultimap.getValue(PREFIX_CLASS_GROUP).orElse(INFO_NOT_AVAILABLE);
 
-        return new ClassGroupCommand(index, new ClassGroup(classGroup));
+        return new ClassGroupCommand(index, new ClassGroup(classGroup.isBlank() ? INFO_NOT_AVAILABLE : classGroup));
     }
 }
