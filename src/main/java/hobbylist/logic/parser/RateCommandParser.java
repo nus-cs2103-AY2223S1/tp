@@ -27,10 +27,15 @@ public class RateCommandParser implements Parser<RateCommand> {
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_RATING, CliSyntax.PREFIX_REVIEW);
 
         int rating;
+
         if (argMultimap.getValue(CliSyntax.PREFIX_RATING).isPresent()) {
-            rating = Integer.parseInt(argMultimap.getValue(CliSyntax.PREFIX_RATING).get());
+            try {
+                rating = Integer.parseInt(argMultimap.getValue(CliSyntax.PREFIX_RATING).get());
+            } catch (NumberFormatException nfe) {
+                throw new ParseException(MESSAGE_INVALID_RATING);
+            }
             if (rating < 1 || rating > 5) {
-                throw new ParseException(MESSAGE_INVALID_RATING + RateCommand.MESSAGE_USAGE);
+                throw new ParseException(MESSAGE_INVALID_RATING);
             }
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
