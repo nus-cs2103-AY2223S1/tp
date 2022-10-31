@@ -9,7 +9,6 @@ import seedu.address.logic.commands.AttendanceAddCommand;
 import seedu.address.logic.commands.AttendanceDeleteCommand;
 import seedu.address.logic.commands.AttendanceMarkCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
@@ -20,8 +19,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class AttendanceCommandParser implements Parser<Command> {
 
     public static final String ATTENDANCE_COMMAND_WORD = "attendance";
+    public static final String ATTENDANCE_CORRECT_COMMAND = "attendance add/mark/delete: "
+            + "attendance needs a verb with correct prefixes. \nUse help command to see full attendance command";
+
     public static final String ATTENDANCE_ERROR = String.format(MESSAGE_INVALID_ATTENDANCE_COMMAND_FORMAT,
-            HelpCommand.MESSAGE_USAGE);
+            ATTENDANCE_CORRECT_COMMAND);
     /**
      * Used for initial separation of next attendance command word and args.
      */
