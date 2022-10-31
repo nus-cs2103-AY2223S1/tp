@@ -160,7 +160,7 @@ The reminder footer displays the number of interviews, assessments or pending of
 <div style="page-break-after: always;"></div>
 
 ## Parameters Requirement
-Here are the [parameter](#glossary) requirements of commonly used parameters in the [commands](#glossary) in the [**Features**](#features) section below.
+Here are the [parameter](#glossary) requirements of commonly used parameters by [commands](#glossary) in the [**Features**](#features) section below.
 
 | Parameter                 | Description                                                                            | Requirement / Remarks                                                                                                                                                                                                                           |
 |---------------------------|----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -179,7 +179,7 @@ Here are the [parameter](#glossary) requirements of commonly used parameters in 
 <div style="page-break-after: always;"></div>
 
 ## Features
-This section shows all features and commands which is supported by PleaseHireUs. 
+This section shows all features and commands which are supported by PleaseHireUs. 
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Info** <br>
