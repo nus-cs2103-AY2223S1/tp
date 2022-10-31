@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -19,12 +20,12 @@ import seedu.address.model.student.Student;
  * Manages storage of TeachersPet class data.
  */
 public class ClassStorage {
+    public static final String MESSAGE_INITIALIZE_CLASS_STORAGE_FAILURE =
+            "Failed to initialize class due to class conflict";
+
     private static HashMap<LocalDate, List<Student>> classes = new HashMap<>();
     private static TeachersPet teachersPet;
     private static Model model;
-
-    public static final String MESSAGE_INITIALIZE_CLASS_STORAGE_FAILURE =
-            "Failed to initialize class due to class conflict";
 
     /**
      * Constructs a {@code ClassStorage} with the given model.
@@ -37,7 +38,7 @@ public class ClassStorage {
         this.teachersPet = (TeachersPet) model.getTeachersPet();
         try {
             this.classes = initialiseClass();
-        } catch (CommandException e) {
+        } catch (IOException e) {
             throw new DataConversionException(e);
         }
     }
@@ -71,7 +72,7 @@ public class ClassStorage {
      *
      * @return HashMap object.
      */
-    public static HashMap<LocalDate, List<Student>> initialiseClass() throws CommandException {
+    public static HashMap<LocalDate, List<Student>> initialiseClass() throws IOException {
         HashMap<LocalDate, List<Student>> map = new HashMap<>();
         ObservableList<Student> listOfStudents = teachersPet.getStudentList();
         for (Student student : listOfStudents) {
@@ -85,19 +86,32 @@ public class ClassStorage {
                 } else {
                     // Gets the list of students who have classes with same date
                     List<Student> list = map.get(date);
-                    for (Student currStudent : list) {
-                        Class currClass = currStudent.getAClass();
-                        LocalTime startOfCurrClass = currClass.startTime;
-                        LocalTime endOfCurrClass = currClass.endTime;
-                        if (hasConflict(start, end, startOfCurrClass, endOfCurrClass)) {
-                            throw new CommandException(MESSAGE_INITIALIZE_CLASS_STORAGE_FAILURE);
-                        }
-                    }
+                    checkIfClassesHasConflict(list, start, end);
                     list.add(student);
                 }
             }
         }
         return map;
+    }
+
+    /**
+     * Checks if the initialized classes has conflict timings.
+     *
+     * @param list List of Student objects.
+     * @param start LocalTime object. It stores the start time of the class being compared against.
+     * @param end LocalTime object. It stores the end time of the class being compared against.
+     * @throws CommandException if there is a conflict between the timings of the classes.
+     */
+    public static void checkIfClassesHasConflict(List<Student> list, LocalTime start, LocalTime end)
+            throws IOException {
+        for (Student currStudent : list) {
+            Class currClass = currStudent.getAClass();
+            LocalTime startOfCurrClass = currClass.startTime;
+            LocalTime endOfCurrClass = currClass.endTime;
+            if (hasConflict(start, end, startOfCurrClass, endOfCurrClass)) {
+                throw new IOException(MESSAGE_INITIALIZE_CLASS_STORAGE_FAILURE);
+            }
+        }
     }
 
     /**
@@ -193,7 +207,7 @@ public class ClassStorage {
     /**
      * Refreshes the class storage with the current in the given {@code model}.
      */
-    public static void refresh(Model model) throws CommandException {
+    public static void refresh(Model model) throws IOException {
         ClassStorage.model = model;
         ClassStorage.teachersPet = (TeachersPet) model.getTeachersPet();
         ClassStorage.classes = ClassStorage.initialiseClass();

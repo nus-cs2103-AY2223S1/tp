@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -42,7 +43,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException,
+            IOException, DataConversionException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
@@ -50,7 +52,7 @@ public class LogicManager implements Logic {
         model.updateTeachersPetHistory();
         try {
             commandResult = command.execute(model);
-        } catch (CommandException e) {
+        } catch (CommandException | DataConversionException e) {
             logger.info("Invalid command: " + commandText);
             model.deleteTeachersPetHistory();
             throw e;
