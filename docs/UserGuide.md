@@ -29,7 +29,7 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## **Quick start**
 
 1. Ensure you have Java `11` or above installed in your computer.
 
@@ -44,7 +44,7 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## **Features**
 
 <div markdown="block" class="alert alert-info">
 
@@ -352,7 +352,7 @@ Data in Mass Linkers is saved in the hard disk automatically after executing any
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Parameter Requirements
+### **Parameter Requirements**
 
 Below is the summary of requirements of each parameter for the various commands. 
 
@@ -368,7 +368,7 @@ Below is the summary of requirements of each parameter for the various commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Module Categorisation
+### **Module Categorisation**
 
 Modules are automatically categorised upon creation.
 
@@ -386,7 +386,7 @@ _Module prefix refers to the first two characters of every module name._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## **FAQ**
 #### Technical Support
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install Mass Linkers in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Mass Linkers home folder.
@@ -412,7 +412,7 @@ _Module prefix refers to the first two characters of every module name._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## **Command summary**
 
 All the available commands in Mass Linkers are categorised into 4 summary tables below.
 
