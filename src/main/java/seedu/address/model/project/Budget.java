@@ -8,9 +8,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Budget {
     public static final String MESSAGE_CONSTRAINTS =
-            "Budget should only contain numbers, and it should not be blank. It also only allows for whole numbers";
+            "Budget should only contain numbers. Its should not have leading zeroes or be blank."
+                    + " It also only allows for whole numbers";
 
-    public static final String VALIDATION_REGEX = "\\d+";
+    public static final String VALIDATION_REGEX = "[1-9]{1}\\d+|\\d{1}";
 
     public final String value;
 

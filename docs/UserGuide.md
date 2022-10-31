@@ -178,6 +178,11 @@ Examples:
 
 Sorts the Project list according to deadline.
 
+```yaml
+Note: 
+* This command is irreversible, you will not be able to get back the original ordering after this command.
+```
+
 Format: `sortproj`
 
 --------------------------------------------------------------------------------------------------------------------
@@ -376,6 +381,11 @@ Examples:
 ### [**Sorting the Task list :** `sorttask`](#table-of-contents)
 
 Sort tasks in task list by deadline. Earlier deadlines will be placed first.
+
+```yaml
+Note: 
+* This command is irreversible, you will not be able to get back the original ordering after this command.
+```
 
 Format: `sorttask`
 

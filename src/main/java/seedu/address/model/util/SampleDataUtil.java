@@ -45,7 +45,7 @@ public class SampleDataUtil {
         Set<Tag> tagList = new HashSet<>();
         tagList.add(new Tag("Vacation"));
         tagList.add(new Tag("Busy"));
-        Staff staff = new Staff(new StaffName("Andy Lee"), new StaffContact("11111111"),
+        Staff staff = new Staff(new StaffName("Andy Lee"), new StaffContact("89012375"),
                 new StaffTitle("Senior Software Engineer"), new StaffDepartment("IT Department"),
                 new StaffLeave("true"), tagList);
         tempProject.getStaffList().add(staff);

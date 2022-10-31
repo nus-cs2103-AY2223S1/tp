@@ -66,8 +66,8 @@ public class CommandTestUtil {
 
     public static final String VALID_STAFFNAME_ANDY = "Andy Lee";
     public static final String VALID_STAFFNAME_JAY = "Jayden Yap";
-    public static final String VALID_STAFFCONTACT_ANDY = "11111111";
-    public static final String VALID_STAFFCONTACT_JAY = "22222222";
+    public static final String VALID_STAFFCONTACT_ANDY = "93228146";
+    public static final String VALID_STAFFCONTACT_JAY = "80234172";
     public static final String VALID_STAFFTITLE_ANDY = "Senior Software Engineer";
     public static final String VALID_STAFFTITLE_JAY = "Software Engineer";
     public static final String VALID_STAFFDEPARTMENT_ANDY = "IT Department";
