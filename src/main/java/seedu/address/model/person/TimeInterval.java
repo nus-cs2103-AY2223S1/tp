@@ -24,6 +24,12 @@ public class TimeInterval implements ITimesAvailable {
     public TimeInterval(String timeInterval) {
         requireNonNull(timeInterval);
         checkArgument(isValidTimeInterval(timeInterval), TIME_INTERVAL_CONSTRAINTS);
+        String startTime = getStartingDayTimeInWeek(timeInterval);
+        checkArgument(DayTimeInWeek.isValidDayTimeInWeekParsing(startTime),
+                DayTimeInWeek.ILLEGAL_TIME_CONSTRAINTS);
+        String endTime = getEndingDayTimeInWeek(timeInterval);
+        checkArgument(DayTimeInWeek.isValidDayTimeInWeekParsing(endTime),
+                DayTimeInWeek.ILLEGAL_TIME_CONSTRAINTS);
         this.startTime = makeStartTime(timeInterval);
         this.endTime = makeEndTime(timeInterval);
     }
@@ -56,13 +62,19 @@ public class TimeInterval implements ITimesAvailable {
      * @return A boolean value.
      */
     public static boolean isValidTimeInterval(String test) {
-        if (test.matches(VALIDATION_REGEX)) {
-            String[] tokens = test.split("-");
-            String start = tokens[0];
-            String end = tokens[1];
-            return DayTimeInWeek.isValidDayTimeInWeek(start) && DayTimeInWeek.isValidDayTimeInWeek(end);
-        }
-        return false;
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    public static String getStartingDayTimeInWeek(String test) {
+        assert isValidTimeInterval(test);
+        String[] tokens = test.split("-");
+        return tokens[0].trim();
+    }
+
+    public static String getEndingDayTimeInWeek(String test) {
+        assert isValidTimeInterval(test);
+        String[] tokens = test.split("-");
+        return tokens[1].trim();
     }
 
     public static String getTimeIntervalConstraints() {
