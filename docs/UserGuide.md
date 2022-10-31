@@ -3,16 +3,15 @@ layout: page
 title: User Guide
 ---
 
-Are you a CS student struggling to keep track of your internship?
-Do you feel tired of using spreadsheets to keep track of your applications?
-We have just the right tool for you!
+Are you a CS student struggling to keep track of your internship applications?
+Do you feel tired of using spreadsheets? We have just the right tool for you!
 
 Introducing PleaseHireUs (PHU), the internship tracking application made just for you!<br>
 
 ![Ui](images/icon.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
 
-Now you will never miss any internship application deadlines or interviews again!
+Now you will never miss any application deadlines or internship interviews again!
 PleaseHireUs has been optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PleaseHireUs can get your internship management tasks done faster than traditional GUI apps.
 We hope you find PleaseHireUs to be very useful in your internship hunt!
 
@@ -22,32 +21,6 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 {:toc}
 <div style="page-break-after: always;"></div>
 
-## Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer. You can refer to [this](#appendix-installing-java-11)
-
-2. Download the latest `PleaseHireUs.jar` from [here](https://github.com/AY2223S1-CS2103T-W17-4/tp/releases).
-
-3. Copy the file to the folder you want to use as the _home folder_ for your application.
-
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-5. Type the command in the command box and press <button>enter</button> to execute it. e.g. typing **`help`** and pressing <button>enter</button> will open the help window.<br>
-   
-6. Some example commands you can try you may refer to [this](#features) for details of each command.
-
-* **`list`** : Lists all internships.
-
-* **`add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`** : Adds a new internship to the internship tracker.
-
-* **`delete 3`** : Deletes the 3rd internship shown in the current list.
-
-* **`clear`** : Deletes all internships.
-
-* **`exit`** : Exits the app. 
-
-<div style="page-break-after: always;"></div>
 
 ## About this User Guide
 
@@ -62,12 +35,12 @@ This guides aims to: <br>
 ## Navigating the User Guide 
 **Information Box**
 <div markdown="block" class="alert alert-info">
-**:information_source: Info:** Provides extra information that is useful
+**:information_source: Info:** Provides information that is useful
 </div>
 
 **Tip Box**
 <div markdown="block" class="alert alert-success">
-**:bulb: Tip:** Provides pointers to enhance your experience using the application 
+**:bulb: Tip:** Provides advance users with pointers to enhance your experience
 </div>
 
 **Warning Box**
@@ -76,7 +49,7 @@ This guides aims to: <br>
 </div>
 
 **Highlights** <br>
-`commands` or `PARAMETERS`
+[`commands`](#glossary) or [`PARAMETERS`](#glossary) that users can type
 
 **Keyboard Inputs**<br>
 
@@ -84,10 +57,38 @@ This guides aims to: <br>
 
 <div style="page-break-after: always;"></div>
 
+## Quick start
+
+1. Ensure you have Java `11` or above installed in your Computer. You can refer to [this](#appendix-installing-java-11)
+
+2. Download the latest `PleaseHireUs.jar` [here](https://github.com/AY2223S1-CS2103T-W17-4/tp/releases).
+
+3. Copy the file to the folder you want to use as the _home folder_ for your application.
+
+4. Double-click the file to start the app. A [GUI](#glossary) similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)
+
+5. Type the command in the command box and press <button>enter</button> to execute it. e.g. typing **`help`** and pressing <button>enter</button> will open the help window.<br>
+
+6. Some example commands you can try. You may refer to [this](#features) for more commands.
+
+* **`list`** : Lists all internships.
+
+* **`add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`** : Adds a new internship to the internship tracker.
+
+* **`delete 3`** : Deletes the 3rd internship shown in the current list.
+
+* **`clear`** : Deletes all internships.
+
+* **`exit`** : Exits the app.
+
+<div style="page-break-after: always;"></div>
+
 ## Navigating the GUI
 ![Ui](images/navigate_ui.png)
 
-**Command Box** <br>
+<h3 style="color:#008037;"> COMMAND BOX </h3>
+
 Enter your command here.
 
 <div markdown="block" class="alert alert-success">
@@ -95,25 +96,29 @@ Enter your command here.
 You can use <button>&uarr;</button> or <button>&darr;</button> to navigate through your command history
 </div>
 
-**Result Display** <br>
+<h3 style="color:#FF914D;"> RESULT DISPLAY </h3>
+
 Returns a feedback message after a command is executed.
 
-**Main Panel** <br>
+<h3 style="color:#004AAD;"> MAIN PANEL </h3>
+
 Displays the list of internships.
 
-**View Panel** <br>
+<h3 style="color:#C400FF;"> VIEW PANEL </h3>
+
 The panel displays the internship being viewed in greater detail. 
 
 <div style="page-break-after: always;"></div>
 
-**Statistic Panel** <br>
+<h3 style="color:#7ED957;"> STATISTIC PANEL </h3>
+
 ![Bar Chart](images/BarChart.png)
 
 The Bar Chart (located in the bottom right corner of the application) displays the number of
 applications on every stage of the possible application process **which are currently listed by
 the application**.
 
-For example, If you do `find c/n Shopee` before viewing the bar chart, the bar chart will only shows
+For example, If you do `find c/n Shopee` the bar chart will reflect
 the data for all internships whose company name contains the word `Shopee`.
 
 <div markdown="block" class="alert alert-success">
@@ -122,8 +127,9 @@ the data for all internships whose company name contains the word `Shopee`.
 - Do `find c/t Summer` for an overview of your summer internship application
 </div>
 
-**Reminder Panel**<br>
-The reminder panel displays the number of interviews, assessments or pending offers due in the next 7 days.
+<h3 style="color:#FF1616;" font-family: " ;"> REMINDER FOOTER </h3>
+
+The reminder footer displays the number of interviews, assessments or pending offers due in the next 7 days.
 
 <div style="page-break-after: always;"></div>
 
@@ -131,7 +137,7 @@ The reminder panel displays the number of interviews, assessments or pending off
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the [parameters](#glossary) to be supplied by the user.<br>
   e.g. in `add n/COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add n/Grab`.
 
 * Items in square brackets are optional.<br>
@@ -154,16 +160,8 @@ The reminder panel displays the number of interviews, assessments or pending off
 
 <div style="page-break-after: always;"></div>
 
-## Features
-This section shows all features and commands which is supported by PleaseHireUs. 
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Info** <br>
-Internships are uniquely identified by `COMPANY_NAME` and `POSITION`. You cannot have two entries with the same `COMPANY_NAME` and `POSITION`.
-</div>
-
-### Parameters Requirement
-Here is the parameter requirements of commonly used parameters in the commands below.
+## Parameters Requirement
+Here are the parameter requirements of commonly used parameters in the commands in the [Features](#features) section below.
 
 | Parameter                 | Description                                                                            | Requirement / Remarks                                                                                                                                                                                                                            |
 |---------------------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -181,22 +179,14 @@ Here is the parameter requirements of commonly used parameters in the commands b
 
 <div style="page-break-after: always;"></div>
 
-### Viewing help : `help`
+## Features
+This section shows all features and commands which is supported by PleaseHireUs. 
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-<div markdown="block" class="alert alert-success">
-**:bulb: Tip:** <br>
-- Press <button>esc</button> to close the Help window <br>
-- Press <button>C</button> to copy the User Guide url into the clipboard when the Help window is opened
+<div markdown="block" class="alert alert-info">
+**:information_source: Info** <br>
+Internships are uniquely identified by `COMPANY_NAME` and `POSITION`. You cannot have two entries with the same `COMPANY_NAME` and `POSITION`.
 </div>
 
-
-<div style="page-break-after: always;"></div>
 
 ### Adding an internship: `add`
 
@@ -308,26 +298,13 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
-### Deleting internship(s) : `delete`
-
-Deletes the specified internship(s) from the list.
-
-Format: `delete INDEX…​`
-
-* Deletes the internship at the specified `INDEX`.
-* Can add multiple `INDEX` to delete multiple internships.
-
-Examples:
-* `list` followed by `delete 1 3` deletes the 1st and 3rd internship from the list.
-* `find TikTok` followed by `delete 1` deletes the 1st internship in the results of the `find` command.
-
 ### Editing internship : `edit`
 Edit details of an internship
 
 Format: `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK] [t/TAG]…​`
 
 * Edit the details of internship at the specified `INDEX`.
-Examples:
+  Examples:
 * `list` followed by `edit 2 p/quant researcher d/01-01-2023` will edit the position and assignment date of the 1st internship in the list to quant researcher and 1 January 2023 respectively.
 * `find google` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
 
@@ -362,6 +339,26 @@ Format: `copy INDEX`
 * Only the internship at the specified `INDEX` is copied.
 * Full details of the internship will be copied into system clipboard.
 
+
+### Deleting internship(s) : `delete`
+
+Deletes the specified internship(s) from the list.
+
+Format: `delete INDEX…​`
+
+* Deletes the internship at the specified `INDEX`.
+* Can add multiple `INDEX` to delete multiple internships.
+
+Examples:
+* `list` followed by `delete 1 3` deletes the 1st and 3rd internship from the list.
+* `find TikTok` followed by `delete 1` deletes the 1st internship in the results of the `find` command.
+
+### Clearing all entries : `clear`
+
+Clears all entries from the internship tracker.
+
+Format: `clear`
+
 ### Undo previous command : `undo`
 
 Undo the most recent command that modified the internship book.
@@ -380,11 +377,22 @@ Redo the most recent command that was undone.
 
 Format: `redo`
 
-### Clearing all entries : `clear`
+<div style="page-break-after: always;"></div>
 
-Clears all entries from the internship tracker.
+### Viewing help : `help`
 
-Format: `clear`
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** <br>
+- Press <button>esc</button> to close the Help window <br>
+- Press <button>C</button> to copy the User Guide url into the clipboard when the Help window is opened
+</div>
+
 
 <div style="page-break-after: always;"></div>
 
@@ -416,17 +424,17 @@ _Details coming soon …​_
 
 | Action                                          | Undo               | Format, Examples                                                                                                                                                                                             |
 |-------------------------------------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Help**](#viewing-help--help)                 | :x:                | `help`                                                                                                                                                                                                       |
 | [**Add**](#adding-an-internship-add)            | :heavy_check_mark: | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`                                      |
 | [**List**](#listing-all-internships--list)      | :x:                | `list [c/CATEGORY [DESCENDING]]` <br> e.g,  `list c/d true`, `list c/date`                                                                                                                                   |
 | [**Find**](#locating-internships-by-find)       | :x:                | `find [c/CATEGORY] KEYWORDS…​`<br> e.g., `find c/p engineer`                                                                                                                                                 |
-| [**Delete**](#deleting-internships--delete)     | :heavy_check_mark: | `delete INDEX…​`<br> e.g., `delete 1 3`                                                                                                                                                                      |
 | [**Edit**](#editing-internship--edit)           | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]…​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
 | [**View**](#view-details-of-an-internship-view) | :x:                | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                              |
 | [**Copy**](#copy-details-of-internship--copy)   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                             |
+| [**Delete**](#deleting-internships--delete)     | :heavy_check_mark: | `delete INDEX…​`<br> e.g., `delete 1 3`                                                                                                                                                                      |
+| [**Clear**](#clearing-all-entries--clear)       | :heavy_check_mark: | `clear`                                                                                                                                                                                                      |
 | [**Undo**](#undo-previous-command--undo)        | :x:                | `undo`                                                                                                                                                                                                       |
 | [**Redo**](#redo-previous-undone-command--redo) | :heavy_check_mark: | `redo`                                                                                                                                                                                                       |
-| [**Clear**](#clearing-all-entries--clear)       | :heavy_check_mark: | `clear`                                                                                                                                                                                                      |
+| [**Help**](#viewing-help--help)                 | :x:                | `help`                                                                                                                                                                                                       |
 | [**Exit**](#exiting-the-program--exit)          | :x:                | `exit`                                                                                                                                                                                                       |
 
 <div markdown="block" class="alert alert-info">
