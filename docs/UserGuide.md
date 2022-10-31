@@ -57,6 +57,7 @@ Here are some of the symbols and text formatting to look out for as you make use
 1. Now, let’s continue to learn how to [navigate the application](#navigating-the-application-interface) before familiarising ourselves with the [features](#features) you can use in PayMeLah.
 
 [Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -95,6 +96,7 @@ As this section is meant for new users, it will not cover how to navigate the ap
 Of course, this is not yet the end of your journey with PayMeLah - there are still several other commands you may require while using PayMeLah, including commands such as `deletedebt` and `find`. You can find out more about these commands in the [features](#features) section below.
 
 [Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -116,7 +118,7 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 * Items in square brackets `[]` are optional.<br>
   e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable: `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
 
-* Command fields with … can be used multiple times, but remember to separate each usage with a whitespace in between.<br>
+* Command fields with `…` can be used multiple times, but remember to separate each usage with a whitespace in between.<br>
   e.g. in `adddebt <person index…>`, `<person index…>` is an input which can be used as `adddebt 1` or as `adddebt 1 2`.<br>
   e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of prefix and input which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend`.
 
@@ -152,6 +154,7 @@ Be very careful with how a command is formatted! If the `…` is found within th
 </div>
 
 [Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -466,6 +469,7 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 * _Prefix_: A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.
 
 [Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -491,3 +495,5 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 | **Get statement** | `statement`                                                                                                                                                                                                                                             |
 | **Help**          | `help`                                                                                                                                                                                                                                                  |
 | **Undo**          | `undo`                                                                                                                                                                                                                                                  |
+
+[Return to Table of Contents](#table-of-contents)
