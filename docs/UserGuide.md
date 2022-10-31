@@ -184,7 +184,7 @@ Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ds/D
 
 * When changing a date slot in the existing list, if the old date slot is assigned, it will be deassigned and the new date slot will be in "not assigned status".
 
-* When changing an unavailable date in the existing list or add a new unavailable date in the existing list from a nurse, the date slot assigned to that nurse will be checked against the unavailable date. If the date slot is on the same day with the unavailable date, it will auto deassign that date slot from the nurse.
+* When changing an unavailable date in the existing list or adding a new unavailable date in the existing list from a nurse, the date slot assigned to that nurse will be checked against the unavailable date. If the date slot is on the same day with the unavailable date, it will auto deassign that date slot from the nurse.
 </div>
 
 Examples:
@@ -244,7 +244,7 @@ Format `assign id/NURSE_ID id/PATIENT_ID [dsi/DATE_AND_SLOT_INDEX]…​`
 * There **must be 2 IDs (only 2), 1 indicating a patient and 1 indicating a nurse**.
 * There is no specific order for the 2 IDs.
 * The assign command can have any number of date and slot index (including 0).
-* If the **'DATE_AND_SLOT_INDEX' not indicated** (0), then all the date slot of the patients will be assigned to the nurse.
+* If the **'DATE_AND_SLOT_INDEX' is not indicated** (0), then all the date slot of the patients will be assigned to the nurse.
 * If the **'DATE_AND_SLOT_INDEX(ES)' is indicated**, then the date slot with the respective index(es) in the displayed dateslot list will be assigned to the nurse.
 * When assigning, it will check whether there are **time crashes** and check whether the nurse are **unavailable** on that day.
 
