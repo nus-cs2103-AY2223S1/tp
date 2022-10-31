@@ -97,7 +97,7 @@ Adds a batchmate to the list of batchmates in the _Students panel_.
 __Format:__ `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]... [m/MODULE]...`
 
 * A summary of the requirements of each parameter can be found under [Parameter Requirements](#parameter-requirements).
-* Only unique batchmate can be added. It is considered a duplicate if an existing batchmate and the current batchmate to be added have identical Telegram handle, GitHub username or email address.
+* Only unique batchmate can be added. It is considered a duplicate if an existing batchmate and the current batchmate to be added have identical Telegram handle, GitHub username, email address or phone number.
 * Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Unrestricted Elective`. More information can be found under [Module Categorisation](#module-categorisation).
 
 __Examples:__
@@ -198,7 +198,7 @@ Finds batchmates whose interests contain __all__ the specified interests.
 
 __Format:__ `findInt INTEREST [MORE_INTERESTS]...`
 
-* The search is case-insensitive. e.g. `machinelearning` will match `machinelearning`.
+* The search is case-insensitive. e.g. `machineLearning` will match `machinelearning`.
 * Only exact words will be matched. e.g. `sw` will not match `swe`.
 
 __Examples:__
