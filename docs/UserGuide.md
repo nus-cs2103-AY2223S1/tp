@@ -84,6 +84,11 @@ This user guide will help you get started and understand how FABook can **seamle
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`,`clear`, `redo` and `undo`) will be ignored.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  <br>
+
+* Names are case-sensitive. e.g. John Doe and john doe are treated as the different names.
+  <br>
+
  </div>
 
 ### Viewing help : `help`
@@ -106,7 +111,9 @@ Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/
 :bulb: **Note:**
 `NAME` and `PHONE_NUMBER` are the only compulsory inputs. Other parameters can be left blank.
                   
-* If you have multiple meeting times with your client, simply repeat the field `mt/TIME`. 
+* If you have multiple meeting times with your client, simply repeat the field `mt/TIME`.
+* Does not allow you to create a person with the same name and phone number as a current person in the FABook.
+* Allows you to create a person with same name but different phone number or same number and different name as a current person in the FABook. 
 
 Examples:
 * `create n/John Doe p/98765432 a/John street, block 123, #01-01`
@@ -221,7 +228,8 @@ Only parameters you provide will be changed.
 * You must provide **at least one** of the optional fields .
 * You can also update the description of a contact through the [`description` command](#giving-a-description-to-a-person-description).
 * You must update the meeting time of a contact through the [`meeting` command](#add-meetings-meeting), [`deletemeeting` command](#delete-meetings-deletemeeting) and [`sync` commands](#remove-past-meetings-sync).
-
+* Does not allow you to update a person to have the same name and phone number as a current person in the FABook.
+* Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
 
 Example:
 * `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed person's 
@@ -419,10 +427,10 @@ If your changes to the data file makes its format invalid, FABook will discard a
 | **Create**               | `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567` | c        |
 | **Clear**                | `clear`                                                                                                                                                           | cl       |
 | **Delete**               | `delete INDEX`<br> e.g., `delete 3`                                                                                                                               | d        |
-| **Update**               | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`update 2 p/91234567 a/21 Lower Kent Ridge Rd`        | u        |
+| **Update**               | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`update 2 p/91234567 a/21 Lower Kent Ridge Rd`      | u        |
 | **Description**          | `description INDEX d/DESCRIPTION` <br> e.g., `description 3 d/Accident prone`                                                                                     | desc     |
 | **Find**                 | `find n/NAME…` or `find p/NUMBER` or `find a/ADDRESS` <br> e.g., `find n/James Jake` or `find p/09122222` or `find a/Jurong`                                      | f        |
-| **Find**               | `find t/TAG` <br> e.g., `find t/POTENTIAL`                                                                                                                        | f        |
+| **Find**                 | `find t/TAG` <br> e.g., `find t/POTENTIAL`                                                                                                                        | f        |
 | **List**                 | `list`                                                                                                                                                            | l        |
 | **Open File**            | `file INDEX`<br/> e.g. `file 2`                                                                                                                                   |          |
 | **Assign File**          | `filepath INDEX f/FILEPATH`<br/> e.g. `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                                                   |          |
