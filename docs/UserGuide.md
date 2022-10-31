@@ -141,17 +141,18 @@ Format: `delproj INDEX`
 ```yaml
 Note: 
 * The index must be a positive integer 1, 2, 3, …​
-* Staff list will not display any staffs. You will have to view a project to see the staff of that project
+* Staff list will not display any staff. You will have to view a project to see the staff of that project
 ```
 
 Examples:
 * `list` followed by `delproj 2` deletes the 2nd project in Project list.
-* `findproj 2103T TP` followed by `delproj 1` deletes the 1st project in the results of the `find` command.
+* `findproj 2103T TP` followed by `delproj 1` deletes the 1st project in the results of the `findproj` command.
 
 --------------------------------------------------------------------------------------------------------------------
 ### [**Listing all Projects and tasks :** `list`](#table-of-contents)
 
 Show all the Projects and tasks in the project and task list respectively.
+
 :bulb: **Tip:** After using a find command, you can use `list` to return the display to its original state.
 
 Format: `list`
@@ -179,6 +180,11 @@ Examples:
 
 Sorts the Project list according to deadline.
 
+```yaml
+Note: 
+* This command is irreversible, you will not be able to get back the original ordering after this command.
+```
+
 Format: `sortproj`
 
 --------------------------------------------------------------------------------------------------------------------
@@ -195,14 +201,15 @@ Note:
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed 
+  i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
 ```
 
 Examples:
 * `editproj 1 pb/5000` Edits the project budget of the 1st project to be `5000`.
-* `editproj 2 pn/CS2103 t/` Edits the name of the 2nd person to be `CS2103` and clears all existing tags.
+* `editproj 2 pn/CS2103 t/` Edits the name of the 2nd project to be `CS2103` and clears all existing tags.
 
 --------------------------------------------------------------------------------------------------------------------
 ## [**Staff Commands**](#table-of-contents)
@@ -280,7 +287,7 @@ Examples:
 Edits the staff details of a staff of a specified project in the currently displayed Project list.
 
 Format: `editstaff INDEX pn/PROJECT_NAME [sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT_NUMBER
-t\TAGS]`
+t/TAGS]`
 
 ```yaml
 Note:
@@ -378,6 +385,11 @@ Examples:
 
 Sort tasks in task list by deadline. Earlier deadlines will be placed first.
 
+```yaml
+Note: 
+* This command is irreversible, you will not be able to get back the original ordering after this command.
+```
+
 Format: `sorttask`
 
 --------------------------------------------------------------------------------------------------------------------
@@ -443,7 +455,7 @@ There is no need to save manually.
 ## [**FAQ**](#table-of-contents)
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HR Pro Max++ home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 ## [**Command Summary**](#table-of-contents)
@@ -484,7 +496,7 @@ There is no need to save manually.
 | **Unmark tasks** | `unmarktask INDEX`<br> e.g., `unmarktask 1`                                                                                   |
 
 
-### [**Misccellaneous Commands Summary**](#table-of-contents)
+### [**Miscellaneous Commands Summary**](#table-of-contents)
 
 
 | Action                    | Format, Examples |
