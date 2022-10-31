@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -139,5 +140,10 @@ public class Leave {
     @Override
     public String toString() {
         return String.format("%s - %s", startDate, endDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(startDate, endDate);
     }
 }

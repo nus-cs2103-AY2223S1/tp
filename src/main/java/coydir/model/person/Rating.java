@@ -61,7 +61,7 @@ public class Rating {
         this.timestamp = LocalDate.now();
     }
 
-    public Rating getNullRating() {
+    public static Rating getNullRating() {
         return Rating.NULL;
     }
 

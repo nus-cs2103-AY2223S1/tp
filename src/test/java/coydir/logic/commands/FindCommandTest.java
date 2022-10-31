@@ -1,6 +1,5 @@
 package coydir.logic.commands;
 
-import static coydir.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static coydir.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static coydir.testutil.TypicalPersons.CARL;
 import static coydir.testutil.TypicalPersons.DANIEL;
@@ -58,7 +57,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_oneKeyword_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(FindCommand.MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         PersonMatchesKeywordsPredicate predicate = preparePredicate("el");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -68,7 +67,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_onePersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(FindCommand.MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         PersonMatchesKeywordsPredicate predicate = preparePredicate("Kurz Fire Operations");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -78,7 +77,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_mismatchedKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(FindCommand.MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         PersonMatchesKeywordsPredicate predicate = preparePredicate("Alice Fire");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);

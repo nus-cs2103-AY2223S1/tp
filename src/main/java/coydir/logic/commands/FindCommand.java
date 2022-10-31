@@ -5,7 +5,6 @@ import static coydir.logic.parser.CliSyntax.PREFIX_NAME;
 import static coydir.logic.parser.CliSyntax.PREFIX_POSITION;
 import static java.util.Objects.requireNonNull;
 
-import coydir.commons.core.Messages;
 import coydir.model.Model;
 import coydir.model.person.PersonMatchesKeywordsPredicate;
 
@@ -29,6 +28,8 @@ public class FindCommand extends Command {
             + PREFIX_POSITION + "Recruiter "
             + PREFIX_DEPARTMENT + "Human Resources";
 
+    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+
     private final PersonMatchesKeywordsPredicate predicate;
 
     public FindCommand(PersonMatchesKeywordsPredicate predicate) {
@@ -40,7 +41,7 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override

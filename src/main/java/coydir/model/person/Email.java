@@ -52,7 +52,7 @@ public class Email {
         this.value = "N/A";
     }
 
-    public Email getNullEmail() {
+    public static Email getNullEmail() {
         return Email.NULL;
     }
 
