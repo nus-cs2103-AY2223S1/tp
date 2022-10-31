@@ -14,7 +14,7 @@ Salesy is an all-in-one tool for NUS canteen vendors who want to keep track of t
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# 1. Quick start
 
 1. Ensure you have Java SDK `11` or above installed in your Computer.
 
@@ -29,7 +29,7 @@ Salesy is an all-in-one tool for NUS canteen vendors who want to keep track of t
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Important information
+# 2. Important information
 
 - User has to input details for fields that are not in square brackets, but inputting details for fields in square brackets is optional.
   - e.g. `add n/NAME p/PHONE pr/PRICE i/ITEM a/ADDRESS [t/TAG]`
@@ -45,13 +45,13 @@ Salesy is an all-in-one tool for NUS canteen vendors who want to keep track of t
 - When multiple similar prefixes are input by the user, e.g. `i/Chicken i/Egg i/Cups`,
 the rightmost prefix and its details, i.e. `Cups` will be taken as input.
   
-## Features
+# 3. Visual Guide
 
-### Statistics Panel
+## 3.1 Statistics Panel
 
 A brief display of important information for **inventory** and **tasks**.
 
-**An overview of the information panel**
+### **An overview of the information panel**
 
 ![LabelledStatsPanel](images/labelledstatspanel.png)
 
@@ -64,7 +64,7 @@ A brief display of important information for **inventory** and **tasks**.
 * **(C)** `Upcoming` tasks refers to tasks that have deadlines that are **in the future and inclusive of today**, that are yet to be completed i.e. `Not Done`.
   * For example: You have an incomplete task. Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or later**_, this will be counted as `Upcoming`.
 
-### Colors used for Inventory
+## 3.2 Colors used for Inventory
 
 Simple and intuitive colors are used to identify stock levels.
 
@@ -88,9 +88,9 @@ Inventory Cards for Items
 | 🟠&nbsp;Orange | Running at a `moderate` level, can consider restocking soon. | **More than and equal to 120%** of minimum stock specified and **less than 165%** of minimum stock. |
 | 🟢&nbsp;Green  | Running at a `healthy` level, no worries about restocking.   | **More than and equal to 165%** of minimum stock specified.                                         |
 
-## Commands
+# 4. Features
 
-### Add supplier/task/supply item: `add`
+## 4.1 Add supplier/task/supply item: `add`
 
 Adds an item of a specified type with the given details
 
@@ -130,7 +130,7 @@ Item from first supplier in address book added
 >`addItem 1 c/10 m/3`
 
 
-### Delete: `delete`
+## 4.2 Delete: `delete`
 
 Deletes the specified item of the specified type from Salesy
 
@@ -162,7 +162,7 @@ Delete an item in inventory
 > `deleteItem 1`
 
 
-### Mark: `mark`
+## 4.3 Mark: `mark`
 
 Marks the specified task as done to keep task list updated
 
@@ -180,7 +180,7 @@ Mark a task that you have completed
 > `mark 2`
 
 
-### Unmark: `unmark`
+## 4.4 Unmark: `unmark`
 
 Unmarks a previously marked task
 
@@ -198,7 +198,7 @@ Unmark a task that you have completed
 > `unmark 3`
 
 
-### Edit: `edit`
+## 4.5 Edit: `edit`
 
 Edits a specified item's details
 
@@ -238,7 +238,7 @@ Tag rules apply for `edit` and `editTask`. Refer to [this section](#important-in
 > `editStock 1 c/7`
 
 
-### Find: `find`
+## 4.6 Find: `find`
 
 Finds suppliers based on name or item
 
@@ -259,7 +259,7 @@ Finds suppliers based on name or item
 > `find i/Egg`
 
 
-### Increment / Decrement current stock in your inventory
+## 4.7 Increment / Decrement current stock in your inventory
 
 Increases or decreases your stock for a particular item in the inventory
 
@@ -283,7 +283,7 @@ Increases or decreases your stock for a particular item in the inventory
 * Only able to key in up to a 5 digit value.
 * Only able to key in positive values
 
-### List all data : `listAll`
+## 4.8 List all data : `listAll`
 
 Lists all items.
 
@@ -298,7 +298,7 @@ Lists all items.
 > `listAll`
 
 
-### List all suppliers/tasks/inventory
+## 4.9 List all suppliers/tasks/inventory
 
 Refreshes and lists all suppliers/tasks/items.
 
@@ -306,7 +306,7 @@ Refreshes and lists all suppliers/tasks/items.
 - After using the `find` command for supplier contacts, `listAll` / `listSuppliers` will list all
 contacts in Salesy's address book.
 
-### List all suppliers: `listSuppliers`
+## 4.10 List all suppliers: `listSuppliers`
 
 List all suppliers
 
@@ -320,7 +320,7 @@ List all suppliers
 
 > `listSuppliers`
 
-### List all tasks: `listTasks`
+## 4.11 List all tasks: `listTasks`
 
 Lists all tasks
 
@@ -339,7 +339,7 @@ Note: All tasks displayed in the GUI is sorted by deadline.
 The task with the earliest deadline is found at the top of the list.
 </div>
 
-### List everything in the inventory: `listInventory`
+## 4.12 List everything in the inventory: `listInventory`
 
 Lists the whole inventory.
 
@@ -353,7 +353,7 @@ Lists the whole inventory.
 
 > `listInventory`
 
-### Clear Supplier Address Book: `clear`
+## 4.13 Clear Supplier Address Book: `clear`
 
 Clears and deletes all suppliers in Salesy. 
 
@@ -363,7 +363,7 @@ Clears and deletes all suppliers in Salesy.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# 5. Command summary
 
 
 | Action                       | Format                                                   | Examples                                                                           |
@@ -385,3 +385,5 @@ Clears and deletes all suppliers in Salesy.
 | **delete** (supply item)     | `deleteItem <item index>`                                | `deleteItem 2`                                                                     |
 | **edit stock** (supply item) | `editStock <item index> c/CURRENTSTOCK`                  | `editStock 2 c/12`                                                                 |
 | **list** (all items)         | `listAll`                                                | `listAll`                                                                          |                                                    |
+
+# 6. Appendix
