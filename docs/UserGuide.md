@@ -64,7 +64,7 @@ The `Command Box` is where you can input your commands.
 
 ### 4.2. Exercise List
 
-The `Exercise List Window` displays the latest exercise you entered at the bottom of the list by default. All exercises added will be displayed in the list. The list may change or reorder depending on the command issued by you.
+The `Exercise List` displays exercise entries. When the application is first launched, the `Exercise List` displays all exercise entries in the system, arranged by the order in which they were added. Whenever you issue commands that may truncate/reorder the `Exercise List`, they will **only act upon the entries that are currently displayed in the `Exercise List`**.
 
 ### 4.3. Result Display 
 
