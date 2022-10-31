@@ -8,7 +8,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
+
+import java.util.List;
 
 /**
  * Deletes a buyer identified using it's displayed index from the address book.
@@ -49,6 +52,12 @@ public class DeleteBuyerCommand extends DeleteCommand {
         Buyer personToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         model.deleteBuyer(personToDelete);
+
+        List<Order> ordersFromBuyer = model.getOrdersFromBuyer(personToDelete);
+
+        for (Order order: ordersFromBuyer) {
+            model.deleteOrder(order);
+        }
 
         return new CommandResult(String.format(MESSAGE_DELETE_BUYER_SUCCESS, personToDelete));
     }

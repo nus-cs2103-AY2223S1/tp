@@ -9,6 +9,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Supplier;
+import seedu.address.model.pet.Pet;
+
+import java.util.List;
 
 /**
  * Deletes a Supplier identified using it's displayed index from the address book.
@@ -50,6 +53,11 @@ public class DeleteSupplierCommand extends DeleteCommand {
 
         model.deleteSupplier(personToDelete);
 
+        List<Pet> petsFromSupplier = model.getPetsFromSupplier(personToDelete);
+
+        for (Pet pet : petsFromSupplier) {
+            model.deletePet(pet);
+        }
 
         return new CommandResult(String.format(MESSAGE_DELETE_SUPPLIER_SUCCESS, personToDelete));
     }
