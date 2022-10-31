@@ -120,7 +120,9 @@ public class Pet {
         this.height = height;
         this.vaccinationStatus = vaccinationStatus;
         this.price = price;
-        this.certificates.addAll(certificates);
+        if (certificates != null) {
+            this.certificates.addAll(certificates);
+        }
     }
 
     /**
