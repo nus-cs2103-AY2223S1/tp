@@ -50,7 +50,15 @@ public class PredictionCommand extends Command {
         requireNonNull(model);
         Student target = model.getPersonByName(name);
         Attendance attendance = target.getAttendance();
-        Subject targetSubject = target.getSubjectHandler().getSubject(subjectName);
+        Subject targetSubject = null;
+        for (Subject subj : target.getSubjectsTaken()) {
+            if (subj.getSubjectName().equals(subjectName)) {
+                targetSubject = target.getSubjectHandler().getSubject(subjectName);
+            }
+        }
+        if (targetSubject == null) {
+            throw new CommandException("Student does not take this subject");
+        }
         double gradePredicted = PredictionUtil.predictGrade(targetSubject.getGrades(), attendance, difficulty);
         return new CommandResult(SHOWING_PREDICTION_MESSAGE, false, false, true, false,
             String.format(MESSAGE_FORMAT, name, targetSubject.subjectName, gradePredicted));
