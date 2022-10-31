@@ -4,8 +4,8 @@ title: User Guide
 ---
 
 <div class="toc-no-bullet-points">
-    * Table of Contents
-    {:toc}
+  * Table of Contents
+  {:toc}
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
