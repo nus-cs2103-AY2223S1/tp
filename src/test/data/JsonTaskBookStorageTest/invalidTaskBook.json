@@ -1,7 +1,11 @@
 {
   "tasks" : [ {
     "type" : "ToDo",
-    "title" : "title%",
-    "description" : "description&"
+    "title" : "",
+    "description" : "description"
+  }, {
+    "type" : "ToDo",
+    "title" : "title",
+    "description" : ""
   } ]
 }

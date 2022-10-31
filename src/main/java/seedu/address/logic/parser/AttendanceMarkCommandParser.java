@@ -25,8 +25,8 @@ public class AttendanceMarkCommandParser implements Parser<AttendanceMarkCommand
         Attendance attendance;
         try {
             studentIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-            lessonIndex = ParserUtil.parseSize(argMultimap.getValue(PREFIX_LESSON)
-                    .orElseThrow(() -> new ParseException("Missing prefix")));
+            lessonIndex = argMultimap.getValue(PREFIX_LESSON)
+                    .orElseThrow(() -> new ParseException("Missing prefix"));
             attendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_MARK));
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

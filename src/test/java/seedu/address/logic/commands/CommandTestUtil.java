@@ -89,8 +89,8 @@ public class CommandTestUtil {
     public static final String VALID_ASSIGNMENT_STUDENT_ADAM = "Adam";
     public static final String VALID_ASSIGNMENT_STUDENT_BEN = "Ben";
 
-    public static final String INVALID_TASK_TITLE = "invalid title#";
-    public static final String INVALID_TASK_DESCRIPTION = "invalid description?";
+    public static final String INVALID_TASK_TITLE = "";
+    public static final String INVALID_TASK_DESCRIPTION = "";
     public static final String INVALID_DEADLINE_DATE = "09-09-2002";
 
     public static final String TASK_TITLE_DESC = " " + PREFIX_TASK_TITLE + VALID_TASK_TITLE;

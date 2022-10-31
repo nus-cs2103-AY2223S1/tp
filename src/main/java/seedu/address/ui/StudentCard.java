@@ -57,11 +57,11 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
-        studentId.setText(student.getStudentId().value);
-        email.setText(student.getEmail().value);
-        attendanceList.setText(student.getAttendanceList().toString());
-        classGroup.setText(student.getClassGroup().value);
+        phone.setText("Phone: " + student.getPhone().value);
+        studentId.setText("Student ID: " + student.getStudentId().value);
+        email.setText("Email: " + student.getEmail().value);
+        attendanceList.setText("Attendance: " + student.getAttendanceList().toString());
+        classGroup.setText("Class: " + student.getClassGroup().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -20,8 +20,8 @@ public class TaskDescriptionTest {
     }
 
     @Test
-    public void constructor_invalidDescriptionWithSpecialCharacters_throwsIllegalArgumentException() {
-        String invalidDescription = "?*";
+    public void constructor_invalidDescriptionWithWhiteSpace_throwsIllegalArgumentException() {
+        String invalidDescription = "    ";
         assertThrows(IllegalArgumentException.class, () -> new TaskDescription(invalidDescription));
     }
 
