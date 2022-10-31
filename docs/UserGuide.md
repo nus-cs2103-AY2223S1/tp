@@ -21,14 +21,13 @@ Here are some of the symbols and text formatting to look out for as you make use
 | :star: | Tips for Advanced Users |
 | :exclamation: | Warning |
 
-| Text Formatting | Meaning |
-| :----: | ------- |
-| [Hyperlink to Table of Contents](#table-of-contents) | Clickable hyperlink to navigate to another section |
-| `Text` | Text relevant to PayMeLah user commands |
-| <kbd>Ctrl</kbd> | A keyboard key |
+|          Text Formatting           | Meaning |
+|:----------------------------------:| ------- |
+| [Hyperlink to Glossary](#glossary) | Clickable hyperlink to navigate to another section |
+|               `Text`               | Text relevant to PayMeLah user commands |
+|          <kbd>Ctrl</kbd>           | A keyboard key |
 
 <div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
@@ -37,7 +36,6 @@ Here are some of the symbols and text formatting to look out for as you make use
 {:toc}
 
 <div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -64,11 +62,38 @@ Here are some of the symbols and text formatting to look out for as you make use
 ### Navigating the application interface
 
 --------------------------------------------------------------------------------------------------------------------
-## Adding your first debt
+### Adding your first debt
 
+Once you have familiarised yourself with PayMeLah’s [user interface](#navigating-the-application), it is time to officially start using PayMeLah! The following section provides a step-by-step guide that walks you through the process of adding a debt to PayMeLah. You can choose to follow the sample commands word-for-word, or if you are feeling adventurous, you can try replacing the sample inputs with your own inputs instead.
 
+<div markdown="block" class="alert alert-info">
+**:star: Using the keyboard instead of the mouse**
+
+As this section is meant for new users, it will not cover how to navigate the application using keyboard shortcuts to avoid overloading new users with information. However, PayMeLah is still ultimately designed to be the fastest for users who prefer keyboard shortcuts - If this describes you, do refer to the section on [advanced keyboard shortcuts](#advanced-keyboard-shortcuts) to learn more.
+
+</div>
+
+1. If you are a first time user, your PayMeLah may still be filled with the sample data that came with the [installation process](#installing-paymelah). You can remove all the sample data with a single [`clear` command](#clearing-debts-clear), which you can do by simply entering `clear`. Don’t worry about losing this data - they are unlikely to be useful to you! Soon, your PayMeLah
+   will be filled with the information you actually want instead.
+
+1. You should see that the person list is now empty.
+   ![Empty person list](images/EmptyPersonList.png)
+
+1. You can now add your first person to PayMeLah with the [`add` command](#adding-a-person-add). The example we will use in this section is `add n/Ryan Tan tele/ryantan123`. Entering this command will add a person named `Ryan Tan` with `ryantan123` as his Telegram handle into PayMeLah.
+
+1. You should see that the person card for `Ryan Tan` is now visible in the person list. You can click on his name to expand his person card, as per the picture below. However, he does not have any debts associated with him just yet!
+   ![Ryan Tan list](images/RyanTanList.png)
+
+1. You are now ready to add a debt to `Ryan Tan` using the [`adddebt` command](#adding-a-debt-adddebt)! This time, the example we will use is `adddebt 1 d/mcdonalds m/9.80`. Entering this command will add a debt of `$9.80` with the description `mcdonalds` to the 1st person in the person list, who happens to be `Ryan Tan`.
+
+1. The person card for `Ryan Tan` should now be updated. Congratulations! You have just added your first debt to PayMeLah!
+   ![YourFirstDebt](images/YourFirstDebt.png)
+
+Of course, this is not yet the end of your journey with PayMeLah - there are still several other commands you may require while using PayMeLah, including commands such as `deletedebt` and `find`. You can find out more about these commands in the [features](#features) section below.
+
+[Return to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 
 ## Features
 
@@ -115,6 +140,10 @@ Here are some of the symbols and text formatting to look out for as you make use
 
 </div>
 
+[Return to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
+--------------------------------------------------------------------------------------------------------------------
+
 ### Viewing help : `help`
 
 Using `help` will provide you with a link to our online user guide.<br>
@@ -123,6 +152,12 @@ If you get lost while using PayMeLah, this is the one command to remember!
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+<div markdown="block" class="alert alert-info">
+**:star: Advanced Tip:**
+Pressing <kbd> F1 </kbd> will also open up the help message.
+</div>
+
 
 ### Adding a person: `add`
 
