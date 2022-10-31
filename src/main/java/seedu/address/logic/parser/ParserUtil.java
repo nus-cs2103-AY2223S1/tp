@@ -86,10 +86,14 @@ public class ParserUtil {
      * Parses a {@code String lessonPlan} into an {@code LessonPlan}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @throws ParseException if the given {@code lessonPlan} is invalid.
      */
-    public static LessonPlan parseLessonPlan(String lessonPlan) {
+    public static LessonPlan parseLessonPlan(String lessonPlan) throws ParseException {
         requireNonNull(lessonPlan);
         String trimmedLessonPlan = lessonPlan.trim();
+        if (!LessonPlan.isValidLessonPlan(trimmedLessonPlan)) {
+            throw new ParseException(LessonPlan.MESSAGE_CONSTRAINTS);
+        }
         return new LessonPlan(trimmedLessonPlan);
     }
 

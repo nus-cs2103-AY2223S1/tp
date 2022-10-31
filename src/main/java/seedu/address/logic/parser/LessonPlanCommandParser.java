@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
 
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.LessonPlanCommand;
@@ -33,12 +35,14 @@ public class LessonPlanCommandParser implements Parser<LessonPlanCommand> {
                     LessonPlanCommand.MESSAGE_USAGE), ive);
         }
 
-        if (argMultimap.getValue(PREFIX_LESSON_PLAN).isEmpty()) {
+        Optional<String> optLesson = argMultimap.getValue(PREFIX_LESSON_PLAN);
+
+        if (optLesson.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LessonPlanCommand.MESSAGE_USAGE));
         }
 
         String lessonPlan = argMultimap.getValue(PREFIX_LESSON_PLAN).orElse("");
 
-        return new LessonPlanCommand(index, new LessonPlan(lessonPlan));
+        return new LessonPlanCommand(index, ParserUtil.parseLessonPlan(lessonPlan));
     }
 }
