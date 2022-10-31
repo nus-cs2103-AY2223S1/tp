@@ -28,6 +28,10 @@ import seedu.address.logic.commands.addcommands.AddSupplierCommand;
 import seedu.address.logic.commands.deletecommands.DeleteBuyerCommand;
 import seedu.address.logic.commands.deletecommands.DeleteDelivererCommand;
 import seedu.address.logic.commands.deletecommands.DeleteSupplierCommand;
+import seedu.address.logic.commands.editcommands.EditBuyerCommand;
+import seedu.address.logic.commands.editcommands.EditCommand;
+import seedu.address.logic.commands.editcommands.EditDelivererCommand;
+import seedu.address.logic.commands.editcommands.EditSupplierCommand;
 import seedu.address.logic.commands.filtercommands.FilterOrderCommand;
 import seedu.address.logic.commands.filtercommands.FilterPetCommand;
 import seedu.address.logic.commands.findcommands.FindCommand;
@@ -50,8 +54,7 @@ import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.VaccinationStatusPredicate;
-//import seedu.address.testutil.EditPersonDescriptorBuilder;
-//import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TypicalBuyers;
 import seedu.address.testutil.TypicalDeliverers;
@@ -140,16 +143,42 @@ public class AddressBookParserTest {
         assertEquals(new DeleteSupplierCommand(INDEX_FIRST), command);
     }
 
-    /*
+
     @Test
-    public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    public void parseCommand_editBuyer() throws Exception {
+        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withName("Amy")
+                .withAddress("NUS CELC")
+                .withEmail("amytoh@gmail.com")
+                .build();
+        EditCommand command = (EditCommand) parser.parseCommand(EditBuyerCommand.COMMAND_WORD + " "
+                + INDEX_FIRST.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditBuyerCommand(INDEX_FIRST, descriptor), command);
     }
-     */
+
+    @Test
+    public void parseCommand_editDeliverer() throws Exception {
+        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withName("Amy")
+                .withAddress("NUS CELC")
+                .withEmail("amytoh@gmail.com")
+                .build();
+        EditCommand command = (EditCommand) parser.parseCommand(EditDelivererCommand.COMMAND_WORD + " "
+                + INDEX_FIRST.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditDelivererCommand(INDEX_FIRST, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editSupplier() throws Exception {
+        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withName("Amy")
+                .withAddress("NUS CELC")
+                .withEmail("amytoh@gmail.com")
+                .build();
+        EditCommand command = (EditCommand) parser.parseCommand(EditSupplierCommand.COMMAND_WORD + " "
+                + INDEX_FIRST.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditSupplierCommand(INDEX_FIRST, descriptor), command);
+    }
 
     @Test
     public void parseCommand_exit() throws Exception {
