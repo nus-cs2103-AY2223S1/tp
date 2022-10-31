@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -27,7 +28,18 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         try {
             String trimmedArgs = args.trim();
             List<String> stringOfIndexesList = Arrays.asList(trimmedArgs.split("\\s+"));
-            Collections.sort(stringOfIndexesList, Collections.reverseOrder());
+            Set<Index> testSet = ParserUtil.parseIndexes(stringOfIndexesList); // parse for invalid indexes
+            Collections.sort(stringOfIndexesList, new Comparator<String>() {
+                @Override
+                public int compare(String indexString1, String indexString2) {
+                    int n1 = Integer.parseInt(indexString1);
+                    int n2 = Integer.parseInt(indexString2);
+                    if (n1 <= n2) {
+                        return 1;
+                    }
+                    return -1;
+                }
+            });
             Set<Index> indexSet = ParserUtil.parseIndexes(stringOfIndexesList);
             return new DeleteCommand(indexSet);
         } catch (ParseException pe) {

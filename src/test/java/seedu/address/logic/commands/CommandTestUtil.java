@@ -58,6 +58,7 @@ public class CommandTestUtil {
     public static final String VALID_GENDER_CABE = "M";
     public static final String VALID_GENDER_MALE = "M";
     public static final String VALID_GITHUB_AMY = "amyb";
+
     public static final String VALID_GITHUB_BOB = "bob123";
     public static final String VALID_GITHUB_CABE = "cabe123";
     public static final String VALID_LOCATION_AMY = "Comp 2";
@@ -77,6 +78,8 @@ public class CommandTestUtil {
     public static final String VALID_RATING_TWO = "2";
     public static final String VALID_SPECIALISATION = "Graphics";
     public static final String VALID_SPECIALISATION_BOB = "Networks";
+    public static final String VALID_OFFICE_HOURS_BOB = "TUESDAY, 03:00 PM - 05:00 PM";
+
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_USERNAME = "test";
@@ -100,8 +103,11 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_CABE = " " + PREFIX_EMAIL + VALID_EMAIL_CABE;
     public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
+    public static final String RATING_DESC_BOB = " " + PREFIX_RATING + VALID_RATING_BOB;
+    public static final String RATING_DESC_CABE = " " + PREFIX_RATING + VALID_RATING_CABE;
     public static final String GITHUB_USERNAME_DESC_AMY = " " + PREFIX_GITHUBUSERNAME + VALID_GITHUB_AMY;
     public static final String GITHUB_USERNAME_DESC_BOB = " " + PREFIX_GITHUBUSERNAME + VALID_GITHUB_BOB;
+
     public static final String GENDER_DESC_CABE = " " + PREFIX_GENDER + VALID_GENDER_CABE;
     public static final String OFFICE_HOUR_MONDAY = " " + PREFIX_OFFICEHOUR + "MONDAY, 4:00 PM - 5:00 PM";
 
@@ -111,6 +117,11 @@ public class CommandTestUtil {
     public static final String RATING_DESC_TWO = " " + PREFIX_RATING + VALID_RATING_TWO;
     public static final String SPECIALISATION_DESC_GRAPHICS = " " + PREFIX_SPECIALISATION + VALID_SPECIALISATION;
     public static final String SPECIALISATION_DESC_BOB = " " + PREFIX_SPECIALISATION + VALID_SPECIALISATION_BOB;
+
+    public static final String GITHUB_USERNAME_DESC_CABE = " " + PREFIX_GITHUBUSERNAME + VALID_GITHUB_CABE;
+
+    public static final String OFFICE_HOURS_DESC_BOB = " " + PREFIX_OFFICEHOUR + VALID_OFFICE_HOURS_BOB;
+
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String YEAR_DESC_AMY = " " + PREFIX_YEAR + VALID_YEAR_AMY;
@@ -122,6 +133,7 @@ public class CommandTestUtil {
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER; // empty string not allowed for gender
     public static final String INVALID_GITHUB_DESC = " "
             + PREFIX_GITHUBUSERNAME + "---"; // consecutive hyphens not allowed for github
+
     public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE + " "; // empty string not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_YEAR_DESC = " " + PREFIX_YEAR + "5*"; // 5 is an invalid year

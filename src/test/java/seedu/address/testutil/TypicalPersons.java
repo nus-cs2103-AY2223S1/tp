@@ -81,8 +81,8 @@ public class TypicalPersons {
     public static final TeachingAssistant CABE = (TeachingAssistant) new TeachingAssistantBuilder()
             .withName(VALID_NAME_CABE).withPhone(VALID_PHONE_CABE)
             .withEmail(VALID_EMAIL_CABE).withGender(VALID_GENDER_CABE).withTags(VALID_TAG_FRIEND)
-            .withLocation("JIN")
             .withGithubUsername("cabe")
+            .withLocation("JIN")
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
