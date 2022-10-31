@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_INDEXES;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEXES;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -102,7 +103,7 @@ public class ParserUtil {
         for (int i = 0; i < indexes.length; i++) {
             String index = indexes[i];
             if (!StringUtil.isNonZeroUnsignedInteger(index)) {
-                throw new ParseException(MESSAGE_INVALID_INDEX);
+                throw new ParseException(MESSAGE_INVALID_INDEXES);
             }
             resultIndexes.add(Index.fromOneBased(Integer.parseInt(index)));
         }
