@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -29,11 +28,12 @@ import seedu.address.model.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.ClientTagContainsKeywordsPredicate;
 import seedu.address.model.person.FindPredicate;
 import seedu.address.model.person.IncomeContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NormalTagContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.PlanTagContainsKeywordsPredicate;
 import seedu.address.model.person.RiskTagContainsKeywordsPredicate;
 
@@ -137,20 +137,65 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         ArrayList<FindPredicate> predicate = new ArrayList<>();
-        predicate.add(preparePredicate(" "));
+        predicate.add(prepareNamePredicate(" "));
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(reducePredicate(predicate));
+        expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_findName_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        ArrayList<FindPredicate> predicate = new ArrayList<>();
+        predicate.add(prepareNamePredicate("Kurz Elle Kunz"));
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_findName_noPersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        ArrayList<FindPredicate> predicate = new ArrayList<>();
+        predicate.add(prepareNamePredicate("Yewjon"));
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_findPhone_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        ArrayList<FindPredicate> predicate = new ArrayList<>();
+        predicate.add(preparePhonePredicate("9482427 87652533 98765432"));
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON, DANIEL, FIONA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_findPhone_noPersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        ArrayList<FindPredicate> predicate = new ArrayList<>();
+        predicate.add(preparePhonePredicate("999"));
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         ArrayList<FindPredicate> predicate = new ArrayList<>();
-        predicate.add(preparePredicate("Kurz Elle Kunz"));
+        predicate.add(prepareNamePredicate("Kurz Elle Kunz"));
+        predicate.add(prepareRiskPredicate("MEDIUM"));
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(reducePredicate(predicate));
+        expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
@@ -161,7 +206,7 @@ public class FindCommandTest {
         ArrayList<FindPredicate> predicate = new ArrayList<>();
         predicate.add(prepareRiskPredicate(" "));
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(reducePredicate(predicate));
+        expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
@@ -172,7 +217,7 @@ public class FindCommandTest {
         ArrayList<FindPredicate> predicate = new ArrayList<>();
         predicate.add(prepareRiskPredicate("HIGH"));
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(reducePredicate(predicate));
+        expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(BENSON), model.getFilteredPersonList());
     }
@@ -183,7 +228,7 @@ public class FindCommandTest {
         ArrayList<FindPredicate> predicate = new ArrayList<>();
         predicate.add(prepareNormalPredicate(" "));
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(reducePredicate(predicate));
+        expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
@@ -194,7 +239,7 @@ public class FindCommandTest {
         ArrayList<FindPredicate> predicate = new ArrayList<>();
         predicate.add(prepareNormalPredicate("friends"));
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(reducePredicate(predicate));
+        expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
     }
@@ -205,16 +250,17 @@ public class FindCommandTest {
         ArrayList<FindPredicate> predicate = new ArrayList<>();
         predicate.add(preparePlanPredicate(" "));
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(reducePredicate(predicate));
+        expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
+
 
     @Test
     public void execute_multiplePrefixesAndMultipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         ArrayList<FindPredicate> predicate = new ArrayList<>();
-        predicate.add(preparePredicate("Kurz Elle Kunz"));
+        predicate.add(prepareNamePredicate("Kurz Elle Kunz"));
         predicate.add(prepareRiskPredicate("MEDIUM"));
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -227,7 +273,7 @@ public class FindCommandTest {
 
         String secondExpectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         ArrayList<FindPredicate> secondPredicate = new ArrayList<>();
-        secondPredicate.add(preparePredicate("Meier"));
+        secondPredicate.add(prepareNamePredicate("Meier"));
         secondPredicate.add(prepareNormalPredicate("friends"));
         FindCommand secondCommand = new FindCommand(secondPredicate);
         expectedModel.updateFilteredPersonList(secondPredicate);
@@ -240,7 +286,7 @@ public class FindCommandTest {
 
         String thirdExpectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
         ArrayList<FindPredicate> thirdPredicate = new ArrayList<>();
-        thirdPredicate.add(preparePredicate("Meier"));
+        thirdPredicate.add(prepareNamePredicate("Meier"));
         thirdPredicate.add(prepareIncomePredicate("1500"));
         FindCommand thirdCommand = new FindCommand(thirdPredicate);
         expectedModel.updateFilteredPersonList(thirdPredicate);
@@ -252,7 +298,7 @@ public class FindCommandTest {
     public void execute_subsequentFindCommand_displaysPersonsBasedOnCurrentList() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         ArrayList<FindPredicate> predicate = new ArrayList<>();
-        predicate.add(preparePredicate("Kurz Elle Kunz"));
+        predicate.add(prepareNamePredicate("Kurz Elle Kunz"));
         predicate.add(prepareRiskPredicate("MEDIUM"));
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -274,7 +320,7 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
+    private NameContainsKeywordsPredicate prepareNamePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 
@@ -299,13 +345,24 @@ public class FindCommandTest {
         return new PlanTagContainsKeywordsPredicate(Arrays.asList(userInput.split("(?<=\\s\\S{1,100})\\s")));
     }
 
-    private Predicate<Person> reducePredicate(List<FindPredicate> predicates) {
-        return predicates.stream().reduce((x, y) -> x.or(y)).get();
-    }
     /**
      * Parses {@code userInput} into a {@code PlanTagContainsKeywordsPredicate}.
      */
     private IncomeContainsKeywordsPredicate prepareIncomePredicate(String userInput) {
         return new IncomeContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")), ">");
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code PhoneContainsKeywordsPredicate }.
+     */
+    private PhoneContainsKeywordsPredicate preparePhonePredicate(String userInput) {
+        return new PhoneContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code ClientTagContainsKeywordsPredicate }.
+     */
+    private ClientTagContainsKeywordsPredicate prepareClientTagPredicate(String userInput) {
+        return new ClientTagContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
