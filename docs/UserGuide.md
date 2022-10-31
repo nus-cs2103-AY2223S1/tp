@@ -420,11 +420,11 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 <br>
 **A**: You can do so by deleting the entry and adding a new entry.
 
-**Q**: Why is `:filter` , `:range` or `:sort` not showing the "correct" list even though I have input valid parameters?
+**Q**: Why is `:filter`, `:range` or `:sort` not showing the "correct" list even though I have input valid parameters?
 <br>
-**A**: The three commands works on the displayed list shown in the Exercise List Window. If your displayed list is empty or has been previously altered by list changing commands such as `:range` or `:filter`, the commands will not filter from the original full list. 
+**A**: The three commands works on the exercises in the current [Exercise List](#42-exercise-list). If your current Exercise List has been altered by list-changing commands such as `:range` or `:filter`, the commands will act on the current Exercise List rather than the full list comprising all exercises in the system. 
 <br><br>
-If you would like to operate on the original full list instead, try executing the command `:list` to display the full list before running the commands again.
+If you would like to operate on the full list instead, try executing the command `:list` to display the full list before running the commands again.
 
 
 --------------------------------------------------------------------------------------------------------------------
