@@ -1,8 +1,3 @@
----
-layout: page
-title: Developer Guide
----
-
 <div align="center">
 
 <h1>Rapportbook Developer Guide</h1>
@@ -160,15 +155,9 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` component acts as a "database" which represents data entities, and the data entities should work on their own without depending on other components)
 
-As the `Person` and `Reminder` models are more complex, below are the Class Diagrams for both models.
+Given below is the class diagram for the `Person` model.
 
 <img src="images/PersonClassDiagram.png" width="450" />
-
-<img src="images/ReminderClassDiagram.png" width="300">
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** As of now, each `Reminder` object contains the `Name` and `Phone` objects which are used as foreign keys to identify which `Person` object the `Reminder` belongs to. This is a workaround and we may implement unique primary keys for `Person` in the future.<br>
-
-</div>
 
 ### Storage component
 
@@ -314,7 +303,7 @@ message delete 1
 
 #### Design considerations:
 
-- **Aspect: Allow editing**
+- **Aspect: Allow editing:**
 
   - Alternative 1 (current choice): Don't allow editing
 
@@ -452,6 +441,7 @@ Commands that integrates with the `show` command includes:
 
 - `edit`
 - `tag`
+- `reminder`
 
 **Given below is an example usage scenario of show command**
 
@@ -475,7 +465,7 @@ tag friends
 
 #### Design considerations:
 
-- **Aspect: How to access the `TargetPerson`.**
+- **Aspect: How to access the `TargetPerson`:**
   - Alternative 1 (current choice): Allow the index to not be specified
     - Pros:
       - The user does not have to provide an index (less to type).
@@ -486,6 +476,56 @@ tag friends
       - (Slightly) Easier to implement.
     - Cons:
       - User has to provide an index (more to type).
+
+### Reminders
+
+#### Implementation
+
+The `reminder`command provides a way for users to add reminders for clients in Rapportbook.
+
+The following commands are provided:
+
+* `reminder [INDEX] d=DESCRIPTION dt=YY-M-D H:m` — Adds a reminder for the specified client if INDEX is provided, otherwise adds a reminder for the target client shown using the `show` command.
+
+* `reminder delete INDEX`  — Deletes a reminder from the displayed reminder list using the reminder index.
+
+* `reminder clear`  — Clears all reminders from the displayed reminder list.
+
+Given below is the class diagram for reminders. `ReminderList` will sort `Reminder` objects by the earliest date and time of a reminder.
+
+<img src="images/ReminderClassDiagram.png" width="300">
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** As of now, each `Reminder` object contains the `Name` and `Phone` objects which are used as foreign keys to identify which `Person` object the `Reminder` belongs to. This is a workaround and we may implement unique primary keys for `Person` in the future.<br>
+
+</div>
+
+**Given below is an example usage scenario of reminder**
+
+Step 1: Clear all reminders in the currently displayed reminder list.
+
+```
+reminder clear
+```
+
+Step 2: Create a reminder for the client at index 1 of the currently displayed reminder list with description `Zoom meeting`, date `30 November 2022` and time `11:00 AM`.
+
+```
+reminder 1 d=Zoom meeting dt=22-11-30 11:00
+```
+
+#### Design considerations:
+- **Aspect: Storage for reminders:**
+    - Alternative 1 (current choice): Store reminders in a separate JSON file.
+        - Pros:
+            - Reduced data coupling between contacts and reminders — Corrupted data in reminders will not cause the application to fail to load the address book data.
+        - Cons:
+            - More tedious to implement.
+            - An extra file the user needs to keep track of when transferring data.
+    - Alternative 2: Store all reminders in the address book JSON file
+        - Pros:
+            - Easier to implement.
+        - Cons:
+            - Data coupling — A pre-existing database may fail to load due to changes in how address book or reminders data are stored, and data coupling will increase the amount of data that fails to load.
 
 ### Motivational quotes
 

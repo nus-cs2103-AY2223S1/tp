@@ -3,27 +3,28 @@
 show members
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
+skinparam classAttributeIconSize 0
 skinparam classBackgroundColor MODEL_COLOR
 
 
 Class ModelManager {
-    ObservableList<Person> getTargetPersonAsObservableList()
-    public Person getTargetPerson()
-    public void setTargetPerson(Person)
-    public void clearTargetPerson()
-    public boolean isTargetPerson(Person)
-    public boolean hasTargetPerson()
+    +getObservableTargetPerson(): TargetPerson
+    +getTargetPerson(): Person
+    +setTargetPerson(Person): void
+    +clearTargetPerson(): void
+    +isTargetPerson(Person): boolean
+    +hasTargetPerson(): boolean
 }
 
 Class TargetPerson {
-    Optional<Person> targetPerson
+    -targetPerson: Optional<Person>
 
-    ObservableList<Person> getAsObservableList()
-    Person get()
-    void set(Person)
-    void clear()
-    boolean isSamePerson(Person)
-    boolean isPresent()
+    +getNameProperty(): SimpleStringProperty
+    +getPhoneProperty(): SimpleStringProperty
+    +getAddressProperty(): SimpleStringProperty
+    +getEmailProperty(): SimpleStringProperty
+    +getRemarkProperty(): SimpleStringProperty
+    +getTagsProperty(): ObservableSet<Tag>
 }
 
 ModelManager -down-> "1 " TargetPerson
