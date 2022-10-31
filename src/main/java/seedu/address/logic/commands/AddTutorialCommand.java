@@ -26,7 +26,7 @@ public class AddTutorialCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GROUP + "T08 "
             + PREFIX_CONTENT + "UML Diagram "
-            + PREFIX_TIME + "2022-10-01T08:00:00";
+            + PREFIX_TIME + "2022-10-01 1400";
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Addtut command not implemented yet";
 
