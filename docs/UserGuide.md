@@ -122,7 +122,6 @@ Format: `edit INDEX [n/FOOD_NAME] [c/CALORIES] [t/MEAL_TYPE]`
 * The index refers to the index shown in the displayed food lists.
 * The index **must be a positive** integer.
 * At least one of the optional fields must be provided.
-* Only one of each optional fields can be provided.
 * `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner (case-insensitive).
 * `CALORIE` can only take in a non-negative integer that is less than 2147483648
 * `FOOD_NAME` should only contain alphanumeric characters and spaces, and should not be blank. Names should also not
@@ -164,7 +163,7 @@ Example:
 
 Finds the calorie content of a food item.
 
-Format: `find FOOD`
+Format: `find FOOD_NAME`
 
 * Only the calorie contents of some food items are included. Refer to the list of food items [here](#food-items).
 * If the user has entered a specific food item before, the `find` command will return the average calories of 
@@ -314,10 +313,10 @@ _More food items coming soon in a future release..._
 | Action      | Format                                                  | Example                          |
 |-------------|---------------------------------------------------------|----------------------------------|
 | **Help**    | `help`                                                  | `help`                           |
-| **Add**     | `add n/FOOD c/CALORIE t/MEAL_TYPE`                      | `add n/donut c/1000 t/breakfast` |
+| **Add**     | `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`                 | `add n/donut c/1000 t/breakfast` |
 | **Delete**  | `delete INDEX`                                          | `delete 1`                       |
-| **Edit**    | `edit INDEX [n/FOOD] [c/CALORIES] [t/MEAL_TYPE]`        | `edit 2 n/rice c/300 t/dinner`   |
-| **Find**    | `find FOOD`                                             | `find chicken rice`              |
+| **Edit**    | `edit INDEX [n/FOOD_NAME] [c/CALORIES] [t/MEAL_TYPE]`   | `edit 2 n/rice c/300 t/dinner`   |
+| **Find**    | `find FOOD_NAME`                                        | `find chicken rice`              |
 | **Target**  | `target`                                                | `target 2000`                    |
 | **Review**  | `review`                                                | `review`                         |
 | **List**    | `list [DATE]`                                           | `list`                           |
