@@ -5,15 +5,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.predicates.AppointmentOfFilteredPersonsPredicate;
 import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 
 /**
@@ -25,7 +22,8 @@ public class UnhideAppointmentsCommand extends Command {
     public static final String COMMAND_WORD = "unhide";
     public static final String DESCRIPTOR_WORD = "appts";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unhides previously hidden appointments which reason, tags, or status\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unhides previously "
+            + "hidden appointments which reason, tags, or status\n"
             + "match any of the specified keywords (case-insensitive) and displays\n"
             + "the appointments which are not hidden.\n"
             + "Parameters: " + PREFIX_REASON + "REASON [r/MORE_REASONS]...\n"

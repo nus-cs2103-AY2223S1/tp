@@ -65,11 +65,21 @@ public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCom
         return new HideAppointmentsCommand(new HideAppointmentPredicate(cond, val));
     }
 
+    /**
+     * Checks if input status is valid (marked/unmarked/m/um).
+     * @param status The given input from the user after s/ prefix.
+     * @return Whether the status given is valid.
+     */
     public boolean isValidStatusInput(String status) {
         return status.equalsIgnoreCase("um") || status.equalsIgnoreCase("m")
                 || status.equalsIgnoreCase("marked") || status.equalsIgnoreCase("unmarked");
     }
 
+    /**
+     * Checks if given tags match ear, nose or throat.
+     * @param tags The values gotten from the user after the t/ prefix.
+     * @return Whether tags are all valid.
+     */
     public boolean areValidTags(List<String> tags) {
         for (String s: tags) {
             if (!s.equalsIgnoreCase("ear") && !s.equalsIgnoreCase("nose")

@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 
-import seedu.address.logic.commands.HideAppointmentsCommand;
 import seedu.address.logic.commands.UnhideAppointmentsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.predicates.HideAppointmentPredicate;
@@ -65,11 +64,21 @@ public class UnhideAppointmentsCommandParser implements Parser<UnhideAppointment
         return new UnhideAppointmentsCommand(new HideAppointmentPredicate(cond, val));
     }
 
+    /**
+     * Checks if input status is valid (marked/unmarked/m/um).
+     * @param status The given input from the user after s/ prefix.
+     * @return Whether the status given is valid.
+     */
     public boolean isValidStatusInput(String status) {
         return status.equalsIgnoreCase("um") || status.equalsIgnoreCase("m")
                 || status.equalsIgnoreCase("marked") || status.equalsIgnoreCase("unmarked");
     }
 
+    /**
+     * Checks if given tags match ear, nose or throat.
+     * @param tags The values gotten from the user after the t/ prefix.
+     * @return Whether tags are all valid.
+     */
     public boolean areValidTags(List<String> tags) {
         for (String s: tags) {
             if (!s.equalsIgnoreCase("ear") && !s.equalsIgnoreCase("nose")

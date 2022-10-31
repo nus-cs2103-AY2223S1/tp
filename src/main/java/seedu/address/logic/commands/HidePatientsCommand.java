@@ -24,7 +24,8 @@ public class HidePatientsCommand extends Command {
     public static final String COMMAND_WORD = "hide";
     public static final String DESCRIPTOR_WORD = "patients";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Hides all patients whose names or tags contain any of the specified keywords (case-insensitive)\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Hides all patients whose names or tags contain "
+            + "any of the specified keywords (case-insensitive)\n"
             + "and displays them and their appointments as 2 lists with index numbers.\n"
             + "Parameters: " + PREFIX_NAME + "NAME [n/MORE_NAMES]...\n"
             + "OR: " + PREFIX_TAG + "TAG [t/MORE_TAGS]...\n"

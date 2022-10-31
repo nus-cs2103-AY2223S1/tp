@@ -43,10 +43,15 @@ public class HidePatientsCommandParser implements Parser<HidePatientsCommand> {
         return new HidePatientsCommand(new NameContainsKeywordsPredicate(keywords));
     }
 
+    /**
+     * Checks if given tags match ear, nose or throat.
+     * @param tags The values gotten from the user after the t/ prefix.
+     * @return Whether tags are all valid.
+     */
     public boolean areValidTags(List<String> tags) {
         for (String s: tags) {
             if (!s.equalsIgnoreCase("ear") && !s.equalsIgnoreCase("nose")
-            && !s.equalsIgnoreCase("throat")) {
+                && !s.equalsIgnoreCase("throat")) {
                 return false;
             }
         }
