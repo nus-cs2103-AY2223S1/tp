@@ -108,13 +108,13 @@ Examples:
 
 ### 4.2.1 Listing all persons : `list -p`
 
-Shows a list of all persons in InterNUS.
+Removes all filters on the person list and lists all persons in InterNUS in the current sorted order.
 
 Format: `list -p`
 
 ### 4.2.2 Listing all internships : `list -i`
 
-Shows a list of all internships in InterNUS.
+Removes all filters on the internship list and lists all internships in InterNUS in the current sorted order.
 
 Format: `list -i`
 
@@ -155,24 +155,27 @@ Examples:
 Links an existing person and internship together in InterNUS.
 
 Format: `link p/PERSON_INDEX i/INTERNSHIP_INDEX`
-- person at specified `PERSON_INDEX` and internship at specified `INTERNSHIP_INDEX` will be linked together such that
-- person will be displayed as contact person of internship and internship will be displayed as internship of person
+- Person at specified `PERSON_INDEX` and internship at specified `INTERNSHIP_INDEX` must be initially not linked to any person/internship.
+- Specified person will be displayed as contact person of specified internship and specified internship will be displayed as internship of specified person.
 - `PERSON_INDEX` and `INTERNSHIP_INDEX` **must be a positive integer** 1, 2, 3, …
 
 Examples:
-- `link p/1 i/1` will link person at index **1** to internship at index **1**
+- `link p/1 i/1` will link the person at index **1** to the internship at index **1**
 
 ### 4.4.2 Unlinking a person and an internship : `unlink`
 
 Unlinks an existing person and internship together in InterNUS.
 
-Format: `unlink [p/PERSON_INDEX] [i/INTERNSHIP_INDEX`]
+Format: `unlink [p/PERSON_INDEX] [i/INTERNSHIP_INDEX]`
 - At least 1 of the optional fields must be provided
-- Person and/or internship at the specified `PERSON_INDEX` and/or `INTERNSHIP_INDEX` will be unlinked
+- Person and/or internship at the specified `PERSON_INDEX` and/or `INTERNSHIP_INDEX` will be unlinked.
+- If both `PERSON_INDEX` and `INTERNSHIP_INDEX` are provided, the person at `PERSON_INDEX` and the internship at `INTERNSHIP_INDEX` must be linked to each other.
 - `PERSON_INDEX` and `INTERNSHIP_INDEX` **must be a positive integer** 1, 2, 3, …
 
 Examples:
 - `unlink p/1 i/1` will unlink person at index **1** and internship at index **1**
+- `unlink p/1` will unlink person at index **1** and its linked internship
+- `unlink i/1` will unlink internship at index **1** and its linked person
 
 ## 4.5 Find Command
 
@@ -331,7 +334,7 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 
 | Action                | Format, Examples                                                                                                                                                                                                                       |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add person**        | `add -p n/NAME [e/EMAIL] [p/PHONE] [t/TAG]… [l/LINK_INDEX] [c/COMPANY]` <br> e.g., `add -p n/James Ho e/jamesho@example.com p/22224444 l/3 c/Meta`                                                                                     |
+| **Add person**        | `add -p n/NAME [e/EMAIL] [p/PHONE] [l/LINK_INDEX] [c/COMPANY] [t/TAG]… ` <br> e.g., `add -p n/James Ho e/jamesho@example.com p/22224444 l/3 c/Meta`                                                                                    |
 | **Add internship**    | `add -i c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]` <br> e.g., `add -i n/TikTok r/Data Engineer s/rejected l/1`                                                                                               |
 | **Clear**             | `clear`                                                                                                                                                                                                                                |
 | **Delete person**     | `delete -p INDEX`<br> e.g., `delete -p 3`                                                                                                                                                                                              |
@@ -342,6 +345,8 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 | **Find internship**   | `find -i [c/ COMPANY_NAME_KEYWORD [MORE_KEYWORDS]...] [r/ INTERNSHIP_ROLE_KEYWORD [MORE_KEYWORDS]...] [s/ INTERNSHIP_STATUS_KEYWORD [MORE_KEYWORDS]...] [d/ INTERVIEW_DATE_KEYWORD [MORE_KEYWORDS]...]` <br> e.g., `find -i c/inc ltd` |
 | **List persons**      | `list -p`                                                                                                                                                                                                                              |
 | **List internships**  | `list -i`                                                                                                                                                                                                                              |
+| **Link**              | `link p/1 i/1`                                                                                                                                                                                                                         |
+| **Unlink**            | `Unlink [p/1] [i/1]`                                                                                                                                                                                                                   |
 | **Sort persons**      | `sort -p c/` or `sort -p n/`                                                                                                                                                                                                           |
 | **Sort internships**  | `sort -i [c/] [d/] [s/]` <br> e.g., `sort -i d/`                                                                                                                                                                                       |
 | **Help**              | `help`                                                                                                                                                                                                                                 |
