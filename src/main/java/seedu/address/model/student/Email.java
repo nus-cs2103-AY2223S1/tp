@@ -14,7 +14,7 @@ public class Email {
             + "and adhere to the following constraints:\n"
             + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
             + "the parentheses, (" + SPECIAL_CHARACTERS + "). There cannot be consecutive special characters."
-            + "The local-part may not start or end with any special characters.\n"
+            + " The local-part may not start or end with any special characters.\n"
             + "2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels "
             + "separated by periods.\n"
             + "The domain name must:\n"
