@@ -1,5 +1,6 @@
 package friday.logic.commands;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import friday.commons.core.Messages;
@@ -7,8 +8,6 @@ import friday.commons.core.index.Index;
 import friday.logic.commands.exceptions.CommandException;
 import friday.model.Model;
 import friday.model.student.Student;
-
-import java.time.LocalDate;
 
 /**
  * Marks the Mastery Check of an existing student in FRIDAY as passed.
