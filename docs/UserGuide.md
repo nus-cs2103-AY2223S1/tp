@@ -238,7 +238,7 @@ Example:
 
 ### Clearing all entries: `clear`
 
-Deletes all entries from the stall list and review list.
+Clears FoodWhere by removing all stalls and the associated reviews.
 
 Format: `clear`
 
