@@ -137,7 +137,7 @@ Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/
 `NAME` and `PHONE_NUMBER` are the only compulsory inputs. Other parameters can be left blank.
 
 :bulb: **Note:**
-It is recommended to only have 1`TAG` per client (Due to project constraints, we are not able to change our code to check for this)
+It is recommended to only have 1`TAG` per client.
                   
 Examples:
 * `create n/John Doe p/98765432 a/John street, block 123, #01-01`
