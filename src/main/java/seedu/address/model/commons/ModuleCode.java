@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a module code in the ModQuik.
+ * Represents a module code in ModQuik.
  * Guarantees: immutable; is valid as declared in {@link #isValidModule(String)}
  */
 public class ModuleCode {

@@ -7,7 +7,7 @@ import java.util.Objects;
 import seedu.address.model.datetime.DatetimeRange;
 
 /**
- * Represents a Consultation in the ModQuik.
+ * Represents a Consultation in ModQuik.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Consultation {

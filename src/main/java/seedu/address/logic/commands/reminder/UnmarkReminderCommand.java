@@ -19,7 +19,7 @@ public class UnmarkReminderCommand extends Command {
     public static final String COMMAND_WORD = "unmark reminder";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unmarks the remind identified by the index number used in the reminder list as undone.\n"
+            + ": Unmarks the reminder identified by the index number used in the reminder list as incomplete.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

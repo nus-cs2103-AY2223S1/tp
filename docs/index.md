@@ -11,7 +11,7 @@ title: ModQuik
 ModQuik is a **desktop app for NUS Teaching Assistants, optimised for use via a Command Line Interface (CLI)**.
 It allows TAs to keep track of their responsibilities, students’ progress and schedules for the ongoing semester.
 
-* If you are interested in using ModQuik, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested in using ModQuik, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#2-quick-start).
 * If you are interested about developing ModQuik, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 

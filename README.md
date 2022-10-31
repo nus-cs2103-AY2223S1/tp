@@ -14,9 +14,9 @@ Example usages:
   * To keep track of upcoming tasks
 
 ## Site Map
-- [User Guide](./docs/UserGuide.md)
-- [Developer Guide](./docs/DeveloperGuide.md)
-- [About Us](./docs/AboutUs.md)
+- [User Guide](https://ay2223s1-cs2103t-w17-3.github.io/tp/UserGuide.html)
+- [Developer Guide](https://ay2223s1-cs2103t-w17-3.github.io/tp/DeveloperGuide.html)
+- [About Us](https://ay2223s1-cs2103t-w17-3.github.io/tp/AboutUs.html)
 
 ## Acknowledgements
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

@@ -26,7 +26,7 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 
     * **[`list`]**: Lists all students.
 
-    * **[`add student`]**`n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/john_fu m/CS2103 tut/T23`: Adds a student named `John Doe` to CS2103T module.
+    * **[`add student`]**`n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`: Adds a student named `John Doe` to CS2103T module.
 
     * **[`delete student`]**`3`: Deletes the 3rd student shown in the current list.
 
@@ -45,7 +45,7 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add student n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add student n/NAME`, `NAME` is a parameter which can be used as `add student n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -92,11 +92,10 @@ A student can have any number of tags (including 0).
 You can add a student more than once if they take different modules. The attendance, participation and grade score entered will then belong to the specified module.
 </div>
 
-* The `ROLE` of the person can only be either student or TA.
 * `ATTENDANCE` and `PARTICIPATION` can only take in integers greater than 0. If a value is not given, they will automatically be set to 0.
 
 Examples:
-* `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
+* `add student n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
 * `add student n/Betsy Crowe i/A0000000B t/struggling e/betsycrowe@example.com ph/91234567 tele/betsy_crowe m/CS2105 tut/G03 att/3 part/1 g/C t/quiet`
 
 <a name="list"></a>
@@ -187,9 +186,7 @@ Examples:
 Adds a tutorial to the list of tutorials.
 
 Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Day should take in a number from 1 (Monday) to 7 (Sunday).
-</div>
+* `DAY` should take in a number from 1 (Monday) to 7 (Sunday).
 
 Examples:
 * `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
@@ -316,8 +313,8 @@ Examples:
     <td>After executing mark command</td>
   </tr>
   <tr>
-    <td><img src="images/UnmarkedReminder.png" width=350 height=400></td>
-    <td><img src="images/MarkedReminder.png" width=350 height=400></td>
+    <td><img src="images/UnmarkedReminder.png" width=350></td>
+    <td><img src="images/MarkedReminder.png" width=350></td>
   </tr>
  </table>
 
@@ -441,13 +438,13 @@ _Details coming soon..._
 | [**Delete Student**][`delete student`]           | `delete student INDEX [m/MODULE]`<br> e.g., `delete student 2 m/CS2103T`                                                                                                                                             |
 | [**Extract Student Emails**][`extract emails`]   | `extract emails`                                                                                                                                                                                                     |
 | [**Add Tutorial**][`add tutorial`]               | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`<br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`                                                                                         |
-| [**Edit Tutorial**][`edit tutorial`]             | `edit tutorial INDEX`<br> e.g., `edit tutorial 1 n/W17 m/CS2103T`                                                                                                                                                    |
+| [**Edit Tutorial**][`edit tutorial`]             | `edit tutorial INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DAY]`<br> e.g., `edit tutorial 1 n/W17 m/CS2103T`                                                                                                 |
 | [**Delete Tutorial**][`delete tutorial`]         | `delete tutorial INDEX`<br> e.g., `delete tutorial 3`                                                                                                                                                                |
 | [**Add Consultation**][`add consultation`]       | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`<br> e.g., `add consultation D/2022-10-24 T/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`                                |
 | [**Edit Consultation**][`edit consultation`]     | `edit consultation INDEX`<br> e.g., `edit consultation 3 d/Review past year paper`                                                                                                                                   |
 | [**Delete Consultation**][`delete consultation`] | `delete consultation INDEX`<br> e.g., `delete consultation 3`                                                                                                                                                        |
 | [**Add Reminder**][`add reminder`]               | `add reminder n/NAME D/DATE T/TIME p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark papers D/2022-03-21 T/13:00 p/HIGH d/300 papers to mark`                                                                 |
-| [**Edit Reminder**][`edit reminder`]             | `edit reminder INDEX`<br> e.g., `delete reminder 1 D/2022-01-01 T/14:00`                                                                                                                                             |
+| [**Edit Reminder**][`edit reminder`]             | `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPTION]`<br> e.g., `delete reminder 1 D/2022-01-01 T/14:00`                                                                                     |
 | [**Mark Reminder**][`mark reminder`]             | `mark reminder INDEX`<br> e.g., `mark reminder 3`                                                                                                                                                                    |
 | [**Unmark Reminder**][`unmark reminder`]         | `unmark reminder INDEX`<br> e.g., `unmark reminder 3`                                                                                                                                                                |
 | [**Delete Reminder**][`delete reminder`]         | `delete reminder INDEX`<br> e.g., `delete reminder 3`                                                                                                                                                                |
@@ -466,7 +463,7 @@ _Details coming soon..._
 | **d/**    | description      | [`add consultation`]<br> [`edit consultation`]<br> [`add reminder`]<br> [`edit reminder`]                                                                                                  |
 | **D/**    | date or day      | [`add consultation`]<br> [`edit consultation`]<br> [`add reminder`]<br> [`edit reminder`]                                                                                                  |
 | **e/**    | email            | [`add student`]<br> [`edit student`]                                                                                                                                                       |
-| **f/**    | field            | [`switch`]<br> [`clear`]                                                                                                                                                                  |
+| **f/**    | field            | [`switch`]<br> [`clear`]                                                                                                                                                                   |
 | **g/**    | grade            | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **i/**    | student id       | [`add student`]<br> [`edit student`]<br> [`find`]                                                                                                                                          |
 | **m/**    | module           | [`add student`]<br> [`edit student`]<br> [`find`]<br> [`add tutorial`]<br> [`edit tutorial`]<br> [`add consultation`]<br> [`edit consultation`]                                            |

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a student ID in the ModQuik.
+ * Represents a student ID in ModQuik.
  * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
  */
 public class StudentId {

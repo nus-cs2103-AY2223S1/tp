@@ -9,15 +9,15 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelType;
 
 /**
- * Switches between model list in the ModQuik.
+ * Switches between model list in ModQuik.
  */
 public class SwitchCommand extends Command {
 
     public static final String COMMAND_WORD = "switch";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Show data in ModQuik "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Show data in ModQuik\n"
             + "Parameters: "
-            + PREFIX_FIELD + "FIELD (student, tutorial, consultation, grade) \n"
+            + PREFIX_FIELD + "FIELD (student, tutorial, consultation, grade)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_FIELD + "student";
 
