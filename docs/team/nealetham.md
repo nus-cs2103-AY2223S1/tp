@@ -11,43 +11,35 @@ title: Project Portfolio Page for Neale Tham
 ### Code contributed:
 
 I contributed code to the following modules/classes:
-1. MainWindow, CommandBox, ResidentTableView, HelpWindow
-2. CommandHistory, ForwardHistory, BackwardHistory
-3. NameContainsKeywordsPredicate
-4. Storage component unit tests
-   * JsonAdaptedRecurrentBooking
-   * JsonAdaptedVenue
-   * JsonSerializableVenueBook
-   * JsonVenueBookStorage
-   * DataStorageManager
-   * StorageManager
-5. SampleData
+1. Ui components (MainWindow, CommandBox, ResidentTableView, HelpWindow)
+2. Quality-of-life components (CommandHistory, ForwardHistory, BackwardHistory)
+3. Substring search (NameContainsKeywordsPredicate, FindCommandTest)
+4. Storage unit tests (DataStorageManager, StorageManager, JsonAdaptedVenue etc.)
+5. Sample residents, venues and bookings (SampleData)
 
 You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nealetham&breakdown=true).
 
 ### Enhancements implemented:
 
 I made the following enhancements to our product:
-1. *Reworked the Ui for displaying results into a Table*
-2. *Reworked the layout of the Ui*
-3. *Removed the file section in the Ui menu header*
-4. *Update application system image*
-
+1. Reworked the layout of the Ui
+2. Reworked the Ui to display results in a Table
+3. Reworked `find` to perform substring search
+5. Implemented all quality-of-life functionalities. These include:
+   6. Keyboard shortcuts `Esc`, `F1`, `F3`.
+   7. Command history  `↑ Up` and `↓ Down`.
 
 ### Contributions to the UG:
 
 I contributed to the following sections of the user guide:
 1. Ported the UG from `AB3` to `RC4HDB`. These include modifying the:
     - Description and formatting of all features to include `RC4HDB` specifications.
-    - Command summary table to comply with the new specifications.
-2. Re-organized UG into their respective sections i.e. File management, venue management etc.
-3. Re-organized each section to match a basic-to-advanced command approach.
-3. Re-organized the command summary table into its relevant sections following all updates 
-4. Updated the Table-of-Contents after reorganization 
-5. Updated UG to include all [Quality-of-life](../ug-pages/quality-of-life.md) functionality
-6. Updated `find` command section to comply with new implementation of substring search.
+2. Re-organized UG into their respective sections i.e. file management, venue management etc.
+3. Re-organized the command summary table, updated the table-of-contents.
+4. Included all [Quality-of-life](../ug-pages/quality-of-life.md) functionalities.
+5. Updated `find` command section to comply with our new implementation.
 
-Other contributions include, adding a back-to-top hyperlink following each section,
+Other contributions include, adding a back-to-top hyperlink following each section.
 
 ### Contributions to the DG:
 
@@ -57,7 +49,7 @@ I contributed to the following sections of the developer guide:
 2. Added section on the implementation of our GUI.
 3. Added section on the implementation of our command history functionality.
 4. Added section on manual testing for:
-   * All `Quality-of-life` functionality
+   * `Quality-of-life` functionalities
    * `help`, `exit` commands
 
 In particular, I added/updated the following UML diagrams:
@@ -70,8 +62,13 @@ In particular, I added/updated the following UML diagrams:
 ### Contributions to team-based tasks:
 
 I contributed to the following team-based tasks:
-1. *Meeting minutes in the weekly scrum meeting*
-2. *Work delegation during scrum meeting*
+1. Setting up the GitHub team organization and repository
+2. Necessary general code enhancements e.g.,
+   3. Renaming product to RC4HDB
+   4. Changing the product icon
+2. Setting up Codecov and Gradle
+1. Meeting minutes in the weekly scrum meeting
+2. Work delegation during scrum meeting
 
 ### Review/mentoring contributions:
 
@@ -83,9 +80,7 @@ I reviewed the following pull requests:
 To view all of my reviews, refer to [here](https://github.com/AY2223S1-CS2103T-W12-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
 
 I also gave guidance to my team on the following matters:
-1. *Enter contributions here*
-2. *Enter contributions here*
-3. *Enter contributions here*
+1. *NIL*
 
 ### Contributions beyond the project team:
 
@@ -96,7 +91,6 @@ These are some threads in which I offered help to my classmates:
 2. [Failing codecov/patch check](https://github.com/nus-cs2103-AY2223S1/forum/issues/330)
 3. [Bug: Wrong activity diagram](https://github.com/nus-cs2103-AY2223S1/forum/issues/338)
 
-<!-- Provide links to the threads here -->
 
 For the practical examination, I also surfaced critical bugs in the other team's product.
 
@@ -109,9 +103,18 @@ Some examples of these are:
 
 ### Contributions to the Developer Guide:
 
-1. ![]()
-2. ![]()
-3. ![]()
+Updated the Ui class diagram to include `ResidentTabView`, `ResidentTableView`, `VenueTabView`, `BookingTableView`, `VenueListView`, `VenueCard`.
+Removed Ui classes such as `PersonListCard`, and `PersonCard` that were existent in AB3.
+
+![Ui Class Diagram](../images/UiClassDiagram.png)
+
+<br>
+
+Designed the command history class diagram, and command history activity diagram.
+
+![Command History Class Diagram](../images/CommandHistoryClassDiagram.png)
+
+![Command History Activity Diagram](../images/CommandHistoryActivityDiagram.png)
 
 <!-- Embed the diagrams here -->
 
