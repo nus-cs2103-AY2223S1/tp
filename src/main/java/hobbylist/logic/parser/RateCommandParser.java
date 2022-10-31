@@ -28,7 +28,11 @@ public class RateCommandParser implements Parser<RateCommand> {
 
         int rating;
         if (argMultimap.getValue(CliSyntax.PREFIX_RATING).isPresent()) {
-            rating = Integer.parseInt(argMultimap.getValue(CliSyntax.PREFIX_RATING).get());
+            try {
+                rating = Integer.parseInt(argMultimap.getValue(CliSyntax.PREFIX_RATING).get());
+            } catch (NumberFormatException e) {
+                throw new ParseException(MESSAGE_INVALID_RATING + RateCommand.MESSAGE_USAGE);
+            }
             if (rating < 1 || rating > 5) {
                 throw new ParseException(MESSAGE_INVALID_RATING + RateCommand.MESSAGE_USAGE);
             }
