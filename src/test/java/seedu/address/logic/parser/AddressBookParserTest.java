@@ -23,7 +23,7 @@ import seedu.address.logic.commands.persons.FindCommand;
 import seedu.address.logic.commands.tasks.DeleteTaskCommand;
 import seedu.address.logic.commands.teams.DeleteTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.item.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;

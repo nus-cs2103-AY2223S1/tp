@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.persons;
+package seedu.address.logic.commands.tasks;
 
 import static java.util.Objects.requireNonNull;
 
@@ -10,13 +10,13 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.item.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends PersonCommand {
+public class FindTaskCommand extends TaskCommand {
 
     public static final String SUBCOMMAND_WORD = "find";
 
@@ -26,25 +26,25 @@ public class FindCommand extends PersonCommand {
         + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
         + "Example: " + getFullCommand(SUBCOMMAND_WORD) + " alice bob charlie";
 
-    private NameContainsKeywordsPredicate<Person> predicate;
+    private NameContainsKeywordsPredicate<Task> predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate<Person> predicate) {
+    public FindTaskCommand(NameContainsKeywordsPredicate<Task> predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredTaskList(predicate);
         return new CommandResult(
-            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+            || (other instanceof FindTaskCommand
+                && predicate.equals(((FindTaskCommand) other).predicate)); // state check
     }
 
     @Override
@@ -61,23 +61,23 @@ public class FindCommand extends PersonCommand {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public static Parser<FindCommand> parser() {
-        return new Parser<FindCommand>() {
+    public static Parser<FindTaskCommand> parser() {
+        return new Parser<FindTaskCommand>() {
             /**
              * Parses the given {@code String} of arguments in the context of the FindCommand and returns a
              * FindCommand object for execution.
              *
              * @throws ParseException if the user input does not conform the expected format
              */
-            public FindCommand parse(String args) throws ParseException {
+            public FindTaskCommand parse(String args) throws ParseException {
                 String trimmedArgs = args.trim();
                 if (trimmedArgs.isEmpty()) {
-                    return new FindCommand(null);
+                    return new FindTaskCommand(null);
                 }
 
                 String[] nameKeywords = trimmedArgs.split("\\s+");
 
-                return new FindCommand(new NameContainsKeywordsPredicate<Person>(Arrays.asList(nameKeywords)));
+                return new FindTaskCommand(new NameContainsKeywordsPredicate<Task>(Arrays.asList(nameKeywords)));
             }
         };
     }
