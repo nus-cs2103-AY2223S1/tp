@@ -183,6 +183,14 @@ Format: `task list`
 
 ### Adding
 
+<div markdown="block" class="alert alert-warning">
+
+**:bulb: Note:**<br>
+* For contacts: you cannot add another contact with the **same name** as an existing contact.
+* For tasks: you cannot add another task of the same type with the **same person, assignment, description (and date if it is a `deadline` or `event`)** as an existing task.  
+
+</div>
+
 #### Adding a contact : `contact add`
 
 Adds a contact to your task book.
