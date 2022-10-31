@@ -63,8 +63,8 @@ public class MeetingTimeTest {
         assertTrue(MeetingTime.isValidMeetingTime("31-06-2022-19:00")); //maximal day
         assertTrue(MeetingTime.isValidMeetingTime("05-01-2022-19:00")); //minimal month
         assertTrue(MeetingTime.isValidMeetingTime("06-12-2022-19:00")); //maximal month
-        assertTrue(MeetingTime.isValidMeetingTime("05-06-1000-19:00")); //minimal year
-        assertTrue(MeetingTime.isValidMeetingTime("01-06-9999-19:00")); //maximal year
+        assertTrue(MeetingTime.isValidMeetingTime("05-06-2000-19:00")); //minimal year
+        assertTrue(MeetingTime.isValidMeetingTime("01-06-2099-19:00")); //maximal year
         assertTrue(MeetingTime.isValidMeetingTime("05-06-2022-00:30")); //minimal hours
         assertTrue(MeetingTime.isValidMeetingTime("01-06-2022-23:00")); //maximal hours
         assertTrue(MeetingTime.isValidMeetingTime("05-06-2022-15:00")); //minimal minutes
