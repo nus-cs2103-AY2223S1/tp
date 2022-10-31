@@ -200,6 +200,7 @@ Note: FoodWhere comes with preloaded data, and can be started on a fresh state w
 Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
 
 Step 2. The user executes `radd s/1 d/20-09-2022 c/The food was good, the chicken rice was fresh. r/4` command to create a new `Review` for `Stall` with index 1.
+
 ![AddTodo1](images/AddReview.png)
 
 #### UML Diagram for Adding Review
@@ -212,6 +213,61 @@ The following activity diagram summarizes what happens when a user executes a ne
 - The Review adding commands are straight-to-the-point and efficient for users to add Review for Stall in FoodWhere.
 - The prefixes allow users to understand what the different types of data fields Review need in order to be created.
 
+### Listing all Reviews feature
+
+#### What is listing all Reviews feature about?
+
+The listing of all reviews mechanism is facilitated by `Model`. This feature allows the user to list all reviews.
+
+For the command, the feature extends `command`, and is implemented as such:
+* `rlist`
+
+#### Implementation Flow of listing all Reviews feature
+
+Given below is an example usage scenario and how the listing of all reviews mechanism behaves at each step.
+
+Note: FoodWhere comes with preloaded data, and can be started on a fresh state with the `clear` command.
+
+Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
+
+Step 2. The user executes `rlist` to list all reviews on the FoodWhere User Interface.
+
+![ListReview](images/ListReview.png)
+
+#### UML Diagram for listing of all Reviews
+
+The following activity diagram summarizes what happens when a user executes a new `rlist` command:
+
+<img src="images/ListReviewActivityDiagram.png" width="250" />
+
+### Review Deleting feature
+
+#### What is Review Deleting feature about?
+
+The Delete Review mechanism is facilitated by `AddressBook`. This feature allows the user to delete a review.
+
+For the command, the feature extends `command`, and is implemented as such:
+* `rdel REVIEW_INDEX`
+
+#### Implementation Flow of Review Deleting feature
+
+Given below is an example usage scenario and how the listing of all reviews mechanism behaves at each step.
+
+Note: FoodWhere comes with preloaded data, and can be started on a fresh state with the `clear` command.
+
+Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
+
+Step 2. The user list all the reviews by entering the `rlist` command.
+
+Step 3. The user executes `rdel 2` command to delete the last review with index 2.
+
+![DeleteReview](images/DeleteReview.png)
+
+#### UML Diagram for Deleting Review
+
+The following activity diagram summarizes what happens when a user executes a new `rdel` command:
+
+<img src="images/DeleteReviewActivityDiagram.png" width="250" />
 
 ### \[Proposed\] Undo/redo feature
 
@@ -503,13 +559,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. User uses list food reviews command with the wrong syntax.
+
     * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
 
 ****
 
-**Use case 7: Exiting the program**
+**Use case 7: Edit a food stall**
+
+**MSS**
+
+1. User starts FoodWhere.
+2. User enters the command to list food stalls.
+3. FoodWhere displays all food stalls.
+4. User enters the command to edit a particular food stall.
+5. FoodWhere edits the food stall and confirms with a success message that the food stall has been edited.
+
+   Use case ends.
+
+**Extensions**
+
+* 4a. FoodWhere detects an error in the entered data. (Invalid syntax or data)
+    * 4a1. FoodWhere sends an error message to the User, indicating the syntax or data used for the edit food stall command is incorrect, and attaches the correct format in the message.
+
+      Use case ends.
+
+****
+
+**Use case 8: Edit a food review**
+
+**MSS**
+
+1. User starts FoodWhere.
+2. User enters the command to list food reviews.
+3. FoodWhere displays all food reviews.
+4. User enters the command to edit a particular food review.
+5. FoodWhere edits the food review and confirms with a success message that the food review has been edited.
+
+   Use case ends.
+
+**Extensions**
+
+* 4a. FoodWhere detects an error in the entered data. (Invalid syntax or data)
+    * 4a1. FoodWhere sends an error message to the User, indicating the syntax or data used for the edit food review command is incorrect, and attaches the correct format in the message.
+
+      Use case ends.
+
+****
+
+**Use case 9: Exiting the program**
 
 **Preconditions**
 - User is currently using FoodWhere.
@@ -518,6 +617,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User enters a command to exit FoodWhere.
 2. FoodWhere saves all changes to disk and closes.
+
+   Use case ends.
+
+****
+
+**Use case 10: Clearing data**
+
+**Preconditions**
+- User is currently using FoodWhere.
+
+**MSS**
+
+1. User enters a command to clear data from FoodWhere.
+2. FoodWhere sends a confirmation message that all data is cleared and saves all changes to disk.
 
    Use case ends.
 
