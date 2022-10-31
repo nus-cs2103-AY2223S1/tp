@@ -833,38 +833,195 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a client
 
-### Deleting a person
+1. Adding a client
 
-1. Deleting a person while all persons are being shown
+   1. Prerequisite: The tag `friend` exists in Rapportbook.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   2. Test case: `add n=Laufey p=98980184 e=laufey@u.nus.edu a=123,Clementi r=janitor t=friend` <br>
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: A client named Laufey is successfully added. Details of the added client will be displayed in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `add p=98980184 e=laufey@u.nus.edu a=123,Clementi r=janitor t=friend`  or `a p=98980184 e=laufey@u.nus.edu a=123,Clementi r=janitor t=friend`
+
+      Expected: No client is added. Error details shown in the status message. Command box remains the same.
+
+### Editing a client
+
+1. Editing a client by specifying their index.
+
+   1. Prerequisites:
+
+      1. The tags specified (eg. `t=friend`)in the command must exist in Rapportbook.
+      2. There are clients in the Rapportbook.
+
+   2. Test case: `edit 1 n=Laufey p=0162626003 r=Bluebirds in the spring t=friend` or `e 1 n=Laufey p=0162626003 r=Bluebirds in the spring t=friend` <br>
+
+      Expected: First client is edited with the information specified. Fields not specified will not be changed.
+
+   3. Test case: `edit 1` <br>
+
+      Expected: No client is edited. Error details shown in the status message. Command box remains the same.
+
+2. Editing a client with the `show` command.
+
+   1. Prerequisites:
+
+      1. The tags specified (eg. `t=friend`)in the command must exist in Rapportbook.
+
+      2. A client is being shown eg. `show 1`.
+
+   2. Test case: `edit n=Laufey p=0162626003 r=Bluebirds in the spring t=friend` or `e n=Laufey p=0162626003 r=Bluebirds in the spring t=friend` <br>
+
+      Expected: Client shown is edited with the information specified. Fields not specified will not be changed.
+
+### Deleting a client
+
+1. Deleting a client by specifying their index.
+
+   1. Prerequisites: There are clients in Rapportbook.
+
+   2. Test case: `delete 1` or `d 1`<br>
+      Expected: First client is deleted from the list. Details of the deleted contact shown in the status message.
+
+   3. Test case: `delete 0`<br>
+      Expected: No client is deleted. Error details shown in the status message. Command box remains the same.
+
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Tagging
 
-### Saving data
+1. Creating tags
 
-1. Dealing with missing/corrupted data files
+   1. Test case: `tag create friend` or `t c friend`<br>
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+      Expected: The tag `friend` will be created in Rapportbook. A message will be shown indicating the tag created.
 
-1. _{ more test cases …​ }_
+   2. Test case: `tag create 123`<br>
+
+      Expected: No tags will be created. Error details shown in the status message. Command box remains teh same
+
+2. Deleting tags
+
+   1. Prerequisite: The tag `friend` exists in Rapportbook
+
+   2. Test case: `tag delete friend` or `t d friend`<br>
+
+      Expected: The tag `friend` will be deleted from Rapportbook, and all clients that are tagged with `friend` will lose the tag. A message will be shown indicating successful deletion.
+
+   3. Test case: `tag delete abc`<br>
+
+      Expected: No tags will be deleted. A message will be shown indicating the tag does not exist.
+
+3. Listing tags
+
+   1. Test case: `tag list` or `t l` <br>
+
+      Expected: All tags in Rapportbook will be listed in the message box.
+
+4. Adding tags to clients
+
+   1. Prerequisites:
+
+      1. There are clients in Rapportbook
+
+      2. The tag `friend` exists in Rapportbook.
+
+   2. Test case: `tag 1 friend` or `t 1 friend` <br>
+
+      Expected: First client will be tagged with `friend`. A message will be shown indicating success.
+
+5. Removing tags from clients
+
+   1. Prerequisites:
+
+      1. There are clients in Rapportbook
+
+      2. The first client is tagged `friend`.
+
+   2. Test case: `tag remove 1 friend` or `t r 1 friend`  <br>
+
+      Expected: First client will no longer be tagged with `friend`. A message will be shown indicating success.
+
+### Filtering
+
+1. Filtering
+
+   1. Test case: `filter n=Laufey t=friend` or `f n=Laufey t=friend`
+
+      Expected: The list will only show clients named Laufey **and** tagged friend. A message will be shown indicating successful filtering.
+
+2. Listing filters
+
+   1. Test case: `filter list` or `f l`  <br>
+
+      Expected: A list of filters currently applied will be shown in the message box.
+
+   2. Test case: `tag delete abc`
+
+      Expected: No tags will be deleted. A message will be shown indicating the tag does not exist.
+
+3. Clearing filters
+
+   1. Prerequisite: `filter n=Laufey t=friend` has been applied.
+
+   2. Test case: `filter clear` or `f c` <br>
+
+      Expected: All clients will be shown. Message box will display the number of clients in the list.
+
+   2. Test case: `filter clear t=friend`<br>
+
+      Expected: All clients containing the name `laufey` will be shown. Message box will display the number of clients in the list.
+
+### Messages
+
+1. Creating messages
+
+   1. Test case: `message create Hello, {name}` or `m c Hello, {name}` <br>
+
+      Expected: The message box will indicate successful creation of the message.
+
+2. Listing messages:
+
+   1. Test case: `message list` or `m l` <br>
+
+      Expected: The right panel will show the list of messages created.
+
+3. Generating messages
+
+   1. Prerequisites:
+
+      1. Messages have been created.
+
+      2. There are clients in Rapportbook
+
+   2. Test case: `message generate 1 2` or `m g 1 2`<br>
+
+      Expected: The message box will display that the second message has been generated for the first client. The message generated will be copied to your clipboard.
+
+4. Deleting messages
+
+   1. Prerequisites:
+
+      1. Messages have been created.
+
+      2. There are clients in Rapportbook
+
+   2. Test case: `message delete 1` or `m d 1` <br>
+
+      Expected: The message will be deleted from Rapportbook. The message box will indicate successful deletion.
+
+#
