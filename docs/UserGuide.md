@@ -2,8 +2,12 @@
 layout: page
 title: User Guide
 ---
+## Introducing Pupilist
+
+![Welcome to Pupilist!](images/pupilist.png)
 
 Pupilist is a **application for managing students details for private tutors**. It aims to **help you organise your students information to better plan for lessons**.
+
 If you are a private tutor struggling to:
    1. keep track of your students and their individual lesson plans.
    2. keep track of your students grades, homework and attendance.
@@ -15,7 +19,6 @@ Pupilist can get your scheduling done faster with single line CLI command inputs
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## Introducing Pupilist
 
 ### Glossary
 | Term      | Description                                                                                                                                                                                                                                                                                                                                         |
