@@ -31,6 +31,7 @@ public class DescriptionTest {
         // valid addresses
         assertTrue(Description.isValidDescription("Go to supermarket"));
         assertTrue(Description.isValidDescription("o")); // one character
-        assertTrue(Description.isValidDescription("Shop then eat then shop again plus take an afternoon nap")); // long address
+        assertTrue(Description.isValidDescription("Shop then eat then shop again "
+            + "plus take an afternoon nap")); // long address
     }
 }
