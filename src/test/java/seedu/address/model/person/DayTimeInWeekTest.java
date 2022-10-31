@@ -14,20 +14,34 @@ public class DayTimeInWeekTest {
     }
 
     @Test
-    public void isValidDayTimeInWeek() {
+    public void isValidDayTimeInWeekRegexTest() {
 
         // null
-        assertThrows(NullPointerException.class, () -> DayTimeInWeek.isValidDayTimeInWeek(null));
+        assertThrows(NullPointerException.class, () -> DayTimeInWeek.isValidDayTimeInWeekRegex(null));
 
         // invalid
-        assertFalse(DayTimeInWeek.isValidDayTimeInWeek("mdrdgt4")); // string length wrong
-        assertFalse(DayTimeInWeek.isValidDayTimeInWeek("mr4@1255")); // day of week wrong
-        assertFalse(DayTimeInWeek.isValidDayTimeInWeek("mon@2400")); // time of day wrong
-        assertFalse(DayTimeInWeek.isValidDayTimeInWeek("mon@1199"));
+        assertFalse(DayTimeInWeek.isValidDayTimeInWeekRegex("mdrdgt4")); // string length wrong
+        assertFalse(DayTimeInWeek.isValidDayTimeInWeekRegex("mon#1345")); // no use of @ symbol
+        assertFalse(DayTimeInWeek.isValidDayTimeInWeekRegex("mr4@1255")); // day of week wrong
 
         // valid
-        assertTrue(DayTimeInWeek.isValidDayTimeInWeek("mon@1259"));
-        assertTrue(DayTimeInWeek.isValidDayTimeInWeek("fri@2359"));
-        assertTrue(DayTimeInWeek.isValidDayTimeInWeek("sun@0000"));
+        assertTrue(DayTimeInWeek.isValidDayTimeInWeekRegex("mon@1259"));
+        assertTrue(DayTimeInWeek.isValidDayTimeInWeekRegex("fri@2359"));
+    }
+
+    @Test
+    public void isValidDayTimeInWeekParsingTest() {
+
+        // null
+        assertThrows(NullPointerException.class, () -> DayTimeInWeek.isValidDayTimeInWeekParsing(null));
+
+        // invalid
+        assertFalse(DayTimeInWeek.isValidDayTimeInWeekParsing("mon@2400")); // time of day wrong
+        assertFalse(DayTimeInWeek.isValidDayTimeInWeekParsing("mon@1199")); // time of day wrong
+
+        // valid
+        assertTrue(DayTimeInWeek.isValidDayTimeInWeekParsing("mon@0000"));
+        assertTrue(DayTimeInWeek.isValidDayTimeInWeekParsing("tue@2359"));
+        assertTrue(DayTimeInWeek.isValidDayTimeInWeekParsing("sun@1359"));
     }
 }

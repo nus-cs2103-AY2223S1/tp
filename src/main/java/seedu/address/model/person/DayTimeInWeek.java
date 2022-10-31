@@ -15,6 +15,10 @@ public class DayTimeInWeek {
     public static final String MESSAGE_CONSTRAINTS =
             "Day time in week must be in the form fri@1200.";
 
+    public static final String ILLEGAL_TIME_CONSTRAINTS =
+            "Time must be in valid format! For example, 12.30am should be written as 0030"
+                    + " and there cannot be more than 60 minutes in one hour.";
+
     /*
      * Completely no whitespace in the name
      */
@@ -30,20 +34,26 @@ public class DayTimeInWeek {
      */
     public DayTimeInWeek(String dayTimeInWeek) {
         requireNonNull(dayTimeInWeek);
-        checkArgument(isValidDayTimeInWeek(dayTimeInWeek), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDayTimeInWeekRegex(dayTimeInWeek), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDayTimeInWeekParsing(dayTimeInWeek), ILLEGAL_TIME_CONSTRAINTS);
         this.minutesSinceMondayMidnight = stringToMinutesSinceMondayMidnight(dayTimeInWeek);
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is matches the valid
+     * regex for DayTimeInWeek.
      */
-    public static boolean isValidDayTimeInWeek(String test) {
+    public static boolean isValidDayTimeInWeekRegex(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
 
-        boolean isRegexValid = test.matches(VALIDATION_REGEX);
-        if (!isRegexValid) {
-            return false;
-        }
-
+    /**
+     * Returns true if a given string can be converted to
+     * a DayTimeInWeek.
+     * @param test The given String.
+     * @return true if the String can be converted to a DayTimeInWeek.
+     */
+    public static boolean isValidDayTimeInWeekParsing(String test) {
         String[] tokens = test.split("@");
         String timeOfDay = tokens[1];
 
@@ -57,7 +67,6 @@ public class DayTimeInWeek {
         }
 
         return stringToMinutesSinceMondayMidnight(test) < MINUTES_IN_A_WEEK;
-
     }
 
     public static boolean isFindTimeNow(String test) {

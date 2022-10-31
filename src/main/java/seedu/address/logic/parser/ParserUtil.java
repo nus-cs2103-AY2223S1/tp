@@ -146,8 +146,11 @@ public class ParserUtil {
         if (DayTimeInWeek.isFindTimeNow(trimmed)) {
             trimmed = CurrentTimeParser.findTimeNowInString();
         }
-        if (!DayTimeInWeek.isValidDayTimeInWeek(trimmed)) {
+        if (!DayTimeInWeek.isValidDayTimeInWeekRegex(trimmed)) {
             throw new ParseException(DayTimeInWeek.MESSAGE_CONSTRAINTS);
+        }
+        if (!DayTimeInWeek.isValidDayTimeInWeekParsing(trimmed)) {
+            throw new ParseException(DayTimeInWeek.ILLEGAL_TIME_CONSTRAINTS);
         }
         return new DayTimeInWeek(trimmed);
     }
@@ -337,6 +340,14 @@ public class ParserUtil {
         String trimmedTimeInterval = timeInterval.trim();
         if (!TimeInterval.isValidTimeInterval(trimmedTimeInterval)) {
             throw new ParseException(TimeInterval.getTimeIntervalConstraints());
+        }
+        String startTime = TimeInterval.getStartingDayTimeInWeek(timeInterval);
+        if (!DayTimeInWeek.isValidDayTimeInWeekParsing(startTime)) {
+            throw new ParseException(DayTimeInWeek.ILLEGAL_TIME_CONSTRAINTS);
+        }
+        String endTime = TimeInterval.getEndingDayTimeInWeek(timeInterval);
+        if (!DayTimeInWeek.isValidDayTimeInWeekParsing(endTime)) {
+            throw new ParseException(DayTimeInWeek.ILLEGAL_TIME_CONSTRAINTS);
         }
         return new TimeInterval(trimmedTimeInterval);
     }
