@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.addcommands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,7 +20,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.index.UniqueId;
-import seedu.address.logic.commands.addcommands.AddPetCommand;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -49,6 +49,9 @@ public class AddPetCommandTest {
         List<UniqueId> idList = modelStub.getFilteredSupplierList().get(0).getPetIds();
         assertEquals(idList.get(0), validPet.getId());
 
+        //clear pets added
+        modelStub.getFilteredSupplierList().get(0).deletePet(0);
+
         //multiple Pets added
         modelStub = new ModelStubAcceptingPetAdded();
         modelStub.deletePet(validPet);
@@ -63,10 +66,15 @@ public class AddPetCommandTest {
             assertEquals(expectedResult, commandResult.getFeedbackToUser());
         }
 
-        idList = modelStub.getFilteredSupplierList().get(1).getPetIds();
+        idList = modelStub.getFilteredSupplierList().get(0).getPetIds();
 
-        for (int i = 0; i < idList.size(); i++) {
+        for (int i = 0; i < validPets.size(); i++) {
             assertEquals(idList.get(i), validPets.get(i).getId());
+        }
+
+        // clear pets added
+        for (Pet pet : validPets) {
+            modelStub.getFilteredSupplierList().get(0).deletePet(0);
         }
 
         // Different index
@@ -79,6 +87,9 @@ public class AddPetCommandTest {
 
         idList = modelStub.getFilteredSupplierList().get(1).getPetIds();
         assertTrue(idList.contains(validPet.getId()));
+
+        //clear pets added
+        modelStub.getFilteredSupplierList().get(1).deletePet(0);
     }
 
     @Test
