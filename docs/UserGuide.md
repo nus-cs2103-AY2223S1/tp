@@ -7,8 +7,34 @@ Condonery is a desktop app made for property agents primarily used for managing 
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, Condonery can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-  {:toc}
+* Table of Contents 
+- [`Quick start`](#quick-start)
+- [`Features in Condonery`](#features-in-condonery)
+  - [Undoing commands : `undo`](#undoing-commands--undo)
+  - [Viewing help : `help`](#viewing-help--help)
+  - [Exiting the program : `exit`](#exiting-the-program--exit)
+- [`Property Directory Features`](#property-directory-features)
+    - [Adding a property: add -p](#adding-a-property-add--p)
+    - [Listing all properties : list -p](#listing-all-properties--list--p)
+    - [Editing a property : edit -p](#editing-a-property--edit--p)
+    - [Locating properties by name: `find -p`](#locating-properties-by-name-find--p)
+    - [Deleting a property : `delete -p`](#deleting-a-property--delete--p)
+    - [Filtering properties: `filter -p`](#filtering-properties-filter--p)
+    - [Filtering properties within price range: range -p](#filtering-properties-within-price-range-range--p)
+    - [Filter properties by status: status -p](#filter-properties-by-status-status--p)
+    - [Filtering properties by type: type -p](#filtering-properties-by-type-type--p)
+    - [Selecting a property: select -p INDEX](#selecing-a-property-select--p-index)
+    - [Clearing all entries : clear](#clearing-all-entries--clear)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
+- [`Client Directory Features`](#client-directory-features)
+    - [Adding a client profile: add -c](#adding-a-client-profile-add--c)
+    - [Editing a client profile: edit -c](#editing-a-client-profile-edit--c)
+    - [Listing all client profiles: list -c](#listing-all-client-profiles-list--c)
+    - [Filtering client profiles: filter -c](#filtering-client-profiles-filter--c)
+    - [Deleting a client profile: delete -c](#deleting-a-client-profile-delete--c-index)
+    - [Selecting a client profile: select -pc](#selecting-a-client-profile-select--pc-index)
+- [`Command summary`](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -34,7 +60,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
     * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features-syntax) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -136,7 +162,7 @@ Example: `ip/duxton`, `ip/rosewood`
   e.g. `add -p` is used to add properties in the property directory while `add -c` is used to add clients in the client directory.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add -p n/NAME`, `NAME` is a parameter which can be used as `add n/PINNACLE@DUXTON`.
+  e.g. in `add -p n/NAME`, `NAME` is a parameter which can be used as `add -p n/PINNACLE@DUXTON`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/PINNACLE@DUXTON t/luxury` or as `n/PINNACLE@DUXTON`.
@@ -171,7 +197,7 @@ Format: `undo`
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows the help guide
 
 ![help message](images/helpMessage.png)
 
@@ -202,6 +228,9 @@ Optional parameters:
 - Property status: `s/`
 - Tags: `t/`
 - Interested clients: `ic/`
+
+Required parameters: `NAME`, `ADDRESS`, `PRICE`, `PROPERTY_TYPE`
+Optional Parameters: `TAG`, `IMAGE`, `INTERESTED_CLIENTS`, `PROPERTY_STATUS`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 * A property can have any number of tags (including 0)
@@ -238,14 +267,14 @@ Format: `edit -p INDEX [n/NAME] [a/ADDRESS] [p/PRICE] [h/PROPERTY_TYPE] [t/TAG]�
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/1,000,000 a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` Edits the price and address of the 1st person to be `1,000,000` and `11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` respectively.
-*  `edit 2 n/Cinammon College t/` Edits the name of the 2nd property to be `Cinammon College` and clears all existing tags.
+*  `edit -p 1 p/1,000,000 a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` Edits the price and address of the 1st person to be `1,000,000` and `11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` respectively.
+*  `edit -p 2 n/Cinammon College t/` Edits the name of the 2nd property to be `Cinammon College` and clears all existing tags.
 
 ### Locating properties by name: `find -p`
 
 Finds properties whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find -p KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `bishan` will match `Bishan`
 * The order of the keywords does not matter. e.g. `PINNACLE@DUXTON Bishan` will match `Bishan PINNACLE@DUXTON`
@@ -309,7 +338,7 @@ Format: `type -p HDB`
 Examples:
 * `type -p HDB condo` returns all properties that are HDBs or Condos
 
-### Selecing a property: `select -p INDEX`
+### Selecting a property: `select -p INDEX`
 
 Selects the specified property in the address book, for its details to be displayed.
 
@@ -409,7 +438,7 @@ Tips:
 * `filter -c high-end` followed by `delete 1` deletes the first client in the results of the
   `filter -c` command
 
-### Selecting a client profile: `select -pc INDEX`
+### Selecting a client profile: `select -c INDEX`
 
 Selects the specified client in the address book, for its details to be displayed.
 
@@ -435,32 +464,32 @@ the data of your previous Property directory and Client directory home folder.
 
 **Property Directory**
 
-Action | Format, Examples
---------|------------------
-**Add -p** |`add -p n/NAME a/ADDRESS p/PRICE h/PROPERTY_TYPE [-i] [t/TAG]…​` <br> e.g., `add -p n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 t/luxury`
-**Clear -p** | `clear -p`
-**Delete -p** | `delete -p INDEX`<br> e.g., `delete -p 3`
-**Edit -p** | `edit INDEX [n/NAME] [a/ADDRESS] [h/PROPERTY_TYPE] [t/TAG]…​`<br> e.g.,`edit -p 2 n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 t/luxury`
-**Filter -p** | `filter -p TAG [MORE_TAGS]`<br> e.g., `filter -p high-end thrifty`
-**Find -p** | `find -p NAME [MORE_NAMES]`<br> e.g., `find -p PINNACLE@DUXTON BISHAN`
-**Range -p** | `range -p l/LOWER_BOUND u/UPPER_BOUND`<br> e.g., `range -p l/1,000,000 u/3,000,000`
-**List -p** | `list -p`
-**Select -p** | `select -p INDEX` <br> e.g., `select -p 2`
-**Status -p** | `status -p`
-**Type -p** | `type -p`
+| Action        | Format, Examples                                                                                                                                 |
+|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add -p**    | `add -p n/NAME a/ADDRESS p/PRICE h/PROPERTY_TYPE [-i] [t/TAG]…​` <br> e.g., `add -p n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 t/luxury` |
+| **Clear -p**  | `clear -p`                                                                                                                                       |
+| **Delete -p** | `delete -p INDEX`<br> e.g., `delete -p 3`                                                                                                        |
+| **Edit -p**   | `edit INDEX [n/NAME] [a/ADDRESS] [h/PROPERTY_TYPE] [t/TAG]…​`<br> e.g.,`edit -p 2 n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 t/luxury`   |
+| **Filter -p** | `filter -p TAG [MORE_TAGS]`<br> e.g., `filter -p high-end thrifty`                                                                               |
+| **Find -p**   | `find -p NAME [MORE_NAMES]`<br> e.g., `find -p PINNACLE@DUXTON BISHAN`                                                                           |
+| **Range -p**  | `range -p l/LOWER_BOUND u/UPPER_BOUND`<br> e.g., `range -p l/1,000,000 u/3,000,000`                                                              |
+| **List -p**   | `list -p`                                                                                                                                        |
+| **Select -p** | `select -p INDEX` <br> e.g., `select -p 2`                                                                                                       |
+| **Status -p** | `status -p`                                                                                                                                      |
+| **Type -p**   | `type -p`                                                                                                                                        |
 
 **Client Directory**
 
-Action | Format, Examples
---------|------------------
-**Add -c** | `add n/NAME a/ADDRESS [-i] [t/TAG]…​` <br> e.g., `add n/James a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear -c** | `clear -c`
-**Delete -c** | `delete -c INDEX`<br> e.g., `delete -c 3`
-**Edit -c** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee a/SG, Cantonment Rd, #1G, 085301`
-**Filter -c** | `filter -c TAG [MORE_TAGS]`<br> e.g., `filter -c friend colleague`
-**Find -c** | `find -c NAME [MORE_NAMES]`<br> e.g., `find -c James Jake`
-**List -c** | `list -c`
-**Select -c** | `select -c INDEX` <br> e.g., `select -p 1`
+| Action        | Format, Examples                                                                                                                      |
+|---------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| **Add -c**    | `add n/NAME a/ADDRESS [-i] [t/TAG]…​` <br> e.g., `add n/James a/123, Clementi Rd, 1234665 t/friend t/colleague`                       |
+| **Clear -c**  | `clear -c`                                                                                                                            |
+| **Delete -c** | `delete -c INDEX`<br> e.g., `delete -c 3`                                                                                             |
+| **Edit -c**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee a/SG, Cantonment Rd, #1G, 085301` |
+| **Filter -c** | `filter -c TAG [MORE_TAGS]`<br> e.g., `filter -c friend colleague`                                                                    |
+| **Find -c**   | `find -c NAME [MORE_NAMES]`<br> e.g., `find -c James Jake`                                                                            |
+| **List -c**   | `list -c`                                                                                                                             |
+| **Select -c** | `select -c INDEX` <br> e.g., `select -p 1`                                                                                            |
 
 **General**
 
