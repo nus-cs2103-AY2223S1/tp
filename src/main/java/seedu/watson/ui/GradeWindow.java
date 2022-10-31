@@ -109,10 +109,8 @@ public class GradeWindow extends UiPart<Stage> {
         logger.fine("Showing the grading page.");
         this.studentList = studentList;
         this.assessmentString = assessmentString;
-        getRoot().show();
-        getRoot().centerOnScreen();
+        startGrading();
         updateUiToNextStudent();
-
     }
 
     /**
@@ -195,11 +193,19 @@ public class GradeWindow extends UiPart<Stage> {
     }
 
     /**
+     * Starts the grading process
+     */
+    public void startGrading() {
+        getRoot().show();
+        getRoot().centerOnScreen();
+        //reset index to 0
+        index = 0;
+    }
+    /**
      * Closes the GradeWindow and resets the index to 0
      */
     public void closeWindowAndResetIndex() {
         hide();
-        index = 0;
     }
     /**
      * Method to handle when a grade is entered for a student
@@ -208,6 +214,5 @@ public class GradeWindow extends UiPart<Stage> {
     public void enterGradeForStudent() throws IOException {
         updateGradesForCurrentStudent(enteredScore.getText());
         enteredScore.clear();
-
     }
 }
