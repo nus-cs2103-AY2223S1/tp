@@ -227,24 +227,20 @@ Examples:
 * `list -i` followed by `delete -i 2` deletes the 2nd internship in InterNUS.
 * `find -i ABC Pte Ltd` followed by `delete -i 1` deletes the 1st internship in the results of the `find` command.
 
-### Sorting persons by name: `sort -p n/`
+### Sorting persons in the list: `sort -p`
 
-Sorts the persons list by their names in alphabetical order, ignoring upper and lower cases.
+Sorts the persons list given a sorting criterion.
 
-Format: `sort -p n/`
+Format: `sort -p [n/] [c/]`
+- Exactly one of the optional fields must be provided.
+- `n/` sorts persons by their names in alphabetical order, ignoring upper and lower cases.
+- `c/` sorts persons by the attached company name (not the company tied to the internship linked) in alphabetical order, ignoring upper and lower cases.
+- When sorted by the attached company name, persons without an attached company name are listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
+- The list will remain sorted the same way until InterNUS is closed or until the sort condition for the persons list is changed.
 
-Note:
-* The list will remain sorted by names in alphabetical order, until InterNUS is closed or if it is changed to sort by associated company names instead.
-
-### Sorting persons by associated company name: `sort -p c/`
-
-Sorts the persons list by their associated company names in alphabetical order, ignoring upper and lower cases.
-
-Format: `sort -p c/`
-
-Note:
-* For persons that are not associated with a company yet, they will be listed at the bottom of the list.
-* The list will remain sorted by associated company names in alphabetical order, until InterNUS is closed or if it is changed to sort by person names instead.
+Example:
+- `sort -p n/` would sort the persons list by their names in alphabetical order, ignoring upper and lower cases.
+- `sort -p c/` would sort the persons list by their attached company names in alphabetical order, ignoring upper and lower cases. Persons without an attached company name would be listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
 
 ### Sorting internships in the list: `sort -i`
 
@@ -308,6 +304,6 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 | **Find internship**   | `find -i [c/ COMPANY_NAME_KEYWORD [MORE_KEYWORDS]...] [r/ INTERNSHIP_ROLE_KEYWORD [MORE_KEYWORDS]...] [s/ INTERNSHIP_STATUS_KEYWORD [MORE_KEYWORDS]...] [d/ INTERVIEW_DATE_KEYWORD [MORE_KEYWORDS]...]` <br> e.g., `find -i c/inc ltd` |
 | **List persons**      | `list -p`                                                                                                                                                                                                                              |
 | **List internships**  | `list -i`                                                                                                                                                                                                                              |
-| **Sort persons**      | `sort -p c/` or `sort -p n/`                                                                                                                                                                                                           |
+| **Sort persons**      | `sort -p [n/] [c/]` <br> e.g., `sort -p c/`                                                                                                                                                                                            |
 | **Sort internships**  | `sort -i [c/] [d/] [s/]` <br> e.g., `sort -i d/`                                                                                                                                                                                       |
 | **Help**              | `help`                                                                                                                                                                                                                                 |
