@@ -14,7 +14,6 @@ import seedu.watson.logic.commands.DeleteCommand;
 import seedu.watson.logic.commands.EditCommand;
 import seedu.watson.logic.commands.ExitCommand;
 import seedu.watson.logic.commands.FindCommand;
-import seedu.watson.logic.commands.FindNameCommand;
 import seedu.watson.logic.commands.GradeCommand;
 import seedu.watson.logic.commands.HelpCommand;
 import seedu.watson.logic.commands.ListCommand;
@@ -61,9 +60,6 @@ public class DatabaseParser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
-        case FindNameCommand.COMMAND_WORD:
-            return new FindNameCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
