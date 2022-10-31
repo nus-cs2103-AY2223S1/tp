@@ -128,7 +128,7 @@ public abstract class Task {
      * Returns true if task is self-assigned.
      */
     public boolean isSelfAssigned() {
-        return name == Name.SELF;
+        return name.fullName.equals(Name.SELF.fullName);
     }
 
     /**
@@ -168,7 +168,6 @@ public abstract class Task {
 
     /**
      * Gets a String to represent all itmes related to the task's description.
-     * @return
      */
     public String toUiString() {
         final StringBuilder builder = new StringBuilder();
