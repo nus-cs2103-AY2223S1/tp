@@ -159,11 +159,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the EditCommand via `PHONE_NUMBER`:
+    Before executing the EditCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/EditCommand/EditCommand_Phone.png"><br>
 
-    After executing the EditCommand via `PHONE_NUMBER`:
+    After executing the EditCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/EditCommand/EditCommand_PhoneResult.png"><br>
     </details>
@@ -175,11 +175,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the EditCommand via `EMAIL`:
+    Before executing the EditCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/EditCommand/EditCommand_Email.png"><br>
 
-    After executing the EditCommand via `EMAIL`:
+    After executing the EditCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/EditCommand/EditCommand_EmailResult.png"><br>
     </details>
@@ -197,11 +197,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the IncreaseCommand via `PHONE_NUMBER`:
+    Before executing the IncreaseCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhone.png"><br>
 
-    After executing the IncreaseCommand via `PHONE_NUMBER`:
+    After executing the IncreaseCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhoneResult.png"><br>
     </details>
@@ -213,11 +213,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the IncreaseCommand via `EMAIL`:
+    Before executing the IncreaseCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmail.png"><br>
 
-    After executing the IncreaseCommand via `EMAIL`:
+    After executing the IncreaseCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmailResult.png"><br>
     </details>
@@ -235,11 +235,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the IncreaseCommand via `PHONE_NUMBER`:
+    Before executing the IncreaseCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhone.png"><br>
 
-    After executing the IncreaseCommand via `PHONE_NUMBER`:
+    After executing the IncreaseCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhoneResult.png"><br>
     </details>
@@ -251,11 +251,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the IncreaseCommand via `EMAIL`:
+    Before executing the IncreaseCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmail.png"><br>
 
-    After executing the IncreaseCommand via `EMAIL`:
+    After executing the IncreaseCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmailResult.png"><br>
     </details>
@@ -351,11 +351,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the FindCommand (with matching keywords `8000`):
+    Before executing the FindCommand (with matching keywords <code>8000</code>):
     <br>
     <img src="images/screenshots/FindCommand/FindCommand_General.png"><br>
 
-    After executing the FindCommand (with matching keywords `8000`):
+    After executing the FindCommand (with matching keywords <code>8000</code>):
     <br>
     <ul>
       <li>Both `Roy` and `Bob` have `8000` reward points hence they show up in the search.</li>
@@ -370,11 +370,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the FindCommand via `PHONE_NUMBER`:
+    Before executing the FindCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/FindCommand/FindCommand_Phone.png"><br>
 
-    After executing the FindCommand via `PHONE_NUMBER`:
+    After executing the FindCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/FindCommand/FindCommand_PhoneResult.png"><br>
     </details>
@@ -386,11 +386,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the FindCommand via `EMAIL`:
+    Before executing the FindCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/FindCommand/FindCommand_Email.png"><br>
 
-    After executing the FindCommand via `EMAIL`:
+    After executing the FindCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/FindCommand/FindCommand_EmailResult.png"><br>
     </details>
@@ -415,11 +415,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
   
-    Before executing the DeleteCommand via `PHONE_NUMBER`:
+    Before executing the DeleteCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/DeleteCommand/DeleteCommand_Phone.png"><br>
 
-    After executing the DeleteCommand via `PHONE_NUMBER`:
+    After executing the DeleteCommand via <code>PHONE_NUMBER</code>:
     <br>
     <img src="images/screenshots/DeleteCommand/DeleteCommand_PhoneResult.png"><br>
     </details>
@@ -431,11 +431,11 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
     
-    Before executing the DeleteCommand via `EMAIL`:
+    Before executing the DeleteCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/DeleteCommand/DeleteCommand_Email.png"><br>
 
-    After executing the DeleteCommand via `EMAIL`:
+    After executing the DeleteCommand via <code>EMAIL</code>:
     <br>
     <img src="images/screenshots/DeleteCommand/DeleteCommand_EmailResult.png"><br>
     </details>
@@ -455,7 +455,7 @@ Before executing the UndoCommand (after a DeleteCommand):
 <br>
 <img src="images/screenshots/UndoAndRedoCommand/UndoCommand.png"><br>
 
-After executing the UndoCommand (Deleted Customer `Alex Yeoh` is back into bobaBot):
+After executing the UndoCommand (Deleted Customer <code>Alex Yeoh</code> is back into bobaBot):
 <br>
 <img src="images/screenshots/UndoAndRedoCommand/UndoCommandResult.png"><br>
 </details>
@@ -480,7 +480,7 @@ Before executing the RedoCommand:
 </ul>
 <img src="images/screenshots/UndoAndRedoCommand/RedoCommand.png"><br>
 
-After executing the RedoCommand (The Customer `Alex Yeoh` is removed from bobaBot again):
+After executing the RedoCommand (The Customer <code>Alex Yeoh</code> is removed from bobaBot again):
 <br>
 <img src="images/screenshots/UndoAndRedoCommand/RedoCommandResult.png"><br>
 </details>
