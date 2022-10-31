@@ -27,7 +27,8 @@ import seedu.address.model.person.Phone;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "%s is not a valid index,"
+            + " index should be a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -215,7 +216,7 @@ public class ParserUtil {
         List<Index> indexList = new ArrayList<>();
         for (String index : strIndexes) {
             if (!StringUtil.isNonZeroUnsignedInteger(index)) {
-                throw new ParseException(MESSAGE_INVALID_INDEX);
+                throw new ParseException(String.format(MESSAGE_INVALID_INDEX, index));
             }
             indexList.add(Index.fromOneBased(Integer.parseInt(index)));
         }
