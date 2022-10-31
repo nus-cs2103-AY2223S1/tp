@@ -186,9 +186,7 @@ Examples:
 Adds a tutorial to the list of tutorials.
 
 Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Day should take in a number from 1 (Monday) to 7 (Sunday).
-</div>
+* `DAY` should take in a number from 1 (Monday) to 7 (Sunday).
 
 Examples:
 * `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
