@@ -28,6 +28,7 @@ Given below are my contributions to the project.
   * [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nicolelim02&breakdown=true)
 
 * **Project management**: 
+  * Refactored [AB3's](https://github.com/nus-cs2103-AY2223S1/tp) codebase (Pull request [\#36](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/36)).
   * Managed the release of `v1.3.1` on [GitHub](https://github.com/AY2223S1-CS2103T-T17-2/tp/releases/tag/v1.3.1).
 
 * **Enhancements to existing feature**: Modify the design of the Help Window (Pull request [\#90](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/90)).
