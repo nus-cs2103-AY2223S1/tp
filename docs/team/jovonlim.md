@@ -18,7 +18,7 @@ Enhancements implemented:
 * `Book` Command: Allows users to book a new appointment for the specified patient. Appointments are automatically sorted according to their dateTime.
 * `Edit Appt` Command: Allows users to edit an existing appointment details.
 * `Mark` Command: Marking a recurring appointment will automatically book a new appointment for the patient, provided the patient does not have an existing appointment at the new dateTime.
-* `History` feature with storage: Stores the most recent 10 commands and allows the user to cycle through them to reduce repetition of similar but long commands.
+* `History` feature with storage: Keep tracks of the most recent 10 commands and allows the user to cycle through them to reduce repetition of similar but long commands. The commands will then be stored into JSON format.
 
 Contributions to the UG:
 
