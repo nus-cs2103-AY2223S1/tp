@@ -71,7 +71,7 @@ public class EditCommand extends Command {
             + "the specific unavailable date to be edited. \n"
             + "[" + PREFIX_UNAVAILABLE_DATE + "UNAVAILABLE_DATE] \n"
             + "[" + PREFIX_UNAVAILABLE_DATE_INDEX + "UNAVAILABLE_DATE_INDEX] \n"
-            + "Example: " + COMMAND_WORD + PREFIX_UID + " 1 "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_UID + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
