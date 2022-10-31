@@ -23,7 +23,7 @@ public class Tag {
     public Tag(String tag) {
         requireNonNull(tag);
         checkArgument(isValidTag(tag), MESSAGE_CONSTRAINTS);
-        this.tag = tag;
+        this.tag = tag.toLowerCase();
     }
 
     /**
@@ -37,7 +37,7 @@ public class Tag {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Tag // instanceof handles nulls
-                && tag.equalsIgnoreCase(((Tag) other).tag)); // state check
+                && tag.equals(((Tag) other).tag)); // state check
     }
 
     @Override
