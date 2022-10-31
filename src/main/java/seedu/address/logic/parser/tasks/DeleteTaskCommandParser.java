@@ -1,5 +1,7 @@
 package seedu.address.logic.parser.tasks;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.tasks.DeleteTaskCommand;
 import seedu.address.logic.parser.Parser;
@@ -17,9 +19,10 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
     public DeleteTaskCommand parse(String args) throws ParseException {
         if (args.trim().equals("")) {
             return new DeleteTaskCommand(null);
-        } else {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteTaskCommand(index);
+        } else if (!args.matches("\\s*[\\-+]?[0-9]+\\s*")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
         }
+        Index index = ParserUtil.parseIndex(args);
+        return new DeleteTaskCommand(index);
     }
 }

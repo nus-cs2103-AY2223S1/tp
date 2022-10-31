@@ -1,5 +1,7 @@
 package seedu.address.logic.parser.teams;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.teams.DeleteTeamCommand;
 import seedu.address.logic.parser.Parser;
@@ -21,6 +23,8 @@ public class DeleteTeamCommandParser implements Parser<DeleteTeamCommand> {
     public DeleteTeamCommand parse(String args) throws ParseException {
         if (args == null || args.trim().length() == 0) {
             return new DeleteTeamCommand(null);
+        } else if (!args.matches("\\s*[\\-+]?[0-9]+\\s*")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTeamCommand.MESSAGE_USAGE));
         }
         Index index = ParserUtil.parseIndex(args);
         return new DeleteTeamCommand(index);

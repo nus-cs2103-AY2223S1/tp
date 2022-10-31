@@ -18,13 +18,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonOutOfBoundException;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
-
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
@@ -45,7 +44,10 @@ public class DeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand,
+            model,
+            String.format(PersonOutOfBoundException.ERR_MSG, model.getFilteredPersonList().size(),
+                outOfBoundIndex.getOneBased()));
     }
 
     @Test
@@ -74,7 +76,8 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, String.format(PersonOutOfBoundException.ERR_MSG,
+            model.getFilteredPersonList().size(), outOfBoundIndex.getOneBased()));
     }
 
     @Test

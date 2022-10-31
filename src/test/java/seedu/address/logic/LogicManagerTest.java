@@ -59,7 +59,8 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "person delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, String.format(
+            "Person out of bounds. Length is only %d yet index 9 supplied.", model.getFilteredPersonList().size()));
     }
 
     @Test
