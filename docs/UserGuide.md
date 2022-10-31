@@ -228,16 +228,16 @@ Things to note:
 
 Order of headers is as such (**Order must be followed**):
 
-| Index | Field            | Mandatory Field? |
-|-------|------------------|------------------|
-| 1.    | Name             | **Yes**              |
-| 2.    | Phone            | No               |
-| 3.    | Email            | No               |
-| 4.    | Position         | **Yes**              |
-| 5.    | Department       | **Yes**              |
-| 6.    | Address          | No               |
-| 7.    | Number of Leaves | No               |
-| 8.    | Tags             | No               |
+| Index | Field          | Requirement    | Default Value |
+|-------|----------------|----------------|---------------|
+| 1.    | `NAME`         | **Compulsory** | -             |
+| 2.    | `PHONE`        | Optional       | N/A           |
+| 3.    | `EMAIL`        | Optional       | N/A           |
+| 4.    | `POSITION`     | **Compulsory** | -             |
+| 5.    | `DEPARTMENT`   | **Compulsory** | -             |
+| 6.    | `ADDRESS`      | Optional       | N/A           |
+| 7.    | `NO_OF_LEAVES` | Optional       | 14            |
+| 8.    | `TAGS`         | Optional       | _None_        |
 
 Sample `.csv` file:
 
@@ -367,9 +367,9 @@ Format: `add-leave id/ID sd/START_DATE ed/END_DATE`
 
 Field |TAG | Description | Requirement| Default Value
 --------------|---------------|---------------|------------------------ | --------
-`ID`|id/|Employee ID|**Compulsory**| N.A.
-`START_DATE` |sd/|Start date of leave, in dd-MM-YYYY format|**Compulsory**| N.A.
-`END_DATE` |ed/|End date of leave, in dd-MM-YYYY format|**Compulsory**| N.A.
+`ID`|id/|Employee ID|**Compulsory**| -
+`START_DATE` |sd/|Start date of leave, in dd-MM-YYYY format|**Compulsory**| -
+`END_DATE` |ed/|End date of leave, in dd-MM-YYYY format|**Compulsory**| -
 
 Example:
 
@@ -398,8 +398,8 @@ Format: `delete-leave id/ID i/INDEX`
 
 Field |TAG | Description | Requirement| Default Value
 --------------|---------------|---------------|------------------------ | --------
-`ID`|id/|Name|**Compulsory**| N.A.
-`INDEX` |i/|Index of leave in the leave table|**Compulsory**| N.A.
+`ID`|id/|Name|**Compulsory**| -
+`INDEX` |i/|Index of leave in the leave table|**Compulsory**| -
 
 Example:
 

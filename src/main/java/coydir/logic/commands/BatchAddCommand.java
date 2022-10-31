@@ -77,7 +77,6 @@ public class BatchAddCommand extends Command {
                         }
                     }
                 }
-                System.out.println(arg);
                 addCommandList.add(new AddCommandParser().parse(arg));
             }
         } catch (FileNotFoundException e) {
