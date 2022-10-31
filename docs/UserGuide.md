@@ -7,7 +7,7 @@ title: InterNUS User Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-# 1. Introduction
+# 1 Introduction
 
 ## 1.1 What is InterNUS?
 
@@ -30,11 +30,11 @@ Store the information of key contacts in InterNUS. During the internship-hunting
 Track the internships you're interested in and all the relevant information -- the company, role, contact person and interview date. Awaiting a reply, or have you been accepted? With InterNUS, you can monitor and update the statuses of your internship applications effortlessly.
 
 --------------------------------------------------------------------------------------------------------------------
-# 2. How to use this User Guide?
+# 2 How to use this User Guide?
 
 1. For new users, proceed to our [Quick start](#3-quick-start). 
 
-1. For returning users, skip to our [Command summary](#command-summary) for a summary of our feature.
+1. For returning users, skip to our [Command summary](#6-command-summary) for a summary of our feature.
 
 
 ## 2.1 Icons and symbols
@@ -84,7 +84,7 @@ The UI component description:
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-# 3. Quick start
+# 3 Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -101,7 +101,7 @@ The UI component description:
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 4. Features
+# 4 Features
 
 ## 4.1 Add Command
 
@@ -298,7 +298,7 @@ Examples:
 
 ## 4.7 Sort Command
 
-### Sorting persons in the list: `sort -p`
+### 4.7.1 Sorting persons in the list: `sort -p`
 
 Sorts the persons list given a sorting criterion.
 
@@ -313,7 +313,7 @@ Example:
 - `sort -p n/` would sort the persons list by their names in alphabetical order, ignoring upper and lower cases.
 - `sort -p c/` would sort the persons list by their attached company names in alphabetical order, ignoring upper and lower cases. Persons without an attached company name would be listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
 
-### 4.7.3 Sorting internships in the list: `sort -i`
+### 4.7.2 Sorting internships in the list: `sort -i`
 
 Sorts the internship list given a sorting criterion.
 
@@ -380,14 +380,14 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 5 FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InterNUS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 6 Command summary
 
 | Action                | Format, Examples                                                                                                                                                                                                                       |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
