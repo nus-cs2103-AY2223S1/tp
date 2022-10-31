@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-NutriGoals is a desktop app that tracks a user’s diet and calorie consumption. Studies have shown the benefits of keeping track of your daily food consumption – the more consistent you are, the more likely you are to achieve the various fitness goals that you have set for yourself! However, without the right tools, tracking what you have consumed can be tedious and at times disorganised. With NutriGoals, you can keep track of your consumption quickly and easily, without worrying about organising your data.
+NutriGoals is a desktop app that tracks a user’s diet and calorie consumption. It is targeted at NUS students who wish to improve their current lifestyle by adopting a healthier one. Studies have shown the benefits of keeping 
+track of your daily food consumption – the more consistent you are, the more likely you are to achieve the various 
+fitness goals that you have set for yourself! However, without the right tools, tracking what you have consumed can be 
+tedious and at times disorganised. With NutriGoals, you can keep track of your consumption quickly and easily, without 
+worrying about organising your data.
 * Table of Contents
 {:toc}
 
@@ -73,7 +77,7 @@ percentage will be fixed at 100%.
 **:information_source: Notes about the command format:**<br>
 
 * Texts in `UPPER_CASE` are arguments provided by the user.
-  * E.g. in `add n/FOOD c/CALORIE t/MEAL_TYPE`, `FOOD`, `CALORIE` and `MEAL_TYPE` are parameters that can be used as `add n/sushi c/300 t/dinner`.
+  * E.g. in `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`, `FOOD_NAME`, `CALORIE` and `MEAL_TYPE` are parameters that can be used as `add n/sushi c/300 t/dinner`.
 * Arguments in square brackets are optional.
 * The parameters can be in any order.
   * E.g. `add n/bubble tea c/200 t/dinner` is the same as `add c/200 n/bubble tea t/dinner`.
@@ -82,7 +86,6 @@ percentage will be fixed at 100%.
   * E.g. `edit 2147483648` is an invalid command regardless of the inputs provided.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.
   * E.g. `help 123` will be interpreted as `help`.
-* The `FOOD` parameter for commands `add`, `edit` and `find` can only take on alphanumeric values that contain at most 27 characters.
 
 </div>
 
@@ -98,11 +101,15 @@ Format: `help`
 
 Adds a food item with its calorie content.
 
-Format: `add n/FOOD c/CALORIE t/MEAL_TYPE`
+Format: `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`
 
 * Adds a food item into the food list for the current day, together with its calorie content and meal type.
 * Each field can only be specified once.
 * `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner.
+* `CALORIE` can only take in a non-negative integer that is less than 2147483648
+* `FOOD_NAME` should only contain alphanumeric characters and spaces, and should not be blank. Names should also not 
+exceed 27 characters.
+
 
 Example:
 
@@ -114,7 +121,7 @@ Example:
 
 **:information_source: Note:**<br>
 
-`MEAL_TYPE` is case-insensitive.
+`MEAL_TYPE` is **not** case-sensitive.
 
 * E.g. `add n/hotpot c/500 t/dinner` is the same as `add n/hotpot c/500 t/dInNeR`.
 
@@ -138,12 +145,16 @@ Example:
 
 Edits a food item from the displayed list of foods.
 
-Format: `edit INDEX [n/FOOD] [c/CALORIES] [t/MEAL_TYPE]`
+Format: `edit INDEX [n/FOOD_NAME] [c/CALORIES] [t/MEAL_TYPE]`
 
 * Edits a food item in the list displayed at the specified index.
 * The index refers to the index shown in the displayed food lists.
 * The index **must be a positive** integer.
 * At least one of the optional fields must be provided.
+* `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner.
+* `CALORIE` can only take in a non-negative integer that is less than 2147483648
+* `FOOD_NAME` should only contain alphanumeric characters and spaces, and should not be blank. Names should also not
+  exceed 27 characters.
 
 Example:
 
@@ -156,7 +167,7 @@ Example:
 
 **:information_source: Note:**<br>
 
-`MEAL_TYPE` is case-insensitive.
+`MEAL_TYPE` is **not** case-sensitive.
 
 * E.g. `edit 2 t/dinner` is the same as `edit 2 t/dInNeR`.
 
@@ -190,11 +201,12 @@ Example:
 
 Finds the calorie content of a food item.
 
-Format: `find FOOD`
+Format: `find FOOD_NAME`
 
 * Only the calorie contents of some food items are included. Refer to the list of food items in the [FAQ](#faq).
 * If the user has entered a specific food item before, the `find` command will return the average calories of 
 that specific food item that the user has specified.
+* This applies to food items that have been entered on previous days, and not just on the current day. 
 
 Example:
 
@@ -204,7 +216,7 @@ Example:
 
 :information_source: **Note:**<br>
 
-`FOOD` is case-insensitive.
+`FOOD_NAME` is **not** case-sensitive.
 
 * E.g. `find rice` is the same as `find rIcE`.
 
@@ -336,10 +348,10 @@ _More food items coming soon in a future release..._
 | Action      | Format                                                  | Example                          |
 |-------------|---------------------------------------------------------|----------------------------------|
 | **Help**    | `help`                                                  | `help`                           |
-| **Add**     | `add n/FOOD c/CALORIE t/MEAL_TYPE`                      | `add n/donut c/1000 t/breakfast` |
+| **Add**     | `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`                 | `add n/donut c/1000 t/breakfast` |
 | **Delete**  | `delete INDEX`                                          | `delete 1`                       |
-| **Edit**    | `edit INDEX [n/FOOD] [c/CALORIES] [t/MEAL_TYPE]`        | `edit 2 n/rice c/300 t/dinner`   |
-| **Find**    | `find FOOD`                                             | `find chicken rice`              |
+| **Edit**    | `edit INDEX [n/FOOD_NAME] [c/CALORIES] [t/MEAL_TYPE]`   | `edit 2 n/rice c/300 t/dinner`   |
+| **Find**    | `find FOOD_NAME`                                        | `find chicken rice`              |
 | **Target**  | `target`                                                | `target 2000`                    |
 | **Review**  | `review`                                                | `review`                         |
 | **List**    | `list [DATE]`                                           | `list`                           |
