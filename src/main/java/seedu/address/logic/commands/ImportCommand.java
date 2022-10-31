@@ -58,7 +58,7 @@ public class ImportCommand extends Command {
                     try {
                         model.addPerson(x.toModelType());
                     } catch (IllegalValueException e) {
-                        throw new RuntimeException(e);
+                        throw new RuntimeException(e.getMessage());
                     }
                 });
             }
