@@ -321,7 +321,7 @@ Tips:
 * `filter -c high-end` followed by `delete 1` deletes the first client in the results of the
   `filter -c` command
 
-### Selecting a client profile: `select -pc INDEX`
+### Selecting a client profile: `select -c INDEX`
 
 Selects the specified client in the address book, for its details to be displayed.
 
