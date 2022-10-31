@@ -12,7 +12,7 @@ import java.util.Objects;
 
 
 /**
- * Represents a start and end datetime in the ModQuik.
+ * Represents a start and end datetime in ModQuik.
  * Guarantees: immutable
  */
 public class DatetimeRange {

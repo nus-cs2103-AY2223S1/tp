@@ -14,13 +14,13 @@ import seedu.address.model.Model;
 import seedu.address.model.reminder.Reminder;
 
 /**
- * Adds a reminder to the ModQuik.
+ * Adds a reminder to ModQuik.
  */
 public class AddReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "add reminder";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to the ModQuik.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to ModQuik.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DATE_DAY + "DATE "
@@ -34,7 +34,7 @@ public class AddReminderCommand extends Command {
             + PREFIX_PRIORITY + "HIGH";
 
     public static final String MESSAGE_SUCCESS = "New reminder added: %1$s";
-    public static final String MESSAGE_DUPLICATE_REMINDER = "This reminder already exists in the ModQuik";
+    public static final String MESSAGE_DUPLICATE_REMINDER = "This reminder already exists in ModQuik";
 
     private final Reminder toAdd;
 

@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelType;
 
 /**
- * Switches between model list in the ModQuik.
+ * Switches between model list in ModQuik.
  */
 public class SwitchCommand extends Command {
 

@@ -15,12 +15,12 @@ import seedu.address.model.ModelType;
 import seedu.address.model.consultation.Consultation;
 
 /**
- * Adds a consultation to the ModQuik.
+ * Adds a consultation to ModQuik.
  */
 public class AddConsultationCommand extends Command {
     public static final String COMMAND_WORD = "add consultation";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a consultation to the ModQuik.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a consultation to ModQuik.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_MODULE + "MODULE "
@@ -37,9 +37,9 @@ public class AddConsultationCommand extends Command {
             + PREFIX_DESCRIPTION + "Review past year paper";
 
     public static final String MESSAGE_SUCCESS = "New consultation added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CONSULTATION = "This consultation already exists in the ModQuik";
+    public static final String MESSAGE_DUPLICATE_CONSULTATION = "This consultation already exists in ModQuik";
     public static final String MESSAGE_CLASH_CONSULTATION =
-            "There exists a consultation having same venue and timeslot in the ModQuik";
+            "There exists a consultation having same venue and timeslot in ModQuik";
 
     private final Consultation toAdd;
 

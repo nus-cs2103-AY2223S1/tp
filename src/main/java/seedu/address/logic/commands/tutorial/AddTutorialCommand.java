@@ -15,13 +15,13 @@ import seedu.address.model.ModelType;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
- * Adds a tutorial to the ModQuik.
+ * Adds a tutorial to ModQuik.
  */
 public class AddTutorialCommand extends Command {
 
     public static final String COMMAND_WORD = "add tutorial";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to the ModQuik.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to ModQuik.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_MODULE + "MODULE "
@@ -36,9 +36,9 @@ public class AddTutorialCommand extends Command {
             + PREFIX_DATE_DAY + "2 ";
 
     public static final String MESSAGE_SUCCESS = "New tutorial added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in the ModQuik";
+    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in ModQuik";
     public static final String MESSAGE_CLASH_TUTORIAL =
-            "There exists a tutorial having same venue and timeslot in the ModQuik";
+            "There exists a tutorial having same venue and timeslot in ModQuik";
 
     private final Tutorial toAdd;
 

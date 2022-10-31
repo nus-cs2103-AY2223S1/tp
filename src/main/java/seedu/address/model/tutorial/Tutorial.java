@@ -9,7 +9,7 @@ import seedu.address.model.commons.Venue;
 import seedu.address.model.datetime.WeeklyTimeslot;
 
 /**
- * Represents a Tutorial in the ModQuik.
+ * Represents a Tutorial in ModQuik.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Tutorial {
