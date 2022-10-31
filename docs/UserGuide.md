@@ -386,6 +386,11 @@ View the summarized details of a department given the name of the department.
 
 Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department with their corresponding performance ratings and availability.
 
+<p align="center">
+  <img src="images/ui-screenshots/view_department.png"></img>
+  <br><em>Result of view-department on General Management</em>
+</p>
+
 Format: `view-department DEPARTMENT`
 
 Example:
