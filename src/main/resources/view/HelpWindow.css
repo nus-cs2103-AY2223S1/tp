@@ -3,11 +3,11 @@
 }
 
 .background {
-    -fx-background-color: "#FFFFFF";
-    background-color: #FFFFFF; /* Used in the default.html file */
+    -fx-background-color: white;
+    background-color: white; /* Used in the default.html file */
 }
 
-.pane-without-border {
+.pane-border {
      -fx-background-color: #ffffff;
      -fx-border-color: derive(#eeeeee, 50%);
      -fx-border-width: 0px;
@@ -19,20 +19,20 @@
     -fx-border-width: 1;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
-    -fx-background-color: #48C9B0;
-    -fx-font-family: "Segoe UI";
+    -fx-background-color: #40E0D0;
+    -fx-font-family: "Segoe UI Bold";
     -fx-font-size: 11pt;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: white;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
 #copyButton:hover {
-    -fx-background-color: #75d6c4;
+    -fx-background-color: #20c0b0;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 7, 0, 1, 1);
 }
 
 #copyButton:pressed, #sendButton:default:hover:pressed {
-    -fx-background-color: #3ac4a9;
+    -fx-background-color: #40E0D0;
     -fx-text-fill: #ffffff;
-    -fx-effect: innershadow(gaussian, #666666, 7, 0, 0, 0)
+    -fx-effect: innershadow(gaussian, grey, 7, 0, 0, 0)
 }

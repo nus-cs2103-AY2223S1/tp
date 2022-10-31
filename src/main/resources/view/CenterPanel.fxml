@@ -9,13 +9,13 @@
 
 <HBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
 
-      <VBox fx:id="contacts" styleClass="pane-without-border" HBox.hgrow="ALWAYS">
+      <VBox fx:id="contacts" styleClass="pane-no-border" HBox.hgrow="ALWAYS">
           <Label styleClass="label-header" text="Contacts" textAlignment="CENTER"/>
           <StackPane fx:id="personListPanelPlaceholder"
                      prefWidth="420" minWidth="100.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
       </VBox>
 
-      <VBox fx:id="reminders" styleClass="pane-without-border" HBox.hgrow="ALWAYS">
+      <VBox fx:id="reminders" styleClass="pane-no-border" HBox.hgrow="ALWAYS">
           <Label styleClass="label-header" text="Reminders"/>
           <StackPane fx:id="reminderListPanelPlaceholder"
                      minWidth="100.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
