@@ -231,7 +231,7 @@ Format: `find nm/STUDENT-NAME` or `find id/ID`
 
 Examples:
 * `find nm/John` returns the records for any student named `john` or any student with `john` in their name. 
-* `find nm/john alice` returns the records for the students whose names contain either `john` or `Alice` or both.
+* `find nm/john alice` returns the records for the students whose names contain either `john` or `alice` or both.
 * `find id/123A` returns the student record for the student with `123A` as their student Id.
 
 #### 4.3.2 Toggling view : `toggleView`
