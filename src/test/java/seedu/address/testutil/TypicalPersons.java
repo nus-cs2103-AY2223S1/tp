@@ -73,6 +73,7 @@ public class TypicalPersons {
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    public static final String ALICE_WITH_SPACES = "alice     Pauline";
 
     private TypicalPersons() {} // prevents instantiation
 
