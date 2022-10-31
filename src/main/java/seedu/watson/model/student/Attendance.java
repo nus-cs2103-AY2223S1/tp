@@ -144,6 +144,16 @@ public class Attendance {
         return sb.toString();
     }
 
+    /**
+     * Checks if a student has above 80% attendance.
+     *
+     * @return A boolean value.
+     */
+    public boolean hasGoodAttendance() {
+        int[] attendance = getAttendanceDetails();
+        return (attendance[0] / attendance[1] >= 0.8);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
