@@ -111,8 +111,6 @@ slot, and doctor.
 
 * Slot must be in the format `yyyy-MM-dd HH:mm`, eg. `2022-11-12 13:00`.
 
-* If slot is entered with time `24:00`, it will be saved as the `00:00` of the next date.
-
 * The input of four parameters must be different with the combination in other appointments.
 
 #### Command word
