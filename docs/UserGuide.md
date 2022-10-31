@@ -189,9 +189,10 @@ You can tell PayMeLah to add Service Charge and GST to the amount of money speci
 You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
 </div>
 
-* If you do not specify date and time, they will conveniently default to the current date and time.
-* If you specify the date but not the time, the time will default to midnight. Be careful that this default behaviour is different from the previous.
-* One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of these items being the same.
+* If you specify **neither date nor time**, the date and time will conveniently default to the current date and time.
+* If you specify **only the time but not the date**, the date will conveniently default to the current date.
+* If you specify **only the date but not the time**, the time will default to midnight.
+* One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of description, money, date and time being the same.
 
 Example:
 * `adddebt 3 d/McDonalds m/8.9` will add a debt with the current date and time to the 3rd person in the person list. This debt is worth `$8.90` and has the description`McDonalds`
