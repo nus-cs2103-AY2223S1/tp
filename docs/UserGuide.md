@@ -42,14 +42,14 @@ This section introduces the different components of the display and their functi
 
 ![Application Window](images/ClassifyApplicationWindow.png)
 
-| No. | Component             | Description                                                                                                                     |
-|-----|-----------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| 1   | Menu bar              | Provides convenient access to frequently used commands.                                                                         |
-| 2   | Student List Panel    | Displays the list of students. You can [manage this display](#42-managing-display-of-student-records) to suit your needs.       |
-| 3   | Student Card          | Displays the information of a student. The information includes the student's Name, Id, Class, Grades, and Parent Details.      | 
-| 4   | Result Box            | Displays the system message after the execution of a command. The system message describes the outcome of the executed command. |
-| 5   | Command Box           | Type in your commands here.                                                                                                     |
-| 6   | Storage File Location | Displays the location of the data file on your computer.                                                                        |
+| No. | Component             | Description                                                                                                                    |
+|-----|-----------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Menu bar              | Provides convenient access to frequently used commands.                                                                        |
+| 2   | Student List Panel    | Displays the list of students. You can [manage this display](#42-managing-display-of-student-records) to suit your needs.      |
+| 3   | Student Card          | Displays the information of a student. The information includes the student's Name, Id, Class, Grades, and Parent Details.     | 
+| 4   | Result Box            | Displays the system message after the execution of a command. The system message describes the outcome of the entered command. |
+| 5   | Command Box           | Type in your commands here.                                                                                                    |
+| 6   | Storage File Location | Displays the location of the data file on your computer.                                                                       |
 
 --------------------------------------------------------------------------------------------------------------------
 
