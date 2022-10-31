@@ -84,6 +84,11 @@ This user guide will help you get started and understand how FABook can **seamle
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`,`clear`, `redo` and `undo`) will be ignored.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  <br>
+
+* Names are case-sensitive. e.g. John Doe and john doe are treated as the different names.
+  <br>
+
  </div>
 
 ### General
@@ -113,10 +118,13 @@ You can replace `list` with `l` for convenience.
 
 Creates a client contact with their information in your FABook. Any contact information you don't have on hand can be updated later.
 
-* If you have multiple meeting times with your client, simply repeat the field `mt/TIME`. 
+* If you have multiple meeting times with your client, simply repeat the field `mt/TIME`.
+* The `[nw/NETWORTH]` field only accepts inputs that starts with the dollar sign, are numeric,and have more than 4 digits. We want to standardise the currency and the minimum amount net worth of a client.
+eg. `nw/$1234`.
+* The `[mt/TIME...]` field accepts inputs in the `DD-MM-YYYY-HH:MM` format. Note that `YYYY` ranges from `2000` to `2099`.
 
 
-Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
+Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
 
 ### Common Data Field Formats
 
@@ -139,14 +147,19 @@ Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/
 :bulb: **Note:**
 It is recommended to only have 1`TAG` per client.
                   
+
+* If you have multiple meeting times with your client, simply repeat the field `mt/TIME`.
+* Does not allow you to create a person with the same name and phone number as a current person in the FABook.
+* Allows you to create a person with same name but different phone number or same number and different name as a current person in the FABook.
+
 Examples:
 * `create n/John Doe p/98765432 a/John street, block 123, #01-01`
 * `create n/Betsy Crowe a/Bugis MRT p/1234567 mt/10-11-2022-18:00 mt/01-02-2022-16:00`
-* `create n/Benedict Lee p/91281329 e/benedict@gmail.com a/Redhill Ave 3 d/Risk averse nw/$20000 mt/10-11-2022-16:00 t/SECURED`
+* `create n/Benedict Lee p/91281329 e/benedict@gmail.com a/Redhill Ave 3 ds/Risk averse nw/$20000 mt/10-11-2022-16:00 t/SECURED`
 
 :white_check_mark: **Input Shortcut:**
 You can replace `create` with `c` for convenience.<br>
-Format: `c n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
+Format: `c n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
 
 #### Assigning PDF file to a client : `filepath`
 
@@ -285,12 +298,20 @@ Updates the information of a client stored in your FABook.
 * You can also update the description of a client through the [`description` command](#updating-clients-description-description).
 * You must update the meeting time of a client through the [`meeting` command](#add-meetings-meeting), [`deletemeeting` command](#delete-meetings-deletemeeting) and [`sync` commands](#remove-past-meetings-sync).
 
-Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
+Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
                         
 ![update](images/UserGuide/update.png)  
 
 :bulb: **Note:**
 Only parameters you provide will be changed.
+
+* Edits the person with the provided index.
+* `INDEX` is the index of the person in the currently displayed list.<br>
+* You must provide **at least one** of the optional fields .
+* You can also update the description of a contact through the [`description` command](#giving-a-description-to-a-person-description).
+* You must update the meeting time of a contact through the [`meeting` command](#add-meetings-meeting), [`deletemeeting` command](#delete-meetings-deletemeeting) and [`sync` commands](#remove-past-meetings-sync).
+* Does not allow you to update a person to have the same name and phone number as a current person in the FABook.
+* Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
 
 Example:
 * `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed client's 
@@ -298,7 +319,7 @@ Example:
 
 :white_check_mark: **Input Shortcut:**
 You can replace `update` with `u` for convenience.<br>
-Format: `u INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
+Format: `u INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
 
 #### Updating your client's description : `description`
 
@@ -307,17 +328,17 @@ Updates your client's description data field.
 * `INDEX` is the index of the client in the currently displayed list.
 * Updating description of your client can also be done through the 'update' command. See [Update command](#updating-clients-description-description)
 
-Format: `description INDEX d/DESCRIPTION`
+Format: `description INDEX ds/DESCRIPTION`
 
 ![description](images/UserGuide/description.png)     
 
 :white_check_mark: **Input Shortcut:**
 You can replace `description` with `desc` for convenience.
-Format: `desc INDEX d/DESCRIPTION`
+Format: `desc INDEX ds/DESCRIPTION`
 
 #### Updating meetings : `meeting`
    
-Adds one or more meeting times to your client in your FABook.
+Updates one or more meeting times to your client in your FABook.
 
 * `INDEX` is the index of the client in the currently displayed list.
 * `MEETINGTIME` should be in the format `DD-MM-YYYY-HH:MM`.
@@ -372,6 +393,7 @@ Format: `sync`
    
 :heavy_exclamation_mark: **Caution:**
 As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
+Please note that undo cannot undo this command!
 
 #### Clearing all entries : `clear`
 
@@ -394,8 +416,8 @@ You can replace `clear` with `cl` for convenience.
 Undos your last command.
 
 * The command intended to be undone should be an undoable command.
-* Undoable commands are: 'clear', 'create', 'delete', 'description', 'meeting', 'deletemeeting', 'redo' and 'update'
-* Non-undoable commands are: 'exit', 'find */', 'help', 'list', 'file' and 'filepath'
+* Undoable commands are: `clear`, `create`, `delete`, `description`, `meeting`, `deletemeeting`, `redo` and `update`
+* Non-undoable commands are: `exit`, `find `, `help`, `list`, `file`, `sync` and `filepath`
 
 Format: `undo`
 
@@ -439,6 +461,16 @@ If your changes to the data file makes its format invalid, FABook will discard a
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FABook home folder.
 
+**Q**: Why can I not undo the `sync` command?<br>
+**A**: Meetings that have passed should not need to be undone and be shown again. 
+
+**Q**: Person profile does not show when I click person card once.<br>
+**A**: You need to click the person card twice for the person profile to load. 
+
+**Q**: Why does the person profile GUI not refresh after an edit or clear command?<br>
+**A**: In order to refresh the person profile, you will have the re-click on the person card again.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -447,15 +479,15 @@ If your changes to the data file makes its format invalid, FABook will discard a
 |--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
 | **Help**                 | `help`                                                                                                                                                            | f1       |
 | **List**                 | `list`                                                                                                                                                            | l        |
-| **Create**               | `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567` | c        |
+| **Create**               | `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567` | c        |
 | **Add a File**           | `filepath INDEX f/FILEPATH`<br/> e.g. `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                                                   |          |
 | **Add Meeting**          | `meeting INDEX mt/TIME` <br/> e.g. `meeting 5 mt/19-11-2022-19:00`                                                                                                |          |
 | **Find**                 | `find n/NAME…` or `find p/NUMBER` or `find a/ADDRESS` <br> e.g., `find n/James Jake` or `find p/09122222` or `find a/Jurong`                                      | f        |
 | **Find**                 | `find t/TAG` <br> e.g., `find t/POTENTIAL`                                                                                                                        | f        |
 | **Open File**            | `file INDEX`<br/> e.g. `file 2`                                                                                                                                   |          |
 | **Get Upcoming Meetings**|                                                                                                                                                                   | f2       |
-| **Update**               | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`update 2 p/91234567 a/21 Lower Kent Ridge Rd`      | u        |
-| **Description**          | `description INDEX d/DESCRIPTION` <br> e.g., `description 3 d/Accident prone`                                                                                     | desc     |
+| **Update**               | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`update 2 p/91234567 a/21 Lower Kent Ridge Rd`      | u        |
+| **Description**          | `description INDEX ds/DESCRIPTION` <br> e.g., `description 3 ds/Accident prone`                                                                                     | desc     |
 | **Delete**               | `delete INDEX`<br> e.g., `delete 3`                                                                                                                               | d        |
 | **Delete Meeting**       | `deletemeeting INDEX mt/TIME` <br/> e.g. `deletemeeting 4 mt/15-12-2022-13:00`                                                                                    |          |
 | **Remove past meetings** | `sync`                                                                                                                                                            |          |
