@@ -49,6 +49,18 @@ public class SlotTest {
     }
 
     @Test
+    public void constructor_invalidSlot6_throwsIllegalArgumentException() {
+        String invalidSlot = "2022-02-29 10:00";
+        assertThrows(IllegalArgumentException.class, () -> new Slot(invalidSlot));
+    }
+
+    @Test
+    public void constructor_invalidSlot7_throwsIllegalArgumentException() {
+        String invalidSlot = "2022-02-28 24:00";
+        assertThrows(IllegalArgumentException.class, () -> new Slot(invalidSlot));
+    }
+
+    @Test
     public void equals() {
         Slot slot1 = new Slot("2022-11-13 00:00");
         Slot slot2 = new Slot("2022-11-13 00:00");
