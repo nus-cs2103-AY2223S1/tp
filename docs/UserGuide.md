@@ -318,7 +318,7 @@ out of it.
 - `cg ..`
 
 <aside>
-💡 If you are familiar with UNIX-based operating systems such as Linux, the navigation command (`cg`) in Contactmation 
+💡 If you are familiar with UNIX-based operating systems such as Linux, the navigation command (`cg`) in Contactmation
 follows a similar syntax to the change directory command (`cd`)
 
 </aside>
