@@ -8,7 +8,7 @@ bobaBot is a **desktop application** for managing customers’ membership detail
 
 ## Table of Contents
 
-1. [Quick start](#quick-start) <br>
+1. [Quick start](#1-quick-start) <br>
 1. <details><summary><a href="#4-features">Features</a></summary>
       2.1. <a href="#21-viewing-help--help">Help</a><br>
       2.2. <a href="#22-adding-a-customer-add">Add</a><br>
@@ -25,8 +25,8 @@ bobaBot is a **desktop application** for managing customers’ membership detail
       2.13. <a href="#213-gui-calculator-calc-gui">Calculator</a><br>
       2.14. <a href="#214-exiting-the-program--exit">Exit</a><br>
    </details>
-1. [FAQ](#faq) <br>
-1. [Command summary](#command-summary) <br>
+1. [FAQ](#3-faq) <br>
+1. [Command summary](#4-command-summary) <br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -116,10 +116,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
     
-    Before executing the AddCommand:<br>
+    Before executing the AddCommand:
+    <br>
     <img src="images/screenshots/AddCommand/AddCommand1.png"><br>
 
-    After executing the AddCommand:<br>
+    After executing the AddCommand:
+    <br>
     <img src="images/screenshots/AddCommand/AddCommand1Result.png"><br>
     </details>
 
@@ -130,10 +132,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the AddCommand:<br>
+    Before executing the AddCommand:
+    <br>
     <img src="images/screenshots/AddCommand/AddCommand.png"><br>
 
-    After executing the AddCommand:<br>
+    After executing the AddCommand:
+    <br>
     <img src="images/screenshots/AddCommand/AddCommandResult.png"><br>
     </details>
 
@@ -155,10 +159,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the EditCommand via `PHONE_NUMBER`:<br>
+    Before executing the EditCommand via `PHONE_NUMBER`:
+    <br>
     <img src="images/screenshots/EditCommand/EditCommand_Phone.png"><br>
 
-    After executing the EditCommand via `PHONE_NUMBER`:<br>
+    After executing the EditCommand via `PHONE_NUMBER`:
+    <br>
     <img src="images/screenshots/EditCommand/EditCommand_PhoneResult.png"><br>
     </details>
 
@@ -169,10 +175,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the EditCommand via `EMAIL`:<br>
+    Before executing the EditCommand via `EMAIL`:
+    <br>
     <img src="images/screenshots/EditCommand/EditCommand_Email.png"><br>
 
-    After executing the EditCommand via `EMAIL`:<br>
+    After executing the EditCommand via `EMAIL`:
+    <br>
     <img src="images/screenshots/EditCommand/EditCommand_EmailResult.png"><br>
     </details>
 
@@ -189,10 +197,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the IncreaseCommand via `PHONE_NUMBER`:<br>
+    Before executing the IncreaseCommand via `PHONE_NUMBER`:
+    <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhone.png"><br>
 
-    After executing the IncreaseCommand via `PHONE_NUMBER`:<br>
+    After executing the IncreaseCommand via `PHONE_NUMBER`:
+    <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhoneResult.png"><br>
     </details>
 
@@ -203,10 +213,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the IncreaseCommand via `EMAIL`:<br>
+    Before executing the IncreaseCommand via `EMAIL`:
+    <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmail.png"><br>
 
-    After executing the IncreaseCommand via `EMAIL`:<br>
+    After executing the IncreaseCommand via `EMAIL`:
+    <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmailResult.png"><br>
     </details>
 
@@ -223,10 +235,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the IncreaseCommand via `PHONE_NUMBER`:<br>
+    Before executing the IncreaseCommand via `PHONE_NUMBER`:
+    <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhone.png"><br>
 
-    After executing the IncreaseCommand via `PHONE_NUMBER`:<br>
+    After executing the IncreaseCommand via `PHONE_NUMBER`:
+    <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhoneResult.png"><br>
     </details>
 
@@ -237,10 +251,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the IncreaseCommand via `EMAIL`:<br>
+    Before executing the IncreaseCommand via `EMAIL`:
+    <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmail.png"><br>
 
-    After executing the IncreaseCommand via `EMAIL`:<br>
+    After executing the IncreaseCommand via `EMAIL`:
+    <br>
     <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmailResult.png"><br>
     </details>
 
@@ -255,10 +271,12 @@ Format: `list`
 <b>Walk-through with Images</b>
 </summary>
 
-Before executing the ListCommand:<br>
+Before executing the ListCommand:
+<br>
 <img src="images/screenshots/ListCommand/ListCommand.png"><br>
 
-After executing the ListCommand:<br>
+After executing the ListCommand:
+<br>
 <img src="images/screenshots/ListCommand/ListCommandResult.png"><br>
 </details>
 
@@ -285,10 +303,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the FindCommand:<br>
+    Before executing the FindCommand:
+    <br>
     <img src="images/screenshots/FindCommand/FindCommandNormal.png"><br>
 
-    After executing the FindCommand:<br>
+    After executing the FindCommand:
+    <br>
     <img src="images/screenshots/FindCommand/FindCommandNormalResult.png"><br>
     </details>
 
@@ -299,10 +319,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the FindCommand (with at least one keyword):<br>
+    Before executing the FindCommand (with at least one keyword):
+    <br>
     <img src="images/screenshots/FindCommand/FindCommandMultiple.png"><br>
 
-    After executing the FindCommand (with at least one keyword):<br>
+    After executing the FindCommand (with at least one keyword):
+    <br>
     <img src="images/screenshots/FindCommand/FindCommandMultipleResult.png"><br>
     </details>
 
@@ -313,10 +335,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the FindCommand (with FuzzySearch):<br>
+    Before executing the FindCommand (with FuzzySearch):
+    <br>
     <img src="images/screenshots/FindCommand/FindCommand_Fuzzy.png"><br>
 
-    After executing the FindCommand (with FuzzySearch):<br>
+    After executing the FindCommand (with FuzzySearch):
+    <br>
     <img src="images/screenshots/FindCommand/FindCommand_FuzzyResult.png"><br>
     </details>
 
@@ -327,10 +351,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the FindCommand (with matching keywords `8000`):<br>
+    Before executing the FindCommand (with matching keywords `8000`):
+    <br>
     <img src="images/screenshots/FindCommand/FindCommand_General.png"><br>
 
-    After executing the FindCommand (with matching keywords `8000`):<br>
+    After executing the FindCommand (with matching keywords `8000`):
+    <br>
     <ul>
       <li>Both `Roy` and `Bob` have `8000` reward points hence they show up in the search.</li>
     </ul><br>
@@ -344,10 +370,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the FindCommand via `PHONE_NUMBER`:<br>
+    Before executing the FindCommand via `PHONE_NUMBER`:
+    <br>
     <img src="images/screenshots/FindCommand/FindCommand_Phone.png"><br>
 
-    After executing the FindCommand via `PHONE_NUMBER`:<br>
+    After executing the FindCommand via `PHONE_NUMBER`:
+    <br>
     <img src="images/screenshots/FindCommand/FindCommand_PhoneResult.png"><br>
     </details>
 
@@ -358,10 +386,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
 
-    Before executing the FindCommand via `EMAIL`:<br>
+    Before executing the FindCommand via `EMAIL`:
+    <br>
     <img src="images/screenshots/FindCommand/FindCommand_Email.png"><br>
 
-    After executing the FindCommand via `EMAIL`:<br>
+    After executing the FindCommand via `EMAIL`:
+    <br>
     <img src="images/screenshots/FindCommand/FindCommand_EmailResult.png"><br>
     </details>
 
@@ -385,10 +415,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
   
-    Before executing the DeleteCommand via `PHONE_NUMBER`:<br>
+    Before executing the DeleteCommand via `PHONE_NUMBER`:
+    <br>
     <img src="images/screenshots/DeleteCommand/DeleteCommand_Phone.png"><br>
 
-    After executing the DeleteCommand via `PHONE_NUMBER`:<br>
+    After executing the DeleteCommand via `PHONE_NUMBER`:
+    <br>
     <img src="images/screenshots/DeleteCommand/DeleteCommand_PhoneResult.png"><br>
     </details>
 
@@ -399,10 +431,12 @@ Examples:
     <b>Walk-through with Images</b>
     </summary>
     
-    Before executing the DeleteCommand via `EMAIL`:<br>
+    Before executing the DeleteCommand via `EMAIL`:
+    <br>
     <img src="images/screenshots/DeleteCommand/DeleteCommand_Email.png"><br>
 
-    After executing the DeleteCommand via `EMAIL`:<br>
+    After executing the DeleteCommand via `EMAIL`:
+    <br>
     <img src="images/screenshots/DeleteCommand/DeleteCommand_EmailResult.png"><br>
     </details>
 
@@ -417,10 +451,12 @@ Format: `undo`
 <b>Walk-through with Images</b>
 </summary>
     
-Before executing the UndoCommand (after a DeleteCommand):<br>
+Before executing the UndoCommand (after a DeleteCommand):
+<br>
 <img src="images/screenshots/UndoAndRedoCommand/UndoCommand.png"><br>
 
-After executing the UndoCommand (Deleted Customer `Alex Yeoh` is back into bobaBot):<br>
+After executing the UndoCommand (Deleted Customer `Alex Yeoh` is back into bobaBot):
+<br>
 <img src="images/screenshots/UndoAndRedoCommand/UndoCommandResult.png"><br>
 </details>
 
@@ -437,13 +473,15 @@ Format: `redo`
 <b>Walk-through with Images</b>
 </summary>
 
-Before executing the RedoCommand:<br>
+Before executing the RedoCommand:
+<br>
 <ul>
   <li>This continues from the above example in UndoCommand (where we perform an UndoCommand on a DeleteCommand)</li>
 </ul>
 <img src="images/screenshots/UndoAndRedoCommand/RedoCommand.png"><br>
 
-After executing the RedoCommand (The Customer `Alex Yeoh` is removed from bobaBot again):<br>
+After executing the RedoCommand (The Customer `Alex Yeoh` is removed from bobaBot again):
+<br>
 <img src="images/screenshots/UndoAndRedoCommand/RedoCommandResult.png"><br>
 </details>
 
@@ -460,10 +498,12 @@ Format: `clear`
 <b>Walk-through with Images</b>
 </summary>
 
-Before executing the ClearCommand:<br>
+Before executing the ClearCommand:
+<br>
 <img src="images/screenshots/ClearCommand/ClearCommand.png"><br>
 
-After executing the ClearCommand:<br>
+After executing the ClearCommand:
+<br>
 <img src="images/screenshots/ClearCommand/ClearCommandResult.png"><br>
 </details>
 
@@ -480,10 +520,12 @@ Example: `calc 5+2*(4-2)`
 <b>Walk-through with Images</b>
 </summary>
 
-Before executing the CalculateCommand:<br>
+Before executing the CalculateCommand:
+<br>
 <img src="images/screenshots/CalculateCommand/NewCalculateCommand.png"><br>
 
-After executing the CalculateCommand:<br>
+After executing the CalculateCommand:
+<br>
 <img src="images/screenshots/CalculateCommand/NewCalculateCommandResult.png"><br>
 </details>
 
@@ -500,10 +542,12 @@ Format: `calc-gui`
 <b>Walk-through with Images</b>
 </summary>
 
-Before executing the CalculatorGuiCommand:<br>
+Before executing the CalculatorGuiCommand:
+<br>
 <img src="images/screenshots/CalculateCommand/NewCalculatorGUI.png"><br>
 
-After executing the CalculatorGuiCommand:<br>
+After executing the CalculatorGuiCommand:
+<br>
 <img src="images/screenshots/CalculateCommand/NewCalculatorGUIResult.png"><br>
 </details>
 
@@ -518,10 +562,12 @@ Format: `exit`
 <b>Walk-through with Images</b>
 </summary>
 
-Before executing the ExitCommand:<br>
+Before executing the ExitCommand:
+<br>
 <img src="images/screenshots/ExitCommand/ExitCommand.png"><br>
 
-After executing the ExitCommand:<br>
+After executing the ExitCommand:
+<br>
 <ul>
   <li>bobaBot Application Closed</li>
 </ul>
@@ -548,7 +594,7 @@ _Details coming soon ..._
 ## 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous bobaBot home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
