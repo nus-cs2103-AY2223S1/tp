@@ -20,7 +20,7 @@ If you are a private tutor struggling to:
    1. keep track of your students and their individual lesson plans.
    2. keep track of your students grades, homework and attendance.
    3. keep track of your lesson timings.
-   4. keep track of your students' contact information.
+   4. keep track of your students' contact information.<br>
 Pupilist can get your scheduling done faster with single line CLI command inputs to manage all your tutoring needs.
 
 ## Table of Contents
