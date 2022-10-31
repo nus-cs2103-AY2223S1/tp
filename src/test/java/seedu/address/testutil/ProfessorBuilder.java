@@ -76,7 +76,6 @@ public class ProfessorBuilder extends PersonBuilder {
      */
     public ProfessorBuilder withOfficeHour(String officeHour) {
         this.officeHour = new OfficeHour(officeHour, true);
-        System.out.println(officeHour);
         return this;
     }
 }

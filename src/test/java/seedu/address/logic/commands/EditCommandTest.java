@@ -26,6 +26,7 @@ import seedu.address.model.person.Professor;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -33,7 +34,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 public class EditCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    /*
+
     @Test
     public void executeEditStudent_allFieldsSpecifiedUnfilteredList_success() {
         Student editedStudent = new StudentBuilder().build();
@@ -47,7 +48,7 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-     */
+
 
     //    @Test
     //    public void execute_someFieldsSpecifiedUnfilteredList_success() {

@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -123,6 +125,15 @@ public class EditPersonDescriptorBuilder {
         descriptor.setModuleCodes(moduleCodes);
         return this;
     }
+
+    public EditPersonDescriptorBuilder withModuleCodeSet(String... modules) {
+        List<ModuleCode> moduleCodeList = Stream.of(modules)
+                .map(ModuleCode::new).collect(Collectors.toList());
+        descriptor.setModuleCodes(new HashSet<>(moduleCodeList));
+        //last module code input is set as module code for prof and ta
+        descriptor.setModuleCode(moduleCodeList.get(moduleCodeList.size() - 1));
+        return this;
+    }
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
@@ -138,27 +149,47 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withUsername(String username) {
-        descriptor.setGithubUsername(new GithubUsername(username, true));
+        if (username == null) {
+            descriptor.setGithubUsername(new GithubUsername("", false));
+        } else {
+            descriptor.setGithubUsername(new GithubUsername(username, true));
+        }
         return this;
     }
 
     public EditPersonDescriptorBuilder withYear(String year) {
-        descriptor.setYear(new Year(year));
+        if (year == null) {
+            descriptor.setYear(new Year("", false));
+        } else {
+            descriptor.setYear(new Year(year));
+        }
         return this;
     }
 
     public EditPersonDescriptorBuilder withSpecialisation(String specialisation) {
-        descriptor.setSpecialisation(new Specialisation(specialisation));
+        if (specialisation == null) {
+            descriptor.setSpecialisation(new Specialisation("", false));
+        } else {
+            descriptor.setSpecialisation(new Specialisation(specialisation));
+        }
         return this;
     }
 
     public EditPersonDescriptorBuilder withOfficeHour(String officeHour) {
-        descriptor.setOfficeHour(new OfficeHour(officeHour, true));
+        if (officeHour == null) {
+            descriptor.setOfficeHour(new OfficeHour("", false));
+        } else {
+            descriptor.setOfficeHour(new OfficeHour(officeHour, true));
+        }
         return this;
     }
 
     public EditPersonDescriptorBuilder withRating(String rating) {
-        descriptor.setRating(new Rating(rating));
+        if (rating == null) {
+            descriptor.setRating(new Rating("", false));
+        } else {
+            descriptor.setRating(new Rating(rating));
+        }
         return this;
     }
 

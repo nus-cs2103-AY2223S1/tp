@@ -202,7 +202,7 @@ public class PersonUtil {
             commandDetails += PREFIX_YEAR + String.join(" ", predicate.getYearsList()) + " ";
         }
 
-        System.out.println(commandDetails);
+
         return commandDetails;
     }
 }
