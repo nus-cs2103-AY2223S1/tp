@@ -34,7 +34,7 @@ Given below are my contributions to the project.
 * Justification: It is crucial for students to be able to add interests without overwriting current interests.
 * Highlights: 
   * Implemented ```AddInterestCommand``` which handles adding a set of interests to a student.
-  * Implemented ```AddInterestParserCommand``` to parse ```addInt``` command arguments.
+  * Implemented ```AddInterestCommandParser``` to parse ```addInt``` command arguments.
   * Wrote tests for ```AddInterestCommandTest``` and ```AddInterestParserCommandTest```.
 
 #### Other Modifications: Modify Student Information
