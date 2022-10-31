@@ -63,7 +63,7 @@ public class EditSupplierCommand extends EditCommand {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(supplierToEdit.getAddress());
         List<UniqueId> pets = supplierToEdit.getPetIds();
 
-        return new Supplier(updatedPersonCategory, updatedName, updatedPhone, updatedEmail, updatedAddress, pets);
+        return new Supplier(updatedName, updatedPhone, updatedEmail, updatedAddress, pets);
     }
 
 }

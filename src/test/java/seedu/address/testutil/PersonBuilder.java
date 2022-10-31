@@ -25,6 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_LOCATION = "Singapore";
 
     private PersonCategory personCategory;
     private Name name;
@@ -43,6 +44,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        location = new Location(DEFAULT_LOCATION);
     }
 
     /**
@@ -54,6 +56,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        location = personToCopy.getLocation();
     }
 
     /**
@@ -114,7 +117,7 @@ public class PersonBuilder {
      */
     public Buyer buildBuyer() {
         personCategory = PersonCategory.BUYER;
-        return new Buyer(personCategory, name, phone, email, address, new ArrayList<>());
+        return new Buyer(name, phone, email, address, new ArrayList<>());
     }
 
     /**
@@ -123,7 +126,7 @@ public class PersonBuilder {
      */
     public Deliverer buildDeliverer() {
         personCategory = PersonCategory.DELIVERER;
-        return new Deliverer(personCategory, name, phone, email, address, new ArrayList<>());
+        return new Deliverer(name, phone, email, address, new ArrayList<>());
     }
 
     /**
@@ -132,6 +135,6 @@ public class PersonBuilder {
      */
     public Supplier buildSupplier() {
         personCategory = PersonCategory.SUPPLIER;
-        return new Supplier(personCategory, name, phone, email, address, new ArrayList<>());
+        return new Supplier(name, phone, email, address, new ArrayList<>());
     }
 }

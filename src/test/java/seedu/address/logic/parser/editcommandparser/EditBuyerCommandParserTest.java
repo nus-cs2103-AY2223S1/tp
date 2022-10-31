@@ -54,7 +54,7 @@ public class EditBuyerCommandParserTest {
         EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone("991").build();
         EditBuyerCommand expected = new EditBuyerCommand(INDEX_FIRST, descriptor);
 
-        String input = " 1 p/991";
+        String input = " 1 ph/991";
         EditBuyerCommand result = parser.parse(input);
         assertEquals(result, expected);
     }

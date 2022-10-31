@@ -17,20 +17,20 @@ public class Supplier extends Person {
     /**
      * Constructs a supplier object.
      *
-     * @param personCategory By default, it should be PersonCategory.Supplier
      * @param name The name of this person.
      * @param phone The phone number in string.
      * @param email The email, which will be checked against regex.
      * @param address The address of this person, which will be checked against the regex.
+     * @param location The location (country) of this person.
      * @param pets The pets supplied by this supplier.
      */
-    public Supplier(PersonCategory personCategory,
-                    Name name,
+    public Supplier(Name name,
                     Phone phone,
                     Email email,
                     Address address,
+                    Location location,
                     Collection<? extends UniqueId> pets) {
-        super(PersonCategory.SUPPLIER, name, phone, email, address);
+        super(PersonCategory.SUPPLIER, name, phone, email, address, location);
         if (pets != null) {
             this.pets.addAll(pets);
         }
