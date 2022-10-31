@@ -11,9 +11,10 @@ import coydir.model.Model;
 import coydir.model.person.Person;
 
 /**
- * view a person's particular identified using it's displayed index from the database.
+ * View a person's particulars identified using their displayed index from the database.
  */
 public class ViewCommand extends Command {
+
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -42,4 +43,12 @@ public class ViewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewCommand // instanceof handles nulls
+                && index.equals(((ViewCommand) other).index));
+    }
+
 }

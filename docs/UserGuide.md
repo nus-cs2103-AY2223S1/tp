@@ -32,10 +32,10 @@ Welcome to Coydir's User Guide!
     - [Listing all employees](#listing-all-employees--list)
     - [Finding an employee](#finding-an-employee--find)
   - [Managing Employee Leaves](#managing-employee-leaves)
-    - [Setting total leaves for an employee](#setting-total-leaves-for-an-employee)
-    - [Is this employee on leave today?](#is-this-employee-on-leave-today)
-    - [Adding a leave period for an employee](#adding-a-leave-period-for-an-employee--addleave)
-    - [Deleting a leave period for an employee](#deleting-a-leave-period-for-an-employee--deleteleave)
+    - [Controlling total leaves for an employee](#controlling-total-leave-for-an-employee)
+    - [Checking if an employee is on leave](#checking-if-an-employee-is-on-leave)
+    - [Adding a leave period for an employee](#adding-a-leave-period-for-an-employee-add-leave)
+    - [Deleting a leave period for an employee](#deleting-a-leave-period-for-an-employee-delete-leave)
   - [Managing Employee Performance](#managing-employee-performance)
     - [Rating the performance of an employee](#rating-the-performance-of-an-employee--rate)
     - [Employee Performance History](#employee-performance-history)
@@ -68,25 +68,34 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
+    1. If you have installed Java before, check that you have the right version,  which is Java `11`.
+        - If you are using Windows, open up command prompt and type `java -version` and enter. 
+        - If you are using Mac, open up terminal and type `java -version` and enter.   
+    2. If you do not have Java `11`:
+        - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/).
+        - If you are using Mac, you can install the Azul build of OpenJDK 11 version from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).   
+    <br />
+        
+2. Download the latest Coydir v1.3.0 jar file from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
 
-1. Download the latest `coydir.jar` from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
+3. Copy the file to the folder you want to use as the _home folder_ for your Coydir.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Coydir.
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+  <img src="./images/ui-screenshots/Ui.png"/>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    - **`list`** : Lists all employees in the company.
 
-   - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds an employee named `John Doe` to Coydir.
+   - **`add`** `n/John Doe p/98765432 e/johnd@example.com j/Recruiter d/Human Resources a/311, Clementi Ave 2, #02-25 l/20 t/friends t/owesMoney` : Adds an employee named `John Doe`, with fields phone number, email, job title, department, address, total leaves, and tags to Coydir.
 
-   - **`delete`**` 3` : Deletes employee with ID 3.
+   - **`delete`**`3` : Deletes employee with ID 3.
 
    - **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 ---
 
@@ -178,13 +187,13 @@ Deletes the specified employee from Coydir, given the employee ID.
 
 This command results in one of two cases below:
 
-**Case 1: Unique entry**
+**Case 1: Employee with ID exists**
 
-If Coydir has just 1 unique entry that matches the specified name, Coydir will delete it.
+If Coydir has an employee with the respective ID, Coydir will delete it.
 
-**Case 2: Multiple entries**
+**Case 2: Employee with ID does not exist**
 
-Otherwise, if Coydir has more than 1 entry that matches the specified name, Coydir will prompt users with a list of the matching entries, and await user confirmation for which entry to delete.
+Otherwise, if Coydir has no employee with ID that matches the specified name, Coydir will prompt users that the employee ID entered is invalid.
 
 Format: `delete ID`
 
@@ -264,42 +273,63 @@ However, with Coydir, we can help you to ensure your **company operations run sm
 
 Here is how we support you in leave management.
 
-#### Setting total leaves for an employee
+#### Controlling total leave for an employee
 
-**[Insert description of using `add` and `edit` to set `totalLeave`]**
+You can set the total leave available for an **incoming new** employee when adding them to the database. This can be done by including the optional leave field, `l/`, when using the `add` command. 
 
-<h4 id="is-this-employee-on-leave-today">Is this employee on leave today?</h4>
+Example: `add n/Yi Long Ma j/Chief Operating Officer d/General Management l/20` adds an employee, and specifies his **total leave** to be **20**.
 
-**[Insert description of how Coydir enables live tracking of `isOnLeave`]**
+You can also edit the total leave available for an **existing** employee by using the `edit` command, and editing the `l/` tag for an employee.
 
-#### Adding a leave period for an employee: `addleave`
+Example: `edit 1 l/10` edits the total leave of the **first** employee in the current list to be **10**.
 
-Adds a leave period to an employee given the employee ID and a start and end date.
+#### Checking if an employee is on leave
+
+There are two ways to check for the live availability of employees. 
+
+1. First is using the `view-department` command: `view-department general management` opens up a table to show all the employees of the general management department. The number of employees in the department that are available or on leave will be shown.
+
+2. The other way is using the `view` command, or simply just clicking on the profile card of a specific employee: `view 1`, or clicking on the first person card in the current list of employees, opens up the full information of the employee on the right hand side of the screen. You will be able to check if they are on leave by looking for the "On Leave" field. 
+
+#### Adding a leave period for an employee: `add-leave`
+
+This adds a leave period to an employee given the employee ID and a start and end date. The leave period will also be displayed in a table which can be seen when viewing the employee's particulars. 
 
 This command results in one of two cases below:
 
 **Case 1: Valid ID, date and sufficient leaves**
 
 If the employee exists, the leave date given is valid,
-and the employee has sufficient leaves, the leave period will be added and the total leaves remaining will be deducted accordingly.
+and the employee has sufficient leaves, the leave period will be added and shown in the table of leaves The total leaves remaining will be deducted accordingly. The employee's "On Leave" status will become "True" when the timeframe is within the leave period.
 
 **Case 2: Invalid ID, date or insufficient leaves**
 
 If any of employee ID, date is invalid, or the employee does not possess enough leaves, Coydir will prompt the users accordingly, and the command will not execute.
 
 <div markdown="span" class="alert alert-primary">:bulb:
-Leaves are ordered by reverse chronological order.
+Leaves are ordered by reverse chronological order in the table view.
 </div>
 
-Format: `addleave id/ID sd/START_DATE ed/END_DATE`
+Format: `add-leave id/ID sd/START_DATE ed/END_DATE`
+
+Field |TAG | Description | Requirement| Default Value
+--------------|---------------|---------------|------------------------ | --------
+`ID`|id/|Employee ID|**Compulsory**| N.A.
+`START_DATE` |sd/|Start date of leave, in dd-MM-YYYY format|**Compulsory**| N.A.
+`END_DATE` |ed/|End date of leave, in dd-MM-YYYY format|**Compulsory**| N.A.
 
 Example:
 
-- `addleave id/1 sd/01-01-2022 ed/02-01-2022` adds a leave period to an employee of ID 1 with a leave period from 01-01-2022 to 02-01-2022 of 2 days.
+- `add-leave id/1 sd/01-01-2022 ed/01-01-2022` adds a leave period to an employee of ID 1 with a leave period from 01-01-2022 to 01-01-2022 of 1 day.
 
-#### Deleting a leave period for an employee: `deleteleave`
+<p align="center">
+  <img src="./images/ui-screenshots/addLeaveCommandOutcome.png" />
+  <br><em>Result of adding leave successfully from example given</em>
+</p> 
 
-Removes a leave period for an employee given the employee ID and index of leave in the table.
+#### Deleting a leave period for an employee: `delete-leave`
+
+Added a wrong leave period or the employee wants to change their leave application? Fret not, `delete-leave` helps you to removes a leave period for an employee given the employee ID and index of leave in the table. The leave period deleted will then be removed from the leave table.
 
 This command results in one of two cases below:
 
@@ -311,11 +341,21 @@ If the employee exists, the index given is valid, the leave period at that index
 
 If the employee ID, or the index is invalid, Coydir will prompt the users accordingly, and the command will not execute.
 
-Format: `deleteleave id/ID i/INDEX`
+Format: `delete-leave id/ID i/INDEX`
+
+Field |TAG | Description | Requirement| Default Value
+--------------|---------------|---------------|------------------------ | --------
+`ID`|id/|Name|**Compulsory**| N.A.
+`INDEX` |i/|Index of leave in the leave table|**Compulsory**| N.A.
 
 Example:
 
-- `deleteleave id/1 i/3` deletes the third leave period for an employee of ID 1 in the list of leaves.
+- `delete-leave id/1 i/1` deletes the first leave period for an employee of ID 1 in the table of leaves.
+
+<p align="center">
+  <img src="./images/ui-screenshots/deleteLeaveCommandOutcome.png" />
+  <br><em>Result of deleting leave successfully from example given</em>
+</p> 
 
 ### Managing Employee Performance
 
@@ -465,9 +505,9 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 | **View Details**    | `view INDEX` <br> e.g. `view 1`                                                                                                                                                                                                                  |
 | **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                               |
 | **Find**            | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                                                                                             |
-| **Add leave**       | `addleave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `addleave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                                                                                  |
-| **Delete leave**    | `deleteleave id/ID i/INDEX`<br> e.g. `deleteleave id/1 i/3`                                                                                                                                                                                      |
-| **View Department** | `view-department DEPARTMENT`<br> e.g. `view-department Finance`                                                                                                                                                                                    |
+| **Add leave**       | `add-leave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `add-leave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                                                                                  |
+| **Delete leave**    | `delete-leave id/ID i/INDEX`<br> e.g. `delete-leave id/1 i/3`                                                                                                                                                                                      |
+| **View Department** | `viewdepartment DEPARTMENT`<br> e.g. `view-department Finance`                                                                                                                                                                                    |
 | **rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                                                                                                                   |
 | **List**            | `list`                                                                                                                                                                                                                                           |
 | **Exit**            | `exit`                                                                                                                                                                                                                                           |

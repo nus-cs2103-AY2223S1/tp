@@ -17,6 +17,7 @@ import coydir.model.person.Rating;
  * Rate an employee's current performance.
  */
 public class RateCommand extends Command {
+
     public static final String COMMAND_WORD = "rate";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Rate the current performance of an employee.\n"
@@ -47,14 +48,20 @@ public class RateCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        Person targetPerson = null;
         for (Person person : lastShownList) {
             if (person.getEmployeeId().equals(targetId)) {
-                person.setRating(rating);
-                person.addRating(rating);
-                return new CommandResult(String.format(MESSAGE_RATE_SUCCESS, person.getName()));
+                targetPerson = person;
+                break;
             }
         }
-        throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (targetPerson == null) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        targetPerson.setRating(rating);
+        targetPerson.addRating(rating);
+        return new CommandResult(String.format(MESSAGE_RATE_SUCCESS, targetPerson.getName()));
     }
 
     @Override
@@ -64,4 +71,5 @@ public class RateCommand extends Command {
                 && targetId.equals(((RateCommand) other).targetId)
                 && rating.equals(((RateCommand) other).rating)); // state check
     }
+
 }
