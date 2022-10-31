@@ -38,7 +38,17 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Features
+## 4. About this User Guide
+This guide aims to 
+* Teach first-time users how to start using ModQuik
+* Explain the features of each command and how to use them.
+* Provides a summary of the:
+  * available commands with their respective formats
+  * available prefixes and which commands use which prefixes
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 4. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -57,27 +67,27 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
   e.g. if the command specifies `n/NAME ph/PHONE`, `ph/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `ph/12341234 ph/56785678`, only `ph/56785678` will be taken.
+  e.g., if you specify `ph/12341234 ph/56785678`, only `ph/56785678` will be taken.
 
 * The following prefix parameters `D/` and `T/` have more than 1 definition, depending on the type of command inputted.</br>
     - `D/` stands for `DAY` in `tutorial` commands, and `DATE` in `consultation` and `reminder` commands.</br>
       Format of `DAY` is an integer from 1 (Monday) to 7 (Sunday).</br>
-      Format of `DATE` should be yyyy-MM-dd. e.g. 2022-02-24
+      Format of `DATE` should be yyyy-MM-dd. e.g., 2022-02-24
 - `T/` stands for `TIMESLOT` in `tutorial` and `consultation` commands, and `TIME` in `reminder` commands.</br>
       Format of `TIMESLOT` should be HH:mm-HH:mm. e.g. 08:00-09:00</br>
-      Format of `TIME` should be HH:mm. e.g. 13:00.
+      Format of `TIME` should be HH:mm. e.g., 13:00.
 
-* Extraneous parameters for commands that do not take in parameters (such as [`help`] and [`exit`]) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Inapplicable parameters for commands that do not take in parameters (such as [`help`] and [`exit`]) will be ignored.<br>
+  e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
 
 
 </div>
 
-### 3.1 Student Features
+### 4.1 Student Features
 
 <a name="add-student"></a>
-#### 3.1.1 Adding a student: `add student`
+#### 4.1.1 Adding a student: `add student`
 
 Adds a student to the specified module.
 
@@ -99,7 +109,7 @@ Examples:
 * `add student n/Betsy Crowe i/A0000000B t/struggling e/betsycrowe@example.com ph/91234567 tele/betsy_crowe m/CS2105 tut/G03 att/3 part/1 g/C t/quiet`
 
 <a name="list"></a>
-#### 3.1.2 Listing all students: `list`
+#### 4.1.2 Listing all students: `list`
 
 Shows a list of all students in ModQuik.
 
@@ -108,7 +118,7 @@ Shows a list of all students in ModQuik.
 Format: `list`
 
 <a name="edit-student"></a>
-#### 3.1.3 Editing a student: `edit student`
+#### 4.1.3 Editing a student: `edit student`
 
 Edits an existing student in a specified module.
 
@@ -130,7 +140,7 @@ Examples:
 * [`find`] `m/CS2103T` followed by `edit student 2 n/Betsy Crower` Edits the name of the 2nd student to be `Betsy Crower` in the results of the [`find`] command.
 
 <a name="find"></a>
-#### 3.1.4 Locating students by their attributes: `find`
+#### 4.1.4 Locating students by their attributes: `find`
 
 Finds students by names, student ID, module or tutorial, by checking if respective attribute contains any of the given keywords.
 
@@ -148,7 +158,7 @@ Examples:
 * `find m/CS2103T` returns list of students in CS2103T<br>
 
 <a name="delete-student"></a>
-#### 3.1.5 Deleting a student: `delete student`
+#### 4.1.5 Deleting a student: `delete student`
 
 Deletes the specified student from the list of students.
 
@@ -164,7 +174,7 @@ Examples:
 * [`find`] `m/CS2103T` followed by `delete student 2` deletes the 2nd student in the results of the [`find`] command.
 
 <a name="extract-emails"></a>
-#### 3.1.6 Extracting student's emails: `extract emails`
+#### 4.1.6 Extracting student's emails: `extract emails`
 
 Copies all emails in the displayed student list onto the clipboard.
 
@@ -178,10 +188,10 @@ Examples:
 * [`find`] `m/CS2103T` followed by `extract emails` copies all the emails of the students in the results of the [`find`] command.
 
 
-### 3.2 Tutorial Features
+### 4.2 Tutorial Features
 
 <a name="add-tutorial"></a>
-#### 3.2.1 Adding a tutorial: `add tutorial`
+#### 4.2.1 Adding a tutorial: `add tutorial`
 
 Adds a tutorial to the list of tutorials.
 
@@ -192,7 +202,7 @@ Examples:
 * `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
 
 <a name="edit-tutorial"></a>
-#### 3.2.2 Editing a tutorial: `edit tutorial`
+#### 4.2.2 Editing a tutorial: `edit tutorial`
 
 Edits an existing student in a specified module.
 
@@ -208,7 +218,7 @@ Examples:
 * `edit tutorial 2 T/14:00-16:00 D/2` Edits the timeslot of the 2nd tutorial to be `14:00 to 16:00` and sets tutorial day to `Tue`.
 
 <a name="delete-tutorial"></a>
-#### 3.2.3 Deleting a tutorial: `delete tutorial`
+#### 4.2.3 Deleting a tutorial: `delete tutorial`
 
 Deletes a specified tutorial from the list of tutorials
 
@@ -221,10 +231,10 @@ Format: `delete tutorial INDEX`
 Examples:
 * `delete tutorial 3`
 
-### 3.3 Consultation Features
+### 4.3 Consultation Features
 
 <a name="add-consultation"></a>
-#### 3.3.1 Adding a consultation: `add consultation`
+#### 4.4.1 Adding a consultation: `add consultation`
 
 Adds a consultation to the list of consultations.
 
@@ -234,7 +244,7 @@ Examples:
 * `add consultation n/JakeKim m/CS2103T D/2022-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
 
 <a name="edit-consultation"></a>
-#### 3.3.2 Editing a consultation: `edit consultation`
+#### 4.4.2 Editing a consultation: `edit consultation`
 
 Edits an existing consultation in the list of consultation.
 
@@ -250,7 +260,7 @@ Examples:
 * `edit consultation 2 T/14:00-16:00 D/2022-10-10` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2022 Oct 10`.
 
 <a name="delete-consultation"></a>
-#### 3.3.3 Deleting a consultation: `delete consultation`
+#### 4.4.3 Deleting a consultation: `delete consultation`
 
 Deletes a specified consultation from the list of consultation.
 
@@ -263,10 +273,10 @@ Format: `delete consultation INDEX`
 Examples:
 * `delete consultation 3`
 
-### 3.4 Reminder Features
+### 4.4 Reminder Features
 
 <a name="add-reminder"></a>
-#### 3.4.1 Adding a reminder: `add reminder`
+#### 4.4.1 Adding a reminder: `add reminder`
 
 Adds a reminder to the list of reminders.
 
@@ -280,7 +290,7 @@ Examples:
 * `add reminder n/Mark Midterms D/2022-01-01 T/15:00 d/300 papers to mark p/HIGH`
 
 <a name="edit-reminder"></a>
-#### 3.4.2 Editing a reminder: `edit reminder`
+#### 4.4.2 Editing a reminder: `edit reminder`
 
 Edits an existing reminder in the list of reminders.
 
@@ -298,7 +308,7 @@ Examples:
 * `edit reminder 2 T/14:00 D/2022-10-10` Edits the deadline time of the 2nd reminder to be `14:00` and sets deadline date to `2022 Oct 10`.
 
 <a name="mark-reminder"></a>
-#### 3.4.3 Mark a reminder: `mark reminder`
+#### 4.4.3 Mark a reminder: `mark reminder`
 
 Marks a reminder as complete.
 
@@ -319,7 +329,7 @@ Examples:
  </table>
 
 <a name="unmark-reminder"></a>
-#### 3.4.4 Unmark a reminder: `unmark reminder`
+#### 4.4.4 Unmark a reminder: `unmark reminder`
 
 Unmarks a reminder as incomplete.
 
@@ -329,7 +339,7 @@ Examples:
 * `unmark reminder 3`
 
 <a name="delete-reminder"></a>
-#### 3.4.5 Deleting a reminder: `delete reminder`
+#### 4.4.5 Deleting a reminder: `delete reminder`
 
 Deletes the specified reminder from the list of reminders.
 
@@ -343,7 +353,7 @@ Examples:
 * `delete reminder 3`
 
 <a name="sort-reminder"></a>
-#### 3.4.6 Sort reminders: `sort reminder`
+#### 4.4.6 Sort reminders: `sort reminder`
 
 Sort reminders by a chosen criteria.
 
@@ -360,7 +370,7 @@ Examples:
 * `sort reminder by/priority`
 
 <a name="switch"></a>
-### 3.5 Switch tabs: `switch`
+### 4.5 Switch tabs: `switch`
 
 Switch the tabs displayed.
 
@@ -376,7 +386,7 @@ Examples:
 _Figure 2. Grade Chart Tab_
 
 <a name="clear"></a>
-### 3.6 Clearing all data: `clear`
+### 4.6 Clearing all data: `clear`
 
 Clears all data in a specific fields or the entire app.
 
@@ -387,23 +397,23 @@ Examples:
 * `clear f/all`
 
 <a name="help"></a>
-### 3.7 Viewing help: `help`
+### 4.7 Viewing help: `help`
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
 <a name="edit"></a>
-### 3.8 Exiting the program: `exit`
+### 4.8 Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### 3.9 Saving the data
+### 4.9 Saving the data
 
 All data in ModQuik is saved in the hard disk automatically after executing any command that changes the data. There is no need to save manually.
 
-### 3.10 Editing the data file
+### 4.10 Editing the data file
 
 All data in ModQuik is saved as a JSON file `[JAR file location]/data/modquik.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -411,13 +421,13 @@ All data in ModQuik is saved as a JSON file `[JAR file location]/data/modquik.js
 If your changes to the data file makes its format invalid, ModQuik will discard all data and start with an empty data file at the next run.
 </div>
 
-### 3.11 Archiving data files `[coming in v2.0]`
+### 4.11 Archiving data files `[coming in v2.0]`
 
 _Details coming soon..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. FAQ
+## 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModQuik home folder.
@@ -427,7 +437,7 @@ _Details coming soon..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Command summary
+## 6. Command summary
 
 | Action                                           | Format, Examples                                                                                                                                                                                                     |
 |--------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -454,7 +464,7 @@ _Details coming soon..._
 | [**Help**][`help`]                               | `help`                                                                                                                                                                                                               |
 | [**Exit**][`exit`]                               | `exit`                                                                                                                                                                                                               |
 
-## 6. Prefix summary
+## 7. Prefix summary
 
 | Prefix    | Symbolise        | Used in                                                                                                                                                                                    |
 |-----------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
