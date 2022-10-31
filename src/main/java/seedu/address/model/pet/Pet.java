@@ -127,8 +127,12 @@ public class Pet {
         this.height = height;
         this.vaccinationStatus = vaccinationStatus;
         this.price = price;
-        this.tags.addAll(tags);
-        this.certificates.addAll(certificates);
+        if (tags != null) {
+            this.tags.addAll(tags);
+        }
+        if (certificates != null) {
+            this.certificates.addAll(certificates);
+        }
     }
 
     /**
