@@ -6,7 +6,6 @@ import static seedu.address.storage.JsonAdaptedBuyer.MISSING_FIELD_MESSAGE_FORMA
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalBuyers.BENSON;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;

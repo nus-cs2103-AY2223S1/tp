@@ -5,7 +5,6 @@ import static seedu.address.storage.JsonAdaptedSupplier.MISSING_FIELD_MESSAGE_FO
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalSuppliers.BENSON;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;

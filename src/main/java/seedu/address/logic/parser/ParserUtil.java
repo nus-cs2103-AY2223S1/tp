@@ -21,7 +21,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_HEIGHT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_VACCINATION_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_WEIGHT;
 import static seedu.address.model.ModelManager.ACCEPTABLE_DATE_FORMATS;
@@ -340,8 +339,7 @@ public class ParserUtil {
                             PREFIX_PET_SPECIES,
                             PREFIX_PET_VACCINATION_STATUS,
                             PREFIX_PET_PRICE,
-                            PREFIX_PET_WEIGHT,
-                            PREFIX_PET_TAG);
+                            PREFIX_PET_WEIGHT);
             if (!arePrefixesPresent(argMultimap,
                     PREFIX_INDEX, // The difference is here
                     PREFIX_PET_NAME,
@@ -366,8 +364,7 @@ public class ParserUtil {
                             PREFIX_PET_SPECIES,
                             PREFIX_PET_VACCINATION_STATUS,
                             PREFIX_PET_PRICE,
-                            PREFIX_PET_WEIGHT,
-                            PREFIX_PET_TAG);
+                            PREFIX_PET_WEIGHT);
             if (!arePrefixesPresent(argMultimap,
                     PREFIX_PET_NAME,
                     PREFIX_PET_DATE_OF_BIRTH,
