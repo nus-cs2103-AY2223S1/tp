@@ -73,8 +73,14 @@ public class Buyer extends Person {
         }
     }
 
+    /**
+     * Deletes a specific order from the list of orders.
+     *
+     * @param order The order to be deleted.
+     */
     public void deleteOrder(Order order) {
-        // TODO: implement this method
+        UniqueId orderId = order.getId();
+        orders.remove(orderId);
     }
 
     /**

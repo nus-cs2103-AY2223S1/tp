@@ -1,14 +1,13 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.editcommands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -17,7 +16,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.addcommands.AddBuyerCommand;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -28,61 +29,83 @@ import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddBuyerCommandTest {
+public class EditSupplierCommandTest {
 
     @Test
-    public void constructor_nullBuyer_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddBuyerCommand(null, null));
+    public void constructor_nullSupplier_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new EditSupplierCommand(null, null));
+    }
+
+    @Test
+    public void constructor_nullIndex_throwsNullPointerException() {
+        Supplier validSupplier = new PersonBuilder().withName("Gumball").buildSupplier();
+        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(validSupplier).build();
+
+        assertThrows(NullPointerException.class, () -> new EditSupplierCommand(null, descriptor));
     }
 
     @Test
     public void execute_buyerAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingBuyerAdded modelStub = new ModelStubAcceptingBuyerAdded();
-        Buyer validBuyer = new PersonBuilder().buildBuyer();
-        CommandResult commandResult = new AddBuyerCommand(validBuyer, new ArrayList<>()).execute(modelStub);
+        //Set up
+        ModelStubAcceptingSupplierAdded modelStub = new ModelStubAcceptingSupplierAdded();
+        Supplier firstSupplier = new PersonBuilder().withName("Spongebob").buildSupplier();
+        Supplier secondSupplier = new PersonBuilder().withName("Patrick").buildSupplier();
+        modelStub.addSupplier(firstSupplier);
 
-        String expectedResult = "\n" + "0 orders added\n"
-                + String.format(AddBuyerCommand.MESSAGE_SUCCESS, validBuyer);
+        //INDEX 1 -> success
 
+        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(secondSupplier).build();
+        CommandResult commandResult = new EditSupplierCommand(INDEX_FIRST, descriptor).execute(modelStub);
+        String expectedResult = String.format(EditSupplierCommand.MESSAGE_EDIT_PERSON_SUCCESS, secondSupplier);
         assertEquals(expectedResult, commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validBuyer), modelStub.buyersAdded);
+
+        //Set up
+        Supplier thirdSupplier = new PersonBuilder().withName("Squidward").buildSupplier();
+        Supplier fourthSupplier = new PersonBuilder().withName("MrKrabs").buildSupplier();
+        modelStub.addSupplier(thirdSupplier);
+
+        //INDEX 2 -> success
+        descriptor = new EditPersonDescriptorBuilder(fourthSupplier).build();
+        commandResult = new EditSupplierCommand(INDEX_SECOND, descriptor).execute(modelStub);
+        expectedResult = String.format(EditSupplierCommand.MESSAGE_EDIT_PERSON_SUCCESS, fourthSupplier);
+        assertEquals(expectedResult, commandResult.getFeedbackToUser());
     }
 
     @Test
-    public void execute_duplicateBuyer_throwsCommandException() {
-        Buyer validBuyer = new PersonBuilder().buildBuyer();
-        AddBuyerCommand addBuyerCommand = new AddBuyerCommand(validBuyer, new ArrayList<>());
-        ModelStub modelStub = new ModelStubWithBuyer(validBuyer);
+    public void execute_duplicateSupplier_throwsCommandException() {
+        //Set up
+        ModelStubAcceptingSupplierAdded modelStub = new ModelStubAcceptingSupplierAdded();
+        Supplier firstSupplier = new PersonBuilder().withName("Spongebob").buildSupplier();
+        Supplier secondSupplier = new PersonBuilder().withName("Patrick").buildSupplier();
+        Supplier firstSupplierCopy = new PersonBuilder().withName("Spongebob").buildSupplier();
+        modelStub.addSupplier(firstSupplier);
+        modelStub.addSupplier(secondSupplier);
 
+        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstSupplierCopy).build();
+
+        EditSupplierCommand editSupplierCommand = new EditSupplierCommand(INDEX_SECOND, descriptor);
         assertThrows(CommandException.class,
-                AddBuyerCommand.MESSAGE_DUPLICATE_BUYER, () -> addBuyerCommand.execute(modelStub));
+                EditSupplierCommand.MESSAGE_DUPLICATE_PERSON, () -> editSupplierCommand.execute(modelStub));
     }
 
     @Test
-    public void equals() {
-        Buyer alice = new PersonBuilder().withName("Alice").buildBuyer();
-        Buyer bob = new PersonBuilder().withName("Bob").buildBuyer();
-        AddBuyerCommand addAliceCommand = new AddBuyerCommand(alice, new ArrayList<>());
-        AddBuyerCommand addBobCommand = new AddBuyerCommand(bob, new ArrayList<>());
+    public void execute_largeIndex_throwsCommandException() {
+        //Set up
+        ModelStubAcceptingSupplierAdded modelStub = new ModelStubAcceptingSupplierAdded();
+        Supplier firstSupplier = new PersonBuilder().withName("Spongebob").buildSupplier();
+        Supplier secondSupplier = new PersonBuilder().withName("Patrick").buildSupplier();
+        modelStub.addSupplier(firstSupplier);
 
-        // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
-
-        // same values -> returns true
-        AddBuyerCommand addAliceCommandCopy = new AddBuyerCommand(alice, new ArrayList<>());
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-
-        // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
-
-        //different buyer -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(secondSupplier).build();
+        EditSupplierCommand editSupplierCommand = new EditSupplierCommand(Index.fromOneBased(Integer.MAX_VALUE),
+                descriptor);
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () -> editSupplierCommand.execute(modelStub));
     }
+
 
     /**
      * A default model stub that have all the methods failing.
@@ -327,43 +350,60 @@ public class AddBuyerCommandTest {
     /**
      * A Model stub that contains a single buyer.
      */
-    private class ModelStubWithBuyer extends ModelStub {
-        private final Buyer buyer;
+    private class ModelStubWithSupplier extends ModelStub {
+        private final Supplier supplier;
 
-        ModelStubWithBuyer(Buyer buyer) {
-            requireNonNull(buyer);
-            this.buyer = buyer;
+        ModelStubWithSupplier(Supplier supplier) {
+            requireNonNull(supplier);
+            this.supplier = supplier;
         }
 
         @Override
-        public boolean hasBuyer(Buyer buyer) {
-            requireNonNull(buyer);
-            return this.buyer.isSamePerson(buyer);
+        public boolean hasSupplier(Supplier supplier) {
+            requireNonNull(supplier);
+            return this.supplier.isSamePerson(supplier);
         }
     }
 
     /**
      * A Model stub that always accept the buyer being added.
      */
-    private class ModelStubAcceptingBuyerAdded extends ModelStub {
-        final ArrayList<Buyer> buyersAdded = new ArrayList<>();
+    private class ModelStubAcceptingSupplierAdded extends ModelStub {
+        private ArrayList<Supplier> suppliers = new ArrayList<>();
 
         @Override
-        public boolean hasBuyer(Buyer buyer) {
-            requireNonNull(buyer);
-            return buyersAdded.stream().anyMatch(buyer::isSamePerson);
+        public ObservableList<Supplier> getFilteredSupplierList() {
+            AddressBook ab = new AddressBook();
+            for (Supplier supplier : suppliers) {
+                ab.addSupplier(supplier);
+            }
+            return ab.getSupplierList();
         }
 
         @Override
-        public void addBuyer(Buyer buyer) {
-            requireNonNull(buyer);
-            buyersAdded.add(buyer);
+        public boolean hasSupplier(Supplier supplier) {
+            requireNonNull(supplier);
+            return suppliers.stream().anyMatch(supplier::isSamePerson);
         }
+
+        @Override
+        public void addSupplier(Supplier supplier) {
+            requireNonNull(supplier);
+            suppliers.add(supplier);
+        }
+
+        @Override
+        public void setSupplier(Supplier supplierToEdit, Supplier editedSupplier) {
+            suppliers.remove(supplierToEdit);
+            suppliers.add(editedSupplier);
+        }
+
+        @Override
+        public void updateFilteredSupplierList(Predicate<Supplier> predicate) {}
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
     }
-
 }

@@ -72,8 +72,13 @@ public class Supplier extends Person {
         }
     }
 
+    /**
+     * Deletes a specific pet from the list based on index.
+     *
+     * @param index The index of the pet to be deleted
+     */
     public void deletePet(int index) {
-        // TODO: implement this method
+        pets.remove(index);
     }
 
     /**
