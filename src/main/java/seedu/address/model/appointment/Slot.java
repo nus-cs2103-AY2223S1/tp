@@ -16,6 +16,7 @@ public class Slot {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Slot should be like 'yyyy-MM-dd HH:mm'";
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public final LocalDateTime localDateTime;
 
@@ -27,16 +28,16 @@ public class Slot {
     public Slot(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-        this.localDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));;
+        this.localDateTime = LocalDateTime.parse(dateTime, FORMATTER);
     }
 
     /**
      * Returns true if a given string is a valid date time.
      */
-    public static boolean isValidDateTime(String test) {
+    public static boolean isValidDateTime(String input) {
         try {
-            LocalDateTime.parse(test, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-            return true;
+            LocalDateTime test = LocalDateTime.parse(input, FORMATTER);
+            return test.format(FORMATTER).equals(input);
         } catch (DateTimeParseException e) {
             return false;
         }
@@ -44,7 +45,7 @@ public class Slot {
 
     @Override
     public String toString() {
-        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        return localDateTime.format(FORMATTER);
     }
 
     @Override
