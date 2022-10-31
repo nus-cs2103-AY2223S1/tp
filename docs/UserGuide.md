@@ -116,8 +116,7 @@ This shows the whole employee list with basic information such as _Name_, _Emplo
 
 This will come in handy if:
 
-1. You want a general overview of the employees in the company as
-   of this moment
+1. You want a general overview of the employees in the company as of this moment.
 2. You want to quickly find out their Employee ID to view more details.
 
 #### Employee Info Panel
@@ -180,7 +179,7 @@ We will explore each of these fields in great detail as we continue along, but b
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-:warning: **Integer input values cannot be too large**: any values greater than $2^{32}-1$ is not supported.
+:warning: **Integer input values cannot be too large**: any values greater than $2^{31}-1$ is not supported.
 
 ### Managing Employee Profiles
 
@@ -535,11 +534,11 @@ The individual rating values will be displayed beside each node in the performan
 
 <div markdown="span" class="alert alert-info">
 
-**:information_source: Note:** You can only rate the performance of an employee once per day.<br>
+**:information_source: Note:** You can only rate the performance of an employee once per day.<br><br>
 
 - Rating an employee who already has a `Rating` with `timestamp` of that same day with the `rate` command will throw a `employee already rated` error.
-
 - This is to prevent multiple ratings per day, and avoid a distorted performance history graph.
+
 </div>
 
 ### Managing Departments
