@@ -16,8 +16,8 @@ public class DayTimeInWeek {
             "Day time in week must be in the form fri@1200.";
 
     public static final String ILLEGAL_TIME_CONSTRAINTS =
-            "Time must be in valid format! For example, 12.30am should be written as 0030" +
-                    " and there cannot be more than 60 minutes in one hour.";
+            "Time must be in valid format! For example, 12.30am should be written as 0030"
+                    + " and there cannot be more than 60 minutes in one hour.";
 
     /*
      * Completely no whitespace in the name
