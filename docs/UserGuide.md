@@ -113,7 +113,10 @@ You can replace `list` with `l` for convenience.
 
 Creates a client contact with their information in your FABook. Any contact information you don't have on hand can be updated later.
 
-* If you have multiple meeting times with your client, simply repeat the field `mt/TIME`. 
+* If you have multiple meeting times with your client, simply repeat the field `mt/TIME`.
+* The `[nw/NETWORTH]` field only accepts inputs that starts with the dollar sign, are numeric,and have more than 4 digits. We want to standardise the currency and the minimum amount net worth of a client.
+eg. `nw/$1234`.
+* The `[mt/TIME...]` field accepts inputs in the `DD-MM-YYYY-HH:MM` format. Note that `YYYY` cannot be `0000`.
 
 
 Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
@@ -301,7 +304,7 @@ Format: `desc INDEX d/DESCRIPTION`
 
 #### Updating meetings : `meeting`
    
-Adds one or more meeting times to your client in your FABook.
+Updates one or more meeting times to your client in your FABook.
 
 * `INDEX` is the index of the client in the currently displayed list.
 * `MEETINGTIME` should be in the format `DD-MM-YYYY-HH:MM`.
@@ -356,6 +359,7 @@ Format: `sync`
    
 :heavy_exclamation_mark: **Caution:**
 As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
+Please note that undo cannot undo this command!
 
 ### Clearing all entries : `clear`
 
@@ -378,8 +382,8 @@ You can replace `clear` with `cl` for convenience.
 Undos your last command.
 
 * The command intended to be undone should be an undoable command.
-* Undoable commands are: 'clear', 'create', 'delete', 'description', 'meeting', 'deletemeeting', 'redo' and 'update'
-* Non-undoable commands are: 'exit', 'find */', 'help', 'list', 'file' and 'filepath'
+* Undoable commands are: `clear`, `create`, `delete`, `description`, `meeting`, `deletemeeting`, `redo` and `update`
+* Non-undoable commands are: `exit`, `find `, `help`, `list`, `file`, `sync` and `filepath`
 
 Format: `undo`
 
@@ -423,11 +427,15 @@ If your changes to the data file makes its format invalid, FABook will discard a
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FABook home folder.
 
+**Q**: Why can I not undo the `sync` command?<br>
+**A**: Meetings that have passed should not need to be undone and be shown again. 
+
 **Q**: Person profile does not show when I click person card once.<br>
 **A**: You need to click the person card twice for the person profile to load. 
 
 **Q**: Why does the person profile GUI not refresh after an edit or clear command?<br>
 **A**: In order to refresh the person profile, you will have the re-click on the person card again.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
