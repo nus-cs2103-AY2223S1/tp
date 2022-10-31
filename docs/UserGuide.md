@@ -330,7 +330,7 @@ overall grade for the module CS2100.
 " %}
 
 Format: `adds s/SESSION_NAME... [d/DATE]`
-* Creates new sessions with name `SESSION_NAME` on the same `DATE`. If the `DATE` field is empty, the current date is used.
+* Creates new sessions with name `SESSION_NAME` on the same `DATE`. If the `DATE` field is empty, the current date is being used.
 * `DATE` field should follow the format `YYYY-MM-DD`.
 * The session names are **case-insensitive** (i.e. if a session **Lab 1** already exists, `adds s/lab 1` does not create a new session **lab 1**). 
 
