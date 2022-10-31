@@ -278,7 +278,7 @@ This is the GUI before `mod mark 3 cs2100 cs2103t cs2101 cs2105` is executed. Th
 This is the GUI after you press Enter to execute the command. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` are successfully marked as `taken`.
 ![UgModMarkAfter](images/UgModMarkAfter.png)
 
-#### Unmark module as not taken: `mod unmark`
+#### 5. Unmark module as not taken: `mod unmark`
 
 Unmarks module(s) of a specified batchmate and updates the status as `taking` in the _Modules panel_, which means the batchmate is currently taking the module(s).
 
@@ -290,7 +290,7 @@ __Examples:__
 * `mod unmark 1 cs2103t` unmarks the module `CS2103T` of the 1st batchmate in the currently displayed list as `not taken`.
 * `mod unmark 3 cs2100 cs2103t cs2101 cs2105` unmarks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `not taken`.
 
-#### 5. Mark all modules as taken: `mod mark all`
+#### 6. Mark all modules as taken: `mod mark all`
 <div markdown="span" class="alert alert-warning">:warning: **Warning:** The __mod mark all__ command is irreversible. Only execute it if you intend to mark all existing modules for all batchmates as taken. 
  </div>
  
@@ -298,7 +298,7 @@ Marks all current modules of every batchmate in Mass Linkers as `taken` in the _
 
 __Format:__ `mod mark all`
 
-#### 6. Find batchmates taking specified modules: `mod find`
+#### 7. Find batchmates taking specified modules: `mod find`
 
 Finds batchmates with modules matching __all__ the specified modules.
 
@@ -311,7 +311,7 @@ __Examples:__
 * `mod find cs2100` returns batchmates with the module `CS2100`.
 * `mod find cs2101 cs2103t` returns batchmates with both modules `CS2101` and `CS2103T`.
 
-#### 7. Find modules taken or taking: `mod find taken` or `mod find taking`
+#### 8. Find modules taken or taking: `mod find taken` or `mod find taking`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 This is an <i>extension</i> of [__mod find__](#find-batchmates-taking-specified-modules-mod-find). The rules listed above for [__mod find__](#find-batchmates-taking-specified-modules-mod-find) apply to this feature too.
 </div>
