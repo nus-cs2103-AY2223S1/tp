@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.persons.AddCommand;
+import seedu.address.model.attribute.PrefixedAttribute;
 import seedu.address.model.person.Person;
 
 /**
@@ -25,8 +26,12 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         person.getAttributes().stream().forEach(
-            attr -> sb.append(
-                String.format("%s: %s ", attr.getAttributeType(), attr.getAttributeContent().toString())));
+            attr -> {
+                if (attr instanceof PrefixedAttribute) {
+                    sb.append(((PrefixedAttribute) attr).getPrefix());
+                    sb.append(attr.getAttributeContent() + " ");
+                }
+            });
         person.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
 

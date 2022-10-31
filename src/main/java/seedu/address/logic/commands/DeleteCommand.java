@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import java.util.function.Function;
+import java.util.function.Predicate;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.FunctionalInterfaces.Changer;
 import seedu.address.commons.util.FunctionalInterfaces.Getter;
@@ -32,14 +32,13 @@ public class DeleteCommand<U extends DisplayItem> extends Command {
     private final Index targetIndex;
     private final Getter<U> converter;
     private final Changer<U> deleter;
-    private final Function<Object, Boolean> verifier;
+    private final Predicate<Object> verifier;
     private U toDelete = null;
 
     /**
      * Constructor to select a task
      */
-    public DeleteCommand(Index targetIndex, Getter<U> converter, Changer<U> deleter,
-        Function<Object, Boolean> verifier) throws ParseException {
+    public DeleteCommand(Index targetIndex, Getter<U> converter, Changer<U> deleter, Predicate<Object> verifier) {
         requireNonNull(converter);
         this.targetIndex = targetIndex;
         this.converter = converter;
@@ -67,7 +66,7 @@ public class DeleteCommand<U extends DisplayItem> extends Command {
      * Returns a parser to parse userinput for select command
      */
     public static <U extends DisplayItem> Parser<DeleteCommand<U>> parser(Getter<U> converter,
-        Changer<U> deleter, Function<Object, Boolean> verifier) {
+        Changer<U> deleter, Predicate<Object> verifier) {
 
         return new Parser<DeleteCommand<U>>() {
             @Override
@@ -87,11 +86,21 @@ public class DeleteCommand<U extends DisplayItem> extends Command {
     @SuppressWarnings("unchecked")
     @Override
     public Command setInput(Object additionalData) throws CommandException {
-        if (additionalData == null || !verifier.apply(additionalData)) {
+        if (additionalData == null || !verifier.test(additionalData)) {
             return this;
         }
         // this is verified by verifier
         toDelete = (U) additionalData;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj ||
+            (obj instanceof DeleteCommand
+                && ((targetIndex != null && targetIndex == ((DeleteCommand<?>) obj).targetIndex)
+                    || ((targetIndex == null) && (((DeleteCommand<?>) obj).targetIndex == null)))
+                && (((toDelete != null) && (toDelete.equals(((DeleteCommand<?>) obj).toDelete)))
+                    || (toDelete == ((DeleteCommand<?>) obj).toDelete)));
     }
 }

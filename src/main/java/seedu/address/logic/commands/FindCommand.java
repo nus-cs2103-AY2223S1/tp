@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 import seedu.address.commons.util.FunctionalInterfaces.Changer;
 import seedu.address.commons.util.FunctionalInterfaces.Retriever;
@@ -25,7 +26,7 @@ public class FindCommand<T extends DisplayItem> extends Command {
         + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
         + "Example: person find alice bob charlie";
 
-    private static final String SUCCESS_MESSAGE = "%1$d items listed!";
+    public static final String SUCCESS_MESSAGE = "%1$d items found!";
 
 
     private NameContainsKeywordsPredicate<T> predicate;
@@ -34,7 +35,12 @@ public class FindCommand<T extends DisplayItem> extends Command {
 
     public FindCommand(NameContainsKeywordsPredicate<T> predicate, Changer<Predicate<T>> changer,
         Retriever<Integer> getSize) {
+        requireNonNull(changer);
+        requireNonNull(getSize);
         this.predicate = predicate;
+        if (predicate == null) {
+            this.predicate = new NameContainsKeywordsPredicate<T>(List.of());
+        }
         this.changer = changer;
         this.getSize = getSize;
     }
