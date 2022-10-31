@@ -15,10 +15,10 @@ public class AddGroupCommand extends Command {
     public static final String COMMAND_WORD = "mkgroup";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a new group in the current "
-            + "group scope if the group name does not currently exist. The group name should only "
-            + "be alphanumeric and have hyphens and/or underscores only.\n"
-            + "Parameters: group_name/group_within_group_name\n"
-            + "Example: " + COMMAND_WORD + " group_1/group_a";
+        + "group scope if the group name does not currently exist. The group name should only "
+        + "be alphanumeric and have hyphens and/or underscores only.\n"
+        + "Parameters: group_name/group_within_group_name\n"
+        + "Example: " + COMMAND_WORD + " group_1/group_a";
 
     public static final String MESSAGE_SUCCESS = "New group added: %1$s";
     public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the address book";

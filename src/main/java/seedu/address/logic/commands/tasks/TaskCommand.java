@@ -24,12 +24,13 @@ public abstract class TaskCommand extends Command {
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         if (additionalData == null || !(additionalData instanceof Task)) {
             task = null;
-            return;
+            return this;
         }
 
         task = (Task) additionalData;
+        return this;
     }
 }

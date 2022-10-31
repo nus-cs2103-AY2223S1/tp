@@ -51,7 +51,7 @@ public class PersonCommandParser implements Parser<PersonCommand> {
         case ForEachPersonCommand.SUBCOMMAND_WORD:
             return new ForEachPersonCommandParser().parse(arguments);
         case FindCommand.SUBCOMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            return FindCommand.parser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_USAGE);
         }

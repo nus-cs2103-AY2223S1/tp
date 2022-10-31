@@ -7,8 +7,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
  */
 public class TaskOutOfBoundException extends CommandException {
 
+    public static final String ERR_MSG = "Task out of bounds. Length is only %d yet index %d supplied.";
+
     public TaskOutOfBoundException(int length, int index) {
-        super(String.format("Task out of bounds. Length is only %d yet index %d supplied.", length, index));
+        super(String.format(ERR_MSG, length, index));
     }
 
 }

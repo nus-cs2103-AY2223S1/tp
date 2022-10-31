@@ -52,12 +52,13 @@ public class ExecuteCommand extends Command {
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         if (additionalData == null) {
             commands = "";
-            return;
+            return this;
         }
         commands = additionalData.toString().trim();
+        return this;
     }
 
     /**

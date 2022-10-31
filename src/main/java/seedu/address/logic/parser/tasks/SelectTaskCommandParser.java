@@ -24,12 +24,8 @@ public class SelectTaskCommandParser implements Parser<SelectTaskCommand> {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectTaskCommand.MESSAGE_USAGE));
         }
-        try {
-            Index index = ParserUtil.parseIndex(matcher.group("index"));
-            return new SelectTaskCommand(index, matcher.group("commands"));
-        } catch (ParseException pe) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectTaskCommand.MESSAGE_USAGE), pe);
-        }
+
+        Index index = ParserUtil.parseIndex(matcher.group("index"));
+        return new SelectTaskCommand(index, matcher.group("commands"));
     }
 }

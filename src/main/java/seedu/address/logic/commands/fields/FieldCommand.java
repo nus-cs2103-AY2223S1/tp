@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.fields;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,7 +16,6 @@ import seedu.address.model.item.DisplayItem;
 public abstract class FieldCommand extends Command {
 
     public static final String COMMAND_WORD = "field";
-    private static final String INDEX_OUT_OF_BOUND = "The chosen index is out of range for %s list!";
     private static final Pattern PATTERN = Pattern.compile("(?<type>[gtl])/(?<id>[0-9]+)\\s+(?<rest>.*)");
     protected DisplayItem sItem = null;
 
@@ -33,37 +31,28 @@ public abstract class FieldCommand extends Command {
 
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         if (additionalData == null || !(additionalData instanceof DisplayItem)) {
             sItem = null;
-            return;
+            return this;
         }
         sItem = (DisplayItem) additionalData;
+        return this;
     }
 
     protected DisplayItem selectFromRightModel(Model model, String type, Index targetIndex)
             throws ParseException, CommandException {
-        List<? extends DisplayItem> lastShownList = null;
+
         switch (type) {
         case "g":
-            lastShownList = model.getFilteredTeamList();
-            break;
+            return model.getFromFilteredTeams(targetIndex);
         case "t":
-            lastShownList = model.getFilteredTaskList();
-            break;
+            return model.getFromFilteredTasks(targetIndex);
         case "u":
-            lastShownList = model.getFilteredPersonList();
-            break;
+            return model.getFromFilteredPerson(targetIndex);
         default:
-            break;
-        }
-        if (lastShownList == null) {
             return null;
         }
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(INDEX_OUT_OF_BOUND);
-        }
-        return lastShownList.get(targetIndex.getZeroBased());
     }
 
     public static String getRestOfArgs(String args) {

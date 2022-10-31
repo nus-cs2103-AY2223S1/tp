@@ -56,7 +56,7 @@ public class ForEachPersonCommand extends PersonCommand implements PureCommandIn
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
-        return;
+    public Command setInput(Object additionalData) throws CommandException {
+        return this;
     }
 }

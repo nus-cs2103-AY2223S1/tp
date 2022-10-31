@@ -4,13 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.PureCommandInterface;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
-//@@author connlim
+// @@author connlim
 
 /**
  * Create a task and assign it to a group
@@ -19,8 +20,8 @@ public class AddTaskCommand extends TaskCommand implements PureCommandInterface 
     public static final String SUBCOMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = TaskCommand.getFullCommand(SUBCOMMAND_WORD)
-            + ": Adds a task to the address book current team. "
-            + "Parameters: " + PREFIX_TITLE + "NAME " + PREFIX_DESCRIPTION + "Description";
+        + ": Adds a task to the address book current team. "
+        + "Parameters: " + PREFIX_TITLE + "NAME " + PREFIX_DESCRIPTION + "Description";
 
     public static final String MESSAGE_SUCCESS = "New task have been added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists!";
@@ -48,19 +49,19 @@ public class AddTaskCommand extends TaskCommand implements PureCommandInterface 
         }
 
         model.addTask(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, toAdd);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddTaskCommand // instanceof handles nulls
-                        && toAdd.equals(((AddTaskCommand) other).toAdd));
+            || (other instanceof AddTaskCommand // instanceof handles nulls
+                && toAdd.equals(((AddTaskCommand) other).toAdd));
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         // creation of task do not require previous input
-        return;
+        return this;
     }
 }

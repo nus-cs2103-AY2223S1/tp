@@ -22,11 +22,12 @@ public class CheckTaskCompleteCommand extends Command {
     public CheckTaskCompleteCommand() {}
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         if (additionalData == null || !(additionalData instanceof Task)) {
             throw new CommandException(INVALID_INPUT);
         }
         item = (Task) additionalData;
+        return this;
     }
 
     @Override

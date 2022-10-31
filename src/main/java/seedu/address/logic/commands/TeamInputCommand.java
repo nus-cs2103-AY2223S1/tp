@@ -11,11 +11,12 @@ public abstract class TeamInputCommand extends Command {
     protected Group group = null;
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         if (additionalData == null || !(additionalData instanceof Group)) {
             group = null;
-            return;
+            return this;
         }
         this.group = (Group) additionalData;
+        return this;
     }
 }

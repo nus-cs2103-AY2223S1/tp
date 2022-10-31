@@ -21,16 +21,13 @@ public class DeleteTeamCommandParser implements Parser<DeleteTeamCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteTeamCommand parse(String args) throws ParseException {
-        try {
-            if (args == null || args.trim().length() == 0) {
-                return new DeleteTeamCommand(null);
-            }
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteTeamCommand(index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTeamCommand.MESSAGE_USAGE), pe);
+        if (args == null || args.trim().length() == 0) {
+            return new DeleteTeamCommand(null);
+        } else if (!args.matches("\\s*[\\-+]?[0-9]+\\s*")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTeamCommand.MESSAGE_USAGE));
         }
+        Index index = ParserUtil.parseIndex(args);
+        return new DeleteTeamCommand(index);
     }
 
 }
