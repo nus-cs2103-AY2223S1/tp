@@ -3,9 +3,10 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.text.DecimalFormat;
+import java.time.DateTimeException;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+
 
 /**
  * Represents an Event's starting time in the address book.
@@ -13,45 +14,44 @@ import java.time.format.DateTimeParseException;
  */
 public class StartTime implements Comparable<StartTime> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Start time must be in format: hh/mm/AM, hh/mm/PM or hh:mm";
-
-    //for checking if valid input date format
-    private static final DateTimeFormatter checkFormatter = DateTimeFormatter
-            .ofPattern("[HH:MM][hh/mm/a][h/mm/a][hh/m/a][h/m/a]");
-
-    //for changing to storage friendly format
-    private static final DateTimeFormatter logFormatter = DateTimeFormatter.ofPattern("hh/mm/a");
-
-    //for changing to user-readable format
-    private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("hh:mm a");
-
+    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Start time must be in format: hh:mm.";
+    public static final String MESSAGE_VALUE_CONSTRAINTS = "%s exceeds the range of valid time value.";
+    private static final DecimalFormat df = new DecimalFormat("00");
     public final LocalTime time;
 
 
     /**
      * Constructs a {@code StartTime}.
-     *
      * @param startTime A valid start time.
      */
     public StartTime(String startTime) {
         requireNonNull(startTime);
         assert !startTime.isBlank();
-        checkArgument(isValidStartTime(startTime), MESSAGE_CONSTRAINTS);
-        this.time = LocalTime.parse(startTime, checkFormatter);
+        checkArgument(isValidStartTime(startTime) != 0, MESSAGE_FORMAT_CONSTRAINTS);
+        checkArgument(isValidStartTime(startTime) != -1, String.format(MESSAGE_VALUE_CONSTRAINTS, startTime));
+        String [] parsedTime = startTime.split(":", 2);
+        this.time = LocalTime.of(Integer.parseInt(parsedTime[0]), Integer.parseInt(parsedTime[1]), 0);
     }
 
     /**
-     * Returns true if a given string is a valid StartTime input.
-     * @return boolean
+     * Checks if a given string is a valid StartTime input.
+     * @return int value, 0 represent invalid time format, -1 represents invalid time value, 1 represents valid time.
      */
-    //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
-    public static boolean isValidStartTime(String test) {
+    public static int isValidStartTime(String test) {
         try {
-            LocalTime.parse(test, checkFormatter);
-        } catch (DateTimeParseException e) {
-            return false;
+            String [] parsedTime = test.split(":", 2);
+            Integer formatCheck = Integer.parseInt(parsedTime[0]) + Integer.parseInt(parsedTime[1]);
+            boolean lengthCheck = parsedTime[0].length() == 2 && parsedTime[1].length() == 2;
+            LocalTime.of(Integer.parseInt(parsedTime[0]), Integer.parseInt(parsedTime[1]), 0);
+            if (!lengthCheck) {
+                return 0;
+            }
+        } catch (DateTimeException e) {
+            return -1;
+        } catch (NumberFormatException e) {
+            return 0;
         }
-        return true;
+        return 1;
     }
 
     @Override
@@ -60,11 +60,11 @@ public class StartTime implements Comparable<StartTime> {
     }
 
     /**
-     * Returns the String representation of the StartTime in format suitable for storage logging
+     * Returns the String representation of the StartTime for storage logging in the format of hh:mm.
      * @return String
      */
     public String toLogFormat() {
-        return this.time.format(logFormatter);
+        return String.format("%s:%s", df.format(this.time.getHour()), df.format(this.time.getMinute()));
     }
 
     @Override
@@ -83,7 +83,7 @@ public class StartTime implements Comparable<StartTime> {
 
     @Override
     public String toString() {
-        return this.time.format(outputFormatter);
+        return String.format("%s:%s", df.format(this.time.getHour()), df.format(this.time.getMinute()));
     }
 
     @Override
