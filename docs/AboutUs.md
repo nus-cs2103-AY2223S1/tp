@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/chm252.md)]
 
 * Role: Developer
-* Responsibilities: to be added soon
+* Responsibilities: Model, Integration
 
 ### Sheryl-Lynn Tan
 
