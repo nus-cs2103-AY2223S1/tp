@@ -23,13 +23,14 @@ If you are a private tutor struggling to:
 4. keep track of your students' contact information.<br>
 
 Pupilist can get your scheduling done faster with single line CLI command inputs to manage all your tutoring needs.
-
-## Table of Contents
-
+<br>
 * Table of Contents
 {:toc}
 
 ---
+
+## Introducing Pupilist
+{to be added layout of ui and pointers to indicate where command box is etc}
 
 ## Glossary
 
