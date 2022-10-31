@@ -5,7 +5,6 @@ import static seedu.workbook.storage.JsonAdaptedInternship.MISSING_FIELD_MESSAGE
 import static seedu.workbook.testutil.Assert.assertThrows;
 import static seedu.workbook.testutil.TypicalInternships.BENSON;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,8 +23,6 @@ public class JsonAdaptedInternshipTest {
     private static final String INVALID_STAGE = "H@ Interview";
     private static final String INVALID_DATETIME = "12-02-2022 12:00";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_LANGUAGE_TAG = "j ava";
-    private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_COMPANY = BENSON.getCompany().toString();
     private static final String VALID_ROLE = BENSON.getRole().toString();
@@ -115,25 +112,6 @@ public class JsonAdaptedInternshipTest {
                 VALID_EMAIL, VALID_STAGE, INVALID_DATETIME, VALID_LANGUAGE_TAGS, VALID_TAGS);
         String expectedMessage = DateTime.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidLanguageTags_throwsIllegalValueException() {
-        List<JsonAdaptedTag> invalidLanguageTags = new ArrayList<>(VALID_LANGUAGE_TAGS);
-        invalidLanguageTags.add(new JsonAdaptedTag(INVALID_LANGUAGE_TAG));
-        JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_COMPANY, VALID_ROLE,
-                VALID_EMAIL, VALID_STAGE, VALID_DATETIME, invalidLanguageTags, VALID_TAGS);
-        assertThrows(IllegalValueException.class, internship::toModelType);
-    }
-
-
-    @Test
-    public void toModelType_invalidTags_throwsIllegalValueException() {
-        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
-        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_COMPANY, VALID_ROLE,
-                VALID_EMAIL, VALID_STAGE, VALID_DATETIME, VALID_LANGUAGE_TAGS, invalidTags);
-        assertThrows(IllegalValueException.class, internship::toModelType);
     }
 
 }

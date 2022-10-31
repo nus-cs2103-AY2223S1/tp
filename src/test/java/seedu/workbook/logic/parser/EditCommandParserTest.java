@@ -6,7 +6,6 @@ import static seedu.workbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
 import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.workbook.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.workbook.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
@@ -28,7 +27,6 @@ import seedu.workbook.logic.commands.EditCommand;
 import seedu.workbook.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
-import seedu.workbook.model.tag.Tag;
 import seedu.workbook.testutil.EditInternshipDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -71,15 +69,6 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_COMPANY_DESC, Company.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
-
-
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code
-        // Internship} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser,
