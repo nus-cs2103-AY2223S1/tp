@@ -12,9 +12,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditPersonDescriptor;
 import seedu.address.logic.commands.EditTaskDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.tag.AddTagCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -55,7 +57,7 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
             contactIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONTACT).orElse("1"));
             taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK).orElse("1"));
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
+            throw new ParseException(Messages.MESSAGE_INVALID_PERSON_OR_TASK_DISPLAYED_INDEX);
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
