@@ -19,7 +19,8 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears all data in all specific fields or the entire app.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Clears all data in all specific fields or the entire app.\n"
             + "Parameters: "
             + PREFIX_FIELD + "FIELD (all, student, tutorial, consultation, reminder) \n"
             + "Example: " + COMMAND_WORD + " "
