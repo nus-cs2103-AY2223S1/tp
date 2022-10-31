@@ -30,6 +30,9 @@ class ClassGroupTest {
 
         // Mixed-case keyword
         assertFalse(new ClassGroup("cs2030 lab 31").contains("CS2030"));
+
+        // No class information
+        assertFalse(new ClassGroup("").contains("NA"));
     }
 
     @Test

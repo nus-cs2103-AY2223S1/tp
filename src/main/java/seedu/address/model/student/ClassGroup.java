@@ -7,6 +7,9 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is always valid
  */
 public class ClassGroup {
+
+    public static final String INFO_NOT_AVAILABLE = "NA";
+
     public final String value;
 
     /**
@@ -19,8 +22,16 @@ public class ClassGroup {
         this.value = classGroup;
     }
 
+    /**
+     * Returns true if keyword in present in the class group value.
+     *
+     * @param keyword
+     * @return whether keyword is present is the class group value
+     */
     public boolean contains(String keyword) {
-        return value.toLowerCase().contains(keyword);
+        return value.equals(INFO_NOT_AVAILABLE)
+                ? false
+                : value.toLowerCase().contains(keyword);
     }
 
     @Override
