@@ -11,7 +11,7 @@ title: InterNUS User Guide
 
 ## 1.1 What is InterNUS?
 
-Welcome to InterNUS user guide!
+Welcome to the InterNUS user guide!
 
 InterNUS is a convenient and powerful desktop app for **managing internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It has a sleek design to track your internship status at one glance. 
 
@@ -32,31 +32,30 @@ Track the internships you're interested in and all the relevant information -- t
 --------------------------------------------------------------------------------------------------------------------
 # 2. How to use this User Guide?
 
-1. For new user, proceed to our [Quick start](#3-quick-start)  
+1. For new users, proceed to our [Quick start](#3-quick-start). 
 
-1. For returning user, skip to our [Command summary](#command-summary) for a summary of our feature
+1. For returning users, skip to our [Command summary](#command-summary) for a summary of our feature.
 
 
 ## 2.1 Icons and symbols
 | Symbol               | Meaning                                                                                      |
 |----------------------|----------------------------------------------------------------------------------------------|
 | :information_source: | Additional information that may be useful to know when using InterNUS                        |
-| :exclamation:        | Important information or warnings that you should take note of when using InterNUS           | 
-| `command`            | The highlighted words indicate commands that can be typed into the Command Input of InterNUS |
+| :exclamation:        | Important information or warnings that you should take note of when using InterNUS           |
 
 ## 2.2 Graphical User Interface (GUI) of InterNUS
 ![Ui](images/interNUS.png)
 
 The UI component description:
 
-| Components             | Purpose                                                    |
-|------------------------|------------------------------------------------------------|
-| Menu Bar               | Consists of File, Help and Color Theme                     |
-| Color Theme Button     | To display dropdown list to select between Light/Dark mode | 
-| Command Input          | To enter commands to be executed                           |
-| System Message Display | Display results of executed command                        |
-| Person List            | Displays contact information of person                     |
-| Internship List        | Displays information of internship                         |
+| Components             | Purpose                                |
+|------------------------|----------------------------------------|
+| Menu Bar               | Consists of File, Help and Color Theme |
+| Color Theme Button     | To switch between Light/Dark mode      | 
+| Command Input          | To enter commands to be executed       |
+| System Message Display | Displays results of executed command   |
+| Person List            | Displays contact information of person |
+| Internship List        | Displays information of internship     |
 
 ## 2.3 Command format
 
@@ -120,7 +119,7 @@ Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c
 A person can have any number of tags (including 0). 
 New added person will be added in current sorted order.
 Only one contact person can be in-charge of one internship position.
-Phone number allows more than 2 digit without the need of any specific pattern.
+Phone number allows more than 2 digits without the need of any specific pattern.
 A person is only considered duplicated if the name is exactly the same including casing. 
 </div>
 
@@ -355,7 +354,7 @@ Format: `exit`
 
 ### 4.9.1 Light and Dark Mode
 
-Clicking on Color Theme button in menu bar display a dropdown list to select between Light/Dark mode.
+Clicking on the Color Theme button in the Menu Bar displays a dropdown list to select between Light/Dark mode.
 
 - Dark Mode GUI
 
