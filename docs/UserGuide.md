@@ -241,9 +241,9 @@ Examples:
 
 * To add a single buyer: `add-b n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore`
 * To add a buyer with one
-  order: `add-b n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore o/add-o o_s/Pending o_r/add-r o_a/1 o_s/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
+  order: `add-b n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore o/add-o o_st/Pending o_r/add-r o_a/1 o_sp/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
 * To add a buyer with two
-  orders: `add-b n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore o/add-o o_s/Pending o_r/add-r o_a/1 o_s/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery o/add-o  o_s/Negotiating o_r/add-r o_a/3 o_s/Chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty `
+  orders: `add-b n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore o/add-o o_st/Pending o_r/add-r o_a/1 o_sp/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery o/add-o  o_st/Negotiating o_r/add-r o_a/3 o_sp/Chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty `
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -310,7 +310,7 @@ Examples:
 
 Adds an order to a buyer contact. This is especially useful for adding an order to customer placed it.
 
-Format: `add-o i/INDEX_OF_BUYER o_s/STATUS o_r/add-r o_a/AGE o_s/SPECIES o_c/COLOR o_cp/COLOR_PATTERN o_p/PRICE o_pr/PRICE_RANGE o_d/DATE [o_ar/ADDITIONAL_REQUEST]…​`
+Format: `add-o i/INDEX_OF_BUYER o_st/STATUS o_r/add-r o_a/AGE o_sp/SPECIES o_c/COLOR o_cp/COLOR_PATTERN o_p/PRICE o_pr/PRICE_RANGE o_d/DATE [o_ar/ADDITIONAL_REQUEST]…​`
 
 `i/INDEX_OF_BUYER` is the one-based index of the buyer you would like to add this order to. You can find out the index
 in the displayed buyer list. You may want to use the [List Command](#listing-contacts-or-items--list) to find the buyer,
@@ -319,7 +319,7 @@ if you have filtered the list.
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Caution**: Please ensure that `o_r/` is followed by `add-r` immediately and that there are no other prefixes
-between `o_r/`, `o_a/`, `o_c/`, `o_cp/`, and `o_s/`. This is because they as a whole specify how the requested pet
+between `o_r/`, `o_a/`, `o_c/`, `o_cp/`, and `o_sp/`. This is because they as a whole specify how the requested pet
 should be like. In the future, you may be able to define your own requests as templates for generating orders.
 
 </div>
@@ -332,8 +332,8 @@ should be like. In the future, you may be able to define your own requests as te
 
 Examples:
 
-* `add-o o_s/Pending o_r/add-r o_a/1 o_s/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
-* `add-o  o_s/Negotiating o_r/add-r o_a/3 o_s/Chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty`
+* `add-o o_st/Pending o_r/add-r o_a/1 o_sp/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
+* `add-o  o_st/Negotiating o_r/add-r o_a/3 o_sp/Chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty`
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -825,13 +825,13 @@ These prefixes are for you to indicate different fields when you add a new [buye
 | `i/`       | General Person  | Index                            | A positive integer counting from 1. Required.                                                                                                                                                                                                                                                                                      | `i/4`                                            |
 | `t/`       | General Person  | Tag that describes a person      | A string of any characters. Optional. Can have multiple.                                                                                                                                                                                                                                                                           | `t/old buyer`, `t/good partner`                  |
 | `o/`       | Order           | Order                            | Always followed by `add-o`. Optional, if no orders to add when adding a buyer. Can have multiple.                                                                                                                                                                                                                                  | `o/add-o`                                        |
-| `o_s/`     | Order           | Order status                     | `Pending`, `Negotiating`, or `Delivering`                                                                                                                                                                                                                                                                                          | `o_s/Pending`                                    |
+| `o_st/`    | Order           | Order status                     | `Pending`, `Negotiating`, or `Delivering`                                                                                                                                                                                                                                                                                          | `o_st/Pending`                                   |
 | `o_p/`     | Order           | Price                            | A non-negative decimal number. Use `-1` to indicate not settled price. Required.                                                                                                                                                                                                                                                   | `o_p/38.6`                                       |
 | `o_pr/`    | Order           | Price range                      | This is for you to use when negotiating with buyer -- the range the price is expected  to fall within. Two non-negative decimal numbers, separated by a comma `,`. The first must not be greater than the second. If you haven't settled down one or two of the bounds, use `-1` to indicate not applicable price bound. Required. | `o_pr/-1, -1`, `o_pr/2.9, -1`, `o_pr/4.3, 19.5`  |
 | `o_d/`     | Order           | Transaction (scheduled) date     | In the format `yyyy-MM-dd`.                                                                                                                                                                                                                                                                                                        | `o_d/2022-10-28`, `o_d/2022-9-2`                 |
 | `o_r/`     | Order (Request) | Order request                    | Always followed by `add-r`. The Request group of prefixes describe what kind of pet this order seeks. Required.                                                                                                                                                                                                                    | `o_r/add-r`                                      |
 | `o_a/`     | Order (Request) | Age                              | A non-negative integer. Required.                                                                                                                                                                                                                                                                                                  | `o_a/5`                                          |
-| `o_s/`     | Order (Request) | Species                          | A string of any characters. Required.                                                                                                                                                                                                                                                                                              | `o_s/Chihuahua`, `o_s/German shepherd`           |
+| `o_sp/`    | Order (Request) | Species                          | A string of any characters. Required.                                                                                                                                                                                                                                                                                              | `o_sp/Chihuahua`, `o_sp/German shepherd`         |
 | `o_c/`     | Order (Request) | Color                            | A string of any characters. Required.                                                                                                                                                                                                                                                                                              | `o_c/red`                                        |
 | `o_cp/`    | Order (Request) | Color pattern                    | A string of any characters. This describes the appearance of the pet in more detail. Required.                                                                                                                                                                                                                                     | `o_cp/white stripped`, `o_cp/black dotted`       |
 | `o_ar/`    | Order           | Additional request of the order. | A string of any characters. Optional. Can have multiple.                                                                                                                                                                                                                                                                           | `o_ar/free delivery`, `o_ar/arrive in 10 days`   |
