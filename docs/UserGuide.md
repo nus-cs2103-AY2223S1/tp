@@ -4,8 +4,10 @@ title: User Guide
 ---
 
 <div class="toc-no-bullet-points">
+
 * Table of Contents
 {:toc}
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -78,7 +80,7 @@ It is optimized for fast typists and replicates a Command Line Interface (CLI) s
 * Those with no `DATETIME` attached to it will be placed below those with upcoming dates.
 * Applications in the past (i.e. `DATETIME` is past current time) will be placed at the bottom of the list, sorted downwards as well from the most recently passed.
 * An example is shown below:
-* ![SortExample](images/SortExample.png)
+![SortExample](images/SortExample.png)
 
 </div>
 
