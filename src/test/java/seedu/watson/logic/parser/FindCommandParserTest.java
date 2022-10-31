@@ -5,6 +5,7 @@ import static seedu.watson.logic.parser.CommandParserTestUtil.assertParseFailure
 import static seedu.watson.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.watson.logic.commands.FindCommand;
