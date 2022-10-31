@@ -40,9 +40,10 @@ public class OrderListPanel extends UiPart<Region> {
             if (empty || order == null) {
                 setGraphic(null);
                 setText(null);
+                this.setStyle("-fx-background-color: #D9DCFF");
             } else {
                 if (!order.isCompleted()) {
-                    this.setStyle("-fx-background-color: #707BE3; -fx-background-insets: 3px;");
+                    this.setStyle(" -fx-background-insets: 3px;");
                 } else {
                     this.setStyle("-fx-background-color: #777BB5; -fx-background-insets: 3px;");
                 }
