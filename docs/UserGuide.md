@@ -13,27 +13,27 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your Computer.
 
-2. Download the latest `workbook.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-3/tp).
+2. Download the latest `WorkBook.v1.3.1.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-3/tp/releases/tag/v1.3.1).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your WorkBook.
+3. Copy the file to a folder of your choice to store data from your WorkBook.
 
-4. Using your favourite terminal, navigate to the _home folder_ above and start WorkBook by running `java -jar workbook.jar`. The GUI as shown below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Using your terminal, navigate to the folder where you placed your `jar` file and start WorkBook by running: `java -jar WorkBook.v1.3.1.jar`. <br> The GUI with sample data as shown below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`add`**`c/Meta d/2022-09-15 e/hrmonkey@example.com r/Frontend` : Adds an internship from `Meta` to the WorkBook.
+   * `add c/Meta d/18-Oct-2022 12:00 e/hrmonkey@example.com r/Frontend` : Adds an internship from `Meta` to the WorkBook.
 
-   * **`delete`**`3` : Deletes the 3rd internship shown in the current list.
+   * `delete 3` : Deletes the 3rd internship shown in the current list.
 
    * **`clear`** : Deletes all internships.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -50,7 +50,7 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
   e.g `c/COMPANY [t/TAG]` can be used as `c/Meta t/unattainable` or as `c/Meta`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/unattainable`, `t/unattainable t/AWS` etc.
+  e.g. `[t/TAG]…​` can be omitted, used once: `t/unattainable`, or multiple times: `t/unattainable t/AWS`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `c/COMPANY s/STAGE`, `s/STAGE c/COMPANY` is also acceptable.
@@ -68,17 +68,23 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 | Action     | Format, Examples                                                                                                                                                                                     |
 |------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add c/COMPANY r/ROLE s/STAGE [d/DATE] [e/COMPANY_EMAIL] [l/LANGUAGE TAG]… [t/TAG]…​` <br> e.g., `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Javascript` |
-| **Edit**   | `edit INDEX [c/COMPANY] [d/YYYY-MM-DD] [e/EMAIL] [r/ROLE] [l/LANGUAGE TAG]… [t/TAG]…​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                                |
-| **List**   | `list`                                                                                |
+| **Edit**   | `edit INDEX [c/COMPANY] [d/DATE] [e/COMPANY_EMAIL] [r/ROLE] [l/LANGUAGE TAG]… [t/TAG]…​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                                |
 | **Find**   | `find c/COMPANY | r/ROLE | s/STAGE​​`<br> e.g.,`find c/Meta` 
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                  |
+| **List**   | `list`                                                                                |
 | **Undo** | `undo`                                                                                                                                                                  |
 | **Redo** | `redo`                                                                                                                                                                  |
 | **Clear**  | `clear`                                                                                                                                                                                              |
 | **Help**   | `help`                                                                                                                                                                                               |
 | **Exit**   | `exit`                                                                                                                                                                                               |
 
+<div markdown="block" class="alert alert-info">
 
+**:information_source: Note:**<br>
+
+* Commands without examples are considered trivial and can be executed by inputting the command without additional parameters.
+
+</div>
 
 ### Adding an internship application: `add`
 
@@ -87,12 +93,13 @@ Adds an internship application to WorkBook.
 Format: `add c/COMPANY r/ROLE s/STAGE [d/DATE] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
 
 * Adds an internship application to the list in sorted order.
-* Fields not square-bracketed are mandatory.
-* Date must be properly formatted (DD-MMM-YYYY HH:mm) when inputted.
-* Date can represent the date it happened or the deadline of the corresponding `stage`
-* Email domain, if included, must be properly formatted (example@domain.com).
-* An application can have any number of tags and language tags and are added one by one (i.e.
-if you want 2 tags, you have to specify `t/two t/tags`).
+  * Note: Internship applications **in the past** are placed at the bottom.
+* Date can represent:
+    * The date it happened
+    * The deadline of the corresponding `Stage`
+* Date, if included, must be properly formatted `DD-MMM-YYYY HH:mm` when inputted.
+* Email domain, if included, must be properly formatted `example@domain.com`.
+* Square-bracketed fields are optional.
 
 Examples:
 * `add c/Meta r/Frontend Engineer s/Application Sent d/29-Oct-2022 12:00 e/hrmonkey@example.com`
@@ -264,10 +271,6 @@ _Details coming soon ..._
 _Details coming soon ..._
 
 ### Daily Tips `[coming soon]`
-
-_Details coming soon ..._
-
-### Toggling Light and Dark mode `[coming soon]`
 
 _Details coming soon ..._
 
