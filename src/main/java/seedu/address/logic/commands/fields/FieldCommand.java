@@ -43,28 +43,17 @@ public abstract class FieldCommand extends Command {
     }
 
     protected DisplayItem selectFromRightModel(Model model, String type, Index targetIndex)
-        throws ParseException, CommandException {
-        List<? extends DisplayItem> lastShownList = null;
+            throws ParseException, CommandException {
         switch (type) {
         case "g":
-            lastShownList = model.getFilteredTeamList();
-            break;
+            return model.getFromFilteredTeams(targetIndex);
         case "t":
-            lastShownList = model.getFilteredTaskList();
-            break;
+            return model.getFromFilteredTasks(targetIndex);
         case "u":
-            lastShownList = model.getFilteredPersonList();
-            break;
+            return model.getFromFilteredPerson(targetIndex);
         default:
-            break;
-        }
-        if (lastShownList == null) {
             return null;
         }
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(INDEX_OUT_OF_BOUND);
-        }
-        return lastShownList.get(targetIndex.getZeroBased());
     }
 
     public static String getRestOfArgs(String args) {
