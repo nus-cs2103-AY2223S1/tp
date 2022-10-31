@@ -77,9 +77,8 @@ percentage will be fixed at 100%.
 **:information_source: Notes about the command format:**<br>
 
 * Texts in `UPPER_CASE` are arguments provided by the user.
-  * E.g. in `add n/FOOD c/CALORIE t/MEAL_TYPE`, `FOOD`, `CALORIE` and `MEAL_TYPE` are parameters that can be used as `add n/sushi c/300 t/dinner`.
+  * E.g. in `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`, `FOOD_NAME`, `CALORIE` and `MEAL_TYPE` are parameters that can be used as `add n/sushi c/300 t/dinner`.
 * Arguments in square brackets are optional.
-* Arguments are **not** case-sensitive
 * The parameters can be in any order.
   * E.g. `add n/bubble tea c/200 t/dinner` is the same as `add c/200 n/bubble tea t/dinner`.
 * Integer values are values between 1 and 2147483647 (inclusive).
@@ -87,7 +86,6 @@ percentage will be fixed at 100%.
   * E.g. `edit 2147483648` is an invalid command regardless of the inputs provided.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.
   * E.g. `help 123` will be interpreted as `help`.
-* The `FOOD` parameter for commands `add`, `edit` and `find` can only take on alphanumeric values that contain at most 27 characters.
 
 </div>
 
@@ -218,7 +216,7 @@ Example:
 
 :information_source: **Note:**<br>
 
-`FOOD` is **not** case-sensitive.
+`FOOD_NAME` is **not** case-sensitive.
 
 * E.g. `find rice` is the same as `find rIcE`.
 
