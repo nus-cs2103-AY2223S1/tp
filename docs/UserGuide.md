@@ -15,7 +15,7 @@ title: User Guide
 
 ### 1.1 What is Class-ify?
 
-Class-ify is a **class management application** built specially for **Ministry of Education (MOE) teachers** to 
+Class-ify is a **class management application** built specially for **Singapore Ministry of Education (MOE) teachers** to 
 **monitor their student's academic progress easily**. Teachers can **generate exam statistics** for each class, 
 and Class-ify quickly **flags out students** who require more support for contacting.
 
@@ -71,7 +71,7 @@ Before you begin reading, here are some special notations to help you along the 
 
 **Tips**
 
-Tips are useful bits of information that will help you have a better experience with Class-ify.
+Tips are useful suggestions that will help you have a better experience with Class-ify.
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:** Tips are useful!
@@ -79,7 +79,7 @@ Tips are useful bits of information that will help you have a better experience 
 
 **Notes**
 
-Notes are here to provide you with extra information that you may find helpful when using Class-ify.
+Notes are important information that you should pay attention to when using Class-ify.
 
 <div markdown="span" class="alert alert-info">:information_source:
 **Note:** Take notes when you see this icon!
@@ -92,33 +92,35 @@ will delete all data stored locally and this action is irreversible. You will lo
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: Stop and read carefully when you see this!
-</div>
-<br/>
+</div><br/>
+
+### 4.1 Notes on the Command Format
+
 <div markdown="block" class="alert alert-info">:information_source:
-**Notes on the Command Format:** <br>
+**Note:**<br/>
 
 * **Command Words**
-  * Command words and prefixes are case-sensitive. <br>
+  * Command words and prefixes are case-sensitive.<br/>
   e.g. `eXit` will not be accepted as the `exit` command.
   * Only the last occurrence of a repeated prefix input will be taken.
   e.g. `edit 1 nm/Jonathan nm/Ethan nm/Alice` is the same as `edit 1 nm/Alice`.
 
 * **Parameters**
-  * Words in `UPPER_CASE` refers to input from the user. <br>
+  * Words in `UPPER_CASE` refers to input from the user.<br/>
   e.g. For the `viewClass` command, the command format is `viewClass CLASS`<br>
   `CLASS` refers to the user input which can be `viewClass 17S68`.
   * Parameters can be written in any order
   e.g. `edit 1 nm/Jack id/111A` is the same as `edit 1 id/111A nm/Jack`.
   * Additional parameters for commands that do not require parameters will be ignored.<br>
   e.g. `exit hello123` will be accepted as the `exit` command.
-  * Optional parameters are indicated by square brackets `[]`. <br>
-  e.g. For the `addStudent` command, the command format is `addStudent nm/STUDENT-NAME id/ID class/CLASS [pn/PARENT-NAME] [hp/PHONE-NUMBER]...`<br>
+  * Optional parameters are indicated by square brackets `[]`.<br/>
+  e.g. For the `addStudent` command, the command format is `addStudent nm/STUDENT-NAME id/ID class/CLASS [pn/PARENT-NAME] [hp/PHONE-NUMBER]...`<br/>
   `[pn/PARENT-NAME]` and `[hp/PHONE-NUMBER]` refer to optional parameters that can be supplied by the user.
 </div><br/>
 
-### 4.1 Managing student records
+### 4.2 Managing student records
 
-#### 4.1.1 Adding a new student record : `addStudent`
+#### 4.2.1 Adding a new student record : `addStudent`
 
 Creates a new student record with the following parameters:
 
@@ -155,13 +157,17 @@ Examples:
 **Caution:** If you are receiving an invalid command message, do check to ensure that you are using the correct prefix for the intended parameter.
 </div>
 
-#### 4.1.2 Clearing all student records : `clear`
+#### 4.2.2 Clearing all student records : `clear`
 
 Clears all student records from local storage.
 
 Format: `clear`
 
-#### 4.1.3 Deleting a student record : `delete`
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:** This command will delete all data stored locally and this action is irreversible. You will lose your data permanently.!
+</div>
+
+#### 4.2.3 Deleting a student record : `delete`
 
 Deletes an existing student record from the class list, using the student’s name or the student’s ID.
 
@@ -171,13 +177,13 @@ Examples:
 * `delete nm/Jonathan Tan` deletes student record with student name as 'Jonathan Tan'.
 * `delete id/123A` deletes student record with student ID as '123A'.
 
-#### 4.1.4 Editing a student record : `edit`
+#### 4.2.4 Editing a student record : `edit`
 
 Edits the respective details of an existing student.
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the current displayed list. The index **must be a positive integer** 1, 2, 3 ...
 * Existing values will be updated to the new input values.
-* Refer to the complete list of tags for each field under [addStudent command](#411-adding-a-new-student-record--addstudent).
+* Refer to the complete list of tags for each field under [addStudent command](#421-adding-a-new-student-record--addstudent).
 
 Format: `edit INDEX [nm/STUDENT-NAME] [id/ID] [exam/EXAM-NAME SCORE] [pn/PARENT-NAME] ...`
 
@@ -185,7 +191,7 @@ Examples:
 *  `edit 1 exam/CA2 70 exam/SA1 60` Adds or updates the CA2 and SA1 exam grades of the 1st student to be `70` and `60` respectively.
 *  `edit 2 nm/Jacob Teo` Edits the name of the 2nd student to `Jacob Teo`.
 
-### 4.2 Managing display of student records
+### 4.3 Managing display of student records
 
 <div markdown="span" class="alert alert-info">:information_source:
    **Note:**
@@ -193,7 +199,7 @@ Examples:
    Commands related to managing display are not saved upon exiting the application.
 </div>
 
-#### 4.2.1 Finding a student record : `find`
+#### 4.3.1 Finding a student record : `find`
 
 Shows a list of students whose name contains the specified name keywords, or whose Id matches the given Id.
 
@@ -207,7 +213,7 @@ Examples:
 * `find nm/John` returns the record students whose names contain `John`
 * `find nm/john alice` returns the records for the students whose name contains `john` or `alice`.
 
-#### 4.2.2 Toggling view : `toggleView`
+#### 4.3.2 Toggling view : `toggleView`
 
 Toggles the display between showing and hiding the students' parent details. 
 
@@ -225,18 +231,17 @@ Format: `toggleView`
    **Tip:** The default display renders the students' parent details as a reminder that these optional fields exists.   
 </div>
 
-#### 4.2.3 Viewing all student records : `viewAll`
+#### 4.3.3 Viewing all student records : `viewAll`
 
 Shows a list of all student records in Classify.
 
 Format: `viewAll`
 
-#### 4.2.4 Viewing student records from a class : `viewClass`
+#### 4.3.4 Viewing student records from a class : `viewClass`
 
 Shows a list of all students in the specified class.
 
 Format: `viewClass CLASS`
-
 * Class name can only contain alphanumeric characters.
 * Class name is case-insensitive.
 
@@ -244,9 +249,9 @@ Examples:
 * `viewClass 2A` Displays the list of students with the class `2A`.
 * `viewClass Loyalty1` Displays the list of students with the class `LOYALTY1`.
 
-### 4.3 Exam statistics
+### 4.4 Exam statistics
 
-#### 4.3.1 Getting exam statistics: `viewStats`
+#### 4.4.1 Getting exam statistics: `viewStats`
 
 Shows a list of students in the specified class, and displays the mean of the specified exam for that class. If filter 
 is set to "ON", only students whose score for the specified exam falls below the mean will be displayed.
@@ -267,21 +272,21 @@ all the students in the class '4A', arranged in ascending grades for "SA1".
 * `viewStats class/4A exam/sa1 filter/on` Displays the mean obtained by class "4A" for "SA1", as well as the list of 
 students in class "4A" whose grade for "SA1" falls below the mean, arranged in ascending grades for "SA1".
 
-### 4.4 Miscellaneous
+### 4.5 Miscellaneous
 
-#### 4.4.1 Exiting the application : `exit`
+#### 4.5.1 Exiting the application : `exit`
 
 Exits the application.
 
 Format: `exit`
 
-#### 4.4.2 Viewing help : `help`
+#### 4.5.2 Viewing help : `help`
 
 Shows a summary of all commands available.
 
 Format: `help`
 
-#### 4.4.3 Saving the data
+#### 4.5.3 Saving the data
 
 Student records are saved locally after any command that changes the data. There is no need to save manually.
 
