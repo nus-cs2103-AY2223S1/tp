@@ -7,7 +7,11 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
-    "country" : "Singapore"
+    "country" : "Singapore",
+    "servers" : ["server@111.222.333"],
+    "socials" : ["twitter@aliceP", "ig@AliceP"],
+    "gameTypes" : ["MinePlex", "Survival"],
+    "timeIntervals" : ["mon@2300-tue@0000"]
   }, {
     "name" : "Benson Meier",
     "minecraftName" : "Benson123",
@@ -15,7 +19,10 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
-    "country" : "Singapore"
+    "country" : "Singapore",
+    "servers" : ["server@111.222.444"],
+    "gameTypes" : ["Hunger Games"],
+    "timeIntervals" : ["mon@1200-mon@1400"]
   }, {
     "name" : "Carl Kurz",
     "minecraftName" : "Carl",
@@ -23,15 +30,21 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "tagged" : [ ],
-    "country" : "Singapore"
+    "country" : "Singapore",
+    "servers" : ["server@111.123"],
+    "gameTypes" : ["Hunger Games"],
+    "timeIntervals" : ["tue@2200 - tue@2300"]
   }, {
     "name" : "Daniel Meier",
     "minecraftName" : "Dan",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tagged" : [ "friends" ],
-    "country" : "USA"
+    "tagged" : [ "buddy", "friends" ],
+    "country" : "USA",
+    "servers" : [],
+    "gameTypes" : ["MinePlex"],
+    "timeIntervals" : ["mon@1100-mon@1430"]
   }, {
     "name" : "Elle Meyer",
     "minecraftName" : "Elli",
@@ -39,22 +52,65 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "tagged" : [ ],
-    "country" : "USA"
+    "country" : "USA",
+    "servers" : ["random@111.222", "random@333.444"],
+    "gameTypes" : ["adventure"],
+    "timeIntervals" : ["wed@2000-wed@2200"]
   }, {
     "name" : "Fiona Kunz",
     "minecraftName" : "KUNCZ",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "tagged" : [ ],
-    "country" : "Japan"
+    "tagged" : [ "friends" ],
+    "country" : "Japan",
+    "servers" : ["server@111.222.333"],
+    "gameTypes" : ["MinePlex"],
+    "timeIntervals" : []
   }, {
     "name" : "George Best",
     "minecraftName" : "dinnerbone",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "tagged" : [ ],
-    "country" : "USA"
-  } ]
+    "tagged" : [ "friends" ],
+    "country" : "USA",
+    "servers" : [],
+    "gameTypes" : [],
+    "timeIntervals" : []
+  }, {
+    "name" : "Hoon Meier",
+    "minecraftName" : "aaaaaa",
+    "phone" : "8482424",
+    "email" : "stefan@example.com",
+    "address" : "little india",
+    "tagged" : [],
+    "country" : "Singapore",
+    "servers" : [],
+    "gameTypes" : [],
+    "timeIntervals" : []
+  }, {
+    "name" : "Ida Mueller",
+    "minecraftName" : "wsssd",
+    "phone" : "8482131",
+    "email" : "hans@example.com",
+    "address" : "chicago ave",
+    "tagged" : [],
+    "country" : "Singapore",
+    "servers" : [],
+    "gameTypes" : [],
+    "timeIntervals" : []
+  }, {
+    "name" : "Justin Bieber",
+    "minecraftName" : "bustinjieber",
+    "phone" : "97654786",
+    "email" : "bieber@gmail.com",
+    "address" : "National University of Singapore",
+    "tagged": [ "popstar" ],
+    "country" : "Singapore",
+    "socials" : ["facebook@bieber"],
+    "servers" : ["minecraft@123.456", "minecraft@456.789"],
+    "gameTypes" : ["creative"],
+    "timeIntervals" : ["sun@2300-mon@0100"]
+  }]
 }

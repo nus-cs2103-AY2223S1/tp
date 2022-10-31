@@ -39,6 +39,17 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_SOCIAL_INSTAGRAM = "ig@Amy123";
+    public static final String VALID_SOCIAL_TWITTER = "twitter@Bobby456";
+    public static final String VALID_COUNTRY_UK = "United Kingdom";
+    public static final String VALID_COUNTRY_CANADA = "Canada";
+    public static final String VALID_GAME_TYPE_MINEPLEX = "MinePlex";
+    public static final String VALID_GAME_TYPE_SURVIVAL = "Survival";
+    public static final String VALID_SERVER_123_456 = "server@123.456";
+    public static final String VALID_SERVER_111_222 = "server@111.222";
+    public static final String VALID_TIME_INTERVAL_SUNDAY_NIGHT_TO_MONDAY_MORNING =
+            "sun@2300-mon@0100";
+    public static final String VALID_TIME_INTERVAL_TUES_AFTERNOON = "tue@1400-tue@1600";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
