@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
@@ -75,21 +76,29 @@
                               <Label fx:id="conditionHeader" styleClass="cell_small_label_light" text="\$conditionheader" wrapText="true" />
                            </children>
                         </VBox>
-                        <VBox fx:id="conditionContainer" spacing="5.0">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </VBox>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="150.0">
+                           <content>
+                              <VBox fx:id="conditionContainer" spacing="5.0">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
                         <VBox fx:id="medicationHeaderPane" styleClass="cell_small_label_header_border">
                            <children>
                               <Label fx:id="medicationHeader" styleClass="cell_small_label_light" text="\$medicationheader" wrapText="true" />
                            </children>
                         </VBox>
-                        <VBox fx:id="medicationContainer" spacing="5.0">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </VBox>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="150.0">
+                           <content>
+                              <VBox fx:id="medicationContainer" spacing="5.0">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
                      </children>
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -118,11 +127,15 @@
                               <Label fx:id="taskHeader" styleClass="cell_small_label_light" text="\$taskheader" wrapText="true" />
                            </children>
                         </VBox>
-                        <VBox fx:id="taskContainer" spacing="5.0">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </VBox>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="400.0">
+                           <content>
+                              <VBox fx:id="taskContainer" spacing="5.0">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
                      </children>
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -138,11 +151,15 @@
                               <Label fx:id="remarkHeader" styleClass="cell_small_label_light" text="\$remarkheader" wrapText="true" />
                            </children>
                         </VBox>
-                        <VBox fx:id="remarkContainer" spacing="5.0">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </VBox>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="400.0">
+                           <content>
+                              <VBox fx:id="remarkContainer" spacing="5.0">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
                      </children>
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
