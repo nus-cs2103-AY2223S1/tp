@@ -36,13 +36,19 @@
   });
 </script>
 <script defer>
-  document.addEventListener("DOMContentLoaded", () => {
-    document
-      .querySelectorAll(
-        "article.post h2:not(.no_toc), article.post h3:not(.no_toc), article.post h4:not(.no_toc)"
-      )
-      .forEach((e) => {
-        e.innerHTML = `<a class="header-backlink" href="#markdown-toc-${e.id}">${e.innerHTML}</a>`;
-      });
+  // PrinceXML only supports ES5
+  document.addEventListener("DOMContentLoaded", function () {
+    var targets = document.querySelectorAll(
+      "article.post h2:not(.no_toc), article.post h3:not(.no_toc), article.post h4:not(.no_toc)"
+    );
+    for (var i = 0; i < targets.length; i++) {
+      var e = targets[i];
+      e.innerHTML =
+        '<a class="header-backlink" href="#markdown-toc-' +
+        e.id +
+        '">' +
+        e.innerHTML +
+        "</a>";
+    }
   });
 </script>
