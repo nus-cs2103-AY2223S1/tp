@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.Locale;
 
 
@@ -15,7 +16,7 @@ import java.util.Locale;
 public class MeetingDate {
 
     public static final String MESSAGE_CONSTRAINTS = "Date should be in the form of dd MMM yyyy [HH:mm]. "
-            + "Meeting time is optional";
+            + "Meeting time is optional.";
 
     public final String value;
 
@@ -41,10 +42,12 @@ public class MeetingDate {
             DateTimeFormatter formatter;
             try {
                 if (test.contains(":")) {
-                    formatter = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm", Locale.ENGLISH);
+                    formatter = DateTimeFormatter.ofPattern("d MMM uuuu HH:mm", Locale.ENGLISH)
+                            .withResolverStyle(ResolverStyle.STRICT);
                     LocalDateTime.parse(test, formatter);
                 } else {
-                    formatter = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.ENGLISH);
+                    formatter = DateTimeFormatter.ofPattern("d MMM uuuu", Locale.ENGLISH)
+                            .withResolverStyle(ResolverStyle.STRICT);;
                     LocalDate.parse(test, formatter);
                 }
             } catch (Exception ex) {
