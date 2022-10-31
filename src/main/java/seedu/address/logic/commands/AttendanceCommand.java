@@ -106,6 +106,4 @@ public class AttendanceCommand extends Command {
         return index.equals(temp.index) && attendance.equals(temp.attendance);
     }
 
-
-
 }
