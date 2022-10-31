@@ -23,6 +23,8 @@ Given below are my contributions to the project.
     * What it does: Allows the user to customise the order of information shown in all contacts shown.
     * Justification: This feature improves the product significantly because a user can see information they consider more important above other information.
     * Highlights: This enhancement affects the user interface. It required an in-depth analysis of different possible implementations and understanding of the implementation of the user interface.
+  * **Adjustments to User Interface**: Made adjustments to the user interface.
+    * Highlights: This enhancement affects the user interface. It required an in-depth analysis of what a user would prefer.
 * **Contributions to documentation**:
   * User Guide:
     * Added documentation of customise features.

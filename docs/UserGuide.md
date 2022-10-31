@@ -146,10 +146,10 @@ Default sorting orders:
 Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
 * To sort in reverse order, use these modified parameters: `[n/!] [p/!] [e/!] [a/!] [t/!TAG]`.
 * To sort with multiple parameters, arrange the parameters in order of decreasing priority.
-    * The list will be sorted by the first parameter.
-    * If ties occur (e.g. both contacts have the exact same name), the second parameter will be used to sort the tied contacts.
-    * If the tie still occurs, the third parameter will be used.
-    * Repeat until the tie is resolved or there are no more parameters.
+  * The list will be sorted by the first parameter.
+  * If ties occur (e.g. both contacts have the exact same name), the second parameter will be used to sort the tied contacts.
+  * If the tie still occurs, the third parameter will be used.
+  * Repeat until the tie is resolved or there are no more parameters.
 
 Example:
 * `sort n/` sorts by names. (E.g. `David` appears before `Mike`)
@@ -170,7 +170,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in your SoConnect.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
-
 ### Clearing all contacts : `clear`
 
 Clears all contacts from your SoConnect.
@@ -187,6 +186,19 @@ Format: `tag create t/TAG`
 
 Example:
 * `tag create t/family` creates a `family` tag.
+
+### Deleting a Tag: `tag delete`
+
+Deletes a tag.
+
+Format: `tag delete t/TAG`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
+</div>
+
+Example:
+* `tag delete t/family` deletes the `family` tag.
 
 ### Editing a Tag: `tag edit`
 
@@ -217,19 +229,6 @@ A contact can have any number of tags. Add as many as you want.
 
 Example:
 * `tag add 1 t/friend` adds the friend tag to the first contact shown in the list.
-
-### Deleting a Tag: `tag delete`
-
-Deletes a tag.
-
-Format: `tag delete t/TAG`
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
-</div>
-
-Example:
-* `tag delete t/family` deletes the `family` tag.
 
 ### Removing a Tag from a Contact: `tag remove`
 
@@ -282,14 +281,13 @@ Format: `customise show [t/] [p/] [e/] [a/]`
 * Information that can be changed from being hidden to being shown: Tags, Phone Number, Email, Address.
 * After using the command, the information specified is shown.
 * If the information specified is already shown, it will stay shown.
+* In `v1.5`, we will include `customise show all`, a shortcut to show all information.
 
 Example:
 * `customise show a/` The application now shows addresses in the list of contacts.
 * `customise show p/ t/` The application now shows phone numbers and tags in the list of contacts.
 
-### Showing all contact details `[coming in v1.5]`
-
-## Todo Features
+## Todo Management Features
 
 ### Adding a todo: `todo add`
 
