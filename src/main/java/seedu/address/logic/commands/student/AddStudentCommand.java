@@ -30,10 +30,10 @@ public class AddStudentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_ID + "STUDENT ID "
+            + PREFIX_ID + "STUDENT_ID "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_TELEGRAM + "TELEGRAM "
+            + PREFIX_TELEGRAM + "TELEGRAM_HANDLE "
             + PREFIX_MODULE + "MODULE "
             + PREFIX_TUTORIAL + "TUTORIAL "
             + "[" + PREFIX_GRADE + "GRADE] "
@@ -45,7 +45,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_ID + "A0232123X "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_TELEGRAM + "johnDoe"
+            + PREFIX_TELEGRAM + "johnDoe "
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_TUTORIAL + "W17 ";
 
