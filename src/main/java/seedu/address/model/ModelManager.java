@@ -39,6 +39,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        // Solution below adapted from
+        // https://stackoverflow.com/questions/17958337/javafx-tableview-with-filteredlist-jdk-8-does-not-sort-by-column
         filteredPersons = new SortedList<>(new FilteredList<>(this.addressBook.getPersonList()));
         filteredInternships = new SortedList<>(new FilteredList<>(this.addressBook.getInternshipList()));
     }
@@ -140,6 +142,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void refreshPersonList() {
+        FilteredList<Person> personList = (FilteredList<Person>) filteredPersons.getSource();
+        Predicate<? super Person> predicate = personList.getPredicate();
+        personList.setPredicate(PREDICATE_SHOW_NO_PERSONS);
+        personList.setPredicate(predicate);
+    }
+
+    @Override
     public boolean hasInternship(Internship internship) {
         requireNonNull(internship);
         return addressBook.hasInternship(internship);
@@ -175,6 +185,14 @@ public class ModelManager implements Model {
         // the source list, it is safe to swap between SortedList and FilteredList.
         @SuppressWarnings("unchecked")
         FilteredList<Internship> internshipList = (FilteredList<Internship>) filteredInternships.getSource();
+        internshipList.setPredicate(predicate);
+    }
+
+    @Override
+    public void refreshInternshipList() {
+        FilteredList<Internship> internshipList = (FilteredList<Internship>) filteredInternships.getSource();
+        Predicate<? super Internship> predicate = internshipList.getPredicate();
+        internshipList.setPredicate(PREDICATE_SHOW_NO_INTERNSHIPS);
         internshipList.setPredicate(predicate);
     }
 

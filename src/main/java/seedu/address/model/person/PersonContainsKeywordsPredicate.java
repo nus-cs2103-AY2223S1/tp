@@ -64,6 +64,8 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
 
         PersonContainsKeywordsPredicate otherPredicate = (PersonContainsKeywordsPredicate) other;
 
+        // solution adapted from
+        // https://stackoverflow.com/a/36716166
         return Objects.equals(nameKeywords, otherPredicate.nameKeywords)
                 && Objects.equals(phoneKeywords, otherPredicate.phoneKeywords)
                 && Objects.equals(emailKeywords, otherPredicate.emailKeywords)

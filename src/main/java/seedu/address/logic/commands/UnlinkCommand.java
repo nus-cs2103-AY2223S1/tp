@@ -98,10 +98,10 @@ public class UnlinkCommand extends Command {
             throw new CommandException(String.format(MESSAGE_UNLINKED_PERSON, personToUnlink.getName()));
         }
 
-        if (internshipToUnlink.getContactPersonId() == null) {
-            throw new CommandException(String.format(MESSAGE_UNLINKED_INTERNSHIP, internshipToUnlink.getDisplayName()));
-        } else if (personToUnlink.getInternshipId() == null) {
+        if (personToUnlink.getInternshipId() == null) {
             throw new CommandException(String.format(MESSAGE_UNLINKED_PERSON, personToUnlink.getName()));
+        } else if (internshipToUnlink.getContactPersonId() == null) {
+            throw new CommandException(String.format(MESSAGE_UNLINKED_INTERNSHIP, internshipToUnlink.getDisplayName()));
         }
 
         if (!personToUnlink.getInternshipId().equals(internshipToUnlink.getInternshipId())) {

@@ -56,6 +56,8 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
 
         InternshipContainsKeywordsPredicate otherPredicate = (InternshipContainsKeywordsPredicate) other;
 
+        // solution adapted from
+        // https://stackoverflow.com/a/36716166
         return Objects.equals(companyNameKeywords, otherPredicate.companyNameKeywords)
                 && Objects.equals(internshipRoleKeywords, otherPredicate.internshipRoleKeywords)
                 && Objects.equals(internshipStatusKeywords, otherPredicate.internshipStatusKeywords)
