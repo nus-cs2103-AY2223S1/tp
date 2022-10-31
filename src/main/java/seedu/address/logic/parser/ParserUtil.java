@@ -84,8 +84,7 @@ public class ParserUtil {
      *
      * @param oneBasedIndexes One-based Indexes.
      * @return List of Indexes.
-     * @throws ParseException if any of the specified indexes are invalid (not non-zero unsigned integer) or if
-     * there are duplicate indexes.
+     * @throws ParseException if any of the specified indexes are invalid (not non-zero unsigned integer) or duplicates.
      */
     public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
         String trimmedIndexes = oneBasedIndexes.trim();
