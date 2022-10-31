@@ -35,9 +35,13 @@ class DeleteTagCommandTest {
 
     private List<Tag> taglistStub0 = new ArrayList<Tag>(Arrays.asList(remote, urgent));
 
+    private List<Tag> taglistStubNull = new ArrayList<Tag>(Arrays.asList());
+
     private Set<Tag> taglistStub1 = new HashSet<>(Arrays.asList(remote, urgent));
 
     private Set<Tag> taglistStub2 = new HashSet<>(Arrays.asList(remote));
+
+
 
     @Test
     public void execute_invalidInternshipIndexFilteredList_failure() {
