@@ -18,8 +18,12 @@ public class AddressContainsKeywordsPredicate implements Predicate<Student> {
 
     @Override
     public boolean test(Student student) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getAddress().value, keyword));
+        for (String keyword : this.keywords) {
+             if (student.getAddress().value.contains(keyword)) {
+                 return true;
+             }
+        }
+        return false;
     }
 
     @Override
