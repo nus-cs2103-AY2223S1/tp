@@ -10,7 +10,9 @@ title: User Guide
 
 Welcome to Coydir's User Guide! 
 
-**[Insert some catchy phrase here]**
+**Even Thanos had to read the User Guide before he learnt how to wield the power of the infinity stones...**
+
+**This guide will teach you the ropes so that you too can command the infinite power of Coydir the universe has never seen before!! Or simply feel free to look around! :p**
 
 ---
 
@@ -53,7 +55,7 @@ Welcome to Coydir's User Guide!
 
 ## Introduction
 
-Coydir is a desktop app to manage the employee details within a company, optimized for use via a Command Line Interface (CLI). Coydir would not only allow you to quickly access the list of all employees and their details but also make necessary updates based on the changes of the company structure.
+Welcome HR executives and Department Heads! Coydir is a desktop app to efficiently track key employee details within your company, optimized for use via a Command Line Interface (CLI). Coydir would not only allow you to quickly access the list of all employees and their details but also make necessary updates such as leaves and performance rating information.
 
 ## Using this Guide
 
@@ -154,7 +156,18 @@ Next, let us look at each feature in detail.
 
 Adds an employee to Coydir.
 
-Format: `add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​`
+Format: `add n/NAME [p/PHONE] [e/EMAIL] j/POSITION d/DEPARTMENT [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
+
+Field |TAG | Description | Requirement| Default Value
+--------------|---------------|---------------|------------------------ | --------
+`NAME`|n/|Name|**Compulsory**| -
+`PHONE` |p/|Phone number|**Optional**| N/A
+`EMAIL` |e/|Email|**Optional**| N/A
+`POSITION` |j/|Job position|**Compulsory**| -
+`DEPARTMENT` |d/|Company Department|**Compulsory**| -
+`ADDRESS` |a/|Address|**Optional**| N/A
+`LEAVE` |l/|Total number of entitled leaves|**Optional**| 14
+`TAG` |t/|Information tags|**Optional**| _None_
 
 <div markdown="span" class="alert alert-primary">:bulb:
 An employee can have any number of tags (including 0).
@@ -378,13 +391,18 @@ This command results in one of two cases below:
 
 **Case 1: Valid ID and rating**
 
-If the employee exists, the rating given is valid (is a number from 1-5 inclusive), the performance rating will be added and the performance field of the employee will be updated accordingly.
+If the employee exists, and the rating given is valid (is a number from 1-5 inclusive), the performance rating will be added and the performance field of the employee will be updated accordingly.
 
 **Case 2: Invalid ID or rating**
 
-If any of employee ID, the rating given is invalid (is not a number from 1-5 inclusive), Coydir will prompt the users accordingly, and the command will not execute.
+If the rating given for any employee is invalid (is not an integer from 1-5 inclusive), Coydir will prompt the users accordingly, and the command will not execute.
 
 Format: `rate id/ID r/RATING`
+
+Field |TAG | Description | Requirement| Default Value
+--------------|---------------|---------------|------------------------ | --------
+`ID`|id/|Employee ID|**Compulsory**| -
+`RATING` |r/|Performance rating of employee|**Compulsory**| -
 
 Example:
 
@@ -392,7 +410,18 @@ Example:
 
 #### Employee Performance History
 
-**[Insert description of the performance history chart]**
+In each employee profile below their current performance rating field, there is a performance history line graph showing all their past `ratings` over time, marked by a `value` and `timestamp`. The line graph allows the user to appreciate the employee's performance trend, and make key decisions regarding talent development.
+
+The individual rating values will be displayed beside each node in the performance rating graph. This makes it clearer for users to visualize an employee's overall performance at a glance.
+
+<div markdown="span" class="alert alert-info">
+
+**:information_source: Note:** You can only rate the performance of an employee once per day.<br>
+
+* Rating an employee who already has a `Rating` with `timestamp` of that same day with the `rate` command will throw a `employee already rated` error.
+
+* This is to prevent multiple ratings per day, and avoid a distorted performance history graph.
+</div>
 
 ### Managing Departments
 
