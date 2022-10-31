@@ -16,9 +16,12 @@ import static seedu.address.testutil.ProfessorBuilder.DEFAULT_SPECIALISATION;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_YEAR;
 import static seedu.address.testutil.TypicalIndexes.INDEX_ELEVENTH_PERSON_TA;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_PERSON_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_NINTH_PERSON_PROFESSOR;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_TENTH_PERSON_PROFESSOR;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_TWELFTH_PERSON_TA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -30,6 +33,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Professor;
 import seedu.address.model.person.Student;
@@ -243,44 +247,172 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor;
-        if (firstPerson instanceof Student) {
-            descriptor = new EditPersonDescriptorBuilder((Student) firstPerson).build();
-        } else if (firstPerson instanceof Professor) {
-            descriptor = new EditPersonDescriptorBuilder((Professor) firstPerson).build();
-        } else {
-            descriptor = new EditPersonDescriptorBuilder((TeachingAssistant) firstPerson).build();
-        }
+    public void execute_editSameNameDifferentRoleStudent_success() {
+        //edit student name to same name as prof
+        Student studentToEdit = (Student) model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Name duplicateNameProfessor = model.getFilteredPersonList().get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased()).getName();
+        Student editedStudent = new StudentBuilder(studentToEdit).withName(duplicateNameProfessor.toString()).build();
 
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(studentToEdit)
+                .withName(duplicateNameProfessor.toString()).build();
+
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), editedStudent);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+
+        //edit student name to same name as ta
+        Name duplicateNameTeachingAssistant = model.getFilteredPersonList().get(INDEX_ELEVENTH_PERSON_TA.getZeroBased()).getName();
+        editedStudent = new StudentBuilder(studentToEdit).withName(duplicateNameTeachingAssistant.toString()).build();
+
+        descriptor = new EditPersonDescriptorBuilder(studentToEdit)
+                .withName(duplicateNameTeachingAssistant.toString()).build();
+
+        editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
+
+        expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), editedStudent);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_editSameNameDifferentRoleProfessor_success() {
+        //edit professor name to same name as student
+        Professor professorToEdit = (Professor) model.getFilteredPersonList().get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased());
+        Name duplicateNameStudent = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()).getName();
+        Professor editedProfessor = new ProfessorBuilder(professorToEdit)
+                .withSpecialisation(EMPTY_SPECIALISATION)
+                .withName(duplicateNameStudent.toString()).build();
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(professorToEdit)
+                .withName(duplicateNameStudent.toString()).build();
+
+        EditCommand editCommand = new EditCommand(INDEX_TENTH_PERSON_PROFESSOR, descriptor);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedProfessor);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased()), editedProfessor);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+
+        //edit professor name to same name as ta
+        Name duplicateNameTeachingAssistant = model.getFilteredPersonList().get(INDEX_ELEVENTH_PERSON_TA.getZeroBased()).getName();
+
+        editedProfessor = new ProfessorBuilder(professorToEdit)
+                .withSpecialisation(EMPTY_SPECIALISATION)
+                .withName(duplicateNameTeachingAssistant.toString()).build();
+
+        descriptor = new EditPersonDescriptorBuilder(professorToEdit)
+                .withName(duplicateNameTeachingAssistant.toString()).build();
+
+        editCommand = new EditCommand(INDEX_TENTH_PERSON_PROFESSOR, descriptor);
+        expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedProfessor);
+
+        expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased()), editedProfessor);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_editSameNameDifferentRoleTeachingAssistant_success() {
+        //edit ta name to same name as student
+        TeachingAssistant teachingAssistant = (TeachingAssistant) model.getFilteredPersonList().get(INDEX_TWELFTH_PERSON_TA.getZeroBased());
+        Name duplicateNameStudent = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()).getName();
+        TeachingAssistant editedTeachingAssistant = new TeachingAssistantBuilder(teachingAssistant)
+                .withName(duplicateNameStudent.toString()).build();
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(teachingAssistant)
+                .withName(duplicateNameStudent.toString()).build();
+
+        EditCommand editCommand = new EditCommand(INDEX_TWELFTH_PERSON_TA, descriptor);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedTeachingAssistant);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_TWELFTH_PERSON_TA.getZeroBased()), editedTeachingAssistant);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+
+        //edit ta name to same name as prof
+        Name duplicateNameProfessor = model.getFilteredPersonList().get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased()).getName();
+
+        editedTeachingAssistant = new TeachingAssistantBuilder(teachingAssistant)
+                .withName(duplicateNameProfessor.toString()).build();
+
+        descriptor = new EditPersonDescriptorBuilder(teachingAssistant)
+                .withName(duplicateNameProfessor.toString()).build();
+
+        editCommand = new EditCommand(INDEX_TWELFTH_PERSON_TA, descriptor);
+        expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedTeachingAssistant);
+
+        expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_TWELFTH_PERSON_TA.getZeroBased()), editedTeachingAssistant);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_duplicateStudentUnfilteredList_failure() {
+        Student student = (Student) model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(student).build();
+
+        EditCommand editCommand = new EditCommand(INDEX_FOURTH_PERSON_STUDENT, descriptor);
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
+    public void execute_duplicateProfessorUnfilteredList_failure() {
+        Professor professor = (Professor) model.getFilteredPersonList().get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased());
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(professor).build();
+
+        EditCommand editCommand = new EditCommand(INDEX_NINTH_PERSON_PROFESSOR, descriptor);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+    }
+
+    @Test
+    public void execute_duplicateTeachingAssistantUnfilteredList_failure() {
+        TeachingAssistant ta = (TeachingAssistant) model.getFilteredPersonList().get(INDEX_ELEVENTH_PERSON_TA.getZeroBased());
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(ta).build();
+
+        EditCommand editCommand = new EditCommand(INDEX_TWELFTH_PERSON_TA, descriptor);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+    }
+
+    @Test
+    public void execute_duplicateStudentFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in address book
-        Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        EditCommand editCommand;
-        if (personInList instanceof Student) {
-            editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                    new EditPersonDescriptorBuilder((Student) personInList).build());
-        } else if (personInList instanceof Professor) {
-            editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                    new EditPersonDescriptorBuilder((Professor) personInList).build());
-        } else {
-            editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                    new EditPersonDescriptorBuilder((TeachingAssistant) personInList).build());
-        }
+        Student student = (Student) model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(student).build();
 
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
+    @Test
+    public void execute_duplicateProfessorFilteredList_failure() {
+        showPersonAtIndex(model, INDEX_TENTH_PERSON_PROFESSOR);
+
+        // edit person in filtered list into a duplicate in address book
+        Professor prof = (Professor) model.getAddressBook().getPersonList().get(INDEX_NINTH_PERSON_PROFESSOR.getZeroBased());
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(prof).build();
+
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+    }
+
+    @Test
+    public void execute_duplicateTeachingAssistantFilteredList_failure() {
+        showPersonAtIndex(model, INDEX_ELEVENTH_PERSON_TA);
+
+        // edit person in filtered list into a duplicate in address book
+        TeachingAssistant ta = (TeachingAssistant) model.getAddressBook().getPersonList().get(INDEX_TWELFTH_PERSON_TA.getZeroBased());
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(ta).build();
+
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+    }
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
