@@ -148,8 +148,8 @@ Adds a task of type deadline into the task list.
 * For more information on `DATE` formats, scroll down to "Accepted Date Formats"
 
 Examples:
-* `task deadline m/John d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by John to you.
-* `task deadline o/Sam d/Finish the assignment t/Jan 31 2022 #/cs2103` adds a deadline called “Finish the assignment” and tagged as "cs2103" which is assigned to Sam.
+* `task deadline m/Alex Yeoh d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by Alex Yeoh to you.
+* `task deadline o/Bernice Yu d/Finish the assignment t/Jan 31 2022 #/cs2103` adds a deadline called “Finish the assignment” and tagged as "cs2103" which is assigned to Bernice Yu.
 * `task deadline o/Myself d/Upload slides t/2022-12-31` adds a deadline called “Upload Slides” which self-assigned by you.
 * `task deadline d/Finish essay t/Jan 31 2022` adds a deadline called “Finish essay” which you assign to yourself.
 
@@ -168,8 +168,8 @@ Adds a task of type event into your task list.
 * For more information on `DATE` formats, scroll down to "Accepted Date Formats"
 
 Examples:
-* `task event m/John d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by John to you.
-* `task event o/Sam d/Finish the assignment t/Jan 31 2022 #/cs2103` adds an event called “Finish the assignment” tagged as "cs2103" which is assigned to Sam.
+* `task event m/Alex Yeoh d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by Alex Yeoh to you.
+* `task event o/Bernice Yu d/Finish the assignment t/Jan 31 2022 #/cs2103` adds an event called “Finish the assignment” tagged as "cs2103" which is assigned to Bernice Yu.
 * `task event o/Myself d/Upload Slides t/Jan 31 2022` adds an event called “Upload Slides” which is self-assigned by you.
 * `task event d/Finish essay t/Jan 31 2022` adds an event called “Finish essay” which you assigned to yourself.
 
