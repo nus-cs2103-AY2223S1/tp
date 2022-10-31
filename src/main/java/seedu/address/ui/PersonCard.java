@@ -96,7 +96,6 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Copies the URL to the github profile to the clipboard.
      */
-
     @FXML
     private void copyUrl() {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
