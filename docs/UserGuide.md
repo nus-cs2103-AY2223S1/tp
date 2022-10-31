@@ -95,27 +95,32 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
 6. Refer to the [Features](#features) below for details of each command.
 
 ### The User Interface
+
 Below is an image of Coydir User Interface with the main components labelled.
 
 ![](images/ui-screenshots/Labelled GUI.png)
 
 #### Toolbar
+
 ![](images/ui-screenshots/Toolbar.png)
 This Toolbar can be used to :
+
 1. Exit the application through the **File** button
 2. Access the Help guide through the **Help** button
 3. Change from Dark mode to Light Mode or vice versa through the **Theme** button
 
 #### Employee List Panel
+
 ![](images/ui-screenshots/Employee List Panel.png)
 This shows the whole employee list with basic information such as _Name_, _Employee ID_ and _Position_.
 
 This will come in handy if:
-1. You want a general overview of the employees in the company as 
-of this moment 
+
+1. You want a general overview of the employees in the company as of this moment.
 2. You want to quickly find out their Employee ID to view more details.
 
 #### Employee Info Panel
+
 ![](images/ui-screenshots/Employee Info Panel.png)
 This shows a specific employee's particulars.
 
@@ -123,18 +128,17 @@ Things to note:
 
 1. On startup of the application, this panel shows Coydir logo.
 2. To view an employee's particulars, refer to the [view command]([#view-details-of-an-employee--view).
-3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's 
-particulars.
+3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's
+   particulars.
 4. If there is no next employee, this panel will revert to the Coydir logo.
 
-
 #### Command Box
+
 ![](images/ui-screenshots/Command.png)
 
 You can enter your user commands in the bottom section labeled as `Enter command here...`.
 
 The top section displays relevant messages/errors after the command is entered.
-
 
 ---
 
@@ -175,7 +179,7 @@ We will explore each of these fields in great detail as we continue along, but b
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-:warning: **Integer input values cannot be too large**: any values greater than $2^{32}-1$ is not supported.
+:warning: **Integer input values cannot be too large**: any values greater than $2^{31}-1$ is not supported.
 
 ### Managing Employee Profiles
 
@@ -210,22 +214,14 @@ The complete employee profile allows you to specify _a fair amount_ of details f
 | **Leaves Left**  | No. of leaves left for employee        | **Cannot Set** | 14            |
 | **Rating**       | Latest performance rating for employee | **Cannot Set** | _None_        |
 
-<div markdown="span" class="alert alert-info">:bulb:
-  <h5>Bonus Information on the Profile</h5>
-  <ul>
-    <li><strong>Employee ID</strong> is a unique number assigned to each employee, and is used for several powerful commands. To ensure the uniqueness of the IDs, Coydir <strong>does not support</strong> any editing/manipulation of the employee IDs.</li>
-      <ul>
-        <li>If you really wish to, you can <a href="#editing-the-data-file">edit the data file</a> directly to "control" the employee IDs. However, this is <em>strongly discouraged</em>.</li>
-      </ul>
-    <li>For simplicity, Coydir (<em>in v1.4</em>) currently supports a fixed list of departments.</li>
-      <ul>
-        <li>You can find out more about this in the <a href="#managing-departments">Department Management section here</a>.</li>
-      </ul>
-    <li>For each employee, Coydir supports managing individual employee leaves, as well as performance ratings, helping you to track the particulars that are not meant to be set (no. of leaves left, employee rating).</li>
-      <ul>
-        <li>You can find out more about <a href="managing-employee-leaves">employee leave management here</a>, and about <a href="#managing-employee-performance">performance ratings here</a>.</li>
-      </ul>
-  </ul>
+<div markdown="block" class="alert alert-info">:bulb:
+##### Bonus Information on the Profile
+- **Employee ID** is a unique number assigned to each employee, and is used for several powerful commands. To ensure the uniqueness of the IDs, Coydir **does not support** any editing/manipulation of the employee IDs.
+  - If you really wish to, you can [edit the data file](#editing-the-data-file) directly to "control" the employee IDs. However, this is _strongly discouraged_.
+- For simplicity, Coydir (_in v1.4_) currently supports a fixed list of departments.
+  - You can find out more about this in the [Department Management section here](#managing-departments).
+- For each employee, Coydir supports managing individual employee leaves, as well as performance ratings, helping you to track the particulars that are not meant to be set (no. of leaves left, employee rating)
+  - You can find out more about [employee leave management here](#managing-employee-leaves), and about [performance ratings here](#managing-employee-performance).
 </div>
 
 #### Adding an employee: `add`
@@ -234,16 +230,16 @@ Adds an employee to Coydir.
 
 Format: `add n/NAME [p/PHONE] [e/EMAIL] j/POSITION d/DEPARTMENT [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
 
-Field |TAG | Description | Requirement| Default Value
---------------|---------------|---------------|------------------------ | --------
-`NAME`|n/|Name|**Compulsory**| -
-`PHONE` |p/|Phone number|**Optional**| N/A
-`EMAIL` |e/|Email|**Optional**| N/A
-`POSITION` |j/|Job position|**Compulsory**| -
-`DEPARTMENT` |d/|Company Department|**Compulsory**| -
-`ADDRESS` |a/|Address|**Optional**| N/A
-`LEAVE` |l/|Total number of entitled leaves|**Optional**| 14
-`TAG` |t/|Information tags|**Optional**| _None_
+| Field        | TAG | Description                     | Requirement    | Default Value |
+| ------------ | --- | ------------------------------- | -------------- | ------------- |
+| `NAME`       | n/  | Name                            | **Compulsory** | -             |
+| `PHONE`      | p/  | Phone number                    | **Optional**   | N/A           |
+| `EMAIL`      | e/  | Email                           | **Optional**   | N/A           |
+| `POSITION`   | j/  | Job position                    | **Compulsory** | -             |
+| `DEPARTMENT` | d/  | Company Department              | **Compulsory** | -             |
+| `ADDRESS`    | a/  | Address                         | **Optional**   | N/A           |
+| `LEAVE`      | l/  | Total number of entitled leaves | **Optional**   | 14            |
+| `TAG`        | t/  | Information tags                | **Optional**   | _None_        |
 
 <div markdown="span" class="alert alert-primary">:bulb:
 An employee can have any number of tags (including 0).
@@ -284,7 +280,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/POSITION] [d/DEPARTMENT] [a/
 | `TAG`        | t/  | Updated tag(s) of employee          | **Optional**   | -             |
 
 <div markdown="span" class="alert alert-primary">:bulb:
-  <p>There must be <em>at least one</em> update parameter provided (such as name, phone, email, etc.). Otherwise, Coydir will not run the command, as you would not be editing anything at all!</p>
+  There must be _at least one_ update parameter provided (such as name, phone, email, etc.). Otherwise, Coydir will not run the command, as you would not be editing anything at all!
 </div>
 
 Example:
@@ -313,92 +309,35 @@ Example:
 
 - `delete 1` deletes the employee with employee ID of 1.
 
-#### Adding multiple employees at once: `batch-add`
+#### Adding multiple employees at once: `batchadd`
 
-Adds multiple employees to Coydir by importing their data from `.csv` file
+Adds multiple employees to Coydir all at once.
 
-This feature will come in handy when:
+:warning: **Make sure to have uploaded CSV file to make use of this command, and that employees' fields are compatible with Coydir**: CSV file can be uploaded under the 'data' folder of Coydir.
 
-1. You are a new user and have your employee data stored in a `.csv` file.
-2. There has been a recruitment cycle and the company has recruited multiple employees.
+:warning: **Fields to be added in batchadd would be name, phone, email, position, department, address, tags, and total number of leaves**
 
-With this feature, you would not need to spend time to manually add each employee in!
+:warning: **Do not have commas between each field in the CSV file.**
 
-Format: `batch-add FILENAME`
+This command results in one of two cases below:
 
-Example:`batch-add coydir.csv`
+**Case 1: CSV file exists**
 
-How can you use this feature?
+if a CSV file of employees exists in the 'data' folder of Coydir, Coydir will read from the CSV file to add the employees.
 
-#### Step 1 (Creating CSV file) :
+**Case 2: CSV file does not exist**
 
-Things to note:
-- A header row is required to indicate the purpose of the field and must be the first row in the `.csv` file.
-- No commas to be used in the file.
-- For multiple tags for an employee, the tags should be separated by " \ ".
-- For the fields, make sure that they follow the same specifications as written in the `add` command.
+if a CSV file does not exist in the 'data' folder of Coydir, Coydir will
+throw an error.
 
-Order of headers is as such (**Order must be followed**):
+Format: `batchadd FILENAME`
 
-| Index | Field          | Requirement    | Default Value |
-|-------|----------------|----------------|---------------|
-| 1.    | `NAME`         | **Compulsory** | -             |
-| 2.    | `PHONE`        | Optional       | N/A           |
-| 3.    | `EMAIL`        | Optional       | N/A           |
-| 4.    | `POSITION`     | **Compulsory** | -             |
-| 5.    | `DEPARTMENT`   | **Compulsory** | -             |
-| 6.    | `ADDRESS`      | Optional       | N/A           |
-| 7.    | `NO_OF_LEAVES` | Optional       | 14            |
-| 8.    | `TAGS`         | Optional       | _None_        |
+Example:
 
-Sample `.csv` file:
+- `batchadd employees.csv`
 
-![](images/batch-add-images/sampleCSV.png)
-
-Sample `.xlsx` file:
-![](images/batch-add-images/SampleExcel.png)
-Note: You can export this to `.csv`.
-
-#### Step 2 (Uploading CSV file) :
-
-1. Go to the folder where you stored the `jar` file.
-2. Move CSV file to the `data` folder.
-![](images/batch-add-images/movingFile.png)
-
-_If you are a new user (have not run any command yet), you will not see the `data` folder. 
-You can run the [`clear` command](#clearing-the-data--clear) to remove the sample employees first. 
-After this, you should be able to see the `data` folder._
-
-#### Step 3 (Running CSV file) :
-
-1. Once done, run `batch-add FILENAME` in the command box.
-
-Successful Batch Add:
-![](images/batch-add-images/BatchAddSuccess.png)
-
-Unsuccessful Batch Add:
-
-In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv` will be added.
-
-**Case 1 (Duplicate Employee):**
-
-If there is another employee with the same name in the database or in the csv, command will fail 
-and error will be raised.
-![](images/batch-add-images/DuplicateEmployee.png)
-
-**Case 2 (Any of the fields in wrong format):**
-
-If any of the fields are in a wrong format (as specified in `add` command), command will fail 
-and error with regard to field in the wrong format will be raised
-
-![](images/batch-add-images/Incorrect Format.png)
-_In this case, a `Phone` field was in the wrong format._
-
-As of version `1.4.0` , this feature only supports `.csv` files and adding employees with the fields mentioned above. 
-
-In the upcoming versions, we will expand `batch-add` feature to:
-1. Support different types of files
-2. Include more fields like rating etc.
+Sample CSV file as such:
+![](./images/Sample_CSV.png)
 
 #### View details of an employee: `view`
 
@@ -441,12 +380,10 @@ Format: `find [n/NAME_KEYWORD] [j/POSITION_KEYWORD] [d/DEPARTMENT_KEYWORD]`
 | `POSITION`   | j/  | Search keyword for position of employee   | **Optional** | -             |
 | `DEPARTMENT` | d/  | Search keyword for department of employee | **Optional** | -             |
 
-<div markdown="span" class="alert alert-primary">:bulb:
-  <h5>Important Tips!</h5>
-  <ul>
-    <li>There must be <em>at least one</em> parameter (and keyword) in the search, else Coydir will not know what to search for!</li>
-    <li>The keywords you input for searching are <strong>case-insensitive</strong>. Additionally, they need not be full words, just a segment will do. This means that searching for the department "tech" will show results for both "Technology and "Information Technology".</li>
-  </ul>
+<div markdown="block" class="alert alert-primary">:bulb:
+##### Important Tips!
+  - There must be _at least one_ parameter (and keyword) in the search, else Coydir will not know what to search for!
+  - The keywords you input for searching are **case-insensitive**. Additionally, they need not be full words, just a segment will do. This means that searching for the department "tech" will show results for both "Technology and "Information Technology".
 </div>
 
 Example:
@@ -507,10 +444,10 @@ Leaves are ordered by reverse chronological order in the table view.
 Format: `add-leave id/ID sd/START_DATE ed/END_DATE`
 
 | Field        | TAG | Description                               | Requirement    | Default Value |
-| ------------ | --- | ----------------------------------------- | -------------- |---------------|
-| `ID`         | id/ | Employee ID                               | **Compulsory** | -             |
-| `START_DATE` | sd/ | Start date of leave, in dd-MM-YYYY format | **Compulsory** | -             |
-| `END_DATE`   | ed/ | End date of leave, in dd-MM-YYYY format   | **Compulsory** | -             |
+| ------------ | --- | ----------------------------------------- | -------------- | ------------- |
+| `ID`         | id/ | Employee ID                               | **Compulsory** | N.A.          |
+| `START_DATE` | sd/ | Start date of leave, in dd-MM-YYYY format | **Compulsory** | N.A.          |
+| `END_DATE`   | ed/ | End date of leave, in dd-MM-YYYY format   | **Compulsory** | N.A.          |
 
 Example:
 
@@ -538,10 +475,9 @@ If the employee ID, or the index is invalid, Coydir will prompt the users accord
 Format: `delete-leave id/ID i/INDEX`
 
 | Field   | TAG | Description                       | Requirement    | Default Value |
-| ------- | --- |-----------------------------------| -------------- |---------------|
-| `ID`    | id/ | Employee ID                       | **Compulsory** | -             |
-| `INDEX` | i/  | Index of leave in the leave table | **Compulsory** | -             |
-
+| ------- | --- | --------------------------------- | -------------- | ------------- |
+| `ID`    | id/ | Name                              | **Compulsory** | N.A.          |
+| `INDEX` | i/  | Index of leave in the leave table | **Compulsory** | N.A.          |
 
 Example:
 
@@ -581,10 +517,10 @@ If the rating given for any employee is invalid (is not an integer from 1-5 incl
 
 Format: `rate id/ID r/RATING`
 
-Field |TAG | Description | Requirement| Default Value
---------------|---------------|---------------|------------------------ | --------
-`ID`|id/|Employee ID|**Compulsory**| -
-`RATING` |r/|Performance rating of employee|**Compulsory**| -
+| Field    | TAG | Description                    | Requirement    | Default Value |
+| -------- | --- | ------------------------------ | -------------- | ------------- |
+| `ID`     | id/ | Employee ID                    | **Compulsory** | -             |
+| `RATING` | r/  | Performance rating of employee | **Compulsory** | -             |
 
 Example:
 
@@ -598,11 +534,12 @@ The individual rating values will be displayed beside each node in the performan
 
 <div markdown="span" class="alert alert-info">
 
-**:information_source: Note:** You can only rate the performance of an employee once per day.<br>
+**:information_source: Note:** You can only rate the performance of an employee once per day.<br><br>
 
-* Rating an employee who already has a `Rating` with `timestamp` of that same day with the `rate` command will throw a `employee already rated` error.
+- Rating an employee who already has a `Rating` with `timestamp` of that same day with the `rate` command will throw a `employee already rated` error.
 
-* This is to prevent multiple ratings per day, and avoid a distorted performance history graph.
+This is to prevent multiple ratings per day, and avoid a distorted performance history graph.
+
 </div>
 
 ### Managing Departments
@@ -691,17 +628,7 @@ Format: `exit`
 
 Clears all the data currently stored in the database.
 
-If you are a new user, you can use this command after you have experimented with Coydir 
-to start keying in your actual employee information.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Once you run this command, you lose all data immediately.
-</div>
-
 Format: `clear`
-
-Example:
-![](images/ui-screenshots/Clear.png)
 
 #### Saving the data
 
@@ -733,18 +660,20 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 ## Command summary
 
 | Action              | Format, Examples                                                                                                                                                                                                                                 |
-|---------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Add**             | `add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal`                                                      |
 | **Edit**            | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal` |
+| **Batch Add**       | `batchadd FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                                                                                                        |
+| **View Details**    | `view INDEX` <br> e.g. `view 1`                                                                                                                                                                                                                  |
 | **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                               |
-| **Batch Add**       | `batch-add FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                                                                                                       |
-| **View Details**    | `view ID` <br> e.g. `view 1`                                                                                                                                                                                                                     |
-| **List**            | `list` |
 | **Find**            | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                                                                                             |
 | **Add leave**       | `add-leave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `add-leave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                                                                                |
 | **Delete leave**    | `delete-leave id/ID i/INDEX`<br> e.g. `delete-leave id/1 i/3`                                                                                                                                                                                    |
-| **Rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3` |
 | **View Department** | `viewdepartment DEPARTMENT`<br> e.g. `view-department Finance`                                                                                                                                                                                   |
-| **Help**            | `help` |
-| **Exit**            | `exit` |
-| **Clear**           | `clear` |
+
+> > > > > > > master
+> > > > > > > | **rate** | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3` |
+> > > > > > > | **List** | `list` |
+> > > > > > > | **Exit** | `exit` |
+> > > > > > > | **Clear** | `clear` |
+> > > > > > > | **Help** | `help` |
