@@ -110,22 +110,6 @@ on the jar file in the folder. This to ensure the jar file is using the correct 
 
 ## Features
 
-
-**Notes about the command format:**
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user. \
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional. \
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times. \
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-* Parameters can be in any order. \
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. \
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. \
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
 ## Data features
 
 ### Saving the data
@@ -135,7 +119,7 @@ ConnectNUS data is saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-ConnectNUS data is saved as a JSON file `[JAR file location]/data/connectnus.json`. Advanced users are welcome to update data directly by editing that data file.
+ConnectNUS data is saved as a JSON file `[JAR file location]/data/ConnectNUS.json`. Advanced users are welcome to update data directly by editing that data file.
 
 
 
@@ -216,7 +200,7 @@ Examples:
 
 ### Listing contacts
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in your address book.
 
 Format: `list`
 
@@ -247,7 +231,7 @@ Examples:
 
 ### Editing contacts
 
-Edit a specified contact from the user’s contacts list.
+Edit a specified contact from your contact list.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [t/TAG]…`
 
@@ -271,7 +255,7 @@ Examples:
 
 ### Deleting contacts
 
-Deletes a specified contact from the user’s contacts list.
+Deletes a specified contact from your contact list.
 
 Format: `delete INDEX`
 
@@ -289,7 +273,7 @@ Examples:
 
 ### Clearing all contacts
 
-Deletes all contacts from the contact list with one command.
+Deletes all contacts from your contact list with one command.
 
 Format: `clear`
 
@@ -479,6 +463,7 @@ Filters the tags of contacts to return a list of persons with any of the tags sp
 Format: `filtertag TAG_NAME [TAG_NAME]…`
 
 * Filters the contact list for person's with any of the specified `TAG_NAME`.
+* You may input more than 1 tag.
 
 Examples:
 
@@ -497,6 +482,7 @@ Filters the current modules of contacts to return a list of persons with any of 
 Format: `filtercurrmod CURRENT_MODULE [CURRENT_MODULE]…`
 
 * Filters the contact list for person's with any of the specified `CURRENT_MODULE`.
+* You may input more than 1 module.
 
 Examples:
 
@@ -510,11 +496,12 @@ Examples:
 
 ### Filtering Previous Modules
 
-Filters the previous modules of contacts to return a list of persons with any of the previous modules specified by the user.
+Filters the previous modules of contacts to return a list of persons with any of the previous modules specified.
 
 Format: `filterprevmod PREVIOUS_MODULE [PREVIOUS_MODULE]…`
 
-* Filters the contact list for person's with any of the specified `PREVIOUS_MODULE`.
+* Filters the contact list for persons with any of the specified `PREVIOUS_MODULE`.
+* You may input more than 1 module.
 
 Examples:
 
@@ -528,11 +515,12 @@ Examples:
 
 ### Filtering Planned Modules
 
-Filters the planned modules of contacts to return a list of persons with any of the planned modules specified by the user.
+Filters the planned modules of contacts to return a list of persons with any of the planned modules specified.
 
 Format: `filterplanmod PLANNED_MODULE [PLANNED_MODULE]…`
 
-* Filters the contact list for person's with any of the specified `PLANNED_MODULE`.
+* Filters the contact list for persons with any of the specified `PLANNED_MODULE`.
+* You may input more than 1 module.
 
 Examples:
 
