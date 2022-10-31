@@ -200,6 +200,7 @@ Note: FoodWhere comes with preloaded data, and can be started on a fresh state w
 Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
 
 Step 2. The user executes `radd s/1 d/20-09-2022 c/The food was good, the chicken rice was fresh. r/4` command to create a new `Review` for `Stall` with index 1.
+
 ![AddTodo1](images/AddReview.png)
 
 #### UML Diagram for Adding Review
@@ -230,6 +231,7 @@ Note: FoodWhere comes with preloaded data, and can be started on a fresh state w
 Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
 
 Step 2. The user executes `rlist` to list all reviews on the FoodWhere User Interface.
+
 ![ListReview](images/ListReview.png)
 
 #### UML Diagram for listing of all Reviews
@@ -237,6 +239,35 @@ Step 2. The user executes `rlist` to list all reviews on the FoodWhere User Inte
 The following activity diagram summarizes what happens when a user executes a new `rlist` command:
 
 <img src="images/ListReviewActivityDiagram.png" width="250" />
+
+### Review Deleting feature
+
+#### What is Review Deleting feature about?
+
+The Delete Review mechanism is facilitated by `AddressBook`. This feature allows the user to delete a review.
+
+For the command, the feature extends `command`, and is implemented as such:
+* `rdel REVIEW_INDEX`
+
+#### Implementation Flow of Review Deleting feature
+
+Given below is an example usage scenario and how the listing of all reviews mechanism behaves at each step.
+
+Note: FoodWhere comes with preloaded data, and can be started on a fresh state with the `clear` command.
+
+Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
+
+Step 2. The user list all the reviews by entering the `rlist` command.
+
+Step 3. The user executes `rdel 2` command to delete the last review with index 2.
+
+![DeleteReview](images/DeleteReview.png)
+
+#### UML Diagram for Deleting Review
+
+The following activity diagram summarizes what happens when a user executes a new `rdel` command:
+
+<img src="images/DeleteReviewActivityDiagram.png" width="250" />
 
 ### \[Proposed\] Undo/redo feature
 
