@@ -4,12 +4,52 @@ title: User Guide
 subtitle: Explore our guide to use Arrow
 ---
 
+Welcome to **Arrow** User Guide! This user guide will give a descriptive instruction on how to use **Arrow**.
+The _words_ _in_ _italic_ are terms you may be unfamiliar with. And if that is the case, 
+do not hesitate checking them out in [Glossary](#glossary).
+
+**Arrow** is a **desktop app** that **help software project managers keep track of their members’ tasks and deliverables**. 
+By associating tasks to specific team members, users can **keep track of what needs to be done and have quick access to 
+contact information should they wish to reach out to the member**. 
+
+**Arrow** uses a _Command Line Interface_ (CLI)at the same time possessing convenience of a _Graphical User Interface_ (GUI). The main target audiences are software
+project managers, which assumptively equipped with _Command Line Interface_ (CLI) skills. And if you can type fast,
+**Arrow** can help you manage your team members in an exceptionally quick way.
+
+### Note
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: If you are unfamiliar with Command Line Interface (CLI):**<br>
+
+Click [here](#tutorial-for-cli) to learn more about what is CLI.
+
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of Contents
+
+[**Glossary**](#glossary)<br>
 [**Quick Start**](#quick-start)<br>
 [**Address Book**](#address-book-commands)<br>
 [**Task Management**](#task-management-commands)<br>
 [**Notes**](#notes)<br>
 [**FAQ**](#faq)<br>
-[**Command Summary**](#command-summary)
+[**Command Summary**](#command-summary)<br>
+[**Tutorial for CLI**](#tutorial-for-cli)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+* **CLI** : [Command Line Interface](https://en.wikipedia.org/wiki/Command-line_interface)<br>
+click [here](#tutorial-for-cli) if you are not familiar with CLI.
+* **GUI** : [Graphical User Interface](https://en.wikipedia.org/wiki/Graphical_user_interface)
+* **Home Folder** : The folder/directory where Arrow stores all information.
+* **Main Window** : The main window of the application that shows the list of students.
+* **Command Box** : The text box where you can enter commands.
+* **Extraneous Parameters** : The specified  command contains more positional parameters than is allowed.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -20,11 +60,16 @@ subtitle: Explore our guide to use Arrow
 2. Download the latest `arrow.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Arrow.
+4. Double-click the file to start the app. The _GUI_ or _main window_ should appear in a few seconds. 
+Note how the app contains some sample data. If the app does not start and an `error` appears on your screen, do refer to the [FAQ](#faq).<br>
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. If the app does not start and an error appears on your screen, do refer to the [FAQ](#faq).<br>
-   ![Ui](images/Ui.png)
+5. The picture below shows the _main window_ of **Arrow**.
+* The command box is boxed in <span style="color:red">*red*</span>, where you enter commands. 
+* The task panel list is boxed in <span style="color:blue">*blue*</span>, where you can see the current task list.
+* The address book is boxed in <span style="color:green">*green*</span>, where you can see the contact information of your team members.
+![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type the command in the _command box_ and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -39,13 +84,15 @@ subtitle: Explore our guide to use Arrow
 
    * **`exit`** : Exits the app.
 
-6. Read the [Notes](#notes) on the command format
-7. Refer to [Address Book](#address-book-commands) for details of AddressBook commands.
-8. Refer to [Task Management](#task-management-commands) for details of Task commands.
+7. Read the [Notes](#notes) to know more about the formats of commands.
+8. Refer to [Address Book](#address-book-commands) for details of AddressBook commands. 
+9. Refer to [Task Management](#task-management-commands) for details of Task commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Notes
+
+If you are new to **Arrow**, here provides some tips for you to enter commands efficiently.
 
 <div markdown="block" class="alert alert-info">
 
@@ -66,7 +113,7 @@ subtitle: Explore our guide to use Arrow
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* _Extraneous parameters_ for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -204,7 +251,6 @@ Format: `task mark TASK_INDEX`
 
 Examples:
 * `task list` followed by `task mark 1` marks the 1st task in the task list as complete.
-
 
 ### Unmarking tasks: `task unmark`
 
@@ -365,6 +411,13 @@ _Details coming soon ..._
 **Q**: How do I check my Java version?<br>
 **A**: Open Terminal if you're on Mac or Command Prompt if you're on Windows. Type "java -version" and press Enter.
 
+**Q**: How do I install `java 11`?<br>
+**A**: Download `java 11` to your computer via this [link](https://www.oracle.com/java/technologies/downloads/).
+
+**Q**: If I already have java on my computer, but not `java 11`, how do I switch java version to `java 11`?<br>
+**A**: For MacOS user, check this [tutorial](https://medium.com/@devkosal/switching-java-jdk-versions-on-macos-80bc868e686a).
+For Windows user, check this [tutorial](https://www.happycoders.eu/java/how-to-switch-multiple-java-versions-windows/).
+
 **Q**: What if the app does not open when I double-click it?<br>
 **A**: Follow the steps listed to open the app.
 1. Ensure that you have done Step 1 to 3 in the Quick Start.
@@ -397,3 +450,8 @@ _Details coming soon ..._
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
 | **List**        | `list`                                                                                                                                                                |
 | **Help**        | `help`                                                                                                                                                                |
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Tutorial for CLI
