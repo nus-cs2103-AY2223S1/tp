@@ -82,6 +82,7 @@ public class DeleteCommand extends Command {
 
             Person personToDelete = target.get(0);
             model.deletePerson(personToDelete);
+            model.deletePersonReminders(personToDelete);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
         }
     }
