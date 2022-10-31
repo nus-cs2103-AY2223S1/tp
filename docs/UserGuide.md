@@ -78,7 +78,7 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 
 This section provides information on how you can use HackAssist commands for people management and tasks management. 
 
-You can click [General](#General) to learn about general commands, [People Management](#People Management) to learn about commands specific to People Management, or [Task Management](#Task Management) to learn about commands specific to Task Management.
+You can click [General](#general) to learn about general commands, [People Management](#people-management) to learn about commands specific to People Management, or [Task Management](#task-management) to learn about commands specific to Task Management.
 
 Before you learn any commands, please read the following notes about HackAssist command format.
 
