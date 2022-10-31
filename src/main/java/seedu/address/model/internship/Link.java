@@ -11,7 +11,8 @@ public class Link {
 
     public static final String MESSAGE_CONSTRAINTS = "Link is of an incorrect format.";
     private static final String OPTIONAL_PROTOCOL = "^https?://";
-    private static final String HOSTNAME = "(?:[-a-zA-Z0-9]{2,8}\\.)?[-a-zA-Z0-9][-a-zA-Z0-9-]{0,227}(?:\\.[-a-zA-Z0-9]{2,8})+";
+    private static final String HOSTNAME = "(?:[-a-zA-Z0-9]{2,8}\\.)?[-a-zA-Z0-9][-a-zA-Z0-9-]{0,227}"
+            + "(?:\\.[-a-zA-Z0-9]{2,8})+";
     private static final String PATH = "\\/[-a-zA-Z0-9+&@#/%=~$.?]*$";
     public static final String VALIDATION_REGEX = OPTIONAL_PROTOCOL + HOSTNAME + PATH;
     public final String value;
@@ -31,14 +32,14 @@ public class Link {
      * Returns true if a given string is a valid link.
      */
     public static boolean isValidLink(String test) {
-        String full_link = test;
-        if (!full_link.startsWith("http://") && !full_link.startsWith("https://")) {
-            full_link = "http://" + full_link;
+        String fullLink = test;
+        if (!fullLink.startsWith("http://") && !fullLink.startsWith("https://")) {
+            fullLink = "http://" + fullLink;
         }
-        if (full_link.charAt(full_link.length() - 1) != '/') {
-            full_link = full_link + "/";
+        if (fullLink.charAt(fullLink.length() - 1) != '/') {
+            fullLink = fullLink + "/";
         }
-        return full_link.matches(VALIDATION_REGEX);
+        return fullLink.matches(VALIDATION_REGEX);
     }
 
     @Override
