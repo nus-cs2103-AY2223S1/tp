@@ -28,18 +28,14 @@ Here are some of the symbols and text formatting to look out for as you make use
 | <kbd>Ctrl</kbd> | A keyboard key |
 
 <div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
-
 ## Table of Contents
 
 * Table of Contents
 {:toc}
 
 <div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 ### Installing PayMeLah
