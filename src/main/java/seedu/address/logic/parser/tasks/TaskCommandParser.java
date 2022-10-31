@@ -6,13 +6,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ForEachCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.tasks.AddTaskCommand;
-import seedu.address.logic.commands.tasks.FindTaskCommand;
 import seedu.address.logic.commands.tasks.MarkTaskCommand;
 import seedu.address.logic.commands.tasks.TaskCommand;
 import seedu.address.logic.commands.tasks.UnmarkTaskCommand;
+import seedu.address.logic.parser.FindCommandParser;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Task;
@@ -62,8 +63,10 @@ public class TaskCommandParser implements Parser<Command> {
             return SelectCommand.parser((m, i) -> m.getFromFilteredTasks(i)).parse(arguments);
         case ForEachCommand.SUBCOMMAND_WORD:
             return ForEachCommand.parser(m -> m.getFilteredTaskList()).parse(arguments);
-        case FindTaskCommand.SUBCOMMAND_WORD:
-            return FindTaskCommand.parser().parse(arguments);
+        case FindCommand.SUBCOMMAND_WORD:
+            return new FindCommandParser<Task>(
+                (m, p) -> m.updateFilteredTaskList(p),
+                m -> m.getFilteredTaskList().size()).parse(arguments);
         default:
             throw new ParseException(MESSAGE_USAGE);
         }

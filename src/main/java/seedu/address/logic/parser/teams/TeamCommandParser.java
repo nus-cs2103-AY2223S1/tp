@@ -6,12 +6,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ForEachCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.teams.AddTeamCommand;
-import seedu.address.logic.commands.teams.FindTeamCommand;
 import seedu.address.logic.commands.teams.RemoveUserFromTeamCommand;
 import seedu.address.logic.commands.teams.TeamCommand;
+import seedu.address.logic.parser.FindCommandParser;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
@@ -65,8 +66,10 @@ public class TeamCommandParser implements Parser<Command> {
         case ForEachCommand.SUBCOMMAND_WORD:
             return ForEachCommand.parser(m -> m.getFilteredTeamList()).parse(arguments);
 
-        case FindTeamCommand.SUBCOMMAND_WORD:
-            return FindTeamCommand.parser().parse(arguments);
+        case FindCommand.SUBCOMMAND_WORD:
+            return new FindCommandParser<Group>(
+                (m, p) -> m.updateFilteredTeamList(p),
+                m -> m.getFilteredTeamList().size()).parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_USAGE);

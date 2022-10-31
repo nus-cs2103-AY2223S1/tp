@@ -6,11 +6,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ForEachCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.persons.AddCommand;
-import seedu.address.logic.commands.persons.FindCommand;
 import seedu.address.logic.commands.persons.PersonCommand;
+import seedu.address.logic.parser.FindCommandParser;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
@@ -57,7 +58,9 @@ public class PersonCommandParser implements Parser<Command> {
         case ForEachCommand.SUBCOMMAND_WORD:
             return ForEachCommand.parser(m -> m.getFilteredPersonList()).parse(arguments);
         case FindCommand.SUBCOMMAND_WORD:
-            return FindCommand.parser().parse(arguments);
+            return new FindCommandParser<Person>(
+                (m, p) -> m.updateFilteredPersonList(p),
+                m -> m.getFilteredPersonList().size()).parse(arguments);
         default:
             throw new ParseException(MESSAGE_USAGE);
         }
