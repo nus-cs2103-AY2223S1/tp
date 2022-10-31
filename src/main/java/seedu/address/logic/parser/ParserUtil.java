@@ -141,7 +141,7 @@ public class ParserUtil {
      */
     public static ClassGroup parseClassGroup(Optional<String> classGroup) throws ParseException {
         String trimmedClassGroup = classGroup.orElse(INFO_NOT_AVAILABLE).trim();
-        return new ClassGroup(trimmedClassGroup);
+        return new ClassGroup(trimmedClassGroup.isBlank() ? INFO_NOT_AVAILABLE : trimmedClassGroup);
     }
 
     /**

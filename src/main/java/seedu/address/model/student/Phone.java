@@ -36,8 +36,16 @@ public class Phone {
         return test.equals(INFO_NOT_AVAILABLE) || test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if keyword in present in the phone value.
+     *
+     * @param keyword
+     * @return whether keyword is present is the phone value
+     */
     public boolean contains(String keyword) {
-        return value.toLowerCase().contains(keyword);
+        return value.equals(INFO_NOT_AVAILABLE)
+                ? false
+                : value.toLowerCase().contains(keyword);
     }
 
     @Override
