@@ -38,6 +38,10 @@ public class WebsiteTest {
         assertFalse(Website.isValidWebsite("https://example..eg.cc/careers")); // consecutive period
         assertFalse(Website.isValidWebsite("https://example-.eg.cc/careers")); // consecutive special char
         assertFalse(Website.isValidWebsite("https://example-.cc/careers")); // label ends with dash
+        assertFalse(Website.isValidWebsite("https://example-cc")); // dash before top level domain
+        assertFalse(Website.isValidWebsite("https://-123.com")); // start with dash
+        assertFalse(Website.isValidWebsite("https://test.com-")); // ends with dash
+        assertFalse(Website.isValidWebsite("https://example-cc/careers")); // dash before top level domain
         assertFalse(Website.isValidWebsite("https://example@.cc/careers")); // illegal special char
 
         // valid websites

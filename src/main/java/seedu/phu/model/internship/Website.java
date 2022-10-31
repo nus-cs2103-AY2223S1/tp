@@ -9,10 +9,10 @@ import static seedu.phu.commons.util.AppUtil.checkArgument;
 public class Website {
     public static final int MAX_LENGTH = 2048;
     public static final String VALIDATION_WITHOUT_PATH_REGEX =
-            "^https?://([a-zA-Z0-9]+[-.])+([a-zA-Z0-9]+[a-zA-Z])$";
+            "^https?://([a-zA-Z0-9]+[-.])*([a-zA-Z0-9]+[.])([a-zA-Z0-9]+[a-zA-Z])$";
 
     public static final String VALIDATION_WITH_PATH_REGEX =
-            "^https?://([a-zA-Z0-9]+[-.])+([a-zA-Z0-9]+[a-zA-Z]/)[-a-zA-Z0-9+;,/?:@&=$_.!~*'()#]*$";
+            "^https?://([a-zA-Z0-9]+[-.])*([a-zA-Z0-9]+[.])([a-zA-Z0-9]+[a-zA-Z]/)[-a-zA-Z0-9+;,/?:@&=$_.!~*'()#]*$";
 
     public static final String DEFAULT_VALUE = "NA";
     private static final String SPECIAL_CHARACTERS = ";,/?:@&=+$-_.!~*'()#";
