@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.watson.logic.commands.AddCommand;
+import seedu.watson.logic.commands.AttendanceCommand;
 import seedu.watson.logic.commands.ClearCommand;
 import seedu.watson.logic.commands.Command;
 import seedu.watson.logic.commands.DeleteCommand;
@@ -17,7 +18,6 @@ import seedu.watson.logic.commands.FindNameCommand;
 import seedu.watson.logic.commands.GradeCommand;
 import seedu.watson.logic.commands.HelpCommand;
 import seedu.watson.logic.commands.ListCommand;
-import seedu.watson.logic.commands.MarkAttendanceCommand;
 import seedu.watson.logic.commands.PredictionCommand;
 import seedu.watson.logic.commands.RemarkCommand;
 import seedu.watson.logic.commands.SortCommand;
@@ -83,8 +83,8 @@ public class DatabaseParser {
         case PredictionCommand.COMMAND_WORD:
             return new PredictionCommandParser().parse(arguments);
 
-        case MarkAttendanceCommand.COMMAND_WORD:
-            return new MarkAttendanceCommandParser().parse(arguments);
+        case AttendanceCommand.COMMAND_WORD:
+            return new AttendanceCommandParser().parse(arguments);
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);

@@ -64,7 +64,7 @@ public interface Model {
      */
     boolean hasPerson(Student student);
 
-    Student getPersonByName(Name name);
+    Student getStudentByName(Name name);
 
     /**
      * Deletes the given student.

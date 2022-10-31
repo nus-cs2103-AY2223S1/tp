@@ -7,28 +7,28 @@ import static seedu.watson.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
 
 import java.util.List;
 
-import seedu.watson.logic.commands.MarkAttendanceCommand;
+import seedu.watson.logic.commands.AttendanceCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new MarkAttendanceCommand object
+ * Parses input arguments and creates a new AttendanceCommand object
  */
-public class MarkAttendanceCommandParser implements Parser<MarkAttendanceCommand> {
+public class AttendanceCommandParser implements Parser<AttendanceCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the MarkAttendanceCommand
-     * and returns MarkAttendanceCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AttendanceCommand
+     * and returns AttendanceCommand object for execution.
      *
      * @param args Input arguments of the user.
-     * @return A MarkAttendanceCommand object.
+     * @return A AttendanceCommand object.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public MarkAttendanceCommand parse(String args) throws ParseException {
+    public AttendanceCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
 
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAttendanceCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AttendanceCommand.MESSAGE_USAGE));
         }
 
         ArgumentMultimap argMultimap =
@@ -40,9 +40,9 @@ public class MarkAttendanceCommandParser implements Parser<MarkAttendanceCommand
 
         if (date.isEmpty() || studentClass.isEmpty() || indexNumbers == null) {
             throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAttendanceCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AttendanceCommand.MESSAGE_USAGE));
         }
 
-        return new MarkAttendanceCommand(date, studentClass, indexNumbers);
+        return new AttendanceCommand(date, studentClass, indexNumbers);
     }
 }

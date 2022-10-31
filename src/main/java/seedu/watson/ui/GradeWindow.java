@@ -122,8 +122,8 @@ public class GradeWindow extends UiPart<Stage> {
         }
         // parse assessment string
         String[] parsedString = assessmentString.split("_");
-        String subject = parsedString[0].trim();
-        String name = parsedString[1].trim();
+        String subject = parsedString[0].trim().toUpperCase();
+        String name = parsedString[1].trim().toUpperCase();
         String totalScore = parsedString[2].trim();
         String weightage = parsedString[3].trim();
         Student currentStudent = studentList.get(index);
@@ -141,8 +141,8 @@ public class GradeWindow extends UiPart<Stage> {
      */
     public void updateGradesForCurrentStudent(String mark) throws IOException {
         String[] parsedString = assessmentString.split("_");
-        String subjectName = parsedString[0].trim();
-        String name = parsedString[1].trim();
+        String subjectName = parsedString[0].trim().toUpperCase();
+        String name = parsedString[1].trim().toUpperCase();
 
         double score = Double.parseDouble(mark);
         double totalScore = Double.parseDouble(parsedString[2].trim());
