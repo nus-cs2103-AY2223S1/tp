@@ -21,8 +21,9 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a patient identified by the index number used in the displayed patient list,"
+            + ": Deletes a patient identified by the index number used in the displayed patient list\n"
             + "or a range (inclusive) of patients to be deleted in the patient list.\n"
+            + "Patient's appointments are automatically removed after the patient is deleted.\n"
             + "Parameters: INDEX [END_INDEX] (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1\n"
             + "Example: " + COMMAND_WORD + " 2 5";

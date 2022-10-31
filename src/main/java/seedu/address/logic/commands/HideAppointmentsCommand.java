@@ -29,7 +29,7 @@ public class HideAppointmentsCommand extends Command {
             + "Parameters: " + PREFIX_REASON + "REASON [r/MORE_REASONS]...\n"
             + "OR: " + PREFIX_TAG + "TAG [t/MORE_TAGS]...\n"
             + "OR: " + PREFIX_STATUS + "STATUS\n"
-            + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " " + PREFIX_REASON + "r/pain r/infection"
+            + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " " + PREFIX_REASON + "pain r/infection\n"
             + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " " + PREFIX_STATUS + "marked";
 
 
