@@ -28,6 +28,7 @@ This guide contains all you need to get started on working with GithubContact.
    10. [Show help page](#show-help-page--help-or-f1)
 4. [FAQ](#faq)
 5. [Prefix Aliases](#prefix-aliases)
+6. [Parameter Input Formats](#parameter-input-formats)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -127,9 +128,11 @@ Example:
 - `add name/Mike github/mikelim address/21 Clementi phone/86609831 email/mike@gmail.com slack/mike123 telegram/@mike123 tag/friend timezone/+8 role/Frontend`
 
 Before the command is executed:
+
 ![before adding](images/ug/add_before.png)
 
 After the command is executed:
+
 ![after adding](images/ug/add_after.png)
 
 <div style="page-break-after: always;"></div>
@@ -149,9 +152,11 @@ Example:
 - Delete the person at index 7: `delete 7`
 
 Before the command is executed:
+
 ![before deleting](images/ug/delete_before.png)
 
 After the command is executed:
+
 ![after deleting](images/ug/delete_after.png)
 
 <div style="page-break-after: always;"></div>
@@ -172,14 +177,16 @@ A fuzzy search is done to display the results. The keyword can have minor spelli
 Format: `find KEYWORD`
 
 Example:
-- Find all the people named David: `find david`
 - Find all the people with role SWE: `find SWE`
 - Find all the people with tag friends: `find friends`
+- Find all the people named David: `find david`
 
 Before the command is executed:
+
 ![before find](images/ug/find_before.png)
 
 After the command is executed:
+
 ![after find](images/ug/find_after.png)
 
 <div style="page-break-after: always;"></div>
@@ -192,13 +199,15 @@ Format: `sort [name|address|role][/desc]`
 
 Example:
 
-- Sort by name in descending order: `sort name/desc`
 - Sort by role in ascending order: `sort role`
+- Sort by name in descending order: `sort name/desc`
 
 Before the command is executed:
+
 ![before sort](images/ug/sort_before.png)
 
 After the command is executed:
+
 ![after sort](images/ug/sort_after.png)
 
 <div style="page-break-after: always;"></div>
@@ -215,10 +224,12 @@ Format: `reset`
 
 Example:
 
-After executing a [`find`](#find-a-person--find) command.
+After executing a [`find`](#find-a-person--find) command:
+
 ![after find](images/ug/find_after.png)
 
 After `reset` is executed:
+
 ![reset](images/ug/reset.png)
 
 <div style="page-break-after: always;"></div>
@@ -241,14 +252,13 @@ There are two ways to show person details
 
 Keyboard usage example:
 
-Step 1: Enter navigation mode by double tapping the `<TAB>` key.
+Step 1: Navigate to the desired person using the arrow keys.
+
 ![step 1](images/ug/detail_step1.png)
 
-Step 2: Navigate to the person using the arrow keys.
-![step 2](images/ug/detail_step2.png)
+Step 2: Press `<ENTER>` to enter the detail page.
 
-Step 3: Press `<ENTER>` to enter the detail page.
-![step 3](images/ug/detail_step3.png)
+![step 2](images/ug/detail_step2.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -269,9 +279,11 @@ Example:
 - `set name/David Lee telegram/@davidlee123 slack/davidlee123`
 
 Before the command is executed:
+
 ![before set](images/ug/set_before.png)
 
 After the command is executed:
+
 ![after set](images/ug/set_after.png)
 
 <div style="page-break-after: always;"></div>
@@ -299,9 +311,11 @@ Example:
 - `delete email`
 
 Before the command is executed, inside a person's contact detail page:
+
 ![before delete attr](images/ug/delete_attr_before.png)
 
 After the command is executed:
+
 ![after delete attr](images/ug/delete_attr_after.png)
 
 <div style="page-break-after: always;"></div>
@@ -318,9 +332,11 @@ Example uses:
 - Returning to the contact detail page from the detail help page.
 
 Before the command is executed, in the detail help page:
+
 ![before back](images/ug/back_before.png)
 
 After the command is executed:
+
 ![after back](images/ug/back_after.png)
 
 <div style="page-break-after: always;"></div>
@@ -341,12 +357,15 @@ If executed with a given command, e.g. `help delete`, show:
 Format: `help [add|back|clear|delete|exit|find|help|reset|set|sort]`
 
 Main page help:
+
 ![main](images/ug/main_page_help.png)
 
 Detail page help:
+
 ![detail](images/ug/detail_page_help.png)
 
 After executing `help delete`:
+
 ![help](images/ug/help_delete.png)
 
 --------------------------------------------------------------------------------------------------------------------
