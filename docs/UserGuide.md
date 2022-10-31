@@ -195,7 +195,7 @@ Searches for students whose name contains the specified name keywords, or whose 
 Format: `find nm/[name]` or `find id/[id]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* Only full names / full ids will be matched e.g. `Han` will not match `Hans`
+* The search only recognises whole words, and searching for substrings is not valid. e.g. `Han` will not match `Hans`
 
 Examples:
 * `find nm/John` returns the records for any student named "john" or any student with 'john' in their name. 
