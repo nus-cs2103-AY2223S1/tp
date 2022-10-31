@@ -411,12 +411,12 @@ Action | Format, Examples
 
 ## Prefixes summaries
 
-| Prefix | Definition                                | Usage                                                                                                                                                                                   | Example         |
-|--------|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|
-| n/     | Name                                      | A string of alphanumeric characters. Whitespaces are allowed. Required                                                                                                                  | n/Alex Ho       |
-| p/     | Phone number                              | Numbers only. Required. Whitespaces not allowed and at least 3 digits.                                                                                                                  | p/97402341      |
-| t/     | Tag that is associated to the student. 		 | A string of characters. Optional.                                                                                                                                                       | t/Star student	 |
-| s/     | Session timing of lessons                 | A String of input in the format of `DDD HH:mm` where DDD is three characters making up the day, HH are two numbers making up the hour and <br> mm are two numbers making up the minute. | s/tue 08:30     |
+ Prefix | Definition                                | Usage                                                                                                                                                                                   | Example         
+--------|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------
+ n/     | Name                                      | A string of alphanumeric characters. Whitespaces are allowed. Required                                                                                                                  | n/Alex Ho       
+ p/     | Phone number                              | Numbers only. Required. Whitespaces not allowed and at least 3 digits.                                                                                                                  | p/97402341      
+ t/     | Tag that is associated to the student.    | A string of characters. Optional.                                                                                                                                                       | t/Star student	 
+ s/     | Session timing of lessons                 | A String of input in the format of `DDD HH:mm` where DDD is three characters making up the day, HH are two numbers making up the hour and <br> mm are two numbers making up the minute. | s/tue 08:30     
 
 
 
