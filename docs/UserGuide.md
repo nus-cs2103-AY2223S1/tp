@@ -396,11 +396,11 @@ You may add a contact to Plannit using the `add-person` command.
 
 This command will require three flags:
 
-| Field     | Flag | Constraints                                                                                                          |
-|-----------|------|----------------------------------------------------------------------------------------------------------------------|
-| **Name**  | `n/` | Name <ul><li>is case sensitive</li> <li>can only be non-empty string of alphanumeric characters and spaces</li></ul> |
-| **Email** | `e/` | Can only be of the format [`local-part@domain`](#5-glossary)                                                         |
-| **Phone** | `p/` | Can only be 8 digits long                                                                                            |
+| Field     | Flag | Constraints                                                                                                                       |
+|-----------|------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Name**  | `n/` | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
+| **Email** | `e/` | Can only be of the format [`local-part@domain`](#5-glossary)                                                                      |
+| **Phone** | `p/` | Can only be 8 digits long                                                                                                         |
 
 Format: `add-person n/NAME e/EMAIL p/PHONE_NUMBER`
 * You cannot add a duplicate name into Plannit.
@@ -422,10 +422,10 @@ words, an association between a person and a module will be created.
 
 This command will require two flags:
 
-| Field           | Flag | Constraints                                                                                                          |
-|-----------------|------|----------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/` | Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul> |                                                             |
-| **Name**        | `n/` | Name <ul><li>is case sensitive</li> <li>can only be non-empty string of alphanumeric characters and spaces</li></ul> |
+| Field           | Flag | Constraints                                                                                                                       |
+|-----------------|------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/` | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/}        |                                                             |
+| **Name**        | `n/` | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
 
 Format: `add-person-to-module m/MODULE_CODE n/NAME`
 * If a person has already been added to a module, the person cannot be added to the module again.
@@ -449,9 +449,9 @@ You may delete a contact from Plannit using the `delete-person` command.
 
 This command will require one flag:
 
-| Field    | Flag | Constraints                                                                                                          |
-|----------|------|----------------------------------------------------------------------------------------------------------------------|
-| **Name** | `n/` | Name <ul><li>is case sensitive</li> <li>can only be non-empty string of alphanumeric characters and spaces</li></ul> |
+| Field    | Flag | Constraints                                                                                                                       |
+|----------|------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Name** | `n/` | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
 
 Format: `delete-person n/NAME`
 * You cannot delete a non-existent contact in Plannit.
@@ -469,10 +469,10 @@ command.
 
 This command will require two flags:
 
-| Field           | Flag | Constraints                                                                                                          |
-|-----------------|------|----------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/` | Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul> |                                                             |
-| **Name**        | `n/` | Name <ul><li>is case sensitive</li> <li>can only be non-empty string of alphanumeric characters and spaces</li></ul> |
+| Field           | Flag | Constraints                                                                                                                       |
+|-----------------|------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/` | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/}        |                                                             |
+| **Name**        | `n/` | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
 
 Format: `delete-person-from-module m/MODULE_CODE n/NAME`
 * You can only delete the specified person from the specified module if the person was originally associated to the
@@ -492,11 +492,11 @@ You may edit a contact using the `edit-person` command.
 
 This command will require an index and minimally any of the three flags:
 
-| Field     | Flag | Constraints                                                        |
-|-----------|------|--------------------------------------------------------------------|
-| **Name**  | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
-| **Email** | `e/` | Can only be of the format [`local-part@domain`](#5-glossary)       |
-| **Phone** | `p/` | Can only be 8 digits long                                          |
+| Field     | Flag | Constraints                                                                                                                       |
+|-----------|------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Name**  | `n/` | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
+| **Email** | `e/` | Can only be of the format [`local-part@domain`](#5-glossary)                                                                      |
+| **Phone** | `p/` | Can only be 8 digits long                                                                                                         |
 
 Format: `edit-person INDEX ([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])`
 * `INDEX` is the currently displayed index number of the contact you are editing for on the screen.
