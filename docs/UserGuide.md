@@ -75,7 +75,7 @@ Tips are useful bits of information that will help you have a better experience 
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:** Tips are useful!
-</div><br>
+</div><br/>
 
 **Notes**
 
@@ -83,7 +83,7 @@ Notes are here to provide you with extra information that you may find helpful w
 
 <div markdown="span" class="alert alert-info">:information_source:
 **Note:** Take notes when you see this icon!
-</div><br>
+</div><br/>
 
 **Caution**
 
@@ -93,7 +93,7 @@ will delete all data stored locally and this action is irreversible. You will lo
 <div markdown="span" class="alert alert-warning">
 :exclamation: Stop and read carefully when you see this!
 </div>
-<br>
+<br/>
 <div markdown="block" class="alert alert-info">:information_source:
 **Notes on the Command Format:** <br>
 
@@ -122,7 +122,7 @@ will delete all data stored locally and this action is irreversible. You will lo
 
 Creates a new student record with the following parameters:
 
-| **Paramter**        | **Prefix** | **Compulsory** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **Parameter**       | **Prefix** | **Compulsory** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                             |
 |---------------------|------------|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Name**            | `nm/`      | Yes            | Student's name should be **alphanumeric**, consisting of both letters and numbers only. As student names are treated as unique, we recommend you to use the full name of the student.<br/><br/>For optimal viewing, the length of the name should be **at most 17 characters**. Any longer would result in the name being cut off from the application display, though it will not affect the actual record being saved in the application. |
 | **ID**              | `id/`      | Yes            | Student's id should contain **3 digits followed by 1 character** (e.g. `123A`). Do note that ids are unique, hence no two students should have the same ids.                                                                                                                                                                                                                                                                                |
@@ -133,6 +133,15 @@ Creates a new student record with the following parameters:
 | **Parent's Email**  | `e/`       | No             | Email address of student's parent should follow standard convention format _local-part@domain_.                                                                                                                                                                                                                                                                                                                                             |
 
 Format: `addStudent nm/STUDENT-NAME id/ID class/CLASS [exam/EXAM-NAME SCORE] [pn/PARENT-NAME] [hp/PHONE-NUMBER] [e/EMAIL]`
+
+Examples:
+* `addStudent nm/Peter Tan id/452B class/1F`
+* `addStudent nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
+* `addStudent nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
+
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** All fields are capitalised when saved into the application. Therefore, parameters like `nm/john` and `nm/JoHn` are treated as _JOHN_ by default.
+</div>
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:** Optional fields can be added later using the [edit command](#414-editing-a-student-record--edit).
@@ -145,11 +154,6 @@ Format: `addStudent nm/STUDENT-NAME id/ID class/CLASS [exam/EXAM-NAME SCORE] [pn
 <div markdown="span" class="alert alert-warning">:exclamation:
 **Caution:** If you are receiving an invalid command message, do check to ensure that you are using the correct prefix for the intended parameter.
 </div>
-
-Examples:
-* `addStudent nm/Peter Tan id/452B class/1F`
-* `addStudent nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
-* `addStudent nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
 
 #### 4.1.2 Clearing all student records : `clear`
 
