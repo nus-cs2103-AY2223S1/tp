@@ -3,10 +3,10 @@ layout: page
 title: User Guide
 ---
 
-## Table of Contents
-
-* Table of Contents 
-{:toc}
+<div class="toc-no-bullet-points">
+    * Table of Contents
+    {:toc}
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
