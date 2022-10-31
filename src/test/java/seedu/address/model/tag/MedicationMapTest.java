@@ -21,6 +21,47 @@ class MedicationMapTest {
     }
 
     @Test
+    public void add_validMedication_success() {
+        Medication medication = new Medication("Aspirin");
+        medicationMap.add(medication);
+        assertEquals(medicationMap.size(), 3);
+        // clean up
+        medicationMap.remove(medication);
+    }
+
+    @Test
+    public void remove_medicationNotInMap_success() {
+        Medication medication = new Medication("Aspirin");
+        medicationMap.remove(medication);
+        assertEquals(medicationMap.size(), 2);
+    }
+
+    @Test
+    public void remove_medicationInMap_success() {
+        Medication medication = new Medication("Paracetamol");
+        medicationMap.remove(medication);
+        assertEquals(medicationMap.size(), 1);
+        // clean up
+        medicationMap.add(medication);
+    }
+
+    @Test
+    public void setStringifiedMedicationMap_validString_success() {
+        String medicationMapString = "Paracetamol /-/-/ 1 /-/-/ Ibuprofen /-/-/ 1";
+        MedicationMap medicationMap = new MedicationMap();
+        medicationMap.setStringifiedMedicationMap(medicationMapString);
+        assertEquals(medicationMap.size(), 2);
+    }
+
+    @Test
+    public void setStringifiedMedicationMap_emptyString_success() {
+        String medicationMapString = "";
+        MedicationMap medicationMap = new MedicationMap();
+        medicationMap.setStringifiedMedicationMap(medicationMapString);
+        assertEquals(medicationMap.size(), 0);
+    }
+
+    @Test
     public void toString_validMedicationMap_returnsString() {
         assertEquals("\nTypes of medication: 2\n"
                 + "Patient count by medication:\n"
