@@ -11,7 +11,9 @@ title: InterNUS User Guide
 
 ## 1.1 What is InterNUS?
 
-InterNUS is a desktop app for **managing internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InterNUS can get your internship management tasks done faster than traditional GUI apps.
+Welcome to InterNUS user guide!
+
+InterNUS is a convenient and powerful desktop app for **managing internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It has a sleek design to track your internship status at one glance. Having troubles finding who to contact for your various internship applications? Don’t worry! InterNUS also allows you to manage your contact person during your applications. After your internship, InterNUS can still be used to manage your work contact list!
 
 ## 1.2 Person List
 
