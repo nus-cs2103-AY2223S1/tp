@@ -35,7 +35,16 @@ jobs:
           java-version: '11'
           java-package: jdk+fx
 
-      - name: Build and check with Gradle
+      - name: Setup xvfb for headless UI testing
+        if: runner.os == 'Linux'
+        run: sudo apt-get install -y xvfb
+
+      - name: Build and check with Gradle (Linux)
+        if: runner.os == 'Linux'
+        run: xvfb-run ./gradlew check coverage
+
+      - name: Build and check with Gradle (other OS)
+        if: ${{ runner.os != 'Linux' }}
         run: ./gradlew check coverage
 
       - uses: codecov/codecov-action@v2

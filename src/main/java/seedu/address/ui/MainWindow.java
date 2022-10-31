@@ -6,12 +6,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
@@ -43,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
+    private final Stage primaryStage;
     private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
@@ -56,7 +59,7 @@ public class MainWindow extends UiPart<Stage> {
     private PetListPanel petListPanel;
 
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
     private AddCommandPopupWindow addCommandPopupWindow;
 
     @FXML
@@ -88,7 +91,7 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
 
         // Configure the UI
-        // setWindowDefaultSize(logic.getGuiSettings());
+        setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
 
@@ -186,6 +189,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void show() {
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+        primaryStage.initStyle(StageStyle.DECORATED);
+        primaryStage.setWidth(screenBounds.getWidth());
+        primaryStage.setHeight(screenBounds.getHeight());
+        primaryStage.setX(screenBounds.getMinX());
+        primaryStage.setY(screenBounds.getMinY());
+        primaryStage.setMaxWidth(screenBounds.getWidth() * 2);
         primaryStage.show();
     }
 
