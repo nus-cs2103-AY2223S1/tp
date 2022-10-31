@@ -124,7 +124,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower` Edits the name of the 2nd contact to be `Betsy Crower`.
 
-### Create a Tag: `tag create`
+### Creating a Tag: `tag create`
 
 Creates a new tag
 
@@ -133,7 +133,7 @@ Format: `tag create t/TAG`
 Example:
 * `tag create t/family` creates a `family` tag.
 
-### Edit a Tag: `tag edit`
+### Editing a Tag: `tag edit`
 
 Renames an existing tag.
 
@@ -148,7 +148,7 @@ Format: `tag edit t/TAG1 t/TAG2`
 Example:
 * `tag edit t/friend t/bestFriend` changes the friend tag to a bestFriend tag.
 
-### Add a Tag to a Contact: `tag add`
+### Adding a Tag to a Contact: `tag add`
 
 Adds an existing tag to an existing contact.
 
@@ -167,7 +167,7 @@ A contact can have any number of tags. Add as many as you want.
 Example:
 * `tag add 1 t/friend` adds the friend tag to the first contact shown in the list.
 
-### Delete a Tag: `tag delete`
+### Deleting a Tag: `tag delete`
 
 Deletes a tag.
 
@@ -180,7 +180,7 @@ Format: `tag delete t/TAG`
 Example:
 * `tag delete t/family` deletes the `family` tag.
 
-### Remove a Tag from a Contact: `tag remove`
+### Removing a Tag from a Contact: `tag remove`
 
 Removes an existing tag from an existing contact.
 
