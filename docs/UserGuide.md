@@ -459,6 +459,12 @@ Examples:
 * `find Betsy` followed by `add -p 2 d/Change dressing on left arm | 12-7-22` adds a task to the 2nd patient in results of the `find` command, on 12th July 2022 0000 hours.
 * `add -p 3 d/Take X-rays | 23-4-22 1345 | 3 weeks` adds a recurring task to the 3rd patient for every 3 weeks starting from 23rd April 2022 1345 hours.
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can add multiple medical conditions at once when you first [add a patient](#adding-a-patient-add).
+
+</div>
+
 <br>
 
 ### Editing a task: `edit` `-p` `-d`
@@ -539,7 +545,7 @@ Examples:
 
 You can delete a medical condition of a patient with the `delete` command.
 
-Format: `delete`**`-p PATIENT_INDEX -c CONDITION_INDEX`
+Format: **`delete`**`-p PATIENT_INDEX -c CONDITION_INDEX`
 
 Examples:
 * `list` followed by `delete -p 2 -c 3` deletes the 3rd condition of the 2nd patient in the patient list.
@@ -786,16 +792,17 @@ Format: **`exit`**
 ### Saving the data
 
 UniNurse data are saved in the hard disk automatically after any command that changes the data.
-There is no need to save manually.
+You do not need to save manually.
 
 <br>
 
 ### Editing the data file
 
 UniNurse data are saved as a JSON file `[JAR file location]/data/uninurse.json`.
-Advanced users are welcome to update data directly by editing that data file.
+If you are an advanced user, feel free to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, UniNurse will discard all data and start with an empty
 data file at the next run.
 </div>
