@@ -65,7 +65,7 @@ as `nutrigoals.jar`. Do not delete or edit these files.
 * Upon launching the application, Food List will display food items recorded on the current day.
 * Progress Bar changes based on the total calorie intake for the current day as compared to the target calorie intake.
 * To check the total calorie intake for the current day and the target calorie intake, refer to the `review` command 
-[here](#viewing-a-summary-of-the-daily-calorie-intake-review).
+[here](#viewing-a-summary-of-the-calorie-intake-progress-review).
 * The Progress Bar percentage can go beyond 100%, but note that if the target calorie intake is set to 0, the 
 percentage will be fixed at 100%.
 * To set the target calorie intake, refer to the `target` command [here](#setting-a-target-calorie-intake-target).
@@ -247,9 +247,10 @@ Example:
 
 * `target 2500` sets a target calorie intake of 2500 calories for the current day and displays the list of foods for the current day.
 
-### Viewing a summary of the daily calorie intake: `review`
+### Viewing a summary of the calorie intake progress: `review`
 
-Shows the total calories consumed, the calorie target and the deficient or excess amount of calories for the day. The list of foods for the day will also be displayed.
+Shows the total calories consumed, the calorie target and the deficient or excess amount of calories for the current day. 
+The list of foods for the current day will also be displayed.
 
 Format: `review`
 
