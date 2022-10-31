@@ -12,15 +12,15 @@ import seedu.address.model.task.Task;
  */
 public class TypicalAssignments {
     public static final Task FIRST = new AssignmentBuilder().withTitle("CS2030S Homework Assignment")
-            .withDescription("Due on 23rd March").withStudents(new ArrayList<>(Arrays.asList("Adam", "Bob"))).build();
+            .withDescription("Due on 23rd March").withStudents("Adam, Bob").build();
     public static final Task SECOND = new AssignmentBuilder().withTitle("Tutorial 3").withDescription("URGENT")
-            .withStudents(new ArrayList<>(Arrays.asList("Adam", "Bob", "Charles", "Estelle"))).build();
+            .withStudents("Adam, Bob, Charles, Estelle").build();
     public static final Task THIRD = new AssignmentBuilder().withTitle("Lab 33")
-            .withDescription("Low priority").withStudents(new ArrayList<>(Arrays.asList("Adam"))).build();
+            .withDescription("Low priority").withStudents("Adam").build();
     public static final Task FOURTH = new AssignmentBuilder().withTitle("Assignment 1").withDescription("Easy")
-            .withStudents(new ArrayList<>(Arrays.asList("Adam", "Bob", "Charles", "Estelle", "Fred"))).build();
+            .withStudents("Adam, Bob, Charles, Estelle, Fred").build();
     public static final Task FIFTH = new AssignmentBuilder().withTitle("Assignment 2").withDescription("Hard")
-            .withStudents(new ArrayList<>(Arrays.asList("Adam", "Charles", "Fred"))).build();
+            .withStudents("Adam, Charles, Fred").build();
 
     private TypicalAssignments() {
     }
