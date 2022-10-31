@@ -1,12 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DATE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.TASK_DESCRIPTION_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.TASK_TITLE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_DATE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DESCRIPTION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_TITLE;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
@@ -75,6 +70,33 @@ class EditTaskCommandParserTest {
 
         EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTitle(VALID_TASK_TITLE)
                 .withDescription(VALID_TASK_DESCRIPTION).withDate(VALID_DEADLINE_DATE).build();
+        EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_allFieldsSpecifiedAssignmentAddStudents_success() {
+        Index targetIndex = INDEX_SECOND_TASK;
+        String userInput = targetIndex.getOneBased() + TASK_TITLE_DESC + TASK_DESCRIPTION_DESC
+                + ASSIGNMENT_ADD_STUDENTS_DESC;
+
+        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTitle(VALID_TASK_TITLE)
+                .withDescription(VALID_TASK_DESCRIPTION).withAddStudents(VALID_ASSIGNMENT_STUDENTS).build();
+        EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_allFieldsSpecifiedAssignmentDeleteStudents_success() {
+        Index targetIndex = INDEX_SECOND_TASK;
+        String userInput = targetIndex.getOneBased() + TASK_TITLE_DESC + TASK_DESCRIPTION_DESC
+                + ASSIGNMENT_ADD_STUDENTS_DESC + ASSIGNMENT_DELETE_STUDENTS_DESC;
+
+        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTitle(VALID_TASK_TITLE)
+                .withDescription(VALID_TASK_DESCRIPTION).withAddStudents(VALID_ASSIGNMENT_STUDENTS)
+                .withDeleteStudents(VALID_ASSIGNMENT_STUDENT_ADAM).build();
         EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

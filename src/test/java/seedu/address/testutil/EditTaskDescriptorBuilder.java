@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import java.util.List;
+import java.util.Arrays;
 
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
@@ -66,10 +66,18 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code ClassGroup} of the {@code EditStudentDescriptor} that we are building.
+     * Sets the {@code StudentsToAdd} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withStudents(List<String> students) {
-        descriptor.setStudentsToAdd(students);
+    public EditTaskDescriptorBuilder withAddStudents(String students) {
+        descriptor.setStudentsToAdd(Arrays.asList(students.split(", ")));
+        return this;
+    }
+
+    /**
+     * Sets the {@code StudentsToDelete} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withDeleteStudents(String students) {
+        descriptor.setStudentsToDelete(Arrays.asList(students.split(", ")));
         return this;
     }
 
