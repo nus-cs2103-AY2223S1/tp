@@ -7,7 +7,7 @@ title: User Guide
     <img src="images/LTNS_logo.png" width="200" height="200">
 </p>
 
-Long Time No See (LTNS) is a  **desktop app for managing clients, policies and events optimized for use via a Command Line Interface** (CLI) while still having the benefits of an **intuitive and minimalistic Graphical User Interface (GUI)**. With customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
+Long Time No See (LTNS) is a  **desktop app for managing clients, policies and events optimized for use via a [Command Line Interface](#command-line-interface-cli) (CLI)** while still having the benefits of an **intuitive and minimalistic [Graphical User Interface](#graphic-user-interface-gui) (GUI)**. With customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
 
 # Table of Contents
 1. [Quickstart](#quick-start)
@@ -143,7 +143,7 @@ LTNS application data is saved in the hard disk automatically after any command 
 
 ### Editing the data file
 
-LTNS application data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+LTNS application data is saved as a [JSON](#json-file) file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 Below is an example of what your JSON File should look like:
 ![Json Example](./images/JsonExample.png)
@@ -227,7 +227,7 @@ Examples:
 
 ### Searching for Clients: `findClient`
 
-Search for clients based on certain metrics
+Search for clients based on certain [metrics](#metric)
 
 Format: `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]`
 
