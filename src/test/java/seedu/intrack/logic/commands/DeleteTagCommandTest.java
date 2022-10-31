@@ -39,34 +39,6 @@ class DeleteTagCommandTest {
 
     private Set<Tag> taglistStub2 = new HashSet<>(Arrays.asList(remote));
 
-    /* this test affects other tests for some reason
-    @Test
-    void execute_validInternshipIndexSelectedList_Success() {
-        //test if the actual deltag command is a success by deleting the Urgent tag from Meta, leaving Remote tag only
-        //deleting a tag might affect the test cases, so we should use an isolated internship for testing delete.
-        List<Internship> InternshipStub = new ArrayList<>();
-        Model dummyModel = new ModelManager(new InTrack(model.getInTrack()), new UserPrefs());
-        Internship initInternship = new Internship(new Name("Snapple"), new Position("CEO"), new Status("Offered"),
-                new Email("WWW.IamABoss@gmail.com"), new Website("Snapple.com"), new ArrayList<Task>(),
-                new Salary("10000"), taglistStub_1, new Remark("easy"));
-        dummyModel.addInternship(initInternship);
-        InternshipStub.add(initInternship);
-        //we need a replacement internship to avoid it from affecting the rest of the tests
-        Internship dummyInternship = InternshipStub.get(0);
-        Internship expectedInternship = new Internship(initInternship.getName(), initInternship.getPosition(),
-        initInternship.getStatus(), initInternship.getEmail(), initInternship.getWebsite(), initInternship.getTasks(),
-        initInternship.getSalary(), taglistStub_2, initInternship.getRemark());
-
-        DeleteTagCommand delTagCommand = new DeleteTagCommand(Index.fromZeroBased(4),
-                taglistStub);
-        String expectedMessage = String.format(delTagCommand.MESSAGE_DELETE_TAG_SUCCESS,
-                expectedInternship);
-        Model expectedModel = new ModelManager(new InTrack(dummyModel.getInTrack()), new UserPrefs());
-        expectedModel.setInternship(initInternship, expectedInternship);
-        assertCommandSuccess(delTagCommand, dummyModel, expectedMessage, expectedModel);
-    }
-    */
-
     @Test
     public void execute_invalidInternshipIndexFilteredList_failure() {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
