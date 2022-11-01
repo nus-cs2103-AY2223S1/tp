@@ -95,9 +95,9 @@ The following table describes the sections in detail:
 1. Double-click the file to start the app. The GUI below should appear within a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/user-guide/start.png)
 
-1. Type the command in the 'Command Box' and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the 'Command Box' and press Enter to execute it.<br>
    Some example commands you can try:
-
+ 
     * `list` : Lists all tutors.
 
     * `view 3` : Displays full details of the 3rd tutor shown in the current list.
@@ -147,6 +147,14 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR s/STUDENTID tn/TEACHI
 :information_source: **About Tags:**
 - A person can have any number of tags (including 0).
 - Tags should be alphanumeric and should not contain any spaces.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **About Teaching Nomination:**
+- Teaching nominations take in positive integers including 0.
+- Leading zeros in the teaching nominations will not be allowed. e.g. `0`, `1` is valid but `00001` is invalid.
 
 </div>
 
@@ -224,14 +232,16 @@ Examples:
 
 ### Search for tutor by attribute: `find`
 
-Finds tutor(s) whose specific profile attribute contains any of the given keywords.
+Searching for tutors that teach relevant or specific modules? Looking for tutors with the best ratings? The find
+command allows you to do so by searching through the list of tutors based on specified attributes of the
+tutors along with the search keywords provided.
 
 Format: `find PREFIX/KEYWORDS [KEYWORDS]`
 * The find command works by entering only **one** prefix corresponding to a tutor's profile attribute, followed by the keyword(s) to search
 * The search is case-insensitive. e.g. hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only the attribute that corresponds to the prefix entered is searched.
-* Partial words will be matched e.g. Han will match Hans
+* **Partial words** will be matched e.g. Han will match Hans
 * Tutors with attributes being searched that match at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
 
 Examples:

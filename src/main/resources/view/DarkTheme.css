@@ -177,21 +177,8 @@
      -fx-background-color: #d7dedd;
 }
 
-.details-base {
-     -fx-background-color: #d7dedd;
-     -fx-background-radius: 8;
-     -fx-border-color: #d7dedd;
-     -fx-border-radius: 8;
-}
-
 .status-bar {
     -fx-background-color: derive(#C9998B, 30%);
-}
-
-.command-pane {
-    -fx-background-color: #F4E9E3;
-    -fx-border-color: #DBC4B2;
-    -fx-border-radius: 10;
 }
 
 .command-bar {
