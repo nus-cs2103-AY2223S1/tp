@@ -108,6 +108,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPersonByEmail(Person person) {
+        requireNonNull(person);
+        try {
+            addressBook.getPersonByEmail(person.getEmail());
+            return true;
+        } catch (PersonNotFoundException e) {
+            return false;
+        }
+    }
+
+    @Override
     public Person getPersonByEmail(Email email) throws PersonNotFoundException {
         requireNonNull(email);
         return addressBook.getPersonByEmail(email);
