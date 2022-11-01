@@ -3,65 +3,36 @@ layout: page
 title: User Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Introduction 
+## Introduction
 Hi Profs! Welcome to the User Guide for **Tuthub**, a Command Line Interface (CLI) App that will help you find your next batch of teaching assistants (TA) in no time!
 
-Tuthub is a desktop app for NUS professors who wish to choose their next batch of teaching assistants/tutors based on their past performance and track records but have little time to spare for tedious administrative work. Tuthub helps profs who can type fast find the best TAs faster than traditional Graphical User Interface (GUI) apps.
+Tuthub is a desktop app for NUS professors who wish to track and choose their next batch of teaching assistants/tutors based on their past performance and records but have little time to spare for tedious administrative work. Tuthub helps profs who can type fast find the best TAs faster than traditional Graphical User Interface (GUI) apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+## About This Document
 
-1. Download the latest `tuthub.jar` from [here](https://github.com/AY2223S1-CS2103T-T15-3/tp/releases).
+This section will introduce you to the symbols frequently used in this User Guide as well as Tuthub application layout and command format to aid your understanding of the document.
 
-1. Copy the file to the folder you want to use as the _home folder_ for Tuthub.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/user-guide/start.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all tutors.
-
-   * `view 3` : Displays full details of the 3rd tutor shown in the current list.
-
-   * `add n/John Doe p/98765432 e/e1234567 m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior` : Adds a tutor named `John Doe` to Tuthub.
-
-   * `find n/alex` : Finds all tutors with names containing alex.
-
-   * `delete 3` : Deletes the 3rd tutor shown in the current list.
-   
-   * `clear` : Deletes all tutors.
-   
-   * `comment 1 c/Always on time`: Adds a comment to the first tutor that he is always on time.
-
-   * `exit` : Exits the Tuthub app.
-
-1. Refer to [Features](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
-## About this Document
-
-This section will introduce you to the symbols and terms frequently used in this User Guide/Tuthub to aid your understanding of the document. 
+If you would like to:
+- Find out more about specific terms used, please visit our [Glossary](#glossary).
+- Install Tuthub and try out some quick commands, please visit our [Quick Start](#quick-start) section.
+- Find out more comprehensive details about Tuthub commands, please visit our [Features](#features) section.
 
 ### Symbols and Syntax
 
-| Symbol                  | What it means                                                                 | 
-|-------------------------|-------------------------------------------------------------------------------|
-| `highlights`            | 	Executable commands or possible parameters that can be entered into the CLI. |
-| :information_source:    | Additional information that may be useful to know                             |
-| :bulb:                  | Tips to improve the Tuthub experience                                         |
-| :exclamation:           | Things to be cautious of and should be followed closely                       |
+| Symbol                  | What it means                                                                | 
+|-------------------------|------------------------------------------------------------------------------|
+| `highlights`            | Executable commands or possible parameters that can be entered into the CLI. |
+| :information_source:    | Additional information that may be useful to know                            |
+| :bulb:                  | Tips to improve the Tuthub experience                                        |
+| :exclamation:           | Things to be cautious of and should be followed closely                      |
 
 ### Layout of Tuthub Application Window
 
@@ -114,15 +85,50 @@ The following table describes the sections in detail:
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
+## Quick Start
+
+1. Ensure you have Java `11` or above installed in your Computer.
+
+1. Download the latest `tuthub.jar` [here](https://github.com/AY2223S1-CS2103T-T15-3/tp/releases).
+
+1. Copy the file to the folder you want to use as the _home folder_ for Tuthub.
+
+1. Double-click the file to start the app. The GUI below should appear within a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/user-guide/start.png)
+
+1. Type the command in the 'Command Box' and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+
+    * `list` : Lists all tutors.
+
+    * `view 3` : Displays full details of the 3rd tutor shown in the current list.
+
+    * `add n/John Doe p/98765432 e/e1234567 m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior` : Adds a tutor named `John Doe` to Tuthub.
+
+    * `find n/alex` : Finds all tutors with names containing alex.
+
+    * `delete 3` : Deletes the 3rd tutor shown in the current list.
+
+    * `clear` : Deletes all tutors.
+
+    * `comment 1 c/Always on time`: Adds a comment to the first tutor that he is always on time.
+
+    * `exit` : Exits the Tuthub app.
+
+1. If you would like to find out more, refer to [Features](#features) below for comprehensive details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Features
 
 ### Viewing help : `help`
 
-If you are new to Tuthub or need a refresher for available commands, `help` displays a table of Tuthub command summary.
-
-![helpMessage](images/helpMessage.png)
+If you are new to Tuthub or need a refresher for available commands, `help` displays a table of Tuthub command summary and a link to our User Guide for your convenience.
 
 Format: `help`
+
+![helpMessage](images/helpMessage.png)
 
 <div markdown="block" class="alert alert-primary">
 
@@ -157,10 +163,7 @@ Format: `list`
 
 ### Viewing a tutor : `view`
 
-Want to find out more about a particular tutor? View a tutor to see all available information about their contact details and past performance.
-
-Viewing the second tutor causes the corresponding `Tutor Details Pane` to pop up on the right:
-![detailsPane](images/user-guide/detailsPane.png)
+If you would like to find out more about a particular tutor, view a tutor to see all available information about their contact details and past performance.
 
 Format: `view INDEX`
 
@@ -169,12 +172,14 @@ Format: `view INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `view 2` displays the full details of the 2nd person in Tuthub.
+* `view 2` causes the corresponding `Tutor Details Pane` of the 2nd tutor to appear on the right, as shown below:
+  ![detailsPane](images/user-guide/detailsPane.png)
+
 
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**
-You may also click on a tutor list card to execute a view command instead
+You may also click on a `Tutor List Card` to execute a `view` command instead
 
 </div>
 
@@ -320,7 +325,7 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 | Action                     | Format                                                                                                                     | Examples (if any)                                                                                      |
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
@@ -343,10 +348,11 @@ Format: `exit`
 
 ## Glossary
 
-| **Term**                              | **Definition**                                                                                                                    |
-|---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| **Command Line Interface (CLI)**      | A text-based interface where users may interact with the system by typing in commands.                                            |
-| **Graphical User Interface (GUI)**    | A graphic-based interface where users may interact with graphical components (e.g. icons and menus) to interact with the system.  |
-| **JAR File**                          | Java Archive File with multiple files compressed into one and may be an executable.                                               |                     
-| **Java**                              | A widely used programming language.                                                                                               |                    
-| **Javascript Object Notation (JSON)** | A lightweight format for storing and transporting data.                                                                           |                   
+| **Term**                              | **Definition**                                                                                                                   |
+|---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| **Command Line Interface (CLI)**      | A text-based interface where users may interact with the system by typing in commands.                                           |
+| **Graphical User Interface (GUI)**    | A graphic-based interface where users may interact with graphical components (e.g. icons and menus) to interact with the system. |
+| **JAR File**                          | Java Archive File with multiple files compressed into one and may be an executable.                                              |                     
+| **Java**                              | A widely used programming language.                                                                                              |                    
+| **Javascript Object Notation (JSON)** | A lightweight format for storing and transporting data.                                                                          |
+| **Parameter**                         | A specific tutor detail to be provided for a command to run.                                                                     |
