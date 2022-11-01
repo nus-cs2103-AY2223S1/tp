@@ -620,6 +620,8 @@ Examples:
 
 Deletes all patients, appointments and bills from HealthContact.
 
+* If the user accidentally clears all data, the user can restore the data by using the `undo` command. If the user closes the application before undoing `clear`, the data will be gone permanently.
+
 ### Format
 
 
