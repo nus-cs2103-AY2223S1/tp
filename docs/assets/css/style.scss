@@ -129,15 +129,11 @@ h5:before {
   margin-left: 34px;
 }
 
-// Fifth Level
-#markdown-toc > li > ul > li > ul > li > ul > li > ul > li {
-  margin-left: 42px;
-}
-
 #markdown-toc li:before {
-  content: counters(item, ".") ". ";
+  content: counters(item, ".") " ";
   counter-increment: item;
 }
+
 
 .no-num:before, .no-num *:before {
   content : "";
