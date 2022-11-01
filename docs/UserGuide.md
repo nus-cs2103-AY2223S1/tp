@@ -402,6 +402,7 @@ You can use this command when:
 * You must update the meeting time of a client through the [`meeting` command](#add-meetings-meeting), [`deletemeeting` command](#delete-meetings-deletemeeting) and [`sync` commands](#remove-past-meetings-sync).
 * Does not allow you to update a person to have the same name and phone number as a current person in the FABook.
 * Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
+* Person profiles and do not refresh when person is updated, they are only updated when we re-click the person card
 
 Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
 

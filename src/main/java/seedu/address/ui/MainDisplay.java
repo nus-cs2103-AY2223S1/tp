@@ -10,7 +10,7 @@ import seedu.address.model.person.Person;
 /**
  * A UI component that displays regions on the main display.
  */
-public class MainDisplay extends UiPart<Region> implements Observer {
+public class MainDisplay extends UiPart<Region> {
 
     private static final String FXML = "MainDisplay.fxml";
     private PersonProfile displayedProfile;
@@ -39,12 +39,5 @@ public class MainDisplay extends UiPart<Region> implements Observer {
     public void setMainDisplay(Region region) {
         mainDisplay.getChildren().clear();
         mainDisplay.getChildren().add(region);
-    }
-
-    @Override
-    public void updateUi(Person updatedPerson) {
-        if (displayedProfile != null && displayedProfile.isSamePerson(updatedPerson)) {
-            setPersonProfile(updatedPerson);
-        }
     }
 }
