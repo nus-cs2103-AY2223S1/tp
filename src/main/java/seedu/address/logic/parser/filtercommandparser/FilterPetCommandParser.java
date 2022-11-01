@@ -14,11 +14,11 @@ import seedu.address.model.pet.Pet;
  * Parses input arguments and creates a new FilterPetCommand object.
  */
 public class FilterPetCommandParser implements Parser<FilterPetCommand> {
-    public static final char COLOR_PREFIX = 'c';
-    public static final char PET_NAME_PREFIX = 'n';
-    public static final char PRICE_PREFIX = 'p';
-    public static final char SPECIES_PREFIX = 's';
-    public static final char VACCINATION_PREFIX = 'v';
+    public static final String COLOR_PREFIX = "p_c";
+    public static final String PET_NAME_PREFIX = "p_n";
+    public static final String PRICE_PREFIX = "p_p";
+    public static final String SPECIES_PREFIX = "p_s";
+    public static final String VACCINATION_PREFIX = "p_v";
 
     private static Predicate<Pet> defaultPredicate = new Predicate<Pet>() {
         @Override
@@ -51,8 +51,10 @@ public class FilterPetCommandParser implements Parser<FilterPetCommand> {
 
         for (String arg: nameKeywords) {
             arg = arg.trim();
-            switch (arg.charAt(0)) {
+            String[] query = arg.split("/");
+            switch (query[0]) {
             case COLOR_PREFIX:
+                System.out.println(query[0]);
                 colorPredicate = PredicateParser.parsePet(arg);
                 break;
             case PET_NAME_PREFIX:

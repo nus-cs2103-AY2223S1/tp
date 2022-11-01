@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.COLOR_PREFIX;
+import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PET_NAME_PREFIX;
+import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PRICE_PREFIX;
+import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.VACCINATION_PREFIX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -203,7 +207,10 @@ public class AddressBookParserTest {
                 priceContainsKeywordsPredicate,
                 speciesContainsKeywordsPredicate,
                 vaccinationStatusPredicate);
-        String input = FilterPetCommand.COMMAND_WORD + " c/grey n/ashy p/5.5 v/true";
+        String input = FilterPetCommand.COMMAND_WORD + " " + COLOR_PREFIX + "/grey "
+                + PET_NAME_PREFIX + "/ashy "
+                + PRICE_PREFIX + "/5.5 "
+                + VACCINATION_PREFIX + "/true";
         assertEquals(parser.parseCommand(input), command);
     }
 

@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.filtercommandparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -10,7 +10,6 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.filtercommands.FilterOrderCommand;
-import seedu.address.logic.parser.filtercommandparser.FilterOrderCommandParser;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderStatus;
 import seedu.address.model.order.Price;

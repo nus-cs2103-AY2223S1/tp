@@ -42,11 +42,11 @@ public class PredicateParser {
     private static final String PHONE_PREFIX = "p";
 
     //For pets
-    private static final String COLOR_PREFIX = "c";
-    private static final String PET_NAME_PREFIX = "n";
-    private static final String PRICE_PREFIX = "p";
-    private static final String SPECIES_PREFIX = "s";
-    private static final String VACCINATION_PREFIX = "v";
+    private static final String COLOR_PREFIX = "p_c";
+    private static final String PET_NAME_PREFIX = "p_n";
+    private static final String PRICE_PREFIX = "p_p";
+    private static final String SPECIES_PREFIX = "p_s";
+    private static final String VACCINATION_PREFIX = "p_v";
 
     //For orders
     private static final String ADDITIONAL_REQUEST_PREFIX = "ar";
@@ -152,7 +152,7 @@ public class PredicateParser {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
         }
         String query = nameKeywords[1].trim();
-        switch (nameKeywords[0]) {
+        switch (nameKeywords[0].trim()) {
         case COLOR_PREFIX:
             return new ColorContainsKeywordsPredicate<>(Arrays.asList(query));
         case PET_NAME_PREFIX:
