@@ -66,6 +66,8 @@ public class DatetimeCommonUtils {
             DATETIME_MESSAGE_CONSTRAINTS_BASE + ", e.g. 2022-01-01 08:00";
     public static final String DATETIME_MESSAGE_CONSTRAINTS_UNPARSABLE =
             DATETIME_MESSAGE_CONSTRAINTS_BASE + ", and it must be valid!";
+    
+    public static final String DATETIME_MESSAGE_CONSTRAINTS_DATETIMEPASSED = "Date and time inputted must be after the current time";
 
 
 
@@ -160,7 +162,9 @@ public class DatetimeCommonUtils {
         }
 
         assertDatetimeValid(trimmedDatetime);
-        return Datetime.fromFormattedString(trimmedDatetime);
+        
+        Datetime userInput = Datetime.fromFormattedString(trimmedDatetime);
+        return userInput;
     }
 
     /**
