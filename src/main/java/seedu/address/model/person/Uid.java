@@ -7,8 +7,8 @@ import java.util.concurrent.atomic.AtomicLong;
  * Guarantees: immutable; is valid as declared in {@link #isValidUid(String)}
  */
 public class Uid implements Comparable<Uid> {
-    public static final String MESSAGE_CONSTRAINTS = "Ids should only contain numeric characters,"
-            + " and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Ids should only contain positive numeric characters,"
+            + " and it should not be blank and below 99998!";
 
     /**
      * The first character of the id must not be a whitespace,
@@ -52,7 +52,12 @@ public class Uid implements Comparable<Uid> {
      * Returns true if a given string is a valid id.
      */
     public static boolean isValidUid(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            Long parsedUid = Long.parseLong(test);
+            return test.matches(VALIDATION_REGEX) && parsedUid < 99998L;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public static Uid generateUniversalUid() {
