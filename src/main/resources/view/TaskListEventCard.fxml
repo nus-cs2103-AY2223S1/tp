@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" stylesheets="@DarkBlueThemeEvent.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" minHeight="70">
+      <padding>
+        <Insets bottom="5" left="15" right="5" top="5" />
+      </padding>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label fx:id="id" styleClass="cell_big_label" wrapText="true">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="description" styleClass="cell_big_label" text="\$description" wrapText="true" />
+      </HBox>
+         <FlowPane fx:id="tags" />
+         <HBox alignment="CENTER_LEFT" spacing="5">
+            <children>
+               <Label fx:id="isDone" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" styleClass="cell_big_label" text="\$isDone" textOverrun="CLIP" wrapText="true" />
+               <Label fx:id="assignment" styleClass="cell_small_label" wrapText="true">
+                  <minWidth>
+                     <Region fx:constant="USE_PREF_SIZE" />
+                  </minWidth>
+               </Label>
+               <Label fx:id="relatedParty" styleClass="cell_small_label" text="\$relatedParty" wrapText="true" />
+            </children>
+         </HBox>
+    </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
+</HBox>

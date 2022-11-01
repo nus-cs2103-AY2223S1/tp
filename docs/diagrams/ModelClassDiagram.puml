@@ -1,50 +1,56 @@
 @startuml
 !include style.puml
+skinparam lineType ortho
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyTaskBook" as ReadOnlyTaskBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class TaskBook
 Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
-Class Email
 Class Name
-Class Phone
-Class Tag
+
+Class TaskList
+Class "   {abstract}   \nTask" as Task
+
+together {
+Class Todo
+Class Event
+Class Deadline
+}
 
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+TaskBook .up.|> ReadOnlyTaskBook
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyTaskBook
+ModelManager -left-> "1" TaskBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+TaskBook *-down-> "1" UniquePersonList
+UniquePersonList -down-> "~* all" Person
+Person *-down-> Name
+TaskBook *-down-> "1" TaskList
+TaskList -down-> "~* all" Task
+Todo -up-|> Task
+Event -up-|> Task
+Deadline -up-|> Task
+Task -down-> Name
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
-ModelManager -->"~* filtered" Person
+ModelManager ---down->"~* filtered" Person
+ModelManager --down->"~* filtered" Task
+ModelManager --down->"~* sorted" Task
 @enduml

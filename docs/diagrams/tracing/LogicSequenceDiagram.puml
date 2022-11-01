@@ -2,9 +2,9 @@
 !include ../style.puml
 
 Participant ":LogicManager" as logic LOGIC_COLOR
-Participant ":AddressBookParser" as abp LOGIC_COLOR
-Participant ":EditCommandParser" as ecp LOGIC_COLOR
-Participant "command:EditCommand" as ec LOGIC_COLOR
+Participant ":TaskBookParser" as abp LOGIC_COLOR
+Participant ":ContactEditCommandParser" as ecp LOGIC_COLOR
+Participant "command:ContactEditCommand" as ec LOGIC_COLOR
 
 [-> logic : execute
 activate logic
