@@ -122,7 +122,6 @@ Examples:
 * `listPersons` Lists all persons without performing any sorting.
 * `listPersons s/n` Lists all persons sorted by their names.
 
-
 ### Editing a contact : `editPerson`
 
 Edits an existing contact in the application.
