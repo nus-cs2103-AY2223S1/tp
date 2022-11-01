@@ -155,7 +155,7 @@ public class UniqueEventList implements Iterable<Event> {
 
     /**
      * Removes the event {@code target} from each profile in {@code profilesToEdit}.
-     * Profiles in {@code profilesToEdit} must exist in the address book.
+     * Profiles in {@code profilesToEdit} must exist in the NUScheduler.
      * The event {@code target} must exist in the list.
      */
     public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
