@@ -356,7 +356,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Staring a new internship season? Clear all entries from the internship tracker.
+Starting a new internship season? Clear all entries from the internship tracker.
 
 Format: `clear`
 
