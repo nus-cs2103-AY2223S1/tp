@@ -10,7 +10,9 @@ import static seedu.studmap.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.studmap.logic.commands.AddCommand;
@@ -30,7 +32,21 @@ public class AddCommandParser implements Parser<AddCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-    
+
+    private static List<Prefix> getMissingPrefixes(ArgumentMultimap argumentMultimap, Prefix... requiredPrefixes) {
+        return Stream.of(requiredPrefixes)
+                .filter(prefix -> !argumentMultimap.getValue(prefix).isPresent())
+                .collect(Collectors.toList());
+    }
+
+    public static String getMissingPrefixesMessage(List<Prefix> missingPrefixes) {
+        return "MISSING: " + missingPrefixes
+                .stream()
+                .map(Prefix::toString)
+                .collect(Collectors.joining(", "));
+    }
+
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -42,8 +58,12 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_MODULE,
                         PREFIX_ID, PREFIX_GIT, PREFIX_HANDLE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE, PREFIX_ID)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE, PREFIX_ID)) {
+            List<Prefix> missingPrefixes = getMissingPrefixes(argMultimap, PREFIX_NAME, PREFIX_MODULE, PREFIX_ID);
+            String missingPrefixesMessage = getMissingPrefixesMessage(missingPrefixes);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE)
+                    + "\n" + missingPrefixesMessage);
+        } else if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
