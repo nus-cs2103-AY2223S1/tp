@@ -43,9 +43,9 @@ our app.
    few seconds. <br>
 
 
-| Screenshot of Plannit                                                                     | Description of labels                                                                                            |
-|-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/home-labelled.png" width="500"/></p>{:/} | {::nomarkdown}<ol><li>Command box</li><li>Result display</li><li>Modules list</li><li>Persons list</li></ol>{:/} |
+    | Screenshot of Plannit                                                                     | Description of labels                                                                                            |
+    |-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+    | {::nomarkdown}<p align="center"><img src="images/home-labelled.png" width="500"/></p>{:/} | {::nomarkdown}<ol><li>Command box</li><li>Result display</li><li>Modules list</li><li>Persons list</li></ol>{:/} |
 
 
 5. Type the command in the command box and press Enter to execute it. e.g.
