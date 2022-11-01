@@ -851,7 +851,7 @@ and only one patient.
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually. It is recommended to follow the steps in order.
+Given below are instructions to test the app manually. It is recommended to follow the steps and sections in order.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
