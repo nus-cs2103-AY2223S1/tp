@@ -309,14 +309,20 @@ Example:
 
 * `reminder delete 3` deletes a reminder at index 3 of the reminder list on display.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Clear reminders only for a specific client by using `show INDEX` then `reminder clear`.
+</div>
+
 ### Clearing reminders : `reminder clear`
 
 Clears all reminders from the displayed reminder list.
 
 Format: `reminder clear`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Clear reminders only for a specific client by using `show INDEX` then `reminder clear`.
+<div markdown="span" class="alert alert-warning">:exclamation:
+Do take note that expired reminders will be marked as red and will not be automatically deleted
+You will have to delete them manually.
+<img src="images/expiredReminder.png" />
 </div>
 
 ### Creating a message template : `message create`
@@ -339,6 +345,8 @@ Examples:
 Lists your message templates.
 
 Format: `message list`
+
+![Listing available Messages](images/messageList.png)
 
 ### Generating messages : `message generate`
 
@@ -364,6 +372,8 @@ Format: `message delete INDEX`
 Example:
 
 - `message delete 1`
+
+![Deleting Message](images/messageDelete.png)
 
 ### Return home : `home`
 
