@@ -41,33 +41,33 @@ This User Guide is an in-depth guide to help you start managing your contacts, n
     + [Tag Properties](#tag-properties)
   * [Features](#features)
     + [General Features](#general-features)
-      - [Viewing help : `help`](#viewing-help----help-)
-      - [Inspecting a person : `inspect`](#inspecting-a-person----inspect-)
-      - [Locating persons by tag: `findTag`](#locating-persons-by-tag---findtag-)
-      - [Clearing all entries : `clear`](#clearing-all-entries----clear-)
-      - [Exiting the program : `exit`](#exiting-the-program----exit-)
+      - [Viewing help : `help`](#viewing-help--help)
+      - [Inspecting a person : `inspect`](#inspecting-a-person--inspect)
+      - [Locating persons by tag : `findTag`](#locating-persons-by-tag--findtag)
+      - [Clearing all entries : `clear`](#clearing-all-entries--clear)
+      - [Exiting the program : `exit`](#exiting-the-program--exit)
       - [Saving the data](#saving-the-data)
       - [Editing the data file](#editing-the-data-file)
-      - [Archiving data files `[coming in v2.0]`](#archiving-data-files---coming-in-v20--)
-      - [Undo `[coming in v2.0]`](#undo---coming-in-v20--)
-      - [Redo `[coming in v2.0]`](#redo---coming-in-v20--)
+      - [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
+      - [Undo `[coming in v2.0]`](#undo-coming-in-v20)
+      - [Redo `[coming in v2.0]`](#redo-coming-in-v20)
     + [Person Features](#person-features)
-      - [Adding a new person: `add`](#adding-a-new-person---add-)
-      - [Listing all persons : `list`](#listing-all-persons----list-)
-      - [Editing a club member : `edit`](#editing-a-club-member----edit-)
-      - [Locating persons by name or contact number: `find`](#locating-persons-by-name-or-contact-number---find-)
-      - [Editing loan of a person: `editLoan`](#editing-loan-of-a-person---editloan-)
-      - [Deleting a person : `delete`](#deleting-a-person----delete-)
-      - [Sorting by property: `sort` `[coming in v2.0]`](#sorting-by-property---sort----coming-in-v20--)
+      - [Adding a new person : `add`](#adding-a-new-person--add)
+      - [Listing all persons : `list`](#listing-all-persons--list)
+      - [Editing a club member : `edit`](#editing-a-club-member--edit)
+      - [Locating persons by name or contact number : `find`](#locating-persons-by-name-or-contact-number--find)
+      - [Editing loan of a person : `editLoan`](#editing-loan-of-a-person--editloan)
+      - [Deleting a person : `delete`](#deleting-a-person--delete)
+      - [Sorting by property : `sort` `[coming in v2.0]`](#sorting-by-property--sort-coming-in-v20)
     + [Note Features](#note-features)
-      - [Adding Notes `addNote`](#adding-notes--addnote-)
-      - [Locating a note by title: `findNote`](#locating-a-note-by-title---findnote-)
-      - [Listing Notes `listNotes`](#listing-notes--listnotes-)
-      - [Editing Notes `editNote`](#editing-notes--editnote-)
-      - [Deleting Notes `deleteNote`](#deleting-notes--deletenote-)
-      - [Sort Notes: `sortNotes` `[coming in v2.0]`](#sort-notes---sortnotes----coming-in-v20--)
-      - [Hiding notes panel : `hideNotes`](#hiding-notes-panel----hidenotes-)
-      - [Showing notes panel : `showNotes`](#showing-notes-panel----shownotes-)
+      - [Adding Notes : `addNote`](#adding-notes--addnote)
+      - [Locating a note by title : `findNote`](#locating-a-note-by-title--findnote)
+      - [Listing Notes : `listNotes`](#listing-notes--listnotes)
+      - [Editing Notes : `editNote`](#editing-notes--editnote)
+      - [Deleting Notes : `deleteNote`](#deleting-notes--deletenote)
+      - [Sort Notes : `sortNotes` `[coming in v2.0]`](#sort-notes--sortnotes-coming-in-v20)
+      - [Hiding notes panel : `hideNotes`](#hiding-notes-panel--hidenotes)
+      - [Showing notes panel : `showNotes`](#showing-notes-panel--shownotes)
   * [FAQ](#faq)
   * [Glossary](#glossary)
   * [Command summary](#command-summary)
@@ -489,7 +489,7 @@ Examples:
 
 [Back to Top](#sectresbook)
 
-#### Locating persons by tag: `findTag`
+#### Locating persons by tag : `findTag`
 
 Finds People and Notes that have the given tag. Both the Notes Panel and the People Panel will be updated synchronously with all entities that match the specifiers.
 
@@ -503,14 +503,14 @@ Format: `findTag TAG [MORE_TAGS]`
 * Only the tag is searched.
 * Only full words will be matched e.g. `Tech` will not match `Technology`
 * Persons and Notes matching at least one tag will be returned (i.e. `OR` search).
-  e.g. `Finance` will return
-* `John (tag: Finance)`,
-* `Caroline (tag: Finance) (tag: Tech)`,
-* `Bob (tag:Finance) (tag:HumanResources)`
+  e.g. `Operations` will return
+  * Person `Alex Yeoh` (tag: Friends) (tag: Operations),
+  * Person `Charlotte Oliveiro` (tag: Operations),
+  * Note `Collect funds from operations team` (tag: Operations)
 
 Examples:
-* `findTag Finance` returns `John`, `Caroline` and `Bob`
-  ![result for 'findTag Finance'](images/findTagFinance.png)
+* `findTag Operations` returns Person `Alex Yeoh`, Person `Charlotte Oliveiro` and Note `Collect funds from operations team`
+  ![result for 'findTag Operations'](images/findTagOperations.png)
 
 [Back to Top](#sectresbook)
 
@@ -586,7 +586,7 @@ Note that performing undo commands and inputting a new command after will set th
 
 ### Person Features
 
-#### Adding a new person: `add`
+#### Adding a new person : `add`
 
 Adds a person to the SectresBook. The new member will appear at the end of the persons' list residing in the People Panel.
 
@@ -633,7 +633,7 @@ If no person is named `John`, or if more than one person has `John` in their nam
 
 [Back to Top](#sectresbook)
 
-#### Locating persons by name or contact number: `find`
+#### Locating persons by name or contact number : `find`
 
 Finds persons whose names match any of the given keywords, or phone numbers contain any of the given keywords (in digits).
 
@@ -660,7 +660,7 @@ Examples:
 
 [Back to Top](#sectresbook)
 
-#### Editing loan of a person: `editLoan`
+#### Editing loan of a person : `editLoan`
 
 Edits an existing club member's loan amount in the SectresBook. Please note that the value must be either positive or negative values with up to 2 decimal places.
 
@@ -718,7 +718,7 @@ To delete everyone at the same time, please refer to the [`clear` command](#clea
 
 [Back to Top](#sectresbook)
 
-#### Sorting by property: `sort` `[coming in v2.0]`
+#### Sorting by property : `sort` `[coming in v2.0]`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 This command does not exist in the present version of the program that this User Guide is written for. It **will not work** if entered.
@@ -730,7 +730,7 @@ Sorts the members in the persons' list by properties in either ascending or desc
 
 ### Note Features
 
-#### Adding Notes `addNote`
+#### Adding Notes : `addNote`
 
 Adds a note to the SectresBook.
 
@@ -744,7 +744,7 @@ Examples:
 * `addNote title/Club meeting soon! content/Remind club members to attend meeting.`
 * `addNote title/T-Shirt payment due content/Collect money tag/Juniors`
 
-#### Locating a note by title: `findNote`
+#### Locating a note by title : `findNote`
 
 Finds the notes whose titles match any of the given keywords. A filtered icon will show to the side of the Notes Panel to indicate that you are now viewing a filtered list.
 
@@ -770,7 +770,7 @@ Examples:
 
 [Back to Top](#sectresbook)
 
-#### Listing Notes `listNotes`
+#### Listing Notes : `listNotes`
 
 Shows a list of all notes in the SectresBook. If the notes list was previously filtered, the filter icon will disappear to indicate that you are now looking at the full list.
 
@@ -778,7 +778,7 @@ Format: `listNotes`
 
 [Back to Top](#sectresbook)
 
-#### Editing Notes `editNote`
+#### Editing Notes : `editNote`
 
 Edits an existing specified note in the SectresBook.
 
@@ -791,7 +791,7 @@ Example of usage:
 
 [Back to Top](#sectresbook)
 
-#### Deleting Notes `deleteNote`
+#### Deleting Notes : `deleteNote`
 
 Deletes the specified note from the SectresBook.
 
@@ -808,7 +808,7 @@ Examples:
 
 [Back to Top](#sectresbook)
 
-#### Sort Notes: `sortNotes` `[coming in v2.0]`
+#### Sort Notes : `sortNotes` `[coming in v2.0]`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 This command does not exist in the present version of the program that this User Guide is written for. It **will not work** if entered.
