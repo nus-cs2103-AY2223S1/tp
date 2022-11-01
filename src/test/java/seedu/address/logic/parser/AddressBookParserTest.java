@@ -19,6 +19,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPersons.AMY;
+
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,6 +34,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteLinkCommand;
 import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.DeletePersonCommand;
+import seedu.address.logic.commands.DeletePersonFromModuleCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.EditModuleCommand.EditModuleDescriptor;
@@ -114,14 +118,29 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_deletePerson() throws Exception {
         DeletePersonCommand command = (DeletePersonCommand) parser.parseCommand(
-                DeletePersonCommand.COMMAND_WORD + " " + NAME_DESC_AMY);
+                DeletePersonCommand.COMMAND_WORD + NAME_DESC_AMY);
         assertEquals(new DeletePersonCommand(new Name(VALID_NAME_AMY)), command);
+    }
+
+    @Test
+    public void parseCommand_deletePersonFromModule() throws Exception {
+        Module module =
+                new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE).withPersons(Set.of(AMY)).build();
+        ModuleCode moduleCode = module.getModuleCode();
+        Name name = AMY.getName();
+
+        DeletePersonFromModuleCommand expectedCommand = new DeletePersonFromModuleCommand(moduleCode, name);
+        String userInput =
+                DeletePersonFromModuleCommand.COMMAND_WORD + MODULE_CODE_DESC_CS2106 + NAME_DESC_AMY;
+        DeletePersonFromModuleCommand command = (DeletePersonFromModuleCommand)
+                new AddressBookParser().parseCommand(userInput);
+        assertEquals(command, expectedCommand);
     }
 
     @Test
     public void parseCommand_deleteModule() throws Exception {
         DeleteModuleCommand command = (DeleteModuleCommand) parser.parseCommand(
-                DeleteModuleCommand.COMMAND_WORD + " " + MODULE_CODE_DESC_CS2106);
+                DeleteModuleCommand.COMMAND_WORD + MODULE_CODE_DESC_CS2106);
         assertEquals(new DeleteModuleCommand(new ModuleCode(VALID_CS2106_MODULE_CODE)), command);
     }
 

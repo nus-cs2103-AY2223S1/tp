@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_C
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.DeletePersonFromModuleCommand.MESSAGE_NO_SUCH_PERSON_IN_MODULE;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalModules.CS2103T_WITH_TASK_A;
 import static seedu.address.testutil.TypicalModules.CS2106;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -107,6 +108,21 @@ public class DeletePersonFromModuleCommandTest {
         assertTrue(AMY.isSamePerson(modelStub.person));
         assertEquals(expectedPersonSet, modelStub.module.getPersons()); // Module's set of persons remains unchanged.
     }
+
+    @Test
+    public void execute_deletePersonFromModuleWhenModuleDoesNotExist_throwCommandException() {
+        // Model without CS2106.
+        ModelStubWithModuleAndPerson modelStub =
+                new ModelStubWithModuleAndPerson(CS2103T_WITH_TASK_A, AMY);
+
+        // Delete AMY from CS2106.
+        DeletePersonFromModuleCommand deletePersonFromModuleCommand =
+                new DeletePersonFromModuleCommand(CS2106.getModuleCode(), AMY.getName());
+
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_NO_SUCH_MODULE, () -> deletePersonFromModuleCommand.execute(modelStub));
+    }
+
 
     @Test
     public void equals() {

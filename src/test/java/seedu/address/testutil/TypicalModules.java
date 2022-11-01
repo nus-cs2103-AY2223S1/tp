@@ -6,8 +6,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_C
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_TITLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_5;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_5_WITH_HTTPS_WWW;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -39,7 +41,8 @@ public class TypicalModules {
             .withModuleTitle("GIS Design and Practices")
             .withLinks(new HashSet<Link>(Arrays.asList(
                     new Link(VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_URL),
-                    new Link(VALID_MODULE_LINK_ALIAS_2 , VALID_MODULE_LINK_URL_2))))
+                    new Link(VALID_MODULE_LINK_ALIAS_2, VALID_MODULE_LINK_URL_2),
+                    new Link(VALID_MODULE_LINK_ALIAS_5, VALID_MODULE_LINK_URL_5_WITH_HTTPS_WWW))))
             .build();
 
     public static final Module CS2106 = new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE)
