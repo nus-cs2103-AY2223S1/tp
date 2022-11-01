@@ -8,9 +8,8 @@ OmniHealth is a **desktop app for private clinic practitioners to quickly store,
 If you can type fast, OmniHealth can get your patient management tasks done faster than traditional GUI apps! 💊✨
 * Table of Contents
 {:toc}
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -40,7 +39,6 @@ If you can type fast, OmniHealth can get your patient management tasks done fast
 7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -68,7 +66,6 @@ If you can type fast, OmniHealth can get your patient management tasks done fast
 </div>
 
 ## General Commands
-
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -93,6 +90,14 @@ Exits the program.
 Format: `exit`
 
 ## Patient Commands
+> Commands relating to the patient list, such as adding and deleting patients
+### Listing all patients: `list`
+
+Returns to the patient list from the record list screen.
+
+* The record list screen must be shown for this command to be valid.
+
+Format: `list`
 
 ### Adding a patient: `add`
 
@@ -132,14 +137,6 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the find command.
-
-### Listing all patients: `list`
-
-Returns to the patient list from the record list screen.
-
-* The record list screen must be shown for this command to be valid.
-
-Format: `list`
 
 ### Editing a patient : `edit`
 
@@ -191,7 +188,7 @@ Clears all patients from Omnihealth.
 Format: `clear`
 
 ## Appointment Commands
-
+> Commands for adding and clearing appointments
 ### Adding an appointment : `appt`
 
 Adds an appointment for a specified patient. This command is only valid in the patient list view.
@@ -215,13 +212,13 @@ Clears the appointment for a specified patient. This command is only valid in th
 
 Format: `apptcl INDEX`
 
-* The command can only be called when the patient addressbook is displayed (after using `list`).
+* The command can only be called when the patient list is displayed (after using `list`).
 * Clears any appointment under the patient with the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 ## Record Commands
-
+> Commands relating to the record list of a patient, such as adding or deleting a record
 ### Adding a record: `radd`
 
 Adds a new record to a given patient.
