@@ -12,6 +12,10 @@ public class AllInfoContainsKeywordsPredicate implements Predicate<Customer> {
 
 
     public AllInfoContainsKeywordsPredicate(List<String> keywords) {
+        assert keywords != null;
+        if (keywords == null) {
+            throw new RuntimeException("Keyword list cannot be null");
+        }
         this.keywords = keywords;
     }
 
