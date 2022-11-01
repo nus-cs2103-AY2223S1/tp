@@ -557,6 +557,7 @@ _Details coming soon …​_
    2. For Mac users, you may download Java 11 [here](https://www.oracle.com/java/technologies/downloads/#java11-mac)
 3. After installing, you may verify that the correct version of Java is installed by repeating step 1.
 
+<div style="page-break-after: always;"></div>
 
 ## Appendix: Manually Editing the Save File
 The save file contains a **single object** with a **single field** named `"internships"`. 
