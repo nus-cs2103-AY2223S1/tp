@@ -256,12 +256,12 @@ Make sure you have [added a module](#211-add-module-add-module) to Plannit
 before proceeding!
 </div>
 
-This command will require two flags:
+This command will require two prefixes:
 
-| Field                            | Flag  | Constraints                                             |
-|----------------------------------|-------|---------------------------------------------------------|
-| **Module Code**                  | `m/`  | Can only be non-empty string of alphanumeric characters |
-| **Task Description of New Task** | `td/` | Can be any string of characters                         |
+| Field                            | Prefix | Constraints                                             |
+|----------------------------------|--------|---------------------------------------------------------|
+| **Module Code**                  | `m/`   | Can only be non-empty string of alphanumeric characters |
+| **Task Description of New Task** | `td/`  | Can be any string of characters                         |
 
 Format: `add-task m/MODULE_CODE td/TASK_DESCRIPTION`
 * Each task must belong to a specific module.
@@ -290,12 +290,12 @@ module's tasks while on the home page.
 Suppose you have completed a task and would now like to remove it from 
 Plannit. You may delete the task using the `delete-task` command.
 
-This command will require two flags:
+This command will require two prefixes:
 
-| Field                   | Flag  | Constraints                                                                                                                                                       |
-|-------------------------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code**         | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                           |
-| **Task Number of Task** | `tn/` | {::nomarkdown}Task numbers must: <ul><li>correspond to an existing task in the specified module</li> <li>be a positive integer (i.e. 1, 2, 3, ... )</li></ul>{:/} |                 
+| Field                   | Prefix | Constraints                                                                                                                                                       |
+|-------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**         | `m/`   | Can only be non-empty string of alphanumeric characters                                                                                                           |
+| **Task Number of Task** | `tn/`  | {::nomarkdown}Task numbers must: <ul><li>correspond to an existing task in the specified module</li> <li>be a positive integer (i.e. 1, 2, 3, ... )</li></ul>{:/} |                 
 
 Format: `delete-task m/MODULE_CODE tn/TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
@@ -319,12 +319,12 @@ Suppose you have an urgent task which you like to place at the very top of
 your list. You may change the order of tasks in your module's task list  using
 the `swap-task` command.
 
-This command will require two flags:
+This command will require two prefixes:
 
-| Field                                                     | Flag  | Constraints                                                                                                                                                                                                                                                 |
-|-----------------------------------------------------------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code**                                           | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                                                     |
-| **Task Numbers of Tasks whose ordering is to be swapped** | `ts/` | {::nomarkdown}The two task numbers must: <ul><li>be separated by a <code>SPACE</code> character ("<code> </code>") </li><li>correspond to a pair of existing tasks in the specified module</li> <li>be positive integers (i.e. 1, 2, 3, ... )</li></ul>{:/} |
+| Field                                                     | Prefix | Constraints                                                                                                                                                                                                                                                 |
+|-----------------------------------------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**                                           | `m/`   | Can only be non-empty string of alphanumeric characters                                                                                                                                                                                                     |
+| **Task Numbers of Tasks whose ordering is to be swapped** | `ts/`  | {::nomarkdown}The two task numbers must: <ul><li>be separated by a <code>SPACE</code> character ("<code> </code>") </li><li>correspond to a pair of existing tasks in the specified module</li> <li>be positive integers (i.e. 1, 2, 3, ... )</li></ul>{:/} |
 
 Format: `swap-task m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
