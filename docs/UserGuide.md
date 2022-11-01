@@ -18,14 +18,14 @@ This user guide will help you get started and understand how FABook can **seamle
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `FABook.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-2/tp/releases).
+2. Download the latest `FABook.jar` [here](https://github.com/AY2223S1-CS2103T-T10-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your FABook.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command line and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all clients.
@@ -44,7 +44,7 @@ This user guide will help you get started and understand how FABook can **seamle
 ![Ui Breakdown](images/UIBreakDown.png)
 
 1. **Menu Bar**: Access the file, help or upcoming meetings here.
-2. **Search Bar**: Type in your commands here.
+2. **Command Line**: Type in your commands here.
 3. **Command Display**: The execution of your commands appear here.
 4. **Result Display**: The result of your command execution appears here.
 5. **Contact Information**: The full contact information of a client appears here.
@@ -117,10 +117,13 @@ Format: `list`
 
 <div markdown="block" class="alert alert-info">
 
+<div markdown="block" class="alert alert-block alert-info">
+
 :white_check_mark: **Input Shortcut:**
 You can replace `list` with `l` for convenience.
 
 </div>
+
 ### Creation
 
 #### Creating a client contact : `create`
@@ -141,24 +144,27 @@ Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw
 
 ##### Common Data Field Formats
 
-| Data Field           | Format, Example                 | Remarks                                                                             |
-|----------------------|---------------------------------|-------------------------------------------------------------------------------------|
-| **`n/NAME`**         | `n/[name]`                      | Name should only contain alphanumeric characters and spaces, and it should not be blank |
-| **`p/PHONE_NUMBER`** | `p/[phone_number]`              | Phone Number should only contain numbers and should be at least 3 digits long       |
-| **`e/EMAIL`**        | `e/[local_part]@[domain]`       | Local Part should only contain alphanumeric characters and these special characters +_.- |
-| **`a/ADDRESS`**      | `a/[address]`                   |                                                                                     |
-| **`d/DESCRIPTION`**  | `d/[description]`               |                                                                                     |
+| Data Field           | Format, Example                 | Remarks                                                                                         |
+|----------------------|---------------------------------|-------------------------------------------------------------------------------------------------|
+| **`n/NAME`**         | `n/[name]`                      | Name should only contain alphanumeric characters and spaces, and it should not be blank         |
+| **`p/PHONE_NUMBER`** | `p/[phone_number]`              | Phone Number should only contain numbers and should be at least 3 digits long                   |
+| **`e/EMAIL`**        | `e/[local_part]@[domain]`       | Local Part should only contain alphanumeric characters and these special characters +_.-        |
+| **`a/ADDRESS`**      | `a/[address]`                   |                                                                                                 |
+| **`d/DESCRIPTION`**  | `d/[description]`               |                                                                                                 |
 | **`nw/NETWORTH`**    | `nw/$[net_worth]`               | Net worth should start with a $ sign, only contain numbers and should be at least 4 digits long |
-| **`mt/TIME`**        | `mt/[DD]-[MM]-[YYYY]-[HH]:[MM]` | DD: 01-31<br/>MM: 01-12<br/>YYYY: 0001-9999<br/>HH:MM: 00:00 - 23:59                |
-| **`t/TAG`**          | `t/[tag]`                       | Tag should only be `SECURED` or `POTENTIAL`                                         |
+| **`mt/TIME`**        | `mt/[DD]-[MM]-[YYYY]-[HH]:[MM]` | DD: 01-31<br/>MM: 01-12<br/>YYYY: 2000-2099<br/>HH:MM: 00:00 - 23:59                            |
+| **`t/TAG`**          | `t/[tag]`                       | Tag should only be `SECURED` or `POTENTIAL`                                                     |
 
 ![create](images/UserGuide/create.png)
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-success">
 
 :bulb: **Note:**
-- `NAME` and `PHONE_NUMBER` are the only compulsory inputs. Other parameters can be left blank.
-- It is recommended to only have 1`TAG` per client.
+`NAME` and `PHONE_NUMBER` are the only compulsory inputs. Other parameters can be left blank.
+<br>
+
+:bulb: **Note:**
+It is recommended to only have 1`TAG` per client.
 
 </div>
 
@@ -167,7 +173,7 @@ Examples:
 * `create n/Betsy Crowe a/Bugis MRT p/1234567 mt/10-11-2022-18:00 mt/01-02-2022-16:00`
 * `create n/Benedict Lee p/91281329 e/benedict@gmail.com a/Redhill Ave 3 ds/Risk averse nw/$20000 mt/10-11-2022-16:00 t/SECURED`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-info">
 
 :white_check_mark: **Input Shortcut:**
 You can replace `create` with `c` for convenience.<br>
@@ -195,7 +201,7 @@ Examples:
 
 ### Retrieving
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-info">
 
 :white_check_mark: **Input Shortcut:**
 You can replace `find` with `f` for convenience for all retrieving commands.
@@ -223,13 +229,13 @@ Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-info">
 
 :white_check_mark: **Input Shortcut:**
 Format: `f n/NAME`
 
 </div>
-
+  
 #### Finding your client by phone number : `find`
 
 Find your clients whose phone number matches the input number.
@@ -249,7 +255,7 @@ Format: `find p/NUMBER`
 Examples:
 * `find p/90333333` returns the client(s) with `90333333` stored as their number
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-info">
 
 :white_check_mark: **Input Shortcut:**
 Format: `f p/NUMBER`
@@ -281,7 +287,7 @@ Format: `find a/ADDRESS`
 Examples:
 * `find a/Bedok` returns the client(s) with `Bedok` stored as their address
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-info">
 
 :white_check_mark: **Input Shortcut:**
 Format: `f a/ADDRESS`
@@ -308,7 +314,7 @@ Format: `find t/TAG`
 Examples:
 * `find t/SECURED` displays the list of all `SECURED` clients.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-info">
 
 :white_check_mark: **Input Shortcut:**
 Format: `f t/TAG`
@@ -351,16 +357,16 @@ Format: Menu bar on the top of the application or press `F2`.
 
 ![Meetings](images/upcomingMeeting.png)
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-danger">
 
 :heavy_exclamation_mark: **Caution:**
 As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
 
-<div>
+</div>
 
 ### Updating
 
-#### Updating your client : `update`
+#### Updating your client's information : `update`
 
 Updates the information of a client stored in your FABook.
 
@@ -381,10 +387,9 @@ You can use this command when:
 * Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
 
 Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
-
-![update](images/UserGuide/update.png)
-
-<div markdown="block" class="alert alert-info">
+                        
+![update](images/UserGuide/update.png)  
+<div markdown="block" class="alert alert-block alert-success">
 
 :bulb: **Note:**
 Only parameters you provide will be changed.
@@ -395,7 +400,7 @@ Example:
 * `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed client's
  name, phone number and address to be `John Doe`, `91234567` and `21 Lower Kent Ridge Rd` respectively.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-info">
 
 :white_check_mark: **Input Shortcut:**
 You can replace `update` with `u` for convenience.<br>
@@ -420,6 +425,8 @@ Format: `description INDEX ds/DESCRIPTION`
 ![description](images/UserGuide/description.png)
 
 <div markdown="block" class="alert alert-info">
+
+<div markdown="block" class="alert alert-block alert-info">
 
 :white_check_mark: **Input Shortcut:**
 You can replace `description` with `desc` for convenience.
@@ -500,15 +507,15 @@ You can use this command when:
 
 Format: `sync`
 
-![sync](images/UserGuide/sync.png)
+![sync](images/UserGuide/sync.png)    
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-danger">   
 
 :heavy_exclamation_mark: **Caution:**
 As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
 Please note that undo cannot undo this command!
 
-<div>
+</div>
 
 #### Clearing all entries : `clear`
 
@@ -520,12 +527,14 @@ Format: `clear`
 
 <div markdown="block" class="alert alert-info">
 
+<div markdown="block" class="alert alert-block alert-warning">
+
 :heavy_exclamation_mark: **Important**
 If you run this command by accident, you can [undo](#undoing-a-previous-command--undo) the command to restore all previously cleared entries.
 
 </div>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-info">
 
 :white_check_mark: **Input Shortcut:**
 You can replace `clear` with `cl` for convenience.
@@ -552,6 +561,8 @@ Format: `undo`
 
 <div markdown="block" class="alert alert-info">
 
+<div markdown="block" class="alert alert-block alert-warning">
+
 :heavy_exclamation_mark: **Important**
 You can undo a [`redo` command](#redoing-a-previous-command--redo).
 
@@ -571,7 +582,7 @@ Exits the program.
 
 Format: `exit`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-info">
 
 :white_check_mark: **Input Shortcut:**
 You can replace `exit` with `e` for convenience.
@@ -586,12 +597,13 @@ Your FABook data are saved in the hard disk automatically after any command that
 
 FABook data are saved as a text file `[JAR file location]/data/addressbook.json`. If you are an advanced user, you are welcome to update data directly by editing that data file.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-block alert-danger">
 
 :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FABook will discard all data and start with an empty data file at the next run.
 
 </div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -622,23 +634,23 @@ If your changes to the data file makes its format invalid, FABook will discard a
 
 ## Command summary
 
-| Action                   | Format, Examples                                                                                                                                                  | Shortcut |
-|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
-| **Help**                 | `help`                                                                                                                                                            | f1       |
-| **List**                 | `list`                                                                                                                                                            | l        |
-| **Create**               | `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567` | c        |
-| **Add a File**           | `filepath INDEX f/FILEPATH`<br/> e.g. `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                                                   |          |
-| **Add Meeting**          | `meeting INDEX mt/TIME` <br/> e.g. `meeting 5 mt/19-11-2022-19:00`                                                                                                |          |
-| **Find**                 | `find n/NAME…` or `find p/NUMBER` or `find a/ADDRESS` <br> e.g., `find n/James Jake` or `find p/09122222` or `find a/Jurong`                                      | f        |
-| **Find**                 | `find t/TAG` <br> e.g., `find t/POTENTIAL`                                                                                                                        | f        |
-| **Open File**            | `file INDEX`<br/> e.g. `file 2`                                                                                                                                   |          |
-| **Get Upcoming Meetings**|                                                                                                                                                                   | f2       |
-| **Update**               | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`update 2 p/91234567 a/21 Lower Kent Ridge Rd`      | u        |
-| **Description**          | `description INDEX ds/DESCRIPTION` <br> e.g., `description 3 ds/Accident prone`                                                                                     | desc     |
-| **Delete**               | `delete INDEX`<br> e.g., `delete 3`                                                                                                                               | d        |
-| **Delete Meeting**       | `deletemeeting INDEX mt/TIME` <br/> e.g. `deletemeeting 4 mt/15-12-2022-13:00`                                                                                    |          |
-| **Remove past meetings** | `sync`                                                                                                                                                            |          |
-| **Clear**                | `clear`                                                                                                                                                           | cl       |
-| **Undo**                 | `undo`                                                                                                                                                            |          |
-| **Redo**                 | `redo`                                                                                                                                                            |          |
-| **Exit**                 | `exit`                                                                                                                                                            | e        |
+| Action                    | Format, Examples                                                                                                                                                   | Shortcut |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| **Help**                  | `help`                                                                                                                                                             | f1       |
+| **List**                  | `list`                                                                                                                                                             | l        |
+| **Create**                | `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567` | c        |
+| **Add a File**            | `filepath INDEX f/FILEPATH`<br/> e.g. `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                                                    |          |
+| **Add Meeting**           | `meeting INDEX mt/TIME` <br/> e.g. `meeting 5 mt/19-11-2022-19:00`                                                                                                 |          |
+| **Find**                  | `find n/NAME…` or `find p/NUMBER` or `find a/ADDRESS` <br> e.g., `find n/James Jake` or `find p/09122222` or `find a/Jurong`                                       | f        |
+| **Find**                  | `find t/TAG` <br> e.g., `find t/POTENTIAL`                                                                                                                         | f        |
+| **Open File**             | `file INDEX`<br/> e.g. `file 2`                                                                                                                                    |          |
+| **Get Upcoming Meetings** |                                                                                                                                                                    | f2       |
+| **Update**                | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`update 2 p/91234567 a/21 Lower Kent Ridge Rd`      | u        |
+| **Description**           | `description INDEX ds/DESCRIPTION` <br> e.g., `description 3 ds/Accident prone`                                                                                    | desc     |
+| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                | d        |
+| **Delete Meeting**        | `deletemeeting INDEX mt/TIME` <br/> e.g. `deletemeeting 4 mt/15-12-2022-13:00`                                                                                     |          |
+| **Remove past meetings**  | `sync`                                                                                                                                                             |          |
+| **Clear**                 | `clear`                                                                                                                                                            | cl       |
+| **Undo**                  | `undo`                                                                                                                                                             |          |
+| **Redo**                  | `redo`                                                                                                                                                             |          |
+| **Exit**                  | `exit`                                                                                                                                                             | e        |
