@@ -307,10 +307,14 @@ public class Module {
     public String getLessonInfo(LessonTypeEnum lessonType, SemestersEnum semester, String lessonCode) {
         requireNonNull(lessonMap);
 
-        Lesson l = Optional.of(lessonMap.get(semester)).map(semesterMap -> semesterMap.get(lessonType))
-                .map(lessonSet -> lessonSet.get(lessonCode)).get().get(0);
+        List<Lesson> lessons = Optional.of(lessonMap.get(semester)).map(semesterMap -> semesterMap.get(lessonType))
+                .map(lessonSet -> lessonSet.get(lessonCode)).get();
 
-        String toDisplay = String.format("Timing: %s, %s-%s", l.getDay(), l.getStartTime(), l.getEndTime());
+        String toDisplay = "";
+
+        for (Lesson l : lessons) {
+            toDisplay += String.format("Timing: %s, %s-%s\n", l.getDay(), l.getStartTime(), l.getEndTime());
+        }
 
         return toDisplay;
     }

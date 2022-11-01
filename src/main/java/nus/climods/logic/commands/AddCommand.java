@@ -63,10 +63,12 @@ public class AddCommand extends Command {
 
         for (LessonTypeEnum t : module.getUnselectableLessonTypeEnums(semester)) {
             String lessonId = module.getUnselectableLessonId(t, semester);
-            moduleToAdd.addLesson(t, lessonId);
+            String lessonInfo = lessonId + "\n" + module.getLessonInfo(t, semester, lessonId);
+            moduleToAdd.addLesson(t, lessonInfo);
         }
 
         model.addUserModule(moduleToAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toUpperCase()), COMMAND_WORD);
     }
 

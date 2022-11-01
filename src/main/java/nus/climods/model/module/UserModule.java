@@ -51,7 +51,7 @@ public class UserModule {
     private void updateLessonDataDisplay() {
         StringBuilder str = new StringBuilder();
         for (LessonTypeEnum k : lessons.keySet()) {
-            str.append(k.name()).append(" ").append(lessons.get(k)).append("\n");
+            str.append(k.name()).append(" ").append(lessons.get(k));//\n
         }
 
         lessonsDataDisplay.set(str.toString());
@@ -82,8 +82,8 @@ public class UserModule {
     /**
      * Add a lesson to module
      *
-     * @param lessonType       lesson type
-     * @param lessonId lesson id
+     * @param lessonType lesson type
+     * @param lessonInfo lesson info
      */
     public void addLesson(LessonTypeEnum lessonType, String lessonInfo) {
         lessons.put(lessonType, lessonInfo);
