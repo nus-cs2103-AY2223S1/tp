@@ -43,11 +43,17 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 
 - Quotes are optional for words (i.e. `add member "word"` and `add member word` are equivalent) when there is
   to be passed into commands.
-  - However, for words containing spaces, they should be surrounded with quotation marks.
-  - Otherwise, they will be treated as 2 separate words (e.g. `add member "two words"` indicates that you are
-    adding the member named `two words`. However, `add member two words` is adding the member named `two` with some
-    other argument `word`)
+  - However, if you want an argument to use multiple words, they should be surrounded with quotation marks.
+  - Otherwise, they will be treated as 2 separate words.
+  - For instance, `add member "two words"` indicates that you are
+    adding the member named `two words`. 
+  - However, `add member two words` is adding the member named `two` with some
+    other argument `word`.
 - Arguments are separated with "flags" (`add member "word" --email="sample@email.com"`)
+</div>
+
+<div markdown="span" class="alert alert-info">**For experienced command line users**
+You will find that the syntax is very similar to other command line interfaces like `git` and `docker`!
 </div>
 
 ## Commands to Manage Persons
