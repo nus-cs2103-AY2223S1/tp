@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalStudents.AMY;
 import static seedu.address.testutil.TypicalStudents.getTypicalTeachersPet;
 
@@ -35,7 +35,7 @@ public class PayCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredScheduleList().size() + 1);
         PayCommand markCommand = new PayCommand(outOfBoundIndex, VALID_MONEY);
 
-        assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_PERSON_SCHEDULE_INDEX);
+        assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_STUDENT_SCHEDULE_INDEX);
     }
 
     @Test
@@ -82,10 +82,10 @@ public class PayCommandTest {
 
     @Test
     public void equals() {
-        final PayCommand standardCommand = new PayCommand(INDEX_FIRST_PERSON, VALID_MONEY);
+        final PayCommand standardCommand = new PayCommand(INDEX_FIRST_STUDENT, VALID_MONEY);
 
         // same values -> returns true
-        PayCommand commandWithSameValues = new PayCommand(INDEX_FIRST_PERSON, VALID_MONEY);
+        PayCommand commandWithSameValues = new PayCommand(INDEX_FIRST_STUDENT, VALID_MONEY);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -98,9 +98,9 @@ public class PayCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new PayCommand(INDEX_SECOND_PERSON, VALID_MONEY)));
+        assertFalse(standardCommand.equals(new PayCommand(INDEX_SECOND_STUDENT, VALID_MONEY)));
 
         // different amount paid -> returns false
-        assertFalse(standardCommand.equals(new PayCommand(INDEX_FIRST_PERSON, new Money(100))));
+        assertFalse(standardCommand.equals(new PayCommand(INDEX_FIRST_STUDENT, new Money(100))));
     }
 }

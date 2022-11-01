@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalStudents.AMY;
 import static seedu.address.testutil.TypicalStudents.getTypicalTeachersPet;
 
@@ -43,7 +43,7 @@ public class MarkCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredScheduleList().size() + 1);
         MarkCommand markCommand = new MarkCommand(outOfBoundIndex);
 
-        assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_PERSON_SCHEDULE_INDEX);
+        assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_STUDENT_SCHEDULE_INDEX);
     }
 
     @Test
@@ -84,10 +84,10 @@ public class MarkCommandTest {
 
     @Test
     public void equals() {
-        final MarkCommand standardCommand = new MarkCommand(INDEX_FIRST_PERSON);
+        final MarkCommand standardCommand = new MarkCommand(INDEX_FIRST_STUDENT);
 
         // same values -> returns true
-        MarkCommand commandWithSameValues = new MarkCommand(INDEX_FIRST_PERSON);
+        MarkCommand commandWithSameValues = new MarkCommand(INDEX_FIRST_STUDENT);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -100,7 +100,7 @@ public class MarkCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new MarkCommand(INDEX_SECOND_PERSON)));
+        assertFalse(standardCommand.equals(new MarkCommand(INDEX_SECOND_STUDENT)));
     }
 
 }
