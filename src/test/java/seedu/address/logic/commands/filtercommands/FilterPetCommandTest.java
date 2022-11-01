@@ -154,9 +154,11 @@ public class FilterPetCommandTest {
 
         FilterPetCommand command = new FilterPetCommand(colorContainsKeywordsPredicate, defaultPredicate,
                 defaultPredicate, defaultPredicate);
-        pExpectedModel.updateFilteredPetList(command.generatePredicate());
-        assertCommandSuccess(command, pModel, expectedMessage, pExpectedModel);
-        assertEquals(Arrays.asList(TypicalPets.DOJA), pModel.getFilteredPetList());
+        command.execute(pModel);
+
+        for (Pet pet : pModel.getFilteredPetList()) {
+            assertTrue(TypicalPets.DOJA.isSamePet(pet));
+        }
     }
 
     @Test
