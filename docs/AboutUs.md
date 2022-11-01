@@ -72,4 +72,4 @@ We are a team based in the [School of Computing, National University of Singapor
 * Developer
 * Responsibilities:
   * Implement task adding, deleting and swapping
-  * Ui
+  * UI
