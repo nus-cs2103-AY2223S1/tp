@@ -8,6 +8,11 @@ header_pages:
 
 markdown: kramdown
 
+# Solution reused from https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff
+kramdown:
+  parse_block_html: true
+
+
 repository: "AY2223S1-CS2103T-T10-3/tp"
 github_icon: "images/github-icon.png"
 
