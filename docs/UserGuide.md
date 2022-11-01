@@ -129,6 +129,13 @@ Format: `help`
 
 ![helpMessage](images/helpMessage.png)
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**
+Empty commands such as ` ` (whitespace) will display the usage of the `help` command to redirect new users to the list of commands.
+
+</div>
+
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**
