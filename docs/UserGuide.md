@@ -114,7 +114,7 @@ of the terms commonly used in PetCode.
 
     * **`list buyer/supplier/delivery`** : Lists buyer/supplier/delivery.
 
-    * **`add buyer n/Hongyi ph/11223344 e/email@u.nus.edu a/UTR 138600 l/Singapore`** : Adds
+    * **`add-b n/Hongyi ph/11223344 e/email@u.nus.edu a/UTR 138600 l/Singapore`** : Adds
       a buyer named `Hongyi` who is looking for a pet to the PetCode.
 
     * **`delete-b 1`** : Deletes the first contact from the buyer contacts list.
