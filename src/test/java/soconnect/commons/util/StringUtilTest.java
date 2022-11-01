@@ -342,8 +342,8 @@ public class StringUtilTest {
 
     @Test
     public void containsSomeKeywordsIgnoreCase_multipleWordsPartiallySame_match() {
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "John DD", false));
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "Johm Damyan", false));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "John DD", true));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "Johm Damyan", true));
     }
 
     @Test

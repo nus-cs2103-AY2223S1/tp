@@ -47,19 +47,21 @@ public class SearchCommandTest {
         ContactContainsAllKeywordsPredicate secondPredicate = new ContactContainsAllKeywordsPredicate(argMultimap);
         ContactMightBeRelevantPredicate thirdPredicate =
                 new ContactMightBeRelevantPredicate(argMultimap, false);
+        ContactMightBeRelevantPredicate forthPredicate =
+                new ContactMightBeRelevantPredicate(argMultimap, true);
 
-        SearchCommand searchFirstCommand = new SearchCommand(firstPredicate, thirdPredicate);
-        SearchCommand searchSecondCommand = new SearchCommand(secondPredicate, thirdPredicate);
+        SearchCommand searchFirstCommand = new SearchCommand(firstPredicate, thirdPredicate, forthPredicate);
+        SearchCommand searchSecondCommand = new SearchCommand(secondPredicate, thirdPredicate, forthPredicate);
 
         // same object -> returns true
         assertEquals(searchFirstCommand, searchFirstCommand);
         assertEquals(searchSecondCommand, searchSecondCommand);
 
         // same values -> returns true
-        SearchCommand searchFirstCommandCopy = new SearchCommand(firstPredicate, thirdPredicate);
+        SearchCommand searchFirstCommandCopy = new SearchCommand(firstPredicate, thirdPredicate, forthPredicate);
         assertEquals(searchFirstCommand, searchFirstCommandCopy);
 
-        SearchCommand searchSecondCommandCopy = new SearchCommand(secondPredicate, thirdPredicate);
+        SearchCommand searchSecondCommandCopy = new SearchCommand(secondPredicate, thirdPredicate, forthPredicate);
         assertEquals(searchSecondCommand, searchSecondCommandCopy);
 
         // different types -> returns false
@@ -80,8 +82,10 @@ public class SearchCommandTest {
         ArgumentMultimap zeroPrefixAndKeywords = ArgumentTokenizer.tokenize("!!!");
         ContactContainsAnyKeywordsPredicate predicate = new ContactContainsAnyKeywordsPredicate(zeroPrefixAndKeywords);
         ContactMightBeRelevantPredicate alternativePredicate =
-                new ContactMightBeRelevantPredicate(zeroPrefixAndKeywords);
-        SearchCommand command = new SearchCommand(predicate, alternativePredicate);
+                new ContactMightBeRelevantPredicate(zeroPrefixAndKeywords, false);
+        ContactMightBeRelevantPredicate leastAccuratePredicate =
+                new ContactMightBeRelevantPredicate(zeroPrefixAndKeywords, true);
+        SearchCommand command = new SearchCommand(predicate, alternativePredicate, leastAccuratePredicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -93,8 +97,10 @@ public class SearchCommandTest {
         ArgumentMultimap zeroPrefixAndKeywords = ArgumentTokenizer.tokenize("abcdefg");
         ContactContainsAnyKeywordsPredicate predicate = new ContactContainsAnyKeywordsPredicate(zeroPrefixAndKeywords);
         ContactMightBeRelevantPredicate alternativePredicate =
-                new ContactMightBeRelevantPredicate(zeroPrefixAndKeywords);
-        SearchCommand command = new SearchCommand(predicate, alternativePredicate);
+                new ContactMightBeRelevantPredicate(zeroPrefixAndKeywords, false);
+        ContactMightBeRelevantPredicate leastAccuratePredicate =
+                new ContactMightBeRelevantPredicate(zeroPrefixAndKeywords, true);
+        SearchCommand command = new SearchCommand(predicate, alternativePredicate, leastAccuratePredicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
