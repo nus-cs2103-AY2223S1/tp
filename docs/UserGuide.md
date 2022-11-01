@@ -3,7 +3,10 @@ layout: page
 title: Salesy User Guide v1.3
 ---
 
-Salesy is an all-in-one tool for NUS canteen vendors who want to keep track of their tasks, inventory and suppliers, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). With Salesy, you can expect a good visualization of your inventory and increased efficiency with your bookkeeping routines.
+Salesy is an all-in-one tool for NUS canteen vendors who want to keep track of their tasks, inventory and suppliers. 
+With Salesy, you can expect a good visualization of your inventory and increased efficiency of your bookkeeping routines.
+Salesy is optimized for use via a [Command Line Interface](#62-command-line-interface-cli) (CLI) while still having the benefits of 
+a [Graphical User Interface](#63-graphical-user-interface-gui) (GUI).
 
 ![Ui](images/Ui.png)
 
@@ -14,7 +17,7 @@ Salesy is an all-in-one tool for NUS canteen vendors who want to keep track of t
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# 1. Quick start
 
 1. Ensure you have Java SDK `11` or above installed in your Computer.
 
@@ -26,10 +29,10 @@ Salesy is an all-in-one tool for NUS canteen vendors who want to keep track of t
 
 1. Type in the command box and press Enter to execute it.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#4-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Important information
+# 2. Important information
 
 - User has to input details for fields that are not in square brackets, but inputting details for fields in square brackets is optional.
   - e.g. `add n/NAME p/PHONE pr/PRICE i/ITEM a/ADDRESS [t/TAG]`
@@ -45,13 +48,13 @@ Salesy is an all-in-one tool for NUS canteen vendors who want to keep track of t
 - When multiple similar prefixes are input by the user, e.g. `i/Chicken i/Egg i/Cups`,
 the rightmost prefix and its details, i.e. `Cups` will be taken as input.
   
-## Features
+# 3. Visual Guide
 
-### Statistics Panel
+## 3.1 Statistics Panel
 
 A brief display of important information for **inventory** and **tasks**.
 
-**An overview of the information panel**
+### **An overview of the information panel**
 
 ![LabelledStatsPanel](images/labelledstatspanel.png)
 
@@ -64,13 +67,13 @@ A brief display of important information for **inventory** and **tasks**.
 * **(C)** `Upcoming` tasks refers to tasks that have deadlines that are **in the future and inclusive of today**, that are yet to be completed i.e. `Not Done`.
   * For example: You have an incomplete task. Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or later**_, this will be counted as `Upcoming`.
 
-### Colors used for Inventory
+## 3.2 Colors used for Inventory
 
 Simple and intuitive colors are used to identify stock levels.
 
-**Examples:**
+### 3.2.1 Examples
 
-Inventory Status in the [Stats Panel](#Statistics Panel).
+Inventory Status in the [Stats Panel](#31-statistics-panel).
 
 Inventory Cards for Items
 
@@ -80,17 +83,24 @@ Inventory Cards for Items
 
 ![InventoryCardGreen](images/greenstatuscard.png)
 
-**Detailed Explanation**
+### 3.2.2 Simple explanation of the colors
 
-| Color          | Meaning                                                      | How is it determined ?                                                                              |
-|----------------|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| ️🍎&nbsp;Red   | Running `low`, restock as soon as possible.                  | **Less than 120%** of minimum stock specified.                                                      |
-| 🟠&nbsp;Orange | Running at a `moderate` level, can consider restocking soon. | **More than and equal to 120%** of minimum stock specified and **less than 165%** of minimum stock. |
-| 🟢&nbsp;Green  | Running at a `healthy` level, no worries about restocking.   | **More than and equal to 165%** of minimum stock specified.                                         |
+| Color  | Meaning                                |
+|--------|----------------------------------------|
+| Red    | Current stock is at a `low` level      |
+| Orange | Current stock is at a `moderate` level |
+| Green  | Current stock is at a `healthy` level  |
 
-## Commands
+<div markdown="span" class="alert alert-info">
 
-### Add supplier/task/supply item: `add`
+**Note:** For a more detailed explanation on how colors are determined, refer the [appendix](#61-colors-used-in-the-inventory).
+
+</div>
+
+
+# 4. Features
+
+## 4.1 Add supplier/task/supply item: `add`
 
 Adds an item of a specified type with the given details
 
@@ -99,7 +109,7 @@ Adds an item of a specified type with the given details
 * Tasks
 * Supply Item (item in inventory)
 
-***Format:***
+### 4.1.1 Format
 
 `add n/NAME p/PHONE(8 digits) pr/PRICE i/ITEM a/ADDRESS [t/TAG]` **(supplier)**
 
@@ -109,11 +119,11 @@ Adds an item of a specified type with the given details
 
 <div markdown="span" class="alert alert-info">
 
-**Note:** Tag rules apply for `add` and `addTask`. Refer to [this section](#important-information).
+**Note:** Tag rules apply for `add` and `addTask`. Refer to [this section](#2-important-information).
 
 </div>
 
-**Examples:**
+### 4.1.2 Examples
 
 Add a supplier to Salesy’s address book
 
@@ -130,7 +140,7 @@ Item from first supplier in address book added
 >`addItem 1 c/10 m/3`
 
 
-### Delete: `delete`
+## 4.2 Delete: `delete`
 
 Deletes the specified item of the specified type from Salesy
 
@@ -139,7 +149,7 @@ Deletes the specified item of the specified type from Salesy
 * Tasks
 * Supply items
 
-***Format:***
+### 4.2.1 Format
 
 `delete <supplier index>` (supplier)
 
@@ -147,7 +157,7 @@ Deletes the specified item of the specified type from Salesy
 
 `deleteItem <item index>` (supply item)
 
-**Examples**
+### 4.2.2 Examples
 
 Delete a supplier
 
@@ -162,43 +172,43 @@ Delete an item in inventory
 > `deleteItem 1`
 
 
-### Mark: `mark`
+## 4.3 Mark: `mark`
 
 Marks the specified task as done to keep task list updated
 
 **Things you can mark:**
 * Tasks
 
-***Format:***
+### 4.3.1 Format
 
 `mark <task index>`
 
-**Examples**
+### 4.3.2 Examples
 
 Mark a task that you have completed
 
 > `mark 2`
 
 
-### Unmark: `unmark`
+## 4.4 Unmark: `unmark`
 
 Unmarks a previously marked task
 
 **Things you can unmark:**
 * Tasks
 
-***Format:***
+### 4.4.1 Format
 
 `unmark <task index>`
 
-**Examples**
+### 4.4.2 Examples
 
 Unmark a task that you have completed
 
 > `unmark 3`
 
 
-### Edit: `edit`
+## 4.5 Edit: `edit`
 
 Edits a specified item's details
 
@@ -207,7 +217,7 @@ Edits a specified item's details
 * Tasks
 * Item stock
 
-***Format:***
+### 4.5.1 Format
 
 `edit <supplier index> [n/NAME] [p/PHONE] [pr/PRICE] [i/ITEM] [a/ADDRESS] [t/TAG]` (supplier)
 
@@ -219,11 +229,11 @@ Edits a specified item's details
 
 **Note:** At least one field has to be edited for the command to execute successfully.
 
-Tag rules apply for `edit` and `editTask`. Refer to [this section](#important-information).
+Tag rules apply for `edit` and `editTask`. Refer to [this section](#2-important-information).
 
 </div>
 
-**Examples**
+### 4.5.2 Examples
 
 * Edit supplier details
 
@@ -238,17 +248,17 @@ Tag rules apply for `edit` and `editTask`. Refer to [this section](#important-in
 > `editStock 1 c/7`
 
 
-### Find: `find`
+## 4.6 Find: `find`
 
 Finds suppliers based on name or item
 
-***Format:***
+### 4.6.1 Format
 
 `find n/NAMEVALUE` (supplier name)
 
 `find i/ITEMVALUE` (supplier item)
 
-**Examples**
+### 4.6.2 Examples
 
 * Find suppliers with name John Cena
 
@@ -259,76 +269,89 @@ Finds suppliers based on name or item
 > `find i/Egg`
 
 
-### Increment / Decrement current stock in your inventory
+## 4.7 Increment / Decrement current stock in your inventory
 
 Increases or decreases your stock for a particular item in the inventory
 
-**Steps**
+### 4.7.1 Steps
 
-1. Take a look at the inventory panel at the bottom-middle section of the application.
-2. Decide on which item you want to modify the stock of.
-3. Hover your mouse over item and the white text box with a value `1` in it.
-4. Key in your desired amount to add or decrease by.
+1. Take a look at the inventory panel at the **middle-bottom** section of the application.
+2. Decide on which item to change the stock.
+3. Hover your mouse over item and the white text box with a value `1` in it. (Refer to [Figure 1](#figure-1-below-initial-state))
+4. Key in your desired amount to add or decrease by. (Refer to [Figure 2](#figure-2-below-after-entering-desired-value))
+5. Press the `+` icon to add your desired amount (or press the `-` icon to reduce by your desired amount). (Refer to [Figure 3](#figure-3-below-after-pressing-the--button))
+
+#### Figure 1 (below): Initial state
+
+![Ui](images/initialStateIncEg.png)
+
+#### Figure 2 (below): _After entering desired value_
 
 ![Ui](images/incdeckeyin.png)
 
-5. Press the `+` icon to add your desired amount (or press the `-` icon to reduce by your desired amount).
+#### Figure 3 (below): After pressing the `+` button
 
 ![Ui](images/afterinc.png)
 
 ***Notice that the current stock of Ginger increased by your desired amount.***
 
-**Limitations**
+### 4.7.5 Limitations
 
 * Only able to key in up to a 5 digit value.
 * Only able to key in positive values
 
-### List all data : `listAll`
+## 4.8 List all data : `listAll`
 
-Lists all items.
+Lists all items in the suppliers panel, inventory panel and tasks panel.
 
-***Format:***
+### 4.8.1 Format
 
 `listAll`
 
-**Examples**
+### 4.8.2 Examples
+- After using the `find` command for supplier contacts, the command `listAll` will list all
+  contacts in Salesy's address book.
 
 * List all entities
 
 > `listAll`
 
 
-### List all suppliers/tasks/inventory
+## 4.9 List specific items in the panels
 
-Refreshes and lists all suppliers/tasks/items.
+Refreshes and lists all suppliers, tasks or items.
 
-**Example of a possible use case**
-- After using the `find` command for supplier contacts, `listAll` / `listSuppliers` will list all
-contacts in Salesy's address book.
-
-### List all suppliers: `listSuppliers`
+## 4.9.1 List all suppliers: `listSuppliers`
 
 List all suppliers
 
-***Format:***
+### 4.9.1.1 Format
 
 `listSuppliers`
 
-**Examples**
+### 4.9.1.2 Examples
 
-* List all suppliers
+1. Run the `find n/eggs` command to find suppliers that supply eggs. (Refer to [Figure 4](#figure-4-below-after-running-find-neggs))
+2. If you want to view the full list of suppliers again, run `listSuppliers` to list
+all the suppliers. (Refer to [Figure 5](#figure-5-below-after-running-listsuppliers))
 
-> `listSuppliers`
+#### Figure 4 (below) After running `find n/eggs`
 
-### List all tasks: `listTasks`
+![findegg](images/findegg.png)
+
+#### Figure 5 (below) After running `listSuppliers`
+
+![afterlistsuppliers](images/listall.png)
+
+## 4.9.2 List all tasks: `listTasks`
 
 Lists all tasks
 
-***Format:***
+### 4.9.2.1 Format
 
 `listTasks`
 
-**Examples**
+### 4.9.2.2 Examples
 
 * List all tasks
 
@@ -339,31 +362,35 @@ Note: All tasks displayed in the GUI is sorted by deadline.
 The task with the earliest deadline is found at the top of the list.
 </div>
 
-### List everything in the inventory: `listInventory`
+## 4.9.3 List everything in the inventory: `listInventory`
 
 Lists the whole inventory.
 
-***Format:***
+### 4.9.3.1 Format
 
 `listInventory`
 
-**Examples**
+### 4.9.3.2 Examples
 
 * List all items
 
 > `listInventory`
 
-### Clear Supplier Address Book: `clear`
+## 4.10 Clear Supplier Address Book: `clear`
 
 Clears and deletes all suppliers in Salesy. 
 
-> ⚠️(**WARNING**) This command is used to reset only the suppliers in the Suppliers panel. Running this command will remove all
-> suppliers from Salesy. To regain the sample data again, delete `addressbook.json` from the source folder of the app and 
-> re-run Salesy.
+<div markdown="span" class="alert alert-info">
+
+⚠️**WARNING**: This command is used to reset only the suppliers in the Suppliers panel. Running this command will remove all
+suppliers from Salesy. To regain the sample data again, delete `addressbook.json` from the source folder of the app and 
+re-run Salesy.
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# 5. Command summary
 
 
 | Action                       | Format                                                   | Examples                                                                           |
@@ -385,3 +412,28 @@ Clears and deletes all suppliers in Salesy.
 | **delete** (supply item)     | `deleteItem <item index>`                                | `deleteItem 2`                                                                     |
 | **edit stock** (supply item) | `editStock <item index> c/CURRENTSTOCK`                  | `editStock 2 c/12`                                                                 |
 | **list** (all items)         | `listAll`                                                | `listAll`                                                                          |                                                    |
+
+# 6. Appendix
+
+## 6.1 Colors used in the Inventory
+
+**Detailed Explanation**
+
+| Color          | Meaning                                                      | How is it determined ?                                                                              |
+|----------------|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| 🔴&nbsp;Red    | Running `low`, restock as soon as possible.                  | **Less than 120%** of minimum stock specified.                                                      |
+| 🟠&nbsp;Orange | Running at a `moderate` level, can consider restocking soon. | **More than and equal to 120%** of minimum stock specified and **less than 165%** of minimum stock. |
+| 🟢&nbsp;Green  | Running at a `healthy` level, no worries about restocking.   | **More than and equal to 165%** of minimum stock specified.                                         |
+
+[//]: # (@@author hauchongtang-reused)
+[//]: # (Both definitions: 6.2 and 6.3 taken from https://byjus.com/gate/difference-between-cli-and-gui/#:~:text=GUI%20lets%20a%20user%20interact,offer%20both%20CLI%20and%20GUI.)
+
+## 6.2 Command Line Interface (CLI)
+
+* CLI is a medium or a platform, where a user writes a command to answer a visual prompt and then receives a response from the system/device.
+* In the case of Salesy, the CLI is used heavily to allow the user to perform commands.
+
+## 6.3 Graphical User Interface (GUI)
+
+* In a GUI, you get various menus for making things easy, such as buttons, windows, scrollbars etc. It is very intuitive yet simple to use, even for a newbie.
+* In the case of Salesy, we utilize the GUI to give the user a visual view of their commands done from the CLI.
