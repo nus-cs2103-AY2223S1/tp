@@ -33,7 +33,7 @@ public class AddressBookBuilder {
     /**
      * Adds a new {@code Group} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Group group) {
+    public AddressBookBuilder withGroup(Group group) {
         addressBook.addTeam(group);
         return this;
     }
