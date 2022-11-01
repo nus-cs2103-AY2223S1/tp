@@ -20,7 +20,7 @@
       </padding>
 
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
+        <Label fx:id="id" styleClass="cell_big_label" wrapText="true">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
@@ -28,7 +28,7 @@
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
       </HBox>
-      <FlowPane fx:id="members" />
+      <FlowPane fx:id="members"/>
     </VBox>
   </GridPane>
 </HBox>
