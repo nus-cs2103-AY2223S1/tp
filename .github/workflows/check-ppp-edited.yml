@@ -1,0 +1,49 @@
+name: Check PPP is updated
+
+on: [workflow_dispatch, pull_request]
+
+jobs:
+  check-ppp:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Set up repository
+        uses: actions/checkout@main
+      - name: Query GraphQL API
+        uses: octokit/graphql-action@v2.x
+        id: get_latest_prs
+        with:
+          query: |
+            query PRs {
+              repository(owner: "AY2223S1-CS2103T-W16-2", name: "tp") {
+                pullRequests(last: 100) {
+                  totalCount
+                  edges {
+                    node {
+                      title
+                      merged
+                      resourcePath
+                      participants(first: 10) {
+                        edges {
+                          node {
+                            login
+                          }
+                        }
+                      }
+                      headRepositoryOwner {
+                        login
+                      }
+                      number
+                      closed
+                    }
+                  }
+                }
+              }
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Save query data to file
+        working-directory: ${{ github.workspace }}/cli-test
+        run: "echo '${{ steps.get_latest_prs.outputs.data }}' > data.json"
+      - name: Validate all PRs are included in PPP
+        working-directory: ${{ github.workspace }}/cli-test
+        run: ./check-ppp-is-complete.sh ${{ github.actor }}
