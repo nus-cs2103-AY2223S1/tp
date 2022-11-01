@@ -82,9 +82,6 @@ h4 {
   counter-reset: h5;
 }
 
-h5 {
-  counter-reset: h6;
-}
 
 h2:before {
   content: counter(h2, decimal) ". ";
