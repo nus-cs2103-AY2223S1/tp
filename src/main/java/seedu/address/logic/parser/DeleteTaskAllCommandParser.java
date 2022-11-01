@@ -14,7 +14,7 @@ import seedu.address.model.assignment.Assignment;
 /**
  * Parses input arguments and creates a new {@code DeleteTaskAllCommand} object
  */
-public class DeleteTaskAllCommandParser {
+public class DeleteTaskAllCommandParser implements Parser {
     /**
      * Parses the given {@code String} of arguments in the context of a {@code DeleteTaskAllCommand}
      * and returns a {@code DeleteTaskAllCommand} object for execution
