@@ -102,7 +102,8 @@ public class Day {
     private Optional<ArrayList<Item>> getConflictingItems(Item newItem) {
         ArrayList<Item> conflictingItems = new ArrayList<>();
         // item goes past midnight and overflows
-        if (newItem.getEndTime().isBefore(newItem.getStartTime())) {
+        if (newItem.getEndTime().isBefore(newItem.getStartTime())
+                || newItem.getEndTime().equals(newItem.getStartTime())) {
             return Optional.empty();
         }
         // check for conflicting items

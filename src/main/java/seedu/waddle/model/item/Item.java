@@ -52,7 +52,7 @@ public class Item {
     }
 
     public String getCostString(int indents) {
-        return Text.indent("Cost $" + this.cost.getValue(), indents);
+        return Text.indent("Cost $" + Text.MONEY_PRINT_FORMATTER.format(this.cost.getValue()), indents);
     }
 
     public Duration getDuration() {
@@ -72,7 +72,7 @@ public class Item {
     }
 
     public LocalTime getEndTime() {
-        LocalTime endTime = this.startTime.plusMinutes(this.duration.getDuration());
+        LocalTime endTime = this.startTime.plusMinutes(this.duration.getValue());
         if (this.startTime.isBefore(LocalTime.MAX) && endTime.equals(LocalTime.MIDNIGHT)) {
             return LocalTime.MAX;
         }

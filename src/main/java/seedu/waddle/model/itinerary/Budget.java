@@ -8,9 +8,9 @@ import static seedu.waddle.commons.util.AppUtil.checkArgument;
  */
 public class Budget {
     public static final String MESSAGE_CONSTRAINTS =
-            "Budget should only contain numbers.";
+            "Budget must be a value from $0 to $1,000,000.";
     public static final String VALIDATION_REGEX = "\\d+([.][0-9]+)?$";
-    private float initialBudget;
+    private final float initialBudget;
     private float spending;
 
     /**
@@ -34,11 +34,11 @@ public class Budget {
         }
         float budget;
         try {
-            budget = Float.valueOf(test);
+            budget = Float.parseFloat(test);
         } catch (NumberFormatException e) {
             return false;
         }
-        return budget >= 0;
+        return budget >= 0 && budget <= 1000000;
     }
 
 

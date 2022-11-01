@@ -16,6 +16,7 @@ import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.ItineraryDuration;
 import seedu.waddle.model.itinerary.People;
+import seedu.waddle.model.text.Text;
 
 /**
  * Jackson-friendly version of {@link Itinerary}.
@@ -25,7 +26,7 @@ class JsonAdaptedItinerary {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Itinerary's %s field is missing!";
     public static final String MESSAGE_DUPLICATE_ITEM = "Item list contains duplicate items.";
 
-    private final String name;
+    private final String description;
     private final String country;
     private final String startDate;
     private final String duration;
@@ -40,13 +41,15 @@ class JsonAdaptedItinerary {
      * Constructs a {@code JsonAdaptedPerson} with the given itinerary details.
      */
     @JsonCreator
-    public JsonAdaptedItinerary(@JsonProperty("name") String name, @JsonProperty("country") String country,
-                                @JsonProperty("startDate") String startDate, @JsonProperty("duration") String duration,
+    public JsonAdaptedItinerary(@JsonProperty("description") String description,
+                                @JsonProperty("country") String country,
+                                @JsonProperty("startDate") String startDate,
+                                @JsonProperty("duration") String duration,
                                 @JsonProperty("people") String people,
                                 @JsonProperty("budget") String budget,
                                 @JsonProperty("items") List<JsonAdaptedItem> items,
                                 @JsonProperty("days") List<JsonAdaptedDay> days) {
-        this.name = name;
+        this.description = description;
         this.country = country;
         this.startDate = startDate;
         this.duration = duration;
@@ -60,12 +63,12 @@ class JsonAdaptedItinerary {
      * Converts a given {@code Itinerary} into this class for Jackson use.
      */
     public JsonAdaptedItinerary(Itinerary source) {
-        name = source.getDescription().description;
+        description = source.getDescription().description;
         country = source.getCountry().country;
         startDate = source.getStartDate().date.toString();
         duration = source.getDuration().toString();
         people = source.getPeople().numOfPeople;
-        budget = source.getBudget().toString();
+        budget = Text.MONEY_SAVE_FORMATTER.format(source.getBudget().getValue());
         for (Item item : source.getItemList()) {
             items.add(new JsonAdaptedItem(item));
         }
@@ -81,30 +84,29 @@ class JsonAdaptedItinerary {
      */
     public Itinerary toModelType() throws IllegalValueException {
 
-        if (name == null) {
+        if (description == null) {
             throw new IllegalValueException(String.format(
                     MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
-        if (!Description.isValidDescription(name)) {
+        if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Description modelName = new Description(name);
 
         if (country == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Country.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Country.class.getSimpleName()));
         }
         if (!Country.isValidCountry(country)) {
             throw new IllegalValueException(Country.MESSAGE_CONSTRAINTS);
         }
-        final Country modelCountry = new Country(country);
 
         if (startDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Date.class.getSimpleName()));
         }
         if (!Date.isValidDate(startDate)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
-        final Date modelStartDate = new Date(startDate);
 
         if (duration == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -113,7 +115,6 @@ class JsonAdaptedItinerary {
         if (!ItineraryDuration.isValidDuration(duration)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
-        final ItineraryDuration modelDuration = new ItineraryDuration(duration);
 
         if (people == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -122,14 +123,19 @@ class JsonAdaptedItinerary {
         if (!People.isValidPeople(people)) {
             throw new IllegalValueException(People.MESSAGE_CONSTRAINTS);
         }
-        final People modelPeople = new People(people);
 
         if (budget == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Budget.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Budget.class.getSimpleName()));
         }
         if (!Budget.isValidBudget(budget)) {
             throw new IllegalValueException(Budget.MESSAGE_CONSTRAINTS);
         }
+        final Description modelName = new Description(description);
+        final Country modelCountry = new Country(country);
+        final Date modelStartDate = new Date(startDate);
+        final ItineraryDuration modelDuration = new ItineraryDuration(duration);
+        final People modelPeople = new People(people);
         final Budget modelBudget = new Budget(budget);
 
         Itinerary itinerary = new Itinerary(modelName, modelCountry, modelStartDate, modelDuration,
@@ -148,6 +154,7 @@ class JsonAdaptedItinerary {
             modelDays.add(day);
         }
         itinerary.setDays(modelDays);
+        itinerary.calculateSpending();
 
         return itinerary;
     }

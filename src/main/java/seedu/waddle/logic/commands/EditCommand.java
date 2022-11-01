@@ -83,8 +83,9 @@ public class EditCommand extends Command {
 
         Itinerary editedItinerary = new Itinerary(updatedName, updatedCountry, updatedStartDate, updatedDuration,
                 updatedPeople, updatedBudget);
-        editedItinerary.setSpending(itineraryToEdit.getBudget());
+        editedItinerary.setUnscheduledItems(itineraryToEdit.getUnscheduledItemList());
         editedItinerary.setDays(itineraryToEdit.getDays());
+        editedItinerary.calculateSpending();
         return editedItinerary;
     }
 
@@ -99,6 +100,10 @@ public class EditCommand extends Command {
 
         Itinerary itineraryToEdit = lastShownList.get(index.getZeroBased());
         Itinerary editedItinerary = createEditedItinerary(itineraryToEdit, editItineraryDescriptor);
+
+        if (editedItinerary.calculateSpending() > editedItinerary.getBudget().getValue()) {
+            throw new CommandException(Messages.MESSAGE_ITINERARY_OVER_BUDGET);
+        }
 
         if (!itineraryToEdit.isSameItinerary(editedItinerary) && model.hasItinerary(editedItinerary)) {
             throw new CommandException(MESSAGE_DUPLICATE_ITINERARY);

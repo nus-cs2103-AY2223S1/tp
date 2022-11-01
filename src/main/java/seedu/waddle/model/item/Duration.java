@@ -6,7 +6,8 @@ import static seedu.waddle.commons.util.AppUtil.checkArgument;
  * Represents an Item's duration in minutes.
  */
 public class Duration {
-    public static final String MESSAGE_CONSTRAINTS = "Duration should be more than or equals to 0.";
+    public static final String MESSAGE_CONSTRAINTS = "Duration must be more than 0 minutes and shorter than"
+            + "1440 minutes (1 day).";
     private final int duration;
 
     /**
@@ -19,7 +20,7 @@ public class Duration {
         this.duration = Integer.valueOf(duration);
     }
 
-    public int getDuration() {
+    public int getValue() {
         return this.duration;
     }
 
@@ -36,7 +37,7 @@ public class Duration {
         } catch (NumberFormatException e) {
             return false;
         }
-        return value >= 0;
+        return value > 0 && value <= 1440;
     }
     @Override
     public String toString() {

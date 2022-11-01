@@ -59,6 +59,7 @@ public class PlanCommand extends Command {
         Itinerary itinerary = stageManager.getSelectedItinerary();
 
         Item plannedItem;
+
         try {
             plannedItem = itinerary.planItem(itemIndex, dayNumber, startTime);
         } catch (IndexOutOfBoundsException e) {

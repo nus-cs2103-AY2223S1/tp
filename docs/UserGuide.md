@@ -110,16 +110,23 @@ Adds an itinerary to Waddle.
 
 Format: `add d/DESCRIPTION sd/START DATE du/DURATION [c/COUNTRY] [p/NUMBER OF WADDLERS] [b/BUDGET]`
 
-* Adds a new itinerary with `DESCRIPTION` to the itinerary list.
-* `START DATE` should be given in the format `yyyy-mm-dd`, and `DURATION` is the number of days.
-  - e.g. `sd/2022-12-10 du/10` would mean that the trip is from 10 Dec 2022 to 20 Dec 2022.
-* `BUDGET` is in dollars ($) and can include cents.
-  - e.g. `b/1000.50` is $1000 and 50¢.
-* You cannot add an itinerary with the same description as an existing itinerary in the list.
-  * Note that Waddle only accepts english alphabets and spaces for `DESCRIPTION` and `COUNTRY`, special characters
-  like `'`, `&`, `!` are not allowed.
-  * Example of invalid input: `d/My Trip!!` `c/Côte d'Ivoire`
-
+* Adds a new itinerary named `DESCRIPTION` to the itinerary list.
+* `START DATE` is the date of the first day in the itinerary. It must be given in the format `yyyy-mm-dd`.
+* `DURATION` will determine the number of days in the itinerary, and must be between 1 and 365 days.
+  - e.g. `sd/2022-12-10 du/3` would mean that the trip is from 10 Dec 2022 to 12 Dec 2022.
+* `BUDGET` is the budget for the itinerary and must be between $0 and $1,000,000. Please provide the budget in dollars ($), you may include cents too!
+  - e.g. `b/1000` is $1,000.
+  - e.g. `b/1000.50` is $1,000.50.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** 
+* You cannot add an itinerary with the same description as an existing itinerary.
+* Waddle only accepts english letters and spaces for `DESCRIPTION` and `COUNTRY`, special characters like `'`, `&`, `!` are not allowed.
+    * Example of invalid input: `d/My Trip!!`, `c/Côte d'Ivoire`, `c/中国`
+* The budget input should only contain numbers and one decimal point.
+    * Example of invalid input: `b/1,000,000`
+* If more than 2 decimal places are provided for the budget, Waddle rounds it up to 2 decimal places.
+    * e.g. `b/1000.505` will be reflected as $1,000.51.
+</div>
 
 Examples:
 * `add d/My Japan Trip sd/2022-12-12 du/6`
@@ -140,6 +147,11 @@ Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START DATE] [du/DURATION] [p
 * Edits the itinerary at the specified `INDEX`. The index refers to the index number shown in the displayed itinerary list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** 
+* If you are editing the budget, please ensure that it is sufficient to cover the cost of all the planned items. An error would be shown otherwise.
+</div>
 
 Examples:
 * `edit 1 du/15 sd/2022-10-04` Edits the duration and start date of the first itinerary to be `15` and `2022-10-04` respectively.
@@ -205,15 +217,21 @@ Here's an example of how the item planning page looks like:
 
 Adds an item to the list of items.
 
-Format: `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`
+Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
 
+* `DURATION` is the time taken for the item in _minutes_. The duration must be more than 0 minutes and shorter than 1440 minutes (1 day).
+    - e.g. `du/100` is 100 minutes (or 1 hour and 40 minutes).
 * Adds a new item with `DESCRIPTION` to the unscheduled item list.
-* The default `PRIORITY` is 1, while default `COST` and `DURATION` are both 0.
-* `COST` is in dollars ($) and can include cents.
-  - e.g. `b/100.20` is $100 and 20¢.
-* `DURATION` is in _minutes_.
-  - e.g. `du/100` is 100 minutes (or 1 hour and 40 minutes).
+
+* `COST` is the cost of the item and must be between $0 to $1,000,000. Please provide the cost in dollars ($), you may include cents too!
+  - e.g. `b/100.20` is $100.20.
 * You cannot add items with the same description as an existing item in the item list.
+* 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**
+* The default `PRIORITY` is 1.
+* The default `COST` is $0.
+</div>
 
 Examples:
 * `add d/Go to the Louvre p/2 du/1`
@@ -228,6 +246,11 @@ Format: `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`
 * Edits the item at the specified `INDEX`. The index refers to the index number displayed in either the unscheduled item list, or the scheduled items in the day lists.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** 
+* If you are editing the cost, please ensure that the new cost stays within the budget of the itinerary. An error would be shown otherwise.
+</div>
 
 Examples:
 * `edit 1 d/Go skiing` would edit the description of the 1st item in the unscheduled item list to be `Go skiing`.
@@ -257,6 +280,11 @@ Format: `plan INDEX d/DAY NUMBER st/START TIME`
 * `START TIME` should be given in the format `hh:mm`, or `hh:mm:ss` where `hh` is the hour in 24-hour format, `mm` is the minute, and `ss` is the seconds.
 * The end time of the item is calculated by adding the `DURATION` of the item to the `START TIME`.
 * You can only add an item if there is no clash in timing between the start and end time of the new item, and the start and end time of any existing scheduled item.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** 
+* When scheduling an item, please ensure that the item stays within the budget of the itinerary. An error would be shown otherwise.
+</div>
 
 Examples:
 * `plan 2 d/3 st/12:00` would schedule the 2nd item in the unscheduled item list on Day 3, starting at 12pm.
@@ -292,13 +320,23 @@ Format: `home`
 
 ### Copying to clipboard : `copy`
 
-Copies the itinerary onto your device's clipboard so you can paste it anywhere.
+Copies the itinerary in a text format onto your device's clipboard so you can paste it anywhere.
 
 Format: `copy`
+
+[//]: # (TODO: include screenshot of how the generated text looks like)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** 
+* The generated text includes all days within the itinerary, even if there are no items planned for the day.
+* The generated text does not include the items in the wishlist. For items to be reflected in the generated text, they must be planned.
+</div>
 
 ### Exporting to PDF file : `pdf`
 
 Exports the itinerary into a PDF file. The file can be found under the "Waddle" folder in your "Documents" folder.
+
+[//]: # (TODO: include screenshots of where to find it for windows and mac, maybe linux but idk how)
 
 Format: `pdf`
 
