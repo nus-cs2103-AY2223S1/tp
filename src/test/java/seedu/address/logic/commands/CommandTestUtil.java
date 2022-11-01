@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -31,6 +32,7 @@ import seedu.address.logic.commands.reminder.SortReminderCommand;
 import seedu.address.logic.commands.student.EditStudentCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelType;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -141,6 +143,12 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    //Model type
+    public static final String INVALID_FIELD = " " + PREFIX_FIELD + "invalid";
+    public static final String TYPE_STUDENT = " " + PREFIX_FIELD + "student";
+    public static final String TYPE_TUTORIAL = " " + PREFIX_FIELD + "tutorial";
+    public static final String TYPE_CONSULTATION = " " + PREFIX_FIELD + "consultation";
+
     // invalid field utils
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -217,6 +225,16 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage} and model type {@code expectedModelType}
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+            ModelType expectedModelType, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedModelType);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 

@@ -14,6 +14,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ModelType;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tutorial.Tutorial;
 
@@ -34,8 +35,7 @@ public class DeleteTutorialCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteTutorial(tutorialToDelete);
-
-        assertCommandSuccess(deleteTutorialCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteTutorialCommand, model, expectedMessage, ModelType.TUTORIAL, expectedModel);
     }
 
     @Test

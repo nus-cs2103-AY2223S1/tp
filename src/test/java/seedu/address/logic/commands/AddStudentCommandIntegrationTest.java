@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.student.AddStudentCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ModelType;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.PersonBuilder;
@@ -34,7 +35,7 @@ public class AddStudentCommandIntegrationTest {
         expectedModel.addPerson(validStudent);
 
         assertCommandSuccess(new AddStudentCommand(validStudent), model,
-                String.format(AddStudentCommand.MESSAGE_SUCCESS, validStudent), expectedModel);
+                String.format(AddStudentCommand.MESSAGE_SUCCESS, validStudent), ModelType.STUDENT, expectedModel);
     }
 
     @Test

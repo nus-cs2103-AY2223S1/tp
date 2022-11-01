@@ -16,7 +16,7 @@ public class SortReminderCommand extends Command {
     public static final String COMMAND_WORD = "sort reminder";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sort reminders by either by a chosen criteria";
+            + ": Sort reminders by a chosen criteria";
 
     public static final String MESSAGE_SUCCESS_TEMPLATE = "Reminders sorted by %s";
 

@@ -23,6 +23,7 @@ import seedu.address.logic.commands.student.EditStudentCommand.EditPersonDescrip
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ModelType;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -46,7 +47,7 @@ public class EditStudentCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
 
-        assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editStudentCommand, model, expectedMessage, ModelType.STUDENT, expectedModel);
     }
 
     @Test
@@ -67,7 +68,7 @@ public class EditStudentCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastStudent, editedStudent);
 
-        assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editStudentCommand, model, expectedMessage, ModelType.STUDENT, expectedModel);
     }
 
     @Test
@@ -91,7 +92,7 @@ public class EditStudentCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
 
-        assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editStudentCommand, model, expectedMessage, ModelType.STUDENT, expectedModel);
     }
 
     @Test

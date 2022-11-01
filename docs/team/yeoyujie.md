@@ -14,8 +14,7 @@ Given below are my contributions to the project.
 * **Enhancements implemented**:
   * Added the ability to add, edit and delete reminders.
     * What it does: Allows the user to add, edit and delete any reminders they might have for any upcoming/past tasks.
-    * Justification: This feature makes our product more attractive as users would usually want to have a quick overview of any upcoming tasks they might have, 
-      as well as to check the progress of their work so far.
+    * Justification: This feature makes our product more attractive as users would usually want to have a quick overview of any upcoming tasks they might have, as well as to check the progress of their work so far.
     * Highlights: This enhancement affects existing command as it was similar to the `add`, `edit` and `delete` commands that AddressBook already has.
       Thus, there was a need to abstract out similar components and adhere to the DRY principle.
   * Added sorting reminders by either priority or deadline.

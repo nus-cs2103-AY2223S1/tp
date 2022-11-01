@@ -19,7 +19,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ModelType;
 import seedu.address.model.datetime.Datetime;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDescription;
@@ -87,7 +86,7 @@ public class EditReminderCommand extends Command {
 
         model.setReminder(reminderToEdit, editedReminder);
         model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
-        return new CommandResult(String.format(MESSAGE_EDIT_REMINDER_SUCCESS, editedReminder), ModelType.REMINDER);
+        return new CommandResult(String.format(MESSAGE_EDIT_REMINDER_SUCCESS, editedReminder));
     }
 
     /**

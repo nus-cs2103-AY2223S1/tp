@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ModelType;
 import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {
@@ -35,7 +36,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager();
 
         assertCommandSuccess(new ClearCommand("student"), model,
-                ClearCommand.MESSAGE_SUCCESS_STUDENT, expectedModel);
+                ClearCommand.MESSAGE_SUCCESS_STUDENT, ModelType.STUDENT, expectedModel);
     }
 
     @Test
@@ -45,7 +46,7 @@ public class ClearCommandTest {
         expectedModel.resetStudents();
 
         assertCommandSuccess(new ClearCommand("student"), model,
-                ClearCommand.MESSAGE_SUCCESS_STUDENT, expectedModel);
+                ClearCommand.MESSAGE_SUCCESS_STUDENT, ModelType.STUDENT, expectedModel);
     }
 
     @Test
@@ -54,7 +55,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager();
 
         assertCommandSuccess(new ClearCommand("consultation"), model,
-                ClearCommand.MESSAGE_SUCCESS_CONSULTATION, expectedModel);
+                ClearCommand.MESSAGE_SUCCESS_CONSULTATION, ModelType.CONSULTATION, expectedModel);
     }
 
     @Test
@@ -64,7 +65,7 @@ public class ClearCommandTest {
         expectedModel.resetConsultations();
 
         assertCommandSuccess(new ClearCommand("consultation"), model,
-                ClearCommand.MESSAGE_SUCCESS_CONSULTATION, expectedModel);
+                ClearCommand.MESSAGE_SUCCESS_CONSULTATION, ModelType.CONSULTATION, expectedModel);
     }
 
     @Test
@@ -73,7 +74,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager();
 
         assertCommandSuccess(new ClearCommand("tutorial"), model,
-                ClearCommand.MESSAGE_SUCCESS_TUTORIAL, expectedModel);
+                ClearCommand.MESSAGE_SUCCESS_TUTORIAL, ModelType.TUTORIAL, expectedModel);
     }
 
     @Test
@@ -83,7 +84,7 @@ public class ClearCommandTest {
         expectedModel.resetTutorials();
 
         assertCommandSuccess(new ClearCommand("tutorial"), model,
-                ClearCommand.MESSAGE_SUCCESS_TUTORIAL, expectedModel);
+                ClearCommand.MESSAGE_SUCCESS_TUTORIAL, ModelType.TUTORIAL, expectedModel);
     }
 
     @Test
