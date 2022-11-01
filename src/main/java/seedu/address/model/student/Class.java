@@ -109,6 +109,26 @@ public class Class {
     }
 
     /**
+     * Returns a formatted date and time for avail command.
+     */
+    public String toAvailCommandString() {
+        if (date == null) {
+            return "";
+        }
+        return date + " " + this.toAvailCommandTimeString(startTime) + "-" + this.toAvailCommandTimeString(endTime);
+    }
+
+    /**
+     * Returns a formatted time for avail command.
+     */
+    private String toAvailCommandTimeString(LocalTime time) {
+        if (time == null) {
+            return "";
+        }
+        return time.toString().replace(":", "");
+    }
+
+    /**
      * Returns a formatted time duration.
      *
      * @return String.

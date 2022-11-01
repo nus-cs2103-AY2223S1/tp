@@ -16,7 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
 import seedu.address.model.student.exceptions.StudentNotFoundException;
-import seedu.address.model.timeRange.TimeRange;
+import seedu.address.model.timerange.TimeRange;
 import seedu.address.storage.ClassStorage;
 
 /**

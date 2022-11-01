@@ -180,7 +180,7 @@ Additionally, it implements the following operations:
 
 - `ClassStorage#saveClass()` — Saves the new class into its storage.
 
-- `ClassStorage#removeExistingClass()` — removes class from storage to free up the time slot.
+- `ClassStorage#removeExistingClass()` — Removes class from storage to free up the time slot.
 
 - `ClassStorage#hasConflict()` — Checks if there is a conflict between the class timings.
 
@@ -198,7 +198,7 @@ save both the new class and student.
 
 The following sequence diagram shows how the edit class operation works:
 
-![EditClassSequenceDiagram](images/DG-images/EditClassSequenceDiagram.png)
+<img src="images/DG-images/EditClassSequenceDiagram.png" width="850" />
 
 The following activity diagram summarizes what happens when a teacher executes an edit class command:
 
@@ -458,7 +458,7 @@ The Sequence Diagram below shows how the components interact with each other whe
 
 ### Target User Profile
 
-- a private tutor who teaches 1-1 classes and needs to manage the students’ details
+- a private teacher who teaches 1-1 classes and needs to manage the students’ details
 - prefer desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
@@ -470,40 +470,38 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 ### User Stories
 
-| S/N | As a/an ...                                                                  | I can ...                                                                           | So that...                                                              | Priority   |
-|-----|------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------------------|------------|
-| 1   | Tutor who prefers flexibility                                                | Reschedule my class                                                                 | I can allow the students to more flexibility when arranging for a class | HIGH       |
-| 2   | Meticulous tutor                                                             | Add teaching notes                                                                  | so that I can record any additional information about the student.      | HIGH       |
-| 3   | Organised tutor                                                              | View which students I have in the day                                               | I know what to expect in the day                                        | HIGH       |
-| 4   | Tutor                                                                        | Edit the students contact details                                                   | I am able to contact the student or next-of-kin whenever necessary      | HIGH       |
-| 5   | Tutor with forgetful students                                                | Check how much a single student owes me                                             | I can remind the student to pay me                                      | HIGH       |
-| 6   | New user                                                                     | See which commands are available for me to use                                      | I know how to use the application                                       | HIGH       |
-| 7   | Tutor who has many students                                                  | Check the students’ phone number                                                    | I can contact them                                                      | HIGH       |
-| 8   | Forgetful tutor                                                              | Know the address of the students                                                    | Know where I should go to for class                                     | HIGH       |
-| 9   | Tutor who likes a clear overview                                             | View a list of all students                                                         | Have a clear view of all students                                       | HIGH       |
-| 10  | Tutor who likes to minimise the number of applications opened on his desktop | Have a way to close the application                                                 | Exit the application                                                    | HIGH       |
-| 11  | Tutor who has many students                                                  | I can check the students’ next of kin’s phone number                                | Contact the parents or guardian under certain circumstances             | HIGH       |
-| 12  | As a tutor who likes to have a clear picture                                 | Have a better UI to view the schedule and the tasks                                 | So that I can view everything in one page                               | HIGH       |
-| 13  | Careless tutor                                                               | be warned if I’ve added an existing student to the student list                     | I do not have duplicated students in my contact book                    | MEDIUM     |
-| 14  | Inexperienced tutor at coding                                                | Receive a echo of my command                                                        | I know that I’ve typed the information correctly                        | MEDIUM     |
-| 15  | Forgetful tutor                                                              | Be warned if the addition of a new session will clash with a previously set session | I can have a peace of mind that my students’ sessions do not clash      | MEDIUM     |
-| 16  | Busy tutor                                                                   | Sort my students based on the class timing                                          | I know when is my next class                                            | MEDIUM     |
-| 17  | Tutor                                                                        | Search up the students by the class date                                            | I know which students I have on a specific day                          | MEDIUM     |
-| 18  | Tutor                                                                        | Edit the students unpaid session                                                    | I can calculate how much money a student owes                           | MEDIUM     |
-| 19  | Lazy tutor                                                                   | Use a single command to find multiple students                                      | Find multiple students quickly                                          | MEDIUM     |
-| 20  | Lazy tutor                                                                   | Use a single command to delete multiple students                                    | Delete multiple students quickly                                        | MEDIUM     |
-| 21  | Busy tutor                                                                   | Use shorter commands                                                                | I can simplify the commands by using aliases                            | MEDIUM     |
-| 22  | Tutor who needs to manage many students                                      | View the students he has after or before a certain date                             | Filter students before/after a certain datetime                         | MEDIUM/LOW |
-| 23  | Tutor who wants to do things quick                                           | Delete all students at once                                                         | Clear my entire schedule                                                | MEDIUM/LOW |
-| 24  | Tutor                                                                        | Find the next available time slot                                                   | I do not have to check for clashes each time I schedule the next class  | LOW        |
-| 25  | Busy tutor                                                                   | Sort my students based on alphabetical order                                        | I can find the details of my students quicker                           | LOW        |
-| 26  | Poor tutor                                                                   | Sort my students based on the amount of money owed                                  | I know who owes the most amount of money so that I can ask for payment. | LOW        |
-| 27  | Busy tutor                                                                   | Add the date of the next class in a more natural format (eg: Next Tuesday)          | I do not need to search for the date manually                           | LOW        |
-| 28  | Forgetful tutor                                                              | See tags by students                                                                | See necessary info such as #python.                                     | LOW        |
-| 29  | Tutor who loves money                                                        | Do a summation of how much money earned                                             | Know which students I should follow up with regarding the fees.         | LOW        |
-| 30  | Tutor who loves money                                                        | Know the total money unpaid by all students                                         | Know the total money unpaid by students                                 | LOW        |
-| 31  | Tutor who wants to keep track of expenses                                    | Check the total amount of money paid by all students                                | I can check the total amount I have earned                              | LOW        |
-
+| S/N | As a/an ...                                                                    | I can ...                                                                           | So that...                                                              | Priority   |
+|-----|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------------------|------------|
+| 1   | Teacher who prefers flexibility                                                | Reschedule my class                                                                 | I can allow the students to more flexibility when arranging for a class | HIGH       |
+| 2   | Meticulous teacher                                                             | Add teaching notes                                                                  | I can record any additional information about the student               | HIGH       |
+| 3   | Organised teacher                                                              | View the students I have in the day                                                 | I know what to expect in the day                                        | HIGH       |
+| 4   | Teacher                                                                        | Edit the students' contact details                                                  | I am able to contact the student or next-of-kin whenever necessary      | HIGH       |
+| 5   | Teacher with forgetful students                                                | Check how much a single student owes me                                             | I can remind the student to pay me                                      | HIGH       |
+| 6   | New app user                                                                   | See which commands are available for me to use                                      | I know how to use the application                                       | HIGH       |
+| 7   | Teacher who has many students                                                  | Check the students’ phone number                                                    | I can contact them                                                      | HIGH       |
+| 8   | Forgetful teacher                                                              | Check the students' address                                                         | I know where I should go to for class                                   | HIGH       |
+| 9   | Teacher who likes a clear overview                                             | View a list of all students                                                         | I have a clear view of all students                                     | HIGH       |
+| 10  | Teacher who likes to minimise the number of applications opened on his desktop | Have a way to close the application                                                 | I can exit the application                                              | HIGH       |
+| 11  | Teacher with many students                                                     | Check the students’ next of kin’s contact number                                    | I can contact the parents or guardian under certain circumstances       | HIGH       |
+| 12  | Teacher who likes to have a clear picture                                      | Have a better UI to view the schedule and the tasks                                 | I can view everything in one page                                       | HIGH       |
+| 13  | Careless teacher                                                               | Receive an echo of my command                                                       | I know that I have typed the information correctly                      | MEDIUM     |
+| 14  | Inexperienced teacher at coding                                                | Be warned if I’ve added an existing student to the student list                     | I do not have any duplicated students                                   | MEDIUM     |
+| 15  | Teacher                                                                        | Be warned if a student owes me money                                                | I know who to collect money from in the day                             | MEDIUM     |
+| 16  | Forgetful teacher                                                              | Be warned if the addition of a new session will clash with a previously set session | I can have a peace of mind that my students’ sessions do not clash      | MEDIUM     |
+| 17  | Busy teacher                                                                   | Sort my students based on the class timing                                          | I know when is my next class                                            | MEDIUM     |
+| 18  | Teacher                                                                        | Find all students who have classes on a particular date                             | I know which students I have on a specific day                          | MEDIUM     |
+| 19  | Teacher                                                                        | Edit a student's unpaid amount                                                      | I can update how much money a student owes                              | MEDIUM     |
+| 20  | Lazy teacher                                                                   | Find multiple students by their name                                                | I can find multiple students quickly                                    | MEDIUM     |
+| 21  | Lazy teacher                                                                   | Delete multiple students at once                                                    | I can delete multiple students quickly                                  | MEDIUM     |
+| 22  | Teacher                                                                        | Find a student by phone number                                                      | I know which student is calling me                                      | MEDIUM     |
+| 23  | Careless teacher                                                               | Undo my action                                                                      | I can reverse a mistake done                                            | MEDIUM     |
+| 24  | Teacher who wants to do things quick                                           | Delete all students at once                                                         | I can clear my entire data record at once                               | MEDIUM/LOW |
+| 25  | Teacher                                                                        | Find the next available time slot                                                   | I do not have to check for clashes each time I schedule the next class  | LOW        |
+| 26  | Busy teacher                                                                   | Sort my students based on alphabetical order                                        | I can find the details of my students quicker                           | LOW        |
+| 27  | Poor teacher                                                                   | Sort my students based on the amount of money owed                                  | I know who owes the most amount of money so that I can ask for payment  | LOW        |
+| 28  | Busy teacher                                                                   | Add the date of the next class in a more natural format (e.g., Tue)                 | I do not need to search for the date manually                           | LOW        |
+| 29  | Forgetful teacher                                                              | See tags by students                                                                | I can see necessary info such as #python                                | LOW        |
+| 30  | Teacher who loves money                                                        | Check the total money paid by all students                                          | I can check the total amount I have earned                              | LOW        |
 
 ### Use Cases
 
