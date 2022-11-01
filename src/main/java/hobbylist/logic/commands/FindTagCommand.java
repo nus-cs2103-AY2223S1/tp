@@ -14,10 +14,10 @@ public class FindTagCommand extends Command {
 
     private static String commandWord = "findTag";
 
-    public static final String MESSAGE_USAGE = commandWord + ": Finds all activities whose tags match"
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = commandWord + ": Finds all activities whose tags match "
+            + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + commandWord + "sport";
+            + "Example: " + commandWord + " sport";
 
     private final TagMatchesKeywordPredicate predicate;
 
@@ -45,8 +45,14 @@ public class FindTagCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredActivityList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_ACTIVITIES_LISTED_OVERVIEW, model.getFilteredActivityList().size()));
+        int listSize = model.getFilteredActivityList().size();
+        String displayedMessage;
+        if (listSize == 1) {
+            displayedMessage = Messages.MESSAGE_ACTIVITY_LISTED_OVERVIEW;
+        } else {
+            displayedMessage = Messages.MESSAGE_ACTIVITIES_LISTED_OVERVIEW;
+        }
+        return new CommandResult(String.format(displayedMessage, listSize));
     }
 
     @Override

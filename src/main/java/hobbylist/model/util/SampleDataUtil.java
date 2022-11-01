@@ -1,8 +1,6 @@
 package hobbylist.model.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,7 +24,7 @@ public class SampleDataUtil {
 
     public static Activity[] getSampleActivities() {
 
-        List<Date> s = new ArrayList<>();
+        Optional<Date> s = Optional.empty();
         return new Activity[] {
             new Activity(new Name("And Then There Were None"),
                 new Description("Mystery novel by Agatha Christie"),

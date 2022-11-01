@@ -9,7 +9,7 @@ import hobbylist.model.activity.RatePredicate;
 
 /**
  * Lists all activities in HobbyList whose rate is above certain value.
- * The required bound should within 0-5(inclusive).
+ * The required bound should within 0-5 (inclusive).
  */
 public class RateAboveCommand extends Command {
     public static final String RESPOND_MESSAGE = "List all activities whose rate is above ";
@@ -17,8 +17,8 @@ public class RateAboveCommand extends Command {
     private static String commandWord = "r/above";
 
     public static final String MESSAGE_USAGE = commandWord
-            + ": List all activities whose rate is above or equal to a certain value\n"
-            + "Parameters: int rateBound...\n"
+            + ": List all activities whose rate is higher or equal to the input value.\n"
+            + "Parameters: VALUE (must be an integer)\n"
             + "Example: " + commandWord + " 3";
     private final RatePredicate predicate;
     private int bound;

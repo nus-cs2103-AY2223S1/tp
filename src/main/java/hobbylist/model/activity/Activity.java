@@ -1,9 +1,7 @@
 package hobbylist.model.activity;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -24,7 +22,7 @@ public class Activity {
     // Data fields
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
-    private final List<Date> listDate = new ArrayList<>();
+    private final Optional<Date> optionalDate;
     private int rating = 0;
     private final Status status;
     private final Optional<Review> review;
@@ -32,13 +30,13 @@ public class Activity {
     /**
      * Constructor without rating. Every field except rating must be present and not null.
      */
-    public Activity(Name name, Description description, Set<Tag> tags, List<Date> listDate, Status status,
+    public Activity(Name name, Description description, Set<Tag> tags, Optional<Date> optionalDate, Status status,
                     Optional<Review> review) {
-        CollectionUtil.requireAllNonNull(name, description, tags, listDate);
+        CollectionUtil.requireAllNonNull(name, description, optionalDate, tags);
         this.name = name;
         this.description = description;
         this.tags.addAll(tags);
-        this.listDate.addAll(listDate);
+        this.optionalDate = optionalDate;
         this.status = status;
         this.review = review;
     }
@@ -47,13 +45,15 @@ public class Activity {
     /**
      * Constructor with rating. Every field must be present and not null.
      */
-    public Activity(Name name, Description description, Set<Tag> tags, List<Date> listDate, int rating, Status status,
+    public Activity(Name name, Description description, Set<Tag> tags,
+                    Optional<Date> optionalDate, int rating, Status status,
                     Optional<Review> review) {
-        CollectionUtil.requireAllNonNull(name, description, tags, listDate, rating);
+        CollectionUtil.requireAllNonNull(name,
+                description, tags, optionalDate, rating);
         this.name = name;
         this.description = description;
         this.tags.addAll(tags);
-        this.listDate.addAll(listDate);
+        this.optionalDate = optionalDate;
         this.rating = rating;
         this.status = status;
         this.review = review;
@@ -74,8 +74,8 @@ public class Activity {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
-    public List<Date> getDate() {
-        return this.listDate;
+    public Optional<Date> getDate() {
+        return this.optionalDate;
     }
 
     public int getRating() {
@@ -106,7 +106,8 @@ public class Activity {
         return otherActivity != null
                 && otherActivity.getName().equals(getName())
                 && otherActivity.getDescription().equals(getDescription())
-                && otherActivity.getTags().equals(getTags());
+                && otherActivity.getTags().equals(getTags())
+                && otherActivity.getDate().equals(getDate());
     }
 
     /**
@@ -136,7 +137,7 @@ public class Activity {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, description, tags, listDate, status, rating, review);
+        return Objects.hash(name, description, tags, optionalDate, status, rating, review);
     }
 
     @Override
@@ -151,9 +152,9 @@ public class Activity {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
-        if (!listDate.isEmpty()) {
+        if (optionalDate.isPresent()) {
             builder.append("; Date: ")
-                    .append(this.listDate.get(0).toString());
+                    .append(this.optionalDate.get().toString());
         }
         if (rating != 0) {
             builder.append("; Rating: ")

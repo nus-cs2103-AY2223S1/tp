@@ -9,7 +9,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import hobbylist.logic.commands.FindCommand;
+import hobbylist.model.activity.DateMatchesGivenDatePredicate;
 import hobbylist.model.activity.NameOrDescContainsKeywordsPredicate;
+import hobbylist.model.activity.RatingMatchesGivenValuePredicate;
 
 public class FindCommandParserTest {
 
@@ -24,7 +26,9 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new NameOrDescContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+                new FindCommand(new NameOrDescContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
+                        new DateMatchesGivenDatePredicate(""),
+                        new RatingMatchesGivenValuePredicate(-1));
         assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
