@@ -5,24 +5,25 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.model.Model.PREDICATE_SHOW_ALL_RESIDENTS;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
-import static seedu.rc4hdb.testutil.TypicalBookings.*;
+import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_5_TO_6PM;
+import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_TUESDAY_6_TO_7PM;
+import static seedu.rc4hdb.testutil.TypicalBookings.MR_BOB_TUESDAY_6_TO_7PM;
 import static seedu.rc4hdb.testutil.TypicalResidents.ALICE;
 import static seedu.rc4hdb.testutil.TypicalResidents.BENSON;
-import static seedu.rc4hdb.testutil.TypicalVenues.*;
+import static seedu.rc4hdb.testutil.TypicalVenues.HALL;
+import static seedu.rc4hdb.testutil.TypicalVenues.HALL_VENUE_NAME;
+import static seedu.rc4hdb.testutil.TypicalVenues.MEETING_ROOM;
+import static seedu.rc4hdb.testutil.TypicalVenues.MEETING_ROOM_VENUE_NAME;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
-import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
@@ -32,7 +33,6 @@ import seedu.rc4hdb.model.venues.exceptions.DuplicateVenueException;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 import seedu.rc4hdb.testutil.ResidentBookBuilder;
 import seedu.rc4hdb.testutil.VenueBookBuilder;
-import seedu.rc4hdb.ui.ObservableItem;
 
 public class ModelManagerTest {
 
@@ -237,7 +237,8 @@ public class ModelManagerTest {
     public void addBooking_validVenueValidBooking_returnsTrue() {
         modelManager.addVenue(MEETING_ROOM);
         modelManager.addBooking(MEETING_ROOM_VENUE_NAME, MR_ALICE_MONDAY_5_TO_6PM);
-        VenueBook expected = new VenueBookBuilder().withVenue(MEETING_ROOM).build(); // VenueBuilder has default bookings there
+        VenueBook expected = new VenueBookBuilder()
+                .withVenue(MEETING_ROOM).build(); // VenueBuilder has default bookings
         assertEquals(expected, new VenueBook(modelManager.getVenueBook()));
     }
 
