@@ -31,7 +31,7 @@ public class TasksOfCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Showing all %1$d task(s) assigned to %2$s. \n"
             + "Type `list tasks` to show all tasks again.";
     public static final String MESSAGE_MEMBER_INDEX_TOO_LARGE = "This member does not exist. "
-            + "There are less than %1$s membersin your list.";
+            + "There are less than %1$s members in your list.";
     public static final String MESSAGE_MEMBER_INDEX_TOO_SMALL = "This index is invalid. "
             + "Please input a valid positive integer.";
 
