@@ -104,6 +104,11 @@ public class Group {
         return builder.toString();
     }
 
+    /**
+     * Equality checking for members, since groups may use different Set objects.
+     * @param otherGroup the group to check
+     * @return whether both groups have the same members
+     */
     public boolean checkSameMembers(Group otherGroup) {
         for (Person p : otherGroup.getMembers()) {
             if (!this.contains(p)) {
