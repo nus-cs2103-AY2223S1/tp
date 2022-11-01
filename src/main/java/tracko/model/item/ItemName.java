@@ -8,7 +8,8 @@ import static tracko.commons.util.AppUtil.checkArgument;
  */
 public class ItemName {
     public static final String MESSAGE_CONSTRAINTS =
-            "Item names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Item names should only contain alphanumeric characters and spaces,"
+                    + " and it should be more than 1 character long";
 
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9][a-zA-Z0-9 ].*$";
 
