@@ -71,12 +71,21 @@ public class PersonCard extends UiPart<Region> {
 
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label label = new Label(tag.tagName);
+                    label.setWrapText(true);
+                    label.setMaxWidth(550);
+                    tags.getChildren().add(label);
+                });
 
         person.getPersonGroups().stream()
                 .sorted(Comparator.comparing(PersonGroup::getGroupName))
-                .forEach(group -> personGroup.getChildren()
-                        .add((new Label(group.getGroupName()))));
+                .forEach(group -> {
+                    Label label = new Label(group.getGroupName());
+                    label.setWrapText(true);
+                    label.setMaxWidth(550);
+                    personGroup.getChildren().add(label);
+                });
     }
 
     @Override
