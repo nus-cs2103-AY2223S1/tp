@@ -45,7 +45,12 @@ public class GradeEditCommandParser implements Parser<GradeEditCommand> {
         EditGradeDescriptor editGradeDescriptor = new EditGradeDescriptor();
         if (argMultimap.getValue(PREFIX_GRADE).isPresent()) {
             editGradeDescriptor.setGrade(ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get()));
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    GradeEditCommand.MESSAGE_USAGE));
         }
+
+        System.out.println(argMultimap.getValue(PREFIX_GRADE));
 
         return new GradeEditCommand(studentIndex, taskIndex, editGradeDescriptor);
     }

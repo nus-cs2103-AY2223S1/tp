@@ -20,14 +20,12 @@ import seedu.address.model.task.Task;
  */
 public class GradeViewCommand extends Command {
     public static final String COMMAND_WORD = "grade view";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the grade of the student's task "
-            + "by the index number used in the displayed student list and task list. "
-            + "Existing values will be overwritten by the input values.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": View the grade of the student's task "
+            + "by the index number used in the displayed student list and task list.\n"
             + "Parameters: STUDENT_INDEX TASK_INDEX (must be positive integers)"
             + "\n"
             + "Example: " + COMMAND_WORD + " 1 2";
     public static final String MESSAGE_VIEW_GRADE_SUCCESS = "Grade: %s";
-    public static final String MESSAGE_NOT_EDITED = "T OR F must be provided";
     public static final String MESSAGE_STUDENT_TASK_PAIR_NOT_FOUND = "This student and task pair is not found.";
     private final Index studentIndex;
     private final Index taskIndex;
@@ -54,11 +52,15 @@ public class GradeViewCommand extends Command {
         } else if (taskIndex.getZeroBased() >= lastShownTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
-
-        // TODO check if student is in task
         Student studentGradeToEdit = lastShownStudentList.get(studentIndex.getZeroBased());
         Task taskGradeToEdit = lastShownTaskList.get(taskIndex.getZeroBased());
+        if (!taskGradeToEdit.getStudents().contains(studentGradeToEdit)) {
+            throw new CommandException(MESSAGE_STUDENT_TASK_PAIR_NOT_FOUND);
+        }
         Grade grade = model.getGradeMap().get(new GradeKey(studentGradeToEdit, taskGradeToEdit));
+        if (grade == null) {
+            grade = Grade.UNGRADED;
+        }
         return new CommandResult(String.format(MESSAGE_VIEW_GRADE_SUCCESS, grade.name()));
     }
 

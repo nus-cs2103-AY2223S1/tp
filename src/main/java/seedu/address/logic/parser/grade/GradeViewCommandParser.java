@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.grade.GradeEditCommand;
 import seedu.address.logic.commands.grade.GradeViewCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -38,7 +37,7 @@ public class GradeViewCommandParser implements Parser<GradeViewCommand> {
             taskIndex = ParserUtil.parseIndex(before[1]);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    GradeEditCommand.MESSAGE_USAGE), pe);
+                    GradeViewCommand.MESSAGE_USAGE), pe);
         }
         return new GradeViewCommand(studentIndex, taskIndex);
     }
