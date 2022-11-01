@@ -29,7 +29,7 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
   
     iii. [Settings] This portion displays what the current sort and filter settings are, if any. 
   
-    iv. [List Display Panel] This is where the current list is displayed which includes details about each member or task. To toggle between viewing members and viewing tasks, click on the `Members` and `Tasks` tabs.
+    iv. [List Display Panel] This is where the current list is displayed which includes details about each member or task. To switch between viewing members and viewing tasks, click on the `Members` and `Tasks` tabs.
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -100,6 +100,8 @@ Before you learn any commands, please read the following notes about HackAssist 
 
 </div>
 
+<br>
+
 ### General
 
 #### Viewing help: `help`
@@ -133,6 +135,8 @@ HackAssist data are saved as a JSON file `[JAR file location]/data/HackAssist.js
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, HackAssist will discard all data and start with an empty data file at the next run.
 </div>
+
+<br>
 
 ### People Management
 
@@ -204,7 +208,8 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
---------------------------------------------------------------------------------------------------------------------
+<br>
+
 ### Tasks Management
 
 The following commands are for managing your hackathon tasks. These tasks can be related to software development, product design, project presentation etc. 
@@ -222,7 +227,6 @@ Examples:
 
 * `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` adds task `Fix toggle` to the task list
 * `addTask n/Fix routing d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/john@example.com` adds task `Fix routing` to the task list
-
 
 #### Deleting a task: `deleteTask`
 
