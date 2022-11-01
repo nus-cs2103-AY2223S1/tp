@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
@@ -23,19 +22,7 @@
                <padding>
                   <Insets right="5.0" />
                </padding></Label>
-        <Label fx:id="company" styleClass="cell_big_label" text="\$company" />
-            <Label fx:id="id1" styleClass="cell_big_label" text=",">
-               <minWidth>
-                  <Region fx:constant="USE_PREF_SIZE" />
-               </minWidth>
-               <padding>
-                  <Insets right="5.0" />
-               </padding>
-            </Label>
-            <Label fx:id="position" styleClass="cell_big_label" text="\$position">
-               <padding>
-                  <Insets right="5.0" />
-               </padding></Label>
+        <Label fx:id="companyAndPosition" styleClass="cell_big_label" text="\$companyAndPosition" />
             <padding>
                <Insets bottom="3.0" />
             </padding>

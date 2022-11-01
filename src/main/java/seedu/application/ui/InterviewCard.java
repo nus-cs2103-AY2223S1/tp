@@ -27,9 +27,12 @@ public class InterviewCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label company;
+    private Label companyAndPosition;
+    /*
     @FXML
     private Label position;
+
+     */
     @FXML
     private Label round;
     @FXML
@@ -46,8 +49,8 @@ public class InterviewCard extends UiPart<Region> {
         super(FXML);
         this.interview = application.getInterview().get();
         id.setText("i" + displayedIndex + ". ");
-        company.setText(application.getCompany().company);
-        position.setText(application.getPosition().value);
+        companyAndPosition.setText(application.getCompany().company + ", " + application.getPosition().value);
+        //position.setText(application.getPosition().value);
         round.setText(interview.getRound().value);
         interviewDate.setText(interview.getInterviewDate().toString());
         interviewTime.setText(interview.getInterviewTime().toString());
