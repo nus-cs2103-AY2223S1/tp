@@ -371,7 +371,8 @@ Examples
 View all the tasks currently in the user’s team in the form of a list. List can also be filtered based on complete or
 remaining tasks.
 
-The command `list tasks` can also be used to view all tasks again after the `find task` command has been run.
+The command `list tasks` can also be used to view all tasks again after the `find task` command has been run since 
+`find task` command filters the current team’s tasks with some keyword(s).
 
 Format: `list tasks [-i] [-c]`
 
@@ -414,7 +415,7 @@ Format: `add link -n NAME -l URL`
 
 Examples:
 
-- `add link -n google -l https://google.com`
+- `add link -n google -l https://google.com` will add a link named "google" with the URL "https://google.com"
 
 ### Edit an existing link : `edit link`
 
@@ -424,7 +425,8 @@ Format: `edit link LINK_INDEX [-n NAME] [-l URL]`
 
 Examples:
 
-- `edit link 1 -n facebook -l https://facebook.com`
+- `edit link 1 -n facebook -l https://facebook.com` will update the 1st link to have the name "facebook" with the 
+  URL of "https://facebook.com"
 
 - ### Delete an existing link : `delete link`
 
