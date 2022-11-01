@@ -18,14 +18,14 @@ With NUScheduler, you can store the contact details of the NUS community around 
 
 ## Using this guide
 
-This user guide provides you with the information necessary to start using NUScheduler. 
+This user guide provides you with the information necessary to start using NUScheduler.
 
 In this user guide, you may encounter the following icons:
 
 <div markdown="block" class="meaning-icons-container">
 
 * :information_source: **Additional Information:** Provides general information that you might find helpful.
-* :bulb: **Tips:** Provides good to know information on how to more effectively utilise NUScheduler.    
+* :bulb: **Tips:** Provides good to know information on how to more effectively utilise NUScheduler.
 
 </div>
 
@@ -108,7 +108,7 @@ The following is the main user interface of NUScheduler.
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Command words and option flags are case-sensitive i.e. `profile -v` will work, but not `PROFILE -v` and `profile -V`. 
+* Command words and option flags are case-sensitive i.e. `profile -v` will work, but not `PROFILE -v` and `profile -V`.
 
 </div>
 
@@ -390,12 +390,12 @@ Access the previous commands you've made within each session.
 
 Use shortcuts to quickly enter tags.
 
-Example: 
+Example:
 
 * `profile -a n/Damith e/damith@comp.nus.edu.sg p/65164359 t/prof` Creates a profile with the name `Damith` and tag `professor`.
-* `event -e 1 t/tut` Edits the tag of the 1st event shown to `tutorial`.  
+* `event -e 1 t/tut` Edits the tag of the 1st event shown to `tutorial`.
 
-| Shortcut | Result       | 
+| Shortcut | Result       |
 |----------|--------------|
 | assm     | assignment   |
 | lec      | lecture      |
@@ -404,7 +404,6 @@ Example:
 | rec      | recitation   |
 | ta       | tutor        |
 | tut      | tutorial     |
-
 
 #### Quick Links
 
