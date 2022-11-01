@@ -198,7 +198,7 @@ Examples:
 grades 80 for CA1 and 60 for SA1. Notice the first score for CA1 is overridden by the second score for CA1.
 </div>
 
-![InvalidCommandError](images/InvalidCommandError.png)
+![InvalidCommandError](images/InvalidCommandError.png){:width="400px"}
 
 <div markdown="span" class="alert alert-warning">:exclamation:
 **Caution:** If you are receiving an invalid command message, do check to ensure that you are using the correct prefix 
