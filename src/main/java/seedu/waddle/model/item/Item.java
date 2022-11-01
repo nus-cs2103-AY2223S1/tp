@@ -72,7 +72,7 @@ public class Item {
     }
 
     public LocalTime getEndTime() {
-        LocalTime endTime = this.startTime.plusMinutes(this.duration.getDuration());
+        LocalTime endTime = this.startTime.plusMinutes(this.duration.getValue());
         if (this.startTime.isBefore(LocalTime.MAX) && endTime.equals(LocalTime.MIDNIGHT)) {
             return LocalTime.MAX;
         }

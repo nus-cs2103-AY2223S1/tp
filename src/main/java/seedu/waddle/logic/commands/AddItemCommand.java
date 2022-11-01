@@ -23,10 +23,10 @@ public class AddItemCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an item to an itinerary. "
             + "Parameters: "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]"
-            + "[" + PREFIX_PRIORITY + "PRIORITY]"
-            + "[" + PREFIX_COST + "COST]"
-            + "[" + PREFIX_ITEM_DURATION + "DURATION]...\n"
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_ITEM_DURATION + "DURATION "
+            + "[" + PREFIX_PRIORITY + "PRIORITY] "
+            + "[" + PREFIX_COST + "COST]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Visit Taj Mahal "
             + PREFIX_PRIORITY + "3";

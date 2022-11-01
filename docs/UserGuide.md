@@ -217,15 +217,21 @@ Here's an example of how the item planning page looks like:
 
 Adds an item to the list of items.
 
-Format: `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`
+Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
 
+* `DURATION` is the time taken for the item in _minutes_. The duration must be more than 0 minutes and shorter than 1440 minutes (1 day).
+    - e.g. `du/100` is 100 minutes (or 1 hour and 40 minutes).
 * Adds a new item with `DESCRIPTION` to the unscheduled item list.
-* The default `PRIORITY` is 1, while default `COST` and `DURATION` are both 0.
+
 * `COST` is the cost of the item and must be between $0 to $1,000,000. Please provide the cost in dollars ($), you may include cents too!
   - e.g. `b/100.20` is $100.20.
-* `DURATION` is in _minutes_.
-  - e.g. `du/100` is 100 minutes (or 1 hour and 40 minutes).
 * You cannot add items with the same description as an existing item in the item list.
+* 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**
+* The default `PRIORITY` is 1.
+* The default `COST` is $0.
+</div>
 
 Examples:
 * `add d/Go to the Louvre p/2 du/1`
