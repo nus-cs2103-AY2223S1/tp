@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -10,10 +11,11 @@ import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the address-book level.
+ * Duplicates are not allowed (by .isSamePerson comparison).
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
@@ -89,22 +91,39 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given person {@code target} in every module's set of persons (if it exists)
+     * and in the address book person list with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     *
+     * @param target The person to be replaced.
+     * @param editedPerson The person to replace {@code target}.
      */
     public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-
+        requireAllNonNull(target, editedPerson);
+        modules.setPersonInModules(target, editedPerson);
         persons.setPerson(target, editedPerson);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Returns the {@code Person} in {@code persons} with the matching name as the given {@code person}.
+     *
+     * @param person Person with the name which we would like to search for.
+     * @return {@code Person} with the same name as the given {@code person} argument.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public Person getPerson(Person person) throws PersonNotFoundException {
+        requireNonNull(person);
+        return persons.getPerson(person);
+    }
+
+    /**
+     * Removes {@code person} from every module that contains {@code person} inside
+     * and also removes {@code person} from this {@code AddressBook}.
+     * {@code person} must exist in the address book.
+     */
+    public void removePerson(Person person) {
+        modules.removePersonFromModules(person);
+        persons.remove(person);
     }
 
     //// module-level operations

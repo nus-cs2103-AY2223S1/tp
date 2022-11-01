@@ -3,11 +3,14 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookWithOnlyPersons;
 import static seedu.address.testutil.TypicalModules.CS2106;
 import static seedu.address.testutil.TypicalModules.MA2001;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,6 +25,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -78,6 +82,30 @@ public class AddressBookTest {
         addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).build();
         assertTrue(addressBook.hasPerson(editedAlice));
+    }
+
+    @Test
+    public void getPerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.getPerson(null));
+    }
+
+    @Test
+    public void getPerson_personNotInAddressBook_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> addressBook.getPerson(AMY));
+        assertThrows(PersonNotFoundException.class, () -> addressBook.getPerson(BOB));
+    }
+
+    @Test
+    public void getPerson_personInAddressBook_returnsTrue() {
+        addressBook.addPerson(AMY);
+        assertEquals(AMY, addressBook.getPerson(AMY));
+    }
+
+    @Test
+    public void getPerson_personWithSameNameInAddressBook_returnsTrue() {
+        Person personWithSameName = new PersonBuilder().withName(VALID_NAME_AMY).build();
+        addressBook.addPerson(AMY);
+        assertEquals(AMY, addressBook.getPerson(personWithSameName));
     }
 
     @Test
@@ -155,5 +183,4 @@ public class AddressBookTest {
             return modules;
         }
     }
-
 }

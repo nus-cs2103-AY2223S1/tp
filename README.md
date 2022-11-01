@@ -5,9 +5,13 @@
 
 ![Ui](docs/images/Ui.png)
 
-* **Plannit** is a **unified desktop application** that aims to **help NUS CS students manage their academic details.**
+* **Plannit** is an **all-in-one application** that streamlines the execution of module
+  deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and 
+  **module-mates** (i.e., students in the same module) to increase their productivity.
 
 * Plannit will be the **go-to platform** for them to access all modules links and information without needing to tediously navigate through multiple websites.
+
+* Plannit allows tracking of student contacts by module. Students do not have to worry about forgetting which friend takes which module.
 
 * Plannit is **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Plannit can help you track your module information and tasks faster than traditional GUI apps!
 

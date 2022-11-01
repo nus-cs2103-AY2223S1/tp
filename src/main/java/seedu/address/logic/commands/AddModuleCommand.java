@@ -46,6 +46,7 @@ public class AddModuleCommand extends Command {
         }
 
         model.addModule(toAdd);
+        model.goToHomePage();
         return new CommandResult(String.format(MESSAGE_ADD_MODULE_SUCCESS, toAdd));
     }
 

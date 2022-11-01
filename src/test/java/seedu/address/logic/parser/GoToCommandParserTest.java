@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_CODE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalModules.CS2106;
-import static seedu.address.testutil.TypicalModules.MA2001;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,27 +17,25 @@ import seedu.address.model.module.ModuleCodeMatchesKeywordPredicate;
 
 public class GoToCommandParserTest {
 
-    private static final String MODULE_CODE_STR_CS2106 = CS2106.getModuleCodeAsUpperCaseString();
-    private static final String MODULE_CODE_STR_MA2001 = MA2001.getModuleCodeAsUpperCaseString();
-
     private GoToCommandParser parser = new GoToCommandParser();
 
     @Test
     public void equals() {
         GoToCommand firstGoToCommand =
-                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106),
-                        new ModuleCode(MODULE_CODE_STR_CS2106));
+                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(VALID_CS2106_MODULE_CODE),
+                        new ModuleCode(VALID_CS2106_MODULE_CODE));
         GoToCommand secondGoToCommand =
-                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_MA2001),
-                        new ModuleCode(MODULE_CODE_STR_MA2001));
+                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(VALID_MA2001_MODULE_CODE),
+                        new ModuleCode(VALID_MA2001_MODULE_CODE));
 
         // same object -> returns true
         assertTrue(firstGoToCommand.equals(firstGoToCommand));
 
         // same values -> returns true
         GoToCommand firstGoToCommandCopy =
-                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106),
-                        new ModuleCode(MODULE_CODE_STR_CS2106));
+                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(VALID_CS2106_MODULE_CODE),
+                        new ModuleCode(VALID_CS2106_MODULE_CODE));
+
         assertTrue(firstGoToCommand.equals(firstGoToCommandCopy));
 
         // different types -> returns false
@@ -46,7 +44,7 @@ public class GoToCommandParserTest {
         // null -> returns false
         assertFalse(firstGoToCommand.equals(null));
 
-        // different module -> returns false
+        // different values -> returns false
         assertFalse(firstGoToCommand.equals(secondGoToCommand));
     }
 
@@ -59,20 +57,20 @@ public class GoToCommandParserTest {
     @Test
     public void parse_validArgs_returnsGoToCommand() {
         GoToCommand expectedGoToCommand =
-                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106),
-                        new ModuleCode(MODULE_CODE_STR_CS2106));
+                new GoToCommand(new ModuleCodeMatchesKeywordPredicate(VALID_CS2106_MODULE_CODE),
+                        new ModuleCode(VALID_CS2106_MODULE_CODE));
 
         // no leading and trailing whitespaces
-        assertParseSuccess(parser, MODULE_CODE_STR_CS2106, expectedGoToCommand);
+        assertParseSuccess(parser, VALID_CS2106_MODULE_CODE, expectedGoToCommand);
 
         // leading whitespaces
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + MODULE_CODE_STR_CS2106, expectedGoToCommand);
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_CS2106_MODULE_CODE, expectedGoToCommand);
 
         // trailing whitespaces
-        assertParseSuccess(parser, MODULE_CODE_STR_CS2106 + PREAMBLE_WHITESPACE, expectedGoToCommand);
+        assertParseSuccess(parser, VALID_CS2106_MODULE_CODE + PREAMBLE_WHITESPACE, expectedGoToCommand);
 
         // leading and trailing whitespaces
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + MODULE_CODE_STR_CS2106 + PREAMBLE_WHITESPACE,
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_CS2106_MODULE_CODE + PREAMBLE_WHITESPACE,
                 expectedGoToCommand);
     }
 }

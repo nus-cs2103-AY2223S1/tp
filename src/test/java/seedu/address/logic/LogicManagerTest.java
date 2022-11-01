@@ -1,7 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_PERSON_DELETE;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -16,11 +16,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.HomeCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -57,14 +59,14 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String deletePersonCommand = "delete-person n/Walker";
+        assertCommandException(deletePersonCommand, MESSAGE_NO_SUCH_PERSON_DELETE);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String homeCommand = HomeCommand.COMMAND_WORD;
+        assertCommandSuccess(homeCommand, HomeCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -89,6 +91,45 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredModuleList().remove(0));
+    }
+
+    @Test
+    public void getHomeStatus_modifyHomeStatus_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getHomeStatus().remove(0));
+    }
+
+    @Test
+    public void getAddressBook() {
+        ReadOnlyAddressBook expectedAddressBook = new AddressBook();
+        assertEquals(expectedAddressBook, logic.getAddressBook());
+    }
+
+    @Test
+    public void getAddressBookFilePath() {
+        Path expectedAddressBookFilePath = new UserPrefs().getAddressBookFilePath();
+        assertEquals(expectedAddressBookFilePath, logic.getAddressBookFilePath());
+    }
+
+    @Test
+    public void getGuiSettings() {
+        GuiSettings expectedGuiSettings = new UserPrefs().getGuiSettings();
+        assertEquals(expectedGuiSettings, logic.getGuiSettings());
+    }
+
+
+    @Test
+    public void setGuiSettings() {
+        GuiSettings expectedGuiSettings = new GuiSettings(1, 2, 3, 4);
+        UserPrefs expectedUserPrefs = new UserPrefs();
+        expectedUserPrefs.setGuiSettings(expectedGuiSettings);
+        Model expectedModel = new ModelManager(new AddressBook(), expectedUserPrefs);
+        logic.setGuiSettings(expectedGuiSettings);
+        assertEquals(expectedModel, model);
     }
 
     /**

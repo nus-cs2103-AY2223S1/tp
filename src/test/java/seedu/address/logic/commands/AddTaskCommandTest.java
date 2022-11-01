@@ -1,8 +1,9 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookWithOnlyModules;
@@ -15,7 +16,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddTaskCommand.AddTaskToModuleDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -24,7 +24,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.testutil.AddTaskToModuleDescriptorBuilder;
-import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.ModuleBuilder;
 
 /**
@@ -75,14 +74,15 @@ public class AddTaskCommandTest {
     @Test
     public void execute_nonExistentModuleCode_throwsCommandException() {
         Module nonExistentModule =
-                new ModuleBuilder().withModuleCode("CS1234").build();
+                new ModuleBuilder()
+                        .withModuleCode(VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK).build();
         AddTaskToModuleDescriptor descriptor =
                 new AddTaskToModuleDescriptorBuilder(nonExistentModule).build();
         AddTaskCommand addTaskCommand = new AddTaskCommand(descriptor);
 
-        assertThrows(CommandException.class,
-                Messages.MESSAGE_NO_SUCH_MODULE, () ->
-                addTaskCommand.execute(model));
+        assertThrows(CommandException.class, String.format(MESSAGE_NO_MODULE_IN_FILTERED_LIST,
+                        nonExistentModule.getModuleCodeAsUpperCaseString()), () ->
+                        addTaskCommand.execute(model));
     }
 
     @Test
@@ -116,23 +116,5 @@ public class AddTaskCommandTest {
                 new AddTaskToModuleDescriptorBuilder(modules.get(0),
                         "different description").build();
         assertFalse(standardCommand.equals(new AddTaskCommand(differentTaskDescriptionDescriptor)));
-    }
-
-    /**
-     * A Model stub that contains a single module.
-     */
-    private class ModelStubWithModule extends ModelStub {
-        private final Module module;
-
-        ModelStubWithModule(Module module) {
-            requireNonNull(module);
-            this.module = module;
-        }
-
-        @Override
-        public boolean hasModule(Module module) {
-            requireNonNull(module);
-            return this.module.isSameModule(module);
-        }
     }
 }

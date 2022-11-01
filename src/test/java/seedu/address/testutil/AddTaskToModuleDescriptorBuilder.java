@@ -14,17 +14,13 @@ public class AddTaskToModuleDescriptorBuilder {
 
     private AddTaskToModuleDescriptor descriptor;
 
-    public AddTaskToModuleDescriptorBuilder() {
-        descriptor = new AddTaskToModuleDescriptor();
-    }
-
     public AddTaskToModuleDescriptorBuilder(AddTaskToModuleDescriptor descriptor) {
         this.descriptor = new AddTaskToModuleDescriptor(descriptor);
     }
 
     /**
-     * Returns an {@code AddTaskToModuleDescriptor} with fields containing
-     * {@code module}'s details.
+     * Returns an {@code AddTaskToModuleDescriptor} with the given
+     * {@code module} as the target module.
      */
     public AddTaskToModuleDescriptorBuilder(Module module) {
         descriptor = new AddTaskToModuleDescriptor();
@@ -33,8 +29,9 @@ public class AddTaskToModuleDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code AddTaskToModuleDescriptor} with fields containing
-     * {@code module}'s details and new task with description given.
+     * Returns an {@code AddTaskToModuleDescriptor} with the given
+     * {@code module} as the target module and create a new task with
+     * the description given.
      */
     public AddTaskToModuleDescriptorBuilder(Module module, String taskDescription) {
         descriptor = new AddTaskToModuleDescriptor();

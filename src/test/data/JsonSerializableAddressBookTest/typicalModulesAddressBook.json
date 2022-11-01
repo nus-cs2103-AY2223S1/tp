@@ -4,19 +4,26 @@
   "modules" : [ {
     "moduleCode": "CS2103T",
     "moduleTitle": "Software Engineering",
-    "tasks" : [ ]
+    "tasks" : [ ],
+    "links" : [],
+    "persons" : [ ]
   }, {
     "moduleCode": "CS2106",
     "moduleTitle": "Introduction to Operating Systems",
-    "tasks" : [ ]
+    "tasks" : [ ],
+    "links" : [],
+    "persons" : [ ]
   }, {
     "moduleCode": "MA2001",
     "moduleTitle": "Linear Algebra I",
-    "tasks" : [ ]
+    "tasks" : [ ],
+    "links" : [],
+    "persons" : [ ]
   }, {
     "moduleCode": "GE3238",
     "moduleTitle": "GIS Design and Practices",
     "tasks" : [ ],
-    "linked" : ["qgis.org", "www.arcgis.com"]
+    "links" : ["2103T;https://nus-cs2103-ay2223s1.github.io/website/", "66666666;www.facebook.com", "nusmods;https://nusmods.com/timetable/sem-1"],
+    "persons" : [ ]
   }]
 }

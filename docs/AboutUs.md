@@ -71,4 +71,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [portfolio](team/teoyuqi.md)
 * Developer
 * Responsibilities:
-  * Implement task adding and deleting
+  * Implement task adding, deleting and swapping
+  * UI

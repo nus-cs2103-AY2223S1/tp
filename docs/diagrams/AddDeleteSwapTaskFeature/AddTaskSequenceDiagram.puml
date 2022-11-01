@@ -1,0 +1,91 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddTaskCommandParser" as AddTaskCommandParser LOGIC_COLOR
+participant "d:AddTaskToModuleDescriptor" as AddTaskToModuleDescriptor LOGIC_COLOR
+participant "a:AddTaskCommand" as AddTaskCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "m':Module" as Module MODEL_COLOR
+participant "t:Task" as Task MODEL_COLOR
+end box
+[-> LogicManager : execute(\ninput)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(\ninput)
+activate AddressBookParser
+
+create AddTaskCommandParser
+AddressBookParser -> AddTaskCommandParser : AddTaskCommandParser(input)
+activate AddTaskCommandParser
+
+create AddTaskToModuleDescriptor
+AddTaskCommandParser -> AddTaskToModuleDescriptor
+activate AddTaskToModuleDescriptor
+
+create Task
+AddTaskCommandParser -> Task
+activate Task
+deactivate AddTaskToModuleDescriptor
+
+Task --> AddTaskCommandParser
+deactivate Task
+
+AddTaskCommandParser -> AddTaskToModuleDescriptor : setNewTask(t)
+activate AddTaskToModuleDescriptor
+
+AddTaskToModuleDescriptor --> AddTaskCommandParser : d
+deactivate AddTaskToModuleDescriptor
+
+create AddTaskCommand
+AddTaskCommandParser -> AddTaskCommand : d
+activate AddTaskCommand
+
+AddTaskCommand --> AddTaskCommandParser : a
+deactivate AddTaskCommand
+
+AddTaskCommandParser --> AddressBookParser : a
+destroy AddTaskCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddTaskCommand : execute()
+activate AddTaskCommand
+
+AddTaskCommand -> Model : getModuleUsingModuleCode()
+activate Model
+
+Model --> AddTaskCommand : m
+deactivate Model
+
+AddTaskCommand -> AddTaskCommand :createModuleWithNewTask(\nm, d)
+activate AddTaskCommand
+
+create Module
+AddTaskCommand -> Module
+activate Module
+
+Module --> AddTaskCommand : m'
+deactivate Module
+
+AddTaskCommand --> AddTaskCommand : m'
+deactivate AddTaskCommand
+
+AddTaskCommand -> Model : setModule(m, m')
+activate Model
+
+Model --> AddTaskCommand
+deactivate Model
+
+AddTaskCommand --> LogicManager : commandResult
+destroy AddTaskCommand
+
+[<--LogicManager : commandResult
+deactivate LogicManager
+@enduml

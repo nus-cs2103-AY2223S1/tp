@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
 /**
- * The main LogicManager of the app.
+ * The main LogicManager of Plannit.
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
@@ -68,6 +68,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Boolean> getHomeStatus() {
+        return model.getHomeStatus();
     }
 
     @Override

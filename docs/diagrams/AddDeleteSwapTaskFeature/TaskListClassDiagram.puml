@@ -1,0 +1,31 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package UniqueModuleList <<Rectangle>>{
+Class UniqueModuleList
+    Package Module <<Rectangle>>{
+    Class Module
+    Class ModuleCode
+    Class ModuleTitle
+    Class Link
+    Class Person
+    Package TaskList <<Rectangle>> {
+        Class TaskList MODEL_COLOR_T5
+        Class Task MODEL_COLOR_T5
+    }
+}
+
+UniqueModuleList *--> "~* all" Module
+
+Module *--> "1" ModuleCode
+Module *--> "1" ModuleTitle
+Module *--> "*" Link
+Module *--> "*" Person
+Module *-right-> "1" TaskList MODEL_COLOR_T5
+
+TaskList o--> "*" Task MODEL_COLOR_T5
+
+@enduml

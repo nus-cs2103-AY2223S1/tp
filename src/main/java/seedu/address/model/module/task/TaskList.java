@@ -2,6 +2,7 @@ package seedu.address.model.module.task;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -65,6 +66,22 @@ public class TaskList implements Iterable<Task> {
         internalList.remove(zeroBasedIndexOfTaskToDelete);
     }
 
+    /**
+     * Swaps the tasks at the two indexes given.
+     */
+    public void swapTasks(Index indexOfFirstTask,
+                          Index indexOfSecondTask) {
+        Collections.swap(internalList,
+                indexOfFirstTask.getZeroBased(),
+                indexOfSecondTask.getZeroBased());
+    }
+
+    /**
+     * Replaces all {@code Task}s in the {@code internalList} with those
+     * in the given {@code TaskList}
+     * @param replacement The {@code TaskList} with the tasks we wish to
+     *                    replace with.
+     */
     public void setTasks(TaskList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+        Collections.sort(internalList);
     }
 
     /**
@@ -66,6 +68,28 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.set(index, editedPerson);
+        Collections.sort(internalList);
+    }
+
+    /**
+     * Returns the {@code Person} with the same {@code Name} as the
+     * {@code person} supplied as the argument.
+     * @param person {@code person} with the {@code Name} of the
+     *               {@code Person} we would like to retrieve.
+     * @throws PersonNotFoundException when there does not exist a {@code Person}
+     *                                 with the same {@code Name} as the
+     *                                 supplied argument.
+     */
+    public Person getPerson(Person person) throws PersonNotFoundException {
+        if (contains(person)) {
+            // There should only be one existing person with the same name.
+            assert internalList.stream().filter(person::isSamePerson).count() == 1;
+            return internalUnmodifiableList.stream()
+                    .filter(person::isSamePerson)
+                    .findFirst().get();
+        } else {
+            throw new PersonNotFoundException();
+        }
     }
 
     /**
@@ -82,6 +106,7 @@ public class UniquePersonList implements Iterable<Person> {
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        Collections.sort(internalList);
     }
 
     /**
@@ -95,6 +120,7 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+        Collections.sort(internalList);
     }
 
     /**

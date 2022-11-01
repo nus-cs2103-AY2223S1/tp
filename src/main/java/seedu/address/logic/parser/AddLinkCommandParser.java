@@ -2,21 +2,28 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_URL;
 
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddLinkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.link.Link;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.link.Link;
 
 /**
- * Parses input arguments and creates a new {@code AddLinkCommand} object
+ * Parses input arguments and creates a new {@code AddLinkCommand} object.
  */
 public class AddLinkCommandParser implements Parser<AddLinkCommand> {
+
+    public static final String MESSAGE_CONSTRAINTS = "Each link URL must be paired with a link alias";
+    public static final String MESSAGE_DUPLICATE_ALIAS = "Link Aliases should be unique";
+    public static final String MESSAGE_DUPLICATE_URL = "Link URLs should be unique";
+
     /**
      * Parses the given {@code String} of arguments in the context of the {@code AddLinkCommand}
      * and returns an {@code AddLinkCommand} object for execution.
@@ -24,33 +31,40 @@ public class AddLinkCommandParser implements Parser<AddLinkCommand> {
      */
     public AddLinkCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_LINK);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE,
+                PREFIX_MODULE_LINK_ALIAS, PREFIX_MODULE_LINK_URL);
 
-        Index index;
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLinkCommand.MESSAGE_USAGE), pe);
+        boolean isPreambleEmpty = argMultimap.getPreamble().isEmpty();
+        if (!isPreambleEmpty) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLinkCommand.MESSAGE_USAGE));
         }
 
-        Optional<Set<Link>> links = parseLinksToAdd(argMultimap.getAllValues(PREFIX_MODULE_LINK));
+        String moduleCodeStringToEdit = argMultimap.getValue(PREFIX_MODULE_CODE)
+                .orElseThrow(() -> new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLinkCommand.MESSAGE_USAGE)));
 
-        return new AddLinkCommand(index,
+        //Throws ParseException if module code or link/s is invalid
+        ModuleCode moduleCodeToEdit = ParserUtil.parseModuleCode(moduleCodeStringToEdit);
+        Optional<Set<Link>> links = parseLinksToAdd(
+                argMultimap.getAllValues(PREFIX_MODULE_LINK_ALIAS),
+                argMultimap.getAllValues(PREFIX_MODULE_LINK_URL));
+
+        return new AddLinkCommand(moduleCodeToEdit,
                 links.orElseThrow(() -> new ParseException(AddLinkCommand.MESSAGE_NOT_EDITED)));
     }
 
     /**
-     * Parses {@code Collection<String> links} into a {@code Set<Link>} if {@code links} is non-empty.
-     * If {@code links} contain only one element which is an empty string, {@code links} is treated as empty.
+     * Parses {@code Collection<String> linkAliases, Collection<String> linkUrls} into
+     * a {@code Map<Link>} if {@code linkAliases} and {@code linkUrls} is non-empty.
      */
-    private Optional<Set<Link>> parseLinksToAdd(Collection<String> links) throws ParseException {
-        assert links != null;
-        boolean isLinksEmpty = links.isEmpty();
-        boolean hasOnlyOneEmptyLink = links.size() == 1 && links.contains("");
-        if (isLinksEmpty || hasOnlyOneEmptyLink) {
+    private Optional<Set<Link>> parseLinksToAdd(
+            Collection<String> linkAliases, Collection<String> linkUrls) throws ParseException {
+        assert linkAliases != null && linkUrls != null;
+        boolean isLinksAliasesEmpty = linkAliases.isEmpty();
+        boolean isLinkUrlsEmpty = linkUrls.isEmpty();
+        if (isLinksAliasesEmpty || isLinkUrlsEmpty) {
             return Optional.empty();
         }
-        return Optional.of(ParserUtil.parseLinks(links));
+        return Optional.of(ParserUtil.parseLinks(linkAliases, linkUrls));
     }
 }

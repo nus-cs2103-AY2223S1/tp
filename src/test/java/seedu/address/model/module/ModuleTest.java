@@ -1,11 +1,13 @@
 package seedu.address.model.module;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalModules.CS2106;
 import static seedu.address.testutil.TypicalModules.MA2001;
 
@@ -20,6 +22,21 @@ public class ModuleTest {
         Module module = new ModuleBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> module.getLinks().remove(0));
         assertThrows(UnsupportedOperationException.class, () -> module.getTasks().remove(0));
+    }
+
+    @Test
+    public void getModuleTitleAsUpperCaseString_validModuleTitle_success() {
+        String expectedResult = VALID_MA2001_MODULE_CODE.toUpperCase();
+
+        // Uppercase module code.
+        assertEquals(expectedResult, MA2001.getModuleCodeAsUpperCaseString());
+
+        // Lowercase module code.
+        Module moduleWithLowerCaseModuleCode = new ModuleBuilder(MA2001)
+                .withModuleCode(VALID_MA2001_MODULE_CODE.toLowerCase()).build();
+        assertEquals(expectedResult,
+                moduleWithLowerCaseModuleCode.getModuleCodeAsUpperCaseString());
+
     }
 
     @Test
@@ -63,6 +80,15 @@ public class ModuleTest {
         String moduleWithLeadingSpaces = " " + VALID_CS2106_MODULE_CODE;
         editedCs2106 = new ModuleBuilder(CS2106).withModuleCode(moduleWithLeadingSpaces).build();
         assertTrue(CS2106.isSameModule(editedCs2106));
+    }
+
+    @Test
+    public void compareTo() {
+        assertTrue(CS2103T.compareTo(CS2106) < 0); // lexicographically smaller module against larger
+
+        assertTrue(CS2106.compareTo(CS2106) == 0); // Same module
+
+        assertTrue(MA2001.compareTo(CS2106) > 0); // lexicographically larger module against smaller
     }
 
     @Test

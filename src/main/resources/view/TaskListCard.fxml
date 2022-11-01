@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<HBox id="cardPane" fx:id="cardPane"
-      xmlns="http://javafx.com/javafx/8"
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane maxWidth="Infinity">
+  <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints minWidth="10"/>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="200" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="40" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
       <padding>
-        <Insets top="5" right="5" bottom="5" left="5" />
+        <Insets bottom="15" left="15" right="15" top="15" />
       </padding>
-      <HBox>
-        <Label fx:id="id" styleClass="cell_small_label" HBox.hgrow="NEVER"/>
-        <Label fx:id="taskDescription" prefWidth="180" maxWidth="Infinity"
-               styleClass="cell_small_label" textAlignment="JUSTIFY"
-               text="\$task" wrapText="true"/>
-      </HBox>
+        <!-- Task number and task description have a total height of 40px. -->
+        <Label fx:id="id" alignment="TOP_LEFT"  contentDisplay="TOP" maxHeight="Infinity"
+               styleClass="cell_small_label" HBox.hgrow="ALWAYS" minHeight="20" />
+        <!-- Task Description. -->
+        <Label fx:id="taskDescription" alignment="TOP_LEFT"
+               contentDisplay="TOP" maxHeight="Infinity"
+               styleClass="cell_small_label" text="\$task"
+               textAlignment="JUSTIFY" wrapText="true" minHeight="20" />
     </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
   </GridPane>
 </HBox>

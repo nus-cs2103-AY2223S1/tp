@@ -2,11 +2,13 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.task.Task;
 
@@ -18,6 +20,8 @@ public class TaskListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
 
     @FXML
+    private VBox taskListContainer;
+    @FXML
     private ListView<Task> taskListView;
 
     /**
@@ -27,6 +31,10 @@ public class TaskListPanel extends UiPart<Region> {
         super(FXML);
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
+        // 72 = Top padding + Bottom padding + Top border + Bottom border + Label Height
+        //    = 15 + 15 + 1 + 1 + 40.
+        taskListView.prefHeightProperty().bind(
+                Bindings.size(taskList).multiply(72));
     }
 
     /**

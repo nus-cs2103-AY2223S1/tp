@@ -1,25 +1,26 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_TASK_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER_TO_DELETE;
 
 import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
+import seedu.address.model.module.link.Link;
 import seedu.address.model.module.task.Task;
 import seedu.address.model.module.task.TaskList;
+import seedu.address.model.person.Person;
 
 /**
  * Deletes a task from an existing module in Plannit.
@@ -29,19 +30,16 @@ public class DeleteTaskCommand extends Command {
     public static final String COMMAND_WORD = "delete-task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a task "
-            + "belonging to the module identified by the module code. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "belonging to the module identified by the module code.\n"
             + "Parameters: "
-            + PREFIX_MODULE_CODE + "MODULE CODE "
-            + PREFIX_TASK_NUMBER + "TASK NUMBER \n"
+            + PREFIX_MODULE_CODE + "MODULE_CODE "
+            + PREFIX_TASK_NUMBER_TO_DELETE + "TASK_NUMBER \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_CODE + "CS3230 "
-            + PREFIX_TASK_NUMBER + "1";
+            + PREFIX_TASK_NUMBER_TO_DELETE + "1";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS =
             "Deleted task from: %1$s";
-    public static final String MESSAGE_TASK_NUMBER_DOES_NOT_EXIST =
-            "Task number given does not exist.";
 
     private final DeleteTaskFromModuleDescriptor deleteTaskFromModuleDescriptor;
 
@@ -58,7 +56,6 @@ public class DeleteTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Module> lastShownList = model.getFilteredModuleList();
         ModuleCode moduleCodeOfTaskToDeleteTaskFrom =
                 deleteTaskFromModuleDescriptor.moduleCodeOfModuleWithTaskToDelete;
         Module moduleToDeleteTaskFrom = null;
@@ -66,20 +63,20 @@ public class DeleteTaskCommand extends Command {
             moduleToDeleteTaskFrom =
                     model.getModuleUsingModuleCode(moduleCodeOfTaskToDeleteTaskFrom, true);
         } catch (ModuleNotFoundException e) {
-            throw new CommandException(Messages.MESSAGE_NO_SUCH_MODULE);
+            throw new CommandException(String.format(MESSAGE_NO_MODULE_IN_FILTERED_LIST,
+                    moduleCodeOfTaskToDeleteTaskFrom.getModuleCodeAsUpperCaseString()));
         }
         assert moduleToDeleteTaskFrom != null;
         int indexOfTaskToDelete = deleteTaskFromModuleDescriptor
                 .getTaskIndexToDelete().getZeroBased();
         int numberOfTasksInTaskList = moduleToDeleteTaskFrom.getTasks().size();
         if (indexOfTaskToDelete >= numberOfTasksInTaskList) {
-            throw new CommandException(MESSAGE_TASK_NUMBER_DOES_NOT_EXIST);
+            throw new CommandException(MESSAGE_NO_SUCH_TASK_NUMBER);
         }
         Module moduleWithTaskDeleted = createModuleWithDeletedTask(
                 moduleToDeleteTaskFrom, deleteTaskFromModuleDescriptor);
 
         model.setModule(moduleToDeleteTaskFrom, moduleWithTaskDeleted);
-        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS,
                 moduleWithTaskDeleted));
     }
@@ -91,21 +88,24 @@ public class DeleteTaskCommand extends Command {
      */
     private static Module createModuleWithDeletedTask(
             Module moduleToDeleteTaskFrom,
-            DeleteTaskFromModuleDescriptor deleteTaskToModuleDescriptor) {
+            DeleteTaskFromModuleDescriptor deleteTaskFromModuleDescriptor) {
         assert moduleToDeleteTaskFrom != null;
 
         ModuleCode moduleCode = moduleToDeleteTaskFrom.getModuleCode();
         ModuleTitle moduleTitle = moduleToDeleteTaskFrom.getModuleTitle();
-        Set<Link> moduleLinks = moduleToDeleteTaskFrom.getLinks();
         ObservableList<Task> moduleTasks = moduleToDeleteTaskFrom.getTasks();
+        Set<Link> moduleLinks = moduleToDeleteTaskFrom.getLinks();
+        Set<Person> modulePersons = moduleToDeleteTaskFrom.getPersons();
+
         TaskList updatedTasks = new TaskList(moduleTasks);
-        // Delete new task to the list.
+        // Delete new task from the list.
         Index indexOfTaskToDelete =
-                deleteTaskToModuleDescriptor.getTaskIndexToDelete();
+                deleteTaskFromModuleDescriptor.getTaskIndexToDelete();
         updatedTasks.remove(indexOfTaskToDelete);
         List<Task> updatedTasksAsList =
                 updatedTasks.asUnmodifiableObservableList();
-        return new Module(moduleCode, moduleTitle, updatedTasksAsList, moduleLinks);
+        return new Module(moduleCode, moduleTitle, updatedTasksAsList,
+                moduleLinks, modulePersons);
     }
 
     @Override
@@ -144,8 +144,8 @@ public class DeleteTaskCommand extends Command {
         }
 
         /**
-         * Sets {@code moduleCodeOfModuleWithTaskToDelete} to the given object's
-         * {@code moduleCodeOfModuleWithTaskToDelete}.
+         * Sets {@code moduleCodeOfModuleWithTaskToDelete} to the given
+         * {@code ModuleCode}.
          * A defensive copy of {@code moduleCodeOfModuleWithTaskToDelete} is
          * used internally.
          */
@@ -154,8 +154,7 @@ public class DeleteTaskCommand extends Command {
         }
 
         /**
-         * Sets {@code indexOfTaskToDelete} to the given object's {@code
-         * indexOfTaskToDelete}.
+         * Sets {@code indexOfTaskToDelete} to the given {@code Index}.
          * A defensive copy of {@code indexOfTaskToDelete} is used internally.
          */
         public void setIndexOfTaskToDelete(Index indexOfTaskToDelete) {

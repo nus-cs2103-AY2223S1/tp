@@ -106,6 +106,7 @@ public class AddModuleCommandTest {
      */
     private class ModelStubAcceptingModuleAdded extends ModelStub {
         final ArrayList<Module> modulesAdded = new ArrayList<>();
+        private boolean isHome = true;
 
         @Override
         public boolean hasModule(Module module) {
@@ -117,6 +118,22 @@ public class AddModuleCommandTest {
         public void addModule(Module module) {
             requireNonNull(module);
             modulesAdded.add(module);
+        }
+
+        @Override
+        public Boolean getHomeStatusAsBoolean() {
+            return isHome;
+        }
+
+        @Override
+        public void setHomeStatus(boolean isHome) {
+            requireNonNull(isHome);
+            this.isHome = isHome;
+        }
+
+        @Override
+        public void goToHomePage() {
+            isHome = true;
         }
 
         @Override

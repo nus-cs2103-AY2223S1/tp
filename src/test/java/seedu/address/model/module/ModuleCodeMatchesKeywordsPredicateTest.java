@@ -2,30 +2,28 @@ package seedu.address.model.module;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalModules.CS2106;
-import static seedu.address.testutil.TypicalModules.MA2001;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.ModuleBuilder;
 
 public class ModuleCodeMatchesKeywordsPredicateTest {
-    private static final String MODULE_CODE_STR_CS2106 = CS2106.getModuleCodeAsUpperCaseString();
-    private static final String MODULE_CODE_STR_MA2001 = MA2001.getModuleCodeAsUpperCaseString();
+    public static final String VALID_CS2106_MODULE_CODE = "CS2106";
+    public static final String VALID_MA2001_MODULE_CODE = "MA2001";
 
     @Test
     public void equals() {
         ModuleCodeMatchesKeywordPredicate firstPredicate =
-                new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106);
+                new ModuleCodeMatchesKeywordPredicate(VALID_CS2106_MODULE_CODE);
         ModuleCodeMatchesKeywordPredicate secondPredicate =
-                new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_MA2001);
+                new ModuleCodeMatchesKeywordPredicate(VALID_MA2001_MODULE_CODE);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
-        // same values -> returns true
+        // same keyword -> returns true
         ModuleCodeMatchesKeywordPredicate firstPredicateCopy =
-                new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106);
+                new ModuleCodeMatchesKeywordPredicate(VALID_CS2106_MODULE_CODE);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -34,29 +32,29 @@ public class ModuleCodeMatchesKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different module -> returns false
+        // different keyword -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
     @Test
     public void test_moduleCodeMatchesKeywords_returnsTrue() {
         // One keyword
-        ModuleCodeMatchesKeywordPredicate predicate = new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106);
-        assertTrue(predicate.test(new ModuleBuilder().withModuleCode(MODULE_CODE_STR_CS2106).build()));
+        ModuleCodeMatchesKeywordPredicate predicate = new ModuleCodeMatchesKeywordPredicate(VALID_CS2106_MODULE_CODE);
+        assertTrue(predicate.test(new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE).build()));
 
-        // Mixed-case keywords
+        // Mixed-case keyword
         predicate = new ModuleCodeMatchesKeywordPredicate("cS2106");
-        assertTrue(predicate.test(new ModuleBuilder().withModuleCode(MODULE_CODE_STR_CS2106).build()));
+        assertTrue(predicate.test(new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE).build()));
     }
 
     @Test
     public void test_moduleCodeDoesNotMatchKeywords_returnsFalse() {
         // Zero keywords
         ModuleCodeMatchesKeywordPredicate predicate = new ModuleCodeMatchesKeywordPredicate(" ");
-        assertFalse(predicate.test(new ModuleBuilder().withModuleCode(MODULE_CODE_STR_CS2106).build()));
+        assertFalse(predicate.test(new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE).build()));
 
         // Non-matching keyword
-        predicate = new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_MA2001);
-        assertFalse(predicate.test(new ModuleBuilder().withModuleCode(MODULE_CODE_STR_CS2106).build()));
+        predicate = new ModuleCodeMatchesKeywordPredicate(VALID_MA2001_MODULE_CODE);
+        assertFalse(predicate.test(new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE).build()));
     }
 }

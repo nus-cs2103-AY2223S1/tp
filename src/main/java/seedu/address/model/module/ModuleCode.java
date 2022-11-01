@@ -5,9 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Module's module code in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidModuleCode(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidModuleCode(String)}.
  */
-public class ModuleCode {
+public class ModuleCode implements Comparable<ModuleCode> {
     public static final String MESSAGE_CONSTRAINTS =
             "Module code should only contain alphanumeric characters, and it should not be blank";
 
@@ -61,5 +61,10 @@ public class ModuleCode {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(ModuleCode other) {
+        return value.compareTo(other.value);
     }
 }

@@ -26,9 +26,23 @@ public class AddModuleCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newModule_success() {
+    public void execute_newModuleAtHome_success() {
         Module validModule = new ModuleBuilder().build();
 
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.addModule(validModule);
+
+        assertCommandSuccess(new AddModuleCommand(validModule), model,
+                String.format(AddModuleCommand.MESSAGE_ADD_MODULE_SUCCESS, validModule), expectedModel);
+    }
+
+    @Test
+    public void execute_newModuleNotAtHome_success() {
+        model.setHomeStatus(false);
+
+        Module validModule = new ModuleBuilder().build();
+
+        // HomeStatus is initialised as true when model is first initialised.
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addModule(validModule);
 

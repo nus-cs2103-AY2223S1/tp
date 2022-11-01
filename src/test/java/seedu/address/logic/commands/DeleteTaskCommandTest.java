@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_TASK_NUMBER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookWithOnlyModules;
@@ -14,7 +16,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteTaskCommand.DeleteTaskFromModuleDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -24,7 +25,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.testutil.DeleteTaskFromModuleDescriptorBuilder;
-import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.ModuleBuilder;
 
 /**
@@ -57,13 +57,14 @@ public class DeleteTaskCommandTest {
     @Test
     public void execute_nonExistentModuleCode_throwsCommandException() {
         Module nonExistentModule =
-                new ModuleBuilder().withModuleCode("CS1234").build();
+                new ModuleBuilder()
+                        .withModuleCode(VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK).build();
         DeleteTaskCommand.DeleteTaskFromModuleDescriptor descriptor =
                 new DeleteTaskFromModuleDescriptorBuilder(nonExistentModule).build();
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(descriptor);
 
-        assertThrows(CommandException.class,
-                Messages.MESSAGE_NO_SUCH_MODULE, () ->
+        assertThrows(CommandException.class, String.format(MESSAGE_NO_MODULE_IN_FILTERED_LIST,
+                        nonExistentModule.getModuleCodeAsUpperCaseString()), () ->
                         deleteTaskCommand.execute(model));
     }
     @Test
@@ -75,7 +76,7 @@ public class DeleteTaskCommandTest {
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(descriptor);
 
         assertThrows(CommandException.class,
-                DeleteTaskCommand.MESSAGE_TASK_NUMBER_DOES_NOT_EXIST, () ->
+                MESSAGE_NO_SUCH_TASK_NUMBER, () ->
                 deleteTaskCommand.execute(model));
     }
 
@@ -112,21 +113,4 @@ public class DeleteTaskCommandTest {
         assertFalse(standardCommand.equals(new DeleteTaskCommand(differentTaskDescriptionDescriptor)));
     }
 
-    /**
-     * A Model stub that contains a single module.
-     */
-    private class ModelStubWithModule extends ModelStub {
-        private final Module module;
-
-        ModelStubWithModule(Module module) {
-            requireNonNull(module);
-            this.module = module;
-        }
-
-        @Override
-        public boolean hasModule(Module module) {
-            requireNonNull(module);
-            return this.module.isSameModule(module);
-        }
-    }
 }

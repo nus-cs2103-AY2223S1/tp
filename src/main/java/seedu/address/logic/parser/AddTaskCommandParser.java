@@ -13,7 +13,7 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.task.Task;
 
 /**
- * Parses input arguments and creates a new {@code AddTaskCommand} object
+ * Parses input arguments and creates a new {@code AddTaskCommand} object.
  */
 public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
@@ -28,6 +28,29 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_MODULE_CODE, PREFIX_TASK_DESCRIPTION);
+        checkIfAllArgumentsArePresent(argMultimap);
+
+        AddTaskToModuleDescriptor addTaskToModuleDescriptor =
+                new AddTaskToModuleDescriptor();
+        String moduleCodeOfModuleToAddTaskToAsString =
+                argMultimap.getValue(PREFIX_MODULE_CODE).get();
+        ModuleCode moduleCodeOfModuleToAddTaskTo =
+                ParserUtil.parseModuleCode(moduleCodeOfModuleToAddTaskToAsString);
+        addTaskToModuleDescriptor.setModuleCodeOfModuleToAddTaskTo(moduleCodeOfModuleToAddTaskTo);
+        String taskDescriptionOfNewTaskToAdd =
+                argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get();
+        Task newTaskToAdd =
+                ParserUtil.parseNewTaskDescription(taskDescriptionOfNewTaskToAdd);
+        addTaskToModuleDescriptor.setNewTask(newTaskToAdd);
+        return new AddTaskCommand(addTaskToModuleDescriptor);
+    }
+
+    /**
+     * Checks that all arguments are present.
+     * @param argMultimap {@code ArgumentMultimap} containing the arguments
+     *                    given by the user.
+     */
+    private void checkIfAllArgumentsArePresent(ArgumentMultimap argMultimap) throws ParseException {
         Boolean isModuleCodeAbsent = !arePrefixesPresent(argMultimap,
                 PREFIX_MODULE_CODE);
         Boolean isPreamblePresent = !argMultimap.getPreamble().isEmpty();
@@ -37,19 +60,5 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTaskCommand.MESSAGE_USAGE));
         }
-
-        AddTaskToModuleDescriptor addTaskToPersonDescriptor =
-                new AddTaskToModuleDescriptor();
-        String moduleCodeOfModuleToAddTaskToAsString =
-                argMultimap.getValue(PREFIX_MODULE_CODE).get();
-        ModuleCode moduleCodeOfModuleToAddTaskTo =
-                ParserUtil.parseModuleCode(moduleCodeOfModuleToAddTaskToAsString);
-        addTaskToPersonDescriptor.setModuleCodeOfModuleToAddTaskTo(moduleCodeOfModuleToAddTaskTo);
-        String taskDescriptionOfNewTaskToAdd =
-                argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get();
-        Task newTaskToAdd =
-                ParserUtil.parseNewTaskDescription(taskDescriptionOfNewTaskToAdd);
-        addTaskToPersonDescriptor.setNewTask(newTaskToAdd);
-        return new AddTaskCommand(addTaskToPersonDescriptor);
     }
 }
