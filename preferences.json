@@ -1,10 +1,10 @@
 {
   "guiSettings" : {
-    "windowWidth" : 824.0,
+    "windowWidth" : 740.0,
     "windowHeight" : 600.0,
     "windowCoordinates" : {
-      "x" : 421,
-      "y" : 60
+      "x" : 590,
+      "y" : 147
     }
   },
   "addressBookFilePath" : "data\\FABook.json"
