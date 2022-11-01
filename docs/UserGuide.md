@@ -212,7 +212,7 @@ Format: `list`
 
 ### Tasks Management
 
-The following commands are for managing your hackathon tasks. These tasks can be related to software development, product design, project presentation etc. 
+The following commands are for viewing and managing your hackathon tasks. These tasks can be related to software development, product design, project presentation etc. Each task can be assigned to a member to represent that they are responsible for completing that task.
 
 #### Adding a task: `addTask`
 
