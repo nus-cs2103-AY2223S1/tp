@@ -179,7 +179,8 @@ Format: `mark [h/ a/]INDEX`
 Examples:
 
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
-  `mark a/1` marks `Alex Yeoh`'s *attendance at first index*
+  `mark h/1` marks `Alex Yeoh`'s *homework at first index*
+  ![result for 'mark Alex Yeoh'](images/markAlexYeoh.png)
 
 ### Unmarking specific field in person: `unmark`
 
@@ -201,7 +202,8 @@ Format: `unmark [h/ a/]INDEX`
 Examples:
 
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
-  `unmark h/4` unmarks `Alex Yeoh`'s *homework at fourth index*
+  `unmark a/1` unmarks `Alex Yeoh`'s *attendance at first index*
+  ![result for 'unmark Alex Yeoh'](images/unmarkAlexYeoh.png)
 
 ### Locating persons by name: `find`
 
