@@ -127,7 +127,7 @@ Format: `delete person PERSON_INDEX`
 
 Examples:
 * `list persons` followed by `delete person 2` deletes the 2nd person in the address book.
-* `find person Betsy` followed by `delete person 1` deletes the 1st person in the results of the `find` command.
+* `find person Betsy` followed by `delete person 1` deletes the 1st person in the results of the `find person` command.
 
 ## Commands to Manage Teams
 
@@ -138,9 +138,7 @@ Add a new team to your list of teams. Will show an error there is already an exi
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Team name must consist only of alphanumeric characters (i.e., **Spaces are NOT allowed**).
 </div>
 
-Format:
-
-- `add team TEAM_NAME [-d TEAM_DESCRIPTION]`
+Format: `add team TEAM_NAME [-d TEAM_DESCRIPTION]`
 
 Examples:
 
@@ -152,9 +150,7 @@ Examples:
 
 Sets the application to an existing team, i.e., changes the current "working" team to another. Will throw an error if the team does not exist
 
-Format:
-
-- `set team TEAM_NAME`
+Format: `set team TEAM_NAME`
 
 Examples:
 
@@ -162,10 +158,9 @@ Examples:
 
 ### Edit current team `edit team`
 
-Format:
+Format: `edit team [-n TEAM_NAME] [-d TEAM_DESCRIPTION]`
 
-- `edit team [-n TEAM_NAME] [-d TEAM_DESCRIPTION]`
-- Examples:
+Examples:
 - `edit team -n CS2103 -d "Software Engineering"` will edit the name of the current team to CS2103 and description
   to "Software Engineering"
 
@@ -176,9 +171,7 @@ Delete an existing team from the user's list of teams. Throws an error under the
 - The target team does not exist.
 - The target team is the only existing team.
 
-Format:
-
-- `delete team TEAM_NAME`
+Format: `delete team TEAM_NAME`
 
 Examples:
 
@@ -190,9 +183,7 @@ Examples:
 
 Add a new team member to the user’s currently selected team. Will throw an error if the member already exists in the team.
 
-Format:
-
-- `add member MEMBER_INDEX`
+Format: `add member MEMBER_INDEX`
 
 Examples:
 
@@ -202,24 +193,15 @@ Examples:
 
 Delete a team member from the user’s team.
 
-Format:
-
-- `delete member TEAM_MEMBER_INDEX`
+Format: `delete member TEAM_MEMBER_INDEX`
 
 Examples:
 
 - `delete member 2` will delete the second member of the current team.
 
 ### Find members : `find member`
-Finds all members in the current team by name or by email and displays them in the member list.
 
-If multiple words are provided, separated by spaces, e.g. `find member -n Alex Beatrice`, members with names containing
-**either** the words "Alex" or "Beatrice" will be returned. This is the same for emails.
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** The search is **not** case-sensitive.
-In other words, `find member -n alex` and `find member -n Alex` will return the same results.
-</div>
+Finds all members in the current team whose names or emails contain any of the given keywords.
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** You can only find members using **either** emails or names. This means that you 
@@ -227,28 +209,31 @@ should not use both `-n` and `-e` in the `find member` command.
 </div>
 
 
-Format:
-* `find member [-n MEMBER_NAME] [-e MEMBER_EMAIL]`
+Format:`find member [-n MEMBER_NAME] [-e MEMBER_EMAIL]`
+
+* The search is case-insensitive. e.g. `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name or email is searched.
+* Only full words will be matched e.g. `marcus` will not match `marcus@gmail.com`
+* Persons matching at least one keyword will be returned (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`)
+
 
 Examples
 * `find member -n Alex` finds team members with **names** containing the word "Alex".
 * `find member -n Alex Beatrice` finds team members with **names** containing **either** "Alex" or "Beatrice".
-* `find member -e alexyeoh`  finds team members with **emails** containing "alexyeoh".
+* `find member -e alex@gmail.com`  finds team members with **emails** containing "alex@gmail.com".
 
 
 ### Listing all members of the team : `list members`
 
 View all the members currently in the team, in the form of a list.
 
-Format:
-
-- `list members`
+Format: `list members`
 
 ### Sort members : `sort members`
 Sorts all members in the current team by name and displays them in the member list.
 
-Format:
-* `sort members ORDER`
+Format: `sort members ORDER`
 
 Examples
 * `sort members asc` sorts your team members in **alphabetical** order (as per their names).
@@ -265,8 +250,7 @@ deadline are optional.
 Multiple assignees can be assigned to the same task directly, by specifying the indices of each assignee in the member list, separated by spaces.
 e.g. `add task "Merge PR" -a 1 3 4` will assign members 1, 3 and 4 to the task "Merge PR".
 
-Format:
-* `add task "TASK_NAME" [-a ASSIGNEE_INDEX] [-d DEADLINE]`
+Format: `add task "TASK_NAME" [-a ASSIGNEE_INDEX] [-d DEADLINE]`
 
 Examples:
 
@@ -284,9 +268,7 @@ will be overwritten accordingly.
 Multiple assignees can be assigned at one time, by specifying the indices of each of the members, separated by spaces.
 e.g. `edit task 1 -a 1 3 4` will assign members 1, 3 and 4.
 
-Format:
-
-- `edit task TASK_INDEX -n "TASK_NAME" [-a ASSIGNEE_INDEX] [-d DEADLINE]`
+Format: `edit task TASK_INDEX -n "TASK_NAME" [-a ASSIGNEE_INDEX] [-d DEADLINE]`
 
 Examples:
 
@@ -339,9 +321,7 @@ Examples:
 Delete an existing task from the team given the task's index. Will display an error message if the task is not found in
 the user’s team, i.e., when the index exceeds the number of tasks.
 
-Format:
-
-- `delete task TASK_INDEX`
+Format: `delete task TASK_INDEX`
 
 Examples:
 
@@ -351,9 +331,7 @@ Examples:
 
 Mark a specified task as done. To undo this command, see the `unmark` command below.
 
-Format:
-
-- `mark TASK_INDEX`
+Format: `mark TASK_INDEX`
 
 Examples:
 
@@ -363,9 +341,7 @@ Examples:
 
 Mark a specified task as incomplete. This will undo the `mark` command.
 
-Format:
-
-- `unmark TASK_INDEX`
+Format: `unmark TASK_INDEX`
 
 Examples:
 
@@ -381,12 +357,11 @@ If multiple words are provided, separated by spaces, e.g. `find member -n Alex B
 To reset the task list, see `list tasks` command below.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The search is **not** case sensitive.
+:information_source: **Note:** The search is **not** case-sensitive.
 In other words, `find task -n project` and `find task -n Project` will return the same results.
 </div>
 
-Format:
-* `find task -n TASK_NAME`
+Format: `find task -n TASK_NAME`
 
 Examples
 * `find task -n User Guide` finds tasks with **names** containing **either** the word "User" or "Guide".
@@ -398,8 +373,9 @@ remaining tasks.
 
 The command `list tasks` can also be used to view all tasks again after the `find task` command has been run.
 
-Format:
+Format: `list tasks [-i] [-c]`
 
+Examples:
 - `list tasks` will list all the tasks of the current team.
 - `list tasks -i` will list all the incomplete tasks of the current team.
 - `list tasks -c` will list all the completed tasks of the current team.
@@ -408,15 +384,12 @@ Format:
 
 View the number of tasks assigned to each user in the team.
 
-Format:
-
-- `summary`
+Format: `summary`
 
 ### Sort tasks : `sort tasks`
 Sorts all tasks in the current team by name and displays them in the task list
 
-Format:
-* `sort tasks ORDER`
+Format: `sort tasks ORDER`
 
 Examples
 * `sort tasks asc` sorts the tasks in **ascending** order.
@@ -426,8 +399,7 @@ Examples
 ### Filter tasks by team member : `tasksof`
 Find all tasks in your current team that have been assigned to a particular team member.
 
-Format:
-* `tasksof MEMBER_INDEX`
+Format: `tasksof MEMBER_INDEX`
 
 Examples
 * `tasksof 1` will show all tasks assigned to the first member in your current team's member list.
@@ -438,9 +410,7 @@ Examples
 
 Add a new link to the user's currently selected team.
 
-Format:
-
-- `add link -n NAME -l URL`
+Format: `add link -n NAME -l URL`
 
 Examples:
 
@@ -450,9 +420,7 @@ Examples:
 
 Edit an existing link in the user's currently selected team.
 
-Format:
-
-- `edit link LINK_INDEX [-n NAME] [-l URL]`
+Format: `edit link LINK_INDEX [-n NAME] [-l URL]`
 
 Examples:
 
@@ -462,9 +430,7 @@ Examples:
 
 Delete the specified link from the user's currently selected team.
 
-Format:
-
-- `delete link LINK_INDEX`
+Format: `delete link LINK_INDEX`
 
 Examples:
 
@@ -476,33 +442,25 @@ Examples:
 
 Deletes all the people from the application.
 
-Format:
-
-- `clear`
+Format: `clear`
 
 ### Switching between light and dark theme: `theme`
 
 Toggles between light theme and dark theme.
 
-Format:
-
-- `theme`
+Format: `theme`
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
-Format:
-
-- `exit`
+Format: `exit`
 
 ### Viewing help : `help`
 
 Shows the URL to this help page, which will list all available commands.
 
-Format:
-
-- `help`
+Format: `help`
 
 ### Saving the data
 
