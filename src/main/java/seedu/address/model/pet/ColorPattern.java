@@ -5,6 +5,8 @@ package seedu.address.model.pet;
  */
 public class ColorPattern implements Comparable<ColorPattern> {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Color patterns should only contain alphanumeric characters and spaces, and it should not be blank";
     private final String value;
 
     /**

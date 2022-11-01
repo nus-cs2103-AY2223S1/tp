@@ -4,6 +4,8 @@ package seedu.address.model.pet;
  * Represents the certificates that a pet has. For example, noble blood certificate.
  */
 public class PetCertificate {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Pet certificates should only contain alphanumeric characters and spaces, and it should not be blank";
     private final String certificate;
 
     /**
