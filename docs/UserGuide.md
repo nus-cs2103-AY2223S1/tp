@@ -13,7 +13,7 @@ easy comprehension of expenditure and savings.
 _Interested?_ Head over to [Quick Start](#quick-start) to get started. Enjoy!
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-Already set PennyWise up? Jump right straight to the [features](#features) section to see how you can get the most out of PennyWise!
+Already set PennyWise up? Jump right straight to the [features](#features) section to see what features are available!
 </div>
 
 # Table of Contents
@@ -61,9 +61,9 @@ Already set PennyWise up? Jump right straight to the [features](#features) secti
 
 ## Purpose of Guide
 
-This guide aims to teach those entirely new to PennyWise how to navigate and utilise the application. It can also
-provide experienced users or users familiar with similar command-line applications tips on how to maximise efficiency
-when using PennyWise.
+This guide aims to teach those new to PennyWise how to navigate and utilise the application. It can also provide
+experienced users or users familiar with similar command-line applications tips on how to maximise efficiency when using
+PennyWise.
 
 ## How to use this User Guide
 
