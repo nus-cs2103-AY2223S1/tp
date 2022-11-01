@@ -1,10 +1,9 @@
-package longtimenosee.model.Event;
+package longtimenosee.model.event;
 
 import static longtimenosee.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import longtimenosee.model.event.Duration;
 import org.junit.jupiter.api.Test;
 
 public class DurationTest {

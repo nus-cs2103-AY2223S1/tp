@@ -1,5 +1,17 @@
 package longtimenosee.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static longtimenosee.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.nio.file.Path;
+import java.util.Comparator;
+import java.util.List;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
 import javafx.collections.ObservableList;
 import longtimenosee.commons.core.GuiSettings;
 import longtimenosee.logic.commands.exceptions.CommandException;
@@ -16,17 +28,6 @@ import longtimenosee.model.policy.FinancialAdvisorIncome;
 import longtimenosee.model.policy.Policy;
 import longtimenosee.testutil.EventBuilder;
 import longtimenosee.testutil.PersonBuilder;
-import org.junit.jupiter.api.Test;
-
-import java.nio.file.Path;
-import java.util.Comparator;
-import java.util.List;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static longtimenosee.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class AddEventCommandTest {
 
@@ -46,7 +47,8 @@ public class AddEventCommandTest {
         AddEventCommand addEventCommand = new AddEventCommand(validEvent);
         AddEventCommandTest.ModelStub modelStub = new AddEventCommandTest.SingleModelStub(validPerson, validEvent);
 
-        assertThrows(CommandException.class, AddEventCommand.MESSAGE_DUPLICATE_EVENT, () -> addEventCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddEventCommand.MESSAGE_DUPLICATE_EVENT, () ->
+                addEventCommand.execute(modelStub));
     }
 
     @Test

@@ -1,8 +1,5 @@
 package longtimenosee.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import longtimenosee.model.event.Date;
 import longtimenosee.model.event.Description;
 import longtimenosee.model.event.Duration;

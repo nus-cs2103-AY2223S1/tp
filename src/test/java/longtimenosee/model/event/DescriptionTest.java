@@ -1,10 +1,9 @@
-package longtimenosee.model.Event;
+package longtimenosee.model.event;
 
 import static longtimenosee.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import longtimenosee.model.event.Description;
 import org.junit.jupiter.api.Test;
 
 public class DescriptionTest {
@@ -32,7 +31,8 @@ public class DescriptionTest {
 
         // valid addresses
         assertTrue(Description.isValidDescription("Lunch with Alice Pauline")); // normal description
-        assertTrue(Description.isValidDescription("Lunch and Dinner and Breakfast at 123 Street with Alice")); // long address
+        assertTrue(Description.isValidDescription("Lunch and Dinner and "
+                + "Breakfast at 123 Street with Alice")); // long address
         assertTrue(Description.isValidDescription(("ABC 123 DEF 456"))); // alphanumeric
     }
 }

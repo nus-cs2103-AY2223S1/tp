@@ -13,7 +13,7 @@ public class CalendarCommand extends Command {
 
     public static final String COMMAND_WORD = "calendar";
 
-    private static final String MESSAGE_SUCCESS = "Here are your events in the next 7 days";
+    public static final String MESSAGE_SUCCESS = "Here are your events in the next 7 days";
 
     /**
      * Creates a CalendarCommand object, no attributes required

@@ -3,9 +3,9 @@ package longtimenosee.logic.commands;
 import static longtimenosee.logic.commands.CommandTestUtil.assertCommandFailure;
 import static longtimenosee.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static longtimenosee.logic.commands.CommandTestUtil.showEventAtIndex;
+import static longtimenosee.testutil.TypicalEvents.getTypicalAddressBook;
 import static longtimenosee.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static longtimenosee.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static longtimenosee.testutil.TypicalEvents.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -13,10 +13,11 @@ import org.junit.jupiter.api.Test;
 
 import longtimenosee.commons.core.Messages;
 import longtimenosee.commons.core.index.Index;
-import longtimenosee.model.event.Event;
 import longtimenosee.model.Model;
 import longtimenosee.model.ModelManager;
 import longtimenosee.model.UserPrefs;
+import longtimenosee.model.event.Event;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

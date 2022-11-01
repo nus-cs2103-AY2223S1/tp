@@ -2,8 +2,8 @@ package longtimenosee.logic.commands;
 
 import static longtimenosee.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static longtimenosee.logic.commands.CommandTestUtil.showEventAtIndex;
-import static longtimenosee.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static longtimenosee.testutil.TypicalEvents.getTypicalAddressBook;
+import static longtimenosee.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

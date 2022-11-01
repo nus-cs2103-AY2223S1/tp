@@ -1,16 +1,15 @@
-package longtimenosee.model.Event;
+package longtimenosee.model.event;
 
-import static longtimenosee.testutil.Assert.assertThrows;
-import static longtimenosee.testutil.TypicalEvents.*;
+import static longtimenosee.testutil.TypicalEvents.WITH_ALICE;
+import static longtimenosee.testutil.TypicalEvents.WITH_BENSON;
+import static longtimenosee.testutil.TypicalEvents.WITH_ELLE;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import longtimenosee.model.AddressBook;
-import longtimenosee.model.event.Event;
 import longtimenosee.testutil.EventBuilder;
-import longtimenosee.testutil.TypicalEvents;
+
 
 public class EventTest {
 
