@@ -4,8 +4,8 @@ title: Salesy User Guide v1.3
 ---
 
 Salesy is an all-in-one tool for NUS canteen vendors who want to keep track of their tasks, inventory and suppliers. 
-With Salesy, you can expect a good visualization of your inventory and increased efficiency with your bookkeeping routines.
-Salesy optimized for use via a [Command Line Interface](#62-command-line-interface-cli) (CLI) while still having the benefits of 
+With Salesy, you can expect a good visualization of your inventory and increased efficiency of your bookkeeping routines.
+Salesy is optimized for use via a [Command Line Interface](#62-command-line-interface-cli) (CLI) while still having the benefits of 
 a [Graphical User Interface](#63-graphical-user-interface-gui) (GUI).
 
 ![Ui](images/Ui.png)
