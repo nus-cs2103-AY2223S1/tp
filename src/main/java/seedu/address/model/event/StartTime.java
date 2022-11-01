@@ -83,7 +83,7 @@ public class StartTime implements Comparable<StartTime> {
 
     @Override
     public String toString() {
-        return String.format("%s:%s", df.format(this.time.getHour()), df.format(this.time.getMinute()));
+        return toLogFormat();
     }
 
     @Override
