@@ -453,15 +453,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The Name, starting date or the ending date is not provided.
+* 1a. The Title, starting date or the ending date is not provided.
 
     * 1a1. NUScheduler reminds user of the correct format to add an event.
-
-      Use case ends.
-
-* 1b. An invalid profile is provided.
-
-    * 1b1. NUScheduler shows an error message.
 
       Use case ends.
 
