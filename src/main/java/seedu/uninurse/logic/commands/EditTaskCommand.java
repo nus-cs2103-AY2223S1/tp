@@ -1,15 +1,19 @@
 package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
 import java.util.List;
+import java.util.Optional;
 
 import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.task.DateTime;
+import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
@@ -34,21 +38,19 @@ public class EditTaskCommand extends EditGenericCommand {
 
     private final Index patientIndex;
     private final Index taskIndex;
-    private final Task updatedTask;
+    private final EditTaskDescriptor editTaskDescriptor;
 
     /**
      * @param patientIndex of the patient in the filtered patient list to edit.
      * @param taskIndex of the task to be edited.
-     * @param updatedTask details to edit for the task.
+     * @param editTaskDescriptor descriptor with details to edit for the task.
      */
-    public EditTaskCommand(Index patientIndex, Index taskIndex, Task updatedTask) {
-        requireNonNull(patientIndex);
-        requireNonNull(taskIndex);
-        requireNonNull(updatedTask);
+    public EditTaskCommand(Index patientIndex, Index taskIndex, EditTaskDescriptor editTaskDescriptor) {
+        requireAllNonNull(patientIndex, taskIndex, editTaskDescriptor);
 
         this.patientIndex = patientIndex;
         this.taskIndex = taskIndex;
-        this.updatedTask = updatedTask;
+        this.editTaskDescriptor = editTaskDescriptor;
     }
 
     @Override
@@ -67,11 +69,32 @@ public class EditTaskCommand extends EditGenericCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
         }
 
+        Task initialTask = initialTaskList.get(taskIndex.getZeroBased());
+        Task updatedTask;
+
+        //TODO: don't use instanceof
+        if (initialTask instanceof RecurringTask) {
+            RecurringTask initialRecurringTask = (RecurringTask) initialTask;
+            updatedTask = RecurringTask.parseRecurringTask(
+                editTaskDescriptor.getDescription().orElse(initialRecurringTask.getTaskDescription()),
+                editTaskDescriptor.getDateTime().orElse(initialRecurringTask.getDateTime()),
+                editTaskDescriptor.getRecurrenceAndFrequency().orElse(
+                        initialRecurringTask.getFrequency() + " " + initialRecurringTask.getRecurrence()));
+        } else if (editTaskDescriptor.getRecurrenceAndFrequency().isPresent()) {
+            updatedTask = RecurringTask.parseRecurringTask(
+                editTaskDescriptor.getDescription().orElse(initialTask.getTaskDescription()),
+                editTaskDescriptor.getDateTime().orElse(initialTask.getDateTime()),
+                editTaskDescriptor.getRecurrenceAndFrequency().get());
+        } else {
+            updatedTask = new Task(
+                editTaskDescriptor.getDescription().orElse(initialTask.getTaskDescription()),
+                editTaskDescriptor.getDateTime().orElse(initialTask.getDateTime()));
+        }
+
         if (patientToEdit.getTasks().hasTask(updatedTask)) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK);
         }
 
-        Task initialTask = initialTaskList.get(taskIndex.getZeroBased());
         TaskList updatedTaskList = initialTaskList.edit(taskIndex.getZeroBased(), updatedTask);
 
         Patient editedPatient = new Patient(patientToEdit, updatedTaskList);
@@ -96,9 +119,64 @@ public class EditTaskCommand extends EditGenericCommand {
         }
 
         // state check
-        EditTaskCommand e = (EditTaskCommand) other;
-        return patientIndex.equals(e.patientIndex)
-                && taskIndex.equals(e.taskIndex)
-                && updatedTask.equals(e.updatedTask);
+        EditTaskCommand o = (EditTaskCommand) other;
+        return patientIndex.equals(o.patientIndex)
+                && taskIndex.equals(o.taskIndex)
+                && editTaskDescriptor.equals(o.editTaskDescriptor);
+    }
+
+    /**
+     * Stores the details to edit the task with. Each non-empty field value
+     * will replace the corresponding field value of the task.
+     */
+    public static class EditTaskDescriptor {
+        private final Optional<String> description;
+        private final Optional<DateTime> dateAndTime;
+        private final Optional<String> recurAndFreq;
+        /**
+         * Constructs a {@code EditTaskDescriptor} that contains optional fields to edit an existing task.
+         *
+         * @param description An optional valid task description.
+         * @param dateAndTime An optional valid task date and time.
+         * @param recurAndFreq An optional valid recurrence and frequency.
+         */
+        public EditTaskDescriptor(Optional<String> description, Optional<DateTime> dateAndTime,
+                Optional<String> recurAndFreq) {
+            this.description = description;
+            this.dateAndTime = dateAndTime;
+            this.recurAndFreq = recurAndFreq;
+        }
+
+        public Optional<String> getDescription() {
+            return description;
+        }
+
+        public Optional<DateTime> getDateTime() {
+            return dateAndTime;
+        }
+
+        public Optional<String> getRecurrenceAndFrequency() {
+            return recurAndFreq;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditTaskDescriptor)) {
+                return false;
+            }
+
+            // state check
+            EditTaskDescriptor o = (EditTaskDescriptor) other;
+
+            return description.equals(o.description)
+                    && dateAndTime.equals(o.dateAndTime)
+                    && recurAndFreq.equals(o.recurAndFreq);
+        }
     }
 }

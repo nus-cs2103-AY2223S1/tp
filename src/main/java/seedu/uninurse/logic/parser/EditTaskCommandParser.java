@@ -9,8 +9,8 @@ import java.util.NoSuchElementException;
 
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.EditTaskCommand;
+import seedu.uninurse.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
-import seedu.uninurse.model.task.Task;
 
 /**
  * Parses input arguments and creates a new EditTaskCommand object
@@ -27,19 +27,17 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TASK_DESCRIPTION);
 
-        List<Index> indices;
-        Task updatedTask;
-
         try {
-            indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
-            updatedTask = ParserUtil.parseTask(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).orElseThrow());
+            List<Index> indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
+            EditTaskDescriptor editTaskDescriptor =
+                    ParserUtil.parseEditTaskDescriptor(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).orElseThrow());
+
+            return new EditTaskCommand(indices.get(0), indices.get(1), editTaskDescriptor);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditTaskCommand.MESSAGE_USAGE), pe);
         } catch (NoSuchElementException nse) {
             throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED);
         }
-
-        return new EditTaskCommand(indices.get(0), indices.get(1), updatedTask);
     }
 }

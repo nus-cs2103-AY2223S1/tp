@@ -63,15 +63,15 @@ public class CommandResult {
     }
 
     public boolean isUndo() {
-        return this.commandType == commandType.UNDO;
+        return this.commandType == CommandType.UNDO;
     }
 
     public boolean isRedo() {
-        return this.commandType == commandType.REDO;
+        return this.commandType == CommandType.REDO;
     }
 
     public boolean isFind() {
-        return this.commandType == commandType.FIND;
+        return this.commandType == CommandType.FIND;
     }
 
     @Override
