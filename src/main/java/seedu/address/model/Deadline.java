@@ -41,7 +41,7 @@ public class Deadline {
             "Deadlines should be entered in yyyy-mm-dd date format \n"
             + "Year (yyyy): A year from 1900 to 2XXX \n"
             + "Month (mm): A month in the range of 1 to 12 \n"
-            + "Day (dd): A day in the range of 1 to 31 \n";
+            + "Day (dd): A day in the range of 1 to 31";
 
     /*
      * The date must be entered in yyyy-mm-dd

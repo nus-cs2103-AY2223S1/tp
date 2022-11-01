@@ -34,9 +34,9 @@ public class Repository {
     }
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Repository should be entered in <Username/RepoName> format"
-            + "Username and repository name input"
-            + "should have a maximum of 39 characters with 1 or more alphanumeric characters"
+            "Repository should be entered in <Username/RepoName> format \n"
+            + "Username: Maximum of 39 characters with 1 or more alphanumeric characters \n"
+            + "Repository: Maximum of 39 characters with 1 or more alphanumeric characters \n"
             + "Dashes are allowed";
 
     /*
