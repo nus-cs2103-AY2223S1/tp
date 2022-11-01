@@ -77,8 +77,11 @@ public class PickCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_LESSON_ID);
         }
 
+        //TODO: Change this
+        String lessonInfo = lessonId + "\n" + module.getLessonInfo(lessonType, curr.getSelectedSemester(), lessonId);
+
         // if everything correct then set accordingly in hashmap in UserModule
-        curr.addLesson(lessonType, lessonId);
+        curr.addLesson(lessonType, lessonInfo);
 
         String addedDetails = String.format("%s %s %s", toPick, lessonType.name(), lessonId);
         return new CommandResult(String.format(MESSAGE_SUCCESS, addedDetails.toUpperCase()), COMMAND_WORD);

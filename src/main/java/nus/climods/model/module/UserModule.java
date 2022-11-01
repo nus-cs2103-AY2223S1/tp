@@ -85,8 +85,8 @@ public class UserModule {
      * @param lessonType       lesson type
      * @param lessonId lesson id
      */
-    public void addLesson(LessonTypeEnum lessonType, String lessonId) {
-        lessons.put(lessonType, lessonId);
+    public void addLesson(LessonTypeEnum lessonType, String lessonInfo) {
+        lessons.put(lessonType, lessonInfo);
         updateLessonDataDisplay();
     }
 

@@ -298,6 +298,24 @@ public class Module {
     }
 
     /**
+     * Get lesson information such as lesson timing and lesson day for UserModule.
+     * @param lessonType
+     * @param semester
+     * @param lessonCode
+     * @return
+     */
+    public String getLessonInfo(LessonTypeEnum lessonType, SemestersEnum semester, String lessonCode) {
+        requireNonNull(lessonMap);
+
+        Lesson l = Optional.of(lessonMap.get(semester)).map(semesterMap -> semesterMap.get(lessonType))
+                .map(lessonSet -> lessonSet.get(lessonCode)).get().get(0);
+
+        String toDisplay = String.format("Timing: %s, %s-%s", l.getDay(), l.getStartTime(), l.getEndTime());
+
+        return toDisplay;
+    }
+
+    /**
      * Returns the description of the module's preclusion.
      *
      * @return module preclusion description
