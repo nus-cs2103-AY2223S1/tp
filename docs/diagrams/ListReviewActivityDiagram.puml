@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes rlist command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+if () then ([Command is Valid])
+    :FoodWhere lists all [Review]s;
+else ([else])
+endif
+stop
+@enduml
