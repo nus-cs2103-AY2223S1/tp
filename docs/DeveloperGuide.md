@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 <div style="text-align:center;">
-<img src="images/classifyLogo.png">
+<img src="images/ClassifyLogo.png">
 </div>
 
 * Table of Contents
@@ -32,6 +32,8 @@ This developer guide covers the architecture, design choices and implementation 
 * Refer to our [Appendix: Requirements](#6-appendix-requirements) section for Class-ify's requirements.
 * Refer to our [Appendix: Instructions for manual testing](#7-appendix-instructions-for-manual-testing) section to learn how to test Class-ify manually.
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. **Acknowledgements**
@@ -39,11 +41,15 @@ This developer guide covers the architecture, design choices and implementation 
 * Class-ify is adapted from the [AddressBook-Level3](https://se-education.org/addressbook-level3/) project created by the SE-EDU initiative.
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -164,6 +170,8 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.classify.commons` package.
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### 4.2 Implementation
@@ -233,7 +241,7 @@ An alternative and perhaps more OOP approach is given below. It has a `Class` li
 
 **Description**
 
-The delete command allows users to delete a student record by targeting either the student’s name or student’s ID.
+The delete command allows users to delete a student record by targeting either the student’s name or ID.
 
 **Implementation**
 
@@ -265,7 +273,7 @@ The `DeleteCommand` instance now communicates with the `ModelManager` to execute
 
 **Design Considerations**
 
-Current Design: We chose to keep a single class `DeleteCommand`, which the user can use to delete student records either by targeting the student’s name or student ID.
+Current Design: We chose to keep a single class `DeleteCommand`, which the user can use to delete student records either by targeting the student’s name or student ID. Note that we chose not to delete student records by their index in the list since deletion is irreversible, and we wanted users to be aware of the exact student name when they are executing a `DeleteCommand`.
 
 Pros:
 - The user does not have to remember different types of delete commands such as `DeleteStudentByNameCommand` or `DeleteStudentByIDCommand`.
@@ -495,6 +503,8 @@ The following sequence diagram depicts how different components such as `Logic` 
   - Cons:
     - Reorders the whole `StudentRecord` each time the sorting is done
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. **Documentation, logging, testing, configuration, dev-ops**
@@ -505,13 +515,15 @@ The following sequence diagram depicts how different components such as `Logic` 
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. **Appendix: Requirements**
 
 ### 6.1 Product scope
 
-**Target user profile**:
+**Target User Profile**
 
 Ministry of Education (MOE) Teachers who:
 * Teaches 3 to 5 classes a year
@@ -524,11 +536,9 @@ Ministry of Education (MOE) Teachers who:
 * Prefers typing to mouse interactions
 * Types fast and is reasonably comfortable using CLI apps
 
-**Value proposition**:
-Class-ify is a class management application built specially for Ministry of Education (MOE) teachers to
-monitor their student's academic progress easily. Teachers can generate exam statistics for each class,
-and Class-ify quickly flags out students who require more support for contacting.
+**Value Proposition**
 
+Class-ify is a **class management application** built specially for **Singapore Ministry of Education (MOE) teachers** to **monitor their student's academic progress easily**. Teachers can **generate exam statistics** for each class, and Class-ify quickly **flags out students** who require more support for contacting.
 
 ### 6.2 User stories
 
@@ -571,7 +581,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `Class-ify` and the **Actor** is the `user`, unless specified otherwise.)
 
-<u>**Use case: Add a new student**</u>
+**Use case: Add a new student**
 
 **MSS**
 
@@ -592,14 +602,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. User missed out a compulsory field.
    * 2b1. Class-ify shows an invalid command error message.
 
-     Use case resumes at step 2.
+     Use case resumes from step 2.
 
 * 2c. Class-ify detects invalid format of field value.
     * 2c1. Class-ify shows an invalid format error message.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
-<u>**Use case: Delete a student**</u>
+**Use case: Delete a student**
 
 **MSS**
 
@@ -620,14 +630,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. The student record is empty.
     * 2b1. Class-ify displays an error message similar to 2a1.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
 * 2c. Class-ify detects invalid format of field value.
     * 2c1. Class-ify shows an invalid format error message.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
-<u>**Use case: Edit details of a student**</u>
+**Use case: Edit details of a student**
 
 **MSS**
 
@@ -649,19 +659,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. The given index is out of bounds of the list.
     * 2b1. Class-ify displays an error message similar to 2a1.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
 * 3a. Class-ify detects invalid format of field value.
     * 3a1. Class-ify shows an invalid format error message.
 
-      Use case resumes at step 3.
+      Use case resumes from step 3.
 
 * 3b. No given fields to be edited.
     * 3b1. Class-ify shows an error message to prompt user to enter at least one field to be edited.
 
-      Use case resumes at step 3.
+      Use case resumes from step 3.
 
-<u>**Use case: Find a student**</u>
+**Use case: Find a student**
 
 **MSS**
 
@@ -682,16 +692,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. Class-ify detects invalid format of field value.
     * 2b1. Class-ify shows an invalid format error message.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
 * 4a. No students are found.
     * 4b1. Class-ify display an empty list and a message indicating no students are found. 
 
       Use case ends.
 
-*More to be added*
+**Use case: Calculate exam statistics**
+
+**MSS**
+
+1. User requests to calculate exam statistics for a class.
+2. User enters the class and exam that he/she wishes to calculate statistics for.
+3. Class-ify calculates the average score in the class for the exam.
+4. Class-ify displays the list of students in the class in order of ascending grades.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No fields are given.
+    * 2a1. Class-ify displays an invalid command error message.
+
+      Use case resumes from step 2.
+
+* 2b. Class-ify detects invalid format of field value.
+    * 2b1. Class-ify shows an invalid format error message.
+
+      Use case resumes from step 2.
+
+* 2c. Not all students have received grades for the exam.
+    * 2c1. Class-ify shows an error message stating mean score cannot be calculated.
 
 ### 6.4 Non-Functional Requirements
+
 - **Technical Requirement**:
   - Class-ify should work on any mainstream operating system (OS) as long as it has Java version 11 or above installed.
   - Class-ify should work on both 32-bit and 64-bit environments.
@@ -716,6 +751,8 @@ Through the CLI, users interact with the application by typing in text commands
 * **MSS**: Main Success Scenario (MSS) describes the most straightforward interaction for a given use case, 
 which assumes that nothing goes wrong
 * **32-bit/64-bit environment**: Refers to systems that use a 32-bit/64-bit processor respectively.
+
+Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -837,3 +874,5 @@ Prerequisites: Missing `data/classify.json` file
 1. Dealing with missing/corrupted data files
       1. Test case: Delete `data/classify.json` file and relaunch the application.
          Expected: Application will be populated with sample data.
+
+Click <a href="#top">here</a> to return to the top.
