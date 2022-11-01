@@ -101,7 +101,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `NuSchedulerParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddProfileCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a profile).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("profile -d 1")` API call.
 
@@ -112,9 +112,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `NuSchedulerParser` class creates an `XCommandParser` (`X` is a placeholder for the command type e.g., `ProfileCommandParser`, `EventCommandParser`) for `Profile` and `Event` commands. A `YCommand` (`Y` is a placeholder for the command name e.g., `FindCommand`. `ClearCommand`) is created instead for other commands.
+* When called upon to parse a user command, the `NuSchedulerParser` class creates an `XCommandParser` (`X` is a placeholder for the command type e.g., `ProfileCommandParser`, `EventCommandParser`) for `Profile` and `Event` commands.
+* A `YCommandParser` (`Y` is a placeholder for general command names e.g., `ClearCommandParser`, `ExitCommandParser`) is created instead for other commands.
 * For `Event` and `Profile` commands,  `ProfileCommandParser` and `EventCommandParser` will create the respective `ZXCommandParser` (`Z` is a placeholder for the command name of command type `X` e.g., `AddProfileCommandParser`) to parse the user command. After parsing the user command, a `ZXCommand` (e.g., `AddProfileCommand`) object is created which is then returned by `NuSchedulerParser` as a `Command` object.
-* All `XCommandParser` and `ZXCommandParser` classes (e.g., `ProfileCommandParser`, `FindEventCommandParser`) implements the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* For other general commands, `YCommandParser` creates `YCommand` (e.g., `ClearCommand`, `ExitCommand`) which is returned by `NuSchedulerParser` as a `Command` object. 
+* All `XCommandParser`, `YCommandParser` and `ZXCommandParser` classes implements the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
