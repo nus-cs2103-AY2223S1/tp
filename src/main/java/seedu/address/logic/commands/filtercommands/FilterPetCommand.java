@@ -25,7 +25,6 @@ public class FilterPetCommand extends FilterCommand {
             + "For Name, use the prefix " + FilterPetCommandParser.PET_NAME_PREFIX + "\n"
             + "For Price, use the prefix " + FilterPetCommandParser.PRICE_PREFIX + "\n"
             + "For Species, use the prefix " + FilterPetCommandParser.SPECIES_PREFIX + "\n"
-            + "For Vaccination Status, use the prefix " + FilterPetCommandParser.VACCINATION_PREFIX + "\n"
             + "Example: " + COMMAND_WORD + " p_n/Ashy p_s/Cat";
 
     private final Predicate<Pet> colorPredicate;
