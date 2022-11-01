@@ -190,6 +190,7 @@ Adds a contact to your task book.
 Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`
 
 * For more information on the `NAME` parameter, see [NAME Parameter](#name-parameter).
+* Note that adding a new contact [will remove the effect of a `find` command](#finding), displaying the full list of contacts.
 
 Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -208,6 +209,7 @@ Adds a task of type todo into your task list.
 * Adds a todo assigned by (`m/`) or assigned to (`o/`) a contact with a description. Optional to include tags.
 * Input "Myself" or omit the `m/` and `o/` flags to assign yourself a todo.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
+* Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 Examples:
 * `task todo m/John d/Finish user guide` adds a todo called “Finish user guide” assigned by John to you.
@@ -229,6 +231,7 @@ Adds a task of type deadline into the task list.
 * Input "Myself" or omit the `m/` and `o/` flags to assign yourself the deadline.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
 * For more information on `DATE` formats, see [Accepted Date Formats](#accepted-date-formats).
+* Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 Examples:
 * `task deadline m/John d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by John to you.
@@ -249,6 +252,7 @@ Adds a task of type event into your task list.
 * Adds an event assigned by (`m/`) or assigned to (`o/`) a contact with a description and an event date. Optional to include tags.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
 * For more information on `DATE` formats, see [Accepted Date Formats](#accepted-date-formats).
+* Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 Examples:
 * `task event m/John d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by John to you.
@@ -339,6 +343,13 @@ Example:
 * `task list` followed by `task delete i/2` deletes the 2nd task in your task list.
 
 ### Finding
+
+<div markdown="block" class="alert alert-warning">
+
+**:bulb: Note:**<br>
+* When you add a new contact/task, the effect of any `find` command will be removed, and the full list of contacts/tasks will be displayed.
+
+</div>
 
 #### Finding contacts : `contact find`
 
