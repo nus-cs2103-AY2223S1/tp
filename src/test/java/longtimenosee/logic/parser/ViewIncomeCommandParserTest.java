@@ -11,7 +11,8 @@ public class ViewIncomeCommandParserTest {
     private final ViewIncomeCommandParser parser = new ViewIncomeCommandParser();
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", "Invalid command format! \n" + String.format(ViewIncomeCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", "Invalid command format! \n"
+                + String.format(ViewIncomeCommand.MESSAGE_USAGE));
     }
     @Test
     public void parse_invalidLimit_throwsParseException() {

@@ -36,7 +36,7 @@ public class ViewPinCommandTest {
         ViewPinCommand command = new ViewPinCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), expectedModel.getFilteredPersonList()); //asserts that model shown is empty
+        assertEquals(Collections.emptyList(), expectedModel.getFilteredPersonList());
     }
     @Test
     public void execute_listHasOnePinned_showsOne() {
