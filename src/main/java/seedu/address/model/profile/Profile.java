@@ -13,7 +13,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Profile in the address book.
+ * Represents a Profile in the NUScheduler.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Profile implements Comparable<Profile> {

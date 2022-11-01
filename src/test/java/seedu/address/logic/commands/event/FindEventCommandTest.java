@@ -24,11 +24,11 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.event.DateTime;
 import seedu.address.model.event.StartDateTimeContainsDatePredicate;
 import seedu.address.model.event.TitleContainsKeywordsPredicate;
-import seedu.address.testutil.TypicalAddressBook;
+import seedu.address.testutil.TypicalNuScheduler;
 
 public class FindEventCommandTest {
-    private Model model = new ModelManager(TypicalAddressBook.getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalAddressBook.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalNuScheduler.getTypicalNuScheduler(), new UserPrefs());
+    private Model expectedModel = new ModelManager(TypicalNuScheduler.getTypicalNuScheduler(), new UserPrefs());
 
     @Test
     public void equals() {

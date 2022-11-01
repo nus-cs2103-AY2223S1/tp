@@ -1,22 +1,22 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.NuScheduler;
 import seedu.address.model.event.Event;
 import seedu.address.model.profile.Profile;
 
 /**
- * A utility class containing an address book with a list of
+ * A utility class containing a NUScheduler with a list of
  * {@code Profile} and {@code Event} objects to be used in tests.
  */
-public class TypicalAddressBook {
+public class TypicalNuScheduler {
 
-    private TypicalAddressBook() {} // prevents instantiation
+    private TypicalNuScheduler() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical profiles.
+     * Returns an {@code NuScheduler} with all the typical profiles.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static NuScheduler getTypicalNuScheduler() {
+        NuScheduler ab = new NuScheduler();
         for (Profile profile : TypicalProfiles.getTypicalProfiles()) {
             ab.addProfile(profile);
         }
