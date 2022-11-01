@@ -49,8 +49,13 @@ It is written in Java and the GUI is built using JavaFX.
   - See PR [#162](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/162)
 
 #### Contributions to Team-based Tasks
+_To be updated_
 
 #### Review/mentoring contributions
+- [#243](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/243): Highlighted an inconsistent wording in the user guide.
+- [#170](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/170): Assisted teammate in resolving difficulties in UI layout and scaling.
+- [#156](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/156): Informed teammate of the incorrect use of HTML list tags for the user guide.
+- [#139](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/139): Brought up a suggestion on how to make the code more concise.
 
 #### Contributions Beyond the Project Team
-
+_To be updated_
