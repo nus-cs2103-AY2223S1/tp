@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.Set;
@@ -59,7 +59,7 @@ public class PayCommand extends Command {
         List<Student> lastShownList = model.getFilteredScheduleList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_SCHEDULE_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_SCHEDULE_INDEX);
         }
 
         Student studentPaying = lastShownList.get(targetIndex.getZeroBased());
@@ -67,8 +67,8 @@ public class PayCommand extends Command {
 
         model.setStudent(studentPaying, paidStudent);
 
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_STUDENTS);
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
