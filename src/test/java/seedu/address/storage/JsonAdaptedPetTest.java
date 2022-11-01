@@ -80,65 +80,65 @@ public class JsonAdaptedPetTest {
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
 
-//    @Test
-//    public void toModelType_invalidColor_defaultColor() {
-//        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, INVALID_COLOR, VALID_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, DEFAULT_COLOR, VALID_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        try {
-//            assertEquals(pet.toModelType(), expected.toModelType());
-//        } catch (IllegalValueException e) {
-//            assert false;
-//        }
-//    }
-//
-//    @Test
-//    public void toModelType_nullColor_defaultColor() {
-//        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, null, VALID_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, DEFAULT_COLOR, VALID_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        try {
-//            assertEquals(pet.toModelType(), expected.toModelType());
-//        } catch (IllegalValueException e) {
-//            assert false;
-//        }
-//    }
-//
-//    @Test
-//    public void toModelType_invalidColorPattern_defaultColorPattern() {
-//        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, INVALID_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, DEFAULT_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        try {
-//            assertEquals(pet.toModelType(), expected.toModelType());
-//        } catch (IllegalValueException e) {
-//            assert false;
-//        }
-//    }
-//
-//    @Test
-//    public void toModelType_mullColorPattern_defaultColorPattern() {
-//        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, null,
-//                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, DEFAULT_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        try {
-//            assertEquals(pet.toModelType(), expected.toModelType());
-//        } catch (IllegalValueException e) {
-//            assert false;
-//        }
-//    }
+    @Test
+    public void toModelType_invalidColor_defaultColor() {
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, INVALID_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, DEFAULT_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        try {
+            assertEquals(pet.toModelType(), expected.toModelType());
+        } catch (IllegalValueException e) {
+            assert false;
+        }
+    }
+
+    @Test
+    public void toModelType_nullColor_defaultColor() {
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, null, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, DEFAULT_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        try {
+            assertEquals(pet.toModelType(), expected.toModelType());
+        } catch (IllegalValueException e) {
+            assert false;
+        }
+    }
+
+    @Test
+    public void toModelType_invalidColorPattern_defaultColorPattern() {
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, INVALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, DEFAULT_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        try {
+            assertEquals(pet.toModelType(), expected.toModelType());
+        } catch (IllegalValueException e) {
+            assert false;
+        }
+    }
+
+    @Test
+    public void toModelType_mullColorPattern_defaultColorPattern() {
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, null,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, DEFAULT_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        try {
+            assertEquals(pet.toModelType(), expected.toModelType());
+        } catch (IllegalValueException e) {
+            assert false;
+        }
+    }
 
     @Test
     public void toModelType_invalidDateOfBirth_throwsIllegalValueException() {
@@ -158,50 +158,50 @@ public class JsonAdaptedPetTest {
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
 
-//    @Test
-//    public void toModelType_invalidSpecies_defaultSpecies() {
-//        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, INVALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, DEFAULT_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        try {
-//            assertEquals(pet.toModelType(), expected.toModelType());
-//        } catch (IllegalValueException e) {
-//            assert false;
-//        }
-//    }
-//
-//    @Test
-//    public void toModelType_nullSpecies_defaultSpecies() {
-//        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, null, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, DEFAULT_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        try {
-//            assertEquals(pet.toModelType(), expected.toModelType());
-//        } catch (IllegalValueException e) {
-//            assert false;
-//        }
-//    }
+    @Test
+    public void toModelType_invalidSpecies_defaultSpecies() {
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, INVALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, DEFAULT_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        try {
+            assertEquals(pet.toModelType(), expected.toModelType());
+        } catch (IllegalValueException e) {
+            assert false;
+        }
+    }
 
-//    @Test
-//    public void toModelType_invalidWeight_defaultWeight() {
-//        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, VALID_SPECIES, INVALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, VALID_SPECIES, DEFAULT_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        try {
-//            assertEquals(pet.toModelType(), expected.toModelType());
-//        } catch (IllegalValueException e) {
-//            assert false;
-//        }
-//    }
+    @Test
+    public void toModelType_nullSpecies_defaultSpecies() {
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, null, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, DEFAULT_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        try {
+            assertEquals(pet.toModelType(), expected.toModelType());
+        } catch (IllegalValueException e) {
+            assert false;
+        }
+    }
+
+    @Test
+    public void toModelType_invalidWeight_defaultWeight() {
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, INVALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, DEFAULT_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        try {
+            assertEquals(pet.toModelType(), expected.toModelType());
+        } catch (IllegalValueException e) {
+            assert false;
+        }
+    }
 
     @Test
     public void toModelType_nullWeight_throwsIllegalValueException() {
@@ -212,20 +212,20 @@ public class JsonAdaptedPetTest {
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
 
-//    @Test
-//    public void toModelType_invalidHeight_defaultHeight() {
-//        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, INVALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, DEFAULT_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        try {
-//            assertEquals(pet.toModelType(), expected.toModelType());
-//        } catch (IllegalValueException e) {
-//            assert false;
-//        }
-//    }
+    @Test
+    public void toModelType_invalidHeight_defaultHeight() {
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, INVALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, DEFAULT_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        try {
+            assertEquals(pet.toModelType(), expected.toModelType());
+        } catch (IllegalValueException e) {
+            assert false;
+        }
+    }
 
     @Test
     public void toModelType_nullHeight_throwsIllegalValueException() {
@@ -236,20 +236,20 @@ public class JsonAdaptedPetTest {
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
 
-//    @Test
-//    public void toModelType_invalidPrice_defaultPrice() {
-//        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, INVALID_PRICE,
-//                VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
-//                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS,
-//                DEFAULT_PRICE, VALID_CERTIFICATES, VALID_UNIQUE_ID);
-//        try {
-//            assertEquals(pet.toModelType(), expected.toModelType());
-//        } catch (IllegalValueException e) {
-//            assert false;
-//        }
-//    }
+    @Test
+    public void toModelType_invalidPrice_defaultPrice() {
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, INVALID_PRICE,
+                VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        JsonAdaptedPet expected = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS,
+                DEFAULT_PRICE, VALID_CERTIFICATES, VALID_UNIQUE_ID);
+        try {
+            assertEquals(pet.toModelType(), expected.toModelType());
+        } catch (IllegalValueException e) {
+            assert false;
+        }
+    }
 
     @Test
     public void toModelType_nullPrice_throwsIllegalValueException() {
