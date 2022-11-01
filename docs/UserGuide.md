@@ -7,7 +7,7 @@ title: User Guide
 
 In this user guide, you will find instructions on how to install TaskBook and use its many features to manage your tasks.
 
-Choose a topic from the table of contents below to find out how to manage your apps using Task Book!
+Choose a topic from the table of contents below to find out how to manage your apps using TaskBook!
 ## Table of Contents
 
 * Table of Contents
@@ -79,7 +79,7 @@ These are the components of TaskBook, arranged according to their locations as s
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `taskbook.jar` from [here](https://github.com/AY2223S1-CS2103T-T13-4/tp/releases).
+2. Download the latest `TaskBook.jar` from [here](https://github.com/AY2223S1-CS2103T-T13-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TaskBook.
 
@@ -171,13 +171,13 @@ Examples:
 
 #### Listing all Contacts : `contact list`
 
-Shows you a list of all contacts in your task book in the order they were added.<br>
+Shows you a list of all contacts in your TaskBook in the order they were added.<br>
 
 Format: `contact list`
 
 #### Listing all Tasks : `task list`
 
-Shows you a list of all assigned tasks in your task book in the order they were added.<br>
+Shows you a list of all assigned tasks in your TaskBook in the order they were added.<br>
 
 Format: `task list`
 
@@ -185,7 +185,7 @@ Format: `task list`
 
 #### Adding a contact : `contact add`
 
-Adds a contact to your task book.
+Adds a contact to your TaskBook.
 
 Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`
 
