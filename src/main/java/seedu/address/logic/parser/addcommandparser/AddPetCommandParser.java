@@ -2,7 +2,16 @@ package seedu.address.logic.parser.addcommandparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_CERTIFICATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR_PATTERN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_DATE_OF_BIRTH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_HEIGHT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_VACCINATION_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_WEIGHT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.addcommands.AddPetCommand;
@@ -28,7 +37,17 @@ public class AddPetCommandParser implements Parser<AddPetCommand> {
      */
     public AddPetCommand parse(String args) throws ParseException {
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INDEX);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                PREFIX_PET_NAME,
+                PREFIX_PET_DATE_OF_BIRTH,
+                PREFIX_PET_COLOR,
+                PREFIX_PET_COLOR_PATTERN,
+                PREFIX_PET_HEIGHT,
+                PREFIX_PET_CERTIFICATE,
+                PREFIX_PET_SPECIES,
+                PREFIX_PET_VACCINATION_STATUS,
+                PREFIX_PET_PRICE,
+                PREFIX_PET_WEIGHT);
 
         String preamble = argMultimap.getPreamble();
         if (preamble.isBlank()) {

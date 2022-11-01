@@ -241,14 +241,13 @@ public class ParserUtil {
         requireNonNull(orderString);
         logger.fine("Parsing order: " + orderString);
         String trimmedOrderString = orderString.trim();
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(trimmedOrderString,
-                        PREFIX_ORDER_STATUS,
-                        PREFIX_ORDER_REQUESTS,
-                        PREFIX_ORDER_PRICE,
-                        PREFIX_ORDER_PRICE_RANGE,
-                        PREFIX_ORDER_ADDITIONAL_REQUESTS,
-                        PREFIX_ORDER_DATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(trimmedOrderString,
+                PREFIX_ORDER_STATUS,
+                PREFIX_ORDER_REQUESTS,
+                PREFIX_ORDER_PRICE,
+                PREFIX_ORDER_PRICE_RANGE,
+                PREFIX_ORDER_ADDITIONAL_REQUESTS,
+                PREFIX_ORDER_DATE);
         if (!arePrefixesPresent(argMultimap,
                 PREFIX_ORDER_STATUS,
                 PREFIX_ORDER_REQUESTS,

@@ -300,11 +300,11 @@ you can refer to the [Add Pet](#adding-a-pet-to-a-supplier--add-p) section.
 Examples:
 
 * To add a single
-  supplier: `add-s n/Carol Pet House ph/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/USA t/discount for more than one purchase`
+  supplier: `add-s n/Carol Pet House ph/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/USA`
 * To add a supplier with one pet for
-  sale: `add-s n/Carol Pet House ph/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/USA t/discount for more than one purchase p/add-p p_n/Page p_d/2022-1-1 p_c/pink p_cp/pure pink p_h/41 p_s/pig p_cert/US certified p_v/true p_w/102 p_p/270`
+  sale: `add-s n/Carol Pet House ph/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/USA p/add-p p_n/Page p_d/2022-1-1 p_c/pink p_cp/pure pink p_h/41 p_s/pig p_cert/US certified p_v/true p_w/102 p_p/270`
 * To add a supplier with two pets for
-  sale: `add-s n/Carol Pet House ph/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/USA t/discount for more than one purchase p/add-p p_n/Page p_d/2022-1-1 p_c/pink p_cp/pure pink p_h/41 p_s/pig p_cert/US certified p_v/true p_w/102 p_p/270 p/add-p p_n/Snupy p_d/2021-05-31 p_c/white p_cp/dotted p_h/89.3 p_cert/US certified p_s/rabbit p_v/false p_w/32 p_p/330`
+  sale: `add-s n/Carol Pet House ph/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/USA p/add-p p_n/Page p_d/2022-1-1 p_c/pink p_cp/pure pink p_h/41 p_s/pig p_cert/US certified p_v/true p_w/102 p_p/270 p/add-p p_n/Snupy p_d/2021-05-31 p_c/white p_cp/dotted p_h/89.3 p_cert/US certified p_s/rabbit p_v/false p_w/32 p_p/330`
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -353,7 +353,7 @@ supplier, if you have filtered the list.
 
 Examples:
 
-* `add-p 1 p_n/Wu Lezheng p_d/2001-11-20 p_c/red p_cp/stripped p_h/39.5 p_s/chihuahua p_v/true p_w/15.3 p_p20 p_cert/Good-Dog Cert. p_cert/Royal Blood Cert. p_t/naughty p_t/sold`
+* `add-p 1 p_n/Wu Lezheng p_d/2001-11-20 p_c/red p_cp/stripped p_h/39.5 p_s/chihuahua p_v/true p_w/15.3 p_p20 p_cert/GoodDog Cert p_cert/Royal Blood Cert`
 
 <div markdown="span" class="alert alert-primary">
 

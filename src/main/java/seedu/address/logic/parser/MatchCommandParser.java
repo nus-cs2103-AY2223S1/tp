@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MatchCommand;
@@ -28,7 +27,7 @@ public class MatchCommandParser implements Parser<MatchCommand> {
     @Override
     public MatchCommand parse(String userInput) throws ParseException {
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_INDEX);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput);
 
         String preamble = argMultimap.getPreamble();
         if (preamble.isBlank()) {
