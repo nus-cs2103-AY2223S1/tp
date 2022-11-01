@@ -249,6 +249,9 @@ constitute of sensitive patient data. Apart from `date`, `PastAppointment`s also
     input separately with a `m/` prefix.
   * Exposed using the `PastApointment#getMedication()` method for use in `JsonAdaptedPastAppointment`.
 
+The following sequence diagram represents the creation of a `PastAppointment` using a `PastAppointmentCommand`:
+[![PastAppointmentCommandSequenceDiagram](images/PastAppointmentSequenceDiagram.png)](images/PastAppointmentSequenceDiagram.png)
+
 #### `UpcomingAppointment`
 
 `UpcomingAppointment`s represent an upcoming appointment for a patient. They only contain the `date` of the upcoming
