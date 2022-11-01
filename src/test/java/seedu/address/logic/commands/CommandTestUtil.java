@@ -2,7 +2,17 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COUNTRY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GAME_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_SERVER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_INTERVAL;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;

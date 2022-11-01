@@ -190,6 +190,7 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+
         // game type 2
         userInput = targetIndex.getOneBased() + GAME_TYPE_DESC_SURVIVAL;
         descriptor = new EditPersonDescriptorBuilder().withGameTypes(VALID_GAME_TYPE_SURVIVAL).build();
@@ -198,13 +199,38 @@ public class EditCommandParserTest {
 
         // server 1
         userInput = targetIndex.getOneBased() + MINECRAFT_SERVER_DESC_111_222;
-        descriptor = new EditPersonDescriptorBuilder().withGameTypes(VALID_SERVER_111_222).build();
+        descriptor = new EditPersonDescriptorBuilder().withServer(VALID_SERVER_111_222).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // server 2
         userInput = targetIndex.getOneBased() + MINECRAFT_SERVER_DESC_123_456;
-        descriptor = new EditPersonDescriptorBuilder().withGameTypes(VALID_SERVER_123_456).build();
+        descriptor = new EditPersonDescriptorBuilder().withServer(VALID_SERVER_123_456).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // time interval 1
+        userInput = targetIndex.getOneBased() + TI_DESC_SUN_TO_MON;
+        descriptor = new EditPersonDescriptorBuilder()
+                .withTimeInterval(VALID_TIME_INTERVAL_SUNDAY_NIGHT_TO_MONDAY_MORNING).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // time interval 2
+        userInput = targetIndex.getOneBased() + TI_DESC_TUES;
+        descriptor = new EditPersonDescriptorBuilder().withTimeInterval(VALID_TIME_INTERVAL_TUES_AFTERNOON).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // social 1
+        userInput = targetIndex.getOneBased() + SOCIAL_DESC_INSTAGRAM;
+        descriptor = new EditPersonDescriptorBuilder().withSocial(VALID_SOCIAL_INSTAGRAM).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // social 2
+        userInput = targetIndex.getOneBased() + SOCIAL_DESC_TWITTER;
+        descriptor = new EditPersonDescriptorBuilder().withSocial(VALID_SOCIAL_TWITTER).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
