@@ -98,6 +98,10 @@ public abstract class Lesson {
         return observableStudentList;
     }
 
+    public boolean hasStudent(Student student) {
+        return studentList.contains(student);
+    }
+
     public void setStudent(Student targetStudent, Student editedStudent) {
         if (studentList.contains(targetStudent)) {
             attendance.setStudent(targetStudent, editedStudent);
