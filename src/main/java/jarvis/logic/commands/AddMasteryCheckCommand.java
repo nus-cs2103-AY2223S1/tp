@@ -75,13 +75,7 @@ public class AddMasteryCheckCommand extends Command {
         model.updateFilteredLessonList(Model.PREDICATE_SHOW_ALL_LESSONS);
         List<Lesson> allLessonList = model.getFilteredLessonList();
 
-        Set<Student> studentSet = new TreeSet<>((s1, s2) -> {
-            int result = s1.getName().toString().toLowerCase().compareTo(s2.getName().toString().toLowerCase());
-            if (result == 0) {
-                return s1.getMatricNum().toString().compareTo(s2.getMatricNum().toString());
-            }
-            return result;
-        });
+        Set<Student> studentSet = new TreeSet<>();
 
         for (Index studentIndex : studentIndexSet) {
             if (studentIndex.getZeroBased() >= lastShownList.size()) {

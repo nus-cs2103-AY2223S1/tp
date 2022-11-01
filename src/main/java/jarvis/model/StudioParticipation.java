@@ -22,13 +22,7 @@ public class StudioParticipation {
      * @param students Students involved in the lesson.
      */
     public StudioParticipation(Collection<Student> students) {
-        participation = new TreeMap<>((s1, s2) -> {
-            int result = s1.getName().toString().toLowerCase().compareTo(s2.getName().toString().toLowerCase());
-            if (result == 0) {
-                return s1.getMatricNum().toString().compareTo(s2.getMatricNum().toString());
-            }
-            return result;
-        });
+        participation = new TreeMap<>();
 
         for (Student stu : students) {
             participation.put(stu, 0);
@@ -42,7 +36,7 @@ public class StudioParticipation {
      * @param indexMap The participation data for each student mapped by student index.
      */
     public StudioParticipation(List<Student> studentList, Map<Integer, Integer> indexMap) {
-        TreeMap<Student, Integer> participation = new TreeMap<>(Student.NAME_COMPARATOR);
+        TreeMap<Student, Integer> participation = new TreeMap<>();
         for (int i : indexMap.keySet()) {
             participation.put(studentList.get(i), indexMap.get(i));
         }

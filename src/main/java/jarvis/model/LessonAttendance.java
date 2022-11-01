@@ -21,13 +21,7 @@ public class LessonAttendance {
      * @param students Students who are involved in the lesson.
      */
     public LessonAttendance(Collection<Student> students) {
-        attendance = new TreeMap<>((s1, s2) -> {
-            int result = s1.getName().toString().toLowerCase().compareTo(s2.getName().toString().toLowerCase());
-            if (result == 0) {
-                return s1.getMatricNum().toString().compareTo(s2.getMatricNum().toString());
-            }
-            return result;
-        });
+        attendance = new TreeMap<>();
 
         for (Student stu : students) {
             attendance.put(stu, false);
@@ -41,7 +35,7 @@ public class LessonAttendance {
      * @param indexAttendanceMap The attendance data using student indexes to represent students in the studentList.
      */
     public LessonAttendance(List<Student> studentList, Map<Integer, Boolean> indexAttendanceMap) {
-        TreeMap<Student, Boolean> attendance = new TreeMap<>(Student.NAME_COMPARATOR);
+        TreeMap<Student, Boolean> attendance = new TreeMap<>();
         for (Integer i : indexAttendanceMap.keySet()) {
             attendance.put(studentList.get(i), indexAttendanceMap.get(i));
         }

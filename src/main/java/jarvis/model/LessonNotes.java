@@ -22,13 +22,7 @@ public class LessonNotes {
      * @param students Students who are involved in the lesson.
      */
     public LessonNotes(Collection<Student> students) {
-        studentNotes = new TreeMap<>((s1, s2) -> {
-            int result = s1.getName().toString().toLowerCase().compareTo(s2.getName().toString().toLowerCase());
-            if (result == 0) {
-                return s1.getMatricNum().toString().compareTo(s2.getMatricNum().toString());
-            }
-            return result;
-        });
+        studentNotes = new TreeMap<>();
 
         generalNotes = new ArrayList<>();
         for (Student stu : students) {
@@ -45,7 +39,7 @@ public class LessonNotes {
      */
     public LessonNotes(List<Student> studentList, ArrayList<String> generalNotes,
                        Map<Integer, ArrayList<String>> indexNotesMap) {
-        TreeMap<Student, ArrayList<String>> studentNotes = new TreeMap<>(Student.NAME_COMPARATOR);
+        TreeMap<Student, ArrayList<String>> studentNotes = new TreeMap<>();
         for (Integer i : indexNotesMap.keySet()) {
             studentNotes.put(studentList.get(i), indexNotesMap.get(i));
         }
