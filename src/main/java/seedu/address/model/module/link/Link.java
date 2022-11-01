@@ -34,20 +34,20 @@ public class Link implements Comparable<Link> {
     //Does not support international domains: e.g. chinese/greek/russian characters
     //Path: All printable ASCII characters allowed except for whitespace.
     //Solution below adapted from https://uibakery.io/regex-library/url-regex-java
-    public static final String VALIDATION_REGEX_URL= "^(?:https?:\\/\\/)?" //https scheme [optional]
+    public static final String VALIDATION_REGEX_URL = "^(?:https?:\\/\\/)?" //https scheme [optional]
                     + "(?:[-a-zA-Z0-9]*\\.)?" //subdomain (e.g. 'www', 'open', 'video', 'blog') [optional]
                     + "[-a-zA-Z0-9]{1,256}\\." //domain (e.g. 'google', 'youtube', 'wikipedia')
                     + "[-a-zA-Z0-9]*\\b" // top level domain (e.g. 'com', 'org', 'net')
                     + "([\\x21-\\x7E]*)$"; //path (to a specific part of the link) [optional]
     public static final String VALIDATION_REGEX_ALIAS = "^[a-zA-Z0-9 ]{1,15}$";
-    public final String linkAlias;
-    public final String linkUrl;
     private static final String OS_NAME_LOWERCASE_WINDOWS = "windows";
     private static final String WINDOWS_OPEN_LINK_COMMAND_KEY = "rundll32 url.dll,FileProtocolHandler ";
     private static final String OS_NAME_LOWERCASE_MAC = "mac";
     private static final String MAC_OPEN_LINK_COMMAND_KEY = "open ";
     private static final String OS_NAME_LOWERCASE_LINUX = "linux";
     private static final String LINUX_OPEN_LINK_COMMAND_KEY = "xdg-open";
+    public final String linkAlias;
+    public final String linkUrl;
 
     /**
      * Constructs a {@code Link}.
@@ -123,10 +123,10 @@ public class Link implements Comparable<Link> {
     /**
      * Opens the link URL associated with the Link object from which this method is called from.
      * The link URL will be opened in the user's default browser through Java's Runtime Class.
-     * @throws IOException if the user does not have a browser installed
-     * or when the user disables direct browser access from its operating system command terminal (enabled by default).
+     * @throws IOException if the user does not have a browser installed or when the user disables direct browser
+     *     access from its operating system command terminal (enabled by default).
      * @throws SecurityException if the user prevents access to its operating system information or when
-     * the user prevents Java from interacting with its operating system command terminal (allowed by default).
+     *     the user prevents Java from interacting with its operating system command terminal (allowed by default).
      */
     public void open() throws IOException, SecurityException {
         assert linkUrl != null;

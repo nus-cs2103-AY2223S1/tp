@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
-import static seedu.address.model.module.link.Link.LINK_HEADER_PROTOCOL_HTTP;
-import static seedu.address.model.module.link.Link.LINK_HEADER_PROTOCOL_HTTPS;
 
 import java.io.IOException;
 import java.util.List;
