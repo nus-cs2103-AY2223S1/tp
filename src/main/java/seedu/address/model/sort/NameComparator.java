@@ -1,6 +1,7 @@
 package seedu.address.model.sort;
 
 import java.util.Comparator;
+import java.util.Locale;
 
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
@@ -15,7 +16,7 @@ public class NameComparator implements Comparator<Person> {
     @Override
     public int compare(Person x, Person y) {
         getN = y.getEmail();
-        return x.getName().fullName.compareTo(y.getName().fullName);
+        return x.getName().fullName.toLowerCase(Locale.ROOT).compareTo(y.getName().fullName.toLowerCase(Locale.ROOT));
     }
 
     @Override
