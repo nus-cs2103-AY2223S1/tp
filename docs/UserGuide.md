@@ -228,7 +228,7 @@ Pressing <kbd> F1 </kbd> will also open up the help message.
 ### Adding a person: `add`
 
 Adds a person to PayMeLah. <br>
-This command will let you add the people who owe you money (and some of their information, like their phone number or telegram handle) to PayMeLah.
+This command will let you add the people who owe you money (and some of their information, like their phone number or Telegram handle) to PayMeLah.
 
 Format: `add n/<name> [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
@@ -237,8 +237,8 @@ A person can have any number of tags (including 0).
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 tele/johndoe a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend a/Newgate Prison t/criminal`
+* `add n/John Doe p/98765432 tele/johndoe a/John street, block 123, #01-01` will add a person named `John Doe` with `98765432` as his phone number, `johndoe` as their Telegram handle and `John street, block 123, #01-01` as their address to PayMeLah.
+* `add n/Betsy Crowe t/friend a/Newgate Prison t/criminal` will add a person named `Betsy Crowe` with `Newgate Prison` as their address and both `friend` and `criminal` as their tags to PayMeLah.
 
 ### Adding a debt: `adddebt`
 
@@ -248,7 +248,7 @@ This command will help you add debts to the people in PayMeLah, so that the app 
 Format: `adddebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including '++' at the back of the amount. A single '+' will add only GST instead.
+You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including `++` at the back of the amount. A single `+` will add only GST instead.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -281,14 +281,12 @@ You can split a debt among as many people as you want. You can even include your
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Splitting a debt is just like [adding a debt](#adding-a-debt-adddebt) to multiple people; however, here we divide the money of the debt over the people who shared it (and round up to the closest cent). Thus, similarly, You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including '++' at the back of the amount. A single '+' will add only GST instead.
+Splitting a debt is just like [adding a debt](#adding-a-debt-adddebt) to multiple people; however, here we divide the money of the debt over the people who shared it (and round up to the closest cent). Thus, similarly, You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including `++` at the back of the amount. A single `+` will add only GST instead.
 </div>
-
 
 * If you do not specify date and time, they will conveniently default to the current date and time.
 * If you specify the date but not the time, the time will default to midnight. Be careful that this default behaviour is different from the previous.
 * One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of these items being the same.
-
 
 Examples:
 * `splitdebt 1 2 d/Pizza m/33.99 date/2022-10-12 time/13:00`
@@ -381,7 +379,7 @@ Example: `sort n/+` sorts and displays the list of persons in ascending alphabet
 ### Editing a person: `edit`
 
 Edits an existing person in PayMeLah.<br>
-You can use this command to edit information about people you have already added in PayMeLah, in case some of their particulars such as their phone number or telegram handle have changed.
+You can use this command to edit information about people you have already added in PayMeLah, in case some of their particulars such as their phone number or Telegram handle have changed.
 
 Format: `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
@@ -394,8 +392,8 @@ Format: `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<addres
 * Cannot be used to modify a person's debts
 
 Examples:
-*  `edit 1 p/91234567 tele/johndoe` Edits the phone number and telegram handle of the 1st person to be `91234567` and `@johndoe` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 tele/johndoe` will edit the phone number and Telegram handle of the 1st person to be `91234567` and `@johndoe` respectively.
+*  `edit 2 n/Betsy Crower t/` will edit the name of the 2nd person to be `Betsy Crower` and clear all their existing tags.
 
 ### Locating persons by fields: `find`
 
