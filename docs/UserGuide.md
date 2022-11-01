@@ -2,26 +2,39 @@
 layout: page
 title: User Guide
 ---
-## **About Mass Linkers**
-Mass Linkers is a powerful Desktop application tool that helps **Computer Science (CS) students** find study support from batchmates, making it easier to form study groups and look for module-related guidance. 
+## **Using Mass Linkers: your quick start guide**
 
-It provides a **centralised** platform for CS students to 
-- save their batchmates’ contact and module details  
-- search for batchmates with common interests or who are taking similar modules **conveniently** 
+Welcome to Mass Linkers -- a powerful Desktop application tool that helps **Computer Science (CS) students** find study support from batchmates.
 
-It is optimised for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
+Mass Linkers helps you find batchmates to form study groups and seek study advice through the following way.
+
+It provides a **centralised** platform for you to 
+- save your batchmates’ contact and module details 
+- search for batchmates with common interests or who are taking similar modules as you **conveniently**.
+
+A fast typer? Mass Linkers is made just for you.
+It is optimised for use via a **Command Line Interface (CLI)** while still having the benefits of an aesthetic **Graphical User Interface (GUI)**.
 
 ## **Using the User Guide**
 In this *User Guide*, we will take you through the many useful features and functions of Mass Linkers, and provide you crucial information on how the different commands are used.
 
-We advise users to follow the User Guide sequentially as it provides a natural flow of how the sequence of commands should be executed.
+Feeling lost as a first-time user? We advise you to follow the User Guide sequentially, starting from [Getting started](#getting-started), as it provides a natural flow of how the commands should be executed.
 
+If you are more familiar with CLI or Mass Linkers, head over to the [Command Summary](#command-summary) to start using the app.
+
+The following icons are used in the _User Guide_ to denote special information to look out for.
 #### Meaning of icons
+<div markdown="block" class="alert alert-info">
 **:information_source:**: __additional information__ such as specific requirements of parameters and the nature of command
+</div>
 
+<div markdown="span" class="alert alert-primary">
 **:bulb:**: __tip__ on how to carry out certain functionalities
+</div>
 
+<div markdown="span" class="alert alert-warning">
 **:warning:**: __warning__ as the command can create drastic changes to the existing App data
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -31,7 +44,7 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Quick start**
+## **Getting started**
 
 1. Ensure you have Java `11` or above installed in your computer.
 
@@ -39,18 +52,25 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Mass Linkers.
 
-4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. If done correctly, the GUI similar to the one below should appear in a few seconds. The app has been populated with some sample data.
+5. If you wish to start with an empty set of data, execute the [Clear](#2-clear-all-data-clear) command. <br>
    ![Ui](images/Ui.png)
 
-5. Type a command in the command box and press Enter to execute it. Refer to the section on [Features](#features) below for details and usage of each command. You can also use the [`help`](#view-help-help) command in Mass Linkers to view a summary of all available commands and their syntax.
+6. Type a command in the command box and press Enter to execute it. Refer to the section on [Features](#features) below for details and usage of each command. 
+7. You can also use the [`help`](#view-help-help) command in Mass Linkers to view a summary of all available commands and their syntax.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Features**
+There are four main types of commands used in Mass Linkers - Batchmate commands, Interest commands, Module commands and General commands.
+
+By segregating the commands in this manner, this makes it easier to make modifications and conduct a search based on different fields (ie. seach by common interests, modules or personal information).
+
+The following notes outline several noteworthy format which the [Feature](#features) section uses in detailing the usage of different commands.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about command format:**<br>
+**:information_source: Take note of the Command Format:**<br>
 
 * Words in `UPPER_CASE` are parameters to be supplied by the user.<br>
   Example:
@@ -83,7 +103,9 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about parameters:**<br>
+Parameters are the input words that come after a command word to specify how the command should be executed. Click (here)[#parameter-requirements] to view the list of parameter requirements.
+
+**:information_source: Regarding parameters:**<br>
 
 * For all commands involving `INDEX`, `INDEX` refers to the index number shown in the currently displayed list.<br>
   * ___Beware!!!___ This may not be the full list of batchmates you have in Mass Linkers! For example, you may have entered the [find command](#find-a-batchmate-find), so the currently displayed list will be the result of `find` which is not the full list.
@@ -92,6 +114,9 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 </div>
 
 ### A. Batchmate commands
+
+Batchmate commands handle the management of a batchmate's personal information such as Name, Telegram, GitHub and Phone number.
+
 #### 1. Add a batchmate: `add`
 
 Adds a batchmate to the list of batchmates in the _Students panel_.
@@ -168,6 +193,13 @@ Shows a list of all batchmates in the _Students panel_.
 __Format:__ `list`
 
 ### B. Interest commands
+Interest commands handle the management of a batchmate's list of interests, such as addition of interests, deletion of interests and searching batchmates with specified interests.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: What are considered interests:**<br>
+Interests can include batchmates' hobbies such as games, CS specialisations, etc.
+</div>
 
 #### 1. Add interests: `addInt`
 
@@ -208,6 +240,8 @@ __Examples:__
 * `findInt swe security` returns all batchmates whose interests contain both `swe` and `security`.
 
 ### C. Module commands
+Module commands handle the management of a batchmate's list of modules, such as addition of modules, deletion of modules and searching batchmates with specified modules.
+
 <div markdown="block" class="alert alert-info">:information_source: **Note:**
 Commands used to manage a batchmate's personal information in [Batchmate commands](#batchmate-commands) and [Interest commands](#interest-commands) follow the 1 command word syntax. E.g., `add`, `addInt`.
 Whereas, commands that manage a module detail in [Module commands](#module-commands) can have multiple command words preceded by the `mod` keyword. E.g., `mod add`, `mod mark all`, `mod find taken`.
@@ -328,6 +362,7 @@ __Examples:__
 
 
 ### D. General commands
+General commands are commands which do not fall under any of the above categories.  
 
 #### 1. View help: `help`
 
@@ -350,13 +385,13 @@ __Format:__ `exit`
 
 #### 4. Save the data
 
-Data in Mass Linkers is saved in the hard disk automatically after executing any command that changes the data. There is no need to save manually.
+Mass Linkers ensures your data is saved automatically each time after you execute a command which changes the data. Hence, you do not need to conduct a save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### **Parameter Requirements**
 
-Below is the summary of requirements of each parameter for the various commands. 
+Below is the summary of requirements to take note of for each parameter for the different commands. 
 
 | Parameter       | Requirements                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 |-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -370,7 +405,7 @@ Below is the summary of requirements of each parameter for the various commands.
 
 ### **Module Categorisation**
 
-Modules are automatically categorised upon creation.
+Modules are automatically categorised when you create them. The categorisation is modelled after the prefixes which [NUS modules](https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4) use.
 
 Below is the categorisation:
 
@@ -387,6 +422,8 @@ _Module prefix refers to the first two characters of every module name._
 --------------------------------------------------------------------------------------------------------------------
 
 ## **FAQ**
+Facing an issue? Below are the commonly asked questions, which address technical and privacy concerns.
+
 #### Technical Support
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install Mass Linkers in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Mass Linkers home folder.
