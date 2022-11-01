@@ -120,20 +120,8 @@ public class RecurringTask extends Task {
 
         return this.getTaskDescription().equals(o.getTaskDescription())
                 && this.getDateTime().equals(o.getDateTime())
-                && this.isSimilarRecurrence(recurrence, o.recurrence);
-    }
-
-    private boolean isSimilarRecurrence(Recurrence recurrence1, Recurrence recurrence2) {
-        if (recurrence1.toString().equals(recurrence2.toString())) {
-            return true; // if both are equal
-        }
-        if ((recurrence1.toString() + "S").equals(recurrence2.toString())) {
-            return true; // if recurrence1 is singular, recurrence2 is plural
-        }
-        if ((recurrence2.toString() + "S").equals(recurrence1.toString())) {
-            return true; // if recurrence2 is singular, recurrence1 is plural
-        }
-        return false;
+                && this.recurrence.equals(o.recurrence)
+                && this.frequency == o.frequency;
     }
 
     private static boolean isSingularRecurrence(Recurrence recurrence) {
@@ -149,17 +137,13 @@ public class RecurringTask extends Task {
         if (isSingularRecurrence(recurrence)) {
             return recurrence;
         }
-        String string = recurrence.toString();
-        System.out.println(string.substring(0, string.length() - 1));
-        return Recurrence.valueOf(string.substring(0, string.length() - 1));
+        return Recurrence.valueOf(recurrence.toString().substring(0, recurrence.toString().length() - 1));
     }
 
     private static Recurrence getPluralRecurrence(Recurrence recurrence) {
         if (!isSingularRecurrence(recurrence)) {
             return recurrence;
         }
-        String string = recurrence.toString();
-        System.out.println(string + "S");
-        return Recurrence.valueOf(string + "S");
+        return Recurrence.valueOf(recurrence.toString() + "S");
     }
 }
