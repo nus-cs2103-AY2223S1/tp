@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class NetWorth {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Net worth should start with $ sign, contain only numbers and be at least 4 digits\n" +
-                    "eg. $1234";
+            "Net worth should start with $ sign, contain only numbers and be at least 4 digits\n"
+                    + "eg. $1234";
     public static final String VALIDATION_REGEX = "^[$][1-9]\\d{3,}";
     public final String value;
 
