@@ -58,7 +58,7 @@ public class ActivityCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        activity.getDate().stream().forEach(d -> date.getChildren().add(new Label(d.toString())));
+        activity.getDate().stream().forEach(d -> date.getChildren().add(new Label(d.toViewString())));
 
         tags.getChildren().forEach(child -> {
             Label tagLabel = (Label) child;

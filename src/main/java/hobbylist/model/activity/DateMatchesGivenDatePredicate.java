@@ -18,7 +18,7 @@ public class DateMatchesGivenDatePredicate implements Predicate<Activity> {
     @Override
     public boolean test(Activity activity) {
         if (!activity.getDate().isEmpty()) {
-            if (StringUtil.containsWordIgnoreCase(activity.getDate().get(0).getOrginString(), time)) {
+            if (StringUtil.containsWordIgnoreCase(activity.getDate().toString(), time)) {
                 return true;
             }
         }

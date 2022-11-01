@@ -17,7 +17,6 @@ public class NameOrDescContainsKeywordsPredicate implements Predicate<Activity> 
 
     @Override
     public boolean test(Activity activity) {
-        // name or description matches the keywords
         if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                 activity.getName().fullName, keyword)
                 || StringUtil.containsWordIgnoreCase(activity.getDescription().value, keyword))) {

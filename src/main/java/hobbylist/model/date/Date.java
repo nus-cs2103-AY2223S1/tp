@@ -11,13 +11,13 @@ import hobbylist.commons.util.AppUtil;
  * Guarantees: immutable; name is valid as declared in {@link #isValidDateString(String)}
  */
 public class Date {
-
     public static final String MESSAGE_EXCEPTION =
-            "Sorry, the input format should be like yyyy-mm-dd, eg 1921-04-12";
+            "Invalid date! The input format should be like yyyy-mm-dd, eg 1921-04-12\n"
+            + "The value of year should be greater or equal than 1000!\n";
     public static final String VALIDATION_REGEX =
             "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]";
     private java.time.LocalDate date;
-    private String orginString;
+    private String originalString;
     /**
      * Constructs a localDate.
      *
@@ -28,7 +28,7 @@ public class Date {
             AppUtil.checkArgument(isValidDateString(date), MESSAGE_EXCEPTION);
             try {
                 this.date = LocalDate.parse(date);
-                this.orginString = date;
+                this.originalString = date;
             } catch (DateTimeParseException dateTimeParseException) {
                 throw dateTimeParseException;
             }
@@ -41,15 +41,21 @@ public class Date {
     /**
      * Returns origin description of the date (yyyy-mm-dd)
      */
-    public String getOrginString() {
-        return orginString;
+    public String getOriginalString() {
+        return originalString;
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidDateString(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        if (Integer.valueOf(test.split("-")[0]) < 1000) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -64,25 +70,30 @@ public class Date {
         return date.hashCode();
     }
 
+    @Override
+    public String toString() {
+        return originalString;
+    }
+
     /**
      * Format state as text for viewing.
      */
-    public String toString() {
+    public String toViewString() {
         return '[' + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ']';
 
     }
     /**
      * Return yyyy-mm format of this date.
      */
-    public String yearMonthDescrption() {
-        String[] temp = this.getOrginString().split("-");
+    public String yearMonthDescription() {
+        String[] temp = this.getOriginalString().split("-");
         return temp[0] + "-" + temp[1];
     }
     /**
      * Return yyyy format of this date.
      */
     public String yearDescription() {
-        return this.getOrginString().split("-")[0];
+        return this.getOriginalString().split("-")[0];
     }
 
     public String toDisplayedString() {
