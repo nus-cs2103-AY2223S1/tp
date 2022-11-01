@@ -13,9 +13,9 @@ cat data_simple.json | jq "select(.merged)" | jq ".number" > .numbers.txt
 cat data_simple.json | jq "select(.merged)" | jq ".resourcePath" > .urls.txt
 
 # Get open PRs
-cat data_simple.json | jq "select(.closed | not)" | jq ".title" >> .titles.txt
-cat data_simple.json | jq "select(.closed | not)" | jq ".number" >> .numbers.txt
-cat data_simple.json | jq "select(.closed | not)" | jq ".resourcePath" >> .urls.txt
+# cat data_simple.json | jq "select(.closed | not)" | jq ".title" >> .titles.txt
+# cat data_simple.json | jq "select(.closed | not)" | jq ".number" >> .numbers.txt
+# cat data_simple.json | jq "select(.closed | not)" | jq ".resourcePath" >> .urls.txt
 
 # Format to markdown
 sed -i 's/^"\(.*\)"$/* \1 /g' .titles.txt
