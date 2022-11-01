@@ -1,5 +1,6 @@
 ---
-layout: page title: Developer Guide
+layout: page
+title: PennyWise Developer Guide
 ---
 
 * Table of Contents
