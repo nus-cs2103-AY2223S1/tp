@@ -13,7 +13,7 @@ import seedu.address.model.event.StartDateTimeContainsDatePredicate;
 import seedu.address.model.event.TitleContainsKeywordsPredicate;
 
 /**
- * Finds and lists all events in address book whose title contains any of the argument keywords, or if
+ * Finds and lists all events in NUScheduler whose title contains any of the argument keywords, or if
  * inputs are dates, it will match the start dates equal to the input dates.
  * Keyword matching is case-insensitive.
  */

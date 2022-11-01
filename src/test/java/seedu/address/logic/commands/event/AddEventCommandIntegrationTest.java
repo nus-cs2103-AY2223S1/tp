@@ -2,7 +2,7 @@ package seedu.address.logic.commands.event;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalNuScheduler.getTypicalNuScheduler;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,14 +22,14 @@ public class AddEventCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalNuScheduler(), new UserPrefs());
     }
 
     @Test
     public void execute_newEvent_success() {
         Event validEvent = new EventBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getNuScheduler(), new UserPrefs());
         expectedModel.addEvent(validEvent);
 
         assertCommandSuccess(new AddEventCommand(validEvent), model,
@@ -38,7 +38,7 @@ public class AddEventCommandIntegrationTest {
 
     @Test
     public void execute_duplicateEvent_throwsCommandException() {
-        Event eventInList = model.getAddressBook().getEventList().get(0);
+        Event eventInList = model.getNuScheduler().getEventList().get(0);
         assertCommandFailure(
                 new AddEventCommand(eventInList),
                 model,
