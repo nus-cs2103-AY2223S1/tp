@@ -76,9 +76,9 @@ The following is the main user interface of NUScheduler.
 
 * The profile list is in alphabetical order while the event list is in chronological order, sorted by their starting date.
 
-* In each profile, the name, email and phone number will always be displayed while telegram and tags will only be displayed if they exist.
+* In each profile, the name, email and phone number will always be displayed while the telegram username and tags will only be displayed if they exist.
 
-* In each event, the title, start date, end date and duration of event will always be displayed while the participants of the event and tags will only be displayed if they exist.
+* In each event, the title, start date, end date and duration of the event will always be displayed while the participants of the event and tags will only be displayed if they exist.
 
 </div>
 
@@ -392,7 +392,7 @@ Use shortcuts to quickly enter tags.
 
 Example:
 
-* `profile -a n/Damith e/damith@comp.nus.edu.sg p/65164359 t/prof` Creates a profile with the name `Damith` and tag `professor`.
+* `profile -a n/Damith e/damith@comp.nus.edu.sg p/65164359 t/prof` Creates a profile with the name `Damith` and the tag `professor`.
 * `event -e 1 t/tut` Edits the tag of the 1st event shown to `tutorial`.
 
 | Shortcut | Result       |
