@@ -87,7 +87,12 @@ For new users you can proceed to our [Quick start](#3-quick-start) while returni
 | :exclamation:        | Important information or warnings that you should take note of when using InterNUS | 
 
 ## 2.2. Graphical User Interface (GUI) of InterNUS
-![Ui](images/interNUS.png)
+
+|    ![Ui](images/interNUS.png)     |
+|:---------------------------------:|
+| InterNUS GUI component annotation |
+
+
 
 The UI component description:
 
