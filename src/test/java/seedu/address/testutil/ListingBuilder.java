@@ -19,6 +19,7 @@ public class ListingBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final Client DEFAULT_CLIENT = new ClientBuilder().build();
     public static final String DEFAULT_ASKING_PRICE = "1";
+    public static final Set<Tag> DEFAULT_TAGS = new HashSet<>();
 
     private ListingId id;
     private Address address;
@@ -34,7 +35,7 @@ public class ListingBuilder {
         this.address = new Address(DEFAULT_ADDRESS);
         this.owner = DEFAULT_CLIENT;
         this.askingPrice = new Price(DEFAULT_ASKING_PRICE);
-        this.tags = new HashSet<>();
+        this.tags = DEFAULT_TAGS;
     }
 
     /**
