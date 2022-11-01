@@ -48,7 +48,7 @@ public class SampleDataUtilTest {
         };
 
         // different stall list -> array equals return false
-        assertFalse(Arrays.equals(SampleDataUtil.getSampleStalls(), sampleStallsNotEquals));
+        assertFalse(Arrays.equals(sampleStallsNotEquals, SampleDataUtil.getSampleStalls()));
 
         Stall[] sampleStallsNull = new Stall[] {
             null,
@@ -57,7 +57,7 @@ public class SampleDataUtilTest {
         };
 
         // null stall list -> array equals return false
-        assertFalse(Arrays.equals(SampleDataUtil.getSampleStalls(), sampleStallsNull));
+        assertFalse(Arrays.equals(sampleStallsNull, SampleDataUtil.getSampleStalls()));
 
     }
 
@@ -73,7 +73,7 @@ public class SampleDataUtilTest {
         };
 
         // same review list -> array equals returns true
-        assertArrayEquals(SampleDataUtil.getSampleReviews(), sampleReviews);
+        assertArrayEquals(sampleReviews, SampleDataUtil.getSampleReviews());
 
         Review[] sampleReviewsNotEquals = new Review[] {
             new Review(new Name("Alex Chicken Rice"), new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -82,7 +82,7 @@ public class SampleDataUtilTest {
         };
 
         // different review list -> array equals returns false
-        assertFalse(Arrays.equals(SampleDataUtil.getSampleReviews(), sampleReviewsNotEquals));
+        assertFalse(Arrays.equals(sampleReviewsNotEquals, SampleDataUtil.getSampleReviews()));
 
         Review[] sampleReviewNull = new Review[] {
             null,
@@ -91,7 +91,7 @@ public class SampleDataUtilTest {
         };
 
         // null review list -> array equals return false
-        assertFalse(Arrays.equals(SampleDataUtil.getSampleReviews(), sampleReviewNull));
+        assertFalse(Arrays.equals(sampleReviewNull, SampleDataUtil.getSampleReviews()));
 
     }
 
@@ -108,15 +108,15 @@ public class SampleDataUtilTest {
         }
 
         // same stall and review list -> equal address book
-        assertEquals(addressBook, sampleAb);
+        assertEquals(sampleAb, addressBook);
 
         AddressBook sampleAb2 = new AddressBook();
 
         // different stall and review list -> not equal address book
-        assertNotEquals(addressBook, sampleAb2);
+        assertNotEquals(sampleAb2, addressBook);
 
         // address book null -> not equal address book
-        assertNotEquals(addressBook, null);
+        assertNotEquals(null, addressBook);
     }
 
     @Test
@@ -134,7 +134,7 @@ public class SampleDataUtilTest {
         }
 
         // same list of tags -> equal tag set
-        assertEquals(SampleDataUtil.getTagSet(tags), sampleTags);
+        assertEquals(sampleTags, SampleDataUtil.getTagSet(tags));
 
         Set<Tag> sampleTagsNotEqual = new HashSet<>();
         String[] tagsNotEqual = new String[] {
@@ -147,9 +147,9 @@ public class SampleDataUtilTest {
         }
 
         // different tag set -> not equal tag set
-        assertNotEquals(SampleDataUtil.getTagSet(tags), sampleTagsNotEqual);
+        assertNotEquals(sampleTagsNotEqual, SampleDataUtil.getTagSet(tags));
 
         // null tag set -> not equal tag set
-        assertNotEquals(SampleDataUtil.getTagSet(tags), null);
+        assertNotEquals(null, SampleDataUtil.getTagSet(tags));
     }
 }
