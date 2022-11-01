@@ -2,7 +2,7 @@ package seedu.rc4hdb.model.venues.booking;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_5_TO_6_PM;
+import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_5_TO_6PM;
 import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_5_TO_7PM;
 import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_6_TO_7PM;
 import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_TUESDAY_6_TO_7PM;
@@ -17,7 +17,7 @@ public class RecurrentBookingTest {
 
     @Test
     public void clashesWith_overlappingRecurrentBooking_returnTrue() {
-        assertTrue(MR_ALICE_MONDAY_5_TO_6_PM.clashesWith(MR_ALICE_MONDAY_5_TO_7PM));
+        assertTrue(MR_ALICE_MONDAY_5_TO_6PM.clashesWith(MR_ALICE_MONDAY_5_TO_7PM));
     }
 
     @Test
@@ -27,7 +27,7 @@ public class RecurrentBookingTest {
 
     @Test
     public void clashesWith_subsetRecurrentBooking_returnTrue() {
-        assertTrue(MR_ALICE_MONDAY_5_TO_6_PM.clashesWith(MR_ALICE_MONDAY_5_TO_7PM));
+        assertTrue(MR_ALICE_MONDAY_5_TO_6PM.clashesWith(MR_ALICE_MONDAY_5_TO_7PM));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class RecurrentBookingTest {
 
     @Test
     public void hasExpired_recurrentBookingNeverExpires_returnsFalse() {
-        assertFalse(MR_ALICE_MONDAY_5_TO_6_PM.hasExpired());
+        assertFalse(MR_ALICE_MONDAY_5_TO_6PM.hasExpired());
     }
 
 }
