@@ -97,7 +97,7 @@ Let's take a look at the different components that make up Cobb's GUI.
 #### 1. Command Input Box and Command Output Box
 ![CommandBox](images/CommandBox.png)
 The __command input box__ is located where the placeholder text `Enter command here...` is.<br>
-Clicking on it will allow you input commands for Cobb to execute. Here are some commands you can test to start with.
+Clicking on it will allow you to input commands for Cobb to execute. Here are some commands you can test to start with.
 
 * **`listbuyers`** : Lists all buyers in the database, that is, clears any buyer filters currently in place.
 
@@ -137,7 +137,7 @@ The property list can be filtered and modified using commands given in the [feat
 ![Help Window](images/HelpWindow.png)
 The __help window__ displays a link to Cobb's User Guide, which is what you are currently reading.
 
-It appears when the user executes a `help` command.
+It appears when you execute a `help` command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -147,7 +147,7 @@ It appears when the user executes a `help` command.
 
 **:information_source: Notes about the command format:**<br>
 
-* The first word in the command string actually specifies which command we are invoking. For example, `help` specifies that we are invoking the `help` command, while `adduser -n John Doe` specifies that we are using the `adduser` command.
+* The first word in the command string actually specifies which command you are invoking. For example, `help` specifies that you are invoking the `help` command, while `adduser -n John Doe` specifies that you are using the `adduser` command.
 
 
 * Items in square brackets are parameters that must be passed into the command.<br>
@@ -176,7 +176,7 @@ It appears when the user executes a `help` command.
 
 ### Viewing help : `help`
 
-Displays a link for the user to access Cobb's User Guide for further help.
+Displays a link for you to access Cobb's User Guide for further help.
 
 Syntax: `help`
 
