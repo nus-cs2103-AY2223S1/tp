@@ -96,23 +96,8 @@ Take note of the following symbols and formatting used in this document:
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-# Student Contact Commands
+Student Contact Commands
 ---
-
 
 ### Adding a student: `add`
 
@@ -129,13 +114,22 @@ Format: `add n/NAME i/STUDENT_ID [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS_GROUP] [t/T
 * A student can have any number of tags (including 0).
 
 <div markdown="span" class="alert alert-warning">:information_source: **Note:**
-Students CANNOT have the same name. GREWZ does not allow for students with the exact same name to be keyed into the application, and is case insensitive, but is not sensitive to spaces. Thus trying to add a student with the name `Ben` and `ben` will not work.
+Students CANNOT have the same name. GREWZ is case-insensitive but space-sensitive.
+This means that it does not allow for students with the exact same name to be keyed into the application. 
+Thus trying to add a student with the name `Ben` and `ben` will not work.
 Student ID must also be unique.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
+If you have two students with the same name, you can swap the order of the student's name to save it in GREWZ.
 </div>
 
 Examples:
 * `add n/John Doe i/e0123456`
-* `add n/Betsy Crowe i/e0321456 e/betsycrowe@example.com p/1234567 t/criminal`
+* `add n/Betsy Crowe i/e0321456 e/betsycrowe@example.com p/1234567 t/classmate`
+
+Below is an example of how the UI will look like after executing this two commands:
+  ![Display of the UI](images/UpdatedUI.jpg)
 
 ### Listing all students : `list`
 
@@ -229,11 +223,13 @@ Clears all entries from the student list.
 Format: `clear`
 
 ## Attendance commands
-To aid teaching assistants in keeping track of attendance, we developed a feature to add an attendance list of a maximum of 12 lessons. Afterwards, teaching assistants can mark/unmark attendance of their students. Currently, we support only one attendance list for each student.
+A feature to add an attendance list of a maximum of 12 lessons. 
+Teaching assistants can keep track of the attendance of their students. 
+As of now, we only offer the option of having one attendance list per student.
 
 ### Adding an attendance list to a student: `attendance add`
 
-Adds an attendance list to a student in contacts. 
+Adds an attendance list to a student contact. 
 
 Format: `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`
 
@@ -265,7 +261,7 @@ Examples:
 * `attendance mark 1 l/1 m/1`
 * `attendance mark 1 l/1 m/0`
 
-### Deleting attendance to student: `attendance delete`
+### Deleting attendance of student: `attendance delete`
 
 Deletes entire attendance list of student in class list
 
@@ -383,6 +379,20 @@ GREWZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, GREWZ will discard all data and start with an empty data file at the next run.
 </div>
+
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
