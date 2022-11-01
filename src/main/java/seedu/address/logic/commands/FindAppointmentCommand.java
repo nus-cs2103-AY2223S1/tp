@@ -12,7 +12,6 @@ import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.MedicalTest;
 import seedu.address.model.appointment.Slot;
 import seedu.address.model.patient.Name;
-import seedu.address.model.patient.Patient;
 
 /**
  * Finds and lists all appointments according to the prefix input(s) by the user.
