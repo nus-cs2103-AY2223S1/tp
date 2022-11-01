@@ -1,0 +1,18 @@
+@startuml
+
+start
+:User executes LocateGymCommand;
+
+: NutriGoalsParser parses the input;
+
+if () then ([isInputValid])
+    : Creates a LocateGymCommand;
+    : LocateGymCommand is executed;
+    : Sort the gyms;
+    : Display success message and list of sorted gyms;
+else ([else])
+    : Display error message;
+endif
+stop
+
+@enduml
