@@ -111,7 +111,14 @@ public class CsvUtil {
             throw new CommandException(e.getCause().getMessage().trim());
         }
     }
-    private static Person toModelType(GenericPerson gp) throws ParseException {
+
+    /**
+     * Converts a GenericPerson into either a {@code Student}, {@code Professor} or {@code TA}
+     * @param gp to convert
+     * @return Person
+     * @throws ParseException when field is invalid
+     */
+    public static Person toModelType(GenericPerson gp) throws ParseException {
         Name name = ParserUtil.parseName(gp.getName());
         Phone phone = ParserUtil.parsePhone(gp.getPhone());
         Email email = ParserUtil.parseEmail(gp.getEmail());
@@ -130,7 +137,7 @@ public class CsvUtil {
                     !gp.getSpecialisation().equals(Specialisation.EMPTY_SPECIALISATION));
             Rating rating = ParserUtil.parseRating(gp.getRating(), !gp.getRating().equals(Rating.EMPTY_RATING));
             OfficeHour officeHour = new OfficeHour(gp.getOfficeHour(),
-                    gp.getOfficeHour().equals(OfficeHour.EMPTY_OFFICE_HOUR));
+                    !gp.getOfficeHour().equals(OfficeHour.EMPTY_OFFICE_HOUR));
             return new Professor(name, moduleCode, phone, email, gender, tagSet,
                     location, githubUsername, rating, specialisation, officeHour);
         } else if (gp.type.equals("t")) {
@@ -285,6 +292,30 @@ public class CsvUtil {
                 return Specialisation.EMPTY_SPECIALISATION;
             }
             return specialisation;
+        }
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+            if (!(other instanceof GenericPerson)) {
+                return false;
+            }
+            GenericPerson e = (GenericPerson) other;
+            return type.equals(e.type)
+                    && moduleCodes.equals(e.moduleCodes)
+                    && moduleCode.equals(e.moduleCode)
+                    && name.equals(e.name)
+                    && phone.equals(e.phone)
+                    && email.equals(e.email)
+                    && gender.equals(e.gender)
+                    && tagged.equals(e.tagged)
+                    && location.equals(e.location)
+                    && username.equals(e.username)
+                    && rating.equals(e.rating)
+                    && year.equals(e.year)
+                    && specialisation.equals(e.specialisation)
+                    && officeHour.equals(e.specialisation);
         }
     }
 }
