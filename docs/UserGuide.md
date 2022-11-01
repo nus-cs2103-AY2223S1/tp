@@ -68,8 +68,6 @@ e.g. <button>enter</button>   <button>&uarr;</button>   <button>&darr;</button>
 4. Double-click the file to start the app. The following help window will appear the first time you open the application.
    ![helpMessage](images/helpMessage.png)
 
-<div style="page-break-after: always;"></div>
-
 5. Close the help window, you will see a [GUI](#glossary) similar to the one below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -233,8 +231,7 @@ _After executing command: `add n/Gojek p/Mobile Intern`_
 
 ### Listing all internships : `list`
 
-See all the internships you have applied to. <br>
-You may view your list of internships sorted by category in ascending or descending order.
+See all the internships you have applied to.
 
 Format: `list [c/CATEGORY [DESCENDING]]`
 
@@ -246,9 +243,7 @@ Format: `list [c/CATEGORY [DESCENDING]]`
   * The `DESCENDING` parameter can only be declared if the `CATEGORY` is stated
   * Possible options for `DESCENDING`:`TRUE` or `FALSE` (case-insensitive).
   * If `DESCENDING` is set to `TRUE`. List of internships will be displayed in descending order
-
-<div style="page-break-after: always;"></div>
-
+  
 Examples:
 * `list c/DATE TRUE`
 * `list c/position`
@@ -299,6 +294,8 @@ Format: `find [c/CATEGORY] KEYWORDS…`
   * To find an internship using the application process category, all `KEYWORD` must be a valid application process (case-insensitive)
     (i.e. Can only be: `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED`)
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `find c/position engineer` returns a list of internships with a position of Algorithm Engineer and Software Engineer
 * `find sea shop` returns a list of internships with company name of Sea Labs, Shopee, and Shopback
@@ -316,6 +313,8 @@ Examples:
 
 `find c/position engineer` is equivalent to `find c/p engineer`
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ![BeforeFindCommand](images/BeforeFindCommand.png)
 _Before executing command:  `find sea shop`_
