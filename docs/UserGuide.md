@@ -644,21 +644,21 @@ Notes:
 Displays only Pets based on the given attributes. There are five possible attributes to filter: Color, Name,
 Price, Species, Vaccination status.
 
-| Attribute          | Prefix | Format    | Example         |
-|--------------------|--------|-----------|-----------------|
-| Color              | c      | c/KEYWORD | c/pink          |
-| Name               | n      | n/KEYWORD | n/nyanko-sensei |
-| Price              | p      | p/PRICE   | p/209           |
-| Species            | s      | s/KEYWORD | s/ostrich       |
-| Vaccination Status | v      | v/KEYWORD | v/false         |
+| Attribute          | Prefix | Format      | Example           |
+|--------------------|--------|-------------|-------------------|
+| Color              | p_c    | p_c/KEYWORD | p_c/pink          |
+| Name               | p_n    | p_n/KEYWORD | p_n/nyanko-sensei |
+| Price              | p_p    | p_p/PRICE   | p_p/209           |
+| Species            | p_s    | p_s/KEYWORD | p_s/ostrich       |
+| Vaccination Status | p_v    | p_v/KEYWORD | p_v/false         |
 
 Format: `filter-p PREFIX/INPUT`
 
 Examples:
 
-* `filter-p c/white`
-* `filter-p c/black v/true`
-* `filter-p c/black n/doraemon p/50 s/cat v/true`
+* `filter-p p_c/white`
+* `filter-p p_c/black p_v/true`
+* `filter-p p_c/black p_n/doraemon p_p/50 p_s/cat p_v/true`
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
