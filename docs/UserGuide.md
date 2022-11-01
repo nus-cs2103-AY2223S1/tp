@@ -365,19 +365,19 @@ the data of your previous StudMap home folder.
 
 Action | Format, Examples
 -------|------------------
-**Add** | `add n/NAME m/MODULE s/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com m/CS2103T s/E1234567 g/user1 h/@user1 t/friends t/owesMoney`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITUSER] [h/TELEHANDLE] [t/TAG]…​` <br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
-**Sort** | `sort ORDER a/ATTRIBUTE` <br> e.g., `sort asc a/name`
-**Filter** | `filter`
-**Mark** | `mark INDEX/ALL ATTENDANCE c/CLASS` <br> e.g., `mark 1 present c/T01`
-**Unmark** | `unmark INDEX/ALL c/CLASS` <br> e.g., `mark 1 c/T01`
-**Add tag** | `tag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `tag 2 t/goodStudent`
-**Remove tag** | `untag INDEX t/TAG [t/OTHER]` <br> e.g., `untag 2 t/goodStudent`
-**Record participation** | `participate INDEX/ALL STATUS p/COMPONENT` <br> e.g., `participate 2 yes p/C01`
-**Remove participation** | `unparticipate INDEX/ALL p/COMPONENT` <br> e.g., `unparticipate 2 c/C01`
-**Import CSV** | `import`
+**[Add](#adding-a-student-add)** | `add n/NAME m/MODULE s/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com m/CS2103T s/E1234567 g/user1 h/@user1 t/friends t/owesMoney`
+**[Clear](#clearing-all-entries--clear)** | `clear`
+**[Delete](#deleting-a-student--delete)** | `delete INDEX`<br> e.g., `delete 3`
+**[Edit](#editing-a-student--edit)** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITUSER] [h/TELEHANDLE] [t/TAG]…​` <br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`
+**[Find](#locating-students-by-name-find)** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**[List](#listing-all-students--list)** | `list`
+**[Help](#viewing-help--help)** | `help`
+**[Sort](#sorting-the-students-sort)** | `sort ORDER a/ATTRIBUTE` <br> e.g., `sort asc a/name`
+**[Filter](#filtering-the-students-filter)** | `filter`
+**[Mark](#mark-attendance-of-student-mark)** | `mark INDEX/ALL ATTENDANCE c/CLASS` <br> e.g., `mark 1 present c/T01`
+**[Unmark](#unmark-attendance-of-a-student-unmark)** | `unmark INDEX/ALL c/CLASS` <br> e.g., `mark 1 c/T01`
+**[Add tag](#tag-student-with-label-tag)** | `tag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `tag 2 t/goodStudent`
+**[Remove tag](#remove-tag-from-student-untag)** | `untag INDEX t/TAG [t/OTHER]` <br> e.g., `untag 2 t/goodStudent`
+**[Record participation](#recording-participation-of-a-student-participate)** | `participate INDEX/ALL STATUS p/COMPONENT` <br> e.g., `participate 2 yes p/C01`
+**[Remove participation](#removing-participation-of-a-student-unparticipate)** | `unparticipate INDEX/ALL p/COMPONENT` <br> e.g., `unparticipate 2 c/C01`
+**[Import CSV](#import-students-from-csv-file-import)** | `import`
