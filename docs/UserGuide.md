@@ -30,10 +30,11 @@ Workbook is optimized for fast typists and utilizes a **Command Line Interface (
 3. Copy the file to a folder of your choice to store data from your WorkBook.
 
 4. Using your command terminal, navigate to the folder where you placed your WorkBook at and fire it up by inputting: `java -jar WorkBook.jar` in your terminal. <br> The GUI with sample data similar to one of the images below should appear in a few seconds.<br>
-   ![Ui](images/Ui.png)
+    ![Wide Ui](images/Ui.png)
 
-   ![Ui](images/UiNarrow.png)
+    <img src="images/UiNarrow.png" alt="Ui Narrow" style="left; margin-left: 32px;" width="590" height="580"/>
 
+<br>
 5. You can tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute. <br>
    Some example commands you can try:
 
@@ -126,6 +127,19 @@ This guide serves to:<br>
 * Applications in the past (i.e. `DATETIME` is past current time) will be placed at the bottom of the list, sorted downwards as well from the most recently passed.
 * An example is shown below:
 ![SortExample](images/SortExample.png)
+
+#### Responsive Ui to window resizing
+
+* The Ui will change dynamically when resized.
+
+* When the Ui is resized narrower past a certain point, the Ui will change to a narrow format.
+
+    <img src="images/UiNarrow.png" alt="Ui Narrow" style="left; margin-left: 28px;" width="565" height="535"/>
+
+* When the Ui is resized wider past a certain point, the Ui will change to a narrow format.
+
+    ![Wide Ui](images/Ui.png)
+
 
 </div>
 
