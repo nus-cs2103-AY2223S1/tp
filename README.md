@@ -23,3 +23,8 @@ traditional GUI apps.
 
 * For the detailed documentation of this project, see the **[CLInkedIn Product Website](https://ay2223s1-cs2103t-t13-3.github.io/tp/)**.
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+## Acknowledgements
+
+* AY2122S1-CS2103T-W08-4 / tp
+  https://github.com/AY2122S1-CS2103T-W08-4/tp/pull/188/files#
