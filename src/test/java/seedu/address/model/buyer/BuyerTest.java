@@ -43,7 +43,7 @@ public class BuyerTest {
                 .withPriority(VALID_PRIORITY_HIGH).build();
         assertFalse(ALICE.isSameBuyer(editedAlice));
 
-        // same phone, all other attributes different -> returns false
+        // same phone, all other attributes different -> returns true
         editedAlice = new BuyerBuilder(ALICE)
                 .withName(VALID_NAME_BOB)
                 .withEmail(VALID_EMAIL_BOB)
@@ -51,7 +51,7 @@ public class BuyerTest {
                 .withPriceRange(VALID_PRICE_RANGE_BOB)
                 .withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_BOB)
                 .withPriority(VALID_PRIORITY_HIGH).build();
-        assertFalse(ALICE.isSameBuyer(editedAlice));
+        assertTrue(ALICE.isSameBuyer(editedAlice));
 
         // same name, same phone, all other attributes different -> returns true
         editedAlice = new BuyerBuilder(ALICE)
@@ -62,18 +62,18 @@ public class BuyerTest {
                 .withPriority(VALID_PRIORITY_HIGH).build();
         assertTrue(ALICE.isSameBuyer(editedAlice));
 
-        // different name, different phone, all other attributes same -> returns false
+        // different name, different phone, same email, all other attributes same -> returns true
         editedAlice = new BuyerBuilder(ALICE).withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.isSameBuyer(editedAlice));
+        assertTrue(ALICE.isSameBuyer(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Buyer editedBob = new BuyerBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameBuyer(editedBob));
+        assertTrue(BOB.isSameBuyer(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
+        // name has trailing spaces, all other attributes same -> returns true (since we are matching by email or phone)
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new BuyerBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameBuyer(editedBob));
+        assertTrue(BOB.isSameBuyer(editedBob));
     }
 
     @Test

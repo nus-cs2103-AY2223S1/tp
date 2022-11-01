@@ -94,8 +94,8 @@ public class Buyer {
         }
 
         return otherBuyer != null
-                && otherBuyer.getPhone().equals(getPhone())
-                || otherBuyer.getEmail().equals(getEmail());
+                && (otherBuyer.getPhone().equals(getPhone())
+                    || otherBuyer.getEmail().equals(getEmail()));
     }
 
     /**
