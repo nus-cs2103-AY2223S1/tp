@@ -61,6 +61,9 @@ public class TuthubParser {
         case DeleteCommentCommand.COMMAND_WORD:
             return new DeleteCommentCommandParser().parse(arguments);
 
+        case DeleteCommentCommand.ALTERNATIVE_COMMAND_WORD:
+            return new DeleteCommentCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 

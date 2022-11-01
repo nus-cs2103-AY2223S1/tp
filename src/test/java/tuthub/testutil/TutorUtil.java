@@ -62,6 +62,8 @@ public class TutorUtil {
         descriptor.getYear().ifPresent(year -> sb.append(PREFIX_YEAR).append(year.value).append(" "));
         descriptor.getStudentId().ifPresent(studentId -> sb.append(PREFIX_STUDENTID)
                 .append(studentId.value).append(" "));
+        descriptor.getRating().ifPresent(rating -> sb.append(PREFIX_RATING)
+                .append(rating.value).append(" "));
         descriptor.getTeachingNomination().ifPresent(teachingNomination -> sb.append(PREFIX_TEACHINGNOMINATION)
                 .append(teachingNomination.value).append(" "));
         if (descriptor.getTags().isPresent()) {

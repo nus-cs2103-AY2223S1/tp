@@ -36,7 +36,7 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_EMAIL + "E1234567@u.nus.edu "
             + PREFIX_MODULE + "CS2100 "
             + PREFIX_YEAR + "3 "
             + PREFIX_STUDENTID + "A0123456X "

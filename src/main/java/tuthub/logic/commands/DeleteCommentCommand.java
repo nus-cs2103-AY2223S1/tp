@@ -17,6 +17,7 @@ import tuthub.model.tutor.Tutor;
 public class DeleteCommentCommand extends Command {
 
     public static final String COMMAND_WORD = "deletecomment";
+    public static final String ALTERNATIVE_COMMAND_WORD = "dc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a comment identified by the index number used in the displayed tutor list.\n"
@@ -70,7 +71,7 @@ public class DeleteCommentCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_COMMENT_INDEX);
         }
         Comment commentToDelete = tutor.getComments().deleteComment(commentIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_DELETE_COMMENT_SUCCESS, tutor, commentToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_COMMENT_SUCCESS, tutor.getName(), commentToDelete));
     }
 
     @Override

@@ -14,8 +14,7 @@ import tuthub.model.tutor.SortByTeachingNominationComparator;
  */
 public class SortCommandParser implements Parser<SortCommand> {
 
-    public static final String SPACE = " ";
-    public static final Integer MAX_ARGS = 3;
+    public static final Integer EXP_ARGS = 2;
     public static final String MESSAGE_UNKNOWN_PREFIX = "Prefix %1$s is not valid for this command. "
             + "Valid prefixes are tn/ or r/.";
     /**
@@ -31,7 +30,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
         String[] strArr = trimmedArgs.split("\\s+");
 
-        if (strArr.length > MAX_ARGS) {
+        if (!(strArr.length == EXP_ARGS)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
@@ -47,11 +46,23 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
     }
 
-    public Boolean isRating(Prefix prefix) {
+    /**
+     * Indicates if the {@code prefix} is a {@code Rating} or not.
+     *
+     * @param prefix The prefix to be checked.
+     * @return true if it is a {@code Rating}, otherwise false
+     */
+    public boolean isRating(Prefix prefix) {
         return prefix.equals(PREFIX_RATING);
     }
 
-    public Boolean isTeachingNomination(Prefix prefix) {
+    /**
+     * Indicates if the {@code prefix} is a {@code TeachingNomination} or not.
+     *
+     * @param prefix The prefix to be checked.
+     * @return true if it is a {@code TeachingNomination}, otherwise false
+     */
+    public boolean isTeachingNomination(Prefix prefix) {
         return prefix.equals(PREFIX_TEACHINGNOMINATION);
     }
 }
