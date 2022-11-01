@@ -1,7 +1,6 @@
 package jarvis.logic.parser;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON_INDEX;
 
 import java.util.stream.Stream;
 
@@ -19,15 +18,13 @@ public class UnmarkLessonCommandParser implements Parser<UnmarkLessonCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public UnmarkLessonCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_LESSON_INDEX);
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_LESSON_INDEX) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkLessonCommand.MESSAGE_USAGE));
+        try {
+            Index index = ParserUtil.parseIndex(args);
+            return new UnmarkLessonCommand(index);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkLessonCommand.MESSAGE_USAGE), pe);
         }
-
-        Index lessonIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_LESSON_INDEX).get());
-
-        return new UnmarkLessonCommand(lessonIndex);
     }
 
     /**

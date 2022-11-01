@@ -135,9 +135,11 @@ Similar analogues exist for task and lesson data. The class diagram is similar a
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
+
 The above diagram only shows the UserPrefs and StudentBook Storage in full. TaskBook Storage is done similarly to StudentBook Storage. The only difference is the name of the classes (`JsonTaskBookStorage` instead of `JsonStudentBookStorage`, `JsonAdaptedTask` instead of `JsonAdaptedStudent` etc.)
 
 <img src="images/LessonStorageClassDiagram.png" width="550" />
+
 The LessonBook Storage is slightly different from the StudentBook and TaskBook Storages.
 
 The `Storage` component,
@@ -155,14 +157,14 @@ Classes used by multiple components are in the `jarvis.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### List Students / Tasks
-To see the full list of students or tasks, the user keys in the valid command (`lists` or `listt`). Parsing of the user input is done and a `ListStudentCommand` is then generated. The following sequence diagram shows what happens when the `ListStudentCommand` is executed.
+### List Students / Tasks / Lessons
+To see the full list of students, tasks or lessons, the user keys in the valid command (`liststudent`, `listtask` or `listlesson`). As an example, the user keys in "`liststudent`". Parsing of the user input is done and a `ListStudentCommand` is then generated. The following sequence diagram shows what happens when the `ListStudentCommand` is executed.
 
 <img src="images/ListStudentSequenceDiagram.png" width="550"/>
 
 1. The list of students in the model is updated to display all students.
 
-The implementation for listing tasks is similar.
+The implementation for listing tasks and lessons is similar.
 
 ### Mark Task as done / not done
 In order to mark a task as completed, the user keys in a valid command (e.g. `marktask 2`). Parsing of the user input is done (see the sequence diagram for deleting a student in the [Logic component](#logic-component) for a similar parsing sequence) and a `MarkTaskCommand` is then generated. The following sequence diagram shows what happens when the `MarkTaskCommand` is executed.
@@ -282,36 +284,41 @@ In the case where `AddNoteCommand` is executed for adding to student specific no
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                           | I want to …​                                                    | So that I …​                                                                               |
-|----------|-----------------------------------|-----------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `* * *`  | potential user                    | find the installation/setup instructions                        | can install the app properly                                                               |
-| `* * *`  | user ready to start using the app | see the basic commands                                          | can learn how to use the most basic features of the app                                    |
-| `* * *`  | user ready to start using the app | add the students in my tutorial class into the app              | can track the students' attendance and grades                                              |
-| `* * *`  | user                              | add my tasks                                                    | will not forget to do any of the tasks                                                     |
-| `* * *`  | user                              | mark tasks as done                                              | can focus on the remaining tasks                                                           |
-| `* * *`  | user                              | mark tasks as not done                                          | can go back and redo tasks that are incomplete                                             |
-| `* * *`  | clumsy user                       | delete tasks                                                    | can remove tasks I have wrongfully added                                                   |
-| `* * *`  | clumsy user                       | delete students                                                 | can remove students I have wrongfully added                                                |
-| `* * *`  | user                              | list the tasks that I need to do                                | can see all my tasks                                                                       |
-| `* * *`  | user                              | list students in my class                                       | can see all my students with relevant details                                              |
-| `* * *`  | user                              | see my students' mastery check completion status                | know which students I have not seen for mastery check                                      |
-| `* * *`  | user                              | update my students' mastery check completion status             | can keep track of which students I have already seen for mastery check                     |
-| `* *`    | first time user                   | see the app being populated with sample students and tasks      | can try out the functions of the app                                                       |
-| `* *`    | user ready to start using the app | clear all current data                                          | can get rid of the sample data used for exploring the app and input my own data            |
-| `*`      | user                              | assign different priorites to my tasks                          | can focus on the more important tasks                                                      |
-| `*`      | user ready to start using the app | import my timetable for the semester	                           | can plan my TA duties in sync with tasks from other modules                                |
-| `*`      | user                              | add in mastery check timeslots                                  | can keep track of when and who I have to see for mastery check and I can make preparations |
-| `*`      | user                              | detect if there any schedule conflicts in my upcoming tasks     | resolve those conflicts and complete all my tasks                                          |
-| `*`      | user                              | add in timeslots for consultations	                             | can keep track of details of consultation and students                                     |
-| `*`      | user                              | get the task with the next earliest deadline	                   | can plan my schedule accordingly                                                           |
-| `*`      | user                              | receive reminders about upcoming deadlines                      | am able to meet all my deadlines on time                                                   |
-| `*`      | user                              | receive notifications when my students submit their assignments | know that I have assignments to grade                                                      |
-| `*`      | user                              | keep track of my students' level of participation               | decide how to assign tutorial participation exp for each student                           |
-| `*`      | user                              | keep track of my students' grades                               | can focus more on the weaker students                                                      |
-| `*`      | user                              | send notifications to my students                               | can remind them to submit their work                                                       |
-| `*`      | user                              | see performance statistics on each assignment                   | can spend more time on topics that my students are weak in                                 |
-| `*`      | user                              | see attendance statistics for studios                           | can understand the needs of my students better                                             |
-| `*`      | user                              | hide irrelevant data                                            | can focus on the more relevant data                                                        |
+| Priority | As a …​                           | I want to …​                                                    | So that I …​                                                                    |
+|----------|-----------------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------|
+| `* * *`  | potential user                    | find the installation/setup instructions                        | can install the app properly                                                    |
+| `* * *`  | user ready to start using the app | see the basic commands                                          | can learn how to use the most basic features of the app                         |
+| `* * *`  | user ready to start using the app | add the students in my tutorial class into the app              | can track the students' attendance and grades                                   |
+| `* * *`  | user                              | add my tasks                                                    | can keep track of the tasks I have to do                                          |
+ | `* * *`  | user                              | add my lessons                                                  | can keep track of lessons I have scheduled with which students                  |
+| `* * *`  | user                              | mark tasks as done                                              | can focus on the remaining tasks                                                |
+| `* * *`  | user                              | mark tasks as not done                                          | can go back and redo tasks that are incomplete                                  |
+| `* * *`  | user                              | mark lessons as completed                                       | can focus on upcoming lessons                                                   | 
+| `* * *`  | clumsy user                       | delete tasks                                                    | can remove tasks I have wrongfully added                                        |
+| `* * *`  | clumsy user                       | delete students                                                 | can remove students I have wrongfully added                                     |
+| `* * *`  | clumsy user                       | delete lessons                                                  | can remove lessons I have wrongfully added                                      |
+| `* * *`  | user                              | list the tasks that I need to do                                | can see all my tasks                                                            |
+| `* * *`  | user                              | list all students in my class                                   | can see all my students with relevant details                                   |
+| `* * *`  | user                              | list all lessons for my class                                   | can see all upcoming and completed lessons                                      |
+| `* * *`  | user                              | see my students' mastery check completion status                | know which students I have not seen for mastery check                           |
+| `* * *`  | user                              | update my students' mastery check completion status             | can keep track of which students I have already seen for mastery check          |
+| `* * *`  | user                              | see the duration and students involved for my lessons           | can keep track of when and who I have to meet in order to make preparations       |
+| `* *`    | first time user                   | see the app being populated with sample students, tasks and lessons      | can try out the functions of the app                                            |
+| `* *`    | user ready to start using the app | clear all current data                                          | can get rid of the sample data used for exploring the app and input my own data |
+| `* *`    | user                              | add attendance for a lesson                                      | can keep track of who attended the lesson                                       |
+| `* *`    | user                              | keep track of my students' level of participation               | can prompt students who are less active in class                        |
+| `* *`    | user                              | keep track of my students' grades                               | can help and pay more attention to the weaker students                             |  
+| `* *`    | user                              | take down notes related to a lesson                             | can refer back and remember important things that happened during the lesson      |      
+| `* *`    | user                              | detect if there are any lesson schedule conflicts                      | will not wrongly schedule lessons at the same time                               |
+| `*`      | user                              | assign different priorities to my tasks                         | can focus on the more important tasks                                           |
+| `*`      | user ready to start using the app | import my timetable for the semester	                           | can plan my TA duties in sync with tasks from other modules                     |
+| `*`      | user                              | detect if there any schedule conflicts in my upcoming tasks     | resolve those conflicts and complete all my tasks                               |
+| `*`      | user                              | get the task with the next earliest deadline	                   | can plan my schedule accordingly                                                |
+| `*`      | user                              | receive reminders about upcoming deadlines                      | am able to meet all my deadlines on time                                        |
+| `*`      | user                              | receive notifications when my students submit their assignments | know that I have assignments to grade                                           |
+| `*`      | user                              | send notifications to my students                               | can remind them to submit their work                                            |
+| `*`      | user                              | see performance statistics on each assignment                   | can spend more time on topics that my students are weak in                      |
+| `*`      | user                              | hide irrelevant data                                            | can focus on the more relevant data                                             |
 
 
 
@@ -319,7 +326,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `JARVIS` and the **Actor** is `AVENGER`, unless specified otherwise)
 
-**Use case: UC1 - Add a student**
+**Use case: UC1 - View students**
+
+**MSS**
+
+1. Avenger requests to view students.
+2. JARVIS displays the students.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. JARVIS fails to understand request.
+    * 1a1. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 1.
+
+**Use case: UC2 - View tasks**
+
+Refer to <ins>UC1 - View students</ins> with the only difference being task instead of student.
+
+**Use case: UC3 - View lessons**
+
+Refer to <ins>UC1 - View students</ins> with the only difference being lesson instead of student.
+
+**Use case: UC4 - View students, tasks and lessons at the same time**
+
+Refer to <ins>UC1 - View students</ins> with the only difference being request for all students, tasks and lessons instead of just students.
+
+**Use case: UC5 - Add a student**
 
 **MSS**
 
@@ -335,121 +370,105 @@ Use case ends.
 
     Use case resumes from step 1.
 
-**Use case: UC2 - Add a Task**
+**Use case: UC6 - Add a task**
+
+Refer to <ins>UC5 - Add a Student</ins> with the only difference being task instead of student.
+
+**Use case: UC7 - Add a lesson**
+
+Refer to <ins>UC5 - Add a Student</ins> with the only difference being lesson instead of student.
+
+**Use case: UC8 - Edit student**
+
+Preconditions: There are existing students in JARVIS.
 
 **MSS**
 
-1. Avenger requests to add a task.
-2. JARVIS successfully adds the task.
+1. Avenger requests to edit a student.
+2. JARVIS successfully edits the student.
 
 Use case ends.
 
 **Extensions**
-
-* 1a. JARVIS fails to understand request.
-  * 1a1. JARVIS tells Avenger to make a request again.
-
+- 1a. JARVIS fails to understand request.
+  - 1a1. JARVIS tells Avenger to make a request again.
+  
     Use case resumes from step 1.
 
-**Use case: UC3 - List students**
+- 1b. Specified student not found in JARVIS.
+  - 1b1. JARVIS informs Avenger that the student does not exist.
+  - 1b2. JARVIS displays the list of students.
+  - 1b3. JARVIS tells Avenger to make a request again.
+  
+    Use case resumes from step 1.
+
+**Use case: UC9 - Find student**
+
+Preconditions: There are existing students in JARVIS.
 
 **MSS**
 
-1. Avenger requests to list students.
-2. JARVIS displays the list of students.
-
-Use case ends.
+1. Avenger requests to find a student.
+2. JARVIS successfully finds the student.
 
 **Extensions**
+- 1a. JARVIS fails to understand request.
+    - 1a1. JARVIS tells Avenger to make a request again.
 
-* 1a. JARVIS fails to understand request.
-  * 1a1. JARVIS tells Avenger to make a request again.
+      Use case resumes from step 1.
 
-    Use case resumes from step 1.
+- 1b. Specified student not found in JARVIS.
+    - 1b1. JARVIS informs Avenger that the student does not exist.
+    - 1b2. JARVIS displays the list of students.
+    - 1b3. JARVIS tells Avenger to make a request again.
 
-**Use case: UC4 - List tasks**
+      Use case resumes from step 1.
+
+**Use case: UC10 - Grade student**
+
+Preconditions: There are existing students in JARVIS.
+
+**MSS** 
+
+1. Avenger requests to input grade for a student.
+2. JARVIS successfully adds the grade for the student.
+
+**Extensions**
+- 1a. JARVIS fails to understand request.
+    - 1a1. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 1.
+
+- 1b. Specified student not found in JARVIS.
+    - 1b1. JARVIS informs Avenger that the student does not exist.
+    - 1b2. JARVIS displays the list of students.
+    - 1b3. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 1.
+
+**Use case: UC11 - Set mastery check result**
+
+Preconditions: There are existing students in JARVIS.
 
 **MSS**
 
-1. Avenger requests to list tasks.
-2. JARVIS displays the list of tasks.
-
-Use case ends.
+1. Avenger requests to input mastery check result for a student.
+2. JARVIS successfully adds the mastery check result for the student.
 
 **Extensions**
+- 1a. JARVIS fails to understand request.
+    - 1a1. JARVIS tells Avenger to make a request again.
 
-* 1a. JARVIS fails to understand request.
-  * 1a1. JARVIS tells Avenger to make a request again.
+      Use case resumes from step 1.
 
-    Use case resumes from step 1.
+- 1b. Specified student not found in JARVIS.
+    - 1b1. JARVIS informs Avenger that the student does not exist.
+    - 1b2. JARVIS displays the list of students.
+    - 1b3. JARVIS tells Avenger to make a request again.
 
-**Use case: UC5 - Delete a student**
+      Use case resumes from step 1.
 
-Preconditions:  There are existing students in JARVIS.
-
-**MSS**
-
-1. Avenger performs <ins>list students(UC3)</ins>.
-2. JARVIS displays list of students.
-3. Avenger requests to delete a student.
-4. JARVIS deletes the student.
-
-Use case ends.
-
-**Extensions**
-
-* 3a. JARVIS fails to understand request.
-  * 3a1. JARVIS tells Avenger to make a request again.
-
-    Use case resumes from step 3.
-
-**Use case: UC6 - Delete a task**
-
-Preconditions: There are existing tasks in JARVIS.
-
-**MSS:**
-
-1. Avenger performs <ins>list tasks (UC4)</ins>.
-2. JARVIS displays list of tasks.
-3. Avenger requests to delete a task.
-4. JARVIS deletes the task.
-
-Use case ends.
-
-**Extensions:**
-
-* 3a. JARVIS fails to understand request.
-  * 3a1. JARVIS tells Avenger to make a request again.
-
-    Use case resumes from step 2.
-
-**Use case: UC7 - Clear all students and tasks**
-
-Preconditions: There are existing tasks and/or students in JARVIS.
-
-Guarantees: All students and tasks will be deleted.
-
-**MSS:**
-
-1. Avenger requests to clear all data.
-2. JARVIS requests for confirmation message.
-3. Avenger confirms.
-4. JARVIS clears all data.
-
-Use case ends.
-
-**Extensions:**
-
-* 1a. JARVIS fails to understand request.
-  * 1a1. JARVIS tells Avenger to make a request again.
-
-    Use case resumes from step 1.
-
-* 2a. Avenger fails to confirm.
-
-  Use case ends.
-
-**Use case: UC8 - Mark task as done**
+**Use case: UC12 - Mark task as done**
 
 Preconditions: There are existing tasks in JARVIS
 
@@ -458,71 +477,187 @@ Guarantees: Specified task is marked as done
 **MSS:**
 
 1. Avenger requests to mark a task as done.
-2. JARVIS displays the list of tasks with the aforementioned task marked as done.
+2. JARVIS marks the task as done.
 
 Use case ends.
 
 **Extensions:**
 
 * 1a. JARVIS fails to understand request.
-  * 1a1. JARVIS tells Avenger to make a request again.
+    * 1a1. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 1.
+
+* 1b. Specified task not found in JARVIS.
+  - 1b1. JARVIS informs Avenger that the task does not exist.
+  - 1b2. JARVIS displays the list of tasks.
+  - 1b3. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 1.
 
-* 1b. JARVIS detects invalid task.
-  * 1b1. JARVIS informs Avenger that the task does not exist.
-  * 1b2. JARVIS displays the list of tasks.
-  * 1b3. JARVIS tells Avenger to make a request again.
+**Use case: UC13 - Mark task as not done**
 
-    Use case resumes from step 1.
+Refer to <ins>UC12 - Mark task as done</ins> with the only difference being marking task as not done instead of done.
 
-**Use case: UC9 - Mark task as not done**
+**Use case: UC14 - Mark lesson as completed**
 
-Preconditions: There are existing tasks in JARVIS
+Refer to <ins>UC12 - Mark task as done</ins> with the only difference being lesson instead of task.
 
-Guarantees: Specified task is marked as not done
+**Use case: UC15 - Mark lesson as incomplete**
 
-**MSS:**
+Refer to <ins>UC12 - Mark task as done</ins> with the difference being lesson instead of task and incomplete instead of done.
 
-1. Avenger requests to mark a task as not done.
-2. JARVIS displays the list of tasks with the aforementioned task marked as not done.
+**Use case: UC16 - Mark a student as present for a lesson**
+
+Preconditions: There are existing students and lessons in JARVIS.
+
+**MSS**
+1. Avenger performs <ins>view lessons(UC3)</ins>.
+2. Avenger requests to mark a student present in a lesson.
+3. JARVIS marks the student present in the lesson.
 
 Use case ends.
 
 **Extensions:**
 
-* 1a. JARVIS fails to understand request.
-  * 1a1. JARVIS tells Avenger to make a request again.
+- 2a. JARVIS fails to understand request.
+  - 2a1. JARVIS tells Avenger to make a request again.
+  - 
+    Use case resumes from step 2.
+  
+- 2b. Specified lesson not found in JARVIS.
+  - 2b1. JARVIS informs Avenger that the lesson does not exist.
+  - 2b2. JARVIS tells Avenger to make a request again.
+  
+    Use case resumes from step 2.
+  
+- 2c. Specified student not found in JARVIS.
+  - 2c1. JARVIS informs Avenger that the student does not exist in the lesson.
+  - 2c2. JARVIS tells Avenger to make a request again.
+  
+    Use case resumes from step 2.
+  
+**Use case: UC17 - Mark a student as absent for a lesson**
 
-  Use case resumes from step 1.
+Refer to <ins>UC16 - Mark a student as present for a lesson</ins> with the only difference being mark a student as absent instead of present.
 
-* 1b. JARVIS detects invalid task.
-  * 1b1. JARVIS informs Avenger that the task does not exist.
-  * 1b2. JARVIS displays the list of tasks.
-  * 1b3. JARVIS tells Avenger to make a request again.
+**Use case: UC18 - Add note for a student in a lesson**
 
-    Use case resumes from step 1.
+Preconditions: There are existing students and lessons in JARVIS.
 
-**Use case: UC10 - Record student's mastery check result**
+1. Avenger performs <ins>view lessons(UC3)</ins>.
+2. Avenger requests to add a note for a student in a lesson.
+3. JARVIS adds the note for the student to the lesson.
+
+Use case ends.
+
+**Extensions:**
+- 2a. JARVIS fails to understand request.
+    - 2a1. JARVIS tells Avenger to make a request again.
+  
+      Use case resumes from step 2.
+  
+- 2b. Specified lesson not found in JARVIS.
+    - 2b1. JARVIS informs Avenger that the lesson does not exist.
+    - 2b2. JARVIS tells Avenger to make a request again.
+  
+      Use case resumes from step 2.
+
+- 2c. Specified student not found in JARVIS.
+    - 2c1. JARVIS informs Avenger that the student does not exist in the lesson.
+    - 2c2. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 2.
+
+
+**Use case: UC19 - Delete note from a student in a lesson**
+
+Preconditions: There are existing students, lessons and notes for a student in JARVIS.
+
+1. Avenger performs <ins>view lessons(UC3)</ins>.
+2. Avenger requests to delete a note from a student in a lesson.
+3. JARVIS deletes the note from the student to the lesson.
+
+Use case ends.
+
+**Extensions:**
+- 2a. JARVIS fails to understand request.
+    - 2a1. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 2.
+
+- 2b. Specified lesson not found in JARVIS.
+    - 2b1. JARVIS informs Avenger that the lesson does not exist.
+    - 2b2. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 2.
+
+- 2c. Specified student not found in JARVIS.
+    - 2c1. JARVIS informs Avenger that the student does not exist in the lesson.
+    - 2c2. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 2.
+  
+- 2d. Specified note not found in JARVIS.
+  - 2d1. JARVIS informs Avenger that the note does not exist for the student in the lesson.
+  - 2d2. JARVIS tells Avenger to make a request again.
+
+    Use case resumes from step 2.
+  
+**Use case: UC20 - Set participation for a student in a lesson**
+
+Refer to <ins>UC18 - Add note for a student in a lesson</ins> with the only difference being setting participation instead of adding note.  
+    
+**Use case: UC21 - Delete a student**
 
 Preconditions: There are existing students in JARVIS.
 
+**MSS**
+
+1. Avenger performs <ins>view students(UC1)</ins>.
+2. Avenger requests to delete a student.
+3. JARVIS deletes the student.
+
+Use case ends.
+
+**Extensions**
+
+- 2a. JARVIS fails to understand request.
+  - 2a1. JARVIS tells Avenger to make a request again.
+
+    Use case resumes from step 2.
+  
+- 2b. Specified student not found in JARVIS.
+  - 2b1. JARVIS informs Avenger that the student does not exist.
+  - 2b2. JARVIS tells Avenger to make a request again.
+
+    Use case resumes from step 2.
+  
+**Use case: UC22 - Delete a task**
+
+Refer to <ins>UC21 - Delete a student</ins> with the only difference being task instead of student.
+
+**Use case: UC23 - Clear all students, tasks and lessons**
+
+Preconditions: There are existing tasks, students and/or lessons in JARVIS.
+
+Guarantees: All students and tasks will be deleted.
+
 **MSS:**
 
-1. Avenger performs <ins>list students (UC3)</ins>.
-2. JARVIS displays the list of students.
-3. Avenger requests to record a student’s mastery check result.
-4. JARVIS displays list of students and mastery check results, with the aforementioned student’s updated mastery check result.
+1. Avenger requests to clear all data.
+2. JARVIS clears all data.
 
 Use case ends.
 
 **Extensions:**
 
-* 3a. JARVIS fails to understand request.
-  * 3a1. JARVIS tells Avenger to make a request again.
+- 1a. JARVIS fails to understand request.
+  - 1a1. JARVIS tells Avenger to make a request again.
 
-    Use case resumes from step 3.
-
+    Use case resumes from step 1.
+  
+    
 ### Non-Functional Requirements
 
 1.  Should work on Windows, Linux, and OS-X platforms that has version 11 of Java (i.e. no other Java versions) installed.
@@ -540,10 +675,10 @@ Use case ends.
 * **Mastery check**: An assessment where students in pairs must present what they have learnt in the module to their TA, and the TA will assess the students’ understanding of the concepts.
 * **Avenger**: A teaching assistant (TA) who is responsible for teaching a studio class.
 * **Studio**: A tutorial class with up to 8 students.
-* **XP**: Points that will count towards a student’s grade
+* **XP**: Points that will count towards a student’s grade.
 * **Source Academy**: Online platform used for CS1101S.
-* **Mission**: Assignment on Source Academy
-* **Quest**: Optional assignment on Source Academy
+* **Mission**: Assignment on Source Academy.
+* **Quest**: Optional assignment on Source Academy.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -562,7 +697,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample students and tasks. The window size may not be optimum.
+   1. Double-click the jar file 
+       Expected: Shows the GUI with a set of sample students, tasks and lists. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -575,7 +711,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a student
 
-1. Deleting a student while all persons are being shown
+1. Deleting a student while student list is being shown
 
    1. Prerequisites: List all student using the `lists` command. Multiple students in the list.
 

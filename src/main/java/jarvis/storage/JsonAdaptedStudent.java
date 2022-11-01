@@ -1,9 +1,13 @@
 package jarvis.storage;
 
+import static jarvis.commons.util.JsonUtil.checkNullArgument;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.GradeProfile;
 import jarvis.model.MatricNum;
 import jarvis.model.Student;
@@ -43,28 +47,30 @@ public class JsonAdaptedStudent {
     /**
      * Converts this Jackson-friendly adapted student object into the model's {@code Student} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted student.
+     * @throws IllegalArgumentException if there were any data constraints violated in the adapted student.
      */
-    public Student toModelType() throws IllegalValueException {
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    StudentName.class.getSimpleName()));
-        }
-        if (!StudentName.isValidName(name)) {
-            throw new IllegalValueException(StudentName.MESSAGE_CONSTRAINTS);
-        }
+    public Student toModelType() throws IllegalArgumentException {
+        checkNullArgument(StudentName.class, MISSING_FIELD_MESSAGE_FORMAT, name);
         final StudentName modelStudentName = new StudentName(name);
 
-        if (matricNum == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    MatricNum.class.getSimpleName()));
-        }
-        if (!MatricNum.isValidMatricNum(matricNum)) {
-            throw new IllegalValueException(MatricNum.MESSAGE_CONSTRAINTS);
-        }
+        checkNullArgument(MatricNum.class, MISSING_FIELD_MESSAGE_FORMAT, matricNum);
         final MatricNum modelMatricNum = new MatricNum(matricNum);
 
         return new Student(modelStudentName, modelMatricNum, gradeProfile);
     }
 
+    /**
+     * Converts a list of {@code JsonAdaptedStudent} into a list of the model's {@code Student} objects.
+     *
+     * @param jsonList The list of Jackson-friendly adapted student objects.
+     * @return The list of the model's {@code Student} objects.
+     * @throws IllegalArgumentException If there were any data constraints violated in the adapted student.
+     */
+    public static List<Student> toModelList(List<JsonAdaptedStudent> jsonList) throws IllegalArgumentException {
+        List<Student> modelStudentList = new ArrayList<>();
+        for (JsonAdaptedStudent jsonAdaptedStudent : jsonList) {
+            modelStudentList.add(jsonAdaptedStudent.toModelType());
+        }
+        return modelStudentList;
+    }
 }

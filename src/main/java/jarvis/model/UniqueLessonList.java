@@ -135,7 +135,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
      * Replaces the contents of this list with {@code lessons}.
      * {@code lessons} must not contain duplicate lessons.
      */
-    public void setLessons(List<Lesson> lessons) {
+    public void setLessons(List<? extends Lesson> lessons) {
         requireAllNonNull(lessons);
         if (!lessonsAreUnique(lessons)) {
             throw new DuplicateLessonException();
@@ -172,7 +172,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
     /**
      * Returns true if {@code lessons} contains only unique lessons.
      */
-    private boolean lessonsAreUnique(List<Lesson> lessons) {
+    private boolean lessonsAreUnique(List<? extends Lesson> lessons) {
         for (int i = 0; i < lessons.size() - 1; i++) {
             for (int j = i + 1; j < lessons.size(); j++) {
                 if (lessons.get(i).equals(lessons.get(j))) {

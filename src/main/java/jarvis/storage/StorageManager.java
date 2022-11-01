@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import jarvis.commons.core.LogsCenter;
 import jarvis.commons.exceptions.DataConversionException;
+import jarvis.model.ReadOnlyLessonBook;
 import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.ReadOnlyTaskBook;
 import jarvis.model.ReadOnlyUserPrefs;
@@ -20,16 +21,18 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private StudentBookStorage studentBookStorage;
     private TaskBookStorage taskBookStorage;
+    private LessonBookStorage lessonBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code StudentBookStorage}, {@code TaskBookStorage}
-     * and {@code UserPrefStorage}.
+     * {@code LessonBookStorage}, and {@code UserPrefStorage}.
      */
     public StorageManager(StudentBookStorage studentBookStorage, TaskBookStorage taskBookStorage,
-                          UserPrefsStorage userPrefsStorage) {
+                          LessonBookStorage lessonBookStorage, UserPrefsStorage userPrefsStorage) {
         this.studentBookStorage = studentBookStorage;
         this.taskBookStorage = taskBookStorage;
+        this.lessonBookStorage = lessonBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -109,4 +112,32 @@ public class StorageManager implements Storage {
         taskBookStorage.saveTaskBook(taskBook, filePath);
     }
 
+    // ================ LessonBook methods ==============================
+
+    @Override
+    public Path getLessonBookFilePath() {
+        return lessonBookStorage.getLessonBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyLessonBook> readLessonBook() throws DataConversionException, IOException {
+        return readLessonBook(lessonBookStorage.getLessonBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyLessonBook> readLessonBook(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return lessonBookStorage.readLessonBook(filePath);
+    }
+
+    @Override
+    public void saveLessonBook(ReadOnlyLessonBook lessonBook) throws IOException {
+        saveLessonBook(lessonBook, lessonBookStorage.getLessonBookFilePath());
+    }
+
+    @Override
+    public void saveLessonBook(ReadOnlyLessonBook lessonBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        lessonBookStorage.saveLessonBook(lessonBook, filePath);
+    }
 }

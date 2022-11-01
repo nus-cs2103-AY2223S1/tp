@@ -16,6 +16,7 @@ import java.util.TreeSet;
 import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
+import jarvis.model.Lesson;
 import jarvis.model.LessonDesc;
 import jarvis.model.MasteryCheck;
 import jarvis.model.Model;
@@ -71,6 +72,8 @@ public class AddMasteryCheckCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
+        model.updateFilteredLessonList(Model.PREDICATE_SHOW_ALL_LESSONS);
+        List<Lesson> allLessonList = model.getFilteredLessonList();
 
         Set<Student> studentSet = new TreeSet<>((s1, s2) -> {
             int result = s1.getName().toString().toLowerCase().compareTo(s2.getName().toString().toLowerCase());
@@ -79,6 +82,7 @@ public class AddMasteryCheckCommand extends Command {
             }
             return result;
         });
+
         for (Index studentIndex : studentIndexSet) {
             if (studentIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -91,6 +95,13 @@ public class AddMasteryCheckCommand extends Command {
         if (model.hasLesson(masteryCheckToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MASTERY_CHECK);
         } else if (model.hasPeriodClash(masteryCheckToAdd)) {
+            allLessonList.stream().filter(masteryCheckToAdd::hasTimingConflict).forEach(Lesson::markClash);
+            // Update for JavaFX
+            for (Lesson l : allLessonList) {
+                if (l.hasTimingConflict()) {
+                    model.setLesson(l, l);
+                }
+            }
             throw new CommandException(MESSAGE_TIME_PERIOD_CLASH);
         }
 

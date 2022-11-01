@@ -25,6 +25,7 @@ import jarvis.model.ModelManager;
 import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.Student;
 import jarvis.model.UserPrefs;
+import jarvis.storage.JsonLessonBookStorage;
 import jarvis.storage.JsonStudentBookStorage;
 import jarvis.storage.JsonTaskBookStorage;
 import jarvis.storage.JsonUserPrefsStorage;
@@ -46,8 +47,11 @@ public class LogicManagerTest {
                 new JsonStudentBookStorage(temporaryFolder.resolve("studentBook.json"));
         JsonTaskBookStorage taskBookStorage =
                 new JsonTaskBookStorage(temporaryFolder.resolve("taskBook.json"));
+        JsonLessonBookStorage lessonBookStorage =
+                new JsonLessonBookStorage(temporaryFolder.resolve("lessonBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(studentBookStorage, taskBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(studentBookStorage, taskBookStorage, lessonBookStorage,
+                userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -76,9 +80,12 @@ public class LogicManagerTest {
                 new JsonStudentBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionStudentBook.json"));
         JsonTaskBookStorage taskBookStorage =
                 new JsonTaskBookStorage(temporaryFolder.resolve("ioExceptionTaskBook.json"));
+        JsonLessonBookStorage lessonBookStorage =
+                new JsonLessonBookStorage(temporaryFolder.resolve("ioExceptionLessonBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(studentBookStorage, taskBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(studentBookStorage, taskBookStorage, lessonBookStorage,
+                userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

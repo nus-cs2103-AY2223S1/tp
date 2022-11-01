@@ -1,5 +1,8 @@
 package jarvis.model;
 
+import static jarvis.commons.util.AppUtil.checkArgument;
+import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,8 +13,12 @@ import java.util.Objects;
  */
 public class TimePeriod {
 
-    public static final String MESSAGE_CONSTRAINTS_DATE = "Date should be in yyyy-MM-dd format";
-    public static final String MESSAGE_CONSTRAINTS_TIME = "Time should be in HH:mm format";
+
+    public static final String MESSAGE_CONSTRAINTS = "Start time must be before end time";
+    public static final String MESSAGE_CONSTRAINTS_DATE = "Date should be in yyyy-MM-dd format and valid (year, month "
+            + "and day should be in the valid range)";
+    public static final String MESSAGE_CONSTRAINTS_TIME = "Time should be in HH:mm format and valid (hour and minute "
+            + "should be in the valid range)";
 
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("MMM-dd-yyyy HH:mm");
     public static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
@@ -24,9 +31,14 @@ public class TimePeriod {
      * @param end Ending time.
      */
     public TimePeriod(LocalDateTime start, LocalDateTime end) {
-        assert start.isBefore(end) : "Start time must be before end time";
+        requireAllNonNull(start, end);
+        checkArgument(isValidTimePeriod(start, end), MESSAGE_CONSTRAINTS);
         this.start = start;
         this.end = end;
+    }
+
+    public static boolean isValidTimePeriod(LocalDateTime start, LocalDateTime end) {
+        return start.isBefore(end);
     }
 
     public LocalDateTime getStart() {

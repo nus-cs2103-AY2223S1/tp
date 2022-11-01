@@ -18,16 +18,17 @@ import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
  * Marks a student as absent for a given lesson.
- * The student is identified using its displayed index from the student book.
  * The lesson is identified using its displayed index from the lesson book.
+ * The student is identified using its displayed index in the student list of the specified lesson.
  */
 public class UnmarkStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "unmarkstudent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks a student as absent for a lesson. The student and lesson are identified by their respective"
-            + " index number used in the displayed student list and in the displayed lesson list.\n"
+            + ": Marks a student as absent for a lesson. "
+            + "The lesson is identified by its index number in the displayed lesson list. The student is identified "
+            + "using its displayed index in the student list of the specified lesson\n"
             + "Parameters: "
             + PREFIX_LESSON_INDEX + "LESSON INDEX "
             + PREFIX_STUDENT_INDEX + "STUDENT_INDEX \n"
@@ -39,8 +40,7 @@ public class UnmarkStudentCommand extends Command {
     private final Index studentIndex;
 
     /**
-     * Creates an UnmarkStudentCommand to mark the specified student at student index for a given lesson at lesson index
-     * as absent.
+     * Creates a UnmarkStudentCommand to mark the specified student in the specified lesson as absent.
      */
     public UnmarkStudentCommand(Index lessonIndex, Index studentIndex) {
         requireAllNonNull(lessonIndex, studentIndex);

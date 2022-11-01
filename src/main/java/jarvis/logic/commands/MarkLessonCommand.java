@@ -1,6 +1,5 @@
 package jarvis.logic.commands;
 
-import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON_INDEX;
 import static jarvis.model.Model.PREDICATE_SHOW_ALL_LESSONS;
 import static java.util.Objects.requireNonNull;
 
@@ -23,9 +22,8 @@ public class MarkLessonCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks a lesson as completed. The lesson is identified by its index number in the displayed "
             + "lesson list.\n"
-            + "Parameters: "
-            + PREFIX_LESSON_INDEX + "LESSON INDEX \n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_LESSON_INDEX + "1";
+            + "Parameters: INDEX(must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked %1$s as complete.";
 

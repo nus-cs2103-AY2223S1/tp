@@ -1,11 +1,12 @@
 package jarvis.storage;
 
+import static jarvis.commons.util.JsonUtil.checkNullArgument;
+
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.Task;
 import jarvis.model.TaskDeadline;
 import jarvis.model.TaskDesc;
@@ -15,7 +16,7 @@ import jarvis.model.TaskDesc;
  */
 class JsonAdaptedTask {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tasks's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
     private final String taskDesc;
     private final LocalDate deadline;
@@ -45,17 +46,16 @@ class JsonAdaptedTask {
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Task} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalArgumentException if there were any data constraints violated in the adapted person.
      */
-    public Task toModelType() throws IllegalValueException {
-
-        if (taskDesc == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TaskDesc.class.getSimpleName()));
-        }
+    public Task toModelType() throws IllegalArgumentException {
+        checkNullArgument(TaskDesc.class, MISSING_FIELD_MESSAGE_FORMAT, taskDesc);
         final TaskDesc modelTaskDesc = new TaskDesc(taskDesc);
+
         final TaskDeadline modelTaskDeadline = deadline == null ? null : new TaskDeadline(deadline);
+
         Task task = new Task(modelTaskDesc, modelTaskDeadline);
+
         if (isDone) {
             task.markAsDone();
         }

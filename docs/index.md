@@ -8,7 +8,7 @@ title: JARVIS
 
 ![Ui](images/Ui.png)
 
-**JARVIS is a desktop application for CS1101S Avengers (Teaching Assistants) to keep track of their students and tasks.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**JARVIS is a desktop application for CS1101S Avengers (Teaching Assistants) to keep track of their students, tasks and lessons.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using JARVIS, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing JARVIS, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.

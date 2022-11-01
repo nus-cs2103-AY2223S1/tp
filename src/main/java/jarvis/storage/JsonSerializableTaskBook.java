@@ -14,7 +14,7 @@ import jarvis.model.Task;
 import jarvis.model.TaskBook;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable TaskBook that is serializable to JSON format.
  */
 @JsonRootName(value = "taskbook")
 class JsonSerializableTaskBook {
@@ -32,7 +32,7 @@ class JsonSerializableTaskBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyTaskBook} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableTaskBook}.
      */
@@ -41,7 +41,7 @@ class JsonSerializableTaskBook {
     }
 
     /**
-     * Converts this student book into the model's {@code StudentBook} object.
+     * Converts this task book into the model's {@code TaskBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

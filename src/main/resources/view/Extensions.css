@@ -18,3 +18,10 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+
+.error-clash {
+    -fx-background-color: #d06651 !important;
+    -fx-border-width: 1pt !important;
+    -fx-border-color: black !important;
+}

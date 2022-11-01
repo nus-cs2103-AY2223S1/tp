@@ -2,6 +2,9 @@ package jarvis.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import jarvis.model.exceptions.NoteNotFoundException;
@@ -26,10 +29,28 @@ public class LessonNotes {
             }
             return result;
         });
+
         generalNotes = new ArrayList<>();
         for (Student stu : students) {
             studentNotes.put(stu, new ArrayList<>());
         }
+    }
+
+    /**
+     * Creates the notes for a lesson with the given general and student notes.
+     *
+     * @param studentList The list of students in the lesson.
+     * @param generalNotes The given general notes.
+     * @param indexNotesMap The student notes mapped to student index, which is the student's index in the studentList.
+     */
+    public LessonNotes(List<Student> studentList, ArrayList<String> generalNotes,
+                       Map<Integer, ArrayList<String>> indexNotesMap) {
+        TreeMap<Student, ArrayList<String>> studentNotes = new TreeMap<>(Student.NAME_COMPARATOR);
+        for (Integer i : indexNotesMap.keySet()) {
+            studentNotes.put(studentList.get(i), indexNotesMap.get(i));
+        }
+        this.generalNotes = generalNotes;
+        this.studentNotes = studentNotes;
     }
 
     /**
@@ -83,7 +104,7 @@ public class LessonNotes {
         return specifiedStudentNotes.remove(index);
     }
 
-    public String getGeneralNotes() {
+    public String getGeneralNotesString() {
         StringBuilder formattedGeneralNotes = new StringBuilder("Lesson Notes:\n");
         int index = 0;
         for (String generalNote: generalNotes) {
@@ -94,7 +115,7 @@ public class LessonNotes {
         return formattedGeneralNotes.toString();
     }
 
-    public String getStudentNotes(Student student) {
+    public String getStudentNotesString(Student student) {
         if (!studentNotes.containsKey(student)) {
             throw new StudentNotFoundException();
         }
@@ -109,21 +130,34 @@ public class LessonNotes {
     }
 
     public String getAllNotes() {
-        StringBuilder formattedAllNotes = new StringBuilder(getGeneralNotes());
+        StringBuilder formattedAllNotes = new StringBuilder(getGeneralNotesString());
         formattedAllNotes.append("\nNotes for individual students:\n");
         for (Student student: studentNotes.keySet()) {
             formattedAllNotes.append(student.toString());
             formattedAllNotes.append(":\n");
-            formattedAllNotes.append(getStudentNotes(student));
+            formattedAllNotes.append(getStudentNotesString(student));
             formattedAllNotes.append("\n");
         }
         return formattedAllNotes.toString();
     }
 
+    public ArrayList<String> getGeneralNotes() {
+        return generalNotes;
+    }
+
+    public ArrayList<String> getStudentNotes(Student student) {
+        return studentNotes.get(student);
+    }
+
     public void setStudent(Student targetStudent, Student editedStudent) {
         ArrayList<String> tempNotes = studentNotes.get(targetStudent);
+        assert tempNotes != null;
         studentNotes.remove(targetStudent);
         studentNotes.put(editedStudent, tempNotes);
+    }
+
+    public Set<Student> getAllStudents() {
+        return studentNotes.keySet();
     }
 
     @Override

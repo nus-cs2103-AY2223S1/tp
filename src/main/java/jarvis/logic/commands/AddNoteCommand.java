@@ -20,20 +20,20 @@ import jarvis.model.exceptions.StudentNotFoundException;
 /**
  * Adds a note to a lesson.
  * Note added can be for the lesson or for a specific student in the lesson if the student is specified.
- * The student is identified using its displayed index from the student book.
  * The lesson is identified using its displayed index from the lesson book.
+ * The student is identified using its displayed index in the student list of the specified lesson.
  */
 public class AddNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "addnote";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a note to a lesson or for a specific student in a lesson if optional student index is specified."
-            + "The student and lesson are identified by their respective index number used in the displayed student "
-            + "list and in the displayed lesson list.\n"
+            + ": Adds a note to a lesson or for a specific student in a lesson if optional student index is specified. "
+            + "The lesson is identified by its index number in the displayed lesson list. The student is "
+            + "identified using its displayed index in the student list of the specified lesson\n"
             + "Parameters: "
             + PREFIX_NOTE + "NOTE "
-            + PREFIX_LESSON_INDEX + "LESSON INDEX "
+            + PREFIX_LESSON_INDEX + "LESSON_INDEX "
             + "[" + PREFIX_STUDENT_INDEX + "STUDENT_INDEX] \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NOTE + "Get back to jeff on streams "
             + PREFIX_LESSON_INDEX + "1 " + PREFIX_STUDENT_INDEX + "2";
@@ -46,7 +46,7 @@ public class AddNoteCommand extends Command {
     private final String note;
 
     /**
-     * Creates an AddNoteCommand to add a note to a lesson or to a specified student in the lesson.
+     * Creates an AddNoteCommand to add a note to a specified lesson or to a specified student in the lesson.
      */
     public AddNoteCommand(Index lessonIndex, Index studentIndex, String note) {
         requireAllNonNull(lessonIndex, note);

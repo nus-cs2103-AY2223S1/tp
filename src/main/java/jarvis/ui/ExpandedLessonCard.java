@@ -107,7 +107,7 @@ public class ExpandedLessonCard extends UiPart<Region> {
         }
 
         timePeriod.setText(lesson.getTimePeriod().toString());
-        generalNotes.setText(lesson.getGeneralNotes());
+        generalNotes.setText(lesson.getGeneralNotesString());
     }
 
     private void setTableUi() {
@@ -124,7 +124,7 @@ public class ExpandedLessonCard extends UiPart<Region> {
         studentNames.setCellValueFactory(s -> new ReadOnlyStringWrapper(s.getValue().getName().toString()));
         studentAttendance.setCellValueFactory(s -> new ReadOnlyStringWrapper(lesson.isPresent(s.getValue())));
         studentNotes.setCellValueFactory(s -> new ReadOnlyStringWrapper(
-                lesson.getStudentNotes(s.getValue())));
+                lesson.getStudentNotesString(s.getValue())));
         tableView.setItems(list);
     }
 
