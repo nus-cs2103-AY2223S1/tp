@@ -30,7 +30,18 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Before Using
+## Parts of our GUI
+**Notes about the UI:**
+
+On app startup, the Trip List Display will show all trips and the Event List Display will display
+the events in the bucket list i.e Events that haven't been added to any trips.
+
+Trips can be marked as completed via the `mark` command. Completed trips will be labelled with a tick icon
+to the right of the trip's title.
+
+The trips display sorts the trips by completion automatically. Completed trips will remain at the bottom of the list.
+
+Titles, Locations and Descriptions that are too long will be truncated. To view the full details of an event or trip, use `display-e` and `display` commands respectively.
 
 <div markdown="block" class="alert alert-info">
 
@@ -44,24 +55,13 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 |**Output Box**|where the results of your command are shown.
 |**Selected Trip Box**| where the current selected trip is shown.<br><br> Use `select` to select a trip.|
 |**Trip List Display** |where the Trips stored in Travelr are shown.<br><br> Commands to change the types of trips being shown: <br><ul><li>`completed`</li><li>`view`</li><li>`list`</li></ul> See feature list for more information about the commands.|
-| **Event List Display** |where the Events stored in Travelr are shown.<br><br> Commands to change the types of events being shown: <br><ul><li>`completed`</li><li>`view`</li><li>`list-e`</li><li>`select`</li></ul> See feature list for more information about the commands.
+|**Event List Display**|where the Events stored in Travelr are shown.<br><br> Commands to change the types of events being shown: <br><ul><li>`completed`</li><li>`view`</li><li>`list-e`</li><li>`select`</li></ul> See feature list for more information about the commands.
+
 
 </div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
-**Notes about the UI:**
-
-On app startup, the Trip List Display will show all trips and the Event List Display will display
-the events in the bucket list i.e Events that haven't been added to any trips.
-
-Trips can be marked as completed via the `mark` command. Completed trips will be labelled with a tick icon 
-to the right of the trip's title.
-
-The trips display sorts the trips by completion automatically. Completed trips will remain at the bottom of the list.
-
-Titles, Locations and Descriptions that are too long will be truncated. To view the full details of an event or trip, use `display-e` and `display` commands respectively.
-
 **Notes about the command format:**
 
 Words in UPPER_CASE are the parameters to be supplied by the user.
