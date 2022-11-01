@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import coydir.model.Database;
+import coydir.model.person.EmployeeId;
 import coydir.model.person.Person;
 
 /**
@@ -62,20 +63,20 @@ public class TypicalPersons {
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withPosition("Intern").withDepartment("Marketing")
             .withAddress("chicago ave").withRating("3").build();
-    public static final Person PRITTAM = new PersonBuilder().withName("Prittam Kok")
-            .withEmployeeId(VALID_EMPLOYEE_ID_PRITTAM).withEmptyPhone()
-            .withEmptyEmail().withPosition("Intern").withDepartment("Board of Directors")
-            .withEmptyAddress().build();
-
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withEmployeeId(VALID_EMPLOYEE_ID_AMY)
+    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withPosition(VALID_POSITION_AMY)
             .withDepartment(VALID_DEPARTMENT_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withEmployeeId(VALID_EMPLOYEE_ID_BOB)
+    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withPosition(VALID_POSITION_BOB)
             .withDepartment(VALID_DEPARTMENT_BOB).withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    public static final Person PRITTAM = new PersonBuilder().withName("Prittam Kok")
+            .withEmptyPhone()
+            .withEmptyEmail().withPosition("Intern").withDepartment("Board of Directors")
+            .withEmptyAddress().build();
+
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

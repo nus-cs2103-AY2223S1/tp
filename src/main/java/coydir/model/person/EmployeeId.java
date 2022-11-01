@@ -3,6 +3,9 @@ package coydir.model.person;
 import static coydir.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Represents a Person's employee ID in the database.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmployeeId(String)}
@@ -10,7 +13,7 @@ import static java.util.Objects.requireNonNull;
 public class EmployeeId {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Employee ID is entirely managed by Coydir. It is never blank, and is a fixed number provided by Coydir.";
+            "Employee ID is entirely managed by Coydir. It is a fixed number provided by Coydir. Please do not tamper.";
 
     /*
      * The first character of the position must not be a whitespace,
@@ -20,29 +23,39 @@ public class EmployeeId {
 
     private static int count = 1;
 
+    private static Set<Integer> allIds = new HashSet<Integer>();
+
     public final String value;
 
     /**
      * Constructs a {@code EmployeeId}.
      */
     public EmployeeId() {
+        allIds.add(count);
         this.value = String.format("%d", count++);
     }
 
     /**
      * Constructs a {@code EmployeeId} with a given ID.
+     * Uses the raw integer value of the ID (no leading zeroes).
      */
     public EmployeeId(String id) {
         requireNonNull(id);
         checkArgument(isValidEmployeeId(id), MESSAGE_CONSTRAINTS);
-        this.value = id;
+        int rawValue = Integer.parseInt(id);
+        allIds.add(rawValue);
+        this.value = String.valueOf(rawValue);
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidEmployeeId(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        int testValue = Integer.parseInt(test);
+        return testValue < count && !allIds.contains(testValue);
     }
 
     /**
