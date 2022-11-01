@@ -72,6 +72,7 @@ Adds a contact to your SoConnect.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 * Duplicate name is not allowed. A name is considered duplicate if it has the exact same characters (case-sensitive) with an existing contact's name. For example, `Alex Yeoh` and `Alex yeoh` is considered different.
+* `NAME` currently only accepts alphanumeric values. This is to prevent users from supplying mistyped names into their contacts.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
