@@ -16,7 +16,7 @@ Healthcare Xpress is a **desktop app for managing patients that require home-vis
 
 1. Download the latest [healthcarexpress.jar](https://github.com/AY2223S1-CS2103-F13-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Healthcare Xpress Book.
+1. Copy the file to the folder you want to use as the _home folder_ for your Healthcare Xpress Record System.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/UiV1.3.png)
@@ -26,10 +26,10 @@ Healthcare Xpress is a **desktop app for managing patients that require home-vis
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`add c/N n/Jane p/98723432 e/jason@example.com g/F t/Asthma` : Adds a nurse named `Jane` to the Healthcare Xpress book.
+   * **`add`**`add c/N n/Jane p/98723432 e/jason@example.com g/F t/Asthma` : Adds a nurse named `Jane` to the Healthcare Xpress Record System.
 
    * **`add`** **`c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block
-     123, #01-01 t/Asthma ds/2022-12-12,3`** : Adds a patient named **`John`** to Healthcare Xpress book.
+     123, #01-01 t/Asthma ds/2022-12-12,3`** : Adds a patient named **`John`** to Healthcare Xpress Record System.
 
    * **`assign`** **`id/1 id/3 dsi/1`** : Assigns the first dateslot of the patient with id of 3 to the nurse with id of 1.
 
@@ -93,7 +93,7 @@ Format: `help`
 
 ### Adding a nurse or patient: `add`
 
-1. Adds a patient to the Healthcare Xpress book.
+1. Adds a patient to the Healthcare Xpress Record System.
 
 Format: `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ [ds/DATE_AND_SLOT]…​`
 
@@ -115,7 +115,7 @@ Examples:
 
 ![add patient](images/AddPatient.png)
 
-2. Adds a nurse to the Healthcare Xpress book
+2. Adds a nurse to the Healthcare Xpress Record System
 
 Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ [ud/UNAVAILABLE_DATE]…​`
 
@@ -159,7 +159,7 @@ Examples:
 
 ### Editing a person : `edit`
 
-Edits an existing person in the Healthcare Xpress book.
+Edits an existing person in the Healthcare Xpress Record System.
 
 Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ds/DATE_AND_SLOT]…​ [dsi/DATE_AND_SLOT_INDEX]…​ [ud/UNAVAILABLE_DATE]…​ [udi/UNAVAILABLE_DATE]…​`
 
@@ -365,7 +365,7 @@ Healthcare Xpress data are saved as a JSON file `[JAR file location]/data/health
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 
-* If your changes to the data file makes its format invalid, Healthcare Xpress book will discard all data and start with an empty data file at the next run.
+* If your changes to the data file makes its format invalid, Healthcare Xpress Record System will discard all data and start with an empty data file at the next run.
 
 * NOT RECOMMENDED : It is not recommended to change the 'date slot' of a patient and 'homevisits', 'unavailable date' and 'fully scheduled date' of a nurse in the file. The system is unable to check the correctness and whether there is time crash and other issues if you change it manually in the data file.
 </div>
