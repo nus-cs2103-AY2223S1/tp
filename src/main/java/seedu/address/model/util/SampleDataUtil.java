@@ -25,13 +25,13 @@ public class SampleDataUtil {
         return new Student[] {
             new Student(new StuName("Alex Yeoh"), new Telegram("@AlexYeoh"),
                 new StuEmail("alex@example.com"),
-                new Response("2"), new Attendance("1"), new HelpTag(true )),
+                new Response("2"), new Attendance("1"), new HelpTag(true)),
             new Student(new StuName("Alice Pauline"), new Telegram("@AlicePauline"),
                 new StuEmail("alice@example.com"),
                 new Response("1"), new Attendance("2"), new HelpTag(false)),
             new Student(new StuName("Benson Kurtz"), new Telegram("@BensonKurtz"),
                 new StuEmail("benson@example.com"),
-                new Response("4"), new Attendance("3"), new HelpTag(true ))
+                new Response("4"), new Attendance("3"), new HelpTag(true))
         };
     }
 
