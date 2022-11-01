@@ -4,7 +4,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import java.util.Arrays;
 import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.util.FunctionalInterfaces.Changer;
 import seedu.address.commons.util.FunctionalInterfaces.Retriever;
 import seedu.address.logic.parser.FindCommandParser;

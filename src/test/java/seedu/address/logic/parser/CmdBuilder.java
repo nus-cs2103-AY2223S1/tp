@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import java.util.function.Predicate;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.FunctionalInterfaces.Changer;
 import seedu.address.commons.util.FunctionalInterfaces.Getter;
@@ -12,6 +13,9 @@ import seedu.address.model.item.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
+/**
+ * Class to build commands that are harder to construct
+ */
 public class CmdBuilder {
 
     public static final String P_DELETE = "person delete";

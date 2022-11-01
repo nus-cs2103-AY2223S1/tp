@@ -12,7 +12,9 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.util.FunctionalInterfaces.Changer;
 import seedu.address.commons.util.FunctionalInterfaces.Retriever;
 import seedu.address.model.Model;

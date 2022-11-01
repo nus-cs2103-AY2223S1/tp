@@ -8,12 +8,11 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.FunctionalInterfaces.Changer;
-import seedu.address.commons.util.FunctionalInterfaces.Getter;
+import seedu.address.logic.parser.CmdBuilder;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,14 +24,11 @@ import seedu.address.model.person.exceptions.PersonOutOfBoundException;
  */
 public class DeleteCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    Getter<Person> getter = (m, i) -> m.getFromFilteredPerson(i);
-    Changer<Person> deleter = (m, item) -> m.deletePerson(item);
-    Predicate<Object> tester = o -> o instanceof Person;
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
-        DeleteCommand<Person> deleteCommand = makeDeleteCommand(INDEX_FIRST);
+        DeleteCommand<Person> deleteCommand = CmdBuilder.makeDelPerson(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_SUCCESS, personToDelete);
 
@@ -45,7 +41,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteCommand<Person> deleteCommand = makeDeleteCommand(outOfBoundIndex);
+        DeleteCommand<Person> deleteCommand = CmdBuilder.makeDelPerson(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand,
             model,
@@ -58,7 +54,7 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST);
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
-        DeleteCommand<Person> deleteCommand = makeDeleteCommand(INDEX_FIRST);
+        DeleteCommand<Person> deleteCommand = CmdBuilder.makeDelPerson(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_SUCCESS, personToDelete);
 
@@ -77,7 +73,7 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        DeleteCommand<Person> deleteCommand = makeDeleteCommand(outOfBoundIndex);
+        DeleteCommand<Person> deleteCommand = CmdBuilder.makeDelPerson(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, String.format(PersonOutOfBoundException.ERR_MSG,
             model.getFilteredPersonList().size(), outOfBoundIndex.getOneBased()));
@@ -85,14 +81,14 @@ public class DeleteCommandTest {
 
     @Test
     public void equals() {
-        DeleteCommand<Person> deleteFirstCommand = makeDeleteCommand(INDEX_FIRST);
-        DeleteCommand<Person> deleteSecondCommand = makeDeleteCommand(INDEX_SECOND);
+        DeleteCommand<Person> deleteFirstCommand = CmdBuilder.makeDelPerson(INDEX_FIRST);
+        DeleteCommand<Person> deleteSecondCommand = CmdBuilder.makeDelPerson(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand<Person> deleteFirstCommandCopy = makeDeleteCommand(INDEX_FIRST);
+        DeleteCommand<Person> deleteFirstCommandCopy = CmdBuilder.makeDelPerson(INDEX_FIRST);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -112,12 +108,5 @@ public class DeleteCommandTest {
         model.updateFilteredPersonList(p -> false);
 
         assertTrue(model.getFilteredPersonList().isEmpty());
-    }
-
-    /**
-     * Faster way to make a delete command with the default stubs
-     */
-    private DeleteCommand<Person> makeDeleteCommand(Index index) {
-        return new DeleteCommand<>(index, getter, deleter, tester);
     }
 }
