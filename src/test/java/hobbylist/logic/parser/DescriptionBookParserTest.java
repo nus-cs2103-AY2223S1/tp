@@ -21,7 +21,9 @@ import hobbylist.logic.commands.HelpCommand;
 import hobbylist.logic.commands.ListCommand;
 import hobbylist.logic.parser.exceptions.ParseException;
 import hobbylist.model.activity.Activity;
+import hobbylist.model.activity.DateMatchesGivenDatePredicate;
 import hobbylist.model.activity.NameOrDescContainsKeywordsPredicate;
+import hobbylist.model.activity.RatingMatchesGivenValuePredicate;
 import hobbylist.testutil.ActivityBuilder;
 import hobbylist.testutil.ActivityUtil;
 import hobbylist.testutil.Assert;
@@ -73,8 +75,11 @@ public class DescriptionBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.getCommandWord() + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameOrDescContainsKeywordsPredicate(keywords)), command);
+                FindCommand.getCommandWord() + " " + String.join(" ", keywords));
+        assertEquals(new FindCommand(new NameOrDescContainsKeywordsPredicate(keywords),
+                                    new DateMatchesGivenDatePredicate(""),
+                                    new RatingMatchesGivenValuePredicate(-1)
+                ), command);
     }
 
     @Test

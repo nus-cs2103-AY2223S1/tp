@@ -34,6 +34,9 @@ public class FindCommand extends Command {
 
     private static String commandWord = "find";
 
+    private final Predicate<Activity> namePredicate;
+    private final Predicate<Activity> datePredicate;
+    private final Predicate<Activity> ratingPredicate;
     private final Predicate<Activity> predicate;
 
     /**
@@ -42,6 +45,9 @@ public class FindCommand extends Command {
     public FindCommand(NameOrDescContainsKeywordsPredicate namePredicate,
                        DateMatchesGivenDatePredicate datePredicate,
                        RatingMatchesGivenValuePredicate ratingPredicate) {
+        this.namePredicate = namePredicate;
+        this. datePredicate = datePredicate;
+        this.ratingPredicate = ratingPredicate;
         this.predicate = namePredicate.or(datePredicate)
                                       .or(ratingPredicate);
     }
@@ -79,7 +85,10 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                ||
+                (other instanceof FindCommand // instanceof handles nulls
+                && (namePredicate.equals(((FindCommand) other).namePredicate))
+                && (datePredicate.equals(((FindCommand) other).datePredicate))
+                && (ratingPredicate.equals(((FindCommand) other).ratingPredicate))); // state check
     }
 }
