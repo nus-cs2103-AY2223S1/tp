@@ -19,33 +19,33 @@ import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the TruthTable data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TruthTable truthTable;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     private final FilteredList<Link> filteredLinks;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given truthTable and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyTruthTable truthTable, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(truthTable, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with TruthTable: " + truthTable + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.truthTable = new TruthTable(truthTable);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredLinks = new FilteredList<>(this.addressBook.getLinkList());
+        filteredPersons = new FilteredList<>(this.truthTable.getPersonList());
+        filteredLinks = new FilteredList<>(this.truthTable.getLinkList());
     }
 
     public ModelManager() {
-        this(AddressBook.createNewAddressBook(), new UserPrefs());
+        this(TruthTable.createNewTruthTable(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -73,42 +73,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTruthTableFilePath() {
+        return userPrefs.getTruthTableFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTruthTableFilePath(Path truthTableFilePath) {
+        requireNonNull(truthTableFilePath);
+        userPrefs.setTruthTableFilePath(truthTableFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== TruthTable ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setTruthTable(ReadOnlyTruthTable truthTable) {
+        this.truthTable.resetData(truthTable);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyTruthTable getTruthTable() {
+        return truthTable;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return truthTable.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        truthTable.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        truthTable.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -116,69 +116,69 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        truthTable.setPerson(target, editedPerson);
     }
 
     //========== Team Accessors ===============================================================================
     @Override
     public Team getTeam() {
-        return addressBook.getTeam();
+        return truthTable.getTeam();
     }
 
     @Override
     public ObjectProperty<Team> getTeamAsProperty() {
-        return addressBook.getTeamAsProperty();
+        return truthTable.getTeamAsProperty();
     }
 
     @Override
     public void setTeam(Team teamToSet) {
-        addressBook.setTeam(teamToSet);
+        truthTable.setTeam(teamToSet);
     }
 
     @Override
     public void setTeams(List<Team> teams) {
-        addressBook.setTeams(teams);
+        truthTable.setTeams(teams);
     }
 
     @Override
     public void addTeam(Team teamToAdd) {
-        addressBook.addTeam(teamToAdd);
+        truthTable.addTeam(teamToAdd);
     }
 
     @Override
     public void deleteTeam(Team teamToDelete) {
-        addressBook.deleteTeam(teamToDelete);
+        truthTable.deleteTeam(teamToDelete);
     }
 
     @Override
     public ObservableList<Team> getTeamList() {
-        return addressBook.getTeamList();
+        return truthTable.getTeamList();
     }
     //=========== Link Accessors =============================================================================
 
     @Override
     public boolean hasLink(Link link) {
-        return addressBook.hasLink(link);
+        return truthTable.hasLink(link);
     }
 
     @Override
     public void addLink(Link link) {
-        addressBook.addLink(link);
+        truthTable.addLink(link);
     }
 
     @Override
     public void setLink(Link target, Link editedLink) {
-        addressBook.setLink(target, editedLink);
+        truthTable.setLink(target, editedLink);
     }
 
     @Override
     public void setTask(Task target, Task editedTask) {
-        addressBook.setTask(target, editedTask);
+        truthTable.setTask(target, editedTask);
     }
 
     @Override
     public void deleteLink(Link link) {
-        addressBook.deleteLink(link);
+        truthTable.deleteLink(link);
     }
 
     @Override
@@ -196,7 +196,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedTruthTable}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -205,7 +205,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook} based on the specified predicate.
+     * {@code versionedTruthTable} based on the specified predicate.
      */
     @Override
     public ObservableList<Person> getFilteredPersonList(Predicate<Person> predicate) {
@@ -221,24 +221,24 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Person> getFilteredMemberList() {
-        return addressBook.getTeam().getFilteredMemberList();
+        return truthTable.getTeam().getFilteredMemberList();
     }
 
     @Override
     public ObservableList<Task> getFilteredTaskList() {
-        return addressBook.getTeam().getFilteredTaskList();
+        return truthTable.getTeam().getFilteredTaskList();
     }
 
     @Override
     public void updateFilteredMembersList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        addressBook.getTeam().updateFilteredMembersList(predicate);
+        truthTable.getTeam().updateFilteredMembersList(predicate);
     }
 
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        addressBook.getTeam().updateFilteredTaskList(predicate);
+        truthTable.getTeam().updateFilteredTaskList(predicate);
     }
 
     @Override
@@ -255,7 +255,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return truthTable.equals(other.truthTable)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }

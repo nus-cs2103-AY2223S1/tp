@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ import seedu.address.model.UserPrefs;
 // TODO: Add implementation for tests
 public class EditPersonCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -46,7 +46,7 @@ public class EditPersonCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of TruthTable
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {

@@ -14,7 +14,7 @@ import seedu.address.model.team.exceptions.LinkNotFoundException;
 /**
  * A list of links that enforces uniqueness between its elements and does not allow nulls.
  * A link is considered unique solely based on the name of the team.
- *
+ * <p>
  * Supports a minimal set of list operations.
  */
 public class UniqueLinkList implements Iterable<Link> {
@@ -53,6 +53,7 @@ public class UniqueLinkList implements Iterable<Link> {
             throw new LinkNotFoundException();
         }
     }
+
     /**
      * Replaces the link {@code target} in the list with {@code editedLink}.
      * {@code target} must exist in the list.

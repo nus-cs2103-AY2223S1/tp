@@ -49,7 +49,7 @@ public class EditTeamCommand extends Command {
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
-    public static final String MESSAGE_DUPLICATE_TEAM = "This team name already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_TEAM = "This team name already exists in the TruthTable.";
 
     private final EditTeamDescriptor editTeamDescriptor;
 

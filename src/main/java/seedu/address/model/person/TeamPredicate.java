@@ -22,8 +22,8 @@ public class TeamPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof TeamPredicate // instanceof handles nulls
-            && team.equals(((TeamPredicate) other).team)); // state check
+                || (other instanceof TeamPredicate // instanceof handles nulls
+                && team.equals(((TeamPredicate) other).team)); // state check
     }
 
 }

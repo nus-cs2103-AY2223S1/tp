@@ -33,37 +33,37 @@ public interface Model {
     /** Sets the user prefs' GUI settings. */
     void setGuiSettings(GuiSettings guiSettings);
 
-    /** Returns the user prefs' address book file path. */
-    Path getAddressBookFilePath();
+    /** Returns the user prefs' TruthTable file path. */
+    Path getTruthTableFilePath();
 
-    /** Sets the user prefs' address book file path. */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    /** Sets the user prefs' TruthTable file path. */
+    void setTruthTableFilePath(Path truthTableFilePath);
 
-    /** Replaces address book data with the data in {@code addressBook}. */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    /** Replaces TruthTable data with the data in {@code truthTable}. */
+    void setTruthTable(ReadOnlyTruthTable truthTable);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the TruthTable */
+    ReadOnlyTruthTable getTruthTable();
 
-    /** Returns true if a person with the same identity as {@code person} exists in the address book. */
+    /** Returns true if a person with the same identity as {@code person} exists in the TruthTable. */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the TruthTable.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the TruthTable.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the TruthTable.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the TruthTable.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -96,9 +96,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
     ObservableList<Person> getFilteredMemberList();
 
     ObservableList<Task> getFilteredTaskList();
+
     void updateFilteredMembersList(Predicate<Person> predicate);
 
     void updateFilteredTaskList(Predicate<Task> predicate);

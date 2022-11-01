@@ -19,7 +19,7 @@ class JsonAdaptedLinkTest {
 
     @Test
     void toModelType_invalidLink_throwsException() {
-        JsonAdaptedLink link = new JsonAdaptedLink("validName" , "invalid_url");
+        JsonAdaptedLink link = new JsonAdaptedLink("validName", "invalid_url");
         assertThrows(IllegalValueException.class, () -> link.toModelType());
     }
 }

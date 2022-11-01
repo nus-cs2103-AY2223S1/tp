@@ -41,7 +41,7 @@ public class EditLinkCommand extends Command {
                     + " \"Google\" " + FLAG_URL_STR + " https://google.com ";
     public static final String MESSAGE_EDIT_LINK_SUCCESS = "Edited link: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the TruthTable.";
 
     @CommandLine.Parameters(arity = "1", index = "0", description = FLAG_LINK_INDEX_DESCRIPTION)
     private Index index;

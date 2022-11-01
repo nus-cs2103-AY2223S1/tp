@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 import org.junit.jupiter.api.Test;
 
-public class AddressBookParserTest {
+public class TruthTableParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TruthTableParser parser = new TruthTableParser();
 
     @Test
     public void parseCommand_add() throws Exception {
