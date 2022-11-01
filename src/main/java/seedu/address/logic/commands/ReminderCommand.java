@@ -21,6 +21,7 @@ public class ReminderCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 r/update client information d/20-10-2022";
     public static final String MESSAGE_DATE_CONSTRAINTS = "Date should be in the format 'D-MM-YYYY'";
     public static final String MESSAGE_INVALID_DATE = "The date provided is invalid!";
+    public static final String MESSAGE_EMPTY_REMINDER = "The reminder should not be empty!";
 
     public static final String MESSAGE_ADD_REMINDER_SUCCESS = "Added reminder to Person: %1$s";
     public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Removed reminder from Person: %1$s";
