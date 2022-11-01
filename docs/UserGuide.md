@@ -122,7 +122,7 @@ Example:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the parameters:**<br>
+**:information_source: About the parameters:**<br>
 
 `MEAL_TYPE` is **not** case-sensitive.
 
