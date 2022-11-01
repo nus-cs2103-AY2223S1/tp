@@ -187,9 +187,14 @@ Examples:
 * `add n/Betsy Crowe t/VIPPClient e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan` 
   adds a client named Betsy Crowe, with a mobile number of 1234567, email address of betsycrowe@example.com [etc.](#23-command-format) to the client list.
 
+|                                                                                                                        ![UG_add](images/UG_add.png)                                                                                                                         |
+|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| <sub>*Used command:* `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/$1000 m/20 Nov 2022 16:30 ml/13 Computing Drive t/VIPClient r/High pl/Prudential Retirement Plan note/currently having COVID ` to add John Doe to the client list</sub> |
+
+
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes: **
+**:information_source: Notes:**
 * `add` command will refresh the portfolio panel to display "no client selected for view yet!".
 * `m/UPCOMING_MEETING_DATES` can be in the `dd Mmm yyyy` or `dd Mmm yyyy HH:mm` format.
 
@@ -339,6 +344,11 @@ Examples:
 * `view 1` displays the risk level and current plans purchased by the 1st client of the Financial book data.
 * `view 2` displays the risk level and current plans purchased by the 2nd client of the Financial book data.
 * `find n/Alex` then `view 1` will display the portfolio of Alex.
+
+|                     ![UG_add](images/UG_view.png)                     |
+|:---------------------------------------------------------------------:|
+| <sub>*Used command:* `view 1 ` *to view portfolio of Alex Yeoh*</sub> |
+
 
 <div markdown="block" class="alert alert-info">
 
