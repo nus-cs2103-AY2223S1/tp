@@ -769,7 +769,7 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 | **Find**            | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                                 |
 | **Add leave**       | `add-leave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `add-leave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                    |
 | **Delete leave**    | `delete-leave id/ID i/INDEX`<br> e.g. `delete-leave id/1 i/3`                                                                                                                        |
-| **rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                                                       |
+| **Rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                                                       |
 | **View Department** | `view-department DEPARTMENT`<br> e.g. `view-department Finance`                                                                                                                      |
 | **Help**            | `help`                                                                                                                                                                               |
 | **Exit**            | `exit`                                                                                                                                                                               |
