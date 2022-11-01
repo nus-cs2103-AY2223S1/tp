@@ -57,6 +57,13 @@ public class MarkCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_SURVEY);
         }
 
+        Person editedPerson = createMarkedPerson(targetPerson, surveySet);
+        model.setPerson(targetPerson, editedPerson);
+        model.commitAddressBook();
+        return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS, editedPerson));
+    }
+
+    private Person createMarkedPerson(Person targetPerson, Set<Survey> surveySet) {
         Set<Survey> newSurveySet = new HashSet<>();
 
         for (Survey s : surveySet) {
@@ -69,10 +76,23 @@ public class MarkCommand extends Command {
         }
 
         Person editedPerson = new Person(targetPerson.getName(), targetPerson.getPhone(), targetPerson.getEmail(),
-                targetPerson.getAddress(), targetPerson.getGender(), targetPerson.getBirthdate(),
-                targetPerson.getRace(), targetPerson.getReligion(), newSurveySet, targetPerson.getTags());
-        model.setPerson(targetPerson, editedPerson);
-        model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS, editedPerson));
+            targetPerson.getAddress(), targetPerson.getGender(), targetPerson.getBirthdate(),
+            targetPerson.getRace(), targetPerson.getReligion(), newSurveySet, targetPerson.getTags());
+        return editedPerson;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof MarkCommand)) {
+            return false;
+        }
+
+        MarkCommand otherMarkCommand = (MarkCommand) other;
+
+        return targetIndex.equals(otherMarkCommand.targetIndex) && targetSurvey.equals(otherMarkCommand.targetSurvey);
     }
 }

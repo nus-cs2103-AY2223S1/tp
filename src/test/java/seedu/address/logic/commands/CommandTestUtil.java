@@ -16,7 +16,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -24,6 +26,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Survey;
 import seedu.address.testutil.ClonePersonDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -177,4 +180,35 @@ public class CommandTestUtil {
         model.commitAddressBook();
     }
 
+    /**
+     * Marks person at a specified index and survey with the provided boolean.
+     *
+     * @param model
+     * @param targetIndex
+     * @param targetSurvey
+     * @param isDone
+     */
+    public static Person markPersonAtIndex(Model model, Index targetIndex, Survey targetSurvey, boolean isDone) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+
+        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Set<Survey> surveySet = person.getSurveys();
+        Set<Survey> newSurveySet = new HashSet<>();
+
+        for (Survey s : surveySet) {
+            if (s.survey.equals(targetSurvey.survey)) {
+                Survey newSurvey = new Survey(targetSurvey.survey, isDone);
+                newSurveySet.add(newSurvey);
+            } else {
+                newSurveySet.add(s);
+            }
+        }
+
+        Person editedPerson = new Person(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
+                person.getGender(), person.getBirthdate(), person.getRace(), person.getReligion(), newSurveySet,
+                person.getTags());
+        model.setPerson(person, editedPerson);
+        model.commitAddressBook();
+        return editedPerson;
+    }
 }
