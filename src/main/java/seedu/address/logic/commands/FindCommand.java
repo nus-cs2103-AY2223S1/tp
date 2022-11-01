@@ -18,7 +18,7 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all students with keywords in a specific prefix. "
-            + "Prefixes supported by this search includes: n/, p/, np/, e/, a/, dt/, t/. "
+            + "Prefixes supported by this search include: n/, p/, np/, e/, a/, dt/, t/. "
             + "The specified keywords are case-insensitive. Students are displayed as a list with index numbers.\n"
             + "Parameters: [n/NAME] [p/PHONE] [np/NOK_PHONE] [e/EMAIL] [a/ADDRESS] [dt/DATE] [t/TAG]\n"
             + "Exactly one prefix should be used in a single find command.\n"
