@@ -33,11 +33,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             System.out.println("name");
             String foundName = String.join(" ", argMultimap.getAllValues(PREFIX_NAME));
-            //System.out.println(foundName);
             findCommandKeywords.add(0, foundName.trim());
         } else {
             findCommandKeywords.add(0, "");
-            System.out.println("No name keywords");
         }
 
         if (argMultimap.getValue(PREFIX_STUDENTCLASS).isPresent()) {
@@ -61,14 +59,4 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         return new FindCommand(new FindCommandPredicate(findCommandKeywords));
     }
-
-    public static void main(String[] args) {
-        FindCommandParser f = new FindCommandParser();
-        try {
-            f.parse("n/john c/1a");
-        } catch (ParseException e) {
-            System.out.println(e);
-        }
-    }
-
 }

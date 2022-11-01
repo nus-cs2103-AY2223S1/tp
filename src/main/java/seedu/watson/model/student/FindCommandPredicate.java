@@ -18,20 +18,20 @@ public class FindCommandPredicate implements Predicate<Student> {
 
     @Override
     public boolean test(Student student) {
-        boolean checkName = keywords.get(0) == ""
+        boolean checkName = keywords.get(0).isBlank()
                 ? false
-                : Arrays.asList(keywords.get(0)).stream()
+                : Arrays.asList(keywords.get(0).split(" ")).stream()
                                   .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getName().fullName,
                                                                                            keyword));
-        boolean checkClass = keywords.get(1) == ""
+        boolean checkClass = keywords.get(1).isBlank()
                 ? false
-                : Arrays.asList(keywords.get(1)).stream()
+                : Arrays.asList(keywords.get(1).split(" ")).stream()
                                      .anyMatch(
                                          keyword -> StringUtil.containsWordIgnoreCase(student.getStudentClass().value,
                                                                                       keyword));
-        boolean checkSubject = keywords.get(2) == ""
+        boolean checkSubject = keywords.get(2).isBlank()
                 ? false
-                : Arrays.asList(keywords.get(2)).stream()
+                : Arrays.asList(keywords.get(2).split(" ")).stream()
                                        .anyMatch(keyword ->
                 student.getSubjectsTaken().toString().toLowerCase().contains(keyword));
         return checkName || checkClass || checkSubject;
