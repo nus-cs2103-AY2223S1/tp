@@ -494,6 +494,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 * 1b. The given profile to add is invalid
+
     * 1b1. NUScheduler shows an error message.
 
       Use case ends.
