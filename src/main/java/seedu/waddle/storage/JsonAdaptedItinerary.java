@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.waddle.commons.exceptions.IllegalValueException;
-import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.itinerary.Budget;
@@ -42,8 +41,10 @@ class JsonAdaptedItinerary {
      * Constructs a {@code JsonAdaptedPerson} with the given itinerary details.
      */
     @JsonCreator
-    public JsonAdaptedItinerary(@JsonProperty("description") String description, @JsonProperty("country") String country,
-                                @JsonProperty("startDate") String startDate, @JsonProperty("duration") String duration,
+    public JsonAdaptedItinerary(@JsonProperty("description") String description,
+                                @JsonProperty("country") String country,
+                                @JsonProperty("startDate") String startDate,
+                                @JsonProperty("duration") String duration,
                                 @JsonProperty("people") String people,
                                 @JsonProperty("budget") String budget,
                                 @JsonProperty("items") List<JsonAdaptedItem> items,
@@ -92,14 +93,16 @@ class JsonAdaptedItinerary {
         }
 
         if (country == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Country.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Country.class.getSimpleName()));
         }
         if (!Country.isValidCountry(country)) {
             throw new IllegalValueException(Country.MESSAGE_CONSTRAINTS);
         }
 
         if (startDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Date.class.getSimpleName()));
         }
         if (!Date.isValidDate(startDate)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
@@ -122,7 +125,8 @@ class JsonAdaptedItinerary {
         }
 
         if (budget == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Budget.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Budget.class.getSimpleName()));
         }
         if (!Budget.isValidBudget(budget)) {
             throw new IllegalValueException(Budget.MESSAGE_CONSTRAINTS);

@@ -3,8 +3,6 @@ package seedu.waddle.model.itinerary;
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.commons.util.AppUtil.checkArgument;
 
-import seedu.waddle.logic.commands.exceptions.CommandException;
-
 /**
  * Represents an Itinerary's duration in days.
  */
