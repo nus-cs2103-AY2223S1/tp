@@ -74,14 +74,14 @@ This section gives a breakdown of each attribute and its option counterpart.
 Refers to the name of a property or client.
 Each property or client can only have one name.
 
-Option `n/`
+Option: `n/`
 Example: `n/PINNACLE@DUXTON`
 
 #### Address
 Refers to the address of a property or client.
 Each property or client can only have one address.
 
-Option `a/`
+Option: `a/`
 Example: `a/Cantonment Rd, #1G, 085301`
 
 #### Tag
@@ -89,7 +89,7 @@ Refers to the given tags of a property or client. Can be used to label a propert
 The only requirement for tags is that they have to be alphanumerical.
 Each property or client can have multiple tags.
 
-Option `t/`
+Option: `t/`
 Example: `t/High-end`, `t/Friend`
 
 #### Image
@@ -97,14 +97,14 @@ Refers to the given image for a property or client.
 Each property or client can only have one image.
 The user will be prompted to select an image in a separate window after successful usage of this option in the context of whichever command the optionwas used for.
 
-Option `-i`
+Option: `-i`
 
 ### Property attributes
 #### Price
 Refers to the general price to purchase a unit for a property.
 Each property can only have one price.
 
-Option `p/`
+Option: `p/`
 Example: `p/1,000,000`
 
 #### Property type
