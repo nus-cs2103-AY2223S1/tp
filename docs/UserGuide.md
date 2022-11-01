@@ -62,7 +62,7 @@ It helps to keep track of patient data, patient appointments and patient bills f
 Adds a patient to HealthContact with input information including name, phone number,
 email address, home address, remarks and tags. 
 
-* Name must be different from existing patient. 
+* Name must be different from existing patient and name is case-insensitive. 
 
 * Remark and tags are optional. 
 
@@ -111,13 +111,15 @@ to add such a patient because Bernice Yu already exists in HealthContact.
 Adds an appointment to HealthContact with input information including patient name, medical test,
 slot, and doctor.
 
-* Name must be the name of an existing patient.
+* Patient name input must strictly match the name of an existing patient, except the casing as patient name is case-insensitive.
 
 * Slot must be in the format `yyyy-MM-dd HH:mm`, eg. `2022-11-12 13:00`.
 
 * If slot is entered with time `24:00`, it will be saved as the `00:00` of the next date.
 
-* The input of four parameters must be different with the combination in other appointments.
+* Doctor and medical test are case-sensitive.
+
+* The input of four parameters must be different with the combination in other appointments, taking into consideration that doctor and medical test are case-sensitive, while patient name is case-insensitive.
 
 * The onus is on the user to check and ensure the following before adding an appointment:
   * The appointment times for different patients with the same doctor do not clash with one another.
