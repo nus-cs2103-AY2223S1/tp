@@ -26,7 +26,8 @@ public class AliasCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New alias added: %1$s";
     public static final String MESSAGE_DUPLICATE_ALIAS = "This alias already exists in FRIDAY";
-    public static final String MESSAGE_INVALID_ALIAS = "Alias cannot be a reserved keyword";
+    public static final String MESSAGE_INVALID_ALIAS = "Alias given is invalid.\n"
+            + "Alias cannot be a reserved keyword and cannot contain more than 1 word";
     public static final String MESSAGE_INVALID_KEYWORD = "Keyword given is not a reserved keyword";
 
     private final Alias toAdd;

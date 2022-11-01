@@ -8,6 +8,7 @@ import static java.util.Objects.requireNonNull;
 public class Alias {
 
     private final String value;
+    private static final String SPACE = " ";
 
     /**
      * Constructs an {@code Alias}.
@@ -23,7 +24,7 @@ public class Alias {
      * Returns if a given String is a valid alias.
      */
     public static boolean isValidAlias(String test) {
-        return !ReservedKeyword.LIST_RESERVED_KEYWORDS.contains(test);
+        return !ReservedKeyword.LIST_RESERVED_KEYWORDS.contains(test) && !test.contains(SPACE);
     }
 
     @Override
