@@ -79,7 +79,7 @@ public class Group {
 
         Group otherGroup = (Group) other;
         return otherGroup.getName().equals(getName())
-                && otherGroup.getMembers().equals(getMembers());
+                && this.checkSameMembers(otherGroup);
     }
 
     @Override
@@ -102,5 +102,26 @@ public class Group {
             builder.append("None | ");
         }
         return builder.toString();
+    }
+
+    /**
+     * Equality checking for members, since groups may use different Set objects.
+     * @param otherGroup the group to check
+     * @return whether both groups have the same members
+     */
+    public boolean checkSameMembers(Group otherGroup) {
+        for (Person p : otherGroup.getMembers()) {
+            if (!this.contains(p)) {
+                return false;
+            }
+        }
+
+        for (Person p : this.getMembers()) {
+            if (!otherGroup.contains(p)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
