@@ -14,6 +14,7 @@ import seedu.address.commons.core.index.UniqueIdGenerator;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Price;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.DateOfBirth;
 import seedu.address.model.pet.Height;
 import seedu.address.model.pet.Pet;
@@ -84,6 +85,17 @@ public class JsonAdaptedPetTest {
                 VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
                 VALID_CERTIFICATES, id.toString());
         String expectedMessage = "Pet's Name field is missing!";
+        assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullSupplier_throwsIllegalValueException() {
+        UniqueId id = PET_ID_GENERATOR.next();
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, null, VALID_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, id.toString());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Supplier.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
 
@@ -297,6 +309,24 @@ public class JsonAdaptedPetTest {
                 VALID_CERTIFICATES, id.toString());
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
+    }
+
+    @Test
+    public void toModelType_validCertificate_throwsIllegalValueException() {
+        UniqueId id = PET_ID_GENERATOR.next();
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, id.toString());
+
+        try {
+            List<PetCertificate> certificates = pet.toModelType().getCertificates().stream()
+                    .collect(Collectors.toList());
+            List<PetCertificate> expected = VALID_CERTIFICATES.stream().map(x -> new PetCertificate(x))
+                    .collect(Collectors.toList());
+            assertEquals(certificates, expected);
+        } catch (IllegalValueException e) {
+            assert false;
+        }
     }
 
     @Test
