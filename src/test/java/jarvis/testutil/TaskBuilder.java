@@ -50,6 +50,14 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Deadline} of the {@code Task} that we are building to null.
+     */
+    public TaskBuilder withoutDeadline() {
+        this.taskDeadline = null;
+        return this;
+    }
+
     public Task build() {
         return new Task(taskDesc, taskDeadline);
     }
