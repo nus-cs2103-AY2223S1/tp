@@ -11,18 +11,18 @@ public class StringUtil {
      */
     public static String toProperCase(String s) {
         String[] strArr = s.split(" ");
-        StringBuilder properCaseAddress = new StringBuilder();
+        StringBuilder properCaseString = new StringBuilder();
         int count = 0;
         for (String str : strArr) {
             String word = str;
             word = word.substring(0, 1).toUpperCase() + word.substring(1);
             if (count == strArr.length - 1) {
-                properCaseAddress.append(word);
+                properCaseString.append(word);
             } else {
-                properCaseAddress.append(word).append(" ");
+                properCaseString.append(word).append(" ");
             }
             count++;
         }
-        return properCaseAddress.toString();
+        return properCaseString.toString();
     }
 }
