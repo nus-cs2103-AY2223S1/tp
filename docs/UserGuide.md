@@ -281,7 +281,6 @@ Displays a list of upcoming events, ordered by the date, which starts in the nex
 
 Format: `event -u DAYS`
 
-<<<<<<< HEAD
 * The days refer to the number of days after the current date. All events that start within this time frame will be displayed. Events occurring on the day the command is entered will not be displayed.
 * The days **must be a positive integer less than 10000** e.g. 1, 2, 3, …​, 9999.
 
@@ -292,10 +291,6 @@ Format: `event -u DAYS`
 * DAYS entered is limited to 9999 days as this sufficiently covers the usage for most NUS students.
 
 </div>
-=======
-* The days refer to the number of days from the current date. All events within this time frame will be displayed. Events occurring on the day the command is entered will not be displayed.
-* The days **must be a positive integer** 1, 2, 3, …​
->>>>>>> e80d1344fc6d3c6fd6545560daac4b0c66cfcaae
 
 Example:
 * `event -u 5` when used on `22-10-2022` displays all events taking place in the next 5 days from `23-10-22` to `27-10-22` with both dates included.
@@ -502,7 +497,6 @@ You can simply install the app in the other computer and overwrite the data file
 
 ## Command summary
 
-<<<<<<< HEAD
 | Action                             | Format, Examples                                                                |
 |------------------------------------|---------------------------------------------------------------------------------|
 | **Add Profile**                    | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [tg/TELEGRAM_USERNAME] [t/TAG]…`      |
@@ -518,20 +512,3 @@ You can simply install the app in the other computer and overwrite the data file
 | **View Events**                    | `event -v`                                                                      |
 | **View Upcoming Event(s)**         | `event -u DAYS`                                                                 |
 | **Find Event**                     | `event -f KEYWORD_OR_DATE [MORE]…`                                              |
-=======
-| Action                             | Format                                                                                 |
-|------------------------------------|----------------------------------------------------------------------------------------|
-| **Add Profile**                    | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [tg/TELEGRAM_USERNAME] [t/TAG]…`             |
-| **Delete Profile**                 | `profile -d INDEX`                                                                     |
-| **Edit Profile**                   | `profile -e INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…` |
-| **View Profiles**                  | `profile -v`                                                                           |
-| **Find Profile**                   | `profile -f KEYWORD [MORE_KEYWORDS]…`                                                  |
-| **Add Event**                      | `event -a n/TITLE s/START e/END [t/TAG]…`                                              |
-| **Add Profiles to an Event**       | `event -ap EVENT_INDEX pr/PROFILE_INDEX...`                                            |
-| **Delete Attendees from an Event** | `event -dp EVENT_INDEX pr/ATTENDEE_INDEX...`                                           |
-| **Delete Event**                   | `event -d INDEX`                                                                       |
-| **Edit Event**                     | `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`                                  |
-| **View Events**                    | `event -v`                                                                             |
-| **View Upcoming Event(s)**         | `event -u DAYS`                                                                        |
-| **Find Event**                     | `event -f KEYWORD_OR_DATE [MORE]…`                                                     |
->>>>>>> e80d1344fc6d3c6fd6545560daac4b0c66cfcaae
