@@ -6,7 +6,6 @@ title: Koh Wei Quan Norman's Project Portfolio Page
 ### Project: AddressBook Level 3
 
 #### Overview : to be added soon
-
 #### Summary of contributions :
 - Code Contributed: To be added soon
 - Enhancements implemented: To be added soon
