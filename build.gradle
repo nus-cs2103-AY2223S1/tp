@@ -70,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'healthcarexpress.jar'
 }
 
 defaultTasks 'clean', 'test'
