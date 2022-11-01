@@ -175,6 +175,12 @@ public class Listing implements Comparable<Listing> {
                 .append("; Asking Price: ")
                 .append(this.askingPrice);
 
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
+
         List<Client> interestedClients = getInterestedClients();
         if (!interestedClients.isEmpty()) {
             builder.append("; Interested Clients: ");

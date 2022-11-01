@@ -50,7 +50,8 @@ public class AddTagsToListingCommand extends Command {
         }
 
         listing.addTags(tags);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, listing));
+        model.setListing(model.getListing(listingId), listing);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, tags));
     }
 
     @Override

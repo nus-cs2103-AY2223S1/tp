@@ -35,6 +35,17 @@ public class Client extends Person implements Comparable<Client> {
 
     }
 
+    /**
+     * Constructor for sample client
+     */
+    public Client() {
+        super(
+            new Name("Amy Bee"),
+            new Phone("85355255"),
+            new Email("amy@gmail.com"),
+            new Address("123, Jurong West Ave 6, #08-111"), new HashSet<>());
+    }
+
 
     /**
      * Returns true if both client have the same name.
