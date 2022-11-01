@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 
 /**
- * A comparison function, which imposes a total ordering on Reminders by ReminderDeadline. The ordering is defined by
+ * A comparison function, which imposes a total ordering on Reminders by deadline. The ordering is defined by
  * the compareTo method of LocalDateTime, which is the type of deadline field.
  */
 public class ReminderDeadlineComparator implements Comparator<Reminder> {

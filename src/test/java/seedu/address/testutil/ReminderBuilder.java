@@ -50,7 +50,7 @@ public class ReminderBuilder {
     }
 
     /**
-     * Sets the {@code ReminderDeadline} of the {@code Reminder} that we are building.
+     * Sets the {@code Datetime} of the {@code Reminder} that we are building.
      */
     public ReminderBuilder withDeadline(String deadline) {
         this.reminderDeadline = Datetime.fromFormattedString(deadline);
