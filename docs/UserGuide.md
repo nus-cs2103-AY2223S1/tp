@@ -313,9 +313,9 @@ Examples:
 
 Adds an order to a buyer contact. This is especially useful for adding an order to customer placed it.
 
-Format: `add-o i/INDEX_OF_BUYER o_st/STATUS o_r/add-r o_a/AGE o_sp/SPECIES o_c/COLOR o_cp/COLOR_PATTERN o_p/PRICE o_pr/PRICE_RANGE o_d/DATE [o_ar/ADDITIONAL_REQUEST]…​`
+Format: `add-o INDEX_OF_BUYER o_st/STATUS o_r/add-r o_a/AGE o_sp/SPECIES o_c/COLOR o_cp/COLOR_PATTERN o_p/PRICE o_pr/PRICE_RANGE o_d/DATE [o_ar/ADDITIONAL_REQUEST]…​`
 
-`i/INDEX_OF_BUYER` is the one-based index of the buyer you would like to add this order to. You can find out the index
+`INDEX_OF_BUYER` should be immediately after `add-o` and is the one-based index of the buyer you would like to add this order to. You can find out the index
 in the displayed buyer list. You may want to use the [List Command](#listing-contacts-or-items--list) to find the buyer,
 if you have filtered the list.
 
@@ -335,8 +335,8 @@ should be like. In the future, you may be able to define your own requests as te
 
 Examples:
 
-* `add-o i/1 o_st/Pending o_r/add-r o_a/1 o_sp/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
-* `add-o i/1 o_st/Negotiating o_r/add-r o_a/3 o_sp/Chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty`
+* `add-o 1 o_st/Pending o_r/add-r o_a/1 o_sp/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
+* `add-o 1 o_st/Negotiating o_r/add-r o_a/3 o_sp/Chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty`
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -345,15 +345,15 @@ Examples:
 
 Adds a pet to a supplier contact. This is especially useful for adding a new available pet to its supplier.
 
-Format: `add-p i/INDEX_OF_SUPPLIER p_n/PET_NAME p_d/DATE_OF_BIRTH p_c/COLOR p_cp/COLOR_PATTERN p_h/HEIGHT p_w/WEIGHT p_s/SPECIES p_v/VACCINATION_STATUS p_p/PRICE [p_cert/CERTIFICATE]…​`
+Format: `add-p INDEX_OF_SUPPLIER p_n/PET_NAME p_d/DATE_OF_BIRTH p_c/COLOR p_cp/COLOR_PATTERN p_h/HEIGHT p_w/WEIGHT p_s/SPECIES p_v/VACCINATION_STATUS p_p/PRICE [p_cert/CERTIFICATE]…​`
 
-`i/INDEX_OF_SUPPLIER` is the one-based index of the supplier you would like to add this pet to. You can find out the
+`INDEX_OF_SUPPLIER` should be immediately after `add-p` and is the one-based index of the supplier you would like to add this pet to. You can find out the
 index just in the display list. You may want to use the [List Command](#listing-contacts-or-items--list) to find the
 supplier, if you have filtered the list.
 
 Examples:
 
-* `add-p i/1 p_n/Wu Lezheng p_d/2001-11-20 p_c/red p_cp/stripped p_h/39.5 p_s/chihuahua p_v/true p_w/15.3 p_p20 p_cert/Good-Dog Cert. p_cert/Royal Blood Cert. p_t/naughty p_t/sold`
+* `add-p 1 p_n/Wu Lezheng p_d/2001-11-20 p_c/red p_cp/stripped p_h/39.5 p_s/chihuahua p_v/true p_w/15.3 p_p20 p_cert/Good-Dog Cert. p_cert/Royal Blood Cert. p_t/naughty p_t/sold`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -425,9 +425,9 @@ The error message and the correct format of the input will be shown in the **mai
 At times, you may want to find out which pet waiting for sale is the best fit when you receive a new order. Now it is
 the time for you to check this command out.
 
-Format: `match i/INDEX`
+Format: `match INDEX`
 
-`i/INDEX` is the one-based index of the order to which you would like to find the best fitting pet. This command will
+`INDEX` is the one-based index of the order to which you would like to find the best fitting pet. This command will
 sort all pets currently being displayed on your screen (so the pets filtered out will not count) based on our score
 evaluation algorithm in descending order. The top few pets are probably what you want. And now, time to contact the
 suppliers who own these pets for further negotiation. If you are interested in the algorithm, check out our developer
@@ -828,7 +828,6 @@ These prefixes are for you to indicate different fields when you add a new [buye
 | `ph/`     | General Person  | Phone number                      | Numbers only. Required.                                                                                                                                                                                                                                                                                                            | `ph/80334455`                                   |
 | `e/`      | General Person  | Email address                     | A string of any characters. Must contain `@` and follow email format. Required.                                                                                                                                                                                                                                                    | `e/1324@sample.com`                             |
 | `a/`      | General Person  | Address                           | A string of any characters. Required.                                                                                                                                                                                                                                                                                              | `a/36 College Ave East, Singapore 138600`       |
-| `i/`      | General Person  | Index                             | A positive whole number counting from 1. Required.                                                                                                                                                                                                                                                                                 | `i/4`                                           |
 | `l/`      | General Person  | Location (country) of this person | A string of any characters. Required.                                                                                                                                                                                                                                                                                              | `l/Singapore`, `USA`, `China`                   |
 | `o/`      | Order           | Order                             | Always followed by `add-o`. Optional, if no orders to add when adding a buyer. Can have multiple.                                                                                                                                                                                                                                  | `o/add-o`                                       |
 | `o_st/`   | Order           | Order status                      | `Pending`, `Negotiating`, or `Delivering`                                                                                                                                                                                                                                                                                          | `o_st/Pending`                                  |
