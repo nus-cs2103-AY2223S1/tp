@@ -292,10 +292,14 @@ Given below is an example success scenario and how the `import` mechanism behave
 1. The user executes `import fileName.json`.
 2. `LogicManager` calls `AddressBookParser#parseCommand(userInput)`.
 3. `LogicManager` calls `ImportCommand#execute(model, storage)`.
-4. `ImportCommand` calls `JsonAddressBookStorage#readAddressBook()` on the file path specified and create the 
-    `AddressBook` that is going to be appended.
-5. `ImportCommand` then appends it to the original list. 
+4. `ImportCommand` creates a`JsonAddressBookStorage` object using the specified file, and calls 
+   `JsonAddressBookStorage#readAddressBook()` to create the `AddressBook` that is going to be appended.
+5. `ImportCommand` then calls `Model#appendAddressBook(toAppend)` to append it to the original list. 
 6. A `CommandResult` object indicating that the `import` command is successful will be created.
+
+The following sequence diagram shows how the `import` command works:
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
 
 
 ### 4.4 Export Feature
@@ -320,7 +324,7 @@ Given below is an example success scenario and how the `export` mechanism behave
 
 The following sequence diagram shows how the `import` command works:
 
-![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
    
 #### Design Considerations
 
