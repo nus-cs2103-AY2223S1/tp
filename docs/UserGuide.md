@@ -12,9 +12,9 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `Travelr.jar` from [here](https://github.com/AY2223S1-CS2103T-W17-1/tp/releases).
+2. Download the latest `Travelr.jar` [here](https://github.com/AY2223S1-CS2103T-W17-1/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for Travelr.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI should appear in a few seconds, and will look similar to the screenshot below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
