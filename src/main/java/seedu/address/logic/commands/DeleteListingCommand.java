@@ -37,8 +37,7 @@ public class DeleteListingCommand extends Command {
             model.deleteOffersFor(target);
             model.deleteMeetingsAbout(target);
             return new CommandResult(String.format(MESSAGE_DELETE_LISTING_SUCCESS, target));
-        }
-        catch (ListingNotFoundException le) {
+        } catch (ListingNotFoundException le) {
             throw new CommandException(Messages.MESSAGE_INVALID_LISTING_ID);
         }
 

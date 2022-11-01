@@ -219,12 +219,5 @@ public class EditListingCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getAskingPrice().equals(e.getAskingPrice());
         }
-
-        public String toString() {
-            return this.id + "   "
-                    + this.address + "   "
-                    + this.name + "   "
-                    + this.askingPrice;
-        }
     }
 }
