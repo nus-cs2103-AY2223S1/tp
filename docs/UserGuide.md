@@ -200,7 +200,9 @@ Format: `appt INDEX d/APPOINTMENT_DATE_TIME`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The appointment date **cannot be before the current date**.
 * If a pre-existing appointment is present, it will be overridden by the new appointment.
-* Appointments that have passed will not be removed automatically, and require either a new appointment to override or the `apptcl` command in the next section below to be used.
+* Appointments that have passed will not be removed automatically, and require either a new appointment to override 
+or the `apptcl` command in the next section below to be used. Further development of the appointment feature will be released in 
+future iterations!
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Appointment date & time must be given in DD-MM-YYYY HHmm format!
