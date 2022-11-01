@@ -212,11 +212,11 @@ The following commands are for managing your hackathon tasks. These tasks can be
 #### Adding a task: `addTask`
 
 Adds a task to the task list. 
-* You cannot add a task with the same name as one that currently exists in the task list. 
+* Note: You cannot add a task with the same name as one that currently exists in the task list. 
 
 Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]`
 
-Refer to the [Task Parameters](#task-parameters) section for more details.
+Refer to the [Task Parameters](#task-parameters) section for details about the format of each parameter.
 
 Examples:
 
@@ -249,11 +249,11 @@ Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/CATE
 * To un-assign a member from a task, write `none` in the EMAIL_OF_PERSON_ASSIGNED field, i.e. `pe/none`.
 * To mark a task's status as `completed` or `not completed`, write `true` or `false` in the IS_DONE field, e.g. `do/true`.
 
+Refer to the [Task Parameters](#task-parameters) section for details about the format of each parameter.
+
 Examples:
 * `editTask 2 c/frontend pe/charlotte@example.com` edits the category of the 2nd task in the displayed task list to be `frontend` and assigns the task to  the member with email `charlotte@example.com`.
 * `editTask 4 do/true` marks the 4th task in the displayed task list as `completed`.
-
-Refer to the [Task Parameters](#task-parameters) section for more details about task parameters.
 
 #### Viewing all tasks: `listTasks`
 
@@ -271,6 +271,8 @@ Format: `filter [c/CATEGORY] [dl/DEADLINE]`
 * At least one of the optional parameters must be provided.
 * Only tasks that match the filter condition will be displayed in the task list.
 * To remove the filter, use the [`listTasks`](#viewing-all-tasks-listtasks) command.
+
+Refer to the [Task Parameters](#task-parameters) section for details about the format of each parameter.
 
 Examples:
 *  `filter c/backend` displays only tasks that have `backend` as CATEGORY
@@ -317,6 +319,6 @@ Examples:
 | pr/PRIORITY             | Should be either  `high`, `medium`, or `low` (case-insensitive)                                                                                        |
 | c/CATEGORY              | Should be one of the following (case-insensitive): <br/>- `database`<br/>- `frontend`<br/>- `backend`<br/>- `uiux`<br/>- `presentation`<br/>- `others` |
 | dl/DEADLINE             | Should be in the format `YYYY-MM-DD` and after the current date                                                                                        |
-| pe/EMAIL_OF_PERSON_ASSIGNED | Should be the email address of an existing member (case-insensitive). For the `editTask` command, it can also be `none`, i.e. `pe/none`.                    |
-| do/IS_DONE               | *For `editTask` command only.* Should be either `true` or `false` (case-insensitive)                                                                   |
+| pe/EMAIL_OF_PERSON_ASSIGNED | Should be the email address of an existing member (case-insensitive). For the [`editTask`](#editing-a-task-edittask) command, it can also be `none`, i.e. `pe/none`.                    |
+| do/IS_DONE               | *For [`editTask`](#editing-a-task-edittask) command only.* Should be either `true` or `false` (case-insensitive)                                                                   |
 
