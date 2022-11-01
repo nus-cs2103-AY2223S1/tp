@@ -261,3 +261,11 @@
     width: calc(50% - (#{$spacing-unit} / 2));
   }
 }
+
+/**
+ * Table of Contents with bullet points removed
+ * Reused from https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/190/commits/b91ca546a6a41a977a8dbf4d40c969ab07a49ad7
+ */
+ .toc-no-bullet-points ul, .toc-no-bullet-points ol {
+    list-style-type: none;
+}
