@@ -243,7 +243,7 @@ Format: `find parameter/KEYWORD [parameter/KEYWORD]...`
 Search Types:
 1. Matching word: Keywords will only match if there is a full matching word. E.g., `Bobby` will not match `Bobbys`.
 2. Substring: Keywords will match as long as a substring match exists. E.g., `@gmail.com` will match `jason@gmail.com` and `CS2103@gmail.com`
-3. Numeric: Search will search by its numeric value, rounded to 2 decimal places. E.g., Both `3` and `3.0` will match `3.0`
+3. Numeric: Search will search by its numeric value, rounded to 2 decimal places. E.g., Both `3` and `3.00000001` will match `3.00`
 
 | Field               | Search Type               | 
 |---------------------|---------------------------|
