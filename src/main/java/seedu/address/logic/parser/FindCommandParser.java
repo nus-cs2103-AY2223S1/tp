@@ -29,6 +29,12 @@ public class FindCommandParser implements Parser<FindCommand> {
     public static final String MESSAGE_NO_ALPHANUMERIC = "Parameters for "
             + "the find command must contain an alphanumeric character";
 
+    public static final String MESSAGE_MULTIPLE_PREFIX = "Parameters for "
+            + "the find command can only contain one prefix";
+
+    public static final Prefix[] validPrefixArray = new Prefix[]{PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+            PREFIX_ADDRESS, PREFIX_TAG, PREFIX_BIRTHDAY};
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
@@ -44,6 +50,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_ADDRESS, PREFIX_BIRTHDAY, PREFIX_TAG);
+
+        checkMultiplePrefix(argMultimap);
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String noPrefixArgs = argMultimap.getValue(PREFIX_NAME).get();
@@ -122,6 +130,22 @@ public class FindCommandParser implements Parser<FindCommand> {
             birthdayKeywords[i] = birthday.toString();
         }
         return birthdayKeywords;
+    }
+
+    /**
+     * Checks the given {@code String} of arguments for multiple prefixes.
+     * @throws ParseException if there are more than 1 valid prefixes present.
+     */
+    public static void checkMultiplePrefix(ArgumentMultimap argMultimap) throws ParseException {
+        int prefixCount = 0;
+        for (Prefix pfx : validPrefixArray) {
+            if (argMultimap.getValue(pfx).isPresent()) {
+                prefixCount++;
+            }
+        }
+        if (prefixCount > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_MULTIPLE_PREFIX));
+        }
     }
 
 }
