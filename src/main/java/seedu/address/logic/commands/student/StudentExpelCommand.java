@@ -72,13 +72,13 @@ public class StudentExpelCommand extends Command {
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
+        TutorialGroup originalGroup = editedStudent.getTutorialGroup();
 
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        if (studentToEdit.belongsTo(editedStudent.getTutorialGroup())
-                && !model.hasTutorialGroup(editedStudent.getTutorialGroup())) {
+        if (!model.hasTutorialGroup(originalGroup)) {
             throw new CommandException(MESSAGE_TUTORIAL_GROUP_NOT_FOUND);
         }
 
@@ -86,16 +86,15 @@ public class StudentExpelCommand extends Command {
             throw new CommandException(MESSAGE_TUTORIAL_NOT_INITIATED);
         }
 
-        if (!studentToEdit.belongsTo(editedStudent.getTutorialGroup())) {
+        if (!studentToEdit.belongsTo(originalGroup)) {
             throw new CommandException(MESSAGE_DOES_NOT_BELONG_TO_THIS_GROUP);
         }
 
-
-        //TODO: remove stu from tut group
+        editedStudent = createExpelledStudent(studentToEdit, editStudentDescriptor);
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EXPEL_PERSON_SUCCESS, editedStudent.getTutorialGroup()));
+        return new CommandResult(String.format(MESSAGE_EXPEL_PERSON_SUCCESS, originalGroup));
     }
 
     /**
@@ -111,6 +110,17 @@ public class StudentExpelCommand extends Command {
         Set<Tag> updatedTags = studentToEdit.getTags();
         TutorialGroup updatedTutorialGroup = editStudentDescriptor.getTutorialGroup()
                 .orElse(studentToEdit.getTutorialGroup());
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedTags, updatedTutorialGroup);
+    }
+
+    private static Student createExpelledStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
+        assert studentToEdit != null;
+
+        Name updatedName = studentToEdit.getName();
+        Phone updatedPhone = studentToEdit.getPhone();
+        Email updatedEmail = studentToEdit.getEmail();
+        Set<Tag> updatedTags = studentToEdit.getTags();
+        TutorialGroup updatedTutorialGroup = null;
         return new Student(updatedName, updatedPhone, updatedEmail, updatedTags, updatedTutorialGroup);
     }
 

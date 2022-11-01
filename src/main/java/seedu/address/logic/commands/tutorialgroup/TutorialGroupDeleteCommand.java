@@ -108,8 +108,7 @@ public class TutorialGroupDeleteCommand extends Command {
         Phone updatedPhone = studentToEdit.getPhone();
         Email updatedEmail = studentToEdit.getEmail();
         Set<Tag> updatedTags = studentToEdit.getTags();
-        TutorialGroup updatedTutorialGroup = editStudentDescriptor.getTutorialGroup()
-                .orElse(studentToEdit.getTutorialGroup());
+        TutorialGroup updatedTutorialGroup = null;
         return new Student(updatedName, updatedPhone, updatedEmail, updatedTags, updatedTutorialGroup);
     }
 }
