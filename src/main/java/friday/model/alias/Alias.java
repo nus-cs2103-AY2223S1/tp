@@ -7,10 +7,9 @@ import static java.util.Objects.requireNonNull;
  */
 public class Alias {
 
-    private final String value;
     private static final String SPACE = " ";
     private static final String EMPTY_STRING = "";
-
+    private final String value;
     /**
      * Constructs an {@code Alias}.
      *
