@@ -31,6 +31,7 @@ public class SemesterPill extends Pill {
      */
     public SemesterPill(SemestersEnum semester, String bgColor, String textColor) {
         super(semester.toString(), bgColor, textColor, DEFAULT_SEMESTER_FONT_SIZE);
+        setUI();
     }
 
     /**
@@ -43,5 +44,9 @@ public class SemesterPill extends Pill {
      */
     public SemesterPill(SemestersEnum semester, String bgColor, String textColor, int fontSize) {
         super(semester.toString(), bgColor, textColor, fontSize);
+        setUI();
+    }
+    private void setUI() {
+        super.setFocusTraversable(false);
     }
 }

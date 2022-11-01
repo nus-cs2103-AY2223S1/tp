@@ -3,6 +3,7 @@ package nus.climods.ui.common;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Region;
 import nus.climods.commons.core.CommandSession;
 import nus.climods.logic.commands.exceptions.CommandException;
@@ -30,8 +31,13 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandSession = commandSession;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
+        commandTextField.requestFocus();
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         commandTextField.setOnKeyPressed(event -> {
+            if (event.getCode().equals(KeyCode.TAB)) {
+                commandTextField.requestFocus();
+            }
+
             if (!commandTextField.isFocused()) {
                 return;
             }
