@@ -36,7 +36,6 @@ Given below are my contributions to the project.
   * User Guide:
     * Added "Components of the UI" section.
     * Added UiComponentsLabels.png.
-    * Added acknowledgements for icons.
     * Added component use table.
     * Added GuestBook icon.
     * Update "FAQ" list.
@@ -47,6 +46,7 @@ Given below are my contributions to the project.
     * Update diagram under Ui section.
     * Added implementation of `add` and `edit` commands.
     * Added activity diagrams of `add` and `edit` commands.
+    * Added acknowledgements for icons.
 
 * **Contributions to team-based tasks**:
   * Released v1.3.
