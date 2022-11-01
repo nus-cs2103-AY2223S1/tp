@@ -63,6 +63,59 @@ Here are some of the symbols and text formatting to look out for as you make use
 
 ### Navigating the application interface
 
+* PayMeLah uses a Command Line Interface (CLI) - which means that you perform actions by entering commands for PayMeLah to carry out.
+* Once a command has been successfully carried out, PayMeLah will display the results accordingly.
+* Refer to the diagram below to find out about the different components of PayMeLah that are responsible for receiving commands, displaying results, and more.
+
+| Number | Component Name | Details                                                                                                                                               |
+|:------:|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+|   1.   | Command Box    | The box where you enter commands for PayMeLah to carry out.                                                                                           | 
+|   2.   | Message Box    | The box where a success message will be displayed when PayMeLah carries out a command successfully, or an error message when PayMeLah fails to do so. |
+|   3.   | Person Card    | The card containing personal details.                                                                                                                 | 
+|   4.   | Debt List      | The box containing the list of debts owed by a person.                                                                                                | 
+|   5.   | Person List    | The box containing the full list of person cards. Only one person card can be viewed at a time.                                                       |
+
+<img src="images/UiDetails.png" width="800" /> <br>
+
+| Number | Component Name  | Details                                       |
+|:------:|-----------------|-----------------------------------------------|
+|   1.   | Person Index    | The index of the person in the person list.   | 
+|   2.   | Name            | The person’s name.                            |
+|   3.   | Phone Number    | The person’s phone number.                    | 
+|   4.   | Telegram Handle | The person’s Telegram handle.                 | 
+|   5.   | Tags            | The tags attached to the person.              | 
+|   6.   | Address         | The person’s address.                         | 
+|   7.   | Total Debt      | The total amount of money owed by the person. | 
+
+<img src="images/PersonCard.png" width="800" /> <br>
+
+| Number | Component Name | Details                                     |
+|:------:|----------------|---------------------------------------------|
+|   1.   | Debt Index     | The index of the debt in the debt list.     | 
+|   2.   | Description    | The debt’s description.                     |
+|   3.   | Money          | The amount of money owed for the debt.      |
+|   4.   | Date/Time      | The date and time of the debt.              |
+|   5.   | Payment Status | The debt’s payment status (paid or unpaid). |
+
+<img src="images/DebtList.png" width="800" /> <br>
+
+<div id="advanced-keyboard-shortcuts" markdown="block" class="alert alert-info">
+**:star: Advanced keyboard shortcuts:**
+Although you can make use of the mouse to perform some functions in PayMeLah, you may also use various keyboard shortcuts to do so. 
+
+|                Keyboard Key                 | Function                                                                                                                                                                                                                                                                                                                                              |
+|:-------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|               <kbd>Tab</kbd>                | When you are in the command box, press <kbd>Tab</kbd> twice to navigate to the person list. When you are in the person list, use <kbd>Tab</kbd> to move down the list. At the end of the person list, press <kbd>Tab</kbd> once to return to the command box.                                                                                         |
+|      <kbd>Shift</kbd> + <kbd>Tab</kbd>      | Same as <kbd>Tab</kbd> but moves up instead.                                                                                                                                                                                                                                                                                                          |
+|              <kbd>Space</kbd>               | When you are in the person list, use <kbd>Space</kbd> to expand or close the person card you are currently on. After expanding the person card, press <kbd>Tab</kbd> followed by <kbd>Space</kbd> to navigate to the person’s debt list. Once you are done viewing the person's debt list, press <kbd>Tab</kbd> again to navigate to the person list. |
+|  <kbd>PageUp</kbd> and <kbd>PageDown</kbd>  | When you are in the person list, use <kbd>PageUp</kbd> and <kbd>PageDown</kbd> to move up or down the list, automatically expanding each person card as you move. When you are in a person's debt list, use <kbd>PageUp</kbd> and <kbd>PageDown</kbd> to move up or down the debt list.                                                               |
+| <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd> | Similar to <kbd>PageUp</kbd> and <kbd>PageDown</kbd>, but without expanding the person cards.                                                                                                                                                                                                                                                         |
+|               <kbd>Home</kbd>               | When you are in the person list, press the <kbd>Home</kbd> key to jump to the first person in the list. When you are in a person's debt list, press the <kbd>Home</kbd> key to jump to the first debt in the list.                                                                                                                                    |
+|               <kbd>End</kbd>                | When you are in the person list, press the <kbd>End</kbd> key to jump to the last person in the list. When you are in a person's debt list, press the <kbd>End</kbd> key to jump to the last debt in the list.                                                                                                                                        |
+</div>
+
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
