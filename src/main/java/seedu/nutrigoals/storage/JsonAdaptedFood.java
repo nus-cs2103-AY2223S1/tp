@@ -72,7 +72,11 @@ class JsonAdaptedFood {
         }
         final Calorie modelCalorie = new Calorie(calorie);
 
+        if (!DateTime.isValidDateTime(dateTime)) {
+            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
+        }
         final DateTime modelDateTime = new DateTime(dateTime);
+
         return new Food(modelName, modelCalorie, modelTag, modelDateTime);
     }
 

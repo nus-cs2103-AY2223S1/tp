@@ -26,7 +26,7 @@ import seedu.nutrigoals.model.user.Weight;
  */
 public class ParserUtil {
 
-    public static final String DEFAULT_TIME = "T00:00:00";
+    public static final String DEFAULT_TIME = "T00:00";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
@@ -120,18 +120,6 @@ public class ParserUtil {
         out.put("CLB", new Location("CLB", "1.296642317024345, 103.77322870790687"));
         // https://goo.gl/maps/TBxRtewZLVCgkEdF6
         out.put("USC", new Location("UHC", "1.2991034341416665, 103.77639982958577"));
-        // https://goo.gl/maps/bURCv14zruYzxxNV9
-        out.put("LT1", new Location("LT1", "1.299463315530677, 103.77114712647649"));
-        // https://goo.gl/maps/e8vnmt5FzS19NbNk8
-        out.put("LT9", new Location("LT9", "1.2952456082872508, 103.77221840699619"));
-        // https://goo.gl/maps/EEWy1fTuFcBkqxT97
-        out.put("AS6", new Location("AS6", "1.2955038493756006, 103.77324977312634"));
-        // https://goo.gl/maps/JqvjteGB87DLP5eL7
-        out.put("IT", new Location("IT", "1.2975840550675737, 103.77251102348825"));
-        // https://goo.gl/maps/foRXfEUYG3v3QKDi8
-        out.put("TCOMS", new Location("TCOMS", "1.2935168791869454, 103.77690208272466"));
-        // https://goo.gl/maps/SMVTaR564Hoahr1B8
-        out.put("VENTUS", new Location("VENTUS", "1.295314453199568, 103.77019611100641"));
         if (!out.containsKey(trimmedLocationName)) {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }

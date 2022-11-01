@@ -5,9 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg)!
 
-We are developing NutriGoals - a free-to-use CLI nutritional tracker for beginners who are getting started on
-their fitness journey!
-
+We are developing NutriGoals - a free-to-use CLI nutritional tracker for beginners who are getting started on their fitness journey!
 
 ## Project team
 
@@ -15,7 +13,7 @@ their fitness journey!
 
 <img src="images/xav168.png" width="200px">
 
-[[GitHub](https://github.com/xav168)]
+[[GitHub](https://github.com/xav168)][[Portfolio](team/xav168.md)]
 
 * Role: Team Lead
 * Responsibilities: Scheduling and tracking
@@ -24,7 +22,7 @@ their fitness journey!
 
 <img src="images/nicolelim02.png" width="200px">
 
-[[GitHub](http://github.com/nicolelim02)]
+[[GitHub](http://github.com/nicolelim02)][[Portfolio](team/nicolelim02.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality
@@ -33,7 +31,7 @@ their fitness journey!
 
 <img src="images/ruiqi7.png" width="200px">
 
-[[GitHub](http://github.com/ruiqi7)]
+[[GitHub](http://github.com/ruiqi7)][[Portfolio](team/ruiqi7.md)]
 
 * Role: Developer
 * Responsibilities: Deliverables and deadline
@@ -42,7 +40,7 @@ their fitness journey!
 
 <img src="images/tanpingzhi.png" width="200px">
 
-[[GitHub](http://github.com/jtanpingzhi)]
+[[GitHub](https://github.com/TanPingZhi)][[Portfolio](team/tanpingzhi.md)]
 
 
 * Role: Developer
@@ -52,7 +50,7 @@ their fitness journey!
 
 <img src="images/akkfiros.png" width="200px">
 
-[[GitHub](http://github.com/akkfiros)]
+[[GitHub](http://github.com/akkfiros)][[Portfolio](team/akkfiros.md)]
 
 
 * Role: Developer
