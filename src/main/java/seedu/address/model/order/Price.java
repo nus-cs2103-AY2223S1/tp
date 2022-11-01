@@ -18,11 +18,7 @@ public class Price implements Comparable<Price> {
      * Creates a Price.
      */
     public Price(double price) {
-        if (price < 0) {
-            this.price = 0;
-        } else {
-            this.price = price;
-        }
+        this.price = price;
     }
 
     public static Price getNotApplicablePrice() {
