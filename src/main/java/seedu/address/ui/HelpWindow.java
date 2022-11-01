@@ -55,7 +55,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "[t/tag] *[] is optional. ";
     private static final String CLEAR_SEARCH_TEXT = "Clear All";
     private static final String CLEAR_DEMO_INPUT = "clear";
-    private static final String CLEAR_DEMO_OUTPUT = "Address book has been cleared!";
+    private static final String CLEAR_DEMO_OUTPUT = "Healthcare Xpress record system has been cleared!";
     private static final String DELETE_SEARCH_TEXT = "Delete via ID";
     private static final String DELETE_DEMO_INPUT = "delete id/3";
     private static final String DELETE_DEMO_OUTPUT = "Deleted person: Category: N Uid: 3; Name: Cola; Gender: F;"
