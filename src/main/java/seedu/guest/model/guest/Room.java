@@ -11,9 +11,9 @@ public class Room {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Rooms should only contain alphanumeric characters and hyphens (-). "
+            + "They must be at least 1 character and at most 100 characters long."
             + "They cannot start or end with a hyphen. "
-            + "Hyphens can only be used between 2 alphanumeric characters."
-            + "You should enter a minimum of 1 character and a maximum of 100 characters.";
+            + "Hyphens can only be used between 2 alphanumeric characters.";
 
     // Maximum number of characters able to be entered into Room
     private static final int MAX_LENGTH_ROOM = 100;
