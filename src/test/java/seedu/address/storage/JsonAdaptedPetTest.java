@@ -40,7 +40,6 @@ public class JsonAdaptedPetTest {
     private static final Double INVALID_WEIGHT = -999999999.99999999999;
     private static final Double INVALID_HEIGHT = -0.00000000099994844;
     private static final Double INVALID_PRICE = -8888.674;
-    private static final String INVALID_UNIQUE_ID = TypicalPets.DOJA.getId().getIdToString();
 
     private static final String VALID_PET_NAME = TypicalPets.DOJA.getName().toString();
     private static final JsonAdaptedSupplier VALID_SUPPLIER = new JsonAdaptedSupplier(TypicalPets.DOJA.getSupplier());
@@ -55,8 +54,6 @@ public class JsonAdaptedPetTest {
     private static final Double VALID_PRICE = TypicalPets.DOJA.getPrice().getPrice();
     private static final List<String> VALID_CERTIFICATES = TypicalPets.DOJA.getCertificates().stream()
             .map(PetCertificate::getCertificate).collect(Collectors.toList());
-
-    private static final String VALID_UNIQUE_ID_BACKUP = TypicalPets.PLUM.getId().getIdToString();
 
     private static final UniqueIdGenerator PET_ID_GENERATOR = new UniqueIdGenerator();
 
@@ -331,12 +328,22 @@ public class JsonAdaptedPetTest {
 
     @Test
     public void toModelType_invalidUniqueId_throwsIllegalValueException() {
+        UniqueId invalidId = PET_ID_GENERATOR.next();
+        UniqueIdGenerator.addToStoredIdPet(invalidId);
         JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
-                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, null,
-                VALID_CERTIFICATES, INVALID_UNIQUE_ID);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName());
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, invalidId.getIdToString());
+        String expectedMessage = "Repeated unique id for pet";
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
 
+    @Test
+    public void toModelType_nullUniqueId_throwsIllegalValueException() {
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_SUPPLIER, VALID_COLOR, VALID_COLOR_PATTERN,
+                VALID_DATE_OF_BIRTH, VALID_SPECIES, VALID_WEIGHT, VALID_HEIGHT, VALID_VACCINATION_STATUS, VALID_PRICE,
+                VALID_CERTIFICATES, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, UniqueId.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
+    }
 
 }
