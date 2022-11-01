@@ -890,8 +890,8 @@ After executing `showNotes`:
 **Q** Who can I contact for questions regarding this version of the program if the information I need cannot be found in this guide?<br>
 **A** Please contact the person from whom you obtained this present version from, or contact any of our developers (links to Github):
 
-[Rui Han](https://github.com/rui-han-crh)| [Pinran](https://github.com/Pinran-J)| [Ryan](https://github.com/ryanczx) | [Neethesh](https://github.com/orgs/AY2223S1-CS2103T-W12-2/people/Neethesh26) | [Zhong Wei](https://github.com/czhongwei)
---------|----|-----------|----|---|
+| [Rui Han](https://github.com/rui-han-crh) | [Pinran](https://github.com/Pinran-J) | [Ryan](https://github.com/ryanczx) | [Neethesh](https://github.com/Neethesh26) | [Zhong Wei](https://github.com/czhongwei) |
+|-------------------------------------------|---------------------------------------|------------------------------------|-------------------------------------------|-------------------------------------------|
 
 [Back to Top](#sectresbook)
 
