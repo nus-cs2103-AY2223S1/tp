@@ -57,7 +57,7 @@ public class TaskCard extends UiPart<Region> {
         category.setText("Category: " + task.getCategory().toString());
         deadline.setText("Deadline: " + task.getDeadline().toString());
         status.setText("Status: " + booleanConvertor(task.getStatus()));
-        personName.setText("Assignee: " + task.getPersonName());
+        personName.setText("Assignee: " + task.getPersonName() + " ( " + task.getEmail() + " )");
     }
 
     /**
