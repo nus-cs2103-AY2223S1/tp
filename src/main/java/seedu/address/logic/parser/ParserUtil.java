@@ -86,36 +86,52 @@ public class ParserUtil {
      * Parses a {@code String lessonPlan} into an {@code LessonPlan}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @throws ParseException if the given {@code lessonPlan} is invalid.
      */
-    public static LessonPlan parseLessonPlan(String lessonPlan) {
+    public static LessonPlan parseLessonPlan(String lessonPlan) throws ParseException {
         requireNonNull(lessonPlan);
         String trimmedLessonPlan = lessonPlan.trim();
+        if (!LessonPlan.isValidLessonPlan(trimmedLessonPlan)) {
+            throw new ParseException(LessonPlan.MESSAGE_CONSTRAINTS);
+        }
         return new LessonPlan(trimmedLessonPlan);
     }
 
     /**
      * Parses a {@code String homework} into an {@code Homework}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code homework} is invalid.
      */
-    public static Homework parseHomework(String homework) {
+    public static Homework parseHomework(String homework) throws ParseException {
         requireNonNull(homework);
         String trimmedHomework = homework.trim();
+        if (!Homework.isValidHomework(trimmedHomework)) {
+            throw new ParseException(Homework.MESSAGE_CONSTRAINTS);
+        }
         return new Homework(trimmedHomework);
     }
 
     /**
      * Parses a {@code String gradeProgress} into an {@code GradeProgress}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gradeProgress} is invalid.
      */
-    public static GradeProgress parseGradeProgress(String gradeProgress) {
+    public static GradeProgress parseGradeProgress(String gradeProgress) throws ParseException {
         requireNonNull(gradeProgress);
         String trimmedGradeProgress = gradeProgress.trim();
+        if (!GradeProgress.isValidGradeProgress(trimmedGradeProgress)) {
+            throw new ParseException(GradeProgress.MESSAGE_CONSTRAINTS);
+        }
         return new GradeProgress(trimmedGradeProgress);
     }
 
     /**
      * Parses a {@code String attendance} into an {@code Attendance}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code attendance} is invalid.
      */
     public static Attendance parseAttendance(String attendance) throws ParseException {
         requireNonNull(attendance);
@@ -133,6 +149,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String Session} into a {@code Session}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code session} is invalid.
      */
     public static Session parseSession(String session) throws ParseException {
         requireNonNull(session);

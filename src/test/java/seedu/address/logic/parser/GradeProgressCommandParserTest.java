@@ -31,15 +31,12 @@ public class GradeProgressCommandParserTest {
     @Test
     public void parse_noPrefixField_failure() {
         assertParseFailure(parser, "1 " + VALID_GRADE_PROGRESS_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_emptyField_failure() {
-        // no prefix
-        assertParseFailure(parser, "1", GradeProgressCommandParser.MESSAGE_INVALID_EMPTY_FIELD);
-
-        // has prefix
-        assertParseFailure(parser, "1 " + PREFIX_GRADE_PROGRESS,
-                GradeProgressCommandParser.MESSAGE_INVALID_EMPTY_FIELD);
+        assertParseFailure(parser, "1 " + PREFIX_GRADE_PROGRESS, GradeProgress.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1 " + PREFIX_GRADE_PROGRESS + " ", GradeProgress.MESSAGE_CONSTRAINTS);
     }
 }

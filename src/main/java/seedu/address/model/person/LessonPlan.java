@@ -1,12 +1,16 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's lesson plan in the address book.
  * Guarantees: immutable; is valid
  */
 public class LessonPlan {
+
+    public static final String MESSAGE_CONSTRAINTS = "Lesson plan should not be blank";
+    public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
     public final String value;
 
     /**
@@ -16,11 +20,21 @@ public class LessonPlan {
      */
     public LessonPlan(String lessonPlan) {
         requireNonNull(lessonPlan);
+        checkArgument(isValidLessonPlan(lessonPlan), MESSAGE_CONSTRAINTS);
         value = lessonPlan;
     }
 
+    /**
+     * Returns true if a given string is a valid lesson plan.
+     */
+    public static boolean isValidLessonPlan(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
     @Override
     public String toString() {
+        if (value.equals("")) {
+            return "No lesson plan found!";
+        }
         return value;
     }
 

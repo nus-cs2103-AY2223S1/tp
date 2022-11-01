@@ -1,12 +1,15 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's Grade Progress in the address book.
  * Guarantees: immutable; is valid
  */
 public class GradeProgress {
+    public static final String MESSAGE_CONSTRAINTS = "Grade progress should not be blank";
+    public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
     public final String value;
 
     /**
@@ -16,9 +19,16 @@ public class GradeProgress {
      */
     public GradeProgress(String gradeProgress) {
         requireNonNull(gradeProgress);
+        checkArgument(isValidGradeProgress(gradeProgress), MESSAGE_CONSTRAINTS);
         value = gradeProgress;
     }
 
+    /**
+     * Returns true if a given string is a valid grade progress.
+     */
+    public static boolean isValidGradeProgress(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
     @Override
     public String toString() {
         return value;
