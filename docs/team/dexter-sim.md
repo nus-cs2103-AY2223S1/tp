@@ -23,11 +23,9 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=dexter-sim&breakdown=true)
 
-* **Project management**:
-    * [to be added soon]
-
 * **Enhancements to existing features**:
-    * [to be added soon]
+    * Update parse and command mechanism for contact and task add and delete ([#95](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/95)).
+    * Abstract out description field of task into its own class ([#97](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/97)).
 
 * **Documentation**:
     * User Guide:
