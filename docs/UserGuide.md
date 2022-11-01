@@ -16,7 +16,7 @@ Tuthub is a desktop app for NUS professors who wish to track and choose their ne
 --------------------------------------------------------------------------------------------------------------------
 
 
-## About this Document
+## About This Document
 
 This section will introduce you to the symbols frequently used in this User Guide as well as Tuthub application layout and command format to aid your understanding of the document.
 
@@ -85,7 +85,7 @@ The following table describes the sections in detail:
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -126,9 +126,9 @@ The following table describes the sections in detail:
 
 If you are new to Tuthub or need a refresher for available commands, `help` displays a table of Tuthub command summary and a link to our User Guide for your convenience.
 
-![helpMessage](images/helpMessage.png)
-
 Format: `help`
+
+![helpMessage](images/helpMessage.png)
 
 <div markdown="block" class="alert alert-primary">
 
@@ -179,7 +179,7 @@ Examples:
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**
-You may also click on a `Tutor List Card` to execute a view command instead
+You may also click on a `Tutor List Card` to execute a `view` command instead
 
 </div>
 
@@ -325,7 +325,7 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 | Action                     | Format                                                                                                                     | Examples (if any)                                                                                      |
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
