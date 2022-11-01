@@ -2,9 +2,10 @@
 {% if include.header %}
 {% if include.show-in-toc %}
 ## Table of Contents
+{: #toc-heading}
 {% else %}
 ## Table of Contents
-{: .no_toc}
+{: .no_toc #toc-heading}
 {% endif %}
 {% endif %}
 
