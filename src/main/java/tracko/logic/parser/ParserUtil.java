@@ -193,8 +193,8 @@ public class ParserUtil {
 
         Double doublePrice = Double.parseDouble(trimmedPrice);
 
-        if (!Price.isValidPrice(doublePrice) ||
-                !AppUtil.checkDoubleLessThanMaxInt(doublePrice)) {
+        if (!Price.isValidPrice(doublePrice)
+                || !AppUtil.checkDoubleLessThanMaxInt(doublePrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
 
