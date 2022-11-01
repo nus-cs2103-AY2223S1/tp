@@ -6,12 +6,14 @@ import java.util.logging.Logger;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import nus.climods.commons.core.CommandSession;
@@ -37,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private static final double SCALE = 0.75;
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -82,7 +85,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
+        setMinScreenBounds();
         setAccelerators();
 
         helpWindow = new HelpWindow();
@@ -90,6 +93,12 @@ public class MainWindow extends UiPart<Stage> {
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    private void setMinScreenBounds() {
+        Rectangle2D bounds = Screen.getPrimary().getBounds();
+        primaryStage.setMinHeight(bounds.getHeight() * SCALE);
+        primaryStage.setMinWidth(bounds.getWidth() * SCALE);
     }
 
     private void setAccelerators() {
