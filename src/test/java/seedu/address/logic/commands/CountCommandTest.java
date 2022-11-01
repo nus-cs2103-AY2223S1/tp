@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -14,9 +15,16 @@ class CountCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    void execute_countCommand_success() {
+    public void execute_countCommand_success() {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         CommandResult expectedCommandResult = new CommandResult(CountCommand.UI_CONFIRMATION, true);
         assertCommandSuccess(new CountCommand(), model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        CountCommand countCommand = new CountCommand();
+        CountCommand countCommandDifferent = new CountCommand();
+        assertEquals(countCommand, countCommandDifferent);
     }
 }
