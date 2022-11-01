@@ -19,7 +19,7 @@ import seedu.address.model.person.user.User;
 public class UserProfile extends UiPart<Region> {
 
     private static final String FXML = "UserProfile.fxml";
-    public String githubUrl;
+    private String githubUrl;
 
     private User user;
 
