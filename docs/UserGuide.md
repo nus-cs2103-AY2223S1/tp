@@ -3,6 +3,12 @@ layout: page
 title: User Guide
 ---
 
+<p align="center">
+  <img src="./images/GimLogo.png"/>
+</p>
+
+<div style="page-break-after: always;"></div>
+
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
@@ -76,7 +82,7 @@ The `Exercise List` displays exercise entries. When the application is first lau
 
 ### 4.3. Result Display 
 
-The `Result Display Window` displays feedback after executing a command. This includes feedback for both feedback for correctly and incorrectly entered commands.
+The `Result Display Window` displays feedback after executing a command. This includes feedback for both correctly and incorrectly entered commands.
 
 ### 4.4. Recognised Exercise Name List
 
@@ -157,14 +163,14 @@ Parameter constraints:
   * DAY: 1 or 2 valid digits allowed 
   * MONTH: 1 or 2 valid digits allowed 
   * YEAR: 4 valid digits allowed
-  * Examples: 27/10/2022, 27-10-2022, 27/10/22... 
+  * Examples: 27/10/2022, 27-10-2022... 
   * `d/DATE` field is left optional, will store exercise with current date if no date field is found
 
 <div style="page-break-after: always;"></div>
 
 Examples:
 * `:add n/Squat w/30 s/3 r/5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps for today's date.
-* `:add n/Deadlift w/60 s/1 r/1 d/27-01-22` Adds a deadlift exercise of weight 60kg for 1 set of 1 rep for 27th January 2022.
+* `:add n/Deadlift w/60 s/1 r/1 d/27/01/2022` Adds a deadlift exercise of weight 60kg for 1 set of 1 rep for 27th January 2022.
 
 ![AddCommand](images/AddCommand.png)
 
@@ -441,22 +447,22 @@ If you would like to operate on the full list instead, try executing the command
 
 ## 8. Command Summary
 
-| Action                          | Format                                         | Examples                                |
-|---------------------------------|------------------------------------------------|-----------------------------------------|
-| **Add exercise**                | :add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]    | :add n/Deadlift w/60 s/1 r/1 d/27-10-22 |
-| **Delete exercise**             | :del INDEX                                     | :del 3                                  |
-| **List all exercises**          | :list                                          | :list                                   |
-| **Filter exercise(s)**          | :filter KEYWORD [KEYWORD]...                   | :filter Deadlift Squat                  |
-| **Clear all exercises**         | :clear confirm/                                | :clear confirm/                         |
-| **Sort exercises**              | :sort                                          | :sort                                   |
-| **View range (1)**              | :range start/START_DATE end/END_DATE           | :range start/25/10/2022 end/26/10/2022  |
-| **View range (2)**              | :range last/NUMBER_OF_DAYS                     | :range last/3                           |
-| **List Personal Record(s) (1)** | :pr n/NAME [n/NAME]...                         | :pr n/Deadlift n/Squat                  |
-| **List Personal Record(s) (2)** | :pr all/                                       | :pr all/                                |
-| **Generate workout (1)**        | :gen INDEX [, INDEX]... level/DIFFICULTY_LEVEL | :gen 1, 2 level/easy                    |
-| **Generate workout (2)**        | :gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL | :gen n/Deadlift level/easy              |
-| **Help menu**                   | :help                                          | :help                                   |
-| **Exit program**                | :wq                                            | :wq                                     |
+| Action                          | Format                                         | Examples                                  |
+|---------------------------------|------------------------------------------------|-------------------------------------------|
+| **Add exercise**                | :add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]    | :add n/Deadlift w/60 s/1 r/1 d/27/10/2022 |
+| **Delete exercise**             | :del INDEX                                     | :del 3                                    |
+| **List all exercises**          | :list                                          | :list                                     |
+| **Filter exercise(s)**          | :filter KEYWORD [KEYWORD]...                   | :filter Deadlift Squat                    |
+| **Clear all exercises**         | :clear confirm/                                | :clear confirm/                           |
+| **Sort exercises**              | :sort                                          | :sort                                     |
+| **View range (1)**              | :range start/START_DATE end/END_DATE           | :range start/25/10/2022 end/26/10/2022    |
+| **View range (2)**              | :range last/NUMBER_OF_DAYS                     | :range last/3                             |
+| **List Personal Record(s) (1)** | :pr n/NAME [n/NAME]...                         | :pr n/Deadlift n/Squat                    |
+| **List Personal Record(s) (2)** | :pr all/                                       | :pr all/                                  |
+| **Generate workout (1)**        | :gen INDEX [, INDEX]... level/DIFFICULTY_LEVEL | :gen 1, 2 level/easy                      |
+| **Generate workout (2)**        | :gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL | :gen n/Deadlift level/easy                |
+| **Help menu**                   | :help                                          | :help                                     |
+| **Exit program**                | :wq                                            | :wq                                       |
 
 --------------------------------------------------------------------------------------------------------------------
 
