@@ -1,5 +1,13 @@
+<<<<<<< HEAD
+---
+layout: page
+title: User Guide
+---
+
+=======
 Summary](#command-summary)
 =======
+>>>>>>> 8c7e3b52f000b2efc61627eb29fb98afac11e554
 # Welcome to SoCompiler's User Guide
 
 > The sole app that university students will need to streamline their everyday routines.
@@ -15,48 +23,50 @@ You can also add people to the app, such as your professors, teaching assistants
 --------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
-  - [Overview](#welcome-to-socompilers-user-guide)
-  - [Quick Start](#quick-start)
-  - [Things to note](#things-to-note)
-  - [Person Fields](#person-fields)
+
+- [Overview](#welcome-to-socompilers-user-guide)
+- [Quick Start](#quick-start)
+- [Things to note](#things-to-note)
+- [Person Fields](#person-fields)
     - [Name](#name)
     - [Phone number](#phone-number)
     - [Module code](#module-code)
     - [Email address](#email-address)
     - [Telegram handle](#telegram-handle)
     - [Person tags](#person-tags)
-  - [Module Fields](#module-fields)
+- [Module Fields](#module-fields)
     - [Module Code](#module-code)
     - [Lecture Details](#lecture-details)
     - [Lecture Zoom Link](#lecture-zoom-link)
     - [Tutorial Details](#tutorial-details)
     - [Tutorial Zoom Link](#tutorial-zoom-link)
     - [Assignment Details](#assignment-details)
-  - [Commands](#commands)
+- [Commands](#commands)
     - [General Commands](#for-both-modules-and-contacts)
-      - [List](#listing-all-modules-and-contacts-list)
-      - [Find](#finding-keywords-in-contacts-andor-modules-find)
-      - [Clear](#clearing-all-contacts-and-modules-clear)
-      - [Help](#looking-for-help-help)
-      - [Exit](#exiting-the-program-exit)
+        - [List](#listing-all-modules-and-contacts-list)
+        - [Find](#finding-keywords-in-contacts-andor-modules-find)
+        - [Clear](#clearing-all-contacts-and-modules-clear)
+        - [Help](#looking-for-help-help)
+        - [Exit](#exiting-the-program-exit)
     - [Commands for Contacts](#contacts)
-      - [Add](#adding-a-contact-addp)
-      - [Edit](#editing-a-contact-editp)
-      - [Delete](#deleting-a-contact-deletep)
-      - [Find](#finding-a-contact-findp)
+        - [Add](#adding-a-contact-addp)
+        - [Edit](#editing-a-contact-editp)
+        - [Delete](#deleting-a-contact-deletep)
+        - [Find](#finding-a-contact-findp)
     - [Commands for Modules](#modules)
-      - [Add](#adding-a-module-addm)
-      - [Edit](#editing-a-module-editm)
-      - [Delete](#deleting-a-module-deletem)
-      - [Find](#finding-a-module-findm)
-  - [Command Summary](#command-summary)
-  - [FAQ](#faq)
-  - [Glossary](#glossary)
+        - [Add](#adding-a-module-addm)
+        - [Edit](#editing-a-module-editm)
+        - [Delete](#deleting-a-module-deletem)
+        - [Find](#finding-a-module-findm)
+- [Command Summary](#command-summary)
+- [FAQ](#faq)
+- [Glossary](#glossary)
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed on your Computer.
-  * You can get Java 11 from [here](https://www.oracle.com/java/technologies/downloads/#java11), make sure to download the correct version for your operating system, and follow their instructions.
+
+* You can get Java 11 from [here](https://www.oracle.com/java/technologies/downloads/#java11), make sure to download the correct version for your operating system, and follow their instructions.
 
 2. Download the latest `SoCompiler.jar` from [here](https://github.com/AY2223S1-CS2103T-W12-1/tp/releases).
 
@@ -84,7 +94,7 @@ You can also add people to the app, such as your professors, teaching assistants
   e.g. for add `n/NAME`, NAME is the parameter and can be replaced with John Doe.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [/t TAG]` can be used as `c/John Doe t/friend` or as `c/John Doe`.
+  e.g. `n/NAME [/t TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Parameters after the name and module code can be in any order. e.g. `addp n/NAME p/PHONE_NUMBER e/EMAIL` is similar
   to `addp n/NAME e/EMAIL p/PHONE_NUMBER`.
@@ -109,15 +119,17 @@ Format: `list`
 
 ### Finding keywords in contacts and/or modules: `find`
 
-Finds modules and contacts with any of the given keywords. 
+Finds modules and contacts with any of the given keywords.
 
 Fields that you can filter for modules:
+
 * [Module code](#module-code)
 * [Lecture details](#lecture-details)
 * [Tutorial details](#tutorial-details)
 * [Assignment details](#assignment-details)
 
 Fields that you can filter for contacts:
+
 * [Person name](#name)
 * [Phone number](#phone-number)
 * [Module code](#module-code)
@@ -219,8 +231,6 @@ Before edit:
 After edit:
 <img src="images/editp2.png"/>
 
-
-
 ### Deleting a contact: `deletep`
 
 Deletes the specified contact from the contact list.
@@ -241,11 +251,12 @@ Before delete:
 After delete:
 <img src="images/deletep2.png"/>
 
-
 ### Finding a contact: `findp`
+
 Find contacts with given keywords.
 
 Fields that you can filter for contacts:
+
 * Person name
 * Handphone number
 * Module code
@@ -333,6 +344,7 @@ Examples:
 Find modules with given keyword.
 
 Fields that you can filter for modules:
+
 * Module code
 * Lecture details
 * Tutorial details
@@ -350,6 +362,15 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 ------------------------------------------------------------------------------------------------------------------------
 
 ## Person Fields
+
+| Field Type      | Field Description                         | Identifier | Restrictions (if any)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|-----------------|-------------------------------------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name            | A person's name                           | n/         | Should only contain alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |           
+| Phone Number    | A person's phone number                   | p/         | Should only contain numbers and be at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                   |           
+| Module Code     | The module code a person is associated to | m/         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |           
+| Email Address   | A person's email address                  | e/         | Should follow the format `local-part@domain`, where:<ol><li>`local-part` should only contain [alphanumeric](#alphanumeric) characters and the following characters: `+` `_` `.` `-` .<li>`domain` consists of two `domain labels` seperated by a `.`<ul><li> The second `domain label` should be at least 2 characters long.<li>`domain label` should start and end with alphanumeric characters.<li>Each `domain label` should only consist of alphanumeric characters, separated by hyphens if necessary. |
+| Telegram Handle | A person's telegram                       | tg/        | <ol><li>Should begin with `@` and contain only alphanumeric characters<li>Should be at least 5 characters long, excluding the `@`                                                                                                                                                                                                                                                                                                                                                                           |           
+| Tags            | A person's tag                            | t/         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |           
 
 ### Name
 
@@ -369,7 +390,7 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 
 ### Module code
 
-* The module this person is related to, i.e. if he/she is a Professor or Teaching Assistant, it means the Module he/she is teaching.
+* The module this person is associated to, i.e. if he/she is a Professor or Teaching Assistant, it means the Module he/she is teaching.
 * Identified by prefix `m/`.
 * Valid field to be searched using `Find` command.
 * No restriction on what you can add as module code.
@@ -381,8 +402,8 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 * Identified by prefix `e/`.
 * Valid field to be searched using `Find` command.
 * It should follow the following format: `local-part@domain`
-  1. The `local-part` should only contain [alphanumeric](#alphanumeric) characters and the following characters: `+` `_` `.` `-` .
-  2. This is followed by a `domain name` which is made of `domain labels` separated by periods. The `domain name` must:
+    1. The `local-part` should only contain [alphanumeric](#alphanumeric) characters and the following characters: `+` `_` `.` `-` .
+    2. This is followed by a `domain name` which is made of `domain labels` separated by periods. The `domain name` must:
     1. end with a `domain label` at least 2 characters long.
     2. have each `domain label` start and end with alphanumeric characters.
     3. have each `domain label` consist of alphanumeric characters only, separated by hyphens, if any.
@@ -396,7 +417,7 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 * Handle should start with a `@` symbol and only contain alphanumeric characters after `@`. It should be at least 5 characters long, not including `@`.
 * Optional field.
 
-### Person tags
+### Tags
 
 * Tags you want to attach to the person, i.e. Friend, Professor, Family
 * You can include as many tags as you want.
@@ -408,6 +429,15 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 --------------------------------------------------------------------------------------------------------------------
 
 ## Module Fields
+
+| Field Type                    | Field Description                                 | Identifier | Restrictions (if any)                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+|-------------------------------|---------------------------------------------------|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Module Code                   | Module code of a module                           | m/         | Must be a valid NUS module                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |           
+| Lecture Details               | Details of a lecture, e.g. location and time      | l/         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |           
+| Lecture Zoom Link             | Zoom link of a lecture                            | lz/        | Must be a valid [URL](#url) which begins with https://                                                                                                                                                                                                                                                                                                                                                                                                                                             |           
+| Tutorial Details              | Details of a tutorial, e.g. location and time     | t/         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |          
+| Tutorial Zoom Link            | Zoom link of a tutorial                           | tz/        | Must be a valid [URL](#url) which begins with https://                                                                                                                                                                                                                                                                                                                                                                                                                                             |           
+| Assignment Details            | Details of an assignment, e.g. title and due date | a/         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |     
 
 ### Module Code
 
@@ -455,6 +485,7 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 * Valid field to be searched using `Find` command.
 * No restriction on what you can add.
 * Optional field.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -467,8 +498,8 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 | [editp](#editing-a-contact-editp)                         | Contact        | `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`                                                                           |
 | [deletem](#deleting-a-module-deletem)                     | Module         | `deletem MODULE_INDEX`                                                                                                                         |
 | [deletep](#deleting-a-contact-deletep)                    | Contact        | `deletep CONTACT_INDEX`                                                                                                                        |                                                                                                                                           |
-| [findm](#finding-a-module-findm)                          | Module         | `findm KEYWORD [MORE_KEYWORD]…​`                                                                                                               |                                   |
-| [findp](#finding-a-contact-findp)                         | Contact        | `findp KEYWORD [MORE_KEYWORD]…​`                                                                                                               |                          |
+| [findm](#finding-a-module-findm)                          | Module         | `findm KEYWORD [MORE_KEYWORD]…​`                                                                                                               |                                   
+| [findp](#finding-a-contact-findp)                         | Contact        | `findp KEYWORD [MORE_KEYWORD]…​`                                                                                                               |                          
 | [clear](#clearing-all-contacts-and-modules-clear)         | Both           | `clear`                                                                                                                                        |
 | [list](#listing-all-modules-and-contacts-list)            | Both           | `list`                                                                                                                                         |
 | [find](#finding-keywords-in-contacts-andor-modules-find)  | Both           | `find KEYWORD [MORE_KEYWORDS]`                                                                                                                 |
@@ -476,7 +507,6 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 | [help](#exiting-the-program-exit)                         | General        | `help`                                                                                                                                         |
 
 --------------------------------------------------------------------------------------------------------------------
-
 
 ## FAQ
 
@@ -497,11 +527,13 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 ## GLOSSARY
 
 #### Alphanumeric
+
 * It refers to the combined set of the 26 alphabetic characters 10 Arabic numerals.
 * Alphabetic characters include both lower and upper case letters, a to z & A to Z.
 * Arabic numerals refer to the digits 0 to 9.
 
 #### URL
+
 * It refers to the address of a web page.
 * Example: https://google.com
 

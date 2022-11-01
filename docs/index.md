@@ -10,13 +10,10 @@ title: SoCompiler
 
 ![Ui](images/Ui.png)
 
-**SoCompiler is a desktop application for managing your contact and module details.** While it has a GUI, most of the
-user interactions happen using a CLI (Command Line Interface).
+**SoCompiler is a desktop application for managing your contact and module details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using SoCompiler, head over to the [_Quick Start_ section of the **User
-  Guide**](UserGuide.html#quick-start).
-* If you are interested about developing SoCompiler, the [**Developer Guide**](DeveloperGuide.html) is a good place to
-  start.
+* If you are interested in using SOCompiler, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested about developing SOCompiler, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 **Acknowledgements**
 
