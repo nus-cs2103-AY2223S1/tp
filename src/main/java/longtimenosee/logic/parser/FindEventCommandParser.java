@@ -66,7 +66,7 @@ public class FindEventCommandParser implements Parser<FindEventCommand> {
      * @param prefixes to be checked
      * @return boolean to indicate if any prefix is present
      */
-    boolean isAtLeastOnePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean isAtLeastOnePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         for (Prefix prefix : prefixes) {
             if (argumentMultimap.getValue(prefix).isPresent()) {
                 return true;
