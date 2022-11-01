@@ -34,6 +34,9 @@ public final class FunctionalInterfaces {
         U apply(Model model) throws CommandException;
     }
 
+    /**
+     * Represents a function that can throw an exception
+     */
     @FunctionalInterface
     public interface ThrowFunction<T, R, E extends Exception> {
         R apply(T u) throws E;
