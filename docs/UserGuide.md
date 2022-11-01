@@ -366,7 +366,7 @@ _Details coming soon ..._
 | **ListEvents**   | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                      |
 | **MakeStats**   | `makeStats INDEX t/STATISTIC_TYPE`<br> e.g., `makeStats 1 t/g`
 |
-| **MailEvent**    | `mailEvent INDEX`<br> e.g., `mailEvent 3`                                                                                                                                              |
+| **MailEvent**    | `mailEvent INDEX`<br> e.g., `mailEvent 3`                                                                                                                                      |
 | **TagEvent**     | `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                              |
 | **UntagEvent**   | `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                          |
 | **Help**         | `help`                                                                                                                                                                                 |
