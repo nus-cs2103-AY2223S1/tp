@@ -130,9 +130,6 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String LIST_MIX_DEMO_INPUT = "list a/431 g/F";
     private static final String LIST_MIX_DEMO_OUTPUT = "Listed all persons with specifications: "
             + "ADDRESS: 431, CATEGORY: NIL, GENDER: F, TAG: NIL";
-    private static final String MARK_SEARCH_TEXT = "Marking a Patient";
-    private static final String MARK_DEMO_INPUT = "mark id/3";
-    private static final String MARK_DEMO_OUTPUT = "Marked Patient: Category: P Uid: 3; Name: Alex Yeoh; Gender: M;"
             + " Phone: 87438807; Email: alexyeoh@example.com; Address: Blk 30 Geylang Street 29, #06-40;"
             + " Tags: [friends]; Home Visits Date and Time:11/11/2022 14:00 , ; Visit Status: visited";
     private static final String CLEAR_USAGE_HELP = "";
@@ -148,15 +145,12 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String LIST_USAGE_HELP = "List all that meets the critiera:\n"
             + "list [c/Category] [g/Gender] [a/Address] [t/Tag]\n"
             + "*[] is optional";
-    private static final String MARK_USAGE_HELP = "Mark a patient visited:\n"
-            + "mark id/ID";
 
     private final List<String> commandList = Arrays.asList(PATIENT_SEARCH_TEXT, NURSE_SEARCH_TEXT, CLEAR_SEARCH_TEXT,
             DELETE_SEARCH_TEXT, EDIT_NAME_SEARCH_TEXT, EDIT_GENDER_SEARCH_TEXT, EDIT_PHONE_SEARCH_TEXT,
             EDIT_EMAIL_SEARCH_TEXT, EDIT_TAG_SEARCH_TEXT, EDIT_MIX_SEARCH_TEXT, EXIT_SEARCH_TEXT,
             FIND_SEARCH_TEXT, HELP_SEARCH_TEXT, LIST_NTH_SEARCH_TEXT, LIST_ADDRESS_SEARCH_TEXT,
-            LIST_CATEGORY_SEARCH_TEXT, LIST_GENDER_SEARCH_TEXT, LIST_TAG_SEARCH_TEXT, LIST_MIX_SEARCH_TEXT,
-            MARK_SEARCH_TEXT);
+            LIST_CATEGORY_SEARCH_TEXT, LIST_GENDER_SEARCH_TEXT, LIST_TAG_SEARCH_TEXT, LIST_MIX_SEARCH_TEXT);
     private final HashMap<String, String[]> dictionary = new HashMap<String, String[]>();
     private final HashMap<String, String> dictionaryForUsageHelp = new HashMap<String, String>();
 
@@ -231,7 +225,6 @@ public class HelpWindow extends UiPart<Stage> {
         dictionary.put(LIST_GENDER_SEARCH_TEXT, new String[] { LIST_GENDER_DEMO_INPUT, LIST_GENDER_DEMO_OUTPUT });
         dictionary.put(LIST_TAG_SEARCH_TEXT, new String[] { LIST_TAG_DEMO_INPUT, LIST_TAG_DEMO_OUTPUT });
         dictionary.put(LIST_MIX_SEARCH_TEXT, new String[] { LIST_MIX_DEMO_INPUT, LIST_MIX_DEMO_OUTPUT });
-        dictionary.put(MARK_SEARCH_TEXT, new String[] { MARK_DEMO_INPUT, MARK_DEMO_OUTPUT });
     }
 
     /**
@@ -258,7 +251,6 @@ public class HelpWindow extends UiPart<Stage> {
         dictionaryForUsageHelp.put(LIST_GENDER_SEARCH_TEXT, LIST_USAGE_HELP);
         dictionaryForUsageHelp.put(LIST_TAG_SEARCH_TEXT, LIST_USAGE_HELP);
         dictionaryForUsageHelp.put(LIST_MIX_SEARCH_TEXT, LIST_USAGE_HELP);
-        dictionaryForUsageHelp.put(MARK_SEARCH_TEXT, MARK_USAGE_HELP);
     }
 
     /**
