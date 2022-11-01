@@ -10,6 +10,7 @@ import static seedu.watson.testutil.TypicalStudents.ELLE;
 import static seedu.watson.testutil.TypicalStudents.FIONA;
 import static seedu.watson.testutil.TypicalStudents.getTypicalDatabase;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -79,5 +80,16 @@ public class FindCommandTest {
      */
     private FindCommandPredicate preparePredicate(String userInput) {
         return new FindCommandPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Creates a new {@code FindCommandPredicate} using an ArrayList containing user input.
+     * ArrayList contains 3 categories obtained from user input: names,  student classes and subjects.
+     *
+     * @param userInputs ArrayList containing user input.
+     * @return A new FindCommandPredicate.
+     */
+    private FindCommandPredicate preparePredicateUsingList(ArrayList<String> userInputs) {
+        return new FindCommandPredicate(userInputs);
     }
 }
