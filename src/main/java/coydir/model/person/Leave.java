@@ -19,8 +19,9 @@ public class Leave {
     public static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     public static final String MESSAGE_CONSTRAINTS = "Invalid Date Parameters. Please check for the following : \n"
             + "1. Date should be valid \n"
-            + "2. Start Date should be earlier than End Date \n "
-            + "2. both Dates should be in dd-MM-YYYY ";
+            + "2. Start Date should be equal to or earlier than End Date \n "
+            + "3. both Dates should be in dd-MM-YYYY "
+            + "4. Year provided should be between 1900 to 2999 inclusive.";
     public static final CustomLeaveComparator COMPARATOR = new CustomLeaveComparator();
 
     private static final Pattern DATE_PATTERN = Pattern.compile(

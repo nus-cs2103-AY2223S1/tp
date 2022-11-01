@@ -65,6 +65,35 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
 
 **[To be updated]**
 
+## Quick start
+
+1. Ensure you have Java `11` or above installed in your Computer.
+   1. If you have installed Java before, check that you have the right version, which is Java `11`.
+      - If you are using Windows, open up command prompt and type `java -version` and enter.
+      - If you are using Mac, open up terminal and type `java -version` and enter.
+   2. If you do not have Java `11`: - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/). - If you are using Mac, you can install the Azul build of OpenJDK 11 version from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).  
+      <br />
+2. Download the latest Coydir v1.3.0 jar file from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
+
+3. Copy the file to the folder you want to use as the _home folder_ for your Coydir.
+
+4. Double-click the file to start the app. The GUI similar to below should appear in a few seconds. Note how the app contains some sample data.<br>
+
+  <img src="./images/ui-screenshots/Ui.png"/>
+
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+
+   - **`list`** : Lists all employees in the company.
+
+   - **`add`** `n/John Doe p/98765432 e/johnd@example.com j/Recruiter d/Human Resources a/311, Clementi Ave 2, #02-25 l/20 t/friends t/owesMoney` : Adds an employee named `John Doe`, with fields phone number, email, job title, department, address, total leaves, and tags to Coydir.
+
+   - **`delete`**`3` : Deletes employee with ID 3.
+
+   - **`exit`** : Exits the app.
+
+6. Refer to the [Features](#features) below for details of each command.
+
 ### The User Interface
 
 Below is an image of Coydir User Interface with the main components labelled.
@@ -116,12 +145,14 @@ The top section displays relevant messages/errors after the command is entered.
    1. If you have installed Java before, check that you have the right version, which is Java `11`.
       - If you are using Windows, open up command prompt and type `java -version` and enter.
       - If you are using Mac, open up terminal and type `java -version` and enter.
-   2. If you do not have Java `11`: - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/). - If you are using Mac, you can install the Azul build of OpenJDK 11 version from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
+   2. If you do not have Java `11`:
+      - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/).
+      - If you are using Mac, you can install the Azul build of OpenJDK 11 version from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 2. Download the latest Coydir v1.3.0 jar file from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Coydir.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. A GUI similar to below should appear in a few seconds. Note how the app contains some sample data.<br>
 
   <img src="./images/ui-screenshots/Ui.png"/>
 
@@ -132,7 +163,7 @@ The top section displays relevant messages/errors after the command is entered.
 
    - **`add`** `n/John Doe p/98765432 e/johnd@example.com j/Recruiter d/Human Resources a/311, Clementi Ave 2, #02-25 l/20 t/friends t/owesMoney` : Adds an employee named `John Doe`, with fields phone number, email, job title, department, address, total leaves, and tags to Coydir.
 
-   - **`delete`**`3` : Deletes employee with ID 3.
+   - **`delete 3`** : Deletes employee with ID 3.
 
    - **`exit`** : Exits the app.
 
@@ -307,33 +338,92 @@ Example:
 
 #### Adding multiple employees at once: `batch-add`
 
-Adds multiple employees to Coydir all at once.
+Adds multiple employees to Coydir by importing their data from `.csv` file
 
-:warning: **Make sure to have uploaded CSV file to make use of this command, and that employees' fields are compatible with Coydir**: CSV file can be uploaded under the 'data' folder of Coydir.
+This feature will come in handy when:
 
-:warning: **Fields to be added in batchadd would be name, phone, email, position, department, address, tags, and total number of leaves**
+1. You are a new user and have your employee data stored in a `.csv` file.
+2. There has been a recruitment cycle and the company has recruited multiple employees.
 
-:warning: **Do not have commas between each field in the CSV file.**
-
-This command results in one of two cases below:
-
-**Case 1: CSV file exists**
-
-if a CSV file of employees exists in the 'data' folder of Coydir, Coydir will read from the CSV file to add the employees.
-
-**Case 2: CSV file does not exist**
-
-if a CSV file does not exist in the 'data' folder of Coydir, Coydir will
-throw an error.
+With this feature, you would not need to spend time to manually add each employee in!
 
 Format: `batch-add FILENAME`
 
-Example:
+Example:`batch-add coydir.csv`
 
-- `batch-add employees.csv`
+How can you use this feature?
 
-Sample CSV file as such:
-![](./images/Sample_CSV.png)
+#### Step 1 (Creating CSV file) :
+
+Things to note:
+
+- A header row is required to indicate the purpose of the field and must be the first row in the `.csv` file.
+- No commas to be used in the file.
+- For multiple tags for an employee, the tags should be separated by " \ ".
+- For the fields, make sure that they follow the same specifications as written in the `add` command.
+
+Order of headers is as such (**Order must be followed**):
+
+| Index | Field          | Requirement    | Default Value |
+| ----- | -------------- | -------------- | ------------- |
+| 1.    | `NAME`         | **Compulsory** | -             |
+| 2.    | `PHONE`        | Optional       | N/A           |
+| 3.    | `EMAIL`        | Optional       | N/A           |
+| 4.    | `POSITION`     | **Compulsory** | -             |
+| 5.    | `DEPARTMENT`   | **Compulsory** | -             |
+| 6.    | `ADDRESS`      | Optional       | N/A           |
+| 7.    | `NO_OF_LEAVES` | Optional       | 14            |
+| 8.    | `TAGS`         | Optional       | _None_        |
+
+Sample `.csv` file:
+
+![](images/batch-add-images/sampleCSV.png)
+
+Sample `.xlsx` file:  
+![](images/batch-add-images/SampleExcel.png)  
+Note: You can export this to `.csv`.
+
+#### Step 2 (Uploading CSV file) :
+
+1. Go to the folder where you stored the `jar` file.
+2. Move CSV file to the `data` folder.  
+   ![](images/batch-add-images/movingFile.png)
+
+_If you are a new user (have not run any command yet), you will not see the `data` folder.  
+You can run the [`clear` command](#clearing-the-data--clear) to remove the sample employees first.  
+After this, you should be able to see the `data` folder._
+
+#### Step 3 (Running CSV file) :
+
+1. Once done, run `batch-add FILENAME` in the command box.
+
+Successful Batch Add:  
+![](images/batch-add-images/BatchAddSuccess.png)
+
+Unsuccessful Batch Add:
+
+In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv` will be added.
+
+**Case 1 (Duplicate Employee):**
+
+If there is another employee with the same name in the database or in the csv, command will fail  
+and error will be raised.  
+![](images/batch-add-images/DuplicateEmployee.png)
+
+**Case 2 (Any of the fields in wrong format):**
+
+If any of the fields are in a wrong format (as specified in `add` command), command will fail  
+and error with regard to field in the wrong format will be raised
+
+![](images/batch-add-images/Incorrect Format.png)  
+_In this case, a `Phone` field was in the wrong format._
+
+As of version `1.4.0` , this feature only supports `.csv` files and adding employees with the fields mentioned above.
+
+In the upcoming versions, we will expand `batch-add` feature to:
+
+1. Support different types of files
+2. Include more fields like rating etc.
 
 #### View details of an employee: `view`
 
@@ -472,7 +562,7 @@ Format: `delete-leave id/ID i/INDEX`
 
 | Field   | TAG | Description                       | Requirement    | Default Value |
 | ------- | --- | --------------------------------- | -------------- | ------------- |
-| `ID`    | id/ | Name                              | **Compulsory** | N.A.          |
+| `ID`    | id/ | Employee ID                       | **Compulsory** | N.A.          |
 | `INDEX` | i/  | Index of leave in the leave table | **Compulsory** | N.A.          |
 
 Example:
@@ -491,7 +581,14 @@ Understanding the performance of your employees is crucial for _talent developme
 Key performance indicators, productivity, and progression policies may differ from company to company.
 Here, Coydir offers a **simple yet powerful** way of keeping track of and making sense of your employees' performance in the company.
 
-**[Insert a brief overview of the 1-5 rating system]**
+<div markdown="span" class="alert alert-info">
+
+**:information_source: Note:** 5-point rating scale.<br><br>
+
+The 5 point performance appraisal ratings system is the most commonly used performance rating scale across the world.
+A 1 to 5 rating scale has a total of 5 categories with 2 negative and 2 positive options. A middle option is a neutral option for those who have met the expectations in terms of work performance. This rating scale is well-defined with a separate category for the employees who neither fall in the below expectations (requiring performance review) nor in the exceeds expectations categories.
+
+</div>
 
 #### Rating the performance of an employee: `rate`
 
@@ -622,6 +719,13 @@ Format: `exit`
 #### Clearing the data : `clear`
 
 Clears all the data currently stored in the database.
+
+If you are a new user, you can use this command after you have experimented with Coydir  
+to start keying in your actual employee information.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**  
+Once you run this command, you lose all data immediately.  
+</div>
 
 Format: `clear`
 
