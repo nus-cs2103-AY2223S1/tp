@@ -5,12 +5,9 @@ import static seedu.foodrem.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Tag in FoodRem.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
+ * Guarantees: immutable; name is valid
  */
 public class Tag {
-    public static final String EXCEED_MAX_CHARS_MESSAGE_CONSTRAINTS = "Tags names have a max length of 30 characters";
-
-    private static final int MAX_CHAR_LIMIT = 30;
 
     private final TagName tagName;
 
@@ -21,20 +18,11 @@ public class Tag {
      */
     public Tag(String tagName) {
         requireNonNull(tagName);
-        checkArgument(isValidTagName(tagName), EXCEED_MAX_CHARS_MESSAGE_CONSTRAINTS);
         this.tagName = new TagName(tagName);
     }
 
     public String getName() {
         return this.tagName.toString();
-    }
-
-    /**
-     * Returns {@code true} if a given string is a valid tag name.
-     */
-    public static boolean isValidTagName(String test) {
-        requireNonNull(test);
-        return test.length() <= MAX_CHAR_LIMIT;
     }
 
     @Override

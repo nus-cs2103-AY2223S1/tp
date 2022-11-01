@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.foodrem.model.tag.Tag;
+import seedu.foodrem.model.tag.TagName;
 
 /**
  * Jackson-friendly version of {@link Tag}.
@@ -37,9 +38,6 @@ class JsonAdaptedTag {
      * @throws IllegalArgumentException if there were any data constraints violated in the adapted tag.
      */
     public Tag toModelType() throws IllegalArgumentException {
-        if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalArgumentException(Tag.EXCEED_MAX_CHARS_MESSAGE_CONSTRAINTS);
-        }
         return new Tag(tagName);
     }
 }
