@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class StudentID {
 
-    public static final String MESSAGE_CONSTRAINTS = "Student ID should be in the format EXXXXXXX";
+    public static final String MESSAGE_CONSTRAINTS = "Student ID should be in the format EXXXXXXX.";
 
     public static final String VALIDATION_REGEX = "^[E]\\d{7}";
 

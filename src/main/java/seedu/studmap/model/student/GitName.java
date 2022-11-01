@@ -13,7 +13,7 @@ public class GitName {
 
     public static final String GITNAME_DISPLAY_PREFIX = "GitHub: ";
 
-    public static final String MESSAGE_CONSTRAINTS = "Github username can be anything";
+    public static final String MESSAGE_CONSTRAINTS = "Github username can be anything.";
 
     public static final String VALIDATION_REGEX = "[\\p{all}]*";
 
