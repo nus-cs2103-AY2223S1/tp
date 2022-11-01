@@ -47,7 +47,7 @@
             </padding>
           </StackPane>
         </VBox>
-        <VBox minWidth="340" prefWidth="340" minHeight="200" prefHeight="250" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <VBox minWidth="340" minHeight="200" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <TextField alignment="CENTER" disable="true" text="Stats" />
           <StackPane fx:id="statsPanelPlaceholder" VBox.vgrow="NEVER">
             <padding>
@@ -57,21 +57,21 @@
         </VBox>
         </SplitPane>
         <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS">
-          <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <VBox fx:id="personList" minWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <TextField alignment="CENTER" disable="true" text="Suppliers" />
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
           </VBox>
-          <VBox fx:id="inventoryList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <VBox fx:id="inventoryList" minWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <TextField alignment="CENTER" disable="true" text="Inventory" />
           <StackPane fx:id="inventoryPanelPlaceholder" VBox.vgrow="ALWAYS" />
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
         </VBox>
-          <VBox fx:id="taskList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <VBox fx:id="taskList" minWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <TextField alignment="CENTER" disable="true" text="Tasks" />
             <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             <padding>
