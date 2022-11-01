@@ -27,10 +27,10 @@ public class TaskMarkCommandTest {
     @Test
     public void execute_markMarkedTask_success() {
         Task defaultTask = new TaskBuilder(PACK).build();
-
         defaultTask.markAsDone();
+
         TaskMarkCommand taskMarkCommand = new TaskMarkCommand(INDEX_FIRST_TEAM, INDEX_THIRD_TASK);
-        String expectedMessage = String.format(TaskMarkCommand.MESSAGE_SUCCESS, defaultTask);
+        String expectedMessage = String.format(TaskMarkCommand.MESSAGE_ALREADY_MARKED, defaultTask);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         expectedModel.markTask(INDEX_FIRST_TEAM, INDEX_THIRD_TASK);
@@ -40,7 +40,8 @@ public class TaskMarkCommandTest {
     @Test
     public void execute_markUnmarkedTask_success() {
         Task defaultTask = new TaskBuilder(STUDY).build();
-        defaultTask.markAsDone();
+        defaultTask.markAsNotDone();
+
         TaskMarkCommand taskMarkCommand = new TaskMarkCommand(INDEX_FIRST_TEAM, INDEX_FIRST_TASK);
         String expectedMessage = String.format(TaskMarkCommand.MESSAGE_SUCCESS, defaultTask);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
