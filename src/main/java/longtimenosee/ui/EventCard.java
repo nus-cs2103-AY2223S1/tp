@@ -48,7 +48,7 @@ public class EventCard extends UiPart<Region> {
         description.setText(event.getDescription().retrieveDescription());
         date.setText(event.getDate().toString());
         duration.setText(event.getDuration().toString());
-        personName.setText("With client:" + event.getPersonName().fullName);
+        personName.setText("With client: " + event.getPersonName().fullName);
     }
 
     @Override

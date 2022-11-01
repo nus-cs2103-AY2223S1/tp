@@ -1,5 +1,7 @@
 package longtimenosee.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -63,6 +65,7 @@ public class RiskAppetite {
      * @param riskLevel
      */
     public RiskAppetite(String riskLevel) {
+        requireNonNull(riskLevel);
         value = riskLevel;
         rl = parseRiskLevel(riskLevel);
     }

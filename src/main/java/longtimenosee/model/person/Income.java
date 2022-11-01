@@ -13,13 +13,36 @@ public class Income {
             return Double.compare(p1.getIncome().getIncome(), p2.getIncome().getIncome());
         }
     };
-    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Error: Please enter a double value for income";
+    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Please enter a decimal number for your income";
     public static final String SORT_INCOME = "income";
+    public static final String VALUE_FORMAT_CONSTRAINTS = "Please ensure your income is a positive value :D";
 
     public final String value;
     public final IncomeBracket incomeBracket;
 
     private double income;
+    /**
+     * Constructs an {@code Income}.
+     *
+     * @param income A valid email address.
+     */
+    public Income(String income) {
+        value = income;
+        this.income = Double.valueOf(income);
+        this.incomeBracket = parseIncome(this.income);
+    }
+
+
+    /**
+     * Rejects negative income values
+     * Asserts that income passed in can be cast into a valid double value
+     * @param income value
+     */
+    public static boolean isPositiveIncome(String income) {
+        assert(isValidFormat(income));
+        double incomeValue = Double.valueOf(income);
+        return incomeValue >= 0;
+    }
 
     /**
      * Classifies a yearly income value into it's appropriate income bracket
@@ -27,10 +50,10 @@ public class Income {
      * @ shorturl.at/oPQRV
      */
     public enum IncomeBracket {
-        First("First"), Second("Second"), Third("Third"),
-        Fourth("Fourth"), Fifth("Fifth"), Sixth("Sixth"),
-        Seventh("Seventh"), Eight("Eighth"), Ninth("Ninth"),
-        Tenth("Tenth");
+        First("first"), Second("second"), Third("third"),
+        Fourth("fourth"), Fifth("fifth"), Sixth("sixth"),
+        Seventh("seventh"), Eight("eighth"), Ninth("ninth"),
+        Tenth("tenth");
 
         private String message;
 
@@ -42,17 +65,6 @@ public class Income {
             return "The income for this individual falls in the "
                     + message + " bracket";
         }
-    }
-
-    /**
-     * Constructs an {@code Income}.
-     *
-     * @param income A valid email address.
-     */
-    public Income(String income) {
-        value = income;
-        this.income = Double.valueOf(income);
-        this.incomeBracket = parseIncome(this.income);
     }
 
     /**

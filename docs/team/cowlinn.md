@@ -10,33 +10,44 @@ Long Time No See (LTNS) is a desktop task tracking app made for student financia
 Given below are my contributions to the project.
 
 * **New Feature**: Added the main representation of our user's patrons, i.e: The `client` class.
-  * Justification: This feature is required to use our code
+  * Justification: This feature is required to use our application.
   * Highlights:  It encapsulates extensions from the original AB3's person model. You can store birthdays, add notes, tag people etc.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+  * Credits: `LocalDate` Library of Java: https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+
+* **New Feature**: Added a new `Event` model to encapsulate meetings a  Financial Advisor wll have with clients.
+  * Justification: This feature is one of the new models of the application
+  * Highlights: Meetings with a client are recording as an `Event`. Includes a `Description` and a day with start and end time.
+    * Used by Reuben to make the `calendar` feature of the app.
+  * Credits: `LocalTime` library of Java: https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html
 
 * **Code contributed**: [https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=cowlinn&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other]()
 
 * **Project management**:
-  * TODO
+  * Helped to maintain issue tracker
+  * Helped to organize group meetings, with agenda (together with Marcus)
 
 * **Enhancements to existing features**:
-  * TODO
+  * `Add/Delete/Edit` a person
+  * Saving both `Person` and `Event` into the addressBook
 
 * **Documentation**:
   * User Guide:
     * Ported over original UG from Google Docs to Markdown, including cosmetic tweaks
-    * TODO
+    * Updated segments on adding a person into an AddressBook 
+    * Updated documentation clarifying
+    * Edited command summary
   * Developer Guide:
-    * TODO
+    * Added Activity diagrams for an execution of adding an event 
+    * Added Extensions for existing class diagram of a person.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): TODO
-  * Contributed to forum discussions:  TODO
-  * Reported bugs and suggestions for other teams in the class: TODO
+  * PRs reviewed (with non-trivial review comments): 5
+  * Reported bugs and suggestions for other teams in the class: Mainly for UserGuide
+  * Gave more than average comments for all peer-review related activites: E.g: PE-D, iP feedback etc.
 
 * **Tools**:
-  * TODO
+  * Git / Github
+  * Intelli-J
 
 
