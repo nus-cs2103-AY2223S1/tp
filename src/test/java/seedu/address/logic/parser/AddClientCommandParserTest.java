@@ -134,6 +134,7 @@ public class AddClientCommandParserTest {
     @Test
     public void parse_invalidBirthday_failure() {
         // boundary value analysis
+        // ep: [1jan, 31jan, 1feb, 28feb, ... (basically all valid dates)][invalid dates]
         // 30 feb, not exist
         assertParseFailure(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_BIRTHDAY_1_DESC, Birthday.MESSAGE_CONSTRAINTS);
@@ -147,7 +148,7 @@ public class AddClientCommandParserTest {
 
     @Test
     public void parse_validBirthday_success() {
-        // boundary value analysis
+        // boundary value analysis, using start and end values from valid dates
         Client expectedClient = new ClientBuilder(BOB)
                 .withProducts(VALID_PRODUCT_1).withBirthday(VALID_BIRTHDAY_AMY).build();
 
