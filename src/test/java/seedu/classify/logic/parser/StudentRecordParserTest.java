@@ -71,7 +71,7 @@ public class StudentRecordParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Student person = new StudentBuilder().build();
+        Student person = new StudentBuilder().withExams("SA1 20").build();
         EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
