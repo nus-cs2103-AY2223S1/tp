@@ -12,9 +12,10 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
 public class Request {
 
     // length constraints
-    private static final int MAX_LENGTH = 500;
+    private static final int MAX_LENGTH_REQUEST = 500;
 
-    public static final String MESSAGE_CONSTRAINTS = "Requests must be at most " + MAX_LENGTH + " characters long";
+    public static final String MESSAGE_CONSTRAINTS = "Requests must be at most "
+            + MAX_LENGTH_REQUEST + " characters long";
     public final String value;
 
     /**
@@ -39,7 +40,7 @@ public class Request {
      * Returns true if a given string is a valid request.
      */
     public static boolean isValidRequest(String inputRequest) {
-        return (inputRequest.length() <= MAX_LENGTH);
+        return (inputRequest.length() <= MAX_LENGTH_REQUEST);
     }
 
     /**
