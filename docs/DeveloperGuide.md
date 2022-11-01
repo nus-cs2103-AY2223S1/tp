@@ -984,9 +984,9 @@ The expected results should be similar as those in the previous section, but wit
 that the appointment was unmarked, and that the appointment's marked status changes from `[X]` to `[]`.
 
 ### Listing results
-Section Prerequisites:
-- There is at least 1 entry in each of the patient and appointment lists.
-- Filter the list using a find command (E.g., `find n/test r/test`) before performing any test case in this section.
+Section Prerequisite: There is at least 1 entry in each of the patient and appointment lists.
+
+- **Note**: Filter the list using a find command (E.g., `find n/test r/test`) before performing any test case in this section.
   - Ensure that the resulting patient and appointment lists contains fewer patients and appointments prior to entering the command.
   - It is fine if no results are displayed.
 
@@ -1009,26 +1009,77 @@ Section Prerequisites:
       1. A command incomplete message appears.
       2. Both patient and appointment lists stay unchanged.
 
-### Grouping results
+### Grouping/Ungrouping results
 Section Prerequisite: There are at least 2 entries in each of the patient and appointment lists with different tags
 attached to them.
 
 1. Test case: `group patients`
    1. Expected results:
       1. An acknowledgement message that all patients are grouped appears.
-      2. Entries in the patient list with similar tags should be grouped together.
+      2. Entries in the patient list with similar tags should be grouped together, with behaviour as specified in the user guide.
       
 2. Test case: `ungroup patients`
    1. Expected results:
        1. An acknowledgement message that all patients are ungrouped appears.
        2. The changes to the patient list that occurred in the previous test case should be reverted.
        
+3. Test case: `group appts k/tag`
+   1. Expected result: Similar to test case 1, but with appointments grouped with their tags instead.
 
+4. Test case: `ungroup appts`
+   1. Expected result: Similar to test case 2, but with appointments instead.
 
-### Saving data
+### Hiding/Unhiding results
+Section Prerequisite: There is a patient named `Bernice` with at least 1 appointment. There is also at least 1 appointment
+in the appointment list with the reason `Checkup`.
+It is recommended to have more patients and appointments so that the behaviour of this command becomes more clear.
 
-1. Dealing with missing/corrupted data files
+- **Note**: For all test cases in this section, a message displaying the number of filtered results should appear after every valid input.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Test case: `hide patients n/Bernice`
+   1. Expected results:
+      2. There are no more patients containing the name `Bernice` in the patient list.
+      3. There are no more appointments belonging to a patient containing the name `Bernice` in the appointment list.
 
-1. _{ more test cases …​ }_
+2. Test case: `unhide patients n/Bernice`
+   1. Expected result: The results hidden in the previous test case should reappear.
+
+3. Test case: `hide appts r/Checkup`
+   1. Expected result: There are no more appointments containing the reason `Checkup` in the appointment list.
+
+4. Test case: `unhide appts r/Checkup`
+   1. Expected result: The results hidden in the previous test case should reappear.
+
+### Finding results
+Section Prerequisites: Those previously mentioned in `Hiding/Unhiding results`.
+
+**Note**: Enter `list all` after performing every test case in this section. Similarly to the previous section, a message
+displaying the number of filtered results should appear after every valid input.
+
+1. Test case: `find n/Bernice`
+   1. Expected results:
+      1. Only patients containing the name `Bernice` appear in the patient list.
+      2. Only appointments belonging to a patient containing the name `Bernice` appear in the appointment list.
+
+2. Test case: `find r/Checkup`
+   1. Expected results:
+      1. Only appointments containing the reason `Checkup` appear in the appointment list.
+      2. Only patients with at least 1 such appointment will appear in the patient list.
+      
+### Dealing with save data issues
+
+1. Test Case: Dealing with missing files
+   1. If there is no save data present, the application will open with a new data file filled with sample data
+   2. To simulate a missing file:
+      1. Head to the location of your save data. The location of the save data is indicated at the bottom left of the idENTify app.
+      2. Delete the file `idENTify.json`
+      3. Relaunch the app.
+   3. Expected result: A new file will be created with some sample patients and appointments.
+
+2. Test case: Dealing with corrupted files
+   1. If save data is corrupted, the application will open with an empty data file. 
+   2. To simulate a missing file:
+      1. Head to the location of your save data, in the same way as the previous test case.
+      2. Open the file `idENTify.json`, and corrupt the file (E.g. Delete the very first line of the `idENTify.json` file).
+      3. Relaunch the app.
+   3. Expected result: A new file will be created with no patients or appointments.
