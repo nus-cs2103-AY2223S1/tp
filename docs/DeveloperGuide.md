@@ -79,7 +79,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/DG-images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `StatisticsDisplay`, `ScheduleListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter`, `StatisticsDisplay`, `ScheduleListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -313,11 +313,11 @@ This feature allows the user to be able to view a schedule on the right hand sid
 #### Implementation Details
 `MainWindow.fxml` is modified to update the UI from the original single-panel view to include an additional right panel.
 
-Since there is a need for the schedule list to be a constant panel, which is separate from the `PersonListPanel`,
+Since there is a need for the schedule list to be a constant panel, which is separate from the `StudentListPanel`,
 a `ScheduleListPanel` under `UI` had to be created along with a `ScheduleListCard` class also under `UI`. The
-`ScheduleListCard` will contain a selective set of information related to a schedule compared to `PersonCard`. 
+`ScheduleListCard` will contain a selective set of information related to a schedule compared to `StudentCard`. 
 
-Correspondingly, `PersonListCard.fxml` and `PersonListPanel.fxml` had to be created too.
+Correspondingly, `StudentListCard.fxml` and `StudentListPanel.fxml` had to be created too.
 
 Since the `UI` depends on the `Model`, there was a need to update the model to now include a `UniqueScheduleList`.
 This `UniqueScheduleList` would store the filtered version of the original `AddressBook`, based on the current date.
