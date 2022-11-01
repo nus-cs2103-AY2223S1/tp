@@ -351,21 +351,22 @@ _More food items coming soon in a future release..._
 
 ## Command summary
 
-| Action      | Format                                                  | Example                          |
-|-------------|---------------------------------------------------------|----------------------------------|
-| **Help**    | `help`                                                  | `help`                           |
-| **Add**     | `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`                 | `add n/donut c/1000 t/breakfast` |
-| **Delete**  | `delete INDEX`                                          | `delete 1`                       |
-| **Edit**    | `edit INDEX [n/FOOD_NAME] [c/CALORIES] [t/MEAL_TYPE]`   | `edit 2 n/rice c/300 t/dinner`   |
-| **Find**    | `find FOOD_NAME`                                        | `find chicken rice`              |
-| **Target**  | `target`                                                | `target 2000`                    |
-| **Review**  | `review`                                                | `review`                         |
-| **List**    | `list [DATE]`                                           | `list`                           |
-| **Setup**   | `setup g/GENDER w/WEIGHT h/HEIGHT i/IDEAL_WEIGHT a/AGE` | `setup g/m w/70 h/175 i/70 a/20` |
-| **Profile** | `profile`                                               | `profile`                        |
-| **Suggest** | `suggest`                                               | `suggest`                        |
-| **Tip**     | `tip`                                                   | `tip`                            |
-| **Clear**   | `clear`                                                 | `clear`                          |
-| **Exit**    | `exit`                                                  | `exit`                           |
+| Action     | Format                                                  | Example                           |
+|------------|---------------------------------------------------------|-----------------------------------|
+| **Help**   | `help`                                                  | `help`                            |
+| **Add**    | `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`                 | `add n/donut c/1000 t/breakfast`  |
+| **Delete** | `delete INDEX`                                          | `delete 1`                        |
+| **Edit**   | `edit INDEX [n/FOOD_NAME] [c/CALORIES] [t/MEAL_TYPE]`   | `edit 2 n/rice c/300 t/dinner`    |
+| **Find**   | `find FOOD_NAME`                                        | `find chicken rice`               |
+| **Target** | `target`                                                | `target 2000`                     |
+| **Review** | `review`                                                | `review`                          |
+| **List**   | `list [DATE]`                                           | `list`                            |
+| **Setup**  | `setup g/GENDER w/WEIGHT h/HEIGHT i/IDEAL_WEIGHT a/AGE` | `setup g/m w/70 h/175 i/70 a/20`  |
+| **locate** | `locate LOCATION`                                       | `locate CLB`                      |
+| **Profile**| `profile`                                               | `profile`                         |
+| **Suggest**| `suggest`                                               | `suggest`                         |
+| **Tip**    | `tip`                                                   | `tip`                             |
+| **Clear**  | `clear`                                                 | `clear`                           |
+| **Exit**   | `exit`                                                  | `exit`                            |
 
 </div>
