@@ -188,7 +188,7 @@ Sorts the list by the specified attribute in the specified order.
 Format: `sort ORDER a/ATTRIBUTE`
 
 - `ORDER` should be `asc` for ascending and `dsc` for descending order
-- `ATTRIBUTE` currently supported are 
+- `ATTRIBUTE` currently supported are
   - `NAME`
   - `MODULE`
   - `PHONE`
@@ -210,10 +210,10 @@ Filtering students from the StudMap based on different
 categories.
 
 Format: `filter t/Keyword [MORE_KEYWORDS]`
-* Filter students specific to the category "tags" represented 
+* Filter students specific to the category "tags" represented
 with the prefix `t/`
 * There should be spaces between `filter` and `t/friends`
-* Currently, filter works for three specific 
+* Currently, filter works for three specific
 categories - tags `t/`, module `m/` and assignments `a/`.
 
 Example:
@@ -225,7 +225,7 @@ that enrolls in the module cs2103t.
   that are working on assignment A01.
 * `filter t/friends family` will return a filtered list of
 students that are tagged as friends family or both.
- 
+
 
 ### Mark attendance of student: `mark`
 
@@ -234,8 +234,8 @@ Mark students as present or absent for a specified class.
 Format: `mark INDEX/ALL ATTENDANCE c/CLASS`
 
 * Attendance accepts two values only: `present` and `absent`
-* :warning: Class names should only consist of alphanumerics, spaces, dashes and underscores! Using any other 
-character will lead to your class name being **rejected** 
+* :warning: Class names should only consist of alphanumerics, spaces, dashes and underscores! Using any other
+character will lead to your class name being **rejected**
 * Marking an existing class as either `present` or `absent` will **overwrite** the existing record
 
 Examples:
@@ -249,7 +249,7 @@ Removes the attendance record of a specific class from students.
 
 Format: `unmark INDEX/ALL c/CLASS`
 
-* StudMap allows for attendances to be removed even if the student never had any record for that class 
+* StudMap allows for attendances to be removed even if the student never had any record for that class
 (i.e. no error will be thrown)
 
 Examples:
@@ -257,9 +257,57 @@ Examples:
 * `unmark 1 c/T01` removes the attendance record for class `T01` from the 1st student
 * `unmark all c/T04` marks all students as absent for class `T04` from all students in the list
 
-### Add tag to a student: `tag`
+### Tag student with label: `tag`
 
-[Coming soon]
+Tag a student with one or more text labels. The tag should be short (i.e. no spaces) and limited to only alphabets
+and/or numbers.
+
+<  markdown="block" class="alert alert-info">
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+   
+  **:information_source: Note** The tagging command is cumulative, that is, new tags are simply added to the student and
+  do not replace their previous tags. To remove tags from a student, see below [untag](https://ay2223s1-cs2103t-w13-1.github.io/tp/UserGuide.html#remove-tag-from-student-untag) <br>
+   
+</div>
+
+<div markdown="block" class="alert alert-info">
+   
+  **:information_source: Note** The tags are case-sensisitve. For example, `goodStudent` and `GoodStudent` will
+  be recognised as different labels. <br>
+
+</div>
+
+Format: `tag INDEX/ALL t/TAG [t/OTHER]`
+
+- `INDEX` could be specified or use `ALL` to add the new tags to everyone in the list
+- `TAG` the label for the student to be added. There should be at least one new label to be added when you use this command
+- `OTHER` optional tags that you might also want to add to your students
+
+
+Examples:
+
+* `tag 1 t/goodStudent`
+* `tag all t/goodstudent t/potentialTA`
+
+### Remove tag from student: `untag`
+
+Remove the specified tag(s) from the student(s).
+
+
+Format: `untag INDEX/ALL t/TAG [t/OTHER]`
+
+- `INDEX` could be specified or use `ALL` to record participation component for all students in the list
+- `TAG` the label for the student to be removed.There should be at least  one label to be removed when you use this command
+- `OTHER` optional tags that you might also want to remove from your student(s)
+
+
+Examples:
+
+* `untag 1 t/needMoreTime`
+* `untag all t/needMoreTime t/late`
 
 ### Recording participation of a student: `participate`
 
@@ -293,13 +341,13 @@ Examples:
 
 ### Import students from CSV file: `import`
 
-Imports student data from a CSV file stored on your computer. 
+Imports student data from a CSV file stored on your computer.
 
 Format: `import`
 
 * Running the command will open a file browser for you to select the CSV file to import
 * The CSV format accepted by StudMap is strict! Please use the template provided in the link below
-* :warning: StudMap currently does not support any commas in any data field (cell) when importing a CSV file 
+* :warning: StudMap currently does not support any commas in any data field (cell) when importing a CSV file
 * [template csv](files/import_template.csv)
 --------------------------------------------------------------------------------------------------------------------
 
@@ -323,11 +371,12 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**Sort** | `sort ORDER a/ATTRIBUTE`
+**Sort** | `sort ORDER a/ATTRIBUTE` <br> e.g., `sort asc a/name`
 **Filter** | `filter`
-**Mark** | `mark INDEX/ALL ATTENDANCE c/CLASS`
-**Unmark** | `unmark INDEX/ALL c/CLASS`
-**Add tag** | `addtag`
-**Record participation** | `participate INDEX/ALL STATUS p/COMPONENT`
-**Remove participation** | `unparticipate INDEX/ALL p/COMPONENT`
+**Mark** | `mark INDEX/ALL ATTENDANCE c/CLASS` <br> e.g., `mark 1 present c/T01`
+**Unmark** | `unmark INDEX/ALL c/CLASS` <br> e.g., `mark 1 c/T01`
+**Add tag** | `tag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `tag 2 t/goodStudent`
+**Remove tag** | `untag INDEX t/TAG [t/OTHER]` <br> e.g., `untag 2 t/goodStudent`
+**Record participation** | `participate INDEX/ALL STATUS p/COMPONENT` <br> e.g., `participate 2 yes p/C01`
+**Remove participation** | `unparticipate INDEX/ALL p/COMPONENT` <br> e.g., `unparticipate 2 c/C01`
 **Import CSV** | `import`
