@@ -198,13 +198,23 @@ Format: `adddebt <person index…> d/<description> m/<money> [date/<date>] [time
 You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including '++' at the back of the amount. A single '+' will add only GST instead.
 </div>
 
-* If you do not specify date and time, they will conveniently default to the current date and time.
-* If you specify the date but not the time, the time will default to midnight. Be careful that this default behaviour is different from the previous.
-* One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of these items being the same.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
+</div>
+
+* If you specify **neither date nor time**, the date and time will conveniently default to the current date and time.
+* If you specify **only the time but not the date**, the date will conveniently default to the current date.
+* If you specify **only the date but not the time**, the time will default to midnight.
+
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+Be very careful! The default behaviour is slightly different across the different combinations of whether you provided date and time inputs.
+</div>
+
+* One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of description, money, date and time being the same.
 
 Example:
-* `adddebt 3 d/McDonalds m/8.9`
-* `adddebt 1 4 d/chicken rice m/10++ date/2022-10-12 time/13:00`
+* `adddebt 3 d/McDonalds m/8.9` will add a debt with the current date and time to the 3rd person in the person list. This debt is worth `$8.90` and has the description`McDonalds`
+* `adddebt 1 4 d/chicken rice m/10++ date/2022-10-12 time/13:00` will add debts with `2022-10-12` and `13:00` as the date and time respectively to **both** the 1st person and 4th person. These debts require Service Charge and GST to be added to an initial price of `$10`, and will be recorded with the description `chicken rice`. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$11.77`.
 
 ### Splitting a debt: `splitdebt`
 
@@ -277,14 +287,14 @@ Format: `statement`
 
 Example: `statement` returns `You are owed $583.90 in total.`
 
-### Listing all persons : `list`
+### Listing all persons: `list`
 
 Shows a list of all persons in PayMeLah.<br>
 You can use this command to return to displaying the full list of people you have added to PayMeLah.
 
 Format: `list`
 
-### Listing all debtors : `listdebtors`
+### Listing all debtors: `listdebtors`
 
 Shows a list of all persons that owe you more than or equal to a certain amount of money in PayMeLah. If no amount is provided, a list of persons who owe any amount of debt is displayed.
 
@@ -292,7 +302,7 @@ Format: `listdebtors [m/<money>]`
 
 Example: `listdebtors m/10` displays the list of persons that owe more than $10.00.
 
-### Sorting list of persons : `sort`
+### Sorting list of persons: `sort`
 
 Sorts and displays the list of persons using the given criteria and order. The criteria that you can sort by are name, amount owed, and time since oldest debt. Use the `+` symbol to indicate ascending order, and the `-` symbol for descending order.
 
@@ -304,7 +314,7 @@ Format: `sort [n/<order>] OR [m/<order>] OR [date/<order>]`
 
 Example: `sort n/+` sorts and displays the list of persons in ascending alphabetical order of their names.
 
-### Editing a person : `edit`
+### Editing a person: `edit`
 
 Edits an existing person in PayMeLah.<br>
 You can use this command to edit information about people you have already added in PayMeLah, in case some of their particulars such as their phone number or telegram handle have changed.
@@ -363,7 +373,7 @@ Examples:
 * `finddebt Burger` returns people associated with debts that have descriptions `burger` or `Chicken Burger`
 * `finddebt burger meal` returns people associated with debts that have descriptions `Chicken Burger` or `Meal Sharing`<br>
 
-### Deleting a person : `delete`
+### Deleting a person: `delete`
 
 Deletes the specified person from PayMeLah.<br>
 You can use this to remove people you no longer need to track debts for from PayMeLah.
@@ -378,7 +388,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from PayMeLah.<br>
 You can use this command to delete all info from PayMeLah and start afresh!
