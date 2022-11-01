@@ -6,7 +6,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
 /**
- * Class with the ability to build a custom commands
+ * Class with the ability to build a custom command.
  */
 public class CustomCommandBuilder {
     private final String repr;
@@ -24,12 +24,19 @@ public class CustomCommandBuilder {
     }
 
     /**
-     * Retrieves the macro shortcut that represent this command
+     * Retrieves the macro shortcut that represent this command.
      *
      * @return
      */
     public String getRepr() {
         return repr;
+    }
+
+    /**
+     * Retrieves the initial command that the macro represents.
+     */
+    public String getCommandData() {
+        return commandData;
     }
 
     /**
