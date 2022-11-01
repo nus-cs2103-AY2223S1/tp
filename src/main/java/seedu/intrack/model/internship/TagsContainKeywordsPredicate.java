@@ -17,7 +17,7 @@ public class TagsContainKeywordsPredicate implements Predicate<Internship> {
     public boolean test(Internship internship) {
         return keywords.stream()
                 .anyMatch(keyword -> internship.getTags().stream()
-                .anyMatch(tag -> tag.tagName.equalsIgnoreCase(keyword)));
+                .anyMatch(tag -> tag.tagName.equals(keyword)));
     }
 
 
