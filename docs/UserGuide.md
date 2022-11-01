@@ -329,14 +329,18 @@ Format: `status -p STATUS`
 Examples:
 * `status -p AVAILABLE` returns all the properties with status of `AVAILABLE`
 * `status -p PENDING` returns all the properties with status of `PENDING`
-* `status -p SOLD` returns all the properties with status of `SOLD`
+* `status -p sold` returns all the properties with status of `SOLD`
 
 ### Filtering properties by type: `type -p`
 
 Returns a filtered list of clients that fulfil the filter conditions.
-Format: `type -p HDB`
+
+Format: `type -p PROPERTY_TYPE`
+
 Examples:
 * `type -p HDB condo` returns all properties that are HDBs or Condos
+* `type -p hdb` returns all properties that are HDBs
+* `type -p LANdEd` returns all properties that are LANDED
 
 ### Selecting a property: `select -p INDEX`
 
