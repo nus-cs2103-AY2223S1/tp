@@ -105,13 +105,14 @@ public class GradeCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AvailabilityCommand)) {
+        if (!(other instanceof GradeCommand)) {
             return false;
         }
 
         // state check
         GradeCommand e = (GradeCommand) other;
         return indexOfStudent.equals(e.indexOfStudent)
+                && indexOfAssignment.equals(e.indexOfAssignment)
                 && grade.equals(e.grade);
     }
 

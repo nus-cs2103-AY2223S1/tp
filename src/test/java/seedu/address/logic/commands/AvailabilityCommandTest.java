@@ -20,7 +20,7 @@ import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code AvailabilityCommand}.
  */
 public class AvailabilityCommandTest {
 
@@ -48,9 +48,9 @@ public class AvailabilityCommandTest {
     }
 
     @Test
-    public void execute_notStudent_throwsCommandException() {
-        Index nonStudentTIndex = Index.fromOneBased(3);
-        AvailabilityCommand availabilityCommand = new AvailabilityCommand(nonStudentTIndex, "Unavailable");
+    public void execute_notTeachingAssistant_throwsCommandException() {
+        Index nonTeachingAssistantIndex = Index.fromOneBased(3);
+        AvailabilityCommand availabilityCommand = new AvailabilityCommand(nonTeachingAssistantIndex, "Unavailable");
 
         assertCommandFailure(availabilityCommand, model, AvailabilityCommand.MESSAGE_PERSON_NOT_TA);
     }
