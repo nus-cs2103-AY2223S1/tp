@@ -20,8 +20,6 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 - **Case-sensitive**: Difference between capital and lower-case letters matters. Therefore, not case-sensitive or case-insensitive means capital and lower-case letters are treated as the same.
 
 
-‍
-- **Parentheses**: A pair of punctuation marks, such as (), that are most often used to add additional nonessential information or an aside to a sentence.
 ## Quick Start
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest [idENTify.jar](https://github.com/AY2223S1-CS2103T-T17-4/tp/releases/tag/v1.3) from here.
