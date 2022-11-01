@@ -430,7 +430,7 @@ A tag is used to group together specific People and Notes.
 This way, searching for a tag brings up all the People and Notes that have the tag for easier classification of related information.
 
 - Identified by the prefix `tag`.
-- Tags can only consist of alphanumeric<sup>[1](#glossary)</sup> characters.
+- Tags can only consist of alphanumeric characters<sup>[1](#glossary)</sup>.
 - Persons and Notes can hold tags.
 
 [Back to Table of Contents](#table-of-contents)
