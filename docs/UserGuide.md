@@ -53,6 +53,11 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Features**
+There are four main types of commands used in Mass Linkers - Batchmate commands, Interest commands, Module commands and General commands.
+
+By segregating the commands in this manner, it makes it easier to make modifications to and conduct a search based on the different fields (ie. seach by common interests, modules or personal information).
+
+The following notes outline several noteworthy format which the [Feature](#features) section use in detailing the usage of the different commands.
 
 <div markdown="block" class="alert alert-info">
 
@@ -89,6 +94,8 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 
 <div markdown="block" class="alert alert-info">
 
+Parameters are the input words that come after a command word to specify how the command should be executed. Click (here)[#parameter-requirements] to view the list of parameter requirements.
+
 **:information_source: Notes about parameters:**<br>
 
 * For all commands involving `INDEX`, `INDEX` refers to the index number shown in the currently displayed list.<br>
@@ -98,6 +105,9 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 </div>
 
 ### A. Batchmate commands
+
+Batchmate commands handle the management of a batchmate's personal information such as Name, Telegram, GitHub and Phone number.
+
 #### 1. Add a batchmate: `add`
 
 Adds a batchmate to the list of batchmates in the _Students panel_.
@@ -174,6 +184,7 @@ Shows a list of all batchmates in the _Students panel_.
 __Format:__ `list`
 
 ### B. Interest commands
+Interest commands handle the management of a batchmate's list of interests, such as addition of interests, deletion of interests and searching batchmates with specified interests.
 
 #### 1. Add interests: `addInt`
 
@@ -214,6 +225,8 @@ __Examples:__
 * `findInt swe security` returns all batchmates whose interests contain both `swe` and `security`.
 
 ### C. Module commands
+Module commands handle the management of a batchmate's list of modules, such as addition of modules, deletion of modules and searching batchmates with specified modules.
+
 <div markdown="block" class="alert alert-info">:information_source: **Note:**
 Commands used to manage a batchmate's personal information in [Batchmate commands](#batchmate-commands) and [Interest commands](#interest-commands) follow the 1 command word syntax. E.g., `add`, `addInt`.
 Whereas, commands that manage a module detail in [Module commands](#module-commands) can have multiple command words preceded by the `mod` keyword. E.g., `mod add`, `mod mark all`, `mod find taken`.
@@ -334,6 +347,7 @@ __Examples:__
 
 
 ### D. General commands
+General commands are commands which do not fall under any of the above categories.  
 
 #### 1. View help: `help`
 
@@ -376,7 +390,7 @@ Below is the summary of requirements of each parameter for the various commands.
 
 ### **Module Categorisation**
 
-Modules are automatically categorised upon creation.
+Modules are automatically categorised upon creation. The categorisation is modelled after the prefixes which [NUS modules](https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4) use.
 
 Below is the categorisation:
 
@@ -393,6 +407,8 @@ _Module prefix refers to the first two characters of every module name._
 --------------------------------------------------------------------------------------------------------------------
 
 ## **FAQ**
+Facing an issue? Below are the commonly asked questions, which address technical and privacy concerns.
+
 #### Technical Support
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install Mass Linkers in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Mass Linkers home folder.
