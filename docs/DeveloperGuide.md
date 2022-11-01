@@ -478,6 +478,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: UC05 - Add attendees to event**
+
+**MSS**
+
+1. User requests to add a profile to the event.
+2. NUScheduler adds the profile to the event and displays the updated event attendees.
+
+**Extensions**
+
+* 1a. The given event to add profile to is invalid.
+
+    * 1a1. NUScheduler shows an error message.
+
+      Use case ends.
+
+* 1b. The given profile to add is invalid
+    * 1b1. NUScheduler shows an error message.
+
+      Use case ends.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
