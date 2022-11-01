@@ -69,20 +69,20 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103-F14-3/tp/tree/master/src/main/java/seedu/application/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ApplicationListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-F14-3/tp/tree/master/src/main/java/seedu/application/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-F14-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Application` object residing in the `Model`.
 
 ### Logic component
 
@@ -239,7 +239,7 @@ The purpose of this enhancement is to allow user to archive applications that ar
 * Data archiving of `Application` is done with adding a boolean attribute to the Application class as the record of its archive status.
 * Two predicates in Model to adjust its FilterList shown to the user.
 * By applying predicates to the `FilterList` in `ModelManager`, the archived `Application` can be hidden from the user.
-* The list showing to user in the UI is either showing the unarchived applications or the archived application using `ListCommand` and `ListArchiveCommand` respectively.
+* The list showing to user in the UI is either showing the unarchived applications or the archived application using `ListCommand` and `ListArchiveCommand` respectively unless `FindCommand` is used.
 
 The features of the new and modified commands are summarized as follows:
 * `ArchiveCommand`: Set specified application archive status to `true` by utilising `ModelManager#archiveApplication`.
@@ -418,6 +418,32 @@ Aspect: How should the remind command filter out upcoming interviews?
     * Pros: Reduced coupling between different classes.
     * Cons: Each time an action is performed on an application or interview (such as archiving, adding or editing), the list of upcoming interviews has to be informed and updated as well. 
 
+### Statistic Feature
+
+#### Implementation
+The statistic feature is a simple feature that allow user to obtain a summarized statistics of the whole application list.
+
+The results of the statistic is shown on the UI using the `ResultDisplay` section. The sequence diagram below shows the working flow of statistic feature. It gets the list of applications in the model and count the respective information. The calculation result is then output through `CommandResult`.
+
+![Statistic Sequence Diagram](images/StatisticSequenceDiagram.png)
+
+
+#### Constraints of Statistic Feature
+The statistic of the applications will only show when user enter `stats` command. Possible future improvement is to reorganise UI section to display real-time statistics on one section while the list view of applications and interviews are not affected.
+
+#### Design Considerations
+
+Aspect: How should the statistic feature be presented?
+
+* Alternative 1 (current choice): Utilise `ResultDisplay` section in UI to show user the statistics.
+    * Pros: Does not need extra space in the UI to show the statistic and more simple and straight-forward implementation.
+    * Cons: Increase coupling between `ModelManager` and `StatsCommand` as it requires the list of applications in `ModelManager`.
+
+* Alternative 2: Create a new section in UI to show user real-time statistics.
+    * Pros: Does not increase coupling between classes and align with the implementation of Applications and Interviews list views.
+    * Cons: Space usage for UI might be inefficient as user will not always want to review the statistic of the applications.
+
+- Alternative 1 is chosen as our team justified that the implementation is simple, and it will less likely to have bugs despite the accessing application list from `ModelManager`. Furthermore, interview and application list are more important to be shown in UI when comparing with the statistics.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -579,17 +605,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting an application
 
-1. Deleting a person while all persons are being shown
+1. Deleting an application while all applications are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First application is deleted from the list. Details of the deleted application shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No application is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "s:StatsCommand" as StatsCommand LOGIC_COLOR
+participant "c:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> StatsCommand : execute()
+activate StatsCommand
+
+StatsCommand -> Model : getAllApplicationsInBook()
+activate Model
+
+Model --> StatsCommand
+deactivate Model
+
+StatsCommand -> StatsCommand : countItem()
+activate StatsCommand
+
+StatsCommand --> StatsCommand
+deactivate StatsCommand
+
+create CommandResult
+StatsCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> StatsCommand
+deactivate CommandResult
+
+[<-- StatsCommand : c
+deactivate StatsCommand
+
+
+
+
+@enduml
