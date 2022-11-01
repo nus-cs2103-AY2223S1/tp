@@ -1,9 +1,6 @@
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico?">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.png">
 
----
-layout: page
-title: bobaBot
----
+# bobaBot
 
 [![CI Status](https://github.com/AY2223S1-CS2103T-W09-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W09-1/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W09-1/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2223S1-CS2103T-W09-1/tp)
