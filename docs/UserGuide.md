@@ -58,7 +58,7 @@ Take note of the following symbols and formatting used in this document:
 
    * **`list`** : Lists all students.
 
-   * **`add`**`n/student i/e0778123 [e/student@example.com] [p/91251211]` : Adds a student named `John Doe` to the student list.
+   * **`add`**`n/John Doe i/e0778123 [e/student@example.com] [p/91251211]` : Adds a student named `John Doe` to the student list.
 
    * **`delete`**`3` : Deletes the 3rd student shown in the current list.
 
@@ -194,7 +194,7 @@ Examples:
 
 Finds students whose student details contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 * The search is case-insensitive. e.g hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
@@ -410,7 +410,7 @@ If your changes to the data file makes its format invalid, GREWZ will discard al
 
 **Q:** How do I transfer my data into another computer?
 <br />
-**A:** Install the app in the other computer and overwrite the empty data files it creates with the files that contain data of your previous GREWZ data folder.
+**A:** Download the app in the other computer and overwrite the empty data files it creates with the files that contain data of your previous GREWZ data folder.
 
 **Q:** How to use attendance commands?
 <br />
@@ -420,40 +420,40 @@ If your changes to the data file makes its format invalid, GREWZ will discard al
 
 ## Command summary
 
-| Action                | Format                                                                                                  | Examples                                                                                                          |
-|-----------------------|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| **Add**               | `add n/NAME  i/STUDENT_ID [t/TAG] [e/EMAIL] [p/PHONE_NUMBER] [c/CLASS]…​`                                         | `add n/James Ho i/e0823115 p/22224444 e/jamesho@example.com t/friend t/colleague`                                 |
-| **Attendance Add**    | `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`                                                                   | `attendance add 1 c/CS2030 s/10`                                                                                  |
-| **Attendance Delete** | `attendance delete INDEX`                                                                                         | `attendance delete 1`                                                                                             |
-| **Attendance Mark**   | `attendance mark INDEX l/LESSON m/ATTENDANCE_VALUE`                                                                | `attendance mark 1 l/1 m/1`                                                                                       |
-| **Clear**             | `clear`                                                                                                           |                                                                                                                   |
-| **Delete**            | `delete INDEX`                                                                                                    | `delete 3`                                                                                                        |
-| **Edit**              | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​`                          | `edit 2 n/James Lee e/jameslee@example.com`                                                                       |
-| **Find**              | `find KEYWORD [MORE_KEYWORDS]`                                                                                    | `find James Jake`                                                                                                 |
-| **List**              | `list`                                                                                                            |                                                                                                                   |
-| **Task**              | `task t/TITLE d/DESC [by/YYYY-MM-DD] [addStu/STUDENT_1,STUDENT_2...]`                                                                      | `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12`                                         |
-| **Edit Task**         | `edit-task [t/TITLE] [d/DESC] [by/YYYY-MM-DD] [addStu/STUDENT_1,STUDENT_2...] [deleteStu/STUDENT_1,STUDENT_2...]` | `edit-task 1 t/Mark Lab Worksheets d/CS2030S by/2022-10-30`                                                       | 
-| **Remove Task**       | `remove-task INDEX`                                                                                               | `remove-task 1`                                                                                                   |
-| **Upload**            | `upload-pic INDEX`                                                                                                | `upload-pic 1`                                                                                                    |
-| **Help**              | `help`                                                                                                            |                                                                                                                   |
+| Action                | Format                                                                                                            | Examples                                                                          |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| **Add**               | `add n/NAME  i/STUDENT_ID [t/TAG] [e/EMAIL] [p/PHONE_NUMBER] [c/CLASS]…​`                                         | `add n/James Ho i/e0823115 p/22224444 e/jamesho@example.com t/friend t/colleague` |
+| **Attendance Add**    | `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`                                                                  | `attendance add 1 c/CS2030 s/10`                                                  |
+| **Attendance Delete** | `attendance delete INDEX`                                                                                         | `attendance delete 1`                                                             |
+| **Attendance Mark**   | `attendance mark INDEX l/LESSON m/ATTENDANCE_VALUE`                                                               | `attendance mark 1 l/1 m/1`                                                       |
+| **Clear**             | `clear`                                                                                                           |                                                                                   |
+| **Delete**            | `delete INDEX`                                                                                                    | `delete 3`                                                                        |
+| **Edit**              | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​`                          | `edit 2 n/James Lee e/jameslee@example.com`                                       |
+| **Find**              | `find KEYWORD [MORE_KEYWORDS]...`                                                                                 | `find James Jake`                                                                 |
+| **List**              | `list`                                                                                                            |                                                                                   |
+| **Task**              | `task t/TITLE d/DESC [by/YYYY-MM-DD] [addStu/STUDENT_1,STUDENT_2...]`                                             | `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12`        |
+| **Edit Task**         | `edit-task [t/TITLE] [d/DESC] [by/YYYY-MM-DD] [addStu/STUDENT_1,STUDENT_2...] [deleteStu/STUDENT_1,STUDENT_2...]` | `edit-task 1 t/Mark Lab Worksheets d/CS2030S by/2022-10-30`                       | 
+| **Remove Task**       | `remove-task INDEX`                                                                                               | `remove-task 1`                                                                   |
+| **Upload**            | `upload-pic INDEX`                                                                                                | `upload-pic 1`                                                                    |
+| **Help**              | `help`                                                                                                            |                                                                                   |
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
 
-| Word                                           | Definition                                                                                                                                                                                   |
-|------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Command Line Interface (CLI)**               | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                               |
-| **Graphical user interface (GUI)**             | Graphical user interface (GUI) is a form of user interface that allows users to interact with electronic devices through graphical icons.                                                    |
-| **Teaching assistant**                         | Teaching assistant is an individual who assists a professor with instructional responsibilities.                                                                                             |
-| **JavaScript Object Notation (JSON)**          | JavaScript Object Notation (JSON) is used for storing and transfering data.                                                                                                                  |
-| **Joint Photographic Experts Group (JPG)**    | Joint Photographic Experts Group (JPG) is an image file type and used for compression of digital images.                                                                                      |
-| **User input history**                        | User input history is the previous inputs the user has keyed in.                                                                                                                              |
-| **Task**                                      | Task is a piece of work to be done and the category Todo, Deadline and Assignment is under.                                                                                                   |
-| **Todo**                                      | Todo is a task with a description and title.                                                                                                                                                  |
-| **Deadline**                                  | Deadline is a task with a due date.                                                                                                                                                           |
-| **Assignment**                                | Assignment is a task with a list of students that needs to finish the task.                                                                                                                   |
-| **Attendance List**                           | Attendance list is a record of the student's attendance for his class.                                                                                                                
+| Word                                       | Definition                                                                                                                                     |
+|--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Command Line Interface (CLI)**           | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer. |
+| **Graphical user interface (GUI)**         | Graphical user interface (GUI) is a form of user interface that allows users to interact with electronic devices through graphical icons.      |
+| **Teaching assistant**                     | Teaching assistant is an individual who assists a professor with instructional responsibilities.                                               |
+| **JavaScript Object Notation (JSON)**      | JavaScript Object Notation (JSON) is used for storing and transfering data.                                                                    |
+| **Joint Photographic Experts Group (JPG)** | Joint Photographic Experts Group (JPG) is an image file type and used for compression of digital images.                                       |
+| **User input history**                     | User input history is the previous inputs the user has keyed in.                                                                               |
+| **Task**                                   | Task is a piece of work to be done and the category Todo, Deadline and Assignment is under.                                                    |
+| **Todo**                                   | Todo is a task with a description and title.                                                                                                   |
+| **Deadline**                               | Deadline is a task with a due date.                                                                                                            |
+| **Assignment**                             | Assignment is a task with a list of students that needs to finish the task.                                                                    |
+| **Attendance List**                        | Attendance list is a record of the student's attendance for his class.                                                                         |
 
 [back to top](#introduction)
