@@ -30,7 +30,6 @@ public class Loan implements DeepCopyable {
      */
     public Loan(String amountString) {
         requireNonNull(amountString);
-        System.out.println(amountString);
         checkArgument(isValidLoan(amountString), MESSAGE_CONSTRAINTS);
         amountString = amountString.replace("$", "");
 

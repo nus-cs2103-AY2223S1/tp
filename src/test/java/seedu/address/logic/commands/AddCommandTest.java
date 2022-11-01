@@ -286,7 +286,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public void filterPersonListByName(String preamble, String messageUsage, ParseException pe) throws ParseException {
+        public void filterPersonListByName(String preamble, String messageUsage, ParseException pe)
+                throws ParseException {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -83,7 +83,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case InspectCommand.COMMAND_WORD:
-            return new InspectCommandParser(model).parse(arguments);
+            return new InspectCommandParser().parse(arguments);
 
         case ShowNotesPanelCommand.COMMAND_WORD:
             return new ShowNotesPanelCommand();
