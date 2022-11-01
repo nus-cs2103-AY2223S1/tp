@@ -28,15 +28,15 @@ public class TypicalStudents {
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withNokPhone("88219345")
-            .withTags("friends").build();
+            .withTags("beginner").build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withNokPhone("98234312")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "beginner").build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withNokPhone("98211225").withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withNokPhone("98720092").withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
+            .withNokPhone("98720092").withEmail("cornelia@example.com").withAddress("10th street").withTags("beginner")
             .build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("94822241")
             .withNokPhone("81239898").withEmail("werner@example.com").withAddress("michegan ave").build();
