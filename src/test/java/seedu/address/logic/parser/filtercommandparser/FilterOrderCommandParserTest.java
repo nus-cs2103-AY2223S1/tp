@@ -30,6 +30,12 @@ public class FilterOrderCommandParserTest {
     }
 
     @Test
+    public void parse_invalidPrefix_throwsParseException() {
+        assertParseFailure(parser, "ft/invalid", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FilterOrderCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsFilterOrderCommand() {
         String input = ADDITIONAL_REQUEST_PREFIX + "/fluffy "
                 + ORDER_STATUS_PREFIX + "/Delivering "
