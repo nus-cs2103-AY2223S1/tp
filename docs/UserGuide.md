@@ -168,10 +168,10 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 * To separate inputs that represent different information, you should precede ambiguous inputs with their paired prefixes that end with `/`. <br>
   e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the inputs `<name>` and `<tag>` respectively.
 
-* Items in square brackets `[]` are optional.<br>
+* Inputs in square brackets `[]` are optional.<br>
   e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable: `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
 
-* Command fields with `…` can be used multiple times, but remember to separate each usage with a whitespace in between.<br>
+* Inputs with … can be used multiple times, but remember to separate each usage with a space character in between.<br>
   e.g. in `adddebt <person index…>`, `<person index…>` is an input which can be used as `adddebt 1` or as `adddebt 1 2`.<br>
   e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of prefix and input which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend`.
 
@@ -185,14 +185,12 @@ Be very careful with how a command is formatted! If the `…` is found within th
 * If an input is expected only once in the command, but you specified it multiple times, only the last occurrence of the input will be taken.<br>
   e.g. if the command requires `p/<phone number>` and you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. This is useful for correcting a wrong input without having to use backspace.
 
-* Extraneous inputs for commands that do not take in inputs (such as `help`, `list`, `exit` and `clear`)
-  will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Any inputs for commands that do not accept inputs will be ignored.<br>
+  e.g. entering `help 123` will be equivalent to entering `help`, as it does not accept any inputs.
 
 </div>
 
-#### Input-specific behavior
-
+#### Input-specific behaviour
 <div markdown="block" class="alert alert-info">
 
 * Whenever `<date>` is specified as an input, you should input it in the format `yyyy-mm-dd` where `y` is year, `m` is month and `d` is day.<br>
@@ -210,6 +208,9 @@ Be very careful with how a command is formatted! If the `…` is found within th
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Avoid giving irrelevant inputs to commands that do not accept those inputs. For example, `mark` expects a `<person index>` input and a `debt/<debt index…>` input, but not a `t/<tag>` input. Giving such inputs may cause unexpected behaviour in PayMeLah!
+</div>
 
 ### Viewing help : `help`
 
@@ -220,7 +221,7 @@ If you get lost while using PayMeLah, this is the one command to remember!
 
 Format: `help`
 
-<div markdown="block" class="alert alert-secondary">
+<div markdown="block" class="alert alert-info">
 **:star: Advanced Tip:**
 Pressing <kbd> F1 </kbd> will also open up the help message.
 </div>
@@ -387,7 +388,7 @@ Format: `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<addres
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* You can remove all the person’s tags by entering `t/` without
     specifying any tags after it.
 * Cannot be used to modify a person's debts
 
@@ -395,7 +396,7 @@ Examples:
 *  `edit 1 p/91234567 tele/johndoe` will edit the phone number and Telegram handle of the 1st person to be `91234567` and `@johndoe` respectively.
 *  `edit 2 n/Betsy Crower t/` will edit the name of the 2nd person to be `Betsy Crower` and clear all their existing tags.
 
-### Locating persons by fields: `find`
+### Locating persons by inputs: `find`
 
 Finds persons who match all the given conditions.
 
@@ -403,9 +404,9 @@ Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<
 [d/<description>…] [m/<money>…] [above/<money>] [below/<money>]
 [date/<date>…] [before/<date>] [after/<date>] [time/<time>…]`
 
-* Name and Address are case-insensitive partial matches. All other fields are exact matches.
-* The above and below fields look for people with a debt that lies in the specified monetary range.
-* The before and after fields look for people with a debt that lies within the specified date range.
+* Name and Address are case-insensitive partial matches. All other inputs are exact matches.
+* The above and below inputs look for people with a debt that lies in the specified monetary range.
+* The before and after inputs look for people with a debt that lies within the specified date range.
 * The order of the conditions does not matter.
   e.g. `d/burger n/hans` will match `Hansel` if he owes money for a burger.
 * Only persons matching all conditions will be returned (i.e. `AND` search).
@@ -447,13 +448,13 @@ Format: `delete <index>`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in PayMeLah.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries: `clear`
+### Clearing all people from PayMeLah: `clear`
 
-Clears all entries from PayMeLah.<br>
-You can use this command to delete all info from PayMeLah and start afresh!
+Clears all people from PayMeLah.<br>
+You can use this command to delete all information from PayMeLah and start afresh!
 
 Format: `clear`
 
@@ -469,7 +470,7 @@ Be careful though, your undo history will be gone when you close the app!
 Format: `undo`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-This command will only undo commands that directly modified PayMeLah's data contents (e.g., `adddebt`, `delete`, `sort`). It does not undo commands that only change the display (e.g., `listdebtors`, `find`). To view all the persons in PayMeLah, use the `list` command instead.
+This command will only undo commands that have directly modified PayMeLah's data contents (e.g., `adddebt`, `delete`, `sort`). It does not undo commands that only change the display (e.g., `listdebtors`, `find`). To view all the persons in PayMeLah, use the `list` command instead.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
