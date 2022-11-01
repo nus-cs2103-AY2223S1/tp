@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-**Plannit** is a **unified desktop application** that aims to **help NUS CS
+**Plannit** is a **unified desktop application** that aims to **help NUS
 students manage their academic details.**  It will be the **go-to platform**
 for you to access all modules links and information without needing to
 tediously navigate through multiple websites.
@@ -14,6 +14,22 @@ while still having the benefits of a Graphical User Interface (GUI).
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## 0. How to use this guide
+This guide is targeted at new users who are looking at learning more about 
+our app.
+1. If this is your very first time using the application, welcome! You may head 
+   over to the [quick start](#1-quick-start) to begin your journey with us!
+2. If you already have a specific feature in mind, you can check out the 
+   [command summary](#11-command-summary) section.
+3. Throughout this guide, you will encounter the icons :bulb:,
+  :information_source: or :eye: icon. Their meanings are as follows:
+
+| Icon                 | Meaning                                                                    |
+|----------------------|----------------------------------------------------------------------------|
+| :bulb:               | A relevant tip which you may find helpful                                  |
+| :information_source: | Information that you should **must** note of when using a specific feature |
+| :eye:                | A feature related to the section you are currently looking at              |
+
 
 ## 1. Quick start
 
@@ -23,16 +39,20 @@ while still having the benefits of a Graphical User Interface (GUI).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Plannit.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
+4. Double-click the file to start the app. The window below should appear in a 
+   few seconds. <br>
 
-<p align="center">
-    <img src="images/Ui.png" width="500"/>
-</p>
 
-6. Type the command in the command box and press Enter to execute it. e.g.
-   `add-module m/CS2103T`. For more commands, you may refer to the [command summary](#11-command-summary)
+| Screenshot of Plannit                                                                    | Description of labels                                                                                            |
+|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/home-labelled.png" width="500/></p>{:/} | {::nomarkdown}<ol><li>Command box</li><li>Result display</li><li>Modules list</li><li>Persons list</li></ol>{:/} |
 
-7. Refer to the [Features](#2-features) for details of each command.
+5. Type the command in the command box and press Enter to execute it. e.g.
+   `add-module m/CS2103T`. For more commands, you may refer to the [command summary](#11-command-summary).
+   Alternatively, head over to [Features](#2-features) to find the details of each command.
+
+6. After a command has been executed, a message will be displayed in the result 
+   display to indicate whether the command's execution has been successful.
 
 ### 1.1. Command summary
 
@@ -60,11 +80,11 @@ while still having the benefits of a Graphical User Interface (GUI).
 | [`goto`](#252-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
 | [`exit`](#26-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
 
-<div markdown="span" class="alert alert-info"> :information_source: **Note:**
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/> 
 Features marked with * can only be utilised when users are at the home page.
 </div>
 
-<div markdown="span" class="alert alert-info">:eye: **See also:** 
+<div markdown="span" class="alert alert-info">:eye: **See also:**<br/>  
 [Peeking at tasks](#224-peeking-at-tasks).
 </div>
 
@@ -226,7 +246,8 @@ In the above example, we list every module that exist in Plannit.
 
 ### 2.2. Tasks
 #### 2.2.1. Add task
-You may add a task using the `add-task` command.
+Suppose a particular module has assigned you a task to be completed. You can 
+keep track of it by adding it to Plannit using the `add-task` command.
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:**<br/> 
@@ -247,15 +268,15 @@ Format: `add-task m/MODULE_CODE td/TASK_DESCRIPTION`
 
 Example:
 ```
-add-task m/CS2103T td/Complete tP tasks for W07
+add-task m/CS2103T td/Complete week 7's weekly assignments
 ```
-In the above example, we are adding the task `Complete tP tasks for W07` to the
+In the above example, we are adding the task `Complete week 7's weekly assignments` to the
 module `CS2103T`. Here's a screenshot of Plannit before and after executing the
 command:
 
-| Before executing the command                                                    | After executing the command                                                    |
-|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/add-task-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-task-after.png"/></p>{:/} |
+| Before executing the command                                                                                                                                 | After executing the command                                                                                                                       |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/add-task-before.<br/>png"/></p><p>Enter the command into the command box and hit <code>ENTER</code></p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-task-after.png"/></p><p>A message will appear indicating that a task has been added.</p>{:/} |
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:**<br/>
 You may view the tasks added to a module by navigating to a module's page 
@@ -265,8 +286,8 @@ module's tasks while on the home page.
 </div>
 
 #### 2.2.2. Delete task
-You may delete a task belonging to a particular module using the
-`delete-task` command.
+Suppose you have completed a task and would now like to remove it from 
+Plannit. You may delete the task using the `delete-task` command.
 
 This command will require two flags:
 
@@ -288,13 +309,14 @@ In the above example, we are deleting task number **2** from the module
 `CS2103T`. Here's a screenshot of Plannit before and after executing the 
 command: 
 
-| Before executing the command                                                       | After executing the command                                                       |
-|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/delete-task-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-task-after.png"/></p>{:/} |
+| Before executing the command                                                                                                                               | After executing the command                                                                                                                           |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-task-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code></p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-task-after.png"/></p><p>A message will appear indicating that a task has been deleted.<p/{:/} |
 
 #### 2.2.3. Reorder tasks (swap)
-You may change the order in which tasks appear in the task list of a 
-particular module using the `swap-task` command.
+Suppose you have an urgent task which you like to place at the very top of 
+your list. You may change the order of tasks in your module's task list  using
+the `swap-task` command.
 
 This command will require two flags:
 
@@ -319,9 +341,9 @@ task within the task list of the module `CS2103T`. Here's a screenshot of
 Plannit before and after executing the command. Note that ["peek"](#224-peeking-at-tasks)
 has been enabled for clarity:
 
-| Before executing the command                                                                 | After executing the command                                                                                                                              |
-|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/swap-task-before.png"/></p><p><br/><p/>{:/} | {::nomarkdown}<p align="center"><img src="images/swap-task-after.png"/></p> <p align="right"><i>Notice tasks 1 and 3 have swapped positions!</i><p/>{:/} |
+| Before executing the command                                                                                                                             | After executing the command                                                                                                 |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/swap-task-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code></p>{:/} | {::nomarkdown}<p align="center"><img src="images/swap-task-after.png"/></p><p>Tasks 1 and 3 have swapped positions!</p>{:/} |
 
 #### 2.2.4. Peeking at tasks
 You may "peek" at a module's tasks by clicking on the module while on the 
@@ -329,7 +351,7 @@ You may "peek" at a module's tasks by clicking on the module while on the
  **Step 1**: Let's say you wish to view the tasks of `CS2103T SOFTWARE 
 ENGINEERING` (module number 1)
 <p align="center">
-  <img src="images/home-page.png" width="500"/>
+  <img src="images/home-page-with-cs2103-circled.png" width="500"/>
 </p>
 
 **Step 2**: You will notice a blue glow when hovering your mouse over the 
