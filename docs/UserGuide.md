@@ -307,7 +307,7 @@ Examples:
 
 Set a deadline for an existing task. Will display an error message if task is not found in the user’s team.
 If a deadline has been set for the task before, a new deadline will be set if command is run again.
-The deadline must be specified in yyyy-MM-dd HH:mm format.
+The deadline must be specified in `YYYY-MM-DD HH:MM` format.
 
 Format: `set deadline TASK_INDEX DEADLINE`
 
