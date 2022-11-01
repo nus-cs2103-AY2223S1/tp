@@ -27,7 +27,6 @@ import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
 import seedu.application.model.application.Status;
-import seedu.application.model.application.interview.Interview;
 import seedu.application.model.tag.Tag;
 
 /**
@@ -89,17 +88,9 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICATION);
         }
 
-        Optional<Interview> interview = editedApplication.getInterview();
-        if (interview.isPresent()) {
-            Application editedApplicationWithInterview = new Application(editedApplication, interview.get());
-            model.setApplication(applicationToEdit, editedApplicationWithInterview);
-            model.updateApplicationListWithInterview();
-            return new CommandResult(String.format(MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplicationWithInterview));
-        } else {
-            model.setApplication(applicationToEdit, editedApplication);
-            model.updateApplicationListWithInterview();
-            return new CommandResult(String.format(MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication));
-        }
+        model.setApplication(applicationToEdit, editedApplication);
+        model.updateApplicationListWithInterview();
+        return new CommandResult(String.format(MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication));
 
     }
 
@@ -119,12 +110,15 @@ public class EditCommand extends Command {
         Status updatedStatus = editApplicationDescriptor.getStatus().orElse(applicationToEdit.getStatus());
         Set<Tag> updatedTags = editApplicationDescriptor.getTags().orElse(applicationToEdit.getTags());
 
-        if (applicationToEdit.isArchived()) {
-            return new Application(updatedCompany, updatedContact, updatedEmail, updatedPosition,
-                    updatedDate, updatedStatus, updatedTags).setToArchive();
+        Application editedApplication = new Application(updatedCompany, updatedContact, updatedEmail, updatedPosition,
+                updatedDate, updatedStatus, updatedTags);
+        if (applicationToEdit.hasInterview()) {
+            editedApplication = new Application(editedApplication, applicationToEdit.getInterview().get());
         }
-        return new Application(updatedCompany, updatedContact, updatedEmail, updatedPosition, updatedDate,
-                updatedStatus, updatedTags);
+        if (applicationToEdit.isArchived()) {
+            editedApplication = editedApplication.setToArchive();
+        }
+        return editedApplication;
     }
 
     @Override
