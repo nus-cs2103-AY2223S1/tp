@@ -4,6 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindStaffCommand;
@@ -23,12 +25,12 @@ public class FindStaffCommandParserTest {
     public void parse_validArg_returnsFindStaffCommand() {
         // no spaces in name
         FindStaffCommand expectedFindStaffCommand =
-                new FindStaffCommand(new StaffNameContainsKeywordsPredicate("Alex"));
+                new FindStaffCommand(new StaffNameContainsKeywordsPredicate(Arrays.asList("Alex")));
         assertParseSuccess(parser, "Alex", expectedFindStaffCommand);
 
         // whitespace inside keyword
         FindStaffCommand expectedFindStaffCommandWithSpaces =
-                new FindStaffCommand(new StaffNameContainsKeywordsPredicate("Alex Lee"));
+                new FindStaffCommand(new StaffNameContainsKeywordsPredicate(Arrays.asList("Alex", "Lee")));
         assertParseSuccess(parser, "Alex Lee", expectedFindStaffCommandWithSpaces);
     }
 }

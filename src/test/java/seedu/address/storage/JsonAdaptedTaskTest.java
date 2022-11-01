@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.deadline.Deadline;
 import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskMark;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_TASK_DESCRIPTION = "HOMEWORK!!!";
@@ -63,6 +64,23 @@ public class JsonAdaptedTaskTest {
                 new JsonAdaptedTask(null, VALID_TASK_DESCRIPTION, VALID_TASK_MARK);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Deadline.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullTaskMark_throwsIllegalValueException() {
+        JsonAdaptedTask task =
+                new JsonAdaptedTask(VALID_TASK_DEADLINE, VALID_TASK_DESCRIPTION, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                TaskMark.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidTaskMark_throwsIllegalValueException() {
+        JsonAdaptedTask task =
+                new JsonAdaptedTask(VALID_TASK_DEADLINE, VALID_TASK_DESCRIPTION, INVALID_TASK_MARK);
+        String expectedMessage = TaskMark.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 }

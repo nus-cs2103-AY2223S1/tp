@@ -67,7 +67,7 @@ public class FindTaskCommandTest {
     @Test
     public void execute_multipleKeywords_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 3);
-        TaskDescriptionContainsKeywordsPredicate predicate = preparePredicate("assignment 2102 2103");
+        TaskDescriptionContainsKeywordsPredicate predicate = preparePredicate("assign 2102 2103");
         FindTaskCommand command = new FindTaskCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

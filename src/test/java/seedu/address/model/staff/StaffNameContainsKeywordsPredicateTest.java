@@ -3,15 +3,20 @@ package seedu.address.model.staff;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.StaffBuilder;
+
 public class StaffNameContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        final String firstPredicateKeyword = "Andy";
-        final String secondPredicateKeyword = "Andy Lee";
+        final List<String> firstPredicateKeyword = Collections.singletonList("Andy");
+        final List<String> secondPredicateKeyword = Arrays.asList("Andy", "Lee");
 
         StaffNameContainsKeywordsPredicate firstPredicate =
                 new StaffNameContainsKeywordsPredicate(firstPredicateKeyword);
@@ -38,15 +43,15 @@ public class StaffNameContainsKeywordsPredicateTest {
     public void test_nameContainsKeyword_returnsTrue() {
         // without spaces
         StaffNameContainsKeywordsPredicate predicate =
-                new StaffNameContainsKeywordsPredicate("Andy");
+                new StaffNameContainsKeywordsPredicate(Collections.singletonList("Andy"));
         assertTrue(predicate.test(new StaffBuilder().withStaffName("Andy Lau").build()));
 
         // with spaces
-        predicate = new StaffNameContainsKeywordsPredicate("Andy Lau");
+        predicate = new StaffNameContainsKeywordsPredicate(Arrays.asList("Andy Lau"));
         assertTrue(predicate.test(new StaffBuilder().withStaffName("Andy Lau").build()));
 
         // mixed-case keywords
-        predicate = new StaffNameContainsKeywordsPredicate("anDY");
+        predicate = new StaffNameContainsKeywordsPredicate(Collections.singletonList("anDY"));
         assertTrue(predicate.test(new StaffBuilder().withStaffName("Andy Lau").build()));
     }
 
@@ -55,15 +60,15 @@ public class StaffNameContainsKeywordsPredicateTest {
 
         // Zero keywords
         StaffNameContainsKeywordsPredicate predicate =
-                new StaffNameContainsKeywordsPredicate("");
+                new StaffNameContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new StaffBuilder().withStaffName("Andy Lau").build()));
 
         // No matching keywords
-        predicate = new StaffNameContainsKeywordsPredicate("Carlos");
+        predicate = new StaffNameContainsKeywordsPredicate(Arrays.asList("Carlos"));
         assertFalse(predicate.test(new StaffBuilder().withStaffName("Andy Lau").build()));
 
-        // Keywords matches staff title, but does not match name
-        predicate = new StaffNameContainsKeywordsPredicate("Secretary");
+        // Keywords matches staff title and department, but does not match name
+        predicate = new StaffNameContainsKeywordsPredicate(Arrays.asList("Secretary", "HR"));
         assertFalse(predicate.test(new StaffBuilder().withStaffName("Andy Lau")
                 .withStaffDepartment("HR").withStaffTitle("Secretary")
                 .withStaffContact("82572816").withStaffLeave("false").build()));
