@@ -39,16 +39,16 @@ public class AssignTaskAllCommandParser {
         Workload inputWorkload;
         Deadline inputDeadline;
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_GROUP) &&
-                arePrefixesPresent(argMultimap, PREFIX_TASK, PREFIX_WORKLOAD)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_GROUP)
+                && arePrefixesPresent(argMultimap, PREFIX_TASK, PREFIX_WORKLOAD)) {
             throw new ParseException(String.format(MESSAGE_NO_PREFIX_GROUP, AssignTaskAllCommand.MESSAGE_USAGE));
 
-        } else if (!arePrefixesPresent(argMultimap, PREFIX_TASK) &&
-                arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_WORKLOAD)) {
+        } else if (!arePrefixesPresent(argMultimap, PREFIX_TASK)
+                && arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_WORKLOAD)) {
             throw new ParseException(String.format(MESSAGE_NO_PREFIX_TASK, AssignTaskAllCommand.MESSAGE_USAGE));
 
-        } else if (!arePrefixesPresent(argMultimap, PREFIX_WORKLOAD) &&
-                arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_TASK)) {
+        } else if (!arePrefixesPresent(argMultimap, PREFIX_WORKLOAD)
+                && arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_TASK)) {
             throw new ParseException(String.format(MESSAGE_NO_PREFIX_WORKLOAD, AssignTaskAllCommand.MESSAGE_USAGE));
 
         } else if (!arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_TASK, PREFIX_WORKLOAD)) {

@@ -44,22 +44,22 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
 
         String group;
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_GROUP) &&
-                (arePrefixesPresent(argMultimap, PREFIX_TASK, PREFIX_WORKLOAD)
-                        && !argMultimap.getPreamble().isEmpty()))
+        if (!arePrefixesPresent(argMultimap, PREFIX_GROUP)
+                && (arePrefixesPresent(argMultimap, PREFIX_TASK, PREFIX_WORKLOAD)
+                        && !argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_NO_PREFIX_GROUP, AssignTaskCommand.MESSAGE_USAGE));
-        else if (!arePrefixesPresent(argMultimap, PREFIX_TASK) &&
-                (arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_WORKLOAD)
+        } else if (!arePrefixesPresent(argMultimap, PREFIX_TASK)
+                && (arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_WORKLOAD)
                         && !argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_NO_PREFIX_TASK, AssignTaskCommand.MESSAGE_USAGE));
 
-        } else if (!arePrefixesPresent(argMultimap, PREFIX_WORKLOAD) &&
-                (arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_TASK)
+        } else if (!arePrefixesPresent(argMultimap, PREFIX_WORKLOAD)
+                && (arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_TASK)
                         && !argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_NO_PREFIX_WORKLOAD, AssignTaskCommand.MESSAGE_USAGE));
 
-        } else if (argMultimap.getPreamble().isEmpty() &&
-                (arePrefixesPresent(argMultimap, PREFIX_GROUP ,PREFIX_TASK, PREFIX_WORKLOAD))) {
+        } else if (argMultimap.getPreamble().isEmpty()
+                && (arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_TASK, PREFIX_WORKLOAD))) {
             throw new ParseException(String.format(MESSAGE_EMPTY_NAME, AssignTaskCommand.MESSAGE_USAGE));
 
         } else if (!arePrefixesPresent(argMultimap, PREFIX_GROUP, PREFIX_TASK, PREFIX_WORKLOAD)) {
