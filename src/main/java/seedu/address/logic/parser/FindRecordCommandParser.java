@@ -44,7 +44,7 @@ public class FindRecordCommandParser implements Parser<FindRecordCommand> {
                 argMultimap.getValue(PREFIX_MEDICATION).orElse(PREFIX_NOT_SPECIFIED));
 
         if (noPrefixesPresent(recordKeywords, medicationKeywords, recordDate)) {
-            throw new ParseException(FindRecordCommand.MESSAGE_NOTHING_TO_FIND);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRecordCommand.MESSAGE_USAGE));
         }
 
         return new FindRecordCommand(
