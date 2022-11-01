@@ -411,7 +411,7 @@ The following activity diagram outlines what happens when a user executes the `s
 The locate gym mechanism is facilitated by `LocateGymCommand`, which extends `Command`. It overrides the
 following operation:
 
-* `LocateGymCommand#execute()`: Retrieves and displays the user's information.
+* `LocateGymCommand#execute()`: Returns a list of gyms sorted by distance.
 
 Given below is an example usage scenario and how the locate-gym mechanism behaves at each step.
 

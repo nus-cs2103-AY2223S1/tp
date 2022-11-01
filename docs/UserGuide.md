@@ -293,14 +293,14 @@ Locates and ranks the nearest gyms to user's location in NUS.
 
 Format: `locate LOCATION`
 
-Parameters: COM2 | S13 | S17 | CLB | UHC | LT1 | LT9 | AS6
+Parameters: COM2, S13, S17, CLB, UHC, LT1, LT9, AS6
 
 Example:
 
 * `locate S17` returns a list of gyms sorted from nearest to furthest from S17.
 
 :fast_forward: **Future update:**<br>
-More nus locations will be added
+More nus locations will be added.
 
 ### Suggesting a healthy-lifestyle tip: `tip`
 
