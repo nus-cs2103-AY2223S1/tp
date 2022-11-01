@@ -27,14 +27,16 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
     private OfferListPanel offerListPanel;
+    private ListingListPanel listingListPanel;
+    private MeetingListPanel meetingListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -47,6 +49,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane offerListPanelPlaceholder;
+
+    @FXML
+    private StackPane listingListPanelPlaceholder;
+
+    @FXML
+    private StackPane meetingListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -120,6 +128,12 @@ public class MainWindow extends UiPart<Stage> {
         offerListPanel = new OfferListPanel(logic.getFilteredOfferList());
         offerListPanelPlaceholder.getChildren().add(offerListPanel.getRoot());
 
+        listingListPanel = new ListingListPanel(logic.getFilteredListingList());
+        listingListPanelPlaceholder.getChildren().add(listingListPanel.getRoot());
+
+        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -177,6 +191,16 @@ public class MainWindow extends UiPart<Stage> {
     public OfferListPanel getOfferListPanel() {
         return offerListPanel;
     }
+
+    public ListingListPanel getListingListPanel() {
+        return listingListPanel;
+    }
+
+    public MeetingListPanel getMeetingListPanel() {
+        return meetingListPanel;
+    }
+
+
 
     /**
      * Executes the command and returns the result.

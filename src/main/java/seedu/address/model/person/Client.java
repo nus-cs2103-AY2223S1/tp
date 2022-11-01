@@ -3,6 +3,9 @@ package seedu.address.model.person;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.listing.Listing;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.offer.Offer;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,6 +49,21 @@ public class Client extends Person implements Comparable<Client> {
                 && otherClient.getName().equals(getName());
     }
 
+    /**
+     * Returns true if this Listing is not owned by toCheck.
+     */
+    public boolean doNotOwn(Listing toCheck) {
+        return !this.equals(toCheck.getName());
+    }
+
+    public boolean doNotHaveMeeting(Meeting toCheck) {
+        return !this.getName().equals(toCheck.getClient());
+    }
+
+    public boolean doNotHaveOffer(Offer toCheck) {
+        return !this.getName().equals(toCheck.getClient());
+    }
+
     @Override
     public int compareTo(Client o) {
         return this.getName().fullName.compareTo(o.getName().fullName);
@@ -71,4 +89,3 @@ public class Client extends Person implements Comparable<Client> {
         return builder.toString();
     }
 }
-

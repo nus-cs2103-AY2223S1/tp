@@ -63,100 +63,201 @@ REal-Time is a **desktop app for real estate agents to manage client contacts, o
 
 </div>
 
+___
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Format - `help`
 
+___
 
-### Adding a person: `add`
+### Adding a client: `addC`
 
-Adds a person to the address book.
+Adds a client to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format - `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A client can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addC n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+___
 
-Shows a list of all persons in the address book.
+### Adding a listing: `addL`
 
-Format: `list`
+Adds a listing to the address book.
 
-### Editing a person : `edit`
+Format - `addL id/ID a/ADDRESS n/OWNER_NAME ap/ASKING_PRICE [t/TAG]…​`
 
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A listing can have any number of tags (including 0)
+</div>
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `addL id/1 a/John street, block 123, #01-01 n/John Doe ap/500000 t/4_bedroom t/2_storey`
+* `addL id/abc a/Changi Prison n/Betsy Crowe ap/1 t/no_MRT_access t/dangerous_neighborhood`
 
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+___
 
 ### Adding an offer: `addO`
 
 Adds an offer to the address book.
 
-Format: `addoffer l/LISTING_ID n/NAME o/OFFER_PRICE`
-
+Format - `addoffer l/LISTING_ID n/NAME o/OFFER_PRICE`
 
 Examples:
-* `addoffer l/30_SERGARDENS_LOR23_0718 n/Bob o/600000`
+* `addO id/abc a/John Doe o/2000000`
+* `add0 id/1 a/Betsy Crowe o/20 `
+___
+
+### Adding a meeting: `addM`
+
+Adds a meeting to the address book.
+
+Format - `addM id/Listing_ID n/CLIENT_NAME d/DATE_TIME`
+
+Note: 
+* DATE_TIME must be in this format, yyyy-MM-dd HH:mm
+
+Examples:
+* `addM id/1 a/John street, block 123, #01-01 d/2022-10-20 12:00`
+* `addM id/abc a/Changi Prison d/2022-10-21 14:00`
+
+___
+
+### Editing a client : `editC`
+
+Edits an existing client in the address book.
+
+Format - `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+Note:
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+* You can remove all the client’s tags by typing `t/` without
+    specifying any tags after it.
+
+Examples:
+* `editC 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
+* `editC 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
+
+___
+
+### Editing a listing : `editL`
+
+Edits an existing listing in the address book.
+
+Format - `editL INDEX [a/ADDRESS] [n/OWNER_NAME] [ap/ASKING_PRICE] [t/TAG]…​`
+
+Examples:
+* `editL 1 a/20 Betsy Street` 
+* `editL 2 a/100 Johnny Road n/Johnny Sins ap/1000 t/fun_neighborhood` 
+
+___
 
 ### Editing an offer : `editO`
 
 Edits an existing offer in the address book.
 
-Format: `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`
+Format - `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`
 
+Examples:
+* `editO 1 o/600000` Edits the offer price of the 1st offer to be `600000`.
+* `editO 2 n/Betsy Crower o/123456` Edits the name and offer price of the 2nd offer to be `Betsy Crower` and `123456`
+  respectively.
+
+___
+
+### Editing a meeting : `editM`
+
+Edits an existing meeting in the address book.
+
+Format - `editM INDEX [n/OWNER_NAME] [d/DATE_TIME]`
+
+Examples:
+* `editM 1 n/Betsy Crowe d/2022-10-20 17:00`
+* `editM 2 n/Johnny Sins d/2022-10-22 12:00`
+
+___
+
+### Listing entries : `listC` `listL` `list0` `listM`
+
+`listC` - Shows a list of all **clients** in the address book.<br>
+`listL` - Shows a list of all **listings** in the address book.<br>
+`listO` - Shows a list of all **offers** in the address book.<br>
+`listM` - Shows a list of all **meetings** in the address book.
+
+___
+
+### Finding clients by name: `findC`
+
+Finds clients whose names contain any of the given keywords.
+
+Format - `findC KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Clients matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `findC John` returns `john` and `John Doe`
+* `findC alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+___
+
+### Finding listings by tag: `findL`
+
+Finds listings whose contain any of the given tags.
+
+Format - `findL KEYWORD [MORE_KEYWORDS]`
+
+Examples:
+* `findL 4_bedroom`
+* `findL fun_neighborhood no_MRT_access`
+
+___
+
+### Finding an offer : `[Coming soon]`
+
+___
+
+### Finding a meeting: `[Coming soon]`
+
+___
+
+### Deleting a client : `deleteC`
+
+Deletes the specified client from the address book.
+
+Format - `deleteC INDEX`
+
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listC` followed by `deleteC 2` deletes the 2nd client in the address book.
+* `findC Betsy` followed by `deleteC 1` deletes the 1st client in the results of the `findC` command.
+
+___
+
+### Deleting a listing : `deleteL`
+
+Format: `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`
 * Edits the offer at the specified `INDEX`. The index refers to the index number shown in the displayed offer list. 
 The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -164,46 +265,69 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `editO 1 o/600000` Edits the offer price of the 1st offer to be `600000`.
-* `editO 2 n/Betsy Crower o/123456` Edits the name and offer price of the 2nd offer to be `Betsy Crower` and `123456` 
-respectively.
+* `editO 2 n/Betsy Crower o/123456` Edits the name and offer price of the 2nd offer to be `Betsy Crower` and `123456`
+* respectively.
+
+Deletes the specified listing from the address book.
+
+Format - `deleteL INDEX`
+
+Examples:
+* `listL` followed by `deleteL 2` deletes the 2nd listing in the address book.
+* `findL 4_bedroom` followed by `deleteL 1` deletes the 1st listing in the results of the `findL` command.
+
+___
 
 ### Deleting an offer : `deleteO`
 
 Deletes the specified offer from the address book.
 
-Format: `deleteO INDEX`
-
-* Deletes the offer at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format - `deleteO INDEX`
 
 Examples:
-* `deleteO 2` deletes the 2nd person in the address book.
+* `deleteO 2` deletes the 2nd offer in the address book.
 
-### Finding an offer : `[Coming soon]`
+___
+
+### Deleting an meeting : `deleteM`
+
+Deletes the specified meeting from the address book.
+
+Format - `deleteM INDEX`
+
+Examples:
+* `deleteM 2` deletes the 2nd meeting in the address book.
+
+___
 
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
-Format: `clear`
+Format - `clear`
+
+___
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
-Format: `exit`
+Format - `exit`
+
+___
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+REal-Time data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+___
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+REal-Time data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, REal-Time will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
