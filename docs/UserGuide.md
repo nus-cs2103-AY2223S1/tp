@@ -228,18 +228,28 @@ You can split a debt among as many people as you want. You can even include your
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Splitting a debt is just like [adding a debt](#adding-a-debt-adddebt) to multiple people; however, here we divide the money of the debt over the people who shared it (and round up to the closest cent). Thus, similarly, You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including '++' at the back of the amount. A single '+' will add only GST instead.
 </div>
 
 
-* If you do not specify date and time, they will conveniently default to the current date and time.
-* If you specify the date but not the time, the time will default to midnight. Be careful that this default behaviour is different from the previous.
+* If you specify **neither date nor time**, the date and time will conveniently default to the current date and time.
+* If you specify **only the time but not the date**, the date will conveniently default to the current date.
+* If you specify **only the date but not the time**, the time will default to midnight.
+
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+Be very careful! The default behaviour is slightly different across the different combinations of whether you provided date and time inputs.
+</div>
+
 * One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of these items being the same.
 
 
 Examples:
-* `splitdebt 1 2 d/Pizza m/33.99 date/2022-10-12 time/13:00`
-* `splitdebt 0 2 5 d/KFC Fish m/13+ date/2022-10-12`
+* `splitdebt 1 2 d/Pizza m/33.99` will add debts with the current date and time to the 1st and 2nd person in the person list. This debt has the description `Pizza`and is worth `$33.99` in total before being divided by 2, over the 1st person and the 2nd person. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$17.00`.
+* `splitdebt 0 2 5 d/KFC chicken bucket m/30+ date/2022-10-12` will add debts with `2022-10-12` and with the default `00:00` as the date and time respectively to **both** the 2nd person and 5th person. These debts will be recorded with the description `KFC chicken bucket` and require GST to be added to an initial total price of `$30` before dividing the costs by 3, over yourself, the 2nd person and the 5th person. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$10.70`.
 
 ### Clearing debts: `cleardebts`
 
@@ -248,8 +258,13 @@ You can use this command to delete all of a person’s debts and your relationsh
 
 Format: `cleardebts <person index>`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
+</div>
+
+
 Example:
-* `cleardebts 3`
+* `cleardebts 3` will delete all the debts, paid or unpaid, from the 3rd person in the current person list.
 
 ### Marking debts as paid: `mark`
 
@@ -276,8 +291,12 @@ This command will help you fully remove debts from people in PayMeLah, so that t
 
 Format: `deletedebt <person index> debt/<debt index…>`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
+</div>
+
 Example:
-* `deletedebt 2 debt/2 3`
+* `deletedebt 2 debt/2 3` will delete the 2nd and third debts displayed in the debt list of the 2nd person in the person list displayed.
 
 ### Getting the statement: `statement`
 
