@@ -52,23 +52,23 @@ public class StudentTest {
     @Test
     public void isValidGrade() {
         // null grade
-        assertThrows(NullPointerException.class, () -> Assignment.isValidGrade(null));
+        assertThrows(NullPointerException.class, () -> Assignment.isValidInputGrade(null));
 
         // invalid grade
-        assertFalse(Assignment.isValidGrade("")); // empty string
-        assertFalse(Assignment.isValidGrade(" ")); // spaces only
-        assertFalse(Assignment.isValidGrade("123")); // less than 3 numbers
-        assertFalse(Assignment.isValidGrade("abc")); // non-numeric
-        assertFalse(Assignment.isValidGrade("/ ")); // lack of numbers
-        assertFalse(Assignment.isValidGrade("9312/")); // lack of numbers
-        assertFalse(Assignment.isValidGrade("/12")); // lack of numbers
-        assertFalse(Assignment.isValidGrade("13/12")); // first number is bigger than the second
-        assertFalse(Assignment.isValidGrade("101/120")); // numbers are more than 100
+        assertFalse(Assignment.isValidInputGrade("")); // empty string
+        assertFalse(Assignment.isValidInputGrade(" ")); // spaces only
+        assertFalse(Assignment.isValidInputGrade("123")); // less than 3 numbers
+        assertFalse(Assignment.isValidWeightage("abc")); // non-numeric
+        assertFalse(Assignment.isValidInputGrade("/ ")); // lack of numbers
+        assertFalse(Assignment.isValidWeightage("9312/")); // lack of numbers
+        assertFalse(Assignment.isValidInputGrade("/12")); // lack of numbers
+        assertFalse(Assignment.isValidWeightage("13/12")); // first number is bigger than the second
+        assertFalse(Assignment.isValidInputGrade("101/120")); // numbers are more than 100
 
         // valid grade
-        assertTrue(Assignment.isValidGrade("1/2"));
-        assertTrue(Assignment.isValidGrade("0/100"));
-        assertTrue(Assignment.isValidGrade("100/100"));
+        assertTrue(Assignment.isValidInputGrade("1/2"));
+        assertTrue(Assignment.isValidInputGrade("0/100"));
+        assertTrue(Assignment.isValidInputGrade("100/100"));
     }
 
     @Test

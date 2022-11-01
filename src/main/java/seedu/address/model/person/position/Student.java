@@ -1,6 +1,7 @@
 package seedu.address.model.person.position;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.model.person.Assignment.WEIGHTAGE_CONSTRAINTS;
 import static seedu.address.model.person.Assignment.WEIGHTAGE_VALIDATION_REGEX;
 
@@ -275,9 +276,9 @@ public class Student extends Position {
     }
 
     private void setAssignmentGrade(Index indexOfAssignment, String grade) throws CommandException {
-        if (!isValidAssignmentIndex(indexOfAssignment)) {
-            throw new CommandException(MESSAGE_ASSIGNMENT_INVALID);
-        }
+        checkArgument(isValidAssignmentIndex(indexOfAssignment), MESSAGE_ASSIGNMENT_INVALID);
+        checkArgument(Assignment.isValidInputGrade(grade), Assignment.GRADE_CONSTRAINTS);
+
         Assignment assignmentToEdit = assignmentsList.get(indexOfAssignment.getZeroBased());
         assignmentToEdit.setGrade(grade);
     }
