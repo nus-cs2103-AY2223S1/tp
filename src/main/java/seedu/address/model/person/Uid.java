@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -26,6 +28,7 @@ public class Uid implements Comparable<Uid> {
      * @param uid
      */
     public Uid(String uid) {
+        requireNonNull(uid);
         long parsedUid = Long.parseLong(uid);
         this.uid = parsedUid;
         NEXT_UID.set(parsedUid + 1);
@@ -37,6 +40,7 @@ public class Uid implements Comparable<Uid> {
      * @param uid
      */
     public Uid(Long uid) {
+        requireNonNull(uid);
         this.uid = uid;
         NEXT_UID.set(uid + 1);
     }
@@ -52,6 +56,7 @@ public class Uid implements Comparable<Uid> {
      * Returns true if a given string is a valid id.
      */
     public static boolean isValidUid(String test) {
+        requireNonNull(test);
         try {
             Long parsedUid = Long.parseLong(test);
             return test.matches(VALIDATION_REGEX) && parsedUid < 99998L;
