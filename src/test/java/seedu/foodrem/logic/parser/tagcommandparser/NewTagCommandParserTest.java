@@ -16,11 +16,10 @@ import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 
 public class NewTagCommandParserTest {
-    private final NewTagCommandParser parser = new NewTagCommandParser();
-    private final int MAX_LENGTH = 20;
-    private final String EXCEED_MAX_CHARS_MESSAGE_CONSTRAINTS =
+    private static final int MAX_LENGTH = 20;
+    private static final String EXCEED_MAX_CHARS_MESSAGE_CONSTRAINTS =
             String.format("The tag name should not exceed %d characters", MAX_LENGTH);
-
+    private final NewTagCommandParser parser = new NewTagCommandParser();
     @Test
     public void parse_tags_success() {
         Tag fruitTag = new TagBuilder(FRUITS).build();
