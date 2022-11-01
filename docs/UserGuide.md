@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-## **Mass Linkers**
+## **About Mass Linkers**
 Mass Linkers is a powerful Desktop application tool that helps **Computer Science (CS) students** find study support from batchmates, making it easier to form study groups and look for module-related guidance. 
 
 It provides a **centralised** platform for CS students to 
@@ -23,6 +23,9 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 
 **:warning:**: __warning__ as the command can create drastic changes to the existing App data
 
+--------------------------------------------------------------------------------------------------------------------
+
+## **Table of contents**
 * Table of Contents
 {:toc}
 
@@ -88,8 +91,8 @@ We advise users to follow the User Guide sequentially as it provides a natural f
   
 </div>
 
-### Batchmate commands
-#### Add a batchmate: `add`
+### A. Batchmate commands
+#### 1. Add a batchmate: `add`
 
 Adds a batchmate to the list of batchmates in the _Students panel_.
 
@@ -104,7 +107,7 @@ __Examples:__
 * `add n/John Doe t/johnxyz g/johndoe p/98765432 e/johnd@example.com i/ai i/swe` adds a batchmate named `John Doe` with telegram handle `johnxyz`, github username `johndoe`, phone number `98765432`, email address `johnd@example.com` and interests in `ai` and `swe` to the list.
 * `add n/John Doe t/johnxyz m/cs2103t m/cs2101` adds a batchmate named `John Doe` with telegram handle `johnxyz` and modules `cs2103t` and `cs2101` to the list.
 
-#### Edit a batchmate: `edit`
+#### 2. Edit a batchmate: `edit`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To edit a module, simply delete that module using [__mod delete__](#delete-module-from-a-batchmate-mod-delete) and add the new module using [__mod add__](#add-module-to-a-batchmate-mod-add).
@@ -124,7 +127,7 @@ __Examples:__
 * `edit 1 g/johndoe p/91234567 e/johndoe@example.com` edits the github username, phone number and email address of the 1st batchmate in the currently displayed list to be `johndoe`, `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Bob Tan i/` edits the name of the 2nd batchmate in the currently displayed list to be `Bob Tan` and clears all existing interests.
 
-#### Delete a batchmate: `delete`
+#### 3. Delete a batchmate: `delete`
 
 Deletes a specified batchmate from the _Students panel_.
 
@@ -136,7 +139,7 @@ __Examples:__
 * `list` followed by `delete 2` deletes the 2nd batchmate in the full list of batchmates you have in Mass Linkers.
 * `find Betsy` followed by `delete 1` deletes the 1st batchmate in the currently displayed list of the `find` command.
 
-#### Find a batchmate: `find`
+#### 4. Find a batchmate: `find`
 
 Finds batchmates whose details contain __any__ of the given keywords.
 
@@ -158,15 +161,15 @@ __Examples:__
 * When you want to search using `PHONE`:
   * `find 999` returns the batchmates with phone number `69998888`, `89991234` or `99912345`.
 
-#### List all batchmates: `list`
+#### 5. List all batchmates: `list`
 
 Shows a list of all batchmates in the _Students panel_.
 
 __Format:__ `list`
 
-### Interest commands
+### B. Interest commands
 
-#### Add interests: `addInt`
+#### 1. Add interests: `addInt`
 
 Adds interest(s) to a specified batchmate in the _Students panel_.
 
@@ -179,7 +182,7 @@ __Examples:__
 * `addInt 1 algo` adds the interest `algo` to the 1st batchmate in the currently displayed list.
 * `addInt 3 database swe machinelearning` adds the interests `database`, `swe` and `machinelearning` to the 3rd batchmate in the currently displayed list.
 
-#### Delete interests: `deleteInt`
+#### 2. Delete interests: `deleteInt`
 
 Delete interest(s) from a specified batchmate in the _Students panel_.
 
@@ -191,7 +194,7 @@ __Examples:__
 * `deleteInt 1 ai` deletes the interest `ai` from the 1st batchmate in the currently displayed list.
 * `deleteInt 3 ai swe` deletes the interests `ai` and `swe` from the 3rd batchmate in the currently displayed list.
 
-#### Find batchmates by interests: `findInt`
+#### 3. Find batchmates by interests: `findInt`
 
 Finds batchmates whose interests contain __all__ the specified interests.
 
@@ -204,7 +207,7 @@ __Examples:__
 * `findInt ai` returns all batchmates whose interests contain `ai`.
 * `findInt swe security` returns all batchmates whose interests contain both `swe` and `security`.
 
-### Module commands
+### C. Module commands
 <div markdown="block" class="alert alert-info">:information_source: **Note:**
 Commands used to manage a batchmate's personal information in [Batchmate commands](#batchmate-commands) and [Interest commands](#interest-commands) follow the 1 command word syntax. E.g., `add`, `addInt`.
 Whereas, commands that manage a module detail in [Module commands](#module-commands) can have multiple command words preceded by the `mod` keyword. E.g., `mod add`, `mod mark all`, `mod find taken`.
@@ -213,7 +216,7 @@ This is to facilitate easy distinction between the nature of commands.
 
 </div>
 
-#### View a batchmate's modules
+#### 1. View a batchmate's modules
 Views the list of modules taken by a batchmate in the Modules panel.
 
 Left-click the row with the batchmate's name in the Students panel.
@@ -226,7 +229,7 @@ This is the GUI when Mass Linkers is opened.
 This is the GUI after you left-click the 1st batchmate in the Students panel. The 1st row turns blue and the Modules panel displays all the modules of the 1st batchmate.
 ![UgViewModAfter](images/UgViewModAfter.png)
 
-#### Add module to a batchmate: `mod add`
+#### 2. Add module to a batchmate: `mod add`
 
 Adds module(s) to a specified batchmate in the _Modules panel_.
 
@@ -245,7 +248,7 @@ This is the GUI before `mod add 1 ma1521` is executed.
 This is the GUI after you press Enter to execute the command. The module `ma1521` is successfully added to the 1st batchmate and automatically categorised as `Mathematics`.
 ![UgModAddAfter](images/UgModAddAfter.png)
 
-#### Delete module from a batchmate: `mod delete`
+#### 3. Delete module from a batchmate: `mod delete`
 
 Deletes module(s) from a specified batchmate in the _Modules panel_.
 
@@ -257,7 +260,7 @@ __Examples:__
 * `mod delete 1 cs2103t` deletes the module `CS2103T` from the 1st batchmate in the currently displayed list.
 * `mod delete 3 cs2100 cs2103t cs2101 cs2105` deletes the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` from the 3rd batchmate in the currently displayed list.
 
-#### Mark module as taken: `mod mark`
+#### 4. Mark module as taken: `mod mark`
 
 Marks module(s) of a specified batchmate as `taken` in the _Modules panel_, which means the batchmate has taken the module(s) before.
 
@@ -275,7 +278,7 @@ This is the GUI before `mod mark 3 cs2100 cs2103t cs2101 cs2105` is executed. Th
 This is the GUI after you press Enter to execute the command. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` are successfully marked as `taken`.
 ![UgModMarkAfter](images/UgModMarkAfter.png)
 
-#### Unmark module as not taken: `mod unmark`
+#### 5. Unmark module as not taken: `mod unmark`
 
 Unmarks module(s) of a specified batchmate and updates the status as `taking` in the _Modules panel_, which means the batchmate is currently taking the module(s).
 
@@ -287,7 +290,7 @@ __Examples:__
 * `mod unmark 1 cs2103t` unmarks the module `CS2103T` of the 1st batchmate in the currently displayed list as `not taken`.
 * `mod unmark 3 cs2100 cs2103t cs2101 cs2105` unmarks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `not taken`.
 
-#### Mark all modules as taken: `mod mark all`
+#### 6. Mark all modules as taken: `mod mark all`
 <div markdown="span" class="alert alert-warning">:warning: **Warning:** The __mod mark all__ command is irreversible. Only execute it if you intend to mark all existing modules for all batchmates as taken. 
  </div>
  
@@ -295,7 +298,7 @@ Marks all current modules of every batchmate in Mass Linkers as `taken` in the _
 
 __Format:__ `mod mark all`
 
-#### Find batchmates taking specified modules: `mod find`
+#### 7. Find batchmates taking specified modules: `mod find`
 
 Finds batchmates with modules matching __all__ the specified modules.
 
@@ -308,7 +311,7 @@ __Examples:__
 * `mod find cs2100` returns batchmates with the module `CS2100`.
 * `mod find cs2101 cs2103t` returns batchmates with both modules `CS2101` and `CS2103T`.
 
-#### Find modules taken or taking: `mod find taken` or `mod find taking`
+#### 8. Find modules taken or taking: `mod find taken` or `mod find taking`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 This is an <i>extension</i> of [__mod find__](#find-batchmates-taking-specified-modules-mod-find). The rules listed above for [__mod find__](#find-batchmates-taking-specified-modules-mod-find) apply to this feature too.
 </div>
@@ -324,28 +327,28 @@ __Examples:__
 * `mod find taking cs2101 cs2103t` returns batchmates who are taking both `CS2101` and `CS2103T`.
 
 
-### General commands
+### D. General commands
 
-#### View help: `help`
+#### 1. View help: `help`
 
 Shows a brief summary of commands with their syntax and a link to the user guide. You can also click the `Open User Guide` button which will redirect you to the user guide in your browser.
 
 __Format:__ `help`
 
-#### Clear all data: `clear`
+#### 2. Clear all data: `clear`
 <div markdown="span" class="alert alert-warning">:warning: **Warning:** The __clear__ command is irreversible. Only execute it if you intend to clear all existing data. 
  </div>
 Clears all existing data in Mass Linkers. 
 
 __Format:__ `clear`
 
-#### Exit the program : `exit`
+#### 3. Exit the program : `exit`
 
 Exits Mass Linkers.
 
 __Format:__ `exit`
 
-#### Save the data
+#### 4. Save the data
 
 Data in Mass Linkers is saved in the hard disk automatically after executing any command that changes the data. There is no need to save manually.
 
