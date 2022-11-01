@@ -44,7 +44,7 @@ Here are the symbols and text styles to look out for while using this guide:
 | <kbd>Esc</kbd>             | Keyboard button                                      |
 
 
-## Table Of Contents
+## Table of Contents
 
 * Table of Contents
 {:toc}
@@ -79,6 +79,8 @@ means switching from GUI-based applications to CLI code editors.
 Hence, TruthTable allows you to use a **CLI for all your project management needs**, reducing the impact of context 
 switching.
 
+[Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## Getting Started
@@ -97,6 +99,8 @@ appear in a few seconds. We have also added some sample data for you to play aro
    TruthTable's [features](#features)! ![Ui](images/Ui.png)
 
 4. Before we dive into TruthTable's features, make sure you understand how to [navigate the application](#navigating-truthtables-application-interface) first.
+
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -155,6 +159,8 @@ typing `help` in the input box and press <kbd>Enter</kbd> to see what happens!
 
 Above the input box, you will see the output of the latest command that you have entered. In the case of `help`, you 
 will see all the available commands in TruthTable that you can execute.
+
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -605,6 +611,8 @@ data file on the next run.
 
 _Details coming soon ..._
 
+[Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## FAQ
@@ -612,6 +620,8 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous TruthTable home folder.
+
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -622,6 +632,8 @@ the data of your previous TruthTable home folder.
 | TBC    | TBC              |
 | TBC    | TBC              |
 
+[Back to Table of Contents](#table-of-contents)
+
 ## Glossary
 
 | Term      | Meaning |
@@ -630,3 +642,6 @@ the data of your previous TruthTable home folder.
 | Parameter |         |
 | Index     |         |
 |           |         |
+
+[Back to Table of Contents](#table-of-contents)
+
