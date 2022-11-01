@@ -18,7 +18,7 @@ public class Name implements DeepCopyable {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^([0-9]*[a-zA-Z]+){1,}(([0-9]*[a-zA-Z ]+){1,})*$";
 
     public final String fullName;
 
