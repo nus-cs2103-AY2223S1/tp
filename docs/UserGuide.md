@@ -56,7 +56,7 @@ title: InterNUS User Guide
 
 Welcome to the InterNUS user guide!
 
-InterNUS is a convenient and powerful desktop app for **managing internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It has a sleek design to track your internship status at one glance. 
+InterNUS is a convenient and powerful desktop app for NUS CS students to **manage internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It has a sleek design to track your internship status at one glance. 
 
 Having troubles finding who to contact for your various internship applications? Don’t worry! InterNUS also allows you to manage contact person during your applications. After your internship, InterNUS can still be used to manage your work contact list!
 
@@ -75,9 +75,8 @@ Track the internships you're interested in and all the relevant information -- t
 --------------------------------------------------------------------------------------------------------------------
 # 2. How to use this User Guide?
 
-1. For new users, proceed to our [Quick start](#3-quick-start). 
-
-1. For returning users, skip to our [Command summary](#6-command-summary) for a summary of our feature.
+We have created this user manual for new users who want to use our app and returning users who need reference to the command summary. 
+For new users you can proceed to our [Quick start](#3-quick-start) while returning users can skip to our [Command summary](#6-command-summary).
 
 
 ## 2.1. Icons and symbols
@@ -130,18 +129,25 @@ The UI component description:
 --------------------------------------------------------------------------------------------------------------------
 # 3. Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
-1. Download the latest `InterNUS.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-1/tp/releases).
+2. Download the latest `InterNUS.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your app.
+3. Copy the file to the folder which you want to use as the _home folder_ for your app.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the jar file to open the app. If the app does not respond, open your terminal in the current folder where `InterNUS.jar` is located and enter `java -jar InterNUS.jar` to open the app.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. The screen should appear in a few seconds when the app first launches as shown in the figure below. Note how the app contains some sample data.
 
-1. Refer to the [Features](#features) below for details of each command.
+|     ![Ui](images/Ui.png)      |
+|:-----------------------------:|
+| InterNUS GUI with sample data |
+
+   
+
+7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+
+8. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -151,8 +157,8 @@ The UI component description:
 
 ### 4.1.1. Adding a person: `add -p`
 
-Adds a person to InterNUS. This person refers to the contact person you want to save. 
-During internship application this person could be the hiring manager. 
+Adds a contact person to InterNUS.
+During internship application, this person could be the hiring manager. 
 After the application, this person could be the senior engineer who you want to keep contact at work.
 
 Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c/[COMPANY]`
@@ -168,8 +174,10 @@ A person is only considered duplicated if the name is exactly the same including
 </div>
 
 Examples:
-* `add -p n/John Doe e/johnd@example.com p/98765432 l/1 c/Meta`
-* `add -p n/Betsy Crowe t/friend e/betsycrowe@example.com`
+* `add -p` followed by `n/John Doe e/johnd@example.com p/98765432 l/1 c/Meta` 
+Adds the name, email, phone number and company and link to the internship with index **1**.
+* `add -p` followed `n/Betsy Crowe t/friend e/betsycrowe@example.com`
+Adds the name, tags and email.
 
 ### 4.1.2. Adding an internship: `add -i`
 
@@ -399,11 +407,16 @@ Click on the Color Theme button in the Menu Bar to display a dropdown list to se
 
 ### 4.9.1 Dark Mode
 
-![Ui](images/darktheme.png)
+|     ![Ui](images/darktheme.png)     |
+|:-----------------------------------:|
+| InterNUS dark mode with sample data |
+
 
 ### 4.9.2 Light Mode
 
-![Ui](images/lightheme.png)
+|     ![Ui](images/lightheme.png)      |
+|:------------------------------------:|
+| InterNUS light mode with sample data |
 
 ## 4.10. Data files
 
@@ -424,7 +437,7 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 
 ## 5. FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InterNUS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
