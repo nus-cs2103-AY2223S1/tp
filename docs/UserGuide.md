@@ -13,12 +13,12 @@ It provides a **centralised** platform for you to
 - search for batchmates with common interests or who are taking similar modules as you **conveniently**.
 
 A fast typer? Mass Linkers is made just for you.
-It is optimised for use via a **Command Line Interface (CLI)** while still having the benefits of providing an aesthetic **Graphical User Interface (GUI)**.
+It is optimised for use via a **Command Line Interface (CLI)** while still having the benefits of an aesthetic **Graphical User Interface (GUI)**.
 
 ## **Using the User Guide**
 In this *User Guide*, we will take you through the many useful features and functions of Mass Linkers, and provide you crucial information on how the different commands are used.
 
-Feeling lost as a first-time user? We advise you to follow the User Guide sequentially, starting from [Quick start](#quick-start), as it provides a natural flow of how the commands should be executed.
+Feeling lost as a first-time user? We advise you to follow the User Guide sequentially, starting from [Quick start](#getting-started), as it provides a natural flow of how the commands should be executed.
 
 If you are more familiar with CLI or Mass Linkers, head over to the [Command Summary](#command-summary) to start using the app.
 
@@ -195,7 +195,9 @@ __Format:__ `list`
 ### B. Interest commands
 Interest commands handle the management of a batchmate's list of interests, such as addition of interests, deletion of interests and searching batchmates with specified interests.
 
-<div markdown="block" class="alert alert-info">:information_source: **What are considered interests:**
+<div markdown="block" class="alert alert-info">
+
+**:information_source: What are considered interests:**<br>
 Interests can include batchmates' hobbies such as games, CS specialisations, etc.
 </div>
 
