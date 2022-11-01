@@ -12,6 +12,7 @@ import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.MedicalTest;
 import seedu.address.model.appointment.Slot;
 import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
 
 /**
  * Finds and lists all appointments according to the prefix input(s) by the user.
@@ -33,6 +34,10 @@ public class FindAppointmentCommand extends Command {
             + "Example: " + COMMAND_WORD + " n/alice t/x-ray s/2022 d/Dr Tan";
 
     private final Predicate<Appointment> predicate;
+    private Optional<Predicate<Name>> namePredicate = null;
+    private Optional<Predicate<MedicalTest>> medicalTestPredicate = null;
+    private Optional<Predicate<Slot>> slotPredicate = null;
+    private Optional<Predicate<Doctor>> doctorPredicate = null;
 
     /**
      * Creates a FindAppointmentCommand to find appointment(s) according to the prefix input(s).
@@ -44,6 +49,10 @@ public class FindAppointmentCommand extends Command {
      */
     public FindAppointmentCommand(Optional<Predicate<Name>> namePredicate, Optional<Predicate<MedicalTest>>
             testPredicate, Optional<Predicate<Slot>> slotPredicate, Optional<Predicate<Doctor>> doctorPredicate) {
+        this.namePredicate = namePredicate;
+        this.medicalTestPredicate = testPredicate;
+        this.slotPredicate = slotPredicate;
+        this.doctorPredicate = doctorPredicate;
         this.predicate = appointment -> namePredicate.orElse(x -> true).test(appointment.getName())
                 && testPredicate.orElse(x -> true).test(appointment.getMedicalTest())
                 && slotPredicate.orElse(x -> true).test(appointment.getSlot())
@@ -63,6 +72,13 @@ public class FindAppointmentCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindAppointmentCommand // instanceof handles nulls
-                && predicate.equals(((FindAppointmentCommand) other).predicate)); // state check
+                && namePredicate.equals(((FindAppointmentCommand) other).namePredicate)
+                && medicalTestPredicate.equals(((FindAppointmentCommand) other).medicalTestPredicate)
+                && slotPredicate.equals(((FindAppointmentCommand) other).slotPredicate)
+                && doctorPredicate.equals(((FindAppointmentCommand) other).doctorPredicate)); // state check
+    }
+
+    public Predicate<Appointment> getPredicate() {
+        return predicate;
     }
 }
