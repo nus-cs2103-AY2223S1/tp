@@ -494,23 +494,27 @@ more efficient than alternative 2.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                      | I want to …​                                           | So that I can…​                                                               |
-|----------|------------------------------|--------------------------------------------------------|-------------------------------------------------------------------------------|
-| `* * *`  | starting user                | view a help screen                                     | understand how this application works                                         |
-| `* * *`  | user                         | search idENTify                                        | find specific patients and information faster                                 |
-| `* * *`  | user                         | add a contact of the patient                           | keep track of the patient's contact details                                   |
-| `* * *`  | user                         | delete a contact of the patient                        | remove the patient from my contacts when no longer needed                     |
-| `* * *`  | user                         | book an appointment for the patient                    | schedule the patient to meet the doctor                                       |
-| `* * *`  | user                         | cancel an appointment for the patient                  | ensure that the appointment schedule is updated and accurate                  |
-| `* * *`  | user                         | save the data of my contacts when I exit the app       | not lose the contacts when I open the app again                               |
-| `* * *`  | user                         | mark an appointment as done                            | know that the patient has already visited                                     |
-| `* *`    | user                         | edit information about a patient                       | merge and keep his information up to date                                     |
-| `* *`    | clumsy user                  | edit an existing appointment                           | fix my error in setting their appointment details                             |
-| `* *`    | clumsy user                  | unmark an appointment as done                          | change my appointment state without deleting and adding the appointment again |
-| `*`      | user                         | have my patients sorted by their names                 | look up their information more quickly                                        |
-| `*`      | user                         | have my appointments sorted by their datetime          | arrange appintments more efficiently                                          |
-| `*`      | user                         | have my patients grouped by their tags                 | check patients' problems more easily                                          |
-| `*`      | user                         | have my appointments grouped by their patients or tags | check and arrange appointments in one go                                      |
+| Priority | As a …​           | I want to …​                                     | So that I can…​                                                               |
+|----------|-------------------|--------------------------------------------------|-------------------------------------------------------------------------------|
+| `* * *`  | starting user     | view a help screen                               | understand how this application works                                         |
+| `* * *`  | user              | search some patients by keywords                 | find specific patients and information faster                                 |
+| `* * *`  | user              | search some appointment by keywords              | find specific appointments and information faster                             |
+| `* * *`  | user              | add a contact of the patient                     | keep track of the patient's contact details                                   |
+| `* * *`  | user              | delete a contact of the patient                  | remove the patient from my contacts when no longer needed                     |
+| `* * *`  | user              | book an appointment for the patient              | schedule the patient to meet the doctor                                       |
+| `* * *`  | user              | cancel an appointment for the patient            | ensure that the appointment schedule is updated and accurate                  |
+| `* * *`  | user              | save the data of my contacts when I exit the app | not lose the contacts when I open the app again                               |
+| `* * *`  | user              | mark an appointment as done                      | know that the patient has already visited                                     |
+| `* *`    | user              | edit information about a patient                 | merge and keep his information up to date                                     |
+| `* *`    | clumsy user       | edit an existing appointment                     | fix my error in setting their appointment details                             |
+| `* *`    | clumsy user       | unmark an appointment as not done                | change my appointment state without deleting and adding the appointment again |
+| `*`      | user              | sort my patients by their names                  | look up their information faster                                              |
+| `*`      | user              | sort my appointments by their datetime           | arrange appointments more efficiently                                         |
+| `*`      | user              | group my patients by their tags                  | check patients' problems more easily                                          |
+| `*`      | user              | group my appointments by some keys               | view and arrange appointments in one go                                       |
+| `*`      | user              | hide my patients by some conditions              | concentrate on other patients not satisfying the conditions                   |
+| `*`      | user              | hide my appointments by some conditions          | deal with appointments that do not satisfy the conditions better              |
+| `*`      | lazy user         | view my previous commands                        | avoid repeating to input the same or similar commands                         |
 
 *{More to be added}*
 
