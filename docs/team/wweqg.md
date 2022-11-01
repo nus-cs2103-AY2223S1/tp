@@ -39,7 +39,7 @@ Given below are my contributions to the project.
         * Updated the UML diagram for storage package.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#211](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/211)
+    * PRs reviewed (with non-trivial review comments): [\#211](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/211) [\#305](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/305)
     * Reported bugs and suggestions for other teams in the class (examples: [\#9](https://github.com/wweqg/ped/issues/9), [\#10](https://github.com/wweqg/ped/issues/10), [\#11](https://github.com/wweqg/ped/issues/11),  [\#12](https://github.com/wweqg/ped/issues/12).)
 
 * **Tools**:
