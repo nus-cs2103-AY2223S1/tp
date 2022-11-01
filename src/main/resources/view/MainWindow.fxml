@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Class-ify" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="800" onCloseRequest="#handleExit" title="Class-ify" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/Class-ify.png" />
   </icons>
@@ -41,7 +41,7 @@
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
 
-          <StackPane fx:id="resultDisplayPlaceholder" minWidth="200" prefWidth="200" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+          <StackPane fx:id="resultDisplayPlaceholder" minWidth="400" prefWidth="400" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
             <padding>
               <Insets bottom="5" left="10" right="10" top="5" />
             </padding>
