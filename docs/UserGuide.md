@@ -31,6 +31,15 @@ Gim uses a Command Line Interface (CLI), which may be new to some users. If you 
 * Refer to our [Command Summary](#8-command-summary) to have a quick overview of the different commands and their respective formats.
 * Refer to our [Glossary of Terminologies](#9-glossary-of-terminologies) to learn key terms that are used in this User Guide.
 
+### 2.1 Useful Notations
+While exploring Gim's features with this user guide, do take note of these symbols used in the user guide and what they represent.
+
+|        Symbol        | Meaning               |
+|:--------------------:|-----------------------|
+| :information_source: | Important information |
+|    :exclamation:     | Warning or Caution    |
+|        :bulb:        | Tips                  |
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -39,7 +48,7 @@ Gim uses a Command Line Interface (CLI), which may be new to some users. If you 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `gim.jar` from [here](https://github.com/AY2223S1-CS2103T-T15-4/tp/releases).
+2. Download the latest `gim.jar` [here](https://github.com/AY2223S1-CS2103T-T15-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Gim.
 
@@ -125,7 +134,7 @@ However, the first time you add an exercise with an unrecognised name, the Recog
 
 ### 5.1. Adding an exercise: `:add`
 
-Adds an exercise that we have done for the day. If an exercise (identified by their names) is added for the first time, it is automatically registered as a new unique exercise. 
+Adds an exercise that we have done for the day. If an exercise (identified by their names) is added for the first time, it is automatically registered as a new unique exercise.
 
 Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 
