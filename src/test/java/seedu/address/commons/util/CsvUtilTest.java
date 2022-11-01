@@ -44,7 +44,7 @@ class CsvUtilTest {
         }
     }
     @Test
-    public void importCsv_validProfessorDetailsOfficeHour_returnsProfessor() {
+    public void importCsv_validProfessorDetailsOfficeHourOptional_returnsProfessor() {
         try {
             Professor professor = (Professor) CsvUtil.importCsv(VALID_PROFESSOR_OFFICE_HOUR_IMPORT_FILE
                     .toFile()).get(0);
