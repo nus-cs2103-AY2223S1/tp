@@ -23,7 +23,15 @@ public class NameSoundsSimilarToPredicate implements Predicate<Customer> {
     );
     private final List<String> keywords;
 
+    /**
+     * Constructor for this class
+     * @param keywords
+     */
     public NameSoundsSimilarToPredicate(List<String> keywords) {
+        assert keywords != null;
+        if (keywords == null) {
+            throw new RuntimeException("Keyword list cannot be null");
+        }
         this.keywords = keywords;
     }
 
@@ -152,8 +160,8 @@ public class NameSoundsSimilarToPredicate implements Predicate<Customer> {
                 || (other instanceof seedu.boba.model.customer
                 .NameSoundsSimilarToPredicate // instanceof handles nulls
                 && keywords.equals((
-                        (seedu.boba.model.customer.NameSoundsSimilarToPredicate) other).keywords
-                )); // state check
+                (seedu.boba.model.customer.NameSoundsSimilarToPredicate) other).keywords
+        )); // state check
     }
 
 }
