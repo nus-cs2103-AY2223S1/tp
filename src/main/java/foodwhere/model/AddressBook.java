@@ -122,6 +122,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The stall must not already exist in the address book.
      */
     public void addStall(Stall p) {
+        requireNonNull(p);
         stalls.add(p);
         refreshReviews();
     }

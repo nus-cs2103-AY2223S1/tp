@@ -317,7 +317,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void equals() {
+    public void equals_notEqualCases_isCorrect() {
         AddressBook addressBook = new AddressBookBuilder().withStall(ALICE).withStall(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();

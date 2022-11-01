@@ -143,7 +143,7 @@ public class VersionTest {
     }
 
     @Test
-    public void equals() {
+    public void equals_notEqualCases_isCorrect() {
         Version one = new Version(0, 0, 0, false);
         Version another = new Version(100, 191, 275, true);
 

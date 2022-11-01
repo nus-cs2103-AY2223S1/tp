@@ -42,7 +42,7 @@ public class AppParametersTest {
     }
 
     @Test
-    public void equals() {
+    public void equals_notEqualCases_isCorrect() {
         AppParameters appParameters = AppParameters.parse(parametersStub);
 
         // same object itself -> equals return true

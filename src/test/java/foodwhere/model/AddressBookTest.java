@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import foodwhere.model.review.exceptions.DuplicateReviewException;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.model.review.Review;
@@ -105,8 +106,8 @@ public class AddressBookTest {
     @Test
     public void addStallAddReview_generalTesting_success() {
         String testName = "test stall";
-        Stall testStall = new StallBuilder().withName(testName).build();
-        Review testReview = new ReviewBuilder().withName(testName).build();
+        Stall testStall = new StallBuilder().withName(testName).withAddress(StallBuilder.DEFAULT_ADDRESS).build();
+        Review testReview = new ReviewBuilder().withName(testName).withAddress(StallBuilder.DEFAULT_ADDRESS).build();
         addressBook.addStall(testStall);
         addressBook.addReview(testReview);
         Set<Review> reviews = addressBook.getStallList().get(0).getReviews();
@@ -114,6 +115,43 @@ public class AddressBookTest {
         for (Review review : reviews) {
             assertEquals(testReview, review);
         }
+    }
+
+    @Test
+    public void addStallAddReview_errorConditions_success() {
+        String testName = "test stall";
+        Stall testStall = new StallBuilder().withName(testName).withAddress(StallBuilder.DEFAULT_ADDRESS).build();
+        Review testReview = new ReviewBuilder().withName(testName).withAddress(StallBuilder.DEFAULT_ADDRESS).build();
+        addressBook.addStall(testStall);
+        addressBook.addReview(testReview);
+
+        // duplicate stalls -> throw DuplicateStallException
+        Stall duplicateStall = new StallBuilder(testStall).build();
+        assertThrows(DuplicateStallException.class, () -> addressBook.addStall(duplicateStall));
+
+        // not same stalls -> success
+        Stall stallWDifferentAdd = new StallBuilder(testStall).withAddress("Edited").build();
+        assertFalse(addressBook.hasStall(stallWDifferentAdd));
+
+        addressBook.addStall(stallWDifferentAdd);
+        assertTrue(addressBook.hasStall(stallWDifferentAdd));
+
+        // duplicate reviews -> throw DuplicateReviewException
+        Review duplicateReview = new ReviewBuilder(testReview).build();
+        assertTrue(addressBook.hasReview(duplicateReview));
+
+        assertThrows(DuplicateReviewException.class, () -> addressBook.addReview(duplicateReview));
+
+        // not same review -> success
+        Review reviewWDifferentContent = new ReviewBuilder(testReview).withContent("Edited").build();
+        assertFalse(addressBook.hasReview(reviewWDifferentContent));
+
+        addressBook.addReview(reviewWDifferentContent);
+        assertTrue(addressBook.hasReview(reviewWDifferentContent));
+
+        // null -> throw NullPointerException
+        assertThrows(NullPointerException.class, () -> addressBook.addStall(null));
+        assertThrows(NullPointerException.class, () -> addressBook.addReview(null));
     }
 
     @Test
@@ -142,8 +180,20 @@ public class AddressBookTest {
         Stall testStall = new StallBuilder().withName(testName).build();
         Review testReview = new ReviewBuilder().withName(testName).build();
 
+        // not in book
         assertThrows(StallNotFoundException.class, () -> addressBook.removeReview(testReview));
         assertThrows(StallNotFoundException.class, () -> addressBook.removeStall(testStall));
+
+        // null
+        assertThrows(NullPointerException.class, () -> addressBook.removeReview(null));
+        assertThrows(NullPointerException.class, () -> addressBook.removeStall(null));
+    }
+
+    @Test
+    public void removeStallRemoveReview_null_throwsNullPointerException() {
+        // null
+        assertThrows(NullPointerException.class, () -> addressBook.removeReview(null));
+        assertThrows(NullPointerException.class, () -> addressBook.removeStall(null));
     }
 
     @Test
@@ -505,7 +555,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void equals() {
+    public void equals_notEqualCases_isCorrect() {
         // same object -> equals return true
         assertTrue(addressBook.equals(addressBook));
 
@@ -520,6 +570,7 @@ public class AddressBookTest {
         String testName = "test stall";
         Review testReview = new ReviewBuilder().withName(testName).build();
         assertFalse(addressBook.equals(testReview));
+        assertFalse(addressBook.equals(4));
     }
 
     @Test

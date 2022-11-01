@@ -27,7 +27,7 @@ public class UserPrefsTest {
     }
 
     @Test
-    public void equals() {
+    public void equals_notEqualCases_isCorrect() {
         UserPrefs userPrefs = new UserPrefs();
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
 
@@ -53,6 +53,8 @@ public class UserPrefsTest {
         userPrefsDifferent3.setAddressBookFilePath(Paths.get("address/book/file/path"));
         userPrefsDifferent3.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         assertFalse(userPrefs.equals(userPrefsDifferent3));
+
+        assertFalse(userPrefs.equals(5));
     }
 
     @Test
