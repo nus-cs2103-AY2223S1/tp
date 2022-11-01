@@ -32,9 +32,9 @@ import seedu.address.model.person.Uid;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class HealthcareXpressParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final HealthcareXpressParser parser = new HealthcareXpressParser();
 
     @Test
     public void parseCommand_add() throws Exception {

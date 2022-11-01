@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":HealthcareXpressParser" as HealthcareXpressParser LOGIC_COLOR
 participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
 participant "a:AddCommand" as AddCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -18,17 +18,17 @@ end box
 [-> LogicManager : execute("add userInput")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("add userInput")
-activate AddressBookParser
+LogicManager -> HealthcareXpressParser : parseCommand("add userInput")
+activate HealthcareXpressParser
 
 create AddCommandParser
-AddressBookParser -> AddCommandParser
+HealthcareXpressParser -> AddCommandParser
 activate AddCommandParser
 
-AddCommandParser --> AddressBookParser
+AddCommandParser --> HealthcareXpressParser
 deactivate AddCommandParser
 
-AddressBookParser -> AddCommandParser : parse("userInput")
+HealthcareXpressParser -> AddCommandParser : parse("userInput")
 activate AddCommandParser
 
 create Uid
@@ -52,14 +52,14 @@ activate AddCommand
 AddCommand --> AddCommandParser : a
 deactivate AddCommand
 
-AddCommandParser --> AddressBookParser : a
+AddCommandParser --> HealthcareXpressParser : a
 deactivate AddCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddCommandParser -[hidden]-> AddressBookParser
+AddCommandParser -[hidden]-> HealthcareXpressParser
 destroy AddCommandParser
 
-AddressBookParser --> LogicManager : a
-deactivate AddressBookParser
+HealthcareXpressParser --> LogicManager : a
+deactivate HealthcareXpressParser
 
 LogicManager -> AddCommand : execute()
 activate AddCommand

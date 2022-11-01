@@ -27,7 +27,7 @@ import seedu.address.model.Model;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class HealthcareXpressParser {
 
     /**
      * Used for initial separation of command word and args.
