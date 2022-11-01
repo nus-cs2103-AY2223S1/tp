@@ -27,7 +27,6 @@ public class AddResponseCommand extends Command {
     public static final String MESSAGE_ADDRESPONSE_SUCCESS = "Edited response count for Student ";
     public static final String MESSAGE_MISSING_PREFIX = "Must include the prefix m/ and a number afterward"
         + " for a valid addresponse command";
-    public static final String MESSAGE_INVALID_INDEX = "Index for addresponse must be non-zero positive integer!";
 
     private final Index index;
     private final Response response;
