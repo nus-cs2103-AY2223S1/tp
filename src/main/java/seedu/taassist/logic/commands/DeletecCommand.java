@@ -53,10 +53,17 @@ public class DeletecCommand extends Command {
                 nonExistentClasses.add(moduleClass);
             }
         }
+
+        boolean isDeletingFocusedClass = model.isInFocusMode()
+                && existingClasses.stream().anyMatch(c -> c.isSame(model.getFocusedClass()));
+        if (isDeletingFocusedClass) {
+            model.exitFocusMode();
+        }
+
         model.removeModuleClasses(existingClasses);
 
         String message = getCommandMessage(existingClasses, nonExistentClasses);
-        return new CommandResult(message);
+        return new CommandResult(message, false, false, false, isDeletingFocusedClass);
     }
 
     public static String getCommandMessage(Set<ModuleClass> existingClasses, Set<ModuleClass> nonExistentClasses) {
@@ -97,4 +104,3 @@ public class DeletecCommand extends Command {
                 && moduleClasses.equals(((DeletecCommand) other).moduleClasses)); // state check
     }
 }
-

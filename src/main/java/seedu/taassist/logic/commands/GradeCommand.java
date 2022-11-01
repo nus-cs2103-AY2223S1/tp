@@ -35,7 +35,6 @@ public class GradeCommand extends Command {
             + PREFIX_GRADE + "100";
 
     public static final String MESSAGE_SUCCESS = "Grade [ %1$s ] for [ %2$s ] given to these student(s):\n[ %3$s ]";
-    public static final String MESSAGE_INVALID_SESSION = "The session [ %1$s ] does not exist in class [ %2$s ]!";
 
     private final List<Index> indices;
     private final Session session;

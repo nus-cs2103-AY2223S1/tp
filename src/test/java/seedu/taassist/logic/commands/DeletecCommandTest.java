@@ -3,6 +3,7 @@ package seedu.taassist.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.commons.util.StringUtil.commaSeparate;
@@ -21,6 +22,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.ModelManager;
 import seedu.taassist.model.UserPrefs;
@@ -29,6 +31,7 @@ import seedu.taassist.model.stubs.ModelStub;
 import seedu.taassist.model.stubs.ModelStubWithNoModuleClass;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.UniqueList;
+import seedu.taassist.model.uniquelist.exceptions.ElementNotFoundException;
 import seedu.taassist.testutil.ModuleClassBuilder;
 import seedu.taassist.testutil.StudentBuilder;
 
@@ -132,6 +135,15 @@ public class DeletecCommandTest {
                 String.format(MESSAGE_MODULE_CLASSES_DOES_NOT_EXIST, moduleClass), model);
     }
 
+    @Test
+    public void execute_deleteFocusedClass_success() throws CommandException {
+        ModelStubWithFocusedClass modelStub = new ModelStubWithFocusedClass();
+        new DeletecCommand(Set.of(modelStub.getFocusedClass())).execute(modelStub);
+
+        assertFalse(modelStub.isInFocusMode()); // exited focus
+        assertNull(modelStub.moduleClass); // deleted class
+    }
+
     //==================================== Model Stubs ===============================================================
 
     private static class ModelStubWithFixedModuleClasses extends ModelStub {
@@ -161,6 +173,11 @@ public class DeletecCommandTest {
         @Override
         public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
             return moduleClass;
+        }
+
+        @Override
+        public boolean isInFocusMode() {
+            return false;
         }
     }
 
@@ -222,6 +239,57 @@ public class DeletecCommandTest {
         @Override
         public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
             requireNonNull(moduleClass);
+            return moduleClass;
+        }
+
+        @Override
+        public boolean isInFocusMode() {
+            return false;
+        }
+    }
+
+    private static class ModelStubWithFocusedClass extends ModelStub {
+        private ModuleClass moduleClass = new ModuleClassBuilder().build();
+        private ModuleClass focusedClass = moduleClass;
+
+        @Override
+        public boolean isInFocusMode() {
+            return focusedClass != null;
+        }
+
+        @Override
+        public ModuleClass getFocusedClass() {
+            return focusedClass;
+        }
+
+        @Override
+        public void exitFocusMode() {
+            focusedClass = null;
+        }
+
+        @Override
+        public boolean hasModuleClass(ModuleClass toCheck) {
+            requireNonNull(toCheck);
+            return moduleClass.isSame(toCheck);
+        }
+
+        @Override
+        public void removeModuleClass(ModuleClass toRemove) {
+            requireNonNull(toRemove);
+            if (moduleClass == null || !moduleClass.isSame(toRemove)) {
+                throw new ElementNotFoundException();
+            }
+            moduleClass = null;
+        }
+
+        @Override
+        public void removeModuleClasses(Collection<ModuleClass> moduleClasses) {
+            requireAllNonNull(moduleClasses);
+            moduleClasses.forEach(this::removeModuleClass);
+        }
+
+        @Override
+        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
             return moduleClass;
         }
     }

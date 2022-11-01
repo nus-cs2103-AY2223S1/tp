@@ -52,4 +52,9 @@ public class ModelStubWithNoModuleClass extends ModelStub {
     public ObservableList<Student> getStudentList() {
         return new UniqueList<Student>().asUnmodifiableObservableList();
     }
+
+    @Override
+    public boolean isInFocusMode() {
+        return false;
+    }
 }
