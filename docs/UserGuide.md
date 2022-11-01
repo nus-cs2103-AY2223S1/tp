@@ -9,7 +9,7 @@ FABook is your **dependable assistant** who **reminds you of meetings** and **co
 
 This user guide will help you get started and understand how FABook can **seamlessly streamline your daily lives**.
 
-* Table of Contents
+# Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -37,6 +37,8 @@ This user guide will help you get started and understand how FABook can **seamle
 6. Refer to the [Features](#features) below for details of each command.
 7. Refer to the [Command Summary](#command-summary) for a quick summary of all commands.
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Getting Familiar With Your User Interface
@@ -49,6 +51,8 @@ This user guide will help you get started and understand how FABook can **seamle
 4. **Result Display**: The result of your command execution appears here.
 5. **Contact Information**: The full contact information of a client appears here.
 6. **Data Storage**: This is where the data is stored and loaded from.
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -90,6 +94,25 @@ This user guide will help you get started and understand how FABook can **seamle
   <br>
 
  </div>
+
+[Return to Table of Contents](#table-of-contents)
+
+## Glossary
+
+| Term                     | Definiion                                                                                                                                                                                                                                                                            |
+|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Alphanumeric             | Refers to characters that are the combined set of the 26 alphabetic characters, a to Z, both lowercase and uppercase, and the 10 Arabic numerals, 0 to 9.                                                                                                                            |
+| Client                   | Any person who may be seeking financial products.                                                                                                                                                                                                                                    |
+| Command Line Interface   | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                                                       |
+| dd-MM-yyyy-hh:mm         | Date format whereby `dd` refers to the 2 digit days, `MM` refers to the 2 digit months, `YYYY` refers to the 4 digits years, `hh` refers to the 2 digits hours, `mm` refers to the 2 digits minutes. They are each separated by a hyphen: `-` character.                             |
+| Financial adviser        | A financial adviser or financial advisor is a professional who provides financial services to clients based on their financial situation. In many countries, financial advisors must complete specific training and be registered with a regulatory body in order to provide advice. |
+| Graphical User Interface | A graphical user interface (GUI) is an interface through which a user interacts with electronic devices such as computers and smartphones through the use of icons, menus and other visual indicators or representations (graphics).                                                 |
+| Index                    | The number that corresponds to the position of the client in the list. The index must be a numeral above 0.                                                                                                                                                                          |
+| Java                     | The programming language used for this application. Java is a general-purpose computer programming language designed to produce programs that will run on any computer system.                                                                                                       |
+| JAR                      | JAR stands for Java ARchive. FABook uses JAR to deliver its distribution. JAR is a file format based on the popular ZIP file format and is used for aggregating many files into one.                                                                                                 |
+| JSON                     | JSON stands for JavaScript Object Notation. JSON is the format used to store your FABook's data. JSON is a lightweight format for storing and transporting data.                                                                                                                     |
+
+[Return to Table of Contents](#table-of-contents)
 
 ### General
 
@@ -144,6 +167,7 @@ Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw
 | **`t/TAG`**          | `t/[tag]`                       | Tag should only be `SECURED` or `POTENTIAL`                                                     |
 
 ![create](images/UserGuide/create.png)
+Example given: `create n/The Rock p/98765432 a/Hollywood ds/An actor and entrepreneur looking for stable wealth growth nw/$800000000 mt/15-12-2022-19:00 t/Potential`
 
 <div markdown="block" class="alert alert-block alert-success">
 
@@ -152,7 +176,7 @@ Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw
 <br>
 
 :bulb: **Note:**
-It is recommended to only have 1`TAG` per client.
+It is recommended to only have 1 `TAG` per client.
 
 </div>
 
@@ -160,7 +184,7 @@ It is recommended to only have 1`TAG` per client.
 * Does not allow you to create a person with the same name and phone number as a current person in the FABook.
 * Allows you to create a person with same name but different phone number or same number and different name as a current person in the FABook.
 
-Examples:
+Other examples:
 * `create n/John Doe p/98765432 a/John street, block 123, #01-01`
 * `create n/Betsy Crowe a/Bugis MRT p/1234567 mt/10-11-2022-18:00 mt/01-02-2022-16:00`
 * `create n/Benedict Lee p/91281329 e/benedict@gmail.com a/Redhill Ave 3 ds/Risk averse nw/$20000 mt/10-11-2022-16:00 t/SECURED`
@@ -184,9 +208,10 @@ Assigns a PDF file to a client in your FABook.
 
 Format: `filepath INDEX f/FILEPATH`
 
-![filepath](images/UserGuide/filepath.png) 
+![filepath](images/UserGuide/filepath.png)
+Example given: `filepath 2 f/C:\Users\reaga\Desktop\CS2103T/Sample Wealth Accumulation Plan.pdf`
 
-Examples:
+Other example:
 * `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
 
 ### Retrieving
@@ -211,8 +236,9 @@ Find your clients whose name contain any of the given keywords.
 Format: `find n/NAME`
 
 ![findname](images/UserGuide/findname.png)
+Example given: `find n/Bernice`
 
-Examples:
+Other examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
 
@@ -232,9 +258,10 @@ Find your clients whose phone number matches the input number.
 
 Format: `find p/NUMBER`
 
-![findphone](images/UserGuide/findphone.png)     
+![findphone](images/UserGuide/findphone.png)
+Example given: `find p/98765432`
 
-Examples:
+Other example:
 * `find p/90333333` returns the client(s) with `90333333` stored as their number
 
 <div markdown="block" class="alert alert-block alert-info">
@@ -259,9 +286,10 @@ Find your clients whose addresses matches the input address.
 
 Format: `find a/ADDRESS`
 
-![findaddress](images/UserGuide/findaddress.png)     
+![findaddress](images/UserGuide/findaddress.png)
+Example given: `find a/hollywood`
 
-Examples:
+Other example:
 * `find a/Bedok` returns the client(s) with `Bedok` stored as their address
 
 <div markdown="block" class="alert alert-block alert-info">
@@ -280,7 +308,10 @@ Find your clients whose tag matches the input tag.
 
 Format: `find t/TAG`
 
-Examples:
+![findtag](images/UserGuide/findtag.png)
+Example given: `find t/potential`
+
+Other example:
 * `find t/SECURED` displays the list of all `SECURED` clients.
 
 <div markdown="block" class="alert alert-block alert-info">
@@ -300,6 +331,7 @@ Opens a client's assigned PDF file in your PDF file viewer.
 Format: `file INDEX`
 
 ![file](images/UserGuide/file.png)
+Example given: `file 2`
 
 Examples:
 * `file 2`
@@ -337,6 +369,8 @@ Updates the information of a client stored in your FABook.
 Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
                         
 ![update](images/UserGuide/update.png)  
+Example given: `update 1 p/12345678`
+
 <div markdown="block" class="alert alert-block alert-success">
 
 :bulb: **Note:**
@@ -352,7 +386,7 @@ Only parameters you provide will be changed.
 * Does not allow you to update a person to have the same name and phone number as a current person in the FABook.
 * Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
 
-Example:
+Other example:
 * `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed client's 
  name, phone number and address to be `John Doe`, `91234567` and `21 Lower Kent Ridge Rd` respectively.
 
@@ -373,7 +407,8 @@ Updates your client's description data field.
 
 Format: `description INDEX ds/DESCRIPTION`
 
-![description](images/UserGuide/description.png)     
+![description](images/UserGuide/description.png)
+Example given: `description 5 ds/High Financial Literacy`
 
 <div markdown="block" class="alert alert-block alert-info">
 
@@ -525,6 +560,8 @@ If your changes to the data file makes its format invalid, FABook will discard a
 
 </div>
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -552,6 +589,7 @@ If your changes to the data file makes its format invalid, FABook will discard a
 **Q**: Why does the person profile GUI not refresh after an edit or clear command?<br>
 **A**: In order to refresh the person profile, you will have the re-click on the person card again.
 
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -577,3 +615,5 @@ If your changes to the data file makes its format invalid, FABook will discard a
 | **Undo**                  | `undo`                                                                                                                                                             |          |
 | **Redo**                  | `redo`                                                                                                                                                             |          |
 | **Exit**                  | `exit`                                                                                                                                                             | e        |
+
+[Return to Table of Contents](#table-of-contents)
