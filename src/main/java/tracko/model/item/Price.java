@@ -11,7 +11,7 @@ import java.math.RoundingMode;
  */
 public class Price {
     public static final String MESSAGE_CONSTRAINTS =
-            "Price should be non-negative and rounded to the nearest cent.";
+            "Price should be numeric, non-negative, and rounded to the nearest cent.";
 
     public final Double value;
 
