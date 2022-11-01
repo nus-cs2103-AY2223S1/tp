@@ -36,9 +36,10 @@ public class Promotion {
         return this.promotionList;
     }
 
+    //@@author bensohh-reused
+    //Reused from: https://mkyong.com/java/java-read-a-file-from-resources-folder/
     /**
      * Retrieves individual files as resources (compatible with JAR files)
-     * Adapted from: https://mkyong.com/java/java-read-a-file-from-resources-folder/
      *
      * @param fileName Filepath of the file we want to retrieve
      * @return InputStream that contains the file information

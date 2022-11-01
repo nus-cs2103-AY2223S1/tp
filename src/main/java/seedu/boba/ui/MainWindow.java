@@ -117,19 +117,24 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() throws IOException {
+        //Fills up the customer list and its placeholder
         customerListPanel = new CustomerListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
 
+        //Fills up the promotion list and its placeholder
         this.logic.parseAllPromotion("promotions");
         promotionListPanel = new PromotionListPanel(this.logic.getPromotionList());
         promotionListPanelPlaceholder.getChildren().add(promotionListPanel.getRoot());
 
+        //Fills up the result display box
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        //Fills up the bottom status bar indicating file path
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getBobaBotFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
+        //Fills up the command box
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }

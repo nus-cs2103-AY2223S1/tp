@@ -11,7 +11,7 @@ import javafx.scene.layout.Region;
 import seedu.boba.commons.core.LogsCenter;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of promotions.
  */
 public class PromotionListPanel extends UiPart<Region> {
     private static final String FXML = "PromotionListPanel.fxml";
@@ -30,7 +30,7 @@ public class PromotionListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Image} using a {@code PromotionCard}.
      */
     class PromotionListViewCell extends ListCell<Image> {
         @Override

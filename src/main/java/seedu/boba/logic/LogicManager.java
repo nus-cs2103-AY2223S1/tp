@@ -68,11 +68,17 @@ public class LogicManager implements Logic {
         return bobaBotModel.getFilteredPersonList();
     }
 
+    /** Returns an unmodifiable view of the list of promotion images*/
     @Override
     public ObservableList<Image> getPromotionList() {
         return bobaBotModel.getPromotionList();
     }
 
+    /**
+     * Parses all the image files stored in the folder indicated by the filepath.
+     *
+     * @param filePath String representation of the FilePath of the folder containing the promotion images
+     */
     @Override
     public void parseAllPromotion(String filePath) {
         bobaBotModel.parseAllPromotion(filePath);

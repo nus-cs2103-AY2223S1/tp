@@ -127,13 +127,36 @@ public interface BobaBotModel {
      */
     Reward getCurrentReward(Email email);
 
+    /**
+     * Retrieves the promotionList.
+     *
+     * @return an ObservableList consisting of the parsed promotion images
+     */
     ObservableList<Image> getPromotionList();
 
+    /**
+     * Parses all the image files stored in the folder indicated by the filepath.
+     *
+     * @param filePath String representation of the FilePath of the folder containing the promotion images
+     */
     void parseAllPromotion(String filePath);
 
+    /**
+     * Stores the current version of bobaBot into VersionedBobaBot.
+     */
     void commitBobaBot();
 
+    /**
+     * Retrieves the previous state/version of bobaBot from VersionedBobaBot.
+     *
+     * @throws PreviousStateNotFoundException if bobaBot is in the initialised state
+     */
     void undoBobaBot() throws PreviousStateNotFoundException;
 
+    /**
+     * Retrieves the state/version of bobaBot before the undoCommand from VersionedBobaBot.
+     *
+     * @throws NextStateNotFoundException if bobaBot is in the most updated state.
+     */
     void redoBobaBot() throws NextStateNotFoundException;
 }
