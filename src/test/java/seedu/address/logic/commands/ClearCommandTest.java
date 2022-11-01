@@ -16,7 +16,7 @@ import seedu.address.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_throwsCommandException() throws CommandException{
+    public void execute_emptyAddressBook_throwsCommandException() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -33,7 +33,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void undo_commandExecuted_undoSuccessful() throws CommandException{
+    public void undo_commandExecuted_undoSuccessful() throws CommandException {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
