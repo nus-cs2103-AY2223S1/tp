@@ -8,13 +8,12 @@ import nus.climods.model.ReadOnlyUserPrefs;
 import nus.climods.model.UserPrefs;
 import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.storage.exceptions.StorageException;
-import nus.climods.storage.module.ModuleListStorage;
 import nus.climods.storage.module.user.UserModuleListStorage;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends UserPrefsStorage, ModuleListStorage {
+public interface Storage extends UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
