@@ -100,6 +100,7 @@ public class AddressBookParserTest {
         assertEquals(new AddSupplierCommand(supplier, new ArrayList<>()), command);
     }
 
+
     @Test
     public void parseCommand_addPet() throws Exception {
         Pet pet = new PetBuilder().withName("NyankoSensei").build();

@@ -15,7 +15,7 @@ public class Color implements Comparable<Color> {
      * @param value The string representation of a color.
      */
     public Color(String value) {
-        this.value = (value == null) || !value.matches("/^[a-zA-Z][a-zA-Z\\\\s]+$/") ? "" : value;
+        this.value = (value == null) || !value.matches("[a-zA-Z][a-zA-Z ]+") ? "" : value;
     }
 
     @Override
