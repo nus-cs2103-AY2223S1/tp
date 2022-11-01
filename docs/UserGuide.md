@@ -3,29 +3,30 @@ layout: page
 title: User Guide
 ---
 # **Introduction**
-HR Pro Max++ is a **desktop app for team leads in SMEs to manage projects and staff members under them. It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+HR Pro Max++ is a **desktop app for team leads in SMEs to manage projects and staff members under them. 
+It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+
 If you can type fast, HR Pro Max++ can get your project management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Table of Contents**
-To quickly return to the Table of Contents, you can click on any of the section headers you navigate to.
 
 * Table of Contents 
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## [**Quick start**](#table-of-contents)
+## **Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `HR_Pro_Max++.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-3/tp/releases).
+2. Download the latest `HR_Pro_Max++.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your project management application.
+3. Copy the file to the folder you want to use as the _home folder_ for your project management application.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all projects.
@@ -38,23 +39,25 @@ To quickly return to the Table of Contents, you can click on any of the section 
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
+
+[Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-## [**User Interface**](#table-of-contents)
+## **User Interface**
 The user interface is divided into 3 main parts: the command box, the result display and the List panel.
-### [**Command Box**](#table-of-contents)
+### **Command Box**
 The command box is where you can type in your commands. You can press the `Enter` key to execute the command.
 
 ![Command Box](images/CommandBox.png)
 
-### [**Result Display**](#table-of-contents)
+### **Result Display**
 The result display is where the output of your commands will be shown.
 For example, entering an incorrect `addproj` command like shown below will cause an error message to be displayed in the result display.
 
 ![Result Display](images/ResultDisplay.png)
 
-### [**List Panel**](#table-of-contents)
+### **List Panel**
 By default, the `Task`, `Project`, or `Staff` card will alternate between blue and grey.
 Clicking on a `Task`, `Project`, or `Staff` card will cause the respective box to be highlighted in green.
 All `Task` and `Project` cards will be displayed in the `List Panel`.
@@ -67,8 +70,10 @@ We refer to the Tasks shown as task list, Projects shown as project list and Sta
 
 ![List Panel](images/ListPanel.png)
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-## [**Features**](#table-of-contents)
+## **Features**
 
 <div markdown="block" class="alert alert-info">
 
@@ -100,8 +105,10 @@ We refer to the Tasks shown as task list, Projects shown as project list and Sta
 
 </div>
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Help :** `help`](#table-of-contents)
+### **Help :** `help`
 
 Shows a message explaining how to access the help page.
 
@@ -109,9 +116,13 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-## [**Project Commands**](#table-of-contents)
-### [**Adding a Project :** `addproj`](#table-of-contents)
+## **Project Commands**
+This segment contains information regarding all the commands that can be used to manage projects.
+
+### **Adding a Project :** `addproj`
 
 Adds a project to Project list.
 
@@ -128,8 +139,10 @@ Examples:
 * `addproj pn/2103T TP pb/100000 pd/2022-01-01`
 * `addproj pn/CS2100 t/Tiring pb/1000 pd/2022-01-01 t/Funtime`
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Deleting a Project :** `delproj`](#table-of-contents)
+### **Deleting a Project :** `delproj`
 
 Deletes the specified Project from Project list.
 
@@ -148,8 +161,10 @@ Examples:
 * `list` followed by `delproj 2` deletes the 2nd project in Project list.
 * `findproj 2103T TP` followed by `delproj 1` deletes the 1st project in the results of the `findproj` command.
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Listing all Projects and tasks :** `list`](#table-of-contents)
+### **Listing all Projects and tasks :** `list`
 
 Show all the Projects and tasks in the project and task list respectively.
 
@@ -157,8 +172,10 @@ Show all the Projects and tasks in the project and task list respectively.
 
 Format: `list`
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Finding Projects :** `findproj`](#table-of-contents)
+### **Finding Projects :** `findproj`
 
 Finds all projects whose names that matches any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
 
@@ -175,8 +192,10 @@ Examples:
 * `findproj CS2103` returns `CS2103` and `CS2103 TP`.
 * `findproj merge develop` returns `Merger with ABC` and `Develop software`.
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Sorting the Project list :** `sortproj`](#table-of-contents)
+### **Sorting the Project list :** `sortproj`
 
 Sorts the Project list according to deadline.
 
@@ -187,8 +206,10 @@ Note:
 
 Format: `sortproj`
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Editing a Project :** `editproj`](#table-of-contents)
+###[**Editing a Project :** `editproj`
 
 Edits an existing Project in the Project list.
 
@@ -211,14 +232,16 @@ Examples:
 * `editproj 1 pb/5000` Edits the project budget of the 1st project to be `5000`.
 * `editproj 2 pn/CS2103 t/` Edits the name of the 2nd project to be `CS2103` and clears all existing tags.
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-## [**Staff Commands**](#table-of-contents)
+## **Staff Commands**
 
 Since each project contains a list of staff, for the use of all staff commands, we recommend that before using the staff commands on a project, you should use the `view` command on the project.
 
 Staff list will refer to the staff list within a project and the displayed staff list refers to what is shown on the GUI.
 
-### [**Adding a Staff member to Project :** `addstaff`](#table-of-contents)
+### **Adding a Staff member to Project :** `addstaff`
 
 Adds a staff member info to Project specified by the index in project list.
 
@@ -238,8 +261,10 @@ Examples:
 * `addstaff 1 sn/John Doe sp/98765432 sl/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the first project in the project list.
 * `addstaff 3 sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin sl/false` Adds staff member named `Betsy Crown` to the third project in the project list.
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Deleting a Staff member from Project :** `delstaff`](#table-of-contents)
+### **Deleting a Staff member from Project :** `delstaff`
 
 Deletes a staff member and all its info inside a project in the currently displayed project list.
 
@@ -263,8 +288,10 @@ Examples:
 * `delstaff 1 pn/2103` Delete the 1st staff within the displayed staff list from project `2103`.
 * `delstaff 7 pn/Duke` Delete 7th staff with displayed staff list from project `Duke`.
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**View the Staff list within a project :** `view`](#table-of-contents)
+### **View the Staff list within a project :** `view`
 
 Views the staff list of a specified project in Project list.
 
@@ -281,8 +308,10 @@ Examples:
 * `list` followed by `view 2` displays the staff list of the 2nd project in Project list on the bottom right.
 * `find 2103T TP` followed by `view 1` display the staff list of the 1st project from the result of the `find` command.
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Editing a Staff member within a Project :** `editstaff`](#table-of-contents)
+### **Editing a Staff member within a Project :** `editstaff`
 
 Edits the staff details of a staff of a specified project in the currently displayed Project list.
 
@@ -306,8 +335,10 @@ Note:
 Examples:
 * `editstaff 1 pn/CS2103T sn/John Doe` edits the staff name of the first staff of the displayed staff list of `CS2103T` to `John Doe`
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Finding a Staff member within a Project :** `findstaff`](#table-of-contents)
+### **Finding a Staff member within a Project :** `findstaff`
 
 Finds the displayed staff list for staff with names that matches any of the keywords.
 
@@ -327,9 +358,13 @@ Examples:
 Staffs whose name contains `Adrian` or `Lam` are also listed. 
 * You can always use `view INDEX` to list all the staff in the staff list after you are done with finding a particular staff.
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-## [**Task Commands**](#table-of-contents)
-### [**Adding a Task :** `addtask`](#table-of-contents)
+## **Task Commands**
+This segment contains information on all the commands related to tasks.
+
+### **Adding a Task :** `addtask`
 
 Adds a Task to the Task list. 
 
@@ -345,8 +380,10 @@ Examples:
 * `addtask tdesc/Finish Homework td/2022-10-27` creates a Task with the description `Finish Homework` and deadline set to
 `2022-10-27`
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Deleting a Task :** `deltask`](#table-of-contents)
+### **Deleting a Task :** `deltask`
 
 Deletes a Task at the specified index from the Task list. 
 
@@ -362,8 +399,10 @@ Examples:
 * If the Task list has only 4 elements, `deltask 5` would return an error message of
 `The task index provided is invalid`.
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Finding a Task :** `findtask`](#table-of-contents)
+### **Finding a Task :** `findtask`
 
 Finds tasks whose description matches any of the KEYWORDS.
 
@@ -380,8 +419,10 @@ Examples:
 * `findtask meeting` returns `Meeting` and `Setup Meeting`.
 * `findtask submit app` returns `Submit application` and `Submit paperwork`.
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Sorting the Task list :** `sorttask`](#table-of-contents)
+### **Sorting the Task list :** `sorttask`
 
 Sort tasks in task list by deadline. Earlier deadlines will be placed first.
 
@@ -392,15 +433,19 @@ Note:
 
 Format: `sorttask`
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Filtering the Task list :** `filtertask`](#table-of-contents)
+### **Filtering the Task list :** `filtertask`
 
 Show Tasks in Task List that are not done at the top of the task list and the rest at bottom.
 
 Format: `filtertask`
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Marking a Task as done :** `marktask`](#table-of-contents)
+### **Marking a Task as done :** `marktask`
 
 Marks a Task in Task list as done.
 
@@ -416,8 +461,10 @@ Note:
 Examples:
 * `marktask 1` Marks the first task as done.
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Marking a Task as Undone :** `unmarktask`](#table-of-contents)
+### **Marking a Task as Undone :** `unmarktask`
 
 Marks a Task in Task list as not done.
 
@@ -432,35 +479,45 @@ Note:
 Examples:
 * `unmarktask 2` Marks the second task as not done.
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Exiting the program :** `exit`](#table-of-contents)
+### **Exiting the program :** `exit`
 
 Exits the program.
 
 Format: `exit`
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Clearing all Data :** `clear`](#table-of-contents)
+### **Clearing all Data :** `clear`
 
 Clears **all data** from HR Pro Max++.
 
 Format: `clear`
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-### [**Saving the data**](#table-of-contents)
+### **Saving the data**
 Project data is saved in the hard disk automatically after any command that changes the data. 
 There is no need to save manually.
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
-## [**FAQ**](#table-of-contents)
+## **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HR Pro Max++ home folder.
 
---------------------------------------------------------------------------------------------------------------------
-## [**Command Summary**](#table-of-contents)
+[Back to top](#table-of-contents)
 
-### [**Project Commands Summary**](#table-of-contents)
+--------------------------------------------------------------------------------------------------------------------
+## **Command Summary**
+This segment contains summary tables of all the commands you can use in HR Pro Max++.
+### **Project Commands Summary**
 
 | Action                    | Format, Examples                                                                                      |
 |---------------------------|-------------------------------------------------------------------------------------------------------|
@@ -471,7 +528,7 @@ There is no need to save manually.
 | **Sort projects**         | `sortproj`                                                                                            |
 | **List project and task** | `list`                                                                                                |
 
-### [**Staff Commands Summary**](#table-of-contents)
+### **Staff Commands Summary**
 
 | Action              | Format, Examples                                                                                              |
 |---------------------|---------------------------------------------------------------------------------------------------------------|
@@ -482,7 +539,7 @@ There is no need to save manually.
 | **View staff list** | `view INDEX` <br> e.g., `view 1`                                                                              |
 
 
-### [**Tasks Commands Summary**](#table-of-contents)
+### **Tasks Commands Summary**
 
 | Action           | Format, Examples                                                                                                              |
 |------------------|-------------------------------------------------------------------------------------------------------------------------------|
@@ -496,7 +553,7 @@ There is no need to save manually.
 | **Unmark tasks** | `unmarktask INDEX`<br> e.g., `unmarktask 1`                                                                                   |
 
 
-### [**Miscellaneous Commands Summary**](#table-of-contents)
+### **Miscellaneous Commands Summary**
 
 
 | Action                    | Format, Examples |
@@ -505,8 +562,11 @@ There is no need to save manually.
 | **Help**                  | `help`           |
 | **Exit application**      | `exit`           |
 
+[Back to top](#table-of-contents)
 
-## [**Prefix Summary**](#table-of-contents)
+--------------------------------------------------------------------------------------------------------------------
+
+## **Prefix Summary**
 Prefixes that start with `p` are for project details.
 
 Prefixes that start with `s` are for project staff member details.
@@ -532,3 +592,4 @@ The prefix `t/` is for tags that are used for projects and staff only.
 | **tm/**    | Task mark          | tm/TASK_MARK           |
 | **t/**     | Tag                | t/TAG                  |
 
+[Back to top](#table-of-contents)
