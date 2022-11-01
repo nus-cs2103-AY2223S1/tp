@@ -233,7 +233,7 @@ public class ParserUtil {
                     PREFIX_ORDER,
                     PREFIX_PET);
 
-        if (!ParserUtil.arePrefixesPresent(argMultimap,
+        if (!arePrefixesPresent(argMultimap,
                 PREFIX_NAME,
                 PREFIX_ADDRESS,
                 PREFIX_PHONE,
