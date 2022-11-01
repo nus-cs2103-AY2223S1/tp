@@ -110,8 +110,10 @@ Format: `list`
 ![list](images/UserGuide/list.png) 
 
 <div markdown="block" class="alert alert-block alert-info">
+
 :white_check_mark: **Input Shortcut:**
 You can replace `list` with `l` for convenience.
+
 </div>
 
 ### Creation
@@ -144,12 +146,14 @@ Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw
 ![create](images/UserGuide/create.png)
 
 <div markdown="block" class="alert alert-block alert-success">
+
 :bulb: **Note:**
 `NAME` and `PHONE_NUMBER` are the only compulsory inputs. Other parameters can be left blank.
 <br>
 
 :bulb: **Note:**
 It is recommended to only have 1`TAG` per client.
+
 </div>
 
 * If you have multiple meeting times with your client, simply repeat the field `mt/TIME`.
@@ -162,9 +166,11 @@ Examples:
 * `create n/Benedict Lee p/91281329 e/benedict@gmail.com a/Redhill Ave 3 ds/Risk averse nw/$20000 mt/10-11-2022-16:00 t/SECURED`
 
 <div markdown="block" class="alert alert-block alert-info">
+
 :white_check_mark: **Input Shortcut:**
 You can replace `create` with `c` for convenience.<br>
 Format: `c n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
+
 </div>
 
 #### Assigning PDF file to a client : `filepath`
@@ -185,8 +191,10 @@ Examples:
 
 ### Retrieving
 <div markdown="block" class="alert alert-block alert-info">
+
 :white_check_mark: **Input Shortcut:**
-You can replace `find` with `f` for convenience for all retrieving commands.<br>
+You can replace `find` with `f` for convenience for all retrieving commands.
+
 </div>
 
 #### Finding your client by name : `find`
@@ -208,9 +216,11 @@ Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
 
-<div markdown="block" class="alert alert-block alert-info">  
+<div markdown="block" class="alert alert-block alert-info">
+
 :white_check_mark: **Input Shortcut:**
 Format: `f n/NAME`
+
 </div>
   
 #### Finding your client by phone number : `find`
@@ -228,8 +238,10 @@ Examples:
 * `find p/90333333` returns the client(s) with `90333333` stored as their number
 
 <div markdown="block" class="alert alert-block alert-info">
+
 :white_check_mark: **Input Shortcut:**
 Format: `f p/NUMBER`
+
 </div>
 
 #### Finding your client by address : `find`
@@ -253,8 +265,10 @@ Examples:
 * `find a/Bedok` returns the client(s) with `Bedok` stored as their address
 
 <div markdown="block" class="alert alert-block alert-info">
+
 :white_check_mark: **Input Shortcut:**
 Format: `f a/ADDRESS`
+
 </div>
 
 #### Finding your client by tag : `find`
@@ -270,8 +284,10 @@ Examples:
 * `find t/SECURED` displays the list of all `SECURED` clients.
 
 <div markdown="block" class="alert alert-block alert-info">
+
 :white_check_mark: **Input Shortcut:**
 Format: `f t/TAG`
+
 </div>
 
 #### Opening PDF file of your client : `file`
@@ -300,8 +316,10 @@ Format: Menu bar on the top of the application or press `F2`.
 ![Meetings](images/upcomingMeeting.png)
 
 <div markdown="block" class="alert alert-block alert-danger">
+
 :heavy_exclamation_mark: **Caution:**
 As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
+
 </div>
 
 ### Updating
@@ -320,8 +338,10 @@ Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRI
                         
 ![update](images/UserGuide/update.png)  
 <div markdown="block" class="alert alert-block alert-success">
+
 :bulb: **Note:**
 Only parameters you provide will be changed.
+
 </div>
 
 * Edits the person with the provided index.
@@ -337,9 +357,11 @@ Example:
  name, phone number and address to be `John Doe`, `91234567` and `21 Lower Kent Ridge Rd` respectively.
 
 <div markdown="block" class="alert alert-block alert-info">
+
 :white_check_mark: **Input Shortcut:**
 You can replace `update` with `u` for convenience.<br>
 Format: `u INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
+
 </div>
 
 #### Updating your client's description : `description`
@@ -354,9 +376,11 @@ Format: `description INDEX ds/DESCRIPTION`
 ![description](images/UserGuide/description.png)     
 
 <div markdown="block" class="alert alert-block alert-info">
+
 :white_check_mark: **Input Shortcut:**
 You can replace `description` with `desc` for convenience.
 Format: `desc INDEX ds/DESCRIPTION`
+
 </div>
 
 #### Updating meetings : `meeting`
@@ -415,9 +439,11 @@ Format: `sync`
 ![sync](images/UserGuide/sync.png)    
 
 <div markdown="block" class="alert alert-block alert-danger">   
+
 :heavy_exclamation_mark: **Caution:**
 As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
 Please note that undo cannot undo this command!
+
 </div>
 
 #### Clearing all entries : `clear`
@@ -429,13 +455,17 @@ Format: `clear`
 ![clear](images/UserGuide/clear.png)   
 
 <div markdown="block" class="alert alert-block alert-warning">
+
 :heavy_exclamation_mark: **Important**
 If you run this command by accident, you can [undo](#undoing-a-previous-command--undo) the command to restore all previously cleared entries.
+
 </div>
 
 <div markdown="block" class="alert alert-block alert-info">
+
 :white_check_mark: **Input Shortcut:**
 You can replace `clear` with `cl` for convenience.
+
 </div>
 
 
@@ -453,8 +483,10 @@ Format: `undo`
 ![undo](images/UserGuide/undo.png) 
 
 <div markdown="block" class="alert alert-block alert-warning">
+
 :heavy_exclamation_mark: **Important**
 You can undo a [`redo` command](#redoing-a-previous-command--redo).
+
 </div>
 
 #### Redoing a previous command : `redo`
@@ -472,8 +504,10 @@ Exits the program.
 Format: `exit`
 
 <div markdown="block" class="alert alert-block alert-info">
+
 :white_check_mark: **Input Shortcut:**
 You can replace `exit` with `e` for convenience.
+
 </div>
 
 ### Saving the data
@@ -485,8 +519,10 @@ Your FABook data are saved in the hard disk automatically after any command that
 FABook data are saved as a text file `[JAR file location]/data/addressbook.json`. If you are an advanced user, you are welcome to update data directly by editing that data file.
 
 <div markdown="block" class="alert alert-block alert-danger">
+
 :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FABook will discard all data and start with an empty data file at the next run.
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
