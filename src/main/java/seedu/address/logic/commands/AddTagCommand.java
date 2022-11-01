@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
+import seedu.address.model.tag.exceptions.BothTagsCannotBeNullException;
 import seedu.address.model.task.Task;
 
 /**
@@ -45,6 +46,9 @@ public class AddTagCommand extends Command {
      */
     public AddTagCommand(PriorityTag priorityTag, DeadlineTag deadlineTag, Index index) {
         requireNonNull(index);
+        if (priorityTag == null && deadlineTag == null) {
+            throw new BothTagsCannotBeNullException();
+        }
         this.priorityTag = priorityTag;
         this.deadlineTag = deadlineTag;
         this.index = index;
@@ -57,7 +61,8 @@ public class AddTagCommand extends Command {
         Task taggedTask = null;
         List<Task> taskList = model.getFilteredTaskList();
         if (index.getZeroBased() >= taskList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_TASK_INDEX_TOO_LARGE,
+                    taskList.size() + 1));
         }
         Task currentTask = taskList.get(index.getZeroBased());
         if (priorityTag != null) {

@@ -14,5 +14,9 @@ public class TypicalIndexes {
     public static final Index INDEX_UNMARKED_TASK = Index.fromOneBased(1);
     public static final Index INDEX_MARKED_TASK = Index.fromOneBased(6);
     public static final Index INDEX_LINKED_TASK = Index.fromOneBased(4);
+    public static final Index INDEX_PRIORITY_TAG_TASK = Index.fromOneBased(7);
+    public static final Index INDEX_DEADLINE_TAG_TASK = Index.fromOneBased(8);
+
+    public static final Index INDEX_LAST_TASK = Index.fromOneBased(9);
 
 }
