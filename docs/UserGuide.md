@@ -184,17 +184,12 @@ For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, l
 - PennyWise will always take the **LAST OCCURRENCE** of a command prefix should there be more than 1 of the same command
   prefix in a given command. 
   e.g In `add t/i d/Monthly Allowance a/200.00 da/01-10-2022 c/Allowance d/Oct Allowance d/October Allowance`, PennyWise
-  will add this entry with the description: "October Allowance". You should expect to see this output: 
+  will add the `Income` with the description: "October Allowance". You should expect to see this output: 
   `New entry added: October Allowance; Date: 01-10-2022; Amount: 200.00; Tag: Allowance`.
 
 - PennyWise will **IGNORE** any extra words or characters present after the following commands: 
  `summary` (except [`summary [mo/MONTH]`](#summary-of-entries)) `help`, `clear` and `exit`. 
   e.g `summary abcdefg` will be interpreted as `summary` or `help 123456` will also be interpreted as `help`.  
-
-- Dates are automatically **ROUNDED DOWN** by PennyWise, should the specified date fall outside of amount of days a
-  particular month may have. 
-  e.g For `add t/e d/Feb end Lunch a/28.02 da/31-02-2022 c/Food`, PennyWise will add this entry with the date: "28-02-2022".
-  You should expect to see this output: 
 
 - Words in `UPPER_CASE` are the parameters that you must supply<br>
   e.g. In `delete INDEX_OF_ENTRY t/ENTRY_TYPE`, `INDEX_OF_ENTRY` is a parameter which can be used as `delete 10 t/e`.
