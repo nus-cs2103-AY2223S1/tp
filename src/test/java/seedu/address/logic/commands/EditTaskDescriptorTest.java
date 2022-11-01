@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_WATCH_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS2040;
 
@@ -41,8 +41,8 @@ public class EditTaskDescriptorTest {
         assertFalse(DESC_TUTORIAL.equals(editedTask));
 
         // different description -> returns false
-        editedTask = new EditTaskDescriptorBuilder(DESC_TUTORIAL).
-            withDescription(VALID_DESCRIPTION_WATCH_LECTURE).build();
+        editedTask = new EditTaskDescriptorBuilder(DESC_TUTORIAL)
+            .withDescription(VALID_DESCRIPTION_WATCH_LECTURE).build();
         assertFalse(DESC_TUTORIAL.equals(editedTask));
     }
 }

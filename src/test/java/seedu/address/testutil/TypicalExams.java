@@ -11,16 +11,16 @@ import seedu.address.model.exam.Exam;
  */
 public class TypicalExams {
 
-    public static final Exam midtermExam = new ExamBuilder().withModule("cs2040")
+    public static final Exam MIDTERM_EXAM = new ExamBuilder().withModule("cs2040")
         .withDescription("Midterm Exam")
         .withDate("29-12-2022")
         .build();
-    public static final Exam finalExam = new ExamBuilder().withModule("cs2030")
+    public static final Exam FINAL_EXAM = new ExamBuilder().withModule("cs2030")
         .withDescription("Final Exam")
         .withDate("28-12-2022")
         .build();
 
     public static List<Exam> getTypicalExams() {
-        return new ArrayList<>(Arrays.asList(midtermExam, finalExam));
+        return new ArrayList<>(Arrays.asList(MIDTERM_EXAM, FINAL_EXAM));
     }
 }

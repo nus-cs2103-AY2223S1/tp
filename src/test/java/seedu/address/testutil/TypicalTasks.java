@@ -9,8 +9,8 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.exam.Exam;
-import seedu.address.model.task.Task;
 import seedu.address.model.module.Module;
+import seedu.address.model.task.Task;
 
 /**
  * A utility class containing a list of {@code Task} objects to be used in tests.
