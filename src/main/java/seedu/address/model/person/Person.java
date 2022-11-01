@@ -11,7 +11,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.PastAppointment;
 import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.tag.Medication;
@@ -79,7 +78,7 @@ public class Person {
      * Adds input {@code PastAppointment} to stored list of {@code PastAppointment}s.
      * @param appt the {@code PastAppointment} to be added
      */
-    public void addPastAppointment(PastAppointment appt){
+    public void addPastAppointment(PastAppointment appt) {
         // TODO optimise
         int length = pastAppointments.size();
         LocalDate apptDate = appt.getDate();
