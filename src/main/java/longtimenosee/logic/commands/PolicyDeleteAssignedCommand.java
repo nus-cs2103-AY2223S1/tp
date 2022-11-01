@@ -22,8 +22,8 @@ public class PolicyDeleteAssignedCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes assigned policy from a person. "
             + "Parameters: "
-            + "(Index of client) "
-            + "(Index of assigned policy) "
+            + "CLIENT_INDEX "
+            + "ASSIGNED_POLICY_INDEX "
             + "\nExample: " + COMMAND_WORD + " 1 1";
 
     public static final String MESSAGE_ASSIGN_POLICY_SUCCESS = "Deleted assigned policy %1$s from Client: %2$s";

@@ -222,9 +222,9 @@ Format: `allClients`
 
 Edits an existing client in the address book.
 
-Format: `editClient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] ​`
+Format: `editClient CLIENT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] ​`
 
-* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the client at the specified `CLIENT_INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
@@ -270,9 +270,9 @@ Examples:
 
 Deletes the specified client from the address book.
 
-Format: `deleteClient INDEX`
+Format: `deleteClient CLIENT_INDEX`
 
-* Deletes the client at the specified `INDEX`.
+* Deletes the client at the specified `CLIENT_INDEX`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -404,7 +404,7 @@ Example Usage: `allPolicies`
 Example Result: Shows all policies stored in the address book, on the screen.
 
 ### Deleting a policy
-* Format: `deletePolicy INDEX`
+* Format: `deletePolicy POLICY_INDEX`
 
 * Deletes the policy at the specified `INDEX`.
 * The index refers to the index number shown in the displayed list of policies.
@@ -463,19 +463,19 @@ first client in the list from Step 2, with the following details:
 If you'd like to recall which policies a client has taken up this command lists out, in the command box, the policies 
 that have been assigned to a specific client.
 
-Format: `listAssigned INDEXOFCLIENT`
+Format: `listAssigned CLIENT_INDEX`
 
 Example Usage:
 
 1. `findClient n/John Doe` to filter the list of clients to find `John Doe`.
-2. `listAssigned INDEXOFCLIENT` to list out the policies assigned to the first client in the list from Step 1.
+2. `listAssigned CLIENT_INDEX` to list out the policies assigned to the first client in the list from Step 1.
 
 ### Deleting assigned policies from a client: `deleteAssigned`
 
 Unfortunate, but it happens. If a client cancels their policy prematurely, reflect the deletion of their assigned policy
 in the address book using this command.
 
-Format: `deleteAssigned INDEXOFCLIENT INDEXOFASSIGNEDPOLICY`
+Format: `deleteAssigned CLIENT_INDEX ASSIGNED_POLICY_INDEX`
 
 Example Usage:
 1. Similar to [listAssigned](#listing-out-policies-assigned-to-a-clientlistassigned), filter the list for the desired client and find out which policies they have been assigned to.
@@ -513,9 +513,9 @@ Examples:
 * Example Result: add an event with `Ben Leong` from `12:00` to `13:00` for the `1st January 2023` for a CS101 consultation.
 
 
-Format: `deleteEvent INDEX`
+Format: `deleteEvent EVENT_INDEX`
 
-* Deletes the event at the specified `INDEX`.
+* Deletes the event at the specified `EVENT_INDEX`.
 * The index refers to the index number shown in the displayed event list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Example Usage: `deleteEvent 2`
@@ -604,17 +604,17 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 
 ### Commands For Policy
 
-| Action                     | Format, Examples                                                                                                                                                |
-|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Policy**            | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE] [cmp/POLICY_COMPANY]` <br/> e.g: `findPolicy cov/LIFE`                                                      |        
-| **Add Policy**             | `addPolicy [ti/POLICY_TITLE] [cmp/POLICY_COMPANY] [cms/POLICY_COMMISSION] [cov/POLICY_COVERAGE]` <br> e.g: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE`  |                                                                                                                         
-| **Delete Policy**          | `deletePolicy [INDEX of POLICY]` <br> e.g: `deletePolicy 1`                                                                                                     |                                                                                                                                                                                             
-| **View All Policies**      | `allPolicies`                                                                                                                                                   |
-| **View Filtered Policies** | `policies`                                                                                                                                                      |
-| **View Assigned Policies** | `assign [INDEX of CONTACT] [INDEX of POLICY] [pr/PREMIUM_PAID] [sd/START_DATE] [ed/END_DATE]` <br> e.g: `assignPolicy 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01` |
-| **Delete Assigned**        | `deleteAssigned [INDEX of CONTACT] [INDEX of POLICY]` <br> e.g: `deleteAssigned 1 1`                                                                            |                                                                                                                                                                                                               
-| **List Assigned**          | `listAssigned`                                                                                                                                                  |
-| **View Income**            | `viewIncome [YEAR]`                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                           
+| Action                     | Format, Examples                                                                                                                                               |
+|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Find Policy**            | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE] [cmp/POLICY_COMPANY]` <br/> e.g: `findPolicy cov/LIFE`                                                     |        
+| **Add Policy**             | `addPolicy [ti/POLICY_TITLE] [cmp/POLICY_COMPANY] [cms/POLICY_COMMISSION] [cov/POLICY_COVERAGE]` <br> e.g: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE` |                                                                                                                         
+| **Delete Policy**          | `deletePolicy [POLICY_INDEX]` <br> e.g: `deletePolicy 1`                                                                                                       |                                                                                                                                                                                             
+| **View All Policies**      | `allPolicies`                                                                                                                                                  |
+| **View Filtered Policies** | `policies`                                                                                                                                                     |
+| **View Assigned Policies** | `assign [CLIENT_INDEX] [POLICY_INDEX] [pr/PREMIUM_PAID] [sd/START_DATE] [ed/END_DATE]` <br> e.g: `assignPolicy 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01`       |
+| **Delete Assigned**        | `deleteAssigned [CLIENT_INDEX] [POLICY_INDEX]` <br> e.g: `deleteAssigned 1 1`                                                                                  |                                                                                                                                                                                                               
+| **List Assigned**          | `listAssigned`                                                                                                                                                 |
+| **View Income**            | `viewIncome [YEAR]`                                                                                                                                            |                                                                                                                                                                                                                                                                                                                                                                           
 
 Note: `allPolicies` shows all existing policies inside LTNS, while `policies` show all policies based on filter matrices placed previously.
 
@@ -624,7 +624,7 @@ Note: `allPolicies` shows all existing policies inside LTNS, while `policies` sh
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Find Event**           | `findEvent [desc/DESCRIPTION] [n/PERSON_NAME] [date/DATE]` <br/> e.g: `findEvent date/2022-05-05`                                                                               |
 | **Add Event**            | `addEvent [desc/DESCRIPTION] [n/NAME] [date/DATE] [st/START_TIME] [et/END_TIME]` <br> e.g: `addEvent desc/Meet Clement at Noon n/Clement Tan date/2022-10-10 st/12:00 et/13:00` |
-| **Delete Event**         | `deleteEvent [INDEX]` <br> e.g: `deleteEvent 1`                                                                                                                                 |
+| **Delete Event**         | `deleteEvent [EVENT_INDEX]` <br> e.g: `deleteEvent 1`                                                                                                                           |
 | **View All Events**      | `allEvents`                                                                                                                                                                     |
 | **View Filtered Events** | `events`                                                                                                                                                                        |
 | **View Calendar**        | `calendar`                                                                                                                                                                      |                                                                                                                                                                                                     

@@ -27,8 +27,8 @@ public class PolicyAssignCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": assigns a policy to a client. "
             + "Parameters: "
-            + "(Index of client) "
-            + "(Index of policy) "
+            + "CLIENT_INDEX "
+            + "POLICY_INDEX "
             + PREFIX_PREMIUM + "200.00 "
             + PREFIX_START + "2020-12-10 "
             + PREFIX_END + "2021-12-15";
