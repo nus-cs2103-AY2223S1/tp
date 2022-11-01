@@ -13,6 +13,7 @@ public class Price {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should be a non-negative number rounded to the nearest cent and less than 2147483648.";
 
+
     public final Double value;
 
     /**
@@ -68,7 +69,7 @@ public class Price {
 
     @Override
     public String toString() {
-        return String.format("%.2f", value);
+        return "$" + String.format("%.2f", value);
     }
 
     @Override

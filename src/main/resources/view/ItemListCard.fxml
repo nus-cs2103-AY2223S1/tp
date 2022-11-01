@@ -52,7 +52,9 @@
                     <VBox id="descriptionBox">
                         <Label fx:id="description" styleClass="cell_small_label_item" text="\$description" />
                     </VBox>
-                    <HBox fx:id="tags" spacing="5.0"/>
+                    <HBox HBox.hgrow="ALWAYS">
+                    <FlowPane fx:id="tags"/>
+                    </HBox>
                 </VBox>
             </HBox>
         </VBox>

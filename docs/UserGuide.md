@@ -73,7 +73,11 @@ Format: `addi n/ITEM_NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE c
 - TrackO allows users to input a `COST_PRICE` that is greater than the `SELL_PRICE` although user will be selling at a loss
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An inventory item can have any number of tags (including 0)
+An inventory item's name must be more than 1 character long.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An inventory item can have any number of tags (including 0). A tag should only consist of 1 word. A tag **cannot** have more than 30 characters.
 </div>
 
 Examples:
@@ -110,8 +114,10 @@ Deletes the specified item from the list of tracked inventory.
 Format: `deletei INDEX`
 
 * Deletes the item at the specified `INDEX`.
+
 * `INDEX` refers to the index number shown in the displayed inventory list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
+* Deleting items with active orders is not permitted.
 
 Examples:
 * `listi` followed by `deletei 2` deletes the 2nd item in the list of tracked inventory.
@@ -128,6 +134,7 @@ Format: `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [s
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * You can remove all the item’s tags by typing `t/` without
   specifying any tags after it.
+* Editing items with active orders is not permitted.
 
 Examples:
 * `editi 1 i/Table q/200 d/Metal Table t/Fragile`

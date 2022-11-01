@@ -21,6 +21,7 @@ import tracko.model.item.InventoryItem;
 import tracko.model.item.ItemName;
 import tracko.model.item.Price;
 import tracko.model.item.Quantity;
+import tracko.model.item.exceptions.ItemUnmodifiableException;
 import tracko.model.tag.Tag;
 
 /**
@@ -53,6 +54,8 @@ public class EditItemCommand extends Command {
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the inventory list.";
+    public static final String MESSAGE_UNCOMPLETED_ORDER_ITEM = "Item cannot be edited, there exists uncompleted "
+            + "orders for item:\n%1$s";
 
     private final Index index;
     private final EditItemDescriptor editItemDescriptor;
@@ -85,10 +88,14 @@ public class EditItemCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
 
-        model.setItem(inventoryItemToEdit, editedInventoryItem);
-        model.refreshData();
-        model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
-        return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedInventoryItem));
+        try {
+            model.setItem(inventoryItemToEdit, editedInventoryItem);
+            model.refreshData();
+            model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
+            return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedInventoryItem));
+        } catch (ItemUnmodifiableException e) {
+            return new CommandResult(String.format(MESSAGE_UNCOMPLETED_ORDER_ITEM, editedInventoryItem));
+        }
     }
 
     /**

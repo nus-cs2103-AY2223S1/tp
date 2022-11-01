@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.TextAlignment;
@@ -45,7 +46,7 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private Label costPrice;
     @FXML
-    private HBox tags;
+    private FlowPane tags;
 
     /**
      * Creates a {@code ItemCode} with the given {@code Item} and index to display.
@@ -70,11 +71,11 @@ public class ItemCard extends UiPart<Region> {
         description.setTextAlignment(TextAlignment.JUSTIFY);
         description.setPadding(new Insets(0, 10, 0, 0));
 
-        sellPrice.setText("$" + inventoryItem.getSellPrice().toString());
+        sellPrice.setText(inventoryItem.getSellPrice().toString());
         sellPrice.setWrapText(true);
         sellPrice.setPadding(new Insets(0, 10, 0, 0));
 
-        costPrice.setText("$" + inventoryItem.getCostPrice().toString());
+        costPrice.setText(inventoryItem.getCostPrice().toString());
         costPrice.setWrapText(true);
         costPrice.setPadding(new Insets(0, 10, 0, 0));
 
@@ -92,6 +93,7 @@ public class ItemCard extends UiPart<Region> {
      */
     public Label constructTags(String tagName) {
         Label tagLabel = new Label();
+        tagLabel.setMaxWidth(300);
         tagLabel.setText(tagName);
         tagLabel.setWrapText(true);
         return tagLabel;

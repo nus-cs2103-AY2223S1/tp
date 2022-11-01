@@ -5,6 +5,7 @@ import static tracko.testutil.TypicalItems.INVENTORY_ITEM_1;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import tracko.model.item.InventoryItem;
 import tracko.model.item.Quantity;
@@ -94,7 +95,7 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the {@code LocalDateTime} of the {@code Order} that we are building.
+     * Sets the {@code timeCreated} of the {@code Order} that we are building.
      */
     public OrderBuilder withTimeCreated(LocalDateTime timeCreated) {
         this.timeCreated = timeCreated;
@@ -102,7 +103,7 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the default {@code LocalDateTime} of the {@code Order} that we are building.
+     * Sets the default {@code timeCreated} of the {@code Order} that we are building.
      */
     public OrderBuilder withDefaultTimeCreated() {
         this.timeCreated = DEFAULT_TIME_CREATED;
@@ -126,10 +127,36 @@ public class OrderBuilder {
     }
 
     /**
+     * Sets the list of ordered items of the {@code Order} that we are building.
+     */
+    public OrderBuilder withRecordedItemList(List<ItemQuantityPair> itemList) {
+        List<ItemQuantityPair> recordedItems = this.itemList.stream()
+                .map(ItemQuantityPair::getImmutableItemCopy).collect(Collectors.toList());
+        this.itemList = recordedItems;
+        return this;
+    }
+
+    /**
      * Adds an item and associated quantity to the list of items ordered
      */
     public OrderBuilder withItemQuantityPair(ItemQuantityPair itemQuantityPair) {
         itemList.add(itemQuantityPair);
+        return this;
+    }
+
+    /**
+     * Sets the {@code isPaid} status of the {@code Order} that we are building.
+     */
+    public OrderBuilder withPaidStatus(Boolean status) {
+        this.isPaid = status;
+        return this;
+    }
+
+    /**
+     * Sets the {@code isDelivered} status of the {@code Order} that we are building.
+     */
+    public OrderBuilder withDeliveredStatus(Boolean status) {
+        this.isDelivered = status;
         return this;
     }
 

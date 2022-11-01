@@ -12,7 +12,7 @@ import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tracko.logic.commands.CommandTestUtil.showItemAtIndex;
 import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
 import static tracko.testutil.TypicalIndexes.INDEX_SECOND;
-import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
+import static tracko.testutil.TypicalItems.getTrackOWithTypicalItems;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +29,7 @@ import tracko.testutil.EditItemDescriptorBuilder;
 import tracko.testutil.InventoryItemBuilder;
 
 class EditItemCommandTest {
-    private Model model = new ModelManager(getTrackOWithTypicalOrders(), new UserPrefs());
+    private Model model = new ModelManager(getTrackOWithTypicalItems(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
