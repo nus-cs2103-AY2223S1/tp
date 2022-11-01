@@ -583,8 +583,9 @@ goto CS1231
 **Step 2**: The `LogicManager` uses the `AddressBookParser` and `GoToCommandParser`
 to parse the user input. After validating the arguments provided by the user, the user input
 is used to perform the following actions: <br>
+* Extract the `ModuleCode` of the module to navigate to in the `GoToCommandParser` using the method `ParserUtil::parseModuleCode`
 * Instantiate a `ModuleCodeMatchesKeywordPredicate` object
-* Extract the `ModuleCode` of the module to navigate to in the `GoToCommandParser`
+
 
 **Step 3**: A `GoToCommand` object is instantiated using the `ModuleCodeMatchesKeywordPredicate` and `ModuleCode`
 obtained in **Step 2** which is returned to the `LogicManager`.

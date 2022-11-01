@@ -5,19 +5,21 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":GoToCommandParser" as GoToCommandParser LOGIC_COLOR
-participant "predicate:ModuleCodeMatchesKeywordPredicate" as ModuleCodeMatchesKeywordPredicate LOGIC_COLOR
+participant "mc:ModuleCode" as ModuleCode LOGIC_COLOR
+participant "mPred:ModuleCodeMatchesKeywordPredicate" as ModuleCodeMatchesKeywordPredicate LOGIC_COLOR
 participant "command:GoToCommand" as GoToCommand LOGIC_COLOR
+participant "pPred:PersonIsInModulePredicate" as PersonIsInModulePredicate LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+participant ":ModelManager" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("goto CS1231S")
+[-> LogicManager : execute(input)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("goto CS1231S")
+LogicManager -> AddressBookParser : parseCommand(input)
 activate AddressBookParser
 
 create GoToCommandParser
@@ -27,41 +29,62 @@ activate GoToCommandParser
 GoToCommandParser --> AddressBookParser
 deactivate GoToCommandParser
 
-AddressBookParser -> GoToCommandParser : parse("CS1231S")
+AddressBookParser -> GoToCommandParser : parse(input)
 
 activate GoToCommandParser
+
+create ModuleCode
+GoToCommandParser -> ModuleCode
+activate ModuleCode
+ModuleCode --> GoToCommandParser : mc
+deactivate ModuleCode
+
 create ModuleCodeMatchesKeywordPredicate
 GoToCommandParser -> ModuleCodeMatchesKeywordPredicate
 activate ModuleCodeMatchesKeywordPredicate
-ModuleCodeMatchesKeywordPredicate -> GoToCommandParser
+ModuleCodeMatchesKeywordPredicate --> GoToCommandParser : mPred
 deactivate ModuleCodeMatchesKeywordPredicate
 
 create GoToCommand
 GoToCommandParser -> GoToCommand
 activate GoToCommand
-GoToCommand --> GoToCommandParser
+GoToCommand --> GoToCommandParser : command
 deactivate GoToCommand
 
-GoToCommandParser --> AddressBookParser
+GoToCommandParser --> AddressBookParser : command
 deactivate GoToCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 GoToCommandParser -[hidden]-> AddressBookParser
 destroy GoToCommandParser
 
-AddressBookParser --> LogicManager :
+AddressBookParser --> LogicManager : command
 deactivate AddressBookParser
 
 LogicManager -> GoToCommand : execute()
 
 activate GoToCommand
-GoToCommand -> Model : setHomeStatus(false)
+GoToCommand -> Model : getModuleUsingModuleCode(mc)
+activate Model
+Model --> GoToCommand : m
+deactivate Model
 
+GoToCommand -> Model : updateFilteredModuleList(mPred)
 activate Model
 Model --> GoToCommand
 deactivate Model
 
-GoToCommand -> Model : updateFilteredModuleList(predicate)
+create PersonIsInModulePredicate
+GoToCommand -> PersonIsInModulePredicate
+activate PersonIsInModulePredicate
+PersonIsInModulePredicate --> GoToCommand : pPred
+deactivate PersonIsInModulePredicate
 
+GoToCommand -> Model : updateFilteredModuleList(mPred)
+activate Model
+Model --> GoToCommand
+deactivate Model
+
+GoToCommand -> Model : setHomeStatus(false)
 activate Model
 Model --> GoToCommand
 deactivate Model

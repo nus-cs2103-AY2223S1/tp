@@ -10,9 +10,9 @@ if () then ([keyword violate the given restrictions]
 :Show error message;
 else ([else]
 )
-:Filters module list according to keyword;
+:Filters module and person list according to keyword;
 :Set home status to false;
-:Update GUI to show filtered contact list;
+:Update GUI to show filtered module and contact list;
 endif
 stop
 @enduml
