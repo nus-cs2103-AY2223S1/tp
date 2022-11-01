@@ -52,7 +52,7 @@ Here are the symbols and text styles to look out for while using this guide:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Key Features
+## Key Features of TruthTable
 
 ### Too many cooks spoil the Truth
 
@@ -79,6 +79,8 @@ means switching from GUI-based applications to CLI code editors.
 
 Hence, TruthTable allows you to use a **CLI for all your project management needs**, reducing the impact of context 
 switching.
+
+---
 
 ## TruthTable Application Window
 
