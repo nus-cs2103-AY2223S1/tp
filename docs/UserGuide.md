@@ -72,11 +72,11 @@ The following is the main user interface of NUScheduler.
 
 **:information_source: Notes about the user interface:**<br>
 
-* `Profile`'s are listed in alphabetical order while `Event`'s are listed in chronological order, sorted by their starting date.
+* The profile list is in alphabetical order while the event list is in chronological order, sorted by their starting date.
 
-* Under `Profile`, the `Name`, `Email` and `PhoneNumber` will always be displayed while `Telegram` and `Tag`s will only be displayed if they exist.
+* In each profile, the name, email and phone number will always be displayed while telegram and tags will only be displayed if they exist.
 
-* Under `Event`, the `Title`, `StartDate`, `EndDate` and duration of event will always be displayed while `Attendees`, the participants of an `Event` and `Tag`s will only be displayed if they exist.
+* In each event, the title, start date, end date and duration of event will always be displayed while the participants of the event and tags will only be displayed if they exist.
 
 </div>
 
