@@ -295,7 +295,7 @@ The following activity diagram summarizes what happens when a user enters an `ed
 #### Implementation
 * The `markroomsunclean` command edits all the guests in GuestBook and changes their isRoomClean statuses to "no". It takes in no additional inputs or fields.
 
-The following activity diagram summarizes what happens when a user enters a `markroomsunclean` command.
+The following activity diagram summarises what happens when a user enters a `markroomsunclean` command.
 
 ![MarkRoomsUncleanActivityDiagram](images/MarkRoomsUncleanActivityDiagram.png)
 
@@ -315,7 +315,7 @@ Taking into consideration the context of GuestBook that operates for small hotel
   * Pros: Better readability of the command for the user.
   * Cons: Takes a longer time to type and there may be a higher chance of typing the wrong command due to the capitalisation of the letters.
 * Alternative 2: Using lowercase for the command.
-  * Pros: Faster and easier to type, lesser chance of typing the wrong command due to consistent lowercasing of letters. It is also consistent with lowercasing of all the other commands, thus the c
+  * Pros: Faster and easier to type, lesser chance of typing the wrong command due to consistent lowercasing of letters. It is also consistent with lowercasing of all the other commands, thus the
   commands have greater standardisation.
   * Cons: Might be harder to read the command.
 

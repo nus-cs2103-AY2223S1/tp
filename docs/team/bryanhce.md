@@ -41,10 +41,10 @@ details.
     * Did final checks to ensure consistency of UG (pull request #142).
     * Added the glossary section (pull request #129).
     * Updated introduction and subheadings (pull request #148).
-    * Updated add guest in user guide (pull request #122).
+    * Updated `add` guest in user guide (pull request #122).
   * Developer Guide:
     * Did final checks to ensure consistency of DG (pull request #142).
-    * Added implementation of markRoomsUnclean command (pull request #113).
+    * Added implementation of `markroomsunclean` command (pull request #113).
     * Updated user profile, value proposition, use cases, NFR (pull request #47).
     * Added UML diagrams (pull request #113 and #112).
 

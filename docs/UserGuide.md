@@ -15,7 +15,7 @@ their details with just your keyboard, literally all in the palm of your hands!
 By using our features, your essential hotel management needs are taken care of.
 With GuestBook, managing guests have never been easier. 
 
-This user guide will ease you into using GuestBook and guide you along to incorporate GuestBook
+This user guide will ease you in using GuestBook and guide you along to incorporate GuestBook
 in your management workflow. It provides an in-depth description of GuestBook's core features 
 and how to best use them to suite your needs. With our intuitive design, you will become 
 a master at using GuestBook in no time!
@@ -121,7 +121,8 @@ Note that the app contains **sample data**.<br><br>
    * **`add`** `n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named _John Doe_ to GuestBook. 
 <br><br>
     
-7. To find _John Doe_, you can use the **`find`** command, and search through **any of _John Doe's_ fields**, such as his `name` or `room`. The command below can help you find guests that match the keywords you entered.
+7. To find _John Doe_, you can use the **`find`** command, and search through **any of _John Doe's_ fields**,
+   such as his `name` or `room`. The command below can help you find guests that match the keywords you entered. For example,
    * **`find`** `John Doe` : Finds all the guests who have at least one field containing _John_ or _Doe_ (case-insensitive).
      <br><br>
 
@@ -141,12 +142,19 @@ For example, you can charge the third guest _30.35_ by running the command below
       <br><br>
 
 11. When a guest checks out of your hotel, you can remove the guest using the **`delete`** command.
+For example, you can check out the third guest by executing the command below.
     * **`delete`** `3` : Deletes the third guest shown in the current list.
-      <br><br>
+          <br><br>
 
 12. To clear your GuestBook of all entries, you can use the **`clear`** command.<br>
-**WARNING:** This action is **irreversible**. Please use with caution.
     * **`clear`** : Deletes all guests.
+    <div markdown="span" class="alert alert-danger">
+
+    :bangbang: **Warning:**<br>
+    * Do note that this command is **irreversible**. Once cleared, all the
+      guest data cannot be retrieved. Please use this command
+      with utmost caution.
+    </div>
       <br><br>
     
 13. Finally, to quit GuestBook, you can run the **`exit`** command.
@@ -230,10 +238,14 @@ This command is typically used to **check a guest in** to your hotel with their 
 * `add n/Betsy Crowe p/82297553 e/betsycrowe@example.com rm/Aloha5 dr/10/01/12 - 11/01/12 ng/1 rq/Extra towels` 
 Adds the guest _Betsy Crowe_ to GuestBook, with the `request` to have _extra towels in her room_.
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Editing a guest: `edit`
 
 This command edits an existing guest in GuestBook.
+
+This command is typically used to **amend a mistake** when keying in the details of the guest. Another common use of this
+command is to **change the room clean status** of a guest's room's after it has been cleaned.
 
 The guest specified at the `INDEX` is the guest you wish to edit in the current list. The existing values will be **updated** to the new values
 you provide. The values that you **did not specify** to edit will remain **unchanged**.
@@ -257,6 +269,8 @@ you provide. The values that you **did not specify** to edit will remain **uncha
 * You can more accurately edit your guests by first searching for them 
 using the [find command](#locating-guests) and then editing them accordingly!
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Billing a guest: `bill`
 
@@ -282,10 +296,12 @@ or **decreased** respectively by the value you provide.
 
 <div markdown="span" class="alert alert-warning">
 
-:triangular_flag_on_post: **Common mistake:**<br>
+:triangular_flag_on_post: **Common mistakes:**<br>
 * Missing out the `b/` prefix in the bill command.
 * Editing the bill using the `edit` command instead of the `bill` command.
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Locating guests: `find`
 
@@ -323,7 +339,7 @@ will display all rooms that have been cleaned.
 * Searching for guests using incomplete keywords e.g. `170` will **not match** `170.00`.
 </div>
 
-**Common mistakes**:
+--------------------------------------------------------------------------------------------------------------------
 
 ### Listing all guests: `list`
 
@@ -337,6 +353,8 @@ using the `find` command as a filter.
 </div>
 
 **Format**: `list`
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Deleting a guest: `delete`
 
@@ -361,6 +379,8 @@ command with caution.
 
 * `find Betsy` followed by `delete 1` deletes the first guest in the results of the `find` command.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Marking all rooms as unclean: `markroomsunclean`
 
 This command functions to mark the room clean statuses of all guests as `no`.
@@ -377,6 +397,8 @@ managers to keep track of the rooms that are cleaned or uncleaned for the day.
 * Missing out the `s`: `markroomunclean`.
 * Capitalising the `R` or `U`: `markRoomsUnclean`.
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Clearing all entries: `clear`
 
@@ -395,6 +417,8 @@ with utmost caution.
 
 **Format**: `clear`
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Viewing help: `help`
 
 This command shows a message explaining how to access the **help page**, which is this user guide you are reading.
@@ -406,6 +430,8 @@ save time, we have provided quick access to this user guide by entering the `hel
 
 **Format**: `help`
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Exiting the program: `exit`
 
 This command exits the program.
@@ -415,9 +441,13 @@ all the data have already been saved by GuestBook and there is no further action
 
 **Format**: `exit`
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Saving the data
 
 GuestBook data is saved in the hard disk **automatically** after any command that changes the data. There is no need to save manually.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Editing the data file
 
@@ -440,17 +470,17 @@ The constraints of fields are placed in a separate section as we do not wish to 
 information at once. By following this incremental approach, we hope to make the content more digestible
 for you.
 
-| Field                   | Corresponding prefix | Constraint                                                                                                                                                                                                    |
-|-------------------------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`NAME`**              | `n/`                 | should only contain alphanumeric characters and spaces.                                                                                                                                                       |
-| **`PHONE`**             | `p/`                 | should only contain numbers, and it should be at least 3 digits and at most 15 digits long.                                                                                                                   |
-| **`EMAIL`**             | `e/`                 | should only contain alphanumeric characters and '@' character. The local segment (before "@") should be at most 64 characters long, and the domain segment (after "@") should be at most 255 characters long. |
-| **`ROOM`**              | `r/`                 | should only contain alphanumeric characters. A hyphen can only be added if it is in between 2 alphanumeric characters.                                                                                        |
-| **`DATE_RANGE`**        | `dr/`                | should follow the format dd/MM/yy - dd/MM/yy.                                                                                                                                                                 |
-| **`NUMBER_OF_GUESTS`**  | `ng/`                | should only contain numbers, and it should be at least 1 and at most 4.                                                                                                                                       |
-| **`REQUEST`**           | `rq/`                | is an optional field, and it should be at most 500 characters long. It should not contain any prefixes.                                                                                                       |
-| **`IS_ROOM_CLEAN`**     | `rc/`                | should only contain `yes`, `no`, `y` or `n` (case-insensitive).                                                                                                                                               |
-| **`BILL`**              | `b/`                 | should only contain numbers, and can have up to 2 decimal places.                                                                                                                                             |
+| Field                   | Corresponding prefix | Constraint                                                                                                                                                                                                                                                                                                                                                                             |
+|-------------------------|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`NAME`**              | `n/`                 | Should contain only **alphabets** and spaces.                                                                                                                                                                                                                                                                                                                                          |
+| **`PHONE`**             | `p/`                 | Should contain only **numbers**, and it should be at least 3 digits and at most 15 digits long.                                                                                                                                                                                                                                                                                        |
+| **`EMAIL`**             | `e/`                 | Should contain only **alphanumeric characters** and '@' character. The local segment (before "@") should be at most 64 characters long, and the domain segment (after "@") should be at most 255 characters long. Special characters (`+`, `_`, `.`, `-`) can be included but **not as the first or last characters** of any segment. They also cannot be used adjacent to each other. |
+| **`ROOM`**              | `r/`                 | Should contain only **alphanumeric characters**. A hyphen can only be added if it is in between 2 alphanumeric characters.                                                                                                                                                                                                                                                             |
+| **`DATE_RANGE`**        | `dr/`                | Should follow the format dd/MM/yy - dd/MM/yy.                                                                                                                                                                                                                                                                                                                                          |
+| **`NUMBER_OF_GUESTS`**  | `ng/`                | Should contain only **numbers**, and it should be at least 1 and at most 4 numbers long.                                                                                                                                                                                                                                                                                               |
+| **`REQUEST`**           | `rq/`                | Is an **optional field**, and it should be at most 500 characters long. It should not contain any prefixes.                                                                                                                                                                                                                                                                            |
+| **`IS_ROOM_CLEAN`**     | `rc/`                | Should contain only `yes`, `no`, `y` or `n` (case-insensitive).                                                                                                                                                                                                                                                                                                                        |
+| **`BILL`**              | `b/`                 | Should contain only **numbers**, and can have up to 2 decimal places.                                                                                                                                                                                                                                                                                                                  |
 
 
 --------------------------------------------------------------------------------------------------------------------
