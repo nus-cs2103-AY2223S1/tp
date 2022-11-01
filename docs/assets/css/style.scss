@@ -15,28 +15,6 @@ html {
     width: 21px
 }
 
-@media screen and (max-width: $on-palm) {
-  .toc-button span {
-    display: none;
-  }
-
-  .toc-button {
-    padding: 6px;
-  }
-}
-
-// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd
-kbd {
-  background-color: #eee;
-  border-radius: 3px;
-  border: 1px solid #e8e8e8;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
-  display: inline-block;
-  line-height: 1;
-  padding: 2px 4px;
-  white-space: nowrap;
-}
-
 // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Counter_Styles/Using_CSS_counters
 body {
   counter-reset: h2;
@@ -54,9 +32,6 @@ h4 {
   counter-reset: h5;
 }
 
-h5 {
-  counter-reset: h6;
-}
 
 h2:before {
   content: counter(h2, decimal) ". ";
@@ -105,27 +80,7 @@ h5:before {
   margin-left: 34px;
 }
 
-// Fifth Level
-#markdown-toc > li > ul > li > ul > li > ul > li > ul > li {
-  margin-left: 42px;
-}
-
 #markdown-toc li:before {
   content: counters(item, ".") ". ";
   counter-increment: item;
-}
-
-.no-num:before, .no-num *:before {
-  content : "";
-  counter-increment : none;
-}
-
-@media print {
-  .hidden-print {
-    display: none !important;
-  }
-}
-
-.meaning-icons-container > ul li > img {
-  vertical-align: text-top;
 }
