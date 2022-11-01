@@ -70,6 +70,10 @@ public class MultiIndex {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean containsMultiIndex() {
+        return this.indices.size() >= 2;
+    }
+
     private boolean isValidPos(int pos) {
         if (pos < 1 || pos > indices.size()) {
             return false;
