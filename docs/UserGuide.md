@@ -3,35 +3,54 @@ layout: page
 title: User Guide
 ---
 
-TruthTable is a **desktop app for managing software engineering teams, optimized for use via a Command Line Interface**
-(CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TruthTable can get your task management done faster than traditional GUI apps.
+Everything you need to know about TruthTable.
 
-- Table of Contents
-  {:toc}
+* Table of Contents
+{:toc}
+
+# Introduction to TruthTable
+
+TruthTable is a **desktop application** that enables team leads to **manage their software 
+engineering teams** in one application. 
+
+TruthTable is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a 
+Graphical User Interface (GUI).
+
+If you can type fast, TruthTable can get your task management done _blazingly fast_, faster than traditional GUI 
+applications.
+
+## Features
+
+TruthTable allows you to
+
+* collage and organise your project-related documents and information (e.g. tasks, links, member, and team information),
+* visualise your teams’ progress easily,
+* delegate tasks to your team members conveniently,
+* use a CLI do all these _blazingly fast_.
 
 ---
 
-# Quick start
+# Getting Started
 
 1. Ensure you have Java `11` or above installed in your computer. If not, don't worry! Click
    [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) for further instructions on 
    how to download and install Java `11`.
 
-3. Download the latest `truthtable.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-4/tp).
+2. Download the latest `truthtable.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-4/tp).
 
-4. Copy the file to the folder you want to use as the _home folder_ for your TruthTable.
+3. Copy the file to the folder you want to use as the _home folder_ for your TruthTable.
 
-5. Double-click the file to start the app. A window which looks similar to the screenshot below should appear in a few 
+4. Double-click the file to start the app. A window which looks similar to the screenshot below should appear in a few 
    seconds. We've added some sample data for you to play around with and get familiar with the commands!.<br>
    ![Ui](images/Ui.png)
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window, which contains a link to this document.<br>
    Some example commands you can try:
    - `add member 1`
    - `add task "My First Task"`
 
-7. Refer to the [Features](#features) section below for details of each command.
+6. Refer to the [Features](#features) section below for details of each command.
 
 ---
 
