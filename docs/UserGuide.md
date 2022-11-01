@@ -125,6 +125,15 @@ slot, and doctor.
   * The appointment times for different patients with the same doctor do not clash with one another.
   * The same patient/doctor does not have multiple appointments with times that clash with one another.
 
+* Doctor and medical test are case-sensitive.
+
+* The input of four parameters must be different with the combination in other appointments, taking into consideration that doctor and medical test are case-sensitive, while patient name is case-insensitive.
+
+* The onus is on the user to check and ensure the following before adding an appointment:
+  * The appointment times for different patients with the same doctor do not clash with one another.
+  * The same patient/doctor does not have multiple appointments with times that clash with one another.
+
+
 #### Command word
 
 `addappointment`, `aa`
@@ -173,6 +182,8 @@ Adds a bill attached to an appointment with input information including amount a
 * One appointment can be attached to no more than one bill.
 
 * Bill date must be in the format `yyyy-MM-dd`, eg. `2022-11-12`.
+
+* The onus is on the user to check that the bill date entered is the same as the appointment date or later.
 
 * The onus is on the user to check that the bill date entered is the same as the appointment date or later.
 

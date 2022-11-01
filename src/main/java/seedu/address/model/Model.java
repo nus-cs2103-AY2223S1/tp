@@ -239,4 +239,8 @@ public interface Model {
      * Gets History in Model.
      */
     History getHistory();
+
+    public boolean hasPatientWithExactlySameName(Patient patient);
+
+    public boolean hasPatientWithExactlySameName(Name name);
 }

@@ -32,6 +32,7 @@ public class AddAppointmentCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the HealthContact";
     public static final String MESSAGE_PATIENT_NOT_EXIST = "This patient does not exist in the HealthContact";
+    public static final String MESSAGE_PATIENT_NAME_CASE_UNMATCHED = "The case of name of the patient is not matched";
 
     private final Appointment toAdd;
 
@@ -51,9 +52,15 @@ public class AddAppointmentCommand extends Command {
             throw new CommandException(MESSAGE_PATIENT_NOT_EXIST);
         }
 
+        if (!model.hasPatientWithExactlySameName(toAdd.getName())) {
+            throw new CommandException(MESSAGE_PATIENT_NAME_CASE_UNMATCHED);
+        }
+
         if (model.hasAppointment(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
+
+
 
         model.addAppointment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

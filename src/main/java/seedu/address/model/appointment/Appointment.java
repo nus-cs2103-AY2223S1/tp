@@ -46,7 +46,11 @@ public class Appointment {
     }
 
     public boolean isSameAppointment(Appointment appointment) {
-        return equals(appointment);
+        return appointment != null
+                && this.name.isSameName(appointment.getName())
+                && this.doctor.isSameDoctor(appointment.getDoctor())
+                && this.medicalTest.isSameMedicalTest(appointment.getMedicalTest())
+                && this.slot.equals(appointment.getSlot());
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
 
 /**
  * Represents an Appointment's slot in the HealthContact.
- * Guarantees: immutable; is valid as declared in {@link #isValidDateTime (String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidSlot (String)}
  */
 public class Slot {
 
@@ -18,6 +18,7 @@ public class Slot {
             "Slot should be like 'yyyy-MM-dd HH:mm'";
 
     public final LocalDateTime localDateTime;
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Constructs a {@code Slot}.
@@ -26,16 +27,16 @@ public class Slot {
      */
     public Slot(String dateTime) {
         requireNonNull(dateTime);
-        checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-        this.localDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));;
+        checkArgument(isValidSlot(dateTime), MESSAGE_CONSTRAINTS);
+        this.localDateTime = LocalDateTime.parse(dateTime, FORMATTER);
     }
 
     /**
      * Returns true if a given string is a valid date time.
      */
-    public static boolean isValidDateTime(String test) {
+    public static boolean isValidSlot(String input) {
         try {
-            LocalDateTime.parse(test, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            LocalDateTime.parse(input, FORMATTER);
             return true;
         } catch (DateTimeParseException e) {
             return false;
@@ -44,7 +45,7 @@ public class Slot {
 
     @Override
     public String toString() {
-        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        return localDateTime.format(FORMATTER);
     }
 
     @Override

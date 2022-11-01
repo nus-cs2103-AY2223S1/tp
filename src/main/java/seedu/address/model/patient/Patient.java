@@ -76,7 +76,7 @@ public class Patient {
         }
 
         return otherPatient != null
-                && otherPatient.getName().equals(getName());
+                && otherPatient.getName().isSameName(getName());
     }
 
     /**
@@ -94,7 +94,7 @@ public class Patient {
         }
 
         Patient otherPatient = (Patient) other;
-        return otherPatient.getName().equals(getName())
+        return otherPatient.getName().isSameName(getName())
                 && otherPatient.getPhone().equals(getPhone())
                 && otherPatient.getEmail().equals(getEmail())
                 && otherPatient.getAddress().equals(getAddress())
