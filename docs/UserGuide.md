@@ -52,6 +52,13 @@ This user guide will help you get started and understand how FABook can **seamle
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Legend
+1. :white_check_mark: : **Input Shortcut**
+2. :bulb: :  **Note**
+3. :heavy_exclamation_mark: : **Caution**
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -109,9 +116,12 @@ Format: `list`
 
 ![list](images/UserGuide/list.png) 
 
+<div markdown="block" class="alert alert-info">
+
 :white_check_mark: **Input Shortcut:**
 You can replace `list` with `l` for convenience.
 
+</div>
 ### Creation
 
 #### Creating a client contact : `create`
@@ -122,11 +132,13 @@ Creates a client contact with their information in your FABook. Any contact info
 * The `[nw/NETWORTH]` field only accepts inputs that starts with the dollar sign, are numeric,and have more than 4 digits. We want to standardise the currency and the minimum amount net worth of a client.
 eg. `nw/$1234`.
 * The `[mt/TIME...]` field accepts inputs in the `DD-MM-YYYY-HH:MM` format. Note that `YYYY` ranges from `2000` to `2099`.
+* Does not allow you to create a person with the same name and phone number as a current person in the FABook.
+* Allows you to create a person with same name but different phone number or same number and different name as a current person in the FABook.
 
 
 Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
 
-### Common Data Field Formats
+##### Common Data Field Formats
 
 | Data Field           | Format, Example                 | Remarks                                                                             |
 |----------------------|---------------------------------|-------------------------------------------------------------------------------------|
@@ -141,25 +153,26 @@ Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw
 
 ![create](images/UserGuide/create.png)
 
-:bulb: **Note:**
-`NAME` and `PHONE_NUMBER` are the only compulsory inputs. Other parameters can be left blank.
+<div markdown="block" class="alert alert-info">
 
 :bulb: **Note:**
-It is recommended to only have 1`TAG` per client.
+- `NAME` and `PHONE_NUMBER` are the only compulsory inputs. Other parameters can be left blank.
+- It is recommended to only have 1`TAG` per client.
                   
-
-* If you have multiple meeting times with your client, simply repeat the field `mt/TIME`.
-* Does not allow you to create a person with the same name and phone number as a current person in the FABook.
-* Allows you to create a person with same name but different phone number or same number and different name as a current person in the FABook.
+</div>
 
 Examples:
 * `create n/John Doe p/98765432 a/John street, block 123, #01-01`
 * `create n/Betsy Crowe a/Bugis MRT p/1234567 mt/10-11-2022-18:00 mt/01-02-2022-16:00`
 * `create n/Benedict Lee p/91281329 e/benedict@gmail.com a/Redhill Ave 3 ds/Risk averse nw/$20000 mt/10-11-2022-16:00 t/SECURED`
 
+<div markdown="block" class="alert alert-info">
+
 :white_check_mark: **Input Shortcut:**
 You can replace `create` with `c` for convenience.<br>
 Format: `c n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
+
+</div>
 
 #### Assigning PDF file to a client : `filepath`
 
@@ -178,10 +191,17 @@ Examples:
 * `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
 
 ### Retrieving
+
+<div markdown="block" class="alert alert-info">
+
 :white_check_mark: **Input Shortcut:**
 You can replace `find` with `f` for convenience for all retrieving commands.<br>
 
+</div>
+
 #### Finding your client by name : `find`
+
+Lets say 
 
 Find your clients whose name contain any of the given keywords.
 
@@ -199,9 +219,13 @@ Format: `find n/NAME`
 Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-  
+
+<div markdown="block" class="alert alert-info">
+
 :white_check_mark: **Input Shortcut:**
 Format: `f n/NAME`
+
+</div>
   
 #### Finding your client by phone number : `find`
 
@@ -217,8 +241,12 @@ Format: `find p/NUMBER`
 Examples:
 * `find p/90333333` returns the client(s) with `90333333` stored as their number
 
+<div markdown="block" class="alert alert-info">
+
 :white_check_mark: **Input Shortcut:**
 Format: `f p/NUMBER`
+
+</div>
 
 #### Finding your client by address : `find`
 
@@ -240,12 +268,18 @@ Format: `find a/ADDRESS`
 Examples:
 * `find a/Bedok` returns the client(s) with `Bedok` stored as their address
 
+<div markdown="block" class="alert alert-info">
+
 :white_check_mark: **Input Shortcut:**
 Format: `f a/ADDRESS`
 
+</div>
+
 #### Finding your client by tag : `find`
 
-Find your clients whose tag matches the input tag.
+Imagine you want to consolidate the clients you have `SECURED` and share with them the new perks your company has rolled out. Or you want to find all `POTENTIAL` clients so you can make a concerted and targeted effort to convert them into customers. Then this is the command you will want to run.
+
+You can find your clients whose tag matches the input tag.
 
 * TAG can only be either `SECURED` or `POTENTIAL`
 * If multiple tags are given, only the last one is used.
@@ -255,12 +289,18 @@ Format: `find t/TAG`
 Examples:
 * `find t/SECURED` displays the list of all `SECURED` clients.
 
+<div markdown="block" class="alert alert-info">
+
 :white_check_mark: **Input Shortcut:**
 Format: `f t/TAG`
 
+</div>
+
 #### Opening PDF file of your client : `file`
 
-Opens a client's assigned PDF file in your PDF file viewer.
+Maybe you are having a meeting with your client and you forgot the details of the financial plans that you had structured for him. Simply pull up the PDF that you stored for this client.
+
+This will open a client's assigned PDF file in your PDF file viewer.
 
 * `INDEX` is the index of the client in the currently displayed list.
 * Moving or renaming the PDF file in your local disk will cause the command to not work, which will require you to reassign a file path to the client again.
@@ -283,8 +323,12 @@ Format: Menu bar on the top of the application or press `F2`.
 
 ![Meetings](images/upcomingMeeting.png)
 
+<div markdown="block" class="alert alert-info">
+
 :heavy_exclamation_mark: **Caution:**
 As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
+
+<div>
    
 ### Updating
 
@@ -302,8 +346,12 @@ Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRI
                         
 ![update](images/UserGuide/update.png)  
 
+<div markdown="block" class="alert alert-info">
+
 :bulb: **Note:**
 Only parameters you provide will be changed.
+
+</div>
 
 * Edits the person with the provided index.
 * `INDEX` is the index of the person in the currently displayed list.<br>
@@ -317,9 +365,13 @@ Example:
 * `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed client's 
  name, phone number and address to be `John Doe`, `91234567` and `21 Lower Kent Ridge Rd` respectively.
 
+<div markdown="block" class="alert alert-info">
+
 :white_check_mark: **Input Shortcut:**
 You can replace `update` with `u` for convenience.<br>
 Format: `u INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
+
+</div>
 
 #### Updating your client's description : `description`
 
@@ -332,9 +384,13 @@ Format: `description INDEX ds/DESCRIPTION`
 
 ![description](images/UserGuide/description.png)     
 
+<div markdown="block" class="alert alert-info">
+
 :white_check_mark: **Input Shortcut:**
 You can replace `description` with `desc` for convenience.
 Format: `desc INDEX ds/DESCRIPTION`
+
+</div>
 
 #### Updating meetings : `meeting`
    
@@ -390,10 +446,14 @@ Removes every scheduled meeting time that has already passed.
 Format: `sync`
 
 ![sync](images/UserGuide/sync.png)    
-   
+  
+<div markdown="block" class="alert alert-info">
+
 :heavy_exclamation_mark: **Caution:**
 As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
 Please note that undo cannot undo this command!
+
+<div>
 
 #### Clearing all entries : `clear`
 
@@ -401,14 +461,21 @@ Clears all entries from your FABook.
 
 Format: `clear`
 
-![clear](images/UserGuide/clear.png)   
+![clear](images/UserGuide/clear.png)
+
+<div markdown="block" class="alert alert-info">
 
 :heavy_exclamation_mark: **Important**
 If you run this command by accident, you can [undo](#undoing-a-previous-command--undo) the command to restore all previously cleared entries.
 
+</div>
+
+<div markdown="block" class="alert alert-info">
+
 :white_check_mark: **Input Shortcut:**
 You can replace `clear` with `cl` for convenience.
 
+</div>
 
 ### Command Flow
 #### Undoing a previous command : `undo`                                      
@@ -423,8 +490,12 @@ Format: `undo`
 
 ![undo](images/UserGuide/undo.png) 
 
+<div markdown="block" class="alert alert-info">
+
 :heavy_exclamation_mark: **Important**
 You can undo a [`redo` command](#redoing-a-previous-command--redo).
+
+</div>
 
 #### Redoing a previous command : `redo`
 
@@ -440,8 +511,12 @@ Exits the program.
 
 Format: `exit`
 
+<div markdown="block" class="alert alert-info">
+
 :white_check_mark: **Input Shortcut:**
 You can replace `exit` with `e` for convenience.
+
+</div>
 
 ### Saving the data
 
@@ -451,9 +526,12 @@ Your FABook data are saved in the hard disk automatically after any command that
 
 FABook data are saved as a text file `[JAR file location]/data/addressbook.json`. If you are an advanced user, you are welcome to update data directly by editing that data file.
 
+<div markdown="block" class="alert alert-info">
+
 :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FABook will discard all data and start with an empty data file at the next run.
 
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
