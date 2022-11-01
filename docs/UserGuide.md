@@ -285,7 +285,7 @@ Examples:
 
 * `listT` followed by `deleteT 1` deletes the first task in the task list.
 
-* `findT milk` followed by `deleteT 1` deletes the first result of the `findT` command.
+* `findT d/book` followed by `deleteT 1` deletes the first result of the `findT` command.
 
 ### Editing a task: `editT`
 
@@ -319,7 +319,7 @@ Examples:
 
 * `listT` followed by `markT 1` marks the first task in the displayed task list as done.
 
-* `findT book` followed by `markT 1` marks the first result of the `findT` command as done.
+* `findT d/book` followed by `markT 1` marks the first result of the `findT` command as done.
 
 ### Marking task as incomplete: `unmarkT`
 
@@ -334,7 +334,7 @@ Format: `unmarkT INDEX`
 Examples:
 
 * `listT` followed by `unmarkT 1` marks the first task in the displayed task list as undone.
-* `findT book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
+* `findT d/book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
 
 ### Find a task: `findT`
 
