@@ -7,7 +7,7 @@ StudMap (SM) is a desktop app for managing your students, optimized for use via 
 still having the benefits of a Graphical User Interface (GUI). If you can type fast, SM can get your student management
 tasks done faster than traditional GUI apps.
 
-* Table of Contents 
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -259,57 +259,89 @@ Examples:
 * `unmark 1 c/T01` removes the attendance record for class `T01` from the 1st student
 * `unmark all c/T04` marks all students as absent for class `T04` from all students in the list
 
-### Tag student with label: `tag`
+### Add tag to student: `tag`
 
-Tag a student with one or more text labels. The tag should be short (i.e. no spaces) and limited to only alphabets
-and/or numbers.
-
-<  markdown="block" class="alert alert-info">
-
-</div>
+You can tag the student(s) with one or more text labels. This can help you to better identify and keep track of them.
 
 <div markdown="block" class="alert alert-info">
-   
-  **:information_source: Note** The tagging command is cumulative, that is, new tags are simply added to the student and
-  do not replace their previous tags. To remove tags from a student, see below [untag](https://ay2223s1-cs2103t-w13-1.github.io/tp/UserGuide.html#remove-tag-from-student-untag) <br>
-   
-</div>
 
-<div markdown="block" class="alert alert-info">
-   
-  **:information_source: Note** The tags are case-sensisitve. For example, `goodStudent` and `GoodStudent` will
-  be recognised as different labels. <br>
+  **:information_source: Note 1:** The tag should be short and limited to only alphabets and/or numbers (i.e. no spaces). <br>
+
+  **:information_source: Note 2:** The tags are case-sensisitve. For example, `goodStudent` and `goodstudent` will
+  be recognised as different labels.
+
+  **:information_source: Note 3:** The tagging command is cumulative, that is, new tags are simply added to the student(s) and
+  do not replace their previous tags. To remove tags from the student(s), see [untag](#remove-tag-from-student-untag) below. <br>
 
 </div>
 
 Format: `tag INDEX/ALL t/TAG [t/OTHER]`
 
-- `INDEX` could be specified or use `ALL` to add the new tags to everyone in the list
-- `TAG` the label for the student to be added. There should be at least one new label to be added when you use this command
-- `OTHER` optional tags that you might also want to add to your students
-
+- `INDEX`: You can specify the index of the student you want to add the tag to. Alternatively, you can use `ALL` to add the new tags to everyone in the currently display list.
+- `TAG`: You can specify the label to be added to the student. At least one label should be specified when you use this command
+- `OTHER`: You can also optional tags that you might also want to add to your students.
 
 Examples:
 
-* `tag 1 t/goodStudent`
-* `tag all t/goodstudent t/potentialTA`
+* `tag 1 t/goodStudent` adds the tag of "goodStudent" to the first student in the current list.
+* `tag all t/goodstudent t/potentialTA` add both "goodStudent" and "potentialTA" tag to the all student in the current list.
 
 ### Remove tag from student: `untag`
 
 Remove the specified tag(s) from the student(s).
 
-
 Format: `untag INDEX/ALL t/TAG [t/OTHER]`
 
-- `INDEX` could be specified or use `ALL` to record participation component for all students in the list
-- `TAG` the label for the student to be removed.There should be at least  one label to be removed when you use this command
-- `OTHER` optional tags that you might also want to remove from your student(s)
+- `INDEX`: You can specify index of the student to remove the tag from or use `ALL` to remove the tag for all students in the currently displayed list.
+- `TAG`: You can specify the `TAG` to remove.There should be at least one label to be removed when you use this command. For the restrictions on the format of a `TAG`, see Note 1 for [Add tag to student](#add-tag-to-student-tag).
+- `OTHER`: You can also include multiple tags to be removed from your student(s).
 
 
 Examples:
 
 * `untag 1 t/needMoreTime`
 * `untag all t/needMoreTime t/late`
+
+
+### Grade assignment for student: `grade`
+
+You can change the grading status for the assignments using this command. If the record of the assignment does not yet exist for the specified student, a new entry for the assignment will be automatically created for the student. This can help you to better keep track of assignments that you have graded or received.
+
+<div markdown="block" class="alert alert-info">
+
+  **:information_source: Note 2:** The name of assignments should contain only numbers and alphabets (all upper case). If you include any lower case in the assignment name, it will be automatically converted to upper case.
+
+</div>
+
+Format: `grade INDEX/ALL STATUS a/ASSIGNMENT`
+
+- `INDEX`: You can specify the index of the student you want to change the assignment grading status for. Alternatively, you can use `ALL` to modify the assignment grading status for every students in the currently displayed list.
+- `STATUS`: You can specify the grading status for the assignment. Currently, following three statuses are supported:
+  - `new`: The assignment has just been assigned to the student and hence it has not been submitted nor marked yet.
+  - `received`: You have received the assignment submission from the student but you have not graded it yet.
+  - `marked`: You have received and graded the assignment.
+- `ASSIGNEMNT`: You can specify the assignment which you want to change the grading status for.
+
+
+Examples:
+
+* `grade 1 new a/A01` changes the assignment grading status for assignment "A01" of the first student in the list to `new`. Add an entry of A01 into the first student's record if it does not exist yet.
+* `grade all marked a/A02` changes the assignment grading status for assignment "A02" of every students in the list to `marked`.
+
+### Remove assignment from student: `ungrade`
+
+You can remove the specified assignment from the student's record.
+
+Format: `ungrade INDEX/ALL a/ASSIGNMENT`
+
+- `INDEX`: You can specify index of the student remove the assignment from or use `ALL` to remove the assignment for all students in the currently displayed list.
+- `ASSIGNMENT`: You can specify the record of the assignment to be removed.
+
+Examples:
+
+* `ungrade 1 a/A01`
+* `ungrade all a/A01`
+
 
 ### Recording participation of a student: `participate`
 
@@ -378,6 +410,8 @@ Action | Format, Examples
 **Unmark** | `unmark INDEX/ALL c/CLASS` <br> e.g., `mark 1 c/T01`
 **Add tag** | `tag INDEX/ALL t/TAG [t/OTHER]` <br> e.g., `tag 2 t/goodStudent`
 **Remove tag** | `untag INDEX t/TAG [t/OTHER]` <br> e.g., `untag 2 t/goodStudent`
+**Grade assignment** | `grade INDEX/ALL STATUS a/ASSIGNMENT` <br> e.g., `grade 2 new a/A01`
+**Remove assignment** | `ungrade INDEX a/ASSIGNMENT` <br> e.g., `ungrade 2 a/A01`
 **Record participation** | `participate INDEX/ALL STATUS p/COMPONENT` <br> e.g., `participate 2 yes p/C01`
 **Remove participation** | `unparticipate INDEX/ALL p/COMPONENT` <br> e.g., `unparticipate 2 c/C01`
 **Import CSV** | `import`
