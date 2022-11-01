@@ -16,7 +16,7 @@ import seedu.address.model.person.Person;
  * Controller for a meetings page
  */
 public class MeetingsWindow extends UiPart<Stage> {
-    public static final String MEETINGS_MESSAGE = "These are the meetings you have for the week.";
+    public static final String MEETINGS_MESSAGE = "These are the meetings you have for the next 7 days.";
     private static final Logger logger = LogsCenter.getLogger(MeetingsWindow.class);
     private static final String FXML = "MeetingsWindow.fxml";
     private MeetingListPanel meetingListPanel;
