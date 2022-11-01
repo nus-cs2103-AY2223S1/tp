@@ -7,9 +7,9 @@ import static seedu.watson.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
-import static seedu.watson.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -67,9 +67,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         StudentClass studentClass = ParserUtil.parseStudentClass(argMultimap.getValue(PREFIX_STUDENTCLASS).get());
         Attendance attendance = new Attendance(); // Adding a student results in empty attendance initially
         Set<Remark> remarksList = ParserUtil.parseRemarks(argMultimap.getAllValues(PREFIX_REMARK));
-        Set<Subject> subjectList = ParserUtil.parseSubjects(argMultimap.getAllValues(PREFIX_SUBJECT));
+        Set<Subject> subjectList = new HashSet<Subject>();
+        subjectList.add(new Subject("MATH"));
+        subjectList.add(new Subject("Science"));
         SubjectHandler subjectHandler = new SubjectHandler(subjectList);
-
         Student student =
             new Student(name, phone, email, address, studentClass, attendance, remarksList, subjectHandler,
                         tagList);
