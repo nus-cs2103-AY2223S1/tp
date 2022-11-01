@@ -4,7 +4,7 @@ title: User Guide
 ---
 <div align="center">
 <h1> PetCode User Guide</h1>
-Welcome to the PetCode user guide!
+Welcome to the PetCode user guide!<br><br>
 
 PetCode is a desktop app that helps <b>store and manage contact information for your pet sales coordination business</b>.
 </div>
@@ -246,19 +246,19 @@ Example:
 nice feature for you to add a buyer and his/her orders in one shot! Check it out below :point_down: <br><br>
 Format: `add-b n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION o/add-o(order1 prefixes and fields) o/add-o(order2 prefixes and fields)…​`
 
-<div markdown="span" class="alert alert-primary">
+    <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** Note that you can input as many `o/add-o` prefixes as you need, this allows you to create many new orders for one buyer.
-After each `add-o`, simply enter the details for the order, and you don't have to specify the index of the associated buyer this time. For more
-information, you can refer to the [Add Order](#adding-an-order-to-a-buyer-add-o) section.
+    :bulb: **Tip:** Note that you can input as many `o/add-o` prefixes as you need, this allows you to create many new orders for one buyer.
+    After each `add-o`, simply enter the details for the order, and you don't have to specify the index of the associated buyer this time. For more
+    information, you can refer to the [Add Order](#adding-an-order-to-a-buyer-add-o) section.
 
-</div>
+    </div>
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** For more details on what each prefix represents, kindly refer to [List of Prefixes](#list-of-prefixes).
-
-</div>
+    <div markdown="span" class="alert alert-primary">
+    
+    :bulb: **Tip:** For more details on what each prefix represents, kindly refer to [List of Prefixes](#list-of-prefixes).
+    
+    </div>
 
 Examples:
 * To add a buyer with one
