@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+![NUScheduler](images/logoText.png)
+
 NUScheduler is a desktop app for **NUS students who have a large network of contacts to manage, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUScheduler can get your contact management tasks done faster than traditional GUI apps.
 
 With NUScheduler, you can store the contact details of the NUS community around you and manage your classes and events effectively.
