@@ -87,7 +87,7 @@ So what are you waiting for? Start using FinBook.
 
 ## 2.2. User Interface (UI) of FinBook
 
-![Ui](images/Ui_annotated.png)
+![Ui](images/Ui_dark_updated.png)
 
 The UI consists of:
 
@@ -111,7 +111,7 @@ Commands in FinBook are constructed using a command word. Most commands consist 
 and parameters
 
 For example,
-![Annotated command](images/command_annotated.png)
+![Annotated command](images/updated_command.png)
 
 1. **Command word**: Indicates what action you want FinBook to do. For this example, the command word `add` will add
    a client into FinBook
@@ -224,9 +224,9 @@ Examples:
 * `add n/Betsy Crowe t/VIPPClient e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan` 
   adds a client named Betsy Crowe, with a mobile number of 1234567, email address of betsycrowe@example.com [etc.](#23-command-format) to the client list.
 
-|                                                                                                                        ![UG_add](images/UG_add.png)                                                                                                                         |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| <sub>*Used command:* `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/$1000 m/20 Nov 2022 16:30 ml/13 Computing Drive t/VIPClient r/High pl/Prudential Retirement Plan note/currently having COVID ` to add John Doe to the client list</sub> |
+|                                                                                                                        ![UG_add](images/UG_ADD.png)                                                                                                                        |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| <sub>*Used command:* `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/$1000 m/20 Nov 2022 16:30 ml/13 Computing Drive t/VIPClient r/High pl/Prudential Retirement Plan note/currently having COVID` to add John Doe to the client list</sub> |
 
 
 <div markdown="block" class="alert alert-info">
@@ -498,10 +498,14 @@ Steps to reset the password:
 
 Toggles the visibility of FinBook by clicking on the `open eye` or `closed eye` icon on the top right of the application.
 
-* If the icon is an `open eye` FinBook displays all client data.
-  ![Shown](images/Ui_shown.png)
-* If the icon is a `closed eye` FinBook hides all sensitive client data.
-  ![Hidden](images/Ui_hidden.png)
+
+|               ![Shown](images/Ui_shown.png)                               |
+|:-------------------------------------------------------------------------:|
+| <sub>If the icon is an `open eye` FinBook displays all client data.</sub> |
+
+|                  ![Hidden](images/Ui_hidden.png)                                  |
+|:---------------------------------------------------------------------------------:|
+| <sub>If the icon is a `closed eye` FinBook hides all sensitive client data.</sub> |
 
 <div markdown="block" class="alert alert-info">
 
@@ -645,10 +649,14 @@ Examples:
 
 Toggles the theme of FinBook by clicking on the `sun` or `moon` icon on the top right of the application.
 
-* If icon is a `moon` FinBook is in Dark mode.
-  ![Dark mode](images/Ui_dark_w_arrow.png)
-* If icon is a `sun` FinBook is in Light mode.
-  ![Light mode](images/Ui_light.png)
+
+|              ![Dark mode](images/Ui_dark_w_arrow.png)              |
+|:------------------------------------------------------------------:|
+|      <sub>If icon is a `moon` FinBook is in Dark mode.</sub>       |
+
+|                 ![Light mode](images/Ui_light.png)                 |
+|:------------------------------------------------------------------:|
+|      <sub>If icon is a `sun` FinBook is in Light mode.</sub>       |
 
 <div markdown="block" class="alert alert-info">
 
