@@ -134,19 +134,30 @@ Format: `help`
 --------------------------------------------------------------------------------------------------------------------
 ## **Project Commands**
 This segment contains information regarding all the commands that can be used to manage Projects.
+### Project Glossary
+| Parameter            | Description, Constraints                                                                                                                                                                                                                                                                                                                          |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **PROJECT_NAME**     | _Name of Project_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> - No character limit. <br> - Project names must be unique. <br> - If you want to enter two Projects of the same name, you can add a number behind to uniquely identify the Projects e.g. Artemis2. |
+| **PROJECT_BUDGET**   | _Budget allocated to the Project_ <br> - Only numbers are allowed. <br> - Budget is in SGD.                                                                                                                                                                                                                                                       |
+| **PROJECT_DEADLINE** | _Deadline of the Project_ <br> - PROJECT_DEADLINE should be entered in the YYYY-MM-DD format.                                                                                                                                                                                                                                                     |
+| **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional and can only contain one word each. Spaces are not allowed.                                                                                                                                                                          |
 
+[Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 ### **Adding a Project :** `addproj`
 
 Adds a Project to Project list.
 
 Format: `addproj pn/PROJECT_NAME pb/PROJECT_BUDGET pd/PROJECT_DEADLINE [t/TAG]…​`
 
-* PROJECT_BUDGET should be a whole number and entered as Singapore dollars. Do not need $S.
-* PROJECT_DEADLINE should follow the YYYY-MM-DD format.
+```yaml
+Note: 
+  * A Project can have any number of tags (including 0)
+  * PROJECT_BUDGET should be a whole number and entered as Singapore dollars. You do not need to enter any currency symbols.
+  * PROJECT_DEADLINE should follow the YYYY-MM-DD format.
+```
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A Project can have any number of tags (including 0)
-</div>
 
 Examples:
 * `addproj pn/2103T TP pb/100000 pd/2022-01-01`
@@ -157,16 +168,14 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### **Deleting a Project :** `delproj`
 
-Deletes the specified Project from Project list.
+Deletes the Project at the specified `INDEX` from the Project list.
 
 Format: `delproj INDEX`
 
-* Deletes the Project at the specified `INDEX`.
-* The index refers to the index number shown in the displayed Project list.
-
 ```yaml
-Note: 
-  * The index must be a positive integer 1, 2, 3, …​
+Note:
+  * INDEX refers to numbering of the Projects shown in the displayed Project list.
+  * INDEX must be a positive integer 1, 2, 3, …​
   * Staff list will not display any Staff by default. You will have to use the [view command](#view-the-staff-list-within-a-project--view) to see the Staff of that Project.
 ```
 
@@ -181,7 +190,9 @@ Examples:
 
 Show all the Projects and Tasks in the Project and Task list respectively.
 
+<div markdown="span" class="alert alert-primary"> 
 :bulb: **Tip:** After using a find command, you can use `list` to return the display to its original state.
+</div>
 
 Format: `list`
 
@@ -224,22 +235,22 @@ Format: `sortproj`
 --------------------------------------------------------------------------------------------------------------------
 ### **Editing a Project :** `editproj`
 
-Edits an existing Project in the Project list.
+Edits the Project at the specified `INDEX` in the currently displayed Project list. Existing values will be updated to the input values.
 
 Format: `editproj INDEX [pn/PROJECT_NAME] [pb/PROJECT_BUDGET] [pd/PROJECT_DEADLINES] [t/TAG]…​`
 
-* Edits the Project at the specified `INDEX` in the currently displayed Project list. 
-
 ```yaml
 Note:
-  * The index **must be a positive integer** 1, 2, 3, …​
+  * INDEX must be a positive integer 1, 2, 3, …​
   * At least one of the optional fields must be provided.
-  * Existing values will be updated to the input values.
   * When editing tags, the existing tags of the person will be removed 
     i.e adding of tags is not cumulative.
-  * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 ```
+
+<div markdown="span" class="alert alert-primary"> 
+:bulb: **Tip:** You can remove all tags in a Project by typing `t/` without
+  specifying any tags after it.
+</div>
 
 Examples:
 * `editproj 1 pb/5000` Edits the Project budget of the 1st Project to be `5000`.
@@ -251,22 +262,34 @@ Examples:
 ## **Staff Commands**
 
 Since each Project contains a list of Staff, we recommend that before using Staff commands on any Project, 
-you should first use the [`view` command](#view-the-staff-list-within-a-project--view) to view the Project's attached Staff list.
+you should first use the [view command](#view-the-staff-list-within-a-project--view) to display the Project's attached Staff list.
 
-Staff list will refer to the Staff list within a Project and the displayed Staff list refers to what is shown on the GUI.
+### Staff Glossary
+| Parameter            | Description, Constraints                                                                                                                                                                                                                                                                                                                |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **STAFF_NAME**       | _Name of Staff_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> - No character limit. <br> - Staff names must be unique. <br> - If you want to enter two Staff members of the same name, you can add a number behind to uniquely identify them e.g. John2. |
+| **STAFF_PHONE**      | _Staff phone number_ <br> - Only numbers are allowed. <br> - Phone number must be 8 digits, and must start with either 6, 8, or 9 to match Singaporean phone numbers.                                                                                                                                                                   |
+| **STAFF_TITLE**      | _Work title of Staff_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> If `-` should be used, replace it with a space instead.                                                                                                                              |
+| **STAFF_DEPARTMENT** | _Department of Staff_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> If `-` should be used, replace it with a space instead.                                                                                                                              |
+| **LEAVE_STATUS**     | _Staff member's leave status_ <br> - Should be specified as a boolean value. Input `true` for a staff member that is on leave, and `false` for one that is present.                                                                                                                                                                     |
+| **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional and can only contain one word each. Spaces are not allowed.                                                                                                                                                                |
 
+[Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 ### **Adding a Staff member to Project :** `addstaff`
 
-Adds a Staff member info to Project specified by the index in Project list.
+Adds a Staff member into the Project at the specified `INDEX`. 
+
 
 Format: `addstaff INDEX sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT_NUMBER [t/TAGS]`
 
 ```yaml
 Note:
  * Staff names must be unique.
+ * INDEX refers to the numbering of the desired Project in the currently displayed Project list.
  * All fields for Staff members are required, except `TAGS`
- * Index refers to the numbering of the desired Project in the displayed Project list. The Staff will be added to the specified Project.
- * If no Project is shown on the Project list, addstaff will give an error. Use list to display all 
+ * If no Projects are currently shown on the Project list, addstaff will give an error. Use list to display all 
    Projects. If no Projects are present, add a Project first using the addproj command.
  * If Staff is added successfully, the displayed Staff list will be updated to show the Staff list 
    of the Project where the Staff is added to.
@@ -281,7 +304,8 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### **Deleting a Staff member from Project :** `delstaff`
 
-Deletes a Staff member and all its info inside a Project in the currently displayed Project list.
+Deletes a Staff member and all their info from the Project which has its name specified. 
+The Project must be in the currently displayed Project list for this command to work as expected.
 
 Format: `delstaff INDEX pn/PROJECT_NAME`
 
@@ -293,30 +317,28 @@ Note:
   * A possible interaction is if you view the Staff list of Project A then try 
     to delete Staff at index 1 (call this Staff Tom) from Project B, it will delete 
     Staff Tom from Project B if Staff Tom is also part of Project B.
+  * The index must be a positive integer 1, 2, 3, …​
   * If Staff is deleted successfully, it will update the displayed Staff list to show the Staff list 
     of the Project where the Staff was deleted from.
-  * The index must be a positive integer 1, 2, 3, …​
 ```
 
 Examples:
 
 * `delstaff 1 pn/2103` Delete the 1st Staff within the displayed Staff list from Project `2103`.
-* `delstaff 7 pn/Duke` Delete 7th Staff with displayed Staff list from Project `Duke`.
+* `delstaff 7 pn/Duke` Delete 7th Staff within the displayed Staff list from Project `Duke`.
 
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **View the Staff list within a Project :** `view`
 
-Views the Staff list of a specified Project in Project list.
+Views the Staff list of the Project at the specified `INDEX`.
 
 Format: `view INDEX`
 
-* View the Staff list of the Project at the specified `INDEX`.
-
 ```yaml
 Note:
-  * The index refers to the index number shown in the displayed Project list.
+  * INDEX refers to the numbering of the Projects in the displayed Project list.
   * The index must be a positive integer 1, 2, 3, …​
 ```
 Examples:
@@ -328,7 +350,8 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### **Editing a Staff member within a Project :** `editstaff`
 
-Edits the Staff details of a Staff of a specified Project in the currently displayed Project list.
+Edits the Staff details of a Staff in the Project which has its name specified.
+The Project must be in the currently displayed Project list for this command to work as expected.
 
 Format: `editstaff INDEX pn/PROJECT_NAME [sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT_NUMBER
 t/TAGS]`
@@ -353,7 +376,7 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### **Finding a Staff member within a Project :** `findstaff`
 
-Finds the displayed Staff list for Staff with names that match any of the keywords.
+Changes the displayed Staff list to contain only Staff members with names that match any of the keywords.
 
 Format: `findstaff KEYWORDS`
 
@@ -369,7 +392,7 @@ Examples:
 * `findstaff Jon` returns a filtered view of the Staff list such that all Staff with name `Jon` are listed.
 * `findstaff Adrian Lam` returns a filtered view of the Staff list such that all Staff with name `Adrian Lam` are listed. 
 Staff whose name contains `Adrian` or `Lam` are also listed. 
-* You can always use `view INDEX` to list all the Staff in the Staff list after you are done with finding a particular Staff.
+* You can use the view command to list all the Staff in a Project if you wish to display the full Staff List again.
 
 [Back to top](#table-of-contents)
 
@@ -377,6 +400,16 @@ Staff whose name contains `Adrian` or `Lam` are also listed.
 ## **Task Commands**
 This segment contains information on all the commands related to Tasks.
 
+### Task Glossary
+| Parameter            | Description, Constraints                                                                                                                                                                                                                                                                                                                |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **TASK_DESCRIPTION** | _Description of Task_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> - No character limit. <br> - Task names must be unique. <br> - If you want to enter two Tasks of the same name, you can add a number behind to uniquely identify them e.g. Meeting2. |
+| **TASK_DEADLINE**    | _Deadline of Task_ <br> - TASK_DEADLINE should be entered in the YYYY-MM-DD format.                                                                                                                                                                                                                                                     |
+| **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional and can only contain one word each. Spaces are not allowed.                                                                                                                                                                |
+
+[Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 ### **Adding a Task :** `addtask`
 
 Adds a Task to the Task list. 
@@ -398,13 +431,13 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### **Deleting a Task :** `deltask`
 
-Deletes a Task at the specified index from the Task list. 
+Deletes a Task at the specified `INDEX` from the Task list. 
 
 Format: `delTask INDEX`
 
 ```yaml
 Note:
-  * `INDEX` must be a positive integer from 1, 2, 3, ... 
+  * INDEX must be a positive integer from 1, 2, 3, ... 
 ```
 
 Examples:
@@ -417,7 +450,7 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### **Finding a Task :** `findtask`
 
-Finds Tasks whose description matches any of the KEYWORDS.
+Finds all Tasks which have descriptions matching any of the KEYWORDS.
 
 Format: `findtask KEYWORDS`
 
@@ -437,7 +470,7 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### **Sorting the Task list :** `sorttask`
 
-Sort Tasks in Task list by deadline. Earlier deadlines will be placed first.
+Sorts all Tasks in displayed Task list by deadline. Earlier deadlines will be placed first.
 
 ```yaml
 Warning !!!: 
@@ -460,34 +493,30 @@ Format: `filtertask`
 --------------------------------------------------------------------------------------------------------------------
 ### **Marking a Task as done :** `marktask`
 
-Marks a Task in Task list as done.
+Marks the Task at the specified `INDEX` in the displayed Task list as done.
 
 Format: `marktask INDEX`
 
-* Marks the Task at the specified `INDEX` in the displayed Task list as done.
-
 ```yaml
 Note:
-  * The index must be a positive integer 1, 2, 3, …
+  * INDEX must be a positive integer 1, 2, 3, …
 ```
 
 Examples:
-* `marktask 1` Marks the first Task as done.
+* `marktask 1` Marks the first Task in the active Task list as done.
 
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Marking a Task as Undone :** `unmarktask`
 
-Marks a Task in Task list as not done.
+Marks the Task at the specified `INDEX` in the displayed Task list as not done.
 
 Format: `unmarktask INDEX`
 
-* Marks the Task at the specified `INDEX` in the displayed Task list as not done.
-
 ```yaml
 Note:
-  * The index **must be a positive integer** 1, 2, 3, …
+  * INDEX must be a positive integer 1, 2, 3, …
 ```
 Examples:
 * `unmarktask 2` Marks the second Task as not done.
@@ -557,7 +586,7 @@ This segment contains summary tables of all the commands you can use in HR Pro M
 | **View Staff list** | `view INDEX` <br> e.g., `view 1`                                                                              |
 
 
-### **Tasks Commands Summary**
+### **Task Commands Summary**
 
 | Action           | Format, Examples                                                                                                              |
 |------------------|-------------------------------------------------------------------------------------------------------------------------------|
@@ -600,14 +629,13 @@ The prefix `t/` is for tags that are used for Projects and Staff only.
 | **pb/**    | Project budget     | pb/PROJECT_BUDGET      |
 | **pd/**    | Project deadline   | pd/PROJECT_DEADLINE    |
 | **pn/**    | Project name       | pn/PROJECT_NAME        |
-| **sc/**    | Staff Contact      | sc/STAFF_CONTACT       |
+| **sp/**    | Staff Phone        | sp/STAFF_PHONE         |
 | **sd/**    | Staff department   | sd/STAFF_DEPARTMENT    |
 | **sl/**    | Staff leave status | si/LEAVE_STATUS        |
 | **sn/**    | Staff name         | sn/STAFF_NAME          |
 | **st/**    | Staff title        | st/STAFF_TITLE         |
 | **td/**    | Task deadline      | td/TASK_DEADLINE       |
 | **tdesc/** | Task description   | tdesc/TASK_DESCRIPTION |
-| **tm/**    | Task mark          | tm/TASK_MARK           |
 | **t/**     | Tag                | t/TAG                  |
 
 [Back to top](#table-of-contents)
