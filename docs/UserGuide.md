@@ -8,6 +8,20 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 * Table of Contents
 {:toc}
 
+## Glossary 
+- **ENT**: Stands for ear, nose and throat. ENT departments of a hospital therefore handle patients whom require medical attention for issues pertaining to ear, nose or throat.
+- **UI**: Stands for User Interface, it is the space where users interact with an application or website. In this case, the launching idENTify shows the UI to the user directly and the user can interact with the application by entering commands.
+- **GUI**: Stands for Graphical User Interface, it is a type of user interface through which users interact with electronic devices via visual indicator representations.
+- **Command Line Interface**: A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.
+- **Parameters**: A parameter is a kind of variable that is used to pass information or data between functions or procedures in a computer. For example, adding a patient into idENTify requires the name of the patient, and the name is a parameter.
+- **Alphanumeric**: Text that consists only of letters and numbers. For example, abc12 is alphanumeric, but (O_O) is not.
+- **Recurring**: Something that occurs repeatedly or periodically. For example, an appointment that repeats every 7 days is considered recurring.
+- **Sort**: A process that involves arranging the data into some meaningful order to make it easier to understand, analyze or visualize. For example, sorting patients by name would arrange all patients alphabetically by name.
+- **Case-sensitive**: Difference between capital and lower-case letters matters. Therefore, not case-sensitive or case-insensitive means capital and lower-case letters are treated as the same.
+
+
+‍
+- **Parentheses**: A pair of punctuation marks, such as (), that are most often used to add additional nonessential information or an aside to a sentence.
 ## Quick Start
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest [idENTify.jar](https://github.com/AY2223S1-CS2103T-T17-4/tp/releases/tag/v1.3) from here.
@@ -68,7 +82,7 @@ Component | Purpose
 **:information_source: Notes about the command parameters:**<br>
 
 * `NAME` can only accept alphanumeric characters i.e. "a, b, c..." & "1, 2, 3..."
-* `TAG` names **must only be from the following:** `ear`, `nose`, `throat` (not case-sensitive). <br>
+* `TAG` names **must only be from the following:** `ear`, `nose`, `throat` (**NOT** case-sensitive). <br>
   e.g. `t/sick` will cause an error message.
 * Phone numbers must only contain numbers, and it should be at least 3 digits long.
 * Emails should be of the format `local-part@domain-name` and adhere to the following constraints:
@@ -113,7 +127,7 @@ Format: `Format: add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
 :bulb: **Tip:** <br>
 
 * A patient can have 0 to 3 number of tags. <br>
-* `TAG` names **must only be from the following:** `ear`, `nose`, `throat` (not case-sensitive). <br>
+* `TAG` names **must only be from the following:** `ear`, `nose`, `throat` (**NOT** case-sensitive). <br>
    e.g. `t/sick` will cause an error message.
 </div>
 
@@ -317,7 +331,7 @@ Hides patients whose names contain any of the given tags.
 
 Format: `hide patients t/TAG [t/MORE_TAGS]...`
 
-* The search is case-insensitive. e.g. `EAR` will match `ear`
+* The search is **NOT** case-sensitive. e.g. `EAR` will match `ear`
 * All tags of a patient are searched.
 
 Examples:
@@ -339,7 +353,7 @@ Unhides patients that were previously hidden who contain any of the given tags.
 
 Format: `unhide patients t/TAG [t/MORE_TAGS]...`
 
-* The search is case-insensitive. e.g `EAR` will match `ear`
+* The search is **NOT** case-sensitive. e.g `EAR` will match `ear`
 * All tags of a patient are searched.
 
 Examples:
@@ -347,12 +361,13 @@ Examples:
 
 #### Hiding appointments by reason, tag, or marked status: `hide appts`
 Hides appointments by the condition specified. <br>
-The search for reason, tag, and status is case-insensitive. e.g `EAR` will match `ear`
+The search for reason, tag, and status is **NOT** case-sensitive. e.g `EAR` will match `ear`
 
 **By reason:**
 Hides appointments that contain at least 1 of the given keywords in the reason of appointment.
 
 Format: `hide appts r/REASON [r/MORE_REASONS]...`
+
 Examples:
 * `hide appts r/nose` hides all appointments with "nose" in the reason.
 * `hide appts r/pain r/issue` hides all appointments with "pain" or "issue" in the reason.
@@ -377,12 +392,12 @@ Examples:
 * `hide appts s/marked` hides all appointments that has been marked.
 * `hide appts s/um` hides all appointments that has been ummarked.
 
-Visual Example:
+Visual example of hiding appointments by marked status:
 
-Before hide: (Initially with 11 appointments)
+Before hide: (Initially with marked appointments)
 ![before_Hide](images/beforeHide.png)
 
-After hide:
+After hide: (Appointments that are marked are now hidden)
 ![after_Hide](images/afterHide.png)
 
 #### Unhiding appointments by reason, tag or status: `unhide appts`
@@ -392,18 +407,18 @@ Unhides hidden appointments that contains `REASON` (OR `MORE_REASONS`).
 
 Format: `unhide appts r/REASON [r/MORE_REASONS]...`
 
-* The reasons are case-insensitive. e.g. `PAIN` will match `pain`
+* The reasons are **NOT** case-sensitive. e.g. `PAIN` will match `pain`
 
 Examples:
 * `unhide appts r/pain` unhides all hidden appointments with "pain" as part of the reason.
-* 'unhide appts r/pain r/problem' unhides all hidden appointments with "pain" or "problem" as part of the reason.
+* `unhide appts r/pain` r/problem' unhides all hidden appointments with "pain" or "problem" as part of the reason.
 
 **By tag:**
 Unhides hidden appointments that contains `TAG` (OR `MORE_TAGS`).
 
 Format: `unhide appts t/TAG [t/MORE_TAGS]...`
 
-* The search is case-insensitive. e.g `EAR` will match `ear`
+* The search is **NOT** case-sensitive. e.g `EAR` will match `ear`
 * All tags of an appointment are searched.
 
 Examples:
@@ -414,7 +429,7 @@ Unhides hidden appointments which were marked or unmarked.
 
 Format: `unhide appts s/marked` or `unhide appts s/m` <br>
 Alternative: `unhide appts s/unmarked` or `unhide appts s/um`
-* The condition is case-insensitive. e.g. `MARKed` will work in the same way as `marked`.
+* The condition is **NOT** case-sensitive. e.g. `MARKed` will work in the same way as `marked`.
 
 Examples:
 * `unhide appts s/marked` unhides all appointments that has been marked.
@@ -426,7 +441,7 @@ Finds patients and appointments that matches all the given criteria specified.
 Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`
 
 * At least 1 of the optional fields must be provided.
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is **NOT** case-sensitive. e.g `hans` will match `Hans`
 * `[n/NAME]`, `[p/PHONE]`, `[e/EMAIL]`, `[a/ADDRESS]` and `[t/PATIENT_TAG]` are fields to find information about the patient (patient criteria).
 * `[r/REASON]`, `[ds/DATE_START]`, `[de/DATE_END]` and `[ta/APPOINTMENT_TAG]` are fields to find information about appointments (appointment criteria).
   * `[ds/DATE_START]` searches for appointments occurring at or after `DATE_START`.
