@@ -3,7 +3,9 @@ package seedu.address.model.person.tutor;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.Instant;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -40,6 +42,7 @@ public class UniqueTutorList implements Iterable<Tutor> {
             throw new DuplicateTutorException();
         }
         internalList.add(toAdd);
+        toAdd.updateTimeAddedToList();
     }
 
     /**
@@ -104,7 +107,16 @@ public class UniqueTutorList implements Iterable<Tutor> {
             FXCollections.reverse(internalList);
             break;
         default:
-            internalList.sort(Comparator.comparing(Tutor::getUniqueId));
+            internalList.sort((first, second) -> {
+                HashMap<Integer, Object> a = first.getUniqueId();
+                HashMap<Integer, Object> b = second.getUniqueId();
+                Instant t = (Instant) a.get(0);
+                int result = t.compareTo((Instant) b.get(0));
+                if (result == 0) {
+                    return ((int) a.get(1)) - ((int) b.get(1));
+                }
+                return result;
+            });
         }
     }
 

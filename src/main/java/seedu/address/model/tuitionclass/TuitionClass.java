@@ -2,8 +2,9 @@ package seedu.address.model.tuitionclass;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalTime;
+import java.time.Instant;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -22,7 +23,7 @@ public class TuitionClass {
     private final Day day;
     private final Time time;
     private final Set<Tag> tags = new HashSet<>();
-    private final String uniqueId;
+    private final HashMap<Integer, Object> uniqueId = new HashMap<>();
 
     /**
      * Every field must be present and not null.
@@ -36,9 +37,7 @@ public class TuitionClass {
         this.day = day;
         this.time = time;
         this.tags.addAll(tags);
-
-        LocalTime timeAdded = LocalTime.now();
-        this.uniqueId = timeAdded + "tuitionClass";
+        this.uniqueId.put(1, id);
     }
 
     public Name getName() {
@@ -69,8 +68,12 @@ public class TuitionClass {
         return Collections.unmodifiableSet(tags);
     }
 
-    public String getUniqueId() {
+    public HashMap<Integer, Object> getUniqueId() {
         return this.uniqueId;
+    }
+
+    public void updateTimeAddedToList() {
+        this.uniqueId.put(0, Instant.now());
     }
 
     public void minusId() {
