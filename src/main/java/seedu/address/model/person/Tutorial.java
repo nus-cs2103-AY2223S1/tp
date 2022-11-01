@@ -15,7 +15,7 @@ public class Tutorial {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[W/T/F]\\d{2}";
+    public static final String VALIDATION_REGEX = "[W/T/F]\\d{2}|^$";
 
     public final String tut;
 
