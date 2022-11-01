@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * Guarantees: immutable; is valid as declared in {@link #isValidUid(String)}
  */
 public class Uid implements Comparable<Uid> {
-    public static final String MESSAGE_CONSTRAINTS = "Ids should only contain positive numeric characters,"
+    public static final String MESSAGE_CONSTRAINTS = "Id should only contain one positive numeric character,"
             + " and it should not be blank and below 99998!";
 
     /**
