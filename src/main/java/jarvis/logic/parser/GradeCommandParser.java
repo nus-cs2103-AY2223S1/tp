@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.GradeCommand;
 import jarvis.logic.parser.exceptions.ParseException;
+import jarvis.model.Assessment;
 import jarvis.model.GradeProfile;
 
 /**
@@ -48,19 +49,21 @@ public class GradeCommandParser implements Parser<GradeCommand> {
         GradeProfile gp = new GradeProfile();
 
         if (argMultimap.getValue(PREFIX_RA1).isPresent()) {
-            gp.setRa1(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_RA1).get()));
+            gp.setRa1(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_RA1).get(), Assessment.RA1));
         }
         if (argMultimap.getValue(PREFIX_RA2).isPresent()) {
-            gp.setRa2(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_RA2).get()));
+            gp.setRa2(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_RA2).get(), Assessment.RA2));
         }
         if (argMultimap.getValue(PREFIX_MIDTERM).isPresent()) {
-            gp.setMidterm(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_MIDTERM).get()));
+            gp.setMidterm(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_MIDTERM).get(), Assessment.MIDTERM));
         }
         if (argMultimap.getValue(PREFIX_PRACTICAL_ASST).isPresent()) {
-            gp.setPracticalAssessment(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_PRACTICAL_ASST).get()));
+            gp.setPracticalAssessment(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_PRACTICAL_ASST).get(),
+                    Assessment.PRACTICAL_ASSESSMENT));
         }
         if (argMultimap.getValue(PREFIX_FINAL_ASST).isPresent()) {
-            gp.setFinalAssessment(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_FINAL_ASST).get()));
+            gp.setFinalAssessment(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_FINAL_ASST).get(),
+                    Assessment.FINAL_ASSESSMENT));
         }
 
         return new GradeCommand(index, gp);
