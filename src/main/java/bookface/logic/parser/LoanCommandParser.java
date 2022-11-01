@@ -85,7 +85,8 @@ public class LoanCommandParser implements Parseable<LoanCommand> {
             } else {
                 List<Date> parsedReturnDate = new PrettyTimeParser().parse(parsedString);
                 if (parsedReturnDate.isEmpty()) {
-                    throw new ParseException(String.format(Messages.MESSAGE_INVALID_DATE_PARSE, LoanCommand.MESSAGE_USAGE));
+                    throw new ParseException(String.format(Messages.MESSAGE_INVALID_DATE_PARSE,
+                            LoanCommand.MESSAGE_USAGE));
                 }
                 return new LoanCommand(userIndex, bookIndex, parsedReturnDate.get(0));
             }

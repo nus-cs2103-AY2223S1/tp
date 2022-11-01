@@ -99,8 +99,8 @@ public class LoanCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof LoanCommand // instanceof handles nulls
                 && targetUserIndex.equals(((LoanCommand) other).targetUserIndex)
-        && targetBookIndex.equals(((LoanCommand) other).targetBookIndex)
-        && parsedDate.equals(((LoanCommand) other).parsedDate));
+                && targetBookIndex.equals(((LoanCommand) other).targetBookIndex)
+                && parsedDate.equals(((LoanCommand) other).parsedDate));
     }
 }
 
