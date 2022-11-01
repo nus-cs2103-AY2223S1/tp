@@ -36,13 +36,11 @@ public class CommandTestUtil {
 
     public static final String VALID_EVENT_EATING = "Eating";
     public static final String VALID_EVENT_SIGHTSEEING = "Sightseeing";
-    
+
     public static final String VALID_LOCATION_GERMANY = "Germany";
     public static final String VALID_LOCATION_JAPAN = "Japan";
 
     public static final String VALID_DATE = "01-01-2000";
-            
-            
 
 
     public static final String TITLE_DESC_GERMANY = " " + PREFIX_TITLE + VALID_TITLE_GERMANY;
