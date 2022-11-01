@@ -29,7 +29,7 @@ public class RateCommand extends Command {
             + "[" + CliSyntax.PREFIX_RATING + "RATING (1-5)] "
             + "[" + CliSyntax.PREFIX_REVIEW + "REVIEW]\n"
             + "Example: " + commandWord + " 1 "
-            + CliSyntax.PREFIX_RATING + " 4"
+            + CliSyntax.PREFIX_RATING + "4" + " "
             + CliSyntax.PREFIX_REVIEW + "not too bad.";
 
     private final Index index;
