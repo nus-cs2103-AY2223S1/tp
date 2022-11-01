@@ -116,7 +116,8 @@ Format: `add d/DESCRIPTION sd/START DATE du/DURATION [c/COUNTRY] [p/NUMBER OF WA
   - e.g. `sd/2022-12-10 du/10` would mean that the trip is from 10 Dec 2022 to 19 Dec 2022.
 * `BUDGET` is in dollars ($) and can include cents.
   - e.g. `b/1000.50` is $1000 and 50¢.
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** 
 * You cannot add an itinerary with the same description as an existing itinerary.
 * Waddle only accepts english letters and spaces for `DESCRIPTION` and `COUNTRY`, special characters like `'`, `&`, `!` are not allowed.
   * Example of invalid input: `d/My Trip!!`, `c/Côte d'Ivoire`, `c/中国`
@@ -293,13 +294,23 @@ Format: `home`
 
 ### Copying to clipboard : `copy`
 
-Copies the itinerary onto your device's clipboard so you can paste it anywhere.
+Copies the itinerary in a text format onto your device's clipboard so you can paste it anywhere.
 
 Format: `copy`
+
+[//]: # (TODO: include screenshot of how the generated text looks like)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** 
+* The generated text includes all days within the itinerary, even if there are no items planned for the day.
+* The generated text does not include the items in the wishlist. For items to be reflected in the generated text, they must be planned.
+</div>
 
 ### Exporting to PDF file : `pdf`
 
 Exports the itinerary into a PDF file. The file can be found under the "Waddle" folder in your "Documents" folder.
+
+[//]: # (TODO: include screenshots of where to find it for windows and mac, maybe linux but idk how)
 
 Format: `pdf`
 
