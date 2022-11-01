@@ -90,6 +90,7 @@ public class EditPersonCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
 
+        //update person to every group
         List<Group> groupListToEdit = model.getFilteredGroupList();
         for (int i = 0; i < groupListToEdit.size(); i++) {
             Group currGroup = groupListToEdit.get(i);

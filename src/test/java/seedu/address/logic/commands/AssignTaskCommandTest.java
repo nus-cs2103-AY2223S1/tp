@@ -16,6 +16,10 @@ import static seedu.address.model.person.testutil.TypicalPersons.ORAL_PRESENTATI
 import static seedu.address.model.person.testutil.TypicalPersons.TEAM_PROJECT;
 import static seedu.address.model.person.testutil.TypicalPersons.getTypicalAddressBookWithGroups;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -25,6 +29,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Workload;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.testutil.PersonBuilder;
@@ -64,6 +69,19 @@ public class AssignTaskCommandTest {
                         + AssignTaskCommand.MESSAGE_ARGUMENTS,
                 ELLE.getName(), groupName, assignmentToAssign);
 
+        List<Group> groupListToEdit = model.getFilteredGroupList();
+        for (int i = 0; i < groupListToEdit.size(); i++) {
+            Group currGroup = groupListToEdit.get(i);
+            if (currGroup.contains(personToAssignTask)) {
+                Set<Person> currMembers = new HashSet<Person>(currGroup.getMembers());
+                currMembers.remove(personToAssignTask);
+                currMembers.add(expectedEditedPerson);
+
+                Group newGroup = new Group(currGroup.getName(), currMembers);
+                model.setGroup(currGroup, newGroup);
+            }
+        }
+
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         model.setPerson(personToAssignTask, editedPerson);
         expectedModel.setPerson(personToAssignTask, expectedEditedPerson);
@@ -86,6 +104,19 @@ public class AssignTaskCommandTest {
         Person expectedEditedPerson = new PersonBuilder(personToAssignTask)
                 .withAssignments(new String[]{groupName},
                         new String[][]{{assignmentName}}).build();
+
+        List<Group> groupListToEdit = model.getFilteredGroupList();
+        for (int i = 0; i < groupListToEdit.size(); i++) {
+            Group currGroup = groupListToEdit.get(i);
+            if (currGroup.contains(personToAssignTask)) {
+                Set<Person> currMembers = new HashSet<Person>(currGroup.getMembers());
+                currMembers.remove(personToAssignTask);
+                currMembers.add(expectedEditedPerson);
+
+                Group newGroup = new Group(currGroup.getName(), currMembers);
+                model.setGroup(currGroup, newGroup);
+            }
+        }
 
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(
                 ELLE.getName(),
