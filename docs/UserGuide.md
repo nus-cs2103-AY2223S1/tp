@@ -187,11 +187,14 @@ Examples:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: `add` command will refresh the portfolio panel to display "no client selected for view yet!".**
+**:information_source:**
+* `add` command will refresh the portfolio panel to display "no client selected for view yet!".
+* `m/UPCOMING_MEETING_DATES` can be in the `dd Mmm yyyy` or `dd Mmm yyyy HH:mm` format.
+
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-`m/UPCOMING_MEETING_DATES` can be in the `dd Mmm yyyy` or `dd Mmm yyyy HH:mm` format.
+Only the latest parameter of each prefix is accepted. Eg. `add n/Johnny n/John p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000` will only add the name of client as John. 
 </div>
 
 ---
@@ -330,7 +333,7 @@ Examples:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source**:
+**:information_source:**
 * `find` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the updated client list.
 * `sort` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the updated client list.
 </div>
