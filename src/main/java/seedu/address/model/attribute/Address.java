@@ -1,20 +1,22 @@
 package seedu.address.model.attribute;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+
+import seedu.address.logic.parser.Prefix;
 
 /**
- * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in
+ * Represents a Person's address in the address book. Guarantees: immutable; is valid as declared in
  * {@link #isValidAddress(String)}
  */
-public class Address extends AbstractAttribute<String> {
+public class Address extends AbstractAttribute<String> implements PrefixedAttribute {
 
     public static final String TYPE = "Address";
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * The first character of the address must not be a whitespace, otherwise " " (a blank string)
+     * becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
@@ -34,5 +36,10 @@ public class Address extends AbstractAttribute<String> {
      */
     public static boolean isValidAddress(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public Prefix getPrefix() {
+        return PREFIX_ADDRESS;
     }
 }
