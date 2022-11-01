@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.buyer.exceptions.DuplicatePersonException;
-import seedu.address.model.buyer.exceptions.PersonNotFoundException;
+import seedu.address.model.buyer.exceptions.DuplicateBuyerException;
+import seedu.address.model.buyer.exceptions.BuyerNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniqueBuyerListTest {
@@ -55,28 +55,28 @@ public class UniqueBuyerListTest {
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
         uniqueBuyerList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueBuyerList.add(ALICE));
+        assertThrows(DuplicateBuyerException.class, () -> uniqueBuyerList.add(ALICE));
     }
 
     @Test
     public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueBuyerList.setPerson(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueBuyerList.setBuyer(null, ALICE));
     }
 
     @Test
     public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueBuyerList.setPerson(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueBuyerList.setBuyer(ALICE, null));
     }
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueBuyerList.setPerson(ALICE, ALICE));
+        assertThrows(BuyerNotFoundException.class, () -> uniqueBuyerList.setBuyer(ALICE, ALICE));
     }
 
     @Test
     public void setPerson_editedPersonIsSamePerson_success() {
         uniqueBuyerList.add(ALICE);
-        uniqueBuyerList.setPerson(ALICE, ALICE);
+        uniqueBuyerList.setBuyer(ALICE, ALICE);
         UniqueBuyerList expectedUniqueBuyerList = new UniqueBuyerList();
         expectedUniqueBuyerList.add(ALICE);
         assertEquals(expectedUniqueBuyerList, uniqueBuyerList);
@@ -87,7 +87,7 @@ public class UniqueBuyerListTest {
         uniqueBuyerList.add(ALICE);
         Buyer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withPriority(VALID_PRIORITY_HIGH)
                 .build();
-        uniqueBuyerList.setPerson(ALICE, editedAlice);
+        uniqueBuyerList.setBuyer(ALICE, editedAlice);
         UniqueBuyerList expectedUniqueBuyerList = new UniqueBuyerList();
         expectedUniqueBuyerList.add(editedAlice);
         assertEquals(expectedUniqueBuyerList, uniqueBuyerList);
@@ -96,7 +96,7 @@ public class UniqueBuyerListTest {
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {
         uniqueBuyerList.add(ALICE);
-        uniqueBuyerList.setPerson(ALICE, BOB);
+        uniqueBuyerList.setBuyer(ALICE, BOB);
         UniqueBuyerList expectedUniqueBuyerList = new UniqueBuyerList();
         expectedUniqueBuyerList.add(BOB);
         assertEquals(expectedUniqueBuyerList, uniqueBuyerList);
@@ -106,7 +106,7 @@ public class UniqueBuyerListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniqueBuyerList.add(ALICE);
         uniqueBuyerList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniqueBuyerList.setPerson(ALICE, BOB));
+        assertThrows(DuplicateBuyerException.class, () -> uniqueBuyerList.setBuyer(ALICE, BOB));
     }
 
     @Test
@@ -116,7 +116,7 @@ public class UniqueBuyerListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueBuyerList.remove(ALICE));
+        assertThrows(BuyerNotFoundException.class, () -> uniqueBuyerList.remove(ALICE));
     }
 
     @Test
@@ -159,7 +159,7 @@ public class UniqueBuyerListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Buyer> listWithDuplicateBuyers = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueBuyerList.setBuyers(listWithDuplicateBuyers));
+        assertThrows(DuplicateBuyerException.class, () -> uniqueBuyerList.setBuyers(listWithDuplicateBuyers));
     }
 
     @Test

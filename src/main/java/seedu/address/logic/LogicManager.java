@@ -13,7 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CobbParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyPersonBook;
+import seedu.address.model.ReadOnlyBuyerBook;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
@@ -48,7 +48,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.savePersonBook(model.getPersonBook());
+            storage.saveBuyerBook(model.getBuyerBook());
             storage.savePropertyBook(model.getPropertyBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
@@ -58,13 +58,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyPersonBook getPersonBook() {
-        return model.getPersonBook();
+    public ReadOnlyBuyerBook getBuyerBook() {
+        return model.getBuyerBook();
     }
 
     @Override
-    public ObservableList<Buyer> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Buyer> getFilteredBuyerList() {
+        return model.getFilteredBuyerList();
     }
 
     @Override
@@ -78,8 +78,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getPersonBookFilePath() {
-        return model.getPersonBookFilePath();
+    public Path getBuyerBookFilePath() {
+        return model.getBuyerBookFilePath();
     }
 
     @Override

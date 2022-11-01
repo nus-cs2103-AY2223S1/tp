@@ -85,7 +85,7 @@ public class MatchPropertyCommand extends Command {
         new FilterBuyersCommand(combinedPredicate).execute(model);
 
         return new CommandResult(String.format(MESSAGE_MATCHED_PROPERTY_SUCCESS,
-                model.getFilteredPersonList().size(), propertyToMatch));
+                model.getFilteredBuyerList().size(), propertyToMatch));
     }
 
     @Override

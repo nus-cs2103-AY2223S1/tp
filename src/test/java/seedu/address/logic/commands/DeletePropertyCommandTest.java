@@ -35,7 +35,7 @@ public class DeletePropertyCommandTest {
         String expectedMessage = String.format(DeletePropertyCommand.MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete);
 
         ModelManager expectedModel =
-                new ModelManager(model.getPersonBook(), model.getPropertyBook(), new UserPrefs());
+                new ModelManager(model.getBuyerBook(), model.getPropertyBook(), new UserPrefs());
         expectedModel.deleteProperty(propertyToDelete);
 
         assertCommandSuccess(deletePropertyCommand, model, expectedMessage, expectedModel);
@@ -58,7 +58,7 @@ public class DeletePropertyCommandTest {
 
         String expectedMessage = String.format(DeletePropertyCommand.MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete);
 
-        Model expectedModel = new ModelManager(model.getPersonBook(), model.getPropertyBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getBuyerBook(), model.getPropertyBook(), new UserPrefs());
         expectedModel.deleteProperty(propertyToDelete);
         showNoProperty(expectedModel);
 

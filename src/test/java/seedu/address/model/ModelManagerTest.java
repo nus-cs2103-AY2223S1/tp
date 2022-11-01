@@ -22,7 +22,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new PersonBook(), new PersonBook(modelManager.getPersonBook()));
+        assertEquals(new BuyerBook(), new BuyerBook(modelManager.getBuyerBook()));
         assertEquals(new PropertyBook(), new PropertyBook(modelManager.getPropertyBook()));
     }
 
@@ -34,14 +34,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setPersonBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setBuyerBookFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setPersonBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setBuyerBookFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -59,24 +59,24 @@ public class ModelManagerTest {
 
     @Test
     public void setPersonBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setPersonBookFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setBuyerBookFilePath(null));
     }
 
     @Test
     public void setPersonBookFilePath_validPath_setsPersonBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setPersonBookFilePath(path);
-        assertEquals(path, modelManager.getPersonBookFilePath());
+        modelManager.setBuyerBookFilePath(path);
+        assertEquals(path, modelManager.getBuyerBookFilePath());
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasBuyer(null));
     }
 
     @Test
     public void hasPerson_personNotInPersonBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+        assertFalse(modelManager.hasBuyer(ALICE));
     }
 
     //    @Test
@@ -87,7 +87,7 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredBuyerList().remove(0));
     }
 
     @Test
@@ -125,8 +125,8 @@ public class ModelManagerTest {
 
     //    @Test
     //    public void equals() {
-    //        PersonBook personBook = new PersonModelBuilder().withPerson(ALICE).withPerson(BENSON).build();
-    //        PersonBook differentPersonBook = new PersonBook();
+    //        BuyerBook personBook = new PersonModelBuilder().withPerson(ALICE).withPerson(BENSON).build();
+    //        BuyerBook differentPersonBook = new BuyerBook();
     //        PropertyBook propertyBook = new PropertyModelBuilder().withProperty(PEAKRESIDENCE)
     //        .withProperty(HUT).build();
     //        PropertyBook differentPropertyBook = new PropertyBook();

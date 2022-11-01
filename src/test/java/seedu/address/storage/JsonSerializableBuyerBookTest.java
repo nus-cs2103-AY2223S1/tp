@@ -20,25 +20,25 @@ public class JsonSerializableBuyerBookTest {
 
     //    @Test
     //    public void toModelType_typicalPersonsFile_success() throws Exception {
-    //        JsonSerializablePersonBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
-    //                JsonSerializablePersonBook.class).get();
-    //        PersonBook personBookFromFile = dataFromFile.toModelType();
-    //        PersonBook typicalPersonsPersonBook = TypicalPersons.getTypicalPersonsBook();
+    //        JsonSerializableBuyerBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
+    //                JsonSerializableBuyerBook.class).get();
+    //        BuyerBook personBookFromFile = dataFromFile.toModelType();
+    //        BuyerBook typicalPersonsPersonBook = TypicalPersons.getTypicalPersonsBook();
     //        assertEquals(personBookFromFile, typicalPersonsPersonBook);
     //    }
 
     @Test
     public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializablePersonBook dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
-                JsonSerializablePersonBook.class).get();
+        JsonSerializableBuyerBook dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
+                JsonSerializableBuyerBook.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     //    @Test
     //    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-    //        JsonSerializablePersonBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
-    //                JsonSerializablePersonBook.class).get();
-    //        assertThrows(IllegalValueException.class, JsonSerializablePersonBook.MESSAGE_DUPLICATE_PERSON,
+    //        JsonSerializableBuyerBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
+    //                JsonSerializableBuyerBook.class).get();
+    //        assertThrows(IllegalValueException.class, JsonSerializableBuyerBook.MESSAGE_DUPLICATE_PERSON,
     //                dataFromFile::toModelType);
     //    }
 

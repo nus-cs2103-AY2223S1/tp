@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.PersonBook;
+import seedu.address.model.BuyerBook;
 import seedu.address.model.buyer.Buyer;
 
 /**
@@ -122,12 +122,12 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code PersonBook} with all the typical persons.
+     * Returns an {@code BuyerBook} with all the typical persons.
      */
-    public static PersonBook getTypicalPersonsBook() {
-        PersonBook ab = new PersonBook();
+    public static BuyerBook getTypicalPersonsBook() {
+        BuyerBook ab = new BuyerBook();
         for (Buyer buyer : getTypicalPersons()) {
-            ab.addPerson(buyer);
+            ab.addBuyer(buyer);
         }
         return ab;
     }

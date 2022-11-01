@@ -10,11 +10,11 @@ import seedu.address.model.buyer.UniqueBuyerList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameBuyer comparison)
  */
-public class PersonBook implements ReadOnlyPersonBook {
+public class BuyerBook implements ReadOnlyBuyerBook {
 
-    private final UniqueBuyerList persons;
+    private final UniqueBuyerList buyers;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,15 +24,15 @@ public class PersonBook implements ReadOnlyPersonBook {
      *   among constructors.
      */
     {
-        persons = new UniqueBuyerList();
+        buyers = new UniqueBuyerList();
     }
 
-    public PersonBook() {}
+    public BuyerBook() {}
 
     /**
-     * Creates an PersonBook using the Persons in the {@code toBeCopied}
+     * Creates an BuyerBook using the Buyers in the {@code toBeCopied}
      */
-    public PersonBook(ReadOnlyPersonBook toBeCopied) {
+    public BuyerBook(ReadOnlyBuyerBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -43,17 +43,17 @@ public class PersonBook implements ReadOnlyPersonBook {
      * Replaces the contents of the buyer list with {@code buyers}.
      * {@code buyers} must not contain duplicate buyers.
      */
-    public void setPersons(List<Buyer> buyers) {
-        this.persons.setBuyers(buyers);
+    public void setBuyers(List<Buyer> buyers) {
+        this.buyers.setBuyers(buyers);
     }
 
     /**
-     * Resets the existing data of this {@code PersonBook} with {@code newData}.
+     * Resets the existing data of this {@code BuyerBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyPersonBook newData) {
+    public void resetData(ReadOnlyBuyerBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setBuyers(newData.getBuyerList());
     }
 
     //// buyer-level operations
@@ -61,17 +61,17 @@ public class PersonBook implements ReadOnlyPersonBook {
     /**
      * Returns true if a buyer with the same identity as {@code buyer} exists in the address book.
      */
-    public boolean hasPerson(Buyer buyer) {
+    public boolean hasBuyer(Buyer buyer) {
         requireNonNull(buyer);
-        return persons.contains(buyer);
+        return buyers.contains(buyer);
     }
 
     /**
      * Adds a buyer to the address book.
      * The buyer must not already exist in the address book.
      */
-    public void addPerson(Buyer p) {
-        persons.add(p);
+    public void addBuyer(Buyer p) {
+        buyers.add(p);
     }
 
     /**
@@ -79,18 +79,18 @@ public class PersonBook implements ReadOnlyPersonBook {
      * {@code target} must exist in the address book.
      * The buyer identity of {@code editedBuyer} must not be the same as another existing buyer in the address book.
      */
-    public void setPerson(Buyer target, Buyer editedBuyer) {
+    public void setBuyer(Buyer target, Buyer editedBuyer) {
         requireNonNull(editedBuyer);
 
-        persons.setPerson(target, editedBuyer);
+        buyers.setBuyer(target, editedBuyer);
     }
 
     /**
-     * Removes {@code key} from this {@code PersonBook}.
-     * {@code key} must exist in the person book.
+     * Removes {@code key} from this {@code BuyerBook}.
+     * {@code key} must exist in the buyer book.
      */
-    public void removePerson(Buyer key) {
-        persons.remove(key);
+    public void removeBuyer(Buyer key) {
+        buyers.remove(key);
     }
 
 
@@ -98,24 +98,24 @@ public class PersonBook implements ReadOnlyPersonBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return buyers.asUnmodifiableObservableList().size() + " buyers";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Buyer> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Buyer> getBuyerList() {
+        return buyers.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PersonBook // instanceof handles nulls
-                && persons.equals(((PersonBook) other).persons));
+                || (other instanceof BuyerBook // instanceof handles nulls
+                && buyers.equals(((BuyerBook) other).buyers));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return buyers.hashCode();
     }
 }

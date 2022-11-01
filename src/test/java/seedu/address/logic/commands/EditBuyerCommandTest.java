@@ -40,7 +40,7 @@ public class EditBuyerCommandTest {
     //
     //        String expectedMessage = String.format(EditBuyerCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedBuyer);
     //
-    //        Model expectedModel = new ModelManager(new PersonBook(
+    //        Model expectedModel = new ModelManager(new BuyerBook(
     //                model.getPersonModel()), new PropertyBook(model.getPropertyModel()), new UserPrefs());
     //
     //        expectedModel.setPerson(currentBuyer, editedBuyer);
@@ -65,7 +65,7 @@ public class EditBuyerCommandTest {
     //        String expectedMessage = String.format(EditBuyerCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedBuyer);
     //
     //        Model expectedModel = new ModelManager(
-    //                new PersonBook(model.getPersonModel()), new PropertyBook(model.getPropertyModel()),
+    //                new BuyerBook(model.getPersonModel()), new PropertyBook(model.getPropertyModel()),
     //                new UserPrefs());
     //        expectedModel.setPerson(lastBuyer, editedBuyer);
     //
@@ -79,7 +79,7 @@ public class EditBuyerCommandTest {
     //
     //        String expectedMessage = String.format(EditBuyerCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedBuyer);
     //
-    //        Model expectedModel = new ModelManager(new PersonBook(
+    //        Model expectedModel = new ModelManager(new BuyerBook(
     //                model.getPersonModel()), new PropertyBook(model.getPropertyModel()), new UserPrefs());
     //
     //        assertCommandSuccess(editBuyerCommand, model, expectedMessage, expectedModel);
@@ -97,7 +97,7 @@ public class EditBuyerCommandTest {
     //        String expectedMessage = String.format(EditBuyerCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedBuyer);
     //
     //        Model expectedModel = new ModelManager(
-    //                new PersonBook(model.getPersonModel()), new PropertyBook(model.getPropertyModel()),
+    //                new BuyerBook(model.getPersonModel()), new PropertyBook(model.getPropertyModel()),
     //                new UserPrefs());
     //        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedBuyer);
     //
@@ -106,11 +106,11 @@ public class EditBuyerCommandTest {
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
-        Buyer firstBuyer = model.getFilteredPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Buyer firstBuyer = model.getFilteredBuyerList().get(INDEX_FIRST_ITEM.getZeroBased());
         EditBuyerCommand.EditBuyerDescriptor descriptor = new EditPersonDescriptorBuilder(firstBuyer).build();
         EditBuyerCommand editBuyerCommand = new EditBuyerCommand(INDEX_SECOND_ITEM, descriptor);
 
-        assertCommandFailure(editBuyerCommand, model, EditBuyerCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editBuyerCommand, model, EditBuyerCommand.MESSAGE_DUPLICATE_BUYER);
     }
 
     //    @Test
@@ -127,7 +127,7 @@ public class EditBuyerCommandTest {
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBuyerList().size() + 1);
         EditBuyerCommand.EditBuyerDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withName(VALID_NAME_BOB)
                 .build();

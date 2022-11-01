@@ -17,8 +17,8 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.BuyerBook;
 import seedu.address.model.Model;
-import seedu.address.model.PersonBook;
 import seedu.address.model.PropertyBook;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.NameContainsKeywordsPredicate;
@@ -128,12 +128,12 @@ public class BuyerCommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        PersonBook expectedPersonBook = new PersonBook(actualModel.getPersonBook());
-        List<Buyer> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        BuyerBook expectedBuyerBook = new BuyerBook(actualModel.getBuyerBook());
+        List<Buyer> expectedFilteredList = new ArrayList<>(actualModel.getFilteredBuyerList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedPersonBook, actualModel.getPersonBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedBuyerBook, actualModel.getBuyerBook());
+        assertEquals(expectedFilteredList, actualModel.getFilteredBuyerList());
     }
 
     /**
@@ -159,13 +159,13 @@ public class BuyerCommandTestUtil {
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBuyerList().size());
 
-        Buyer buyer = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Buyer buyer = model.getFilteredBuyerList().get(targetIndex.getZeroBased());
         final String[] splitName = buyer.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredBuyerList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredBuyerList().size());
     }
 
     /**

@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the property book to the user.
+ * Lists all properties in the property book to the user.
  */
 public class ListPropertiesCommand extends Command {
 

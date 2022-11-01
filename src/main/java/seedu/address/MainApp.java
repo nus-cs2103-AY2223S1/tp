@@ -17,17 +17,17 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.PersonBook;
+import seedu.address.model.BuyerBook;
 import seedu.address.model.PropertyBook;
-import seedu.address.model.ReadOnlyPersonBook;
+import seedu.address.model.ReadOnlyBuyerBook;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.JsonPersonBookStorage;
+import seedu.address.storage.BuyerBookStorage;
+import seedu.address.storage.JsonBuyerBookStorage;
 import seedu.address.storage.JsonPropertyBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.PersonBookStorage;
 import seedu.address.storage.PropertyBookStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -52,7 +52,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing PersonBook ]===========================");
+        logger.info("=============================[ Initializing BuyerBook ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -60,9 +60,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        PersonBookStorage personBookStorage = new JsonPersonBookStorage(userPrefs.getPersonBookFilePath());
+        BuyerBookStorage buyerBookStorage = new JsonBuyerBookStorage(userPrefs.getBuyerBookFilePath());
         PropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(userPrefs.getPropertyBookFilePath());
-        storage = new StorageManager(personBookStorage, propertyBookStorage, userPrefsStorage);
+        storage = new StorageManager(buyerBookStorage, propertyBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,29 +74,29 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s person book, property book and
-     * {@code userPrefs}. <br> The data from the sample person book and property book will be used instead if those in
-     * {@code storage} cannot be found, or an empty person book and property book will be used instead if errors
+     * Returns a {@code ModelManager} with the data from {@code storage}'s buyer book, property book and
+     * {@code userPrefs}. <br> The data from the sample buyer book and property book will be used instead if those in
+     * {@code storage} cannot be found, or an empty buyer book and property book will be used instead if errors
      * occur when reading those in {@code storage}.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyPersonBook> personBookOptional;
-        ReadOnlyPersonBook personBook;
+        Optional<ReadOnlyBuyerBook> buyerBookOptional;
+        ReadOnlyBuyerBook buyerBook;
         Optional<ReadOnlyPropertyBook> propertyBookOptional;
         ReadOnlyPropertyBook propertyBook;
 
         try {
-            personBookOptional = storage.readPersonBook();
-            if (!personBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample PersonBook");
+            buyerBookOptional = storage.readBuyerBook();
+            if (!buyerBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample BuyerBook");
             }
-            personBook = personBookOptional.orElseGet(SampleDataUtil::getSamplePersonBook);
+            buyerBook = buyerBookOptional.orElseGet(SampleDataUtil::getSampleBuyerBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty PersonBook");
-            personBook = new PersonBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty BuyerBook");
+            buyerBook = new BuyerBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty PersonBook");
-            personBook = new PersonBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty BuyerBook");
+            buyerBook = new BuyerBook();
         }
 
         try {
@@ -113,7 +113,7 @@ public class MainApp extends Application {
             propertyBook = new PropertyBook();
         }
 
-        return new ModelManager(personBook, propertyBook, userPrefs);
+        return new ModelManager(buyerBook, propertyBook, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -174,7 +174,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty PersonBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty BuyerBook");
             initializedPrefs = new UserPrefs();
         }
 
@@ -190,7 +190,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting PersonBook " + MainApp.VERSION);
+        logger.info("Starting BuyerBook " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

@@ -12,16 +12,16 @@ import seedu.address.model.pricerange.PriceRange;
 /**
  * An UI component that displays information of a {@code Buyer}.
  */
-public class PersonCard extends UiPart<Region> {
+public class BuyerCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "BuyerListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on PersonBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on BuyerBook level 4</a>
      */
 
     public final Buyer buyer;
@@ -49,9 +49,9 @@ public class PersonCard extends UiPart<Region> {
     private Label desiredCharacteristics;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Buyer} and index to display.
+     * Creates a {@code BuyerCard} with the given {@code Buyer} and index to display.
      */
-    public PersonCard(Buyer buyer, int displayedIndex) {
+    public BuyerCard(Buyer buyer, int displayedIndex) {
         super(FXML);
         this.buyer = buyer;
         id.setText(displayedIndex + ". ");
@@ -75,12 +75,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof BuyerCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        BuyerCard card = (BuyerCard) other;
         return id.getText().equals(card.id.getText())
                 && buyer.equals(card.buyer);
     }

@@ -18,7 +18,7 @@ import seedu.address.model.pricerange.PriceRange;
 /**
  * Jackson-friendly version of {@link Buyer}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedBuyer {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Buyer's %s field is missing!";
 
@@ -33,15 +33,15 @@ class JsonAdaptedPerson {
     private final String entryTime;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given buyer details.
+     * Constructs a {@code JsonAdaptedBuyer} with the given buyer details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("priceRange") String priceRange,
-                             @JsonProperty("desiredCharacteristics") String desiredCharacteristics,
-                             @JsonProperty("priority") String specifiedPriority,
-                             @JsonProperty("entryTime") String entryTime) {
+    public JsonAdaptedBuyer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                            @JsonProperty("email") String email, @JsonProperty("address") String address,
+                            @JsonProperty("priceRange") String priceRange,
+                            @JsonProperty("desiredCharacteristics") String desiredCharacteristics,
+                            @JsonProperty("priority") String specifiedPriority,
+                            @JsonProperty("entryTime") String entryTime) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -55,7 +55,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Buyer} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Buyer source) {
+    public JsonAdaptedBuyer(Buyer source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;

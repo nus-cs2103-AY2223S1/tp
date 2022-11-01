@@ -17,9 +17,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyPersonBook;
+import seedu.address.model.ReadOnlyBuyerBook;
 import seedu.address.model.UserPrefs;
-import seedu.address.storage.JsonPersonBookStorage;
+import seedu.address.storage.JsonBuyerBookStorage;
 import seedu.address.storage.JsonPropertyBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -35,8 +35,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonPersonBookStorage personBookStorage =
-                new JsonPersonBookStorage(temporaryFolder.resolve("personBook.json"));
+        JsonBuyerBookStorage personBookStorage =
+                new JsonBuyerBookStorage(temporaryFolder.resolve("personBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonPropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(
                 temporaryFolder.resolve("propertyBook.json"));
@@ -64,9 +64,9 @@ public class LogicManagerTest {
 
     // @Test
     // public void execute_storageThrowsIoException_throwsCommandException() {
-    //     // Setup LogicManager with JsonPersonBookIoExceptionThrowingStub
-    //     JsonPersonBookStorage personBookStorage =
-    //             new JsonPersonBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionPersonBook.json"));
+    //     // Setup LogicManager with JsonBuyerBookIoExceptionThrowingStub
+    //     JsonBuyerBookStorage personBookStorage =
+    //             new JsonBuyerBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionPersonBook.json"));
     //     JsonUserPrefsStorage userPrefsStorage =
     //             new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
     //     JsonPropertyBookStorage propertyBookStorage =
@@ -87,7 +87,7 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredBuyerList().remove(0));
     }
 
     /**
@@ -126,7 +126,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getPersonBook(), model.getPropertyBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getBuyerBook(), model.getPropertyBook(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -146,13 +146,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonPersonBookIoExceptionThrowingStub extends JsonPersonBookStorage {
-        private JsonPersonBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonBuyerBookIoExceptionThrowingStub extends JsonBuyerBookStorage {
+        private JsonBuyerBookIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void savePersonBook(ReadOnlyPersonBook personBook, Path filePath) throws IOException {
+        public void saveBuyerBook(ReadOnlyBuyerBook buyerBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

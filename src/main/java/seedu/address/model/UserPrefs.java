@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path personBookFilePath = Paths.get("data" , "personbook.json");
+    private Path buyerBookFilePath = Paths.get("data" , "buyerbook.json");
     private Path propertyBookFilePath = Paths.get("data", "propertybook.json");
 
     /**
@@ -36,7 +36,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setPersonBookFilePath(newUserPrefs.getPersonBookFilePath());
+        setBuyerBookFilePath(newUserPrefs.getBuyerBookFilePath());
         setPropertyBookFilePath(newUserPrefs.getPropertyBookFilePath());
     }
 
@@ -49,13 +49,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getPersonBookFilePath() {
-        return personBookFilePath;
+    public Path getBuyerBookFilePath() {
+        return buyerBookFilePath;
     }
 
-    public void setPersonBookFilePath(Path personBookFilePath) {
-        requireNonNull(personBookFilePath);
-        this.personBookFilePath = personBookFilePath;
+    public void setBuyerBookFilePath(Path buyerBookFilePath) {
+        requireNonNull(buyerBookFilePath);
+        this.buyerBookFilePath = buyerBookFilePath;
     }
 
     public Path getPropertyBookFilePath() {
@@ -79,20 +79,20 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && personBookFilePath.equals(o.personBookFilePath)
+                && buyerBookFilePath.equals(o.buyerBookFilePath)
                 && propertyBookFilePath.equals(o.propertyBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, personBookFilePath, propertyBookFilePath);
+        return Objects.hash(guiSettings, buyerBookFilePath, propertyBookFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nPersons data file location : " + personBookFilePath);
+        sb.append("\nBuyers data file location : " + buyerBookFilePath);
         sb.append("\nProperty data file location : " + propertyBookFilePath);
         return sb.toString();
     }

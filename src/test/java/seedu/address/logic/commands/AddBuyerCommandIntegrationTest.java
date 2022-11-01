@@ -11,7 +11,7 @@ public class AddBuyerCommandIntegrationTest {
     //    @BeforeEach
     //    public void setUp() {
     //        model = new ModelManager(getTypicalPersonsBook(), getTypicalPropertyBook(), new UserPrefs());
-    //        model.setPersonListPanel(new PersonListPanel(FXCollections.observableArrayList()));
+    //        model.setPersonListPanel(new BuyerListPanel(FXCollections.observableArrayList()));
     //    }
 
     //    @Test

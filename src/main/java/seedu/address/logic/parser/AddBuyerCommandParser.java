@@ -26,7 +26,7 @@ import seedu.address.model.pricerange.PriceRange;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddPersonCommandParser extends Parser<AddBuyerCommand> {
+public class AddBuyerCommandParser extends Parser<AddBuyerCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

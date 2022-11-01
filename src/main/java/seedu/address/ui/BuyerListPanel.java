@@ -11,31 +11,31 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.buyer.Buyer;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of buyers.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class BuyerListPanel extends UiPart<Region> {
+    private static final String FXML = "BuyerListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(BuyerListPanel.class);
 
     @FXML
-    private ListView<Buyer> personListView;
+    private ListView<Buyer> buyerListView;
 
     private ObservableList<Buyer> currentlyDisplayedBuyerList;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code BuyerListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Buyer> filteredBuyerList) {
+    public BuyerListPanel(ObservableList<Buyer> filteredBuyerList) {
         super(FXML);
-        personListView.setItems(filteredBuyerList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        buyerListView.setItems(filteredBuyerList);
+        buyerListView.setCellFactory(listView -> new BuyerListViewCell());
         currentlyDisplayedBuyerList = filteredBuyerList;
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Buyer} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Buyer} using a {@code BuyerCard}.
      */
-    class PersonListViewCell extends ListCell<Buyer> {
+    class BuyerListViewCell extends ListCell<Buyer> {
         @Override
         protected void updateItem(Buyer buyer, boolean empty) {
             super.updateItem(buyer, empty);
@@ -44,7 +44,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(buyer, getIndex() + 1).getRoot());
+                setGraphic(new BuyerCard(buyer, getIndex() + 1).getRoot());
             }
         }
     }

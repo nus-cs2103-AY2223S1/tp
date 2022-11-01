@@ -48,7 +48,7 @@ import seedu.address.model.pricerange.PriceRange;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddBuyerCommandParserTest {
-    private AddPersonCommandParser parser = new AddPersonCommandParser();
+    private AddBuyerCommandParser parser = new AddBuyerCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {

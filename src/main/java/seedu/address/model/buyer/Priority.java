@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.Arrays;
 
 /**
- * Represents a Priority in the person book.
+ * Represents a Priority in the buyer book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidPriority(String)}
  */
 public class Priority implements Comparable<Priority> {

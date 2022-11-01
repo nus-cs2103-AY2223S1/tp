@@ -52,7 +52,7 @@ public class MatchBuyerCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Buyer> lastShownList = model.getFilteredPersonList();
+        List<Buyer> lastShownList = model.getFilteredBuyerList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_BUYER_DISPLAYED_INDEX);

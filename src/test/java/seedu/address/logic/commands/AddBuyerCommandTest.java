@@ -18,8 +18,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.PersonBook;
-import seedu.address.model.ReadOnlyPersonBook;
+import seedu.address.model.BuyerBook;
+import seedu.address.model.ReadOnlyBuyerBook;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.buyer.Buyer;
@@ -51,7 +51,7 @@ public class AddBuyerCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validBuyer);
 
         assertThrows(CommandException.class,
-                AddBuyerCommand.MESSAGE_DUPLICATE_PERSON, () -> addBuyerCommand.execute(modelStub));
+                AddBuyerCommand.MESSAGE_DUPLICATE_BUYER, () -> addBuyerCommand.execute(modelStub));
     }
 
     @Test
@@ -104,12 +104,12 @@ public class AddBuyerCommandTest {
         }
 
         @Override
-        public Path getPersonBookFilePath() {
+        public Path getBuyerBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPersonBookFilePath(Path personBookFilePath) {
+        public void setBuyerBookFilePath(Path personBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,42 +124,42 @@ public class AddBuyerCommandTest {
         }
 
         @Override
-        public void addPerson(Buyer buyer) {
+        public void addBuyer(Buyer buyer) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPersonBook(ReadOnlyPersonBook newData) {
+        public void setBuyerBook(ReadOnlyBuyerBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyPersonBook getPersonBook() {
+        public ReadOnlyBuyerBook getBuyerBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Buyer buyer) {
+        public boolean hasBuyer(Buyer buyer) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Buyer target) {
+        public void deleteBuyer(Buyer target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Buyer target, Buyer editedBuyer) {
+        public void setBuyer(Buyer target, Buyer editedBuyer) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Buyer> getFilteredPersonList() {
+        public ObservableList<Buyer> getFilteredBuyerList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Buyer> predicate) {
+        public void updateFilteredBuyerList(Predicate<Buyer> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -242,7 +242,7 @@ public class AddBuyerCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Buyer buyer) {
+        public boolean hasBuyer(Buyer buyer) {
             requireNonNull(buyer);
             return this.buyer.isSameBuyer(buyer);
         }
@@ -255,20 +255,20 @@ public class AddBuyerCommandTest {
         final ArrayList<Buyer> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Buyer buyer) {
+        public boolean hasBuyer(Buyer buyer) {
             requireNonNull(buyer);
             return personsAdded.stream().anyMatch(buyer::isSameBuyer);
         }
 
         @Override
-        public void addPerson(Buyer buyer) {
+        public void addBuyer(Buyer buyer) {
             requireNonNull(buyer);
             personsAdded.add(buyer);
         }
 
         @Override
-        public ReadOnlyPersonBook getPersonBook() {
-            return new PersonBook();
+        public ReadOnlyBuyerBook getBuyerBook() {
+            return new BuyerBook();
         }
     }
 

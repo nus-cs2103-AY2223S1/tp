@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.PersonBook;
-import seedu.address.model.ReadOnlyPersonBook;
+import seedu.address.model.BuyerBook;
+import seedu.address.model.ReadOnlyBuyerBook;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonPersonBookStorage personBookStorage = new JsonPersonBookStorage(getTempFilePath("ab"));
+        JsonBuyerBookStorage personBookStorage = new JsonBuyerBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonPropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(getTempFilePath("pb"));
         storageManager = new StorageManager(personBookStorage, propertyBookStorage, userPrefsStorage);
@@ -52,18 +52,18 @@ public class StorageManagerTest {
     public void personBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonPersonBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonPersonBookStorageTest} class.
+         * {@link JsonBuyerBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonBuyerBookStorageTest} class.
          */
-        PersonBook original = getTypicalPersonsBook();
-        storageManager.savePersonBook(original);
-        ReadOnlyPersonBook retrieved = storageManager.readPersonBook().get();
-        assertEquals(original, new PersonBook(retrieved));
+        BuyerBook original = getTypicalPersonsBook();
+        storageManager.saveBuyerBook(original);
+        ReadOnlyBuyerBook retrieved = storageManager.readBuyerBook().get();
+        assertEquals(original, new BuyerBook(retrieved));
     }
 
     @Test
     public void getPersonBookFilePath() {
-        assertNotNull(storageManager.getPersonBookFilePath());
+        assertNotNull(storageManager.getBuyerBookFilePath());
     }
 
 }
