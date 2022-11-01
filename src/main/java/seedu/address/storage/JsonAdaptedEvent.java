@@ -93,9 +93,9 @@ public class JsonAdaptedEvent {
         if (this.startTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Start Time"));
         }
-        if (StartTime.isValidStartTime(startTime) == 0) {
+        if (!StartTime.isValidStartTime(startTime)) {
             throw new IllegalValueException(MESSAGE_FORMAT_CONSTRAINTS);
-        } else if (StartTime.isValidStartTime(startTime) == -1) {
+        } else if (!StartTime.isValidStartTimeValue(startTime)) {
             throw new IllegalValueException(String.format(MESSAGE_VALUE_CONSTRAINTS, startTime));
         }
         final StartTime modelStartTime = new StartTime(startTime);
