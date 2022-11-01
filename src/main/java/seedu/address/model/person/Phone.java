@@ -49,4 +49,8 @@ public class Phone {
         return value.hashCode();
     }
 
+    public String toFormattedString() {
+        return String.format("Phone: %s;", value);
+    }
+
 }

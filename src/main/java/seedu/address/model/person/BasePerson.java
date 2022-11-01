@@ -44,15 +44,11 @@ public abstract class BasePerson {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("Name: ")
-                .append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail());
-
-        return builder.toString();
+        return String.format(
+                "%s %s %s",
+                getName().toFormattedString(),
+                getPhone().toFormattedString(),
+                getEmail().toFormattedString());
     }
 
     @Override

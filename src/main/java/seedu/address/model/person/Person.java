@@ -122,13 +122,13 @@ public class Person extends BasePerson {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Uid: ")
-                .append(getUid())
+        builder.append(getUid().toFormattedString())
+                .append(" ")
                 .append(super.toString())
-                .append("; Gender: ")
-                .append(getGender())
-                .append("; Address: ")
-                .append(getAddress());
+                .append(" ")
+                .append(getGender().toFormattedString())
+                .append(" ")
+                .append(getAddress().toFormattedString());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

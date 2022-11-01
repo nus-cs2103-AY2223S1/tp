@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.category.Category;
 import seedu.address.model.tag.Tag;
@@ -74,41 +75,33 @@ public class Nurse extends Person {
     }
 
     public String getHomesVisitsInString() {
-        StringBuilder dateSlotListSB = new StringBuilder();
-
-        if (this.homeVisitList.isEmpty()) {
-            dateSlotListSB = new StringBuilder(MESSAGE_FOR_EMPTY_HOMEVISITLIST);
-            return dateSlotListSB.toString();
+        String homeVisitsString = homeVisitList.stream().map(x -> x.toString()).collect(Collectors.joining(","));
+        if (homeVisitsString.length() == 0) {
+            return MESSAGE_FOR_EMPTY_HOMEVISITLIST;
         }
-
-        for (HomeVisit homeVisit : getHomeVisits()) {
-            dateSlotListSB.append(homeVisit.toString()).append(" , ");
-        }
-
-        return dateSlotListSB.toString();
+        return String.format("Home Visits: %s;", homeVisitsString);
     }
 
     public String getUnavailableDatesInString() {
-        StringBuilder dateListSB = new StringBuilder();
-
-        if (this.unavailableDateList.isEmpty()) {
-            dateListSB = new StringBuilder(MESSAGE_FOR_EMPTY_UNAVAILABLEDATE);
-            return dateListSB.toString();
+        String unavailableString = unavailableDateList.stream().map(x -> x.toString()).collect(Collectors.joining(","));
+        if (unavailableString.length() == 0) {
+            return MESSAGE_FOR_EMPTY_UNAVAILABLEDATE;
         }
-
-        for (Date date : getUnavailableDates()) {
-            dateListSB.append(date.toString()).append(" , ");
-        }
-
-        return dateListSB.toString();
+        return String.format("Unavailable Dates: %s;", unavailableString);
     }
 
     @Override
     public String toString() {
-        String homeVisitList = getHomesVisitsInString();
-        String unavailableDateList = getUnavailableDatesInString();
-        return "Category: " + getCategory() + " " + super.toString() + "; Unavailable Dates:" + unavailableDateList
-                + "; Home Visits:" + homeVisitList;
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getCategory().toFormattedString())
+                .append(" ")
+                .append(super.toString())
+                .append(" ")
+                .append(getUnavailableDatesInString())
+                .append(" ")
+                .append(getHomesVisitsInString());
+
+        return builder.toString();
     }
 
     public boolean isNurse() {

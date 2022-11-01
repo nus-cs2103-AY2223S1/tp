@@ -68,4 +68,8 @@ public class Email {
         return value.hashCode();
     }
 
+    public String toFormattedString() {
+        return String.format("Email: %s;", value);
+    }
+
 }
