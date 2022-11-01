@@ -29,8 +29,10 @@ Workbook is optimized for fast typists and utilizes a **Command Line Interface (
 
 3. Copy the file to a folder of your choice to store data from your WorkBook.
 
-4. Using your command terminal, navigate to the folder where you placed your WorkBook at and fire it up by inputting: `java -jar WorkBook.jar` in your terminal. <br> The GUI with sample data as shown below should appear in a few seconds.<br>
+4. Using your command terminal, navigate to the folder where you placed your WorkBook at and fire it up by inputting: `java -jar WorkBook.jar` in your terminal. <br> The GUI with sample data similar to one of the images below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
+
+   ![Ui](images/UiNarrow.png)
 
 5. You can tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute. <br>
    Some example commands you can try:
