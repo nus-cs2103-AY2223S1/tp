@@ -293,22 +293,34 @@ The following activity diagram summarizes what happens when a user enters an `ed
 ### MarkRoomsUnclean Command
 
 #### Implementation
-* The `markRoomsUnclean` command edits all the guests in GuestBook and changes their isRoomClean statuses to "no". It takes in no additional inputs or fields.
+* The `markroomsunclean` command edits all the guests in GuestBook and changes their isRoomClean statuses to "no". It takes in no additional inputs or fields.
 
-The following activity diagram summarizes what happens when a user enters a `markRoomsUnclean` command.
+The following activity diagram summarizes what happens when a user enters a `markroomsunclean` command.
 
 ![MarkRoomsUncleanActivityDiagram](images/MarkRoomsUncleanActivityDiagram.png)
 
 #### Design Considerations:
 **Aspect: The scope at which the command changes all guests' isRoomClean statuses**
-* Alternative 1: Allow `markRoomsUnclean` command to operate only on the last shown list instead of the entire list. This is to Standardise how edits are made across the commands (e.g. edit and delete).
+* Alternative 1: Allow `markroomsunclean` command to operate only on the last shown list instead of the entire list. This is to Standardise how edits are made across the commands (e.g. edit and delete).
   * Pros: This might be more intuitive for users, as `edit` and `delete` commands work only on the last shown lists.
   * Cons: User is unable to change all the guests' isRoomClean statuses in a single command.
-* Alternative 2 (current choice): Allow `markRoomsUnclean` command to change all guests' isRoomClean statuses in GuestBook instead of the last shown list.
+* Alternative 2 (current choice): Allow `markroomsunclean` command to change all guests' isRoomClean statuses in GuestBook instead of the last shown list.
   * Pros: User is able to change all the guests' isRoomClean statuses in a single command.
   * Cons: There is less flexibility in marking groups of guests' room as unclean.
 
 Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely to have a case in which the user has to mark different groups of guests' isRoomClean statuses differently as the types of rooms as mostly homogenous. Hence, we decided to proceed with Alternative 2.
+
+**Aspect: Naming of the `markroomsunclean` command**
+* Alternative 1: Using camel case for the command.
+  * Pros: Better readability of the command for the user.
+  * Cons: Takes a longer time to type and there may be a higher chance of typing the wrong command due to the capitalisation of the letters.
+* Alternative 2: Using lowercase for the command.
+  * Pros: Faster and easier to type, lesser chance of typing the wrong command due to consistent lowercasing of letters. It is also consistent with lowercasing of all the other commands, thus the c
+  commands have greater standardisation.
+  * Cons: Might be harder to read the command.
+
+Taking into consideration how GuestBook is optimised for fast-typist, we prefer if the command could be typed faster with lesser chance of mistakes. The readability of the command is also 
+rather insignificant as once the user gets acquainted with the command, reading it would not be a problem. 
 
 ### Find Command
 

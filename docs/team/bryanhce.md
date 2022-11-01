@@ -11,15 +11,16 @@ while still having the benefits of a Graphical User Interface (GUI).
 If you are a hotel manager who can type fast, GuestBook can get your
 guest management tasks done faster than traditional GUI apps.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
-It is written in Java, and has about 10 kLoC.
+It is written in Java, and has about 13 kLoC.
 This project is based off AddressBook - Level 3.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Add isRoomClean field
+* **New Feature**: Added isRoomClean field.
+  * This field indicates if a room has been cleaned or not.
 
 
-* **New Feature**: Add markRoomsUnclean command
+* **New Feature**: Added markRoomsUnclean command.
   * Allows the user to set the room clean status of all the guest in the hotel to "no" in a single command.
   * This feature greatly aids with GuestBook's efficiency. Typing in one command to change all guests' room
 clean statuses saves the user an incredible amount of time compared to individually editing each guest's 
@@ -38,14 +39,14 @@ details.
 * **Documentation**:
   * User Guide:
     * Did final checks to ensure consistency of UG (pull request #142).
-    * Add glossary (pull request #129).
+    * Added the glossary section (pull request #129).
     * Updated introduction and subheadings (pull request #148).
-    * Update add guest in user guide (pull request #122).
+    * Updated add guest in user guide (pull request #122).
   * Developer Guide:
     * Did final checks to ensure consistency of DG (pull request #142).
-    * Add implementation of markRoomsUnclean command (pull request #113).
+    * Added implementation of markRoomsUnclean command (pull request #113).
     * Updated user profile, value proposition, use cases, NFR (pull request #47).
-    * Add UML diagrams (pull request #113 and #112).
+    * Added UML diagrams (pull request #113 and #112).
 
 
 * **Contributions to team-based tasks**:
@@ -55,7 +56,7 @@ details.
 
 
 * **Project management**:
-  * Add Github tags, milestones, assignee.
+  * Added Github tags, milestones, assignee.
   * Used Github issue tracker.
   * Followed the branching workflow.
   * Contributed to meetings by sharing screen and facilitating discussions.
@@ -64,6 +65,6 @@ details.
 * **Review/mentoring contributions**:
   * Team members' PR reviews (with non-trivial review comments): pull request #148, #147, #139, #134, #133, #132
 ,#126, #119, #117, #116, #109, #102, #100, #70, #68, #65 
-  * Reported bugs for other teams (ped).
+  * Reported bugs for other teams [ped](https://github.com/bryanhce/ped).
 
 

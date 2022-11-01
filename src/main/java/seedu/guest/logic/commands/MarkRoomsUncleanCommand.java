@@ -23,7 +23,7 @@ import seedu.guest.model.guest.Room;
  */
 public class MarkRoomsUncleanCommand extends Command {
 
-    public static final String COMMAND_WORD = "markRoomsUnclean";
+    public static final String COMMAND_WORD = "markroomsunclean";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Changes all guests' isRoomClean statuses to \"no\".\n"
@@ -55,13 +55,15 @@ public class MarkRoomsUncleanCommand extends Command {
     private static Guest createGuestWithRoomUnclean(Guest guestToEdit) {
         assert guestToEdit != null;
 
+        String roomUnclean = "no";
+
         Name updatedName = guestToEdit.getName();
         Phone updatedPhone = guestToEdit.getPhone();
         Email updatedEmail = guestToEdit.getEmail();
         Room updatedRoom = guestToEdit.getRoom();
         DateRange updatedDateRange = guestToEdit.getDateRange();
         NumberOfGuests updatedNumberOfGuests = guestToEdit.getNumberOfGuests();
-        IsRoomClean updatedIsRoomClean = new IsRoomClean("no");
+        IsRoomClean updatedIsRoomClean = new IsRoomClean(roomUnclean);
         Bill updatedBill = guestToEdit.getBill();
         Request updatedRequest = guestToEdit.getRequest();
         return new Guest(updatedName, updatedPhone, updatedEmail, updatedRoom, updatedDateRange,
