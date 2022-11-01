@@ -3,7 +3,14 @@ layout: page
 title: User Guide
 ---
 ## 1. Introduction
-ModQuik is a desktop app that allows Teaching Assistants to keep track of their responsibilities, students’ progress and schedules for the ongoing semester.
+Are you a Teaching Assistant (Teaching Assistant) struggling to monitor your classes and what tasks you have to complete?
+Tired of having to use multiple applications (such as LumiNUS and Todoist) to keep track of all your responsibilities? <br>
+<br>
+Introducing ModQuik, a Teaching Assistant tool made for you!
+
+ModQuik is a convenient tool that allows you to keep track of your classes, monitor your students' grades and set up reminders for your tasks(such as creating tutorial slides or marking homework). 
+ModQuik is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+If you can type fast, ModQuik can get your lesson management tasks done faster than traditional GUI apps. 
 
 * Table of Contents
 {:toc}
@@ -38,7 +45,7 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. About this User Guide
+## 3. About this User Guide
 This guide aims to 
 * Teach first-time users how to start using ModQuik
 * Explain the features of each command and how to use them.
@@ -193,7 +200,7 @@ Examples:
 <a name="add-tutorial"></a>
 #### 4.2.1 Adding a tutorial: `add tutorial`
 
-Adds a tutorial to the list of tutorials.
+Adds a tutorial to ModQuik.
 
 Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
 * `DAY` should take in a number from 1 (Monday) to 7 (Sunday).
@@ -204,7 +211,7 @@ Examples:
 <a name="edit-tutorial"></a>
 #### 4.2.2 Editing a tutorial: `edit tutorial`
 
-Edits an existing student in a specified module.
+Edits an existing student in ModQuik.
 
 Format: `edit tutorial INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DAY]`
 
@@ -220,7 +227,7 @@ Examples:
 <a name="delete-tutorial"></a>
 #### 4.2.3 Deleting a tutorial: `delete tutorial`
 
-Deletes a specified tutorial from the list of tutorials
+Deletes a specified tutorial from ModQuik.
 
 Format: `delete tutorial INDEX`
 
@@ -236,7 +243,7 @@ Examples:
 <a name="add-consultation"></a>
 #### 4.4.1 Adding a consultation: `add consultation`
 
-Adds a consultation to the list of consultations.
+Adds a consultation to ModQuik.
 
 Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`
 
@@ -246,7 +253,7 @@ Examples:
 <a name="edit-consultation"></a>
 #### 4.4.2 Editing a consultation: `edit consultation`
 
-Edits an existing consultation in the list of consultation.
+Edits an existing consultation in ModQuik.
 
 Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DATE] [d/DESCRIPTION]`
 
@@ -262,7 +269,7 @@ Examples:
 <a name="delete-consultation"></a>
 #### 4.4.3 Deleting a consultation: `delete consultation`
 
-Deletes a specified consultation from the list of consultation.
+Deletes a specified consultation from ModQuik.
 
 Format: `delete consultation INDEX`
 
@@ -278,12 +285,13 @@ Examples:
 <a name="add-reminder"></a>
 #### 4.4.1 Adding a reminder: `add reminder`
 
-Adds a reminder to the list of reminders.
+Adds a reminder to ModQuik. Users can add reminders such as "Mark Assignment 1" by a specified deadline.
 
 Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 
-Adds a reminder to the list of reminders.
 * `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
+* `DATE` must be after the time
+* Duplicated reminders are allowed.
 
 
 Examples:
@@ -292,7 +300,7 @@ Examples:
 <a name="edit-reminder"></a>
 #### 4.4.2 Editing a reminder: `edit reminder`
 
-Edits an existing reminder in the list of reminders.
+Edits an existing reminder in ModQuik. Users would be able to edit any field of an existing reminder in the event that there are changes, such as extension of a deadline.
 
 Format: `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPTION] `
 
@@ -341,7 +349,7 @@ Examples:
 <a name="delete-reminder"></a>
 #### 4.4.5 Deleting a reminder: `delete reminder`
 
-Deletes the specified reminder from the list of reminders.
+Deletes the specified reminder from ModQuik. Users can delete a reminder if they think it is no longer relevant.
 
 Format: `delete reminder INDEX`
 
@@ -355,7 +363,7 @@ Examples:
 <a name="sort-reminder"></a>
 #### 4.4.6 Sort reminders: `sort reminder`
 
-Sort reminders by a chosen criteria.
+Sort reminders by a chosen criteria. Users would be able to view the list of reminders based on the criteria they want.
 
 Format: `sort reminder by/SORT_CRITERIA`
 
@@ -388,7 +396,7 @@ _Figure 2. Grade Chart Tab_
 <a name="clear"></a>
 ### 4.6 Clearing all data: `clear`
 
-Clears all data in a specific fields or the entire app.
+Clears all data in a specific field or the entire app. For example, user might choose to reset the data when the semester ends to prepare for the upcoming semester.
 
 Format: `clear f/FIELD`
 * `FIELD` including `all`, `student`, `tutorial`, `consultation`, `reminder`
@@ -464,6 +472,8 @@ _Details coming soon..._
 | [**Help**][`help`]                               | `help`                                                                                                                                                                                                               |
 | [**Exit**][`exit`]                               | `exit`                                                                                                                                                                                                               |
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## 7. Prefix summary
 
 | Prefix    | Symbolise        | Used in                                                                                                                                                                                    |
@@ -510,6 +520,8 @@ _Details coming soon..._
 [`clear`]: #clear
 [`help`]: #help
 [`exit`]: #exit
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## 8. Glossary
 | Term                               | Description                                                                                                                                                                                   |
