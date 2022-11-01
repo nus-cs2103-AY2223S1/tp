@@ -112,6 +112,22 @@ public class FindCommandTest {
     }
 
     @Test
+    public void execute_singleNameKeyword_multiplePersonsWithSameNameFound() {
+        ArrayList<String> keywords = new ArrayList<>();
+        String name = "Meier";
+        keywords.add(0, name);
+        keywords.add(1, "");
+        keywords.add(2, "");
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        FindCommandPredicate predicate = preparePredicateUsingList(keywords);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON, DANIEL), model.getFilteredPersonList());
+    }
+
+    @Test
     public void execute_multipleNameKeywords_multiplePersonsFound() {
         ArrayList<String> keywords = new ArrayList<>();
         String name = "Fiona Daniel Kurz";
@@ -145,7 +161,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_singleClassKeyword_personsFromSameClassFound() {
+    public void execute_singleStudentClassKeyword_personsFromSameClassFound() {
         ArrayList<String> keywords = new ArrayList<>();
         String studentClass = "1A";
         keywords.add(0, "");
@@ -196,6 +212,24 @@ public class FindCommandTest {
     @Test
     public void execute_multipleSubjectKeywordsDifferentCase_personsWithSameSubjectsFound() {
         ArrayList<String> keywords = new ArrayList<>();
+        String subjects = "mAtH eNgliSH";
+        keywords.add(0, "");
+        keywords.add(1, "");
+        keywords.add(2, subjects);
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
+        FindCommandPredicate predicate = preparePredicateUsingList(keywords);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleDifferentKeywords_personsWithMatchingFieldsFound() {
+        ArrayList<String> keywords = new ArrayList<>();
+        String names = "Meier Pauline";
+        String studentClass = "1A 1B";
         String subjects = "mAtH eNgliSH";
         keywords.add(0, "");
         keywords.add(1, "");
