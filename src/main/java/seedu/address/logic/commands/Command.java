@@ -12,13 +12,13 @@ public abstract class Command {
             "A person's record list should be displayed before calling record commands\n"
             + "(Hint: rlist)";
     protected static final String MESSAGE_ADDRESS_BOOK_COMMAND_PREREQUISITE =
-            "The address book should be displayed before calling address book commands\n"
+            "The patient list should be displayed before calling patient commands\n"
             + "(Hint: list)";
 
     protected static final String MESSAGE_LIST_COMMAND_PREREQUISITE =
             "List should be used to navigate back to the patient list panel from the record list panel.\n"
                     + "A person's record list should be displayed first before calling the list command.\n"
-                    + "(Hint: Use back to view the unfiltered list )";
+                    + "(Hint: Use showall to view the unfiltered list )";
     /**
      * Executes the command and returns the result message.
      *

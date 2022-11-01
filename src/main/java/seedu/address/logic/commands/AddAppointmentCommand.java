@@ -21,14 +21,14 @@ public class AddAppointmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the patient specified.\n"
             + "Parameters: "
             + "INDEX "
-            + PREFIX_DATE + "appointment_date "
+            + PREFIX_DATE + "APPOINTMENT_DATE_TIME "
             + "Example: " + COMMAND_WORD + " "
             + "INDEX "
-            + PREFIX_DATE + "01-01-2000 1200 (must be formatted in dd-MM-yyyy HHmm)";
+            + PREFIX_DATE + "01-01-2023 1200 (must be formatted in dd-MM-yyyy HHmm)";
 
     public static final String MESSAGE_SUCCESS = "New appointment added for %1$s";
-    public static final String DATE_MISSING = "No date given! "
-            + "Appointments must have dates, formatted in d/ dd-MM-yyyy HHmm.";
+    public static final String DATE_MISSING = "No date & time given! "
+            + "Appointments must have date & time, formatted in d/dd-MM-yyyy HHmm.";
 
     private final Index index;
     private final String appointmentDate;
