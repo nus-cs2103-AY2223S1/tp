@@ -32,7 +32,7 @@ Workbook is optimized for fast typists and utilizes a **Command Line Interface (
 4. Using your command terminal, navigate to the folder where you placed your WorkBook at and fire it up by inputting: `java -jar WorkBook.jar` in your terminal. <br> The GUI with sample data similar to one of the images below should appear in a few seconds.<br>
     ![Wide Ui](images/Ui.png)
 
-    <img src="images/UiNarrow.png" alt="Ui Narrow" style="left; margin-left: 32px;" width="590" height="580"/>
+    ![Narrow Ui](images/UiNarrow.png)
 
 <br>
 5. You can tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute. <br>
@@ -128,16 +128,15 @@ This guide serves to:<br>
 * An example is shown below:
 ![SortExample](images/SortExample.png)
 
-#### Responsive Ui to window resizing
+#### Responsive Ui when window resizing
 
 * The Ui will change dynamically when resized.
 
 * When the Ui is resized narrower past a certain point, the Ui will change to a narrow format.
 
-    <img src="images/UiNarrow.png" alt="Ui Narrow" style="left; margin-left: 28px;" width="565" height="535"/>
+    ![Narrow Ui](images/UiNarrow.png)
 
-* When the Ui is resized wider past a certain point, the Ui will change to a narrow format.
-
+* When the Ui is resized wider past a certain point, the Ui will change to a wide format.
     ![Wide Ui](images/Ui.png)
 
 
