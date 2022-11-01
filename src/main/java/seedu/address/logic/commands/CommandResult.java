@@ -52,7 +52,8 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser);
+        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                && modelType.equals(otherCommandResult.getModelType());
     }
 
     @Override

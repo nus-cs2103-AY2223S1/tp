@@ -32,6 +32,9 @@ public class CommandResultTest {
         // different feedbackToUser value -> returns false
         assertFalse(commandResult.equals(new CommandResult("different")));
 
+        // different model type value -> return false
+        assertFalse(commandResult.equals(new CommandResult("feedback", ModelType.STUDENT)));
+
     }
 
     @Test

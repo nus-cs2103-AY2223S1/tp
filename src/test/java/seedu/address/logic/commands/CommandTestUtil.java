@@ -32,6 +32,7 @@ import seedu.address.logic.commands.reminder.SortReminderCommand;
 import seedu.address.logic.commands.student.EditStudentCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelType;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -224,6 +225,16 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage} and model type {@code expectedModelType}
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+            ModelType expectedModelType, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedModelType);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
