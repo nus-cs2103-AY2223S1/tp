@@ -120,6 +120,12 @@ public class ParserUtil {
         out.put("CLB", new Location("CLB", "1.296642317024345, 103.77322870790687"));
         // https://goo.gl/maps/TBxRtewZLVCgkEdF6
         out.put("USC", new Location("UHC", "1.2991034341416665, 103.77639982958577"));
+        // https://goo.gl/maps/bURCv14zruYzxxNV9
+        out.put("LT1", new Location("LT1", "1.299463315530677, 103.77114712647649"));
+        // https://goo.gl/maps/e8vnmt5FzS19NbNk8
+        out.put("LT9", new Location("LT9", "1.2952456082872508, 103.77221840699619"));
+        // https://goo.gl/maps/EEWy1fTuFcBkqxT97
+        out.put("AS6", new Location("AS6", "1.2955038493756006, 103.77324977312634"));
         if (!out.containsKey(trimmedLocationName)) {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
