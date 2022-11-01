@@ -145,8 +145,8 @@ The top section displays relevant messages/errors after the command is entered.
    1. If you have installed Java before, check that you have the right version, which is Java `11`.
       - If you are using Windows, open up command prompt and type `java -version` and enter.
       - If you are using Mac, open up terminal and type `java -version` and enter.
-   2. If you do not have Java `11`: 
-      - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/). 
+   2. If you do not have Java `11`:
+      - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/).
       - If you are using Mac, you can install the Azul build of OpenJDK 11 version from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 2. Download the latest Coydir v1.3.0 jar file from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
 
@@ -356,6 +356,7 @@ How can you use this feature?
 #### Step 1 (Creating CSV file) :
 
 Things to note:
+
 - A header row is required to indicate the purpose of the field and must be the first row in the `.csv` file.
 - No commas to be used in the file.
 - For multiple tags for an employee, the tags should be separated by " \ ".
@@ -363,16 +364,16 @@ Things to note:
 
 Order of headers is as such (**Order must be followed**):
 
-| Index | Field          | Requirement    | Default Value |  
-|-------|----------------|----------------|---------------|  
-| 1.    | `NAME`         | **Compulsory** | -             |  
-| 2.    | `PHONE`        | Optional       | N/A           |  
-| 3.    | `EMAIL`        | Optional       | N/A           |  
-| 4.    | `POSITION`     | **Compulsory** | -             |  
-| 5.    | `DEPARTMENT`   | **Compulsory** | -             |  
-| 6.    | `ADDRESS`      | Optional       | N/A           |  
-| 7.    | `NO_OF_LEAVES` | Optional       | 14            |  
-| 8.    | `TAGS`         | Optional       | _None_ |  
+| Index | Field          | Requirement    | Default Value |
+| ----- | -------------- | -------------- | ------------- |
+| 1.    | `NAME`         | **Compulsory** | -             |
+| 2.    | `PHONE`        | Optional       | N/A           |
+| 3.    | `EMAIL`        | Optional       | N/A           |
+| 4.    | `POSITION`     | **Compulsory** | -             |
+| 5.    | `DEPARTMENT`   | **Compulsory** | -             |
+| 6.    | `ADDRESS`      | Optional       | N/A           |
+| 7.    | `NO_OF_LEAVES` | Optional       | 14            |
+| 8.    | `TAGS`         | Optional       | _None_        |
 
 Sample `.csv` file:
 
@@ -388,8 +389,8 @@ Note: You can export this to `.csv`.
 2. Move CSV file to the `data` folder.  
    ![](images/batch-add-images/movingFile.png)
 
-_If you are a new user (have not run any command yet), you will not see the `data` folder.   
-You can run the [`clear` command](#clearing-the-data--clear) to remove the sample employees first.   
+_If you are a new user (have not run any command yet), you will not see the `data` folder.  
+You can run the [`clear` command](#clearing-the-data--clear) to remove the sample employees first.  
 After this, you should be able to see the `data` folder._
 
 #### Step 3 (Running CSV file) :
@@ -405,13 +406,13 @@ In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv
 
 **Case 1 (Duplicate Employee):**
 
-If there is another employee with the same name in the database or in the csv, command will fail   
+If there is another employee with the same name in the database or in the csv, command will fail  
 and error will be raised.  
 ![](images/batch-add-images/DuplicateEmployee.png)
 
 **Case 2 (Any of the fields in wrong format):**
 
-If any of the fields are in a wrong format (as specified in `add` command), command will fail   
+If any of the fields are in a wrong format (as specified in `add` command), command will fail  
 and error with regard to field in the wrong format will be raised
 
 ![](images/batch-add-images/Incorrect Format.png)  
@@ -420,6 +421,7 @@ _In this case, a `Phone` field was in the wrong format._
 As of version `1.4.0` , this feature only supports `.csv` files and adding employees with the fields mentioned above.
 
 In the upcoming versions, we will expand `batch-add` feature to:
+
 1. Support different types of files
 2. Include more fields like rating etc.
 
@@ -559,7 +561,7 @@ If the employee ID, or the index is invalid, Coydir will prompt the users accord
 Format: `delete-leave id/ID i/INDEX`
 
 | Field   | TAG | Description                       | Requirement    | Default Value |
-| ------- | --- |-----------------------------------| -------------- | ------------- |
+| ------- | --- | --------------------------------- | -------------- | ------------- |
 | `ID`    | id/ | Employee ID                       | **Compulsory** | N.A.          |
 | `INDEX` | i/  | Index of leave in the leave table | **Compulsory** | N.A.          |
 
@@ -718,12 +720,12 @@ Format: `exit`
 
 Clears all the data currently stored in the database.
 
-If you are a new user, you can use this command after you have experimented with Coydir   
+If you are a new user, you can use this command after you have experimented with Coydir  
 to start keying in your actual employee information.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**  
 Once you run this command, you lose all data immediately.  
-</div>  
+</div>
 
 Format: `clear`
 
@@ -756,19 +758,19 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 
 ## Command summary
 
-| Action              | Format, Examples                                                                                                                                                                                                                                 |
-|---------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Add**             | `add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal`                                                      |
-| **Edit**            | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal` |
-| **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                               |
-| **Batch Add**       | `batchadd FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                                                                                                        |
-| **View Details**    | `view INDEX` <br> e.g. `view 1`                                                                                                                                                                                                                  |
-| **List**            | `list`                                                                                                                                                                                                                                           |
-| **Find**            | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                                                                                             |
-| **Add leave**       | `add-leave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `add-leave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                                                                                |
-| **Delete leave**    | `delete-leave id/ID i/INDEX`<br> e.g. `delete-leave id/1 i/3`                                                                                                                                                                                    |
-| **Rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                                                                                                                   |
-| **View Department** | `viewdepartment DEPARTMENT`<br> e.g. `view-department Finance`                                                                                                                                                                                   |
-| **Help**            | `help`                                                                                                                                                                                                                                           |
-| **Exit**            | `exit`                                                                                                                                                                                                                                           |
-| **Clear**           | `clear`                                                                                                                                                                                                                                          |
+| Action              | Format, Examples                                                                                                                                                                     |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Add**             | `add n/NAME j/POSITION d/DEPARTMENT p/PHONE e/EMAIL a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate p/1234567 l/14 t/criminal` |
+| **Edit**            | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/POSITION] [d/DEPARTMENT] [a/ADDRESS] [l/LEAVE] [t/TAG]…​` <br> e.g. `edit 1 p/91234567 t/friend e/newemail@example.com`                  |
+| **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                   |
+| **Batch Add**       | `batch-add FILENAME` <br> e.g. `batch-add newemployees.csv`                                                                                                                          |
+| **View Details**    | `view INDEX` <br> e.g. `view 1`                                                                                                                                                      |
+| **List**            | `list`                                                                                                                                                                               |
+| **Find**            | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                                 |
+| **Add leave**       | `add-leave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `add-leave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                    |
+| **Delete leave**    | `delete-leave id/ID i/INDEX`<br> e.g. `delete-leave id/1 i/3`                                                                                                                        |
+| **Rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                                                       |
+| **View Department** | `view-department DEPARTMENT`<br> e.g. `view-department Finance`                                                                                                                      |
+| **Help**            | `help`                                                                                                                                                                               |
+| **Exit**            | `exit`                                                                                                                                                                               |
+| **Clear**           | `clear`                                                                                                                                                                              |

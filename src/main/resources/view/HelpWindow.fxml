@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minWidth="650" maxWidth="650" minHeight="300" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minWidth="850" maxWidth="850" minHeight="300" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -23,24 +23,28 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <VBox prefWidth="650" VBox.vgrow="NEVER" fx:id="helpContainer">
+      <VBox prefWidth="850" VBox.vgrow="NEVER" fx:id="helpContainer">
 
         <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
           <VBox styleClass="commands-panel">
-            <Label styleClass="help-label" text="Basic Functions"/>
-            <TableView fx:id="basicTableView" >
+            <Label styleClass="help-label" text="Employee Profile Functions"/>
+            <TableView fx:id="profileTableView" >
               <VBox.margin>
                 <Insets top="10.0"/>
               </VBox.margin>
             </TableView>
-            <!--Not implemented yet
-            <Label styleClass="help-label" text="Advanced Functions"/>
+            <Label styleClass="help-label" text="Advanced Management Functions"/>
             <TableView fx:id="advancedTableView">
               <VBox.margin>
                 <Insets top="10.0"/>
               </VBox.margin>
             </TableView>
-            -->
+            <Label styleClass="help-label" text="Additional Functions"/>
+            <TableView fx:id="miscTableView">
+              <VBox.margin>
+                <Insets top="10.0"/>
+              </VBox.margin>
+            </TableView>
           </VBox>
         </ScrollPane>
 
