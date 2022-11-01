@@ -56,7 +56,7 @@ public class CobbParser {
         switch (commandWord) {
 
         case AddBuyerCommand.COMMAND_WORD:
-            return new AddPersonCommandParser().parse(arguments);
+            return new AddBuyerCommandParser().parse(arguments);
 
         case EditBuyerCommand.COMMAND_WORD:
             return new EditBuyerCommandParser().parse(arguments);

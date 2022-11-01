@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.property.Price;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.BuyerBuilder;
 
 public class FilterBuyerByPricePredicateTest {
 
@@ -45,15 +45,15 @@ public class FilterBuyerByPricePredicateTest {
         //Within price range
         FilterBuyerByPricePredicate predicate =
                 new FilterBuyerByPricePredicate(targetPrice);
-        assertTrue(predicate.test(new PersonBuilder().withPriceRange("1 - 10000").build()));
+        assertTrue(predicate.test(new BuyerBuilder().withPriceRange("1 - 10000").build()));
 
         //On price range upperbound
         predicate = new FilterBuyerByPricePredicate(targetPrice);
-        assertTrue(predicate.test(new PersonBuilder().withPriceRange("1 - 9999").build()));
+        assertTrue(predicate.test(new BuyerBuilder().withPriceRange("1 - 9999").build()));
 
         //On price range lowerbound
         predicate = new FilterBuyerByPricePredicate(targetPrice);
-        assertTrue(predicate.test(new PersonBuilder().withPriceRange("9999 - 10000").build()));
+        assertTrue(predicate.test(new BuyerBuilder().withPriceRange("9999 - 10000").build()));
     }
 
     @Test
@@ -61,7 +61,7 @@ public class FilterBuyerByPricePredicateTest {
         //No matching characteristics
         FilterBuyerByPricePredicate predicate =
                 new FilterBuyerByPricePredicate(new Price("0"));
-        assertFalse(predicate.test(new PersonBuilder().withPriceRange("1000-2000").build()));
+        assertFalse(predicate.test(new BuyerBuilder().withPriceRange("1000-2000").build()));
 
     }
 }

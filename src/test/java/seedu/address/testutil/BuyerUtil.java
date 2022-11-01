@@ -15,19 +15,19 @@ import seedu.address.model.buyer.Buyer;
 /**
  * A utility class for Buyer.
  */
-public class PersonUtil {
+public class BuyerUtil {
 
     /**
      * Returns an add command string for adding the {@code buyer}.
      */
     public static String getAddCommand(Buyer buyer) {
-        return AddBuyerCommand.COMMAND_WORD + " " + getPersonDetails(buyer);
+        return AddBuyerCommand.COMMAND_WORD + " " + getBuyerDetails(buyer);
     }
 
     /**
      * Returns the part of command string for the given {@code buyer}'s details.
      */
-    public static String getPersonDetails(Buyer buyer) {
+    public static String getBuyerDetails(Buyer buyer) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + buyer.getName().fullName + " ");
         sb.append(PREFIX_PHONE + buyer.getPhone().value + " ");
@@ -46,7 +46,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditBuyerDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditBuyerDescriptor descriptor) {
+    public static String getEditBuyerDescriptorDetails(EditBuyerDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

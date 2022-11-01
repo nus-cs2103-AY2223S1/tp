@@ -12,7 +12,7 @@ import seedu.address.model.pricerange.PriceRange;
 
 
 /**
- * Represents a Buyer in the address book.
+ * Represents a Buyer in the buyer book.
  * Guarantees: field values are validated, immutable.
  * Only priceRange and desiredCharacteristics may be null.
  */

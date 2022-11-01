@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.BuyerBuilder;
 
 public class FilterBuyerContainingAllCharacteristicsPredicateTest {
 
@@ -43,23 +43,23 @@ public class FilterBuyerContainingAllCharacteristicsPredicateTest {
         //One characteristics
         FilterBuyerContainingAllCharacteristicsPredicate predicate =
                 new FilterBuyerContainingAllCharacteristicsPredicate(new Characteristics("Bishan"));
-        assertTrue(predicate.test(new PersonBuilder().withDesiredCharacteristics("Bishan").build()));
+        assertTrue(predicate.test(new BuyerBuilder().withDesiredCharacteristics("Bishan").build()));
 
         // Contains one characteristics
         predicate = new FilterBuyerContainingAllCharacteristicsPredicate(new Characteristics("HDB"));
-        assertTrue(predicate.test(new PersonBuilder().withDesiredCharacteristics("HDB ; 5-room").build()));
+        assertTrue(predicate.test(new BuyerBuilder().withDesiredCharacteristics("HDB ; 5-room").build()));
 
         // Different Space
         predicate = new FilterBuyerContainingAllCharacteristicsPredicate(new Characteristics("HDB;5-room"));
-        assertTrue(predicate.test(new PersonBuilder().withDesiredCharacteristics("HDB ; 5-room").build()));
+        assertTrue(predicate.test(new BuyerBuilder().withDesiredCharacteristics("HDB ; 5-room").build()));
 
         // Different Case
         predicate = new FilterBuyerContainingAllCharacteristicsPredicate(new Characteristics("HDB"));
-        assertTrue(predicate.test(new PersonBuilder().withDesiredCharacteristics("hdb").build()));
+        assertTrue(predicate.test(new BuyerBuilder().withDesiredCharacteristics("hdb").build()));
 
         // Multiple characteristics
         predicate = new FilterBuyerContainingAllCharacteristicsPredicate(new Characteristics("HDB ; 5-room"));
-        assertTrue(predicate.test(new PersonBuilder().withDesiredCharacteristics("HDB ; 5-room").build()));
+        assertTrue(predicate.test(new BuyerBuilder().withDesiredCharacteristics("HDB ; 5-room").build()));
     }
 
     @Test
@@ -67,14 +67,14 @@ public class FilterBuyerContainingAllCharacteristicsPredicateTest {
         //No matching characteristics
         FilterBuyerContainingAllCharacteristicsPredicate predicate =
                 new FilterBuyerContainingAllCharacteristicsPredicate(new Characteristics("HDB"));
-        assertFalse(predicate.test(new PersonBuilder().withDesiredCharacteristics("Condo").build()));
+        assertFalse(predicate.test(new BuyerBuilder().withDesiredCharacteristics("Condo").build()));
 
         // Only match one characteristics
         predicate = new FilterBuyerContainingAllCharacteristicsPredicate(new Characteristics("HDB ; 5-room"));
-        assertFalse(predicate.test(new PersonBuilder().withDesiredCharacteristics("HDB").build()));
+        assertFalse(predicate.test(new BuyerBuilder().withDesiredCharacteristics("HDB").build()));
 
         // No characteristics
         predicate = new FilterBuyerContainingAllCharacteristicsPredicate(new Characteristics("HDB ; 5-room"));
-        assertFalse(predicate.test(new PersonBuilder().withNoDesiredCharacteristics().build()));
+        assertFalse(predicate.test(new BuyerBuilder().withNoDesiredCharacteristics().build()));
     }
 }

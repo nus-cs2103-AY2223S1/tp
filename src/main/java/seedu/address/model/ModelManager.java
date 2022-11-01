@@ -18,37 +18,37 @@ import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
 
 /**
- * Represents the in-memory model of the person book and proprty book data.
+ * Represents the in-memory model of the buyer book and property book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final UserPrefs userPrefs;
-    private final PersonBook personBook;
+    private final BuyerBook buyerBook;
     private final PropertyBook propertyBook;
     private final FilteredList<Buyer> filteredBuyers;
     private final FilteredList<Property> filteredProperties;
 
 
     /**
-     * Initializes a ModelManager with the given personBook and userPrefs.
+     * Initializes a ModelManager with the given buyerBook and userPrefs.
      */
-    public ModelManager(ReadOnlyPersonBook personBook, ReadOnlyPropertyBook propertyBook,
+    public ModelManager(ReadOnlyBuyerBook buyerBook, ReadOnlyPropertyBook propertyBook,
                         ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(personBook, propertyBook, userPrefs);
+        requireAllNonNull(buyerBook, propertyBook, userPrefs);
 
-        logger.fine("Initializing with person book: " + personBook + " and property book: " + propertyBook
+        logger.fine("Initializing with buyer book: " + buyerBook + " and property book: " + propertyBook
                 + " and user prefs " + userPrefs);
 
-        this.personBook = new PersonBook(personBook);
+        this.buyerBook = new BuyerBook(buyerBook);
         this.propertyBook = new PropertyBook(propertyBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredBuyers = new FilteredList<>(this.personBook.getPersonList());
+        filteredBuyers = new FilteredList<>(this.buyerBook.getBuyerList());
         filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
     }
 
     public ModelManager() {
-        this(new PersonBook(), new PropertyBook(), new UserPrefs());
+        this(new BuyerBook(), new PropertyBook(), new UserPrefs());
     }
 
 
@@ -77,14 +77,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getPersonBookFilePath() {
-        return userPrefs.getPersonBookFilePath();
+    public Path getBuyerBookFilePath() {
+        return userPrefs.getBuyerBookFilePath();
     }
 
     @Override
-    public void setPersonBookFilePath(Path personBookFilePath) {
-        requireNonNull(personBookFilePath);
-        userPrefs.setPersonBookFilePath(personBookFilePath);
+    public void setBuyerBookFilePath(Path buyerBookFilePath) {
+        requireNonNull(buyerBookFilePath);
+        userPrefs.setBuyerBookFilePath(buyerBookFilePath);
     }
 
     @Override
@@ -98,54 +98,54 @@ public class ModelManager implements Model {
         userPrefs.setPropertyBookFilePath(propertyBookFilePath);
     }
 
-    //=========== PersonBook ================================================================================
+    //=========== BuyerBook ================================================================================
 
     @Override
-    public void setPersonBook(ReadOnlyPersonBook personBook) {
-        this.personBook.resetData(personBook);
+    public void setBuyerBook(ReadOnlyBuyerBook buyerBook) {
+        this.buyerBook.resetData(buyerBook);
     }
 
     @Override
-    public ReadOnlyPersonBook getPersonBook() {
-        return personBook;
+    public ReadOnlyBuyerBook getBuyerBook() {
+        return buyerBook;
     }
 
     @Override
-    public boolean hasPerson(Buyer buyer) {
+    public boolean hasBuyer(Buyer buyer) {
         requireNonNull(buyer);
-        return personBook.hasPerson(buyer);
+        return buyerBook.hasBuyer(buyer);
     }
 
     @Override
-    public void deletePerson(Buyer target) {
-        personBook.removePerson(target);
+    public void deleteBuyer(Buyer target) {
+        buyerBook.removeBuyer(target);
     }
 
     @Override
-    public void addPerson(Buyer buyer) {
-        personBook.addPerson(buyer);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addBuyer(Buyer buyer) {
+        buyerBook.addBuyer(buyer);
+        updateFilteredBuyerList(PREDICATE_SHOW_ALL_BUYERS);
     }
 
     @Override
-    public void setPerson(Buyer target, Buyer editedBuyer) {
+    public void setBuyer(Buyer target, Buyer editedBuyer) {
         requireAllNonNull(target, editedBuyer);
-        personBook.setPerson(target, editedBuyer);
+        buyerBook.setBuyer(target, editedBuyer);
     }
 
     //=========== Filtered Buyer List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Buyer} backed by the internal list of
-     * {@code PersonBook}
+     * {@code BuyerBook}
      */
     @Override
-    public ObservableList<Buyer> getFilteredPersonList() {
+    public ObservableList<Buyer> getFilteredBuyerList() {
         return filteredBuyers;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Buyer> predicate) {
+    public void updateFilteredBuyerList(Predicate<Buyer> predicate) {
         requireNonNull(predicate);
         filteredBuyers.setPredicate(predicate);
     }
@@ -153,9 +153,9 @@ public class ModelManager implements Model {
     @Override
     public void sortBuyerList(Comparator<Buyer> comparator) {
         requireNonNull(comparator);
-        List<Buyer> sortedList = new ArrayList<>(personBook.getPersonList());
+        List<Buyer> sortedList = new ArrayList<>(buyerBook.getBuyerList());
         sortedList.sort(comparator);
-        personBook.setPersons(sortedList);
+        buyerBook.setBuyers(sortedList);
     }
 
 
@@ -235,7 +235,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
 
         return userPrefs.equals(other.userPrefs)
-                && personBook.equals(other.personBook)
+                && buyerBook.equals(other.buyerBook)
                 && propertyBook.equals(other.propertyBook)
                 && filteredBuyers.equals(other.filteredBuyers)
                 && filteredProperties.equals(other.filteredProperties);

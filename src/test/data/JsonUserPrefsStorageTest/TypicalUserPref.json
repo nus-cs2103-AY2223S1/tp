@@ -7,6 +7,6 @@
       "y" : 100
     }
   },
-  "personBookFilePath" : "personbook.json",
+  "buyerBookFilePath" : "buyerbook.json",
   "propertyBookFilePath": "propertybook.json"
 }

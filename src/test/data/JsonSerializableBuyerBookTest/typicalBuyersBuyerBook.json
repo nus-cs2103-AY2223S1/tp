@@ -1,6 +1,6 @@
 {
-  "_comment": "PersonBook save file which contains the same Person values as in TypicalPersons#getTypicalPersonBook()",
-  "persons" : [ {
+  "_comment": "BuyerBook save file which contains the same Buyer values as in TypicalBuyers#getTypicalBuyersBook()",
+  "buyers" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",

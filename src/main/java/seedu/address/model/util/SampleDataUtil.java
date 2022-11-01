@@ -3,9 +3,9 @@ package seedu.address.model.util;
 import java.time.LocalDateTime;
 import java.time.Month;
 
-import seedu.address.model.PersonBook;
+import seedu.address.model.BuyerBook;
 import seedu.address.model.PropertyBook;
-import seedu.address.model.ReadOnlyPersonBook;
+import seedu.address.model.ReadOnlyBuyerBook;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.address.Address;
 import seedu.address.model.buyer.Buyer;
@@ -22,7 +22,7 @@ import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
 
 /**
- * Contains utility methods for populating {@code PersonBook} with sample data.
+ * Contains utility methods for populating {@code BuyerBook} with sample data.
  */
 public class SampleDataUtil {
 
@@ -42,7 +42,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static Buyer[] getSamplePersons() {
+    public static Buyer[] getSampleBuyers() {
         return new Buyer[]{
             new Buyer(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -101,10 +101,10 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyPersonBook getSamplePersonBook() {
-        PersonBook sampleAb = new PersonBook();
-        for (Buyer sampleBuyer : getSamplePersons()) {
-            sampleAb.addPerson(sampleBuyer);
+    public static ReadOnlyBuyerBook getSampleBuyerBook() {
+        BuyerBook sampleAb = new BuyerBook();
+        for (Buyer sampleBuyer : getSampleBuyers()) {
+            sampleAb.addBuyer(sampleBuyer);
         }
         return sampleAb;
     }

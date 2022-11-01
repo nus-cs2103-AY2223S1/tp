@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.Test;
@@ -24,25 +24,25 @@ import seedu.address.model.buyer.Buyer;
  */
 public class DeleteBuyerCommandTest {
 
-    private Model model = new ModelManager(getTypicalPersonsBook(), getTypicalPropertyBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalBuyersBook(), getTypicalPropertyBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Buyer buyerToDelete = model.getFilteredPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Buyer buyerToDelete = model.getFilteredBuyerList().get(INDEX_FIRST_ITEM.getZeroBased());
         DeleteBuyerCommand deleteCommand = new DeleteBuyerCommand(INDEX_FIRST_ITEM);
 
-        String expectedMessage = String.format(DeleteBuyerCommand.MESSAGE_DELETE_PERSON_SUCCESS, buyerToDelete);
+        String expectedMessage = String.format(DeleteBuyerCommand.MESSAGE_DELETE_BUYER_SUCCESS, buyerToDelete);
 
         ModelManager expectedModel = new ModelManager(
-                model.getPersonBook(), model.getPropertyBook(), new UserPrefs());
-        expectedModel.deletePerson(buyerToDelete);
+                model.getBuyerBook(), model.getPropertyBook(), new UserPrefs());
+        expectedModel.deleteBuyer(buyerToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBuyerList().size() + 1);
         DeleteBuyerCommand deleteCommand = new DeleteBuyerCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_BUYER_DISPLAYED_INDEX);
@@ -100,11 +100,11 @@ public class DeleteBuyerCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered buyer list to show no one.
      */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+    private void showNoBuyer(Model model) {
+        model.updateFilteredBuyerList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredBuyerList().isEmpty());
     }
 }

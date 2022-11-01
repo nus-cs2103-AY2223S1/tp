@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BUYERS;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -50,9 +50,9 @@ public class EditBuyerCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Buyer: %1$s";
+    public static final String MESSAGE_EDIT_BUYER_SUCCESS = "Edited Buyer: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This buyer already exists in Cobb.";
+    public static final String MESSAGE_DUPLICATE_BUYER = "This buyer already exists in Cobb.";
 
     private final Index index;
     private final EditBuyerDescriptor editBuyerDescriptor;
@@ -72,29 +72,29 @@ public class EditBuyerCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Buyer> lastShownList = model.getFilteredPersonList();
+        List<Buyer> lastShownList = model.getFilteredBuyerList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_BUYER_DISPLAYED_INDEX);
         }
 
         Buyer buyerToEdit = lastShownList.get(index.getZeroBased());
-        Buyer editedBuyer = createEditedPerson(buyerToEdit, editBuyerDescriptor);
+        Buyer editedBuyer = createEditedBuyer(buyerToEdit, editBuyerDescriptor);
 
-        if (!buyerToEdit.isSameBuyer(editedBuyer) && model.hasPerson(editedBuyer)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!buyerToEdit.isSameBuyer(editedBuyer) && model.hasBuyer(editedBuyer)) {
+            throw new CommandException(MESSAGE_DUPLICATE_BUYER);
         }
 
-        model.setPerson(buyerToEdit, editedBuyer);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedBuyer));
+        model.setBuyer(buyerToEdit, editedBuyer);
+        model.updateFilteredBuyerList(PREDICATE_SHOW_ALL_BUYERS);
+        return new CommandResult(String.format(MESSAGE_EDIT_BUYER_SUCCESS, editedBuyer));
     }
 
     /**
      * Creates and returns a {@code Buyer} with the details of {@code buyerToEdit}
      * edited with {@code editBuyerDescriptor}.
      */
-    private static Buyer createEditedPerson(Buyer buyerToEdit, EditBuyerDescriptor editBuyerDescriptor) {
+    private static Buyer createEditedBuyer(Buyer buyerToEdit, EditBuyerDescriptor editBuyerDescriptor) {
         assert buyerToEdit != null;
 
         Name updatedName = editBuyerDescriptor.getName().orElse(buyerToEdit.getName());
