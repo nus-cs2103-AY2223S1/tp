@@ -2,6 +2,7 @@ package seedu.address.model.tuitionclass;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -35,7 +36,9 @@ public class TuitionClass {
         this.day = day;
         this.time = time;
         this.tags.addAll(tags);
-        this.uniqueId = id + "tuitionClass";
+
+        LocalTime timeAdded = LocalTime.now();
+        this.uniqueId = timeAdded + "tuitionClass";
     }
 
     public Name getName() {

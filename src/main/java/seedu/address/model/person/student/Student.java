@@ -2,6 +2,7 @@ package seedu.address.model.person.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +44,9 @@ public class Student extends Person {
         this.school = school;
         this.level = level;
         this.nextOfKin = nextOfKin;
-        this.uniqueId = id + "student";
+
+        LocalTime timeAdded = LocalTime.now();
+        this.uniqueId = timeAdded + "student";
     }
 
 
@@ -61,7 +64,9 @@ public class Student extends Person {
         this.level = level;
         this.nextOfKin = nextOfKin;
         this.tuitionClasses.addAll(tuitionClasses);
-        this.uniqueId = id + "student";
+
+        LocalTime timeAdded = LocalTime.now();
+        this.uniqueId = timeAdded + "student";
     }
 
     public School getSchool() {
