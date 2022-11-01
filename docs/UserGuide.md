@@ -215,12 +215,12 @@ Outcome:
 
 ### Adding aliases: `alias`
 
-Adds an alias for a command into FRIDAY, which you can use in place of the default command words.<br>
+Adds an alias for a command into FRIDAY, which you can use in place of the default command keywords.<br>
 This allows you to be more efficient in using FRIDAY.
 
-Format: `alias a/ALIAS k/COMMAND_WORD`
+Format: `alias a/ALIAS k/COMMAND_KEYWORD`
 
-* `COMMAND_WORD` must be a default command keyword (e.g `add` in Adding students)
+* `COMMAND_KEYWORD` must be a default command keyword (e.g `add` in Adding students)
 * `ALIAS` must not be a default command keyword and contain exactly one word
 
 Example:
@@ -281,7 +281,7 @@ Format: `help`
 | **Unmark a student's Mastery Check**         | `unmark INDEX`                                                                                           |
 | **View all students**                        | `list`                                                                                                   |
 | **Sort students**                            | `sort CRITERIA/ORDER`                                                                                    |
-| **Add Alias**                                | `alias a/ALIAS k/COMMAND_WORD`                                                                           |
+| **Add Alias**                                | `alias a/ALIAS k/COMMAND_KEYWORD`                                                                        |
 | **Delete Alias**                             | `unalias a/ALIAS`                                                                                        |
 | **View all alias**                           | `aliaslist`                                                                                              |
 | **Get a link to the User Guide**             | `guide`                                                                                                  |
