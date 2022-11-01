@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-//TODO: Add testcases for invalid and null Order
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDeliverers.BENSON;
@@ -12,8 +11,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-
-
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -69,9 +66,9 @@ public class JsonAdaptedDelivererTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedDeliverer deliverer = new JsonAdaptedDeliverer(VALID_PERSON_CATEGORY, INVALID_NAME, VALID_PHONE,
                 VALID_EMAIL, VALID_ADDRESS, VALID_IDS);
-            String expectedMessage = Name.MESSAGE_CONSTRAINTS;
-            assertThrows(IllegalValueException.class, expectedMessage, deliverer::toModelType);
-        }
+        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, deliverer::toModelType);
+    }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
@@ -97,7 +94,7 @@ public class JsonAdaptedDelivererTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
-     @Test
+    @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedDeliverer person = new JsonAdaptedDeliverer(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE,
                 INVALID_EMAIL, VALID_ADDRESS, VALID_IDS);
@@ -113,19 +110,19 @@ public class JsonAdaptedDelivererTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
-        @Test
-        public void toModelType_invalidAddress_throwsIllegalValueException() {
-            JsonAdaptedDeliverer person = new JsonAdaptedDeliverer(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE,
-                    VALID_EMAIL, INVALID_ADDRESS, VALID_IDS);
-            String expectedMessage = Address.MESSAGE_CONSTRAINTS;
-            assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-        }
+    @Test
+    public void toModelType_invalidAddress_throwsIllegalValueException() {
+        JsonAdaptedDeliverer person = new JsonAdaptedDeliverer(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, INVALID_ADDRESS, VALID_IDS);
+        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
 
-        @Test
-        public void toModelType_nullAddress_throwsIllegalValueException() {
-            JsonAdaptedDeliverer person = new JsonAdaptedDeliverer(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE,
-                    VALID_EMAIL, null, VALID_IDS);
-            String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-            assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-        }
+    @Test
+    public void toModelType_nullAddress_throwsIllegalValueException() {
+        JsonAdaptedDeliverer person = new JsonAdaptedDeliverer(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, null, VALID_IDS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
 }
