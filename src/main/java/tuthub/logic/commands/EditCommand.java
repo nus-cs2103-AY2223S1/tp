@@ -154,6 +154,7 @@ public class EditCommand extends Command {
         private Year year;
         private StudentId studentId;
         private TeachingNomination teachingNomination;
+        private CommentList comments;
         private Rating rating;
         private Set<Tag> tags;
 
@@ -171,6 +172,7 @@ public class EditCommand extends Command {
             setYear(toCopy.year);
             setStudentId(toCopy.studentId);
             setTeachingNomination(toCopy.teachingNomination);
+            setComments(toCopy.comments);
             setRating(toCopy.rating);
             setTags(toCopy.tags);
         }
@@ -180,7 +182,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, modules, year, studentId, teachingNomination,
-                    rating, tags);
+                    comments, rating, tags);
         }
 
         public void setName(Name name) {
@@ -255,6 +257,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(rating);
         }
 
+        public void setComments(CommentList comments) {
+            this.comments = comments;
+        }
+
+        public Optional<CommentList> getComments() {
+            return Optional.ofNullable(comments);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -294,6 +304,7 @@ public class EditCommand extends Command {
                     && getYear().equals(e.getYear())
                     && getStudentId().equals(e.getStudentId())
                     && getTeachingNomination().equals(e.getTeachingNomination())
+                    && getRating().equals(e.getRating())
                     && getTags().equals(e.getTags());
         }
     }

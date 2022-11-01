@@ -74,6 +74,10 @@ public class CommentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX);
         }
 
+        if (comment.value.isEmpty()) {
+            throw new CommandException(MESSAGE_ADD_COMMENT_FAILURE);
+        }
+
         Tutor tutorToEdit = lastShownList.get(index.getZeroBased());
         CommentList comments = tutorToEdit.getComments();
         comments = comments.addComment(comment);
@@ -95,7 +99,7 @@ public class CommentCommand extends Command {
      * {@code tutorToEdit}.
      */
     private String generateSuccessMessage(Tutor tutorToEdit) {
-        String message = !comment.value.isEmpty() ? MESSAGE_ADD_COMMENT_SUCCESS : MESSAGE_ADD_COMMENT_FAILURE;
+        String message = MESSAGE_ADD_COMMENT_SUCCESS;
         return String.format(message, tutorToEdit);
     }
 }

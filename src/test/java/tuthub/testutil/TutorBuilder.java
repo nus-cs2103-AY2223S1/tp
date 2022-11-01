@@ -70,7 +70,7 @@ public class TutorBuilder {
         studentId = tutorToCopy.getStudentId();
         teachingNomination = tutorToCopy.getTeachingNomination();
         rating = tutorToCopy.getRating();
-        comments = tutorToCopy.getComments();
+        comments = new CommentList(tutorToCopy.getComments().getList());
         tags = new HashSet<>(tutorToCopy.getTags());
     }
 
@@ -109,7 +109,7 @@ public class TutorBuilder {
      * Sets the {@code Comment} of the {@code Tutor} that we are building.
      */
     public TutorBuilder withComment(String comment) {
-        this.comments = new CommentList().addComment(new Comment(comment));
+        this.comments = comments.addComment(new Comment(comment));
         return this;
     }
 
