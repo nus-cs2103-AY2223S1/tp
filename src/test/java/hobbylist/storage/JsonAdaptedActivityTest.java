@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -39,9 +38,8 @@ public class JsonAdaptedActivityTest {
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        Optional<JsonAdaptedDate> dateList = Optional.empty();
         JsonAdaptedActivity activity =
-                new JsonAdaptedActivity(INVALID_NAME, VALID_DESCRIPTION, VALID_TAGS, dateList, 1,
+                new JsonAdaptedActivity(INVALID_NAME, VALID_DESCRIPTION, VALID_TAGS, VALID_DATE, 1,
                         VALID_STATUS, VALID_REVIEW);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, activity::toModelType);
@@ -49,18 +47,16 @@ public class JsonAdaptedActivityTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        Optional<JsonAdaptedDate> dateList = Optional.empty();
         JsonAdaptedActivity activity = new JsonAdaptedActivity(null, VALID_DESCRIPTION, VALID_TAGS,
-                dateList, 1, VALID_STATUS, VALID_REVIEW);
+                VALID_DATE, 1, VALID_STATUS, VALID_REVIEW);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, activity::toModelType);
     }
 
     @Test
     public void toModelType_invalidDescription_throwsIllegalValueException() {
-        Optional<JsonAdaptedDate> dateList = Optional.empty();
         JsonAdaptedActivity activity =
-                new JsonAdaptedActivity(VALID_NAME, INVALID_DESCRIPTION, VALID_TAGS, dateList, 1, VALID_STATUS,
+                new JsonAdaptedActivity(VALID_NAME, INVALID_DESCRIPTION, VALID_TAGS, VALID_DATE, 1, VALID_STATUS,
                         VALID_REVIEW);
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, activity::toModelType);
@@ -68,31 +64,28 @@ public class JsonAdaptedActivityTest {
 
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
-        Optional<JsonAdaptedDate> dateList = Optional.empty();
         JsonAdaptedActivity activity = new JsonAdaptedActivity(VALID_NAME, null, VALID_TAGS,
-                dateList, 1, VALID_STATUS, VALID_REVIEW);
+                VALID_DATE, 1, VALID_STATUS, VALID_REVIEW);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, activity::toModelType);
     }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
-        Optional<JsonAdaptedDate> dateList = Optional.empty();
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedActivity activity =
-                new JsonAdaptedActivity(VALID_NAME, VALID_DESCRIPTION, invalidTags, dateList, 1, VALID_STATUS,
+                new JsonAdaptedActivity(VALID_NAME, VALID_DESCRIPTION, invalidTags, VALID_DATE, 1, VALID_STATUS,
                         VALID_REVIEW);
         Assert.assertThrows(IllegalValueException.class, activity::toModelType);
     }
 
     @Test
     public void toModelType_invalidReview_throwsIllegalValueException() {
-        Optional<JsonAdaptedDate> dateList = Optional.empty();
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedActivity activity =
-                new JsonAdaptedActivity(VALID_NAME, VALID_DESCRIPTION, invalidTags, dateList, 1, VALID_STATUS,
+                new JsonAdaptedActivity(VALID_NAME, VALID_DESCRIPTION, invalidTags, VALID_DATE, 1, VALID_STATUS,
                         INVALID_REVIEW);
         Assert.assertThrows(IllegalValueException.class, activity::toModelType);
     }
