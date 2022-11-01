@@ -122,7 +122,6 @@ Examples:
 * `listPersons` Lists all persons without performing any sorting.
 * `listPersons s/n` Lists all persons sorted by their names.
 
-
 ### Editing a contact : `editPerson`
 
 Edits an existing contact in the application.
@@ -312,14 +311,12 @@ Example:
 Format: `mailEvent INDEX`
 
 * The `INDEX` refers to the index number shown in the displayed event list.
-* The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index.
-* The mailing list is saved as a CSV file `[JAR file location]/data/EVENT_TITLE.csv`. The CSV file has 2 columns:
-  `Name` and `Email`, representing the name and email for a person in the event.
+* The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
+* The mailing list is saved as a CSV file at the following location: `[JAR file location]/data/EVENT_TITLE.csv`. The CSV file has 2 columns:
+  `Name` and `Email`, representing the name and email for every person in the event.
 
 Example:
 * `mailEvent 2` creates mailing list as a CSV file, the name of the csv file is the same as the title of 2nd event 
-in the event list.
-* `mailEvent 4` creates mailing list as a CSV file, the name of the csv file is the same as the title of 4th event
 in the event list.
 
 ### Generating pie charts of statistics of the people tagged to an event in the event list : `makeStats`
@@ -386,6 +383,6 @@ _Details coming soon ..._
 | **FindEvents**   | `findEvents KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvents Sale Discount`                                                                                                              |
 | **ListEvents**   | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                      |
 | **MailEvent**    | `mailEvent INDEX`<br> e.g., `mailEvent 3`                                                                                                                                              |                                                                                                                                      |
-| **TagEvent**     | `tagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                                |
-| **UntagEvent**   | `untagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                            |
+| **TagEvent**     | `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                              |
+| **UntagEvent**   | `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                          |
 | **Help**         | `help`                                                                                                                                                                                 |
