@@ -103,4 +103,11 @@ public class MedicationMap {
         medicationMap.clear();
         persons.forEach(this::addMedicationsOfPatient);
     }
+
+    /**
+     * Returns the medication map size.
+     */
+    protected int size() {
+        return medicationMap.size();
+    }
 }
