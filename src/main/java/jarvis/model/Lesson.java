@@ -20,7 +20,7 @@ import javafx.collections.ObservableList;
  * Represents a Lesson in JARVIS.
  * Guarantees: details are present and not null.
  */
-public abstract class Lesson {
+public abstract class Lesson implements Comparable<Lesson> {
 
     // Identity fields
     private final LessonDesc lessonDesc;
@@ -205,5 +205,17 @@ public abstract class Lesson {
 
     public void unmarkClash() {
         hasClash = false;
+    }
+
+    @Override
+    public int compareTo(Lesson l) {
+        if (isCompleted != l.isCompleted()) {
+            return isCompleted ? 1 : -1;
+        }
+        if (isCompleted) {
+            return l.startDateTime().compareTo(this.startDateTime());
+        } else {
+            return this.startDateTime().compareTo(l.startDateTime());
+        }
     }
 }
