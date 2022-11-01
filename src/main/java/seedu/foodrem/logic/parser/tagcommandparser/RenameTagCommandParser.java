@@ -7,6 +7,7 @@ import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.logic.commands.tagcommands.RenameTagCommand;
 import seedu.foodrem.logic.parser.CliSyntax;
 import seedu.foodrem.logic.parser.Parser;
+import seedu.foodrem.logic.parser.Prefix;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.tag.Tag;
 
@@ -40,9 +41,24 @@ public class RenameTagCommandParser implements Parser<RenameTagCommand> {
         final String originalName = matcher.group("originalName").trim();
         final String newName = matcher.group("newName").trim();
 
+        System.out.println(newName);
+        System.out.println(originalName);
+
+        if (checkExtraPrefixesInName(originalName) || checkExtraPrefixesInName(newName)) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    RenameTagCommand.getUsage()));
+        }
+
         Tag originalTag = new Tag(originalName);
         Tag renamedTag = new Tag(newName);
 
         return new RenameTagCommand(originalTag, renamedTag);
+    }
+
+    private boolean checkExtraPrefixesInName(String name) {
+        if (name.contains(CliSyntax.PREFIX_NAME.getPrefix())) {
+            return true;
+        }
+        return false;
     }
 }
