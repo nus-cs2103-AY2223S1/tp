@@ -87,13 +87,14 @@ public class Duration {
      */
     public boolean isOverlap(Duration other) {
         //check if the other event's start time is before this start time or after the end time
-        boolean otherStartCheck = other.startTime.isBefore(this.startTime)
-                || other.startTime.isAfter(this.endTime);
-        //Likewise for the other event's end time
-        boolean otherEndCheck = other.endTime.isBefore(this.startTime)
-                || other.endTime.isAfter(this.endTime);
-        return !(otherStartCheck && otherEndCheck);
-
+        //Defensive programming by checking both the start and end time for each event
+        //Case 1: Other event happens before --> other event must start and end before this event's start time
+        boolean happensBefore = other.startTime.isBefore(this.startTime)
+                && other.endTime.isBefore(this.startTime);
+        //Case 1: Other event happens after --> other event must start and end after this event's end time
+        boolean happensAfter = other.startTime.isAfter(this.endTime)
+                && other.endTime.isAfter(this.endTime);
+        return !(happensBefore || happensAfter);
     }
 
     /**
