@@ -186,9 +186,14 @@ Format: `task list`
 <div markdown="block" class="alert alert-warning">
 
 **:bulb: Note:**<br>
-* For contacts: you cannot add another contact with the **same name** as an existing contact.
-* For tasks: you cannot add another task of the same type with the **same person, assignment, description (and date if it is a `deadline` or `event`)** as an existing task.  
-
+* For contacts: A contact is considered a duplicate and cannot be added to the TaskBook if they have the **same name** as an existing contact.
+* For tasks: A task is considered a duplicate and cannot be added to the TaskBook if they fulfill **all** of the following criteria with respect to an existing task:
+    * same type of task (i.e. `todo`, `event` or `deadline`)
+    * same contact name
+    * same assignment
+    * same description
+    * same date (for `event`, `deadline` tasks only)
+    
 </div>
 
 #### Adding a contact : `contact add`
