@@ -1,32 +1,71 @@
 ---
 layout: page
-title: User Guide
+title: Modtrekt User Guide
 ---
 
-ModtRekt is a **desktop app for managing modules and tasks**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
-
-## Table of Contents
-- [UI Mockups](#ui-mockups)
+# Table of Contents
+- [Introduction](#introduction)
 - [Quick Start](#quick-start)
+- [About the user guide](#about-the-user-guide)
+    - [Layout of window](#layout-of-window)
+    - [General Command Syntax](#general-command-syntax)
+    - [Command Quirks](#command-quirks)
 - [Features](#features)
+    - [Parameters and constraints](#parameters-and-constraints)
+    - [General](#general)
+        - [help command](#help-command-help)
+        - [exit command](#exit-command-exit)
+    - [Modules](#modules)
+        - [add module command](#adding-a-module-add-module)
+        - [remove module command](#removing-a-module-remove-module)
+        - [cd module command](#entering-a-module-cd)
+        - [exit module command](#exiting-a-module-cd)
+        - [done module command](#marks-a-module-as-done-done-module)
+        - [undone module command](#marks-undone-a-module-undone-module)
+        - [list module command](#listing-all-modules-list-module)
+        - [edit module command](#editing-modules-edit-module)
+    - [Tasks](#tasks)
+        - [add task command](#adding-a-task-add-task)
+        - [remove task command](#removing-a-task-remove-task)
+        - [done task command](#marking-a-task-as-done-done-task)
+        - [undone task command](#marking-a-task-as-undone-undone-task)
+        - [list task command](#listing-all-tasks-list-task)
+        - [edit task command](#editing-tasks-edit-task)
+- [FAQ](#faq)
 - [Command Summary](#command-summary)
+- [Glossary](#glossary)
 
-## UI Mockups
-![Ui](images/Ui.png)
 
-## Quick Start
+# Introduction
+
+ModtRekt is a desktop app created for NUS students to have a faster and more organised way to **manage their modules and
+tasks**. It ensures that you would **never forget another task or miss another deadline**. This way you can focus on
+learning and not be sidetracked by unexpected tasks that you forget. With Modtrekt, you can **quickly add tasks**, see your 
+**latest deadlines**, and **filter your tasks based on its module**.
+
+Modtrekt is optimized for use via a Command Line Interface (CLI) for **faster navigation** and input whilst still having
+the benefits of a Graphical User Interface (GUI).
+
+
+This User Guide contains in-depth information which can help new users learn all the functionalities of Modtrekt. If you
+are an experienced user, there exist a command summary at the bottom which can bring you up to speed.
+
+# Quick Start
 
 1. Ensure you have Java 11 or above installed on your computer.
 
-1. Download the latest `modtrekt.jar` from [here](https://github.com/AY2223S1-CS2103T-W10-4/tp/releases).
+2. Download the latest `modtrekt.jar` from [here](https://github.com/AY2223S1-CS2103T-W10-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the home folder for your module tracker.
+3. Copy the file to the folder you want to use as the home folder for your module tracker.
 
-1. Double-click the file to start the app. The GUI similar to the screenshot above should appear in a few seconds. Note how the app contains some sample data.
+4. Double-click the file to start the app. The GUI similar to the screenshot below should appear in a few seconds. Note
+   how the app contains some sample data.
 
-1. Type the command in the command box and press `Enter` to execute it. e.g. typing `help` and pressing `Enter` will open the help window.
+![Ui](images/Ui.png)
 
-1.  Here are some example commands you can try:
+5. Type the command in the command box and press `Enter` to execute it. e.g. typing `help` and pressing `Enter` will open the help window.
+
+6. Here are some example commands you can try:
 
     1. `add module CS2103T`: Adds a module called CS2103T to the module tracker.
 
@@ -36,11 +75,23 @@ ModtRekt is a **desktop app for managing modules and tasks**, optimized for use 
 
     1. `list task`: Lists all the active tasks.
 
-   1. `remove task 1`: Removes the first task of CS2103T.
+7. `remove task 1`: Removes the first task of CS2103T.
 
-   1. `exit`: Exits the app.
+8. `exit`: Exits the app.
 
-   1. Refer to the Features below for details of each command.
+9. Refer to the Features below for details of each command.
+
+#About the user guide
+
+## Layout of window
+
+The image below shows what each window, of the application, represents.
+
+![Ui-label](images/Ui-window-labels.png)
+
+- The command output displays the command results (i.e. success or failure messages)
+- The command input is where you type in your commands
+- The Module List and Task Book automatically updates to show various modules and tasks depending on your commands.
 
 ## General Command Syntax
 
@@ -52,7 +103,7 @@ Every command starts with a **command phrase**, which may be single or multiple 
 The command phrase may be followed (after a space) by a **main parameter**, depending on the command.
 Fret not about the specifics of the commands in this section; we will cover each command in detail in the following sections.
 
-> For example, `CS2040S` is the main parameter in the commands `add module CS2040S` and `cd CS2040S`. 
+> For example, `CS2040S` is the main parameter in the commands `add module CS2040S` and `cd CS2040S`.
 
 Most commands have **parameters** which are prefixed with a dash (`-`). Each parameter can have _at most_ a **_single_ value**
 immediately after it (and the mandatory space).
@@ -78,7 +129,7 @@ We will surround **optional parameters** with square brackets (`[]`).
 
 That's it! You should now be able to understand the command syntax for the rest of this document.
 
-### Command Quirks
+## Command Quirks
 
 You may be wondering how to include quotes in your parameter values. For example, what if you want to add a task with the name `CS2103T "iP" Week 6`?
 
@@ -92,41 +143,57 @@ which tells ModtRekt to treat the quote as a normal character.
 
 > The command `add task "CS2103T \"iP\" Week 6" -d 2022-10-28` is equivalent to the previous example.
 
-## Features
+# Features
 
 In this section, we will cover the features of ModtRekt, and introduce the command syntaxes.
 
-### General
+> IMPORTANT: Every task was to be associated with a module. There may not be any standalone tasks without a created module.
 
-#### Help command: `help`
+## Parameters and constraints summary
+
+For the following parameters, all inputs cannot be blank
+
+| Parameters           | Constraints                                                                  | Remarks                                                          |
+|----------------------|------------------------------------------------------------------------------|------------------------------------------------------------------|
+| **Index**            | Positive integer<br/>less than list size<br/>greater than 0                  | Must be a valid index in module list/task book                   |
+| **Module Code**      | Alphanumeric characters<br/>no white space<br/>6 to 9 characters long        | Input is case in-sensitive. E.g. `cs2103t` will match `CS2103T`  |
+| **Module Name**      | Alphanumeric characters<br/>spaces allowed<br/>less than 100 characters long |                                                                  |
+| **Module Credits**   | Numeric characters<br/>up till 2 digits<br/>cannot be negative               |                                                                  |
+| **Task description** | ASCII characters<br/>up till 100 characters                                  |                                                                  |
+| **deadline**         | in format `YYYY-MM-DD`<br/>each input is integer from 0 to 9                 |                                                                  |
+| **priority**         | either `LOW`, `MEDIUM`, `HIGH`, `NONE`                                       | Input is case in-sensitive. E.g. `LoW` will match `LOW`          |
+
+
+## General
+
+### Help command: `help`
 
 Shows a message which provides a link to this user guide.
 
 Sample execution of command `help`:
 ![help-message](images/UserGuidePictures/help-message.png)
 
-#### Exit command: `exit`
+### Exit command: `exit`
 
 Exits the application.
 
 ## Modules
 
-#### Adding a module: `add module`
+### Adding a module: `add module`
 
 Adds a module to the application.
 
-To allow our users to easily add modules via their module code, our module information is fetched from 
+To allow our users to easily add modules via their module code, our module information is fetched from
 [NUSMods](https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4),
-hence the module code you specify must be a valid NUS module code. 
-If the module code is invalid, the module will not be added. Additionally, since an integration with NUSMods 
-is a collaboration we would like to seek in future revisions of our app, we have decided to use the AY2022-2023 module 
+hence the module code you specify must be a valid NUS module code.
+If the module code is invalid, the module will not be added. Additionally, since an integration with NUSMods
+is a collaboration we would like to seek in future revisions of our app, we have decided to use the AY2022-2023 module
 list, hence beyond this AY, the module information and codes may have changed.
 
 Format: `add module <module code>`
 
 Shorthand: `add mod <module code>`
 
-- The module code is case-insensitive e.g. `cs2103t` will match **CS2103T**
 - The module name (if provided) must be enclosed in double-quotes (`""`) if it contains spaces.
 
 
@@ -154,7 +221,7 @@ Examples:
 Sample execution of command `add mod CCA -n Volleyball -cr 0`:
 ![add-mod-verbose-sample](images/UserGuidePictures/add-mod-verbose-sample.png)
 
-#### Removing a module: `remove module`
+### Removing a module: `remove module`
 
 Deletes a module from the program. Users specify a module code to delete.
 
@@ -162,7 +229,6 @@ Format: `remove module <module code>`
 
 Shorthand: `rm mod <module code>`
 
-- The module code is case-insensitive e.g. `cs2103t` will match **CS2103T**
 - Module code must match an existing module.
 
 Format: `remove module <module code>`
@@ -176,7 +242,7 @@ Examples:
 Sample execution of command `remove mod CS2100`:
 ![remove-mod-sample](images/UserGuidePictures/remove-mod-sample.png)
 
-#### Entering a module: `cd`
+### Entering a module: `cd`
 
 Sets the current module page to the specified module.
 
@@ -184,7 +250,6 @@ Format: `cd <module code>`
 
 Allows user to view information relating to the specified module.
 - Scopes the user’s actions to the specified module.
-- The module code is case-insensitive e.g. `cs2103t` will match **CS2103T**
 - Module code must match an existing module.
 
 Format: `cd <module code>`
@@ -195,7 +260,7 @@ Examples:
 Sample execution of command `cd CS2100`:
 ![cd-module-sample](images/UserGuidePictures/cd-module-sample.png)
 
-#### Exiting a module: `cd`
+### Exiting a module: `cd`
 
 Exits the current module page to revert to showing all modules.
 
@@ -209,11 +274,10 @@ Examples:
 Sample execution of command `cd ..`:
 ![cd-default-sample](images/UserGuidePictures/cd-default-sample.png)
 
-#### Marks a module as done: `done module`
+### Marks a module as done: `done module`
 
 Marks a module as done.
 
-- The module code is case insensitive e.g. `cs2103t` will match **CS2103T**
 - After you mark a module as done, your total completed module credits (MCs) will be updated.
 - Marking a module as done will mark all active tasks belonging to that module as done.
 
@@ -227,11 +291,10 @@ Examples:
 Sample execution of command `done module CS2100`:
 ![done-module-sample](images/UserGuidePictures/done-module-sample.png)
 
-#### Marks undone a module: `undone module`
+### Marks undone a module: `undone module`
 
 Marks a module as undone.
 
-- The module code is case insensitive e.g. `cs2103t` will match **CS2103T**
 - After you unmark a module as done, your total completed module credits (MCs) will be updated.
 - Unmarking a module will not affect its tasks, i.e. your original tasks will not be marked as undone)
 
@@ -245,7 +308,7 @@ Examples:
 Sample execution of command `done module CS2105`, with CS2105 marked as done initially:
 ![undone-module-sample](images/UserGuidePictures/undone-module-sample.png)
 
-#### Listing all modules: `list module`
+### Listing all modules: `list module`
 
 Shows all the modules you have added.
 - Using the command without `-a` flag will show you only undone modules.
@@ -261,22 +324,17 @@ Examples:
 Sample execution of command `list module -a`:
 ![list-module-sample](images/UserGuidePictures/list-modules-sample.png)
 
-#### Editing modules: `edit module`
+### Editing modules: `edit module`
 
 Changes current parameters of selected module.
 
-- The module code is case insensitive e.g. `cs2103t` will match **CS2103T**
 - Targeted module code must exist in the module list
 - New module code must not already exist in the module list
 - All tasks associated with the module would change to the new module code after editing the module
 - The order of optional tags does not matter
 
-> Since we fetch our module information from NUSMods, any edits to the module would not be checked against NUSMods again.
->
-> A module is assumed to be valid so long as the:
-> - Module code has **between 6 and 9 alphanumeric characters**
-> - Module credit is **between 1 and 2 digits and non-negative**
-> - Module name is **alphanumeric and between 1 and 100 characters**
+> Any edits to the module would not be checked against NUSMods again and is **taken as a customised module**.
+> This means that a non-existent module e.g. `CS1111` would be accepted so long as it fulfils the parameter constraints.
 
 Format: `edit module <module code> [-c <module code>] [-cr <module credit>] [-n <module name>]`
 
@@ -287,7 +345,7 @@ Examples:
 
 ## Tasks
 
-#### Adding a task: `add task`
+### Adding a task: `add task`
 
 Adds a task under a specific module.
 
@@ -315,7 +373,7 @@ Examples (Not CDed into a module):
 Sample execution of command `add "Assignment 1" -c CS2100 -d 2022-10-29`:
 ![add-task-sample](images/UserGuidePictures/add-task-sample.png)
 
-#### Removing a task: `remove task`
+### Removing a task: `remove task`
 
 Removes a task under a specific module.
 
@@ -332,7 +390,7 @@ Examples:
 Sample execution of command `remove task 1` with 2 active tasks displayed:
 ![remove-task-sample](images/UserGuidePictures/remove-task-sample.png)
 
-#### Marking a task as done: `done task`
+### Marking a task as done: `done task`
 
 Marks a task as done, specified via its index in the task list.
 
@@ -346,7 +404,7 @@ Examples:
 Sample execution of command `done task 1` with 6 active tasks displayed:
 ![done-task-sample](images/UserGuidePictures/done-task-sample.png)
 
-#### Marking a task as undone: `undone task`
+### Marking a task as undone: `undone task`
 
 Marks a task as undone, specified via its index in the task list.
 
@@ -360,13 +418,13 @@ Examples:
 Sample execution of command `undone task 6` with 6 active tasks displayed:
 ![undone-task-sample](images/UserGuidePictures/undone-task-sample.png)
 
-#### Listing all tasks: `list task`
+### Listing all tasks: `list task`
 
 Shows only the active tasks (i.e. tasks which are undone) by default.
 
 - Include the optional `-a` flag to the command to show all tasks, including those that are done.
 - If you have used the [`cd` command](#entering-a-module-cd) to select a module, this will
-only show the tasks under the selected module.
+  only show the tasks under the selected module.
 
 Format: `list task [-a]`
 
@@ -376,15 +434,13 @@ Examples:
 - `list task -a` shows all tasks, including those marked as done.
 - `ls task` hides all done tasks.
 
-#### Editing tasks: `edit task`
+### Editing tasks: `edit task`
 
 Changes current parameters of selected task
 
-- Index must be a valid integer. Users may use the list tasks command to find the indexes of their tasks.
 - Order of optional parameters does not matter.
 - The new module code associated with task must exist in module list
-- New Deadlines must be in format: `YYYY-MM-DD`
-- Task count in module would change accordingly after editing a task to be associated with another module 
+- Task count in module would change accordingly after editing a task to be associated with another module
 
 
 - Users can add priorities into their tasks which will be ordered by decreasing priority in the task list
@@ -399,7 +455,7 @@ Examples:
 
 ![](./images/UserGuidePictures/edit_task.png)
 
-## FAQ
+# FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -411,16 +467,16 @@ the data of your previous ModuleList home folder.
 **Q**: Do I need a working internet connection to use this application?<br>
 **A**: No, it is not required. We have a backup data file of all NUS modules for AY2022-2023, so no internet is required.
 
-## Command Summary
+# Command Summary
 
-### General
+## General
 
 | Action            | Format          | Examples        |
 |-------------------|-----------------|-----------------|
 | **Help**          | `help`          | `help`          |
 | **Exit**          | `exit`          | `exit`          |
 
-### Modules
+## Modules
 
 | Action                      | Format                                                                                                                                                       | Examples                                                           |
 |-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
@@ -433,7 +489,7 @@ the data of your previous ModuleList home folder.
 | **Mark a module as undone** | `undone module <mod code>` <br/> `undone mod <mod code>`                                                                                                     | `undone module CS1101S` <br/> `undone mod CS1101S`                 |
 | **List modules**            | `list module [-a]` <br/> `list mod [-a]` <br/> `ls module [-a]` <br/> `ls mod [-a]`                                                                          | `list module`<br/> `list mod -a`<br/> `ls module`<br/> `ls mod -a` |
 
-### Tasks
+## Tasks
 
 | Action                    | Format                                                                                  | Examples                                             |
 |---------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------|
@@ -445,7 +501,7 @@ the data of your previous ModuleList home folder.
 | **List tasks**            | `list task [-a]` <br/> `ls task [-a]`                                                   | `list task`<br/>`ls task -a`                         |
 
 
-### Glossary
+# Glossary
 
 |             Terms | Description                                                                                             |
 |------------------:|---------------------------------------------------------------------------------------------------------|
