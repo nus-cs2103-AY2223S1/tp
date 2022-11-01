@@ -27,13 +27,13 @@ public class AddStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "add student";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the specified module.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_ID + "STUDENT ID "
+            + PREFIX_ID + "STUDENT_ID "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_TELEGRAM + "TELEGRAM "
+            + PREFIX_TELEGRAM + "TELEGRAM_HANDLE "
             + PREFIX_MODULE + "MODULE "
             + PREFIX_TUTORIAL + "TUTORIAL "
             + "[" + PREFIX_GRADE + "GRADE] "
@@ -42,16 +42,12 @@ public class AddStudentCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
+            + PREFIX_ID + "A0232123X "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_TELEGRAM + "johnd "
+            + PREFIX_TELEGRAM + "johnDoe "
             + PREFIX_MODULE + "CS2103T "
-            + PREFIX_TUTORIAL + "W17 "
-            + PREFIX_GRADE + "A "
-            + PREFIX_ATTENDANCE + "5 "
-            + PREFIX_PARTICIPATION + "3 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TUTORIAL + "W17 ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";

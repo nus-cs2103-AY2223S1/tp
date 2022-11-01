@@ -19,7 +19,7 @@ public class MarkReminderCommand extends Command {
     public static final String COMMAND_WORD = "mark reminder";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the remind identified by the index number used in the reminder list as done.\n"
+            + ": Marks the reminder identified by the index number used in the reminder list as complete.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

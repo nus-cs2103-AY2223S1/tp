@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents a Reminder's priority in the ModQuik.
+ * Represents a Reminder's priority in ModQuik.
  * Guarantees: immutable; is valid as declared in {@link #isValidPriority(String)}
  */
 public class ReminderPriority {

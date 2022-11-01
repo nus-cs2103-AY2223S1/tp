@@ -9,7 +9,7 @@ import seedu.address.model.commons.Venue;
 import seedu.address.model.datetime.WeeklyTimeslot;
 
 /**
- * Represents a Tutorial in the ModQuik.
+ * Represents a Tutorial in ModQuik.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Tutorial {
@@ -63,7 +63,7 @@ public class Tutorial {
     }
 
     /**
-     * Returns true if both tutorials have the same venue and timeslot.
+     * Returns true if given tutorial's timeslot overlaps with other's timeslot.
      */
     public boolean isClashTutorial(Tutorial otherTutorial) {
         if (otherTutorial == this) {
@@ -71,8 +71,7 @@ public class Tutorial {
         }
 
         return otherTutorial != null
-                && otherTutorial.getVenue().equals(getVenue())
-                && otherTutorial.getTimeslot().equals(getTimeslot());
+                && otherTutorial.getTimeslot().isOverlapping(getTimeslot());
     }
 
     /**

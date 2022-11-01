@@ -96,13 +96,13 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Student> predicate);
 
     /**
-     * Returns true if a reminder with the same identity as {@code reminder} exists in the ModQuik.
+     * Returns true if a reminder with the same identity as {@code reminder} exists in ModQuik.
      */
     boolean hasReminder(Reminder reminder);
 
     /**
      * Adds the given reminder.
-     * {@code reminder} must not already exist in the ModQuik.
+     * {@code reminder} must not already exist in ModQuik.
      */
     void addReminder(Reminder reminder);
 
@@ -115,7 +115,7 @@ public interface Model {
 
     /**
      * Deletes the given reminder.
-     * The reminder must exist in the ModQuik.
+     * The reminder must exist in ModQuik.
      */
     void deleteReminder(Reminder reminder);
 
@@ -139,24 +139,30 @@ public interface Model {
     void updateFilteredReminderList(Predicate<Reminder> predicate);
 
     /**
-     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the ModQuik.
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in ModQuik.
      */
     boolean hasTutorial(Tutorial tutorial);
 
     /**
-     * Returns true if a tutorial with the same venue and timeslot as {@code tutorial} exists in the ModQuik.
+     * Returns the true if there exists tutorials in ModQuik having timeslot overlapping with an {@code tutorial}.
      */
-    boolean hasTutorialClashingWith(Tutorial tutorial);
+    boolean hasClashingTutorial(Tutorial toCheck);
+
+    /**
+     * Returns true if there exists tutorials exclude {@code exception} in ModQuik having timeslot overlapping with
+     * an {@code tutorial}
+     */
+    boolean hasClashingTutorialExcept(Tutorial toCheck, Tutorial exception);
 
     /**
      * Adds the given tutorial.
-     * {@code tutorial} must not already exist in the ModQuik.
+     * {@code tutorial} must not already exist in ModQuik.
      */
     void addTutorial(Tutorial tutorial);
 
     /**
      * Deletes the given tutorial.
-     * The person must exist in the ModQuik.
+     * The person must exist in ModQuik.
      */
     void deleteTutorial(Tutorial target);
 
@@ -173,18 +179,18 @@ public interface Model {
     void updateFilteredTutorialList(Predicate<Tutorial> predicate);
 
     /**
-     * Returns true if a consultation with the same identity as {@code tutorial} exists in the ModQuik.
+     * Returns true if a consultation with the same identity as {@code tutorial} exists in ModQuik.
      */
     boolean hasConsultation(Consultation consultation);
 
     /**
-     * Returns true if a tutorial with the same venue and timeslot as {@code tutorial} exists in the ModQuik.
+     * Returns true if a tutorial with the same venue and timeslot as {@code tutorial} exists in ModQuik.
      */
     boolean hasConsultationClashingWith(Consultation consultation);
 
     /**
      * Deletes the given consultation.
-     * The person must exist in the ModQuik.
+     * The person must exist in ModQuik.
      */
     void deleteConsultation(Consultation target);
 
@@ -204,7 +210,7 @@ public interface Model {
 
     /**
      * Replaces the given consultation {@code target} with {@code editedConsultation}.
-     * {@code target} must exist in the Modquik.
+     * {@code target} must exist in ModQuik.
      * The consultation identity of {@code editedConsultation} must not be the same as another existing consultation
      * in Modquik.
      */

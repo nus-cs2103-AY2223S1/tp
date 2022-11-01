@@ -2,6 +2,7 @@ package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_UNCHANGED_FIELD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
@@ -39,11 +40,13 @@ public class EditReminderCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_TIME + "DEADLINE] "
+            + "[" + PREFIX_DATE_DAY + "DATE] "
+            + "[" + PREFIX_TIME + "TIME] "
             + "[" + PREFIX_PRIORITY + "PRIORITY] "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TIME + "2022-10-10 14:00 "
+            + PREFIX_DATE_DAY + "2022-10-10 "
+            + PREFIX_TIME + "14:00 "
             + PREFIX_PRIORITY + "HIGH";
 
     public static final String MESSAGE_EDIT_REMINDER_SUCCESS = "Edited Reminder: %1$s";

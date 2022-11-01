@@ -27,7 +27,7 @@ import seedu.address.model.consultation.ConsultationVenue;
 import seedu.address.model.datetime.DatetimeRange;
 
 /**
- * Edits the details of an existing consultation in the Modquik.
+ * Edits the details of an existing consultation in ModQuik.
  */
 public class EditConsultationCommand extends Command {
     public static final String COMMAND_WORD = "edit consultation";
@@ -43,7 +43,7 @@ public class EditConsultationCommand extends Command {
             + PREFIX_TIME + "TIMESLOT] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_MODULE + "CS2103T"
+            + PREFIX_MODULE + "CS2103T "
             + PREFIX_DESCRIPTION + "Review past years' papers";
 
     public static final String MESSAGE_EDIT_CONSULTATION_SUCCESS = "Edited Consult: %1$s";

@@ -73,8 +73,9 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWords = matcher.group("commandWords");
-        final String arguments = matcher.group("arguments");
+        final String commandWords = matcher.group("commandWords").trim().replaceAll(" +", " ");
+        // Workaround: ArgumentTokenizer must have an additional space in front as preamble
+        final String arguments = " " + matcher.group("arguments").trim();
         switch (commandWords) {
         case AddStudentCommand.COMMAND_WORD:
             return new AddStudentCommandParser().parse(arguments);

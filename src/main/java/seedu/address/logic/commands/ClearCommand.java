@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
+import static seedu.address.model.ModelType.CONSULTATION;
+import static seedu.address.model.ModelType.STUDENT;
+import static seedu.address.model.ModelType.TUTORIAL;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -19,7 +22,8 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clear all date of a field in ModQuik. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Clears all data in all specific fields or the entire app.\n"
             + "Parameters: "
             + PREFIX_FIELD + "FIELD (all, student, tutorial, consultation, reminder) \n"
             + "Example: " + COMMAND_WORD + " "
@@ -54,15 +58,15 @@ public class ClearCommand extends Command {
 
         case "student":
             model.resetStudents();
-            return new CommandResult(MESSAGE_SUCCESS_STUDENT);
+            return new CommandResult(MESSAGE_SUCCESS_STUDENT, STUDENT);
 
         case "consultation":
             model.resetConsultations();
-            return new CommandResult(MESSAGE_SUCCESS_CONSULTATION);
+            return new CommandResult(MESSAGE_SUCCESS_CONSULTATION, CONSULTATION);
 
         case "tutorial":
             model.resetTutorials();
-            return new CommandResult(MESSAGE_SUCCESS_TUTORIAL);
+            return new CommandResult(MESSAGE_SUCCESS_TUTORIAL, TUTORIAL);
 
         case "reminder":
             model.resetReminders();

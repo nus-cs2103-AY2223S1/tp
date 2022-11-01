@@ -19,9 +19,6 @@ public class WeeklyTimeslot {
     public final LocalTime startTime;
     public final LocalTime endTime;
 
-
-
-
     /**
      * Constructs a {@code WeeklyTimeslot}.
      *
@@ -53,6 +50,22 @@ public class WeeklyTimeslot {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns true if {@code WeeklyTimeslot} overlap with each other.
+     */
+    public boolean isOverlapping(WeeklyTimeslot other) {
+        requireNonNull(other);
+        if (other == this) {
+            return true;
+        }
+
+        if (!day.equals(other.day)) {
+            return false;
+        }
+
+        return startTime.isBefore(other.endTime) && other.startTime.isBefore(endTime);
     }
 
     /**

@@ -50,10 +50,10 @@ public class EditStudentCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_ID + "ID] "
+            + "[" + PREFIX_ID + "STUDENT_ID] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TELEGRAM + "TELEGRAM] "
+            + "[" + PREFIX_TELEGRAM + "TELEGRAM_HANDLE] "
             + "[" + PREFIX_TUTORIAL + "TUTORIAL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -62,7 +62,7 @@ public class EditStudentCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the ModQuik.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in ModQuik.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;

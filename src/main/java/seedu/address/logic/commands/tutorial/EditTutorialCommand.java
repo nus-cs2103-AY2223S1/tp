@@ -50,6 +50,9 @@ public class EditTutorialCommand extends Command {
     public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in the address book.";
+    public static final String MESSAGE_CLASH_TUTORIAL =
+            "There exists a tutorial with overlapping timeslot in the ModQuik";
+
     public static final String MESSAGE_DATETIME_TUTORIAL = "Both new day and new timeslot must be given.";
 
     private final Index index;
@@ -81,6 +84,10 @@ public class EditTutorialCommand extends Command {
 
         if (!tutorialToEdit.isSameTutorial(editedTutorial) && model.hasTutorial(editedTutorial)) {
             throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL);
+        }
+
+        if (model.hasClashingTutorialExcept(editedTutorial, tutorialToEdit)) {
+            throw new CommandException(MESSAGE_CLASH_TUTORIAL);
         }
 
         model.setTutorial(tutorialToEdit, editedTutorial);

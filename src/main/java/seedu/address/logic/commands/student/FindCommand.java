@@ -1,6 +1,10 @@
 package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.util.function.Predicate;
 
@@ -20,11 +24,15 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds students by names, student ID, module or "
+            + "tutorial, by checking if respective attribute contains any of the given keywords.\n"
+            + "Parameters: "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_ID + "STUDENT_ID] "
+            + "[" + PREFIX_MODULE + "MODULE] "
+            + "[" + PREFIX_TUTORIAL + "TUTORIAL]\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "John";
     private final Predicate<Student> predicate;
 
     public FindCommand(Predicate<Student> predicate) {

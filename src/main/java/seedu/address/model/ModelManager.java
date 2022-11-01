@@ -258,9 +258,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasTutorialClashingWith(Tutorial tutorial) {
-        requireNonNull(tutorial);
-        return addressBook.hasTutorialClashingWith(tutorial);
+    public boolean hasClashingTutorial(Tutorial toCheck) {
+        requireNonNull(toCheck);
+        return addressBook.hasClashingTutorial(toCheck);
+    }
+
+    @Override
+    public boolean hasClashingTutorialExcept(Tutorial toCheck, Tutorial exception) {
+        requireNonNull(toCheck);
+        requireNonNull(exception);
+        return addressBook.hasClashingTutorialExcept(toCheck, exception);
     }
 
     @Override

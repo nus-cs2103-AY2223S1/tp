@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a datetime of various objects in the ModQuik.
+ * Represents a datetime of various objects in ModQuik.
  * Guarantees: immutable
  */
 

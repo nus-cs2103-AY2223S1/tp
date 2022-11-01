@@ -148,8 +148,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a reminder to the ModQuik.
-     * The reminder must not already exist in the ModQuik.
+     * Adds a reminder to ModQuik.
+     * The reminder must not already exist in ModQuik.
      */
     public void addReminder(Reminder r) {
         reminders.add(r);
@@ -205,16 +205,26 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a tutorial with the same venue and timeslot as {@code tutorial} exists in the ModQuik.
+     * Returns the true if there exists tutorials in ModQuik having timeslot overlapping with an {@code tutorial}.
      */
-    public boolean hasTutorialClashingWith(Tutorial tutorial) {
-        requireNonNull(tutorial);
-        return tutorials.containsClashingWith(tutorial);
+    public boolean hasClashingTutorial(Tutorial toCheck) {
+        requireNonNull(toCheck);
+        return tutorials.hasClashingTutorial(toCheck);
     }
 
     /**
-     * Adds a tutorial to the ModQuik.
-     * The tutorial must not already exist in the ModQuik.
+     * Returns true if there exists tutorials exclude {@code exception} in ModQuik having timeslot overlapping with
+     * an {@code tutorial}
+     */
+    public boolean hasClashingTutorialExcept(Tutorial toCheck, Tutorial exception) {
+        requireNonNull(toCheck);
+        requireNonNull(exception);
+        return tutorials.hasClashingTutorialExcept(toCheck, exception);
+    }
+
+    /**
+     * Adds a tutorial to ModQuik.
+     * The tutorial must not already exist in ModQuik.
      */
     public void addTutorial(Tutorial t) {
         tutorials.add(t);
@@ -243,7 +253,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a Consultation with the same venue and timeslot as {@code Consultation} exists in the ModQuik.
+     * Returns true if a Consultation with the same venue and timeslot as {@code Consultation} exists in ModQuik.
      */
     public boolean hasConsultationClashingWith(Consultation consultation) {
         requireNonNull(consultation);
@@ -251,8 +261,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a Consultation to the ModQuik.
-     * The consultation must not already exist in the ModQuik.
+     * Adds a Consultation to ModQuik.
+     * The consultation must not already exist in ModQuik.
      */
     public void addConsultation(Consultation consultation) {
         consultations.add(consultation);
@@ -268,9 +278,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given consultation {@code target} in the list with {@code editedConsultation}.
-     * {@code target} must exist in the Modquik.
+     * {@code target} must exist in ModQuik.
      * The consultation identity of {@code editedConsultation} must not be the same as another existing consultation
-     * in the Modquik.
+     * in ModQuik.
      */
     public void setConsultation(Consultation target, Consultation editedConsultation) {
         requireNonNull(editedConsultation);
