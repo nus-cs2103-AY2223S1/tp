@@ -272,6 +272,9 @@ Step 4. `SetupCommand#execute()` calls the following methods from `Model`:
 
 Step 5. `SetupCommand#execute()` returns a `CommandResult` which displays the user's information.
 
+The following diagram illustrates how the setup operation works.
+![SetupSequenceDiagram](./images/SetupSequenceDiagram.png)
+
 ### Profile feature
 
 #### Implementation
