@@ -158,7 +158,7 @@ public class SampleDataUtil {
             standard, new Species("cat"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
             new Price(7777.77), new HashSet<>());
-    public static final Pet P4 = new Pet(new PetName("Plum"), LI, new Color("white"),
+    public static final Pet P4 = new Pet(new PetName("Page"), LI, new Color("white"),
             new ColorPattern("white and brown"),
             standard, new Species("cat"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
