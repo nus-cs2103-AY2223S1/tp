@@ -195,12 +195,7 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public ObservableList<Link> getFilteredLinkList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredLinkList(Predicate<Link> predicate) {
+        public ObservableList<Link> getLinkList() {
             throw new AssertionError("This method should not be called.");
         }
 

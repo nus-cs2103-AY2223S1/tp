@@ -47,9 +47,9 @@ public class DeleteLinkCommand extends Command {
             return new CommandResult(commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        List<Link> lastShownList = model.getFilteredLinkList();
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        List<Link> lastShownList = model.getLinkList();
+        if (targetIndex.getOneBased() > lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_LINK_DISPLAYED_INDEX);
         }
         Link linkToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteLink(linkToDelete);
