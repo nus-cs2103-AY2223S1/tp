@@ -15,7 +15,7 @@ public class Module {
     /*
      * Covers all module code variants in NUS.
      */
-    public static final String VALIDATION_REGEX = "[A-Z]{2}[A-Z]?\\d{4}[A-Z]?";
+    public static final String VALIDATION_REGEX = "[A-Z]{2}[A-Z]?[A-Z]?\\d{4}[A-Z]?[A-Z]?";
 
     public final String value;
 
