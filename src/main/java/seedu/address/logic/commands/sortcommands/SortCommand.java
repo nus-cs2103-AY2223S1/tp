@@ -13,5 +13,13 @@ public abstract class SortCommand extends Command {
             + "buyer/b, deliverer/d, supplier/s, order/o, pet/p";
     public static final String MESSAGE_ONLY_ALPHABET_PARAMETERS =
             "Please enter alphabets only for attributes, %1$s is not recognised";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Sorts the specified list according to the specified attribute.\n"
+            + "Parameters: LIST_TYPE [ATTRIBUTES...]\n"
+            + "Examples:\n"
+            + COMMAND_WORD + " buyer\n"
+            + COMMAND_WORD + " pet price height weight\n"
+            + COMMAND_WORD + " s n /loc\n"
+            + COMMAND_WORD + " -o pr s p";
 
 }

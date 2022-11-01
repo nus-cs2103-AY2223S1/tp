@@ -30,6 +30,7 @@ Given below are my contributions to the project.
     * Added five unique lists in the application, added and updated relevant methods in logic, model, storage and other class to fit the changes [\#90](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/90) [\#94](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/94)
     * Extended the list command to support five different lists, enhanced the list command by adding the functionality to display different lists [\#164](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/164)
     * Extended the edit command to support three different lists [\#202](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/202)
+    * Fixed several bugs [\#222](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/222), [\#234](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/234), [\#237](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/237), [\#239](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/239), [\#244](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/244), [\#261](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/261), [\#262](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/262), [\#264](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/264), [\#265](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/265)
 
 * **Documentation**:
     * User Guide:
@@ -38,10 +39,10 @@ Given below are my contributions to the project.
         * Updated the UML diagram for storage package.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): *to be added*.
+    * PRs reviewed (with non-trivial review comments): [\#211](https://github.com/AY2223S1-CS2103T-T09-2/tp/issues/211) [\#305](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/305)
     * Reported bugs and suggestions for other teams in the class (examples: [\#9](https://github.com/wweqg/ped/issues/9), [\#10](https://github.com/wweqg/ped/issues/10), [\#11](https://github.com/wweqg/ped/issues/11),  [\#12](https://github.com/wweqg/ped/issues/12).)
 
 * **Tools**:
-    * (*to be added*)
+    * Used JavaFX for UI related features.
 
-* _{you can add/remove categories in the list above}_
+

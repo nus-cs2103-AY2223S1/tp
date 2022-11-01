@@ -14,6 +14,9 @@ public class Price implements Comparable<Price> {
 
     private double price;
 
+    /**
+     * Creates a Price.
+     */
     public Price(double price) {
         this.price = price;
     }

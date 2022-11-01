@@ -39,19 +39,19 @@ public class PredicateParser {
     private static final String EMAIL_PREFIX = "e";
     private static final String LOC_PREFIX = "l";
     private static final String NAME_PREFIX = "n";
-    private static final String PHONE_PREFIX = "p";
+    private static final String PHONE_PREFIX = "ph";
 
     //For pets
-    private static final String COLOR_PREFIX = "c";
-    private static final String PET_NAME_PREFIX = "n";
-    private static final String PRICE_PREFIX = "p";
-    private static final String SPECIES_PREFIX = "s";
-    private static final String VACCINATION_PREFIX = "v";
+    private static final String COLOR_PREFIX = "p_c";
+    private static final String PET_NAME_PREFIX = "p_n";
+    private static final String PRICE_PREFIX = "p_p";
+    private static final String SPECIES_PREFIX = "p_s";
+    private static final String VACCINATION_PREFIX = "p_v";
 
     //For orders
-    private static final String ADDITIONAL_REQUEST_PREFIX = "ar";
-    private static final String ORDER_STATUS_PREFIX = "os";
-    private static final String PRICE_RANGE_PREFIX = "pr";
+    private static final String ADDITIONAL_REQUEST_PREFIX = "o_ar";
+    private static final String ORDER_STATUS_PREFIX = "o_st";
+    private static final String PRICE_RANGE_PREFIX = "o_pr";
 
     /**
      * Parses the given {@code String} of arguments in the context of a Predicate
@@ -107,7 +107,7 @@ public class PredicateParser {
             return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
         default:
             throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
 
@@ -152,7 +152,7 @@ public class PredicateParser {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
         }
         String query = nameKeywords[1].trim();
-        switch (nameKeywords[0]) {
+        switch (nameKeywords[0].trim()) {
         case COLOR_PREFIX:
             return new ColorContainsKeywordsPredicate<>(Arrays.asList(query));
         case PET_NAME_PREFIX:
@@ -186,8 +186,8 @@ public class PredicateParser {
             return new AdditionalRequestPredicate<>(Arrays.asList(query));
         case ORDER_STATUS_PREFIX:
             if (!OrderStatus.isValidOrderStatus(query)) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FilterOrderCommand.MESSAGE_USAGE));
             }
             if (query.equals(OrderStatus.DELIVERING.toString())) {
                 return new OrderStatusPredicate<>(OrderStatus.DELIVERING);
@@ -196,8 +196,7 @@ public class PredicateParser {
             } else if (query.equals(OrderStatus.PENDING.toString())) {
                 return new OrderStatusPredicate<>(OrderStatus.PENDING);
             }
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         case PRICE_RANGE_PREFIX:
             String[] prices = query.split("-");
             Price lowerBound = new Price(Double.parseDouble(prices[0]));
@@ -209,8 +208,7 @@ public class PredicateParser {
             }
             return new PriceRangePredicate<>(lowerBound, upperBound);
         default:
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         }
     }
 }

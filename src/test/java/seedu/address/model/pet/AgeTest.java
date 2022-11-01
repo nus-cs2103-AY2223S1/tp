@@ -26,24 +26,26 @@ public class AgeTest {
     }
 
     @Test
-    public void equals_sameObject() {
+    public void equals() {
+        //same object
         Age age = new Age(10);
         assertEquals(age, age);
-    }
 
-    @Test
-    public void equals_true() {
+        //same fields
         Age age1 = new Age(10);
         Age age2 = new Age(10);
         assertEquals(age1, age2);
+
+        // different field
+        age1 = new Age(1);
+        age2 = new Age(10);
+        assertNotEquals(age1, age2);
+
+        // different types
+        assertNotEquals(age1, null);
+        assertNotEquals(age1, 1);
     }
 
-    @Test
-    public void equals_false() {
-        Age age1 = new Age(1);
-        Age age2 = new Age(10);
-        assertNotEquals(age1, age2);
-    }
 
     @Test
     public void hashcode() {

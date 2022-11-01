@@ -618,17 +618,17 @@ requests, Order status, Price range.
 
 | Attribute           | Prefix | Format                     | Example         |
 |---------------------|--------|----------------------------|-----------------|
-| Additional requests | ar     | ar/KEYWORD                 | ar/non-shedding |
-| Order Status        | os     | os/KEYWORD                 | os/Negotating   |
-| Price Range         | pr     | pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
+| Additional requests | o_ar   | ar/KEYWORD                 | ar/non-shedding |
+| Order Status        | o_st   | os/KEYWORD                 | os/Negotating   |
+| Price Range         | o_pr   | pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
 
 Format: `filter-o PREFIX/INPUT`
 
 Examples:
 
-* `filter-o os/Pending`
-* `filter-o as/Negotiating pr/90-900`
-* `filter-o ar/good with children os/Delivering pr/80-100`
+* `filter-o o_st/Pending`
+* `filter-o o_st/Negotiating o_pr/90-900`
+* `filter-o o_ar/good with children o_st/Delivering o_pr/80-100`
 
 Notes:
 
@@ -650,28 +650,28 @@ Notes:
 Displays only Pets based on the given attributes. There are five possible attributes to filter: Color, Name,
 Price, Species, Vaccination status.
 
-| Attribute          | Prefix | Format    | Example         |
-|--------------------|--------|-----------|-----------------|
-| Color              | c      | c/KEYWORD | c/pink          |
-| Name               | n      | n/KEYWORD | n/nyanko-sensei |
-| Price              | p      | p/PRICE   | p/209           |
-| Species            | s      | s/KEYWORD | s/ostrich       |
-| Vaccination Status | v      | v/KEYWORD | v/false         |
+| Attribute          | Prefix | Format      | Example           |
+|--------------------|--------|-------------|-------------------|
+| Color              | p_c    | p_c/KEYWORD | p_c/pink          |
+| Name               | p_n    | p_n/KEYWORD | p_n/nyanko-sensei |
+| Price              | p_p    | p_p/PRICE   | p_p/209           |
+| Species            | p_s    | p_s/KEYWORD | p_s/ostrich       |
+| Vaccination Status | p_v    | p_v/KEYWORD | p_v/false         |
 
 Format: `filter-p PREFIX/INPUT`
 
 Examples:
 
-* `filter-p c/white`
-* `filter-p c/black v/true`
-* `filter-p c/black n/doraemon p/50 s/cat v/true`
+* `filter-p p_c/white`
+* `filter-p p_c/black p_v/true`
+* `filter-p p_c/black p_n/doraemon p_p/50 p_s/cat p_v/true`
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
 ### Sorting contacts : `sort`
 
-Format: `sort LIST_PARAMETER [ATTRIBUTES...]`
+Format: `sort LIST_TYPE [ATTRIBUTES...]`
 
 <div markdown="span" class="alert alert-warning">
 
@@ -684,13 +684,13 @@ items [here](#list-key-types-table).
 
 #### List Attribute Table
 
-| List type | Attributes                                                                                                                  |
-|-----------|-----------------------------------------------------------------------------------------------------------------------------|
-| Buyer     | *Number of Order*, Name, Phone, Email, Location, Address                                                                    |
-| Supplier  | *Number of Pet On sale*, Name, Phone, Email, Location, Address                                                              |
-| Deliverer | *Number of Order*, Name, Phone, Email, Location, Address                                                                    |
-| Order     | *Due Date*, Price Range, Price, Status                                                                                      |
-| Pet       | *Price*, Name, Color, Color Pattern, Birth Date, Species, Height, Weight, Vaccination Status, Characteristics, Certificates |
+| List type | Attributes                                                                |
+|-----------|---------------------------------------------------------------------------|
+| Buyer     | *Number of Order*, Name, Phone, Email, Location, Address                  |
+| Supplier  | *Number of Pet On sale*, Name, Phone, Email, Location, Address            |
+| Deliverer | *Number of Order*, Name, Phone, Email, Location, Address                  |
+| Order     | *Due Date*, Price Range, Price, Status                                    |
+| Pet       | *Price*, Name, Color, Color Pattern, Birth Date, Species, Height, Weight  |
 
 > The italicised text attribute represents the default sorting attribute for each list. <br>
 > For example, `sort pet` will sort the Pets list in default by the price attribute.
@@ -716,9 +716,6 @@ items [here](#list-key-types-table).
 | Species               | species, s, -s, /s                           |
 | Height                | height, h, -h, /h                            |
 | Weight                | weight, w, -w, /w                            |
-| Vaccination Status    | vaccinationstatus, vstatus, vs, -vs, /vs     |
-| Characteristics       | characteristics, chara, cha, ch, -ch, /ch    |
-| Certificates          | certificate, cert, -cert, /cert              |
 
 Examples:
 

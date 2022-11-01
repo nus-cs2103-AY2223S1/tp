@@ -241,16 +241,8 @@ public class SortCommandParserUtil {
             return PET_WEIGHT_COMPARATOR;
         }
 
-        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_VACCINATION_STATUS_PARAMETER, attribute)) {
-            return PET_VACCINATION_STATUS_COMPARATOR;
-        }
-
         if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_PRICE_PARAMETER, attribute)) {
             return PET_PRICE_COMPARATOR;
-        }
-
-        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_CERTIFICATES_PARAMETER, attribute)) {
-            return PET_CERTIFICATE_COMPARATOR;
         }
 
         throw new ParseException(String.format(SortPetCommand.MESSAGE_WRONG_ATTRIBUTE, attribute,

@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
@@ -28,6 +29,7 @@ class JsonAdaptedBuyer {
     private final String phone;
     private final String email;
     private final String address;
+    private final String location;
     private final List<String> ids = new ArrayList<>();
 
     /**
@@ -37,12 +39,14 @@ class JsonAdaptedBuyer {
     public JsonAdaptedBuyer(@JsonProperty("personCategory") String personCategory, @JsonProperty("name") String name,
                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                             @JsonProperty("address") String address,
+                            @JsonProperty("location") String location,
                             @JsonProperty("ids") List<String> ids) {
         this.personCategory = personCategory;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.location = location;
         if (ids != null) {
             this.ids.addAll(ids);
         }
@@ -57,6 +61,7 @@ class JsonAdaptedBuyer {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        location = source.getLocation().location;
         ids.addAll(source.getOrderIds().stream()
                 .map(UniqueId::getIdToString)
                 .collect(Collectors.toList()));
@@ -117,6 +122,12 @@ class JsonAdaptedBuyer {
         }
         final Address modelAddress = new Address(address);
 
-        return new Buyer(modelName, modelPhone, modelEmail, modelAddress, modelIds);
+        if (location == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Location.class.getSimpleName()));
+        }
+        final Location modelLocation = new Location(location);
+
+        return new Buyer(modelName, modelPhone, modelEmail, modelAddress, modelLocation, modelIds);
     }
 }
