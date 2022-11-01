@@ -227,7 +227,7 @@ public class ExistingUser extends User {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, github);
+        return Objects.hash(name, phone, email, address, github, currModules, prevModules, planModules);
     }
 
     @Override

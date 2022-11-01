@@ -1,6 +1,8 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -55,8 +57,20 @@ public class PhoneTest {
         // different types -> returns false
         assertFalse(standardPhone.equals(new Name("Kevin Malone")));
 
-        // different names -> returns false
+        // different numbers -> returns false
         assertFalse(standardPhone.equals(new Phone("98887777")));
+    }
+
+    @Test
+    public void hashcode() {
+        final Phone standardPhone = new Phone("94445555");
+
+        // same values -> returns same hashcode
+        Phone sameName = new Phone("94445555");
+        assertEquals(standardPhone.hashCode(), sameName.hashCode());
+
+        // different numbers -> returns different hashcode
+        assertNotEquals(standardPhone.hashCode(), (new Phone("98887777")).hashCode());
     }
 
 }

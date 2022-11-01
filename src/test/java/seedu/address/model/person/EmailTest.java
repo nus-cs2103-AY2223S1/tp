@@ -1,6 +1,8 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -85,6 +87,18 @@ public class EmailTest {
 
         // different email addresses -> returns false
         assertFalse(standardEmail.equals(new Email("dwightschrute@u.nus.edu")));
+    }
+
+    @Test
+    public void hashcode() {
+        final Email standardEmail = new Email("jimhalpert@gmail.com");
+
+        // same values -> returns same hashcode
+        Email emailWithSameName = new Email("jimhalpert@gmail.com");
+        assertEquals(standardEmail.hashCode(), emailWithSameName.hashCode());
+
+        // different email addresses -> returns different hashcode
+        assertNotEquals(standardEmail.hashCode(), (new Email("dwightschrute@u.nus.edu")).hashCode());
     }
 
 }

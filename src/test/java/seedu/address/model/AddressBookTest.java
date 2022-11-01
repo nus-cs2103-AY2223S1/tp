@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -136,6 +137,19 @@ public class AddressBookTest {
         // both empty user -> returns true
         ab.deleteUser();
         assertTrue(ab.equals(abCopy));
+    }
+
+    @Test
+    public void hashcode() {
+        // same values -> returns same hashcode
+        AddressBook ab = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).withUser(ZEPHYR).build();
+        AddressBook abCopy = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).withUser(ZEPHYR).build();
+        assertEquals(ab.hashCode(), abCopy.hashCode());
+
+        // different personsList -> returns different hashcode
+        AddressBook differentAb = new AddressBookBuilder().withPerson(CARL).withPerson(DANIEL).withUser(ZEPHYR)
+                .build();
+        assertNotEquals(ab.hashCode(), differentAb.hashCode());
     }
 
     /**

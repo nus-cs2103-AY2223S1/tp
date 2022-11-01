@@ -21,6 +21,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -100,6 +101,25 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getters() {
+        ModelManager modelTest = new ModelManager();
+        JsonAddressBookStorage addressBookStorage =
+                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        LogicManager logicTest = new LogicManager(modelTest, storage);
+
+        // getAddressBook
+        assertEquals(logicTest.getAddressBook(), modelTest.getAddressBook());
+
+        // getAddressBookFilePath
+        assertEquals(logicTest.getAddressBookFilePath(), modelTest.getAddressBookFilePath());
+
+        // getGuiSettings
+        assertEquals(logicTest.getGuiSettings(), modelTest.getGuiSettings());
+    }
+
+    @Test
     public void getUser() {
         ModelManager modelTest = new ModelManager();
         JsonAddressBookStorage addressBookStorage =
@@ -125,6 +145,18 @@ public class LogicManagerTest {
     public void hasUser_existingUser_returnsTrue() {
         model.addUser(ZEPHYR);
         assertTrue(logic.hasUser());
+    }
+
+    @Test
+    public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.setGuiSettings(null));
+    }
+
+    @Test
+    public void setGuiSettings_validGuiSettings_setsGuiSettings() {
+        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
+        logic.setGuiSettings(guiSettings);
+        assertEquals(guiSettings, logic.getGuiSettings());
     }
 
     /**
