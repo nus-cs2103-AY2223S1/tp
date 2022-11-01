@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -97,9 +96,7 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
 
         return new Professor(modelName, modelModuleCode, modelPhone, modelEmail, modelGender, modelTags,
                     modelLocation, modelUsername, modelRating, modelSpecialisation, modelOfficeHour);
-        }
-
-
+    }
     private ModuleCode getModelModuleCode() throws IllegalValueException {
         if (getModuleCode() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -129,41 +126,41 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
         return modelOfficeHour;
     }
 
-        private Rating getModelRating() throws IllegalValueException {
-            if (getRating() == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                        Rating.class.getSimpleName()));
-            }
-
-            Rating modelRating;
-
-            if (getRating().equals(Rating.EMPTY_RATING)) {
-                modelRating = new Rating(getRating(), false);
-            } else {
-                if (!Rating.isValidRating(getRating())) {
-                    throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
-                }
-                modelRating = new Rating(getRating(), true);
-            }
-            return modelRating;
+    private Rating getModelRating() throws IllegalValueException {
+        if (getRating() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Rating.class.getSimpleName()));
         }
 
-        private Specialisation getModelSpecialisation() throws IllegalValueException {
-            final Specialisation modelSpecialisation;
+        Rating modelRating;
 
-            if (getSpecialisation() == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                        Specialisation.class.getSimpleName()));
+        if (getRating().equals(Rating.EMPTY_RATING)) {
+            modelRating = new Rating(getRating(), false);
+        } else {
+            if (!Rating.isValidRating(getRating())) {
+                throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
             }
-
-            if (getSpecialisation().equals(Specialisation.EMPTY_SPECIALISATION)) {
-                modelSpecialisation = new Specialisation(getSpecialisation(), false);
-            } else {
-                if (!Specialisation.isValidSpecialisation(getSpecialisation())) {
-                    throw new IllegalValueException(Specialisation.MESSAGE_CONSTRAINTS);
-                }
-                modelSpecialisation = new Specialisation(getSpecialisation(), true);
-            }
-            return modelSpecialisation;
+            modelRating = new Rating(getRating(), true);
         }
+        return modelRating;
+    }
+
+    private Specialisation getModelSpecialisation() throws IllegalValueException {
+        final Specialisation modelSpecialisation;
+
+        if (getSpecialisation() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Specialisation.class.getSimpleName()));
+        }
+
+        if (getSpecialisation().equals(Specialisation.EMPTY_SPECIALISATION)) {
+            modelSpecialisation = new Specialisation(getSpecialisation(), false);
+        } else {
+            if (!Specialisation.isValidSpecialisation(getSpecialisation())) {
+                throw new IllegalValueException(Specialisation.MESSAGE_CONSTRAINTS);
+            }
+            modelSpecialisation = new Specialisation(getSpecialisation(), true);
+        }
+        return modelSpecialisation;
+    }
 }
