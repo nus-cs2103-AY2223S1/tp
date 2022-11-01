@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 ---
 layout: page
 title: User Guide
 ---
 
+=======
+Summary](#command-summary)
+=======
+>>>>>>> 8c7e3b52f000b2efc61627eb29fb98afac11e554
 # Welcome to SoCompiler's User Guide
 
 > The sole app that university students will need to streamline their everyday routines.
@@ -66,6 +71,7 @@ You can also add people to the app, such as your professors, teaching assistants
 2. Download the latest `SoCompiler.jar` from [here](https://github.com/AY2223S1-CS2103T-W12-1/tp/releases).
 
 3. Move the downloaded file to the folder you want to use as the _home folder_ for your SoCompiler. For example, you can just move it to your Desktop for ease of access.
+
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app
    contains some sample data.<br>
@@ -174,7 +180,6 @@ Alternatively, you can click the File button on the top left of the app, followe
 </div>
 
 ### Saving the data
-
 SoCompiler data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -216,7 +221,8 @@ Format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM] [m/MODULE_CODE] 
 
 Examples:
 
-* `editp 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567`
+* `editp 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to
+  be `91234567`
   and `johndoe@example.com` respectively.
 * `editp 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
@@ -312,9 +318,11 @@ Format: `editm INDEX [m/MODULE_CODE] [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [l
 
 Examples:
 
-* `editm 1 l/Every Friday a/Functional Expressionism` Edits the lecture details and assignment details of the 1st module to be `Every Friday`
+* `editm 1 l/Every Friday a/Functional Expressionism` Edits the lecture details and assignment details of the 1st module
+  to be `Every Friday`
   and `Functional Expressionism` respectively.
-* `editm 2 m/MA1521 a/` Edits the module code of the 2nd module to be `MA1521` and clears all existing assignment details.
+* `editm 2 m/MA1521 a/` Edits the module code of the 2nd module to be `MA1521` and clears all existing assignment
+  details.
 
 ### Deleting a module: `deletem`
 
@@ -503,9 +511,9 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**:1. Install the app in the other computer.
-
-2. Go to the location where your current app is in, there should be a file called `data` in the same location.
+**A**:
+1. Install the app in the other computer.
+2. Go to the location where your current app is in, there should be a file called `data` in the same location. 
 3. Copy the entire file and either email yourself the file or use a thumb-drive to transfer it to the other computer.
 4. Move the copied file to the same location you placed the jar file in the new computer.
 

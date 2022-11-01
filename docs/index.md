@@ -10,11 +10,23 @@ title: SoCompiler
 
 ![Ui](images/Ui.png)
 
+<<<<<<< HEAD
 **SoCompiler is a desktop application for managing your contact and module details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using SOCompiler, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing SOCompiler, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
+=======
+**SoCompiler is a desktop application for managing your contact and module details.** While it has a GUI, most of the
+user interactions happen using a CLI (Command Line Interface).
+
+* If you are interested in using SoCompiler, head over to the [_Quick Start_ section of the **User
+  Guide**](UserGuide.html#quick-start).
+* If you are interested about developing SoCompiler, the [**Developer Guide**](DeveloperGuide.html) is a good place to
+  start.
+
+>>>>>>> 8c7e3b52f000b2efc61627eb29fb98afac11e554
 **Acknowledgements**
 
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson)
+  , [JUnit5](https://github.com/junit-team/junit5)
