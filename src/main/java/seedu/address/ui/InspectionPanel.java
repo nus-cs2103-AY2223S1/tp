@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -81,7 +82,7 @@ public class InspectionPanel extends UiPart<Region> {
         super(FXML);
         setImageViews();
         personListView.getSelectionModel().selectedItemProperty()
-                .addListener((obs, o, n) -> setInspectParameters(n));
+                .addListener((obs, o, n) -> Optional.ofNullable(n).ifPresent(this::setInspectParameters));
 
         basicInformation.maxWidthProperty().bind(getRoot().widthProperty().multiply(0.33));
         basicInformation.prefWidthProperty().bind(basicInformation.maxWidthProperty());

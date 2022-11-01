@@ -349,7 +349,7 @@ The following sequence diagram shows how the addNote operation works:
 
 * **Alternative 1 (current choice):** Note is specified by index.
     * Pros: Easy to implement.
-    * Cons: Would need to use listNote command or gui to allow easy identification of index of note.
+    * Cons: Would need to use listNotes command or gui to allow easy identification of index of note.
 
 * **Alternative 2:** Note is specified by Title.
     * Pros: Would be more precise (Title of notes are unique).
