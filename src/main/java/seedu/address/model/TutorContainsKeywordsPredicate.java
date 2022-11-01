@@ -36,8 +36,9 @@ public class TutorContainsKeywordsPredicate<T> implements Predicate<T> {
                     .contains(keywords.get(PREFIX_QUALIFICATION).toLowerCase())
                     && tutor.getInstitution().institution.toLowerCase()
                     .contains(keywords.get(PREFIX_INSTITUTION).toLowerCase())
-                    && tutor.getTags().stream().anyMatch(tag -> tag.tagName.toLowerCase()
-                    .contains(keywords.get(PREFIX_TAG).toLowerCase()));
+                    && (tutor.getTags().stream().anyMatch(tag -> tag.tagName.toLowerCase()
+                    .contains(keywords.get(PREFIX_TAG).toLowerCase()))
+                    || (tutor.getTags().isEmpty() && keywords.get(PREFIX_TAG).equals("")));
         }
         throw new ClassCastException("TutorContainsKeywords predicate can only be applied to Tutor.");
     }
