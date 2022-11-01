@@ -166,8 +166,8 @@ Format: `delproj INDEX`
 
 ```yaml
 Note: 
-* The index must be a positive integer 1, 2, 3, …​
-* Staff list will not display any Staff by default. You will have to use the [view command](#view-the-staff-list-within-a-project--view) to see the Staff of that Project.
+  * The index must be a positive integer 1, 2, 3, …​
+  * Staff list will not display any Staff by default. You will have to use the [view command](#view-the-staff-list-within-a-project--view) to see the Staff of that Project.
 ```
 
 Examples:
@@ -196,9 +196,9 @@ Format: `findproj KEYWORD [MORE_KEYWORDS]`
 
 ```yaml
 Note: 
-* `KEYWORDS` must not be an empty string.
-* The findproj command is case-insensitive such that 'merger' will match 'MERGER'
-* The findproj command will match Project name if there is a partial match, 'me' or 'mE' will both match 'MERGER'
+  * `KEYWORDS` must not be an empty string.
+  * The findproj command is case-insensitive such that 'merger' will match 'MERGER'
+  * The findproj command will match Project name if there is a partial match, 'me' or 'mE' will both match 'MERGER'
 ```
 
 Examples:
@@ -213,8 +213,8 @@ Examples:
 Sorts the Project list according to deadline.
 
 ```yaml
-Note: 
-* This command is irreversible, you will not be able to get back the original ordering after this command.
+Warning !!!: 
+  * This command is irreversible, you will not be able to get back the original ordering after this command.
 ```
 
 Format: `sortproj`
@@ -232,13 +232,13 @@ Format: `editproj INDEX [pn/PROJECT_NAME] [pb/PROJECT_BUDGET] [pd/PROJECT_DEADLI
 
 ```yaml
 Note:
-* The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed 
-  i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
+  * The index **must be a positive integer** 1, 2, 3, …​
+  * At least one of the optional fields must be provided.
+  * Existing values will be updated to the input values.
+  * When editing tags, the existing tags of the person will be removed 
+    i.e adding of tags is not cumulative.
+  * You can remove all the person’s tags by typing `t/` without
+    specifying any tags after it.
 ```
 
 Examples:
@@ -263,12 +263,12 @@ Format: `addstaff INDEX sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STA
 
 ```yaml
 Note:
-* All fields for Staff members are required, except `TAGS`
-* Index refers to the numbering of the desired Project in the displayed Project list. The Staff will be added to the specified Project.
-* If no Project is shown on the Project list, addstaff will give an error. Use list to display all 
-  Projects. If no Projects are present, add a Project first using the addproj command.
-* If Staff is added successfully, the displayed Staff list will be updated to show the Staff list 
-  of the Project where the Staff is added to.
+ * All fields for Staff members are required, except `TAGS`
+ * Index refers to the numbering of the desired Project in the displayed Project list. The Staff will be added to the specified Project.
+ * If no Project is shown on the Project list, addstaff will give an error. Use list to display all 
+   Projects. If no Projects are present, add a Project first using the addproj command.
+ * If Staff is added successfully, the displayed Staff list will be updated to show the Staff list 
+   of the Project where the Staff is added to.
 ```
 
 Examples:
@@ -286,15 +286,15 @@ Format: `delstaff INDEX pn/PROJECT_NAME`
 
 ```yaml
 Note:
-* INDEX refers to Staff in displayed Staff list. It is the Staff to be deleted.
-* PROJECT_NAME refers to the Project in displayed Project list where the Staff is deleted from.
-* Recommended to use the view command on a Project before deleting a Staff from it.
-* A possible interaction is if you view the Staff list of Project A then try 
-  to delete Staff at index 1 (call this Staff Tom) from Project B, it will delete 
-  Staff Tom from Project B if Staff Tom is also part of Project B.
-* If Staff is deleted successfully, it will update the displayed Staff list to show the Staff list 
-  of the Project where the Staff was deleted from.
-* The index must be a positive integer 1, 2, 3, …​
+  * INDEX refers to Staff in displayed Staff list. It is the Staff to be deleted.
+  * PROJECT_NAME refers to the Project in displayed Project list where the Staff is deleted from.
+  * Recommended to use the view command on a Project before deleting a Staff from it.
+  * A possible interaction is if you view the Staff list of Project A then try 
+    to delete Staff at index 1 (call this Staff Tom) from Project B, it will delete 
+    Staff Tom from Project B if Staff Tom is also part of Project B.
+  * If Staff is deleted successfully, it will update the displayed Staff list to show the Staff list 
+    of the Project where the Staff was deleted from.
+  * The index must be a positive integer 1, 2, 3, …​
 ```
 
 Examples:
@@ -315,8 +315,8 @@ Format: `view INDEX`
 
 ```yaml
 Note:
-* The index refers to the index number shown in the displayed Project list.
-* The index must be a positive integer 1, 2, 3, …​
+  * The index refers to the index number shown in the displayed Project list.
+  * The index must be a positive integer 1, 2, 3, …​
 ```
 Examples:
 * `list` followed by `view 2` displays the Staff list of the 2nd Project in Project list on the bottom right.
@@ -334,16 +334,14 @@ t/TAGS]`
 
 ```yaml
 Note:
-* INDEX refers to Staff in displayed Staff list. It is the Staff to be edited.
-* PROJECT_NAME refers to the Project in displayed Project list where the Staff is to be edited.
-* Recommended to use the view command on a Project before editing a Staff in its Staff list.
-* A possible interaction is if you view the Staff list of Project A then try
-  to edit Staff at index 1 (call this Staff Tom) from Project B, it will try to edit
-  Staff Tom from Project B if Staff Tom is also part of Project B.
-* If Staff is edited successfully, it will update the displayed Staff list to show the Staff list
-  of the Project where the Staff was deleted from.
-* All fields in the `[]` are optional. 
-* Index must be a positive integer 1, 2, 3, ...
+  * All fields in the `[]` are optional, but at least one of the optional fields must be provided.
+  * Recommended to use the view command on a Project before editing a Staff in its Staff list.
+  * INDEX refers to the numbering of the Staff in the displayed Staff list. It is the Staff to be edited.
+  * PROJECT_NAME refers to the numbering of the Project in the displayed Project list where the Staff is to be edited.
+  * A possible interaction is if you view the Staff list of Project A then try
+    to edit Staff at index 1 (call this Staff Tom) from Project B, it will try to edit
+    Staff Tom from Project B if Staff Tom is also part of Project B.
+  * Index must be a positive integer 1, 2, 3, ...
 ```
 
 Examples:
@@ -360,10 +358,10 @@ Format: `findstaff KEYWORDS`
 
 ```yaml
 Note:
-* `KEYWORDS` must not be an empty string. 
-* For `findstaff` to work as expected, the current active Staff list must be non-empty.
-* The findstaff command is case-insensitive such that 'hans' will match 'HANS'
-* The findstaff command will match Staff name if there is a partial match, 'ha' or 'hA' will both match 'HANS'
+  * `KEYWORDS` must not be an empty string. 
+  * For `findstaff` to work as expected, the current active Staff list must be non-empty.
+  * The findstaff command is case-insensitive such that 'hans' will match 'HANS'
+  * The findstaff command will match Staff name if there is a partial match, 'ha' or 'hA' will both match 'HANS'
 ```
 
 Examples:
@@ -386,8 +384,8 @@ Format: `addtask tdesc/TASK_DESCRIPTION td/TASK_DEADLINE`
 
 ```yaml
 Note:
-* Both Task fields `TASK_DESCRIPTION` and `TASK_DEADLINE` must be present.
-* `TASK_DEADLINE` follows the YYYY-MM-DD format. 
+  * Both Task fields `TASK_DESCRIPTION` and `TASK_DEADLINE` must be present.
+  * `TASK_DEADLINE` follows the YYYY-MM-DD format. 
 ```
 
 Examples:
@@ -405,7 +403,7 @@ Format: `delTask INDEX`
 
 ```yaml
 Note:
-* `INDEX` must be a positive integer from 1, 2, 3, ... 
+  * `INDEX` must be a positive integer from 1, 2, 3, ... 
 ```
 
 Examples:
@@ -424,9 +422,9 @@ Format: `findtask KEYWORDS`
 
 ```yaml
 Note:
-* The search is case-insensitive. e.g `call` will match `Call`
-* The findtask command will match Task description if there is a partial match, 
-  'Meet' or 'meet' will both match 'Meeting'.
+  * The search is case-insensitive. e.g `call` will match `Call`
+  * The findtask command will match Task description if there is a partial match, 
+    'Meet' or 'meet' will both match 'Meeting'.
 ```
 
 Examples:
@@ -441,7 +439,7 @@ Examples:
 Sort Tasks in Task list by deadline. Earlier deadlines will be placed first.
 
 ```yaml
-Warning !: 
+Warning !!!: 
 * This command is irreversible, you will not be able to get back the original ordering after this command.
 ```
 
@@ -469,7 +467,7 @@ Format: `marktask INDEX`
 
 ```yaml
 Note:
-* The index must be a positive integer 1, 2, 3, …
+  * The index must be a positive integer 1, 2, 3, …
 ```
 
 Examples:
@@ -488,7 +486,7 @@ Format: `unmarktask INDEX`
 
 ```yaml
 Note:
-* The index **must be a positive integer** 1, 2, 3, …
+  * The index **must be a positive integer** 1, 2, 3, …
 ```
 Examples:
 * `unmarktask 2` Marks the second Task as not done.
@@ -512,7 +510,7 @@ Clears **all data** from HR Pro Max++.
 Format: `clear`
 
 ```yaml
-Warning !: 
+Warning !!!: 
 * This command is irreversible, you will not be able to recover data after clearing it.
 ```
 
