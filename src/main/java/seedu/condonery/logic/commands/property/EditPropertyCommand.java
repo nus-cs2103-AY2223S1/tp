@@ -113,13 +113,10 @@ public class EditPropertyCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
 
-        if (propertyToEdit.getImagePath() != null) {
-            File existingImage = new File(propertyToEdit.getImagePath().toString());
-            if (existingImage.exists()) {
-                existingImage.renameTo(new File(editedProperty.getImagePath().toString()));
-            }
+        File existingImage = new File(propertyToEdit.getImagePath().toString());
+        if (existingImage.exists()) {
+            existingImage.renameTo(new File(editedProperty.getImagePath().toString()));
         }
-
 
         model.setProperty(propertyToEdit, newEditedProperty);
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);

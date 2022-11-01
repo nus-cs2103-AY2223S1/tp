@@ -177,7 +177,6 @@ public class MainWindow extends UiPart<Stage> {
         );
 
         File file = fileChooser.showOpenDialog(primaryStage);
-        System.out.println(logic.getUserImageDirectoryPath());
         if (file != null) {
             try {
                 Files.createDirectories(logic.getUserImageDirectoryPath());
@@ -187,7 +186,6 @@ public class MainWindow extends UiPart<Stage> {
                     StandardCopyOption.REPLACE_EXISTING
                 );
             } catch (IOException ex) {
-                ex.printStackTrace();
                 logger.warning("Could not handle file upload: " + name);
             }
         }
