@@ -5,19 +5,21 @@ import static seedu.address.storage.JsonAdaptedSupplier.MISSING_FIELD_MESSAGE_FO
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalSuppliers.BENSON;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
-
 
 public class JsonAdaptedSupplierTest {
     private static final String INVALID_PERSON_CATEGORY = "Empty";
@@ -25,6 +27,7 @@ public class JsonAdaptedSupplierTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final List<String> INVALID_IDS = Arrays.asList(null, null);
 
     private static final String VALID_PERSON_CATEGORY = BENSON.getPersonCategory().toString();
     private static final String VALID_NAME = BENSON.getName().toString();
@@ -121,6 +124,22 @@ public class JsonAdaptedSupplierTest {
         JsonAdaptedSupplier supplier = new JsonAdaptedSupplier(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE,
                 VALID_EMAIL, null, VALID_LOCATION, VALID_PETS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, supplier::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullLocation_throwsIllegalValueException() {
+        JsonAdaptedSupplier supplier = new JsonAdaptedSupplier(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, VALID_ADDRESS, null, VALID_PETS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, supplier::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullUniqueIDs_throwsIllegalValueException() {
+        JsonAdaptedSupplier supplier = new JsonAdaptedSupplier(VALID_PERSON_CATEGORY, VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, VALID_ADDRESS, VALID_LOCATION, INVALID_IDS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, UniqueId.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, supplier::toModelType);
     }
 
