@@ -30,11 +30,10 @@ import seedu.address.model.task.ToDo;
  */
 public class SampleDataUtil {
 
-    public static final ClassGroup EMPTY_CLASS_GROUP = new ClassGroup("");
     public static final AttendanceList EMPTY_ATTENDANCE = new AttendanceList();
-    public static AttendanceList filledAttendance = new AttendanceList("CS2030S", "10");
 
     public static Student[] getSampleStudents() {
+        AttendanceList filledAttendance = new AttendanceList("CS2030S", "10");
         filledAttendance.mark("1", new Attendance("1"));
         filledAttendance.mark("2", new Attendance("0"));
         filledAttendance.mark("3", new Attendance("1"));
