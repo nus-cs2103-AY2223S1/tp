@@ -281,8 +281,12 @@ public class Appointment {
 
     @Override
     public String toString() {
-        return getStatus() + " " + getFormattedDateTime() + " for " + reason
+        String withoutTags = getStatus() + " " + getFormattedDateTime() + " for " + reason
                 + " " + getRecurringStatus();
+        if (getTags().isEmpty()) {
+            return withoutTags;
+        }
+        return withoutTags + " with tags: " + getTags();
     }
 
     private String getStateIcon() {

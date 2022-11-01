@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,7 +49,8 @@ public class EditAppointmentCommandTest {
 
     @Test
     public void execute_oneFieldSpecifiedUnfilteredList_success() {
-        Appointment appointment = new Appointment("Sore Throat", "2010-12-31 23:45", "", true);
+        Appointment appointment = new Appointment("Sore Throat", "2010-12-31 23:45", "",
+                Set.of(Tag.THROAT), true);
         Person person = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
         appointment.setPatient(person);
 

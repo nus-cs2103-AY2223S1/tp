@@ -223,15 +223,15 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress())
-                .append("; Appointments: ")
-                .append(getAppointments());
+                .append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        builder.append("; Appointments: ")
+                .append(getAppointments());
         return builder.toString();
     }
 }
