@@ -12,7 +12,7 @@ public class PolicyListCommand extends Command {
 
     public static final String COMMAND_WORD = "allPolicies";
 
-    public static final String MESSAGE_SUCCESS = "Listed all policies in Address Book.";
+    public static final String MESSAGE_SUCCESS = "Listed all policies in LTNS.";
 
 
     @Override

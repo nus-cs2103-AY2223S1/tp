@@ -8,7 +8,7 @@ title: Long Time No See
 
 ![Ui](images/Ui.png)
 
-**Long Time No See (LTNS)** is a desktop task tracking app made for student financial advisors to manage their contact base and stay connected with their clients. Made simpler with an intuitive and minimalistic graphical user interface (GUI) and customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!<br>
+**Long Time No See (LTNS)** is a desktop task tracking app made for financial advisors to manage their contact base and stay connected with their clients. Made simpler with an intuitive and minimalistic graphical user interface (GUI) and customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!<br>
 
 * If you are interested in using LongTimeNoSee, head over to the [**User Guide**](UserGuide.html).
 * If you are interested about developing LongTimeNoSee, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.

@@ -10,9 +10,11 @@ import longtimenosee.model.policy.FinancialAdvisorIncome;
  */
 public class ViewIncomeCommand extends Command {
 
-    public static final String COMMAND_WORD = "viewIncome"; //should I change to refresh?
+    public static final String COMMAND_WORD = "viewIncome";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " <year>" + ": chooses the year for viewing income";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " <year>"
+            + ": chooses the year for viewing income"
+            + "\nNote: Year should in format YYYY e.g. 2000";
     private final int targetYear;
 
     public ViewIncomeCommand(int targetYear) {
