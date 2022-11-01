@@ -73,7 +73,7 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setBuyerBookFilePath(Paths.get("personbook.json"));
+        userPrefs.setBuyerBookFilePath(Paths.get("buyerbook.json"));
         userPrefs.setPropertyBookFilePath(Paths.get("propertybook.json"));
         return userPrefs;
     }

@@ -24,31 +24,31 @@ import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.BuyerBuilder;
 
 public class AddBuyerCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullBuyer_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddBuyerCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Buyer validBuyer = new PersonBuilder().build();
+    public void execute_buyerAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingBuyerAdded modelStub = new ModelStubAcceptingBuyerAdded();
+        Buyer validBuyer = new BuyerBuilder().build();
 
         CommandResult commandResult = new AddBuyerCommand(validBuyer).execute(modelStub);
 
         assertEquals(String.format(AddBuyerCommand.MESSAGE_SUCCESS, validBuyer), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validBuyer), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validBuyer), modelStub.buyersAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Buyer validBuyer = new PersonBuilder().build();
+    public void execute_duplicateBuyer_throwsCommandException() {
+        Buyer validBuyer = new BuyerBuilder().build();
         AddBuyerCommand addBuyerCommand = new AddBuyerCommand(validBuyer);
-        ModelStub modelStub = new ModelStubWithPerson(validBuyer);
+        ModelStub modelStub = new ModelStubWithBuyer(validBuyer);
 
         assertThrows(CommandException.class,
                 AddBuyerCommand.MESSAGE_DUPLICATE_BUYER, () -> addBuyerCommand.execute(modelStub));
@@ -56,8 +56,8 @@ public class AddBuyerCommandTest {
 
     @Test
     public void equals() {
-        Buyer alice = new PersonBuilder().withName("Alice").build();
-        Buyer bob = new PersonBuilder().withName("Bob").build();
+        Buyer alice = new BuyerBuilder().withName("Alice").build();
+        Buyer bob = new BuyerBuilder().withName("Bob").build();
         AddBuyerCommand addAliceCommand = new AddBuyerCommand(alice);
         AddBuyerCommand addBobCommand = new AddBuyerCommand(bob);
 
@@ -109,7 +109,7 @@ public class AddBuyerCommandTest {
         }
 
         @Override
-        public void setBuyerBookFilePath(Path personBookFilePath) {
+        public void setBuyerBookFilePath(Path buyerBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -119,7 +119,7 @@ public class AddBuyerCommandTest {
         }
 
         @Override
-        public void setPropertyBookFilePath(Path personBookFilePath) {
+        public void setPropertyBookFilePath(Path buyerBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -233,10 +233,10 @@ public class AddBuyerCommandTest {
     /**
      * A Model stub that contains a single buyer.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithBuyer extends ModelStub {
         private final Buyer buyer;
 
-        ModelStubWithPerson(Buyer buyer) {
+        ModelStubWithBuyer(Buyer buyer) {
             requireNonNull(buyer);
             this.buyer = buyer;
         }
@@ -251,19 +251,19 @@ public class AddBuyerCommandTest {
     /**
      * A Model stub that always accept the buyer being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Buyer> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingBuyerAdded extends ModelStub {
+        final ArrayList<Buyer> buyersAdded = new ArrayList<>();
 
         @Override
         public boolean hasBuyer(Buyer buyer) {
             requireNonNull(buyer);
-            return personsAdded.stream().anyMatch(buyer::isSameBuyer);
+            return buyersAdded.stream().anyMatch(buyer::isSameBuyer);
         }
 
         @Override
         public void addBuyer(Buyer buyer) {
             requireNonNull(buyer);
-            personsAdded.add(buyer);
+            buyersAdded.add(buyer);
         }
 
         @Override

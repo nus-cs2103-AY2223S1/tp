@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
+import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.Test;
@@ -20,22 +20,22 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditBuyerDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditBuyerCommandTest {
 
-    private Model model = new ModelManager(getTypicalPersonsBook(), getTypicalPropertyBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalBuyersBook(), getTypicalPropertyBook(), new UserPrefs());
 
     //    @Test
     //    public void execute_allFieldsSpecifiedUnfilteredList_success() {
     //        Buyer currentBuyer = model.getFilteredPersonList().get(0);
-    //        Buyer editedBuyer = new PersonBuilder().withPriceRange("20 - 50")
+    //        Buyer editedBuyer = new BuyerBuilder().withPriceRange("20 - 50")
     //        .withDesiredCharacteristics("Clean").build();
     //
-    //        EditBuyerDescriptor descriptor = new EditPersonDescriptorBuilder(editedBuyer).build();
+    //        EditBuyerDescriptor descriptor = new EditBuyerDescriptorBuilder(editedBuyer).build();
     //        EditBuyerCommand editBuyerCommand = new EditBuyerCommand(INDEX_FIRST_ITEM, descriptor);
     //
     //        String expectedMessage = String.format(EditBuyerCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedBuyer);
@@ -53,11 +53,11 @@ public class EditBuyerCommandTest {
     //        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
     //        Buyer lastBuyer = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
     //
-    //        PersonBuilder personInList = new PersonBuilder(lastBuyer);
+    //        BuyerBuilder personInList = new BuyerBuilder(lastBuyer);
     //        Buyer editedBuyer = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
     //                .withPriority(VALID_PRIORITY_LOW).build();
     //
-    //        EditBuyerCommand.EditBuyerDescriptor descriptor = new EditPersonDescriptorBuilder()
+    //        EditBuyerCommand.EditBuyerDescriptor descriptor = new EditBuyerDescriptorBuilder()
     //        .withName(VALID_NAME_BOB)
     //                .withPhone(VALID_PHONE_BOB).withPriority(VALID_PRIORITY_LOW).build();
     //        EditBuyerCommand editBuyerCommand = new EditBuyerCommand(indexLastPerson, descriptor);
@@ -90,9 +90,9 @@ public class EditBuyerCommandTest {
     //        showPersonAtIndex(model, INDEX_FIRST_ITEM);
     //
     //        Buyer buyerInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
-    //        Buyer editedBuyer = new PersonBuilder(buyerInFilteredList).withName(VALID_NAME_BOB).build();
+    //        Buyer editedBuyer = new BuyerBuilder(buyerInFilteredList).withName(VALID_NAME_BOB).build();
     //        EditBuyerCommand editBuyerCommand = new EditBuyerCommand(INDEX_FIRST_ITEM,
-    //                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+    //                new EditBuyerDescriptorBuilder().withName(VALID_NAME_BOB).build());
     //
     //        String expectedMessage = String.format(EditBuyerCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedBuyer);
     //
@@ -107,7 +107,7 @@ public class EditBuyerCommandTest {
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
         Buyer firstBuyer = model.getFilteredBuyerList().get(INDEX_FIRST_ITEM.getZeroBased());
-        EditBuyerCommand.EditBuyerDescriptor descriptor = new EditPersonDescriptorBuilder(firstBuyer).build();
+        EditBuyerCommand.EditBuyerDescriptor descriptor = new EditBuyerDescriptorBuilder(firstBuyer).build();
         EditBuyerCommand editBuyerCommand = new EditBuyerCommand(INDEX_SECOND_ITEM, descriptor);
 
         assertCommandFailure(editBuyerCommand, model, EditBuyerCommand.MESSAGE_DUPLICATE_BUYER);
@@ -120,7 +120,7 @@ public class EditBuyerCommandTest {
     //        // edit buyer in filtered list into a duplicate in address book
     //        Buyer buyerInList = model.getPersonModel().getPersonList().get(INDEX_SECOND_ITEM.getZeroBased());
     //        EditBuyerCommand editBuyerCommand = new EditBuyerCommand(INDEX_FIRST_ITEM,
-    //                new EditPersonDescriptorBuilder(buyerInList).build());
+    //                new EditBuyerDescriptorBuilder(buyerInList).build());
     //
     //        assertCommandFailure(editBuyerCommand, model, EditBuyerCommand.MESSAGE_DUPLICATE_PERSON);
     //    }
@@ -128,7 +128,7 @@ public class EditBuyerCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBuyerList().size() + 1);
-        EditBuyerCommand.EditBuyerDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditBuyerCommand.EditBuyerDescriptor descriptor = new EditBuyerDescriptorBuilder()
                 .withName(VALID_NAME_BOB)
                 .build();
         EditBuyerCommand editBuyerCommand = new EditBuyerCommand(outOfBoundIndex, descriptor);
@@ -148,7 +148,7 @@ public class EditBuyerCommandTest {
     //        assertTrue(outOfBoundIndex.getZeroBased() < model.getPersonModel().getPersonList().size());
     //
     //        EditBuyerCommand editBuyerCommand = new EditBuyerCommand(outOfBoundIndex,
-    //                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+    //                new EditBuyerDescriptorBuilder().withName(VALID_NAME_BOB).build());
     //
     //        assertCommandFailure(editBuyerCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     //    }

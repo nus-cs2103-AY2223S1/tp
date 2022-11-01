@@ -13,7 +13,7 @@ public class UserPrefsTest {
     }
 
     @Test
-    public void setPersonBookFilePath_nullPath_throwsNullPointerException() {
+    public void setBuyerBookFilePath_nullPath_throwsNullPointerException() {
         UserPrefs userPrefs = new UserPrefs();
         assertThrows(NullPointerException.class, () -> userPrefs.setBuyerBookFilePath(null));
     }

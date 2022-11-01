@@ -1,11 +1,11 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.GEORGE;
+import static seedu.address.testutil.TypicalBuyers.BENSON;
+import static seedu.address.testutil.TypicalBuyers.DANIEL;
+import static seedu.address.testutil.TypicalBuyers.ELLE;
+import static seedu.address.testutil.TypicalBuyers.FIONA;
+import static seedu.address.testutil.TypicalBuyers.GEORGE;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,30 +27,30 @@ public class JsonAdaptedBuyerTest {
     private static final String VALID_TAGS = BENSON.getPriority().toString();
 
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedBuyer person = new JsonAdaptedBuyer(BENSON);
-        assertEquals(BENSON, person.toModelType());
+    public void toModelType_validBuyerDetails_returnsBuyer() throws Exception {
+        JsonAdaptedBuyer buyer = new JsonAdaptedBuyer(BENSON);
+        assertEquals(BENSON, buyer.toModelType());
     }
 
     @Test
-    public void toModelType_validPersonDetailsWithEmptyPriceRange_returnsPerson() throws Exception {
-        JsonAdaptedBuyer person = new JsonAdaptedBuyer(GEORGE);
-        assertEquals(GEORGE, person.toModelType());
+    public void toModelType_validBuyerDetailsWithEmptyPriceRange_returnsBuyer() throws Exception {
+        JsonAdaptedBuyer buyer = new JsonAdaptedBuyer(GEORGE);
+        assertEquals(GEORGE, buyer.toModelType());
     }
 
     @Test
-    public void toModelType_validPersonDetailsWithEmptyDesiredCharacteristics_returnsPerson() throws Exception {
-        JsonAdaptedBuyer person = new JsonAdaptedBuyer(FIONA);
-        assertEquals(FIONA, person.toModelType());
+    public void toModelType_validBuyerDetailsWithEmptyDesiredCharacteristics_returnsBuyer() throws Exception {
+        JsonAdaptedBuyer buyer = new JsonAdaptedBuyer(FIONA);
+        assertEquals(FIONA, buyer.toModelType());
     }
 
     @Test
-    public void toModelType_validPersonDetailsWithEmptyPriceRangeAndDesiredCharacteristics_returnsPerson()
+    public void toModelType_validBuyerDetailsWithEmptyPriceRangeAndDesiredCharacteristics_returnsBuyer()
             throws Exception {
-        JsonAdaptedBuyer person1 = new JsonAdaptedBuyer(DANIEL);
-        assertEquals(DANIEL, person1.toModelType());
-        JsonAdaptedBuyer person2 = new JsonAdaptedBuyer(ELLE);
-        assertEquals(ELLE, person2.toModelType());
+        JsonAdaptedBuyer buyer1 = new JsonAdaptedBuyer(DANIEL);
+        assertEquals(DANIEL, buyer1.toModelType());
+        JsonAdaptedBuyer buyer2 = new JsonAdaptedBuyer(ELLE);
+        assertEquals(ELLE, buyer2.toModelType());
     }
 
     //    @Test

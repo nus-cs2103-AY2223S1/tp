@@ -31,8 +31,8 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_HIGH;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalBuyers.AMY;
+import static seedu.address.testutil.TypicalBuyers.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -45,14 +45,14 @@ import seedu.address.model.buyer.Phone;
 import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.BuyerBuilder;
 
 public class AddBuyerCommandParserTest {
     private AddBuyerCommandParser parser = new AddBuyerCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Buyer expectedBuyer = new PersonBuilder(BOB).withPriority(VALID_PRIORITY_HIGH).build();
+        Buyer expectedBuyer = new BuyerBuilder(BOB).withPriority(VALID_PRIORITY_HIGH).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -99,7 +99,7 @@ public class AddBuyerCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        Buyer expectedBuyer = new PersonBuilder(AMY)
+        Buyer expectedBuyer = new BuyerBuilder(AMY)
                 .withNoDesiredCharacteristics()
                 .withNoPriceRange().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY

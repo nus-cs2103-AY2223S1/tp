@@ -14,7 +14,7 @@ import seedu.address.model.pricerange.PriceRange;
 /**
  * A utility class to help with building Buyer objects.
  */
-public class PersonBuilder {
+public class BuyerBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
@@ -32,9 +32,9 @@ public class PersonBuilder {
     private LocalDateTime entryTime;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code BuyerBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public BuyerBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -46,9 +46,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code buyerToCopy}.
+     * Initializes the BuyerBuilder with the data of {@code buyerToCopy}.
      */
-    public PersonBuilder(Buyer buyerToCopy) {
+    public BuyerBuilder(Buyer buyerToCopy) {
         name = buyerToCopy.getName();
         phone = buyerToCopy.getPhone();
         email = buyerToCopy.getEmail();
@@ -62,7 +62,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Buyer} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public BuyerBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -70,7 +70,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Buyer} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public BuyerBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
@@ -78,7 +78,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Buyer} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public BuyerBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
@@ -86,7 +86,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Email} of the {@code Buyer} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public BuyerBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
@@ -94,7 +94,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Priority} of the {@code Buyer} that we are building.
      */
-    public PersonBuilder withPriority(String priority) {
+    public BuyerBuilder withPriority(String priority) {
         this.priority = new Priority(priority);
         return this;
     }
@@ -102,7 +102,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Price Range} of the {@code Buyer} that we are building.
      */
-    public PersonBuilder withPriceRange(String priceRange) {
+    public BuyerBuilder withPriceRange(String priceRange) {
         this.priceRange = new PriceRange(priceRange);
         return this;
     }
@@ -110,7 +110,7 @@ public class PersonBuilder {
     /**
      * Removes the {@code Price Range} of the {@code Buyer} that we are building.
      */
-    public PersonBuilder withNoPriceRange() {
+    public BuyerBuilder withNoPriceRange() {
         this.priceRange = null;
         return this;
     }
@@ -118,7 +118,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code DesiredCharacteristics} of the {@code Buyer} that we are building.
      */
-    public PersonBuilder withDesiredCharacteristics(String desiredCharacteristics) {
+    public BuyerBuilder withDesiredCharacteristics(String desiredCharacteristics) {
         this.characteristics = new Characteristics(desiredCharacteristics);
         return this;
     }
@@ -126,7 +126,7 @@ public class PersonBuilder {
     /**
      * Removes the {@code DesiredCharacteristics} of the {@code Buyer} that we are building.
      */
-    public PersonBuilder withNoDesiredCharacteristics() {
+    public BuyerBuilder withNoDesiredCharacteristics() {
         this.characteristics = null;
         return this;
     }

@@ -4,7 +4,7 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandSuc
 import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_NAME_PROPERTY1;
 import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_PRICE_PROPERTY1;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
+import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ import seedu.address.testutil.PropertyBuilder;
 
 class EditPropertyCommandTest {
 
-    private Model model = new ModelManager(getTypicalPersonsBook(), getTypicalPropertyBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalBuyersBook(), getTypicalPropertyBook(), new UserPrefs());
 
     @Test
     void execute_allFieldsSpecifiedUnfilteredList_success() {

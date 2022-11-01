@@ -16,7 +16,7 @@ public class AddBuyerCommandIntegrationTest {
 
     //    @Test
     //    public void execute_newPerson_success() {
-    //        Buyer validBuyer = new PersonBuilder().build();
+    //        Buyer validBuyer = new BuyerBuilder().build();
     //
     //        Model expectedModel = new ModelManager(model.getPersonModel(), model.getPropertyModel(), new UserPrefs());
     //

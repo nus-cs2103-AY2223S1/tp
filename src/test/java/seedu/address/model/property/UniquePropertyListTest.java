@@ -114,7 +114,7 @@ public class UniquePropertyListTest {
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
+    public void remove_nullBuyer_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePropertyList.remove(null));
     }
 
@@ -137,7 +137,7 @@ public class UniquePropertyListTest {
     }
 
     @Test
-    public void setProperties_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
+    public void setProperties_uniqueBuyerList_replacesOwnListWithProvidedUniqueBuyerList() {
         uniquePropertyList.add(PEAKRESIDENCE);
         UniquePropertyList expectedUniquePropertyList = new UniquePropertyList();
         expectedUniquePropertyList.add(HOME);

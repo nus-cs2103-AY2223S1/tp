@@ -26,9 +26,9 @@ import seedu.address.logic.commands.ListPropertiesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.NameContainsKeywordsPredicate;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.EditBuyerDescriptorBuilder;
+import seedu.address.testutil.BuyerBuilder;
+import seedu.address.testutil.BuyerUtil;
 
 public class BuyerBookParserTest {
 
@@ -36,8 +36,8 @@ public class BuyerBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Buyer buyer = new PersonBuilder().build();
-        AddBuyerCommand command = (AddBuyerCommand) parser.parseCommand(PersonUtil.getAddCommand(buyer));
+        Buyer buyer = new BuyerBuilder().build();
+        AddBuyerCommand command = (AddBuyerCommand) parser.parseCommand(BuyerUtil.getAddCommand(buyer));
         assertEquals(new AddBuyerCommand(buyer), command);
     }
 
@@ -63,10 +63,10 @@ public class BuyerBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Buyer buyer = new PersonBuilder().build();
-        EditBuyerCommand.EditBuyerDescriptor descriptor = new EditPersonDescriptorBuilder(buyer).build();
+        Buyer buyer = new BuyerBuilder().build();
+        EditBuyerCommand.EditBuyerDescriptor descriptor = new EditBuyerDescriptorBuilder(buyer).build();
         EditBuyerCommand command = (EditBuyerCommand) parser.parseCommand(EditBuyerCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_ITEM.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_ITEM.getOneBased() + " " + BuyerUtil.getEditBuyerDescriptorDetails(descriptor));
         assertEquals(new EditBuyerCommand(INDEX_FIRST_ITEM, descriptor), command);
     }
 

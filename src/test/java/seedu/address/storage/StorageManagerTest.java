@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
+import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 
 import java.nio.file.Path;
 
@@ -24,10 +24,10 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonBuyerBookStorage personBookStorage = new JsonBuyerBookStorage(getTempFilePath("ab"));
+        JsonBuyerBookStorage buyerBookStorage = new JsonBuyerBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonPropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(getTempFilePath("pb"));
-        storageManager = new StorageManager(personBookStorage, propertyBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(buyerBookStorage, propertyBookStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -49,20 +49,20 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void personBookReadSave() throws Exception {
+    public void buyerBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonBuyerBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonBuyerBookStorageTest} class.
          */
-        BuyerBook original = getTypicalPersonsBook();
+        BuyerBook original = getTypicalBuyersBook();
         storageManager.saveBuyerBook(original);
         ReadOnlyBuyerBook retrieved = storageManager.readBuyerBook().get();
         assertEquals(original, new BuyerBook(retrieved));
     }
 
     @Test
-    public void getPersonBookFilePath() {
+    public void getBuyerBookFilePath() {
         assertNotNull(storageManager.getBuyerBookFilePath());
     }
 

@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
+import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +19,7 @@ public class ListBuyersCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalPersonsBook(), getTypicalPropertyBook(), new UserPrefs());
+        model = new ModelManager(getTypicalBuyersBook(), getTypicalPropertyBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getBuyerBook(), model.getPropertyBook(), new UserPrefs());
     }
 

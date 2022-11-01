@@ -14,22 +14,22 @@ import seedu.address.model.pricerange.PriceRange;
 /**
  * A utility class to help with building EditBuyerDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditBuyerDescriptorBuilder {
 
     private EditBuyerCommand.EditBuyerDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
+    public EditBuyerDescriptorBuilder() {
         descriptor = new EditBuyerDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditBuyerCommand.EditBuyerDescriptor descriptor) {
+    public EditBuyerDescriptorBuilder(EditBuyerCommand.EditBuyerDescriptor descriptor) {
         this.descriptor = new EditBuyerCommand.EditBuyerDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditBuyerDescriptor} with fields containing {@code buyer}'s details
      */
-    public EditPersonDescriptorBuilder(Buyer buyer) {
+    public EditBuyerDescriptorBuilder(Buyer buyer) {
         descriptor = new EditBuyerCommand.EditBuyerDescriptor();
         descriptor.setName(buyer.getName());
         descriptor.setPhone(buyer.getPhone());
@@ -43,7 +43,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditBuyerDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withName(String name) {
+    public EditBuyerDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
         return this;
     }
@@ -51,7 +51,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Phone} of the {@code EditBuyerDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
+    public EditBuyerDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
         return this;
     }
@@ -59,7 +59,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Email} of the {@code EditBuyerDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
+    public EditBuyerDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
         return this;
     }
@@ -67,7 +67,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Address} of the {@code EditBuyerDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
+    public EditBuyerDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
         return this;
     }
@@ -75,7 +75,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code PriceRange} of the {@code EditBuyerDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPriceRange(String priceRange) {
+    public EditBuyerDescriptorBuilder withPriceRange(String priceRange) {
         descriptor.setPriceRange(new PriceRange(priceRange));
         return this;
     }
@@ -83,7 +83,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code DesiredCharacteristics} of the {@code EditBuyerDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withDesiredCharacteristics(String desiredCharacteristics) {
+    public EditBuyerDescriptorBuilder withDesiredCharacteristics(String desiredCharacteristics) {
         descriptor.setDesiredCharacteristics(new Characteristics(desiredCharacteristics));
         return this;
     }
@@ -91,7 +91,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Priority} of the {@code EditPropertyDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPriority(String priority) {
+    public EditBuyerDescriptorBuilder withPriority(String priority) {
         descriptor.setPriority(new Priority(priority));
         return this;
     }

@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandFai
 import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
+import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ import seedu.address.model.buyer.Buyer;
  */
 public class DeleteBuyerCommandTest {
 
-    private Model model = new ModelManager(getTypicalPersonsBook(), getTypicalPropertyBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalBuyersBook(), getTypicalPropertyBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -100,9 +100,9 @@ public class DeleteBuyerCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered buyer list to show no one.
      */
-    private void showNoPerson(Model model) {
+    private void showNoBuyer(Model model) {
         model.updateFilteredBuyerList(p -> false);
 
         assertTrue(model.getFilteredBuyerList().isEmpty());

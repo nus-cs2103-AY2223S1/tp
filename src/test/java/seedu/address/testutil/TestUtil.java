@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the buyer in the {@code model}'s buyer list at {@code index}.
      */
-    public static Buyer getPerson(Model model, Index index) {
+    public static Buyer getBuyer(Model model, Index index) {
         return model.getFilteredBuyerList().get(index.getZeroBased());
     }
 }

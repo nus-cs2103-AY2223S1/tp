@@ -35,12 +35,12 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonBuyerBookStorage personBookStorage =
-                new JsonBuyerBookStorage(temporaryFolder.resolve("personBook.json"));
+        JsonBuyerBookStorage buyerBookStorage =
+                new JsonBuyerBookStorage(temporaryFolder.resolve("buyerBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonPropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(
                 temporaryFolder.resolve("propertyBook.json"));
-        StorageManager storage = new StorageManager(personBookStorage, propertyBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(buyerBookStorage, propertyBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -78,7 +78,7 @@ public class LogicManagerTest {
     //     String addCommand = AddBuyerCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
     //             + ADDRESS_DESC_AMY + PRICE_RANGE_DESC_AMY + DESIRED_CHARACTERISTICS_DESC_AMY
     //             + TAG_DESC_PRIORITY_HIGH;
-    //     Buyer expectedBuyer = new PersonBuilder(AMY).build();
+    //     Buyer expectedBuyer = new BuyerBuilder(AMY).build();
     //     ModelManager expectedModel = new ModelManager();
     //     expectedModel.addPerson(expectedBuyer);
     //     String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
@@ -86,7 +86,7 @@ public class LogicManagerTest {
     // }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredBuyerList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredBuyerList().remove(0));
     }
 

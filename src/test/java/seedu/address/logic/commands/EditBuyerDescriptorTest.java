@@ -15,7 +15,7 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_L
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditBuyerCommand.EditBuyerDescriptor;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditBuyerDescriptorBuilder;
 
 public class EditBuyerDescriptorTest {
 
@@ -39,32 +39,32 @@ public class EditBuyerDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditBuyerDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditBuyerDescriptor editedAmy = new EditBuyerDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        editedAmy = new EditBuyerDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
+        editedAmy = new EditBuyerDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+        editedAmy = new EditBuyerDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different price range -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPriceRange(VALID_PRICE_RANGE_BOB).build();
+        editedAmy = new EditBuyerDescriptorBuilder(DESC_AMY).withPriceRange(VALID_PRICE_RANGE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different desired characteristics -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY)
+        editedAmy = new EditBuyerDescriptorBuilder(DESC_AMY)
                 .withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPriority(VALID_PRIORITY_LOW).build();
+        editedAmy = new EditBuyerDescriptorBuilder(DESC_AMY).withPriority(VALID_PRIORITY_LOW).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }
