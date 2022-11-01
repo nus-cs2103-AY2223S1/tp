@@ -33,7 +33,7 @@ title: FinBook User Guide
    &emsp; 4.3.5. [Copying a client's data: `copy`](#435-copying-a-clients-data--copy)<br>
    &emsp; 4.3.6. [Sorting clients: `sort`](#436-sorting-clients--sort)<br>
    &emsp; 4.3.7. [Changing Light/Dark mode](#437-changing-lightdark-mode)<br>
-   &emsp; 4.3.8. [Exiting the application: `exit`](#437-exiting-the-application--exit)<br>
+   &emsp; 4.3.8. [Exiting the application: `exit`](#438-exiting-the-application--exit)<br>
 5. [FAQ](#5-faq)<br>
 6. [Glossary](#6-glossary)<br>
 7. [Command Summary](#7-command-summary)<br>
@@ -85,14 +85,15 @@ So what are you waiting for? Start using FinBook.
 
 The UI consists of:
 
-| Components      | Purpose                               |
-|-----------------|---------------------------------------|
-| Menu Bar        | Consists of File and Help             |
-| Theme Button    | To toggle between Light/Dark mode     | 
-| Command Box     | To enter commands to be executed      |
-| Message Box     | Display results of executed command   |
-| Clients Panel   | Displays clients of FinBook           |
-| Portfolio View  | Displays portfolio of selected client |
+| Components     | Purpose                                |
+|----------------|----------------------------------------|
+| Menu Bar       | Consists of File and Help              |
+| Theme Button   | To toggle between Light/Dark mode      | 
+| Hide Button    | To toggle between hide and unhide mode | 
+| Command Box    | To enter commands to be executed       |
+| Message Box    | Display results of executed command    |
+| Clients Panel  | Displays clients of FinBook            |
+| Portfolio View | Displays portfolio of selected client  |
 
 [⬆ back to Table of Contents](#table-of-contents)
 
@@ -467,7 +468,7 @@ Steps to reset the password:
 
 ### 4.2.4. Hiding sensitive data
 
-Toggle the visibility of FinBook by clicking on the `open eye` or `closed eye` icon on the top right of the application.
+Toggles the visibility of FinBook by clicking on the `open eye` or `closed eye` icon on the top right of the application.
 
 * If the icon is an `open eye` FinBook displays all client data.
   ![Shown](images/Ui_shown.png)
@@ -613,7 +614,7 @@ Examples:
 
 ### 4.3.7. Changing Light/Dark mode
 
-Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top right of the application.
+Toggles the theme of FinBook by clicking on the `sun` or `moon` icon on the top right of the application.
 
 * If icon is a `moon` FinBook is in Dark mode.
   ![Dark mode](images/Ui_dark_w_arrow.png)
