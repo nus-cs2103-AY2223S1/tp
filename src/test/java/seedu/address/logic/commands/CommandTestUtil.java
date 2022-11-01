@@ -83,8 +83,8 @@ public class CommandTestUtil {
             " " + PREFIX_ADDITIONAL_NOTES + VALID_ADDITIONAL_NOTES_BOB.toString();
     public static final String APPENDED_ADDITIONAL_NOTE_DESC_BOB =
             " " + PREFIX_ADDITIONAL_NOTES_APPEND + VALID_ADDITIONAL_NOTES_BOB.toString();
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_BEGINNER = " " + PREFIX_TAG + VALID_TAG_BEGINNER;
+    public static final String TAG_DESC_INTERMEDIATE = " " + PREFIX_TAG + VALID_TAG_INTERMEDIATE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
