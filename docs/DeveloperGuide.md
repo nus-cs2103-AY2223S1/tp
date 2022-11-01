@@ -241,7 +241,7 @@ An alternative and perhaps more OOP approach is given below. It has a `Class` li
 
 **Description**
 
-The delete command allows users to delete a student record by targeting either the student’s name or student’s ID.
+The delete command allows users to delete a student record by targeting either the student’s name or ID.
 
 **Implementation**
 
@@ -273,7 +273,7 @@ The `DeleteCommand` instance now communicates with the `ModelManager` to execute
 
 **Design Considerations**
 
-Current Design: We chose to keep a single class `DeleteCommand`, which the user can use to delete student records either by targeting the student’s name or student ID.
+Current Design: We chose to keep a single class `DeleteCommand`, which the user can use to delete student records either by targeting the student’s name or student ID. Note that we chose not to delete student records by their index in the list since deletion is irreversible, and we wanted users to be aware of the exact student name when they are executing a `DeleteCommand`.
 
 Pros:
 - The user does not have to remember different types of delete commands such as `DeleteStudentByNameCommand` or `DeleteStudentByIDCommand`.
@@ -523,7 +523,7 @@ Click <a href="#top">here</a> to return to the top.
 
 ### 6.1 Product scope
 
-**Target user profile**:
+**Target User Profile**
 
 Ministry of Education (MOE) Teachers who:
 * Teaches 3 to 5 classes a year
@@ -536,10 +536,9 @@ Ministry of Education (MOE) Teachers who:
 * Prefers typing to mouse interactions
 * Types fast and is reasonably comfortable using CLI apps
 
-**Value proposition**:
-Class-ify is a class management application built specially for Ministry of Education (MOE) teachers to
-monitor their student's academic progress easily. Teachers can generate exam statistics for each class,
-and Class-ify quickly flags out students who require more support for contacting.
+**Value Proposition**
+
+Class-ify is a **class management application** built specially for **Singapore Ministry of Education (MOE) teachers** to **monitor their student's academic progress easily**. Teachers can **generate exam statistics** for each class, and Class-ify quickly **flags out students** who require more support for contacting.
 
 ### 6.2 User stories
 
@@ -582,7 +581,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `Class-ify` and the **Actor** is the `user`, unless specified otherwise.)
 
-<u>**Use case: Add a new student**</u>
+**Use case: Add a new student**
 
 **MSS**
 
@@ -603,14 +602,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. User missed out a compulsory field.
    * 2b1. Class-ify shows an invalid command error message.
 
-     Use case resumes at step 2.
+     Use case resumes from step 2.
 
 * 2c. Class-ify detects invalid format of field value.
     * 2c1. Class-ify shows an invalid format error message.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
-<u>**Use case: Delete a student**</u>
+**Use case: Delete a student**
 
 **MSS**
 
@@ -631,14 +630,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. The student record is empty.
     * 2b1. Class-ify displays an error message similar to 2a1.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
 * 2c. Class-ify detects invalid format of field value.
     * 2c1. Class-ify shows an invalid format error message.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
-<u>**Use case: Edit details of a student**</u>
+**Use case: Edit details of a student**
 
 **MSS**
 
@@ -660,19 +659,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. The given index is out of bounds of the list.
     * 2b1. Class-ify displays an error message similar to 2a1.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
 * 3a. Class-ify detects invalid format of field value.
     * 3a1. Class-ify shows an invalid format error message.
 
-      Use case resumes at step 3.
+      Use case resumes from step 3.
 
 * 3b. No given fields to be edited.
     * 3b1. Class-ify shows an error message to prompt user to enter at least one field to be edited.
 
-      Use case resumes at step 3.
+      Use case resumes from step 3.
 
-<u>**Use case: Find a student**</u>
+**Use case: Find a student**
 
 **MSS**
 
@@ -693,14 +692,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. Class-ify detects invalid format of field value.
     * 2b1. Class-ify shows an invalid format error message.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
 * 4a. No students are found.
     * 4b1. Class-ify display an empty list and a message indicating no students are found. 
 
       Use case ends.
 
-*More to be added*
+**Use case: Calculate exam statistics**
+
+**MSS**
+
+1. User requests to calculate exam statistics for a class.
+2. User enters the class and exam that he/she wishes to calculate statistics for.
+3. Class-ify calculates the average score in the class for the exam.
+4. Class-ify displays the list of students in the class in order of ascending grades.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No fields are given.
+    * 2a1. Class-ify displays an invalid command error message.
+
+      Use case resumes from step 2.
+
+* 2b. Class-ify detects invalid format of field value.
+    * 2b1. Class-ify shows an invalid format error message.
+
+      Use case resumes from step 2.
+
+* 2c. Not all students have received grades for the exam.
+    * 2c1. Class-ify shows an error message stating mean score cannot be calculated.
 
 ### 6.4 Non-Functional Requirements
 
