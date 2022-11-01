@@ -65,9 +65,8 @@ public class DeleteStaffCommand extends Command {
         Staff staffToDelete = lastShownStaffList.get(index.getZeroBased());
         StaffName staffName = staffToDelete.getStaffName();
 
-        int len = projectList.size();
         Project project = null;
-        for (int x = 0; x < len; x++) {
+        for (int x = 0; x < projectList.size(); x++) {
             String nameToCheck = projectList.get(x).getProjectName().toString();
             if (nameToCheck.equalsIgnoreCase(projectName)) {
                 project = projectList.get(x);
@@ -93,7 +92,7 @@ public class DeleteStaffCommand extends Command {
         staffList.remove(staff);
         model.setFilteredStaffList(project);
         model.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
-        return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffName, projectName));
+        return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffName, project.getProjectName()));
     }
 
     @Override

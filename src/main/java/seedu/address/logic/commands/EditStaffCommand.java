@@ -122,7 +122,7 @@ public class EditStaffCommand extends Command {
 
         if (!toFindIn.getStaffList().contains(toEdit)) {
             throw new CommandException(String.format("Staff %1$s not found in specified project: %2$s!",
-                    toEdit.getStaffName(), projectName));
+                    toEdit.getStaffName(), foundProjectName));
         }
 
         toFindIn.getStaffList().setStaff(toEdit, editedStaff);
@@ -130,7 +130,7 @@ public class EditStaffCommand extends Command {
         model.setFilteredStaffList(lastShownList.get(projectIndex));
         model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_STAFF_SUCCESS, editedStaff, projectName));
+        return new CommandResult(String.format(MESSAGE_EDIT_STAFF_SUCCESS, editedStaff, foundProjectName));
     }
 
     /**
