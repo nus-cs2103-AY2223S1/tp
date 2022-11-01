@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.buyer.exceptions.DuplicateBuyerException;
 import seedu.address.model.buyer.exceptions.BuyerNotFoundException;
+import seedu.address.model.buyer.exceptions.DuplicateBuyerException;
 
 /**
  * A list of buyers that enforces uniqueness between its elements and does not allow nulls.

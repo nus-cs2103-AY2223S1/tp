@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.buyer.exceptions.DuplicateBuyerException;
 import seedu.address.model.buyer.exceptions.BuyerNotFoundException;
+import seedu.address.model.buyer.exceptions.DuplicateBuyerException;
 import seedu.address.testutil.BuyerBuilder;
 
 public class UniqueBuyerListTest {

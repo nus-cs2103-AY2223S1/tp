@@ -26,9 +26,9 @@ import seedu.address.logic.commands.ListPropertiesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.NameContainsKeywordsPredicate;
-import seedu.address.testutil.EditBuyerDescriptorBuilder;
 import seedu.address.testutil.BuyerBuilder;
 import seedu.address.testutil.BuyerUtil;
+import seedu.address.testutil.EditBuyerDescriptorBuilder;
 
 public class BuyerBookParserTest {
 

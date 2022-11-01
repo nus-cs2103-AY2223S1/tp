@@ -6,9 +6,9 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandFailure;
+import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
-import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.Test;
