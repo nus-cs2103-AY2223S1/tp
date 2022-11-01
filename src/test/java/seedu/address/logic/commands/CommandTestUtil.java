@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_APPOINTMENT;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -77,11 +79,10 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby";
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "Sick";
     public static final String INVALID_REASON_DESC = " " + PREFIX_REASON + "";
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2022-15-12 16:30";
     public static final String INVALID_TIME_PERIOD_DESC = " " + PREFIX_RECURRING_PERIOD + "0C";
-
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -95,6 +96,20 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_EAR, VALID_TAG_NOSE).build();
+    }
+
+    public static final EditAppointmentCommand.EditAppointmentDescriptor DESC_APPT_AMY;
+    public static final EditAppointmentCommand.EditAppointmentDescriptor DESC_APPT_BOB;
+
+    static {
+        DESC_APPT_AMY = new EditAppointmentDescriptorBuilder().withReason(VALID_REASON_AMY)
+                .withDateTime(LocalDateTime.parse(VALID_DATE_AMY, Appointment.DATE_FORMATTER))
+                .withTimePeriod(List.of(1, 0, 0))
+                .withTags(VALID_TAG_EAR).build();
+        DESC_APPT_BOB = new EditAppointmentDescriptorBuilder().withReason(VALID_REASON_BOB)
+                .withDateTime(LocalDateTime.parse(VALID_DATE_BOB, Appointment.DATE_FORMATTER))
+                .withTimePeriod(List.of(0, 0, 0))
+                .withTags(VALID_TAG_NOSE).build();
     }
 
     /**

@@ -6,6 +6,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -18,15 +21,16 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.HiddenPredicateSingleton;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditAppointmentDescriptorBuilder;
-
 
 public class EditAppointmentCommandTest {
 
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Appointment appointment = new Appointment("Sore Throat", "2019-10-10 16:30", "1Y2M", true);
+        Appointment appointment = new Appointment("Sore Throat", "2019-10-10 16:30", "1Y2M",
+                new HashSet<>(Arrays.asList(Tag.convertToTag("Ear"), Tag.convertToTag("Nose"))), true);
         Person person = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
         appointment.setPatient(person);
 

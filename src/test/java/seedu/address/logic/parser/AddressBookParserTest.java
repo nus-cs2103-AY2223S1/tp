@@ -22,6 +22,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_APPOINTMENT;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -50,6 +51,7 @@ import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
 import seedu.address.model.person.predicates.CombinedPersonPredicate;
 import seedu.address.model.person.predicates.HideAppointmentPredicate;
 import seedu.address.model.person.predicates.TagContainsKeywordsPredicate;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.AppointmentUtil;
 import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -122,7 +124,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_editAppointment() throws ParseException {
-        Appointment appointment = new Appointment("Cough", "2022-12-16 17:30", "", false);
+        Appointment appointment = new Appointment("Cough", "2022-12-16 17:30", "",
+                new HashSet<>(List.of(Tag.convertToTag("Nose"))), false);
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(appointment).build();
         EditAppointmentCommand command = (EditAppointmentCommand)
                 parser.parseCommand(EditAppointmentCommand.COMMAND_WORD

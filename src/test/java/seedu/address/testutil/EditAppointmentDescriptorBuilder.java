@@ -2,10 +2,14 @@ package seedu.address.testutil;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building EditAppointmentDescriptor objects.
@@ -29,6 +33,7 @@ public class EditAppointmentDescriptorBuilder {
         descriptor.setReason(appointment.getReason());
         descriptor.setDateTime(appointment.getDateTime());
         descriptor.setTimePeriod(appointment.getTimePeriod());
+        descriptor.setTags(appointment.getTags());
     }
 
     /**
@@ -52,6 +57,15 @@ public class EditAppointmentDescriptorBuilder {
      */
     public EditAppointmentDescriptorBuilder withTimePeriod(List<Integer> timePeriod) {
         descriptor.setTimePeriod(timePeriod);
+        return this;
+    }
+
+    /**
+     * Sets the tags of the {@code EditAppointmentDescriptor} that we are building.
+     */
+    public EditAppointmentDescriptorBuilder withTags(String ... tags) {
+        Set<Tag> tagSet = Stream.of(tags).map(Tag::convertToTag).collect(Collectors.toSet());
+        descriptor.setTags(tagSet);
         return this;
     }
 
