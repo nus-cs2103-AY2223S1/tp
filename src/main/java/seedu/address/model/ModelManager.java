@@ -359,7 +359,6 @@ public class ModelManager implements Model {
                 filteredBills.setPredicate(history.getBillsPredicate(history.getBillsHistorySize() - 1));
                 history.deleteHealthContactHistory(history.getHealthContactHistorySize() - 1);
             } else {
-
                 try {
                     history.deleteHealthContactHistory(history.getHealthContactHistorySize() - 1);
                     history.updateRedoHealthContactHistory();
