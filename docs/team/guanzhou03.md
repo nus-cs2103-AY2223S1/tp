@@ -35,10 +35,10 @@ Contributions to team-based tasks:
 * Released v1.2 and v1.3 jar files
 
 Review/mentoring contributions:
-- [PR review 1]()
-- [PR review 2]()
-- [PR review 3]()
-- [PR review 4]()
+- [PR review 1](https://github.com/AY2223S1-CS2103T-T17-4/tp/pull/81)
+- [PR review 2](https://github.com/AY2223S1-CS2103T-T17-4/tp/pull/112)
+- [PR review 3](https://github.com/AY2223S1-CS2103T-T17-4/tp/pull/141)
+- [PR review 4](https://github.com/AY2223S1-CS2103T-T17-4/tp/pull/142)
 
 Contributions beyond the project team:
 - [Bugs reported during PE-D](https://github.com/guanzhou03/ped/issues)

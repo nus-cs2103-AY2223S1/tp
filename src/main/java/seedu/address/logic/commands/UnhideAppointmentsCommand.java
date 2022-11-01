@@ -5,33 +5,31 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.predicates.AppointmentOfFilteredPersonsPredicate;
 import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 
 /**
  * Unhides appointments in idENTify previously hidden by some condition.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class UnhideAppointmentsCommand extends Command {
 
     public static final String COMMAND_WORD = "unhide";
     public static final String DESCRIPTOR_WORD = "appts";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unhides all appointments which reason or tags"
-            + " contain any of the specified keywords (case-insensitive) and displays\n"
-            + "the appointments which are not hidden. Also able to hide by marked/unmarked appointments\n"
-            + "Parameters: [" + PREFIX_REASON + "REASON [MORE_REASONS]]\n"
-            + "OR: [" + PREFIX_TAG + "TAG [MORE_TAGS]]\n"
-            + "OR: [" + PREFIX_STATUS + "STATUS]\n"
-            + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " " + PREFIX_REASON + "pain infection"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unhides previously "
+            + "hidden appointments which reason, tags, or status\n"
+            + "match any of the specified keywords (case-insensitive) and displays\n"
+            + "the appointments which are not hidden.\n"
+            + "Parameters: " + PREFIX_REASON + "REASON [r/MORE_REASONS]...\n"
+            + "OR: " + PREFIX_TAG + "TAG [t/MORE_TAGS]...\n"
+            + "OR: " + PREFIX_STATUS + "STATUS\n"
+            + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " " + PREFIX_REASON + "pain r/infection\n"
             + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " " + PREFIX_STATUS + "marked";
 
 
@@ -47,10 +45,7 @@ public class UnhideAppointmentsCommand extends Command {
         requireNonNull(model);
         Predicate<Appointment> combinedPredicate =
                 HiddenPredicateSingleton.combineWithUnhiddenApptPredicate(predicate);
-        List<Person> validPersons = model.getFilteredPersonList();
-        AppointmentOfFilteredPersonsPredicate appointmentPredicate =
-                new AppointmentOfFilteredPersonsPredicate(validPersons);
-        model.updateFilteredAppointmentList(combinedPredicate.and(appointmentPredicate));
+        model.updateFilteredAppointmentList(combinedPredicate);
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESULTS_LISTED_OVERVIEW,

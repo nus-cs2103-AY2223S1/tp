@@ -188,10 +188,10 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_hidePatients() throws ParseException {
         HidePatientsCommand command = (HidePatientsCommand) parser.parseCommand(
-                HidePatientsCommand.COMMAND_WORD + " patients" + " t/tag1 t/tag2");
+                HidePatientsCommand.COMMAND_WORD + " patients" + " t/ear t/nose");
         List<String> l = new ArrayList<>();
-        l.add("tag1");
-        l.add("tag2");
+        l.add("ear");
+        l.add("nose");
         assertEquals(new HidePatientsCommand(new TagContainsKeywordsPredicate(l)), command);
     }
 

@@ -346,21 +346,22 @@ Examples:
 * `unhide patients t/nose t/ear` unhides all patients with a nose OR ear tag.
 
 #### Hiding appointments by reason, tag, or marked status: `hide appts`
+Hides appointments by the condition specified. <br>
+The search for reason, tag, and status is case-insensitive. e.g `EAR` will match `ear`
 
 **By reason:**
-Filters out (hides) appointments that has contains at least 1 of the given keyword(s).
+Hides appointments that contain at least 1 of the given keywords in the reason of appointment.
 
 Format: `hide appts r/REASON [r/MORE_REASONS]...`
-
 Examples:
 * `hide appts r/nose` hides all appointments with "nose" in the reason.
+* `hide appts r/pain r/issue` hides all appointments with "pain" or "issue" in the reason.
 
 **By tag:**
 Hides appointments which contain any of the given tags.
 
 Format: `hide appts t/TAG [t/MORE_TAGS]...`
 
-* The search is case-insensitive. e.g `EAR` will match `ear`
 * All tags of an appointment are searched.
 
 Examples:

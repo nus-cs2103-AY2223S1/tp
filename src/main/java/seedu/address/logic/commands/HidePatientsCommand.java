@@ -24,12 +24,13 @@ public class HidePatientsCommand extends Command {
     public static final String COMMAND_WORD = "hide";
     public static final String DESCRIPTOR_WORD = "patients";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Hides all persons whose names or tags contain any of\n"
-            + "the specified keywords (case-insensitive) and displays them and their appointments as 2 lists with\n"
-            + "index numbers. Also able to hide by patient tags.\n"
-            + "Parameters: [" + PREFIX_NAME + "NAME [MORE_NAMES]]\n"
-            + "OR: " + "[" + PREFIX_TAG + "TAG [MORE_TAGS]]...\n"
-            + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Hides all patients whose names or tags contain "
+            + "any of the specified keywords (case-insensitive)\n"
+            + "and displays them and their appointments as 2 lists with index numbers.\n"
+            + "Parameters: " + PREFIX_NAME + "NAME [n/MORE_NAMES]...\n"
+            + "OR: " + PREFIX_TAG + "TAG [t/MORE_TAGS]...\n"
+            + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " n/alice n/bob n/charlie\n"
+            + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " t/ear t/nose";
 
     private Predicate<Person> predicate;
 

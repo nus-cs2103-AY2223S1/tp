@@ -18,7 +18,7 @@ public class CancelCommand extends SelectAppointmentCommand {
             + "Parameters: APPOINTMENT_INDEX (must be a valid appointment index and positive integer)\n"
             + "Example: " + COMMAND_WORD + " 2";
 
-    public static final String MESSAGE_CANCEL_APPOINTMENT_SUCCESS = "Cancelled appointment %1$s for: ";
+    public static final String MESSAGE_CANCEL_APPOINTMENT_SUCCESS = "Cancelled appointment for: ";
 
 
     /**
@@ -41,9 +41,8 @@ public class CancelCommand extends SelectAppointmentCommand {
         Person patientToCancelAppt = getTargetPerson(model);
         Appointment toBeCancelledAppt = getTargetAppointment(model);
 
-        int index = patientToCancelAppt.getAppointments().indexOf(toBeCancelledAppt) + 1;
         AppointmentList.cancelAppointment(model, patientToCancelAppt, toBeCancelledAppt);
-        return new CommandResult(String.format(MESSAGE_CANCEL_APPOINTMENT_SUCCESS, index)
+        return new CommandResult(MESSAGE_CANCEL_APPOINTMENT_SUCCESS
                 + patientToCancelAppt.getName());
     }
 

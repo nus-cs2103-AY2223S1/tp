@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_NAME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -24,6 +26,10 @@ public class UnhidePatientsCommandParser implements Parser<UnhidePatientsCommand
     public UnhidePatientsCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG, PREFIX_NAME);
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            boolean areValidTags = areValidTags(argMultimap.getAllValues(PREFIX_TAG));
+            if (!areValidTags) {
+                throw new ParseException(MESSAGE_INVALID_TAGS);
+            }
             return new UnhidePatientsCommand(
                     new TagContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_TAG)));
         }
@@ -32,7 +38,24 @@ public class UnhidePatientsCommandParser implements Parser<UnhidePatientsCommand
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnhidePatientsCommand.MESSAGE_USAGE));
         }
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
-
+        if (nameKeywords.stream().anyMatch(x -> x.equals(""))) {
+            throw new ParseException(MESSAGE_EMPTY_NAME);
+        }
         return new UnhidePatientsCommand(new NameContainsKeywordsPredicate(nameKeywords));
+    }
+
+    /**
+     * Checks if given tags match ear, nose or throat.
+     * @param tags The values gotten from the user after the t/ prefix.
+     * @return Whether tags are all valid.
+     */
+    public boolean areValidTags(List<String> tags) {
+        for (String s: tags) {
+            if (!s.equalsIgnoreCase("ear") && !s.equalsIgnoreCase("nose")
+                    && !s.equalsIgnoreCase("throat")) {
+                return false;
+            }
+        }
+        return true;
     }
 }
