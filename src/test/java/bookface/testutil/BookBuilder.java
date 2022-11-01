@@ -21,7 +21,7 @@ public class BookBuilder {
     private Title title;
     private Author author;
 
-    private Date returnDate = new Date();
+    private Date returnDate;
     /**
      * Creates a {@code BookBuilder} with the default details.
      */
