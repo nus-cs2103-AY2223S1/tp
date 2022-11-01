@@ -344,6 +344,9 @@ public class AddressBookTest {
         // sort based on descending order
         addressBook.sortStalls(StallsComparatorList.REVERSEDNAME.getComparator());
         assertEquals(sampleStallsListOrderedReversed, addressBook.getStallList());
+
+        // null comparator -> throw NullPointer
+        assertThrows(NullPointerException.class, () -> addressBook.sortStalls(null));
     }
 
     @Test
@@ -394,6 +397,9 @@ public class AddressBookTest {
         // sort based on descending order
         addressBook.sortReviews(ReviewsComparatorList.REVERSEDNAME.getComparator());
         assertEquals(sampleReviewListOrderedReversed, addressBook.getReviewList());
+
+        // null comparator -> throw NullPointer
+        assertThrows(NullPointerException.class, () -> addressBook.sortReviews(null));
     }
 
     @Test
