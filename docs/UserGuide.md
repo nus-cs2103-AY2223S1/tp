@@ -304,6 +304,8 @@ You can use this command when:
 
 Format: `find t/TAG`
 
+![findtag](images/findTag.png)
+
 Examples:
 * `find t/SECURED` displays the list of all `SECURED` clients.
 
