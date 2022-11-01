@@ -282,8 +282,8 @@ Format: `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
 * The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
-* The `PERSON_INDEX` refers to the index number shown in the displayed person list.
-* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the person list index.
+* The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
+* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the contact list index.
 * The `PERSON_INDEX` must refer to a person that is not currently tagged to the event.
 * Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
 
@@ -297,8 +297,8 @@ Format: `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
 * The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
-* The `PERSON_INDEX` refers to the index number shown in the displayed person list.
-* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the person list index.
+* The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
+* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the contact list index.
 * The `PERSON_INDEX` must refer to a person that is currently tagged to the event.
 * Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
 
