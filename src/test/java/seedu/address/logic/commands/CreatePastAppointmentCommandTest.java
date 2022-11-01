@@ -17,7 +17,13 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.PastAppointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Medication;
 import seedu.address.testutil.PastAppointmentBuilder;
+
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for CreatePastAppointmentCommand.
  */
@@ -45,10 +51,7 @@ class CreatePastAppointmentCommandTest {
 
     @Test
     public void execute_duplicatePastCommand_failure() {
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Set<Medication> medication = new HashSet<>();
-        medication.add(new Medication("Paracetamol"));
-        PastAppointment pastAppointment = new PastAppointment(LocalDate.now(), medication, "Fever");
+        PastAppointment pastAppointment = new PastAppointmentBuilder().build();
         CreatePastAppointmentCommand createPastAppointmentCommand =
                 new CreatePastAppointmentCommand(INDEX_FIRST_PERSON, pastAppointment);
 
@@ -60,6 +63,7 @@ class CreatePastAppointmentCommandTest {
 
         // remove the appointment from the model for tear down
         model.getFilteredPersonList().get(0).getPastAppointments().remove(pastAppointment);
+    }
 
     @Test
     public void execute_invalidIndex_throwsCommandException() {
