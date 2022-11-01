@@ -69,6 +69,9 @@ public class ParserUtil {
      */
     public static Phone parsePhone(Optional<String> phone) throws ParseException {
         String trimmedPhone = phone.orElse(INFO_NOT_AVAILABLE).trim();
+        if (trimmedPhone.isBlank()) {
+            return new Phone(INFO_NOT_AVAILABLE);
+        }
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
@@ -105,18 +108,18 @@ public class ParserUtil {
 
 
     /**
-     * Parses a {@code String address} into a {@code StudentId}.
+     * Parses a {@code String studentId} into a {@code StudentId}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code studentId} is invalid.
      */
-    public static StudentId parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!StudentId.isValidStudentId(trimmedAddress)) {
+    public static StudentId parseStudentId(String studentId) throws ParseException {
+        requireNonNull(studentId);
+        String trimmedStudentId = studentId.trim();
+        if (!StudentId.isValidStudentId(trimmedStudentId)) {
             throw new ParseException(StudentId.MESSAGE_CONSTRAINTS);
         }
-        return new StudentId(trimmedAddress);
+        return new StudentId(trimmedStudentId);
     }
 
     /**
@@ -127,6 +130,9 @@ public class ParserUtil {
      */
     public static Email parseEmail(Optional<String> email) throws ParseException {
         String trimmedEmail = email.orElse(INFO_NOT_AVAILABLE).trim();
+        if (trimmedEmail.isBlank()) {
+            return new Email(INFO_NOT_AVAILABLE);
+        }
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -141,7 +147,7 @@ public class ParserUtil {
      */
     public static ClassGroup parseClassGroup(Optional<String> classGroup) throws ParseException {
         String trimmedClassGroup = classGroup.orElse(INFO_NOT_AVAILABLE).trim();
-        return new ClassGroup(trimmedClassGroup);
+        return new ClassGroup(trimmedClassGroup.isBlank() ? INFO_NOT_AVAILABLE : trimmedClassGroup);
     }
 
     /**

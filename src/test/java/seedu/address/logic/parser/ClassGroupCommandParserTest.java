@@ -19,16 +19,16 @@ class ClassGroupCommandParserTest {
 
     @Test
     public void parse_indexSpecified_success() {
-        // have remark
+        // have class group
         Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_CLASS_GROUP + nonEmptyClassGroup;
         ClassGroupCommand expectedCommand =
                 new ClassGroupCommand(INDEX_FIRST_STUDENT, new ClassGroup(nonEmptyClassGroup));
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // no remark
+        // no class group
         userInput = targetIndex.getOneBased() + " " + PREFIX_CLASS_GROUP;
-        expectedCommand = new ClassGroupCommand(INDEX_FIRST_STUDENT, new ClassGroup(""));
+        expectedCommand = new ClassGroupCommand(INDEX_FIRST_STUDENT, new ClassGroup("NA"));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

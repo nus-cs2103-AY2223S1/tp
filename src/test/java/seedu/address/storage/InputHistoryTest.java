@@ -51,14 +51,11 @@ class InputHistoryTest {
         for (int i = 0; i < 50; i++) {
             test.add(str + i);
         }
-        assertEquals(str + 49, test.get());
-        test.up();
         assertEquals("", test.get());
 
-        for (int i = 0; i < 48; i++) {
+        for (int i = 49; i >= 0; i--) {
             test.up();
-            System.out.println("Expected : " + str + (48 - i) + " Actual : " + test.get());
-            assertEquals(str + (48 - i), test.get());
+            assertEquals(str + i, test.get());
         }
     }
 
@@ -98,10 +95,9 @@ class InputHistoryTest {
             test.up();
         }
 
-        for (int i = 1; i < 49; i++) {
+        for (int i = 0; i < 50; i++) {
             assertEquals(str + i, test.get());
             test.down();
         }
-        assertEquals("", test.get());
     }
 }
