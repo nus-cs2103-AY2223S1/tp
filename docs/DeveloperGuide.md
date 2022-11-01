@@ -559,11 +559,15 @@ readability of the code.
 
 #### Implementation
 
-Goto module mechanism is facilitated by `GoToCommand`, `ModuleCodeMatchesKeywordPredicate` and `GoToCommandParser`.
-It allows users to navigate to a specific module given their respective module code. <br>
+Goto module mechanism is facilitated by the `GoToCommand` and `GoToCommandParser`.
+
+It allows users to navigate to a specific module given their respective module code, displaying information
+(i.e. tasks, links and contacts) that are associated to that module.<br>
 
 It uses the following methods provided by `ModelManager` which implements the `Model` interface.
+* `ModelManager::getModuleUsingModuleCode`: Retrieves a `Module` object using the `ModuleCode` object associated wih that `Module`
 * `ModelManager::updateFilteredModuleList`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI
+* `ModelManager::updateFilteredPersonList`: Update the current person list and filter it according to the given predicate `Predicate<Person> predicate`, reflecting the changes accordingly in the GUI
 * `ModelManager::setHomeStatus`: Sets the home status of Plannit.
 
 Given below is an example usage scenario and how the mechanism
@@ -576,32 +580,30 @@ E.g.:
 goto CS1231
 ```
 
-**Step 2**: The `LogicManager` calls the `LogicManager::execute` method on the
-user input `String`.
+**Step 2**: The `LogicManager` uses the `AddressBookParser` and `GoToCommandParser`
+to parse the user input. After validating the arguments provided by the user, the user input
+is used to perform the following actions: <br>
+* Instantiate a `ModuleCodeMatchesKeywordPredicate` object
+* Extract the `ModuleCode` of the module to navigate to in the `GoToCommandParser`
 
-**Step 3**: The `LogicManager::execute` method first parses the user input
-`String` into a `Command` object using the `AddressBookParser::parseCommand`
-method.
+**Step 3**: A `GoToCommand` object is instantiated using the `ModuleCodeMatchesKeywordPredicate` and `ModuleCode`
+obtained in **Step 2** which is returned to the `LogicManager`.
 
-**Step 4**: The command word, `goto`, is extracted from the user input and
-a new `GoToCommandParser` is instantiated to parse the arguments.
+**Step 4**: `LogicManager` calls the `GoToCommand::execute` method. This method will first
+obtain the `Module` associated with the `ModuleCode` obtained in **Step 2** by calling
+`ModelManager::getModuleUsingModuleCode`.
 
-**Step 5**: The `GoToCommandParser::parse` method is then called to
-parse the arguments. After validating the arguments provided by the user, a
-new `ModuleCodeMatchesKeywordPredicate` is instantiated with the provided module code.
+**Step 5**: The module list is then filtered using the `ModelManager::updateFilteredModuleList` method according
+to the `ModuleCodeMatchesKeywordPredicate` object instantiated in **Step 2**.
 
-**Step 6**: The `ModuleCodeMatchesKeywordPredicate` object is then used to instantiate
-a `GoToCommand` object that is returned to the `LogicManager`.
+**Step 6**: A `PersonIsInModulePredicate` object is then instantiated with the `Module` object obtained in **Step 4**.
 
-**Step 7**: The `GoToCommand::execute` method is then called by the
-`LogicManager`.
+**Step 7**: The person list is then filtered using the `ModelManager::updateFilteredPersonList` method according
+to the `PersonIsInModulePredicate` object instantiated in **Step 6**.
 
-**Step 8**: The current module list via `ModelManager::updateFilteredModuleList`,
-filtering the module list according to the predicate object instantiated in **Step 5**.
+**Step 8**: The home status of Plannit is set to false via `ModelManager::SetHomeStatus`.
 
-**Step 9**: The home status is set to false via `ModelManager::SetHomeStatus`.
-
-**Step 10**: A new `CommandResult` object is returned, indicating success.
+**Step 9**: A new `CommandResult` object is returned, indicating success.
 
 The following sequence diagram summarizes what happens when a user executes the `goto` command:
 
@@ -642,7 +644,7 @@ The following activity diagram summarizes what happens when a user executes a `G
 2. The following commands `list-module` and `find-module` are disabled as they are not meant to be used in tandem with `goto` command
    as the filtering of modules is not needed when there exist only one module.
 
-3. The following commands `list-module` and `find-module` are disabled as they are not meant to be used in tandem with `goto` command
+3. The following commands `list-person` and `find-person` are disabled as they are not meant to be used in tandem with `goto` command
    as essential person within a module (i.e. professors, tutor assistant and friends) are likely to be limited in numbers.
 
 Hence, to prevent confusion we chose Alternative 1.
