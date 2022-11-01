@@ -96,7 +96,7 @@ For information on all commands that can be used to manipulate the Staff Panel, 
   e.g. For the `addproj` command, it can be used with these command words: `Addproj`, `addProj`, `ADDPROJ`
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addproj pn/PROJECT_NAME`, `PROJECT_NAME` is a parameter which can be used as `addproj pn/CS2103T`.
+  e.g. in `addproj pn/PROJECT_NAME`, `PROJECT_NAME` is a parameter which can be used in `addproj pn/2103T TP pb/100000 pd/2022-01-01`.
 
 * Items in square brackets are optional.<br>
   e.g `pn/PROJECT_NAME [t/TAG]` can be used as `pn/2101 t/fun` or as `pn/2101`.
