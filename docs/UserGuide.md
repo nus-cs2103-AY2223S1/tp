@@ -107,7 +107,7 @@ Format: `add n/NAME b/BIRTHDATE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
     * Patients are considered duplicate when they have the same `NAME` and `ADDRESS`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Birthdate must be given in DD-MM-YYYY HHmm format!
+Birthdate must be given in DD-MM-YYYY format!
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
