@@ -85,7 +85,7 @@ our app.
 Features marked with * can only be utilised when users are at the home page.
 </div>
 
-<div markdown="span" class="alert alert-info">:eye: **See also:**<br/>  
+<div markdown="span" class="alert alert-info"> :eye: **See also:**<br/>  
 [Peeking at tasks](#224-peeking-at-tasks).
 </div>
 
