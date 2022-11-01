@@ -150,6 +150,14 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR s/STUDENTID tn/TEACHI
 
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **About Teaching Nomination:**
+- Teaching nominations take in positive integers including 0.
+- Leading zeros in the teaching nominations will not be allowed. e.g. `0`, `1` is valid but `00001` is invalid.
+
+</div>
+
 Examples:
 * `add n/John Doe p/98765432 e/e1234567 m/CS2100 y/3 s/A0123456X tn/1 r/5.0`
 * `add n/Betsy Crowe t/seniorTa e/e1234567 m/CS1101S y/3 p/1234567 s/A0123456X tn/2 r/4.5`
@@ -224,14 +232,16 @@ Examples:
 
 ### Search for tutor by attribute: `find`
 
-Finds tutor(s) whose specific profile attribute contains any of the given keywords.
+Searching for tutors that teach relevant or specific modules? Looking for tutors with the best ratings? The find
+command allows you to do so by searching through the list of tutors based on specified attributes of the
+tutors along with the search keywords provided.
 
 Format: `find PREFIX/KEYWORDS [KEYWORDS]`
 * The find command works by entering only **one** prefix corresponding to a tutor's profile attribute, followed by the keyword(s) to search
 * The search is case-insensitive. e.g. hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only the attribute that corresponds to the prefix entered is searched.
-* Partial words will be matched e.g. Han will match Hans
+* **Partial words** will be matched e.g. Han will match Hans
 * Tutors with attributes being searched that match at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
 
 Examples:
