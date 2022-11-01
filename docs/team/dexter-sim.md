@@ -38,9 +38,9 @@ Given below are my contributions to the project.
     * Added Mark Command Activity Diagram to illustrate the feature implemented ([#155](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/155)).
 
 * **Community**:
-  * PRs reviewed (non-trivial review comments): 
+  * PRs reviewed (with non-trivial review comments): 
   ([#98](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/98)) 
   ([#140](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/140)) 
   ([#150](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/150)) 
   ([#174](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/174)) 
-  ([#247](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/247))
+  ([#247](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/247)).
