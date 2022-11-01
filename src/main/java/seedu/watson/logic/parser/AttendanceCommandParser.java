@@ -1,12 +1,18 @@
 package seedu.watson.logic.parser;
 
 import static seedu.watson.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.watson.logic.parser.ArgumentMultimap.arePrefixesPresent;
+import static seedu.watson.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.watson.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_INDEX_NUMBERS;
+import static seedu.watson.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.watson.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
 
 import java.util.List;
 
+import seedu.watson.logic.commands.AddCommand;
 import seedu.watson.logic.commands.AttendanceCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
 
@@ -33,6 +39,11 @@ public class AttendanceCommandParser implements Parser<AttendanceCommand> {
 
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_STUDENTCLASS, PREFIX_INDEX_NUMBERS);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_STUDENTCLASS, PREFIX_INDEX_NUMBERS)
+            || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AttendanceCommand.MESSAGE_USAGE));
+        }
 
         String date = argMultimap.getValue(PREFIX_DATE).get();
         String studentClass = argMultimap.getValue(PREFIX_STUDENTCLASS).get();
