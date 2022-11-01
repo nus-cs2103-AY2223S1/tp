@@ -274,6 +274,8 @@ Format: `find [c/CATEGORY] KEYWORDS…`
 * A `KEYWORD` will match any word if the `KEYWORD` is contained in that word e.g. `Han` will match both `Reyhan` and `Handy`
 * Internships whose target category matches at least one keyword will be returned (i.e. OR search). e.g. `c/company_name Hans Bo` can return internships with company name of `Hans Gruber` or `Bo Yang`
 * To find an internship using the date category, all `KEYWORD` must be a valid date in `dd-mm-yyyy` format
+* To find an internship using the application process category, all `KEYWORD` must be a valid application process
+  (i.e. Can only be: `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED`)
 
 Examples:
 * `find c/position engineer` returns a list of internships with a position of Algorithm Engineer and Software Engineer

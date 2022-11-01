@@ -13,8 +13,14 @@ import seedu.phu.model.internship.FindableCategory;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
-    public static final String CONSTRAINT_MESSAGE =
+    public static final String INVALID_DATE_MESSAGE =
             "For the date category, all the keywords must be a valid date in dd-mm-yyyy format";
+
+    public static final String INVALID_PROCESS_MESSAGE =
+            "For the application process category, "
+            + "all the keywords must be one of the following values (case-insensitive):\n"
+            + "APPLIED, ASSESSMENT, INTERVIEW, OFFER, ACCEPTED, REJECTED";
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
@@ -56,7 +62,11 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (category == FindableCategory.DATE && !keywords.isAllKeywordDate()) {
-            throw new ParseException(CONSTRAINT_MESSAGE);
+            throw new ParseException(INVALID_DATE_MESSAGE);
+        }
+
+        if (category == FindableCategory.APPLICATION_PROCESS && !keywords.isAllValidProcess()) {
+            throw new ParseException(INVALID_PROCESS_MESSAGE);
         }
 
         return new FindCommand(new ContainsKeywordsPredicate(keywords, category));
