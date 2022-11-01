@@ -90,7 +90,7 @@ public class Event {
      * @return
      */
     public boolean isSameEvent(Event otherEvent) {
-        return otherEvent.equals(this);
+        return otherEvent != null && otherEvent.equals(this);
     }
 
     @Override
