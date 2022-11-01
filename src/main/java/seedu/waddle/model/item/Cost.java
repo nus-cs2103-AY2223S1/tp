@@ -8,7 +8,7 @@ import static seedu.waddle.commons.util.AppUtil.checkArgument;
  */
 public class Cost {
     public static final String MESSAGE_CONSTRAINTS =
-            "Cost should only contain a positive number.";
+            "Cost must be a value from $0 to $1,000,000.";
     private final float cost;
 
     /**
@@ -32,7 +32,7 @@ public class Cost {
         } catch (NumberFormatException e) {
             return false;
         }
-        return value >= 0;
+        return value >= 0 && value <= 1000000;
     }
 
     public float getValue() {

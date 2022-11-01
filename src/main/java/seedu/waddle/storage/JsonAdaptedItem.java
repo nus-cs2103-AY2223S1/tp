@@ -11,6 +11,7 @@ import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.Priority;
 import seedu.waddle.model.itinerary.Description;
+import seedu.waddle.model.text.Text;
 
 /**
  * Jackson-friendly version of {@link Item}.
@@ -47,8 +48,7 @@ public class JsonAdaptedItem {
     public JsonAdaptedItem(Item source) {
         description = source.getDescription().description;
         stars = source.getPriority().getValue();
-        cost = source.getCost().toString();
-        //TODO duration and startTime null error
+        cost = Text.MONEY_SAVE_FORMATTER.format(source.getCost().getValue());
         duration = source.getDuration().toString();
         if (source.getStartTime() == null) {
             startTime = null;
@@ -67,14 +67,9 @@ public class JsonAdaptedItem {
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Item.class.getSimpleName()));
         }
-        /*
-        TODO: check if description is valid
-        if (!Item.isValidDescription(description)) {
-            throw new IllegalValueException(Item.MESSAGE_CONSTRAINTS);
+        if (!Description.isValidDescription(description)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Description modelDescription = new Description(description);
-        */
-        final Description modelDescription = new Description(description);
 
         if (stars == null) {
             throw new IllegalValueException(
@@ -84,6 +79,23 @@ public class JsonAdaptedItem {
             throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
         }
 
+        if (cost == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Cost.class.getSimpleName()));
+        }
+        if (!Cost.isValidCost(cost)) {
+            throw new IllegalValueException(Cost.MESSAGE_CONSTRAINTS);
+        }
+
+        if (duration == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Duration.class.getSimpleName()));
+        }
+        if (!Duration.isValidDuration(duration)) {
+            throw new IllegalValueException(Duration.MESSAGE_CONSTRAINTS);
+        }
+
+        final Description modelDescription = new Description(description);
         final Priority modelPriority = new Priority(stars);
         final Cost modelCost = new Cost(cost);
         final Duration modelDuration = new Duration(duration);

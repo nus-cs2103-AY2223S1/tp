@@ -114,7 +114,7 @@ Format: `add d/DESCRIPTION sd/START DATE du/DURATION [c/COUNTRY] [p/NUMBER OF WA
 * `START DATE` is the date of the first day in the itinerary. It must be given in the format `yyyy-mm-dd`.
 * `DURATION` will determine the number of days in the itinerary, and must be between 1 and 365 days.
   - e.g. `sd/2022-12-10 du/3` would mean that the trip is from 10 Dec 2022 to 12 Dec 2022.
-* `BUDGET` is the budget for the itinerary and must be between $0 and $1,000,000,000. Please provide the budget in dollars ($), you may include cents too!
+* `BUDGET` is the budget for the itinerary and must be between $0 and $1,000,000. Please provide the budget in dollars ($), you may include cents too!
   - e.g. `b/1000` is $1,000.
   - e.g. `b/1000.50` is $1,000.50.
 <div markdown="span" class="alert alert-info">
@@ -216,8 +216,8 @@ Format: `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`
 
 * Adds a new item with `DESCRIPTION` to the unscheduled item list.
 * The default `PRIORITY` is 1, while default `COST` and `DURATION` are both 0.
-* `COST` is in dollars ($) and can include cents.
-  - e.g. `b/100.20` is $100 and 20¢.
+* `COST` is the cost of the item and must be between $0 to $1,000,000. Please provide the cost in dollars ($), you may include cents too!
+  - e.g. `b/100.20` is $100.20.
 * `DURATION` is in _minutes_.
   - e.g. `du/100` is 100 minutes (or 1 hour and 40 minutes).
 * You cannot add items with the same description as an existing item in the item list.

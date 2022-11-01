@@ -2,13 +2,14 @@ package seedu.waddle.model.itinerary;
 
 import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.text.DecimalFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.waddle.commons.core.index.Index;
@@ -32,6 +33,7 @@ public class Itinerary {
     private final ItineraryDuration duration;
     private final People people;
     private final Budget budget;
+    private final StringProperty observableBudgetString;
     private final UniqueItemList unscheduledItemList;
     private final List<Day> days;
     private final Comparator<Item> priorityComparator = new Comparator<Item>() {
@@ -53,6 +55,7 @@ public class Itinerary {
         this.duration = duration;
         this.people = people;
         this.budget = budget;
+        this.observableBudgetString = new SimpleStringProperty();
         this.unscheduledItemList = new UniqueItemList();
         this.days = new ArrayList<>();
         for (int i = 0; i < duration.getValue(); i++) {
@@ -98,8 +101,10 @@ public class Itinerary {
             if (i < getDuration().getValue()) {
                 this.days.set(i, dayList.get(i));
             } else {
+                // transfer all items from extra days to unscheduled item list
                 for (Item item : dayList.get(i).deleteDay()) {
                     addItem(item);
+                    this.budget.updateSpending(-item.getCost().getValue());
                 }
             }
         }
@@ -160,6 +165,9 @@ public class Itinerary {
                 day.addItem(target);
                 throw e;
             }
+            this.budget.updateSpending(-target.getCost().getValue());
+            this.budget.updateSpending(editedItem.getCost().getValue());
+            this.observableBudgetString.set(getBudgetString(Text.INDENT_NONE));
         }
     }
 
@@ -207,6 +215,7 @@ public class Itinerary {
 
         this.unscheduledItemList.remove(itemIndex.getZeroBased());
         this.budget.updateSpending(item.getCost().getValue());
+        this.observableBudgetString.set(getBudgetString(Text.INDENT_NONE));
         return item;
     }
 
@@ -222,7 +231,22 @@ public class Itinerary {
         addItem(unplannedItem);
         sortUnscheduledItemList();
         this.budget.updateSpending(-unplannedItem.getCost().getValue());
+        this.observableBudgetString.set(getBudgetString(Text.INDENT_NONE));
         return unplannedItem;
+    }
+
+    /**
+     * Calculates the total spending and updates the budget
+     */
+    public float calculateSpending() {
+        float totalSpending = 0;
+        for (Day day : this.days) {
+            for (Item item : day.getItemList()) {
+                totalSpending += item.getCost().getValue();
+            }
+        }
+        this.budget.setSpending(totalSpending);
+        return totalSpending;
     }
 
     public String getVacantSlots() {
@@ -280,6 +304,11 @@ public class Itinerary {
             return Text.indent("Budget: $" + budgetString + ", $"
                     + leftOverString + " remaining", indents);
         }
+    }
+
+    public StringProperty getObservableBudgetString(int indents) {
+        this.observableBudgetString.set(getBudgetString(indents));
+        return this.observableBudgetString;
     }
 
     /**
@@ -345,9 +374,5 @@ public class Itinerary {
                 .append(getBudgetString(Text.INDENT_FOUR));
 
         return builder.toString();
-    }
-
-    public void setSpending(Budget budget) {
-        this.budget.setSpending(budget.getSpending());
     }
 }

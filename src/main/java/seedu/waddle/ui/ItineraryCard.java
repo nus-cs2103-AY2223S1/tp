@@ -54,7 +54,7 @@ public class ItineraryCard extends UiPart<Region> {
         time.setText(itinerary.getTimeString(Text.INDENT_NONE));
         duration.setText(itinerary.getDurationString(Text.INDENT_NONE));
         people.setText(itinerary.getPeopleString(Text.INDENT_NONE));
-        budget.setText(itinerary.getBudgetString(Text.INDENT_NONE));
+        budget.textProperty().bind(itinerary.getObservableBudgetString(Text.INDENT_NONE));
     }
 
     @Override
