@@ -30,7 +30,8 @@ import seedu.address.model.tag.Tag;
 public class Appointment {
     public static final String REASON_MESSAGE_CONSTRAINTS = "Reason should not be empty";
     public static final String DATE_MESSAGE_CONSTRAINTS = "Date should contain YYYY-MM-DD and HH:MM values";
-    public static final String TIME_PERIOD_MESSAGE_CONSTRAINTS = "Time Period should contain valid Y M or D values";
+    public static final String TIME_PERIOD_MESSAGE_CONSTRAINTS = "Time Period should contain valid Y M or D values, "
+            + "in the order of Y -> M -> D";
     public static final DateTimeFormatter DATE_FORMATTER =
             new DateTimeFormatterBuilder().appendOptional(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
                     .appendOptional(DateTimeFormatter.ofPattern("HH:mm yyyy-MM-dd")).toFormatter();
