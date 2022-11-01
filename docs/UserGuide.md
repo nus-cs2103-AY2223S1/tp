@@ -5,6 +5,13 @@ title: User Guide
 
 Everything you need to know about TruthTable.
 
+## Table of Contents
+
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
 # Introduction to TruthTable
 
 TruthTable is a **desktop application** that enables team leads to **manage their software 
@@ -12,6 +19,7 @@ engineering teams** in one application.
 
 TruthTable is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a 
 Graphical User Interface (GUI).
+
 
 If you can type fast, TruthTable can get your task management done _blazingly fast_, faster than traditional GUI 
 applications.
@@ -24,27 +32,59 @@ Managing project documents and information has always been an annoying task to d
 links and slides created by the team, you may be using task management applications to track your team's 
 progress as well. This is where TruthTable comes in. 
 
-TruthTable allows you to collate and organise all your tasks, links, and member information all in one spot.
+TruthTable allows you to **collate and organise all your tasks**, links, and member information all in one spot.
 
 ### Seeing is believing
 
 It is often difficult to visualise and communicate your team's progress to stakeholders. TruthTable solves this 
-through its ergonomic user interface. At a glance, you can see the number of tasks completed by your team, and 
-determine progress of your team. 
+through its ergonomic user interface. 
 
-TruthTable allows you to see which members are assigned to the tasks, enabling you to delegate work in a fair and 
-equitable manner. 
+At a glance, you can see the number of tasks completed by your team, and **determine the team's overall progress**. 
+
+TruthTable allows you to see which members are assigned to the tasks, enabling you to **delegate work in a fair and 
+equitable manner**. 
 
 ### Built for convenience and speed
 
 Context switching is a productivity killer. Having to switch from project management to product development usually 
-means switching from GUI-based applications to CLI code editors. Consequently, TruthTable allows you to use a CLI 
-for all your project management needs, reducing the impact of context switching.
+means switching from GUI-based applications to CLI code editors. 
+
+Hence, TruthTable allows you to use a **CLI for all your project management needs**, reducing the impact of context 
+switching.
+
+## TruthTable Application Window
+
+After opening TruthTable for the first time, you should see the following screen.
+
+![Application Window](images/ApplicationWindow.png)
+
+### Teams Section
+
+[//]: # (TODO: reference to team explanation / why at least 1 will always appear)
+This section displays the names of all teams that you have created in TruthTable.  
+
+### Current Team Section
+
+This section contains information about your current team. It displays the currently selected team, team description, 
+links, tasks, and members related to said team.
+
+### Persons Section
+
+[//]: # (TODO: reference to person explanation on what these fields mean)
+This section displays the names, phone number, email, address, and tags of all persons that you have created in 
+TruthTable.
+
+### Command Section
+
+This section contains an input box where you can enter the commands for the actions that you wish to perform. Try 
+typing `help` in the input box to see what happens!
+
+Above the input box, you will see the output of the latest command that you have entered. In the case of `help`, you 
+will see the available commands in TruthTable that you can execute.
+
 
 ---
 
-* Table of Contents
-{:toc}
 
 # Getting Started
 
@@ -57,7 +97,7 @@ for all your project management needs, reducing the impact of context switching.
 3. Copy the file to the folder you want to use as the _home folder_ for your TruthTable.
 
 4. Double-click the file to start the app. A window which looks similar to the screenshot below should appear in a few 
-   seconds. We've added some sample data for you to play around with and get familiar with the commands!.<br>
+   seconds. We've added some sample data for you to play around with and get familiar with the commands!<br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
@@ -88,6 +128,7 @@ for all your project management needs, reducing the impact of context switching.
 </div>
 
 <div markdown="span" class="alert alert-info">**For experienced command line users**
+
 You will find that the syntax is very similar to other command line interfaces like `git` and `docker`!
 </div>
 
