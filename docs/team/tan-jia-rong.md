@@ -125,4 +125,4 @@ Given below are my contributions to the project.
 
 **Contributions beyond project team:**
 * Sent 15 bug [reports](https://github.com/Tan-Jia-Rong/ped/issues) in
-  [Pupilist](https://github.com/AY2223S1-CS2103T-W09-4/tp) 
+  [Pupilist](https://github.com/AY2223S1-CS2103T-W09-4/tp)
