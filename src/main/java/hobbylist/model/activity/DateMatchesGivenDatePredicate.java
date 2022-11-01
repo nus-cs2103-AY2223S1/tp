@@ -1,12 +1,10 @@
 package hobbylist.model.activity;
 
-import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
-import hobbylist.commons.util.StringUtil;
-
 /**
- * Tests that an {@code Activity}'s {@code Date} matches any of the given date.
+ * Tests that an {@code Activity}'s {@code Date} matches the given date.
  */
 public class DateMatchesGivenDatePredicate implements Predicate<Activity> {
     private final String time;
@@ -17,10 +15,11 @@ public class DateMatchesGivenDatePredicate implements Predicate<Activity> {
 
     @Override
     public boolean test(Activity activity) {
-        if (!activity.getDate().isEmpty()) {
-            if (StringUtil.containsWordIgnoreCase(activity.getDate().toString(), time)) {
-                return true;
-            }
+        if (Objects.equals(time, "")) {
+            return false;
+        }
+        if (activity.getDate().isPresent()) {
+            return activity.getDate().get().getOriginalString().contains(time);
         }
         return false;
     }

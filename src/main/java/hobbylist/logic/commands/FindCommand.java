@@ -18,18 +18,27 @@ import hobbylist.model.activity.RatingMatchesGivenValuePredicate;
  */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all activities whose names or descriptions"
-            + "contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers "
-            + "or find all activities on a certain date/in a certain month/year.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...or yyyy-mm-dd/yyyy-mm/yyyy\n"
-            + "Example: " + COMMAND_WORD + " sleep exercise code\n"
-            + "Example: " + COMMAND_WORD + " 1974-02-02\n";
+    public static final String DATE_KEYWORD_PREFIX = "date/";
+    public static final String RATING_KEYWORD_PREFIX = "rate/";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all activities whose names or descriptions "
+            + "contain any of the given keywords (case-insensitive)"
+            + "or whose dates match the given date/month/year"
+            + "or whose ratings match the given rating.\n"
+            + "Parameters: [key/KEYWORDS]... [date/TIME] [rate/VALUE] (At least search field must exist).\n"
+            + "Example: " + COMMAND_WORD + " sleep code date/2022-10 rate/4";
+    public static final String MESSAGE_INVALID_DATE_VALUE = "Invalid time to search! \n"
+            + "Time value should be a year, a month, or a date.";
+    public static final String MESSAGE_INVALID_RATING_VALUE = "Invalid rating value to search! \n"
+            + "Rating value should be an integer value between 1 and 5 (inclusive).";
 
     private static String commandWord = "find";
 
     private final Predicate<Activity> predicate;
 
+    /**
+     * Constructor for FindCommand
+     */
     public FindCommand(NameOrDescContainsKeywordsPredicate namePredicate,
                        DateMatchesGivenDatePredicate datePredicate,
                        RatingMatchesGivenValuePredicate ratingPredicate) {

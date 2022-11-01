@@ -1,41 +1,29 @@
 package hobbylist.model.activity;
 
-import java.util.List;
 import java.util.function.Predicate;
 
-import hobbylist.commons.util.StringUtil;
-
+/**
+ * Tests that an {@code Activity}'s {@code Rating} matches the given rating value.
+ */
 public class RatingMatchesGivenValuePredicate implements Predicate<Activity> {
-    private final List<String> values;
+    private final int value;
 
-    public RatingMatchesGivenValuePredicate(List<String> values) {
-        this.values = values;
+    public RatingMatchesGivenValuePredicate(int value) {
+        this.value = value;
     }
 
     @Override
     public boolean test(Activity activity) {
-        for (int i = 0; i < values.size(); i++) {
-            if (values.get(i).split("rate/").length == 2) {
-                String[] t = values.get(i).split("rate/");
-                int index;
-                try {
-                    index = Integer.valueOf(t[1]);
-                } catch (NumberFormatException e) {
-                    return false;
-                }
-                if (activity.getRating() == index) {
-                    return true;
-                }
-            }
+        if (value == -1) {
+            return false;
         }
-
-        return false;
+        return activity.getRating() != 0 && activity.getRating() == value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof RatingMatchesGivenValuePredicate // instanceof handles nulls
-                && values.equals(((RatingMatchesGivenValuePredicate) other).values)); // state check
+                && value == ((RatingMatchesGivenValuePredicate) other).value); // state check
     }
 }
