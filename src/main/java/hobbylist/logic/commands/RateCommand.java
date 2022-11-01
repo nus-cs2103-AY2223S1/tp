@@ -113,6 +113,6 @@ public class RateCommand extends Command {
         RateCommand r = (RateCommand) other;
         return index.equals(r.index)
                 && rating == r.rating
-                && review == r.review;
+                && review.equals(r.review);
     }
 }

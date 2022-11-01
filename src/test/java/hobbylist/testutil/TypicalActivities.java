@@ -32,8 +32,8 @@ public class TypicalActivities {
             .withDescription("100 push-ups, 100 sit-ups, 100 squats and 10km run").build();
     public static final Activity ACTIVITY_F = new ActivityBuilder().withName("Fried Chicken")
             .withDescription("At some place").build();
-    public static final Activity ACTIVITY_G = new ActivityBuilder().withName("Golf")
-            .withDescription("At Marina Bay Golf Course").build();
+    public static final Activity ACTIVITY_G = new ActivityBuilder().withName("Golf").withRating(2)
+            .withDescription("At Marina Bay Golf Course").withStatus("COMPLETED").build();
 
     // Manually added
     public static final Activity ACTIVITY_H = new ActivityBuilder().withName("House of Cards")

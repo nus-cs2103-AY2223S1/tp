@@ -9,7 +9,7 @@ import hobbylist.model.activity.StatusMatchesGivenStatus;
 /**
  * Parses input arguments and creates a new FindStatusCommand object
  */
-public class FindStatusCommandParser {
+public class FindStatusCommandParser implements Parser<FindStatusCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindStatusCommand
