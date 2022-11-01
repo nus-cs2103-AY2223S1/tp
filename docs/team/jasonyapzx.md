@@ -47,6 +47,7 @@ The following are my contributions to the project:
   * Removed traces of AB3 code (`Person`, `addressbook`) in the documentation and code base. PRs: [\#35](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/35), [\#40](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/40), [\70](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/70) 
   * Wrote additional tests for existing features to increase coverage from 64.86% to 67.35% PRs: [\#86](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/86)
   * Refactoring of JavaFX CSS to allow for a responsive application if the window size of the application was changed. [\152](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/152)
+  * Created PennyWise's logo.
 
 * **Documentation**:
   * User Guide:
