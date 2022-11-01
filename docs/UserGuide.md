@@ -419,7 +419,7 @@ displays a command summary table.
 
 Format: `help`
 
-#### 4.5.3 Exiting the application : `exit`
+#### 4.5.2 Exiting the application : `exit`
 
 **Description**
 
@@ -454,8 +454,9 @@ Java version to a newer version.
 3. Launch the jar file using the `java -jar` command rather than double-clicking (reason: to ensure the jar file is 
 using the same java version that you verified above). Use double-clicking as a last resort.
 
-<div markdown="span" class="alert alert-info">:information_source:
-**Note:** If the JAR file name has spaces in it, remember to surround it with double quotes.<br/>
+<div markdown="span" class="alert alert-info">
+:information_source:**Note:**<br/>
+If the JAR file name has spaces in it, remember to surround it with double quotes.<br/>
 e.g. `java -jar "Name With Spaces.jar"`
 </div><br/>
 
