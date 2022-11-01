@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.util.StringUtil.toProperCase;
 
 /**
  * Represents a Person's name in the address book.
@@ -39,29 +40,6 @@ public class Name {
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
-    /**
-     * Returns a given name String in proper case format.
-     * @param name Input name String to be converted to proper case.
-     * @return Name String in proper case format.
-     */
-    public static String toProperCase(String name) {
-        String[] nameWords = name.split(" ");
-        StringBuffer properCaseName = new StringBuffer();
-        int count = 0;
-        for (int i = 0; i < nameWords.length; i++) {
-            String word = nameWords[i];
-            word = word.substring(0, 1).toUpperCase() + word.substring(1);
-            if (count == nameWords.length - 1) {
-                properCaseName = properCaseName.append(word);
-            } else {
-                properCaseName = properCaseName.append(word + " ");
-            }
-            count++;
-        }
-        return properCaseName.toString();
-    }
-
 
     @Override
     public String toString() {

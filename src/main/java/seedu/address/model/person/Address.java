@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.util.StringUtil.toProperCase;
 
 /**
  * Represents a Person's address in the address book.
@@ -17,7 +18,11 @@ public class Address {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
+    /* Displayed address value is stored as proper case. */
     public final String value;
+    /* Lowercase address used for duplicate detection.*/
+    public final String lowerCaseAddress;
+
 
     /**
      * Constructs an {@code Address}.
@@ -27,7 +32,8 @@ public class Address {
     public Address(String address) {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+        lowerCaseAddress = address.toLowerCase();
+        value = toProperCase(address);
     }
 
     /**
@@ -46,7 +52,7 @@ public class Address {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                && lowerCaseAddress.equals(((Address) other).lowerCaseAddress)); // state check
     }
 
     @Override

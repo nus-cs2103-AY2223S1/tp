@@ -7,14 +7,17 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a person's Appointment in the address group.
  */
 public class Appointment {
-    public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+    public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
+            .withResolverStyle(ResolverStyle.STRICT);
     public static final String NO_APPOINTMENT_SCHEDULED = "No appointment scheduled!";
-    public static final String MESSAGE_CONSTRAINTS = "Appointment dates have to be of format dd-MM-yyyy HHmm!";
+    public static final String MESSAGE_CONSTRAINTS = "Appointment dates have to be of format dd-MM-yyyy HHmm! "
+            + "Please also ensure this is a valid date!";
     public static final String MESSAGE_DATE_PAST = "Appointment dates have to be scheduled in the future!";
 
     private final LocalDateTime appointmentDate;
