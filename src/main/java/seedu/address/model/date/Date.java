@@ -13,7 +13,7 @@ import java.time.format.DateTimeParseException;
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Date implements Comparable<Date> {
-    public static final String MESSAGE_CONSTRAINTS = "Dates must be in format: DD/MM/YYYY";
+    public static final String MESSAGE_CONSTRAINTS = "Dates must be in format: DD/MM/YYYY and have an appropriate day, month and year.";
 
     //for checking if valid input date format
     private static final DateTimeFormatter checkFormatter = DateTimeFormatter
