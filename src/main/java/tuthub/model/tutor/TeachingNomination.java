@@ -9,8 +9,8 @@ import static tuthub.commons.util.AppUtil.checkArgument;
  */
 public class TeachingNomination {
 
-    public static final String MESSAGE_CONSTRAINTS = "TeachingNomination should only contain positive integer values"
-            + "including zero with no spaces in between, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Teaching Nomination should only contain positive integer values"
+            + " including zero with no spaces in between, and it should not be blank";
 
     /**
      * Covers positive integer values including 0.
