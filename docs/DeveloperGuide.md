@@ -1061,34 +1061,34 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a module
 
-1. Deleting a module while all modules are being shown
+1. Deleting a module while all modules are being shown at home page
 
-    1. Prerequisites: List all modules using the `list` command. Multiple modules in the list.
+    1. Prerequisites: User is at home page. List all modules using the `list-module` command. Module `CS1231S` exist in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First module is deleted from the list. Details of the deleted module shown in the status message. Timestamp in the status bar is updated.
+    2. Test case: `delete-module m/CS1231S`<br>
+       Expected: `CS1231S` is deleted from the list. Details of the deleted module shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
+    3. Test case: `delete-module`<br>
        Expected: No module is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where `x` is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete-module m/` <br>
        Expected: Similar to previous.
 
 1. _{ more test cases … }_
 
 ### Deleting a contact
 
-1. Deleting a contact while all contacts are being shown
+1. Deleting a contact while all contacts are being shown at home page
 
-    1. Prerequisites: List all modules using the `list` command. Multiple modules in the list.
+    1. Prerequisites: User is at home page. List all contacts using the `list-contact` command. Person `Alice` exist in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete-person n/Alice`<br>
+       Expected: `Alice` is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
+    1. Test case: `delete-person`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `delete-person n/` <br>
        Expected: Similar to previous.
 
 1. _{ more test cases … }_
