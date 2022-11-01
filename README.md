@@ -6,8 +6,7 @@ title: idENTify
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T17-4/tp/actions)
 [![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://app.codecov.io/gh/AY2223S1-CS2103T-T17-4/tp)
 
-![Ui](docs/
-images/Ui.png)
+![Ui](docs/images/Ui.png)
 
 ## Description
 **idENTify is an all in one desktop application for managing your patients and their appointments.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).

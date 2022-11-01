@@ -27,6 +27,7 @@ Added some images for `Find` and `Hide` commands.
 
 Contributions to the DG:
 
+Updated UML diagrams and descriptions for `Ui`, `Model` and `Storage`.
 Added UML diagrams and description for `book` command.
 
 Contributions to team-based tasks:
