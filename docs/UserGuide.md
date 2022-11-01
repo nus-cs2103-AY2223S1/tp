@@ -40,7 +40,7 @@ If you’re working with a lot of people, you’ll eventually have too much info
 Rapportbook is designed specifically to improve your workflow, and helps you manage all this information and “understand” your clients better. It can be used to offload information, categorize them more meaningfully, and set reminders so you don’t ever miss an appointment.
 
 ### Glossary
-In the user guide, you might come across some terms you might not understand. The following table hopes to provide clarification of the terms commonly used in Rapportbook.
+In the user guide, you might come across some terms you might not understand. The following table provides clarification of the terms commonly used in Rapportbook.
 
 | Term                 | Description                                                                                                                                                                                                                                                   |
 |----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -63,7 +63,7 @@ In the user guide, you might come across some terms you might not understand. Th
 
 3. Copy the file to the folder you want to use as the _home folder_ for your copy of Rapportbook.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. You should see a GUI similar to the screenshot below appear in a few seconds. Since it is your first time launching the app, Rapportbook will automatically be populated with sample data for you to test its features out.<br>
    ![Ui](images/Ui.png)
 
 5. Refer to the [Features](#features) below for details of each command.
@@ -127,17 +127,17 @@ Deletes a client within Rapportbook.
 
 Format: `delete INDEX`
 
-Examples:
+Example:
 
 * `delete 1`
 
-### Viewing the information of a client : `show`
+### Viewing of client information : `show`
 
 Displays information of a client at the specified `INDEX` in a separate panel. This feature allows faster modification to the client information as other commands such as [edit](#editing-of-client-information--edit), [tag](#tagging-clients--tag) and [reminder](#creating-reminders--reminders) do not have to specify an INDEX.
 
 Format: `show INDEX​`
 
-Examples:
+Example:
 
 * `show 1`
 
@@ -194,7 +194,7 @@ Format: `tag [INDEX] TAG [TAG2] [TAG3] … [TAGN]`
 You can assign multiple tags to a client at once by separating the different tag names with spaces after the client index.
 </div>
 
-Example:
+Examples:
 
 * `tag 5 potential` Assigns the `potential` tag to the client entry at index 5.
 * `tag 5 potential highPriority` Assigns the `potential` and `highPriority` tags to the client entry at index 5.
@@ -205,9 +205,9 @@ View all available tags.
 
 Format: `tag list`
 
-### Removing tags from clients : `tag remove`
+### Removing tags from a client : `tag remove`
 
-Removes a tag from a client entry if required.
+Removes tag(s) from a client entry if required.
 
 Format: `tag remove [INDEX] TAG [TAG2] [TAG3] … [TAGN]`
 
@@ -215,14 +215,14 @@ Format: `tag remove [INDEX] TAG [TAG2] [TAG3] … [TAGN]`
 Like assignment of tags, you can also remove multiple tags from a client at once by separating the different tag names with spaces after the client index.
 </div>
 
-Example:
+Examples:
 
 * `tag remove 5 potential` Removes the `potential` tag from the client entry at index 5.
 * `tag remove 5 potential highPriority` Removes the `potential` and `highPriority` tags from the client entry at index 5.
 
-### Deleting a tag : `tag delete`
+### Deleting tags : `tag delete`
 
-Deletes a tag from the address book.
+Deletes tag(s) from the address book.
 
 Format: `tag delete TAG [TAG2] [TAG3] … [TAGN]`
 
@@ -309,14 +309,20 @@ Example:
 
 * `reminder delete 3` deletes a reminder at index 3 of the reminder list on display.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Clear reminders only for a specific client by using `show INDEX` then `reminder clear`.
+</div>
+
 ### Clearing reminders : `reminder clear`
 
 Clears all reminders from the displayed reminder list.
 
 Format: `reminder clear`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Clear reminders only for a specific client by using `show INDEX` then `reminder clear`.
+<div markdown="span" class="alert alert-warning">:exclamation:
+Do take note that expired reminders will be marked as red and will not be automatically deleted
+You will have to delete them manually.
+<img src="images/expiredReminder.png" />
 </div>
 
 ### Creating a message template : `message create`
@@ -340,7 +346,9 @@ Lists your message templates.
 
 Format: `message list`
 
-### Generating messages : `message generate`
+![Listing available Messages](images/messageList.png)
+
+### Generating a message from template : `message generate`
 
 Generates a message using the message template and the person's name.
 
@@ -364,6 +372,8 @@ Format: `message delete INDEX`
 Example:
 
 - `message delete 1`
+
+![Deleting Message](images/messageDelete.png)
 
 ### Return home : `home`
 
