@@ -5,7 +5,7 @@ title: User Guide
 
 ## Welcome to TaskBook!
 
-In this user guide, you will find instructions on how to install TaskBook and use its many feature to manage your tasks.
+In this user guide, you will find instructions on how to install TaskBook and use its many features to manage your tasks.
 
 Choose a topic from the table of contents below to find out how to manage your apps using Task Book!
 ## Table of Contents
@@ -24,7 +24,7 @@ Choose a topic from the table of contents below to find out how to manage your a
 
 TaskBook is a **desktop app for managing contacts and tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TaskBook can get your contact and task management tasks done faster than traditional GUI apps.
 
-TaskBook helps by NUS Students to manage all their tasks, from project-related and module-related tasks, to even daily personal tasks!
+TaskBook helps NUS students to manage all their tasks, from project-related and module-related tasks, to even daily personal tasks!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -91,6 +91,7 @@ These are the components of TaskBook, arranged according to their locations as s
 </figcaption>
 </figure>
 
+{:start="5"}
 5. Type the command in the command box and press Enter to execute it.<br>
    Some example commands you can try:
 
@@ -108,7 +109,7 @@ These are the components of TaskBook, arranged according to their locations as s
 
     * `bye` : Exits the app.
 
-7. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -127,6 +128,8 @@ The examples in this guide are formatted with the following conventions:
 **:information_source: Notes about the command format:**<br>
 
 * Commands, parameters and arguments are case-sensitive, unless otherwise specified.
+
+* Non-ascii characters are removed from user input.
 
 * Flags consisting of a character and `/` specify the type of parameter to be supplied.
   e.g. in `n/NAME`, `n/` is the flag for the `NAME` parameter.
@@ -153,25 +156,6 @@ The examples in this guide are formatted with the following conventions:
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 </div>
-
-### Points to Note
-
-#### NAME Parameter
-
-Where the NAME parameter is required (e.g. `n/NAME`), specify the **exact name**
-- in full
-- in a case-sensitive format
-
-This prevents ambiguity in naming so that you can specify the exact contact where necessary/
-
-#### Accepted Date Formats
-
-The following date formats are accepted:
-
-* yyyy-MM-dd (2022-10-31)
-* MMM dd yyyy (Oct 31 2022)
-* MM dd yyyy (10 31 2022)
-* dd MMM yyyy (31 Oct 2022)
 
 ### Viewing help : `help`
 
@@ -205,7 +189,7 @@ Adds a contact to your task book.
 
 Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`
 
-Note: NAME is case-sensitive, as such `John Doe` will be treated as a different
+* For more information on the `NAME` parameter, see [NAME Parameter](#name-parameter).
 
 Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -244,7 +228,7 @@ Adds a task of type deadline into the task list.
 * Adds a deadline assigned by (`m/`) or assigned to (`o/`) a contact with a description and a deadline date. Optional to include tags.
 * Input "Myself" or omit the `m/` and `o/` flags to assign yourself the deadline.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
-* For more information on `DATE` formats, scroll down to "Accepted Date Formats"
+* For more information on `DATE` formats, see [Accepted Date Formats](#accepted-date-formats).
 
 Examples:
 * `task deadline m/John d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by John to you.
@@ -264,7 +248,7 @@ Adds a task of type event into your task list.
 
 * Adds an event assigned by (`m/`) or assigned to (`o/`) a contact with a description and an event date. Optional to include tags.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
-* For more information on `DATE` formats, scroll down to "Accepted Date Formats"
+* For more information on `DATE` formats, see [Accepted Date Formats](#accepted-date-formats).
 
 Examples:
 * `task event m/John d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by John to you.
@@ -311,6 +295,7 @@ Format: `task edit i/INDEX <m/NAME o/NAME d/DESCRIPTION t/DATE #/TAG…>`
     * A task can be **re-assigned by** "Person X" by providing parameter `m/Person X`.
     * If neither `m/` or `o/` is specified, the current **assignor** or **assignee** will not be changed.
 * Dates `t/` can only be edited if the task is a **deadline** or **event**.
+* For more information on `DATE` formats, see [Accepted Date Formats](#accepted-date-formats).
 
 <div markdown="block" class="alert alert-warning">
 
@@ -337,7 +322,7 @@ Format: `contact delete i/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 * Deletion of contact is blocked if the contact has tasks associated to it.
 
-Examples:
+Example:
 * `contact list` followed by `contact delete i/2` deletes the 2nd contact in your contact list.
 
 #### Deleting a task : `task delete`
@@ -350,7 +335,7 @@ Format: `task delete i/INDEX`
 * The index refers to the index number shown in your displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Example:
 * `task list` followed by `task delete i/2` deletes the 2nd task in your task list.
 
 ### Finding
@@ -363,7 +348,7 @@ Format: `contact find q/QUERY`
 
 * QUERY is not case-sensitive.
 
-Examples:
+Example:
 * `contact find q/ea` will change your displayed contact list to show a contact list where all contacts will have "ea" in their name.
 
 #### Finding tasks : `task find`
@@ -404,7 +389,7 @@ SORT parameters:
 * p: Numerically sort contact phone numbers in ascending order.
 * rp: Numerically sort contact phone numbers in descending order.
 
-Examples:
+Example:
 * `contact sort s/a` will change the displayed contact list to show a contact list where names are sorted by alphabetical order.
 
 #### Sorting tasks : `task sort`
@@ -420,7 +405,7 @@ SORT parameters:
 * cd: Chronologically sort tasks by their associated dates in ascending order. Tasks without dates are at the end of the list, in no particular order.
 * rcd: Chronologically sort tasks by their associated dates in descending order. Tasks without dates are at the end of the list, in no particular order.
 
-Examples:
+Example:
 * `task sort s/a` will change the displayed task list to show a task list sorted by description alphabetical order
 
 ### Marking a task : `task mark`
@@ -433,7 +418,7 @@ Format: `task mark i/INDEX`
 * The index refers to the index number shown in your displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Example:
 * `task list` followed by `task mark i/2` marks the 2nd task in your task list.
 
 ### Unmarking a task : `task unmark`
@@ -446,27 +431,28 @@ Format: `task unmark i/INDEX`
 * The index refers to the index number shown in your displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Example:
 * `task list` followed by `task unmark i/2` marks the 2nd task in your task list.
 
 ### Undo Command : `undo`
 
-Undoes the previous command and reverts your TaskBook to the previous state. A _minimum_ of 15 previous states are guaranteed to be kept in the history, if there are that many commands executed.
+Undoes the previous command and reverts your TaskBook to the previous state.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about Undo:**<br>
 
-* Commands that do not cause a change in state cannot be undone.
+* Up to 15 commands can be undone.
+* Commands can only be undone if there is a change in contact or task state.
 * Undo does not reset the view changes caused by filter or sort. See [contact list](#listing-all-contacts--contact-list) and [task list](#listing-all-tasks--task-list) instead.
 
 </div>
 
 Format: `undo`
 
-Examples:
-* `task todo m/Bob d/Add undo feature` - some command that causes a change in state
-* `undo` will undo the previous command
+Example:
+1. `task todo m/Bob d/Add undo feature` - some command that causes a change in state
+2. `undo` will undo the previous command
 
 ### Redo Command : `redo`
 
@@ -474,10 +460,10 @@ Redoes the previous undo action and reverts your TaskBook to a previously undone
 
 Format: `redo`
 
-Examples:
-* `task delete i/1` - some command that causes a change in state
-* `undo` will undo the previous command
-* `redo` will revert the state such that the task is deleted
+Example:
+1. `task delete i/1` - some command that causes a change in state
+2. `undo` will undo the previous command
+3. `redo` will revert the state such that the task is deleted
 
 ### Exiting the program : `bye`
 
@@ -521,13 +507,32 @@ TaskBook data is saved as a JSON file `[JAR file location]/data/taskbook.json`. 
 If your changes to the data file makes its format invalid, TaskBook will discard all data and start with an empty data file at the next run.
 </div>
 
+## Miscellaneous Notes
+
+### Accepted Date Formats
+
+Any of these date formats are accepted:
+
+* yyyy-MM-dd (2022-10-31)
+* MMM dd yyyy (Oct 31 2022)
+* MM dd yyyy (10 31 2022)
+* dd MMM yyyy (31 Oct 2022)
+
+### NAME Parameter
+
+Where the NAME parameter is required (e.g. `n/NAME`), specify the **exact name**
+* in full
+* in a case-sensitive format
+
+This prevents ambiguity in naming so that you can specify the exact contact where necessary.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 **Q**: How do I save my progress?<br>
 **A**: Your progress is automatically saved after each command.
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------

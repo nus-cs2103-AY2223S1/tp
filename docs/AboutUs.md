@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/seetohjinwei.md)]
 
 * Role: Developer
-* Responsibilities: Integration, Logic, Commons
+* Responsibilities: Integration, Logic, Commons, DevOps
 
 ### Humphrey
 
