@@ -56,6 +56,11 @@ DevEnable is a **desktop app for managing developer projects, optimized for use 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Trailing extraneous input for commands that take in parameters will be considered a part of the last valid 
+  parameter, if any.
+  e.g. if the command specifies `project -e n/New Project p/2 x/this is extra`, `2 x/this is extra` will be taken as 
+  the argument for `p/`.
+
 </div>
 
 ## General Commands
