@@ -53,6 +53,9 @@ public class ResultDisplay extends UiPart<Region> {
         resultDisplay.setText(feedbackToUser);
     }
 
+    //@@author emptygx-reused
+    // Reused from https://github.com/AY2122S1-CS2103T-W08-4/tp/pull/188/files#
+    // with minor modifications
     public void setChartToUser(List<ObservableList<PieChart.Data>> datas, List<String> titles,
                                String feedbackToUser) {
         ScrollPane scroll = new ScrollPane();
@@ -96,4 +99,5 @@ public class ResultDisplay extends UiPart<Region> {
         resultDisplay.clear();
         placeHolder.getChildren().add(resultDisplay);
     }
+    //@@author
 }

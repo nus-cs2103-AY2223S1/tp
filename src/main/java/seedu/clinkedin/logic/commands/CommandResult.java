@@ -83,6 +83,9 @@ public class CommandResult {
                 new HashMap<>());
     }
 
+    //@@author emptygx-reused
+    // Reused from https://github.com/AY2122S1-CS2103T-W08-4/tp/pull/188/files#
+    // with minor modifications
     public List<String> getStatsTitles() {
         return new ArrayList<>(stats.keySet());
     }
@@ -104,6 +107,7 @@ public class CommandResult {
 
         return datas;
     }
+    //@@author
 
     public String getFeedbackToUser() {
         return feedbackToUser;

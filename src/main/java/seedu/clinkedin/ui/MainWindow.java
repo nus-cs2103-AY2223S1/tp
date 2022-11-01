@@ -216,6 +216,9 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
 
+            //@@author emptygx-reused
+            // Reused from https://github.com/AY2122S1-CS2103T-W08-4/tp/pull/188/files#
+            // with minor modifications
             resultDisplay.clearCharts();
 
             if (commandResult.isShowFeedback()) {
@@ -224,6 +227,7 @@ public class MainWindow extends UiPart<Stage> {
                 resultDisplay.setChartToUser(commandResult.getPieChartStats(), commandResult.getStatsTitles(),
                         commandResult.getFeedbackToUser());
             }
+            //@@author
 
             personCountDisplay.setPersonCountMessage(logic.getFilteredPersonList(), logic.getAddressBook());
 
