@@ -38,5 +38,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_PET_SPECIES = new Prefix("p_s/");
     public static final Prefix PREFIX_PET_VACCINATION_STATUS = new Prefix("p_v/");
     public static final Prefix PREFIX_PET_WEIGHT = new Prefix("p_w/");
-    public static final Prefix PREFIX_PET_PRICE = new Prefix("p_p");
+    public static final Prefix PREFIX_PET_PRICE = new Prefix("p_p/");
 }
