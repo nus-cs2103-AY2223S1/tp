@@ -35,7 +35,4 @@ deactivate CommandResult
 [<-- StatsCommand : c
 deactivate StatsCommand
 
-
-
-
 @enduml
