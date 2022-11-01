@@ -8,12 +8,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLANNEDMOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREVIOUSMOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVEMOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.ModuleCommand.EditModuleDescriptor;
+import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.PlannedModule;
+import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -71,6 +77,34 @@ public class PersonUtil {
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code EditModuleDescriptor}'s details.
+     */
+    public static String getEditModuleDescriptorDetails(EditModuleDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        Set<CurrentModule> currModules = descriptor.getCurrModules();
+        Set<PreviousModule> prevModules = descriptor.getPrevModules();
+        Set<PlannedModule> planModules = descriptor.getPlanModules();
+        Set<Module> modsToRemove = descriptor.getModulesToRemove();
+
+        if (!currModules.isEmpty()) {
+            currModules.forEach(s -> sb.append(PREFIX_CURRENTMOD).append(s.moduleName).append(" "));
+        }
+
+        if (!prevModules.isEmpty()) {
+            prevModules.forEach(s -> sb.append(PREFIX_PREVIOUSMOD).append(s.moduleName).append(" "));
+        }
+
+        if (!planModules.isEmpty()) {
+            planModules.forEach(s -> sb.append(PREFIX_PLANNEDMOD).append(s.moduleName).append(" "));
+        }
+
+        if (!modsToRemove.isEmpty()) {
+            modsToRemove.forEach(s -> sb.append(PREFIX_REMOVEMOD).append(s.moduleName).append(" "));
         }
         return sb.toString();
     }

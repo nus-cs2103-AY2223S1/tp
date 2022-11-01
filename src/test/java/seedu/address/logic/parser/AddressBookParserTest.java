@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_3;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_5;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_7;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -28,6 +32,13 @@ import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ModuleCommand;
+import seedu.address.logic.commands.ModuleCommand.EditModuleDescriptor;
+import seedu.address.logic.commands.ModuleIndexCommand;
+import seedu.address.logic.commands.ModulesLeftCommand;
+import seedu.address.logic.commands.NextSemCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.CurrModContainsKeywordsPredicate;
 import seedu.address.model.module.PlanModContainsKeywordsPredicate;
@@ -35,6 +46,7 @@ import seedu.address.model.module.PrevModContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.TagsContainsKeywordsPredicate;
+import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -99,6 +111,23 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_module() throws Exception {
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withCurrentModules(VALID_MODULE_1)
+                .withPreviousModules(VALID_MODULE_3).withPreviousModules(VALID_MODULE_5)
+                .withModToRemove(VALID_MODULE_7).build();
+        ModuleCommand command = (ModuleCommand) parser.parseCommand(ModuleCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditModuleDescriptorDetails(descriptor));
+        assertEquals(new ModuleIndexCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_modsLeft() throws Exception {
+        ModulesLeftCommand command = (ModulesLeftCommand) parser.parseCommand(
+                ModulesLeftCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new ModulesLeftCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
                 -> parser.parseCommand(""));
@@ -139,5 +168,23 @@ public class AddressBookParserTest {
         FilterPlanModCommand command = (FilterPlanModCommand) parser.parseCommand(
                 FilterPlanModCommand.COMMAND_WORD + " " + keywords);
         assertEquals(new FilterPlanModCommand(new PlanModContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_nextSem() throws Exception {
+        assertTrue(parser.parseCommand(NextSemCommand.COMMAND_WORD) instanceof NextSemCommand);
+        assertTrue(parser.parseCommand(NextSemCommand.COMMAND_WORD + " 3") instanceof NextSemCommand);
+    }
+
+    @Test
+    public void parseCommand_undo() throws Exception {
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + " 3") instanceof UndoCommand);
+    }
+
+    @Test
+    public void parseCommand_redo() throws Exception {
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + " 3") instanceof RedoCommand);
     }
 }
