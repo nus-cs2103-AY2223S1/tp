@@ -83,13 +83,22 @@ public class Student extends Person {
         }
         return builder.toString();
     }
-
+    public ModuleCode getHighestModuleCode() {
+        return moduleCodes.stream().max(ModuleCode::compareTo).get();
+    }
     @Override
     public int compareModuleCode(Person person) {
+        ModuleCode highest = getHighestModuleCode();
         if (person instanceof Student) {
-            return compareName(person);
+            return highest.compareTo(((Student) person).getHighestModuleCode());
         }
-        return -1;
+        if (person instanceof Professor) {
+            return highest.compareTo(((Professor) person).getModuleCode());
+        }
+        if (person instanceof TeachingAssistant) {
+            return highest.compareTo(((TeachingAssistant) person).getModuleCode());
+        }
+        return this.compareModuleCode(person);
     }
 
     @Override
