@@ -88,6 +88,7 @@ public class CommandTestUtil {
 
     public static final String VALID_DEADLINE_DATE = "2022-09-09";
     public static final String VALID_ASSIGNMENT_STUDENTS = "Adam, Ben, Charles";
+    public static final List<String> VALID_ASSIGNMENT_STUDENTS_LIST = Arrays.asList("Adam", "Ben", "Charles");
     public static final String VALID_ASSIGNMENT_STUDENT_ADAM = "Adam";
 
     public static final String INVALID_TASK_TITLE = "";
