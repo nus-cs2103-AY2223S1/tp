@@ -269,10 +269,14 @@ Unschedules an item in a scheduled item list.
 Format: `unplan INDEX`
 
 * Unschedules the item at the specified `INDEX`. The index refers to the index number displayed in the list of scheduled items in the list of days.
+* You must provide both an existing day number and item number for `INDEX` in this format `(Day number).(item number)`.
+* Note that day number and item number must both be more than or equals to 0.
 
 Examples:
 * `unplan 2.1` would unschedule the 1st item in the Day 2 item list.
 * `unplan 4.5` would unschedule the 5th item in the Day 4 item list.
+
+
 
 ### Viewing vacant timeslots : `free`
 
