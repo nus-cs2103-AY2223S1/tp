@@ -8,8 +8,8 @@ import seedu.address.model.Model;
 /**
  * Filters the tasks into uncompleted at the top of task list and completed at the bottom.
  */
-public class FilterTaskCommand extends Command {
-    public static final String COMMAND_WORD = "filtertask";
+public class SortCompleteCommand extends Command {
+    public static final String COMMAND_WORD = "sortcomplete";
 
     public static final String MESSAGE_FILTER_TASK_SUCCESS =
             "Task has been filtered to display uncompleted tasks at the top!";
@@ -17,7 +17,7 @@ public class FilterTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.filterTask();
+        model.sortComplete();
         return new CommandResult(MESSAGE_FILTER_TASK_SUCCESS);
     }
 }

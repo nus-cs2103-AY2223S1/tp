@@ -457,7 +457,7 @@ Examples:
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Sorting the Task list :** `sorttask`
+### **Sorting the Task list by deadline :** `sorttask`
 
 Sorts all Tasks in displayed Task list by deadline. Earlier deadlines will be placed first.
 
@@ -471,11 +471,11 @@ Format: `sorttask`
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Filtering the Task list :** `filtertask`
+### **Sorting the Task list by whether its complete :** `sortcomplete`
 
 Show Tasks in Task List that are not done at the top of the Task list and the rest at bottom.
 
-Format: `filtertask`
+Format: `sortcomplete`
 
 [Back to top](#table-of-contents)
 
@@ -591,16 +591,16 @@ This segment contains summary tables of all the commands you can use in HR Pro M
 
 ### **Task Commands Summary**
 
-| Action           | Format, Examples                                                                                                              |
-|------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| **Add Task**     | `addtask tdesc/TASK_DESCRIPTION td/TASK_DEADLINE` <br> e.g., `addtask tdesc/Edit user guide td/2022-10-28`                    |
-| **Delete Task**  | `deltask INDEX` <br> e.g., `deltask 1`                                                                                        |
-| **Edit Task**    | `edittask INDEX [tdesc/TASK_DESCRIPTION] [td/TASK_DEADLINE]` <br> e.g., `edittask 1 tdesc/Edit Developer guide td/2022-10-25` |
-| **Find Tasks**   | `findtask KEYWORDS`<br> e.g., `findtask GAME Try`                                                                             |
-| **Sort Tasks**   | `sorttask`                                                                                                                    |
-| **Filter Tasks** | `filtertask`                                                                                                                  |
-| **Mark Tasks**   | `marktask INDEX` <br> e.g., `marktask 1`                                                                                      |
-| **Unmark Tasks** | `unmarktask INDEX`<br> e.g., `unmarktask 1`                                                                                   |
+| Action                         | Format, Examples                                                                                                              |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| **Add Task**                   | `addtask tdesc/TASK_DESCRIPTION td/TASK_DEADLINE` <br> e.g., `addtask tdesc/Edit user guide td/2022-10-28`                    |
+| **Delete Task**                | `deltask INDEX` <br> e.g., `deltask 1`                                                                                        |
+| **Edit Task**                  | `edittask INDEX [tdesc/TASK_DESCRIPTION] [td/TASK_DEADLINE]` <br> e.g., `edittask 1 tdesc/Edit Developer guide td/2022-10-25` |
+| **Find Tasks**                 | `findtask KEYWORDS`<br> e.g., `findtask GAME Try`                                                                             |
+| **Sort Tasks by deadline**     | `sorttask`                                                                                                                    |
+| **Sort Tasks by completeness** | `sortcomplete`                                                                                                                |
+| **Mark Tasks**                 | `marktask INDEX` <br> e.g., `marktask 1`                                                                                      |
+| **Unmark Tasks**               | `unmarktask INDEX`<br> e.g., `unmarktask 1`                                                                                   |
 
 
 ### **General Commands Summary**
