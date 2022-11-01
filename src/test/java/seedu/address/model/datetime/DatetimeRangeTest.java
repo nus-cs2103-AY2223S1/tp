@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 public class DatetimeRangeTest {
 
-    DatetimeRange datetimeRange = DatetimeRange.fromFormattedString("2023-02-02","15:00", "17:00");
-    
+    private DatetimeRange datetimeRange = DatetimeRange.fromFormattedString("2023-02-02", "15:00", "17:00");
+
     @Test
     public void getValuesDatetimeRange_success() {
         assertEquals("2023-02-02 15:00", datetimeRange.getStartDatetimeFormatted());
@@ -16,7 +16,7 @@ public class DatetimeRangeTest {
     }
 
     @Test
-    public void toString_DatetimeRange_success() {
+    public void toStringDatetimeRange_success() {
         assertEquals("2023 Feb 02, 15:00 to 17:00", datetimeRange.toString());
     }
 }

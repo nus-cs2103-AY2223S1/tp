@@ -1,10 +1,10 @@
 package seedu.address.model.datetime;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 public class DatetimeTest {
 
@@ -31,7 +31,7 @@ public class DatetimeTest {
     @Test
     public void datetimeFormatted_success() {
         Datetime datetime = Datetime.fromFormattedString("2023-02-02 15:00");
-        
+
         assertEquals("2023-02-02 15:00", datetime.toFormatted());
     }
 }
