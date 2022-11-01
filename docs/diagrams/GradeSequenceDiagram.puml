@@ -1,0 +1,97 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FridayParser" as FridayParser LOGIC_COLOR
+participant ":GradeCommandParser" as GradeCommandParser LOGIC_COLOR
+participant "g:GradeCommand" as GradeCommand LOGIC_COLOR
+participant "gL:GradesList" as GradesList LOGIC_COLOR
+participant "ra1:Grade" as Grade LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("grade 1 ra1/90")
+activate LogicManager
+
+LogicManager -> FridayParser : parseCommand("grade 1 ra1/90")
+activate FridayParser
+
+create GradeCommandParser
+FridayParser -> GradeCommandParser
+activate GradeCommandParser
+
+GradeCommandParser --> FridayParser
+deactivate GradeCommandParser
+
+FridayParser -> GradeCommandParser : parse("1 ra1/90")
+activate GradeCommandParser
+
+create GradeCommand
+GradeCommandParser -> GradeCommand
+activate GradeCommand
+
+GradeCommand --> GradeCommandParser : g
+deactivate GradeCommand
+
+GradeCommandParser --> FridayParser : g
+deactivate GradeCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+GradeCommandParser -[hidden]-> FridayParser
+destroy GradeCommandParser
+
+FridayParser --> LogicManager : g
+deactivate FridayParser
+
+LogicManager -> GradeCommand : execute()
+activate GradeCommand
+
+GradeCommand -> GradeCommand : createEditedGradesList(1, g)
+activate GradeCommand
+
+create GradesList
+GradeCommand -> GradesList : GradesList()
+activate GradesList
+
+GradeCommand -> GradesList : editGrade
+activate GradesList
+
+create Grade
+GradesList -> Grade : Grade(ra1, 90)
+activate Grade
+
+Grade --> GradesList
+deactivate Grade
+
+GradesList --> GradeCommand
+deactivate GradesList
+
+GradeCommand --> GradeCommand
+deactivate GradeCommand
+
+GradesList --> GradeCommand
+deactivate GradesList
+
+GradeCommand -> Model : setStudent(1)
+activate Model
+
+Model --> GradeCommand
+deactivate Model
+
+create CommandResult
+GradeCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GradeCommand
+deactivate CommandResult
+
+GradeCommand --> LogicManager : result
+deactivate GradeCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
