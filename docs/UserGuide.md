@@ -134,12 +134,18 @@ Examples:
 Finds all members in the current team by name or by email and displays them in the member list.
 
 If multiple words are provided, separated by spaces, e.g. `find member -n Alex Beatrice`, members with names containing
-**either** the words "Alex" or "Beatrice" will be returned.
+**either** the words "Alex" or "Beatrice" will be returned. This is the same for emails.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The search is **not** case sensitive.
+:information_source: **Note:** The search is **not** case-sensitive.
 In other words, `find member -n alex` and `find member -n Alex` will return the same results.
 </div>
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** You can only find members using **either** emails or names. This means that you 
+should not use both `-n` and `-e` in the `find member` command. In essence, they are mutually exclusive. 
+</div>
+
 
 Format:
 * `find member [-n MEMBER_NAME] [-e MEMBER_EMAIL]`
