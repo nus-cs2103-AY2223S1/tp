@@ -40,6 +40,14 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
+                   <Button fx:id="btnHide" graphicTextGap="0.0" mnemonicParsing="false">
+                       <graphic>
+                           <ImageView fx:id="imageHide" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                               <image>
+                                   <Image url="@../images/open_eye.png" />
+                               </image>
+                           </ImageView>
+                       </graphic></Button>
                </children>
             </HBox>
 
@@ -57,7 +65,7 @@
 
 
           <SplitPane>
-            <VBox fx:id="personList" minWidth="340" prefWidth="340" prefHeight="600" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <VBox fx:id="personList" prefWidth="340" prefHeight="600" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                 <HBox alignment="CENTER_LEFT" spacing="5" styleClass="pane-with-border">
                     <Label fx:id="clientText" styleClass="header_label" text="Clients">
                         <minWidth>
@@ -88,7 +96,7 @@
               <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
 
-              <VBox fx:id="portfolioList" minWidth="340" prefWidth="340" prefHeight="600" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+              <VBox fx:id="portfolioList" prefWidth="340" prefHeight="600" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                   <HBox alignment="CENTER_LEFT" spacing="5" styleClass="pane-with-border">
                       <Label fx:id="portfolioText" styleClass="header_label" text="Portfolio">
                           <minWidth>

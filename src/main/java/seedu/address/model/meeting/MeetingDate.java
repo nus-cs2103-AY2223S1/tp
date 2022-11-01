@@ -3,17 +3,20 @@ package seedu.address.model.meeting;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.Locale;
 
 
 /**
- * Represents a Meeting in the FinBook.
+ * Represents a Meeting Date in the FinBook.
  * Guarantees: immutable; name is valid as declared in {@link #isValidMeetingDate(String)}
  */
 public class MeetingDate {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be in the form of dd MMM yyyy";
+    public static final String MESSAGE_CONSTRAINTS = "Date should be in the form of dd MMM yyyy [HH:mm]. "
+            + "Meeting time is optional.";
 
     public final String value;
 
@@ -36,9 +39,17 @@ public class MeetingDate {
      */
     public static boolean isValidMeetingDate(String test) {
         if (test != null && !test.isEmpty()) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.ENGLISH);
+            DateTimeFormatter formatter;
             try {
-                LocalDate.parse(test, formatter);
+                if (test.contains(":")) {
+                    formatter = DateTimeFormatter.ofPattern("d MMM uuuu HH:mm", Locale.ENGLISH)
+                            .withResolverStyle(ResolverStyle.STRICT);
+                    LocalDateTime.parse(test, formatter);
+                } else {
+                    formatter = DateTimeFormatter.ofPattern("d MMM uuuu", Locale.ENGLISH)
+                            .withResolverStyle(ResolverStyle.STRICT);;
+                    LocalDate.parse(test, formatter);
+                }
             } catch (Exception ex) {
                 return false;
             }
@@ -49,8 +60,8 @@ public class MeetingDate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MeetingDate // instanceof handles nulls
-                && (value != null && value.equals(((MeetingDate) other).value))); // state check
+            || (other instanceof MeetingDate // instanceof handles nulls
+            && (value != null && value.equals(((MeetingDate) other).value))); // state check
     }
 
     @Override

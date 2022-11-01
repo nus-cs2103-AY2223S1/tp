@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -30,18 +31,20 @@ public class AddCommand extends Command {
         + PREFIX_EMAIL + "EMAIL "
         + PREFIX_ADDRESS + "ADDRESS "
         + PREFIX_INCOME + "INCOME "
-        + PREFIX_MEETING_DATE + "MEETINGDATE "
+        + "[" + PREFIX_MEETING_DATE + "MEETINGDATE] "
+        + "[" + PREFIX_MEETING_LOCATION + "MEETINGLOCATION] "
         + "[" + PREFIX_TAG + "TAG]..."
-        + PREFIX_RISK + "RISK "
-        + PREFIX_PLAN + "PLAN "
-        + PREFIX_NOTE + "NOTE \n"
+        + "[" + PREFIX_RISK + "RISK] "
+        + "[" + PREFIX_PLAN + "PLAN] "
+        + "[" + PREFIX_NOTE + "NOTE] \n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_NAME + "John Doe "
         + PREFIX_PHONE + "98765432 "
         + PREFIX_EMAIL + "johnd@example.com "
         + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
         + PREFIX_INCOME + "$1000 "
-        + PREFIX_MEETING_DATE + "20 Nov 2022 "
+        + PREFIX_MEETING_DATE + "20 Nov 2022 16:30 "
+        + PREFIX_MEETING_LOCATION + "13 Computing Drive "
         + PREFIX_TAG + "VIPClient "
         + PREFIX_RISK + "High "
         + PREFIX_PLAN + "Prudential Retirement Plan "
@@ -69,7 +72,7 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), -1);
     }
 
     @Override
@@ -77,5 +80,10 @@ public class AddCommand extends Command {
         return other == this // short circuit if same object
             || (other instanceof AddCommand // instanceof handles nulls
             && toAdd.equals(((AddCommand) other).toAdd));
+    }
+
+    @Override
+    public String toString() {
+        return toAdd.toString();
     }
 }

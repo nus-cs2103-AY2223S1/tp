@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.PasswordCommand.MESSAGE_SET_PASSWORD_SUCCESS;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +35,29 @@ public class PasswordCommandTest {
         PasswordCommand passwordCommand = new PasswordCommand("foobar");
         passwordCommand.execute(expectedModel);
         assertTrue(expectedModel.isPasswordCorrect("foobar"));
+    }
+
+    @Test
+    public void execute_setPasswordPasswordWeak_success() throws CommandException {
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        PasswordCommand passwordCommand = new PasswordCommand("123456");
+        CommandResult commandResult = passwordCommand.execute(expectedModel);
+        assertEquals(commandResult.getFeedbackToUser(), String.format(MESSAGE_SET_PASSWORD_SUCCESS,
+                "Password strength: Weak\n"
+                        + "Warning: This is a top-10 common password.\n"
+                        + "Suggestions:\n"
+                        + "- Add another word or two. Uncommon words are better."));
+        assertTrue(expectedModel.isPasswordCorrect("123456"));
+    }
+
+    @Test
+    public void execute_setPasswordPasswordVeryStrong_success() throws CommandException {
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        PasswordCommand passwordCommand = new PasswordCommand("5!c)|w}Rk<fU;GCMZ_vr");
+        CommandResult commandResult = passwordCommand.execute(expectedModel);
+        assertEquals(commandResult.getFeedbackToUser(), String.format(MESSAGE_SET_PASSWORD_SUCCESS,
+                "Password strength: Very strong"));
+        assertTrue(expectedModel.isPasswordCorrect("5!c)|w}Rk<fU;GCMZ_vr"));
     }
 
     @Test

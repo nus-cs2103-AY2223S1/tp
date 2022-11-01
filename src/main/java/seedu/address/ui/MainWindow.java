@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Collections;
+import java.util.Set;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 
@@ -26,6 +28,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.LockCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
+import seedu.address.model.portfolio.Note;
+import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Portfolio;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -46,7 +52,9 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private PortfolioWindow portfolioWindow;
     private LockWindow lockWindow;
-    private int index = 0;
+    private int index = -1;
+    private Set<Plan> emptyPlan = Collections.emptySet();
+    private Set<Note> emptyNote = Collections.emptySet();
 
     @FXML
     private Scene parent;
@@ -82,7 +90,13 @@ public class MainWindow extends UiPart<Stage> {
     private Button btnChangeTheme;
 
     @FXML
+    private Button btnHide;
+
+    @FXML
     private ImageView imageTheme;
+
+    @FXML
+    private ImageView imageHide;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -116,11 +130,20 @@ public class MainWindow extends UiPart<Stage> {
                 setDarkTheme(pref);
             }
         });
+        btnHide.setOnMouseClicked(event -> {
+            int hidden = pref.getInt("hidden", 0);
+            if (hidden == 0) { //hide sensitive data
+                hide(pref);
+            } else { //show sensitive data
+                show(pref);
+            }
+        });
     }
 
     /**
      * Sets FinBook to light mode if user set his/her preference as light mode (mode == 1).
      * FinBook's default theme is dark mode. (mode == 0)
+     *
      * @param pref Stored preference of application theme.
      */
     void initializeTheme(Preferences pref) {
@@ -128,11 +151,16 @@ public class MainWindow extends UiPart<Stage> {
         if (mode == 1) {
             setLightTheme(pref);
         }
+        int hidden = pref.getInt("hidden", 0);
+        if (hidden == 1) {
+            show(pref);
+        }
     }
 
     /**
      * Sets FinBook UI to light mode by changing MainWindow, HelpWindow and LockWindow stylesheet to their
      * respective light stylesheet and sets the button to sun icon.
+     *
      * @param pref Stored preference of application theme.
      */
     void setLightTheme(Preferences pref) {
@@ -147,6 +175,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Sets FinBook UI to dark mode by changing MainWindow, HelpWindow and LockWindow stylesheet to their
      * respective dark stylesheet and sets the button to moon icon.
+     *
      * @param pref Stored preference of application theme.
      */
     void setDarkTheme(Preferences pref) {
@@ -174,7 +203,16 @@ public class MainWindow extends UiPart<Stage> {
      * Updates the portfolio page after each view command
      */
     public void getPortfolio() {
-        portfolioWindow = new PortfolioWindow(logic.getFilteredPersonList().get(index), index);
+        Person person;
+        Portfolio portfolio;
+        if (index == -1) {
+            portfolio = null;
+        } else {
+            person = logic.getFilteredPersonList().get(index);
+            portfolio = person.getPortfolio();
+        }
+        portfolioWindow = new PortfolioWindow(portfolio);
+        portfolioListPanelPlaceholder.getChildren().clear();
         portfolioListPanelPlaceholder.getChildren().add(portfolioWindow.getRoot());
     }
 
@@ -217,10 +255,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        portfolioWindow = new PortfolioWindow(logic.getFilteredPersonList().get(0), 0);
+        portfolioWindow = new PortfolioWindow(null);
         portfolioListPanelPlaceholder.getChildren().add(portfolioWindow.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -267,12 +306,34 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Shows FinBook data by removing blurring of portfolioWindow and PersonListPanel data.
+     * @param pref Stored preference of hidden attribute.
+     */
+    void show(Preferences pref) {
+        pref.putInt("hidden", 0);
+        imageHide.setImage(new Image("images/open_eye.png"));
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), false);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    }
+
+    /**
+     * Hides FinBook data by censoring portfolioWindow and PersonListPanel data.
+     * @param pref Stored preference of hidden attribute.
+     */
+    void hide(Preferences pref) {
+        pref.putInt("hidden", 1);
+        imageHide.setImage(new Image("images/close_eye.png"));
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), true);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+            (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();

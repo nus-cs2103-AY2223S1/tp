@@ -1,12 +1,14 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -43,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label meetingDate;
     @FXML
+    private Label meetingLocation;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -51,21 +55,61 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+        Meeting meeting = person.getMeeting();
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         income.setText(person.getIncome().value);
-        if (person.getMeetingDate().value != null && person.getMeetingDate().value != "") {
-            meetingDate.setText(person.getMeetingDate().value);
+        if (meeting.getMeetingDate().value != null && !Objects.equals(meeting.getMeetingDate().value, "")) {
+            meetingDate.setText(meeting.getMeetingDate().value);
         } else {
             meetingDate.setText("TBC");
         }
+        meetingLocation.setText(meeting.getMeetingLocation().getVirtualStatus());
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
 
+    /**
+     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     */
+    public PersonCard(Person person, int displayedIndex, Boolean hidden) {
+        super(FXML);
+        this.person = person;
+        Meeting meeting = person.getMeeting();
+        id.setText(displayedIndex + ". ");
+        name.setText(person.getName().fullName);
+        phone.setText(mask(person.getPhone().value));
+        address.setText(mask(person.getAddress().value));
+        email.setText(mask(person.getEmail().value));
+        income.setText(mask(person.getIncome().value));
+        if (meeting.getMeetingDate().value != null && !Objects.equals(meeting.getMeetingDate().value, "")) {
+            meetingDate.setText(meeting.getMeetingDate().value);
+        } else {
+            meetingDate.setText("TBC");
+        }
+        meetingLocation.setText(meeting.getMeetingLocation().getVirtualStatus());
+        person.getTags().stream()
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(mask(tag.tagName))));
+
+    }
+
+    /**
+     * Masks sensitive client data.
+     *
+     * @param clientData
+     * @return String of censored client data.
+     */
+    public String mask(String clientData) {
+        StringBuilder strBuilder = new StringBuilder();
+        for (int i = 0; i < clientData.length(); i++) {
+            strBuilder.append("*");
+        }
+        return strBuilder.toString();
     }
 
     @Override
@@ -83,6 +127,6 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+            && person.equals(card.person);
     }
 }

@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Income {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Income should start with $ and only contain alphanumeric characters"
-                    + " and it should be at least 1 digit long";
+            "Income should start with $ followed by numbers and should be at least 1 digit long."
+                    + "\nExample: $1, $0 is still considered valid";
     public static final String VALIDATION_REGEX = "^[$]\\d{1,}";
     public final String value;
 
@@ -23,6 +23,10 @@ public class Income {
         requireNonNull(income);
         checkArgument(isValidIncome(income), MESSAGE_CONSTRAINTS);
         value = income;
+    }
+
+    public int toInt() {
+        return Integer.parseInt(value.replace("$", ""));
     }
 
     /**

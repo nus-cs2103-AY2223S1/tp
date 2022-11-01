@@ -5,64 +5,74 @@
 <?import javafx.scene.layout.*?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
-    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-    </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-      <padding>
-        <Insets bottom="5" left="15" right="5" top="5" />
-      </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-      </HBox>
-      <FlowPane fx:id="tags">
-      <padding>
-        <Insets bottom="10" left="10" right="10" top="10" />
-      </padding>
-      </FlowPane>
-
-      <VBox fx:id="personDetailsBox" alignment="CENTER_LEFT" minHeight="105" minWidth="300" GridPane.columnIndex="0">
-        <SplitPane fx:id="personDetailsSplitPane" dividerPositions="0.5">
-          <VBox fx:id="personDetails" alignment="CENTER_LEFT" minHeight="105" minWidth="300" prefWidth="300" GridPane.columnIndex="0">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
             <padding>
-              <Insets bottom="10" left="30" right="10" top="10" />
+                <Insets bottom="5" left="15" right="5" top="5"/>
             </padding>
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true"/>
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true"/>
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true"/>
-          </VBox>
-          <VBox fx:id="personDetails2" alignment="CENTER_LEFT" maxWidth="150" minHeight="105" minWidth="150" GridPane.columnIndex="0">
-            <padding>
-              <Insets bottom="10" left="30" right="10" top="10" />
-            </padding>
-            <FlowPane styleClass="cell_label_tags">
-              <padding>
-                <Insets bottom="3" left="3" right="3" top="3" />
-              </padding>
-              <Label fx:id="income" text="\$income" />
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <Label fx:id="id" styleClass="cell_big_label">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE"/>
+                    </minWidth>
+                </Label>
+                <Label fx:id="name" styleClass="cell_big_label" text="\$first"/>
+            </HBox>
+            <FlowPane fx:id="tags">
+                <padding>
+                    <Insets bottom="10" left="10" right="10" top="10"/>
+                </padding>
             </FlowPane>
 
-            <FlowPane styleClass="cell_label_tags">
-              <padding>
-                <Insets bottom="3" left="3" right="3" top="3" />
-              </padding>
-              <Label fx:id="meetingDate" text="\$meetingDate" />
-            </FlowPane>
+            <VBox fx:id="personDetailsBox" alignment="CENTER_LEFT"
+                  GridPane.columnIndex="0">
+                <SplitPane fx:id="personDetailsSplitPane" dividerPositions="0.5">
+                    <VBox fx:id="personDetails" alignment="CENTER_LEFT"
+                          GridPane.columnIndex="0">
+                        <padding>
+                            <Insets bottom="10" left="30" right="10" top="10"/>
+                        </padding>
+                        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true"/>
+                        <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true"/>
+                        <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true"/>
+                    </VBox>
+                    <VBox fx:id="personDetails2" alignment="CENTER_LEFT" maxWidth="150" minWidth="150"
+                          GridPane.columnIndex="0">
+                        <padding>
+                            <Insets bottom="10" left="10" right="10" top="10"/>
+                        </padding>
+                        <VBox styleClass="cell_label_tags">
+                            <padding>
+                                <Insets bottom="3" left="3" right="3" top="3"/>
+                            </padding>
+                            <Label fx:id="income" text="\$income" wrapText="true"/>
+                        </VBox>
 
-          </VBox>
-        </SplitPane>
-      </VBox>
+                        <VBox styleClass="cell_label_tags">
+                            <padding>
+                                <Insets bottom="3" left="3" right="3" top="3"/>
+                            </padding>
+                            <Label fx:id="meetingDate" text="\$meetingDate" wrapText="true"/>
+                        </VBox>
 
-    </VBox>
-      <rowConstraints>
-         <RowConstraints />
-      </rowConstraints>
-  </GridPane>
+                        <VBox styleClass="cell_label_tags">
+                            <padding>
+                                <Insets bottom="3" left="3" right="3" top="3"/>
+                            </padding>
+                            <Label fx:id="meetingLocation" text="\$meetingLocation" wrapText="true"/>
+                        </VBox>
+
+                    </VBox>
+                </SplitPane>
+            </VBox>
+
+        </VBox>
+        <rowConstraints>
+            <RowConstraints/>
+        </rowConstraints>
+    </GridPane>
 </HBox>

@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.MeetingLocation;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
@@ -45,11 +46,12 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setIncome(person.getIncome());
-        descriptor.setMeetingDate(person.getMeetingDate());
+        descriptor.setMeetingDate(person.getMeeting().getMeetingDate());
+        descriptor.setMeetingLocation(person.getMeeting().getMeetingLocation());
         descriptor.setTags(person.getTags());
         descriptor.setRisk(portfolio.getRisk());
         descriptor.setPlans(portfolio.getPlans());
-        descriptor.setNote(portfolio.getNote());
+        descriptor.setNotes(portfolio.getNotes());
     }
 
     /**
@@ -120,6 +122,15 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Income} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withMeetingLocation(String meetingLocation) {
+        descriptor.setMeetingLocation(new MeetingLocation(meetingLocation));
+        return this;
+    }
+
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
@@ -132,8 +143,9 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Note} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withNote(String note) {
-        descriptor.setNote(new Note(note));
+    public EditPersonDescriptorBuilder withNote(String... notes) {
+        Set<Note> notesSet = Stream.of(notes).map(Note::new).collect(Collectors.toSet());
+        descriptor.setNotes(notesSet);
         return this;
     }
 
