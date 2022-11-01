@@ -78,6 +78,12 @@ public class RecurringTask extends Task {
         int freq = parseInt(recurAndFreq[0].trim(), 10);
         Recurrence recur = Recurrence.valueOf(recurAndFreq[1].trim().toUpperCase());
 
+        if (freq == 1) {
+            recur = getSingularRecurrence(recur);
+        } else {
+            recur = getPluralRecurrence(recur);
+        }
+
         return new RecurringTask(description, dateTime, recur, freq);
     }
 
@@ -128,5 +134,32 @@ public class RecurringTask extends Task {
             return true; // if recurrence2 is singular, recurrence1 is plural
         }
         return false;
+    }
+
+    private static boolean isSingularRecurrence(Recurrence recurrence) {
+        for (Recurrence validRecurrence : Recurrence.values()) {
+            if ((recurrence.toString() + "S").equals(validRecurrence.toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static Recurrence getSingularRecurrence(Recurrence recurrence) {
+        if (isSingularRecurrence(recurrence)) {
+            return recurrence;
+        }
+        String string = recurrence.toString();
+        System.out.println(string.substring(0, string.length() - 1));
+        return Recurrence.valueOf(string.substring(0, string.length() - 1));
+    }
+
+    private static Recurrence getPluralRecurrence(Recurrence recurrence) {
+        if (!isSingularRecurrence(recurrence)) {
+            return recurrence;
+        }
+        String string = recurrence.toString();
+        System.out.println(string + "S");
+        return Recurrence.valueOf(string + "S");
     }
 }
