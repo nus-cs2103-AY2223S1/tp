@@ -56,7 +56,7 @@ Take note of the following symbols and formatting used in this document:
 3. Copy the file to the folder you want to use as the [_home folder_](#glossary) for your GREWZ.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Annotated_UI.png "GREWZ UI")
+   ![Ui with annotations](images/Ui_annotated.png "GREWZ UI")
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
