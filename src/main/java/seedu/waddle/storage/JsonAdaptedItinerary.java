@@ -16,6 +16,7 @@ import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.ItineraryDuration;
 import seedu.waddle.model.itinerary.People;
+import seedu.waddle.model.text.Text;
 
 /**
  * Jackson-friendly version of {@link Itinerary}.
@@ -65,7 +66,7 @@ class JsonAdaptedItinerary {
         startDate = source.getStartDate().date.toString();
         duration = source.getDuration().toString();
         people = source.getPeople().numOfPeople;
-        budget = source.getBudget().toString();
+        budget = Text.MONEY_SAVE_FORMATTER.format(source.getBudget().getValue());
         for (Item item : source.getItemList()) {
             items.add(new JsonAdaptedItem(item));
         }

@@ -110,17 +110,22 @@ Adds an itinerary to Waddle.
 
 Format: `add d/DESCRIPTION sd/START DATE du/DURATION [c/COUNTRY] [p/NUMBER OF WADDLERS] [b/BUDGET]`
 
-* Adds a new itinerary with `DESCRIPTION` to the itinerary list.
-* `START DATE` should be given in the format `yyyy-mm-dd`.
-* `DURATION` is the length of the trip and must be between 1 and 365 days.
-  - e.g. `sd/2022-12-10 du/10` would mean that the trip is from 10 Dec 2022 to 19 Dec 2022.
-* `BUDGET` is in dollars ($) and can include cents.
-  - e.g. `b/1000.50` is $1000 and 50¢.
+* Adds a new itinerary named `DESCRIPTION` to the itinerary list.
+* `START DATE` is the date of the first day in the itinerary. It must be given in the format `yyyy-mm-dd`.
+* `DURATION` will determine the number of days in the itinerary, and must be between 1 and 365 days.
+  - e.g. `sd/2022-12-10 du/3` would mean that the trip is from 10 Dec 2022 to 12 Dec 2022.
+* `BUDGET` is the budget for the itinerary and must be between $0 and $1,000,000,000. Please provide the budget in dollars ($), you may include cents too!
+  - e.g. `b/1000` is $1,000.
+  - e.g. `b/1000.50` is $1,000.50.
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** 
 * You cannot add an itinerary with the same description as an existing itinerary.
 * Waddle only accepts english letters and spaces for `DESCRIPTION` and `COUNTRY`, special characters like `'`, `&`, `!` are not allowed.
-  * Example of invalid input: `d/My Trip!!`, `c/Côte d'Ivoire`, `c/中国`
+    * Example of invalid input: `d/My Trip!!`, `c/Côte d'Ivoire`, `c/中国`
+* The budget input should only contain numbers and one decimal point.
+    * Example of invalid input: `b/1,000,000`
+* If more than 2 decimal places are provided for the budget, Waddle rounds it up to 2 decimal places.
+    * e.g. `b/1000.505` will be reflected as $1,000.51.
 </div>
 
 Examples:

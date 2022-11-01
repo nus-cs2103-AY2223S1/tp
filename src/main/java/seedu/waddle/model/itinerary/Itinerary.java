@@ -2,6 +2,7 @@ package seedu.waddle.model.itinerary;
 
 import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.text.DecimalFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -271,11 +272,13 @@ public class Itinerary {
     }
 
     public String getBudgetString(int indents) {
+        String budgetString = Text.MONEY_PRINT_FORMATTER.format(this.budget.getValue());
+        String leftOverString = Text.MONEY_PRINT_FORMATTER.format(this.budget.calculateLeftOverBudget());
         if (this.budget.getSpending() == 0) {
-            return Text.indent("Budget: $" + this.budget.getValue(), indents);
+            return Text.indent("Budget: $" + budgetString, indents);
         } else {
-            return Text.indent("Budget: $" + this.budget.getValue() + ", $"
-                    + this.budget.calculateLeftOverBudget() + " remaining", indents);
+            return Text.indent("Budget: $" + budgetString + ", $"
+                    + leftOverString + " remaining", indents);
         }
     }
 

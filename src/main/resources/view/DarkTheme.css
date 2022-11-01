@@ -297,7 +297,7 @@
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
     -fx-background-color: #fffae5;
-    -fx-text-fill: white;
+    -fx-text-fill: grey;
 }
 
 .button:default {

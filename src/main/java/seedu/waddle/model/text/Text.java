@@ -1,5 +1,7 @@
 package seedu.waddle.model.text;
 
+import java.text.DecimalFormat;
+
 /**
  * This class contains methods for text related operations.
  */
@@ -7,6 +9,8 @@ public class Text {
     public static final int INDENT_NONE = 0;
     public static final int INDENT_TWO = 2;
     public static final int INDENT_FOUR = 4;
+    public static final DecimalFormat MONEY_PRINT_FORMATTER = new DecimalFormat("#,###.00");
+    public static final DecimalFormat MONEY_SAVE_FORMATTER = new DecimalFormat("#.00");
 
     /**
      * Indents the input text by specified amount of spaces.
