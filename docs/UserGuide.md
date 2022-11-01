@@ -24,11 +24,11 @@ our app.
 3. Throughout this guide, you will encounter the icons :bulb:,
   :information_source: or :eye: icon. Their meanings are as follows:
 
-| Icon                 | Meaning                                                                    |
-|----------------------|----------------------------------------------------------------------------|
-| :bulb:               | A relevant tip which you may find helpful                                  |
-| :information_source: | Information that you should **must** note of when using a specific feature |
-| :eye:                | A feature related to the section you are currently looking at              |
+| Icon                 | Meaning                                                                     |
+|----------------------|-----------------------------------------------------------------------------|
+| :bulb:               | A relevant tip which you may find helpful.                                  |
+| :information_source: | Information that you should **must** note of when using a specific feature. |
+| :eye:                | A feature related to the section you are currently looking at.              |
 
 
 ## 1. Quick start
@@ -46,6 +46,7 @@ our app.
 | Screenshot of Plannit                                                                    | Description of labels                                                                                            |
 |------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 | {::nomarkdown}<p align="center"><img src="images/home-labelled.png" width="500/></p>{:/} | {::nomarkdown}<ol><li>Command box</li><li>Result display</li><li>Modules list</li><li>Persons list</li></ol>{:/} |
+
 
 5. Type the command in the command box and press Enter to execute it. e.g.
    `add-module m/CS2103T`. For more commands, you may refer to the [command summary](#11-command-summary).
