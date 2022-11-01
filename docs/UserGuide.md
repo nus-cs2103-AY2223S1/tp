@@ -8,7 +8,6 @@ use via a Command Line Interface** (CLI) while still having the benefits of a Gr
 type fast, FRIDAY can get your contact management tasks done faster than traditional GUI apps.
 
 ### Table of Contents
-1. Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
