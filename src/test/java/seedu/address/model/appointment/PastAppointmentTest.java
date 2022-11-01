@@ -6,6 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.appointment.Appointment.DATE_FORMAT;
+import static seedu.address.testutil.PastAppointmentBuilder.DEFAULT_DATE;
+import static seedu.address.testutil.PastAppointmentBuilder.DEFAULT_DIAGNOSIS;
+import static seedu.address.testutil.PastAppointmentBuilder.DEFAULT_MEDICATIONS;
+import static seedu.address.testutil.PastAppointmentBuilder.DEFAULT_MEDICATION_1;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -14,6 +18,7 @@ import java.time.format.DateTimeParseException;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PastAppointmentBuilder;
+
 
 class PastAppointmentTest {
 
@@ -30,8 +35,8 @@ class PastAppointmentTest {
 
     @Test
     public void constructor_validDate_returnsPastAppointment() {
-        assertEquals(LocalDate.parse("01-01-2020", DateTimeFormatter.ofPattern(DATE_FORMAT)),
-                new PastAppointmentBuilder().withDate("01-01-2020").build().getDate());
+        assertEquals(LocalDate.parse(DEFAULT_DATE, DateTimeFormatter.ofPattern(DATE_FORMAT)),
+                new PastAppointmentBuilder().withDate(DEFAULT_DATE).build().getDate());
     }
 
     @Test
@@ -47,12 +52,22 @@ class PastAppointmentTest {
 
     @Test
     public void isValidDate_validDate_returnsTrue() {
-        assertTrue(PastAppointment.isValidDate("01-01-2020"));
+        assertTrue(PastAppointment.isValidDate(DEFAULT_DATE));
     }
 
     @Test
     public void isValidDate_invalidDate_returnsFalse() {
-        assertFalse(PastAppointment.isValidDate("01-01-2020 12:00"));
+        // valid date with time -> returns false
+        assertFalse(Appointment.isValidDate("01-01-2020 12:00"));
+
+        // date that does not exist -> returns false
+        assertFalse(Appointment.isValidDate("99-99-9999"));
+
+        // date in the wrong format -> returns false
+        assertFalse(Appointment.isValidDate("2022-01-01"));
+
+        // date that is in a month that does not exist -> returns false
+        assertFalse(Appointment.isValidDate("14-14-2022"));
     }
 
     // partition - future dates
@@ -77,8 +92,8 @@ class PastAppointmentTest {
 
     @Test
     public void parseLocalDate_validDate_returnsLocalDate() {
-        assertEquals(LocalDate.parse("01-01-2020", DateTimeFormatter.ofPattern(DATE_FORMAT)),
-                PastAppointment.parseLocalDate("01-01-2020"));
+        assertEquals(LocalDate.parse(DEFAULT_DATE, DateTimeFormatter.ofPattern(DATE_FORMAT)),
+                PastAppointment.parseLocalDate(DEFAULT_DATE));
     }
 
     @Test
@@ -88,8 +103,8 @@ class PastAppointmentTest {
 
     @Test
     public void parseLocalDate_pastDate_returnsLocalDate() {
-        assertEquals(LocalDate.parse("01-01-2020", DateTimeFormatter.ofPattern(DATE_FORMAT)),
-                PastAppointment.parseLocalDate("01-01-2020"));
+        assertEquals(LocalDate.parse(DEFAULT_DATE, DateTimeFormatter.ofPattern(DATE_FORMAT)),
+                PastAppointment.parseLocalDate(DEFAULT_DATE));
     }
 
     @Test
@@ -101,7 +116,7 @@ class PastAppointmentTest {
     @Test
     public void getMedication_validMedication_returnsMedication() {
         assertEquals("[[paracetamol]]", new PastAppointmentBuilder()
-                .withMedication(new String[] { "Paracetamol" }).build().getMedication().toString());
+                .withMedication(new String[] { DEFAULT_MEDICATION_1 }).build().getMedication().toString());
     }
 
     @Test
@@ -118,68 +133,74 @@ class PastAppointmentTest {
     @Test
     public void getMedication_multipleMedication_returnsMedication() {
         assertEquals("[[ibuprofen], [paracetamol]]", new PastAppointmentBuilder()
-                .withMedication(new String[] { "Paracetamol", "Ibuprofen" }).build().getMedication().toString());
+                .withMedication(DEFAULT_MEDICATIONS).build().getMedication().toString());
     }
 
     @Test
     public void getMedication_multipleMedicationWithEmpty_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new PastAppointmentBuilder()
-                .withMedication(new String[] { "Paracetamol", "" }).build());
+                .withMedication(new String[] { DEFAULT_MEDICATION_1, "" }).build());
     }
 
     @Test
     public void getDiagnosis_validDiagnosis_returnsDiagnosis() {
-        assertEquals("Fever", new PastAppointmentBuilder()
-                .withDiagnosis("Fever").build().getDiagnosis());
+        assertEquals(DEFAULT_DIAGNOSIS, new PastAppointmentBuilder()
+                .withDiagnosis(DEFAULT_DIAGNOSIS).build().getDiagnosis());
     }
 
     @Test
     public void getMedicationString_validMedication_returnsMedicationString() {
         assertEquals("Medication: paracetamol", new PastAppointmentBuilder()
-                .withMedication(new String[] { "Paracetamol" }).build().getMedicationString());
+                .withMedication(new String[] { DEFAULT_MEDICATION_1 }).build().getMedicationString());
     }
 
     @Test
     public void getMedicationString_multipleMedication_returnsMedicationString() {
         assertEquals("Medication: ibuprofen, paracetamol", new PastAppointmentBuilder()
-                .withMedication(new String[] { "Paracetamol", "Ibuprofen" }).build().getMedicationString());
+                .withMedication(DEFAULT_MEDICATIONS).build().getMedicationString());
     }
 
     @Test
     public void equals() {
         PastAppointment pastAppointment;
 
+        // different types -> returns false
         pastAppointment = new PastAppointmentBuilder().build();
-        assertNotEquals(null, pastAppointment); // different type
+        assertNotEquals(null, pastAppointment);
 
+        // same object -> returns true
         pastAppointment = new PastAppointmentBuilder().build();
-        assertEquals(pastAppointment, pastAppointment); // same object
+        assertEquals(pastAppointment, pastAppointment);
 
+        // same date -> returns true
         pastAppointment = new PastAppointmentBuilder().build();
-        PastAppointment sameDatePastAppointment = new PastAppointmentBuilder().withDate("06-12-2022").build();
-        assertEquals(pastAppointment, sameDatePastAppointment); // same date
+        PastAppointment sameDatePastAppointment = new PastAppointmentBuilder().withDate(DEFAULT_DATE).build();
+        assertEquals(pastAppointment, sameDatePastAppointment);
 
+        // different date -> returns false
         pastAppointment = new PastAppointmentBuilder().build();
         PastAppointment differentDatePastAppointment = new PastAppointmentBuilder().withDate("01-01-2021").build();
-        assertNotEquals(pastAppointment, differentDatePastAppointment); // different date
+        assertNotEquals(pastAppointment, differentDatePastAppointment);
 
+        // different medication -> returns false
         pastAppointment = new PastAppointmentBuilder().build();
         PastAppointment differentMedicationPastAppointment = new PastAppointmentBuilder()
-                .withMedication(new String[] { "Paracetamol" })
+                .withMedication(new String[] { DEFAULT_MEDICATION_1 })
                 .build();
-        assertNotEquals(pastAppointment, differentMedicationPastAppointment); // different medication
+        assertNotEquals(pastAppointment, differentMedicationPastAppointment);
 
+        // different diagnosis -> returns false
         pastAppointment = new PastAppointmentBuilder().build();
         PastAppointment differentDiagnosisPastAppointment = new PastAppointmentBuilder()
                 .withDiagnosis("Sick")
                 .build();
-        assertNotEquals(pastAppointment, differentDiagnosisPastAppointment); // different diagnosis
+        assertNotEquals(pastAppointment, differentDiagnosisPastAppointment);
 
     }
 
     @Test
     public void toString_validPastAppointment_returnsString() {
-        assertEquals("On: 06 Dec 2022; Diagnosis: Fever; Prescribed Medication: [ibuprofen][paracetamol]",
+        assertEquals("On: 06 Jun 2020; Diagnosis: Fever; Prescribed Medication: [ibuprofen][paracetamol]",
                 new PastAppointmentBuilder().build().toString());
     }
 }

@@ -63,26 +63,29 @@ class MedicationMapTest {
 
     @Test
     public void toString_validMedicationMap_returnsString() {
-        assertEquals("\nTypes of medication: 2\n"
+        String expectedString = "\nTypes of medication: 2\n"
                 + "Patient count by medication:\n"
                 + "   ibuprofen: 1\n"
-                + "   paracetamol: 1", medicationMap.toString());
+                + "   paracetamol: 1";
+        assertEquals(expectedString, medicationMap.toString());
     }
 
     @Test
     public void toString_emptyMedicationMap_returnsString() {
+        String expectedString = "\nTypes of medication: 0\n"
+                + "Patient count by medication:";
         MedicationMap emptyMedicationMap = new MedicationMap();
-        assertEquals("\nTypes of medication: 0\n"
-                + "Patient count by medication:", emptyMedicationMap.toString());
+        assertEquals(expectedString, emptyMedicationMap.toString());
     }
 
     @Test
     public void toString_medicationAdded_returnsString() {
+        String expectedString = "\nTypes of medication: 1\n"
+                + "Patient count by medication:\n"
+                + "   paracetamol: 1";
         MedicationMap emptyMedicationMap = new MedicationMap();
         emptyMedicationMap.add(new Medication("Paracetamol"));
-        assertEquals("\nTypes of medication: 1\n"
-                + "Patient count by medication:\n"
-                + "   paracetamol: 1", emptyMedicationMap.toString());
+        assertEquals(expectedString, emptyMedicationMap.toString());
     }
 
 }

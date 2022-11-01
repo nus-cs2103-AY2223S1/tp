@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -24,7 +23,8 @@ class CreatePastAppointmentCommandParserTest {
 
     @Test
     public void parse_invalidIndex_throwsParseException() {
-        assertThrows(ParseException.class, () -> new CreatePastAppointmentCommandParser().parse("a"));
+        assertThrows(ParseException.class, () -> new CreatePastAppointmentCommandParser()
+                .parse("a on/12-01-2020 diag/fever"));
     }
 
     @Test
@@ -73,8 +73,15 @@ class CreatePastAppointmentCommandParserTest {
     }
 
     @Test
-    public void parseTagsForEdit_medicationSetWithEmptyString_success() throws ParseException {
-        new CreatePastAppointmentCommandParser().parse("1 on/12-01-2020 diag/fever m/ ");
+    public void parseTagsForEdit_medicationSetWithEmptyString_success() {
+        assertDoesNotThrow(() ->
+        new CreatePastAppointmentCommandParser().parse("1 on/12-01-2020 diag/fever m/ "));
+    }
+
+    @Test
+    public void parseTagsForEdit_noMedicationSet_success() {
+        assertDoesNotThrow(() ->
+        new CreatePastAppointmentCommandParser().parse("1 on/12-01-2020 diag/fever"));
     }
 
 }

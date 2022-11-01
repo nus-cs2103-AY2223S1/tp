@@ -12,8 +12,10 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building PastAppointment objects.
  */
 public class PastAppointmentBuilder {
-    public static final String DEFAULT_DATE = "06-12-2022";
-    public static final String[] DEFAULT_MEDICATION = { "Paracetamol", "Ibuprofen" };
+    public static final String DEFAULT_DATE = "06-06-2020";
+    public static final String[] DEFAULT_MEDICATIONS = { "Paracetamol", "Ibuprofen" };
+    public static final String DEFAULT_MEDICATION_1 = "Paracetamol";
+    public static final String DEFAULT_MEDICATION_2 = "Ibuprofen";
     public static final String DEFAULT_DIAGNOSIS = "Fever";
 
     private LocalDate date;
@@ -25,7 +27,7 @@ public class PastAppointmentBuilder {
      */
     public PastAppointmentBuilder() {
         date = LocalDate.parse(DEFAULT_DATE, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        medication = SampleDataUtil.getMedicationSet(DEFAULT_MEDICATION);
+        medication = SampleDataUtil.getMedicationSet(DEFAULT_MEDICATIONS);
         diagnosis = DEFAULT_DIAGNOSIS;
     }
 

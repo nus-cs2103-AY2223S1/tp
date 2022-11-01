@@ -27,7 +27,17 @@ class AppointmentTest {
 
     @Test
     public void isValidDate_invalidDate_returnsFalse() {
+        // valid date with time -> returns false
         assertFalse(Appointment.isValidDate("01-01-2020 12:00"));
+
+        // date that does not exist -> returns false
+        assertFalse(Appointment.isValidDate("99-99-9999"));
+
+        // date in the wrong format -> returns false
+        assertFalse(Appointment.isValidDate("2022-01-01"));
+
+        // date that is in a month that does not exist -> returns false
+        assertFalse(Appointment.isValidDate("14-14-2022"));
     }
 
     @Test
