@@ -128,15 +128,15 @@ public class History {
     }
 
     public void updateRedoPatientsHistory() {
-        this.redoFilteredPatientsHistory.add((FilteredList<Patient>)model.getFilteredPatientList());
+        this.redoFilteredPatientsHistory.add((FilteredList<Patient>) model.getFilteredPatientList());
     }
 
     public void updateRedoAppointmentsHistory() {
-        this.redoFilteredAppointmentsHistory.add((FilteredList<Appointment>)model.getFilteredAppointmentList());
+        this.redoFilteredAppointmentsHistory.add((FilteredList<Appointment>) model.getFilteredAppointmentList());
     }
 
     public void updateRedoBillsHistory() {
-        this.redoFilteredBillsHistory.add((FilteredList<Bill>)model.getFilteredBillList());
+        this.redoFilteredBillsHistory.add((FilteredList<Bill>) model.getFilteredBillList());
     }
 
     public Predicate<? super Patient> getPatientsPredicate(int index) {
