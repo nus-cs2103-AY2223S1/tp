@@ -2,12 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -61,8 +56,19 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String COUNTRY_DESC_CANADA = " " + PREFIX_COUNTRY + VALID_COUNTRY_CANADA;
+    public static final String COUNTRY_DESC_UK = " " + PREFIX_COUNTRY + VALID_COUNTRY_UK;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String GAME_TYPE_DESC_MINEPLEX = " " + PREFIX_GAME_TYPE + VALID_GAME_TYPE_MINEPLEX;
+    public static final String GAME_TYPE_DESC_SURVIVAL = " " + PREFIX_GAME_TYPE + VALID_GAME_TYPE_SURVIVAL;
+    public static final String MINECRAFT_SERVER_DESC_111_222 = " " + PREFIX_MINECRAFT_SERVER + VALID_SERVER_111_222;
+    public static final String MINECRAFT_SERVER_DESC_123_456 = " " + PREFIX_MINECRAFT_SERVER + VALID_SERVER_123_456;
+    public static final String SOCIAL_DESC_INSTAGRAM = " " + PREFIX_SOCIAL + VALID_SOCIAL_INSTAGRAM;
+    public static final String SOCIAL_DESC_TWITTER = " " + PREFIX_SOCIAL + VALID_SOCIAL_TWITTER;
+    public static final String TI_DESC_SUN_TO_MON = " " + PREFIX_TIME_INTERVAL
+            + VALID_TIME_INTERVAL_SUNDAY_NIGHT_TO_MONDAY_MORNING;
+    public static final String TI_DESC_TUES = " " + PREFIX_TIME_INTERVAL + VALID_TIME_INTERVAL_TUES_AFTERNOON;
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
