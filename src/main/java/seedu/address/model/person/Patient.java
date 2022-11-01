@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.category.Category;
 import seedu.address.model.tag.Tag;
@@ -106,18 +107,11 @@ public class Patient extends Person {
     }
 
     public String getDatesSlotsInString() {
-        StringBuilder dateSlotListSB = new StringBuilder();
-
-        if (this.dateSlots.isEmpty()) {
-            dateSlotListSB = new StringBuilder(MESSAGE_FOR_EMPTY_DATESLOT);
-            return dateSlotListSB.toString();
+        String dateSlotsString = getDatesSlots().stream().map(x -> x.toString()).collect(Collectors.joining(","));
+        if (dateSlotsString.length() == 0) {
+            return MESSAGE_FOR_EMPTY_DATESLOT;
         }
-
-        for (DateSlot dateslot : getDatesSlots()) {
-            dateSlotListSB.append(dateslot.toString()).append(" , ");
-        }
-
-        return dateSlotListSB.toString();
+        return dateSlotsString;
     }
 
     @Override
@@ -127,9 +121,9 @@ public class Patient extends Person {
                 .append(getCategory())
                 .append("; ")
                 .append(super.toString())
-                .append("Home Visits Date and Time: ")
+                .append(" Home Visits Date and Time: ")
                 .append(getDatesSlotsInString())
-                .append("; ");
+                .append(";");
 
         return builder.toString();
     }

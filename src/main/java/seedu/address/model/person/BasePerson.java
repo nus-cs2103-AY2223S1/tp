@@ -51,7 +51,7 @@ public abstract class BasePerson {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; ");
+                .append(";");
 
         return builder.toString();
     }

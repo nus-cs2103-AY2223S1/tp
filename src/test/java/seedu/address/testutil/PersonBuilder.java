@@ -72,7 +72,6 @@ public class PersonBuilder {
                 new Email(DEFAULT_CONTACT_EMAIL));
         unavailableDateList = new ArrayList<>();
         fullyScheduledDateList = new ArrayList<>();
-
     }
 
     /**
@@ -100,7 +99,6 @@ public class PersonBuilder {
             homeVisitList = new ArrayList<>(((Nurse) personToCopy).getHomeVisits());
             unavailableDateList = new ArrayList<>(((Nurse) personToCopy).getUnavailableDates());
             fullyScheduledDateList = new ArrayList<>(((Nurse) personToCopy).getFullyScheduledDates());
-
         }
     }
 
@@ -234,12 +232,10 @@ public class PersonBuilder {
         if (category.isNurse()) {
             return new Nurse(uid, name, gender, phone, email, address, tags,
                     unavailableDateList, homeVisitList, fullyScheduledDateList);
-        } else if (this.category.isPatient()) {
+        } else if (category.isPatient()) {
             return new Patient(uid, name, gender, phone, email, address, tags, dateSlotList, physician, null);
-
         }
         return new Person(uid, name, gender, phone, email, address, tags);
-
     }
 
 }

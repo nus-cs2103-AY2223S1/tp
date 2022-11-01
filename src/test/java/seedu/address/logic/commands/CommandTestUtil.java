@@ -33,8 +33,8 @@ public class CommandTestUtil {
     public static final String VALID_CATEGORY_BOB = "P";
     public static final String VALID_MISSPELT_CATEGORY_BOB = "Patient";
     public static final String INVALID_MISSPELT_CATEGORY_BOB = "Nursey";
-    public static final String VALID_UID_AMY = "10";
-    public static final String VALID_UID_BOB = "11";
+    public static final String VALID_UID_AMY = "100";
+    public static final String VALID_UID_BOB = "101";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_GENDER_AMY = "F";

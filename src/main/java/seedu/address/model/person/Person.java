@@ -126,10 +126,11 @@ public class Person extends BasePerson {
                 .append(getUid())
                 .append("; ")
                 .append(super.toString())
-                .append("Gender: ")
+                .append(" Gender: ")
                 .append(getGender())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append(";");
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
