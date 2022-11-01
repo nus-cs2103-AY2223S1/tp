@@ -33,11 +33,11 @@ public class NameOrDescContainsKeywordsPredicate implements Predicate<Activity> 
         }
         if (activity.getDate().isPresent()) {
             if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                    activity.getDate().get().getOrginString(), keyword))) {
+                    activity.getDate().get().getOriginalString(), keyword))) {
                 return true;
             }
             if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                    activity.getDate().get().yearMonthDescrption(), keyword))) {
+                    activity.getDate().get().yearMonthDescription(), keyword))) {
                 return true;
             }
             if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
