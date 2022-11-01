@@ -11,8 +11,13 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Introduction to WorkBook
 
-Welcome to WorkBook! :wave: <br><br>WorkBook is an **internship application tracker** that helps Computing students **prepare sufficiently** for their upcoming interviews to **secure** that internship.
-It is optimized for fast typists and replicates a Command Line Interface (CLI) style.
+Are you a Computing student that finds it really hard to collate and manage all your internship progress together?
+Do you find it really hard to get an internship because you do not know how to prepare for the different interview stages? Fret not<br><br>
+
+WorkBook is just the right tool for you! :wave: <br><br>WorkBook is an **internship application tracker** that helps Computing students **prepare sufficiently** for their upcoming interviews to **secure** that internship.
+We also ensure that you never miss an interview or an application deadline ever again! 
+Workbook is optimized for fast typists and utilizes a **Command Line Interface (CLI)** style while still having the benefits of a 
+**Graphical User Interface (GUI)**. <br><br> So what are you waiting for? Transform your internship hunt with WorkBook today!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -27,7 +32,7 @@ It is optimized for fast typists and replicates a Command Line Interface (CLI) s
 4. Using your command terminal, navigate to the folder where you placed your WorkBook at and fire it up by inputting: `java -jar WorkBook.jar` in your terminal. <br> The GUI with sample data as shown below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
-5. Tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application. <br>
+5. You can tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute. <br>
    Some example commands you can try:
 
    * `add c/Meta d/18-Oct-2022 12:00 e/hrmonkey@example.com r/Frontend` : Adds an internship application from `Meta` to the WorkBook.
@@ -38,11 +43,51 @@ It is optimized for fast typists and replicates a Command Line Interface (CLI) s
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [things to note](#3-things-to-note) below for details of each command.
+6. You can jump straight to [here](#6-what-you-can-do) for a summary of the commands.
+
+--------------------------------------------------------------------------------------------------------------------
+## 3. About this guide
+
+This guide serves to:<br>
+
+1. Educate new users on how to get started with WorkBook.
+2. Explain the purpose and how to use each and every command.
+3. Display a summary of all the commands you can utilize.
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+## 4. Exploring our guide
+
+
+**Information Box**
+<div markdown="block" class="alert alert-info">
+**:information_source: Info:** Provides extra information that is useful
+</div>
+
+**Warning Box**
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Warning: Important messages**
+</div>
+
+**Tip Box**
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** Provides pointers to enhance your experience using the application 
+</div>
+
+
+**Highlights** <br>
+`commands` or `PARAMETERS`
+
+**Keyboard Inputs**<br>
+
+<button>enter</button>   <button>&uarr;</button>   <button>&darr;</button>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Things to note
+## 5. Things to note
 
 <div markdown="block" class="alert alert-info">
 
@@ -82,7 +127,7 @@ It is optimized for fast typists and replicates a Command Line Interface (CLI) s
 
 </div>
 
-## 4. What you can do
+## 6. What you can do
 
 | Action     | Command format <br> e.g. `Example command`                                                                                                                                                                |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -106,24 +151,29 @@ It is optimized for fast typists and replicates a Command Line Interface (CLI) s
 
 </div>
 
-### 4.1. Adding your internship application:
+### 6.1. Adding your internship application:
 
-Adds your internship application to WorkBook in [sorted order](#3-things-to-note).
+Congrats! You have already done the hard work - applying for that internship you've always wanted. 
+Now, simply add the details into WorkBook and we can begin tracking your application!
 
 Format: `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
 
-* Date can represent:
-  * The date it happened
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** The date and time you provide could represent multiple things:<br>
+  * The date and time it happened
   * The deadline of the corresponding `Stage`
+</div>
+
 
 
 Examples:
 * `add c/Meta r/Frontend Engineer s/Application Sent d/29-Oct-2022 12:00 e/hrmonkey@example.com`
 * `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Java l/Python`
 
-### 4.2. Editing your internship application:
+### 6.2. Editing your internship application:
 
-Edits your existing internship application in the WorkBook.
+Good job! You've passed the Resume Screening and have been invited to complete an Online Assessment for your internship application.
+Now's a good time to use this command to update the application so that WorkBook can continue to give you relevant tips and reminders!
 
 Format: `edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
 
@@ -134,36 +184,56 @@ Format: `edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATETIME] [e/COMPANY_EMAIL
 * You can remove all the internship’s tags by typing `t/` without
     specifying any tags after it.
 
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** You can edit any number of attributes with the edit command.
+</div>
+
 Examples:
 * `edit 1 s/Behavioural Interview e/hr@meta.com` Edits the stage and email address of the first internship to be `Behavioural Interview` and `hr@meta.com` respectively.
 * `edit 2 l/golang t/` Adds `golang` as the only language tag for the second internship and clears all existing tags.
 
-### 4.3. Listing all existing internship applications: 
+### 6.3. Listing all existing internship applications: 
 
-Lists all of your internship applications in WorkBook.
+Lists all of your internship applications in WorkBook in a [sorted order](#3-things-to-note).
+
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** Your most recent upcoming internship application will be at the top of the list!
+</div>
 
 Format: `list`
 
-### 4.4. Finding your internships by company, stage or role name:
+### 6.4. Finding your internships:
 
-Finds internships whose company, role or stage names contain any of the respective keywords.
+If you wanted to view all your internship applications corresponding to a particular company, stage or role,
+then this command is for you! <br>
+
+It can find internships whose company, role or stage names contain all the respective keywords.
 
 Format: `find c/COMPANY | r/ROLE | s/STAGE`
 
 * Displays a list of internships that match all the keywords.
+
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** <br>
 * Case does not matter e.g. `meta` will match `Meta`.
-* Only full words will be matched e.g. `met` will not match `Meta`.
 * Order of the keywords does not matter e.g. `Jane Street` will match `Street Jane`.
+</div>
+
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Caution**
+* Only full words will be matched e.g. `met` will not match `Meta`.
 * Exactly one attribute can be searched for either Company, Role or Stage.
+</div>
 
 
 Examples:
 * `find r/Engineer` returns `Software Engineer` and `Backend Engineer`.
 * `find s/Interview` returns `Technical Interview` and `Behavioural Interview`.
 
-### 4.5. Deleting your internship application:
+### 6.5. Deleting your internship application:
 
-Deletes the specified internship application from WorkBook.
+If you wanted to remove an internship application then this command
+deletes the specified internship application from WorkBook.
 
 Format: `delete INDEX`
 
@@ -171,20 +241,30 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed internship application list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Caution**
+* The command will only be executed if the index provided corresponds to an internship application.
+</div>
+
 Examples:
 * `list` followed by `delete 2` deletes the 2nd internship application in WorkBook.
 * `find Meta` followed by `delete 1` deletes the 1st internship application within the results of the `find` command.
 
-### 4.6. Clearing your existing internship applications:
+### 6.6. Clearing your existing internship applications:
 
-Clears all internship applications in the WorkBook.
+It's a new cycle of summer internship applications and that means it's time for some spring-cleaning! 
+Use this command to clear all the applications you've previously saved in WorkBook!
 
 Format: `clear`
 
 Example:
 * `clear` removes all internship applications in the WorkBook.
 
-### 4.7. Undoing your previous command:
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** If you cleared your internship applications by mistake, fret not as you can easily undo this!
+</div>
+
+### 6.7. Undoing your previous command:
 
 Restores the WorkBook to the state before the previous <em>undoable</em> command was executed
 
@@ -217,7 +297,7 @@ Examples:
 
     `undo` (reverses the `delete 1` command )
 
-### 4.8. Redoing your previous command:
+### 6.8. Redoing your previous command:
 
 Reverses the most recent `undo` command.
 
@@ -250,32 +330,32 @@ Examples:
 
   `redo`(reapplies the `clear` command)
 
-### 4.9. Viewing help:
+### 6.9. Viewing help:
 
 Shows a summary of the commands as well as a link to this User Guide.
 
 Format: `help`
 
-### 4.10. Exiting the program:
+### 6.10. Exiting the program:
 
 Exits the program.
 
 Format: `exit`
 
-### 4.11. Viewing daily tips
+### 6.11. Viewing daily tips
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Managing your data
+## 7. Managing your data
 
-### 5.1. Saving
+### 7.1. Saving
 
 Conveniently, any inputted command that changes any part of your internship application is **automatically saved**!
 Hence, you need not worry about pressing `ctrl` and `s` everytime you update your list of internship applications.
 
-### 5.2. Editing
+### 7.2. Editing
 
 All your internship applications are saved in a JSON file under the `data` subfolder. 
 You are free to update any internship application directly by editing that JSON file.
@@ -293,7 +373,7 @@ If your changes to the data file makes its format invalid, WorkBook will discard
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Frequently asked questions
+## 8. Frequently asked questions
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: [Install](#2-get-started) the app in the other computer, copy and override the JSON file in the new `data` subfolder, and you are done!
@@ -303,4 +383,28 @@ If your changes to the data file makes its format invalid, WorkBook will discard
 
 --------------------------------------------------------------------------------------------------------------------
 
+## 9. Prefix Summary
+
+| Prefix | Symbolize    |
+|--------|--------------|
+| **n/** | Company Name |
+| **s/** | Stage        |
+| **r/** | Role         |
+| **d/** | DateTime     |
+| **e/** | Email        |
+| **l/** | Language Tag |
+| **t/** | Tag          |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 10. Glossary
+
+| Term                           | Description                                                                                                                                        |
+|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Graphical User Interface (GUI) | GUI allows user to interact with an application through graphics such as icons, menu, etc.                                                         |
+| Command Line Interface (CLI)   | CLI allows user to use text as commands to be executed by an application.                                                                          |
+| Command                        | Instruction typed by the user for WorkBook to execute.                                                                                             |
+| Parameter                      | A component of a command for the user to input information. For WorkBook's context, this refers to the internship application details.             |
+| Prefix                         | An abbreviation for the name of the parameter. Prefix should be entered before the actual parameter in a command and always ends with a slash (/). |
+| Alphanumeric                   | Characters that are either a number or a letter.                                                                                                   |
 
