@@ -77,9 +77,9 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a contact: `addPerson`
+### Adding a person: `addPerson`
 
-Adds a contact to the application.
+Adds a person to the application.
 
 Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB`
 
@@ -96,6 +96,13 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER`
 
 - Adds gender to a person in the contact list. The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
 for male, `F`/`f`/`Female`/`female` for female.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The user cannot add a new Person with an already existing name in the application.<br><br>
+
+For example, if the application currently has a Person named `Donny`, the input `addPersons n/Donny p/123 e/test@test.com a/UTown g/M d/10/10/2022`
+will not run and will output the error message `This person already exists in the address book`.
+</div>
 
 ### Listing all persons : `listPersons`
 
