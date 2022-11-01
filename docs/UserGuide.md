@@ -312,7 +312,7 @@ Example:
 Format: `mailEvent INDEX`
 
 * The `INDEX` refers to the index number shown in the displayed event list.
-* The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index.
+* The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
 * The mailing list is saved as a CSV file at the following location: `[JAR file location]/data/EVENT_TITLE.csv`. The CSV file has 2 columns:
   `Name` and `Email`, representing the name and email for every person in the event.
 
