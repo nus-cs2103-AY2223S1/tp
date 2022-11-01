@@ -68,14 +68,15 @@ If you can type fast, Plannit can help you track your module information and tas
 | *[`list-person`](#247-list-person)                            | `list-person`                                                           | List all contacts                                                               |
 | [`home`](#251-navigate-to-home)                               | `home`                                                                  | Navigate to the home page                                                       |
 | [`goto`](#252-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
-| [`exit`](#26-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
-
-<div markdown="span" class="alert alert-info"> :information_source: **Note:**
-Features marked with * can only be utilised when users are at the home page.
-</div>
+| [`help`](#26-help)                                            | `help`                                                                  | View help                                                                       |
+| [`exit`](#27-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
 
 <div markdown="span" class="alert alert-info">:eye: **See also:** 
 [Peeking at tasks](#224-peeking-at-tasks).
+</div>
+
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**
+Features marked with * can only be utilised when users are at the home page.
 </div>
 
 ## 2. Features
@@ -104,8 +105,9 @@ the parameter will be taken.<br>
   e.g. if you specify `p/81234123 p/99999999`, only `p/99999999` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as
-  `home`, `list-module`, `list-person` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `home 123`, it will be interpreted as `home`.
+  [`home`](#251-navigate-to-home), [`list-module`](#215-list-module), [`list-person`](#247-list-person),
+  [`help`](#26-help) and [`exit`](#27-exiting-the-program)) will be ignored.<br>
+  e.g. if the command specifies `home 123`, it will be interpreted as [`home`](#251-navigate-to-home).
 </div>
 
 ### 2.1. Modules
@@ -285,8 +287,8 @@ command:
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:**<br/>
 You may view the tasks added to a module by navigating to a module's page 
-using the [`goto`](##252-navigate-between-modules) command. Alternatively, 
-you may double-click on a module to ["peek"](#224-peeking-at-modules) at a 
+using the [`goto`](##252-navigate-between-modules) command. <br>
+Alternatively, you may double-click on a module to ["peek"](#224-peeking-at-tasks) at a 
 module's tasks while on the home page.
 </div>
 
@@ -660,6 +662,10 @@ delete-person-from-module m/CS2103T n/Dinosaur Lim
 ```
 In the above example, we are deleting the person `Dinosaur Lim` from module `CS2103T`.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Deleting a person will bring you back to the home page.
+</div>
+
 
 #### 2.4.5. Edit person
 You may edit a contact using the `edit-person` command.
@@ -735,22 +741,18 @@ You may navigate to the home page using the `home` command.
 Format:  `home`
 
 <div markdown="block" class="alert alert-primary"> :bulb: **Tips:** <br>
-You may click on a module to ["peek"](#224-peeking-at-modules) at a module's task while on the home page. <br>
+You may click on a module to ["peek"](#224-peeking-at-tasks) at a module's task while on the home page. <br> <br>
 For more detailed information regarding a specific module, you may navigate to that
-module using the [`goto`](#252-navigate-between-modules) command. <br>
-The following commands also navigates you back to the home page:
-* [`add-module`](#211-add-module)
-* [`delete-module`](#212-delete-module)
-* [`add-person`](#244-add-person)
+module using the [`goto`](#252-navigate-between-modules) command. <br> <br>
+The following commands also navigates you back to the home page: <br>
+[`add-module`](#211-add-module), [`delete-module`](#212-delete-module), [`add-person`](#241-add-person).
 </div>
 
 <div markdown="block" class="alert alert-info"> :information_source: **Note:**
 After using the [`goto`](#252-navigate-between-modules) command, executing the `home` command will 
-re-enable the following commands:
-* [`find-module`](#214-find-module)
-* [`list-module`](#215-list-module)
-* [`find-person`](#244-find-person)
-* [`list-person`](#245-list-person)
+re-enable the following commands: <br>
+[`find-module`](#214-find-module), [`list-module`](#215-list-module),
+[`find-person`](#246-find-person), [`list-person`](#247-list-person).
 </div>
 
 #### 2.5.2. Navigate between modules
@@ -772,38 +774,48 @@ You may return to home page by executing the [`home`](#251-navigate-to-home) com
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:** <br>
 You will leave the home page after executing the `goto` command. This is different from the
-behavior of [`find-module`](#215-find-module) command. <br>
+behavior of [`find-module`](#214-find-module) command. <br> <br>
 After using the `goto` command, usage of the following commands will be restricted:<br>
-* [`find-module`](#214-find-module)
-* [`list-module`](#215-list-module)
-* [`find-person`](#244-find-person)
-* [`list-person`](#245-list-person)
+[`find-module`](#214-find-module), [`list-module`](#215-list-module),
+[`find-person`](#246-find-person), [`list-person`](#247-list-person). <br> <br>
 To re-enable the restricted commands, you may execute any commands that bring you back to the home page
 (i.e. [`home`](#251-navigate-to-home)).
 </div>
 
 <br>
 
-### 2.6. Exiting The Program
+### 2.6. View help
+If you're feeling lost regarding our features, use the `help` command to
+open a window with a link that directs you to our user guide!
+
+Format: `help`
+
+#### Minor enhancement [coming in v2.0] <br>
+Stay tuned for Plannit v2.0, where we will be including a table showing all commands
+within the help window!
+
+<br>
+
+### 2.7. Exiting The Program
 Exits the program.
 
 Format: `exit`
 
 <br>
 
-### 2.7. Saving The Data
+### 2.8. Saving The Data
 Your data is saved in the hard disk automatically after any command that changes the data. 
 There is no need to save manually.
 
 <br>
 
-### 2.8. Loading The Data
+### 2.9. Loading The Data
 If saved data exists, data is automatically loaded when the program starts.
 There is no need to load manually.
 
 <br>
 
-### 2.9. Editing The Data File
+### 2.10. Editing The Data File
 Your data is saved as a `JSON` file `[JAR file location]/data/plannit.json`. Advanced users are welcome to update
 data directly by editing that data file.
 
