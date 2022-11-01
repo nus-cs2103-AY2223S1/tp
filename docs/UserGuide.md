@@ -26,12 +26,14 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 2. Download the latest [idENTify.jar](https://github.com/AY2223S1-CS2103T-T17-4/tp/releases/tag/v1.3) from here.
 3. Copy the file to your preferred folder.
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
-![start_up](images/StartingUI.png)
+![start_up](images/IdENTifyStartUp.png)
 
 ## UI Components
 ![SampleUiImage](images/SampleUI.png)
+* The UI is available in light mode (by default, shown above) or dark mode.
 
 ### General UI information
+
 Component | Purpose
 --------|------------------
 **Tool Box** | Allows you to exit idENTify, change the theme of the UI or view help
@@ -42,10 +44,6 @@ Component | Purpose
 **Patient Card** | Displays detailed information about a patient
 **Appointment Card** | Displays detailed information about an appointment
 **Save Location** | Displays the location where your idENTify data is stored
-
-* The UI is also available in dark mode (shown below).
-
-![DarkModeUI](images/StartingUIDark.png)
 
 
 ### Patient Card
@@ -80,27 +78,38 @@ Component | Purpose
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</div>
 
-**:information_source: Notes about the command parameters:**<br>
 
-* `NAME` can only accept alphanumeric characters i.e. "a, b, c..." & "1, 2, 3..."
-* `TAG` names **must only be from the following:** `ear`, `nose`, `throat` (**NOT** case-sensitive). <br>
-  e.g. `t/sick` will cause an error message.
-* Phone numbers must only contain numbers, and it should be at least 3 digits long.
-* Emails should be of the format `local-part@domain-name` and adhere to the following constraints:
-  - The `local-part` must:
-      - Only contain alphanumeric characters and these special characters, excluding the parentheses, `(+_.-)`.
-      - Not start or end with any special characters.
-  - The`domain-name` is made up of domain labels separated by `.`, and must:
-      - End with a domain label at least 2 characters long.
-      - Have each domain label start and end with alphanumeric characters.
-      - Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-  - Examples:
-      - `John@example.com` is valid. It contains the domain labels `examples` and `com` which satisfies the constraints.
-      - `John@example` is valid.
-      - `John` is invalid, as it is missing a `@` and a `domain-name`.
-      - `John@^s^` is invalid, as the domain label `^s^` does not start and end with alphanumeric characters.
-      - `John@x` is invalid, as the domain label `x` is not at least 2 characters long.
+<div markdown="block" class="alert alert-info">
+  
+**:information_source: Notes about the command parameters:** <br>
+
+* `NAME`
+  * Can only accept alphanumeric characters i.e. "a, b, c..." & "1, 2, 3..."
+* `TAG` names 
+  * **Must only be from the following:** `ear`, `nose`, `throat` (not case-sensitive). <br>
+    e.g. `t/sick` will cause an error message.
+* `PHONE_NUMBER`
+  * Must only contain integers, and it should be at least 3 digits long.
+* `EMAIL`
+  * Format: `local-part@domain-name`
+  * Follows below constraints:
+  * `local-part` must:
+    * Contain alphanumeric characters and these special characters: `+`, `_`, `.`, `-`.
+    * Not start or end with any special characters.
+  * `domain-name` must:
+    * Be at least 2 characters long.
+    * Begin and end with alphanumeric characters.
+    * Have both parts consist of alphanumeric characters, separated only by hyphens, if any.
+  * Examples:
+    * Valid
+      * `John@example.com`
+      * `John@example`
+    * Invalid
+      * `John`: Missing `@` and `domain-name`.
+      * `John@^s^`: `^s^` does not start and end with alphanumeric characters.
+      * `John@x`: `x` is not less than 2 characters long.
 </div>
 
 
@@ -125,12 +134,16 @@ Adds a patient into idENTify.
 
 Format: `Format: add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** <br>
+<div markdown="block" class="alert alert-primary">
+  
+**:bulb: Tip:** <br>
 
-* A patient can have 0 to 3 number of tags. <br>
-* `TAG` names **must only be from the following:** `ear`, `nose`, `throat` (**NOT** case-sensitive). <br>
+* A patient can have 0 to 3 number of tags. 
+  
+* `TAG` names **must only be from the following:** `ear`, `nose`, `throat` (not case-sensitive). <br>
+
    e.g. `t/sick` will cause an error message.
+  
 </div>
 
 Examples:
@@ -154,7 +167,7 @@ Examples:
 
 #### Book an appointment:  `book`
 
-Books an appointment for the specified patient at INDEX with a given REASON, DATE, optional TIME PERIOD and optional tags.
+Books an appointment for the specified patient at `INDEX` in the patient list.
 
 Inputting a time period allows the appointment to be recurring: Automatically books a new appointment in the future 
 as given by the time period when the current appointment is marked as completed.
@@ -278,24 +291,30 @@ Format:
 * `list appts` - Refreshes only the appointment list to show all appointments, leaving the patient list unchanged.
 * `list all` - Refreshes both the patient and appointment lists to show all patients and appointments.
 
-#### Grouping all patients : `group patients`
+#### Grouping patients : `group patients`
 
-Shows a list of all patients grouped by their tags. After this command, people with the exact same tags will be 
-grouped together. \
-For example, all patients with no tags will be in the same group; all patients with only 'ear' tag 
-will be in the same group; all patients with both 'ear' and 'nose' tags will be in the same group. \
+Groups up patients that share the same tag(s).
+
+For example: <br> 
+* Patients with no tags will be in the same group.
+* Patients with only 'ear' tag will be in the same group.
+* Patients with both 'ear' and 'nose' tags will be in the same group.
+
 Patients in the same tag group will be sorted automatically by their names in ascending order.
 
 Format:
 * `group patients`
 
-#### Grouping all appointments : `group appts`
+#### Grouping appointments : `group appts`
 
-Shows a list of all appointments grouped by their tags, attached patients or mark status, depending on the parameter 
-given. \
-For example, after grouping appointments with tags, all appointments with no tags will be in the same group; all 
-appointments with only 'ear' tag will be in the same group; all appointments with both 'ear' and 'nose' tags will be 
-in the same group. \
+Groups up appointments that share a similar criteria.
+
+For example, after grouping appointments with same tags: <br>
+
+* Appointments with no tags will be in the same group.
+* Appointments with only 'ear' tag will be in the same group.
+* Appointments with both 'ear' and 'nose' tags will be in the same group.
+
 Appointments in the same group will be sorted automatically by their datetime in ascending order.
 
 
@@ -307,9 +326,9 @@ Examples:
 * `group appts k/patient` (`group appts k/p`)
 * `group appts k/mark` (`group appts k/m`)
 
-#### Ungrouping all patients/ appointments : `ungroup`
+#### Ungrouping patients/ appointments : `ungroup`
 
-Shows a list of all patients or appointments ungrouped. \
+Ungroups the list of patients or appointments. \
 Patient entries will return to being sorted by name in alphabetical order. \
 Appointment entries will return to being sorted by datetime.
 
@@ -355,15 +374,19 @@ Unhides patients that were previously hidden who contain any of the given tags.
 
 Format: `unhide patients t/TAG [t/MORE_TAGS]...`
 
-* The search is **NOT** case-sensitive. e.g `EAR` will match `ear`
+
+* The search is **NOT** case-sensitive. e.g `t/EAR` has same effect as `t/ear`
+
 * All tags of a patient are searched.
 
 Examples:
 * `unhide patients t/nose t/ear` unhides all patients with a nose OR ear tag.
 
 #### Hiding appointments by reason, tag, or marked status: `hide appts`
+
 Hides appointments by the condition specified. <br>
-The search for reason, tag, and status is **NOT** case-sensitive. e.g `EAR` will match `ear`
+The search for reason, tag, and status is **NOT** case-sensitive. e.g `t/EAR` has same effect as `t/ear`
+
 
 **By reason:**
 Hides appointments that contain at least 1 of the given keywords in the reason of appointment.
@@ -409,7 +432,7 @@ Unhides hidden appointments that contains `REASON` (OR `MORE_REASONS`).
 
 Format: `unhide appts r/REASON [r/MORE_REASONS]...`
 
-* The reasons are **NOT** case-sensitive. e.g. `PAIN` will match `pain`
+* The reasons are **NOT** case-sensitive. e.g. `r/PAIN` has same effect as `r/pain`
 
 Examples:
 * `unhide appts r/pain` unhides all hidden appointments with "pain" as part of the reason.
@@ -420,7 +443,7 @@ Unhides hidden appointments that contains `TAG` (OR `MORE_TAGS`).
 
 Format: `unhide appts t/TAG [t/MORE_TAGS]...`
 
-* The search is **NOT** case-sensitive. e.g `EAR` will match `ear`
+* The search is **NOT** case-sensitive. e.g `t/EAR` has same effect as `t/ear`
 * All tags of an appointment are searched.
 
 Examples:
@@ -443,7 +466,8 @@ Finds patients and appointments that matches all the given criteria specified.
 Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`
 
 * At least 1 of the optional fields must be provided.
-* The search is **NOT** case-sensitive. e.g `hans` will match `Hans`
+* The search is **NOT** case-sensitive. e.g `n/hans` has same effect as `n/Hans`
+
 * `[n/NAME]`, `[p/PHONE]`, `[e/EMAIL]`, `[a/ADDRESS]` and `[t/PATIENT_TAG]` are fields to find information about the patient (patient criteria).
 * `[r/REASON]`, `[ds/DATE_START]`, `[de/DATE_END]` and `[ta/APPOINTMENT_TAG]` are fields to find information about appointments (appointment criteria).
   * `[ds/DATE_START]` searches for appointments occurring at or after `DATE_START`.
@@ -452,7 +476,7 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/
   * A patient must satisify all patient criteria and have at least 1 appointment that satisfies all the appointment criteria to be displayed.
   * An appointment must satisify all appointment criteria and belong to a patient that satisfies all the patient criteria to be displayed.
 * All fields except `[ds/DATE_START]`, `[de/DATE_END]`, `[t/PATIENT_TAG]` and `[ta/APPOINTMENT_TAG]` supports partial match.
-  * e.g When finding names, searching `John Do` will match someone named `John Doe`.
+  * e.g When finding names, searching `John Do` can find someone named `John Doe`.
 * For `[t/PATIENT_TAG]` and `[ta/APPOINTMENT_TAG]` fields, only tags with a full match will be matched
   * e.g Finding a tag `Ea` will not match a tag labelled `Ear`.
 * `[ds/DATE_START]` must be a date equal to or before `[ds/DATE_END]`.
@@ -518,10 +542,10 @@ Action | Format, Examples
 **Unmark** | `unmark APPOINTMENT_INDEX` <br> e.g. `unmark 1`
 **Cancel** | `cancel APPOINTMENT_INDEX` <br> e.g. `cancel 2`
 **History** | Arrow keys <br> e.g. `Up Arrow` key on keyboard
-**Hide Patients** | `hide patients CONDITION` <br> eg. `hide patients t/nose`
-**Hide Appointments** | `hide appts CONDITION` <br> eg. `hide appts s/marked`
-**Unhide Patients** | `unhide patients CONDITION` <br> eg. `unhide patients t/nose`
-**Unhide Appointments** | `unhide appts CONDITION` <br> eg. `unhide appts r/pain`
+**Hide Patients** | `hide patients CONDITION` <br> e.g. `hide patients t/nose`
+**Hide Appointments** | `hide appts CONDITION` <br> e.g. `hide appts s/marked`
+**Unhide Patients** | `unhide patients CONDITION` <br> e.g. `unhide patients t/nose`
+**Unhide Appointments** | `unhide appts CONDITION` <br> e.g. `unhide appts r/pain`
 **Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `edit patients 1 n/Bernice Yu`
 **Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME_PERIOD] [t/TAG]…​` <br> e.g. `edit appts 1 r/Cough`
 **List** | `list patients` <br> `list appts` <br> `list all`
