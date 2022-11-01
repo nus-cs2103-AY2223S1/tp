@@ -274,7 +274,7 @@ Adds a task of type event into your task list.
 
 * `NAME` must be written in full.
 * `NAME` is case-sensitive.
-* If task book contains a `event` with the same `ASSIGNMENT`, `NAME`, `DESCRIPTION` and `DATE` from input command, a new `event` will not be added.
+* If task book contains an `event` with the same `ASSIGNMENT`, `NAME`, `DESCRIPTION` and `DATE` from input command, a new `event` will not be added.
 
 </div>
 
