@@ -9,7 +9,8 @@ AddressBook - Level 3 is a desktop address book application used for teaching So
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
+<!-- TODO: Categorise everything -->
+<!-- * **New Feature**: Added the ability to undo/redo previous commands.
 
   * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
@@ -49,4 +50,4 @@ Given below are my contributions to the project.
   * Integrated a third party library (Natty) to the project ([\#42]())
   * Integrated a new Github plugin (CircleCI) to the team repo
 
-* _{you can add/remove categories in the list above}_
+* _{you can add/remove categories in the list above}_ -->
