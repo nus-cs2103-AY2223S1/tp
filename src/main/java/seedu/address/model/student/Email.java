@@ -54,8 +54,16 @@ public class Email {
         return test.equals(INFO_NOT_AVAILABLE) || test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if keyword in present in the email value.
+     *
+     * @param keyword
+     * @return whether keyword is present is the email value
+     */
     public boolean contains(String keyword) {
-        return value.toLowerCase().contains(keyword);
+        return value.equals(INFO_NOT_AVAILABLE)
+                ? false
+                : value.toLowerCase().contains(keyword);
     }
 
     @Override
