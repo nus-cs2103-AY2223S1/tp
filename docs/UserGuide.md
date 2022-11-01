@@ -13,7 +13,7 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 
 # Quick start
 
-1. Ensure you have Java `11` or above installed in your computer. Click
+1. Ensure you have Java `11` or above installed in your computer. If not, don't worry! Click
    [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) for further instructions on 
    how to download and install Java `11`.
 
@@ -22,7 +22,7 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 4. Copy the file to the folder you want to use as the _home folder_ for your TruthTable.
 
 5. Double-click the file to start the app. A window which looks similar to the screenshot below should appear in a few 
-   seconds. Note how the app contains some sample data.<br>
+   seconds. We've added some sample data for you to play around with and get familiar with the commands!.<br>
    ![Ui](images/Ui.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
@@ -31,7 +31,7 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
    - `add member 1`
    - `add task "My First Task"`
 
-7. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) section below for details of each command.
 
 ---
 
@@ -127,7 +127,7 @@ Examples:
 
 ### Creating a new team `add team`
 
-Add a new team to the user's list of teams. Will throw an error there is already an existing team with the same name. 
+Add a new team to your list of teams. Will show an error there is already an existing team with the same name. 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Team name must consist only of alphanumeric characters (i.e., **Spaces are NOT allowed**).
 </div>
@@ -217,7 +217,7 @@ In other words, `find member -n alex` and `find member -n Alex` will return the 
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** You can only find members using **either** emails or names. This means that you 
-should not use both `-n` and `-e` in the `find member` command. In essence, they are mutually exclusive. 
+should not use both `-n` and `-e` in the `find member` command. 
 </div>
 
 
@@ -226,7 +226,7 @@ Format:
 
 Examples
 * `find member -n Alex` finds team members with **names** containing the word "Alex".
-* `find member -n Alex Beatrice` finds team members with **names** containing **either** of the words "Alex" or "Beatrice".
+* `find member -n Alex Beatrice` finds team members with **names** containing **either** "Alex" or "Beatrice".
 * `find member -e alexyeoh`  finds team members with **emails** containing "alexyeoh".
 
 
@@ -239,25 +239,25 @@ Format:
 - `list members`
 
 ### Sort members : `sort members`
-Sorts all members in the current team by name and displays them in the member list
+Sorts all members in the current team by name and displays them in the member list.
 
 Format:
 * `sort members ORDER`
 
 Examples
-* `sort members asc` sorts the team members in **ascending** order.
-* `sort members dsc` sorts the team members in **descending** order.
+* `sort members asc` sorts your team members in **alphabetical** order (as per their names).
+* `sort members dsc` sorts the team members in **reverse alphabetical** order (as per their names).
 * `sort members res` **resets** the order of the team members shown.
 
 ## Commands to Manage Tasks
 
 ### Add task to team : `add task`
 
-Add a new task to the current team. The task name is compulsory, while the other fields such as assignee index and
+Add a new task to your current team. The task name is compulsory, while other fields such as assignee index and
 deadline are optional.
 
-Multiple assignees can be assigned at one time, by specifying the indices of each of the members, separated by spaces.
-e.g. `add task "Merge PR" -a 1 3 4` will assign members 1, 3 and 4.
+Multiple assignees can be assigned to the same task directly, by specifying the indices of each assignee in the member list, separated by spaces.
+e.g. `add task "Merge PR" -a 1 3 4` will assign members 1, 3 and 4 to the task "Merge PR".
 
 Format:
 * `add task "TASK_NAME" [-a ASSIGNEE_INDEX] [-d DEADLINE]`
@@ -266,9 +266,9 @@ Examples:
 
 * `add task "Merge PR" -a 1 -d 2022-12-02 23:59` will add a task with the name "Merge PR", assign the task to the
 first member in the team list and set the deadline "02-Dec-2022 23:59", to the current team's task list.
-* `add task "Review PR" -a 1 3 -d 2022-12-02 23:59` will add a task with the name "Review PR", assign the task
-to the first and third member in the team list and set the deadline "02-Dec-2022 23:59", to the current team's
-task list.
+* `add task "Review PR" -a 1 3 -d 2022-12-02 23:59` will add a task to the current team's
+task list, with the name "Review PR", assign the task
+to the first and third member in your team list and set the deadline of the task to be 02-Dec-2022 23:59.
 
 ### Edit task in team : `edit task`
 
@@ -347,7 +347,7 @@ Mark a specified task as done. To undo this command, see the `unmark` command be
 
 Format:
 
-- `mark INDEX`
+- `mark TASK_INDEX`
 
 Examples:
 
@@ -359,7 +359,7 @@ Mark a specified task as incomplete. This will undo the `mark` command.
 
 Format:
 
-- `unmark INDEX`
+- `unmark TASK_INDEX`
 
 Examples:
 
@@ -418,13 +418,13 @@ Examples
 * `sort tasks res` **resets** the order of the tasks shown.
 
 ### Filter tasks by team member : `tasksof`
-Find all tasks in the current team assigned to a particular team member.
+Find all tasks in your current team that have been assigned to a particular team member.
 
 Format:
 * `tasksof MEMBER_INDEX`
 
 Examples
-* `tasksof 1` will show all tasks assigned to the first member in the team's member list.
+* `tasksof 1` will show all tasks assigned to the first member in your current team's member list.
 
 ## Commands to Manage Links / URLs
 
