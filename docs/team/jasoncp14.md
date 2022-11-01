@@ -25,6 +25,7 @@ Given below are my contributions to the project.
     may not comply with the requirements given.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jasonCP14&breakdown=true)
+
 * **Project management**:
   * Created and assigned issues in the issue tracker for team members
   * Reviewed and approved other team members' PR
