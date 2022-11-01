@@ -37,7 +37,8 @@ public class SearchCommand extends Command {
     /**
      * Constructs a {@code SearchCommand} to search contacts in SoConnect.
      */
-    public SearchCommand(Predicate<Person> predicate, Predicate<Person> alternativePredicate, Predicate<Person> leastAccuratePredicate) {
+    public SearchCommand(Predicate<Person> predicate, Predicate<Person> alternativePredicate,
+                         Predicate<Person> leastAccuratePredicate) {
         requireAllNonNull(predicate, alternativePredicate);
         this.predicate = predicate;
         this.alternativePredicate = alternativePredicate;
