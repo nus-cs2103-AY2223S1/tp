@@ -13,11 +13,10 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 2. Download the latest [idENTify.jar](https://github.com/AY2223S1-CS2103T-T17-4/tp/releases/tag/v1.3) from here.
 3. Copy the file to your preferred folder.
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
-![start_up](images/IdENTifyStartUp.png)
+![start_up](images/StartingUI.png)
 
 ## UI Components
 ![SampleUiImage](images/SampleUI.png)
-* The UI is available in light mode (by default, shown above) or dark mode.
 
 ### General UI information
 Component | Purpose
@@ -30,6 +29,10 @@ Component | Purpose
 **Patient Card** | Displays detailed information about a patient
 **Appointment Card** | Displays detailed information about an appointment
 **Save Location** | Displays the location where your idENTify data is stored
+
+* The UI is also available in dark mode (shown below).
+
+![DarkModeUI](images/StartingUIDark.png)
 
 
 ### Patient Card
