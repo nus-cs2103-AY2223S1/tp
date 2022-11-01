@@ -14,14 +14,14 @@ public class AddGroupCommand extends Command {
 
     public static final String COMMAND_WORD = "addgroup";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an empty group to the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an empty group to the TABS.\n"
             + "Parameters: "
             + PREFIX_GROUP + "GROUPNAME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GROUP + "CS2103T Team Project";
 
     public static final String MESSAGE_SUCCESS = "New group added: %1$s";
-    public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the TABS.";
 
     private final Group toAdd;
 

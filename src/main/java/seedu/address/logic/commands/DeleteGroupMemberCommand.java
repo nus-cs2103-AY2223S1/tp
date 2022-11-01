@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonGroup;
 
 /**
- * Adds a person to a group in the address book.
+ * Removes a person from a group in the TABS.
  */
 public class DeleteGroupMemberCommand extends Command {
 
@@ -29,7 +29,7 @@ public class DeleteGroupMemberCommand extends Command {
             + "Parameters: " + PREFIX_GROUP + "GROUP " + PREFIX_NAME + "NAME\n"
             + "Example: " + COMMAND_WORD + " g/Group 1 n/Bobby Chua";
     public static final String MESSAGE_INVALID_GROUP = "This group does not exist.";
-    public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
+    public static final String MESSAGE_INVALID_PERSON = "This person is not in TABS.";
     public static final String MESSAGE_PERSON_NOT_IN_GROUP = "%1$s is not in group %2$s.";
     public static final String MESSAGE_DELETE_MEMBER_SUCCESS = "%1$s was deleted from group: %2$s";
 
@@ -37,8 +37,8 @@ public class DeleteGroupMemberCommand extends Command {
     private final PersonGroup personGroup;
 
     /**
-     * @param name of the person in the filtered person list to add to group
-     * @param group of the person to be added to
+     * @param name of the person in the filtered person list to delete from the group
+     * @param group of the person to be deleted from
      */
     public DeleteGroupMemberCommand(PersonGroup group, Name name) {
         requireAllNonNull(name, group);

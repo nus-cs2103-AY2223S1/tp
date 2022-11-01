@@ -49,11 +49,11 @@ public class AssignTaskCommand extends Command {
     public static final String MESSAGE_EMPTY_WORKLOAD = "Workload has to be low, medium or high and cannot be empty\n";
     public static final String MESSAGE_EMPTY_DEADLINE = "Deadline must be in "
         + "yyyy-MM-dd or yyyy-MM-dd HH:mm format if entered.\n";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in TABS.";
     public static final String MESSAGE_DUPLICATE_TASK = "This person already has a task of this name.";
     public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
     public static final String MESSAGE_INVALID_PERSON_NOT_IN_GROUP = "This person is not in the specified group.";
-    public static final String MESSAGE_INVALID_GROUP = "This group is not in the address book.";
+    public static final String MESSAGE_INVALID_GROUP = "This group is not in TABS.";
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "New task added for the following person.";
 
     private final Name name;
