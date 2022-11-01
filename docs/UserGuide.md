@@ -3,10 +3,10 @@ layout: page
 title: User Guide
 ---
 # **Introduction**
-HR Pro Max++ is a **desktop app for team leads in SMEs to manage projects and staff members under them. 
+HR Pro Max++ is a **desktop app for team leads in SMEs to manage Projects and Staff members under them. 
 It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-If you can type fast, HR Pro Max++ can get your project management tasks done faster than traditional GUI apps.
+If you can type fast, HR Pro Max++ can get your Project management Tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Table of Contents**
@@ -21,35 +21,40 @@ If you can type fast, HR Pro Max++ can get your project management tasks done fa
 
 2. Download the latest `HR_Pro_Max++.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your project management application.
+3. Copy the file to the folder you want to use as the _home folder_ for your Project management application.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
-
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all projects.
-
-   * **`addproj pn/Duke pb/ 20 pd/ 2022-09-27`** : Adds a project named Duke to HR Pro Max++.
-
-   * **`delproj 3`** : Deletes the 3rd project shown in the current list.
-
-   * **`clear`** : Deletes all data currently saved on HR Pro Max++.
-
-   * **`exit`** : Exits the app.
-
-6. Refer to the [Features](#features) below for details of each command.
+5. You can proceed to the next section for a quick [overview of the user interface](#user-interface).
+6. Refer to the [Features](#features) below for details of the commands you can use.
 
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **User Interface**
-The user interface is divided into 3 main parts: the command box, the result display and the List panel.
-### **Command Box**
-The command box is where you can type in your commands. You can press the `Enter` key to execute the command.
+Our app's user interface is divided into 5 main parts:
+1. [Command Box](#command-box)
+2. [Result Display](#result-display)
+3. [Task Panel](#task-panel)
+4. [Project Panel](#project-panel)
+5. [Staff Panel](#staff-panel)
 
+![Ui](images/UiLabelled.png)
+
+### **Command Box**
+The command box is where you can type in your commands. 
 ![Command Box](images/CommandBox.png)
+
+Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+Some example commands you can try:
+
+* **`list`** : Lists all Projects and Tasks.
+
+* **`addproj pn/Duke pb/ 20 pd/ 2022-09-27`** : Adds a Project named Duke to HR Pro Max++.
+
+* **`delproj 3`** : Deletes the 3rd Project shown in the current Project Panel.
+
+* **`exit`** : Exits the app.
 
 ### **Result Display**
 The result display is where the output of your commands will be shown.
@@ -57,18 +62,26 @@ For example, entering an incorrect `addproj` command like shown below will cause
 
 ![Result Display](images/ResultDisplay.png)
 
-### **List Panel**
-By default, the `Task`, `Project`, or `Staff` card will alternate between blue and grey.
-Clicking on a `Task`, `Project`, or `Staff` card will cause the respective box to be highlighted in green.
-All `Task` and `Project` cards will be displayed in the `List Panel`.
-By default, the `Staff` list is empty when first starting the program.
-To see how to view the `Staff` list of other projects, you can check [this](#view-the-staff-list-within-a-project--view) segment of the user guide.
+### **Task Panel**
+This section in the user interface displays the list of Tasks that you have entered into the app. 
+For information on all commands that can be used to manipulate the Task Panel, refer to the [Task Commands](#task-commands) section.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-We refer to the Tasks shown as task list, Projects shown as project list and Staff shown as staff list.
-</div>
+![Task Panel](images/TaskPanel.png)
 
-![List Panel](images/ListPanel.png)
+### **Project Panel**
+This section in the user interface displays the list of Projects that you have entered into the app.
+When first starting the program, the `Project` list will contain some sample data as shown.
+FOr information on all commands that can be used to manipulate the Project Panel, refer to the [Project Commands](#project-commands) section.
+
+![Project Panel](images/ProjectPanel.png)
+
+### **Staff Panel**
+This section in the user interface displays the list of Staff that you have entered into the app.
+When first starting the program, the `Staff` list will be empty by default. 
+To see how to view the `Staff` list attached to a Project, you can check [this](#view-the-staff-list-within-a-project--view) segment of the user guide.
+For information on all commands that can be used to manipulate the Staff Panel, refer to the [Staff Commands](#staff-commands) section.
+
+![Staff Panel](images/StaffPanel.png)
 
 [Back to top](#table-of-contents)
 
@@ -120,11 +133,11 @@ Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Project Commands**
-This segment contains information regarding all the commands that can be used to manage projects.
+This segment contains information regarding all the commands that can be used to manage Projects.
 
 ### **Adding a Project :** `addproj`
 
-Adds a project to Project list.
+Adds a Project to Project list.
 
 Format: `addproj pn/PROJECT_NAME pb/PROJECT_BUDGET pd/PROJECT_DEADLINE [t/TAG]…​`
 
@@ -132,7 +145,7 @@ Format: `addproj pn/PROJECT_NAME pb/PROJECT_BUDGET pd/PROJECT_DEADLINE [t/TAG]�
 * PROJECT_DEADLINE should follow the YYYY-MM-DD format.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A project can have any number of tags (including 0)
+A Project can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -148,25 +161,25 @@ Deletes the specified Project from Project list.
 
 Format: `delproj INDEX`
 
-* Deletes the project at the specified `INDEX`.
+* Deletes the Project at the specified `INDEX`.
 * The index refers to the index number shown in the displayed Project list.
 
 ```yaml
 Note: 
 * The index must be a positive integer 1, 2, 3, …​
-* Staff list will not display any staff. You will have to view a project to see the staff of that project
+* Staff list will not display any Staff by default. You will have to use the [view command](#view-the-staff-list-within-a-project--view) to see the Staff of that Project.
 ```
 
 Examples:
-* `list` followed by `delproj 2` deletes the 2nd project in Project list.
-* `findproj 2103T TP` followed by `delproj 1` deletes the 1st project in the results of the `findproj` command.
+* `list` followed by `delproj 2` deletes the 2nd Project in Project list.
+* `findproj 2103T TP` followed by `delproj 1` deletes the 1st Project in the results of the `findproj` command.
 
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Listing all Projects and tasks :** `list`
+### **Listing all Projects and Tasks :** `list`
 
-Show all the Projects and tasks in the project and task list respectively.
+Show all the Projects and Tasks in the Project and Task list respectively.
 
 :bulb: **Tip:** After using a find command, you can use `list` to return the display to its original state.
 
@@ -177,7 +190,7 @@ Format: `list`
 --------------------------------------------------------------------------------------------------------------------
 ### **Finding Projects :** `findproj`
 
-Finds all projects whose names that matches any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
+Finds all Projects whose names match any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
 
 Format: `findproj KEYWORD [MORE_KEYWORDS]`
 
@@ -185,7 +198,7 @@ Format: `findproj KEYWORD [MORE_KEYWORDS]`
 Note: 
 * `KEYWORDS` must not be an empty string.
 * The findproj command is case-insensitive such that 'merger' will match 'MERGER'
-* The findproj command will match project name if there is a partial match, 'me' or 'mE' will both match 'MERGER'
+* The findproj command will match Project name if there is a partial match, 'me' or 'mE' will both match 'MERGER'
 ```
 
 Examples:
@@ -209,7 +222,7 @@ Format: `sortproj`
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-###[**Editing a Project :** `editproj`
+### **Editing a Project :** `editproj`
 
 Edits an existing Project in the Project list.
 
@@ -229,75 +242,76 @@ Note:
 ```
 
 Examples:
-* `editproj 1 pb/5000` Edits the project budget of the 1st project to be `5000`.
-* `editproj 2 pn/CS2103 t/` Edits the name of the 2nd project to be `CS2103` and clears all existing tags.
+* `editproj 1 pb/5000` Edits the Project budget of the 1st Project to be `5000`.
+* `editproj 2 pn/CS2103 t/` Edits the name of the 2nd Project to be `CS2103` and clears all existing tags.
 
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Staff Commands**
 
-Since each project contains a list of staff, for the use of all staff commands, we recommend that before using the staff commands on a project, you should use the `view` command on the project.
+Since each Project contains a list of Staff, we recommend that before using Staff commands on any Project, 
+you should first use the [`view` command](#view-the-staff-list-within-a-project--view) to view the Project's attached Staff list.
 
-Staff list will refer to the staff list within a project and the displayed staff list refers to what is shown on the GUI.
+Staff list will refer to the Staff list within a Project and the displayed Staff list refers to what is shown on the GUI.
 
 ### **Adding a Staff member to Project :** `addstaff`
 
-Adds a staff member info to Project specified by the index in project list.
+Adds a Staff member info to Project specified by the index in Project list.
 
 Format: `addstaff INDEX sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT_NUMBER [t/TAGS]`
 
 ```yaml
 Note:
-* All fields for staff member are required, except `TAGS`
-* Index refers to project in displayed project list. It will add the staff to this project.
-* If no project is shown on the project list, addstaff will give an error. Use list to display all 
-  projects but if there is no projects, add a project using addproj command.
-* If staff is added successfully, it will update the displayed staff list to show the staff list 
-  of the project where the staff is added to.
+* All fields for Staff members are required, except `TAGS`
+* Index refers to the numbering of the desired Project in the displayed Project list. The Staff will be added to the specified Project.
+* If no Project is shown on the Project list, addstaff will give an error. Use list to display all 
+  Projects. If no Projects are present, add a Project first using the addproj command.
+* If Staff is added successfully, the displayed Staff list will be updated to show the Staff list 
+  of the Project where the Staff is added to.
 ```
 
 Examples:
-* `addstaff 1 sn/John Doe sp/98765432 sl/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the first project in the project list.
-* `addstaff 3 sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin sl/false` Adds staff member named `Betsy Crown` to the third project in the project list.
+* `addstaff 1 sn/John Doe sp/98765432 sl/true sd/Accounting st/Accountant` Adds Staff member named `John Doe` to the first Project in the Project list.
+* `addstaff 3 sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin sl/false` Adds Staff member named `Betsy Crown` to the third Project in the Project list.
 
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Deleting a Staff member from Project :** `delstaff`
 
-Deletes a staff member and all its info inside a project in the currently displayed project list.
+Deletes a Staff member and all its info inside a Project in the currently displayed Project list.
 
 Format: `delstaff INDEX pn/PROJECT_NAME`
 
 ```yaml
 Note:
-* INDEX refers to staff in displayed staff list. It is the staff to be deleted.
-* PROJECT_NAME refers to the project in displayed project list where the staff is deleted from.
-* Recommended to use the view command on a project before deleting a staff from it.
-* A possible interaction is if you view the staff list of project A then try 
-  to delete staff at index 1 (call this staff Tom) from project B, it will delete 
-  staff Tom from project B if staff Tom is also part of project B.
-* If staff is deleted successfully, it will update the displayed staff list to show the staff list 
-  of the project where the staff was deleted from.
+* INDEX refers to Staff in displayed Staff list. It is the Staff to be deleted.
+* PROJECT_NAME refers to the Project in displayed Project list where the Staff is deleted from.
+* Recommended to use the view command on a Project before deleting a Staff from it.
+* A possible interaction is if you view the Staff list of Project A then try 
+  to delete Staff at index 1 (call this Staff Tom) from Project B, it will delete 
+  Staff Tom from Project B if Staff Tom is also part of Project B.
+* If Staff is deleted successfully, it will update the displayed Staff list to show the Staff list 
+  of the Project where the Staff was deleted from.
 * The index must be a positive integer 1, 2, 3, …​
 ```
 
 Examples:
 
-* `delstaff 1 pn/2103` Delete the 1st staff within the displayed staff list from project `2103`.
-* `delstaff 7 pn/Duke` Delete 7th staff with displayed staff list from project `Duke`.
+* `delstaff 1 pn/2103` Delete the 1st Staff within the displayed Staff list from Project `2103`.
+* `delstaff 7 pn/Duke` Delete 7th Staff with displayed Staff list from Project `Duke`.
 
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **View the Staff list within a project :** `view`
+### **View the Staff list within a Project :** `view`
 
-Views the staff list of a specified project in Project list.
+Views the Staff list of a specified Project in Project list.
 
 Format: `view INDEX`
 
-* View the staff list of the project at the specified `INDEX`.
+* View the Staff list of the Project at the specified `INDEX`.
 
 ```yaml
 Note:
@@ -305,64 +319,64 @@ Note:
 * The index must be a positive integer 1, 2, 3, …​
 ```
 Examples:
-* `list` followed by `view 2` displays the staff list of the 2nd project in Project list on the bottom right.
-* `find 2103T TP` followed by `view 1` display the staff list of the 1st project from the result of the `find` command.
+* `list` followed by `view 2` displays the Staff list of the 2nd Project in Project list on the bottom right.
+* `find 2103T TP` followed by `view 1` display the Staff list of the 1st Project from the result of the `find` command.
 
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Editing a Staff member within a Project :** `editstaff`
 
-Edits the staff details of a staff of a specified project in the currently displayed Project list.
+Edits the Staff details of a Staff of a specified Project in the currently displayed Project list.
 
 Format: `editstaff INDEX pn/PROJECT_NAME [sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT_NUMBER
 t/TAGS]`
 
 ```yaml
 Note:
-* INDEX refers to staff in displayed staff list. It is the staff to be edited.
-* PROJECT_NAME refers to the project in displayed project list where the staff is to be edited.
-* Recommended to use the view command on a project before editing a staff in its staff list.
-* A possible interaction is if you view the staff list of project A then try
-  to edit staff at index 1 (call this staff Tom) from project B, it will try to edit
-  staff Tom from project B if staff Tom is also part of project B.
-* If staff is edited successfully, it will update the displayed staff list to show the staff list
-  of the project where the staff was deleted from.
+* INDEX refers to Staff in displayed Staff list. It is the Staff to be edited.
+* PROJECT_NAME refers to the Project in displayed Project list where the Staff is to be edited.
+* Recommended to use the view command on a Project before editing a Staff in its Staff list.
+* A possible interaction is if you view the Staff list of Project A then try
+  to edit Staff at index 1 (call this Staff Tom) from Project B, it will try to edit
+  Staff Tom from Project B if Staff Tom is also part of Project B.
+* If Staff is edited successfully, it will update the displayed Staff list to show the Staff list
+  of the Project where the Staff was deleted from.
 * All fields in the `[]` are optional. 
 * Index must be a positive integer 1, 2, 3, ...
 ```
 
 Examples:
-* `editstaff 1 pn/CS2103T sn/John Doe` edits the staff name of the first staff of the displayed staff list of `CS2103T` to `John Doe`
+* `editstaff 1 pn/CS2103T sn/John Doe` edits the Staff name of the first Staff of the displayed Staff list of `CS2103T` to `John Doe`
 
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Finding a Staff member within a Project :** `findstaff`
 
-Finds the displayed staff list for staff with names that matches any of the keywords.
+Finds the displayed Staff list for Staff with names that match any of the keywords.
 
 Format: `findstaff KEYWORDS`
 
 ```yaml
 Note:
 * `KEYWORDS` must not be an empty string. 
-* For `findstaff` to work as expected, the current active staff list must be non-empty.
+* For `findstaff` to work as expected, the current active Staff list must be non-empty.
 * The findstaff command is case-insensitive such that 'hans' will match 'HANS'
-* The findstaff command will match staff name if there is a partial match, 'ha' or 'hA' will both match 'HANS'
+* The findstaff command will match Staff name if there is a partial match, 'ha' or 'hA' will both match 'HANS'
 ```
 
 Examples:
-* `findstaff Jon` returns a filtered view of the staff list such that all staffs with name `Jon` are listed.
-* `findstaff Adrian Lam` returns a filtered view of the staff list such that all staffs with name `Adrian Lam` are listed. 
-Staffs whose name contains `Adrian` or `Lam` are also listed. 
-* You can always use `view INDEX` to list all the staff in the staff list after you are done with finding a particular staff.
+* `findstaff Jon` returns a filtered view of the Staff list such that all Staff with name `Jon` are listed.
+* `findstaff Adrian Lam` returns a filtered view of the Staff list such that all Staff with name `Adrian Lam` are listed. 
+Staff whose name contains `Adrian` or `Lam` are also listed. 
+* You can always use `view INDEX` to list all the Staff in the Staff list after you are done with finding a particular Staff.
 
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Task Commands**
-This segment contains information on all the commands related to tasks.
+This segment contains information on all the commands related to Tasks.
 
 ### **Adding a Task :** `addtask`
 
@@ -372,7 +386,7 @@ Format: `addtask tdesc/TASK_DESCRIPTION td/TASK_DEADLINE`
 
 ```yaml
 Note:
-* Both task fields `TASK_DESCRIPTION` and `TASK_DEADLINE` must be present.
+* Both Task fields `TASK_DESCRIPTION` and `TASK_DEADLINE` must be present.
 * `TASK_DEADLINE` follows the YYYY-MM-DD format. 
 ```
 
@@ -387,7 +401,7 @@ Examples:
 
 Deletes a Task at the specified index from the Task list. 
 
-Format: `deltask INDEX`
+Format: `delTask INDEX`
 
 ```yaml
 Note:
@@ -404,14 +418,14 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### **Finding a Task :** `findtask`
 
-Finds tasks whose description matches any of the KEYWORDS.
+Finds Tasks whose description matches any of the KEYWORDS.
 
 Format: `findtask KEYWORDS`
 
 ```yaml
 Note:
 * The search is case-insensitive. e.g `call` will match `Call`
-* The findtask command will match task description if there is a partial match, 
+* The findtask command will match Task description if there is a partial match, 
   'Meet' or 'meet' will both match 'Meeting'.
 ```
 
@@ -424,10 +438,10 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### **Sorting the Task list :** `sorttask`
 
-Sort tasks in task list by deadline. Earlier deadlines will be placed first.
+Sort Tasks in Task list by deadline. Earlier deadlines will be placed first.
 
 ```yaml
-Note: 
+Warning !: 
 * This command is irreversible, you will not be able to get back the original ordering after this command.
 ```
 
@@ -438,7 +452,7 @@ Format: `sorttask`
 --------------------------------------------------------------------------------------------------------------------
 ### **Filtering the Task list :** `filtertask`
 
-Show Tasks in Task List that are not done at the top of the task list and the rest at bottom.
+Show Tasks in Task List that are not done at the top of the Task list and the rest at bottom.
 
 Format: `filtertask`
 
@@ -451,7 +465,7 @@ Marks a Task in Task list as done.
 
 Format: `marktask INDEX`
 
-* Marks the task at the specified `INDEX` in the displayed Task list as done.
+* Marks the Task at the specified `INDEX` in the displayed Task list as done.
 
 ```yaml
 Note:
@@ -459,7 +473,7 @@ Note:
 ```
 
 Examples:
-* `marktask 1` Marks the first task as done.
+* `marktask 1` Marks the first Task as done.
 
 [Back to top](#table-of-contents)
 
@@ -470,14 +484,14 @@ Marks a Task in Task list as not done.
 
 Format: `unmarktask INDEX`
 
-* Marks the task at the specified `INDEX` in the displayed Task list as not done.
+* Marks the Task at the specified `INDEX` in the displayed Task list as not done.
 
 ```yaml
 Note:
 * The index **must be a positive integer** 1, 2, 3, …
 ```
 Examples:
-* `unmarktask 2` Marks the second task as not done.
+* `unmarktask 2` Marks the second Task as not done.
 
 [Back to top](#table-of-contents)
 
@@ -496,6 +510,11 @@ Format: `exit`
 Clears **all data** from HR Pro Max++.
 
 Format: `clear`
+
+```yaml
+Warning !: 
+* This command is irreversible, you will not be able to recover data after clearing it.
+```
 
 [Back to top](#table-of-contents)
 
@@ -521,36 +540,36 @@ This segment contains summary tables of all the commands you can use in HR Pro M
 
 | Action                    | Format, Examples                                                                                      |
 |---------------------------|-------------------------------------------------------------------------------------------------------|
-| **Add project**           | `addproj pn/PROJECT_NAME  [t/TAG]…​` <br> e.g., `addproj pn/Duke pd/2022-10-25 pb/10000 t/funz`       |
-| **Delete project**        | `delproj INDEX`<br> e.g., `delproj 3`                                                                 |
-| **Edit project**          | `editproj INDEX [pn/PROJECT_NAME] [pd/PROJECT_DEADLINE]…​`<br> e.g.,`editproj 2 pn/Roofus pb/1350000` |
-| **Find projects**         | `findproj KEYWORD`<br> e.g., `findproj Duke`                                                          |
-| **Sort projects**         | `sortproj`                                                                                            |
-| **List project and task** | `list`                                                                                                |
+| **Add Project**           | `addproj pn/PROJECT_NAME  [t/TAG]…​` <br> e.g., `addproj pn/Duke pd/2022-10-25 pb/10000 t/funz`       |
+| **Delete Project**        | `delproj INDEX`<br> e.g., `delproj 3`                                                                 |
+| **Edit Project**          | `editproj INDEX [pn/PROJECT_NAME] [pd/PROJECT_DEADLINE]…​`<br> e.g.,`editproj 2 pn/Roofus pb/1350000` |
+| **Find Projects**         | `findproj KEYWORD`<br> e.g., `findproj Duke`                                                          |
+| **Sort Projects**         | `sortproj`                                                                                            |
+| **List Project and Task** | `list`                                                                                                |
 
 ### **Staff Commands Summary**
 
 | Action              | Format, Examples                                                                                              |
 |---------------------|---------------------------------------------------------------------------------------------------------------|
-| **Add staff**       | `addstaff INDEX sn/STAFF_NAME…​` <br> e.g., `addstaff 1 sn/DEXTER sl/true sd/HR st/HR manager sp/98019345`    |
-| **Delete staff**    | `delstaff INDEX pn/PROJECT_NAME` <br> e.g., `delstaff 1 pn/Duke`                                              |
-| **Edit staff**      | `editstaff INDEX pn/PROJECT_NAME [sn/STAFF_NAME]…​`<br> e.g.,`editstaff 1 pn/CS2103T TP sp/98765432 sl/false` |
-| **Find staff**      | `findstaff KEYWORD`<br> e.g., `findstaff Duke`                                                                |
-| **View staff list** | `view INDEX` <br> e.g., `view 1`                                                                              |
+| **Add Staff**       | `addstaff INDEX sn/STAFF_NAME…​` <br> e.g., `addstaff 1 sn/DEXTER sl/true sd/HR st/HR manager sp/98019345`    |
+| **Delete Staff**    | `delstaff INDEX pn/PROJECT_NAME` <br> e.g., `delstaff 1 pn/Duke`                                              |
+| **Edit Staff**      | `editstaff INDEX pn/PROJECT_NAME [sn/STAFF_NAME]…​`<br> e.g.,`editstaff 1 pn/CS2103T TP sp/98765432 sl/false` |
+| **Find Staff**      | `findstaff KEYWORD`<br> e.g., `findstaff Duke`                                                                |
+| **View Staff list** | `view INDEX` <br> e.g., `view 1`                                                                              |
 
 
 ### **Tasks Commands Summary**
 
 | Action           | Format, Examples                                                                                                              |
 |------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| **Add task**     | `addtask tdesc/TASK_DESCRIPTION td/TASK_DEADLINE` <br> e.g., `addtask tdesc/Edit user guide td/2022-10-28`                    |
-| **Delete task**  | `deltask INDEX` <br> e.g., `deltask 1`                                                                                        |
-| **Edit task**    | `edittask INDEX [tdesc/TASK_DESCRIPTION] [td/TASK_DEADLINE]` <br> e.g., `edittask 1 tdesc/Edit Developer guide td/2022-10-25` |
-| **Find tasks**   | `findtask KEYWORDS`<br> e.g., `findtask GAME Try`                                                                             |
-| **Sort tasks**   | `sorttask`                                                                                                                    |
-| **Filter tasks** | `filtertask`                                                                                                                  |
-| **Mark tasks**   | `marktask INDEX` <br> e.g., `marktask 1`                                                                                      |
-| **Unmark tasks** | `unmarktask INDEX`<br> e.g., `unmarktask 1`                                                                                   |
+| **Add Task**     | `addtask tdesc/TASK_DESCRIPTION td/TASK_DEADLINE` <br> e.g., `addtask tdesc/Edit user guide td/2022-10-28`                    |
+| **Delete Task**  | `deltask INDEX` <br> e.g., `deltask 1`                                                                                        |
+| **Edit Task**    | `edittask INDEX [tdesc/TASK_DESCRIPTION] [td/TASK_DEADLINE]` <br> e.g., `edittask 1 tdesc/Edit Developer guide td/2022-10-25` |
+| **Find Tasks**   | `findtask KEYWORDS`<br> e.g., `findtask GAME Try`                                                                             |
+| **Sort Tasks**   | `sorttask`                                                                                                                    |
+| **Filter Tasks** | `filtertask`                                                                                                                  |
+| **Mark Tasks**   | `marktask INDEX` <br> e.g., `marktask 1`                                                                                      |
+| **Unmark Tasks** | `unmarktask INDEX`<br> e.g., `unmarktask 1`                                                                                   |
 
 
 ### **Miscellaneous Commands Summary**
@@ -567,13 +586,13 @@ This segment contains summary tables of all the commands you can use in HR Pro M
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Prefix Summary**
-Prefixes that start with `p` are for project details.
+Prefixes that start with `p` are for Project details.
 
-Prefixes that start with `s` are for project staff member details.
+Prefixes that start with `s` are for Project Staff member details.
 
-Prefixes that start with `t` and are 2 letters long are for task details.
+Prefixes that start with `t` and are 2 letters long are for Task details.
 
-The prefix `t/` is for tags that are used for projects and staff only.
+The prefix `t/` is for tags that are used for Projects and Staff only.
 
 
 
