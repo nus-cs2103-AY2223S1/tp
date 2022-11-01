@@ -115,8 +115,6 @@ Format: `list`
 
 ![list](images/UserGuide/list.png)
 
-<div markdown="block" class="alert alert-info">
-
 <div markdown="block" class="alert alert-block alert-info">
 
 :white_check_mark: **Input Shortcut:**
