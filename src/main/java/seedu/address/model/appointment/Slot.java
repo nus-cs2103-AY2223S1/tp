@@ -16,7 +16,6 @@ public class Slot {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Slot should be like 'yyyy-MM-dd HH:mm'";
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
