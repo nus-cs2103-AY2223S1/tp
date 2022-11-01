@@ -10,7 +10,7 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.model.Model;
 import tracko.model.item.InventoryItem;
-import tracko.model.item.exceptions.ItemUndeletableException;
+import tracko.model.item.exceptions.ItemUnmodifiableException;
 
 /**
  * Deletes an item identified using it's displayed index in TrackO.
@@ -49,7 +49,7 @@ public class DeleteItemCommand extends Command {
         try {
             model.deleteItem(inventoryItemToDelete);
             return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, inventoryItemToDelete));
-        } catch (ItemUndeletableException e) {
+        } catch (ItemUnmodifiableException e) {
             return new CommandResult(String.format(MESSAGE_UNCOMPLETED_ORDER_ITEM, inventoryItemToDelete));
         }
     }
