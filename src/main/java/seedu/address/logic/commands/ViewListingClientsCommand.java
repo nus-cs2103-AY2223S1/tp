@@ -22,12 +22,6 @@ public class ViewListingClientsCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all listing clients";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views interested clients of this listing. "
-            + "Parameters: "
-            + PREFIX_LISTING_ID + "ID \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_LISTING_ID + "3412 ";
-
     private final ListingId id;
     /**
      * Creates an ViewListingClientsCommand to view interested clients of the specified {@code Listing}

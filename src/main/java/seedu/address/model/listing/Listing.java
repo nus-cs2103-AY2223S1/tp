@@ -181,7 +181,7 @@ public class Listing implements Comparable<Listing> {
             tags.forEach(builder::append);
         }
 
-        List<Client> interestedClients = getInterestedClients();
+        List<Name> interestedClients = getInterestedClients();
 
         if (!interestedClients.isEmpty()) {
             builder.append("; Interested Clients: ");

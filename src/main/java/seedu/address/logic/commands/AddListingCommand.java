@@ -52,7 +52,7 @@ public class AddListingCommand extends Command {
         this.address = address;
         this.name = name;
         this.askingPrice = askingPrice;
-        this.toAdd = new Listing(id, address, new Client(), askingPrice);
+        this.toAdd = new Listing(id, address, name, askingPrice);
     }
 
     @Override
