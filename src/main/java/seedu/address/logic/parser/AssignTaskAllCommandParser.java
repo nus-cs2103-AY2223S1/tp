@@ -78,7 +78,7 @@ public class AssignTaskAllCommandParser implements Parser {
             }
         } catch (ParseException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AssignTaskAllCommand.MESSAGE_USAGE));
+                    e.getMessage()));
         }
 
         return new AssignTaskAllCommand(inputGroupString, inputTask);

@@ -47,6 +47,8 @@ public class AssignTaskAllCommand extends Command {
     public static final String MESSAGE_INVALID_GROUP = "This group is not in the address book.";
     public static final String MESSAGE_NO_PREFIX_GROUP = "Group must be specified with g/GROUP.\n";
     public static final String MESSAGE_NO_PREFIX_TASK = "Task must be specified with task/TASK.\n";
+    public static final String MESSAGE_EMPTY_DEADLINE = "Deadline must be in "
+            + "yyyy-MM-dd or yyyy-MM-dd HH:mm format if entered.\n";
     public static final String MESSAGE_NO_MEMBERS = "This group does not have any members.";
     public static final String MESSAGE_NO_TASKS_ADDED = "All members of this group already have this task.";
     public static final String MESSAGE_MEMBER_LIST_ERROR = "The group specified has an erroneous member list.";
