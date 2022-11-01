@@ -621,7 +621,7 @@ Format: `filter-o PREFIX/INPUT`
 Examples:
 
 * `filter-o os/Pending`
-* `filter-o as/Negotiating pr/90-900`
+* `filter-o os/Negotiating pr/90-900`
 * `filter-o ar/good with children os/Delivering pr/80-100`
 
 Notes:
@@ -665,7 +665,7 @@ Examples:
 
 ### Sorting contacts : `sort`
 
-Format: `sort LIST_PARAMETER [ATTRIBUTES...]`
+Format: `sort LIST_TYPE [ATTRIBUTES...]`
 
 <div markdown="span" class="alert alert-warning">
 
