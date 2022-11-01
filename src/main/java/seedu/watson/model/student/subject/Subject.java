@@ -48,6 +48,7 @@ public class Subject {
 
     /**
      * Gets the attendance for the specified day
+     *
      * @param updatedAssessment the Assessment object to add to the Grades object
      */
     public void updateGradeAssessment(Assessment updatedAssessment) {
@@ -56,6 +57,7 @@ public class Subject {
 
     /**
      * Gets the grade for the specified assessment
+     *
      * @param assessmentName the assessment to get the grade for
      * @return the grade for the assessment specified
      */
@@ -91,7 +93,7 @@ public class Subject {
     public String dataString() {
         String str = "";
         str += subjectName.toUpperCase(Locale.ROOT) + ": ";
-        str += grades.dataString() + " %%";
+        str += grades.dataString() + "%%";
         return str;
     }
 
