@@ -514,14 +514,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User starts FoodWhere.
-2. User enters the command to sort food stalls by specified criteria.
-3. FoodWhere displays all food stalls, sorted by the specified criteria.
+2. User enters the command to sort food stalls by specified criterion.
+3. FoodWhere displays all food stalls, sorted by the specified criterion.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. FoodWhere detects an error in the entered data. (Invalid criteria)
+* 2a. FoodWhere detects an error in the entered data. (Invalid criterion)
   * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
     Use case ends.
@@ -533,14 +533,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User starts FoodWhere.
-2. User enters the command to sort food reviews by specified criteria.
-3. FoodWhere displays all food reviews, sorted by the specified criteria.
+2. User enters the command to sort food reviews by specified criterion.
+3. FoodWhere displays all food reviews, sorted by the specified criterion.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. FoodWhere detects an error in the entered data. (Invalid criteria)
+* 2a. FoodWhere detects an error in the entered data. (Invalid criterion)
     * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
