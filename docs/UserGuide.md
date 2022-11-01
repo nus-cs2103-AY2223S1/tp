@@ -180,3 +180,7 @@ Traverse/Scroll **down**: `<Down>`
 | **rm**   | `rm MODULE-CODE`<br> e.g. `rm CS2103`                                  |
 | **pick** | `pick MODULE-CODE LESSON-TYPE LESSON-ID`<br> e.g. `pick CS2103 TUT 06` |
 | **exit** | `exit`                                                                 |
+
+
+## Miscellaneous
+1. Edit the json files at your own risk!
