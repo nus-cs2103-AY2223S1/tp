@@ -1,8 +1,7 @@
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico?">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.png">
 
----
-layout: page
-title: User Guide
+# User Guide
+
 ---
 bobaBot is a **desktop application** for managing customers’ membership details. It is **optimized for Command Line Interface (CLI) while retaining some benefits of the Graphical User Interface (GUI)**. If you are a cashier working at a bubble tea shop and can type fast, bobaBot can help you easily find and manage your customers’ membership information as compared to other GUI applications.
 
