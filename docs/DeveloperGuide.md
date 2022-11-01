@@ -23,7 +23,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W16-3/tp/blob/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the 
+[diagrams](https://github.com/AY2223S1-CS2103T-W16-3/tp/blob/master/docs/diagrams/) folder. Refer to the 
+[_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create 
+and edit diagrams.
 </div>
 
 ### Architecture
@@ -310,7 +313,7 @@ constitute of sensitive patient data. Apart from `date`, `PastAppointment`s also
 #### `UpcomingAppointment`
 
 `UpcomingAppointment`s represent an upcoming appointment for a patient. They only contain the `date` of the upcoming
-appointment. A patient can only have  a **maximum of 1** `UpcomingAppointment` at any given time.
+appointment. A patient can only have a **maximum of 1** `UpcomingAppointment` at any given time.
 
 Given below is an example usage scenario and how the appointment mechanism behaves at each step.
 
@@ -393,31 +396,35 @@ Getting the list of patients in the query ward number involves the following ste
 
 Strict restrictions are placed to prevent too many varieties of ward number inputs. This way the regex for searching
 for ward numbers is simplified. Due to differing places having different ways of numbering their ward numbers, we
-have standardised it to be in the format of `Alphabet` + `3 Numbers`. For example, `A123`, `B241, `C005`, etc.
+have standardised it to be in the format of `Uppercase Alphabet` + `3 Numbers`. For example, `A123`, `B241`, `C005`, etc.
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### Get inpatients and outpatients feature (`get /inp` & `get /outp`)
+#### Patient type (`/inp` & `/outp`)
 
-#### Current implementation
+Getting the list of inpatients and outpatients involves the following steps:
+1. prefix `/inp` or `/outp` is matched using an instance of `GetCommandParser`
+2. the respective `GetInpatientCommand` or `GetOutpatientCommand` instance is created and returned
+3. the model is updated such that the *filtered* list only displays inpatients or outpatients
 
-The current implementation of `get /inp` and `get /outp` is similar to how other commands are executed. 
+If additional parameters are inputted (e.g. `get /inp hello world`), the extra parameters will be ignored, similar to 
+how `help`, `list`, `exit` and `clear` are executed.
 
-When `get /inp` or `get /outp` is inputted, the `AddressBookParser` object creates a `GetCommandParser` that parses the 
-prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get /inp hello world`), the extra
-parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed. 
-
-The `GetCommandParser` object will then create the corresponding `GetInpatientCommand` or `GetOutpatientCommand` to be 
-returned. When executing the `Command`, the model is updated such that the *filtered* list only displays inpatients or
-outpatients.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("get /inp")` API call.
 
 ![GetInpatientSequenceDiagram](images/GetInpatientSequenceDiagram.png)
 
-### \[Proposed\] Getting the past appointments of a patient (`get /appt INDEX`)
+#### Getting the past appointments of a patient (`/appt`)
 
-#### Proposed implementation
+Getting the past appointments of a patient involves the following steps:
+1. prefix `/appt` is matched using an instance of `GetCommandParser`
+2. a new `GetPastAppointmentCommandParser` instance is created and parses the user input (specificallly the index inputted)
+3. a `GetPastAppointmentCommand` instance containing the index of the patient to be updated is created and returned
+4. the `GetPastAppointmentCommand` command is executed, accessing the list of `PastAppointment` of the specified patient
+   to be returned in a `CommandResult`
+5. The list of `PastAppointment` will then be displayed in the `ResultDisplay`
 
 ### New Add Command
 The new `Add` Command incorporates support for the necessary fields for a patient, namely they are the: `NextOfKin`,
