@@ -63,8 +63,7 @@ as `nutrigoals.jar`. Do not delete or edit these files.
 * Food items displayed in Food List are sorted according to meal type, in the order: breakfast, lunch, dinner.
 * Upon launching the application, Food List will display food items recorded on the current day.
 * Progress Bar changes based on the total calorie intake for the current day as compared to the target calorie intake.
-* To check the total calorie intake for the current day and the target calorie intake, refer to the `review` command 
-[here](#viewing-a-summary-of-the-calorie-intake-progress-review).
+* To check the total calorie intake for the current day and the target calorie intake, refer to the `review` command [here](#viewing-a-summary-of-the-calorie-intake-progress-review).
 * The Progress Bar percentage can go beyond 100%, but note that if the target calorie intake is set to 0, the 
 percentage will be fixed at 100%.
 * To set the target calorie intake, refer to the `target` command [here](#setting-a-target-calorie-intake-target).
