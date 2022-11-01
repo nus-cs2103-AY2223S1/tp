@@ -33,7 +33,7 @@ public class MatchCommandParserTest {
     @Test
     public void parse_invalidArgs_parseFailure() {
         String expected = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                MESSAGE_MISSING_INDEX + MatchCommand.MESSAGE_USAGE);
+                Index.MESSAGE_USAGE);
         String input = "this is an invalid argument";
         assertParseFailure(parser, input, expected);
     }

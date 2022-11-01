@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.addcommands.AddOrderCommand;
 
 public class AddOrderCommandParserTest {
@@ -30,7 +31,7 @@ public class AddOrderCommandParserTest {
     @Test
     public void parse_invalidArgs_parseFailure() {
         String expected = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                MESSAGE_MISSING_INDEX + AddOrderCommand.MESSAGE_USAGE_EXISTING_BUYER);
+                Index.MESSAGE_USAGE);
         String input = "this is an invalid argument";
         assertParseFailure(parser, input, expected);
     }
