@@ -19,7 +19,7 @@ import seedu.address.model.person.user.User;
 public class UserProfile extends UiPart<Region> {
 
     private static final String FXML = "UserProfile.fxml";
-    public final String githubUrl;
+    private String githubUrl;
 
     private User user;
 
@@ -115,6 +115,7 @@ public class UserProfile extends UiPart<Region> {
             user.getPlanModules().stream()
                     .sorted(Comparator.comparing(mod -> mod.moduleName))
                     .forEach(mod -> planModulesTags.getChildren().add(new Label(mod.moduleName)));
+            githubUrl = "https://github.com/" + user.getGithub().value;
         } else {
             userLabel.setText("User details have not been added.");
             name.setText("");
@@ -128,6 +129,7 @@ public class UserProfile extends UiPart<Region> {
             currModulesTags.getChildren().clear();
             planModulesTags.getChildren().clear();
             prevModulesTags.getChildren().clear();
+            githubUrl = "";
         }
     }
 
