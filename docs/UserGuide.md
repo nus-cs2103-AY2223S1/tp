@@ -334,6 +334,13 @@ Example:
 * `makeStats 1 t/g` generates gender statistics of the persons tagged to the 1st event in the event list
 * `makeStats 3 t/a` generates age statistics of the persons tagged to the 3rd event in the event list
 
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Whenever a pie chart containing one slice of 100% is made, a white line will be created within the pie chart.<br><br>
+
+This issue is a bug pertaining to the JavaFX library. 
+</div>
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the application.
