@@ -137,7 +137,7 @@ Curious about the various commands? Refer to the [Features](#features) below to 
 
 ### What is an Entry
 
-Think of PennyWise as a notebook that has infinite number of pages. You can write as much data as you want on your 
+Think of PennyWise as a notebook that has infinite number of pages. You can write as much data as you want to track your 
 expenditure or income, PennyWise will keep track of them. An entry is what PennyWise terms as a particular expenditure
 or income logged into the application. PennyWise defines an expenditure and income as things that you spend money on,
 and things that make you money respectively!
