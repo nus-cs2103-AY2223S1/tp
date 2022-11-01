@@ -298,7 +298,7 @@ Format: `deletetut INDEX`
 
 Example:
 
-* `deleteq 1`deletes the first tutorial from the tutorial list
+* `deletetut 1`deletes the first tutorial from the tutorial list
 
 
 ### Marking a tutorial: `marktut`
