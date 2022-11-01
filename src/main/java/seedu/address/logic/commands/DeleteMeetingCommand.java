@@ -68,7 +68,9 @@ public class DeleteMeetingCommand extends UndoableCommand {
             editedTimes.remove(meetingTime);
             result = MESSAGE_DELETE_MEETING_SUCCESS;
         } else {
-            throw new CommandException(String.format(MESSAGE_DELETE_MEETING_FAILURE_NOTFOUND, meetingTime, personToEdit));
+            throw new CommandException(String.format(MESSAGE_DELETE_MEETING_FAILURE_NOTFOUND,
+                    meetingTime,
+                    personToEdit));
         }
 
         editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
