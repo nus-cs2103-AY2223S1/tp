@@ -212,6 +212,10 @@ edit-module 3 t/Software Engineering
 In the above example, we are changing the module title of the third module on Plannit to 
 `Software Engineering`.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Editing a module will bring you back to the home page.
+</div>
+
 #### 2.1.4. Find module
 When you are on the home page, you can search for modules whose module codes start with the specified keywords.
 
@@ -579,7 +583,7 @@ In the above example, we are adding a contact with name `Dinosaur Lim`, email `d
 `91234567` into Plannit.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Adding a person will bring you back to the home page.
+Adding a person to Plannit will bring you back to the home page.
 </div>
 
 #### 2.4.2. Add person to module
@@ -628,6 +632,10 @@ Example:
 delete-person n/Dinosaur Lim
 ```
 In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Deleting a person from Plannit will bring you back to the home page.
+</div>
 
 #### 2.4.4. Delete person from module
 You can remove the association between a person and a module (if it exists) using the `delete-person-from-module`
@@ -683,6 +691,10 @@ edit-person 1 n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
 ```
 In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
 `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number `91234567` in Plannit.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Editing a person will bring you back to the home page.
+</div>
 
 
 #### 2.4.6. Find person
