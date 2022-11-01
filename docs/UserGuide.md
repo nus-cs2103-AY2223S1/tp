@@ -299,6 +299,9 @@ Example:
 
 * `locate S17` returns a list of gyms sorted from nearest to furthest from S17.
 
+:fast_forward: **Future update:**<br>
+More nus locations will be added
+
 ### Suggesting a healthy-lifestyle tip: `tip`
 
 Suggests a random tip to help the user adopt a healthier lifestyle.
