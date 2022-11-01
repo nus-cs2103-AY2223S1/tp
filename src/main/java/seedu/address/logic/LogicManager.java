@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final HealthcareXpressParser HealthcareXpressParser;
+    private final HealthcareXpressParser healthcareXpressParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and
@@ -35,7 +35,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        HealthcareXpressParser = new HealthcareXpressParser();
+        healthcareXpressParser = new HealthcareXpressParser();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = HealthcareXpressParser.parseCommand(commandText, model);
+        Command command = healthcareXpressParser.parseCommand(commandText, model);
         commandResult = command.execute(model);
 
         try {
