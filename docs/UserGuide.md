@@ -350,25 +350,25 @@ has been enabled for clarity:
 You may "peek" at a module's tasks by clicking on the module while on the 
 `home` page. <br/>
  **Step 1**: Let's say you wish to view the tasks of `CS2103T SOFTWARE 
-ENGINEERING` (module number 1)
+ENGINEERING` (module number 1).
 <p align="center">
   <img src="images/home-page-with-cs2103-circled.png" width="500"/>
 </p>
 
 **Step 2**: You will notice a blue glow when hovering your mouse over the 
-module
+module.
 <p align="center">
   <img src="images/home-page-with-cs2103-glowing.png" width="500"/>
 </p>
 
 **Step 3**: Double-clicking on the blue area will allow you to view the 
- tasks of `CS2103T SOFTWARE ENGINEERING`
+ tasks of `CS2103T SOFTWARE ENGINEERING`.
 <p align="center">
   <img src="images/home-page-with-cs2103-tasks.png" width="500"/>
 </p>
 
 **Step 4**: Clicking again on the blue area will close the dropdown and hide 
-the tasks
+the tasks.
 <p align="center">
   <img src="images/home-page-with-cs2103-glowing.png" width="500"/>
 </p>
