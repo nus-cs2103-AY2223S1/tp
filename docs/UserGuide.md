@@ -121,7 +121,7 @@ Parameters refer to the information you type into the app to be stored. For exam
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -190,9 +190,9 @@ The `Risk Appetite` can be classified as High, Medium or Low. They are represent
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The income added is based on an individual's Yearly income.
 
-An income added is based on the **tax income brackets** set up by IRAS for Financial Year 2022-2023.
+An income added is based on the **tax income brackets** set up by [IRAS for Financial Year 2022-2023.](https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/tax-residency-and-tax-rates/individual-income-tax-rates)
 
-This information will be displayed in the app instead of the actual income.
+This information will be displayed in the app
 </div>
 
 | Income Bracket | Yearly Income range                                 |
@@ -209,7 +209,7 @@ This information will be displayed in the app instead of the actual income.
 | Tenth          | More than $320,0000                                 |
 
 Examples:
-* `addClient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05, i/50000, ra/L`
+* `addClient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05 i/5000.0 ra/L`
 * `addClient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/1920-05-06 i/1000000 ra/H`
 
 ### Listing all clients : `allClients`
@@ -244,20 +244,19 @@ Format: `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BI
 
 The following table illustrates the details of each metric and their search range:
 
-| Metric        | CLI Syntax | Usage Details                                                                                                                                                                                                                                                                                                                                                                                                               |
-|---------------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name          | n/         | {::nomarkdown}<ul><li>The search is case-insensitive. e.g `hans` will match `Hans`</li><li>The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`</li><li>Only full words will be matched e.g. `Han` will not match `Hans`</li><li>clients matching at least one keyword will be listed. <br/> e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`</li></ul>{:/}                                    |
-| Phone         | p/         | {::nomarkdown}<ul><li>At least 3 numbers have to be specified</li><li>All clients whose phone number contains the exact specified numbers will be listed</li></ul>{:/}                                                                                                                                                                                                                                                      |
-| Email         | e/         | {::nomarkdown}<ul><li>The search is case-insensitive. e.g `alice@example.com` will match `Alice@example.com`</li><li>Only full emails are valid e.g. `Alice` will not yield a valid search</li></ul>{:/}                                                                                                                                                                                                                    |
-| Email         | e/         | {::nomarkdown}<ul><li>The search is case-insensitive. e.g `alice@example.com` will match `Alice@example.com`</li><li>Only full emails are valid e.g. `Alice` will not yield a valid search</li></ul>{:/}                                                                                                                                                                                                                    |
-| Address       | a/         | {::nomarkdown}<ul><li>The search is case-insensitive. e.g `Bedok` will match `bedok`</li><li>Any length of textual search except for an empty space is valid</li></ul>{:/}                                                                                                                                                                                                                                                  |
-| Tag           | t/         | {::nomarkdown}<ul><li>The search is case-insensitive. e.g `friends` will match `Friends`</li><li>Only full words will be matched e.g. `colleagues` will not match `colleague`</li><li>More than one tag can be specified to list all clients that have all the specified tags. <br/> e.g. `friends` and `family` will list all clients with both the `friends` and `family` tag </li></ul>{:/}                              |
-| Birthday      | b/         | {::nomarkdown}<ul><li>Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`</li><li>Only clients whose birthday falls on the specified date will be listed</li></ul>{:/}                                                                                                                                                                                                                            |
-| Income        | i/         | {::nomarkdown}<ul><li>Any valid income value can be entered and it will be matched with the corresponding income bracket</li><li>All clients whose income falls under the same income bracket as the specified income will be listed <br/> e.g `15000` will be matched with `12000`</li></ul>{:/}                                                                                                                           |
-| Risk Appetite | ra/        | {::nomarkdown}<ul><li>Only one of the 3 levels, {H, M, L}, is allowed</li><li>All clients whose risk appetite matches the specified risk level will be </li></ul>{:/}                                                                                                                                                                                                                                                       |
-| Policy Title  | ti/        | {::nomarkdown}<ul><li>The search is case insensitive. e.g `Health Plan` will match `health plan`</li><li>Any length of alphanumeric input except for an empty space will be valid</li><li>clients who are covered by a policy which contains at least one keyword will be listed</li></ul>{:/}                                                                                                                              |
-| Policy Coverage | cov/       | {::nomarkdown}<ul><li>Only inputs of the valid coverage type options are allowed</li><li>More than one coverage can be specified to list all clients with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all clients with both the `HEALTH` and `LIFE` coverage type </li><li>Clients who are covered by policies which covers all the specified coverage types will be listed</li></ul>{:/} |
-| Policy Company | cmp/       | {::nomarkdown}<ul><li>Only one of the valid company abbreviations is allowed</li><li>Clients who are covered by a policy belonging to the specified company will be listed</li></ul>{:/}                                                                                                                                                                                                                                    |
+| Metric          | CLI Syntax | Usage Details                                                                                                                                                                                                                                                                                                                                                                                                               |
+|-----------------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name            | n/         | {::nomarkdown}<ul><li>The search is case-insensitive. e.g `hans` will match `Hans`</li><li>The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`</li><li>Only full words will be matched e.g. `Han` will not match `Hans`</li><li>clients matching at least one keyword will be listed. <br/> e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`</li></ul>{:/}                                    |
+| Phone           | p/         | {::nomarkdown}<ul><li>At least 3 numbers have to be specified</li><li>All clients whose phone number contains the exact specified numbers will be listed</li></ul>{:/}                                                                                                                                                                                                                                                      |
+| Email           | e/         | {::nomarkdown}<ul><li>The search is case-insensitive. e.g `alice@example.com` will match `Alice@example.com`</li><li>Only full emails are valid e.g. `Alice` will not yield a valid search</li></ul>{:/}                                                                                                                                                                                                                    |
+| Address         | a/         | {::nomarkdown}<ul><li>The search is case-insensitive. e.g `Bedok` will match `bedok`</li><li>Any length of textual search except for an empty space is valid</li></ul>{:/}                                                                                                                                                                                                                                                  |
+| Tag             | t/         | {::nomarkdown}<ul><li>The search is case-insensitive. e.g `friends` will match `Friends`</li><li>Only full words will be matched e.g. `colleagues` will not match `colleague`</li><li>More than one tag can be specified to list all clients that have all the specified tags. <br/> e.g. `friends` and `family` will list all clients with both the `friends` and `family` tag </li></ul>{:/}                              |
+| Birthday        | b/         | {::nomarkdown}<ul><li>Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`</li><li>Only clients whose birthday falls on the specified date will be listed</li></ul>{:/}                                                                                                                                                                                                                            |
+| Income          | i/         | {::nomarkdown}<ul><li>Any valid income value can be entered and it will be matched with the corresponding income bracket</li><li>All clients whose income falls under the same income bracket as the specified income will be listed <br/> e.g `15000` will be matched with `12000`</li></ul>{:/}                                                                                                                           |
+| Risk Appetite   | ra/        | {::nomarkdown}<ul><li>Only one of the 3 levels, {H, M, L}, is allowed</li><li>All clients whose risk appetite matches the specified risk level will be </li></ul>{:/}                                                                                                                                                                                                                                                       |
+| Policy Title    | ti/        | {::nomarkdown}<ul><li>The search is case insensitive. e.g `Health Plan` will match `health plan`</li><li>Any length of alphanumeric input except for an empty space will be valid</li><li>clients who are covered by a policy which contains at least one keyword will be listed</li></ul>{:/}                                                                                                                              |
+| Policy Coverag  | cov/       | {::nomarkdown}<ul><li>Only inputs of the valid coverage type options are allowed</li><li>More than one coverage can be specified to list all clients with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all clients with both the `HEALTH` and `LIFE` coverage type </li><li>Clients who are covered by policies which covers all the specified coverage types will be listed</li></ul>{:/} |
+| Policy Company  | cmp/       | {::nomarkdown}<ul><li>Only one of the valid company abbreviations is allowed</li><li>Clients who are covered by a policy belonging to the specified company will be listed</li></ul>{:/}                                                                                                                                                                                                                                    |
 
 Examples:
 
@@ -278,8 +277,8 @@ Format: `deleteClient INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listClients` followed by `deleteClient 2` deletes the 2nd client in the address book.
-* `findClient Betsy` followed by `deleteClient 1` deletes the 1st Client in the results of the `findClient` command.
+* `allClients` followed by `deleteClient 2` deletes the 2nd client in the address book.
+* `findClient n/Betsy` followed by `deleteClient 1` deletes the 1st Client in the results of the `findClient` command.
 
 ### Sorting all Clients : `sort`
 
@@ -382,12 +381,15 @@ If you previously filtered the policy list and switched to view events/contacts/
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you wish to view the **full** list of policies, you may do so with the command `allPolicies`. 
+If you wish to view the **full** list of policies, you may do so with the command `allPolicies` . 
 </div>
 
 Format: `policies`
+
 Example Usage: `policies`
+
 Example Result: Shows the currently listed policies on the screen.
+
 
 
 ### Viewing all policies in the address book: `allPolicies`
@@ -523,7 +525,7 @@ This allows you to view all Events that have been previously added.
 
 Format: `allEvents`
 
-![result for 'listEventsSample'](images/listEventsExample.png)
+![result for 'allEventsSample'](images/allEventsSample.png)
 
 ### Searching for an Event : `findEvent`
 
