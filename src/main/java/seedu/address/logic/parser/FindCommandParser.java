@@ -32,8 +32,8 @@ public class FindCommandParser implements Parser<FindCommand> {
     public static final String MESSAGE_MULTIPLE_PREFIX = "Parameters for "
             + "the find command can only contain one prefix";
 
-    public static final Prefix[] validPrefixArray = new Prefix[]{PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-            PREFIX_ADDRESS, PREFIX_TAG, PREFIX_BIRTHDAY};
+    private static final Prefix[] validPrefixArray = new Prefix[]{
+            PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_BIRTHDAY};
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
