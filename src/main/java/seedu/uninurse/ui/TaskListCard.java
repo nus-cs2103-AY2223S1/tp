@@ -21,7 +21,7 @@ public class TaskListCard extends UiPart<Region> {
     public final Task task;
 
     @FXML
-    private HBox cardPane;
+    private HBox taskPane;
     @FXML
     private Label id;
     @FXML
@@ -38,20 +38,21 @@ public class TaskListCard extends UiPart<Region> {
      */
     public TaskListCard(Task task, int displayedIndex) {
         super(FXML);
-        this.cardPane.setSpacing(1);
+        this.taskPane.setSpacing(1);
 
         if (task.getDateTime().isPastDate()) {
-            this.cardPane.setStyle("-fx-padding: 1;" + "-fx-border-style: dashed inside;"
+            this.taskPane.setBackground(new Background(new BackgroundFill(
+                    Color.web("ffe6a1"), new CornerRadii(5.0), new Insets(1.0))));
+            this.taskPane.setStyle("-fx-padding: 1;" + "-fx-border-style: dashed inside;"
                     + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
                     + "-fx-border-radius: 5;" + "-fx-border-color: black;");
-            //this.cardPane.setBackground(new Background(new BackgroundFill(
-            //        Color.web("ffe6a1"), new CornerRadii(5.0), new Insets(1.0))));
+
         } else {
-            this.cardPane.setStyle("-fx-padding: 1;" + "-fx-border-style: dashed inside;"
+            this.taskPane.setBackground(new Background(new BackgroundFill(
+                    Color.web("c5e2fc"), new CornerRadii(5.0), new Insets(1.0))));
+            this.taskPane.setStyle("-fx-padding: 1;" + "-fx-border-style: dashed inside;"
                     + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
                     + "-fx-border-radius: 5;" + "-fx-border-color: black;");
-            //this.cardPane.setBackground(new Background(new BackgroundFill(
-            //        Color.web("c5e2fc"), new CornerRadii(5.0), new Insets(1.0))));
         }
         this.task = task;
         id.setText(displayedIndex + ". ");

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" layoutX="10.0" layoutY="10.0" minHeight="100.0" minWidth="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" layoutX="10.0" layoutY="10.0" minHeight="100.0" minWidth="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
  <VBox alignment="CENTER_LEFT">
    <HBox alignment="CENTER_LEFT" spacing="5">
      <Label fx:id="id" styleClass="cell_big_label">

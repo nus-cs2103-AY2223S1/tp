@@ -19,6 +19,11 @@ import seedu.uninurse.model.person.Patient;
 public class UndoCard extends UiPart<Region> {
 
     private static final String FXML = "UndoCard.fxml";
+    private static final String RED_STYLE = "-fx-background-color: #ffc0bf;"
+            + "-fx-border-radius: 2;"
+            // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
+            + "-fx-background-radius: 5;"
+            + "-fx-padding: 2;";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -61,13 +66,14 @@ public class UndoCard extends UiPart<Region> {
                     FXCollections.observableList(originalPatients.get())).getRoot());
         } else {
             oldPersonPlaceholder.getChildren().add(new Label("DELETED"));
-
+            oldPersonPlaceholder.setStyle(RED_STYLE);
         }
         if (updatedPatients.isPresent()) {
             newPersonPlaceholder.getChildren().add(new UpdatedPersonListPanel(
                     FXCollections.observableList(updatedPatients.get())).getRoot());
         } else {
             newPersonPlaceholder.getChildren().add(new Label("DELETED"));
+            newPersonPlaceholder.setStyle(RED_STYLE);
         }
     }
 

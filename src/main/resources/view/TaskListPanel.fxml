@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_LEFT">
          <opaqueInsets>
