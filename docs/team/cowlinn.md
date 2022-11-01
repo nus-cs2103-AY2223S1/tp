@@ -26,7 +26,6 @@ Given below are my contributions to the project.
 * **Project management**:
   * Helped to maintain issue tracker
   * Helped to organize group meetings, with agenda (together with Marcus)
-  * 
 
 * **Enhancements to existing features**:
   * `Add/Delete/Edit` a person

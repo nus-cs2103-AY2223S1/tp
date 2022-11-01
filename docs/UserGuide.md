@@ -278,7 +278,7 @@ Format: `deleteClient INDEX`
 
 Examples:
 * `allClients` followed by `deleteClient 2` deletes the 2nd client in the address book.
-* `findClient Betsy` followed by `deleteClient 1` deletes the 1st Client in the results of the `findClient` command.
+* `findClient n/Betsy` followed by `deleteClient 1` deletes the 1st Client in the results of the `findClient` command.
 
 ### Sorting all Clients : `sort`
 
@@ -525,7 +525,7 @@ This allows you to view all Events that have been previously added.
 
 Format: `allEvents`
 
-![result for 'listEventsSample'](images/listEventsExample.png)
+![result for 'listEventsSample'](images/ShowAllEvents.png)
 
 ### Searching for an Event : `findEvent`
 

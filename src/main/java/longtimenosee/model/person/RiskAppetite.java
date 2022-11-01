@@ -1,10 +1,10 @@
 package longtimenosee.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  *  Encapsulation for a client's RiskAppetite

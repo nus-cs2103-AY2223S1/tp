@@ -13,9 +13,9 @@ public class Income {
             return Double.compare(p1.getIncome().getIncome(), p2.getIncome().getIncome());
         }
     };
-    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Please enter a valid decimal for income";
+    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Please enter a decimal number for your income";
     public static final String SORT_INCOME = "income";
-    public static final String VALUE_FORMAT_CONSTRAINTS = "Please ensure your income is greater than zero!";
+    public static final String VALUE_FORMAT_CONSTRAINTS = "Please ensure your income is a positive value :D";
 
     public final String value;
     public final IncomeBracket incomeBracket;
