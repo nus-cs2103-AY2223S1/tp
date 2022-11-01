@@ -306,7 +306,8 @@ Example:
 
 ### Marking debts as paid: `mark`
 
-Marks the debts specified from a person in PayMeLah as paid. Multiple debts can be specified for marking as paid.
+Marks the debts specified from a person in PayMeLah as paid. Specifying multiple debts will mark all those debts as paid. <br>
+This command will help you keep track of which debts have been paid and which debts have not been paid.
 
 Format: `mark <person index> debt/<debt index…>`
 
@@ -315,7 +316,8 @@ Example:
 
 ### Marking debts as unpaid: `unmark`
 
-Marks the debts specified from a person in PayMeLah as unpaid. Multiple debts can be specified for marking as unpaid.
+Marks the debts specified from a person in PayMeLah as unpaid. Specifying multiple debts will mark all those debts as unpaid. <br>
+This command will help you undo any mistake you made when marking a debt as paid.
 
 Format: `unmark <person index> debt/<debt index…>`
 
@@ -334,9 +336,18 @@ Example:
 
 ### Getting the statement: `statement`
 
-Gets a statement of the total sum of debts you are owed.
+Gets a statement of the total sum of debts you are owed from everyone in the displayed person list. <br>
+This command will save you the time and effort of manually summing up debts in PayMeLah.
 
 Format: `statement`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**
+
+The statement will only sum up the debts that are not marked as paid from the list that is currently displayed. This means that if you have shortened the list using the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt), the statement will only sum up the debts that are not marked as paid from the shortened list.
+
+</div>
 
 Example: `statement` returns `You are owed $583.90 in total.`
 
