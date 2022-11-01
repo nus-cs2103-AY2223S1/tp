@@ -32,7 +32,7 @@ Workbook is optimized for fast typists and utilizes a **Command Line Interface (
 4. Using your command terminal, navigate to the folder where you placed your WorkBook at and fire it up by inputting: `java -jar WorkBook.jar` in your terminal. <br> The GUI with sample data as shown below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
-5. You can tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application and pressing `enter` to execute. <br>
+5. You can tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute. <br>
    Some example commands you can try:
 
    * `add c/Meta d/18-Oct-2022 12:00 e/hrmonkey@example.com r/Frontend` : Adds an internship application from `Meta` to the WorkBook.
@@ -46,7 +46,7 @@ Workbook is optimized for fast typists and utilizes a **Command Line Interface (
 6. You can jump straight to [here](#6-what-you-can-do) for a summary of the commands.
 
 --------------------------------------------------------------------------------------------------------------------
-## 3. About Our User Guide
+## 3. About this guide
 
 This guide serves to:<br>
 
@@ -59,7 +59,7 @@ This guide serves to:<br>
 
 
 --------------------------------------------------------------------------------------------------------------------
-## 4. Exploring our User Guide
+## 4. Exploring our guide
 
 
 **Information Box**
@@ -185,7 +185,7 @@ Format: `edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATETIME] [e/COMPANY_EMAIL
     specifying any tags after it.
 
 <div markdown="block" class="alert alert-success">
-**:bulb: Tip:** You can edit any number of attributes with the edit command!
+**:bulb: Tip:** You can edit any number of attributes with the edit command.
 </div>
 
 Examples:
@@ -202,7 +202,7 @@ Lists all of your internship applications in WorkBook in a [sorted order](#3-thi
 
 Format: `list`
 
-### 6.4. Finding your internships by company, stage or role name:
+### 6.4. Finding your internships:
 
 If you wanted to view all your internship applications corresponding to a particular company, stage or role,
 then this command is for you! <br>
@@ -243,7 +243,7 @@ Format: `delete INDEX`
 
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Caution**
-* The command will only be executed if the index provided corresponds to an internship application
+* The command will only be executed if the index provided corresponds to an internship application.
 </div>
 
 Examples:
@@ -261,7 +261,7 @@ Example:
 * `clear` removes all internship applications in the WorkBook.
 
 <div markdown="block" class="alert alert-success">
-**:bulb: Tip:** If you cleared your internship applications by mistake, fret not you can easily undo this!
+**:bulb: Tip:** If you cleared your internship applications by mistake, fret not as you can easily undo this!
 </div>
 
 ### 6.7. Undoing your previous command:
