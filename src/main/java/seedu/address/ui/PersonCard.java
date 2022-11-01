@@ -138,7 +138,7 @@ public class PersonCard extends UiPart<Region> {
                     //System.out.println(social.toString());
                     Image im = new Image(newImageUrl);
                     cir2.setFill(new ImagePattern(im));
-                    try (Reader reader = new FileReader("data/addressbook.json")) {
+                    try (Reader reader = new FileReader("data/univusal.json")) {
                         // Read JSON file
                         PictureStorage saver = new PictureStorage(displayedIndex, social, newImageUrl);
                         saver.saveStorage();
