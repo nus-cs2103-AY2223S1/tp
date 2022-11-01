@@ -5,7 +5,7 @@ set -euxo pipefail
 # jq is preinstalled on GitHub runners
 
 # Simplify data structure
-cat data.json | jq ".data.repository.pullRequests.edges[].node" > data_simple.json
+cat data.json | jq ".repository.pullRequests.edges[].node" > data_simple.json
 
 # Get merged PRs
 cat data_simple.json | jq "select(.merged)" | jq ".title" > .titles.txt
