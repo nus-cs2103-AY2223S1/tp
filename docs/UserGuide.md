@@ -217,7 +217,7 @@ The following commands are for managing your hackathon tasks. These tasks can be
 #### Adding a task: `addTask`
 
 Adds a task to the task list. 
-* Note: You cannot add a task with the same name as one that currently exists in the task list. 
+* Note: You cannot add a task if a task with the same name already exists in the task list. 
 
 Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]`
 
@@ -247,7 +247,7 @@ Edits the parameter(s) of an existing task in the task list.
 
 Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]`
 
-* Edits the task at the specified index. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​ and less than or equal to the number of task in the task list.
+* Edits the task at the specified index. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​ and less than or equal to the number of tasks in the task list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * To un-assign a member from a task, write `none` in the EMAIL_OF_PERSON_ASSIGNED field, i.e. `pe/none`.
