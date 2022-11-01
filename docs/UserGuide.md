@@ -4,6 +4,7 @@ title: User Guide
 ---
 
 # Welcome To TrackO's User Guide!
+
 Tired of configuring multiple ugly spreadsheets on Microsoft Excel or Google Sheets to track your business?
 
 Or are you perhaps finding it increasingly difficult to manage pen and paper records as your business grows?
@@ -18,6 +19,7 @@ neat functionalities of **TrackO** that will make your life easier!
 If you are looking to help develop this project, take a look at our [Developer Guide](DeveloperGuide.md) too.
 
 ## Table of Contents
+
 * [Introduction](#introduction)
 * [Layout]
 * [Using this guide]
