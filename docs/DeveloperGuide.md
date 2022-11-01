@@ -1127,4 +1127,39 @@ testers are expected to do more *exploratory* testing.
 
       Expected: The message will be deleted from Rapportbook. The message box will indicate successful deletion.
 
-#
+### Reminders
+
+1. Creating reminders
+
+    1. Prerequisites:
+
+        1. There are clients in Rapportbook
+
+    2. Test case: `reminder 1 d=Zoom meeting dt=22-11-30 11:00` or `r 1 d=Zoom meeting dt=22-11-30 11:00` <br>
+
+       Expected: A reminder will be created for the first client. A message will be shown indicating success.
+
+2. Deleting reminders
+
+    1. Prerequisites:
+
+        1. Reminders have been created.
+
+        2. There are clients in Rapportbook
+
+    2. Test case: `reminder delete 1` or `r d 1` <br>
+
+       Expected: The reminder will be deleted from Rapportbook. The message box will indicate successful deletion.
+
+3. Clearing reminders
+
+    1. Prerequisites:
+
+        1. Reminders have been created.
+
+        2. There are clients in Rapportbook
+
+    2. Test case: `reminder clear` or `r c`<br>
+
+       Expected: The message box will display that reminders have been cleared.
+
