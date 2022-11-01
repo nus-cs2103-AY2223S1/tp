@@ -169,21 +169,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Delete Feature
-
-#### Current Implementation
-
-The `delete` feature is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index, and removing it from the list.
-
-#### Example Usage of `task delete`
-
-1. User launches Arrow and the `TaskPanel` is populated with existing `Task` entries.
-2. User types in the command `task delete 1`, where `1` is the specified index given in one-based form.
-3. The current state of the `TaskPanel` is obtained from `Model`.
-4. The `Task` to be deleted is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
-5. The `Task` is deleted from the `Model`.
-6. The `GUI` is updated to show the new `TaskPanel` with the `Task` deleted.
-
 ### Mark Feature
 
 #### Current Implementation
@@ -214,6 +199,21 @@ The `unmark` feature is implemented by acting on the current filtered`TaskPanel`
 5. The `Task` is marked as incompleted.
 6. The `GUI` is updated to show the new `TaskPanel` with the `Task` marked as incomplete.
 
+### Task Delete Feature
+
+#### Current Implementation
+
+The `task delete` feature is implemented by removing the `task` indicated by user using a one-based `Index` from the current current filtered `TaskPanel`.
+
+#### Example Usage of `task delete`
+
+1. User launches Arrow and the `TaskPanel` is filled with all the existing `Task` entries that has been added by user.
+2. User types in the command `task delete 1`, where `1` is the specified index given in one-based form.
+3. The current state of the `TaskPanel` is obtained from `Model`.
+4. The `Task` to be deleted is then fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
+5. The `Task` is deleted from the `Model`.
+6. The `GUI` is updated to show the new `TaskPanel` with the `Task` deleted.
+
 ### Clear Feature
 
 #### Current Implementation
@@ -227,7 +227,6 @@ The `clear` feature is implemented by acting on the current filtered`TaskPanel`,
 3. The current state of the `TaskPanel` is obtained from `Model`.
 4. The `TaskPanel` is resetted to be an empty one.
 5. The `GUI` is updated to show the new `TaskPanel` with zero task.
-
 
 ### Task edit feature
 
@@ -269,7 +268,6 @@ where the `get` methods return `Optional<T>` objects containing the value to be 
 `EditTaskDescriptor` also has:
 1. A constructor which accepts another `EditTaskDescriptor`, which creates a defensive copy of the original, which is only called in the constructor of `EditTaskCommand`.
 2. A `isAnyFieldEdited` method is implemented to check whether the user input any values to be edited.
-
 
 ### Assign Person(s) to Task Feature
 
