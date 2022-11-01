@@ -215,4 +215,13 @@ public class Task {
         assignees.remove(person);
         return new Task(name, assignees, completionStatus, deadline);
     }
+
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson} in the assignees list for all tasks.
+     * {@code target} must exist in assignee list.
+     */
+    public Task setAssignee(Person target, Person editedPerson) {
+        assignees.setPerson(target, editedPerson);
+        return new Task(name, assignees, completionStatus, deadline);
+    }
 }
