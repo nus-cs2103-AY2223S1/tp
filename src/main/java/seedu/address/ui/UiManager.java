@@ -11,7 +11,6 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
-import seedu.address.model.person.Person;
 
 /**
  * The manager of the UI component.
@@ -84,10 +83,5 @@ public class UiManager implements Ui {
         showAlertDialogAndWait(Alert.AlertType.ERROR, title, e.getMessage(), e.toString());
         Platform.exit();
         System.exit(1);
-    }
-
-    @Override
-    public void updateUi(Person updatedPerson) {
-        mainWindow.updateUi(updatedPerson);
     }
 }
