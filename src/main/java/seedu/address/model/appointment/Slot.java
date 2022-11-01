@@ -37,8 +37,8 @@ public class Slot {
      */
     public static boolean isValidSlot(String input) {
         try {
-            LocalDateTime.parse(input, FORMATTER);
-            return true;
+            LocalDateTime test = LocalDateTime.parse(input, FORMATTER);
+            return test.format(FORMATTER).equals(input);
         } catch (DateTimeParseException e) {
             return false;
         }
