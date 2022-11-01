@@ -58,6 +58,10 @@ public class ExportStudentCsv {
             item.fields().forEachRemaining(header -> {
                 switch (header.getKey()) {
                 case "nextOfKin":
+                    if (header.getValue().isNull()) {
+                        arr.addAll(Arrays.asList("", "", "", "", "", ""));
+                        break;
+                    }
                     header.getValue().elements().forEachRemaining(values -> {
                         if (values.textValue() == null) {
                             arr.add(handleTagged(values));
