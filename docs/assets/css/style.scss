@@ -31,17 +31,17 @@ body {
 }
 
 
-.index h2::before {
+.index h2:before {
     counter-increment: h2;
     content: counter(h2) ". ";
 }
 
-.index h3::before {
+.index h3:before {
     counter-increment: h3;
     content: counter(h2) "." counter(h3) ". ";
 }
 
-.index h4::before {
+.index h4:before {
     counter-increment: h4;
     content: counter(h2) "." counter(h3) "." counter(h4) ". ";
 }
@@ -59,7 +59,7 @@ body {
 }
 
 
-li::before {
+li:before {
     counter-increment: item;
     content: counters(item, ".", decimal) ". ";
 }
