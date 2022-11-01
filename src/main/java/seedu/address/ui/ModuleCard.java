@@ -9,6 +9,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.TextFlow;
 import seedu.address.model.module.Module;
 
 
@@ -42,6 +43,8 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label tutorialDetails;
     @FXML
+    private TextFlow textFlow;
+    @FXML
     private Label lectureZoomLink;
     @FXML
     private Label tutorialZoomLink;
@@ -62,19 +65,23 @@ public class ModuleCard extends UiPart<Region> {
         moduleCode.setText(module.getModuleCode().moduleCode);
         moduleTitle.setText(module.getModuleCode().getModuleTitle());
         lectureDetails.setText(module.getLectureDetails().value);
+        lectureDetails.setWrapText(true);
         tutorialDetails.setText(module.getTutorialDetails().value);
+        tutorialDetails.setWrapText(true);
 
+        lectureZoomLink.setText(module.getLectureZoomLink().zoomLink);
+        lectureZoomLink.setWrapText(true);
         if (module.getLectureZoomLink().zoomLink == null) {
             lectureZoomLinkContainer.setManaged(false);
             lectureZoomLinkContainer.setVisible(false);
         }
-        lectureZoomLink.setText(module.getLectureZoomLink().zoomLink);
 
+        tutorialZoomLink.setText(module.getTutorialZoomLink().zoomLink);
+        tutorialZoomLink.setWrapText(true);
         if (module.getTutorialZoomLink().zoomLink == null) {
             tutorialZoomLinkContainer.setManaged(false);
             tutorialZoomLinkContainer.setVisible(false);
         }
-        tutorialZoomLink.setText(module.getTutorialZoomLink().zoomLink);
         module.getAssignmentDetails().stream()
             .sorted(Comparator.comparing(assignment -> assignment.assignmentDetails))
             .forEach(assignment -> assignmentDetails.getChildren().add(new Label(assignment.assignmentDetails)));
