@@ -28,7 +28,7 @@ public class Amount {
         requireNonNull(amount);
         checkArgument(isValidAmount(amount), MESSAGE_CONSTRAINTS);
         this.amount = parseDouble(amount);
-        this.amountString = amount;
+        this.amountString = df.format(this.amount);
     }
 
     /**
