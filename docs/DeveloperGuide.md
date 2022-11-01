@@ -699,22 +699,15 @@ Priorities: `High` (must have), `Medium` (nice to have), `Low` (unlikely to have
 | `High` | Busy User | See the overview of tasks on the home page | Get a quick summary of upcoming tasks |
 | `Medium` | User | Edit module details | Rectify mistakes and update module details when needed |
 | `Medium` | User | Edit a contact | Rectify mistakes and update contact details when needed |
-| `Medium` | User | Sort tasks by deadlines | I can prioritise which tasks to complete first |
 | `Medium` | User | Set different priorities to prioritise my tasks	| I know is important and should be done first |
 | `Medium` | Forgetful Student | Organise contacts by module | I can discuss difficult assignment questions with them and delete them once the semester is completed |
-| `Medium` | Organised Person | Filter contacts by tags | Search for contacts relevant for my case |
+| `Medium` | Organised Person | Filter contacts by names | Search for contacts relevant for my case |
 | `Medium` | Expert User | Search a keyword	| Go to the module which has the relevant topic I have in mind |
 | `Medium` | User | Detect (and delete) duplicate items | Avoid adding a same item twice |
 | `Medium` | New potential user | See the app populated with sample data | Easily see how the app will look like when it is in use |
 | `Medium` | Forgetful student | Group contacts by tags	| Find out which friends are taking what modules |
 | `Medium` | Expert User | Purge existing module data | Save time deleting all the module data when the semester ends |
-| `Medium` | User |	Batch delete by module | I can forget the pain of dropping modules |
-| `Low` | Forgetful Student	| Set a reminder to update me on my submission dates | Prevent any minor slip-ups in my work |
-| `Low` | Morning Lark | Configure the application to light mode | See the words clearly under the sun |
 | `Low` | Expert User | Archive existing data | Restore the data in case I mess up |
-| `Low` | User | Undo the latest commands | Recover the data which I accidentally deleted |
-| `Low` | User who is easily bored | Set different themes for the application | Enjoy different visuals  |
-| `Low` | User | Find free times | Add more dates/schedule more meetings |
 
 ### Use cases
 
@@ -972,20 +965,7 @@ Use case ends.
 
   Use case ends.
 
-#### Use case: UC14 - Navigate to Contact Page
-**Main Success Scenario (MSS)**
-1.  User requests to navigate to the Contact Page.
-2.  Plannit displays the Contact Page.
-
-Use case ends.
-
-**Extensions**
-
-* 1a. Plannit is already at the Contact Page.
-
-  Use case ends.
-
-#### Use case: UC15 - Exit program
+#### Use case: UC14 - Exit program
 **Main Success Scenario (MSS)**
 1.  User requests to exit program.
 2.  Plannit closes program.
