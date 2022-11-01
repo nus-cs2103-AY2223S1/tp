@@ -93,7 +93,7 @@ Adds a module to the ProfNUS.
 Format: `madd n/MODULE NAME c/MODULE CODE d/MODULE DESCRIPTION [t/TAG]…​ `
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags or modules(including 0)
+A module can have any number of tags or modules(including 0)
 </div>
 
 Examples:
