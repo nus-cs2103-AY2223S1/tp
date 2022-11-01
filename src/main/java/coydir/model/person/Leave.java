@@ -21,7 +21,7 @@ public class Leave {
             + "1. Date should be valid \n"
             + "2. Start Date should be equal to or earlier than End Date \n "
             + "3. both Dates should be in dd-MM-YYYY "
-            + "4. Year provided should be between 2000 to 2999 inclusive.";
+            + "4. Year provided should be between 1900 to 2999 inclusive.";
     public static final CustomLeaveComparator COMPARATOR = new CustomLeaveComparator();
 
     private static final Pattern DATE_PATTERN = Pattern.compile(
