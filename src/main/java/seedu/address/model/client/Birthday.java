@@ -14,8 +14,11 @@ import seedu.address.logic.parser.DateKeyword;
 public class Birthday {
 
     public static final String VALIDATION_REGEX = "^([0-2][0-9]||3[0-1])(0[0-9]||1[0-2])([0-9][0-9])?[0-9][0-9]$";
-    public static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_FORMAT_CONSTRAINTS =
             "Birthday should be in the format DDMMYYYY and should be a valid day of the year";
+    public static final String MESSAGE_DATE_CONSTRAINTS =
+            "Birthday should be at most 100 years before and no more than the date of creation";
+    private static final int yearsBefore = 100;
     private final LocalDate birthday;
 
     /**
@@ -94,6 +97,10 @@ public class Birthday {
     }
 
     public static boolean isValidBirthday(String test) {
-        return test.matches(VALIDATION_REGEX) | test.equals("");
+        return test.matches(VALIDATION_REGEX) || test.equals("");
+    }
+
+    public static boolean isDateInValidPeriod(LocalDate date) {
+        return !date.isAfter(LocalDate.now()) && !date.isBefore(LocalDate.now().minusYears(yearsBefore));
     }
 }

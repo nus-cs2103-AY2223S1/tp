@@ -111,12 +111,17 @@ public class ParserUtil {
     public static LocalDate parseDate(String date, String type) throws ParseException {
         requireNonNull(date);
         try {
-            return LocalDate.parse(date, DateTimeFormatter.ofPattern("ddMMuuuu").withResolverStyle(STRICT));
+            LocalDate newDate = LocalDate.parse(date,
+                    DateTimeFormatter.ofPattern("ddMMuuuu").withResolverStyle(STRICT));
+            if (type.equals("birthday") && !Birthday.isDateInValidPeriod(newDate)) {
+                throw new ParseException(Birthday.MESSAGE_DATE_CONSTRAINTS);
+            }
+            return newDate;
         } catch (DateTimeParseException e) {
             if (type.equals("meeting")) {
                 throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
             } else {
-                throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Birthday.MESSAGE_FORMAT_CONSTRAINTS);
             }
         }
     }
