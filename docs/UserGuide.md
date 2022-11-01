@@ -16,7 +16,7 @@ Graphical User Interface (GUI).
 If you can type fast, TruthTable can get your task management done _blazingly fast_, faster than traditional GUI
 applications.
 
-## Using this guide
+## Using This Guide
 
 If you are a software engineering team leader looking to get started with TruthTable, make sure the [pre-requisites 
 are installed](#getting-started).
@@ -44,7 +44,7 @@ Here are the symbols and text styles to look out for while using this guide:
 | <kbd>Esc</kbd>             | Keyboard button                                      |
 
 
-## Table of Contents
+## Table Of Contents
 
 * Table of Contents
 {:toc}
@@ -104,20 +104,43 @@ appear in a few seconds. We have also added some sample data for you to play aro
 
 After opening TruthTable for the first time, you should see the following screen.
 
-![Application Window](images/ApplicationWindow.png)
+![Application Interface](images/ApplicationInterface.png)
 
-As you can see above, each section contains different information, where the [Command Section](#command-section) is 
-the main way for you to interact with TruthTable's features.
+Each section contains several components, which will be labelled in their respective sections below. These 
+components are numbered, and their names and descriptions will be displayed in a tabular format.
 
 ### Teams Section
 
+![Teams Section](images/TeamsSection.png)
+
 [//]: # (TODO: reference to team explanation / why at least 1 will always appear)
-This section displays the names of all teams that you have created in TruthTable.  
+This section displays all the teams that you have created in TruthTable. Only the names of each team is listed.  
+
+| Number | Component  | Description                                    |
+|--------|------------|:-----------------------------------------------|
+| 1      | Team Index | The index of the team in the list of all teams |  
+| 2      | Team Name  | The name of the team at the specified index    |
+
 
 ### Current Team Section
 
+![Current Team Section](images/CurrentTeamSection.png)
+
 This section contains information about your current team. It displays the currently selected team, team description, 
 links, tasks, and members related to said team.
+
+| Number | Component                 | Description                                                                                                   |
+|--------|---------------------------|:--------------------------------------------------------------------------------------------------------------|
+| 1      | Selected Team Name        | The name of the team currently being selected                                                                 |  
+| 2      | Selected Team Description | The description of the team at the specified index                                                            |
+| 3      | Link Name                 | The name of a link related to the selected team                                                               |
+| 4      | Member Index              | The index of a member in the team's list of members                                                           |
+| 5      | Member Name               | The name of a member at the specified member index                                                            |
+| 6      | Task Index                | The index of a task in the team's list of tasks                                                               |
+| 7      | Task Name                 | The name of a task at the specified task index                                                                |
+| 8      | Task Assignee             | The name of the member assigned to the task                                                                   |
+| 9      | Task Completion Status    | The completion status of a task, `[X]` is displayed if task is completed, else `[ ]` is displayed             |
+| 10     | Task Completion Rate      | The number of tasks completed is displayed, along with its relative <br/>percentage to total number of tasks. |
 
 ### Persons Section
 
@@ -600,3 +623,10 @@ the data of your previous TruthTable home folder.
 | TBC    | TBC              |
 
 ## Glossary
+
+| Term      | Meaning |
+|-----------|---------|
+| Command   |         |
+| Parameter |         |
+| Index     |         |
+|           |         |
