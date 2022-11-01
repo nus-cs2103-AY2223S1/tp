@@ -13,14 +13,18 @@ Given below are my contributions to the project.
 
 Given below are my contributions to the project.
 
-* **Code contributed**: to be added soon
-* **Enhancements implemented**: to be added soon
+* **Code contributed**: [anthonyhoth's tP Dashboard](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=anthonyhoth&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* **Enhancements implemented**: 
+  * Added delete record functionality.
+  * Added edit record functionality.
+  * Changed the UI theme of the app.
+  * Modified the warning message and duplicate detection of patients.
 * **Project management**: to be added soon
-* **Documentation**: to be added soon
+* **Documentation**:
   * User Guide: to be added soon
   * Developer Guide: to be added soon
 * **Community**:
-  * Contribution to team-based tasks: to be added soon
-  * Review/mentoring contributions: to be added soon
-* **Tools**: to be added soon
-* **Contributions beyond the project team** :to be added soon
+* **Contribution to team-based tasks**: 
+  * Maintaining issue and PR tags
+* **Review/mentoring contributions**: 
+  * Reviewed teammates' PRs for errors/improvements.
