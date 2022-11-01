@@ -144,6 +144,13 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR s/STUDENTID tn/TEACHI
 
 <div markdown="block" class="alert alert-info">
 
+:information_source: **Note:**
+Tutors are regarded as the same if they have the **same email or student ID**!
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
 :information_source: **About Tags:**
 - A person can have any number of tags (including 0).
 - Tags should be alphanumeric and should not contain any spaces.
