@@ -558,7 +558,7 @@ For reference for the parameter constrains, refer to [here](#parameters-requirem
 it is recommended to avoid it completely as it might make the format invalid
 </div>
 
-Below is an example of a valid JSON format:
+Below is an example of a valid save file format:
 ```
 {
   "internships": [
