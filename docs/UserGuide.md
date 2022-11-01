@@ -21,15 +21,15 @@ a [Graphical User Interface](#63-graphical-user-interface-gui) (GUI).
 
 1. Ensure you have Java SDK `11` or above installed in your Computer.
 
-1. Download the latest `Salesy.jar` from [here](https://github.com/AY2223S1-CS2103T-W08-4/tp/releases).
+2. Download the latest `Salesy.jar` from [here](https://github.com/AY2223S1-CS2103T-W08-4/tp/releases).
 
-1. Copy the file to the folder you want to use as your home folder in Salesy.
+3. Copy the file to the folder you want to use as your home folder in Salesy.
 
-1. Double-click the file to start the app. The GUI should appear in a few seconds.
+4. Double-click the file to start the app. The GUI should appear in a few seconds.
 
-1. Type in the command box and press Enter to execute it.
+5. Type in the command box and press Enter to execute it.
 
-1. Refer to the [Features](#4-features) below for details of each command.
+6. Refer to the [Features](#4-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 # 2. Important information
@@ -54,7 +54,7 @@ the rightmost prefix and its details, i.e. `Cups` will be taken as input.
 
 A brief display of important information for **inventory** and **tasks**.
 
-### **An overview of the information panel**
+### An overview of the information panel
 
 ![LabelledStatsPanel](images/labelledstatspanel.png)
 
@@ -295,7 +295,7 @@ Increases or decreases your stock for a particular item in the inventory
 
 ***Notice that the current stock of Ginger increased by your desired amount.***
 
-### 4.7.5 Limitations
+### 4.7.2 Limitations
 
 * Only able to key in up to a 5 digit value.
 * Only able to key in positive values
@@ -357,8 +357,8 @@ Lists all tasks
 
 > `listTasks`
 
-<div markdown="span" class="alert alert-info">**Note:**
-Note: All tasks displayed in the GUI is sorted by deadline.
+<div markdown="span" class="alert alert-info">
+**Note:** All tasks displayed in the GUI is sorted by deadline.
 The task with the earliest deadline is found at the top of the list.
 </div>
 
@@ -425,6 +425,39 @@ re-run Salesy.
 | 🟠&nbsp;Orange | Running at a `moderate` level, can consider restocking soon. | **More than and equal to 120%** of minimum stock specified and **less than 165%** of minimum stock. |
 | 🟢&nbsp;Green  | Running at a `healthy` level, no worries about restocking.   | **More than and equal to 165%** of minimum stock specified.                                         |
 
+<div markdown="span" class="alert alert-info">
+
+**Notes on how the colours are determined:**
+
+* Minimum stock refers the minimum amount of stock in which the canteen vendor feel is required for
+daily operations.
+* The minimum stock is a parameter supplied by the user when using the `addItem` command.
+* Current stock refers to the amount of stock the canteen vendor current have in the inventory.
+
+**Example on how the colours are determined:**
+
+Context: a user wants to keep track of the amount of eggs in its inventory.
+
+For example, the minimum stock required for daily operation is 100.
+
+When it shows **green** colour: Our current stock is **More than and equal to 165%** of minimum stock specified.
+
+1. For this case, 165% of 100 eggs is 165 eggs.
+2. If our current stock has 165 eggs and above it will display green.
+
+When it shows **yellow** colour: Our current stock must be **More than and equal to 120%** of minimum stock specified 
+and **less than 165%** of minimum stock specified.
+
+1. For this case, 120% of 100 eggs is 120 eggs and 165% if 100 eggs 165 eggs.
+2. If our current stock is between 120 eggs inclusive and 165 eggs exclusive it will display yellow.
+
+When it shows **red** colour: Our current stock must be **Less than 120%** of minimum stock specified.
+
+1. For this case, 120% of 100 eggs is 120 eggs.
+2. If our current stock is less than 120 eggs it will display red.
+
+</div>
+
 [//]: # (@@author hauchongtang-reused)
 [//]: # (Both definitions: 6.2 and 6.3 taken from https://byjus.com/gate/difference-between-cli-and-gui/#:~:text=GUI%20lets%20a%20user%20interact,offer%20both%20CLI%20and%20GUI.)
 
@@ -437,3 +470,5 @@ re-run Salesy.
 
 * In a GUI, you get various menus for making things easy, such as buttons, windows, scrollbars etc. It is very intuitive yet simple to use, even for a newbie.
 * In the case of Salesy, we utilize the GUI to give the user a visual view of their commands done from the CLI.
+
+[back to quick start](#1-quick-start)
