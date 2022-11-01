@@ -110,7 +110,7 @@ public class PetCard extends UiPart<Region> {
         colorPattern.setText(pet.getColorPattern().toString());
         height.setText(pet.getHeight().toString());
         weight.setText(pet.getWeight().toString());
-        salePrice.setText("TODO: implement sale price for pets");
+        salePrice.setText(pet.getPrice().toString());
 
         // Set the pet photo to fill the holder
 

@@ -17,7 +17,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
-import seedu.address.testutil.TypicalBuyers;
 
 
 public class JsonAdaptedSupplierTest {
