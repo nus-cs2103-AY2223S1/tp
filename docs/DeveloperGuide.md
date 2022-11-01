@@ -216,7 +216,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### What is finding stalls and reviews feature about?
 
-This feature is used to find stalls and reviews in `AddressBook` by name and/ or by tags. It uses the following two commands:
+This feature is used to find stalls and reviews in FoodWhere by name and/or by tags. It uses the following two commands:
 * `sfind`: Finds stalls
 * `rfind`: Finds reviews
 
