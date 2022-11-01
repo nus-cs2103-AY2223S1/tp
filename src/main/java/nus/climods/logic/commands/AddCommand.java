@@ -44,11 +44,13 @@ public class AddCommand extends Command {
         if (!model.isModuleOffered(toAdd)) {
             throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
         }
+
         if (!model.isModuleOfferedInSemester(toAdd, semester)) {
             throw new CommandException(MESSAGE_MODULE_NOT_OFFERED_IN_SEMESTER);
         }
 
         UserModule moduleToAdd = new UserModule(toAdd, semester);
+
         if (model.hasUserModule(moduleToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
@@ -64,6 +66,7 @@ public class AddCommand extends Command {
         for (LessonTypeEnum t : module.getUnselectableLessonTypeEnums(semester)) {
             String lessonId = module.getUnselectableLessonId(t, semester);
             String lessonInfo = lessonId + "\n" + module.getLessonInfo(t, semester, lessonId);
+
             moduleToAdd.addLesson(t, lessonInfo);
         }
 
