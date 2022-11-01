@@ -364,7 +364,7 @@ Clears all data (in both `Order List` and `Inventory List`) from TrackO.
 
 Shows a window with a link to the user guide.
 
-### Exiting TrackO : `exit`
+### Exiting TrackO: `exit`
 
 Exits the program.
 
