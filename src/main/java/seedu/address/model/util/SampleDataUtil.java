@@ -28,17 +28,17 @@ import seedu.address.model.task.TaskMark;
 public class SampleDataUtil {
     public static Project[] getSampleProjects() {
         Project[] projectList = new Project[] {
-            new Project(new ProjectName("CS2103T TP"), new Budget("200"), new Deadline("2022-10-28"),
+            new Project(new ProjectName("Artemis"), new Budget("20000"), new Deadline("2022-10-28"),
                 getTagSet("Software")),
-            new Project(new ProjectName("CS2102"), new Budget("3"), new Deadline("2023-07-02"),
+            new Project(new ProjectName("Apollo"), new Budget("3"), new Deadline("2023-07-02"),
                 getTagSet("Computing", "Pending")),
-            new Project(new ProjectName("GESS1025"), new Budget("1100"), new Deadline("2024-08-03"),
+            new Project(new ProjectName("Gemini"), new Budget("1100"), new Deadline("2024-08-03"),
                 getTagSet("Expansion")),
-            new Project(new ProjectName("CS2101"), new Budget("25"), new Deadline("2016-09-04"),
+            new Project(new ProjectName("Microsoft 365"), new Budget("25000"), new Deadline("2016-09-04"),
                 getTagSet("Important")),
             new Project(new ProjectName("Merger with Tiktok"), new Budget("10000000"), new Deadline("2018-10-05"),
                 getTagSet("Important")),
-            new Project(new ProjectName("Change supplier"), new Budget("3000"), new Deadline("2024-11-06"),
+            new Project(new ProjectName("Trends Visualizer"), new Budget("3000"), new Deadline("2024-11-06"),
                 getTagSet("Finance"))
         };
         Project tempProject = projectList[0];
