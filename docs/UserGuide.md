@@ -100,14 +100,28 @@ Adds a listing to the address book.
 Format - `addL l/LISTING_ID a/ADDRESS n/OWNER_NAME ap/ASKING_PRICE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A listing can have any number of tags (including 0)
+A listing can have any number of tags (including 0).
+However, all other fields must be present.
 </div>
 
+    `l/LISTING_ID` refers to the ListingId you wish to assign to this Listing.
+    `a/ADDRESS` refers to the address of this Listing.
+    `n/NAME` refers to the name of the owner of this Listing.
+    `ap/ASKING_PRICE` refers to the asking price that the owner is asking for this Listing.
+
 Examples:
-* `addL l/567 a/John street, block 123, #01-01 n/John Doe ap/500000 t/4_bedroom t/2_storey`
-* `addL l/haunted a/Changi Prison n/Betsy Crowe ap/1 t/no_MRT_access t/dangerous_neighborhood`
+
+_Success_
+* `addL l/007 a/100 Charming Ave n/Joke Peralta ap/10000000`
 
 ![addL example](images/addL.png)
+
+_Failure_
+* `addL l/007 a/100 Charming Ave n/Joke Peralta` Fails as there is no asking price.
+
+![addL Missing Parameter example](images/addLMissingParam.png)
+
+[Back to top](#features).
 ___
 
 ### Adding an offer: `addO`
@@ -162,10 +176,27 @@ Edits an existing listing in the address book.
 
 Format - `editL INDEX [a/ADDRESS] [n/OWNER_NAME] [ap/ASKING_PRICE] [t/TAG]…​`
 
-Examples:
-* `editL 1 a/20 Betsy Street` 
-* `editL 2 a/100 Johnny Road n/Johnny Sins ap/1000 t/fun_neighborhood` 
+    `INDEX` refers to the index of the Listing you wish to edit
+    Any number (more than 1) of fields may be edited. 
 
+Examples:
+
+_Success_
+* `editL 1 n/Joke Peralta`
+
+![editL example](images/editL.png)
+![editedL example](images/editedL.png)
+
+_Failure_
+* `editL 200 n/Joke Peralta` Fails as the index `200` does not exist.
+
+![editL IndexOutOfBounds example](images/editLIndexOutOfBounds.png)
+
+* `editL 1` Fails as no fields were being edited.
+
+![editL No Change example](images/editLNoChange.png)
+
+[Back to top](#features).
 ___
 
 ### Editing an offer : `editO`
@@ -250,12 +281,31 @@ ___
 
 Format: `deleteL [l/ LISTING_ID]`
 * Deletes the listing with the given ListingId.
+* 
+    `LISTING_ID` refers to the ListingId of the listing you wish to delete.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Note that you refer to the Listing you wish to delete by their ListingId instead of the index displayed.
+This was to ensure that you may freely delete Listings without referring to their displayed indexes.
+</div>
 
 Examples:
-* `deleteL l/001` Deletes the Listing with ListingId of `001`.
+
+_Success_
+* `deleteL l/007` Deletes the Listing with ListingId of `007`.
 
 ![deleteL example](images/deleteL.png)
 
+_Failure_
+* `deleteL l/2356739457` Fails as there is no Listing with such ListingId.
+
+![deleteL Invalid ListingId example](images/deleteLInvalidId.png)
+
+* `deleteL 1` Fails as the parameter entered is an `Index` instead of `ListingId`.
+
+![deleteL Index example](images/deleteLIndex.png)
+
+[Back to top](#features).
 ___
 
 ### Deleting an offer : `deleteO`

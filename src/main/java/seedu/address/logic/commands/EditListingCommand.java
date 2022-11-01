@@ -94,8 +94,8 @@ public class EditListingCommand extends Command {
         assert listingToEdit != null;
 
         ListingId updatedId = editListingDescriptor.getId().orElse(listingToEdit.getId());
-        Name updatedName = editListingDescriptor.getName().orElse(listingToEdit.getName());
         Address updatedAddress = editListingDescriptor.getAddress().orElse(listingToEdit.getAddress());
+        Name updatedName = editListingDescriptor.getName().orElse(listingToEdit.getName());
         Price updatedAskingPrice = editListingDescriptor.getAskingPrice().orElse(listingToEdit.getAskingPrice());
 
         return new Listing(updatedId, updatedAddress, updatedName, updatedAskingPrice);
@@ -179,7 +179,7 @@ public class EditListingCommand extends Command {
         }
 
         public Optional<Price> getAskingPrice() {
-            return Optional.of(askingPrice);
+            return Optional.ofNullable(askingPrice);
         }
 
         /**
@@ -218,6 +218,13 @@ public class EditListingCommand extends Command {
                     && getName().equals(e.getName())
                     && getAddress().equals(e.getAddress())
                     && getAskingPrice().equals(e.getAskingPrice());
+        }
+
+        public String toString() {
+            return this.id + "   "
+                    + this.address + "   "
+                    + this.name + "   "
+                    + this.askingPrice;
         }
     }
 }
