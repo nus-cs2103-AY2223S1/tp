@@ -28,7 +28,7 @@ public class AddInterviewCommand extends Command {
             + PREFIX_ROUND + "ROUND "
             + PREFIX_INTERVIEW_DATE + "INTERVIEW_DATE "
             + PREFIX_INTERVIEW_TIME + "INTERVIEW_TIME "
-            + PREFIX_LOCATION + "LOCATION "
+            + PREFIX_LOCATION + "LOCATION\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_ROUND + "Technical interview 1 "
             + PREFIX_INTERVIEW_DATE + "2022-10-12 "

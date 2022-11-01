@@ -250,6 +250,7 @@ Format: `archive INDEX`
 * The index refers to the index number shown in the displayed internship application list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index cannot be greater than the number of applications in the displayed list.
+* Interview related to the archived application will also be updated in the interview list once the application is archived.
 
 Example:
 * `list` followed by `archive 2` archives the 2nd internship application in the list.
