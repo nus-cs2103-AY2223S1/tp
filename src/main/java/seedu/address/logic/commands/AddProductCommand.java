@@ -14,9 +14,9 @@ public class AddProductCommand extends Command {
 
     public static final String COMMAND_WORD = "addProduct";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a product to MyInsuRec. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a product.\n"
             + "Parameters: "
-            + PREFIX_PRODUCT + "PRODUCT NAME \n"
+            + PREFIX_PRODUCT + "PRODUCT NAME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PRODUCT + "PrudenSure";
 

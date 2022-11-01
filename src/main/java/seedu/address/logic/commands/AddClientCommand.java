@@ -20,7 +20,7 @@ public class AddClientCommand extends Command {
 
     public static final String COMMAND_WORD = "addClient";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to MyInsuRec. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
