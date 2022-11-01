@@ -13,7 +13,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.Internship;
 
@@ -113,7 +112,7 @@ public class InternshipCard extends UiPart<Region> {
      */
     private void formatAndAddTag(String tagName) {
         Tooltip tagTooltip = new Tooltip(tagName);
-        tagTooltip.setShowDelay(Duration.millis(250));
+        tagTooltip.setShowDelay(TOOLTIP_DELAY);
 
         Label l = new Label(tagName);
         l.setTooltip(tagTooltip);
@@ -141,7 +140,7 @@ public class InternshipCard extends UiPart<Region> {
         }
 
         Tooltip moreTagsTooltip = new Tooltip(tooltipText.toString());
-        moreTagsTooltip.setShowDelay(Duration.millis(250));
+        moreTagsTooltip.setShowDelay(TOOLTIP_DELAY);
 
         Label moreTagsLabel = new Label("+" + count);
         moreTagsLabel.setTooltip(moreTagsTooltip);
@@ -169,6 +168,7 @@ public class InternshipCard extends UiPart<Region> {
      */
     private void handleInterviewDateTimeLine() {
         if (internship.getInterviewDateTime() == null) {
+            // Remove interview/date time and add tags to appliedDateLine
             contents.getChildren().remove(interviewDateTimeLine);
 
             Pane spacerPane = new Pane();
@@ -178,6 +178,7 @@ public class InternshipCard extends UiPart<Region> {
 
             appliedDateLine.getChildren().addAll(spacerPane, tags);
         } else {
+            // Add interview date/time
             interviewDateTimeLabel.setText("Interview date/time:");
             interviewDateTimeLabel.setMinWidth(Region.USE_PREF_SIZE);
 
@@ -191,7 +192,7 @@ public class InternshipCard extends UiPart<Region> {
      */
     private void handleLinkTooltip() {
         Tooltip linkTooltip = new Tooltip("Copy link");
-        linkTooltip.setShowDelay(Duration.millis(250));
+        linkTooltip.setShowDelay(TOOLTIP_DELAY);
         linkButton.setTooltip(linkTooltip);
     }
 
@@ -201,7 +202,7 @@ public class InternshipCard extends UiPart<Region> {
     private void handleApplicationStatusTooltip() {
         if (internship.getApplicationStatus() == ApplicationStatus.Shortlisted) {
             Tooltip shortlistedTooltip = new Tooltip("Shortlisted for interview");
-            shortlistedTooltip.setShowDelay(Duration.millis(250));
+            shortlistedTooltip.setShowDelay(TOOLTIP_DELAY);
             applicationStatus.setTooltip(shortlistedTooltip);
         }
     }
