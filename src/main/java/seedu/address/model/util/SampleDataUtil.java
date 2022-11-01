@@ -136,7 +136,7 @@ public class SampleDataUtil {
             getRequest(2, "white", "black", "pokemon"),
             getAdditionalRequests("i need it now"),
             "2022-12-21", 12.5, OrderStatus.PENDING.toString());
-    public static final Order O6 = getOrder(ROY, 11110.0, 15.0,
+    public static final Order O6 = getOrder(ROY, 11111.0, 15.0,
             getRequest(2, "white", "black", "pokemon"),
             getAdditionalRequests("i need it now"),
             "2022-12-21", 12.5, OrderStatus.PENDING.toString());

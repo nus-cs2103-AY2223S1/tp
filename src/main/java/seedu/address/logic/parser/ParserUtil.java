@@ -376,9 +376,9 @@ public class ParserUtil {
         }
 
         Age age = parseAge(argMultimap.getValue(PREFIX_ORDER_AGE).orElse(""));
-        Color color = parseColor(argMultimap.getValue(PREFIX_PET_COLOR).orElse(""));
-        ColorPattern colorPattern = parseColorPattern(argMultimap.getValue(PREFIX_PET_COLOR_PATTERN).orElse(""));
-        Species species = parseSpecies(argMultimap.getValue(PREFIX_PET_SPECIES).orElse(""));
+        Color color = parseColor(argMultimap.getValue(PREFIX_ORDER_COLOR).orElse(""));
+        ColorPattern colorPattern = parseColorPattern(argMultimap.getValue(PREFIX_ORDER_COLOR_PATTERN).orElse(""));
+        Species species = parseSpecies(argMultimap.getValue(PREFIX_ORDER_SPECIES).orElse(""));
         return new Request(age, color, colorPattern, species);
     }
 
