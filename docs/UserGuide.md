@@ -66,7 +66,7 @@ This user guide will help you get started and understand how FABook can **seamle
 **:information_source: Overview of commands:**<br>
 
 * Words in `UPPER_CASE` are the information supplied by you.
-  e.g `NAME` is a parameter in `create n/NAME`, where you can input `create n/John Doe`. 
+  e.g `NAME` is a parameter in `create n/NAME`, where you can input `create n/John Doe`.
   <br>
 
 * Parameters in `[]` are optional.
@@ -113,7 +113,7 @@ Shows a list of all clients in your FABook.
 
 Format: `list`
 
-![list](images/UserGuide/list.png) 
+![list](images/UserGuide/list.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -159,7 +159,7 @@ Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw
 :bulb: **Note:**
 - `NAME` and `PHONE_NUMBER` are the only compulsory inputs. Other parameters can be left blank.
 - It is recommended to only have 1`TAG` per client.
-                  
+
 </div>
 
 Examples:
@@ -188,7 +188,7 @@ Assigns a PDF file to a client in your FABook.
 
 Format: `filepath INDEX f/FILEPATH`
 
-![filepath](images/UserGuide/filepath.png) 
+![filepath](images/UserGuide/filepath.png)
 
 Examples:
 * `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
@@ -229,12 +229,12 @@ Examples:
 Format: `f n/NAME`
 
 </div>
-  
+
 #### Finding your client by phone number : `find`
 
 Find your clients whose phone number matches the input number.
 
-You can use this command when: 
+You can use this command when:
 1. You need to check if an unsaved phone number belongs to any one of your clients.
 <br>
 
@@ -244,7 +244,7 @@ You can use this command when:
 
 Format: `find p/NUMBER`
 
-![findphone](images/UserGuide/findphone.png)     
+![findphone](images/UserGuide/findphone.png)
 
 Examples:
 * `find p/90333333` returns the client(s) with `90333333` stored as their number
@@ -260,8 +260,7 @@ Format: `f p/NUMBER`
 
 Find your clients whose addresses matches the input address.
 
-
-You can use this command when: 
+You can use this command when:
 1. You are around the area and you want to meet up with clients near you.
 <br>
 
@@ -272,12 +271,12 @@ You can use this command when:
 * Words can be matched only if the whole address is included. e.g. `Tamp` won’t match `Tampines`
 * Clients with address matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Buona Clementi` will return `Buona Vista Drive`, `6 Clementi Ave`
-* Address can contain numbers. Find results will return all clients with that address keyword. 
+* Address can contain numbers. Find results will return all clients with that address keyword.
   e.g. `find a/30` will return `Blk 30 Geylang Street 29`, `Blk 30 Lorong 3 Serangoon Gardens`
 
 Format: `find a/ADDRESS`
 
-![findaddress](images/UserGuide/findaddress.png)     
+![findaddress](images/UserGuide/findaddress.png)
 
 Examples:
 * `find a/Bedok` returns the client(s) with `Bedok` stored as their address
@@ -293,8 +292,8 @@ Format: `f a/ADDRESS`
 
 You can find your clients whose tag matches the input tag.
 
-You can use this command when: 
-1. you need to consolidate `SECURED` clients to share new perks your company has. 
+You can use this command when:
+1. you need to consolidate `SECURED` clients to share new perks your company has.
 2. you need to consolidate `POTENTIAL` clients so that you can make a targeted effort to secure these clients.
 <br>
 
@@ -358,7 +357,7 @@ Format: Menu bar on the top of the application or press `F2`.
 As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
 
 <div>
-   
+
 ### Updating
 
 #### Updating your client : `update`
@@ -382,8 +381,8 @@ You can use this command when:
 * Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
 
 Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
-                        
-![update](images/UserGuide/update.png)  
+
+![update](images/UserGuide/update.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -393,7 +392,7 @@ Only parameters you provide will be changed.
 </div>
 
 Example:
-* `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed client's 
+* `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed client's
  name, phone number and address to be `John Doe`, `91234567` and `21 Lower Kent Ridge Rd` respectively.
 
 <div markdown="block" class="alert alert-info">
@@ -418,7 +417,7 @@ You can use this command when:
 
 Format: `description INDEX ds/DESCRIPTION`
 
-![description](images/UserGuide/description.png)     
+![description](images/UserGuide/description.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -429,7 +428,7 @@ Format: `desc INDEX ds/DESCRIPTION`
 </div>
 
 #### Updating meetings : `meeting`
-   
+
 Updates one or more meeting times to your client in your FABook.
 
 You can use this command when:
@@ -443,9 +442,9 @@ You can use this command when:
 * The client's existing meeting times remain unchanged.
    
 Format: `meeting INDEX mt/MEETINGTIME...`
-   
+
 Examples:
-* `meeting 2 mt/09-10-2023-23:50 mt/28-02-2020-15:16` adds two meetings to the second client in the displayed list, 
+* `meeting 2 mt/09-10-2023-23:50 mt/28-02-2020-15:16` adds two meetings to the second client in the displayed list,
    one at 9 October 2023 23:50, the other at 28 February 2020 15:16.
 
 ### Deletion
@@ -464,13 +463,13 @@ You can use this command when:
 
 Format: `delete INDEX`
 
-![delete](images/UserGuide/delete.png) 
+![delete](images/UserGuide/delete.png)
 
 Examples:
 * `delete 2` deletes the second client in the currently displayed client list in your FABook.
 
 #### Delete meetings : `deletemeeting`
-   
+
 Deletes a meeting from your client in your FABook.
 
 You can use this command when:
@@ -483,7 +482,7 @@ You can use this command when:
 * If the given meeting time is not on the list, the client's meetings remain unchanged.
 
 Format: `deletemeeting INDEX mt/MEETINGTIME`
-   
+
 Examples:
 * `deletemeeting 2 mt/09-10-2023-23:50` deletes the meeting at 9 October 2023 23:50 from the second client in the displayed list,
    if such a meeting was scheduled.
@@ -501,8 +500,8 @@ You can use this command when:
 
 Format: `sync`
 
-![sync](images/UserGuide/sync.png)    
-  
+![sync](images/UserGuide/sync.png)
+
 <div markdown="block" class="alert alert-info">
 
 :heavy_exclamation_mark: **Caution:**
@@ -534,7 +533,7 @@ You can replace `clear` with `cl` for convenience.
 </div>
 
 ### Command Flow
-#### Undoing a previous command : `undo`                                      
+#### Undoing a previous command : `undo`
 
 Undos your last command.
 
@@ -549,7 +548,7 @@ You can use this command when:
 
 Format: `undo`
 
-![undo](images/UserGuide/undo.png) 
+![undo](images/UserGuide/undo.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -564,7 +563,7 @@ Redos your last undone command.
 
 Format: `redo`
 
-![redo](images/UserGuide/redo.png) 
+![redo](images/UserGuide/redo.png)
 
 ### Exiting the program : `exit`
 
@@ -600,26 +599,24 @@ If your changes to the data file makes its format invalid, FABook will discard a
 **Q**: How do I transfer my data to another computer?<br>
 **A**:    1. Find the save file on the current computer. The save file can be found as `FABook.json` in the `data` folder created by the app.
 
-       
    2. Transfer the save file to your new computer.
-       
+
    3. Install FABook on the new computer.
-       
+
    4. Launch FABook and exit.
-       
+
    5. You should see a new `data` folder containing a new `FABook.json`. Replace this file with the save file copied over from your old computer.
-       
+
    6. Launch FABook again. Your data should be there!
 
 **Q**: Why can I not undo the `sync` command?<br>
-**A**: Meetings that have passed should not need to be undone and be shown again. 
+**A**: Meetings that have passed should not need to be undone and be shown again.
 
 **Q**: Person profile does not show when I click person card once.<br>
-**A**: You need to click the person card twice for the person profile to load. 
+**A**: You need to click the person card twice for the person profile to load.
 
 **Q**: Why does the person profile GUI not refresh after an edit or clear command?<br>
 **A**: In order to refresh the person profile, you will have the re-click on the person card again.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
