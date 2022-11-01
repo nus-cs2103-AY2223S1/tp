@@ -21,7 +21,7 @@ public class ViewIncomeCommandParser {
     public ViewIncomeCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
-            if (index.getOneBased() < 1900 || index.getOneBased() > 2200) {
+            if (index.getOneBased() < 1900 || index.getOneBased() > 2100) {
                 throw new InvalidYearException("Chosen year is invalid");
             }
             return new ViewIncomeCommand(index.getOneBased());

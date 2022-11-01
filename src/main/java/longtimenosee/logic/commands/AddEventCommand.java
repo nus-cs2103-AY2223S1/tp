@@ -21,7 +21,7 @@ import longtimenosee.model.person.exceptions.PersonNotFoundException;
  */
 public class AddEventCommand extends Command {
     public static final String COMMAND_WORD = "addEvent";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the LTNS";
     public static final String MESSAGE_OVERLAP_EVENT = "The event you would like to add overlaps with another event \n"
             + "Perhaps choose a different timing? ";
     public static final String MESSAGE_PERSON_NOT_FOUND = "The person you've selected currently does not "
@@ -29,7 +29,7 @@ public class AddEventCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New Event added: %1$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an Event to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an Event to the LTNS. "
             + "Parameters: "
             + PREFIX_DESCRIPTION + "Description "
             + PREFIX_NAME + "Person Name "
