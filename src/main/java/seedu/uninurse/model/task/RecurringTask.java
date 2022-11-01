@@ -48,7 +48,7 @@ public class RecurringTask extends Task {
     public static boolean isValidRecurAndFreq(String test) {
         String[] recurAndFreq = test.trim().split(" ");
 
-        if (recurAndFreq.length > 2) {
+        if (recurAndFreq.length != 2) {
             return false;
         }
 
@@ -114,6 +114,19 @@ public class RecurringTask extends Task {
 
         return this.getTaskDescription().equals(o.getTaskDescription())
                 && this.getDateTime().equals(o.getDateTime())
-                && this.recurrence.equals(o.recurrence);
+                && this.isSimilarRecurrence(recurrence, o.recurrence);
+    }
+
+    private boolean isSimilarRecurrence(Recurrence recurrence1, Recurrence recurrence2) {
+        if (recurrence1.toString().equals(recurrence2.toString())) {
+            return true; // if both are equal
+        }
+        if ((recurrence1.toString() + "S").equals(recurrence2.toString())) {
+            return true; // if recurrence1 is singular, recurrence2 is plural
+        }
+        if ((recurrence2.toString() + "S").equals(recurrence1.toString())) {
+            return true; // if recurrence2 is singular, recurrence1 is plural
+        }
+        return false;
     }
 }
