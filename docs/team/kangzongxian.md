@@ -3,7 +3,7 @@ layout: page
 title: Kang Zong Xian's Project Portfolio Page
 ---
 
-### Project: GuestList
+### Project: GuestBook
 
 GuestBook is a **desktop app for managing guests in a hotel,
 optimized for use via a Command Line Interface** (CLI)
@@ -11,14 +11,14 @@ while still having the benefits of a Graphical User Interface (GUI).
 If you are a hotel manager who can type fast, GuestBook can get your
 guest management tasks done faster than traditional GUI apps.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
-It is written in Java, and has about 10 kLoC.
+It is written in Java, and has about 13 kLoC.
 This project is based off AddressBook - Level 3.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Add Room Field
+* **New Feature**: Added Room Field
 
-* **New Feature**: Make Room Field unique to each Guest
+* **New Feature**: Made Room Field unique to each Guest
   * Ensures that there are no guests staying in the same room
   * This feature greatly aids in the precision of GuestBook, as unrelated guests are unlikely to 
   stay in the same room. This also prevents the user from accidentally entering a room that is occupied.
@@ -40,26 +40,18 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Did final checks to ensure consistency of DG (pull request #140).
         * Added implementation of find command in DG (pull request #114).
-        * Add UML Diagrams (pull request #114)
+        * Added UML Diagrams (pull request #114)
 
 * **Contributions to team-based tasks**:
     * Facilitated and tidied up contents of postmortem v1.2
 
-**Project management**:
-* Used Github issue tracker.
-* Followed the branching workflow.
-* Contributed to meetings by taking down minutes and facilitating discussions.
+* **Project management**:
+  * Added Github tags, milestones, assignee.
+  * Used Github issue tracker.
+  * Followed the branching workflow.
+  * Contributed to meetings by taking down minutes and facilitating discussions.
 
 * **Review/mentoring contributions**:
   * Team members' PR reviews (with non-trivial review comments): pull request #191, #142, #138, #131, #119, #111
     , #109, #73, #68, #65, #58
-  * Reported bugs for other teams (PE-D).
-
-* **Contributions beyond the project team**:
-    * to be added soon
-
-* **Community**:
-    * to be added soon
-
-* **Tools**:
-    * to be added soon
+  * Reported bugs for other teams ([ped](https://github.com/kangzongxian/ped/issues)).
