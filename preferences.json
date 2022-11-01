@@ -4,7 +4,7 @@
     "windowHeight" : 600.0,
     "windowCoordinates" : {
       "x" : 590,
-      "y" : 153
+      "y" : 147
     }
   },
   "addressBookFilePath" : "data/FABook.json"
