@@ -162,9 +162,7 @@ The UI component description:
 
 ### 4.1.1. Adding a person: `add -p`
 
-Adds a contact person to InterNUS.
-During internship application, this person could be the hiring manager. 
-After the application, this person could be the senior engineer who you want to keep contact at work.
+Saves a contact person into InterNUS, from the hiring manager you liase with during the application process to the senior engineer you work with during the internship.
 
 Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c/[COMPANY]`
 * The link index (in add -p) refers to the index number shown in the internship list.
@@ -179,10 +177,10 @@ A person is only considered duplicated if the name is exactly the same including
 </div>
 
 Examples:
-* `add -p` followed by `n/John Doe e/johnd@example.com p/98765432 l/1 c/Meta` 
-Adds the name, email, phone number and company and link to the internship with index **1**.
-* `add -p` followed `n/Betsy Crowe t/friend e/betsycrowe@example.com`
-Adds the name, tags and email.
+* `add -p` followed by `n/John Doe e/johnd@example.com p/98765432 l/1 c/Meta`  
+will add the name, email, phone number and company and link to the internship with index **1**.
+* `add -p` followed `n/Betsy Crowe t/friend e/betsycrowe@example.com` 
+will add the name, tags and email.
 
 ### 4.1.2. Adding an internship: `add -i`
 
