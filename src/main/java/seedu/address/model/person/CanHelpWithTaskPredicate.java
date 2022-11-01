@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
@@ -10,11 +11,11 @@ import seedu.address.model.task.Task;
  * Tests if a {@code Person}'s {@code Module}s matches that of the given task.
  */
 public class CanHelpWithTaskPredicate implements Predicate<Person> {
-    private final int taskIndex;
+    private final Index taskIndex;
     private Task task;
 
     public CanHelpWithTaskPredicate(int taskIndex) {
-        this.taskIndex = taskIndex;
+        this.taskIndex = Index.fromOneBased(taskIndex);
     }
 
     /**
@@ -29,7 +30,7 @@ public class CanHelpWithTaskPredicate implements Predicate<Person> {
         return predicate;
     }
 
-    public int getTaskIndex() {
+    public Index getTaskIndex() {
         return taskIndex;
     }
 

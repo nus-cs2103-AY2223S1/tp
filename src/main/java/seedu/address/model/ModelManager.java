@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.CanHelpWithTaskPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.DefaultComparator;
@@ -152,12 +154,15 @@ public class ModelManager implements Model {
         // If the predicate is a `CanHelpWithTaskPredicate`,
         // get the current task's module and add it to the predicate.
         if (predicate instanceof CanHelpWithTaskPredicate) {
+            List<Task> lastShownList = getSortedTaskList();
             CanHelpWithTaskPredicate taskPredicate = (CanHelpWithTaskPredicate) predicate;
-            int taskIndex = taskPredicate.getTaskIndex();
-            Task taskInQuestion = filteredTasks.get(taskIndex - 1);
+            int taskIndex = taskPredicate.getTaskIndex().getZeroBased();
+            Task taskInQuestion = lastShownList.get(taskIndex);
             taskPredicate.setTask(taskInQuestion);
+            filteredPersons.setPredicate(taskPredicate);
+        } else {
+            filteredPersons.setPredicate(predicate);
         }
-        filteredPersons.setPredicate(predicate);
     }
 
     //=========== TaskList ===================================================================================
