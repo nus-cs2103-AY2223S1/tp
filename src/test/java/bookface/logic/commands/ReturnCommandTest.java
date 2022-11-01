@@ -21,6 +21,7 @@ public class ReturnCommandTest {
     //This test is very weird, if i test it on its own, it works, but if i test all the tests at once, it fails.
     //i suspect it depends on some other tests' results?
 
+
     /*
     @Test
     public void execute_returnUnloanedBook_throwsCommandException() {
@@ -28,13 +29,14 @@ public class ReturnCommandTest {
 
         assertCommandFailure(returnCommand, model, NOT_ON_LOAN);
     }
-
      */
+
 
 
 
     //Same as loancommandtest, it shows "Book is not on loan." instead of MESSAGE_RETURN_SUCCESS,
     //but I'm not sure why this is happening?
+
 
 
     /*
@@ -65,6 +67,7 @@ public class ReturnCommandTest {
         assertCommandSuccess(returnCommand, model, expectedMessage, expectedModel);
     }
      */
+
 
 
     @Test
