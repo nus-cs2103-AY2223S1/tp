@@ -4,7 +4,8 @@ title: Setting up and getting started
 ---
 
 * Table of Contents
-{:toc}
+- [Setting up the project in your computer](#setting-up-the-project-in-your-computer)
+- [Before writing code](#before-writing-code)
 
 
 --------------------------------------------------------------------------------------------------------------------

@@ -39,6 +39,6 @@ public class LessonUserCommand extends LessonCommand {
 
         model.addLessonToUser(lesson);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_ADD_LESSON_SUCCESS, lesson));
+        return new CommandResult(String.format(MESSAGE_ADD_LESSON_SUCCESS, lesson.toFullString()));
     }
 }

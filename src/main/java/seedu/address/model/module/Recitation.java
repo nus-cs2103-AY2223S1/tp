@@ -51,4 +51,10 @@ public class Recitation extends Lesson {
         return false;
     }
 
+    @Override
+    public String toFullString() {
+        return super.getModule() + " " + typeToString() + " on " + toDayString()
+                + " " + super.getStartTime() + " to " + super.getEndTime();
+    }
+
 }
