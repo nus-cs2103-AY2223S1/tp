@@ -106,8 +106,8 @@ Format: `add n/NAME b/BIRTHDATE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 * Duplicate patients are not allowed.
     * Patients are considered duplicate when they have the same `NAME` and `ADDRESS`.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Birthdate must be given in DD-MM-YYYY HHmm format!
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Birthdate must be given in DD-MM-YYYY format!
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -196,7 +196,7 @@ Format: `clear`
 
 Adds an appointment for a specified patient. This command is only valid in the patient list view.
 
-Format: `appt INDEX d/DATE`
+Format: `appt INDEX d/APPOINTMENT_DATE_TIME`
 
 * The command can only be called when the patient addressbook is displayed (after using `list`).
 * Adds a new appointment for the patient under the specified `INDEX`, with the given date.
@@ -205,8 +205,8 @@ Format: `appt INDEX d/DATE`
 * The appointment date **cannot be before the current date**.
 * If a pre-existing appointment is present, it will be overridden by the new appointment.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Appointment dates must be given in DD-MM-YYYY HHmm format!
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Appointment date & time must be given in DD-MM-YYYY HHmm format!
 </div>
 
 ### Clearing an appointment: `apptcl`
@@ -226,20 +226,20 @@ Format: `apptcl INDEX`
 
 Adds a new record to a given patient.
 
-Format: `radd d/RECORD_DATE r/RECORD_DATA [m/MEDICATION]…` 
+Format: `radd d/RECORD_DATE_TIME r/RECORD_DETAILS [m/MEDICATION]…` 
 
 * The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
-* Adds a new record to the patient with given `RECORD_DATE`, `RECORD_DATA` and `MEDICATION` information.
-  * `RECORD_DATA` field cannot be empty.
-* The record date **cannot be after the current date**.
+* Adds a new record to the patient with given `RECORD_DATE_TIME`, `RECORD_DETAILS` and `MEDICATION` information.
+  * `RECORD_DETAILS` field cannot be empty.
+* The record date & time **cannot be in the future**.
   
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Dates must be given in DD-MM-YYYY HHmm format!
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Date & time must be given in DD-MM-YYYY HHmm format!
 </div>
 
 Examples:
 * `radd d/11-09-2001 1200 r/Patient tested negative for COVID-19 m/Paracetamol 500mg m/Dextromethorphan`
-* `radd d/28-02-2020 2030 r/Patient experienced vomitting`
+* `radd d/28-02-2020 2030 r/Patient experienced vomiting`
 
 ### Deleting a record: `rdelete`
 
@@ -260,7 +260,7 @@ Shows a list of all records for the specified patient.
 
 Format: `rlist PATIENT_INDEX`
 
-* The command can only be called when the patient addressbook is displayed (after using `list`).
+* The command can only be called when the patient list is displayed (after using `list`).
 * Lists all records of the patient at the specified `PATIENT_INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -273,7 +273,7 @@ Examples:
 
 Edits an existing record in the record list.
 
-Format: `redit INDEX [d/RECORD_DATE] [r/RECORD_DATA] [m/MEDICATION]…​`
+Format: `redit INDEX [d/RECORD_DATE_TIME] [r/RECORD_DETAILS] [m/MEDICATION]…​`
 
 * The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
 * Edits the record at the specified `INDEX`. The index refers to the index number shown in the displayed record list. The index **must be a positive integer** 1, 2, 3, …​
@@ -363,13 +363,13 @@ _Details coming soon ..._
 | **Edit Patient**         | `edit INDEX [n/NAME] [b/BIRTHDATE] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                               |
 | **Find Patients**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                              |
 | **Clear Patients**       | `clear`                                                                                                                                                                                 |
-| **Add Appointment**      | `appt INDEX d/DATE` <br> e.g., `appt 1 d/01-01-2000 1230`                                                                                                                               |
+| **Add Appointment**      | `appt INDEX d/APPOINTMENT_DATE_TIME` <br> e.g., `appt 1 d/01-01-2023 1230`                                                                                                              |
 | **Clear Appointment**    | `apptcl INDEX`                                                                                                                                                                          |
-| **Add Record**           | `radd d/RECORD_DATE r/RECORD_DATA [m/MEDICATION]` <br> e.g., `e.g., radd 1 d/2022-09-11 r/Patient tested negative for COVID-19`                                                         |
+| **Add Record**           | `radd d/RECORD_DATE_TIME r/RECORD_DETAILS [m/MEDICATION]` <br> e.g., `e.g., radd 1 d/2022-09-11 r/Patient tested negative for COVID-19`                                                 |
 | **Delete Record**        | `rdelete INDEX`                                                                                                                                                                         |
 | **List Records**         | `rlist INDEX`                                                                                                                                                                           |
-| **Edit Record**          | `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever m/Paracetamol`                                                                             |
-| **Find Record**          | `rfind [d/DATE] [r/DATA] [m/MEDICATION] `<br> e.g., `rfind d/10-2022 r/Covid-19 m/Panadol`                                                                                              |
+| **Edit Record**          | `redit INDEX [d/RECORD_DATE_TIME] [r/RECORD_DETAILS] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever m/Paracetamol`                                                       |
+| **Find Record**          | `rfind [d/RECORD_DATE] [r/RECORD_DETAILS] [m/MEDICATION] `<br> e.g., `rfind d/10-2022 r/Covid-19 m/Panadol`                                                                             |
 | **Clear Records**        | `rclear`                                                                                                                                                                                |
                                                                                                                                                     |
                                                                  
