@@ -77,7 +77,7 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Coydir.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to below should appear in a few seconds. Note how the app contains some sample data.<br>
 
   <img src="./images/ui-screenshots/Ui.png"/>
 
