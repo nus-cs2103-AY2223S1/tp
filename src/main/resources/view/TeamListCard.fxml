@@ -18,11 +18,14 @@
                 <Region fx:constant="USE_PREF_SIZE" />
             </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" textFill="WHITE">
-            <font>
-                <Font size="18.0"/>
-            </font>
-        </Label>
+        <HBox maxWidth="150">
+            <Label fx:id="name" text="\$first" textFill="WHITE">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Label>
+        </HBox>
+
         <Region prefHeight="0.0"  HBox.hgrow="ALWAYS" />
         <Label>Task progress:</Label>
         <ProgressBar styleClass="my-progress-bar" fx:id="taskProgressBar" />

@@ -20,7 +20,7 @@ future tasks. With our app, teams management would be easier than ever.
 
 ## GUI
 
-<img src= "images/Ui.png">
+<img src= "images/GUIExplanation.png">
 
 ### userlist
 

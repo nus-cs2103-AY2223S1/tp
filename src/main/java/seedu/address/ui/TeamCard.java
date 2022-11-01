@@ -46,6 +46,7 @@ public class TeamCard extends UiPart<Region> {
         super(FXML);
 
         name.setText(team.getName().fullName);
+        name.setWrapText(true);
         id.setText(index + ". ");
 
         personListPanel = new PersonListPanel(team.getMemberList());

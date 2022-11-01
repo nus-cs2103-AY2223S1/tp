@@ -45,6 +45,8 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         isDone.setSelected(task.getIsDone());
         name.setText(task.getName().fullName);
+        name.setWrapText(true);
+        deadline.setWrapText(true);
         deadline.setText(task.getDeadlineString());
 
     }
