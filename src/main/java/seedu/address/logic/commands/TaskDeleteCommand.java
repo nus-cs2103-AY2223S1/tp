@@ -53,7 +53,7 @@ public class TaskDeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
         }
 
-        if(lastShownTeamList.get(teamIndex.getZeroBased()).getTasks().getSize() == 0){
+        if (lastShownTeamList.get(teamIndex.getZeroBased()).getTasks().getSize() == 0) {
             throw new CommandException(Messages.MESSAGE_EMPTY_TASK_LIST);
         }
 
