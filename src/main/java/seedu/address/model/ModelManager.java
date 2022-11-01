@@ -359,13 +359,26 @@ public class ModelManager implements Model {
                 filteredBills.setPredicate(history.getBillsPredicate(history.getBillsHistorySize() - 1));
                 history.deleteHealthContactHistory(history.getHealthContactHistorySize() - 1);
             } else {
-                throw new CommandException("Undo cannot be done as there was no previous action");
+                try {
+                    history.deleteHealthContactHistory(history.getHealthContactHistorySize() - 1);
+                    history.updateRedoHealthContactHistory();
+                    history.updateRedoPatientsHistory();
+                    history.updateRedoAppointmentsHistory();
+                    history.updateRedoBillsHistory();
+                    setHealthContact(history.getHealthContactHistory(history.getHealthContactHistorySize() - 2));
+                    filteredPatients.setPredicate(history.getPatientsPredicate(history.getPatientsHistorySize() - 2));
+                    filteredAppointments.setPredicate(history
+                            .getAppointmentsPredicate(history.getAppointmentsHistorySize() - 2));
+                    filteredBills.setPredicate(history.getBillsPredicate(history.getBillsHistorySize() - 2));
+                    history.deleteHealthContactHistory(history.getHealthContactHistorySize() - 1);
+                    history.deleteHealthContactHistory(history.getHealthContactHistorySize() - 1);
+                } catch (IndexOutOfBoundsException e) {
+                    throw new CommandException("Undo cannot be done as there was no previous action");
+                }
             }
-
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException("Undo cannot be done as there was no previous action");
+            throw new CommandException("Undo cannot be done as there was no previous change in data");
         }
-
     }
 
     @Override
@@ -378,7 +391,7 @@ public class ModelManager implements Model {
             filteredBills.setPredicate(history.getRedoBillsPredicate(history.getRedoBillsHistorySize() - 1));
             history.deleteRedoHealthContactHistory(history.getRedoHealthContactHistorySize() - 1);
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException("Redo cannot be done as there was no previous action");
+            throw new CommandException("Redo cannot be done as there is no previous change in data to be restored");
         }
 
     }

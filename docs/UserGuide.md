@@ -9,30 +9,32 @@ It helps to keep track of patient data, patient appointments and patient bills f
 
 ## Features
 * Add a patient (addpatient)
-* Find a patient (findpatient)
-* Find a bill (findbill)
-* Find an appointment (findappointment)
-* List all patients, bills and appointments (list)
-* Delete a patient (deletepatient)
+* Add an appointment of a patient (addappointment)
+* Add a bill of an appointment (addbill)
 * Edit a patient (editpatient)
-* Add an appointment (addappointment)
-* Delete an appointment (deleteappointment)
-* Edit an appointment (editappointment)
-* Add a bill (addbill)
-* Delete a bill (deletebill)
-* Edit a bill (editbill)
+* Edit an appointment of a patient (editappointment)
+* Edit a bill of an appointment (editbill)
+* Find patient(s) (findpatient)
+* Find appointment(s) (findappointment)
+* Find bill(s) (findbill)
 * Sort patients (sortpatient)
-* Sort bills (sortbill)
 * Sort appointments (sortappointment)
-* Undo previous command (undo)
-* Redo previous command (redo)
-* Exit the program (exit)
-* Help (help)
-* Clear all data (clear)
+* Sort bills (sortbill)
 * Select a patient (selectpatient)
 * Select an appointment (selectappointment)
 * Set a bill to be paid (setpaid)
 * Set a bill to be unpaid (setunpaid)
+* List all patients, bills and appointments (list)
+* Delete a patient (deletepatient)
+* Delete an appointment (deleteappointment)
+* Delete a bill (deletebill)
+* Undo previous command (undo)
+* Redo previous command (redo)
+* Clear all data (clear)
+* Exit the program (exit)
+* Help (help)
+* Saving the data
+* Editing the data file
 
 ---
 # Quick Start
@@ -50,6 +52,7 @@ It helps to keep track of patient data, patient appointments and patient bills f
 
 6. Refer to the __Features__ below for details of each command.
 
+
 # 1. Features
 
 ## 1.1 Add
@@ -59,7 +62,7 @@ It helps to keep track of patient data, patient appointments and patient bills f
 Adds a patient to HealthContact with input information including name, phone number,
 email address, home address, remarks and tags. 
 
-* Name must be different from existing patient. 
+* Name must be different from existing patient and name is case-insensitive. 
 
 * Remark and tags are optional. 
 
@@ -108,11 +111,19 @@ to add such a patient because Bernice Yu already exists in HealthContact.
 Adds an appointment to HealthContact with input information including patient name, medical test,
 slot, and doctor.
 
-* Name must be the name of an existing patient.
+* Patient name input must strictly match the name of an existing patient.
 
 * Slot must be in the format `yyyy-MM-dd HH:mm`, eg. `2022-11-12 13:00`.
 
 * The input of four parameters must be different with the combination in other appointments.
+
+* Doctor and medical test are case-sensitive.
+
+* The input of four parameters must be different with the combination in other appointments, taking into consideration that doctor and medical test are case-sensitive, while patient name is case-insensitive.
+
+* The onus is on the user to check and ensure the following before adding an appointment:
+  * The appointment times for different patients with the same doctor do not clash with one another.
+  * The same patient/doctor does not have multiple appointments with times that clash with one another.
 
 #### Command word
 
@@ -162,6 +173,8 @@ Adds a bill attached to an appointment with input information including amount a
 * One appointment can be attached to no more than one bill.
 
 * A bill date must be in the format `yyyy-MM-dd`, eg. `2022-11-12`.
+
+* The onus is on the user to check that the bill date entered is the same as the appointment date or later.
 
 #### Command word
 
@@ -257,68 +270,9 @@ Examples:
 * `editbill 1 d/2020-10-10` Edits the bill date of the 1st bill to be `2020-10-10`.
 <img src="images/editbill2.png" width="800px" height ="400px">
 
-## 1.3 Delete
+## 1.3 Find
 
-### 1.3.1 Deleting a patient `deletepatient` `dp`
-
-Deletes a patient by the index number of the patient in the list.
-
-Format:
-```deletepatient <targetindex>``` or ```dp <targetindex>```
-
-* The command words are `deletepatient` or `dp`.
-* The patient to be deleted is identified by using the index in the displayed list.
-* Deleting a patient deletes their related appointments and bills.
-* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
-  shown with the correct command format.
-* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
-  saying the index is invalid.
-
-Examples:
-`deletepatient 2` deletes patient Bernice Yu and all their related appointments and bills.
-<img src="images/dp.png" width="800px" height ="400px">
-
-### 1.3.2 Deleting an appointment of a patient `deleteappointment` `da`
-
-Deletes an appointment by the index number of the appointment in the list.
-
-Format:
-```deleteappointment <targetindex>``` or ```da <targetindex>```
-
-* The command words are `deleteappointment` or `da`.
-* The appointment to be deleted is identified by using the index in the displayed list.
-* Deleting an appointment deletes its related bills.
-* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
-  shown with the correct command format.
-* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
-  saying the index is invalid.
-
-Examples: 
-* `deleteappointment 2` deletes Charlotte Oliveiro's appointment with Dr. Prabhu on 2022-10-21 08:30 for 
-knee exam.
-<img src="images/da.png" width="800px" height ="400px">
-
-### 1.3.3 Deleting a bill of an appointment `deletebill` `db`
-
-Deletes a bill by the index number of the bill in the list.
-
-Format:
-```deletebill <targetindex>``` or ```db <targetindex>```
-
-* The command words are `deletebill` or `db`.
-* The bill to be deleted is identified by using the index in the displayed list.
-* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
-  shown with the correct command format.
-* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
-  saying the index is invalid.
-
-Examples:
-`deletebill 1` deletes Bernice's bill for her X-Ray appointment
-<img src="images/db.png" width="800px" height ="400px">
-
-## 1.4 Find
-
-### 1.4.1 Finding patients `findpatient` `fp`
+### 1.3.1 Finding patients `findpatient` `fp`
 
 Filters patients by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
@@ -345,7 +299,7 @@ Examples:
 
 <img src="images/findpatientBernice.png" width="800px" height ="500px">
 
-### 1.4.2 Finding appointments `findappointment` `fa`
+### 1.3.2 Finding appointments `findappointment` `fa`
 
 Filters appointments by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
@@ -373,7 +327,7 @@ Examples:
 <img src="images/findappointmentAlex.png" width="800px" height ="500px">
 
 
-### 1.4.3 Finding bills `findbill` `fb`
+### 1.3.3 Finding bills `findbill` `fb`
 
 Filters bills by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
@@ -396,9 +350,9 @@ Examples:
 
 <img src="images/fb.png" width="800px" height ="400px">
 
-## 1.5 Sort
+## 1.4 Sort
 
-### 1.5.1 Sorting patients `sortpatient` 
+### 1.4.1 Sorting patients `sortpatient` 
 
 Sorts patients by a single field
 
@@ -421,7 +375,7 @@ Examples:
 
 <img src="images/sortpatient2.PNG" width="800px" height ="400px">
 
-### 1.5.2 Sorting appointments `sortappointment`
+### 1.4.2 Sorting appointments `sortappointment`
 
 Sorts appointments by a single field
 
@@ -444,7 +398,7 @@ Examples:
 
 <img src="images/sortappointment2.PNG" width="800px" height ="400px">
 
-### 1.5.3 Sorting bills `sortbill`
+### 1.4.3 Sorting bills `sortbill`
 
 Sorts bills by a single field
 
@@ -469,11 +423,11 @@ Examples:
 
 <img src="images/sortbill2.PNG" width="800px" height ="400px">
 
-## 1.6 Select
+## 1.5 Select
 
 Select commands are the fast way to show the relative information to the selected item.
 
-### 1.6.1 Selecting a patient `selectpatient`, `slp`
+### 1.5.1 Selecting a patient `selectpatient`, `slp`
 
 Selects a patient by index in the patient list. Filter the appointment list and bill list
 so that these two lists shows the appointments and bills for the selected patient only.
@@ -502,7 +456,7 @@ Notes on symbols in first column:
 
 <img src="images/selectcommand/slp1.png" width="800px" height ="500px">
 
-### 1.6.2 Selecting an appointment `selectappointment`, `sla`
+### 1.5.2 Selecting an appointment `selectappointment`, `sla`
 
 Selects an appointment by index in the appointment list. Filter the bill list
 so that bill list shows the bill for the selected appointment only.
@@ -531,9 +485,9 @@ Notes on symbols in first column:
 
 <img src="images/selectcommand/sla1.png" width="800px" height ="500px">
 
-## 1.7 Setting Bill Payment Status
+## 1.6 Setting Bill Payment Status
 
-### 1.7.1 Setting Bill As Paid `setpaid` `sp`
+### 1.6.1 Setting Bill As Paid `setpaid` `sp`
 
 Sets the payment status of a bill to "paid".
 
@@ -553,7 +507,7 @@ Before:
 After:
 <img src="images/setpaidcommandafter.png" width="800px" height ="500px">
 
-### 1.7.2 Setting Bill As Unpaid `setunpaid`, `sup`
+### 1.6.2 Setting Bill As Unpaid `setunpaid`, `sup`
 
 Sets the payment status of a bill to "unpaid".
 
@@ -573,7 +527,80 @@ Before:
 After:
 <img src="images/setunpaidcommandafter.png" width="800px" height ="500px">
 
-## 1.8 Undo `undo`
+## 1.7 List `list`, `ls`
+
+Removes all conditions previously applied to the list and shows all patients, appointments and bills.
+
+### Format
+
+`list` or `ls`
+
+### Example
+
+* Executing `list`, the program shows all patients, appointments and bills.
+
+<img src="images/othercommands/ls1.png" width="800px" height ="500px">
+
+## 1.8 Delete
+
+### 1.8.1 Deleting a patient `deletepatient` `dp`
+
+Deletes a patient by the index number of the patient in the list.
+
+Format:
+```deletepatient <targetindex>``` or ```dp <targetindex>```
+
+* The command words are `deletepatient` or `dp`.
+* The patient to be deleted is identified by using the index in the displayed list.
+* Deleting a patient deletes their related appointments and bills.
+* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
+  shown with the correct command format.
+* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
+  saying the index is invalid.
+
+Examples:
+`deletepatient 2` deletes patient Bernice Yu and all their related appointments and bills.
+<img src="images/dp.png" width="800px" height ="400px">
+
+### 1.8.2 Deleting an appointment of a patient `deleteappointment` `da`
+
+Deletes an appointment by the index number of the appointment in the list.
+
+Format:
+```deleteappointment <targetindex>``` or ```da <targetindex>```
+
+* The command words are `deleteappointment` or `da`.
+* The appointment to be deleted is identified by using the index in the displayed list.
+* Deleting an appointment deletes its related bills.
+* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
+  shown with the correct command format.
+* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
+  saying the index is invalid.
+
+Examples:
+* `deleteappointment 2` deletes Charlotte Oliveiro's appointment with Dr. Prabhu on 2022-10-21 08:30 for
+  knee exam.
+  <img src="images/da.png" width="800px" height ="400px">
+
+### 1.8.3 Deleting a bill of an appointment `deletebill` `db`
+
+Deletes a bill by the index number of the bill in the list.
+
+Format:
+```deletebill <targetindex>``` or ```db <targetindex>```
+
+* The command words are `deletebill` or `db`.
+* The bill to be deleted is identified by using the index in the displayed list.
+* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
+  shown with the correct command format.
+* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
+  saying the index is invalid.
+
+Examples:
+`deletebill 1` deletes Bernice's bill for her X-Ray appointment
+<img src="images/db.png" width="800px" height ="400px">
+
+## 1.9 Undo `undo`
 
 Reverses the most recent command.
 
@@ -589,7 +616,7 @@ Examples:
 
 <img src="images/undo1.PNG" width="800px" height ="400px">
 
-## 1.9 Redo `redo`
+## 1.10 Redo `redo`
 
 Reverses the most recent undo command.
 
@@ -607,9 +634,11 @@ Examples:
 
 
 
-## 1.10 Clear `clear`
+## 1.11 Clear `clear`
 
 Deletes all patients, appointments and bills from HealthContact.
+
+* If the user accidentally clears all data, the user can restore the data by using the `undo` command. If the user closes the application before undoing `clear`, the data will be gone permanently.
 
 ### Format
 
@@ -621,21 +650,6 @@ Deletes all patients, appointments and bills from HealthContact.
 * Executing `clear`, all data is deleted.
 
 <img src="images/othercommands/clear.png" width="800px" height ="500px">
-
-
-## 1.11 List `list`, `ls`
-
-Removes all conditions previously applied to the list and shows all patients, appointments and bills.
-
-### Format
-
-`list` or `ls`
-
-### Example
-
-* Executing `list`, the program shows all patients, appointments and bills.
-
-<img src="images/othercommands/ls1.png" width="800px" height ="500px">
 
 ## 1.12 Exit `exit`
 
@@ -662,3 +676,12 @@ Opens the Help Window.
 * Executing `help`, the help window pops.
 
 <img src="images/othercommands/help.png" width="800px" height ="180px">
+
+## 1.14 Saving the data
+
+HealthContact data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+## 1.15 Editing the data file
+
+HealthContact data are saved as a JSON file `[JAR file location]/data/healthcontact.json`. Advanced users are welcome to update data directly by editing that data file.
+* If the changes to the data file makes its format invalid, HealthContact will discard all data and start with an empty data file at the next run.
