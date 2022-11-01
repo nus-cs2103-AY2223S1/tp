@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
  */
 public class DateTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be in the format: yyyy-MM-dd";
+    public static final String MESSAGE_CONSTRAINTS = "Date should be valid and in the format: yyyy-MM-dd";
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy");
 
@@ -59,7 +59,7 @@ public class DateTime {
     public static boolean isValidDateTime(String dateTime) {
         try {
             LocalDateTime.parse(dateTime);
-            return true;
+            return !dateTime.startsWith("0000");
         } catch (DateTimeParseException e) {
             return false;
         }

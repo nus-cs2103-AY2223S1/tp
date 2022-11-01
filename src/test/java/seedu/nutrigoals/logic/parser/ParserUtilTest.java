@@ -27,10 +27,11 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "breakfast";
     private static final String VALID_TAG_2 = "dinner";
 
-    private static final String INVALID_DATE = "2022-13-13";
+    private static final String INVALID_DATE = "2022-13-09";
+    private static final String INVALID_YEAR = "0000-01-15";
     private static final String INVALID_DATE_FORMAT = "2022";
 
-    private static final String VALID_DATE_FORMAT = "2022-11-11";
+    private static final String VALID_DATE_FORMAT = "2022-10-11";
 
     private static final String VALID_AGE_FORMAT = "10";
     private static final String INVALID_AGE_FORMAT = "abc";
@@ -139,6 +140,7 @@ public class ParserUtilTest {
     @Test
     public void parseDate_invalidDate_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_YEAR));
     }
 
     @Test
