@@ -313,6 +313,43 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Design considerations:
 - Multiple fields of a Review can be edited in one go to increase the efficiency of the user of our application.
 
+### Review Sorting feature
+
+#### What is Review Sorting feature about?
+
+The Sort Review mechanism is facilitated by `Model` and `ReviewsComparatorList`. This feature allows the user to sort all reviews by specified criterion.
+
+The list of supported sorting criteria is stored in `ReviewsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Review>` field that will be passed in as an argument for `Model.sortReviews()` for sorting the review list.
+
+For the command, the feature extends `command`, and is implemented as such:
+* `rsort CRITERION`
+
+#### Implementation Flow of Review Sorting feature
+
+Given below is an example usage scenario and how the sorting of all reviews mechanism behaves at each step.
+
+Note: FoodWhere comes with preloaded data, and can be started on a fresh state with the `clear` command.
+
+Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
+
+Step 2. The user executes `rsort reversedname` command to sort `Review` by name (from Z to A, followed by 9 to 0).
+
+Step 3. Since the user input is valid, the `AddressBookParser` will create a `RSortCommandParser` to parse the command arguments, `reversedname`.
+
+Step 4. `RSortCommandParser` will parse the criterion to a `ReviewsComparatorList` object. The `ReviewsComparatorList` object will then be passed to the returned `RSortCommand` object as its argument.
+
+Step 5. In `LogicManager`, the returned `RSortCommand` is executed.
+
+Step 6. `model.sortReviews()` will interact with the model to sort reviews using the custom comparator that is retrieved from `ReviewsComparatorList.getComparator()`.
+
+![SortReview](images/SortReview.png)
+
+#### UML Diagram for Sorting Review
+
+The following activity diagram summarizes what happens when a user executes a new `rsort` command:
+
+<img src="images/SortReviewActivityDiagram.png" width="250" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
