@@ -98,13 +98,10 @@ public class ParserUtil {
     public static ClientId parseClientId(String clientId) throws ParseException, NumberFormatException {
         requireNonNull(clientId);
         String trimmedClientId = clientId.trim();
-        int clientIdInt;
-        try {
-            clientIdInt = Integer.parseInt(trimmedClientId);
-        } catch (NumberFormatException e) {
-            throw new ParseException(ClientId.MESSAGE_INVALID);
+        if (!ClientId.isValidClientId(trimmedClientId)) {
+            throw new ParseException(ClientId.MESSAGE_CONSTRAINTS);
         }
-
+        int clientIdInt = Integer.parseInt(trimmedClientId);
         return new ClientId(clientIdInt);
     }
 
@@ -318,12 +315,10 @@ public class ParserUtil {
     public static ProjectId parseProjectId(String projectId) throws ParseException {
         requireNonNull(projectId);
         String trimmedId = projectId.trim();
-        int trimmedIdInt = Integer.parseInt(trimmedId);
         if (!ProjectId.isValidProjectId(trimmedId)) {
             throw new ParseException(ProjectId.MESSAGE_CONSTRAINTS);
         }
-
-        // Function throws error when not found.
+        int trimmedIdInt = Integer.parseInt(trimmedId);
         return new ProjectId(trimmedIdInt);
     }
 
@@ -359,7 +354,6 @@ public class ParserUtil {
             throw new ParseException(IssueId.MESSAGE_INVALID);
         }
         int trimmedIdInt = Integer.parseInt(trimmedId);
-
         return new IssueId(trimmedIdInt);
     }
 
