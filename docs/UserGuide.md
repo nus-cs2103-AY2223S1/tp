@@ -154,9 +154,9 @@ Examples:
 * `edit 2 g/f`
 * `edit 3 g/F`
 
-### Locating persons by name: `find`
+### Locating persons by name: `findPersons`
 
-Finds persons whose names contain any of the given keywords.
+Finds all persons whose names contain any of the given keywords.
 
 Format: `findPersons KEYWORD [MORE_KEYWORDS]`
 
