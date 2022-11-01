@@ -128,7 +128,7 @@ Example:
 
 * E.g. `add n/hotpot c/500 t/dinner` is the same as `add n/hotpot c/500 t/dInNeR`.
 
-**:information_source: Notes about adding food items:**<br>
+**:information_source: Adding food items:**<br>
 
 A food item will not be added into the food list if the resulting total calorie intake for the day exceeds 2147483647 calories.
 
