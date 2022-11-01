@@ -35,10 +35,9 @@ public class TaskUnmarkCommandTest {
         task.markAsNotDone();
         TaskUnmarkCommand taskUnmarkCommand = new TaskUnmarkCommand(INDEX_FIRST_TEAM, INDEX_SECOND_TASK);
 
-        String expectedMessage = String.format(TaskUnmarkCommand.MESSAGE_SUCCESS, task);
+        String expectedMessage = String.format(TaskUnmarkCommand.MESSAGE_ALREADY_UNMARKED, task);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        expectedModel.markTask(INDEX_FIRST_TEAM, INDEX_SECOND_TASK);
         assertCommandSuccess(taskUnmarkCommand, model, expectedMessage, expectedModel);
     }
 
@@ -51,7 +50,6 @@ public class TaskUnmarkCommandTest {
         String expectedMessage = String.format(TaskUnmarkCommand.MESSAGE_SUCCESS, defaultTask);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        expectedModel.unmarkTask(INDEX_FIRST_TEAM, INDEX_THIRD_TASK);
         assertCommandSuccess(taskUnmarkCommand, model, expectedMessage, expectedModel);
     }
 
