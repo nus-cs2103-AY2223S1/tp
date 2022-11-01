@@ -269,6 +269,12 @@ Examples:
 
 ### Editing
 
+<div markdown="block" class="alert alert-warning">
+
+**:bulb: Note:**<br>
+* [As mentioned above](#Adding), you cannot edit a contact/task that results in a duplicate of an existing contact/task in the TaskBook.
+</div>
+
 #### Editing a contact : `contact edit`
 
 Edits the specified contact in your contact list.
