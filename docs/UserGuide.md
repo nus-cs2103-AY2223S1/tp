@@ -113,7 +113,7 @@ Displays the full title, description of the event at the specified INDEX of the 
 
 Format: `display-e INDEX`
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Occasionally, you may add events with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the `display-e` command to look at a specified event's full title and description. </div>
+<div class="alert alert-block alert-success"><b>Use case: </b> Occasionally, you may add events with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display-e</code> command to look at a specified event's full title and description. </div>
 
 ### Managing Trips
 
@@ -146,7 +146,7 @@ date (if a date has been defined for the trip) of the trip at the specified INDE
 
 Format: `display INDEX`
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Occasionally, you may add trips with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the `display` command to look at a specified trip's full title and description. </div>
+<div class="alert alert-block alert-success"><b>Use case: </b> Occasionally, you may add trips with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display</code> command to look at a specified trip's full title and description. </div>
 
 ### Managing a Trip's Itinerary
 
@@ -162,7 +162,7 @@ Format: `add-et n/EVENT NAME t/TRIP NAME`
 Examples:
 - `add-et n/asd t/qwe` adds the event titled asd in the bucket list to the itinerary of the trip with the title qwe
 
-<div class="alert alert-block alert-success"><b>Use case: </b> `add-et` can be used to help you to plan your trip's itinerary. You can pick and choose any event that exists in your bucket list and add them into a specified trip's itinerary, which you can then view via the `select` command. </div>
+<div class="alert alert-block alert-success"><b>Use case: </b> <code>add-et</code> can be used to help you to plan your trip's itinerary. You can pick and choose any event that exists in your bucket list and add them into a specified trip's itinerary, which you can then view via the `select` command. </div>
 
 #### Removing event from a trip's itinerary: `delete-et`
 Remove the specified event from the specified trip. The event will then be returned to the bucket list.
@@ -177,7 +177,7 @@ Examples:
 - `delete-et n/asd t/qwe` remove the event titled asd from the itinerary of the trip titled qwe's and returns it to the bucket list.
 
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Perhaps you have changed your mind about including a particular event in a specified trip's itinerary. You can then use `delete-et` to remove that event and put it back to your bucket list, where you can save it for future trips. </div>
+<div class="alert alert-block alert-success"><b>Use case: </b> Perhaps you have changed your mind about including a particular event in a specified trip's itinerary. You can then use <code>delete-et</code> to remove that event and put it back to your bucket list, where you can save it for future trips. </div>
 
 #### Selecting a trip to view its itinerary `select`
 Selects the trip in the specified INDEX and displays all events added to that trip in the events list panel.
@@ -186,7 +186,7 @@ Format: `select INDEX`
 - The index refers to the index number shown in the current displayed trip list.
 - The index must be a positive integer 1, 2, 3, …
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Now that you have added events into a trip's itinerary, you may want to take a look at how that trip's itinerary looks like. You can run the `select` command to select a trip and view all the events that have been added its itinerary. </div>
+<div class="alert alert-block alert-success"><b>Use case: </b> Now that you have added events into a trip's itinerary, you may want to take a look at how that trip's itinerary looks like. You can run the <code>select</code> command to select a trip and view all the events that have been added its itinerary. </div>
 
 ### Managing a Trip's Completion Status
 
@@ -203,7 +203,7 @@ Format: `mark INDEX`
 Examples:
 - `mark 1` marks the first trip in the trip list as done.
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Congratulations, you have just completed a trip! You can now mark it as completed using the `mark` command. </div>
+<div class="alert alert-block alert-success"><b>Use case: </b> Congratulations, you have just completed a trip! You can now mark it as completed using the <code>mark</code> command. </div>
 
 #### Marking trips as not done: `unmark`
 Mark the trip in the specified INDEX as not done.
@@ -216,7 +216,7 @@ Format: `unmark INDEX`
 Examples:
 - `unmark 1` marks the first trip in the trip list as not done.
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Accidentally marked a trip as completed on accident? Use the `unmark` command to set it back to incomplete. </div>
+<div class="alert alert-block alert-success"><b>Use case: </b> Accidentally marked a trip as completed on accident? Use the <code>unmark</code> command to set it back to incomplete. </div>
 
 ### Sorting
 
@@ -280,7 +280,7 @@ Format: `summary`
 - Progress indicator for trips and events.
 - Command must be used again to view updates to the summary.
 
-<div class="alert alert-block alert-success"><b>Use case: </b> How much of your bucket list has been completed? How many countries have you visited thus far? All of your answers can be found via the `summary` command. </div>
+<div class="alert alert-block alert-success"><b>Use case: </b> How much of your bucket list has been completed? How many countries have you visited thus far? All of your answers can be found via the <code>summary</code> command. </div>
 
 ### General Commands
 
@@ -299,7 +299,7 @@ Shows a command summary as well as link to the User Guide page. The link can be 
 
 Format: `help`
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Need help with using Travelr effectively? The help command provides a summarized list of commands that you can try out. </div>
+<div class="alert alert-block alert-success"><b>Use case: </b> Need help with using Travelr effectively? The <code>help</code> command provides a summarized list of commands that you can try out. </div>
 
 #### Exiting the program: `exit`
 Exits the program.
