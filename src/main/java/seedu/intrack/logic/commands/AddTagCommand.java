@@ -3,8 +3,8 @@ package seedu.intrack.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.List;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.intrack.commons.core.Messages;

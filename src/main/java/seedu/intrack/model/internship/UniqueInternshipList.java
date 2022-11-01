@@ -151,7 +151,7 @@ public class UniqueInternshipList implements Iterable<Internship> {
         for (int i = 0; i < internalList.size(); i++) {
             if (internalList.get(i).getTasks().size() == 0) {
                 nonOrExpiredDates.add(internalList.get(i));
-            }  else if (internalList.get(i).getNearestTaskDate().isBefore(currentTime)) {
+            } else if (internalList.get(i).getNearestTaskDate().isBefore(currentTime)) {
                 nonOrExpiredDates.add(internalList.get(i));
             } else {
                 copyInternalList.add(internalList.get(i));
