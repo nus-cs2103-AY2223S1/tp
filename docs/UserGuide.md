@@ -500,7 +500,7 @@ Examples:
 
 `find t/python` returns all students who have python as a tag, including students who have other tags on top of the
 python tag.
-`find dt/javascript` returns all students with javascript as a tag and other tags besides javascript.
+`find t/javascript` returns all students with javascript as a tag and other tags besides javascript.
 
 [↑ Back to top](#table-of-contents)
 
