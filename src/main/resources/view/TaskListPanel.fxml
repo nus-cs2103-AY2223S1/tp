@@ -39,7 +39,7 @@
             <Insets left="5.0" right="5.0" />
          </VBox.margin>
       </Label>
-     <ListView fx:id="taskListView" minWidth="100.0">
+     <ListView fx:id="taskListView" minWidth="100.0" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>

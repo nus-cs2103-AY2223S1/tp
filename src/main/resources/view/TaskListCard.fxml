@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" minHeight="50.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="cardPane" minHeight="50.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
  <VBox>
    <HBox spacing="5">
-     <Label fx:id="id" minWidth="-Infinity" styleClass="cell_big_label" />
+     <Label fx:id="id" maxWidth="30.0" minWidth="30.0" styleClass="cell_big_label" />
      <Label fx:id="taskname" styleClass="cell_big_label" text="\$task" wrapText="true" />
          <VBox.margin>
             <Insets bottom="5.0" />

@@ -1,9 +1,14 @@
 package seedu.uninurse.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.Task;
 
@@ -36,15 +41,17 @@ public class TaskListCard extends UiPart<Region> {
         this.cardPane.setSpacing(1);
 
         if (task.getDateTime().isPastDate()) {
-            this.cardPane.setStyle("-fx-background-color: #ffe6a1;"
-                    + "-fx-padding: 1;" + "-fx-border-style: dashed inside;"
+            this.cardPane.setStyle("-fx-padding: 1;" + "-fx-border-style: dashed inside;"
                     + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
                     + "-fx-border-radius: 5;" + "-fx-border-color: black;");
+            //this.cardPane.setBackground(new Background(new BackgroundFill(
+            //        Color.web("ffe6a1"), new CornerRadii(5.0), new Insets(1.0))));
         } else {
-            this.cardPane.setStyle("-fx-background-color: #c5e2fc;"
-                    + "-fx-padding: 1;" + "-fx-border-style: dashed inside;"
+            this.cardPane.setStyle("-fx-padding: 1;" + "-fx-border-style: dashed inside;"
                     + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
                     + "-fx-border-radius: 5;" + "-fx-border-color: black;");
+            //this.cardPane.setBackground(new Background(new BackgroundFill(
+            //        Color.web("c5e2fc"), new CornerRadii(5.0), new Insets(1.0))));
         }
         this.task = task;
         id.setText(displayedIndex + ". ");
