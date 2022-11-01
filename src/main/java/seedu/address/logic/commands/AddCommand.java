@@ -33,8 +33,8 @@ public class AddCommand extends Command {
             + PREFIX_NOK_PHONE + "89705432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "beginner"
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "beginner "
+            + PREFIX_TAG + "owesMoney ";
 
     public static final String RELEVANT_PARAMETERS = "Usage of parameters: "
             + PREFIX_NAME + "NAME "
