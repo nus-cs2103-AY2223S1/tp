@@ -27,12 +27,9 @@ body {
 }
 
 .index h4 {
-    counter-reset: h5;
+    counter-reset: h3;
 }
 
-.index h5 {
-    counter-reset: h6;
-}
 
 .index h2:before {
     counter-increment: h2;
@@ -49,15 +46,6 @@ body {
     content: counter(h2) "." counter(h3) "." counter(h4) ". ";
 }
 
-.index h5:before {
-    counter-increment: h5;
-    content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". ";
-}
-
-.index h6:before {
-    counter-increment: h6;
-    content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". ";
-}
 
 /* Adapted from: https://dev.to/adamlombard/css-automatically-number-nested-lists-59ei */
 
