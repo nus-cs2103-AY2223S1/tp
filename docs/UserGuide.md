@@ -89,7 +89,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
   e.g. if you specify `p/1,000,000 p/2,000,000`, only `p/2,000,000` will be taken.
 
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `clear -p`  and `clear -c`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
