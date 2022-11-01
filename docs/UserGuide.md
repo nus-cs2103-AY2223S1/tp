@@ -96,9 +96,9 @@ The following table describes the sections in detail:
 1. Double-click the file to start the app. The GUI below should appear within a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/user-guide/start.png)
 
-1. Type the command in the 'Command Box' and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the 'Command Box' and press Enter to execute it.<br>
    Some example commands you can try:
-
+ 
     * `list` : Lists all tutors.
 
     * `view 3` : Displays full details of the 3rd tutor shown in the current list.
