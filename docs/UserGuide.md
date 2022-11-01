@@ -68,6 +68,8 @@ e.g. <button>enter</button>   <button>&uarr;</button>   <button>&darr;</button>
 4. Double-click the file to start the app. The following help window will appear the first time you open the application.
    ![helpMessage](images/helpMessage.png)
 
+<div style="page-break-after: always;"></div>
+
 5. Close the help window, you will see a [GUI](#glossary) similar to the one below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -214,6 +216,8 @@ Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHO
 **:bulb: Tip:** A person can have any number of tags (including 0)
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `add n/Google ph/98765432 e/johnd@example.com r/Y2 summer break p/Backend Intern pr/APPLIED d/11-12-2022 web/https://careers.google.com/jobs t/high t/java`
 * `add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`
@@ -243,6 +247,8 @@ Format: `list [c/CATEGORY [DESCENDING]]`
   * Possible options for `DESCENDING`:`TRUE` or `FALSE` (case-insensitive).
   * If `DESCENDING` is set to `TRUE`. List of internships will be displayed in descending order
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `list c/DATE TRUE`
 * `list c/position`
@@ -263,6 +269,8 @@ Examples:
 
 `list c/company_name` is equivalent to `list c/n`
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ![BeforeListCommand](images/BeforeListCommand.png)
 _Before executing command:  `list c/position`_
@@ -385,6 +393,8 @@ _Before executing command:  `delete 1`_
 ![AfterDeleteCommand](images/AfterDeleteCommand.png)
 _After executing command: `delete 1`_
 
+<div style="page-break-after: always;"></div>
+
 ### Clearing all entries : `clear`
 
 Starting a new internship season? Clear all entries from the internship tracker.
@@ -408,6 +418,7 @@ Format: `undo`
 <div markdown="block" class="alert alert-info">
 **:information_source: Info:** <br>
 You can only undo `add`,`clear`,`delete`,`edit`,`redo` commands
+</div>
 
 ![BeforeUndoCommand](images/BeforeUndoCommand.png)
 _Before executing command:  `undo`_
@@ -415,7 +426,7 @@ _Before executing command:  `undo`_
 ![AfterUndoCommand](images/AfterUndoCommand.png)
 _After executing command: `undo`_
 
-</div>
+
 
 ### Redo previous undone command : `redo`
 
