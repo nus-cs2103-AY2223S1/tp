@@ -1,5 +1,6 @@
 package seedu.taassist.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -7,19 +8,19 @@ import static seedu.taassist.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seedu.taassist.commons.core.Messages;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.stubs.ModelStub;
+import seedu.taassist.model.stubs.ModelStubWithNoModuleClass;
+import seedu.taassist.testutil.ModuleClassBuilder;
 
 class FocusCommandTest {
 
     @Test
     void focus_classDoesNotExist_throwsCommandException() {
-        FocusCommand focusCommand = new FocusCommand(new ModuleClass("Unknown"));
-        ModelStubWithNoModuleClasses modelStub = new ModelStubWithNoModuleClasses();
+        FocusCommand focusCommand = new FocusCommand(new ModuleClassBuilder().build());
+        ModelStubWithNoModuleClass modelStub = new ModelStubWithNoModuleClass();
         String expectedMessage =
                 String.format(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST, modelStub.getModuleClassList());
         assertThrows(CommandException.class, expectedMessage, () -> focusCommand.execute(modelStub));
@@ -61,28 +62,10 @@ class FocusCommandTest {
         assertFalse(focusCommand.equals(new FocusCommand(differentModuleClass)));
     }
 
-
-
-    /**
-     * A Model stub that pretends to have no module classes.
-     */
-    private class ModelStubWithNoModuleClasses extends ModelStub {
-
-        @Override
-        public boolean hasModuleClass(ModuleClass moduleClass) {
-            return false;
-        }
-
-        @Override
-        public ObservableList<ModuleClass> getModuleClassList() {
-            return FXCollections.observableArrayList();
-        }
-    }
-
     /**
      * A Model stub that pretends to have any module class.
      */
-    private class ModelStubWithAnyModuleClass extends ModelStub {
+    private static class ModelStubWithAnyModuleClass extends ModelStub {
 
         private ModuleClass focusedClass;
 
@@ -93,12 +76,19 @@ class FocusCommandTest {
 
         @Override
         public void enterFocusMode(ModuleClass classToFocus) {
+            requireNonNull(classToFocus);
             focusedClass = classToFocus;
         }
 
         @Override
         public ModuleClass getFocusedClass() {
             return focusedClass;
+        }
+
+        @Override
+        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
+            return moduleClass;
         }
     }
 }

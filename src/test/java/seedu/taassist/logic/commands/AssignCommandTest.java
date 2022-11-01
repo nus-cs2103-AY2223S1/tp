@@ -40,7 +40,7 @@ class AssignCommandTest {
     }
 
     @Test
-    public void execute_indexOutOfRange_throwsCommandException() throws Exception {
+    public void execute_indexOutOfRange_throwsCommandException() {
         ModelStubWithOneStudent modelStub = new ModelStubWithOneStudent();
 
         List<Index> indices = new ArrayList<>();

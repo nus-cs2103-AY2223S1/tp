@@ -127,7 +127,7 @@ public class AddcCommandTest {
 
     //==================================== Model Stubs ===============================================================
 
-    private class ModelStubWithOneModuleClass extends ModelStub {
+    private static class ModelStubWithOneModuleClass extends ModelStub {
         private final ModuleClass moduleClass;
 
         public ModelStubWithOneModuleClass(ModuleClass moduleClass) {

@@ -49,10 +49,11 @@ public class AssignCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ModuleClass moduleClass;
+
+        ModuleClass existingModuleClass;
 
         try {
-            moduleClass = model.getModuleClassWithSameName(moduleClassToAssign);
+            existingModuleClass = model.getModuleClassWithSameName(moduleClassToAssign);
         } catch (ModuleClassNotFoundException mcnfe) {
             throw new CommandException(String.format(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
                     model.getModuleClassList()));
@@ -66,9 +67,9 @@ public class AssignCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        studentsToAssign.forEach(s -> model.setStudent(s, s.addModuleClass(moduleClass)));
+        studentsToAssign.forEach(s -> model.setStudent(s, s.addModuleClass(existingModuleClass)));
 
-        return new CommandResult(getSuccessMessage(studentsToAssign, moduleClass));
+        return new CommandResult(getSuccessMessage(studentsToAssign, existingModuleClass));
     }
 
     public static String getSuccessMessage(List<Student> students, ModuleClass moduleClass) {

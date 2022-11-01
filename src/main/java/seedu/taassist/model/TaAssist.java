@@ -165,14 +165,15 @@ public class TaAssist implements ReadOnlyTaAssist {
         setStudents(updatedStudents);
     }
 
-    public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) throws ModuleClassNotFoundException {
+    /**
+     * Returns an existing module class with the same name as {@code moduleClass}.
+     */
+    public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
         Optional<ModuleClass> foundModuleClass = moduleClasses.findElement(moduleClass);
-        if (foundModuleClass.isEmpty()) {
-            throw new ModuleClassNotFoundException();
-        }
-        return foundModuleClass.get();
+        return foundModuleClass.orElseThrow(ModuleClassNotFoundException::new);
     }
+
     /**
      * Adds the {@code sessions} to the {@code moduleClass}.
      */

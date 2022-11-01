@@ -119,7 +119,7 @@ class UnassignCommandTest {
      * A Model stub with one filtered student with an assigned class: CS1101S.
      * Always says it has a module.
      */
-    private class ModelStubOneStudentAndModule extends ModelStub {
+    private static class ModelStubOneStudentAndModule extends ModelStub {
 
         private Student student = new StudentBuilder(ALICE).withModuleClasses(CS1101S).build();
 
@@ -153,7 +153,7 @@ class UnassignCommandTest {
      * Model stub with multiple filtered students with one same assigned class.
      * Always says it has a module.
      */
-    private class ModelStubMultipleStudentsOneModule extends ModelStub {
+    private static class ModelStubMultipleStudentsOneModule extends ModelStub {
 
         private List<Student> students = new ArrayList<>();
 

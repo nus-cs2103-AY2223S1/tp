@@ -52,6 +52,7 @@ public class UnassignCommand extends Command {
         requireNonNull(model);
 
         ModuleClass existingModuleClass;
+
         try {
             existingModuleClass = model.getModuleClassWithSameName(moduleClassToUnassign);
         } catch (ModuleClassNotFoundException mcnfe) {
