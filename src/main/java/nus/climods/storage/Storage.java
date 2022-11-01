@@ -1,6 +1,7 @@
 package nus.climods.storage;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Optional;
 
 import nus.climods.commons.exceptions.DataConversionException;
@@ -20,6 +21,8 @@ public interface Storage extends UserPrefsStorage {
 
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
+
+    Path getUserModuleListPath();
 
     UserModuleListStorage getUserModuleListStorage();
 

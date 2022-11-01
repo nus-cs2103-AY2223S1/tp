@@ -1,6 +1,5 @@
 package nus.climods.ui;
 
-import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.animation.PauseTransition;
@@ -143,8 +142,7 @@ public class MainWindow extends UiPart<Stage> {
 
         modulesPane.getItems().addAll(moduleListPanelPlaceholder, savedModuleListPanelPlaceholder);
 
-        // TODO: Resolve logic issue - null pointer exception
-        StatusBarFooter statusBarFooter = new StatusBarFooter(Path.of(""));
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getUserModuleListPath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(new CommandSession(this::executeCommand));

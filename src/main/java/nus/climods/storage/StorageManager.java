@@ -49,6 +49,10 @@ public class StorageManager implements Storage {
     }
 
     // ================ UserModuleList methods ==============================
+    public Path getUserModuleListPath() {
+        return userModuleListStorage.getUserModuleListFilePath();
+    }
+
     public UserModuleListStorage getUserModuleListStorage() {
         return userModuleListStorage;
     }
