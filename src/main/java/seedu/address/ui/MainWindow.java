@@ -230,8 +230,4 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
-
-    public void updateUi(Person updatedPerson) {
-        mainDisplay.updateUi(updatedPerson);
-    }
 }

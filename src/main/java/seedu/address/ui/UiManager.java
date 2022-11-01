@@ -85,9 +85,4 @@ public class UiManager implements Ui {
         Platform.exit();
         System.exit(1);
     }
-
-    @Override
-    public void updateUi(Person updatedPerson) {
-        mainWindow.updateUi(updatedPerson);
-    }
 }
