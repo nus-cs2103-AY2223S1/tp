@@ -37,11 +37,11 @@ Here are the symbols and text styles to look out for while using this guide:
 | :star:               | Tips for advanced users            |
 | :exclamation:        | Critical information to be wary of |
 
-| Text Style                    | Meaning                                              |
-|-------------------------------|------------------------------------------------------|
-| [Link to glossary](#glossary) | Clickable link to navigate to a section in the guide |
-| `text with background`        | Text relevant to the commands                        |
-| <kbd>Esc</kbd>                | Keyboard button                                      |
+| Text Style                 | Meaning                                              |
+|----------------------------|------------------------------------------------------|
+| [Glossary link](#glossary) | Clickable link to navigate to a section in the guide |
+| `text with background`     | Text relevant to the commands or name of a file      |
+| <kbd>Esc</kbd>             | Keyboard button                                      |
 
 
 ## Table of Contents
@@ -81,11 +81,33 @@ switching.
 
 ---
 
-## TruthTable Application Window
+## Getting Started
+
+1. Ensure you have **Java 11** or above installed in your computer. If not, don't worry! Click
+   [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) for further instructions on
+   how to download and install **Java 11**.
+
+2. Download the latest version of `truthtable.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-4/tp/releases).
+The file can be located under the "Assets" section of the page as seen in the image below.
+![TruthTable Download Location](images/DownloadLocation.png)
+
+3. Double-click on `truthtable.jar` to start the application. A window which looks similar to the screenshot below 
+   should 
+appear in a few seconds. We have also added some sample data for you to play around and familiarise yourself with 
+   TruthTable's [features](#features)! ![Ui](images/Ui.png)
+
+4. Before we dive into TruthTable's features, make sure you understand how to [navigate the application](#navigating-truthtables-application-interface) first.
+
+---
+
+## Navigating TruthTable's Application Interface
 
 After opening TruthTable for the first time, you should see the following screen.
 
 ![Application Window](images/ApplicationWindow.png)
+
+As you can see above, each section contains different information, where the [Command Section](#command-section) is 
+the main way for you to interact with TruthTable's features.
 
 ### Teams Section
 
@@ -106,36 +128,10 @@ TruthTable.
 ### Command Section
 
 This section contains an input box where you can enter the commands for the actions that you wish to perform. Try 
-typing `help` in the input box to see what happens!
+typing `help` in the input box and press <kbd>Enter</kbd> to see what happens!
 
 Above the input box, you will see the output of the latest command that you have entered. In the case of `help`, you 
-will see the available commands in TruthTable that you can execute.
-
-
----
-
-
-## Getting Started
-
-1. Ensure you have Java `11` or above installed in your computer. If not, don't worry! Click
-   [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) for further instructions on 
-   how to download and install Java `11`.
-
-2. Download the latest `truthtable.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-4/tp).
-
-3. Copy the file to the folder you want to use as the _home folder_ for your TruthTable.
-
-4. Double-click the file to start the app. A window which looks similar to the screenshot below should appear in a few 
-   seconds. We've added some sample data for you to play around with and get familiar with the commands!<br>
-   ![Ui](images/Ui.png)
-
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window, which contains a link to this document.<br>
-   Some example commands you can try:
-   - `add member 1`
-   - `add task "My First Task"`
-
-6. Refer to the [Features](#features) section below for details of each command.
+will see all the available commands in TruthTable that you can execute.
 
 ---
 
