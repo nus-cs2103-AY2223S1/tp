@@ -96,6 +96,7 @@ of the terms commonly used in PetCode.
 | **Integer**      | Whole number                                                                                                                                                                                                                                                                                                                           |
 | **Alphanumeric** | Digits and letters only. For example, `AB3`, `PetCode`, `coco123`, and `2103` are alphanumeric. `#01-04`, `email@domain.com`, and `white    spaces` are not.                                                                                                                                                                           |
 | **Whitespace**   | An empty character, or a placeholder character ` `.                                                                                                                                                                                                                                                                                    |
+| **Attribute**    | Words that follow prefixes to describe properties, states, characteristics, and traits. For example, price, weight, name, and order status.                                                                                                                                                                                            |
 
 ## Quick start
 
@@ -814,6 +815,16 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous PetCode home folder.
 
+**Q**: Why does the app tell my that the buyer/deliverer/supplier already exits in the addressbook? How are contacts and
+items considered as duplicates?<br>
+**A**: Unfortunately, we do not allow duplicate contacts or items in our app, otherwise you may mistakenly modify a
+person that you don't intend to! For buyer/deliverer/supplier, if they are of the same person category and have the same
+name and the same email address, they are considered as the same. However, we do allow a buyer and a deliverer to have
+exactly the same name and the same email, even all attributes being identical. That is, we allow a person to have more
+than one role in our app.
+Two pets are considered as the same if they have all the same attributes. Two orders are different even they have all
+the same attributes.
+
 [Go back to [Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
@@ -859,23 +870,23 @@ These prefixes are for you to indicate different fields when you add a new [buye
 
 ### Command Summary
 
-|                                  Action                                   | Format                                                                                    | Examples                                                                         |
-|:-------------------------------------------------------------------------:|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
-|                 **[Add](#adding-a-contact-or-item-add)**                  | `add-ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION`                     | `add-b n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 l/Singapore` |
-| **[Add](#adding-a-person-with-a-popup-window--add)** (using popup window) | `add buyer`, `add supplier`                                                               |                                                                                  |
-|                 **[Clear](#clearing-all-entries--clear)**                 | `clear`                                                                                   |                                                                                  |
-|             **[Delete](#deleting-a-contact-or-item--delete)**             | `delete-KEY INDEX`                                                                        | `delete-b 1`, `delete-d 2`, `delete-s 3`, `delete-o 1`, `delete-p 2`             |
-|            **[Edit](#editing-attributes-of-a-contact--edit)**             | `edit-ROLE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/LOCATION]`                   | `edit-b 1 n/Alex`, `edit-s 3 n/Bobby p/884321`                                   |
-|            **[Find](#finding-contacts-using-keywords--find)**             | `find PREFIX/KEYWORD`                                                                     | `find n/James Jake`                                                              |
-|                **[Find Buyer](#finding-a-buyer--find-b)**                 | `find-b PREFIX/KEYWORD`                                                                   | `find-b n/James Jake`                                                            |
-|            **[Find Deliverer](#finding-a-deliverer--find-d)**             | `find-d PREFIX/KEYWORD`                                                                   | `find-d n/James Jake`                                                            |
-|             **[Find Supplier](#finding-a-supplier--find-s)**              | `find-s PREFIX/KEYWORD`                                                                   | `find-s n/James Jake`                                                            |
-|           **[Filter](#filtering-items-by-attributes--filter)**            | `filter t/INPUT`                                                                          | `filter t/dog t/second-hand`                                                     |
-|             **[Filter Orders](#filtering-orders--filter-o)**              | `filter-o PREFIX/KEYWORD`                                                                 | `filter-o ar/good with children pr/10-100`                                       |
-|               **[Filter Pets](#filtering-pets--filter-p)**                | `filter-p PREFIX/KEYWORD`                                                                 | `filter-p c/white s/capybara`                                                    |
-|                      **[Help](#viewing-help--help)**                      | `help`                                                                                    |                                                                                  |
-|               **[List](#listing-contacts-or-items--list)**                | `list all`, `list buyer`, `list supplier`, <br>`list deliverer`, `list order`, `list pet` |                                                                                  |
-|                    **[Sort](#sorting-contacts--sort)**                    | `sort LIST_PARAMETER [ATTRIBUTES...]`                                                     | `sort pet price height weight`                                                   |
-|     **[Check](#checking-which-item-belongs-to-which-contact--check)**     | `check LIST_TYPE INDEX`                                                                   | `check buyer 1`                                                                  |
+|                                  Action                                   | Format                                                                                    | Examples                                                               |
+|:-------------------------------------------------------------------------:|-------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+|                 **[Add](#adding-a-contact-or-item-add)**                  | `add-ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION`                     | `add-b n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 l/Singapore` |
+| **[Add](#adding-a-person-with-a-popup-window--add)** (using popup window) | `add buyer`, `add supplier`                                                               |                                                                        |
+|                 **[Clear](#clearing-all-entries--clear)**                 | `clear`                                                                                   |                                                                        |
+|             **[Delete](#deleting-a-contact-or-item--delete)**             | `delete-KEY INDEX`                                                                        | `delete-b 1`, `delete-d 2`, `delete-s 3`, `delete-o 1`, `delete-p 2`   |
+|            **[Edit](#editing-attributes-of-a-contact--edit)**             | `edit-ROLE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/LOCATION]`                   | `edit-b 1 n/Alex`, `edit-s 3 n/Bobby p/884321`                         |
+|            **[Find](#finding-contacts-using-keywords--find)**             | `find PREFIX/KEYWORD`                                                                     | `find n/James Jake`                                                    |
+|                **[Find Buyer](#finding-a-buyer--find-b)**                 | `find-b PREFIX/KEYWORD`                                                                   | `find-b n/James Jake`                                                  |
+|            **[Find Deliverer](#finding-a-deliverer--find-d)**             | `find-d PREFIX/KEYWORD`                                                                   | `find-d n/James Jake`                                                  |
+|             **[Find Supplier](#finding-a-supplier--find-s)**              | `find-s PREFIX/KEYWORD`                                                                   | `find-s n/James Jake`                                                  |
+|           **[Filter](#filtering-items-by-attributes--filter)**            | `filter t/INPUT`                                                                          | `filter t/dog t/second-hand`                                           |
+|             **[Filter Orders](#filtering-orders--filter-o)**              | `filter-o PREFIX/KEYWORD`                                                                 | `filter-o ar/good with children pr/10-100`                             |
+|               **[Filter Pets](#filtering-pets--filter-p)**                | `filter-p PREFIX/KEYWORD`                                                                 | `filter-p c/white s/capybara`                                          |
+|                      **[Help](#viewing-help--help)**                      | `help`                                                                                    |                                                                        |
+|               **[List](#listing-contacts-or-items--list)**                | `list all`, `list buyer`, `list supplier`, <br>`list deliverer`, `list order`, `list pet` |                                                                        |
+|                    **[Sort](#sorting-contacts--sort)**                    | `sort LIST_PARAMETER [ATTRIBUTES...]`                                                     | `sort pet price height weight`                                         |
+|     **[Check](#checking-which-item-belongs-to-which-contact--check)**     | `check LIST_TYPE INDEX`                                                                   | `check buyer 1`                                                        |
 
 [Go back to [Table of Contents](#table-of-contents)]
