@@ -39,7 +39,7 @@ public class AssignCommand extends Command {
             + PREFIX_UID + "2"
             + PREFIX_DATE_AND_SLOT_INDEX + "1";
 
-    public static final String MESSAGE_SUCCESS = "%1$s 's dateslot/dateslots assigned to %2$s.";
+    public static final String MESSAGE_SUCCESS = "%1$s's dateslot/dateslots assigned to %2$s.";
 
     public static final String MESSAGE_BOTH_NURSE = "The given uids are both nurses.";
     public static final String MESSAGE_BOTH_PATIENT = "The given uids are both patients.";
