@@ -59,6 +59,7 @@ Given below are my contributions to the project.
   * Reformat markdown files ([PR#422](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/422))
   * Support autoglossary syntax ([PR#424](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/424))
   * Add bidirectional header linking ([PR#426](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/426))
+  * Optimise styles for PDF layout ([PR#428](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/428))
 
 <!-- TODO: Categorise everything -->
 <!-- * **New Feature**: Added the ability to undo/redo previous commands.
