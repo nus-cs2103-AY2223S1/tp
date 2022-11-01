@@ -200,7 +200,7 @@ Example:
 
 **:information_source: Note:**<br>
 
-`DATE` must be a valid date for the command to be executed. Note that entering `0000` as the year is considered invalid.
+`DATE` must be a valid date for the command to be executed. Note that the year `0000` is considered invalid.
 
 * E.g. `list 2022-02-31` is an invalid command.
 * E.g. `list 0000-01-01` is an invalid command. 
