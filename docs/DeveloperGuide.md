@@ -301,7 +301,7 @@ The following activity diagram summarises what happens when a user enters a `mar
 
 #### Design Considerations:
 **Aspect: The scope at which the command changes all guests' isRoomClean statuses**
-* Alternative 1: Allow `markroomsunclean` command to operate only on the last shown list instead of the entire list. This is to Standardise how edits are made across the commands (e.g. edit and delete).
+* Alternative 1: Allow `markroomsunclean` command to operate only on the last shown list instead of the entire list. This is to standardise how edits are made across the commands (e.g. edit and delete).
   * Pros: This might be more intuitive for users, as `edit` and `delete` commands work only on the last shown lists.
   * Cons: User is unable to change all the guests' isRoomClean statuses in a single command.
 * Alternative 2 (current choice): Allow `markroomsunclean` command to change all guests' isRoomClean statuses in GuestBook instead of the last shown list.
