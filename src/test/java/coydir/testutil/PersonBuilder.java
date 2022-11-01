@@ -48,7 +48,7 @@ public class PersonBuilder {
         position = new Position(DEFAULT_POSITION);
         department = new Department(DEFAULT_DEPARTMENT);
         address = new Address(DEFAULT_ADDRESS);
-        rating = new Rating().getNullRating();
+        rating = Rating.getNullRating();
         tags = new HashSet<>();
     }
 
@@ -65,10 +65,6 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         rating = personToCopy.getRating();
         tags = new HashSet<>(personToCopy.getTags());
-    }
-
-    public static void setEmployeeId(String id) {
-        EmployeeId.setCount(Integer.parseInt(id));
     }
 
     /**

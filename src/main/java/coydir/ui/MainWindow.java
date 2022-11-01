@@ -243,8 +243,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void handleViewPerson(int index) {
-        handlePersonInfoUpdate(index);
         setSidePanel(personInfo);
+        handlePersonInfoUpdate(index);
     }
 
     private void handleViewDepartmentUpdate(String department) {

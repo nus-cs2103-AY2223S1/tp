@@ -26,8 +26,8 @@ public class DeleteLeaveCommandParser implements Parser<DeleteLeaveCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLeaveCommand.MESSAGE_USAGE));
         }
-        String id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
-        int index = Integer.parseInt(ParserUtil.parseId(argMultimap.getValue(PREFIX_INDEX).get()));
+        String id = ParserUtil.parseNumber(argMultimap.getValue(PREFIX_ID).get());
+        int index = Integer.parseInt(ParserUtil.parseNumber(argMultimap.getValue(PREFIX_INDEX).get()));
         return new DeleteLeaveCommand(new EmployeeId(id), index);
     }
 

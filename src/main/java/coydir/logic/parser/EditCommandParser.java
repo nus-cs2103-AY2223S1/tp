@@ -67,7 +67,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_LEAVE).isPresent()) {
-            editPersonDescriptor.setLeaves(Integer.valueOf(ParserUtil.parseId(
+            editPersonDescriptor.setLeaves(Integer.valueOf(ParserUtil.parseNumber(
                     argMultimap.getValue(PREFIX_LEAVE).get())));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);

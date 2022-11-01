@@ -51,7 +51,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Position position = ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
         Department department = ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
-        EmployeeId employeeId = new EmployeeId();
 
         // Set optional fields as default/null values
         Phone phone = Phone.getNullPhone();
@@ -75,9 +74,10 @@ public class AddCommandParser implements Parser<AddCommand> {
             tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         }
         if (!argMultimap.getAllValues(PREFIX_LEAVE).isEmpty()) {
-            numberOfLeaves = Integer.valueOf(ParserUtil.parseId(argMultimap.getValue(PREFIX_LEAVE).get()));
+            numberOfLeaves = Integer.valueOf(ParserUtil.parseNumber(argMultimap.getValue(PREFIX_LEAVE).get()));
         }
 
+        EmployeeId employeeId = new EmployeeId();
         Person person = new Person(
                 name, employeeId, phone, email, position, department, address, tagList, numberOfLeaves, rating
                 );

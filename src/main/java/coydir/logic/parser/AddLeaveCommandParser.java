@@ -28,7 +28,7 @@ public class AddLeaveCommandParser implements Parser<AddLeaveCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE));
         }
-        String id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
+        String id = ParserUtil.parseNumber(argMultimap.getValue(PREFIX_ID).get());
         Leave leave = ParserUtil.parseLeave(
                 argMultimap.getValue(PREFIX_STARTDATE).get(), argMultimap.getValue(PREFIX_ENDDATE).get());
         return new AddLeaveCommand(new EmployeeId(id), leave);

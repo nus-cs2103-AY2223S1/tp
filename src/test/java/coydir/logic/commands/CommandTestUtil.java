@@ -127,6 +127,16 @@ public class CommandTestUtil {
     }
 
     /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}, and an int {@code index} for viewing.
+     */
+    public static void assertViewingCommandSuccess(Command command, Model actualModel, String expectedMessage,
+            Model expectedModel, int index) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, index);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
