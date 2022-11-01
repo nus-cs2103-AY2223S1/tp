@@ -61,8 +61,9 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        if (!LocalDateTime.parse(dateTimeString, FORMATTER).truncatedTo(ChronoUnit.MINUTES).format(FORMATTER)
-                .equals(dateTimeString)) {
+        String dateTimeParsed = LocalDateTime.parse(dateTimeString, FORMATTER).truncatedTo(ChronoUnit.MINUTES)
+                .format(FORMATTER);
+        if (!dateTimeParsed.equals(dateTimeString)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
