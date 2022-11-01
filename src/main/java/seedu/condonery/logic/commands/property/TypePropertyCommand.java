@@ -23,7 +23,13 @@ public class TypePropertyCommand extends Command {
 
     private final PropertyTypeContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates a TypePropertyCommand to find the specified {@code Property}
+     *
+     * @param predicate
+     */
     public TypePropertyCommand(PropertyTypeContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 
