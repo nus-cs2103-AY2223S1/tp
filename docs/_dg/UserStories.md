@@ -27,5 +27,3 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | purchasing manager | delete a tag                                | I can remove tags that will not be used anymore                       |
 | `* * *`  | purchasing manager | add a tag to an item                        | I can classify an item via this certain tag                           |
 | `* * *`  | purchasing manager | remove a tag from an item                   | I can choose not to classify an item via this certain tag             |
-
-
