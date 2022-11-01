@@ -523,7 +523,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample profiles and events. 
 
 1. Saving window preferences
 
@@ -536,23 +536,27 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a Profile while all Profiles are being shown
 
-   1. Prerequisites: List all Profiles using the `list` command. Multiple Profiles in the list.
+   1. Prerequisites: List all Profiles using the `profile -v` command. Multiple Profiles in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `profile -d 1`<br>
+      Expected: First profile is deleted from the list. Details of the deleted profile shown in the status message. If first profile is attending any events, the profile will be removed from the event as well.
 
-   1. Test case: `delete 0`<br>
+   4. Test case: `profile - d 0`<br>
       Expected: No Profile is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   5. Other incorrect delete commands to try: `profile -d`, `profile -d x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Open `data/nuscheduler.json` in the directory where NUScheduler is downloaded.
+   2. Edit any email to a non-NUS email.
+   3. Relaunch `NUScheduler.jar`.
+   4. Expected: Data is invalid thus NUScheduler starts with an empty data file.
+   
 
-1. _{ more test cases …​ }_
+
