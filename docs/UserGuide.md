@@ -15,10 +15,10 @@ Pupilist is an **application for managing students details for private tutors**.
 
 
 If you are a private tutor struggling to:
-1. keep track of your students and their individual lesson plans.
-2. keep track of your students grades, homework and attendance.
-3. keep track of your lesson timings.
-4. keep track of your students' contact information.<br>
+1. keep track of your students and their individual lesson plans
+2. keep track of your students grades, homework and attendance
+3. keep track of your lesson timings
+4. keep track of your students' contact information
 
 Pupilist can get your scheduling done faster with single line CLI command inputs to manage all your tutoring needs.
 <br>
@@ -35,12 +35,12 @@ Pupilist can get your scheduling done faster with single line CLI command inputs
 ## Glossary
 
 
-| Term      | Description                                                                                                                                                                                                                                                                                                                                         |
-| ----------- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CLI       | Command-Line-Input, refers to text-based command inputs you will enter in the CommandBox.                                                                                                                                                                                                                                                           |
-| GUI       | Graphical-User-Interface, refers to the UI displayed to you.                                                                                                                                                                                                                                                                                        |
-| Parameter | Refers to the information you will need to give to Pupilist along with your<br> command so that Pupilist can execute an action based on that information.<br> For example, in the [`View`](#viewing-persons-details-view) command requires a NAME parameter for Pupilist to display information of the Student ,assuming a valid name in view mode. |
-| Prefixes  | A prefix indicates the type of field you are keying in. You can find the list of prefixes supported by Pupilist[here](#prefixes-summaries)                                                                                                                                                                                                          |
+| Term      | Description                                                                                                                                                                                                                                                             |
+| ----------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CLI       | Command-Line Interface. Refers to programs that receive commands in the form of a single line of text.                                                                                                                                                                  |
+| GUI       | Graphical User Interface. Refers to the screen displayed.                                                                                                                                                                                                               |
+| Parameter | Refers to any information Pupilist may require to execute a specific command.<br> For example, in the [`View`](#viewing-persons-details-view) command requires a NAME parameter for Pupilist to display information of the Student ,assuming a valid name in view mode. |
+| Prefixes  | A prefix indicates the type of field you are keying in. The list of prefixes supported by Pupilist can be found [here](#prefixes-summaries).                                                                                                                              |
 
 ## Quick start
 
@@ -281,7 +281,7 @@ Examples:
 
 Use `grade` command to add a description of grade progress to student in address book.
 As GRADE_PROGRESS does not require any fixed format and it is up to the user to have their own formats.
-Pupilist does not check for duplicate entries of grades.
+Pupilist does not check for duplicate entries of grades.<br>
 **Usage**: View or list mode only
 
 Format: `grade INDEX g/GRADE_PROGRESS`
@@ -357,13 +357,13 @@ Exits the program.<br>
 
 Format: `exit`
 
-### Next session
+### Next Session
 
-Pupilist helps to organise your session timings automatically, no need for commands for this feature!<br>
-It will show you this feature on launch of the application and when you use the [`list`](#listing-all-persons--list) command.
+Pupilist helps to organise your session timings automatically. No command is required for this feature.
+This feature is shown on launch of the application and when the [`list`](#listing-all-persons--list) command is used.
 
-Pupilist takes your current device time and sees the sessions that are upcoming if you have any,<br>
-then shows you the name of the student and the session timing. If you don't have any sessions with anyone, <br>
+Pupilist takes your current device time and sees the sessions that are upcoming if you have any, 
+then shows you the name of the student and the session timing. If you don't have any sessions with anyone, 
 it will also tell you that there are no next session timing.
 
 ![next session feature](images/next_session.png)
@@ -426,13 +426,13 @@ _Details coming soon ..._
 ### Prefixes summaries
 
 
-| Prefix | Definition                             | Usage                                                                                                                                                                       | Example              |
-|--------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
-| a/     | Attendance                             | Numbers in the format of `YYYY-MM-DD` <br>where YYYY are four numbers making up the year, MM are two numbers making up the month and DD are two numbers making up the day.  | a/2022-12-08         |
-| g/     | Subject and its grade                  | Words related to subject and grade                                                                                                                                          | g/Math: A+           |
-| h/     | Homework                               | Words related to homework                                                                                                                                                   | hw/Science Worksheet |
-| lp/    | Lesson plan                            | Words related to lesson plan                                                                                                                                                | lp/Diversity         |
-| n/     | Name                                   | Only numbers and letters. Spaces are allowed. Required field                                                                                                                | n/Alex Ho            |
-| p/     | Phone number                           | Numbers only. Required Field. Spaces are not allowed and at least 3 numbers.                                                                                                | p/97402341           |
-| s/     | Session timing of lessons              | Numbers in the format of`DDD HH:mm` <br>where DDD is three characters making up the day, HH are two numbers making up the hour and mm are two numbers making up the minute. | s/tue 08:30          |
-| t/     | Tag that is associated to the student. | Any words. Optional.                                                                                                                                                        | t/Star student       |
+| Prefix | Definition                | Usage                                                                                                                                                                       | Example              |
+|--------|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
+| a/     | Attendance                | Numbers in the format of `YYYY-MM-DD` <br>where YYYY are four numbers making up the year, MM are two numbers making up the month and DD are two numbers making up the day.  | a/2022-12-08         |
+| g/     | Subject and its grade     | Word description related to subject and grade.                                                                                                                              | g/Math: A+           |
+| h/     | Homework                  | Word description related to homework.                                                                                                                                       | hw/Science Worksheet |
+| lp/    | Lesson plan               | Word description related to lesson plan.                                                                                                                                    | lp/Diversity         |
+| n/     | Name                      | Only numbers and letters. Spaces are allowed. Required field.                                                                                                               | n/Alex Ho            |
+| p/     | Phone number              | Numbers only. Spaces are not allowed and at least 3 numbers. Required field.                                                                                                | p/97402341           |
+| s/     | Session timing of lessons | Numbers in the format of`DDD HH:mm` <br>where DDD is three characters making up the day, HH are two numbers making up the hour and mm are two numbers making up the minute. | s/tue 08:30          |
+| t/     | Tag                       | Any words. Optional.                                                                                                                                                        | t/Star student       |
