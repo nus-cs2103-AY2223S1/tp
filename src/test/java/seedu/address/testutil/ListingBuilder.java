@@ -9,6 +9,7 @@ import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Name;
 
 /**
  * A utility class to help with building Listing objects.
@@ -22,7 +23,7 @@ public class ListingBuilder {
 
     private ListingId id;
     private Address address;
-    private Client owner;
+    private Name owner;
     private Price askingPrice;
     private Set<Tag> tags;
 
@@ -32,7 +33,7 @@ public class ListingBuilder {
     public ListingBuilder() {
         this.id = new ListingId(DEFAULT_ID);
         this.address = new Address(DEFAULT_ADDRESS);
-        this.owner = DEFAULT_CLIENT;
+        this.owner = DEFAULT_CLIENT.getName();
         this.askingPrice = new Price(DEFAULT_ASKING_PRICE);
         this.tags = new HashSet<>();
     }
@@ -43,7 +44,7 @@ public class ListingBuilder {
     public ListingBuilder(Listing listingToCopy) {
         id = listingToCopy.getId();
         address = listingToCopy.getAddress();
-        owner = listingToCopy.getOwner();
+        owner = listingToCopy.getName();
         askingPrice = listingToCopy.getAskingPrice();
     }
 
@@ -58,7 +59,7 @@ public class ListingBuilder {
     /**
      * Sets the {@code owner} of the {@code Listing} that we are building.
      */
-    public ListingBuilder withOwner(Client owner) {
+    public ListingBuilder withOwner(Name owner) {
         this.owner = owner;
         return this;
     }
