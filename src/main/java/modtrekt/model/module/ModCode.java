@@ -10,7 +10,8 @@ import static modtrekt.commons.util.AppUtil.checkArgument;
 public class ModCode implements Comparable<ModCode> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Code should contain alphanumeric characters, no white space, and 6 to 9 characters long";
+            "Code should only contain alphanumeric characters, should not contain white space and should be between 6"
+                    + " and 9 characters long";
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "^[a-zA-Z0-9]{6,9}$";
     public static final String VALIDATION_REGEX = ALPHANUMERIC_NO_UNDERSCORE;
 
