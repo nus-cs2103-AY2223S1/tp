@@ -11,19 +11,22 @@ title: User Guide
 ### About GREWZ
 Tired of opening multiple applications for your teaching needs? Look no further!
 
-GREWZ helps **university teaching assistants** to maintain the information of the students in their classes by collating a list of students' personal details, as well as keeping a task book to help them keep track of their personal work.
+GREWZ helps **university teaching assistants** to maintain the information of the students in their classes by collating 
+a list of students' personal details, as well as keeping a task book to help them keep track of their personal work.
 
 As a teaching assistant, you can use GREWZ as an all-in-one platform to carry out your teaching duties such as: 
 * Marking attendance
 * Updating student details
 * Managing personal homework
 
-GREWZ boasts a timeless, compartmentalised [Graphical User Interface (GUI)](#glossary) while utilising a clean [Command Line Interface (CLI)](#pookie) - this means that the faster you can type, the faster you can get your work done.
+GREWZ boasts a timeless, compartmentalised [Graphical User Interface (GUI)](#glossary) while utilising a clean 
+[Command Line Interface (CLI)](#glossary) - this means that the faster you can type, the faster you can get your work done.
 
 Hopefully our application has grown on you! 
 
 ### Navigation
-The aim of this User Guide is to provide you with all the information needed to fully utilise GREWZ. We understand the steep difficulty curve when learning Command Line Interface (CLI) programs and have tried our best to ease you in. 
+The aim of this User Guide is to provide you with all the information needed to fully utilise GREWZ. We understand the 
+steep difficulty curve when learning Command Line Interface (CLI) programs and have tried our best to ease you in. 
 
 If you need help setting up GREWZ, jump over to [Quick start](#quick-start) to continue.
 
@@ -50,7 +53,7 @@ Take note of the following symbols and formatting used in this document:
 
 3. Copy the file to the folder you want to use as the [_home folder_](#glossary) for your GREWZ.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -408,13 +411,14 @@ Format: `exit`
 
 ## FAQ
 
-**Q:** I don't know if I have `Java 11` installed in my computer. What do I do?
+**Q:** I don't know if I have Java `11` installed in my computer. What do I do?
 <br />
-**A:** To check your Java version, open a Command Prompt or Terminal window and type:
+**A:** To check your Java version, open a Command Prompt or Terminal window on your computer and type:
 ```
 java -version
 ```
-If you do not have Java `11` installed, you can download it [here](https://www.oracle.com/java/technologies/downloads/#java11)
+This will show you the exact verison of Java installed on you computer, if any.
+If you do not have Java `11` installed, you can download it [here](https://www.oracle.com/java/technologies/downloads/#java11).
 
 **Q:** Do I have to retype the command every single time even if they are similar?
 <br />
@@ -475,15 +479,15 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 | **Command Line Interface (CLI)**           | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer. |
 | **Graphical user interface (GUI)**         | Graphical user interface (GUI) is a form of user interface that allows users to interact with electronic devices through graphical icons.      |
 | **Home Folder**                            | A folder on you computer that stores all data related to this application.                                                                     |
-| **Parameter**                              | User input for particular field.                                                                                                               |
+| **Parameter**                              | Parameter is the user's input for particular field.                                                                                            |
 | **Teaching assistant**                     | Teaching assistant is an individual who assists a professor with instructional responsibilities.                                               |
-| **JavaScript Object Notation (JSON)**      | JavaScript Object Notation (JSON) is used for storing and transfering data.                                                                    |
+| **JavaScript Object Notation (JSON)**      | JavaScript Object Notation (JSON) is used for storing and transferring data.                                                                   |
 | **Joint Photographic Experts Group (JPG)** | Joint Photographic Experts Group (JPG) is an image file type and used for compression of digital images.                                       |
 | **User input history**                     | User input history is the previous inputs the user has keyed in.                                                                               |
 | **Task**                                   | Task is a piece of work to be done and the category Todo, Deadline and Assignment is under.                                                    |
-| **Todo**                                   | Todo is a task with a description and title.                                                                                                   |
-| **Deadline**                               | Deadline is a task with a due date.                                                                                                            |
-| **Assignment**                             | Assignment is a task with a list of students that needs to finish the task.                                                                    |
+| **Todo**                                   | Todo is a task with a title and description.                                                                                                   |
+| **Deadline**                               | Deadline is a task with a title, description and due date.                                                                                     |
+| **Assignment**                             | Assignment is a task with title, description and a list of students that needs to finish the task.                                             |
 | **Attendance List**                        | Attendance list is a record of the student's attendance for his class.                                                                         |
 
-[back to top](#introduction)
+[Back to Top ↑](#introduction)
