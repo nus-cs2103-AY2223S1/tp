@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class MeetingDate implements Comparable<MeetingDate> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Meeting dates should be in the format DDMMYYYY";
+            "Meeting dates should be in the format DDMMYYYY and should be a valid day of the year";
     private final LocalDate date;
 
     /**
