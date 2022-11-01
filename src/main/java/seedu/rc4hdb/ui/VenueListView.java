@@ -79,6 +79,7 @@ public class VenueListView extends UiPart<Region> {
 
     private void configureListProperties() {
         venueListView.setMinWidth(220.0);
+        venueListView.setSelectionModel(new NoSelectionModel<Venue>());
     }
 
 
