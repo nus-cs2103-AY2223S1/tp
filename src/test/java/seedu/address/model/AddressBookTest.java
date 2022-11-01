@@ -43,7 +43,7 @@ public class AddressBookTest {
         assertEquals(newData, addressBook);
     }
 
-    @Test
+    /*@Test
     public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
         // Two students with the same identity fields
         Student editedAlice = new StudentBuilder().withName("Alice Pauline")
@@ -54,7 +54,7 @@ public class AddressBookTest {
         AddressBookStub newData = new AddressBookStub(newStudents);
 
         assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
-    }
+    }*/
 
     @Test
     public void hasStudent_nullStudent_throwsNullPointerException() {
