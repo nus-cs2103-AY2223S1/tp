@@ -33,31 +33,42 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             System.out.println("name");
             String foundName = String.join(" ", argMultimap.getAllValues(PREFIX_NAME));
-            findCommandKeywords.add(0, foundName);
+            //System.out.println(foundName);
+            findCommandKeywords.add(0, foundName.trim());
         } else {
             findCommandKeywords.add(0, "");
+            System.out.println("No name keywords");
         }
 
         if (argMultimap.getValue(PREFIX_STUDENTCLASS).isPresent()) {
             String foundClass = String.join(" ", argMultimap.getAllValues(PREFIX_STUDENTCLASS));
-            findCommandKeywords.add(1, foundClass);
+            findCommandKeywords.add(1, foundClass.trim());
         } else {
             findCommandKeywords.add(1, "");
         }
 
         if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
             String foundSubjects = String.join(" ", argMultimap.getAllValues(PREFIX_SUBJECT));
-            findCommandKeywords.add(2, foundSubjects);
+            findCommandKeywords.add(2, foundSubjects.trim());
         } else {
             findCommandKeywords.add(2, "");
         }
 
-        if (findCommandKeywords.isEmpty()) {
+        if (args.trim().isEmpty()) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         return new FindCommand(new FindCommandPredicate(findCommandKeywords));
+    }
+
+    public static void main(String[] args) {
+        FindCommandParser f = new FindCommandParser();
+        try {
+            f.parse("n/john c/1a");
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
     }
 
 }
