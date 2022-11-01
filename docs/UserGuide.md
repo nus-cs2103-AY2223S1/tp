@@ -1,9 +1,10 @@
 ---
 layout: page
-title: User Guide
+title: Friendnancial's User Guide
 ---
+Friendnancial is a tool to help financial advisors manage their clients and friends. It provides an address book with features implemented specifically for financial advisors such as storing insurance information and reminders. Thus Friendnancial is an integrated one-stop solution for financial advisors to manage their contacts!
 
-Friendnancial (Friend) is a **desktop app for managing contacts, optimized for use by financial advisors via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Friendnancial can get your contact management tasks done faster than traditional GUI apps, and has features implemented specifically for financial advisors such as storing insurance information and reminders.
+Friendnancial is a **desktop application, optimized for use by financial advisors via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Friendnancial can get your contact management tasks done faster than traditional GUI apps, saving your precious time.
 
 * Table of Contents
 {:toc}
@@ -73,7 +74,7 @@ Friendnancial (Friend) is a **desktop app for managing contacts, optimized for u
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the User Guide page. The link can be copied by clickiing the `Copy URL` button.
+Shows a message explaining how to access the User Guide page. The link can be copied by clicking the `Copy URL` button.
 
 ![help message](images/helpMessageUpdated.png)
 
@@ -82,12 +83,16 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to Friendnancial.
+Adds a contact to Friendnancial.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ a/Address b/BIRTHDAY`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
+</div>
+
+<div markdown="span" class="alert alert-warning">:warning: **Note:**
+Names should only have alphabet letters or numbers in them
 </div>
 
 Examples:
@@ -109,9 +114,12 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BI
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+
+<div markdown="span" class="alert alert-warning">:warning: **Note:**
+When editing tags, the existing tags of the person will be removed
+You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
+</div>
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -123,8 +131,8 @@ Finds persons by the given keywords.
 
 Format: `find [n/KEYWORD] [t/TAG] [b/BIRTHDAY]`
 
-* Entering `find` with no keywords after will simply return the list of all the contacts.
-* Users can filter persons by their desired fields by using `[letter]/[KEYWORD]`. e.g.
+* Entering `find` with no keywords after will simply return the list of all contacts.
+* Users can filter persons by any field by using `[letter]/[KEYWORD]`. e.g.
 `find n/john` returns persons whose name fields contain the keyword, while `find t/TAG`
 returns persons whose tag fields contain the specified tag.
 * The search is case-insensitive. e.g `hans` will match `Hans`
@@ -166,7 +174,7 @@ Format: `clear`
 
 ### Adding a reminder : `remind`
 
-Adds a reminder to the specified contact.
+Adds a reminder which is tied to a specified contact.
 
 Format: `remind INDEX r/REMINDER d/DATE`
 
@@ -205,7 +213,11 @@ Prefixes:
 
 Format: `insurance INDEX [hi/] [di/] [ci/] [li/]` (Number of insurance prefixes can range from 0-4)
 
-For prefixes not included in the command, the `Person` object is taken to not have the corresponding types of insurance.
+<div markdown="span" class="alert alert-warning">:warning: **Note:**
+When editing insurances, the existing insurances of the person will be removed.
+You can remove all the person’s tags by typing `insurance [INDEX]` without
+    specifying any insurances after it.
+</div>
 
 Examples:
 * `insurance 1 hi/ ci/` sets the 1st person to have health insurance and critical illness insurance.
@@ -231,16 +243,19 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Friendnancial home folder.
 
+**Q**: Where is the save command?<br>
+**A**: There is no save command as all your contacts and reminders are automatically saved for you. After closing the application, all updated information will be displayed again the next time you open the application.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 | Action     | Format, Examples                                                                                                                                    |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] a/ADDRESS b/BIRTHDAY` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/friend b/18-08-2000` |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] a/ADDRESS b/BIRTHDAY` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/friend b/18-08-2000` |
 | **Clear**  | `clear`                                                                                                                                             |
 | **Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`, `delete n/paul`                                                                              |
-| **Find**   | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find James Jake`                                                                                   |
+| **Find**   | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find n/James Jake`                                                                                   |
 | **List**   | `list`                                                                                                                                              |
 | **Remind** | `remind INDEX r/REMINDER d/DATE` <br> e.g., `remind 2 r/update client information d/20-10-2022`                                                     |
 | **DeleteR** | `deleteR INDEX`<br> e.g., `deleteR 1`                                                                              |
