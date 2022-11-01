@@ -111,11 +111,11 @@ to add such a patient because Bernice Yu already exists in HealthContact.
 Adds an appointment to HealthContact with input information including patient name, medical test,
 slot, and doctor.
 
-* Patient name input must strictly match the name of an existing patient, except for the casing as patient name is case-insensitive. However, it is recommended to input the same case as the existing patient name to avoid confusion.
+* Patient name input must strictly match the name of an existing patient.
 
 * Slot must be in the format `yyyy-MM-dd HH:mm`, eg. `2022-11-12 13:00`.
 
-* If slot is entered with time `24:00`, it will be saved as the `00:00` of the next date.
+* The input of four parameters must be different with the combination in other appointments.
 
 * Doctor and medical test are case-sensitive.
 
@@ -169,11 +169,11 @@ parameters already exists in HealthContact.
 
 Adds a bill attached to an appointment with input information including amount and bill date.
 
-* Amount must be positive number with at most 2 decimal places.
+* An amount must be positive number with at most 2 decimal places.
 
 * One appointment can be attached to no more than one bill.
 
-* Bill date must be in the format `yyyy-MM-dd`, eg. `2022-11-12`.
+* A bill date must be in the format `yyyy-MM-dd`, eg. `2022-11-12`.
 
 * The onus is on the user to check that the bill date entered is the same as the appointment date or later.
 
