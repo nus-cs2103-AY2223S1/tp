@@ -186,6 +186,7 @@ Allows user to view information relating to the specified module.
 - Scopes the user’s actions to the specified module.
 - The module code is case-insensitive e.g. `cs2103t` will match **CS2103T**
 - Module code must match an existing module.
+- The module must not be marked as `done`.
 
 Format: `cd <module code>`
 
@@ -216,6 +217,7 @@ Marks a module as done.
 - The module code is case insensitive e.g. `cs2103t` will match **CS2103T**
 - After you mark a module as done, your total completed module credits (MCs) will be updated.
 - Marking a module as done will mark all active tasks belonging to that module as done.
+- You cannot execute this command while cd'd into any module.
 
 Format: `done module <module code>`
 
@@ -234,6 +236,7 @@ Marks a module as undone.
 - The module code is case insensitive e.g. `cs2103t` will match **CS2103T**
 - After you unmark a module as done, your total completed module credits (MCs) will be updated.
 - Unmarking a module will not affect its tasks, i.e. your original tasks will not be marked as undone)
+- You cannot execute this command while cd'd into any module.
 
 Format: `undone module <module code>`
 
