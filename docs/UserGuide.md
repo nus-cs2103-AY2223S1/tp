@@ -434,22 +434,23 @@ For Windows user, check this [tutorial](https://www.happycoders.eu/java/how-to-s
 
 ## Command Summary
 
-| Action          | Format, Examples                                                                                                                                                      |
-|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Task add**    | ``task add TITLE by/DEADLINE [#PROJECT] [@PERSON_INDEX]...``<br> e.g., `task add Task 1 by/next friday #CS2103T @1`                                                   |
-| **Tasks**       | `tasks INDEX`<br> e.g., `tasks 2`                                                                                                                                     |
-| **Task mark**   | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                        |
-| **Task unmark** | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                    |
-| **Task clear**  | `task clear`<br> e.g., `task clear`                                                                                                                                   |
-| **Task delete** | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                    |
-| **Task assign** | `task assign TASK_INDEX [+@/PERSON_INDEX]…​ [+@/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [-@/PERSON_NAME]…​`<br> e.g., `task assign 3 +@/1 +@/Alex Yeoh @-/2`               |
-| **Clear**       | `clear`                                                                                                                                                               |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**        | `list`                                                                                                                                                                |
-| **Help**        | `help`                                                                                                                                                                |
+| Action           | Format, Examples                                                                                                                                                                  |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`             |
+| **Task add**     | ``task add TITLE by/DEADLINE [#PROJECT] [@PERSON_INDEX]...``<br> e.g., `task add Task 1 by/next friday #CS2103T @1`                                                               |
+| **Tasks**        | `tasks INDEX`<br> e.g., `tasks 2`                                                                                                                                                 |
+| **Task mark**    | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                                    |
+| **Task unmark**  | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                                |
+| **Task clear**   | `task clear`<br> e.g., `task clear`                                                                                                                                               |
+| **Task delete**  | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                                |
+| **Task assign**  | `task assign TASK_INDEX [+@/PERSON_INDEX]…​ [+@/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [-@/PERSON_NAME]…​`<br> e.g., `task assign 3 +@/1 +@/Alex Yeoh @-/2`                           |
+| **Task project** | `task project` <br> e.g., `task project` |
+| **Clear**        | `clear`                                                                                                                                                                           |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                               |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                       |
+| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                        |
+| **List**         | `list`                                                                                                                                                                            |
+| **Help**         | `help`                                                                                                                                                                            |
 
 
 --------------------------------------------------------------------------------------------------------------------

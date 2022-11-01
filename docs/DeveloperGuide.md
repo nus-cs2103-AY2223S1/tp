@@ -588,44 +588,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-**Use case: UC06 - List tasks**
-
-**MSS**
-
-1.  User requests to list all tasks.
-2.  Arrow shows a list of all tasks.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The task list is empty.
-
-  Use case ends.
-
-**Use case: UC07 - Mark a task as complete**
-
-**MSS**
-
-1.  User requests to mark a task to be complete.
-2.  Arrow shows the task to be complete.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The given task index is invalid.
-
-    * 1a1. Arrow shows an error message.
-
-      Use case resumes at step 2.
-
-* 2a. The tasks list is empty.
-
-  Use case ends.
-
-**Use case: UC08 - Delete a task**
-
+**Use case: UC06 - Delete a task**
 
 **MSS**
 
@@ -648,7 +611,88 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC09 - Find a person by name**
+**Use case: UC07 - Edit a task**
+
+**MSS**
+
+1.  User requests to list tasks.
+2.  Arrow shows a list of tasks.
+3.  User requests to edit a specific task in the list and provides new information.
+4.  Arrow updates the task.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The tasks list is empty.
+
+  Use case ends.
+
+* 3a. The given task index is invalid.
+
+    * 3a1. Arrow shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC08 - Mark a task as complete**
+
+**MSS**
+
+1.  User requests to mark a task to be complete.
+2.  Arrow shows the task to be complete.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given task index is invalid.
+
+    * 1a1. Arrow shows an error message.
+
+      Use case resumes at step 2.
+
+* 2a. The tasks list is empty.
+
+  Use case ends.
+
+**Use case: UC09 - Mark a task as incomplete**
+
+**MSS**
+
+1.  User requests to mark a task to be incomplete.
+2.  Arrow shows the task to be incomplete.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given task index is invalid.
+
+    * 1a1. Arrow shows an error message.
+
+      Use case resumes at step 2.
+
+* 2a. The tasks list is empty.
+
+  Use case ends.
+
+**Use case: UC10 - List tasks**
+
+**MSS**
+
+1.  User requests to list all tasks.
+2.  Arrow shows a list of all tasks.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The task list is empty.
+
+  Use case ends.
+
+
+**Use case: UC11 - Find a person by name**
 
 **MSS**
 
@@ -663,7 +707,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC10 - Assign persons to a task**
+**Use case: UC12 - Assign persons to a task**
 
 **MSS**
 
@@ -698,28 +742,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
-**Use case: UC11 - Mark a task as incomplete**
+*Use case: UC13 - List Project**
 
 **MSS**
 
-1.  User requests to mark a task to be incomplete.
-2.  Arrow shows the task to be incomplete.
+1.  User requests to list all projects.
+2.  Arrow shows a list of all project.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given task index is invalid.
-
-    * 1a1. Arrow shows an error message.
-
-      Use case resumes at step 2.
-
-* 2a. The tasks list is empty.
+* 1a. No projects available.
 
   Use case ends.
 
-**Use case: UC12 - Clear the task panel**
+**Use case: UC14 - Clear the task panel**
 
 **MSS**
 
@@ -738,8 +776,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5.  Any changes to the data should be saved permanently and automatically.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -750,8 +786,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Task**: An item or activity that needs to be completed and contributes towards the progress of the project
 * **User**: Person in charge of a software engineering project
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
-*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
