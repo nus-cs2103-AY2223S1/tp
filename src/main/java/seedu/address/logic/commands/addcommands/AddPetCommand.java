@@ -116,4 +116,13 @@ public class AddPetCommand extends Command {
         model.addPet(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof AddPetCommand)) {
+            return false;
+        }
+        AddPetCommand otherCommand = (AddPetCommand) other;
+        return otherCommand.index.equals(this.index) && otherCommand.toAdd.isSamePet(this.toAdd);
+    }
 }

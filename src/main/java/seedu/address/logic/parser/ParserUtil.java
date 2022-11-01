@@ -165,6 +165,9 @@ public class ParserUtil {
         requireNonNull(location);
         logger.fine("Parsing location: " + location);
         String trimmedLocation = location.trim();
+        if (location.isEmpty() || location.isBlank()) {
+            throw new ParseException(Location.MESSAGE_CONSTRAINTS);
+        }
         return new Location(trimmedLocation);
     }
 
@@ -251,19 +254,6 @@ public class ParserUtil {
             petList.add(parsePet(pet, isSupplierExisting));
         }
         return petList;
-    }
-
-    /**
-     * Parses {@code personCategory} into a {@code PersonCategory} and returns it. Leading and trailing whitespaces
-     * will be trimmed.
-     * @throws ParseException if the specified person category is invalid (not a buyer, deliverer, or supplier).
-     */
-    public static PersonCategory parsePersonCategory(String personCategory) throws ParseException {
-        String trimmed = personCategory.trim();
-        checkArgument(PersonCategory.isValidPersonCategory(trimmed), MESSAGE_INVALID_PERSON_CATEGORY);
-        return Arrays.stream(PersonCategory.class.getEnumConstants())
-                .filter(x -> x.toString().equals(trimmed))
-                .findFirst().orElse(PersonCategory.BUYER);
     }
 
     /**
