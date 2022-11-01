@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASKING_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -17,6 +19,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.listing.IdContainsKeywordsPredicate;
+import seedu.address.model.listing.Listing;
+import seedu.address.model.listing.exceptions.ListingNotFoundException;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditClientDescriptorBuilder;
@@ -36,8 +41,13 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_REMARK_AMY = "";
-    public static final String VALID_REMARK_BOB = "";
+    public static final String VALID_TAG_4_BEDROOM = "4bedroom";
+    public static final String VALID_TAG_GARDEN = "garden";
+    public static final String VALID_TAG_POOL = "pool";
+    public static final String VALID_ID_AMY = "amy";
+    public static final String VALID_ID_BOB = "bob";
+    public static final String VALID_PRICE_1 = "1";
+    public static final String VALID_PRICE_2 = "2";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -49,6 +59,13 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_4_BEDROOM = " " + PREFIX_TAG + VALID_TAG_4_BEDROOM;
+    public static final String TAG_DESC_GARDEN = " " + PREFIX_TAG + VALID_TAG_GARDEN;
+    public static final String TAG_DESC_POOL = " " + PREFIX_TAG + VALID_TAG_POOL;
+    public static final String ID_DESC_AMY = " " + PREFIX_ID + VALID_ID_AMY;
+    public static final String ID_DESC_BOB = " " + PREFIX_ID + VALID_ID_BOB;
+    public static final String PRICE_DESC_1 = " " + PREFIX_ASKING_PRICE + VALID_PRICE_1;
+    public static final String PRICE_DESC_2 = " " + PREFIX_ASKING_PRICE + VALID_PRICE_2;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -107,12 +124,30 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Client> expectedFilteredList = new ArrayList<>(actualModel.getFilteredClientList());
+        List<Client> expectedFilteredClientList = new ArrayList<>(actualModel.getFilteredClientList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredClientList());
+        assertEquals(expectedFilteredClientList, actualModel.getFilteredClientList());
     }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the address book, filtered client list and selected client in {@code actualModel} remain unchanged
+     */
+    public static void assertListingNotFoundFailure(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        List<Listing> expectedFilteredListingList = new ArrayList<>(actualModel.getFilteredListingList());
+
+        assertThrows(ListingNotFoundException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedFilteredListingList, actualModel.getFilteredListingList());
+    }
+
 
     /**
      * Updates {@code model}'s filtered list to show only the client at the given {@code targetIndex} in the
@@ -126,6 +161,20 @@ public class CommandTestUtil {
         model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredClientList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the listing at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showListingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
+
+        Listing listing = model.getFilteredListingList().get(targetIndex.getZeroBased());
+        final String id = listing.getId().value;
+        model.updateFilteredListingList(new IdContainsKeywordsPredicate(id));
+
+        assertEquals(1, model.getFilteredListingList().size());
     }
 
 }

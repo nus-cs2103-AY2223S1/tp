@@ -3,10 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingId;
+import seedu.address.model.listing.exceptions.ListingNotFoundException;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -28,12 +28,12 @@ public class DeleteListingCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws ListingNotFoundException {
         requireNonNull(model);
         Listing target = model.getListing(id);
 
         if (!model.hasListing(target)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_LISTING_ID);
+            throw new ListingNotFoundException(Messages.MESSAGE_INVALID_LISTING_ID);
         }
 
         model.deleteListing(target);

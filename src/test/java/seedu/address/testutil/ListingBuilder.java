@@ -7,9 +7,9 @@ import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingId;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Client;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Listing objects.
@@ -18,9 +18,8 @@ public class ListingBuilder {
 
     public static final String DEFAULT_ID = "House";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final Client DEFAULT_CLIENT = new ClientBuilder().build();
+    public static final String DEFAULT_CLIENT = "John Doe";
     public static final String DEFAULT_ASKING_PRICE = "1";
-    public static final Set<Tag> DEFAULT_TAGS = new HashSet<>();
 
     private ListingId id;
     private Address address;
@@ -32,11 +31,11 @@ public class ListingBuilder {
      * Creates a {@code ListingBuilder} with the default details.
      */
     public ListingBuilder() {
-        this.id = new ListingId(DEFAULT_ID);
-        this.address = new Address(DEFAULT_ADDRESS);
-        this.owner = DEFAULT_CLIENT.getName();
-        this.askingPrice = new Price(DEFAULT_ASKING_PRICE);
-        this.tags = DEFAULT_TAGS;
+        id = new ListingId(DEFAULT_ID);
+        address = new Address(DEFAULT_ADDRESS);
+        owner = new Name(DEFAULT_CLIENT);
+        askingPrice = new Price(DEFAULT_ASKING_PRICE);
+        tags = new HashSet<>();
     }
 
     /**
@@ -47,29 +46,30 @@ public class ListingBuilder {
         address = listingToCopy.getAddress();
         owner = listingToCopy.getName();
         askingPrice = listingToCopy.getAskingPrice();
+        tags = new HashSet<>(listingToCopy.getTags());
     }
 
     /**
      * Sets the {@code id} of the {@code Listing} that we are building.
      */
-    public ListingBuilder withId(ListingId id) {
-        this.id = id;
+    public ListingBuilder withId(String id) {
+        this.id = new ListingId(id);
         return this;
     }
 
     /**
      * Sets the {@code owner} of the {@code Listing} that we are building.
      */
-    public ListingBuilder withOwner(Name owner) {
-        this.owner = owner;
+    public ListingBuilder withOwner(String owner) {
+        this.owner = new Name(owner);
         return this;
     }
 
     /**
      * Sets the {@code askingPrice} of the {@code Listing} that we are building.
      */
-    public ListingBuilder withAskingPrice(Price askingPrice) {
-        this.askingPrice = askingPrice;
+    public ListingBuilder withAskingPrice(String askingPrice) {
+        this.askingPrice = new Price(askingPrice);
         return this;
     }
 
@@ -85,13 +85,18 @@ public class ListingBuilder {
     /**
      * Sets the {@code Tag} of the {@code Listing} that we are building.
      */
-    public ListingBuilder withTags(Set<Tag> tags) {
-        this.tags = tags;
+    public ListingBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
+    /**
+     * Builds a listing
+     */
     public Listing build() {
-        return new Listing(id, address, owner, askingPrice);
+        Listing listing = new Listing(id, address, owner, askingPrice);
+        listing.addTags(tags);
+        return listing;
     }
 
 }

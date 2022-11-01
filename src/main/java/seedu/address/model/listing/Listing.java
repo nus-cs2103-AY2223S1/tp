@@ -29,9 +29,10 @@ public class Listing implements Comparable<Listing> {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     ** Constructor for Listing
-     * @param address Address
-     * @param owner Person
+     * * Constructor for Listing
+     *
+     * @param address     Address
+     * @param owner       Person
      * @param askingPrice int
      */
     public Listing(ListingId id, Address address, Name owner, Price askingPrice) {
@@ -44,6 +45,7 @@ public class Listing implements Comparable<Listing> {
 
     /**
      * Gets the id of this listing.
+     *
      * @return id of listing
      */
     public ListingId getId() {
@@ -52,6 +54,7 @@ public class Listing implements Comparable<Listing> {
 
     /**
      * Gets the name of this owner.
+     *
      * @return name of owner
      */
     public Name getName() {
@@ -61,6 +64,7 @@ public class Listing implements Comparable<Listing> {
 
     /**
      * Gets the address of this listing.
+     *
      * @return address of listing
      */
     public Address getAddress() {
@@ -69,6 +73,7 @@ public class Listing implements Comparable<Listing> {
 
     /**
      * Gets the asking price of this listing.
+     *
      * @return asking price of listing
      */
     public Price getAskingPrice() {
@@ -77,6 +82,7 @@ public class Listing implements Comparable<Listing> {
 
     /**
      * Getter for a list of interested clients.
+     *
      * @return List(Person)
      */
     public List<Name> getInterestedClients() {
@@ -85,6 +91,7 @@ public class Listing implements Comparable<Listing> {
 
     /**
      * Adds prospective client to the interestedClients list.
+     *
      * @param client the interested client
      */
     public void addInterestedClient(Name client) {
@@ -93,12 +100,14 @@ public class Listing implements Comparable<Listing> {
 
     /**
      * Checks if the client is already in the listing.
+     *
      * @param client name of the client
      * @return true if the client is in the listing, false otherwise
      */
     public boolean hasInterestedClient(Name client) {
         return this.interestedClients.contains(client);
     }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -109,6 +118,7 @@ public class Listing implements Comparable<Listing> {
 
     /**
      * Adds the tags to the listing.
+     *
      * @param tags to be added
      */
     public void addTags(Set<Tag> tags) {
@@ -117,6 +127,7 @@ public class Listing implements Comparable<Listing> {
 
     /**
      * Checks if the tag already exists for this listing.
+     *
      * @param toCheck the tags to be checked
      * @return true if the tag exists, false otherwise
      */
@@ -160,7 +171,27 @@ public class Listing implements Comparable<Listing> {
     }
 
     /**
+     * Returns true if both persons have the same identity and data fields.
+     * This defines a stronger notion of equality between two persons.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Listing)) {
+            return false;
+        }
+
+        Listing otherListing = (Listing) other;
+        return otherListing.getId().equals(getId())
+                || otherListing.getAddress().equals(getAddress());
+    }
+
+    /**
      * String representation of Listing.
+     *
      * @return String
      */
     @Override

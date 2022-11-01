@@ -6,6 +6,6 @@ package seedu.address.model.listing.exceptions;
  */
 public class DuplicateListingException extends RuntimeException {
     public DuplicateListingException() {
-        super("Operation would result in duplicate listing");
+        super("Listing already exist in REal-Time.");
     }
 }

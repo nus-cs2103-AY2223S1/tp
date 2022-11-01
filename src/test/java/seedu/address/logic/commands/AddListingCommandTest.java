@@ -14,7 +14,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.listing.Listing;
-import seedu.address.model.listing.ListingId;
 import seedu.address.testutil.ListingBuilder;
 import seedu.address.testutil.ModelStub;
 
@@ -50,8 +49,8 @@ public class AddListingCommandTest {
 
     @Test
     public void equals() {
-        Listing alice = new ListingBuilder().withId(new ListingId("alice")).build();
-        Listing bob = new ListingBuilder().withId(new ListingId("bob")).build();
+        Listing alice = new ListingBuilder().withId("alice").build();
+        Listing bob = new ListingBuilder().withId("bob").build();
         AddListingCommand addAliceCommand = new AddListingCommand(
             alice.getId(), alice.getAddress(), alice.getName(), alice.getAskingPrice());
         AddListingCommand addBobCommand = new AddListingCommand(

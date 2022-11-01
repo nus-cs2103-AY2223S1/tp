@@ -10,10 +10,10 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.model.listing.exceptions.DuplicateListingException;
 import seedu.address.model.listing.exceptions.ListingNotFoundException;
 import seedu.address.model.person.Client;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -64,7 +64,7 @@ public class UniqueListingList implements Iterable<Listing> {
                 return listing;
             }
         }
-        throw new ListingNotFoundException();
+        throw new ListingNotFoundException(Messages.MESSAGE_LISTING_DOES_NOT_EXIST);
     }
 
     /**
@@ -77,11 +77,11 @@ public class UniqueListingList implements Iterable<Listing> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new ListingNotFoundException();
+            throw new ListingNotFoundException(Messages.MESSAGE_LISTING_DOES_NOT_EXIST);
         }
 
         if (!target.isSameListing(editedListing) && contains(editedListing)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateListingException();
         }
 
         internalList.set(index, editedListing);
@@ -94,7 +94,7 @@ public class UniqueListingList implements Iterable<Listing> {
     public void remove(Listing toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new ListingNotFoundException();
+            throw new ListingNotFoundException(Messages.MESSAGE_LISTING_DOES_NOT_EXIST);
         }
     }
 
