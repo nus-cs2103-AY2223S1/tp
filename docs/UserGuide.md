@@ -177,14 +177,22 @@ Adds a client to the FinBook.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME [m/UPCOMING_MEETING_DATES] [t/TAGS r/RISK_LEVEL]
 [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
 
-* `add` command will refresh the portfolio panel to display "no client selected for view yet!".
-* `m/UPCOMING_MEETING_DATES` can be in the `dd Mmm yyyy` or `dd Mmm yyyy HH:mm` format.
-
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12 Jan 2022 16:30 t/VIPClient
-  r/high pl/Prudential Health note/Client is currently having COVID`
-* `add n/Betsy Crowe t/VIPPClient e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan`
+  r/high pl/Prudential Health note/Client is currently having COVID` adds a client named John Doe, with a mobile number 
+  of 98765432, email address of johnd@example.com etc. to the client list.
+* `add n/Betsy Crowe t/VIPPClient e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan` 
+  adds a client named Betsy Crowe, with a mobile number of 1234567, email address of betsycrowe@example.com etc. to the client list.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: `add` command will refresh the portfolio panel to display "no client selected for view yet!".**
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+`m/UPCOMING_MEETING_DATES` can be in the `dd Mmm yyyy` or `dd Mmm yyyy HH:mm` format.
+</div>
 
 ---
 
@@ -199,13 +207,17 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] 
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* `edit` command will automatically view the updated portfolio of the edited client.
 
 Examples:
 
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567`
   and `johndoe@example.com` respectively and automatically displays the updated portfolio of the 1st client.
 * `edit 2 n/Betsy Crower` Edits the name of the 2nd client to be `Betsy Crower` and automatically displays the updated portfolio of `Betsy Crower`.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: `edit` command will automatically view the updated portfolio of the edited client.**
+</div>
 
 ---
 
@@ -303,20 +315,25 @@ Examples:
 
 ### 4.1.6. Viewing Portfolio of a specific client: `view`
 
-View a specific's client portfolio
+Views a specific's client portfolio so that you can analyse each client before their meeting.
 
 Format: `view INDEX`
 
 * Displays the portfolio of client at index `INDEX` on the Portfolio section
-* Portfolio includes risk level and current plans purchased by the client.
-* `find` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the updated client list.
-* `sort` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the updated client list.
+* Portfolio includes risk level, current plans purchased by the client and additional remarks.
 
 Examples:
 
 * `view 1` displays the risk level and current plans purchased by the 1st client of the Financial book data.
 * `view 2` displays the risk level and current plans purchased by the 2nd client of the Financial book data.
 * `find n/Alex` then `view 1` will display the portfolio of Alex.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source**:
+* `find` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the updated client list.
+* `sort` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the updated client list.
+</div>
 
 ---
 
