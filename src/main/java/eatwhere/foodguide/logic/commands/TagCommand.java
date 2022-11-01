@@ -28,9 +28,9 @@ public class TagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds tags to the eatery identified "
             + "by the index number used in the displayed eatery list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + " TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TAG + "halal";
+            + PREFIX_TAG + " halal";
 
     /**
      *  %1$s - s if multiple tags, else nothing (i.e. tags or tag)
