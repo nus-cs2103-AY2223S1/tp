@@ -30,7 +30,7 @@ public class DeleteStaffCommand extends Command {
             + "staff if its in the project. Checking if the staff is in the project is through staff name only.\n"
             + "Make sure you view the correct staff list before deleting a staff.\n"
             + "Parameters: "
-            + "INDEX (must be a positive integer) "
+            + "INDEX (must be a number from 1 to 2147483647) "
             + PREFIX_PROJECT_NAME + "PROJECT_NAME\n"
             + "Example: " + COMMAND_WORD + " 1" + " pn/CS2103T TP";
 

@@ -27,7 +27,7 @@ public class AddStaffCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to the project identified "
             + "by the index number used in the displayed project list.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a number from 1 to 2147483647) "
             + PREFIX_STAFF_NAME + "STAFF_NAME "
             + PREFIX_STAFF_CONTACT + "STAFF_PHONE "
             + PREFIX_STAFF_LEAVE + "LEAVE_STATUS "

@@ -37,7 +37,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed project list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Staff list for each project will not be changed and can only be updated using staff commands\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a number from 1 to 2147483647) "
             + "[" + PREFIX_PROJECT_NAME + "PROJECT_NAME] "
             + "[" + PREFIX_BUDGET + "PROJECT_BUDGET] "
             + "[" + PREFIX_DEADLINE + "PROJECT_DEADLINE] "
