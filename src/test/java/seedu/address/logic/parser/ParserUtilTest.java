@@ -53,8 +53,8 @@ public class ParserUtilTest {
     private static final Integer VALID_MONEY_PAID = 100;
     private static final String VALID_CLASS_DATE_TIME = "2022-05-10 1500-1600";
     private static final String VALID_FLEXIBLE_CLASS_DATE_TIME = "Sun 1500-1600";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TAG_1 = "beginner";
+    private static final String VALID_TAG_2 = "javaScript";
 
     private static final String WHITESPACE = " \t\r\n";
 
