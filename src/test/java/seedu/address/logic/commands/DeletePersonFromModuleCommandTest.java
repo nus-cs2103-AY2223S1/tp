@@ -197,5 +197,10 @@ public class DeletePersonFromModuleCommandTest {
             assertTrue(module.isSameModule(target));
             module = editedModule;
         }
+
+        @Override
+        public Boolean getHomeStatusAsBoolean() {
+            return true;
+        }
     }
 }
