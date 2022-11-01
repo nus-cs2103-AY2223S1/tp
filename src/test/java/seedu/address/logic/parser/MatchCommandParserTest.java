@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -16,7 +17,7 @@ public class MatchCommandParserTest {
     @Test
     public void parse_emptyString_parseFailure() {
         String expected = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                MatchCommand.MESSAGE_USAGE);
+                MESSAGE_MISSING_INDEX + MatchCommand.MESSAGE_USAGE);
         String input = "";
         assertParseFailure(parser, input, expected);
     }
@@ -24,7 +25,7 @@ public class MatchCommandParserTest {
     @Test
     public void parse_spaces_parseFailure() {
         String expected = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                MatchCommand.MESSAGE_USAGE);
+                MESSAGE_MISSING_INDEX + MatchCommand.MESSAGE_USAGE);
         String input = "          \n";
         assertParseFailure(parser, input, expected);
     }
@@ -32,7 +33,7 @@ public class MatchCommandParserTest {
     @Test
     public void parse_invalidArgs_parseFailure() {
         String expected = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                MatchCommand.MESSAGE_USAGE);
+                MESSAGE_MISSING_INDEX + MatchCommand.MESSAGE_USAGE);
         String input = "this is an invalid argument";
         assertParseFailure(parser, input, expected);
     }

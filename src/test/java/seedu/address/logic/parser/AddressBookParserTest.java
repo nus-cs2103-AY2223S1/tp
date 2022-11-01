@@ -108,7 +108,7 @@ public class AddressBookParserTest {
                 + " p_w/" + pet.getWeight().getValue()
                 + " p_s/" + pet.getSpecies().getValue()
                 + " p_v/" + pet.getVaccinationStatus().getVaccinationStatus()
-                + " p_p" + pet.getPrice().getPrice();
+                + " p_p/" + pet.getPrice().getPrice();
 
         AddPetCommand command = (AddPetCommand) parser.parseCommand(input);
         AddPetCommand expected = new AddPetCommand(pet, INDEX_FIRST);
