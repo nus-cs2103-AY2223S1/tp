@@ -219,6 +219,10 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedBuyer);
 
         addressBook.setBuyer(target, editedBuyer);
+        List<Order> orderFromId = addressBook.getOrderFromId(target.getOrderIds());
+        for (Order order: orderFromId) {
+            order.setBuyer(editedBuyer);
+        }
         collect();
     }
 
@@ -227,6 +231,10 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedSupplier);
 
         addressBook.setSupplier(target, editedSupplier);
+        List<Pet> petFromId = addressBook.getPetFromId(target.getPetIds());
+        for (Pet pet: petFromId) {
+            pet.setSupplier(editedSupplier);
+        }
         collect();
     }
 
@@ -235,6 +243,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedDeliverer);
 
         addressBook.setDeliverer(target, editedDeliverer);
+
         collect();
     }
 
@@ -384,6 +393,11 @@ public class ModelManager implements Model {
     public List<Pet> getPetsFromSupplier(Supplier supplier) {
         requireNonNull(supplier);
         return addressBook.getPetFromId(supplier.getPetIds());
+    }
+
+    @Override
+    public void clearMasterList() {
+        filteredAll.clear();
     }
 
     private void collect() {
