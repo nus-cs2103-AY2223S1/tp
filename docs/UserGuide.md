@@ -174,12 +174,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be 91234567 and johndoe@example.com respectively.
-*  `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be Betsy Crower and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 #### Locating persons by name: `find`
 
@@ -205,12 +204,15 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+--------------------------------------------------------------------------------------------------------------------
 ### Tasks Management
+
+The following commands are for managing your hackathon tasks. These tasks can be related to software development, product design, project presentation etc. 
 
 #### Adding a task: `addTask`
 
-Adds a task to the task list.
-* You cannot add a task same as one that currently exists in the taskList (this would result in duplicates)
+Adds a task to the task list. 
+* You cannot add a task with the same name as one that currently exists in the task list. 
 
 Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]`
 
@@ -225,6 +227,7 @@ Examples:
 #### Deleting a task: `deleteTask`
 
 Deletes a task from the task list.
+* Note: The task will be permanently deleted. If you want to mark a task as complete but have it remain in the task list, use the [`editTask`](#editing-a-task-edittask) command instead. 
 
 Format: `deleteTask TASK_NUMBER`
 * Deletes the task at the specified `TASK_NUMBER`.
@@ -257,7 +260,7 @@ Refer to the [Task Parameters](#task-parameters) section for more details about 
 #### Viewing all tasks: `listTasks`
 
 Lists all existing tasks from the task list.
-Used after calling [filter](#filtering-a-task-filter) to remove existing filters and list all existing tasks.
+Used after calling [`filter`](#filtering-a-task-filter) to remove existing filters and list all existing tasks.
 
 Format: `listTasks`
 
