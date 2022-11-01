@@ -81,6 +81,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Set dependencies
         this.primaryStage = primaryStage;
+        primaryStage.requestFocus();
         this.logic = logic;
 
         // Configure the UI
