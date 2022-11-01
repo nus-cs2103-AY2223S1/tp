@@ -99,8 +99,8 @@ As such, the features available to you are split into **4** main features:
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `n…` after them can be used multiple times and at least n times.<br>
-  e.g. `[t/TAG]0…​` can be used as `0…​` (i.e. 0 times).
+* Items with `…` after them can be used multiple times.<br>
+  e.g. `[t/TAG]…​` can be used as `​` (i.e. 0 times).
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -325,17 +325,17 @@ An existing client in your Client Book can be assigned to an Event or Policy.<br
 To find out how to do so, you can refer to the [Adding an Event](#adding-an-event--addevent) guide to assign a Client to an Event or refer to the [Assigning a Policy to a Client](#assigning-a-policy-to-a-client-assign) guide to find out how you can assign a Client to a Policy.
 
 ## Policy Features
-Store policies from a large assortment of companies, with different coverages and customised customisable commissions! Assign them to a client when you secure a deal with ease.
+Store policies from a large assortment of companies, with different coverages and customisable yearly commissions! Assign them to a client when you secure a deal with ease.
 
 ### Adding a policy: `addPolicy`
 
 Adds a policy to the address book.
 
-Format: `addPolicy ti/TITLE cmp/COMPANY_CODE cms/Y1COMMISION% Y2COMISSION% Y3ONWARDS% [cov/COVERAGE]1...`
+Format: `addPolicy ti/TITLE cmp/COMPANY_CODE cms/Y1COMMISION% Y2COMISSION% Y3ONWARDS% cov/COVERAGE [cov/COVERAGE]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A policy can one or more coverages (including 0).
-</div>
+A policy must have one or more coverages.
+</div>  
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 These are the valid coverages and their corresponding codes.
@@ -368,6 +368,10 @@ These are the valid companies and their corresponding codes.
 | AIA          | AIA Singapore Private Limited      |
 | AVI          | Aviva Limited                      |
 | FWD          | Singapore Private Limited          |
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Commissions must take positive percentages within 0% to 100%! (e.g. 10%, 3.5%, 1.0%)
+</div>  
 
 Examples:
 * `addPolicy ti/PruShield cmp/AIA cms/10% 5% 1% cov/LIFE`
@@ -438,7 +442,7 @@ If you have successfully sealed a deal with a client, you can keep track of this
 
 If you have yet to add either your Client or Policy to the Application, you can refer to the [Adding a Client](#adding-a-client-add) or [Adding a Policy](#adding-a-policy) guides.
 
-Format: `assign INDEXOFCLIENT INDEXOFPOLICY pr/PREMIUM sd/STARTDATE ed/ENDDATE`
+Format: `assign CLIENT_INDEX POLICY_INDEX pr/PREMIUM sd/STARTDATE ed/ENDDATE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.

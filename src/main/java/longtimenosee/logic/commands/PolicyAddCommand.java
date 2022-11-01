@@ -16,7 +16,7 @@ import longtimenosee.model.policy.Policy;
 public class PolicyAddCommand extends Command {
     public static final String COMMAND_WORD = "addPolicy";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to the LTNS. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to the LTNS. \n"
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             //Todo: Replace message with a command that lists out different companies
