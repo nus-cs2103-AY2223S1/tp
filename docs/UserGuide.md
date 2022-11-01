@@ -63,30 +63,23 @@ Titles, Locations and Descriptions that are too long will be truncated. To view 
 
 
 ## Features
-**Notes about the command format:**
 
-Words in UPPER_CASE are the parameters to be supplied by the user.
-e.g. in `add n/TITLE`, TITLE is a parameter which can be used as `add n/Switzerland Trip`
+<div markdown="block" class="alert alert-info">
+   
+**:information_source: Notes about the command format:**<br>
 
-Items in square brackets are optional.
-e.g `NAME [t/TAG]` can be used as `John Doe t/Friend` or as `John Doe`.
+|`Component`|`Formatting Details`|
+|:-:|:--|
+|**Input**| Words in UPPER_CASE are the inputs to be supplied by the user. <br> e.g. in `add n/TITLE`, TITLE is an input which can be used as `add n/Switzerland Trip`|
+|**Optional Inputs**| Items in square brackets are optional. <br> e.g `NAME [t/TAG]` can be used as `John Doe t/Friend` or as `John Doe`. |
+|**Prefixes**| The relevant prefixes must be used to separate parameters supplied by the user. <br> e.g. in `add-e n/TITLE d/DESCRIPTION`, `n/`  and `d/` are two designated used to separate the two parameters supplied which can be used as `add-e n/Sightseeing d/Visit mountains`.|
+|**Unnecessary inputs** | Unnecessary inputs for commands that do not require inputs (such as `list`) will be ignored. <br> e.g. if the command specifies `list 123`, it will be interpreted as `list`.|
+|**Ordering of inputs**| Inputs can be in any order. <br> e.g. if the command specifies `n/TITLE d/DESCRIPTION`, `d/DESCRIPTION n/TITLE` is also acceptable.|
+|**Multiple inputs**| If an input is expected only once in the command but you specified it multiple times, only the last occurrence of the input will be taken. <br> e.g. if you specify `n/Singapore Trip n/Malaysia Trip`, only `n/Malaysia Trip` will be taken.|
+|**Case Sensitivity**| `TITLE` is case-sensitive, so titles with the same letters and spacing but different capitalizations will be considered different. This applies for both events and trips. This is done in order to allow for the differentiation of words with different meanings when different capitalizations are used.<br> e.g. Two different trips with titles `December Turkey trip` and `December turkey trip` may refer to two different trips, where the former refers to a trip to Turkey, while the latter refers to a trip that involves the consumption of turkey.|
+|**Duplicates**| Events with the same title are considered duplicates, and duplicate events are not allowed. <br> Trips with the same title are considered duplicates, and duplicate trips are not allowed.|
 
-The relevant prefixes must be used to separate parameters supplied by the user.
-e.g. in `add-e n/TITLE d/DESCRIPTION`, `n/`  and `d/` are two designated used to separate the two parameters supplied which can be used as `add-e n/Sightseeing d/Visit mountains`.
-
-Extraneous parameters for commands that do not take in parameters (such as bye) will be ignored.
-e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
-
-Parameters can be in any order. e.g. if the command specifies `n/TITLE d/DESCRIPTION`, `d/DESCRIPTION n/TITLE` is also acceptable.
-
-If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.
-e.g. if you specify `n/title1 n/title2`, only `n/title2` will be taken.
-
-`TITLE` is case-sensitive, so titles with the same letters and spacing but different capitalizations will be considered different.
-
-Events with the same title are considered duplicates, and duplicate events are not allowed.
-
-Trips with the same title are considered duplicates, and duplicate trips are not allowed.
+</div>
 
 ### Managing Events
 
