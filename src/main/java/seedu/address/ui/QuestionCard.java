@@ -43,8 +43,8 @@ public class QuestionCard extends UiPart<Region> {
      */
     public QuestionCard(Question question, int displayedIndex) {
         super(FXML);
-        this.question = question;
         id.setText(displayedIndex + ". ");
+        this.question = question;
         description.setText(question.getDescription().descriptionString);
         if (question.isImportant()) {
             applyStyleToImportantTag();

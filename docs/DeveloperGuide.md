@@ -105,8 +105,7 @@ The `UI` component,
 
 ### Logic component
 
-**
-API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -115,15 +114,15 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddStuCommand`) which is
    executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletestu 1")` API
 call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletestu 1` Command](images/DeleteStuSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -135,10 +134,10 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a
-  placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as
+  placeholder for the specific command name e.g., `AddStuCommandParser`) which uses the other classes shown above to parse
+  the user command and create a `XYZCommand` object (e.g., `AddStuCommand`) which the `AddressBookParser` returns back as
   a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
+* All `XYZCommandParser` classes (e.g., `AddStuCommandParser`, `DeleteStuCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -248,7 +247,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 - **Alternative 2: Only name, telegram handle and email needs to be keyed in when adding student**
   - Pros: Faster to add a student
   - Cons: CS2103T TA has to use another command to change the response and attendance number of the student.
-=======
+
 ### Add Response feature 
 
 The `AddResponse` feature allows users to edit the response count of a `Student` object. When successfully edited,
@@ -321,21 +320,21 @@ address book state.
 
 Step 2. The user execute `addq Why?` command to add question called "Why?" to the question list ('UniqueQuestionList').
 The `addq` command calls `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, causing the modified address book 
-after the `addq Why?` command executes to be saved in the `addressBook`.
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution 
+after the `addq Why?` command executes to be saved in the `addressBook`.  
+
+**Note:** 
+1. If a command fails its execution 
 due to incorrect command format, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, 
 so the address book state will not be saved into `addressBook`. User will retype their command.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If upon invoking `AddressBook#hasQuestion` 
+2. If upon invoking `AddressBook#hasQuestion` 
 method and return value is `true`, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, 
 so 'UniqueQuestionList' and `addressBook` will not be updated.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note: Questions added not case sensitive. For 
+3. Questions added not case-sensitive. For 
 example, if a question in the `question list` is "why?", another question called "WHY?" can be added. Duplicates are 
 not allowed. E.g. adding another question called "why?".
-** .
 
-</div>
+
+
 
 The following sequence diagram shows how the add question operation works:
 ![AddQSequenceDiagram](images/AddQSequenceDiagram.png)
@@ -375,7 +374,7 @@ initial Json data stored.
 Step 2. The user executes `attendance 1` command to increment the attendance of the 1st student in the one-indexed
 `UniqueStudentList`. The `attendance` command calls `AttendanceCommandParser#parse()`).
 
-***NOTE:***
+**Note:**
 1. If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user.
 2. If the resulting attendance is not a valid number (ie, out of bounds or negative), it will return an error to the
    user.
@@ -385,7 +384,7 @@ Step 3. `AttendanceCommandParser` returns and `AttendanceCommand` with the newly
 Step 4. `AttendanceCommand` calls `Model#setStudent` and `Model#updateFilteredStudentList` to edit the attendance
 attribute of the `Student`.
 
-Step 5. After successfully editing the attendance attribute, `AttendanceCommand` will return thr `CommandResult` to the
+Step 5. After successfully editing the attendance attribute, `AttendanceCommand` will return the `CommandResult` to the
 `Ui`.
 
 The following sequence diagram shows how the attendance feature is executed.
@@ -405,106 +404,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 - **Alternative 2:** Increment or decrement attendance of student by taking in a sign and a value.
     - Pros: Attendance can be modified easily.
     - Cons: Implementation is relatively complicated and require more exception handling.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
-history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
-following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()`
-and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
-initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command
-calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
-to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
-state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`
-, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing
-the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
-once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once
-to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such
-as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
-Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
-pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be
-purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
-desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -541,24 +440,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|------------|-----------------------------------------------------|---------------------------------------------------------------------|
 | `* * *`  | CS2103T TA | add a new student                                   | keep track of my student's name, email and telegram handle          |
 | `* * *`  | CS2103T TA | edit a student                                      | correct any errors or make any changes if needed                    |
-| `* * *`  | CS2103T TA | list students                                       | have an overview of all the students under me                       |
-| `* * *`  | CS2103T TA | add student's attendance                            | track student's attendance for grading purposes                     |
-| `* * *`  | CS2103T TA | add help tag to a student                           | see which students need more attention                              |
 | `* * *`  | CS2103T TA | delete a student                                    | remove entries I no longer need                                     |
+| `* * *`  | CS2103T TA | add student's attendance                            | track student's attendance for grading purposes                     |
 | `* * *`  | CS2103T TA | add students' response count                        | keep track of student's participation                               |
-| `* * *`  | CS2103T TA | find specific student(s)                            | see the details of the specific student(s)                          |
+| `* * `   | CS2103T TA | add help tag to a student                           | see which students need more attention                              |
+| `* * `   | CS2103T TA | find specific student(s)                            | see the details of the specific student(s)                          |
 | `* * *`  | CS2103T TA | list out all my students                            | have an overview of all the students under me                       |
-| `* * *`  | CS2103T TA | list out all the tutorial's details                 | have an overview of all the tutorials I have                        |
-| `* * *`  | CS2103T TA | mark certain tutorials as done                      | keep track of incomplete tutorials                                  |
 | `* * *`  | CS2103T TA | add questions asked by students during the tutorial | address them in the future                                          |
-| `* * *`  | CS2103T TA | mark a question as important                        | to prioritise which questions to address first                      |
-| `* * *`  | CS2103T TA | mark a question as unimportant                      | undo the action of accidentally marking such questions as important |
 | `* * *`  | CS2103T TA | delete a question in the list of questions          | remove the questions that I have addressed                          |
+| `* * `   | CS2103T TA | mark a question as important                        | to prioritise which questions to address first                      |
+| `* * `   | CS2103T TA | mark a question as unimportant                      | undo the action of accidentally marking such questions as important |
 | `* * *`  | CS2103T TA | list out all the question's details                 | have an overview of all the questions I have                        |
 | `* * *`  | CS2103T TA | add a new tutorial                                  | keep track of the time and group number of a tutorial               |
 | `* * *`  | CS2103T TA | delete a tutorial                                   | remove a tutorial I have already finished                           |
-
-*{More to be added}*
+| `* * `   | CS2103T TA | mark a tutorial as complete                         | to see which tutorials I have already finished                      |
+| `* * `   | CS2103T TA | mark a tutorial as incomplete                       | undo the action of accidentally marking tutorials as complete       |
+| `* * *`  | CS2103T TA | list out all the tutorial's details                 | have an overview of all the tutorials I have                        |
 
 ### Use cases
 
@@ -573,7 +470,7 @@ otherwise)
 **MSS**
 
 1. User requests to add a student.
-2. SETA adds the student with his or her details into the student list.
+2. SETA adds the student with his or her details into the student list.  
    Use case ends.
 
 **Extensions**
@@ -606,27 +503,26 @@ otherwise)
 
 ****
 
-**Use case: Find student(s)**
+**Use case: Delete a student**
 
 **MSS**
 
-1. User requests to find a student or student(s) with the specific keyword.
-2. SETA shows a list of students that contains the keyword(s).
+1. User requests to list students.
+2. SETA shows a list of students.
+3. User requests to delete a specific student in the list.
+4. SETA deletes the student.
+
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
   Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. SETA shows an error message.
 
-****
-
-**Use case: List students**
-
-**MSS**
-
-1. User requests to list students.
-2. SETA shows a list of students.
+      Use case resumes at step 2.
 
 
 ****
@@ -648,15 +544,17 @@ otherwise)
 
   Use case ends.
 * 3a. The given index is invalid.
-    * 3a1. SETA shows an error message. Use case resumes at step 2.
+    * 3a1. SETA shows an error message.
+
+      Use case resumes at step 2.
 
 * 3b. Resulting attendance is negative.
     * 3b1. SETA shows an error message.
 
       Use case resumes at step 2.
+    
 
 ****
-
 
 **Use case: Add student's response count**
 
@@ -664,8 +562,8 @@ otherwise)
 
 1. User requests to list students.
 2. SETA shows a list of students.
-3. User requests to add response count of a specific student.
-4. SETA adds the response count.
+3. User requests to add response count of a specific student in the list.
+4. SETA adds the response count to the student.
 
    Use case ends.
 
@@ -675,55 +573,55 @@ otherwise)
 
   Use case ends.
 
-* 3a. The given name is invalid.
-
+* 3a. The given index is invalid.
     * 3a1. SETA shows an error message.
 
       Use case resumes at step 2.
-
+    
 ****
-
 
 **Use case: Add help tag**
 
 **MSS**
 
-1. User requests to add help tag to a specific student.
+1. User requests to add help tag to a specific student in the list.
 2. SETA adds a help tag to that student.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Invalid or non-existent student name.
+* 1a. The given index is invalid.
     * 1a1. SETA shows an error message.
 
       Use case ends.
 
 ****
 
-
-**Use case: Delete a student**
+**Use case: Find student(s)**
 
 **MSS**
 
-1. User requests to list students.
-2. SETA shows a list of students.
-3. User requests to delete a specific student in the list.
-4. SETA deletes the person.
-
-   Use case ends.
+1. User requests to find a student or student(s) with the specific keyword(s).
+2. SETA shows a list of students that contains the keyword(s).
 
 **Extensions**
 
 * 2a. The list is empty.
 
   Use case ends.
-* 3a. The given index is invalid.
-    * 3a1. SETA shows an error message. Use case resumes at step 2.
+
 
 ****
 
+**Use case: List students**
+
+**MSS**
+
+1. User requests to list students.
+2. SETA shows a list of students.
+
+****
 
 **Use case: Add a question**
 
@@ -742,101 +640,80 @@ otherwise)
 
 ****
 
+**Use case: Delete question**
 
-**Use case: Mark question**
-
-1. User requests to list questions
-2. SETA shows list of questions
-3. User requests to mark a specific question as important
-4. SETA marks the question as important
+1. User requests to delete a specific question in the list.
+2. SETA deletes the question.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 1b. The given index is invalid.
 
-    * 3a1. SETA shows an error message.
+    * 1b1. SETA shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
+
+****
+
+**Use case: Mark question**
+
+1. SETA shows list of questions.
+2. User requests to mark a specific question in the list as important.
+3. SETA marks the question as important.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+
+    * 2a1. SETA shows an error message.
+
+      Use case resumes at step 1.
 
 ****
 
 
 **Use case: Unmark question**
 
-1. User requests to list questions.
-2. SETA shows list of questions.
-3. User requests to mark a specific question as unimportant.
-4. SETA marks the question as unimportant.
+1. SETA shows list of questions.
+2. User requests to mark a specific question in the list as unimportant.
+3. SETA marks the question as unimportant.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
     * 3a1. SETA shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
+
 
 ****
-
-
-**Use case: Delete question**
-
-1. User requests to list questions.
-2. SETA shows list of questions.
-3. User requests to delete a specific question.
-4. SETA deletes the question.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. SETA shows an error message.
-
-      Use case resumes at step 2.
-
-****
-
-
-**Use case: List questions**
-
-**MSS**
-
-1. User requests to list questions.
-2. SETA shows a list of questions.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-****
-
 
 **Use case: Add a tutorial**
 
 **MSS**
 
 1. User requests to add a tutorial.
-2. SETA adds the tutorial with the group number and time into the tutorial list. Use case ends.
+2. SETA adds the tutorial with the tutorial details into the tutorial list.   
+Use case ends.
 
 **Extensions**
 
@@ -850,60 +727,68 @@ otherwise)
 
 **Use case: Delete a tutorial**
 
-1. User requests to list tutorials.
-2. SETA shows list of tutorials.
-3. User requests to delete a specific tutorial.
-4. SETA deletes the tutorial.
+1. SETA shows list of tutorials.
+2. User requests to delete a specific tutorial in the list.
+3. SETA deletes the tutorial.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. SETA shows an error message.
+    * 2a1. SETA shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
 ****
 
 
 **Use case: Mark tutorial**
 
-1. User requests to list students.
-2. SETA shows a list of students.
-3. User requests to mark a specific tutorial as done.
-4. SETA marks the tutorial as done.
+1. SETA shows a list of tutorials.
+2. User requests to mark a specific tutorial in the list as done.
+3. SETA marks the tutorial as done.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. SETA shows an error message.
+    * 2a1. SETA shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
 ****
 
+**Use case: Unmark tutorial**
 
-**Use case: List out tutorials**
-
-**MSS**
-
-1. User requests to list tutorials.
-2. SETA shows a list of tutorials.
+1. SETA shows a list of tutorials.
+2. User requests to mark a specific tutorial in the list as undone.
+3. SETA marks the tutorial as undone.
 
    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+
+    * 2a1. SETA shows an error message.
+
+      Use case resumes at step 1.
 
 
 ****
@@ -930,10 +815,10 @@ otherwise)
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+ **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
-</div>
+
 
 ### Launch and shutdown
 
@@ -941,40 +826,75 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
-       optimum.
+    2. Double-click the jar file Expected: Shows the GUI. The window size will take up the 
+       full screen.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+    2. Re-launch the app by double-clicking the jar file.<br>
+        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
-### Deleting a person
 
-1. Deleting a person while all persons are being shown
+### Deleting a student
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Deleting a student while all students are being shown
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
+    1. Prerequisites: List all students using the `liststu` command. Multiple students in the list.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    2. Test case: `deletestu 1`<br>
+       Expected: First student is deleted from the list. Details of the deleted student shown in the status message.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    3. Test case: `deletestu 0`<br>
+       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect deletestu commands to try: `deletestu`, `deletestu x` (where x is larger than the list size) <br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Add response count to a student 
 
-### Saving data
+1. Add a response count to a student while all students are being shown
 
-1. Dealing with missing/corrupted data files
+    1. Prerequisites: List all students using the `liststu` command. Multiple students in the list.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    2. Test case: `addresponse 1 m/7`<br>
+       Expected: Response count of 7 added to the first student in the list. Success message shown in the status bar.
 
-1. _{ more test cases …​ }_
+    3. Test case: `addresponse 0 m/7`<br>
+       Expected: No response count added. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect addresponse commands to try: `addresponse`, `addresponse x m/7` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Add help tag to a student
+
+1. Add help tag to a student while all students are being shown.
+
+    1. Prerequisites: List all students using the `liststu` command. Multiple students in the list.
+
+    2. Test case: `helpstu 1`<br>
+       Expected: Help tag added to first student in the list. Details of student shown in the status message.
+
+    3. Test case: `helpstu 0`<br>
+       Expected: No help tag added. Error details shown in status message. Status bar remains the same.
+
+    4. Other incorrect marktut commands to try: `helpstu`, `helpstu x` (where x is larger than list size), `helpstu -1` <br>
+       Expected: Similar to previous
+    
+### Marking a tutorial as complete
+
+1. Marking a tutorial as complete while all tutorials are being shown
+
+   1. Prerequisites: At least one tutorial in the tutorial list.
+   
+   2. Test case: `marktut 1`<br>
+      Expected: First tutorial is deleted from the list. Details of deleted tutorial shown in the status message.
+   
+   3. Test case: `marktut 0`<br>
+      Expected: No tutorial marked. Error details shown in status message. Status bar remains the same.
+   
+   4. Other incorrect marktut commands to try: `marktut`, `marktut x` (where x is larger than list size), `marktut -1` <br>
+      Expected: Similar to previous 
+

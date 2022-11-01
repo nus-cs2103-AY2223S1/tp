@@ -41,7 +41,7 @@ public class UniqueTutorialListTest {
     public void contains_tutorialWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTutorialList.add(TUTORIAL1);
         Tutorial editedTutorial = new TutorialBuilder().withContent("UML Diagrams")
-            .withGroup("T08").withTime("2022-10-01T08:00:00")
+            .withGroup("T08").withTime("2022-10-01 0800")
             .withStatus(false).build();
         assertTrue(uniqueTutorialList.contains(editedTutorial));
     }
@@ -85,7 +85,7 @@ public class UniqueTutorialListTest {
     public void setTutorial_editedTutorialHasSameIdentity_success() {
         uniqueTutorialList.add(TUTORIAL1);
         Tutorial editedTutorial = new TutorialBuilder().withContent("UML Diagrams")
-            .withGroup("T08").withTime("2022-10-01T08:00:00")
+            .withGroup("T08").withTime("2022-10-01 0800")
             .withStatus(false).build();
         uniqueTutorialList.setTutorial(TUTORIAL1, editedTutorial);
         UniqueTutorialList expectedUniqueTutorialList = new UniqueTutorialList();

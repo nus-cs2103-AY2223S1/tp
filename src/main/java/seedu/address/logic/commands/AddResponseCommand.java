@@ -71,6 +71,6 @@ public class AddResponseCommand extends Command {
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
-        return new CommandResult(MESSAGE_ADDRESPONSE_SUCCESS + String.valueOf(index.getOneBased()));
+        return new CommandResult(MESSAGE_ADDRESPONSE_SUCCESS + studentToEdit.getName().toString());
     }
 }
