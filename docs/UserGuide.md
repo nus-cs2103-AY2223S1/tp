@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Condonery is a desktop app made for property agents primarily used for managing client contacts and condo listings.
+Condonery is a desktop app made for property agents primarily used for managing client contacts and property listings.
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, Condonery can get your contact management tasks done faster than traditional GUI apps.
 
@@ -54,13 +54,101 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
     * **`list -p`** : Lists all properties.
 
-    * **`add -p`**`n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 p/100,000 t/luxury` : Adds a listing named `Pinnacle@Duxton` to the property directory.
+    * **`add -p`**`n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 p/100,000 h/CONDO t/luxury` : Adds a listing named `Pinnacle@Duxton`, with the inputted details, to the property directory.
 
     * **`list -p delete`**`3` : Deletes the 3rd property shown in the current list.
 
     * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features-syntax) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Property and client attributes
+
+In Condonery, properties and clients can hold many different attributes. These attributes are denoted by options (e.g. `n/` for name) when using commands like `add -p`, `add -c`, `edit -p` or `edit -c`.
+This section gives a breakdown of each attribute and its option counterpart.
+
+### Shared attributes
+#### Name
+Refers to the name of a property or client.
+Each property or client can only have one name.
+
+Option: `n/`
+Example: `n/PINNACLE@DUXTON`
+
+#### Address
+Refers to the address of a property or client.
+Each property or client can only have one address.
+
+Option: `a/`
+Example: `a/Cantonment Rd, #1G, 085301`
+
+#### Tag
+Refers to the given tags of a property or client. Can be used to label a property or client with important details.
+The only requirement for tags is that they have to be alphanumerical.
+Each property or client can have multiple tags.
+
+Option: `t/`
+Example: `t/High-end`, `t/Friend`
+
+#### Image
+Refers to the given image for a property or client.
+Each property or client can only have one image.
+The user will be prompted to select an image in a separate window after successful usage of this option in the context of whichever command the optionwas used for.
+
+Option: `-i`
+
+### Property attributes
+#### Price
+Refers to the general price to purchase a unit for a property.
+Each property can only have one price.
+
+Option: `p/`
+Example: `p/1,000,000`
+
+#### Property type
+Refers to the type of a property.
+Each property can only have one property type.
+Valid property types:
+* HDB
+* CONDO
+* LANDED
+Arguments for this option are case-insensitive.
+
+Option: `h/`
+Example: `h/HDB`, `h/Condo`
+
+#### Property status
+Refers to the status of a property.
+Each property can only have one property status.
+Valid property statuses:
+* AVAILABLE
+* SOLD
+* PENDING
+Arguments for this option are case-insensitive.
+
+Option: `s/`
+Example: `s/AVAILABLE`, `s/PENDING`
+
+#### Interested clients
+Refers to the clients that are interested in a property.
+Each property can have multiple clients interested in it.
+This option takes in **case-insensitive** arguments and attempts to link it to the name of a client.
+Arguments will not be accepted if it links to no clients, or if it links to more than one client.
+
+Option: `ic/`
+Example: `ic/Samuel`, `ic/bob`
+
+### Client attributes
+#### Interested properties
+Refers to properties that a client is interested in.
+Each client can be interested in multiple properties.
+This option takes in **case-insensitive** arguments and attempts to link it to the name of a property.
+Arguments will not be accepted if it links to no properties, or if it links to more than one property.
+
+Option: `ip/`
+Example: `ip/duxton`, `ip/rosewood`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -89,7 +177,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
   e.g. if you specify `p/1,000,000 p/2,000,000`, only `p/2,000,000` will be taken.
 
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `clear -p`  and `clear -c`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -127,23 +215,35 @@ Format: `exit`
 
 Adds a property to the property directory.
 
-Format: `add -p n/NAME a/ADDRESS p/PRICE [-i] [t/TAG]…​`
+Format: `add -p n/NAME a/ADDRESS p/PRICE h/PROPERTY_TYPE [-i] [s/PROPERTY_STATUS] [t/TAG]… [ic/INTERESTED_CLIENTS]…​`
+
+Mandatory parameters:
+- Name: `n/`
+- Address: `a/`
+- Price: `p/`
+- Property type: `h/`
+
+Optional parameters:
+- Image: `-i`
+- Property status: `s/`
+- Tags: `t/`
+- Interested clients: `ic/`
 
 Required parameters: `NAME`, `ADDRESS`, `PRICE`, `PROPERTY_TYPE`
 Optional Parameters: `TAG`, `IMAGE`, `INTERESTED_CLIENTS`, `PROPERTY_STATUS`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A property can have any number of tags (including 0)
+* A property can have any number of tags (including 0)
+* A property can have any number of interested clients (including 0)
+* The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the command.
+* The `h/PROPERTY_TYPE` flag specifies the type of property. It can only be either HDB, CONDO, or LANDED.
 </div>
 
 Examples:
-* `add -p n/PINNACLE@DUXTON a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450 p/1,000,000 h/HDB t/cheap`
-* `add -p n/SEMAKAU LANDFILL a/Straits Boulevard p/1,000 h/CONDO t/high-end`
+* `add n/Rosewood Condo a/1 Rosewood Dr p/2,000,000 h/CONDO`
+* `add n/PINNACLE@DUXTON a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450 p/1,000,000 h/HDB -i s/AVAILABLE t/cheap ic/Samuel ic/Bob`
+* `add n/SEMAKAU LANDFILL a/Straits Boulevard p/1,000 h/CONDO t/high-end t/convenient location ic/Jaime`
 
-The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the
-command.
-
-The `h/PROPERTY_TYPE` flag specifies the type of property. It can only be either HDB, CONDO, or LANDED.
 
 ![file_chooser](images/fileChooser.png)
 
@@ -250,7 +350,7 @@ Format: `select -p INDEX`
 * The GUI changes to display just the selected property in the property directory,
 while clients interested in that property are shown in the client directory.
 
-### Clearing all entries : `clear`
+### Clearing all entries : `clear -p`
 
 Clears all properties from the property directory.
 
@@ -277,11 +377,28 @@ If your changes to the data file makes its format invalid, both the Property dir
 ### Adding a client profile: `add -c`
 
 Adds a client profile to the client directory.
-Format: `add -c n/NAME a/ADDRESS [t/TAG]...`
-Tips:
-* At least one of the optional fields must be provided.
-  Examples:
-* `add -c n/Bob a/Cinammon College`
+
+Format: `add -c n/NAME a/ADDRESS [-i] [t/TAG]… [ip/INTERESTED_PROPERTIES]…`
+
+Mandatory parameters:
+- Name: `n/`
+- Address: `a/`
+
+Optional parameters:
+- Image: `-i`
+- Tags: `t/`
+- Interested properties: `ip/`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A client can have any number of tags (including 0)
+</div>
+
+The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the command.
+
+Examples:
+* `add n/linda a/Pasir Ris`
+* `add n/Bob a/RC4 t/Spendthrift`
+* `add n/Samuel a/Yishun Street 2 Blk123 t/friend t/thrify -i`
 
 ### Editing a client profile: `edit -c`
 
@@ -336,6 +453,12 @@ Format: `select -c INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The GUI changes to display just the selected client in the client directory,
 while properties the client is interested in are shown in the property directory.
+
+### Clearing all entries : `clear -c`
+
+Clears all clients from the client directory.
+
+Format: `clear -c`
 
 --------------------------------------------------------------------------------------------------------------------
 
