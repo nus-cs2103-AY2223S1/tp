@@ -493,6 +493,8 @@ Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
 * The order of the `PREFIX/KEYWORD` pair does not matter. e.g. `n/Alice p/12345678` vs `p/12345678 n/Alice`
 * `KEYWORDS` must not contain the `/` character.
 * If there are repeated `PREFIXES`, only the latest one will be taken.
+* The `<time>` field should be searched in the `HH:MM-HH:MM` format. e.g. `find t/18:00` or `find t/09:00-11:00`
+* When searching the `<level>` field, a space must be included between the level and number if the number is to be specified. e.g. `find l/secondary 1` instead of `find l/secondary1`
 
 Examples:
 * `find n/john` 
@@ -593,6 +595,8 @@ Examples:
 <img src="images/unassignCommand_before.png"/>
 
 </p>
+
+<p align="center">
 
 <img src="images/unassignCommand_after.png"/>
 
