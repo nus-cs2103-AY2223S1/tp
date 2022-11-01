@@ -15,34 +15,6 @@ html {
     width: 21px
 }
 
-.toc-button {
-  height: 16px;
-  padding: 6px 8px;
-  background-color: rgba(12, 12, 12, 0.75);
-  border-radius: 16px;
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  display: flex;
-  align-items: center;
-  transition: all 0.2s ease;
-}
-
-.toc-button:hover {
-  background-color: rgba(12, 12, 12, 0.85);
-}
-
-.toc-button svg {
-  height: 16px;
-  width: 16px;
-}
-
-.toc-button span {
-  margin-left: 4px;
-  color: white;
-  font-size: 0.875rem;
-}
-
 @media screen and (max-width: $on-palm) {
   .toc-button span {
     display: none;
@@ -106,10 +78,6 @@ h5:before {
   counter-increment: h5;
 }
 
-h6:before {
-  content: counter(h2, decimal) "." counter(h3, decimal) "." counter(h4, decimal) "." counter(h5, decimal) "." counter(h6, decimal) ". ";
-  counter-increment: h6;
-}
 
 #markdown-toc, #markdown-toc ul {
   list-style-type: none;
