@@ -1,9 +1,14 @@
 package seedu.uninurse.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.Task;
 
@@ -14,7 +19,7 @@ public class ScheduleListTaskCard extends UiPart<Region> {
     private static final String FXML = "ScheduleListTaskCard.fxml";
 
     @FXML
-    private VBox cardPane;
+    private VBox taskPane;
     @FXML
     private Label taskTime;
     @FXML
@@ -29,9 +34,11 @@ public class ScheduleListTaskCard extends UiPart<Region> {
         this.taskName.setText(task.getTaskDescription());
 
         if (task.getDateTime().isPastDate()) {
-            this.cardPane.setStyle("-fx-background-color: #ffe6a1;");
+            this.taskPane.setBackground(new Background(new BackgroundFill(
+                    Color.web("ffe6a1"), new CornerRadii(5.0), new Insets(1.0))));
         } else {
-            this.cardPane.setStyle("-fx-background-color: #c5e2fc;");
+            this.taskPane.setBackground(new Background(new BackgroundFill(
+                    Color.web("c5e2fc"), new CornerRadii(5.0), new Insets(1.0))));
         }
     }
 }

@@ -3,6 +3,7 @@ package seedu.uninurse.ui;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -32,11 +33,13 @@ public class ModifiedPatientCard extends UiPart<Region> {
     private static final String RED_STYLE = "-fx-background-color: #ffc0bf;"
             + "-fx-border-radius: 2;"
             // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
-            + "-fx-background-radius: 5;";
+            + "-fx-background-radius: 5;"
+            + "-fx-padding: 2;";
     private static final String GREEN_STYLE = "-fx-background-color: #c9ffdf;"
             + "-fx-border-radius: 2;"
             // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
-            + "-fx-background-radius: 5;";
+            + "-fx-background-radius: 5;"
+            + "-fx-padding: 2;";
 
     private Patient patient;
 
@@ -291,6 +294,9 @@ public class ModifiedPatientCard extends UiPart<Region> {
 
     private HBox getIndexBox(int index) {
         HBox indexBox = new HBox();
+        indexBox.setMinWidth(20.0);
+        indexBox.setMaxWidth(20.0);
+        indexBox.setAlignment(Pos.CENTER);
         indexBox.setStyle("-fx-background-color: #bfcddb;"
                 + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
                 // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
