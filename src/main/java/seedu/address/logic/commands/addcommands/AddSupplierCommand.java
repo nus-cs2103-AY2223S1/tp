@@ -3,6 +3,7 @@ package seedu.address.logic.commands.addcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -21,7 +21,7 @@ import seedu.address.model.pet.Pet;
 /**
  * Adds a supplier to the address book.
  */
-public class AddSupplierCommand extends Command {
+public class AddSupplierCommand extends AddPersonCommand {
 
     public static final String COMMAND_WORD = "add-s";
 
@@ -31,11 +31,13 @@ public class AddSupplierCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_LOCATION + "LOCATION "
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_LOCATION + "Vietnam "
             + PREFIX_PET + AddPetCommand.COMMAND_WORD + " (...Pet1 fields) "
             + PREFIX_PET + AddPetCommand.COMMAND_WORD + " (...Pet2 fields) ";
 

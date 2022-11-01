@@ -124,9 +124,8 @@ public class PopupPanelForBuyer extends PopUpPanel {
         Phone phone = ParserUtil.parsePhone(phoneField.getText());
         Email email = ParserUtil.parseEmail(emailField.getText());
         Address address = ParserUtil.parseAddress(addressField.getText());
-        // TODO: implement location in constructor
         Location location = new Location(countryField.getText());
-        return new Buyer(name, phone, email, address, null);
+        return new Buyer(name, phone, email, address, location, null);
     }
 
     /**

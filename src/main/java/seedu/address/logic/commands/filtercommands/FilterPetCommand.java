@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser;
 import seedu.address.model.Model;
@@ -15,7 +14,7 @@ import seedu.address.model.pet.Pet;
  * Filters and lists all pets in address book whose attributes match the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FilterPetCommand extends Command {
+public class FilterPetCommand extends FilterCommand {
     public static final String COMMAND_WORD = "filter-p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all pets with attributes: "
