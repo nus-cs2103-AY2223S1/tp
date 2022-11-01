@@ -47,12 +47,19 @@ public class JsonAdaptedRequest {
      * Converts this Jackson-friendly adapted Request object into the model's {@code Request} object.
      */
     public Request toModelType() throws IllegalValueException {
-        //TODO validate the data before converting
-        if (color == null) {
+        if (age < 0) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getName()));
         }
-        if (!color.matches("[a-zA-Z]+")) {
-            throw new IllegalValueException(Age.MESSAGE_USAGE);
+
+        if (color == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Color.class.getName()));
+        }
+        if (colorPattern == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ColorPattern.class.getName()));
+        }
+
+        if (species == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Species.class.getName()));
         }
 
         Age modelAge = new Age(age);
