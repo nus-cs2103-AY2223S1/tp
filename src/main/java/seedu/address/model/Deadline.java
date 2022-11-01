@@ -18,7 +18,7 @@ public class Deadline {
         public static final Deadline EMPTY_DEADLINE = new EmptyDeadline();
 
         private EmptyDeadline() {
-            super("0001-01-01");
+            super("1900-01-01");
         }
 
         @Override
@@ -38,12 +38,15 @@ public class Deadline {
     }
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadlines should be entered in yyyy-mm-dd date format";
+            "Deadlines should be entered in yyyy-mm-dd date format \n"
+            + "Year (yyyy): A year from 1900 to 2XXX \n"
+            + "Month (mm): A month in the range of 1 to 12 \n"
+            + "Day (dd): A day in the range of 1 to 31 \n";
 
     /*
-     * The date must be entered in yyyy-mm-dd or yyyy-m-d
+     * The date must be entered in yyyy-mm-dd
      */
-    public static final String VALIDATION_REGEX = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
+    public static final String VALIDATION_REGEX = "^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$";
 
     private LocalDate deadline;
 
