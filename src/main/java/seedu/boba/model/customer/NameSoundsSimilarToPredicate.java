@@ -23,6 +23,10 @@ public class NameSoundsSimilarToPredicate implements Predicate<Customer> {
     );
     private final List<String> keywords;
 
+    /**
+     * Constructor for this class
+     * @param keywords
+     */
     public NameSoundsSimilarToPredicate(List<String> keywords) {
         assert keywords != null;
         if (keywords == null) {

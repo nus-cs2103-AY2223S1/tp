@@ -1,11 +1,11 @@
 package seedu.boba.model;
 
-import seedu.boba.model.exceptions.NextStateNotFoundException;
-import seedu.boba.model.exceptions.PreviousStateNotFoundException;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 
-import static java.util.Objects.requireNonNull;
+import seedu.boba.model.exceptions.NextStateNotFoundException;
+import seedu.boba.model.exceptions.PreviousStateNotFoundException;
 
 /**
  * Keeps track of the current state of the BobaBot by storing multiple
