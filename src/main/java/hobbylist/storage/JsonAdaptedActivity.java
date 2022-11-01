@@ -29,7 +29,7 @@ class JsonAdaptedActivity {
     private final String name;
     private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedDate> date = new ArrayList<>();
+    private final Optional<JsonAdaptedDate> date;
     private final int rating;
     private final String status;
     private final String review;
@@ -40,7 +40,7 @@ class JsonAdaptedActivity {
     @JsonCreator
     public JsonAdaptedActivity(@JsonProperty("name") String name, @JsonProperty("description") String description,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                               @JsonProperty("date") List<JsonAdaptedDate> date,
+                               @JsonProperty("date") Optional<JsonAdaptedDate> date,
                                @JsonProperty("rating") int rating,
                                @JsonProperty("status") String status,
                                @JsonProperty("review") String review) {
@@ -50,9 +50,7 @@ class JsonAdaptedActivity {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        if (date != null) {
-            this.date.addAll(date);
-        }
+        this.date = date;
         this.rating = rating;
         this.status = status;
         this.review = review;
@@ -68,10 +66,10 @@ class JsonAdaptedActivity {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         rating = source.getRating();
-        //JsonAdaptedDate d = new JsonAdaptedDate("2003-03-03");
-        //date.add(d);
-        if (!source.getDate().isEmpty()) {
-            date.add(new JsonAdaptedDate(source.getDate().get(0)));
+        if (source.getDate().isPresent()) {
+            date = Optional.of(new JsonAdaptedDate(source.getDate().get()));
+        } else {
+            date = Optional.empty();
         }
         status = source.getStatus().toString();
         review = source.getReview().isPresent() ? source.getReview().get().toString() : null;
@@ -84,15 +82,16 @@ class JsonAdaptedActivity {
      */
     public Activity toModelType() throws IllegalValueException {
         final List<Tag> activityTags = new ArrayList<>();
-        final List<Date> activityDate = new ArrayList<>();
-        final Status modelStatus;
-        for (JsonAdaptedDate date : date) {
-            activityDate.add(date.toModelType());
+        Optional<Date> activityDate = Optional.empty();
+        if (this.date == null) {
+            activityDate = Optional.empty();
+        } else if (this.date.isPresent()) {
+            activityDate = Optional.of(this.date.get().toModelType());
         }
+        final Status modelStatus;
         for (JsonAdaptedTag tag : tagged) {
             activityTags.add(tag.toModelType());
         }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -100,7 +99,6 @@ class JsonAdaptedActivity {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
-
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class
                     .getSimpleName()));
@@ -125,7 +123,6 @@ class JsonAdaptedActivity {
         } else {
             modelReview = Optional.of(new Review(review));
         }
-
         return new Activity(modelName, modelDescription, modelTags, activityDate, rating, modelStatus, modelReview);
 
     }
