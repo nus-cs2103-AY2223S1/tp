@@ -173,6 +173,11 @@ Creates a new student record with the following parameters:
 | **Parent's Mobile** | `hp/`      | No             | Mobile number of student's parent. It should only contain numbers, and it should be **at least 3 digits long**.<br/><br/>Entries with country code can be prefixed without the plus sign. For example, `+65 91234567` can be entered as `6591234567` instead.                                                                                                                                                                               |
 | **Parent's Email**  | `e/`       | No             | Email address of student's parent should follow standard convention format _local-part@domain_.                                                                                                                                                                                                                                                                                                                                             |
 
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** All fields are capitalised when saved into the application. Therefore, parameters like `nm/john` and `nm/JoHn`
+are treated as _JOHN_ by default.
+</div>
+
 **Usage**
 * At the start of every teaching year, add in your new batch of students to Class-ify for easy tracking.
 
@@ -184,11 +189,6 @@ Examples:
 * `addStudent nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
 * `addStudent nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
 
-<div markdown="span" class="alert alert-info">:information_source:
-**Note:** All fields are capitalised when saved into the application. Therefore, parameters like `nm/john` and `nm/JoHn`
-are treated as _JOHN_ by default.
-</div>
-
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:** Optional fields can be added later using the [edit command](#414-editing-a-student-record--edit).
 </div>
@@ -198,7 +198,7 @@ are treated as _JOHN_ by default.
 grades 80 for CA1 and 60 for SA1. Notice the first score for CA1 is overridden by the second score for CA1.
 </div>
 
-<img src="images/InvalidCommandError.png" alt="InvalidCommandError" width="400"/>
+<img src="images/InvalidCommandError.png" alt="InvalidCommandError" width="400" align="center"/>
 
 <div markdown="span" class="alert alert-warning">:exclamation:
 **Caution:** If you are receiving an invalid command message, do check to ensure that you are using the correct prefix 
