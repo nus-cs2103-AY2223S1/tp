@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.addcommandparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import seedu.address.commons.core.index.Index;
@@ -29,12 +30,13 @@ public class AddPetCommandParser implements Parser<AddPetCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INDEX);
 
-        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_INDEX) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddPetCommand.MESSAGE_USAGE_EXISTING_SUPPLIER));
+        String preamble = argMultimap.getPreamble();
+        if (preamble.isBlank()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_MISSING_INDEX
+                    + AddPetCommand.MESSAGE_USAGE_EXISTING_SUPPLIER));
         }
 
-        String indexStr = argMultimap.getValue(PREFIX_INDEX).orElse("").split(" ")[0];
+        String indexStr = preamble.split(" ")[0];
         Index index = ParserUtil.parseIndex(indexStr);
         Pet pet = ParserUtil.parsePet(args, true);
 

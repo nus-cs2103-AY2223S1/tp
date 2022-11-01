@@ -1,7 +1,5 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
-
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,9 +22,9 @@ public class MatchCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Matches pets given an order, based on how pets fit the request."
             + "Parameters: "
-            + "match " + PREFIX_INDEX + " INDEX\n"
+            + "match " + " INDEX\n"
             + "Example: "
-            + "match " + PREFIX_INDEX + " 1\n";
+            + "match " + " 1\n";
     public static final String MESSAGE_SUCCESS = "Matched pets given the order. ";
 
     private final Index index;

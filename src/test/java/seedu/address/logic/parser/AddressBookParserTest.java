@@ -99,7 +99,7 @@ public class AddressBookParserTest {
         Pet pet = new PetBuilder().withName("NyankoSensei").build();
 
         String input = AddPetCommand.COMMAND_WORD
-                + "  i/1 "
+                + " 1 "
                 + " p_n/" + pet.getName()
                 + " p_d/" + pet.getDateOfBirth().getPreferredDateInString()
                 + " p_c/" + pet.getColor().getValue()
@@ -363,19 +363,19 @@ public class AddressBookParserTest {
     public void parseCommand_matchCommand() throws Exception {
         // index 1 -> success
         MatchCommand expected = new MatchCommand(INDEX_FIRST);
-        String input = MatchCommand.COMMAND_WORD + " i/1";
+        String input = MatchCommand.COMMAND_WORD + " 1";
         MatchCommand result = (MatchCommand) parser.parseCommand(input);
         assertEquals(result, expected);
 
         // index 2 -> success
         expected = new MatchCommand(INDEX_SECOND);
-        input = MatchCommand.COMMAND_WORD + " i/2";
+        input = MatchCommand.COMMAND_WORD + " 2";
         result = (MatchCommand) parser.parseCommand(input);
         assertEquals(result, expected);
 
         // index 3 -> success
         expected = new MatchCommand(INDEX_THIRD);
-        input = MatchCommand.COMMAND_WORD + " i/3";
+        input = MatchCommand.COMMAND_WORD + " 3";
         result = (MatchCommand) parser.parseCommand(input);
         assertEquals(result, expected);
     }

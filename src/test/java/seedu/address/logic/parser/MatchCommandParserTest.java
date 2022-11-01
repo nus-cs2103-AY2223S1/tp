@@ -11,7 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MatchCommand;
 
 public class MatchCommandParserTest {
-    private MatchCommandParser parser = new MatchCommandParser();
+    private final MatchCommandParser parser = new MatchCommandParser();
 
     @Test
     public void parse_emptyString_parseFailure() {
@@ -41,17 +41,17 @@ public class MatchCommandParserTest {
     public void parse_validIndex_parseSuccess() {
         //small index
         MatchCommand expectedCommand = new MatchCommand(INDEX_FIRST);
-        String input = " i/ " + INDEX_FIRST.getOneBased();
+        String input = " " + INDEX_FIRST.getOneBased();
         assertParseSuccess(parser, input, expectedCommand);
 
         //large index
         expectedCommand = new MatchCommand(Index.fromOneBased(1000));
-        input = " i/ 1000";
+        input = " 1000";
         assertParseSuccess(parser, input, expectedCommand);
 
         //largest possible index
         expectedCommand = new MatchCommand(Index.fromOneBased(Integer.MAX_VALUE));
-        input = " i/ " + Integer.MAX_VALUE;
+        input = " " + Integer.MAX_VALUE;
         assertParseSuccess(parser, input, expectedCommand);
     }
 }

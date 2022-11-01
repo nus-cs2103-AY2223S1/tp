@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.addcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE;
@@ -53,9 +52,9 @@ public class AddOrderCommand extends Command {
     public static final String MESSAGE_USAGE_EXISTING_BUYER = COMMAND_WORD
             + ": Adds an order to an existing buyer. "
             + "Parameters: "
-            + PREFIX_INDEX + "INDEX "
+            + "INDEX "
             + USAGE_COMMON_PARAMETERS
-            + PREFIX_INDEX + "1 "
+            + "1 "
             + USAGE_COMMON_SAMPLE_PARAMETERS;
 
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book";
