@@ -129,6 +129,13 @@ Format: `help`
 
 ![helpMessage](images/helpMessage.png)
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**
+Empty commands such as ` ` (whitespace) will display the usage of the `help` command to redirect new users to the list of commands.
+
+</div>
+
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**
@@ -151,17 +158,26 @@ Tutors are regarded as the same if they have the **same email or student ID**!
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **About Tags:**
-- A person can have any number of tags (including 0).
-- Tags should be alphanumeric and should not contain any spaces.
+:information_source: **About Teaching Nomination:**
+- Teaching nominations take in positive integers including 0.
+- Leading zeros in the teaching nominations will not be allowed. e.g. `0`, `1` is valid but `00001` is invalid.
 
 </div>
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **About Teaching Nomination:**
-- Teaching nominations take in positive integers including 0.
-- Leading zeros in the teaching nominations will not be allowed. e.g. `0`, `1` is valid but `00001` is invalid.
+:information_source: **About Rating:**
+- Ratings take in numbers **between 0 and 5 inclusive**.
+- Decimal values are optional, but only a **maximum of 2** (no decimals, 1 decimal and 2 decimals are valid) decimals can be provided.
+- Ratings only accept "**`.`**" as the decimal seperator (e.g. `4.5` is valid, `4,5` is invalid).
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **About Tags:**
+- A person can have any number of tags (including 0).
+- Tags should be alphanumeric and should not contain any spaces.
 
 </div>
 
@@ -289,6 +305,13 @@ Format: `sort ORDER PREFIX`
 Examples:
 * `sort a r/` sorts the tutors in ascending order (low to high) based on tutor ratings.
 * `sort d tn/` sorts the tutors in descending order (high to low) based on tutor teaching nominations.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**
+Sort only accepts **one prefix**, hence `sort a tn/ r/` will return an error.
+
+</div>
 
 ### Deleting a tutor: `delete`
 
