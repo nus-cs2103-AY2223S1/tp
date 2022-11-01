@@ -281,6 +281,31 @@ The following activity diagram summarizes what happens when a user executes a vi
 
 ![ViewProfileCommandActivityDiagram](images/commands/ViewProfileCommandActivityDiagram.png)
 
+### View Upcoming Events Command
+
+#### Description
+
+In this section, we will describe how view upcoming events command is implemented.
+
+The `ViewUpcomingEventsCommand` class extends the `EventCommand` abstract class. `EventCommand` extends the abstract `Command` class. `ViewUpcomingEventsCommand` overrides the `Command#execute` method, to display upcoming event commands when called.
+
+#### Implementation
+
+1. When the user inputs a command to view upcoming events, `LogicManager` will call `NuSchedulerParser#parseCommand`, which will create a new `ViewUpcomingEventsCommandParser`.
+2. The method `ViewUpcomingEventsCommandParser#parse` is then called. It calls `ParserUtil#parseDays`which returns the days input as an integer.
+3. Days input will be used to create a new `StartDateWithinTimeFramePredicate`.
+4. Using the days integer and the predicate, `ViewUpcomingEventsCommandParser` creates `ViewUpcomingEventsCommand` which gets returned to `LogicManager`.
+5. The `LogicManager` will call `Command#execute` method of the `ViewUpcomingEventsCommand`, which will then call `Model#updateFilteredEventList` to display the desired events.
+6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
+
+The following sequence diagram shows what happens when `ViewUpcomingEventsCommand` gets executed.
+
+![ViewUpcomingEventsCommandSequenceDiagram](images/commands/ViewUpcomingEventsCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a view upcoming events command.
+
+![ViewUpcomingEventsCommandActivityDiagram](images/commands/ViewUpcomingEventsCommandActivityDiagram.png)
+
 ### AddProfilesToEventCommand
 
 #### Description
