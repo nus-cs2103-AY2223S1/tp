@@ -21,7 +21,7 @@ import seedu.travelr.model.trip.Trip;
 public class SampleDataUtil {
     public static Trip[] getSampleTrips() {
         return new Trip[] {
-            new Trip(new Title("Grad Trip"), new Description("Grad Trip with friends!"),
+            new Trip(new Title("Trip to Japan with family"), new Description("Grad Trip with friends!"),
                 getEventSet("friends"), new Location("Bristol"), new DateField("11-01-2023")),
             new Trip(new Title("Honeymoon"), new Description("Lorem ipsum dolor sit amet."),
                 getEventSet("girlfriend"), new Location("Jeju Island"), new DateField("13-04-2021")),
@@ -33,6 +33,26 @@ public class SampleDataUtil {
                 getEventSet("classmates")),
             new Trip(new Title("Conference"), new Description("Dolore eu fugiat nulla pariatur."),
                 getEventSet("colleagues"), new Location("New York"), new DateField("31-12-2023"))
+        };
+    }
+    
+    public static Event[] getSampleEvents() {
+        return new Event[] {
+                new Event(
+                        new Title("Try authentic French Onion Soup"), 
+                        new Description("French onion soup is a soup usually based on meat stock and onions")),
+                new Event(
+                        new Title("Visit the Great Pyramid of Giza"),
+                        new Description("It is the oldest and the biggest of the pyramids")),
+                new Event(
+                        new Title("Sail on Ha Long Bay"),
+                        new Description("Frequently included in lists of natural wonders of the world")),
+                new Event(
+                        new Title("Visit Saint Basils Cathedral"),
+                        new Description("Born from a basement served as a basis for nine small churches")),
+                new Event(
+                        new Title("Visit Easter Island"),
+                        new Description("You can not miss the enormous volcanic craters and preserved stone villages")),
         };
     }
 

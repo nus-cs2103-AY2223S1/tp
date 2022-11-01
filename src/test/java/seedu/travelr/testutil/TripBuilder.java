@@ -74,8 +74,7 @@ public class TripBuilder {
      * @return
      */
     public Trip build() {
-        Trip newTrip = new Trip(title, description, events);
-        return newTrip;
+        return new Trip(title, description, events, location, dateField);
     }
 
 }

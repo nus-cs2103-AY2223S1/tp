@@ -9,7 +9,9 @@ import java.util.HashSet;
 
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
+import seedu.travelr.model.component.DateField;
 import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Location;
 import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
@@ -53,11 +55,21 @@ public class DeleteEventFromTripCommand extends Command {
         requireNonNull(model);
 
 
-        if (!model.hasTrip(new Trip(tripToDeleteFrom, new Description("random"), new HashSet<>()))) {
+        if (!model.hasTrip(
+                new Trip(tripToDeleteFrom,
+                        new Description("random"),
+                        new HashSet<>(),
+                        new Location("random"),
+                        new DateField("01-01-2000")))) {
             throw new CommandException("Please enter a valid Trip");
         }
 
-        Trip toDeleteFrom = model.getTrip(new Trip(tripToDeleteFrom, new Description("random"), new HashSet<>()));
+        Trip toDeleteFrom = model.getTrip(
+                new Trip(tripToDeleteFrom,
+                        new Description("random"),
+                        new HashSet<>(),
+                        new Location("random"),
+                        new DateField("01-01-2000")));
 
 
         if (!toDeleteFrom.containsEvent(new Event((eventToDelete)))) {

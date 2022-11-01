@@ -172,8 +172,6 @@ public class Trip {
 
         Trip otherTrip = (Trip) other;
         return otherTrip.getTitle().equals(getTitle());
-        //        && otherTrip.getDescription().equals(getDescription())
-        //        && otherTrip.getEvents().equals(getEvents());
     }
 
     @Override
@@ -188,17 +186,11 @@ public class Trip {
         builder.append("Title: ")
                 .append(getTitle())
                 .append("; Description: ")
-                .append(getDescription());
-
-        if (!getLocation().isDefaultValue()) {
-            builder.append("; Location: ");
-            builder.append(getLocation());
-        }
-
-        if (!getDateField().isDefaultValue()) {
-            builder.append("; Date: ");
-            builder.append(getDateField());
-        }
+                .append(getDescription())
+                .append("; Location: ")
+                .append(getLocation())
+                .append("; Date: ")
+                .append(getDateField());
 
         return builder.toString();
     }

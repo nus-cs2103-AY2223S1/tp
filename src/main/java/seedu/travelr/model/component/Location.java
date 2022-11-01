@@ -48,10 +48,6 @@ public class Location {
         return new Location(DEFAULT_LOCATION_NAME);
     }
 
-    public boolean isDefaultValue() {
-        return this.equals(getDefaultLocation());
-    }
-
     @Override
     public String toString() {
         return locationName;
