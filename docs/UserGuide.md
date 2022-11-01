@@ -12,25 +12,36 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `Travelr.jar` from [here](https://github.com/AY2223S1-CS2103T-W17-1/tp/releases).
+2. Download the latest `Travelr.jar` [here](https://github.com/AY2223S1-CS2103T-W17-1/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for Travelr.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI should appear in a few seconds, and will look similar to the screenshot below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list-e`** : Lists all events.
+   * `list-e` : Lists all events.
 
-   * **`add-e`**`n/Sightseeing d/Visit Mountains` : Adds an event with the respective title and description into your event list.
+   * `add-e n/Sightseeing d/Visit Mountains` : Adds an event with the respective title and description into your event list.
 
-   * **`delete-e`**`3` : Deletes the 3rd event shown in the current event list.
+   * `delete-e 3` : Deletes the 3rd event shown in the current event list.
 
-   * **`exit`** : Exits the app.
+   * `exit` : Exits the app.
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Before Using
+## Parts of our GUI
+**Notes about the UI:**
+
+On app startup, the Trip List Display will show all trips and the Event List Display will display
+the events in the bucket list i.e Events that haven't been added to any trips.
+
+Trips can be marked as completed via the `mark` command. Completed trips will be labelled with a tick icon
+to the right of the trip's title.
+
+The trips display sorts the trips by completion automatically. Completed trips will remain at the bottom of the list.
+
+Titles, Locations and Descriptions that are too long will be truncated. To view the full details of an event or trip, use `display-e` and `display` commands respectively.
 
 <div markdown="block" class="alert alert-info">
 
@@ -44,21 +55,14 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 |**Output Box**|where the results of your command are shown.
 |**Selected Trip Box**| where the current selected trip is shown.<br><br> Use `select` to select a trip.|
 |**Trip List Display** |where the Trips stored in Travelr are shown.<br><br> Commands to change the types of trips being shown: <br><ul><li>`completed`</li><li>`view`</li><li>`list`</li></ul> See feature list for more information about the commands.|
-| **Event List Display** |where the Events stored in Travelr are shown.<br><br> Commands to change the types of events being shown: <br><ul><li>`completed`</li><li>`view`</li><li>`list-e`</li><li>`select`</li></ul> See feature list for more information about the commands.
+|**Event List Display**|where the Events stored in Travelr are shown.<br><br> Commands to change the types of events being shown: <br><ul><li>`completed`</li><li>`view`</li><li>`list-e`</li><li>`select`</li></ul> See feature list for more information about the commands.
+
 
 </div>
 --------------------------------------------------------------------------------------------------------------------
 
+
 ## Features
-**Notes about the UI:**
-
-On app startup, the Trip List Display will show all trips and the Event List Display will display
-the events in the bucket list i.e Events that haven't been added to any trips.
-
-The trips display sorts the trips by completion automatically. Completed trips will remain at the bottom of the list.
-
-Titles, Locations and Descriptions that are too long will be truncated. To view the full details of an event or trip, use `display-e` and `display` commands respectively.
-
 **Notes about the command format:**
 
 Words in UPPER_CASE are the parameters to be supplied by the user.
@@ -84,9 +88,10 @@ Events with the same title are considered duplicates, and duplicate events are n
 
 Trips with the same title are considered duplicates, and duplicate trips are not allowed.
 
+### Managing Events
 
-### Adding events: `add-e`
-Adds an event to the events list.
+#### Adding events: `add-e`
+Adds an event to the bucket list.
 
 Format: `add-e n/TITLE d/DESCRIPTION`
 
@@ -94,7 +99,12 @@ Examples:
 - `add-e n/Skydiving d/Skydiving with crew`
 - `add-e n/Sailing d/Sail in the Danube River`
 
-### Deleting events: `delete-e`
+#### Viewing bucket list: `list-e`
+Shows a list of all events present in the bucket list.
+
+Format: `list-e`
+
+#### Deleting events: `delete-e`
 Deletes the specified event from the bucket list.
 
 Format: `delete-e INDEX`
@@ -105,22 +115,29 @@ Format: `delete-e INDEX`
 Examples:
 - `delete-e 2` deletes the 2nd event in the bucket list.
 
-### Viewing events list: `list-e`
-Shows a list of all events present in the bucket list.
+#### Displaying specified event details: `display-e`
+Displays the full title, description of the event at the specified INDEX of the displayed events list in the command box.
 
-Format: `list-e`
+Format: `display-e INDEX`
 
-### Adding trips: `add`
+### Managing Trips
+
+#### Adding trips: `add`
 Adds a trip to the trip list.
 
 Format: `add n/TITLE d/DESCRIPTION l/LOCATION D/DATE`
 - All fields are compulsory.
-- Date must follow the format {dd-mm-yyyy}.
+- Date must follow the format `dd-mm-yyyy`.
 
 Examples:
 - `add n/Trip to Iceland d/Skiing in Iceland l/Iceland D/26-12-2023`
 
-### Delete trips: `delete`
+#### Viewing trips list: `list`
+Shows a list of all trips added.
+
+Format: `list`
+
+#### Deleting trips: `delete`
 Deletes a trip at the specified INDEX of the displayed trip list. Events in the deleted trip will be returned to the bucket list.
 
 Format: `delete INDEX`
@@ -128,12 +145,48 @@ Format: `delete INDEX`
 Examples:
 - `delete 1`
 
-### Viewing trips list: `list`
-Shows a list of all trips added.
+#### Displaying specified trip details: `display`
+Displays the full title, description, location (if a location has been defined for the trip),
+date (if a date has been defined for the trip) of the trip at the specified INDEX of the displayed trip list in the command box.
 
-Format: `list`
+Format: `display INDEX`
 
-### Marking trips as done: `mark`
+### Managing a Trip's Itinerary
+
+#### Adding event to a trip's itinerary: `add-et`
+Adds the specified event from the bucket list to the specified trip.
+
+Format: `add-et n/EVENT NAME t/TRIP NAME`
+- Adds the event with the specified EVENT NAME
+- Event is added to the trip at the specified TRIP NAME
+- The TRIP NAME must exist in the trips list.
+- The EVENT NAME must exist in the events list.
+
+Examples:
+- `add-et n/asd t/qwe` adds the event titled asd in the bucket list to the itinerary of the trip with the title qwe
+
+#### Removing event from a trip's itinerary: `delete-et`
+Remove the specified event from the specified trip. The event will then be returned to the bucket list.
+
+Format: `delete-et n/EVENT NAME t/TRIP NAME`
+- Remove the event with the specified event titled EVENT NAME from the specified trip titled TRIP NAME
+- Event is added to the bucket list.
+- The TRIP NAME must exist in the trips list.
+- The EVENT NAME must exist in the trip itinerary.
+
+Examples:
+- `delete-et n/asd t/qwe` remove the event titled asd from the itinerary of the trip titled qwe's and returns it to the bucket list.
+
+#### Selecting a trip to view its itinerary `select`
+Selects the trip in the specified INDEX and displays all events added to that trip in the events list panel.
+Format: `select INDEX`
+- Selects the trip at the specified INDEX.
+- The index refers to the index number shown in the current displayed trip list.
+- The index must be a positive integer 1, 2, 3, …
+
+### Managing a Trip's Completion Status
+
+#### Marking trips as done: `mark`
 Mark the trip in the specified INDEX as done.
 
 ![MarkCompletedUi](images/MarkCompletedUi.png)
@@ -146,7 +199,7 @@ Format: `mark INDEX`
 Examples:
 - `mark 1` marks the first trip in the trip list as done.
 
-### Marking trips as not done: `unmark`
+#### Marking trips as not done: `unmark`
 Mark the trip in the specified INDEX as not done.
 
 Format: `unmark INDEX`
@@ -157,44 +210,18 @@ Format: `unmark INDEX`
 Examples:
 - `unmark 1` marks the first trip in the trip list as not done.
 
-### Adding events to trips: `add-et`
-Adds the specified event from the bucket list to the specified trip.
 
-Format: `add-et n/EVENT NAME t/TRIP NAME`
-- Adds the event with the specified EVENT NAME
-- Event is added to the trip at the specified TRIP NAME
-- The TRIP NAME must exist in the trips list.
-- The EVENT NAME must exist in the events list.
+### Sorting
 
-Examples:
-- `add-et n/asd t/qwe` adds the event titled asd in the bucket list to the itinerary of the trip with the title qwe
-
-### Removing events from trips: `delete-et`
-Remove the specified event from the specified trip to the bucket list.
-
-Format: `delete-et n/EVENT NAME t/TRIP NAME`
-- Remove the event with the specified event titled EVENT NAME from the specified trip titled TRIP NAME
-- Event is added to the bucket list.
-- The TRIP NAME must exist in the trips list.
-- The EVENT NAME must exist in the trip itinerary.
-
-Examples:
-- `delete-et n/asd t/qwe` remove the event titled asd from the itinerary of the trip titled qwe's and returns it to the bucket list.
-
-### Select trip `select`
-Selects the trip in the specified INDEX and displays all events added to that trip in the events list panel.
-Format: `select INDEX`
-- Selects the trip at the specified INDEX.
-- The index refers to the index number shown in the current displayed trip list.
-- The index must be a positive integer 1, 2, 3, …
-
-### Sorting trips: `sort`
-Sorts the trips according to the provided factor.
+#### Sorting trips: `sort`
+Sorts the trips according to the provided factor. 
+Note that completed and incomplete trips will be sorted separately, with completed trips
+being at the bottom.
 
 Format: `sort [by/FACTOR] [r/]`
 - Sorts the trip according to provided FACTOR.
 - FACTOR is case-insensitive
-- Marked and unmarked trips are sorted separately.
+- Completed and incomplete trips are sorted separately.
 - Order of sort reversed when the `r/` prefix is provided.
 - The trips will be sorted by their title in alphabetical order by default.
 - A valid FACTOR must be provided if the `by/` prefix is provided.
@@ -211,35 +238,27 @@ Examples:
 | `location` | Sort by trips' location in alphabetical order |
 | `eventcount` | Sort by trips' number of events in ascending order |
 
-### Sorting Events within Bucket List: `sort-e`
+#### Sorting events within bucketlist: `sort-e`
 Sorts the events in Bucket List according to alphabetical order.
 
 Format: `sort-e [r/]`
 - Order of sort reversed when the `r/` prefix is provided.
 - Extraneous parameters for `r/` prefix will be ignored.
 
-### View all completed trips and events: `completed`
+
+### Display Commands
+
+#### View all completed trips and events: `completed`
 Displays all completed trips and events.
 
 Format: `completed`
 
-### View all trips and events: `view`
-Displays all trips and events
+#### View all trips and events: `view`
+Displays all trips and events in Travelr. This includes events that are part of the bucket list or events that are part of a trip.
 
 Format: `view`
 
-### Display single trip: `display`
-Displays the full title, description, location (if a location has been defined for the trip),
-date (if a date has been defined for the trip) of the trip at the specified INDEX of the displayed trip list in the command box.
-
-Format: `display INDEX`
-
-### Display single event: `display-e`
-Displays the full title, description of the event at the specified INDEX of the displayed events list in the command box.
-
-Format: `display-e INDEX`
-
-### View lifetime summary: `summary`
+#### Viewing lifetime summary: `summary`
 Displays a summary window of your lifetime travels.
 
 ![Summary_Window](images/SummaryScreenshot.png)
@@ -252,14 +271,16 @@ Format: `summary`
 - Progress indicator for trips and events.
 - Command must be used again to view updates to the summary.
 
-### Clearing all entries: `clear`
+### General Commands
+
+#### Clearing all entries: `clear`
 
 Clears all entries from Travelr, which includes the trips and the events.
 
 Format: `clear`
 
 
-### Viewing help: `help`
+#### Viewing help: `help`
 
 Shows a command summary as well as link to the User Guide page. The link can be copied by clicking the `Copy URL` button.
 
@@ -267,13 +288,14 @@ Shows a command summary as well as link to the User Guide page. The link can be 
 
 Format: `help`
 
-### Saving data
-Travelr data are saved locally automatically after any command that changes the data. There is no need to save manually.
-
-### Exiting the program: `exit`
+#### Exiting the program: `exit`
 Exits the program.
 
 Format: `exit`
+
+
+### Saving data
+Travelr data are saved locally automatically after any command that changes the data. There is no need to save manually.
 
 ## Glossary
 
