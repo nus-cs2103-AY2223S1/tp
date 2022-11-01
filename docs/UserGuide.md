@@ -1,6 +1,6 @@
 ---
-layout: page title: User Guide
----
+layout: page
+title: SETA
 
 User Guide
 =======
