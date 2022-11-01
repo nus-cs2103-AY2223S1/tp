@@ -19,9 +19,9 @@ public class AddRecordCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new record to the list of records.\n"
             + "Parameters: "
-            + PREFIX_DATE + "Record Date "
-            + PREFIX_RECORD + "Record Content "
-            + "[" + PREFIX_MEDICATION + "Medication]...\n"
+            + PREFIX_DATE + "RECORD_DATE_TIME "
+            + PREFIX_RECORD + "RECORD_DETAILS "
+            + "[" + PREFIX_MEDICATION + "MEDICATION]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DATE + "31-10-2022 1430 (must be formatted in dd-MM-yyyy HHmm) "
             + PREFIX_RECORD + "suffers from common cold "
@@ -29,7 +29,8 @@ public class AddRecordCommand extends Command {
             + PREFIX_MEDICATION + "Phenylephrine oral 10mg";
 
     public static final String MESSAGE_SUCCESS = "New record added: %1$s";
-    public static final String MESSAGE_DUPLICATE_RECORD = "A record with this date already exists in the record list.";
+    public static final String MESSAGE_DUPLICATE_RECORD = "A record with this date & time"
+            + " already exists in the record list.";
 
     private final Record toAdd;
 
