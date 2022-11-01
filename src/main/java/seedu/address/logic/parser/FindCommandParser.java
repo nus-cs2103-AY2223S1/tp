@@ -118,15 +118,4 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         return new FindCommand(predicates);
     }
-
-    private void checkIfRiskTag(String[] tags) throws ParseException {
-        for (String tag : tags) {
-            // if tag is not a valid Risk tag
-            if (!RiskTag.isRiskTag(tag)) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, RiskTag.MESSAGE_CONSTRAINTS));
-            }
-        }
-    }
-
 }
