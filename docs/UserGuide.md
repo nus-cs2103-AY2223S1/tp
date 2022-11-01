@@ -12,8 +12,7 @@ title: User Guide
 ## 1. Introduction
 
 ### 1.1. What is Gim?
-
-Gim is a desktop app for **managing and tracking gym exercises**, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are an avid Vim user and can type fast, then look no further because Gim commands are inspired by those of Vim. Not only can Gim help you **keep track of your workouts and personal records**, Gim can also help you to **craft a workout** based on your personal records!
+Gim is a desktop app for **managing gym exercises**. Gim allows you to **keep track of your progress** and **craft personalised workout plans**. Gim commands are inspired by those of [Vim](#9-glossary-of-terminologies). Gim is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 ### 1.2. Who is this guide for?
 Are you a gym-goer looking to use Gim to track your exercises? This user guide will get you started in no time and help you navigate through Gim's features. For a quick start guide, head over to [Getting Started](#3-getting-started).
