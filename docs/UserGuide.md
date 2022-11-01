@@ -213,25 +213,25 @@ Adds a client to the FinBook so that you will not forget your client's personal 
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME [m/UPCOMING_MEETING_DATES] [t/TAGS] [r/RISK_LEVEL]
 [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
-* `add` command will refresh the portfolio panel to display "`no client selected for view yet!`".
 
+* `add` command will refresh the portfolio panel to display "`no client selected for view yet!`".
 
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12 Jan 2022 16:30 t/VIPClient
-  r/high pl/Prudential Health note/Client is currently having COVID` adds a client named John Doe, with a mobile number 
+  r/high pl/Prudential Health note/Client is currently having COVID` adds a client named John Doe, with a mobile number
   of 98765432, email address of johnd@example.com [etc.](#23-command-format) to the client list.
-* `add n/Betsy Crowe t/VIPPClient e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan` 
+* `add n/Betsy Crowe t/VIPPClient e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan`
   adds a client named Betsy Crowe, with a mobile number of 1234567, email address of betsycrowe@example.com [etc.](#23-command-format) to the client list.
 
 |                                                                                                                        ![UG_add](images/UG_add.png)                                                                                                                        |
 |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | <sub>*Used command:* `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/$1000 m/20 Nov 2022 16:30 ml/13 Computing Drive t/VIPClient r/High pl/Prudential Retirement Plan note/currently having COVID` to add John Doe to the client list</sub> |
 
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
+
 * `add` command will refresh the portfolio panel to display "no client selected for view yet!".
 * `m/UPCOMING_MEETING_DATES` can be in the `dd Mmm yyyy` or `dd Mmm yyyy HH:mm` format.
 
@@ -264,11 +264,12 @@ Examples:
   and `johndoe@example.com` respectively and automatically displays the updated portfolio of the 1st client.
 * `edit 2 n/Betsy Crower` Edits the name of the 2nd client to be `Betsy Crower` and automatically displays the updated portfolio of `Betsy Crower`.
 
-
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes:** 
+**:information_source: Notes:**
+
 * `edit` command will automatically view the updated portfolio of the edited client.
+
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -414,12 +415,13 @@ Examples:
 |:---------------------------------------------------------------------:|
 | <sub>*Used command:* `view 1 ` *to view portfolio of Alex Yeoh*</sub> |
 
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
+
 * `find` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the updated client list.
 * `sort` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the updated client list.
+
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -430,14 +432,20 @@ Examples:
 
 ### 4.2.1. Locking the application : `lock`
 
-Locks the application
+Locks the application.
 
 Format: `lock`
+
+The following dialog box will be displayed:
+
+![Password dialog box](images/LockWindow.png)
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
+
 * If a password has not been set, leave the password field empty to unlock the application.
+
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -450,7 +458,7 @@ The lock feature only serves to prevent unauthorized usage of FinBook. Anyone wi
 
 ### 4.2.2. Setting or updating the password : `password`
 
-Sets or updates the FinBook password
+Sets or updates the FinBook password.
 
 Format: `password [old/OLDPASSWORD] new/NEWPASSWORD`
 
@@ -473,7 +481,9 @@ Examples:
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
+
 * It is recommended to take note of the warnings and follow the suggestions, if there are any.
+
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -498,7 +508,6 @@ Steps to reset the password:
 
 Toggles the visibility of FinBook by clicking on the `open eye` or `closed eye` icon on the top right of the application.
 
-
 |               ![Shown](images/Ui_shown.png)                               |
 |:-------------------------------------------------------------------------:|
 | <sub>If the icon is an `open eye` FinBook displays all client data.</sub> |
@@ -510,7 +519,9 @@ Toggles the visibility of FinBook by clicking on the `open eye` or `closed eye` 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
+
 * Your mode preference will be automatically saved.
+
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -544,7 +555,7 @@ If your changes to the data file makes its format invalid, FinBook will discard 
 
 ### 4.3.3. Importing data : `import`
 
-Imports data from a `JSON` or `CSV` file
+Imports data from a `JSON` or `CSV` file.
 
 * `JSON` files must be saved by the latest version of FinBook
 * `CSV` files must be formatted correctly as follows:
@@ -582,7 +593,7 @@ Examples:
 
 ### 4.3.4. Exporting data : `export`
 
-Exports data to a `CSV` file
+Exports data to a `CSV` file.
 
 Format: `export PATH`
 
@@ -649,7 +660,6 @@ Examples:
 
 Toggles the theme of FinBook by clicking on the `sun` or `moon` icon on the top right of the application.
 
-
 |              ![Dark mode](images/Ui_dark_w_arrow.png)              |
 |:------------------------------------------------------------------:|
 |      <sub>If icon is a `moon` FinBook is in Dark mode.</sub>       |
@@ -661,7 +671,9 @@ Toggles the theme of FinBook by clicking on the `sun` or `moon` icon on the top 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
+
 * Your mode preference will be automatically saved.
+
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
