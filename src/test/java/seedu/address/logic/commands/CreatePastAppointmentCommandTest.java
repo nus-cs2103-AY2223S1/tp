@@ -17,12 +17,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.PastAppointment;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Medication;
 import seedu.address.testutil.PastAppointmentBuilder;
-
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for CreatePastAppointmentCommand.
