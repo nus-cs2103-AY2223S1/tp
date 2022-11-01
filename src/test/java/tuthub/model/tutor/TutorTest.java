@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tuthub.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static tuthub.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static tuthub.testutil.Assert.assertThrows;
 import static tuthub.testutil.TypicalTutors.ALICE;
@@ -30,18 +31,31 @@ public class TutorTest {
         // null -> returns false
         assertFalse(ALICE.isSameTutor(null));
 
-        // same name, all other attributes different -> returns true
+        // same name, all other attributes different -> returns false
         Tutor editedAlice = new TutorBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameTutor(editedAlice));
-
-        // different name, all other attributes same -> returns false
-        editedAlice = new TutorBuilder(ALICE).withName(VALID_NAME_BOB).build();
+                .withStudentId(VALID_STUDENTID_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.isSameTutor(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // different name, all other attributes same -> returns true
+        editedAlice = new TutorBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertTrue(ALICE.isSameTutor(editedAlice));
+
+        // name differs in case, all other attributes same -> returns true
         Tutor editedBob = new TutorBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameTutor(editedBob));
+        assertTrue(BOB.isSameTutor(editedBob));
+
+        // different email, all other attributes (including Student ID) same -> returns true
+        editedAlice = new TutorBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertTrue(ALICE.isSameTutor(editedAlice));
+
+        // different Student ID, all other attributes (including email) same -> returns true
+        editedAlice = new TutorBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).build();
+        assertTrue(ALICE.isSameTutor(editedAlice));
+
+        // same name, email and Student ID, all other attributes different -> returns true
+        editedAlice = new TutorBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(ALICE.isSameTutor(editedAlice));
     }
 
     @Test

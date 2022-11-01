@@ -2,7 +2,7 @@
   "tutors": [ {
     "name": "John Doe",
     "phone": "94351253",
-    "email": "E1234567@u.nus.edu",
+    "email": "E7654321@u.nus.edu",
     "module": [ "CS2103T" ],
     "year": "4",
     "studentId": "A1234567X",
