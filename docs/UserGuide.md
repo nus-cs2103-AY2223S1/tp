@@ -56,6 +56,8 @@ Our Graphical User Interface (GUI) will help you slowly adjust to using our CLI.
 
 So what are you waiting for? Start using FinBook.
 
+[⬆ back to Table of Contents](#table-of-contents)
+
 ---
 
 # 2. How to Use this User Guide?
@@ -65,6 +67,8 @@ So what are you waiting for? Start using FinBook.
 3. If you are familiar with FinBook, you can refer to the [Features](#4-features) to see details of all available
    commands or refer at [Command Summary](#7-command-summary).
 
+[⬆ back to Table of Contents](#table-of-contents)
+
 ## 2.1. Icons and symbols
 
 | Symbol               | Meaning                                                                                    |
@@ -72,6 +76,8 @@ So what are you waiting for? Start using FinBook.
 | :information_source: | Additional information that may be useful to know when using FinBook                       |
 | :exclamation:        | Important information or warnings that you should take note of when using FinBook          | 
 | `command`            | The highlighted words indicate a command that can be typed into the Command Box of FinBook |
+
+[⬆ back to Table of Contents](#table-of-contents)
 
 ## 2.2. User Interface (UI) of FinBook
 
@@ -87,6 +93,8 @@ The UI consists of:
 | Message Box     | Display results of executed command   |
 | Clients Panel   | Displays clients of FinBook           |
 | Portfolio View  | Displays portfolio of selected client |
+
+[⬆ back to Table of Contents](#table-of-contents)
 
 ## 2.3. Command format
 
@@ -104,6 +112,7 @@ For example,
 3. **Parameter**: Provides supplementary information to the command word or prefix. For this example, `John Doe` is the
    parameter for `NAME`
 
+### Prefix Table
 | Prefix | Corresponding Parameter                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Examples                                                                                                                                         |
 |--------|------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
 | n/     | NAME                                     | Name of a client<br/>   **:information_source: Parameter restrictions:**<br>- Only standard English characters are allowed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | **Valid Examples:** <br/>- John Doe<br/>- Alex Yeoh <br/>**Invalid Examples:** <br/>- Александр<br/>- 语嫣                                         |
@@ -144,6 +153,8 @@ For example,
 
 </div>
 
+[⬆ back to Table of Contents](#table-of-contents)
+
 ---
 
 # 3. Quick start
@@ -177,6 +188,8 @@ For example,
     * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#4-features) below for details of each command.
+
+[⬆ back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -213,6 +226,8 @@ Examples:
 Only the latest parameter of each prefix is accepted. Eg. `add n/Johnny n/John p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000` will only add the name of client as John. 
 </div>
 
+[⬆ back to Table of Contents](#table-of-contents)
+
 ---
 
 ### 4.1.2. Editing a client : `edit`
@@ -239,6 +254,10 @@ Examples:
 
 **:information_source: `edit` command will automatically view the updated portfolio of the edited client.**
 </div>
+
+[⬆ back to Table of Contents](#table-of-contents)
+
+---
 
 ### 4.1.3. Deleting a client : `delete`
 
@@ -302,11 +321,19 @@ Examples:
 
 * `list` followed by `delete all` deletes the all clients in the FinBook.
 
+[⬆ back to Table of Contents](#table-of-contents)
+
+---
+
 ### 4.1.4. Listing all clients : `list`
 
 Shows a list of all clients in the FinBook.
 
 Format: `list`
+
+[⬆ back to Table of Contents](#table-of-contents)
+
+---
 
 ### 4.1.5. Finding a client : `find`
 
@@ -342,6 +369,10 @@ Examples:
 * `find n/John n/alex` will find all clients with John or Alex in their names.
 * `find t/VIPClient t/YuFamily` will find all clients with either `VIPClient` or `YuFamily` tags.
 
+[⬆ back to Table of Contents](#table-of-contents)
+
+---
+
 ### 4.1.6. Viewing Portfolio of a specific client: `view`
 
 Views a specific's client portfolio so that you can analyse each client before their meeting.
@@ -364,6 +395,8 @@ Examples:
 * `sort` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the updated client list.
 </div>
 
+[⬆ back to Table of Contents](#table-of-contents)
+
 ---
 
 ## 4.2. Data privacy
@@ -382,6 +415,8 @@ Format: `lock`
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 The lock feature only serves to prevent unauthorized usage of FinBook. Anyone with access to your PC is still able to view and edit the `JSON` files containing your data.
 </div>
+
+[⬆ back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -412,6 +447,8 @@ Examples:
 **:information_source: It is recommended to take note of the warnings and follow the suggestions, if there are any**
 </div>
 
+[⬆ back to Table of Contents](#table-of-contents)
+
 ---
 
 ### 4.2.3. Resetting the password
@@ -423,6 +460,8 @@ Steps to reset the password:
 3. Open `preferences.json` with a text editor
 4. Change the line `"passwordHash" : "$argon2id$xxxxxxxx"` to `"passwordHash" : ""`
 5. Save `preferences.json`
+
+[⬆ back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -440,6 +479,8 @@ Toggle the visibility of FinBook by clicking on the `open eye` or `closed eye` i
 **:information_source: Your mode preference will be automatically saved**
 </div>
 
+[⬆ back to Table of Contents](#table-of-contents)
+
 ---
 
 ## 4.3. General
@@ -450,6 +491,10 @@ Financial book data are saved in the hard disk automatically after any command t
 to
 save manually.
 
+[⬆ back to Table of Contents](#table-of-contents)
+
+---
+
 ### 4.3.2. Editing the data file
 
 Financial book data are saved as a `JSON` file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
@@ -458,6 +503,10 @@ update data directly by editing that data file.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FinBook will discard all data and start with an empty data file at the next run.
 </div>
+
+[⬆ back to Table of Contents](#table-of-contents)
+
+---
 
 ### 4.3.3. Importing data : `import`
 
@@ -493,6 +542,8 @@ Examples:
 * `import ../data.csv` imports data from the file `data.csv` which is located one level outside the directory of the
   FinBook executable
 
+[⬆ back to Table of Contents](#table-of-contents)
+
 ---
 
 ### 4.3.4. Exporting data : `export`
@@ -511,6 +562,8 @@ Examples:
   executable
 * `export ../data.csv` exports data to the file `data.csv` which is located one level outside the directory of the
   FinBook executable
+
+[⬆ back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -534,19 +587,9 @@ Tags: friends
 
 * Press `Ctrl-V` to paste the copied text.
 
-### Sorting clients : `sort`
+[⬆ back to Table of Contents](#table-of-contents)
 
-Sorts clients in the FinBook according to given parameter.
-
-Format: `sort n/ or i/ or m/ ​`
-
-* Sorts clients in ascending order according to parameter.
-* At least one of the parameters must be provided.
-
-Examples:
-
-* `sort n/` Sorts clients in ascending order according to name.
-* `sort m/` Sorts clients according to their meeting dates in chronological order.
+---
 
 ### 4.3.6. Sorting clients : `sort`
 
@@ -564,6 +607,8 @@ Examples:
 * `sort i/` Sorts clients in ascending order according to income.
 * `sort m/` Sorts clients according to their meeting dates in chronological order.
 
+[⬆ back to Table of Contents](#table-of-contents)
+
 ---
 
 ### 4.3.7. Changing Light/Dark mode
@@ -580,11 +625,17 @@ Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top r
 **:information_source: Your mode preference will be automatically saved**
 </div>
 
+[⬆ back to Table of Contents](#table-of-contents)
+
+---
+
 ### 4.3.8. Exiting the application : `exit`
 
 Exits the application.
 
 Format: `exit`
+
+[⬆ back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -593,6 +644,8 @@ Format: `exit`
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous FinBook home folder. Alternatively, you may use the `export` and `import` commands.
+
+[⬆ back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -608,6 +661,8 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | JSON                         | JSON (JavaScript Object Notation) is an open standard file format and data interchange format that uses human-readable text to store and transmit data objects consisting of attribute–value pairs and arrays (or other serializable values). |
 | CSV                          | A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values.                                                                                                                                            |
 | Path                         | A path is a string of characters used to uniquely identify a location in a directory structure.                                                                                                                                               |
+
+[⬆ back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -629,3 +684,5 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | **Export**           | `export PATH`<br> e.g., `export ./data.csv`                                                                                                                                                                                                                                                                                                                     |
 | **Sort**             | `sort PARAM`<br> e.g., `sort n/`                                                                                                                                                                                                                                                                                                                                |
 | **Exit application** | `exit`                                                                                                                                                                                                                                                                                                                                                          |
+
+[⬆ back to Table of Contents](#table-of-contents)
