@@ -17,29 +17,34 @@ import seedu.address.model.task.Task;
  */
 public class TypicalTasks {
 
+    public static final Task TASK1 = new TaskBuilder().withModule("cs2001")
+        .withTaskDescription("description 1")
+        .withStatus("incomplete")
+        .build();
+
     public static final Task TASK_A = new TaskBuilder().withModule("cs2030")
-        .withDescription("Task A")
+        .withTaskDescription("Task A")
         .withStatus("incomplete")
         .build();
     public static final Task TASK_B = new TaskBuilder().withModule("cs2030")
-        .withDescription("Task B")
+        .withTaskDescription("Task B")
         .withStatus("incomplete")
         .build();
     public static final Task TASK_C = new TaskBuilder().withModule("cs2040")
-        .withDescription("Task C")
+        .withTaskDescription("Task C")
         .withStatus("incomplete")
         .build();
     public static final Task TASK_D = new TaskBuilder().withModule("cs2040")
-        .withDescription("Task D")
+        .withTaskDescription("Task D")
         .withStatus("complete")
         .withExam(getTypicalExams().get(0))
         .build();
     public static final Task TASK_E = new TaskBuilder().withModule("cs2100")
-        .withDescription("Task E")
+        .withTaskDescription("Task E")
         .withStatus("complete")
         .build();
     public static final Task TASK_F = new TaskBuilder().withModule("cs2100")
-        .withDescription("Task F")
+        .withTaskDescription("Task F")
         .withStatus("complete")
         .build();
 

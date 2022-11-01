@@ -14,39 +14,45 @@ import seedu.address.model.task.TaskStatus;
  */
 public class TaskBuilder {
 
-    public static final String DEFAULT_DESCRIPTION = "Assignment 1";
     public static final String DEFAULT_MODULE = "CS2103T";
+    public static final String DEFAULT_TASK_DESCRIPTION = "task description";
 
     private Module module;
-    private TaskDescription description;
-    private TaskStatus status;
-    private Exam exam;
-    private PriorityTag priorityTag = null;
-    private DeadlineTag deadlineTag = null;
+    private TaskDescription taskDescription;
+    private PriorityTag priorityTag;
+    private DeadlineTag deadlineTag;
+    private TaskStatus taskStatus;
+    private Exam linkedExam;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
      */
     public TaskBuilder() {
         module = new Module(new ModuleCode(DEFAULT_MODULE));
-        description = new TaskDescription(DEFAULT_DESCRIPTION);
-        status = TaskStatus.INCOMPLETE;
+        taskDescription = new TaskDescription(DEFAULT_TASK_DESCRIPTION);
+        priorityTag = null;
+        deadlineTag = null;
+        taskStatus = TaskStatus.INCOMPLETE;
+        linkedExam = null;
     }
 
     /**
      * Initializes the TaskBuilder with the data of {@code taskToCopy}.
      */
     public TaskBuilder(Task taskToCopy) {
-        description = taskToCopy.getDescription();
         module = taskToCopy.getModule();
-        status = taskToCopy.getStatus();
+        taskDescription = taskToCopy.getDescription();
+        priorityTag = taskToCopy.getPriorityTag();
+        deadlineTag = taskToCopy.getDeadlineTag();
+        taskStatus = taskToCopy.getStatus();
+        linkedExam = taskToCopy.getExam();
     }
 
     /**
      * Sets the {@code TaskDescription} of the {@code Task} that we are building.
      */
-    public TaskBuilder withDescription(String description) {
-        this.description = new TaskDescription(description);
+    public TaskBuilder withTaskDescription(String description) {
+        this.taskDescription = new TaskDescription(description);
         return this;
     }
 
@@ -62,7 +68,7 @@ public class TaskBuilder {
      * Sets the {@code TaskStatus} of the {@code Task} that we are building.
      */
     public TaskBuilder withStatus(String complete) {
-        this.status = TaskStatus.of(complete);
+        this.taskStatus = TaskStatus.of(complete);
         return this;
     }
 
@@ -70,12 +76,11 @@ public class TaskBuilder {
      * Sets the {@code Exam} of the {@code Task} that we are building.
      */
     public TaskBuilder withExam(Exam exam) {
-        this.exam = exam;
+        this.linkedExam = exam;
         return this;
     }
 
     public Task build() {
-        return new Task(module, description, status, null, null, exam);
+        return new Task(module, taskDescription, taskStatus, priorityTag, deadlineTag, linkedExam);
     }
-
 }

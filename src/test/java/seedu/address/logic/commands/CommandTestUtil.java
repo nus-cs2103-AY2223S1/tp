@@ -31,6 +31,20 @@ import seedu.address.testutil.EditTaskDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_MODULE_1 = "CS2001";
+    public static final String VALID_MODULE_2 = "CS2002";
+
+    public static final String VALID_TASK_DESCRIPTION_1 = "description 1";
+    public static final String VALID_TASK_DESCRIPTION_2 = "description 2";
+
+    public static final String MODULE_1 = " " + PREFIX_MODULE + VALID_MODULE_1;
+    public static final String MODULE_2 = " " + PREFIX_MODULE + VALID_MODULE_2;
+    public static final String TASK_DESCRIPTION_1 = " " + PREFIX_DESCRIPTION + VALID_TASK_DESCRIPTION_1;
+    public static final String TASK_DESCRIPTION_2 = " " + PREFIX_DESCRIPTION + VALID_TASK_DESCRIPTION_2;
+
+    public static final String INVALID_MODULE = " " + PREFIX_MODULE + "2001";
+    public static final String INVALID_TASK_DESCRIPTION = " " + PREFIX_DESCRIPTION + " ";
+
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";

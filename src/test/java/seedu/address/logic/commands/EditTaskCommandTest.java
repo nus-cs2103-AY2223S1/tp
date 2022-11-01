@@ -78,7 +78,7 @@ public class EditTaskCommandTest {
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK, descriptor);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        Task editedTask = new TaskBuilder(taskToEdit).withDescription(VALID_DESCRIPTION_DO_TUTORIAL).build();
+        Task editedTask = new TaskBuilder(taskToEdit).withTaskDescription(VALID_DESCRIPTION_DO_TUTORIAL).build();
         expectedModel.replaceTask(expectedModel.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased()),
             editedTask, false);
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
@@ -152,7 +152,7 @@ public class EditTaskCommandTest {
                 new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_DO_TUTORIAL).build());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        Task editedTask = new TaskBuilder(taskInFilteredList).withDescription(VALID_DESCRIPTION_DO_TUTORIAL).build();
+        Task editedTask = new TaskBuilder(taskInFilteredList).withTaskDescription(VALID_DESCRIPTION_DO_TUTORIAL).build();
         expectedModel.replaceTask(expectedModel.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased()),
             editedTask, false);
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
