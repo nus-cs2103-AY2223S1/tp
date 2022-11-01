@@ -526,14 +526,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `idENTify` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use Case: UC01 - Show a list of patients**
+**Use Case: UC01 - Show a list of all patients**
 
-**Guarantees**: A list of patients’ contact is shown.
+**Guarantees**: A list of all patients’ contact is shown.
 
 **MSS**
 
-1. User requests to list patients.
-2. idENTify shows a list of patients.
+1. User requests to list all patients.
+2. idENTify shows a list of all patients.
 
 
     Use case ends.
@@ -544,13 +544,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case ends.
 
-**Use Case: UC02 - Show a list of appointments**
+**Use Case: UC02 - Show a list of all appointments**
 
-**Guarantees**: A list of appointments is shown.
+**Guarantees**: A list of all appointments is shown.
 
 **MSS**
-1. User requests to list appointments.
-2. idENTify shows a list of appointments.
+1. User requests to list all appointments.
+2. idENTify shows a list of all appointments.
 
 
      Use case ends.
