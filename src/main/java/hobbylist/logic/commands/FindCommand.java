@@ -46,7 +46,7 @@ public class FindCommand extends Command {
                        DateMatchesGivenDatePredicate datePredicate,
                        RatingMatchesGivenValuePredicate ratingPredicate) {
         this.namePredicate = namePredicate;
-        this. datePredicate = datePredicate;
+        this.datePredicate = datePredicate;
         this.ratingPredicate = ratingPredicate;
         this.predicate = namePredicate.or(datePredicate)
                                       .or(ratingPredicate);
@@ -85,8 +85,7 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                ||
-                (other instanceof FindCommand // instanceof handles nulls
+                || (other instanceof FindCommand // instanceof handles nulls
                 && (namePredicate.equals(((FindCommand) other).namePredicate))
                 && (datePredicate.equals(((FindCommand) other).datePredicate))
                 && (ratingPredicate.equals(((FindCommand) other).ratingPredicate))); // state check
