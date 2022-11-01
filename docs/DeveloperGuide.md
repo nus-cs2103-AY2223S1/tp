@@ -154,6 +154,13 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The date fields in this project utilises Java's LocalDateTime API, which accepts dates from 1-31 no matter the month, but
+cross references this date with the actual calendar. If the date input falls in this range, but is invalid, for example, 
+31-11-200, or 31st November, the date will be rounded down to 30th November instead automatically. This behaviour is not extended
+to dates outside the range 1-31.
+</div>
+
 ### \[Implemented\] Add record feature
 
 #### Patient Records

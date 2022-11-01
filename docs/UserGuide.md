@@ -63,6 +63,9 @@ If you can type fast, OmniHealth can get your patient management tasks done fast
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* The dd field of any commands utilising dates in the command accepts dates in the range 1-31. If a date is input such as `31-11-2000`, i.e. 31st November which does not exist, the date will automatically
+be rounded down to become 30-11-2000. However, inputting a date greater than 31 will result in an error.
+
 </div>
 
 ## General Commands
@@ -221,7 +224,7 @@ Format: `apptcl INDEX`
 * Clears any appointment under the patient with the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The command will return the 
+* The command will return the patient list to its original state, before any filters were applied to the list.
 
 Examples:
 * `apptcl 1` clears the appointment (if any) of the patient with index 1.
