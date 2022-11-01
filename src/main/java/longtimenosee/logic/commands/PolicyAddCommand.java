@@ -20,7 +20,7 @@ public class PolicyAddCommand extends Command {
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             //Todo: Replace message with a command that lists out different companies
-            + PREFIX_COMPANY + "'One of: {MNF, PRU, AXA, GEL, NTU, ETQ, TML, AIA, AVI, FWD}'"
+            + PREFIX_COMPANY + "COMPANY_CODE"
             + PREFIX_COMMISSION + "Year1% Year2% Remaining%"
             + "[" + PREFIX_COVERAGES + "COVERAGE]...\n"
             + "Example: " + COMMAND_WORD + " "
