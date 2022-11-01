@@ -10,7 +10,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.RootCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -27,13 +26,13 @@ public class AddressBookParser {
             .registerConverter(Name.class, new NameConverter())
             .registerConverter(Email.class, new EmailConverter())
             .registerConverter(Phone.class, new PhoneConverter())
-            .registerConverter(Address.class, new AddressConverter())
             .registerConverter(Index.class, new IndexConverter())
             .registerConverter(Url.class, new UrlConverter())
             .registerConverter(Task.class, new TaskConverter())
             .registerConverter(TeamName.class, new TeamNameConverter())
             .registerConverter(Description.class, new DescriptionConverter())
             .registerConverter(Order.class, new OrderConverter());
+
     /**
      * Parses user input into command for execution.
      *

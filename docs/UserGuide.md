@@ -62,15 +62,15 @@ You will find that the syntax is very similar to other command line interfaces l
 
 Adds a person to TruthTable.
 
-Format: `add person -n NAME -p PHONE_NUMBER -e EMAIL -a ADDRESS [-t TAG]`
+Format: `add person -n NAME -p PHONE_NUMBER -e EMAIL [-t TAG]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add person -n "John Doe" -p 98765432 -e johnd@example.com -a "John street, block 123, #01-01"`
-* `add person -n "Betsy Crowe" -e betsycrowe@example.com -a "Newgate Prison" -p 1234567 -t criminal friend`
+* `add person -n "John Doe" -p 98765432 -e johnd@example.com`
+* `add person -n "Betsy Crowe" -e betsycrowe@example.com -p 1234567 -t criminal friend`
 
 ### Listing all persons : `list persons`
 
@@ -82,7 +82,7 @@ Format: `list persons`
 
 Edits an existing person in TruthTable.
 
-Format: `edit person PERSON_INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]`
+Format: `edit person PERSON_INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-t TAG]`
 
 * Edits the person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person 
   list. The index **must be a positive integer** 1, 2, 3,...
