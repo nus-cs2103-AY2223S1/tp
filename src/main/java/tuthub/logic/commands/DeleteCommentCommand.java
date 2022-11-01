@@ -71,7 +71,7 @@ public class DeleteCommentCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_COMMENT_INDEX);
         }
         Comment commentToDelete = tutor.getComments().deleteComment(commentIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_DELETE_COMMENT_SUCCESS, tutor, commentToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_COMMENT_SUCCESS, tutor.getName(), commentToDelete));
     }
 
     @Override

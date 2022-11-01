@@ -34,7 +34,7 @@ public class TypicalTutors {
     public static final Tutor ALICE = new TutorBuilder().withName("Alice Pauline")
             .withEmail("e0000000")
             .withModule("CS2100").withYear("3").withPhone("94351253").withStudentId("A1234569L")
-            .withTeachingNomination("1").withRating("4.5")
+            .withTeachingNomination("1").withRating("4.5").withComment("Finishes tasks quickly")
             .withTags("friends").build();
     public static final Tutor BENSON = new TutorBuilder().withName("Benson Meier")
             .withEmail("e0101010").withPhone("98765432")

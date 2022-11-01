@@ -38,12 +38,12 @@ public class EditCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Tutor editedTutor = new TutorBuilder().build();
         EditTutorDescriptor descriptor = new EditTutorDescriptorBuilder(editedTutor).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_TUTOR, descriptor);
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_TUTOR, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TUTOR_SUCCESS, editedTutor);
 
         Model expectedModel = new ModelManager(new Tuthub(model.getTuthub()), new UserPrefs());
-        expectedModel.setTutor(model.getFilteredTutorList().get(0), editedTutor);
+        expectedModel.setTutor(model.getFilteredTutorList().get(1), editedTutor);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

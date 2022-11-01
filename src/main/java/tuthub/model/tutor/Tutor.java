@@ -35,14 +35,14 @@ public class Tutor {
     public Tutor(Name name, Phone phone, Email email, Set<Module> modules, Year year,
                     StudentId studentId, CommentList comments, TeachingNomination teachingNomination, Rating rating,
                     Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, modules, year, comments, tags);
+        requireAllNonNull(name, phone, email, modules, year, studentId, comments, teachingNomination, rating, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.modules.addAll(modules);
         this.year = year;
         this.studentId = studentId;
-        this.comments = comments;
+        this.comments = new CommentList(comments.getList());
         this.teachingNomination = teachingNomination;
         this.rating = rating;
         this.tags.addAll(tags);

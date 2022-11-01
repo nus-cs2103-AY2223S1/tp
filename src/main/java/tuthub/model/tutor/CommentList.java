@@ -1,5 +1,7 @@
 package tuthub.model.tutor;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,9 +10,11 @@ import java.util.List;
  *
  */
 public class CommentList {
-    private final ArrayList<Comment> comments = new ArrayList<>();
+    private final ArrayList<Comment> comments;
 
-    public CommentList() { }
+    public CommentList() {
+        comments = new ArrayList<>();
+    }
 
     /**
      * Constructor for CommentList to be added with another list of comments
@@ -18,6 +22,8 @@ public class CommentList {
      * @param comments The list of comments to copy from.
      */
     public CommentList(List<Comment> comments) {
+        requireNonNull(comments);
+        this.comments = new ArrayList<>();
         this.comments.addAll(comments);
     }
 
