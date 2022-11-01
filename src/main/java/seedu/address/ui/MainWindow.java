@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandSpecific;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -204,32 +205,30 @@ public class MainWindow extends UiPart<Stage> {
         return clientListPanel;
     }
 
-    @FXML
-    public void setListPanelToClient() {
-        clientListPanelPlaceholder.getChildren().clear();
-        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
-    }
-
-    @FXML
-    public void setListPanelToMeeting() {
-        clientListPanelPlaceholder.getChildren().clear();
-        clientListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
-    }
-
-    @FXML
-    public void setListPanelToProduct() {
-        clientListPanelPlaceholder.getChildren().clear();
-        clientListPanelPlaceholder.getChildren().add(productListPanel.getRoot());
-    }
-
-    private void setListPanelToMeetingDetailed() {
-        clientListPanelPlaceholder.getChildren().clear();
-        clientListPanelPlaceholder.getChildren().add(meetingDetailedViewPanel.getRoot());
-    }
-
-    private void setListPanelToClientDetailed() {
-        clientListPanelPlaceholder.getChildren().clear();
-        clientListPanelPlaceholder.getChildren().add(clientDetailedViewPanel.getRoot());
+    private void setListPanel(CommandSpecific specific) {
+        switch (specific) { // clear only in case, since we don't want to clear for default
+        case CLIENT:
+            clientListPanelPlaceholder.getChildren().clear();
+            clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+            break;
+        case MEETING:
+            clientListPanelPlaceholder.getChildren().clear();
+            clientListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
+            break;
+        case PRODUCT:
+            clientListPanelPlaceholder.getChildren().clear();
+            clientListPanelPlaceholder.getChildren().add(productListPanel.getRoot());
+            break;
+        case DETAILED_CLIENT:
+            clientListPanelPlaceholder.getChildren().clear();
+            clientListPanelPlaceholder.getChildren().add(clientDetailedViewPanel.getRoot());
+            break;
+        case DETAILED_MEETING:
+            clientListPanelPlaceholder.getChildren().clear();
+            clientListPanelPlaceholder.getChildren().add(meetingDetailedViewPanel.getRoot());
+            break;
+        default:
+        }
     }
 
     /**
@@ -243,24 +242,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            switch (commandResult.getCommandSpecific()) {
-            case CLIENT:
-                setListPanelToClient();
-                break;
-            case MEETING:
-                setListPanelToMeeting();
-                break;
-            case PRODUCT:
-                setListPanelToProduct();
-                break;
-            case DETAILED_MEETING:
-                setListPanelToMeetingDetailed();
-                break;
-            case DETAILED_CLIENT:
-                setListPanelToClientDetailed();
-                break;
-            default:
-            }
+            setListPanel(commandResult.getCommandSpecific());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
