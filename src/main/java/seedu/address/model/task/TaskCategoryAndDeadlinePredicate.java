@@ -66,4 +66,20 @@ public class TaskCategoryAndDeadlinePredicate implements Predicate<Task> {
         TaskCategoryAndDeadlinePredicate t = (TaskCategoryAndDeadlinePredicate) other;
         return category.equals(t.category) && date.equals(t.date);
     }
+
+    public TaskCategory getCategory() {
+        if (this.category.isPresent()) {
+            return this.category.get();
+        } else {
+            return null;
+        }
+    }
+
+    public TaskDate getDate() {
+        if (this.date.isPresent()) {
+            return this.date.get();
+        } else {
+            return null;
+        }
+    }
 }

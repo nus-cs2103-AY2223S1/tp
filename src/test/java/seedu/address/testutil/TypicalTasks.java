@@ -29,6 +29,7 @@ public class TypicalTasks {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
     private static final TaskCategory testCat = new TaskCategory(TaskCategoryType.OTHERS);
+    private static final TaskCategory testCat2 = new TaskCategory(TaskCategoryType.BACKEND);
     private static final Description testDisc = new Description("Test");
     private static final Priority testPriority = new Priority(PriorityEnum.MEDIUM);
     private static final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
@@ -51,6 +52,7 @@ public class TypicalTasks {
     public static final Task GEORGE = new Task(new TaskName("G"),
             testDisc, testPriority, testCat, testDeadline, testPerson, false);
 
+
     // Manually added
     public static final Task HOON = new Task(new TaskName("H"),
             testDisc, testPriority, testCat, testDeadline, testPerson, false);
@@ -62,6 +64,12 @@ public class TypicalTasks {
             testDisc, testPriority, testCat, testDeadline, testPerson, false);
     public static final Task BOB = new Task(new TaskName("Bob"),
             testDisc, testPriority, testCat, testDeadline, testPerson, false);
+
+    //added for filterTask testing
+    public static final Task HILLARY = new Task(new TaskName("H"),
+            testDisc, testPriority, testCat2, testDeadline, testPerson, false);
+    public static final Task IVY = new Task(new TaskName("I"),
+            testDisc, testPriority, testCat2, testDeadline, testPerson, false);
     private final TaskList testList = new TaskList();
 
     private TypicalTasks() {
@@ -80,7 +88,7 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HILLARY, IVY));
     }
 
 }
