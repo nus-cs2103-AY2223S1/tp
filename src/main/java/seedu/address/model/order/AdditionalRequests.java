@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -24,6 +25,15 @@ public class AdditionalRequests {
     public AdditionalRequests(String... descriptions) {
         requireNonNull(descriptions);
         additionalRequests.addAll(Arrays.asList(descriptions));
+    }
+
+    /**
+     * Constructs the AdditionalRequests object with an array.
+     *
+     * @param descriptions The string descriptions of these additional requests.
+     */
+    public AdditionalRequests(Collection<String> descriptions) {
+        additionalRequests.addAll(descriptions);
     }
 
     public List<String> getAdditionalRequestsToString() {
