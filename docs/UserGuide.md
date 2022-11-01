@@ -10,6 +10,7 @@ FABook is your **dependable assistant** who **reminds you of meetings** and **co
 This user guide will help you get started and understand how FABook can **seamlessly streamline your daily lives**.
 
 # Table of Contents
+
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -652,13 +653,16 @@ If your changes to the data file makes its format invalid, FABook will discard a
 **Q**: Why does the person profile GUI not refresh after an edit or clear command?<br>
 **A**: In order to refresh the person profile, you will have the re-click on the person card again.
 
+**Q**: Why can two clients have the same meeting time?<br>
+**A**: We are accounting for cases where perhaps two clients know each other, and they request to listen to a new product together.
+
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
 
-| Term                     | Definiion                                                                                                                                                                                                                                                                            |
+| Term                     | Definition                                                                                                                                                                                                                                                                           |
 |--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Alphanumeric             | Refers to characters that are the combined set of the 26 alphabetic characters, a to Z, both lowercase and uppercase, and the 10 Arabic numerals, 0 to 9.                                                                                                                            |
 | Client                   | Any person who may be seeking financial products.                                                                                                                                                                                                                                    |
