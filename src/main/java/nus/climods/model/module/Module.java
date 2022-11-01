@@ -265,8 +265,6 @@ public class Module {
      */
     public HashMap<LessonTypeEnum, ModuleLessonIdMap> getLessons(SemestersEnum semester) {
         requireNonNull(lessonMap);
-        assert lessonMap.containsKey(semester);
-
         return lessonMap.get(semester);
     }
 
