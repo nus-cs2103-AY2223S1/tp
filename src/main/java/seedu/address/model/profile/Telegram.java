@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Profile's telegram username in the address book.
+ * Represents a Profile's telegram username in the NUScheduler.
  * Guarantees: immutable; is valid as declared in {@link #isValidTelegram(String)}
  */
 public class Telegram {

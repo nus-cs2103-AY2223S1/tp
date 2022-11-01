@@ -14,14 +14,14 @@ import seedu.address.model.Model;
 import seedu.address.model.profile.Profile;
 
 /**
- * Adds a profile to the address book.
+ * Adds a profile to the NUScheduler.
  */
 public class AddProfileCommand extends ProfileCommand {
 
     public static final String COMMAND_OPTION = "a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
-            + ": Adds a profile to the address book.\n"
+            + ": Adds a profile to the NUScheduler.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "

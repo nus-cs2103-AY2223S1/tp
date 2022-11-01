@@ -31,7 +31,7 @@ import seedu.address.model.profile.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing profile in the address book.
+ * Edits the details of an existing profile in the NUScheduler.
  */
 public class EditProfileCommand extends ProfileCommand {
 

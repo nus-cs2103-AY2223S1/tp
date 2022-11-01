@@ -2,7 +2,7 @@ package seedu.address.logic.commands.profile;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalNuScheduler.getTypicalNuScheduler;
 import static seedu.address.testutil.TypicalProfiles.AMY;
 import static seedu.address.testutil.TypicalProfiles.FIRST_INDEX_TELEGRAM;
 
@@ -24,14 +24,14 @@ public class AddProfileCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalNuScheduler(), new UserPrefs());
     }
 
     @Test
     public void execute_newProfile_success() {
         Profile validProfile = new ProfileBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getNuScheduler(), new UserPrefs());
         expectedModel.addProfile(validProfile);
 
         assertCommandSuccess(new AddProfileCommand(validProfile), model,
@@ -40,7 +40,7 @@ public class AddProfileCommandIntegrationTest {
 
     @Test
     public void execute_similarEmail_throwsCommandException() {
-        Profile profileInList = model.getAddressBook().getProfileList().get(0);
+        Profile profileInList = model.getNuScheduler().getProfileList().get(0);
         Profile newProfile = new ProfileBuilder(AMY).withEmail(profileInList.getEmail().toString())
                         .build();
         assertCommandFailure(
@@ -52,7 +52,7 @@ public class AddProfileCommandIntegrationTest {
 
     @Test
     public void execute_similarPhone_throwsCommandException() {
-        Profile profileInList = model.getAddressBook().getProfileList().get(0);
+        Profile profileInList = model.getNuScheduler().getProfileList().get(0);
         Profile newProfile = new ProfileBuilder(AMY).withPhone(profileInList.getPhone().toString())
                 .build();
         assertCommandFailure(

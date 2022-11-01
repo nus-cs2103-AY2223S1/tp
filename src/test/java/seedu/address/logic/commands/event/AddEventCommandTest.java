@@ -13,10 +13,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.ModelStub;
 import seedu.address.model.ModelStubWithEvent;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.NuScheduler;
+import seedu.address.model.ReadOnlyNuScheduler;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.EventBuilder;
 
@@ -98,8 +98,8 @@ public class AddEventCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyNuScheduler getNuScheduler() {
+            return new NuScheduler();
         }
     }
 

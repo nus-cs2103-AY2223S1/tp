@@ -17,7 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Represents an Event's start or end datetime in the address book.
+ * Represents an Event's start or end datetime in the NUScheduler.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime implements Comparable<DateTime> {

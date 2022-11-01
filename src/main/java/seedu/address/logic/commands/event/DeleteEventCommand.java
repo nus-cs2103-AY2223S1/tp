@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
 /**
- * Deletes an event identified using its displayed index from the address book.
+ * Deletes an event identified using its displayed index from the NUScheduler.
  */
 public class DeleteEventCommand extends EventCommand {
 
