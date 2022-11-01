@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
@@ -16,7 +15,7 @@ public class RedoCommandParser {
      */
     public RedoCommand parse(String args) throws ParseException {
         if (!args.isEmpty()) {
-            throw new ParseException(UndoCommand.MESSAGE_USAGE);
+            throw new ParseException(RedoCommand.MESSAGE_USAGE);
         }
         return new RedoCommand();
     }
