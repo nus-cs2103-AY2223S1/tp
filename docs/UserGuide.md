@@ -79,10 +79,10 @@ Here are some of the symbols and text formatting to look out for as you make use
 
 | Number | Component Name  | Details                                       |
 |:------:|-----------------|-----------------------------------------------|
-|   1.   | Person Index    | The index of the person in the list.          | 
+|   1.   | Person Index    | The index of the person in the person list.   | 
 |   2.   | Name            | The person’s name.                            |
 |   3.   | Phone Number    | The person’s phone number.                    | 
-|   4.   | Telegram Handle | The person’s telegram handle.                 | 
+|   4.   | Telegram Handle | The person’s Telegram handle.                 | 
 |   5.   | Tags            | The tags attached to the person.              | 
 |   6.   | Address         | The person’s address.                         | 
 |   7.   | Total Debt      | The total amount of money owed by the person. | 
@@ -109,7 +109,7 @@ Although you can make use of the mouse to perform some functions in PayMeLah, yo
 |      <kbd>Shift</kbd> + <kbd>Tab</kbd>      | Same as <kbd>Tab</kbd> but moves up instead.                                                                                                                                                                                                                                                                                                          |
 |              <kbd>Space</kbd>               | When you are in the person list, use <kbd>Space</kbd> to expand or close the person card you are currently on. After expanding the person card, press <kbd>Tab</kbd> followed by <kbd>Space</kbd> to navigate to the person’s debt list. Once you are done viewing the person's debt list, press <kbd>Tab</kbd> again to navigate to the person list. |
 |  <kbd>PageUp</kbd> and <kbd>PageDown</kbd>  | When you are in the person list, use <kbd>PageUp</kbd> and <kbd>PageDown</kbd> to move up or down the list, automatically expanding each person card as you move. When you are in a person's debt list, use <kbd>PageUp</kbd> and <kbd>PageDown</kbd> to move up or down the debt list.                                                               |
-| <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd> | Similar to <kbd>PageUp</kbd> and <kbd>PageDown</kbd>, but without expanding the person cards. When you are in a person's debt list, use <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd> to move up or down the debt list.                                                                                                                                 |
+| <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd> | Similar to <kbd>PageUp</kbd> and <kbd>PageDown</kbd>, but without expanding the person cards.                                                                                                                                                                                                                                                         |
 |               <kbd>Home</kbd>               | When you are in the person list, press the <kbd>Home</kbd> key to jump to the first person in the list. When you are in a person's debt list, press the <kbd>Home</kbd> key to jump to the first debt in the list.                                                                                                                                    |
 |               <kbd>End</kbd>                | When you are in the person list, press the <kbd>End</kbd> key to jump to the last person in the list. When you are in a person's debt list, press the <kbd>End</kbd> key to jump to the last debt in the list.                                                                                                                                        |
 </div>
