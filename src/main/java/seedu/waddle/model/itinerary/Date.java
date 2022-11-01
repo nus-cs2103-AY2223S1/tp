@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class Date {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be valid";
+            "Please provide a valid date in the following format: yyyy-mm-dd.";
 
     /*
      * The current regex aims to express YYYY-MM-DD, this can be broken with
