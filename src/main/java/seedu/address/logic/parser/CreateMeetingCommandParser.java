@@ -55,7 +55,7 @@ public class CreateMeetingCommandParser implements Parser<CreateMeetingCommand> 
             throw new ParseException(CreateMeetingCommand.INCORRECT_NUMBER_OF_ARGUMENTS);
 
         } catch (java.text.ParseException e) {
-            throw new ParseException(e.getMessage());
+            throw new ParseException(String.format(CreateMeetingCommand.INVALID_DATE_AND_TIME_FORMAT, e.getMessage()));
         }
 
     }

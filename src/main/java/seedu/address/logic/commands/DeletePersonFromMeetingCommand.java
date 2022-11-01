@@ -43,7 +43,7 @@ public class DeletePersonFromMeetingCommand extends Command {
         String[] newPeopleInformation = this.info.split(";");
 
         if (newPeopleInformation.length != 2) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
         String[] newPeople = newPeopleInformation[1].strip().split(",");
@@ -63,7 +63,7 @@ public class DeletePersonFromMeetingCommand extends Command {
             model.deleteMeeting(meetingToUpdate);
             model.addMeeting(meetingToUpdate, meetingIndex.getZeroBased());
         } catch (PersonNotFoundException e) {
-            throw new CommandException(CreateMeetingCommand.PERSON_NOT_FOUND);
+            throw new CommandException(e.getMessage() + "\n" + CreateMeetingCommand.PERSON_NOT_FOUND);
         } catch (DuplicatePersonException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_DUPLICATE_NAMES);
         }

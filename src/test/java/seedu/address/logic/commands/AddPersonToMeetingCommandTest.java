@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 
 public class AddPersonToMeetingCommandTest {
@@ -75,7 +76,8 @@ public class AddPersonToMeetingCommandTest {
 
     @Test
     public void execute_add_nonExistentPerson() {
-        String expectedMessage = CreateMeetingCommand.PERSON_NOT_FOUND;
+        String expectedMessage = String.format(PersonNotFoundException.PERSON_NOT_FOUND, "test") + "\n"
+            + CreateMeetingCommand.PERSON_NOT_FOUND;
         AddPersonToMeetingCommand command = new AddPersonToMeetingCommand("1; test");
         assertCommandFailure(command, model, expectedMessage);
     }
