@@ -319,8 +319,6 @@ Format: `mailEvent INDEX`
 Example:
 * `mailEvent 2` creates mailing list as a CSV file, the name of the csv file is the same as the title of 2nd event 
 in the event list.
-* `mailEvent 4` creates mailing list as a CSV file, the name of the csv file is the same as the title of 4th event
-in the event list.
 
 ### Generating pie charts of statistics of the people tagged to an event in the event list : `makeStats`
 
@@ -386,6 +384,6 @@ _Details coming soon ..._
 | **FindEvents**   | `findEvents KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvents Sale Discount`                                                                                                              |
 | **ListEvents**   | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                      |
 | **MailEvent**    | `mailEvent INDEX`<br> e.g., `mailEvent 3`                                                                                                                                              |                                                                                                                                      |
-| **TagEvent**     | `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                                |
-| **UntagEvent**   | `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                            |
+| **TagEvent**     | `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                              |
+| **UntagEvent**   | `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                          |
 | **Help**         | `help`                                                                                                                                                                                 |
