@@ -2,9 +2,14 @@ package hobbylist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import hobbylist.commons.core.Messages;
 import hobbylist.model.Model;
+import hobbylist.model.activity.Activity;
+import hobbylist.model.activity.DateMatchesGivenDatePredicate;
 import hobbylist.model.activity.NameOrDescContainsKeywordsPredicate;
+import hobbylist.model.activity.RatingMatchesGivenValuePredicate;
 
 /**
  * Finds and lists all activities in HobbyList whose name or description contains any of the argument keywords.
@@ -23,10 +28,13 @@ public class FindCommand extends Command {
 
     private static String commandWord = "find";
 
-    private final NameOrDescContainsKeywordsPredicate predicate;
+    private final Predicate<Activity> predicate;
 
-    public FindCommand(NameOrDescContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    public FindCommand(NameOrDescContainsKeywordsPredicate namePredicate,
+                       DateMatchesGivenDatePredicate datePredicate,
+                       RatingMatchesGivenValuePredicate ratingPredicate) {
+        this.predicate = namePredicate.or(datePredicate)
+                                      .or(ratingPredicate);
     }
 
     /**

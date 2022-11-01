@@ -17,33 +17,11 @@ public class NameOrDescContainsKeywordsPredicate implements Predicate<Activity> 
 
     @Override
     public boolean test(Activity activity) {
-        for (int i = 0; i < keywords.size(); i++) {
-            if (keywords.get(i).split("rate/").length == 2) {
-                String[] t = keywords.get(i).split("rate/");
-                int index = Integer.valueOf(t[1]);
-                if (activity.getRating() == index) {
-                    return true;
-                }
-            }
-        }
+        // name or description matches the keywords
         if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                 activity.getName().fullName, keyword)
                 || StringUtil.containsWordIgnoreCase(activity.getDescription().value, keyword))) {
             return true;
-        }
-        if (!activity.getDate().isEmpty()) {
-            if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                    activity.getDate().get(0).getOrginString(), keyword))) {
-                return true;
-            }
-            if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                    activity.getDate().get(0).yearMonthDescrption(), keyword))) {
-                return true;
-            }
-            if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                    activity.getDate().get(0).yearDescription(), keyword))) {
-                return true;
-            }
         }
         return false;
     }
