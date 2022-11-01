@@ -1,35 +1,36 @@
-# SOCompiler - User Guide
+# SoCompiler - User Guide
 
 ## Table of Contents
-  - [Overview](#welcome-to-socompliers-user-guide)
-  - [Quick Start](#quick-start)
-  - [Things to note](#things-to-note)
-  - [Commands](#commands)
+
+- [Overview](#welcome-to-socompliers-user-guide)
+- [Quick Start](#quick-start)
+- [Things to note](#things-to-note)
+- [Commands](#commands)
     - [General Commands](#For-both-modules-and-contacts)
-      - [List](#listing-all-modules-and-contacts--list)
-      - [Find](#finding-keywords-in-a-contact-andor-module--find)
-      - [Clear](#clearing-all-contacts-and-modules--clear)
-      - [Help](#looking-for-help--help)
-      - [Exit](#exiting-the-program--exit)
+        - [List](#listing-all-modules-and-contacts--list)
+        - [Find](#finding-keywords-in-a-contact-andor-module--find)
+        - [Clear](#clearing-all-contacts-and-modules--clear)
+        - [Help](#looking-for-help--help)
+        - [Exit](#exiting-the-program--exit)
     - [Contacts](#Contacts)
-      - [Add](#adding-a-contact-addp)
-      - [Edit](#editing-a-contact--editp)
-      - [Delete](#deleting-a-contact--deletep)
-      - [Find](#finding-a-contact--findp)
+        - [Add](#adding-a-contact-addp)
+        - [Edit](#editing-a-contact--editp)
+        - [Delete](#deleting-a-contact--deletep)
+        - [Find](#finding-a-contact--findp)
     - [Modules](#Modules)
-      - [Add](#adding-a-module-addm)
-      - [Edit](#editing-a-module--editm)
-      - [Delete](#deleting-a-module--deletem)
-      - [Find](#finding-a-module--findm)
-  - [FAQ](#faq)
-  - [Command Summary](#command-summary)
+        - [Add](#adding-a-module-addm)
+        - [Edit](#editing-a-module--editm)
+        - [Delete](#deleting-a-module--deletem)
+        - [Find](#finding-a-module--findm)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
 
 # Welcome to SOComplier's User Guide
 
 > The sole app that university students will need to streamline their everyday routines.
 
-SOCompiler is a **desktop app for managing contacts and module details, optimized for use via a Command Line
-Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SOCompiler
+SoCompiler is a **desktop app for managing contacts and module details, optimized for use via a Command Line
+Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SoCompiler
 can get your contact and module management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -40,7 +41,7 @@ can get your contact and module management tasks done faster than traditional GU
 
 2. Download the latest `socompiler.jar` from [here](https://github.com/AY2223S1-CS2103T-W12-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your SOCompiler.
+3. Copy the file to the folder you want to use as the _home folder_ for your SoCompiler.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
    contains some sample data.<br>
@@ -75,6 +76,7 @@ can get your contact and module management tasks done faster than traditional GU
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
 # Commands
 
 ## For both modules and contacts
@@ -95,8 +97,10 @@ Format: `find KEYWORD [ANOTHER_KEYWORD]…​`
 * The order of the keywords does not matter; e.g. `Bob McGhee` will match `McGhee Bob`.
 * Any field associated with the contact or module can be found using this command.
 * Only full words will be matched; e.g. `Cs2030` will not match `Cs2030S`.
-* Full words are characterized by having an empty space before and after the word; eg. Searching `Friday 10am` will only match `Friday` and not `Friday,`
-* Modules or contacts matching at least one keyword will be returned (i.e. `OR` search); e.g. `mcghee broad` will return `Bob McGhee` and `Seaward Broad`.
+* Full words are characterized by having an empty space before and after the word; eg. Searching `Friday 10am` will only
+  match `Friday` and not `Friday,`
+* Modules or contacts matching at least one keyword will be returned (i.e. `OR` search); e.g. `mcghee broad` will
+  return `Bob McGhee` and `Seaward Broad`.
 
 Examples:
 
@@ -125,7 +129,8 @@ Format: `exit`
 
 ### Saving the data
 
-SOCompiler data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SoCompiler data are saved in the hard disk automatically after any command that changes the data. There is no need to
+save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -164,14 +169,15 @@ Format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM] [m/MODULE_CODE] 
 
 Examples:
 
-* `editp 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567`
+* `editp 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to
+  be `91234567`
   and `johndoe@example.com` respectively.
 * `editp 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+
 <p float="left">
 <img src="images/editp1.png" width="700" />
 <img src="images/editp2.png" width="700" />
 </p>
-
 
 ### Deleting a contact : `deletep`
 
@@ -194,6 +200,7 @@ Examples:
 </p>
 
 ### Finding a contact : `findp`
+
 Find contacts whose fields contain any of the given keywords.
 
 Format: `findp KEYWORD [ANOTHER_KEYWORD]…​`
@@ -202,10 +209,13 @@ Format: `findp KEYWORD [ANOTHER_KEYWORD]…​`
 * The order of the keywords does not matter; e.g. `Bob McGhee` will match `McGhee Bob`.
 * Any field associated with the contact can be found using this command.
 * Only full words will be matched; e.g. `Cs2030` will not match `Cs2030S`.
-* Full words are characterized by having an empty space before and after the word; eg. Searching `Friday 10am` will only match `Friday` and not `Friday,`
-* Contacts matching at least one keyword will be returned (i.e. `OR` search); e.g. `mcghee broad` will return `Bob McGhee` and `Seaward Broad`.
+* Full words are characterized by having an empty space before and after the word; eg. Searching `Friday 10am` will only
+  match `Friday` and not `Friday,`
+* Contacts matching at least one keyword will be returned (i.e. `OR` search); e.g. `mcghee broad` will
+  return `Bob McGhee` and `Seaward Broad`.
 
 Examples:
+
 * `findp bob jessica` returns `Bob McGhee` and `Jessica Lim`
 
 --------------------------------------------------------------------------------------------------------------------
@@ -245,9 +255,11 @@ Format: `editm INDEX [m/MODULE_CODE] [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [l
 
 Examples:
 
-* `editm 1 l/Every Friday a/Functional Expressionism` Edits the lecture details and assignment details of the 1st module to be `Every Friday`
+* `editm 1 l/Every Friday a/Functional Expressionism` Edits the lecture details and assignment details of the 1st module
+  to be `Every Friday`
   and `Functional Expressionism` respectively.
-* `editm 2 m/MA1521 a/` Edits the module code of the 2nd module to be `MA1521` and clears all existing assignment details.
+* `editm 2 m/MA1521 a/` Edits the module code of the 2nd module to be `MA1521` and clears all existing assignment
+  details.
 
 ### Deleting a module : `deletem`
 
@@ -274,8 +286,10 @@ Format: `findm KEYWORD [ANOTHER_KEYWORD]…​`
 * The order of the keywords does not matter; e.g. `cs2100 cs2109s` will match `cs2109s cs2100`.
 * Any field associated with the module can be found using this command.
 * Only full words will be matched; e.g. `Cs2030` will not match `Cs2030S`.
-* Full words are characterized by having an empty space before and after the word; eg. Searching `Friday 10am` will only match `Friday` and not `Friday,`
-* Modules matching at least one keyword will be returned (i.e. `OR` search); e.g. `cs2109s cs2100` will return `CS2109s` and `CS2100`.
+* Full words are characterized by having an empty space before and after the word; eg. Searching `Friday 10am` will only
+  match `Friday` and not `Friday,`
+* Modules matching at least one keyword will be returned (i.e. `OR` search); e.g. `cs2109s cs2100` will return `CS2109s`
+  and `CS2100`.
 
 Examples:
 
@@ -287,7 +301,7 @@ Examples:
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous SOCompiler home folder.
+the data of your previous SoCompiler home folder.
 
 **Q**: What if my module has no zoom links? What if I don't have the contact number of my Teaching Assistant?<br>
 **A**: When adding a Module, all fields except `MODULE_CODE` are optional. When adding a contact, all fields except
