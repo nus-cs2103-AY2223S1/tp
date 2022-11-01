@@ -44,7 +44,6 @@ Here are the symbols and text styles to look out for while using this guide:
 | <kbd>Esc</kbd>                | Keyboard button                                      |
 
 
-
 ## Table of Contents
 
 * Table of Contents
