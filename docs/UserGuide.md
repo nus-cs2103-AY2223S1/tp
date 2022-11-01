@@ -18,7 +18,7 @@ As a teaching assistant, you can use GREWZ as an all-in-one platform to carry ou
 * Updating student details
 * Managing personal homework
 
-GREWZ boasts a timeless, compartmentalised Graphical User Interface (GUI) while utilising a clean Command Line Interface (CLI) - this means that the faster you can type, the faster you can get your work done.
+GREWZ boasts a timeless, compartmentalised [Graphical User Interface (GUI)](#glossary) while utilising a clean [Command Line Interface (CLI)](#pookie) - this means that the faster you can type, the faster you can get your work done.
 
 Hopefully our application has grown on you! 
 
@@ -34,21 +34,21 @@ If you want the quick overview of GREWZ commands, jump over to [Command Summary]
 Take note of the following symbols and formatting used in this document:
 
 
-| Symbol      | Meaning                                                        |
-|-------------|----------------------------------------------------------------|
-|:information_source:| Provides notes for the user                             |
-|:exclamation:| Possible errors that might come from user interaction          |
-|:bulb:        | Provides additional information about the feature              |
+| Symbol               | Meaning                                               |
+|----------------------|-------------------------------------------------------|
+| :information_source: | Provides notes for the user                           |
+| :exclamation:        | Possible errors that might come from user interaction |
+| :bulb:               | Provides additional information about the feature     |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. For more details, check out the [FAQs](#faq).
 
 2. Download the latest `GREWZ.jar` from [here](https://github.com/AY2223S1-CS2103T-W12-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your GREWZ.
+3. Copy the file to the folder you want to use as the [_home folder_](#glossary) for your GREWZ.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -58,7 +58,7 @@ Take note of the following symbols and formatting used in this document:
 
    * **`list`** : Lists all students.
 
-   * **`add`**`n/John Doe i/e0778123 [e/student@example.com] [p/91251211]` : Adds a student named `John Doe` to the student list.
+   * **`add`**`n/John Doe i/e0778123` : Adds a student named `John Doe` with student ID `e0778123` to the student list.
 
    * **`delete`**`3` : Deletes the 3rd student shown in the current list.
 
@@ -76,7 +76,7 @@ Take note of the following symbols and formatting used in this document:
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the [parameters](#glossary) to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -366,8 +366,6 @@ Examples:
 
 ### Navigating User Input History: `↑`, `↓`
 
-Adapted from [senior](https://github.com/AY2122S2-CS2103T-W13-3/tp)
-
 Allows user to quickly retrieve their previous inputs from current session by using the up and down arrow keys.
 
 Format: `↑`, `↓`
@@ -387,6 +385,14 @@ If your changes to the data file makes its format invalid, GREWZ will discard al
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+
+**Q:** I don't know if I have `Java 11` installed in my computer. What do I do?
+<br />
+**A:** To check your Java version, open a Command Prompt or Terminal window and type:
+```
+java -version
+```
+If you do not have Java `11` installed, you can download it [here](https://www.oracle.com/java/technologies/downloads/#java11)
 
 **Q:** Do I have to retype the command every single time even if they are similar?
 <br />
@@ -446,6 +452,8 @@ If your changes to the data file makes its format invalid, GREWZ will discard al
 |--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Command Line Interface (CLI)**           | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer. |
 | **Graphical user interface (GUI)**         | Graphical user interface (GUI) is a form of user interface that allows users to interact with electronic devices through graphical icons.      |
+| **Home Folder**                            | A folder on you computer that stores all data related to this application.                                                                     |
+| **Parameter**                              | User input for particular field.                                                                                                               |
 | **Teaching assistant**                     | Teaching assistant is an individual who assists a professor with instructional responsibilities.                                               |
 | **JavaScript Object Notation (JSON)**      | JavaScript Object Notation (JSON) is used for storing and transfering data.                                                                    |
 | **Joint Photographic Experts Group (JPG)** | Joint Photographic Experts Group (JPG) is an image file type and used for compression of digital images.                                       |
