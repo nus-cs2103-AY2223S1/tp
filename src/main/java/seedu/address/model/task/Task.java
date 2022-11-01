@@ -304,10 +304,18 @@ public class Task {
                 .append(getCategory())
                 .append("; Deadline: ")
                 .append(getDeadline())
-                .append("; Assigned to: ")
-                .append(getPerson())
-                .append("; Status: ");
+                .append("; Assigned to: ");
 
+        if (person == null) {
+            builder.append("None");
+        } else {
+            builder.append(getPersonName())
+                    .append(" ( ")
+                    .append(getEmail())
+                    .append(" )");
+        }
+
+        builder.append("; Status: ");
         if (isDone) {
             builder.append("Done");
         } else {
