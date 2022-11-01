@@ -3,13 +3,16 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_PERIOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.logic.commands.BookCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class for Appointment.
@@ -39,6 +42,14 @@ public class AppointmentUtil {
                 .append(dateTime.format(Appointment.DATE_FORMATTER)).append(" "));
         descriptor.getTimePeriod().ifPresent(timePeriod -> sb.append(PREFIX_RECURRING_PERIOD)
                 .append(getFormattedPeriod(timePeriod)).append(" "));
+        if (descriptor.getTags().isPresent()) {
+            Set<Tag> tags = descriptor.getTags().get();
+            if (tags.isEmpty()) {
+                sb.append(PREFIX_TAG);
+            } else {
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.toString()).append(" "));
+            }
+        }
         return sb.toString();
     }
 
