@@ -52,7 +52,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the LTNS.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
