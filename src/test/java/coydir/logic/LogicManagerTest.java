@@ -87,7 +87,7 @@ public class LogicManagerTest {
                 + POSITION_DESC_AMY + DEPARTMENT_DESC_AMY + ADDRESS_DESC_AMY;
         PersonBuilder amyBuilder = new PersonBuilder(AMY);
         String newId = String.valueOf(EmployeeId.getCount());
-        Person expectedPerson = amyBuilder.withEmployeeId(newId).withTags().build();
+        Person expectedPerson = amyBuilder.withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
