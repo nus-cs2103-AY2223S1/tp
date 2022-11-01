@@ -107,7 +107,6 @@ public class Leave {
                 && this.endDate.compareTo(otherLeave.endDate) <= 0
                 || this.startDate.compareTo(otherLeave.startDate) <= 0
                 && this.endDate.compareTo(otherLeave.endDate) >= 0;
-
     }
 
     /**
