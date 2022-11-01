@@ -23,6 +23,7 @@ public class BackwardHistory extends CommandHistory {
     public String execute() {
         logger.log(Level.INFO, "Moving down the command history stack.");
         if (this.backwardStack.isEmpty()) {
+            logger.log(Level.INFO, "Reached the end of the stack.");
             return EMPTY_TEXT;
         }
         logger.log(Level.INFO, "Transferring from backward stack to forward stack.");
