@@ -213,7 +213,7 @@ Adds a task of type todo into your task list.
 
 * `NAME` must be written in full.
 * `NAME` is case-sensitive.
-* If task book contains a `todo` with the same `ASSIGNMENT`, `NAME` and `DESCRIPTION` from the input command, a new `todo` will not be added.
+* If TaskBook contains a `todo` with the same `ASSIGNMENT`, `NAME` and `DESCRIPTION` from the input command, a new `todo` will not be added.
 
 </div>
 
@@ -244,7 +244,7 @@ Adds a task of type deadline into the task list.
 
 * `NAME` must be written in full.
 * `NAME` is case-sensitive.
-* If task book contains a `deadline` with the same `ASSIGNMENT`, `NAME`, `DESCRIPTION` and `DATE` from the input command, a new `deadline` will not be added.
+* If TaskBook contains a `deadline` with the same `ASSIGNMENT`, `NAME`, `DESCRIPTION` and `DATE` from the input command, a new `deadline` will not be added.
 
 </div>
 
@@ -274,7 +274,7 @@ Adds a task of type event into your task list.
 
 * `NAME` must be written in full.
 * `NAME` is case-sensitive.
-* If task book contains an `event` with the same `ASSIGNMENT`, `NAME`, `DESCRIPTION` and `DATE` from input command, a new `event` will not be added.
+* If TaskBook contains an `event` with the same `ASSIGNMENT`, `NAME`, `DESCRIPTION` and `DATE` from input command, a new `event` will not be added.
 
 </div>
 
@@ -331,7 +331,7 @@ Format: `task edit i/INDEX <m/NAME o/NAME d/DESCRIPTION t/DATE #/TAG…>`
 
 * `NAME` must be written in full.
 * `NAME` is case-sensitive.
-* If task book contains a `task` with the same task type, `ASSIGNMENT`, `NAME`, `DESCRIPTION` and `DATE` (if applicable) from input command, the `task` at specified `INDEX` will not be edited.
+* If TaskBook contains a `task` with the same task type, `ASSIGNMENT`, `NAME`, `DESCRIPTION` and `DATE` (if applicable) from input command, the `task` at specified `INDEX` will not be edited.
 
 </div>
 
