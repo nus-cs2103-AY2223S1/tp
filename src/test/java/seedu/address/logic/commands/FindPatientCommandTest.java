@@ -5,8 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPatients.ALICE;
+import static seedu.address.testutil.TypicalPatients.BENSON;
+import static seedu.address.testutil.TypicalPatients.CARL;
+import static seedu.address.testutil.TypicalPatients.DANIEL;
+import static seedu.address.testutil.TypicalPatients.ELLE;
+import static seedu.address.testutil.TypicalPatients.FIONA;
+import static seedu.address.testutil.TypicalPatients.GEORGE;
 import static seedu.address.testutil.TypicalPatients.getTypicalPatientsHealthContact;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
@@ -99,18 +107,111 @@ public class FindPatientCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredPatientList());
     }
 
-    /*
     @Test
-    public void execute_multipleKeywords_multiplePatientsFound() {
-        String expectedMessage = String.format(MESSAGE_PATIENTS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicatePatient predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPatientList(predicate);
+    public void execute_findByName_found() {
+        String expectedMessage = String.format(MESSAGE_PATIENTS_LISTED_OVERVIEW, 1);
+        Optional<Predicate<Name>> namePredicate = Optional.of(name -> name.fullName.toLowerCase()
+                .contains("pauline".toLowerCase()));
+        FindPatientCommand command = new FindPatientCommand(namePredicate, Optional.empty(),
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
+        expectedModel.updateFilteredPatientList(command.getPredicate());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPatientList());
+        assertEquals(Arrays.asList(ALICE), model.getFilteredPatientList());
     }
 
-    private NameContainsKeywordsPredicatePatient preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicatePatient(Arrays.asList(userInput.split("\\s+")));
-    } */
+    @Test
+    public void execute_findByPhone_found() {
+        String expectedMessage = String.format(MESSAGE_PATIENTS_LISTED_OVERVIEW, 3);
+        Optional<Predicate<Phone>> phonePredicate = Optional.of(phone -> phone.value.toLowerCase()
+                .contains("948"));
+        FindPatientCommand command = new FindPatientCommand(Optional.empty(), phonePredicate,
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
+        expectedModel.updateFilteredPatientList(command.getPredicate());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ELLE, FIONA, GEORGE), model.getFilteredPatientList());
+    }
+
+    @Test
+    public void execute_findByAddress_found() {
+        String expectedMessage = String.format(MESSAGE_PATIENTS_LISTED_OVERVIEW, 2);
+        Optional<Predicate<Address>> addressPredicate = Optional.of(address -> address.toString()
+                .toLowerCase().contains("th street".toLowerCase()));
+        FindPatientCommand command = new FindPatientCommand(Optional.empty(), Optional.empty(),
+                Optional.empty(), addressPredicate, Optional.empty(),
+                Optional.empty());
+        expectedModel.updateFilteredPatientList(command.getPredicate());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(DANIEL, GEORGE), model.getFilteredPatientList());
+    }
+
+    @Test
+    public void execute_findByEmail_found() {
+        String expectedMessage = String.format(MESSAGE_PATIENTS_LISTED_OVERVIEW, 7);
+        Optional<Predicate<Email>> emailPredicate = Optional.of(email -> email.value.toLowerCase()
+                .contains("@example.".toLowerCase()));
+        FindPatientCommand command = new FindPatientCommand(Optional.empty(), Optional.empty(),
+                emailPredicate, Optional.empty(), Optional.empty(),
+                Optional.empty());
+        expectedModel.updateFilteredPatientList(command.getPredicate());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredPatientList());
+    }
+
+    @Test
+    public void execute_findByRemark_found() {
+        String expectedMessage = String.format(MESSAGE_PATIENTS_LISTED_OVERVIEW, 1);
+        Optional<Predicate<Remark>> remarkPredicate = Optional.of(remark -> remark.toString().toLowerCase()
+                .contains("CAN'T TAKE".toLowerCase()));
+        FindPatientCommand command = new FindPatientCommand(Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                remarkPredicate);
+        expectedModel.updateFilteredPatientList(command.getPredicate());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON), model.getFilteredPatientList());
+    }
+
+    @Test
+    public void execute_findByTags_found() {
+        String expectedMessage = String.format(MESSAGE_PATIENTS_LISTED_OVERVIEW, 1);
+        Set<Tag> testTag = new HashSet<Tag>();
+        testTag.add(new Tag("OWESMONEY"));
+
+        Optional<Predicate<Set<Tag>>> tagPredicate = Optional.of(patientTags -> testTag.stream()
+                .allMatch(inputTag -> patientTags.stream().anyMatch(patientTag -> patientTag.tagName.toLowerCase()
+                        .contains(inputTag.tagName.toLowerCase()))));
+        FindPatientCommand command = new FindPatientCommand(Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty(), tagPredicate, Optional.empty());
+        expectedModel.updateFilteredPatientList(command.getPredicate());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON), model.getFilteredPatientList());
+    }
+
+
+    @Test
+    public void execute_multipleFields_found() {
+        String expectedMessage = String.format(MESSAGE_PATIENTS_LISTED_OVERVIEW, 1);
+        Optional<Predicate<Name>> namePredicate = Optional.of(name -> name.fullName.toLowerCase()
+                .contains("pauline".toLowerCase()));
+        Optional<Predicate<Phone>> phonePredicate = Optional.of(phone -> phone.value.toLowerCase()
+                .contains("943"));
+        Optional<Predicate<Email>> emailPredicate = Optional.of(email -> email.value.toLowerCase()
+                .contains("@example.".toLowerCase()));
+        Optional<Predicate<Address>> addressPredicate = Optional.of(address -> address.toString()
+                .toLowerCase().contains("west".toLowerCase()));
+        Optional<Predicate<Remark>> remarkPredicate = Optional.of(remark -> remark.toString().toLowerCase()
+                .contains("likes".toLowerCase()));
+        Set<Tag> testTag = new HashSet<Tag>();
+        testTag.add(new Tag("FRIENDS"));
+        Optional<Predicate<Set<Tag>>> tagPredicate = Optional.of(patientTags -> testTag.stream()
+                .allMatch(inputTag -> patientTags.stream().anyMatch(patientTag -> patientTag.tagName.toLowerCase()
+                        .contains(inputTag.tagName.toLowerCase()))));
+        FindPatientCommand command = new FindPatientCommand(namePredicate, phonePredicate,
+                emailPredicate, addressPredicate, tagPredicate, remarkPredicate);
+        expectedModel.updateFilteredPatientList(command.getPredicate());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE), model.getFilteredPatientList());
+    }
+
 }
