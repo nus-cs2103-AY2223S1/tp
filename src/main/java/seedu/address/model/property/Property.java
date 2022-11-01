@@ -84,7 +84,7 @@ public class Property {
     }
 
     /**
-     * Returns true if both properties have the same name and price.
+     * Returns true if both properties have the same address.
      * This defines a weaker notion of equality between two properties.
      */
     public boolean isSameProperty(Property otherProperty) {
@@ -93,7 +93,6 @@ public class Property {
         }
 
         return otherProperty != null
-                && otherProperty.getPropertyName().equals(getPropertyName())
                 && otherProperty.getAddress().equals(getAddress());
     }
 

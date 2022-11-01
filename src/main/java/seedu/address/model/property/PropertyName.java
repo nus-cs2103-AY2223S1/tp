@@ -48,7 +48,7 @@ public class PropertyName {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PropertyName // instanceof handles nulls
-                && fullName.equals(((PropertyName) other).fullName)); // state check
+                && fullName.equalsIgnoreCase(((PropertyName) other).fullName)); // state check
     }
 
     @Override
