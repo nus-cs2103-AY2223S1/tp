@@ -5,9 +5,6 @@ title: User Guide
 
 Everything you need to know about TruthTable.
 
-* Table of Contents
-{:toc}
-
 # Introduction to TruthTable
 
 TruthTable is a **desktop application** that enables team leads to **manage their software 
@@ -19,16 +16,35 @@ Graphical User Interface (GUI).
 If you can type fast, TruthTable can get your task management done _blazingly fast_, faster than traditional GUI 
 applications.
 
-## Features
+## Key Features
 
-TruthTable allows you to
+### Too many cooks spoil the Truth
 
-* collage and organise your project-related documents and information (e.g. tasks, links, member, and team information),
-* visualise your teams’ progress easily,
-* delegate tasks to your team members conveniently,
-* use a CLI do all these _blazingly fast_.
+Managing project documents and information has always been an annoying task to do. Besides the multitude of 
+links and slides created by the team, you may be using task management applications to track your team's 
+progress as well. This is where TruthTable comes in. 
+
+TruthTable allows you to collate and organise all your tasks, links, and member information all in one spot.
+
+### Seeing is believing
+
+It is often difficult to visualise and communicate your team's progress to stakeholders. TruthTable solves this 
+through its ergonomic user interface. At a glance, you can see the number of tasks completed by your team, and 
+determine progress of your team. 
+
+TruthTable allows you to see which members are assigned to the tasks, enabling you to delegate work in a fair and 
+equitable manner. 
+
+### Built for convenience and speed
+
+Context switching is a productivity killer. Having to switch from project management to product development usually 
+means switching from GUI-based applications to CLI code editors. Consequently, TruthTable allows you to use a CLI 
+for all your project management needs, reducing the impact of context switching.
 
 ---
+
+* Table of Contents
+{:toc}
 
 # Getting Started
 
