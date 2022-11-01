@@ -28,7 +28,7 @@
         <ScrollPane fitToHeight="true" fitToWidth="true">
           <VBox styleClass="commands-summary-vbox">
 
-            <Label styleClass="help-title-label" text="Help Command Summary" />
+            <Label styleClass="help-title-label" text="Help Command Summary" wrapText="true"/>
             <TableView fx:id="commandFeaturesTableView">
               <VBox.margin>
                 <Insets top="10.0" />

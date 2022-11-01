@@ -7,6 +7,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
@@ -102,6 +104,20 @@ public class DeleteTaskAllCommand extends Command {
                     personToDeleteTask.getAddress(), personToDeleteTask.getTags(),
                     assignments, personToDeleteTask.getPersonGroups());
 
+            //update person to every group
+            List<Group> groupListToEdit = model.getFilteredGroupList();
+            for (int i = 0; i < groupListToEdit.size(); i++) {
+                Group currGroup = groupListToEdit.get(i);
+                if (currGroup.contains(personToDeleteTask)) {
+                    Set<Person> currMembers = new HashSet<Person>(currGroup.getMembers());
+                    currMembers.remove(personToDeleteTask);
+                    currMembers.add(editedPerson);
+
+                    Group editedGroup = new Group(currGroup.getName(), currMembers);
+                    model.setGroup(currGroup, editedGroup);
+                }
+            }
+
             editedPerson.setWorkloadScore();
             model.setPerson(personToDeleteTask, editedPerson);
             successfullyDeleted.add(editedPerson);
@@ -120,5 +136,23 @@ public class DeleteTaskAllCommand extends Command {
         String updatedPersonsString = updatedPersonsStrBld.toString();
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS + "\n" + updatedPersonsString));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DeleteTaskAllCommand)) {
+            return false;
+        }
+
+        // state check
+        DeleteTaskAllCommand e = (DeleteTaskAllCommand) other;
+        return group.equals(e.group)
+                && task.equals(e.task);
     }
 }

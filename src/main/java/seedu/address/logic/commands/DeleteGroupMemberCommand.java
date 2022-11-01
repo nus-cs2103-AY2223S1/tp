@@ -3,15 +3,18 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GROUPS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.GroupName;
 import seedu.address.model.person.Name;
@@ -82,9 +85,12 @@ public class DeleteGroupMemberCommand extends Command {
 
         personGroupArrayListCopy.remove(this.personGroup);
 
+        HashMap<String, ArrayList<Assignment>> personAssignmentCopy = new HashMap<>(personToGroup.getAssignments());
+        personAssignmentCopy.remove(this.personGroup.getGroupName());
+
         Person editedPerson = new Person(
                 personToGroup.getName(), personToGroup.getPhone(), personToGroup.getEmail(),
-                personToGroup.getAddress(), personToGroup.getTags(), personToGroup.getAssignments(),
+                personToGroup.getAddress(), personToGroup.getTags(), personAssignmentCopy,
                 personGroupArrayListCopy);
 
         for (PersonGroup pg : personGroupArrayListCopy) {
@@ -102,11 +108,13 @@ public class DeleteGroupMemberCommand extends Command {
         Set<Person> groupMembers = new HashSet<>(groupToDeletePerson.getMembers());
 
         groupMembers.remove(originalPersonBeforeEdit);
+
         Group editedGroup = new Group(groupToDeletePerson.getName(), groupMembers);
 
         model.setGroup(groupToDeletePerson, editedGroup);
         model.setPerson(personToGroup, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_MEMBER_SUCCESS, this.name, editedGroup));
     }
