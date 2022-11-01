@@ -107,8 +107,7 @@ Examples:
 ### Listing all students : `list`
 
 Shows a list of all students in Pupilist. Changes Pupilist to list mode.
-Also allows you to see the next session for you to attend along with the student you
-are going to be teaching next.<br>
+Next session is also shown.<br>
 **Usage**: All modes
 
 Format: `list`
@@ -230,7 +229,7 @@ Examples:
 ### Viewing students details: `view`
 
 View details of a student. Required to `edit` or `remove` student's details.
-You can only view one student's details at one time.<br>
+Only view one student's details can be viewed at a time.<br>
 **Usage**: All modes
 
 Format: `view NAME`
@@ -359,10 +358,10 @@ Format: `exit`
 
 ### Next Session
 
-Pupilist helps to organise your session timings automatically. No command is required for this feature.
+Pupilist helps to organise session timings automatically. No command is required for this feature.
 This feature is shown on launch of the application and when the [`list`](#listing-all-persons--list) command is used.
 
-Pupilist checks for the upcoming sessions based on your current device time, then displays the name of 
+Pupilist checks for the upcoming sessions based on the current device time, then displays the name of 
 the student and the session timing.
 
 ![next session feature](images/NextSession.png)
@@ -376,7 +375,7 @@ Pupilist data are saved in the hard disk automatically after any command that ch
 Pupilist data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Pupilist will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
