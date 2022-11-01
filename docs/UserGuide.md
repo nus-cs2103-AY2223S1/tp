@@ -612,17 +612,17 @@ requests, Order status, Price range.
 
 | Attribute           | Prefix | Format                     | Example         |
 |---------------------|--------|----------------------------|-----------------|
-| Additional requests | ar     | ar/KEYWORD                 | ar/non-shedding |
-| Order Status        | os     | os/KEYWORD                 | os/Negotating   |
-| Price Range         | pr     | pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
+| Additional requests | o_ar   | ar/KEYWORD                 | ar/non-shedding |
+| Order Status        | o_st   | os/KEYWORD                 | os/Negotating   |
+| Price Range         | o_pr   | pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
 
 Format: `filter-o PREFIX/INPUT`
 
 Examples:
 
-* `filter-o os/Pending`
-* `filter-o as/Negotiating pr/90-900`
-* `filter-o ar/good with children os/Delivering pr/80-100`
+* `filter-o o_st/Pending`
+* `filter-o o_st/Negotiating o_pr/90-900`
+* `filter-o o_ar/good with children o_st/Delivering o_pr/80-100`
 
 Notes:
 
