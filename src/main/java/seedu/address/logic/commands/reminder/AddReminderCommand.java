@@ -14,27 +14,28 @@ import seedu.address.model.Model;
 import seedu.address.model.reminder.Reminder;
 
 /**
- * Adds a reminder to the ModQuik.
+ * Adds a reminder to ModQuik.
  */
 public class AddReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "add reminder";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to the ModQuik. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to ModQuik.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_TIME + "DEADLINE TIME "
-            + PREFIX_DATE_DAY + "DEADLINE DATE "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_TIME + "TIME "
+            + PREFIX_DATE_DAY + "DATE "
+            + PREFIX_PRIORITY + "PRIORITY "
+            + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Mark Midterms "
-            + PREFIX_DATE_DAY + "2022-01-01 "
             + PREFIX_TIME + "15:00 "
-            + PREFIX_DESCRIPTION + "300 papers to mark "
-            + PREFIX_PRIORITY + "HIGH";
+            + PREFIX_DATE_DAY + "2022-01-01 "
+            + PREFIX_PRIORITY + "HIGH "
+            + PREFIX_DESCRIPTION + "300 papers to mark";
 
     public static final String MESSAGE_SUCCESS = "New reminder added: %1$s";
-    public static final String MESSAGE_DUPLICATE_REMINDER = "This reminder already exists in the ModQuik";
+    public static final String MESSAGE_DUPLICATE_REMINDER = "This reminder already exists in ModQuik";
 
     private final Reminder toAdd;
 

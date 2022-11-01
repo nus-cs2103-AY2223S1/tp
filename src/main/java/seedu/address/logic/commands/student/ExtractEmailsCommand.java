@@ -8,6 +8,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 
@@ -28,8 +29,11 @@ public class ExtractEmailsCommand extends Command {
                 .collect(Collectors.joining(",", "mailto:", ""));
     }
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         ObservableList<Student> students = model.getFilteredPersonList();
+        if (students.size() == 0) {
+            throw new CommandException("There are no students to copy emails from!");
+        }
 
         // Combine emails into a mailto: string
         String mailtoString = generateUrl(students);

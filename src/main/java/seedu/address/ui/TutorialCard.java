@@ -44,7 +44,7 @@ public class TutorialCard extends UiPart<Region> {
         this.tutorial = tutorial;
         id.setText(displayedIndex + ". ");
         name.setText(tutorial.getName().fullName);
-        module.setText(tutorial.getModule().moduleName);
+        module.setText(tutorial.getModule().moduleCode);
         venue.setText(tutorial.getVenue().venue);
         timeslot.setText(tutorial.getTimeslot().toString());
     }

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Consultation's module in the ModQuik.
+ * Represents a Consultation's module in ModQuik.
  * Guarantees: immutable; is valid as declared in {@link #isValidModule(String)}
  */
 public class ConsultationModule {

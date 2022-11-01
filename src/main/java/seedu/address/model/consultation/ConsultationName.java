@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Consultation's name (name of the student who book the consultation in the ModQuik.
+ * Represents a Consultation's name (name of the student who book the consultation in ModQuik.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class ConsultationName {

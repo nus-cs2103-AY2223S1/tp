@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
+import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
-import seedu.address.model.tutorial.TutorialVenue;
 
 /**
  * A utility class to help with building Tutorial objects.
@@ -19,8 +19,8 @@ public class TutorialBuilder {
     public static final String DEFAULT_DAY = "3";
 
     private TutorialName tutorialName;
-    private TutorialModule tutorialModule;
-    private TutorialVenue tutorialVenue;
+    private ModuleCode moduleCode;
+    private Venue venue;
     private String tutorialTimeStart;
     private String tutorialTimeEnd;
     private String tutorialDay;
@@ -30,8 +30,8 @@ public class TutorialBuilder {
      */
     public TutorialBuilder() {
         tutorialName = new TutorialName(DEFAULT_NAME);
-        tutorialModule = new TutorialModule(DEFAULT_MODULE);
-        tutorialVenue = new TutorialVenue(DEFAULT_VENUE);
+        moduleCode = new ModuleCode(DEFAULT_MODULE);
+        venue = new Venue(DEFAULT_VENUE);
         tutorialDay = "1";
         tutorialTimeStart = "08:00";
         tutorialTimeEnd = "09:00";
@@ -42,8 +42,8 @@ public class TutorialBuilder {
      */
     public TutorialBuilder(Tutorial tutorialToCopy) {
         tutorialName = tutorialToCopy.getName();
-        tutorialModule = tutorialToCopy.getModule();
-        tutorialVenue = tutorialToCopy.getVenue();
+        moduleCode = tutorialToCopy.getModule();
+        venue = tutorialToCopy.getVenue();
         //        tutorialTimeslot = tutorialToCopy.getTimeslot();
     }
 
@@ -56,18 +56,18 @@ public class TutorialBuilder {
     }
 
     /**
-     * Sets the {@code TutorialModule} of the {@code Tutorial} that we are building.
+     * Sets the {@code ModuleCode} of the {@code Tutorial} that we are building.
      */
     public TutorialBuilder withModule(String module) {
-        this.tutorialModule = new TutorialModule(module);
+        this.moduleCode = new ModuleCode(module);
         return this;
     }
 
     /**
-     * Sets the {@code TutorialVenue} of the {@code Tutorial} that we are building.
+     * Sets the {@code Venue} of the {@code Tutorial} that we are building.
      */
     public TutorialBuilder withVenue(String venue) {
-        this.tutorialVenue = new TutorialVenue(venue);
+        this.venue = new Venue(venue);
         return this;
     }
 
@@ -95,7 +95,7 @@ public class TutorialBuilder {
      */
     public Tutorial build() {
         WeeklyTimeslot timeslot = WeeklyTimeslot.fromFormattedString(tutorialDay, tutorialTimeStart, tutorialTimeEnd);
-        return new Tutorial(tutorialName, tutorialModule, tutorialVenue, timeslot);
+        return new Tutorial(tutorialName, moduleCode, venue, timeslot);
     }
 
 }

@@ -19,6 +19,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid";
     public static final String MESSAGE_INVALID_CONSULTATION_DISPLAYED_INDEX =
             "The consultation index provided is invalid";
+    public static final String MESSAGE_INVALID_SORTING_CRITERIA = "The sorting criteria provided is invalid."
+            + "Please specify either \"priority\" or \"deadline\" to by/";
 
     /* Success messages */
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";

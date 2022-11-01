@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.consultation;
 
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.consultation.AddConsultationCommand;
+import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.datetime.DatetimeCommonUtils;
 import seedu.address.testutil.ConsultationBuilder;

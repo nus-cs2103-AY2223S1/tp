@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
-import seedu.address.model.tutorial.TutorialVenue;
 import seedu.address.storage.datetime.JsonAdaptedWeeklyTimeslot;
 
 /**
@@ -41,7 +41,7 @@ class JsonAdaptedTutorial {
      */
     public JsonAdaptedTutorial(Tutorial source) {
         name = source.getName().fullName;
-        module = source.getModule().moduleName;
+        module = source.getModule().moduleCode;
         venue = source.getVenue().venue;
         timeslot = new JsonAdaptedWeeklyTimeslot(source.getTimeslot());
     }
@@ -63,21 +63,21 @@ class JsonAdaptedTutorial {
 
         if (module == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TutorialModule.class.getSimpleName()));
+                    ModuleCode.class.getSimpleName()));
         }
-        if (!TutorialModule.isValidModule(module)) {
-            throw new IllegalValueException(TutorialModule.MESSAGE_CONSTRAINTS);
+        if (!ModuleCode.isValidModule(module)) {
+            throw new IllegalValueException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
-        final TutorialModule modelModule = new TutorialModule(module);
+        final ModuleCode modelModule = new ModuleCode(module);
 
         if (venue == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TutorialVenue.class.getSimpleName()));
+                    Venue.class.getSimpleName()));
         }
-        if (!TutorialVenue.isValidVenue(venue)) {
-            throw new IllegalValueException(TutorialVenue.MESSAGE_CONSTRAINTS);
+        if (!Venue.isValidVenue(venue)) {
+            throw new IllegalValueException(Venue.MESSAGE_CONSTRAINTS);
         }
-        final TutorialVenue modelVenue = new TutorialVenue(venue);
+        final Venue modelVenue = new Venue(venue);
 
         final WeeklyTimeslot weeklyTimeslot = timeslot.toModelType();
 

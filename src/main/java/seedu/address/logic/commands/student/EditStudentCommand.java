@@ -24,6 +24,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelType;
+import seedu.address.model.commons.ModuleCode;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
@@ -34,13 +35,12 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.student.TelegramHandle;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 
 /**
  * Edits the details of an existing person in the address book.
  */
-public class EditCommand extends Command {
+public class EditStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "edit student";
 
@@ -49,10 +49,10 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_ID + "ID] "
+            + "[" + PREFIX_ID + "STUDENT_ID] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TELEGRAM + "TELEGRAM] "
+            + "[" + PREFIX_TELEGRAM + "TELEGRAM_HANDLE] "
             + "[" + PREFIX_TUTORIAL + "TUTORIAL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -61,7 +61,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the ModQuik.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in ModQuik.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -70,7 +70,7 @@ public class EditCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditStudentCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
@@ -111,7 +111,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
         TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegram().orElse(studentToEdit.getTelegram());
-        TutorialModule updatedTutorialModule = editPersonDescriptor.getTutorialModule()
+        ModuleCode updatedModuleCode = editPersonDescriptor.getTutorialModule()
                 .orElse(studentToEdit.getTutorialModule());
         TutorialName updatedTutorialName = editPersonDescriptor.getTutorialName()
                 .orElse(studentToEdit.getTutorialName());
@@ -124,7 +124,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
         return new Student(updatedName, updatedId, updatedPhone,
-                updatedEmail, updatedTelegramHandle, updatedTutorialModule,
+                updatedEmail, updatedTelegramHandle, updatedModuleCode,
                 updatedTutorialName, updatedAttendance, updatedParticipation,
                 updatedGrade, updatedTags);
     }
@@ -137,12 +137,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditStudentCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        EditStudentCommand e = (EditStudentCommand) other;
         return index.equals(e.index)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
@@ -157,7 +157,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private TelegramHandle telegramHandle;
-        private TutorialModule tutorialModule;
+        private ModuleCode moduleCode;
         private TutorialName tutorialName;
         private Attendance attendance;
         private Participation participation;
@@ -176,7 +176,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setTelegram(toCopy.telegramHandle);
-            setTutorialModule(toCopy.tutorialModule);
+            setTutorialModule(toCopy.moduleCode);
             setTutorialName(toCopy.tutorialName);
             setAttendance(toCopy.attendance);
             setParticipation(toCopy.participation);
@@ -189,7 +189,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, id, phone, email,
-                    telegramHandle, tutorialModule, tutorialName, attendance, participation, grade, tags);
+                    telegramHandle, moduleCode, tutorialName, attendance, participation, grade, tags);
         }
 
         public void setName(Name name) {
@@ -232,12 +232,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(telegramHandle);
         }
 
-        public void setTutorialModule(TutorialModule tutorialModule) {
-            this.tutorialModule = tutorialModule;
+        public void setTutorialModule(ModuleCode moduleCode) {
+            this.moduleCode = moduleCode;
         }
 
-        public Optional<TutorialModule> getTutorialModule() {
-            return Optional.ofNullable(tutorialModule);
+        public Optional<ModuleCode> getTutorialModule() {
+            return Optional.ofNullable(moduleCode);
         }
 
         public void setTutorialName(TutorialName tutorialName) {

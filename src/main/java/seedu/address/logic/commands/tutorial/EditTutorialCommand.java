@@ -19,11 +19,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelType;
+import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
-import seedu.address.model.tutorial.TutorialVenue;
 
 /**
  * Edits the details of an existing tutorial in the address book.
@@ -103,8 +103,8 @@ public class EditTutorialCommand extends Command {
         assert tutorialToEdit != null;
 
         TutorialName updatedName = editTutorialDescriptor.getName().orElse(tutorialToEdit.getName());
-        TutorialModule updatedModule = editTutorialDescriptor.getModule().orElse(tutorialToEdit.getModule());
-        TutorialVenue updatedVenue = editTutorialDescriptor.getVenue().orElse(tutorialToEdit.getVenue());
+        ModuleCode updatedModule = editTutorialDescriptor.getModule().orElse(tutorialToEdit.getModule());
+        Venue updatedVenue = editTutorialDescriptor.getVenue().orElse(tutorialToEdit.getVenue());
         WeeklyTimeslot updatedTimeslot = editTutorialDescriptor.getTimeslot()
                 .orElse(tutorialToEdit.getTimeslot());
 
@@ -135,8 +135,8 @@ public class EditTutorialCommand extends Command {
      */
     public static class EditTutorialDescriptor {
         private TutorialName name;
-        private TutorialModule module;
-        private TutorialVenue venue;
+        private ModuleCode module;
+        private Venue venue;
         private WeeklyTimeslot timeslot;
 
         public EditTutorialDescriptor() {}
@@ -166,19 +166,19 @@ public class EditTutorialCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setModule(TutorialModule module) {
+        public void setModule(ModuleCode module) {
             this.module = module;
         }
 
-        public Optional<TutorialModule> getModule() {
+        public Optional<ModuleCode> getModule() {
             return Optional.ofNullable(module);
         }
 
-        public void setVenue(TutorialVenue venue) {
+        public void setVenue(Venue venue) {
             this.venue = venue;
         }
 
-        public Optional<TutorialVenue> getVenue() {
+        public Optional<Venue> getVenue() {
             return Optional.ofNullable(venue);
         }
 

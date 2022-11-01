@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.ConsultationDescription;
 import seedu.address.model.consultation.ConsultationModule;
@@ -29,9 +31,7 @@ import seedu.address.model.student.StudentId;
 import seedu.address.model.student.TelegramHandle;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
-import seedu.address.model.tutorial.TutorialVenue;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -43,42 +43,42 @@ public class SampleDataUtil {
                     new StudentId("A0000000a"),
                     new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new TelegramHandle("alexyeoh"),
-                    new TutorialModule("CS2103T"), new TutorialName("W17"),
+                    new ModuleCode("CS2103T"), new TutorialName("W17"),
                     new Attendance("0"), new Participation("0"), new Grade("A"),
                 getTagSet("quite")),
             new Student(new Name("Bernice Yu"),
                     new StudentId("A0000000B"),
                     new Phone("99272758"), new Email("berniceyu@example.com"),
                     new TelegramHandle("berniceyu"),
-                    new TutorialModule("CS2103T"), new TutorialName("W17"),
+                    new ModuleCode("CS2103T"), new TutorialName("W17"),
                     new Attendance("0"), new Participation("0"), new Grade(""),
                 getTagSet("active", "strong")),
             new Student(new Name("Charlotte Oliveiro"),
                     new StudentId("A0000000C"),
                     new Phone("93210283"), new Email("charlotte@example.com"),
                     new TelegramHandle("charlotte"),
-                    new TutorialModule("CS2103T"), new TutorialName("W17"),
+                    new ModuleCode("CS2103T"), new TutorialName("W17"),
                     new Attendance("0"), new Participation("0"), new Grade("A"),
                 getTagSet("hardworking")),
             new Student(new Name("David Li"),
                     new StudentId("A0000000D"),
                     new Phone("91031282"), new Email("lidavid@example.com"),
                     new TelegramHandle("lidavid"),
-                    new TutorialModule("CS2103T"), new TutorialName("W17"),
+                    new ModuleCode("CS2103T"), new TutorialName("W17"),
                     new Attendance("0"), new Participation("0"), new Grade("A"),
                 getTagSet("careless")),
             new Student(new Name("Irfan Ibrahim"),
                     new StudentId("A0000000I"),
                     new Phone("92492021"), new Email("irfan@example.com"),
                     new TelegramHandle("irfan"),
-                    new TutorialModule("CS2103T"), new TutorialName("W17"),
+                    new ModuleCode("CS2103T"), new TutorialName("W17"),
                     new Attendance("0"), new Participation("0"), new Grade("A"),
                 getTagSet("struggle")),
             new Student(new Name("Roy Balakrishnan"),
                     new StudentId("A0000000R"),
                     new Phone("92624417"), new Email("royb@example.com"),
                     new TelegramHandle("royb"),
-                    new TutorialModule("CS2103T"), new TutorialName("W17"),
+                    new ModuleCode("CS2103T"), new TutorialName("W17"),
                     new Attendance("0"), new Participation("0"), new Grade(""),
                     getTagSet("newbie"))
         };
@@ -100,14 +100,14 @@ public class SampleDataUtil {
 
     public static Tutorial[] getSampleTutorials() {
         return new Tutorial[] {
-            new Tutorial(new TutorialName("W17"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0203"),
+            new Tutorial(new TutorialName("W17"), new ModuleCode("CS2103T"),
+                    new Venue("COM1-0203"),
                     WeeklyTimeslot.fromFormattedString("1", "16:00", "18:00")),
-            new Tutorial(new TutorialName("F01"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0201"),
+            new Tutorial(new TutorialName("F01"), new ModuleCode("CS2103T"),
+                    new Venue("COM1-0201"),
                     WeeklyTimeslot.fromFormattedString("2", "15:00", "17:00")),
-            new Tutorial(new TutorialName("F02"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0202"),
+            new Tutorial(new TutorialName("F02"), new ModuleCode("CS2103T"),
+                    new Venue("COM1-0202"),
                     WeeklyTimeslot.fromFormattedString("3", "10:00", "11:00")),
         };
     }

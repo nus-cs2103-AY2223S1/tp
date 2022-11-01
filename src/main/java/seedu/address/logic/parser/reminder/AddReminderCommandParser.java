@@ -32,11 +32,11 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
      */
     public AddReminderCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TIME, PREFIX_DATE_DAY, PREFIX_DESCRIPTION,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE_DAY, PREFIX_TIME, PREFIX_DESCRIPTION,
                         PREFIX_PRIORITY);
 
         ParserUtil.assertAllPrefixesPresent(argMultimap, AddReminderCommand.MESSAGE_USAGE,
-                PREFIX_NAME, PREFIX_TIME, PREFIX_DATE_DAY, PREFIX_DESCRIPTION, PREFIX_PRIORITY);
+                PREFIX_NAME, PREFIX_DATE_DAY, PREFIX_TIME, PREFIX_DESCRIPTION, PREFIX_PRIORITY);
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
         }

@@ -20,9 +20,9 @@ import seedu.address.logic.commands.reminder.EditReminderCommand;
 import seedu.address.logic.commands.reminder.MarkReminderCommand;
 import seedu.address.logic.commands.reminder.SortReminderCommand;
 import seedu.address.logic.commands.reminder.UnmarkReminderCommand;
-import seedu.address.logic.commands.student.AddCommand;
-import seedu.address.logic.commands.student.DeleteCommand;
-import seedu.address.logic.commands.student.EditCommand;
+import seedu.address.logic.commands.student.AddStudentCommand;
+import seedu.address.logic.commands.student.DeleteStudentCommand;
+import seedu.address.logic.commands.student.EditStudentCommand;
 import seedu.address.logic.commands.student.ExtractEmailsCommand;
 import seedu.address.logic.commands.student.FindCommand;
 import seedu.address.logic.commands.tutorial.AddTutorialCommand;
@@ -73,16 +73,17 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWords = matcher.group("commandWords");
-        final String arguments = matcher.group("arguments");
+        final String commandWords = matcher.group("commandWords").trim().replaceAll(" +", " ");
+        // Workaround: ArgumentTokenizer must have an additional space in front as preamble
+        final String arguments = " " + matcher.group("arguments").trim();
         switch (commandWords) {
-        case AddCommand.COMMAND_WORD:
+        case AddStudentCommand.COMMAND_WORD:
             return new AddStudentCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
+        case EditStudentCommand.COMMAND_WORD:
             return new EditStudentCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case DeleteStudentCommand.COMMAND_WORD:
             return new DeleteStudentCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:

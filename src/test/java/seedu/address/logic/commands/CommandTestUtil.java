@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
@@ -10,8 +12,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_CRITERIA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -21,18 +26,22 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.student.EditCommand;
+import seedu.address.logic.commands.reminder.EditReminderCommand;
+import seedu.address.logic.commands.reminder.SortReminderCommand;
+import seedu.address.logic.commands.student.EditStudentCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditReminderDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
 
+    // Students
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -52,6 +61,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    // Tutorial
     public static final String VALID_NAME_TUT1 = "F01";
     public static final String VALID_NAME_TUT2 = "F02";
     public static final String VALID_MODULE_TUT1 = "CS2103T";
@@ -63,6 +73,7 @@ public class CommandTestUtil {
     public static final String VALID_TIMESLOT_TUT2_START = "10:00";
     public static final String VALID_TIMESLOT_TUT2_END = "15:00";
 
+    // Consultation
     public static final String VALID_NAME_CONSULT1 = "John";
     public static final String VALID_NAME_CONSULT2 = "Anna";
     public static final String VALID_MODULE_CONSULT1 = "CS2103T";
@@ -76,14 +87,36 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_CONSULT1 = "Review past year paper";
     public static final String VALID_DESCRIPTION_CONSULT2 = "Consult about product demo and pitch";
 
+    // Reminder
     public static final String VALID_NAME_REMINDER1 = "Set HW 1";
     public static final String VALID_NAME_REMINDER2 = "Mark Finals";
-    public static final String VALID_DEADLINE_REMINDER1 = "2000-03-22 14:00";
-    public static final String VALID_DEADLINE_REMINDER2 = "2000-03-23 17:00";
+    public static final String VALID_DATE_REMINDER1 = "2000-07-12";
+    public static final String VALID_DATE_REMINDER2 = "2000-11-16";
+    public static final String VALID_TIME_REMINDER1 = "19:00";
+    public static final String VALID_TIME_REMINDER2 = "20:00";
+    public static final String VALID_DEADLINE_REMINDER1 = VALID_DATE_REMINDER1 + " " + VALID_TIME_REMINDER1;
+    public static final String VALID_DEADLINE_REMINDER2 = VALID_DATE_REMINDER2 + " " + VALID_TIME_REMINDER2;
     public static final String VALID_PRIORITY_REMINDER1 = "MEDIUM";
     public static final String VALID_PRIORITY_REMINDER2 = "HIGH";
     public static final String VALID_DESCRIPTION_REMINDER1 = "5 questions to set";
     public static final String VALID_DESCRIPTION_REMINDER2 = "300 papers to mark";
+
+    public static final String NAME_DESC_REMINDER1 = " " + PREFIX_NAME + VALID_NAME_REMINDER1;
+    public static final String NAME_DESC_REMINDER2 = " " + PREFIX_NAME + VALID_NAME_REMINDER2;
+    public static final String DATE_DESC_REMINDER1 = " " + PREFIX_DATE_DAY + VALID_DATE_REMINDER1;
+    public static final String DATE_DESC_REMINDER2 = " " + PREFIX_DATE_DAY + VALID_DATE_REMINDER2;
+    public static final String TIME_DESC_REMINDER1 = " " + PREFIX_TIME + VALID_TIME_REMINDER1;
+    public static final String TIME_DESC_REMINDER2 = " " + PREFIX_TIME + VALID_TIME_REMINDER2;
+    public static final String PRIORITY_DESC_REMINDER1 = " " + PREFIX_PRIORITY + VALID_PRIORITY_REMINDER1;
+    public static final String PRIORITY_DESC_REMINDER2 = " " + PREFIX_PRIORITY + VALID_PRIORITY_REMINDER2;
+    public static final String DESCRIPTION_DESC_REMINDER1 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_REMINDER1;
+    public static final String DESCRIPTION_DESC_REMINDER2 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_REMINDER2;
+    public static final String SORTING_DESC_PRIORITY = " " + PREFIX_SORT_CRITERIA
+            + SortReminderCommand.CRITERIA_PRIORITY;
+    public static final String SORTING_DESC_DEADLINE = " " + PREFIX_SORT_CRITERIA
+            + SortReminderCommand.CRITERIA_DEADLINE;
+
+    public static final String INVALID_SORT_DESC = " " + PREFIX_SORT_CRITERIA + "apple";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -108,6 +141,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    // invalid field utils
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -116,13 +150,21 @@ public class CommandTestUtil {
             + PREFIX_ATTENDANCE; // empty string not allowed for attendance
     public static final String INVALID_PARTICIPATION_DESC = " "
             + PREFIX_PARTICIPATION; // empty string not allowed for participation
-    public static final String INVALID_GRADE_DESC = "Z" + PREFIX_GRADE; // only A, B, C, D, F allowed for grade
+    public static final String INVALID_GRADE_DESC = " " + PREFIX_GRADE + "Z"; // only A, B, C, D, F allowed for grade
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_PRIORITY = " " + PREFIX_PRIORITY + "AP"; // only "HIGH", "MEDIUM", "LOW" allowed
+    public static final String INVALID_DATE_FORMAT_DESC = " " + PREFIX_DATE_DAY + "2000-03-";
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE_DAY + "2000-03-33";
+    public static final String INVALID_DAY_DESC = " " + PREFIX_DATE_DAY + "9";
+    public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "13:70";
+    public static final String INVALID_TIMESLOT_DESC = " " + PREFIX_TIME + "12:00-11:40";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditStudentCommand.EditPersonDescriptor DESC_AMY;
+    public static final EditStudentCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditReminderCommand.EditReminderDescriptor DESC_REMINDER1;
+    public static final EditReminderCommand.EditReminderDescriptor DESC_REMINDER2;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -138,6 +180,17 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .withAttendance(VALID_ATTENDANCE_BOB)
                 .withParticipation(VALID_PARTICIPATION_BOB).withGrade(VALID_GRADE_BOB)
+                .build();
+
+        DESC_REMINDER1 = new EditReminderDescriptorBuilder().withName(VALID_NAME_REMINDER1)
+                .withDeadline(VALID_DEADLINE_REMINDER1)
+                .withPriority(VALID_PRIORITY_REMINDER1)
+                .withDescription(VALID_DESCRIPTION_REMINDER1)
+                .build();
+        DESC_REMINDER2 = new EditReminderDescriptorBuilder().withName(VALID_NAME_REMINDER2)
+                .withDeadline(VALID_DEADLINE_REMINDER2)
+                .withPriority(VALID_PRIORITY_REMINDER2)
+                .withDescription(VALID_DESCRIPTION_REMINDER2)
                 .build();
     }
 
