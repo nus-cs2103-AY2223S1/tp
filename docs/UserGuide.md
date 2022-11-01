@@ -143,6 +143,8 @@ Format: `project -l`
 
 Finds and lists all the projects matching the search criteria.
 
+![find project command](images/FindProjectCommand.png)
+
 Format: `project -f [n/PROJECT_NAME] [r/REPOSITORY] [p/PROJECT_ID] [c/CLIENT_ID] [l/CLIENT_LABEL]`
 
 * Finds all the projects with the specified `PROJECT_NAME`, `REPOSITORY`, `PROJECT_ID`, `CLIENT_ID` and `CLIENT_LABEL`.
@@ -273,6 +275,8 @@ Format: `client -l`
 
 Finds and lists all the clients matching the search criteria.
 
+![find client command](images/FindClientCommand.png)
+
 Format: `client -f [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL] [c/CLIENT_ID]`
 
 * Finds all the clients with the specified `CLIENT_NAME`, `CLIENT_ID`, `CLIENT_MOBILE` and `CLIENT_EMAIL`.
@@ -385,6 +389,8 @@ Examples:
 ### Finding an issue : `issue -f`
 
 Finds and lists all the issues matching the search criteria.
+
+![find issue command](images/FindIssueCommand.png)
 
 Format: `issue -f [t/TITLE] [n/PROJECT_NAME] [p/PROJECT_ID] [u/URGENCY] [s/STATUS] [i/ISSUE_ID]`
 
