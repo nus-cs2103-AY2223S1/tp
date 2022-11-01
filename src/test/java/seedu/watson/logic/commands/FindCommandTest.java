@@ -124,7 +124,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, DANIEL,FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, DANIEL, FIONA), model.getFilteredPersonList());
     }
 
     // Show that arguments are case-insensitive
@@ -141,7 +141,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, DANIEL,FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, DANIEL, FIONA), model.getFilteredPersonList());
     }
 
     @Test

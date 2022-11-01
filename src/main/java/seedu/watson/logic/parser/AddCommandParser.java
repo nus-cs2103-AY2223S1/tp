@@ -12,7 +12,6 @@ import static seedu.watson.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.watson.logic.commands.AddCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
