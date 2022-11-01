@@ -14,7 +14,7 @@ class CommandSessionTest {
     private static final CommandSession.CommandExecutor dummyCommandExecutor = commandText -> null;
 
     @Test
-    public void verify_commandHistory_correctOrder() throws CommandException, ParseException, StorageException {
+    public void verify_commandHistory_correctOrderTest1() throws CommandException, ParseException, StorageException {
         CommandSession commandSession = new CommandSession(dummyCommandExecutor);
         commandSession.execute("command 1");
         commandSession.execute("command 2");
@@ -27,6 +27,26 @@ class CommandSessionTest {
         assertEquals(commandSession.getNextCommand(), "command 1");
         assertEquals(commandSession.getNextCommand(), "command 2");
         assertEquals(commandSession.getNextCommand(), "command 3");
+        assertEquals(commandSession.getNextCommand(), "");
+    }
+
+    @Test
+    public void verify_commandHistory_correctOrderTest2() throws CommandException, ParseException, StorageException {
+        CommandSession commandSession = new CommandSession(dummyCommandExecutor);
+        commandSession.execute("command 1");
+        commandSession.execute("command 2");
+
+        assertEquals(commandSession.getPreviousCommand(), "command 2");
+        assertEquals(commandSession.getNextCommand(), "");
+
+        assertEquals(commandSession.getPreviousCommand(), "command 2");
+        assertEquals(commandSession.getPreviousCommand(), "command 1");
+        assertEquals(commandSession.getNextCommand(), "command 2");
+
+        assertEquals(commandSession.getPreviousCommand(), "command 1");
+        assertEquals(commandSession.getPreviousCommand(), "");
+        assertEquals(commandSession.getNextCommand(), "command 1");
+        assertEquals(commandSession.getNextCommand(), "command 2");
         assertEquals(commandSession.getNextCommand(), "");
     }
 }
