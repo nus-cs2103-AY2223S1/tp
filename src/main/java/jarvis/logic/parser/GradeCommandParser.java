@@ -6,6 +6,7 @@ import static jarvis.logic.parser.CliSyntax.PREFIX_MIDTERM;
 import static jarvis.logic.parser.CliSyntax.PREFIX_PRACTICAL_ASST;
 import static jarvis.logic.parser.CliSyntax.PREFIX_RA1;
 import static jarvis.logic.parser.CliSyntax.PREFIX_RA2;
+import static jarvis.logic.parser.CliSyntax.PREFIX_STUDIO_ATTENDANCE;
 import static java.util.Objects.requireNonNull;
 
 import java.util.stream.Stream;
@@ -30,10 +31,10 @@ public class GradeCommandParser implements Parser<GradeCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_RA1, PREFIX_RA2, PREFIX_MIDTERM,
-                        PREFIX_PRACTICAL_ASST, PREFIX_FINAL_ASST);
+                        PREFIX_PRACTICAL_ASST, PREFIX_FINAL_ASST, PREFIX_STUDIO_ATTENDANCE);
 
-        if (!anyPrefixesPresent(argMultimap, PREFIX_RA1, PREFIX_RA2, PREFIX_MIDTERM,
-                PREFIX_PRACTICAL_ASST, PREFIX_FINAL_ASST) || argMultimap.getPreamble().isEmpty()) {
+        if (!anyPrefixesPresent(argMultimap, PREFIX_RA1, PREFIX_RA2, PREFIX_MIDTERM, PREFIX_PRACTICAL_ASST,
+                PREFIX_FINAL_ASST, PREFIX_STUDIO_ATTENDANCE) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE));
         }
 
@@ -64,6 +65,10 @@ public class GradeCommandParser implements Parser<GradeCommand> {
         if (argMultimap.getValue(PREFIX_FINAL_ASST).isPresent()) {
             gp.setFinalAssessment(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_FINAL_ASST).get(),
                     Assessment.FINAL_ASSESSMENT));
+        }
+        if (argMultimap.getValue(PREFIX_STUDIO_ATTENDANCE).isPresent()) {
+            gp.setStudioAttendance(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_STUDIO_ATTENDANCE).get(),
+                    Assessment.STUDIO_ATTENDANCE));
         }
 
         return new GradeCommand(index, gp);

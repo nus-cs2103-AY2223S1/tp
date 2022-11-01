@@ -148,6 +148,7 @@ public class LessonNotes {
             return;
         }
         ArrayList<String> tempNotes = studentNotes.get(targetStudent);
+        assert tempNotes != null;
         studentNotes.remove(targetStudent);
         studentNotes.put(editedStudent, tempNotes);
     }

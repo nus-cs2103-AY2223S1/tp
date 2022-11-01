@@ -27,4 +27,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_MIDTERM = new Prefix("mt/");
     public static final Prefix PREFIX_PRACTICAL_ASST = new Prefix("pa/");
     public static final Prefix PREFIX_FINAL_ASST = new Prefix("fn/");
+    public static final Prefix PREFIX_STUDIO_ATTENDANCE = new Prefix("sa/");
 }

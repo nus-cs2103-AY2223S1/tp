@@ -85,8 +85,10 @@ public class LessonAttendance {
     }
 
     public void setStudent(Student targetStudent, Student editedStudent) {
-        Boolean b = attendance.get(targetStudent);
-        assert b != null;
+        if (!attendance.containsKey(targetStudent)) {
+            return;
+        }
+        boolean b = attendance.get(targetStudent);
         attendance.remove(targetStudent);
         attendance.put(editedStudent, b);
     }
