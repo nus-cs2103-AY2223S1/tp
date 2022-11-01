@@ -57,6 +57,9 @@ create GradesList
 GradeCommand -> GradesList : GradesList()
 activate GradesList
 
+GradesList --> GradeCommand
+deactivate GradesList
+
 GradeCommand -> GradesList : editGrade
 activate GradesList
 
@@ -72,9 +75,6 @@ deactivate GradesList
 
 GradeCommand --> GradeCommand
 deactivate GradeCommand
-
-GradesList --> GradeCommand
-deactivate GradesList
 
 GradeCommand -> Model : setStudent(1)
 activate Model
