@@ -16,7 +16,7 @@ public class StartTime implements Comparable<StartTime> {
 
     public static final String MESSAGE_FORMAT_CONSTRAINTS = "Start time must be in format: hh:mm";
     public static final String MESSAGE_VALUE_CONSTRAINTS = "%s exceeds the range of valid time value.";
-    private static final DecimalFormat df = new DecimalFormat("00");
+    private static final DecimalFormat DF = new DecimalFormat("00");
     public final LocalTime time;
 
 
