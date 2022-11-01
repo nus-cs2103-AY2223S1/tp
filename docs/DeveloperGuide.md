@@ -1,5 +1,6 @@
 ---
-layout: page title: Developer Guide
+layout: page
+title: PennyWise Developer Guide
 ---
 
 * Table of Contents
@@ -15,15 +16,15 @@ layout: page title: Developer Guide
     * [Common classes](#common-classes)
   * [**Implementation**](#implementation)
     * [Summarise Entries](#summarise-entries)
-      * [Design considerations:](#design-considerations-)
+      * [Design considerations:](#design-considerations)
     * [Add Entry](#add-entry)
       * [Design Considerations](#design-considerations)
     * [Edit Entry](#edit-entry)
     * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
       * [Proposed Implementation](#proposed-implementation)
-      * [Design considerations:](#design-considerations-)
+      * [Design considerations:](#design-considerations)
     * [\[Proposed\] Data archiving](#proposed-data-archiving)
-    * [[Proposed\] Pie Chart View feature](#-proposed-pie-chart-view-feature)
+    * [[Proposed\] Pie Chart View feature](#proposed-pie-chart-view-feature)
       * [Implementation](#implementation)
   * [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
   * [**Appendix: Requirements**](#appendix-requirements)

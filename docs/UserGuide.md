@@ -1,4 +1,8 @@
-# PennyWise User Guide
+---
+layout: page
+title: PennyWise User Guide
+---
+
 Well, hello there! Welcome to your personal budgeting assistant, PennyWise.
 After this guide, you will understand how to use PennyWise, and spend every penny wisely. 🤑
 
@@ -163,8 +167,8 @@ that you are still able to get an overview of your finances. If these details ar
 </div>
 
 ## Understanding the command formats
-All commands follow this format except: [`delete`](#deleting-entries--delete-index_of_entry-tentry_type), 
-[`clear`](#clearing-all-entries--clear), [`exit`](#exiting-the-program--exit) and `help`.<br>
+All commands follow this format except: [`delete`](#deleting-entries), 
+[`clear`](#clearing-all-entries), [`exit`](#exiting-the-program) and `help`.<br>
 <pre>
     command | entry identifier | input | [optional inputs]
 </pre>
@@ -210,12 +214,12 @@ For example, an expense entry can be tagged with `Food`, but not `Salary`.
 
 For **ALL** entries, 2 entries are considered duplicates <ins>IF</ins> both entries have exactly the same:
 `description`, `date` `amount` and `category`. We do not want PennyWise to be managing entries which are a repeat,
-of one another, as it would be easier to simply use the [edit](#editing-entries-edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category)
+of one another, as it would be easier to simply use the [edit](#editing-entries)
 command to alter the original entry's specifications.
 
 In addition `description` and  `food` are case-insensitive, this means that `FOOD` will be equivalent to `food`
 
-For example, when executing the following [add commands](#adding-entries-add-tentry_type-ddescription-aamount-dadate-ccategory) one after another,
+For example, when executing the following [add commands](#adding-entries) one after another,
 PennyWise will recognise (2), which is the second `Teh Beng` added as a duplicate entry.
 
 <pre>
@@ -234,7 +238,7 @@ To add similar entries, vary the description/amount/date/category to let PennyWi
     </code>
 </pre>
 
-OR we could even [edit](#editing-entries-edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category) the original entry directly to reflect 2 cups of `Teh Beng` consumed.
+OR we could even [edit](#editing-entries) the original entry directly to reflect 2 cups of `Teh Beng` consumed.
 
 <pre>
     <code>
