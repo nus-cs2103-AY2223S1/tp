@@ -9,7 +9,48 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
+Third-party software used in this project:
+* [JavaFx](https://openjfx.io/)
+* [JUnit](https://junit.org/)
+* [Gradle](https://gradle.org/)
+* [CheckStyle](https://checkstyle.sourceforge.io/)
+* [Codecov](https://codecov.io/)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Introduction**
+
+checkUp is a desktop application for medical practitioners to manage their patients' medical records. In this developer
+guide, we will describe the architecture and design of the application. This guide is mainly for developers who wish to
+enhance or create their own version of checkUp. You may refer to the [User Guide](UserGuide.md) for instructions on how
+to use the application. 
+
+### **Technologies**
+
+checkUp is written in Java 11 and uses JavaFX to create the GUI. Gradle is used for building and managing the project.
+Testing is done using JUnit.
+
+### **Functions**
+
+checkUp's features include creating, viewing and managing patients' medical records by storing data such as their:
+* personal information;
+* next-of-kin information;
+* past appointment and visit history;
+* upcoming appointments and visits;
+* long-term medication prescriptions; and
+* location in the hospital (for inpatients).
+
+checkUp also allows users to:
+* search for patients by:
+  * name;
+  * NRIC;
+  * phone number;
+  * email address; and
+  * medical condition.
+* view the total number of patients in the system; and
+* view the total number of patients under specific long-term medication prescriptions.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -296,10 +337,6 @@ Strict restrictions are placed to prevent too many varieties of ward number inpu
 for ward numbers is simplified. Due to differing places having different ways of numbering their ward numbers, we
 have standardised it to be in the format of `Uppercase Alphabet` + `3 Numbers`. For example, `A123`, `B241`, `C005`, etc.
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 #### Patient type (`/inp` & `/outp`)
 
 Getting the list of inpatients and outpatients involves the following steps:
@@ -365,7 +402,7 @@ the next-of-kin details of the inputted patient.
 ### Get appointment by date feature (`get /appton`)
 
 When `get /appton` is inputted, the `AddressBookParser` object creates a `GetAppointmentByDateParser` that parses the
-prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get .appton 12-12-1212`), the extra
+prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get /appton 12-12-1212`), the extra
 parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed.
 
 The `GetCommandParser` object will then create the corresponding `GetAppointmentByDateCommand`  to be
@@ -373,8 +410,6 @@ returned. When executing the `Command`, the model is updated such that the *filt
 all the patients' appointment given a specific date.
 
 ![GetAppointmentByDateSequenceDiagram](images/GetAppointmentByDateSequenceDiagram.png)
-
-#### Proposed implementation
 
 --------------------------------------------------------------------------------------------------------------------
 
