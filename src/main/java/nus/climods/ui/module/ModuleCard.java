@@ -126,6 +126,7 @@ public class ModuleCard extends UiPart<Region> {
 
     private Accordion addSemesterLessons(HashMap<LessonTypeEnum, Module.ModuleLessonIdMap> sem) {
         Accordion a = new Accordion();
+        a.setMaxHeight(600);
         a.setPadding(new Insets(10, 0, 10, 0));
         a.getPanes()
                 .addAll(sem.entrySet().stream()
