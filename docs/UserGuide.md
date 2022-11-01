@@ -224,7 +224,7 @@ Examples:
 * `add n/Betsy Crowe t/VIPPClient e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan` 
   adds a client named Betsy Crowe, with a mobile number of 1234567, email address of betsycrowe@example.com [etc.](#23-command-format) to the client list.
 
-|                                                                                                                        ![UG_add](images/UG_Add.png)                                                                                                                        |
+|                                                                                                                        ![UG_add](images/UG_add.png)                                                                                                                        |
 |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | <sub>*Used command:* `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/$1000 m/20 Nov 2022 16:30 ml/13 Computing Drive t/VIPClient r/High pl/Prudential Retirement Plan note/currently having COVID` to add John Doe to the client list</sub> |
 
