@@ -107,17 +107,19 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
 2. The GUI similar to the below should appear in a few seconds. FindMyIntern will load some sample data.<br>
 
    <p align="center">
-       <img src="images/Ui.png" width="600" />
+       <img src="images/AnnotatedUi.png" width="1200" />
    </p>
 
 3. Let's add your first internship application with the [`add` command](#adding-an-internship-application-add)!
 
 4. Type `add c/Shopee l/careers.shopee.sg d/My first internship application a/27 Oct` and press Enter to execute it.
 
-5. Congratulations! You have just added your first internship application to FindMyIntern! A message like the one below showing the result of your command should appear.
+5. Congratulations! You have just added your first internship application to FindMyIntern! A message like the one below showing the result of your command should appear in the result box.
    <p align="center">
       <img src="images/firstInternshipApplication.png" />
    </p>
+   
+   If you would like to clear the sample data, use the [`clear` command](#clearing-all-internship-applications-clear).
 
 6. FindMyIntern offers so much more in managing your internship applications. Check out the [commands section](#commands) for more commands you can use.
 
@@ -125,14 +127,15 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
-
-### Commands
+<div class="d-flex alert alert-info">
+<div class="me-3">
+  <span class="badge text-bg-info">INFO</span>
+</div>
+<div markdown="span">
+**Command format**<br>
 This section contains **everything you need to know** about the commands used in FindMyIntern.
 
-The below shows the command format used in FindMyIntern.
-
-**:information_source: Command format**<br>
+Below shows the command format used in FindMyIntern.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user<br>
   * e.g. in `add c/COMPANY`, `COMPANY` is a parameter which can be used as `add c/Google`
@@ -151,8 +154,10 @@ The below shows the command format used in FindMyIntern.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`) will be ignored<br>
   * e.g. if `help 123` is entered, it will be interpreted as `help`
-
 </div>
+</div>
+
+### Commands
 
 To navigate to a specific command, you can just click on any of the commands to jump straight into it.
 
@@ -484,7 +489,8 @@ Clears all internship applications from the tracker.
   <span class="badge text-bg-danger">DANGER</span>
 </div>
 <div markdown="span">
-This command will clear the entire list of internships without warning.
+
+This command will clear the entire list of internships without warning. This command is **irreversible**!
 </div>
 </div>
 
@@ -581,27 +587,27 @@ There are no constraints for a field if the constraints box is empty for that fi
   </thead>
   <tbody>
     <tr>
-      <td>`c/COMPANY`</td>
+      <td><code>c/COMPANY</code></td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td>`l/LINK`</td>
+      <td><code>l/LINK</code></td>
       <td>Links must be of the format `HOSTNAME.PATH`, where both `HOSTNAME` and `PATH` are alphanumeric</td>
     </tr>
     <tr>
-      <td>`d/DESCRIPTION`</td>
+      <td><code>d/DESCRIPTION</code></td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td>`a/APPLIED_DATE`</td>
+      <td><code>a/APPLIED_DATE</code></td>
       <td>See <a href="#datetime-formats">date/time formats</a></td>
     </tr>
     <tr>
-      <td>`i/INTERVIEW_DATE_TIME`</td>
+      <td><code>i/INTERVIEW_DATE_TIME</code></td>
       <td>See <a href="#datetime-formats">date/time formats</a></td>
     </tr>
     <tr>
-      <td>`t/TAG`</td>
+      <td><code>t/TAG</code></td>
       <td>Must only contain alphabets and spaces</td>
     </tr>
   </tbody>
@@ -624,27 +630,27 @@ Application status as an input field **must be one of the following**:
   </thead>
   <tbody>
     <tr>
-      <td>`applied`</td>
+      <td><code>applied</code></td>
       <td>You have applied for this internship</td>
       <td>Default application status</td>
     </tr>
     <tr>
-      <td>`shortlisted`</td>
+      <td><code>shortlisted</code></td>
       <td>Company has shortlisted you for interview</td>
       <td>Adding/editing the interview date/time of an internship application will change application status to "Shortlisted"</td>
     </tr>
     <tr>
-      <td>`interviewed`</td>
+      <td><code>interviewed</code></td>
       <td>You have been interviewed for this internship application</td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td>`accepted`</td>
+      <td><code>accepted</code></td>
       <td>You have accepted this internship</td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td>`rejected`</td>
+      <td><code>rejected</code></td>
       <td>You have rejected this internship</td>
       <td>&nbsp;</td>
     </tr>
@@ -666,11 +672,11 @@ For `APPLIED_DATE`, the formats allowed:
   </thead>
   <tbody>
     <tr>
-      <td>`d MMM yyyy`</td>
+      <td><code>d MMM yyyy</code></td>
       <td>7 Oct 2022</td>
     </tr>
     <tr>
-      <td>`d/M/yyyy`</td>
+      <td><code>d/M/yyyy</code></td>
       <td>7/10/2022</td>
     </tr>
   </tbody>
@@ -688,22 +694,22 @@ For `INTERVIEW_DATE_TIME`, the formats allowed:
   </thead>
   <tbody>
     <tr>
-      <td>`d MMM yyyy HH:mm`</td>
+      <td><code>d MMM yyyy HH:mm</code></td>
       <td>7 Oct 2022 15:00</td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td>`d/M/yyyy HH:mm`</td>
+      <td><code>d/M/yyyy HH:mm</code></td>
       <td>7/10/2022 15:00</td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td>`d MMM yyyy, h:mm a`</td>
+      <td><code>d MMM yyyy, h:mm a</code></td>
       <td>7 Oct 2022, 3:00 pm</td>
       <td>Take note of the <ul><li>comma after the date</li><li>space between the time and AM/PM</li></ul></td>
     </tr>
     <tr>
-      <td>`d/M/yyyy, h:mm a`</td>
+      <td><code>d/M/yyyy, h:mm a</code></td>
       <td>7/10/2022, 3:00 pm</td>
       <td>Take note of the <ul><li>comma after the date</li><li>space between the time and AM/PM</li></ul></td>
     </tr>
