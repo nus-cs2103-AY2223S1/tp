@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":TaAssistParser" as TaAssistParser LOGIC_COLOR
+participant ":XYZCommandParser" as XYZCommandParser LOGIC_COLOR
+participant "<<class>>\nArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant "args:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "xyz:XYZCommand" as XYZCommand LOGIC_COLOR
+end box
+
+[-> TaAssistParser : parseCommand("xyz 1 p/2")
+activate TaAssistParser
+
+create XYZCommandParser
+TaAssistParser -> XYZCommandParser
+activate XYZCommandParser
+
+XYZCommandParser --> TaAssistParser
+deactivate XYZCommandParser
+
+TaAssistParser -> XYZCommandParser: parse("1 p/2")
+activate XYZCommandParser
+
+XYZCommandParser -> ArgumentTokenizer: tokenize("1 p/2", PREFIX_P)
+activate ArgumentTokenizer
+
+create ArgumentMultimap
+ArgumentTokenizer -> ArgumentMultimap
+activate ArgumentMultimap
+
+ArgumentMultimap --> ArgumentTokenizer:args
+deactivate ArgumentMultimap
+
+ArgumentTokenizer --> XYZCommandParser:args
+deactivate ArgumentTokenizer
+
+XYZCommandParser -> ArgumentMultimap: getPreamble()
+activate ArgumentMultimap
+
+ArgumentMultimap --> XYZCommandParser: "1"
+deactivate ArgumentMultimap
+
+XYZCommandParser -> ArgumentMultimap: getValue(PREFIX_P)
+activate ArgumentMultimap
+
+ArgumentMultimap --> XYZCommandParser: "2"
+deactivate ArgumentMultimap
+
+XYZCommandParser -> ParserUtil: parseXYZ("1", "2")
+activate ParserUtil
+
+create XYZCommand
+ParserUtil -> XYZCommand
+activate XYZCommand
+
+XYZCommand --> ParserUtil: xyz
+deactivate XYZCommand
+
+ParserUtil --> XYZCommandParser: xyz
+deactivate ParserUtil
+
+XYZCommandParser --> TaAssistParser: xyz
+deactivate XYZCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ArgumentMultimap -[hidden]-> XYZCommandParser
+destroy ArgumentMultimap
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+XYZCommandParser -[hidden]-> TaAssistParser
+destroy XYZCommandParser
+
+TaAssistParser -->[: xyz
+
+@enduml
