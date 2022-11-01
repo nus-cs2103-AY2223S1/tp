@@ -71,11 +71,11 @@ public class ItemCard extends UiPart<Region> {
         description.setTextAlignment(TextAlignment.JUSTIFY);
         description.setPadding(new Insets(0, 10, 0, 0));
 
-        sellPrice.setText("$" + inventoryItem.getSellPrice().toString());
+        sellPrice.setText(inventoryItem.getSellPrice().toString());
         sellPrice.setWrapText(true);
         sellPrice.setPadding(new Insets(0, 10, 0, 0));
 
-        costPrice.setText("$" + inventoryItem.getCostPrice().toString());
+        costPrice.setText(inventoryItem.getCostPrice().toString());
         costPrice.setWrapText(true);
         costPrice.setPadding(new Insets(0, 10, 0, 0));
 
