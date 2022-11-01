@@ -63,5 +63,14 @@
     "remark": "",
     "details": "Unavailable",
     "tagged" : [ "CS2103-T01" ]
+  }, {
+    "name" : "Jason Hawkins",
+    "phone" : "96758347",
+    "email" : "kelly@example.com",
+    "position" : "Student",
+    "address" : "5th avenue",
+    "remark" : "",
+    "details" : "attendance - 0/0, grade - 0/0 Assignments: []",
+    "tagged" : [ "CS2103T-T01" ]
   } ]
 }
