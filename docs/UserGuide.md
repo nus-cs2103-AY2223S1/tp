@@ -1,3 +1,8 @@
+---
+layout: page
+title: User Guide
+---
+
 # Welcome to SoCompiler's User Guide
 
 > The sole app that university students will need to streamline their everyday routines.
@@ -83,7 +88,7 @@ You can also add people to the app, such as your professors, teaching assistants
   e.g. for add `n/NAME`, NAME is the parameter and can be replaced with John Doe.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [/t TAG]` can be used as `c/John Doe t/friend` or as `c/John Doe`.
+  e.g. `n/NAME [/t TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Parameters after the name and module code can be in any order. e.g. `addp n/NAME p/PHONE_NUMBER e/EMAIL` is similar
   to `addp n/NAME e/EMAIL p/PHONE_NUMBER`.
