@@ -29,7 +29,6 @@ import seedu.address.model.pet.predicates.ColorContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
-import seedu.address.model.pet.predicates.VaccinationStatusPredicate;
 import seedu.address.testutil.Assert;
 
 public class PredicateParserTest {

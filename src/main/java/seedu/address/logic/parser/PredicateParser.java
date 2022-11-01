@@ -28,7 +28,6 @@ import seedu.address.model.pet.predicates.ColorContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
-import seedu.address.model.pet.predicates.VaccinationStatusPredicate;
 
 /**
  * Parses input arguments and creates a new Predicate.
