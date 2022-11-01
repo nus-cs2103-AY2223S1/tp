@@ -217,7 +217,7 @@ The following commands are for viewing and managing your hackathon tasks. These 
 #### Adding a task: `addTask`
 
 Adds a task to the task list. 
-* Note: You cannot add a task if a task with the same name already exists in the task list. 
+* Note: You cannot add a task if another task with the same name already exists in the task list. 
 
 Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]`
 
