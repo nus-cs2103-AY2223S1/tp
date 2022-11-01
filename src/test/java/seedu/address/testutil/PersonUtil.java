@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.address.logic.commands.persons.AddCommand;
+import seedu.address.logic.commands.persons.AddPersonCommand;
 import seedu.address.model.attribute.PrefixedAttribute;
 import seedu.address.model.person.Person;
 
@@ -16,7 +16,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Person person) {
-        return AddCommand.getFullCommand(AddCommand.SUBCOMMAND_WORD) + " " + getPersonDetails(person);
+        return AddPersonCommand.getFullCommand(AddPersonCommand.SUBCOMMAND_WORD) + " " + getPersonDetails(person);
     }
 
     /**

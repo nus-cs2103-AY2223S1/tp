@@ -18,10 +18,12 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.persons.AddCommand;
+import seedu.address.logic.commands.persons.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
 import seedu.address.model.item.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -33,8 +35,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        AddPersonCommand command = (AddPersonCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        assertEquals(new AddPersonCommand(person), command);
     }
 
     @Test
@@ -43,24 +45,27 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void parsePersonCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+        DeleteCommand<Person> command = (DeleteCommand<Person>) parser.parseCommand(
             CmdBuilder.P_DELETE + " " + INDEX_FIRST.getOneBased());
         assertEquals(CmdBuilder.makeDelPerson(INDEX_FIRST), command);
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void parseTaskCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+        DeleteCommand<Task> command = (DeleteCommand<Task>) parser.parseCommand(
             CmdBuilder.T_DELETE + " "
                 + INDEX_FIRST.getOneBased());
         assertEquals(CmdBuilder.makeDelTask(INDEX_FIRST), command);
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void parseTeamCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+        DeleteCommand<Group> command = (DeleteCommand<Group>) parser.parseCommand(
             CmdBuilder.G_DELETE + " "
                 + INDEX_FIRST.getOneBased());
         assertEquals(CmdBuilder.makeDelGrp(INDEX_FIRST), command);

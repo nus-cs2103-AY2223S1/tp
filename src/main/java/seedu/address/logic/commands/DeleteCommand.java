@@ -100,7 +100,7 @@ public class DeleteCommand<U extends DisplayItem> extends Command {
     public boolean equals(Object obj) {
         return this == obj
             || (obj instanceof DeleteCommand
-                && ((targetIndex != null && targetIndex == ((DeleteCommand<?>) obj).targetIndex)
+                && ((targetIndex != null && targetIndex.equals(((DeleteCommand<?>) obj).targetIndex))
                     || ((targetIndex == null) && (((DeleteCommand<?>) obj).targetIndex == null)))
                 && (((toDelete != null) && (toDelete.equals(((DeleteCommand<?>) obj).toDelete)))
                     || (toDelete == ((DeleteCommand<?>) obj).toDelete)));

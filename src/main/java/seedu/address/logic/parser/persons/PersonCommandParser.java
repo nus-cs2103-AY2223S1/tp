@@ -10,7 +10,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ForEachCommand;
 import seedu.address.logic.commands.SelectCommand;
-import seedu.address.logic.commands.persons.AddCommand;
+import seedu.address.logic.commands.persons.AddPersonCommand;
 import seedu.address.logic.commands.persons.PersonCommand;
 import seedu.address.logic.parser.FindCommandParser;
 import seedu.address.logic.parser.Parser;
@@ -45,8 +45,8 @@ public class PersonCommandParser implements Parser<Command> {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-        case AddCommand.SUBCOMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddPersonCommand.SUBCOMMAND_WORD:
+            return new AddPersonCommandParser().parse(arguments);
         case DeleteCommand.SUBCOMMAND_WORD:
             return DeleteCommand
                 .<Person>parser((m, i) -> m.getFromFilteredPerson(i), (m, item) -> m.deletePerson(item),
