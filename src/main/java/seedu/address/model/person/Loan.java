@@ -10,8 +10,15 @@ import seedu.address.model.DeepCopyable;
  */
 public class Loan implements DeepCopyable {
     public static final String MESSAGE_CONSTRAINTS =
-            "Loan amount should only contain numerics, possibly with decimal point, optional negative";
-    public static final String VALIDATION_REGEX = "^-?[$]?[0-9]\\d*(\\.\\d+)?[$]?$";
+            "Loan amounts should only contain numerics, and a maximum of 1 decimal dot (.), an optional "
+            + "dollar sign ($) and either plus or minus signs (+/-) if desired.\n"
+            + "The signs, if used, must appear at the start of the parameter.\n"
+            + "The maximum amount may not exceed 1 trillion, both in the positive and negative "
+            + "direction, and the precision may not exceed 2 decimal places.";
+
+
+    public static final String VALIDATION_REGEX = "^[-|+]?[$]?[0-9]\\d*(\\.\\d{0,2})?$";
+    private static final double ONE_TRILLION = 1_000_000_000_000.00;
 
     private double amountOwed = 0;
 
@@ -22,8 +29,10 @@ public class Loan implements DeepCopyable {
      */
     public Loan(String amountString) {
         requireNonNull(amountString);
+        System.out.println(amountString);
         checkArgument(isValidLoan(amountString), MESSAGE_CONSTRAINTS);
         amountString = amountString.replace("$", "");
+
         amountOwed = Double.parseDouble(amountString);
     }
 
@@ -33,30 +42,51 @@ public class Loan implements DeepCopyable {
      * @param amount A double value to signifies a new loan amount
      */
     public Loan(double amount) {
-        checkArgument(isValidLoan(Double.toString(amount)), MESSAGE_CONSTRAINTS);
+        amount = (Math.round(amount * 100.0)) / 100.0;
+        checkArgument(isValidLoan(amount), MESSAGE_CONSTRAINTS);
         amountOwed = amount;
     }
 
+    /**
+     * Checks if the given input satisfies the constraints
+     * @param test the input to test
+     * @return whether the constraint is satisfied
+     */
     public static boolean isValidLoan(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        test = test.replace("$", "");
+
+        double parsedAmount;
+        try {
+            parsedAmount = Double.parseDouble(test);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return isValidLoan(parsedAmount);
     }
+
+    /**
+     * Checks if the given input satisfies the constraints
+     * @param test the input to test
+     * @return whether the constraint is satisfied
+     */
+    public static boolean isValidLoan(double test) {
+        return Math.abs(test) <= ONE_TRILLION;
+    }
+
 
     /**
      * Increases the current loan by byAmount. If byAmount is negative, then the
      * resulting amountOwed will be negative.
      *
-     * @param byAmount the amount to increase by
+     * @param byLoan the amount to increase by
      */
-    public void increaseLoan(double byAmount) {
-        amountOwed += byAmount;
+    public Loan subtractBy(Loan byLoan) {
+        return new Loan(getAmount() - byLoan.getAmount());
     }
 
-    /**
-     * Completely clears the loan amount and sets it to zero.
-     */
-    public void clearLoan() {
-        amountOwed = 0;
-    }
 
     public double getAmount() {
         return amountOwed;
@@ -103,11 +133,7 @@ public class Loan implements DeepCopyable {
             return false;
         }
 
-        if (((Loan) other).amountOwed == amountOwed) {
-            return ((Loan) other).amountOwed == amountOwed;
-        } else {
-            return false;
-        }
+        return ((Loan) other).amountOwed == amountOwed;
     }
 
     @Override

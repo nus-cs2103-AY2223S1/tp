@@ -63,11 +63,10 @@ public class EditLoanCommandParser implements Parser<EditLoanCommand> {
 
         LoanHistory toAdd = new LoanHistory(loanChange, reasonChange);
 
-        EditLoanCommand.EditLoanDescriptor editLoanDescriptor = new EditLoanCommand.EditLoanDescriptor();
-        editLoanDescriptor.setLoan(loanChange);
-        editLoanDescriptor.setHistory(toAdd);
+        EditLoanCommand.EditLoanDescriptor editLoanDescriptor =
+                new EditLoanCommand.EditLoanDescriptor(loanChange, toAdd);
 
-        return new EditLoanCommand(index, editLoanDescriptor, toAdd);
+        return new EditLoanCommand(index, editLoanDescriptor);
     }
 
     /**

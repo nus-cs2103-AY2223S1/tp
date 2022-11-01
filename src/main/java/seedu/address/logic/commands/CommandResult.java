@@ -86,4 +86,10 @@ public class CommandResult {
     public String[] getArgs() {
         return args;
     }
+
+    @Override
+    public String toString() {
+        return "[Feedback: " + getFeedbackToUser() + "] [UI State: " + getUiState()
+                + "] [" + Arrays.toString(getArgs()) + "]";
+    }
 }

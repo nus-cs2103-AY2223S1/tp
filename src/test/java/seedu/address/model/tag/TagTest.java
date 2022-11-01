@@ -5,10 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import java.lang.reflect.Field;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.Loan;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -66,7 +70,21 @@ public class TagTest {
         assertEquals(reference, personA);
         assertNotSame(reference, personA);
 
-        reference.getLoan().increaseLoan(100);
+        Field loanField;
+        try {
+            loanField = reference.getClass().getDeclaredField("loan");
+        } catch (NoSuchFieldException e) {
+            fail();
+            return;
+        }
+        loanField.setAccessible(true);
+        try {
+            loanField.set(reference, new Loan("355.62"));
+        } catch (IllegalAccessException | IllegalArgumentException e) {
+            fail();
+            return;
+        }
+        loanField.setAccessible(false);
 
         assertNotEquals(personA.getLoan().getAmount(), reference.getLoan().getAmount());
     }
