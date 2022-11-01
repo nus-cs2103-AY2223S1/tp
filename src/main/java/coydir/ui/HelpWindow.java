@@ -40,10 +40,13 @@ public class HelpWindow extends UiPart<Stage> {
     private Label helpMessage;
 
     @FXML
-    private TableView<CommandFormat> basicTableView;
+    private TableView<CommandFormat> profileTableView;
 
     @FXML
     private TableView<CommandFormat> advancedTableView;
+
+    @FXML
+    private TableView<CommandFormat> miscTableView;
 
     /**
      * Creates a new HelpWindow.
@@ -109,8 +112,9 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     private void initAllTableViews() {
-        this.initTableView(this.basicTableView, CommandFormat.getBasicCommands());
-        // this.initTableView(this.advancedTableView, CommandFormat.getAdvancedCommands());
+        this.initTableView(this.profileTableView, CommandFormat.getProfileCommands());
+        this.initTableView(this.advancedTableView, CommandFormat.getAdvancedCommands());
+        this.initTableView(this.miscTableView, CommandFormat.getMiscCommands());
     }
 
     private void initTableView(TableView<CommandFormat> tableView, ObservableList<CommandFormat> commands) {

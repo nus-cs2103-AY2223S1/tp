@@ -305,7 +305,7 @@ Example:
 
 - `delete 1` deletes the employee with employee ID of 1.
 
-#### Adding multiple employees at once: `batchadd`
+#### Adding multiple employees at once: `batch-add`
 
 Adds multiple employees to Coydir all at once.
 
@@ -326,11 +326,11 @@ if a CSV file of employees exists in the 'data' folder of Coydir, Coydir will re
 if a CSV file does not exist in the 'data' folder of Coydir, Coydir will
 throw an error.
 
-Format: `batchadd FILENAME`
+Format: `batch-add FILENAME`
 
 Example:
 
-- `batchadd employees.csv`
+- `batch-add employees.csv`
 
 Sample CSV file as such:
 ![](./images/Sample_CSV.png)
@@ -654,19 +654,19 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 
 ## Command summary
 
-| Action              | Format, Examples                                                                                                                                                                                                                                 |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Add**             | `add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal`                                                      |
-| **Edit**            | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal` |
-| **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                               |
-| **Batch Add**       | `batchadd FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                                                                                                        |
-| **View Details**    | `view INDEX` <br> e.g. `view 1`                                                                                                                                                                                                                  |
-| **List**            | `list`                                                                                                                                                                                                                                           |
-| **Find**            | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                                                                                             |
-| **Add leave**       | `add-leave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `add-leave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                                                                                |
-| **Delete leave**    | `delete-leave id/ID i/INDEX`<br> e.g. `delete-leave id/1 i/3`                                                                                                                                                                                    |
-| **rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                                                                                                                   |
-| **View Department** | `viewdepartment DEPARTMENT`<br> e.g. `view-department Finance`                                                                                                                                                                                   |
-| **Help**            | `help`                                                                                                                                                                                                                                           |
-| **Exit**            | `exit`                                                                                                                                                                                                                                           |
-| **Clear**           | `clear`                                                                                                                                                                                                                                          |
+| Action              | Format, Examples                                                                                                                                                                     |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Add**             | `add n/NAME j/POSITION d/DEPARTMENT p/PHONE e/EMAIL a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate p/1234567 l/14 t/criminal` |
+| **Edit**            | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/POSITION] [d/DEPARTMENT] [a/ADDRESS] [l/LEAVE] [t/TAG]…​` <br> e.g. `edit 1 p/91234567 t/friend e/newemail@example.com`                  |
+| **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                   |
+| **Batch Add**       | `batch-add FILENAME` <br> e.g. `batch-add newemployees.csv`                                                                                                                          |
+| **View Details**    | `view INDEX` <br> e.g. `view 1`                                                                                                                                                      |
+| **List**            | `list`                                                                                                                                                                               |
+| **Find**            | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                                 |
+| **Add leave**       | `add-leave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `add-leave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                    |
+| **Delete leave**    | `delete-leave id/ID i/INDEX`<br> e.g. `delete-leave id/1 i/3`                                                                                                                        |
+| **rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                                                       |
+| **View Department** | `view-department DEPARTMENT`<br> e.g. `view-department Finance`                                                                                                                      |
+| **Help**            | `help`                                                                                                                                                                               |
+| **Exit**            | `exit`                                                                                                                                                                               |
+| **Clear**           | `clear`                                                                                                                                                                              |
