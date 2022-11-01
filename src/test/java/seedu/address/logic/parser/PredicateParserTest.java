@@ -95,8 +95,8 @@ public class PredicateParserTest {
         PhoneContainsKeywordsPredicate<Buyer> expected = new PhoneContainsKeywordsPredicate<>(
                 Arrays.asList("999"));
         try {
-            Predicate<Buyer> result1 = PredicateParser.parseBuyer("p/ 999");
-            Predicate<Buyer> result2 = PredicateParser.parseBuyer("p/999 \n");
+            Predicate<Buyer> result1 = PredicateParser.parseBuyer("ph/ 999");
+            Predicate<Buyer> result2 = PredicateParser.parseBuyer("ph/999 \n");
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {
@@ -183,8 +183,8 @@ public class PredicateParserTest {
         PhoneContainsKeywordsPredicate<Deliverer> expected = new PhoneContainsKeywordsPredicate<>(
                 Arrays.asList("999"));
         try {
-            Predicate<Deliverer> result1 = PredicateParser.parseDeliverer("p/ 999");
-            Predicate<Deliverer> result2 = PredicateParser.parseDeliverer("p/999 \n");
+            Predicate<Deliverer> result1 = PredicateParser.parseDeliverer("ph/ 999");
+            Predicate<Deliverer> result2 = PredicateParser.parseDeliverer("ph/999 \n");
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {
@@ -271,8 +271,8 @@ public class PredicateParserTest {
         PhoneContainsKeywordsPredicate<Supplier> expected = new PhoneContainsKeywordsPredicate<>(
                 Arrays.asList("999"));
         try {
-            Predicate<Supplier> result1 = PredicateParser.parseSupplier("p/ 999");
-            Predicate<Supplier> result2 = PredicateParser.parseSupplier("p/999 \n");
+            Predicate<Supplier> result1 = PredicateParser.parseSupplier("ph/ 999");
+            Predicate<Supplier> result2 = PredicateParser.parseSupplier("ph/999 \n");
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {

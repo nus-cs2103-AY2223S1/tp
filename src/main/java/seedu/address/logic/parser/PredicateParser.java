@@ -39,7 +39,7 @@ public class PredicateParser {
     private static final String EMAIL_PREFIX = "e";
     private static final String LOC_PREFIX = "l";
     private static final String NAME_PREFIX = "n";
-    private static final String PHONE_PREFIX = "p";
+    private static final String PHONE_PREFIX = "ph";
 
     //For pets
     private static final String COLOR_PREFIX = "p_c";
