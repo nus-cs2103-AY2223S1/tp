@@ -257,6 +257,17 @@ ___
 
 ### Deleting a listing : `deleteL`
 
+Format: `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`
+* Edits the offer at the specified `INDEX`. The index refers to the index number shown in the displayed offer list. 
+The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+* `editO 1 o/600000` Edits the offer price of the 1st offer to be `600000`.
+* `editO 2 n/Betsy Crower o/123456` Edits the name and offer price of the 2nd offer to be `Betsy Crower` and `123456`
+* respectively.
+
 Deletes the specified listing from the address book.
 
 Format - `deleteL INDEX`

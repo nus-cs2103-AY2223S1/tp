@@ -64,7 +64,7 @@ public class Client extends Person implements Comparable<Client> {
      * Returns true if this Listing is not owned by toCheck.
      */
     public boolean doNotOwn(Listing toCheck) {
-        return !this.equals(toCheck.getOwner());
+        return !this.equals(toCheck.getName());
     }
 
     public boolean doNotHaveMeeting(Meeting toCheck) {
@@ -100,4 +100,3 @@ public class Client extends Person implements Comparable<Client> {
         return builder.toString();
     }
 }
-
