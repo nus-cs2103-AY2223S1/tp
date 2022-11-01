@@ -144,8 +144,10 @@ public class LessonNotes {
     }
 
     public void setStudent(Student targetStudent, Student editedStudent) {
+        if (!studentNotes.containsKey(targetStudent)) {
+            return;
+        }
         ArrayList<String> tempNotes = studentNotes.get(targetStudent);
-        assert tempNotes != null;
         studentNotes.remove(targetStudent);
         studentNotes.put(editedStudent, tempNotes);
     }

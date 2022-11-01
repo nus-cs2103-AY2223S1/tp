@@ -59,6 +59,9 @@ public class StudioParticipation {
     }
 
     public void setStudent(Student targetStudent, Student editedStudent) {
+        if (!participation.containsKey(targetStudent)) {
+            return;
+        }
         int studentParticipation = participation.get(targetStudent);
         participation.remove(targetStudent);
         participation.put(editedStudent, studentParticipation);

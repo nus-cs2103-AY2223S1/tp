@@ -5,7 +5,7 @@ import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -104,7 +104,7 @@ public abstract class Lesson {
             notes.setStudent(targetStudent, editedStudent);
             studentList.remove(targetStudent);
             studentList.add(editedStudent);
-            studentList.sort(Comparator.comparing(s -> s.getName().toString()));
+            Collections.sort(studentList);
             observableStudentList.setAll(studentList);
         }
     }
