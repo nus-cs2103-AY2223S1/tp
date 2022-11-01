@@ -43,9 +43,9 @@ our app.
    few seconds. <br>
 
 
-| Screenshot of Plannit                                                                    | Description of labels                                                                                            |
-|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/home-labelled.png" width="500/></p>{:/} | {::nomarkdown}<ol><li>Command box</li><li>Result display</li><li>Modules list</li><li>Persons list</li></ol>{:/} |
+| Screenshot of Plannit                                                                     | Description of labels                                                                                            |
+|-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/home-labelled.png" width="500"/></p>{:/} | {::nomarkdown}<ol><li>Command box</li><li>Result display</li><li>Modules list</li><li>Persons list</li></ol>{:/} |
 
 
 5. Type the command in the command box and press Enter to execute it. e.g.
@@ -64,14 +64,14 @@ our app.
 | [`edit-module`](#213-edit-module)                             | `edit-module     INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`              | Edit module belonging to the specified index currently displayed on the screen  |
 | *[`find-module`](#214-find-module)                            | `find-module     KEYWORD`                                               | Find module that starts with specified keyword in home page                     |
 | *[`list-module`](#215-list-module)                            | `list-module`                                                           | List all modules in home page after finding                                     |
-| [`add-task`](#221-add-task)                                   | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
-| [`delete-task`](#222-delete-task)                             | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
-| [`swap-task`](#223-reorder-tasks-swap)                        | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swap the order of tasks in the task list of a specified module                  |
+| [`add-task`](#221-add-task-add-task)                          | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
+| [`delete-task`](#222-delete-task-delete-task)                 | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
+| [`swap-task`](#223-reorder-tasks-swap-swap-task)              | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swap the order of tasks in the task list of a specified module                  |
 | [`add-link`](#231-add-link)                                   | `add-link        m/MODULE_CODE l/LINK_URL la/LINK_ALIAS`                | Add link URL with an alias to a module by its specified module code             |
 | [`delete-link`](#232-delete-link)                             | `delete-link     m/MODULE_CODE la/LINK_ALIAS`                           | Delete link URL from a module by its specified module code and alias            |
 | [`open-link`](#233-open-link)                                 | `open-link       m/MODULE_CODE la/LINK_ALIAS`                           | Open link URL from a module by its specified module code and alias              |
 | [`add-person`](#241-add-person)                               | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
-| [`add-person-to-module`](#242-add-person-to-module)           | `add-person-to-module m/MODULE_CODE <br/>n/NAME`                        | Add person with specified name to the module with the specified module code     |
+| [`add-person-to-module`](#242-add-person-to-module)           | `add-person-to-module m/MODULE_CODE n/NAME`                             | Add person with specified name to the module with the specified module code     |
 | [`delete-person`](#243-delete-person)                         | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
 | [`delete-person-from-module`](#244-delete-person-from-module) | `delete-person-from-module m/MODULE_CODE n/NAME`                        | Delete person with specified name from a module with specified module code      |
 | [`edit-person`](#245-edit-person)                             | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
@@ -229,7 +229,7 @@ In either of the above examples, we find every module whose module code starts w
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>You will
 remain on the home page after executing the `find-module` command. This is different
-from the behavior of [`goto`](#252-navigate-between-modules) command.
+from the behavior of [`goto`](#252-navigate-between-modules-goto) command.
 </div>
 
 #### 2.1.5. List module
@@ -246,14 +246,14 @@ In the above example, we list every module that exist in Plannit.
 <br>
 
 ### 2.2. Tasks
-#### 2.2.1. Add task
+#### 2.2.1. Add task: `add-task`
 Suppose a particular module has assigned you a task to be completed. You can 
 keep track of it by adding it to Plannit using the `add-task` command.
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:**<br/> 
-Make sure you have [added a module](#211-add-module) to Plannit before 
-proceeding!
+Make sure you have [added a module](#211-add-module-add-module) to Plannit 
+before proceeding!
 </div>
 
 This command will require two flags:
@@ -281,12 +281,12 @@ command:
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:**<br/>
 You may view the tasks added to a module by navigating to a module's page 
-using the [`goto`](##252-navigate-between-modules) command. Alternatively, 
+using the [`goto`](##252-navigate-between-modules-goto) command. Alternatively, 
 you may double-click on a module to ["peek"](#224-peeking-at-modules) at a 
 module's tasks while on the home page.
 </div>
 
-#### 2.2.2. Delete task
+#### 2.2.2. Delete task: `delete-task`
 Suppose you have completed a task and would now like to remove it from 
 Plannit. You may delete the task using the `delete-task` command.
 
@@ -314,7 +314,7 @@ command:
 |------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | {::nomarkdown}<p align="center"><img src="images/delete-task-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code></p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-task-after.png"/></p><p>A message will appear indicating that a task has been deleted.<p/{:/} |
 
-#### 2.2.3. Reorder tasks (swap)
+#### 2.2.3. Reorder tasks (swap): `swap-task`
 Suppose you have an urgent task which you like to place at the very top of 
 your list. You may change the order of tasks in your module's task list  using
 the `swap-task` command.
@@ -377,7 +377,7 @@ the tasks
 **Note:**<br/> 
 You remain on the home page even when you "peek" at a module. To leave the 
 home page and view more details of a specific module, you may use the 
-[`goto`](#252-navigate-between-modules) command.
+[`goto`](#252-navigate-between-modules-goto) command.
 </div>
 
 <br>
