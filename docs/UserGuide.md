@@ -147,8 +147,16 @@ Social handles are in the format of `SocialMedia@Username`.
 Game Type (prefix:`gt/`) **[Optional, Multiple]** <br>
 Game types can be anything, such as `survival games`, `skyblock` or `creative`.
 
+Social Handle (prefix:s) [Optional] <br>
+Each person can have multiple Social Handles.<br>
+Social Handles are in the format of SocialMedia@Username.
+
 Tag (prefix:`t/`) **[Optional, Multiple]** <br>
 Tags can be anything, as long as there are no spaces.
+
+Game Type (prefix:gt) [Optional] <br>
+Each person can have multiple Game Types.<br>
+No restrictions on format of Game Type.
 
 Time interval (prefix:`ti/`) **[Optional, Multiple]** <br>
 This refers to the timings in which your friend is available.<br>
