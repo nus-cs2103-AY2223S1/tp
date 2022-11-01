@@ -55,4 +55,7 @@ public class Address {
         return value.hashCode();
     }
 
+    public String toFormattedString() {
+        return String.format("Address: %s;", value);
+    }
 }

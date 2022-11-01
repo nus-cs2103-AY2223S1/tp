@@ -79,7 +79,7 @@ public class Nurse extends Person {
         if (homeVisitsString.length() == 0) {
             return MESSAGE_FOR_EMPTY_HOMEVISITLIST;
         }
-        return homeVisitsString;
+        return String.format("Home Visits: %s;", homeVisitsString);
     }
 
     public String getUnavailableDatesInString() {
@@ -87,21 +87,19 @@ public class Nurse extends Person {
         if (unavailableString.length() == 0) {
             return MESSAGE_FOR_EMPTY_UNAVAILABLEDATE;
         }
-        return unavailableString;
+        return String.format("Unavailable Dates: %s;", unavailableString);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Category: ")
-                .append(getCategory())
-                .append("; ")
+        builder.append(getCategory().toFormattedString())
+                .append(" ")
                 .append(super.toString())
-                .append(" Unavailable Dates: ")
+                .append(" ")
                 .append(getUnavailableDatesInString())
-                .append("; Home Visits: ")
-                .append(getHomesVisitsInString())
-                .append(";");
+                .append(" ")
+                .append(getHomesVisitsInString());
 
         return builder.toString();
     }

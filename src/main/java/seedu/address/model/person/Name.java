@@ -55,4 +55,8 @@ public class Name {
         return fullName.hashCode();
     }
 
+    public String toFormattedString() {
+        return String.format("Name: %s;", fullName);
+    }
+
 }

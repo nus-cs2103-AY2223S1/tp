@@ -109,21 +109,19 @@ public class Patient extends Person {
     public String getDatesSlotsInString() {
         String dateSlotsString = getDatesSlots().stream().map(x -> x.toString()).collect(Collectors.joining(","));
         if (dateSlotsString.length() == 0) {
-            return MESSAGE_FOR_EMPTY_DATESLOT;
+            return String.format("Home Visits Date and Time: %s;", MESSAGE_FOR_EMPTY_DATESLOT);
         }
-        return dateSlotsString;
+        return String.format("Home Visits Date and Time: %s;", dateSlotsString);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Category: ")
-                .append(getCategory())
-                .append("; ")
+        builder.append(getCategory().toFormattedString())
+                .append(" ")
                 .append(super.toString())
-                .append(" Home Visits Date and Time: ")
-                .append(getDatesSlotsInString())
-                .append(";");
+                .append(" ")
+                .append(getDatesSlotsInString());
 
         return builder.toString();
     }
