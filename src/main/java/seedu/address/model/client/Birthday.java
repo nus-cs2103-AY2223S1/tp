@@ -19,7 +19,7 @@ public class Birthday {
     public static final String MESSAGE_DATE_CONSTRAINTS =
             "Birthday should be at most 100 years before and no more than the date of creation";
     private static final int yearsBefore = 100;
-    private final LocalDate birthday;
+    private final LocalDate date;
 
     /**
      * Constructs a {@code birthdayDate}.
@@ -28,19 +28,19 @@ public class Birthday {
      */
     public Birthday(LocalDate birthday) {
         requireNonNull(birthday);
-        this.birthday = birthday;
+        this.date = birthday;
     }
 
     @Override
     public String toString() {
-        return birthday.format(DateTimeFormatter.ofPattern("ddMMyyyy"));
+        return date.format(DateTimeFormatter.ofPattern("ddMMyyyy"));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Birthday
-                && birthday.equals(((Birthday) other).birthday));
+                && date.equals(((Birthday) other).date));
     }
 
     /**
@@ -49,7 +49,7 @@ public class Birthday {
     public String formattedDate() {
         String birthdayFormatted;
         // returns date as '12 Jan 1952' for example
-        birthdayFormatted = birthday.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+        birthdayFormatted = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
         return birthdayFormatted;
     }
 
@@ -62,7 +62,7 @@ public class Birthday {
         LocalDate today = LocalDate.now();
 
         Birthday upcomingBirthday = new Birthday(
-                LocalDate.of(today.getYear(), birthday.getMonthValue(), birthday.getDayOfMonth()));
+                LocalDate.of(today.getYear(), date.getMonthValue(), date.getDayOfMonth()));
 
         switch(dateKeyword) {
         case TOMORROW:
@@ -89,18 +89,23 @@ public class Birthday {
     }
 
     private boolean isBeforeDate(Birthday other) {
-        return birthday.compareTo(other.birthday) <= 0;
+        return date.compareTo(other.date) <= 0;
     }
 
     private boolean isAfterDate(Birthday other) {
-        return birthday.compareTo(other.birthday) >= 0;
+        return date.compareTo(other.date) >= 0;
     }
 
     public static boolean isValidBirthday(String test) {
         return test.matches(VALIDATION_REGEX) || test.equals("");
     }
 
-    public static boolean isDateInValidPeriod(LocalDate date) {
-        return !date.isAfter(LocalDate.now()) && !date.isBefore(LocalDate.now().minusYears(yearsBefore));
+    /**
+     * Returns true if and only if the given date {@code birthday} is not after today
+     * and not before {@code yearsBefore}.
+     */
+    public static boolean isDateInValidPeriod(Birthday birthday) {
+        return !birthday.date.isAfter(LocalDate.now())
+                && !birthday.date.isBefore(LocalDate.now().minusYears(yearsBefore));
     }
 }
