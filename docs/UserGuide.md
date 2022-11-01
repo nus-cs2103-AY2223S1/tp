@@ -169,8 +169,10 @@ It requires one field:
 - h/: To be followed by INDEX of homework to be marked
 - a/: To be followed by INDEX of attendance to be marked
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Allows for marking of only one field in a single command.
 Does not allow commands such as `mark h/2 a/1` or `mark a/2 a/3`.
+</div>
 
 Format: `mark [h/ a/]INDEX`
 
@@ -189,8 +191,10 @@ It requires one field:
 - h/: To be followed by INDEX of homework to be unmarked
 - a/: To be followed by INDEX of attendance to be unmarked
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Allows for unmarking of only one field in a single command.
 Does not allow commands such as `unmark h/2 a/1` or `unmark a/2 a/3`.
+</div>
 
 Format: `unmark [h/ a/]INDEX`
 
@@ -418,10 +422,13 @@ _Details coming soon ..._
 ### Prefixes summaries
 
 
-| Prefix | Definition                             | Usage                                                                                                                                                                                      | Example        |
-|--------|----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
-| n/     | Name                                   | A string of alphanumeric characters. Whitespaces are allowed. Required                                                                                                                     | n/Alex Ho      |
-| p/     | Phone number                           | Numbers only. Required. Whitespaces not allowed and at least 3 digits.                                                                                                                     | p/97402341     |
-| t/     | Tag that is associated to the student. | A string of characters. Optional.                                                                                                                                                          | t/Star student |
-| s/     | Session timing of lessons              | A String of input in the format of`DDD HH:mm` <br>where DDD is three characters making up the day, HH are two numbers making up the hour and <br> mm are two numbers making up the minute. | s/tue 08:30    |
-| g/     | Subject and its grade                  | A string of characters                                                                                                                                                                     | g/Math: A+     |
+| Prefix | Definition                             | Usage                                                                                                                                                                                 | Example              |
+|--------|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
+| a/     | Attendance                             | A string of input in the format of `YYYY-MM-DD` <br>where YYYY are four numbers making up the year, MM are two numbers making up the month and DD are two numbers making up the day.  | a/2022-12-08         |
+| g/     | Subject and its grade                  | A string of characters                                                                                                                                                                | g/Math: A+           |
+| h/     | Homework                               | A string of characters                                                                                                                                                                | hw/Science Worksheet |
+| lp/    | Lesson plan                            | A string of characters                                                                                                                                                                | lp/Diversity         |
+| n/     | Name                                   | A string of alphanumeric characters. Whitespaces are allowed. Required                                                                                                                | n/Alex Ho            |
+| p/     | Phone number                           | Numbers only. Required. Whitespaces not allowed and at least 3 digits.                                                                                                                | p/97402341           |
+| s/     | Session timing of lessons              | A string of input in the format of`DDD HH:mm` <br>where DDD is three characters making up the day, HH are two numbers making up the hour and mm are two numbers making up the minute. | s/tue 08:30          |
+| t/     | Tag that is associated to the student. | A string of characters. Optional.                                                                                                                                                     | t/Star student       |
