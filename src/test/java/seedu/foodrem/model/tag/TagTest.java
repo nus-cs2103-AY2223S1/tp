@@ -26,12 +26,6 @@ public class TagTest {
     }
 
     @Test
-    void isValidTagName() {
-        // null tag name
-        assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
-    }
-
-    @Test
     void testEquals_equal() {
         final Tag tagCopy = new Tag(TAGNAME);
         assertEquals(tagCopy, initialTag);

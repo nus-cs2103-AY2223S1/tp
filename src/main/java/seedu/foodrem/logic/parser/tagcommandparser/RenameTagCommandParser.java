@@ -40,9 +40,19 @@ public class RenameTagCommandParser implements Parser<RenameTagCommand> {
         final String originalName = matcher.group("originalName").trim();
         final String newName = matcher.group("newName").trim();
 
+        if (checkExtraPrefixesInName(originalName) || checkExtraPrefixesInName(newName)) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    RenameTagCommand.getUsage()));
+        }
+
         Tag originalTag = new Tag(originalName);
         Tag renamedTag = new Tag(newName);
 
         return new RenameTagCommand(originalTag, renamedTag);
+    }
+
+    private boolean checkExtraPrefixesInName(String name) {
+        Matcher matcher = CliSyntax.PREFIX_REGEX.matcher(name);
+        return matcher.find();
     }
 }
