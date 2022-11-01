@@ -23,7 +23,7 @@ import seedu.address.model.group.GroupName;
 /**
  * Parses input arguments and creates a new {@code AssignTaskAllCommand} object
  */
-public class AssignTaskAllCommandParser {
+public class AssignTaskAllCommandParser implements Parser {
     /**
      * Parses the given {@code Sting} of arguments in the context of a {@code AssignTaskAllCommand}
      * and returns a {@code AssignTaskAllCommand} object for execution.
