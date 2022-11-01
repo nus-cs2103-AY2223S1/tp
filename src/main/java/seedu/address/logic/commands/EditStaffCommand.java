@@ -46,7 +46,7 @@ public class EditStaffCommand extends Command {
             + "Make sure you view the correct staff list before editing a staff. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
-            + "STAFF_INDEX (must be a positive integer) "
+            + "STAFF_INDEX (must be a number from 1 to 2147483647) "
             + PREFIX_PROJECT_NAME + "PROJECT_NAME "
             + "[" + PREFIX_STAFF_NAME + "STAFF_NAME] "
             + "[" + PREFIX_STAFF_CONTACT + "STAFF_CONTACT] "
