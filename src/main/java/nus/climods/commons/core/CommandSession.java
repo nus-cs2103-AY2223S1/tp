@@ -43,7 +43,8 @@ public class CommandSession {
     }
 
     private String getCommand() {
-        return (commandHistoryPos >= 0 && commandHistoryPos < commandHistory.size()) ? commandHistory.get(commandHistoryPos) : "";
+        return (commandHistoryPos >= 0 && commandHistoryPos < commandHistory.size()) ? commandHistory.get(
+            commandHistoryPos) : "";
     }
 
     /**

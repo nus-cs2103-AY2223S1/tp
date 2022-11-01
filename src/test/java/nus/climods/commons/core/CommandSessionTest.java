@@ -14,6 +14,14 @@ class CommandSessionTest {
     private static final CommandSession.CommandExecutor dummyCommandExecutor = commandText -> null;
 
     @Test
+    public void verify_emptyCommandHistory_noErrors() throws CommandException, ParseException, StorageException {
+        CommandSession commandSession = new CommandSession(dummyCommandExecutor);
+
+        assertEquals(commandSession.getPreviousCommand(), "");
+        assertEquals(commandSession.getNextCommand(), "");
+    }
+
+    @Test
     public void verify_commandHistory_correctOrderTest1() throws CommandException, ParseException, StorageException {
         CommandSession commandSession = new CommandSession(dummyCommandExecutor);
         commandSession.execute("command 1");
