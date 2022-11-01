@@ -36,7 +36,7 @@ public class AddOrderCommand extends Command {
                     + PREFIX_ORDER_DATE + "DATE "
                     + "[" + PREFIX_ORDER_ADDITIONAL_REQUESTS + "ADDITIONAL_REQUEST]...\n"
 
-                    + "Example: " + COMMAND_WORD + " ";
+                    + "\nExample: " + COMMAND_WORD + " ";
     public static final String USAGE_COMMON_SAMPLE_PARAMETERS =
             PREFIX_ORDER_STATUS + "Pending "
                     + PREFIX_ORDER_REQUESTS + "...(Request fields) "

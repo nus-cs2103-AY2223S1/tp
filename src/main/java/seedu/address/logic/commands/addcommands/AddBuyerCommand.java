@@ -3,6 +3,7 @@ package seedu.address.logic.commands.addcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -32,11 +33,13 @@ public class AddBuyerCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_LOCATION + "LOCATION "
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_LOCATION + "USA "
             + PREFIX_ORDER + AddOrderCommand.COMMAND_WORD + " (...Order1 fields)"
             + PREFIX_ORDER + AddOrderCommand.COMMAND_WORD + " (...Order2 fields)";
 

@@ -43,7 +43,7 @@ public class AddPetCommand extends Command {
                     + PREFIX_PET_PRICE + "PRICE"
                     + "[" + PREFIX_PET_CERTIFICATE + "CERTIFICATE]...\n"
 
-                    + "Example: " + COMMAND_WORD + " ";
+                    + "\nExample: " + COMMAND_WORD + " ";
 
     public static final String COMMON_SAMPLE_PARAMETERS = PREFIX_PET_NAME + "Wu Lezheng "
             + PREFIX_PET_DATE_OF_BIRTH + "2001-11-20 "

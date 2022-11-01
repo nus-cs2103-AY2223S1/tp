@@ -3,6 +3,7 @@ package seedu.address.logic.parser.addcommandparser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -21,6 +22,7 @@ import seedu.address.model.order.Order;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -45,13 +47,15 @@ public class AddBuyerCommandParser implements Parser<AddBuyerCommand> {
                         PREFIX_PHONE,
                         PREFIX_EMAIL,
                         PREFIX_ADDRESS,
-                        PREFIX_ORDER);
+                        PREFIX_ORDER,
+                        PREFIX_LOCATION);
 
         if (!arePrefixesPresent(argMultimap,
                 PREFIX_NAME,
                 PREFIX_ADDRESS,
                 PREFIX_PHONE,
-                PREFIX_EMAIL)
+                PREFIX_EMAIL,
+                PREFIX_LOCATION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBuyerCommand.MESSAGE_USAGE));
         }
@@ -60,7 +64,8 @@ public class AddBuyerCommandParser implements Parser<AddBuyerCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
-        Buyer buyer = new Buyer(name, phone, email, address, null);
+        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).orElse(""));
+        Buyer buyer = new Buyer(name, phone, email, address, location, null);
 
         List<Order> orders = ParserUtil.parseOrders(argMultimap.getAllValues(PREFIX_ORDER), false);
 
