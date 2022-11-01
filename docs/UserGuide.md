@@ -416,6 +416,8 @@ PleaseHireUs data is saved in the hard disk automatically after any command that
 
 PleaseHireUs data is saved as a JSON file `[JAR file location]/data/internshipbook.json`. Advanced users are welcome to update the data directly by editing that data file.
 
+For more information on editing the JSON file, click [here](#appendix-manually-editing-the-save-file)
+
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, PleaseHireUs will discard all data and start with an empty data file at the next run.
 </div>
@@ -503,3 +505,85 @@ _Details coming soon …​_
    1. For Windows users, you may download Java 11 from [here](https://www.oracle.com/java/technologies/downloads/#java11-windows)
    2. For Mac users, you may download Java 11 from [here](https://www.oracle.com/java/technologies/downloads/#java11-mac)
 3. After installing, you may verify that the correct version of Java is installed by repeating step 1.
+
+<div style="page-break-after: always;"></div>
+
+## Appendix: Manually Editing the Save File
+The save file contains a **single object** with a **single field** named `"internships"`. 
+
+The `"internships"` field is an array of objects which must contains all the following fields:
+1. `name`: Represents the company name. <br/>
+A **non-empty** string which fulfills the `COMPANY_NAME` parameter constraints.
+
+
+2. `phone`: Represents the phone number. <br/>
+**EITHER** The string `"NA"` which represents no phone number provided
+**OR** a string which fulfills the `PHONE` parameter constraints.
+
+
+3. `email`: Represents the email. <br />
+**EITHER** the string `"NA"` which represents no email provided
+**OR** a string which must fulfills the `EMAIL` parameter constraints.
+
+
+5. `remark`: Represents the remark. <br/>
+A (possibly empty) string which fulfills the `REMARK` parameter constraints.
+
+
+6. `position`: Represents the position of the internship. <br/>
+A **non-empty** string which fulfills the `POSITION` parameter constraints.
+
+
+7. `applicationProcess`: Represents the application process of the corresponding internship.<br/>
+A string which fulfills the `APPLICATION_PROCESS` parameter constraints.
+Note that the string is case-insensitive.
+
+8. `date`: Represents the internship application date <br />
+A string which fulfills the `DATE` parameter constraints.
+
+
+9. `website`: Represents the company's website <br />
+**EITHER** The string `"NA"` which represents no website provided 
+**OR** a string which fulfills the `WEBSITE` parameter constraints.
+
+
+10. `tagged`: Represents a collection of tags for the corresponding internship<br />
+An (possibly empty) array of strings with each string 
+being non-empty and fulfilling the `TAG` parameter constraints.
+
+For reference for the parameter constrains, refer to [here](#parameters-requirement)  
+
+<div markdown="block" class="alert alert-danger">
+**:exclamation: Warning:** Though some parameters might work with leading / trailing whitespaces, 
+it is recommended to avoid it completely as it might make the format invalid
+</div>
+
+Below is an example of a valid JSON format:
+```
+{
+  "internships": [
+    {
+      "name": "Google",
+      "phone": "87438807",
+      "email": "alexyeoh@example.com",
+      "remark": "Technical Interview (3 Questions - 2 Medium, 1 Hard)",
+      "position": "Backend Intern",
+      "applicationProcess": "APPLIED",
+      "date": "20-10-2022",
+      "website": "https://careers.google.com/",
+      "tagged": ["Golang", "Summer"]
+    },
+    {
+      "name": "TikTok",
+      "phone": "NA",
+      "email": "NA",
+      "remark": "",
+      "position": "Frontend Intern",
+      "applicationProcess": "OFFER",
+      "date": "25-10-2022",
+      "website": "NA",
+      "tagged": []
+    }
+  ]
+}
+```
