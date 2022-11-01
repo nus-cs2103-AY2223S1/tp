@@ -170,6 +170,7 @@ It requires one field:
 - a/: To be followed by INDEX of attendance to be marked
 
 Allows for marking of only one field in a single command.
+Does not allow commands such as `mark h/2 a/1` or `mark a/2 a/3`.
 
 Format: `mark [h/ a/]INDEX`
 
@@ -189,6 +190,7 @@ It requires one field:
 - a/: To be followed by INDEX of attendance to be unmarked
 
 Allows for unmarking of only one field in a single command.
+Does not allow commands such as `unmark h/2 a/1` or `unmark a/2 a/3`.
 
 Format: `unmark [h/ a/]INDEX`
 
