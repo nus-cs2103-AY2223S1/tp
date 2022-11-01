@@ -352,8 +352,7 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Unique ID Mechanism
 
 #### Motivation
-Initially, `Buyer` has reference to `Order` and `Order` also has reference to `Buyer`. The same applied to the
-cross-reference between `Supplier` and `Pet`. This kind of bidirectional navigation makes it difficult to implement some
+Initially, `Buyer` has reference to `Order` and `Order` also has reference to `Buyer`. The same for `Supplier` and `Pet`. This kind of bidirectional navigation makes it difficult to implement some
 JSON-related classes and methods, since the JSON-adapted date models will infinitely recursively write the references
 into the `.json` file.
 
