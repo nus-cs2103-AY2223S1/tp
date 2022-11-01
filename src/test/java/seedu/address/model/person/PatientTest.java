@@ -93,8 +93,9 @@ public class PatientTest {
     @Test
     public void toStringTest() {
         Patient alice = new PatientBuilder().build();
-        String expectedToStringAlice = "Category: P; Uid: 100; Name: Amy Bee; Phone: 85355255; Email: amy@gmail.com; Gender: F; "
-                + "Address: 123, Jurong West Ave 6, #08-111; Home Visits Date and Time: Home Visit date and slot has not been set yet.;";
+        String expectedToStringAlice = "Category: P; Uid: 100; Name: Amy Bee; Phone: 85355255; Email: amy@gmail.com; "
+                + "Gender: F; Address: 123, Jurong West Ave 6, #08-111; "
+                + "Home Visits Date and Time: Home Visit date and slot has not been set yet.;";
         assertEquals(expectedToStringAlice, alice.toString());
     }
 }
