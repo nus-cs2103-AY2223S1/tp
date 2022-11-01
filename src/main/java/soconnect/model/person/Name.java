@@ -19,7 +19,7 @@ public class Name {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public static final String MESSAGE_NAME_TOO_LONG =
             "The Name is too long. Keep it within 45 characters, including whitespaces.";
-    public static final int CHARACTER_LIMIT = 45;
+    private static final int CHARACTER_LIMIT = 45;
 
     public final String fullName;
 

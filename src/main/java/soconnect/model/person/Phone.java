@@ -9,13 +9,12 @@ import static soconnect.commons.util.AppUtil.checkArgument;
  */
 public class Phone {
 
-
+    public static final String VALIDATION_REGEX = "\\d{3,}";
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String MESSAGE_PHONE_TOO_LONG =
             "The Phone is too long. Keep it within 45 characters, including whitespaces.";
-    public static final int CHARACTER_LIMIT = 45;
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+    private static final int CHARACTER_LIMIT = 45;
     public final String value;
 
     /**

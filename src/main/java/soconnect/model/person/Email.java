@@ -9,6 +9,8 @@ import static soconnect.commons.util.AppUtil.checkArgument;
  */
 public class Email {
 
+    public static final String MESSAGE_EMAIL_TOO_LONG =
+            "The Email is too long. Keep it within 45 characters, including whitespaces.";
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
@@ -21,9 +23,7 @@ public class Email {
             + "    - end with a domain label at least 2 characters long\n"
             + "    - have each domain label start and end with alphanumeric characters\n"
             + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
-    public static final String MESSAGE_EMAIL_TOO_LONG =
-            "The Email is too long. Keep it within 45 characters, including whitespaces.";
-    public static final int CHARACTER_LIMIT = 45;
+    private static final int CHARACTER_LIMIT = 45;
     // alphanumeric and special characters
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
     private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
