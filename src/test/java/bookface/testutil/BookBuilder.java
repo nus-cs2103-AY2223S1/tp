@@ -1,12 +1,9 @@
 package bookface.testutil;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.format.ResolverStyle;
+import static bookface.testutil.TypicalDates.TYPICAL_DATE;
+
 import java.util.Date;
 
-import bookface.commons.core.Messages;
 import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.book.Author;
 import bookface.model.book.Book;
@@ -63,16 +60,12 @@ public class BookBuilder {
         return new Book(title, author);
     }
 
-    public BookBuilder withReturnDate(String returnDate) throws ParseException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        formatter = formatter.withResolverStyle(ResolverStyle.SMART);
-        try {
-            LocalDate ld = LocalDate.parse(returnDate, formatter);
-            this.returnDate = java.sql.Date.valueOf(ld);
-            return this;
-        } catch (DateTimeParseException e) {
-            throw new ParseException(Messages.MESSAGE_INVALID_DATE_FORMAT);
-        }
+    /**
+     * Sets the {@code returnDate} of the {@code Book} that we are building.
+     */
+    public BookBuilder withReturnDate() throws ParseException {
+        this.returnDate = TYPICAL_DATE;
+        return this;
     }
 
     public Book buildLoanedBook() {

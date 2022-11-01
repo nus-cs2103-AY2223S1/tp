@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TypicalDates {
+
+
     public static final Date TYPICAL_DATE;
 
     static {

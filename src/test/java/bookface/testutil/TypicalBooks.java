@@ -27,7 +27,7 @@ public class TypicalBooks {
     static {
         try {
             HOW_TO_RUN = new BookBuilder().withTitle("How to Run")
-                    .withAuthor("Ronald Dickson").withReturnDate("29/10/2022").buildLoanedBook();
+                    .withAuthor("Ronald Dickson").withReturnDate().buildLoanedBook();
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -38,7 +38,7 @@ public class TypicalBooks {
     static {
         try {
             HOW_TO_EAT = new BookBuilder().withTitle("How to Eat")
-                    .withAuthor("Ronald Vickson").withReturnDate("29/10/2022").buildLoanedBook();
+                    .withAuthor("Ronald Vickson").withReturnDate().buildLoanedBook();
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -49,7 +49,7 @@ public class TypicalBooks {
     static {
         try {
             HOW_TO_CRY = new BookBuilder().withTitle("How to Cry")
-                    .withAuthor("Ronald Pickson").withReturnDate("29/10/2022").buildLoanedBook();
+                    .withAuthor("Ronald Pickson").withReturnDate().buildLoanedBook();
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
