@@ -48,7 +48,7 @@ public class LessonIndexCommand extends LessonCommand {
 
         personToEdit.addLesson(lesson);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_ADD_LESSON_SUCCESS, lesson,
+        return new CommandResult(String.format(MESSAGE_ADD_LESSON_SUCCESS, lesson.toFullString(),
                 index.getZeroBased(), personToEdit.getName()));
     }
 }
