@@ -105,7 +105,7 @@ Format: `delete-e INDEX`
 Examples:
 - `delete-e 2` deletes the 2nd event in the bucket list.
 
-### Viewing events list: `list-e`
+### Viewing bucket list: `list-e`
 Shows a list of all events present in the bucket list.
 
 Format: `list-e`
