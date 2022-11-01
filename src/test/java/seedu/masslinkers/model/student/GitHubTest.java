@@ -28,14 +28,15 @@ public class GitHubTest {
         assertFalse(GitHub.isValidGitHub("")); // empty string
         assertFalse(GitHub.isValidGitHub(" ")); // spaces only
         assertFalse(GitHub.isValidGitHub("-hello")); // starts with hyphen
-        assertFalse(GitHub.isValidGitHub("lopie-")); // ends with hyphen
         assertFalse(GitHub.isValidGitHub("ld--dfk-fesd")); // > 1 consecutive hyphen
+        assertFalse(GitHub.isValidGitHub("lddfkfesd--")); // > 1 consecutive hyphen
         assertFalse(GitHub.isValidGitHub("qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm")); // >31 chars
         assertFalse(GitHub.isValidGitHub("lopi&e")); // special chars that are not hyphens
 
         // valid GitHub
         assertTrue(GitHub.isValidGitHub("1")); // exactly 1 number
         assertTrue(GitHub.isValidGitHub("a")); // exactly 1 letter
+        assertTrue(GitHub.isValidGitHub("lopie-")); // legacy github username
         assertTrue(GitHub.isValidGitHub("jammy12")); // words and numbers
         assertTrue(GitHub.isValidGitHub("JAMMdfg")); // caps
         assertTrue(GitHub.isValidGitHub("12345")); // numbers
