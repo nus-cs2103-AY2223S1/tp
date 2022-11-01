@@ -31,8 +31,9 @@ title: FinBook User Guide
    &emsp; 4.3.3. [Importing data: `import`](#433-importing-data--import)<br>
    &emsp; 4.3.4. [Exporting data: `export`](#434-exporting-data--export)<br>
    &emsp; 4.3.5. [Copying a client's data: `copy`](#435-copying-a-clients-data--copy)<br>
-   &emsp; 4.3.6. [Changing Light/Dark mode](#436-changing-lightdark-mode)<br>
-   &emsp; 4.3.7. [Exiting the application: `exit`](#437-exiting-the-application--exit)<br>
+   &emsp; 4.3.6. [Sorting clients: `sort`](#436-sorting-clients--sort)<br>
+   &emsp; 4.3.7. [Changing Light/Dark mode](#437-changing-lightdark-mode)<br>
+   &emsp; 4.3.8. [Exiting the application: `exit`](#437-exiting-the-application--exit)<br>
 5. [FAQ](#5-faq)<br>
 6. [Glossary](#6-glossary)<br>
 7. [Command Summary](#7-command-summary)<br>
@@ -151,7 +152,7 @@ For example,
 
     * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$1000` : Adds a client
       named `John Doe` in FinBook.
-   
+
     * **`edit`**`1 r/Low pl/NTUC Income Plan` : Edits the 1st client portfolio risk
       and plans shown in the current list.
 
@@ -174,8 +175,10 @@ For example,
 Adds a client to the FinBook.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME [m/UPCOMING_MEETING_DATES] [t/TAGS r/RISK_LEVEL]
-         [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
-* `add` command will refresh the portfolio panel to display "`no client selected for view yet!`".
+[pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
+
+* `add` command will refresh the portfolio panel to display "no client selected for view yet!".
+* `m/UPCOMING_MEETING_DATES` can be in the `dd Mmm yyyy` or `dd Mmm yyyy HH:mm` format.
 
 Examples:
 
@@ -183,12 +186,14 @@ Examples:
   r/high pl/Prudential Health note/Client is currently having COVID`
 * `add n/Betsy Crowe t/VIPPClient e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan`
 
+---
+
 ### 4.1.2. Editing a client : `edit`
 
 Edits an existing client in the FinBook.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] [m/UPCOMING_MEETING_DATES]
-        [t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
+[t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -202,6 +207,8 @@ Examples:
   and `johndoe@example.com` respectively and automatically displays the updated portfolio of the 1st client.
 * `edit 2 n/Betsy Crower` Edits the name of the 2nd client to be `Betsy Crower` and automatically displays the updated portfolio of `Betsy Crower`.
 
+---
+
 ### 4.1.3. Deleting a client : `delete`
 
 Four formats of deleting a client.
@@ -213,7 +220,7 @@ Four formats of deleting a client.
 
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `delete` commmand will refresh the portfolio panel to display "`no client selected for view yet!`".
+* `delete` command will refresh the portfolio panel to display "no client selected for view yet!".
 
 #### Deleting a single client
 
@@ -264,11 +271,15 @@ Examples:
 
 * `list` followed by `delete all` deletes the all clients in the FinBook.
 
+---
+
 ### 4.1.4. Listing all clients : `list`
 
 Shows a list of all clients in the FinBook.
 
 Format: `list`
+
+---
 
 ### 4.1.5. Finding a client : `find`
 
@@ -281,12 +292,14 @@ Format: `find [n/NAME] [t/TAG]`
   the left.
 * At least one of the parameters must be provided.
 * Only one type of parameter can be provided at one time.
-* `find` command will refresh the portfolio panel to display "`no client selected for view yet!`".
+* `find` command will refresh the portfolio panel to display "no client selected for view yet!".
 
 Examples:
 
 * `find n/John n/alex` will find all clients with John or Alex in their names.
 * `find t/VIPClient t/YuFamily` will find all clients with either `VIPClient` or `YuFamily` tags.
+
+---
 
 ### 4.1.6. Viewing Portfolio of a specific client: `view`
 
@@ -305,7 +318,6 @@ Examples:
 * `view 2` displays the risk level and current plans purchased by the 2nd client of the Financial book data.
 * `find n/Alex` then `view 1` will display the portfolio of Alex.
 
-
 ---
 
 ## 4.2. Data privacy
@@ -321,6 +333,12 @@ Format: `lock`
 **:information_source: If a password has not been set, leave the password field empty to unlock the application**
 </div>
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The lock feature only serves to prevent unauthorized usage of FinBook. Anyone with access to your PC is still able to view and edit the `JSON` files containing your data.
+</div>
+
+---
+
 ### 4.2.2. Setting or updating the password : `password`
 
 Sets or updates the FinBook password
@@ -330,6 +348,13 @@ Format: `password [old/OLDPASSWORD] new/NEWPASSWORD`
 * Sets or updates the password to the specified new password
 * No need to specify old password if setting the password for the first time
 * When updating the password, the specified old password must match the current password
+* Be mindful of spaces (`" "`) at the start and end of the specified password, as they will be trimmed
+    * Specified password: `" "`
+
+      Effective password: a zero length string
+    * Specified password: `" "foobar" "`
+
+      Effective password: `foobar`
 
 Examples:
 
@@ -341,6 +366,8 @@ Examples:
 **:information_source: It is recommended to take note of the warnings and follow the suggestions, if there are any**
 </div>
 
+---
+
 ### 4.2.3. Resetting the password
 
 Steps to reset the password:
@@ -350,6 +377,8 @@ Steps to reset the password:
 3. Open `preferences.json` with a text editor
 4. Change the line `"passwordHash" : "$argon2id$xxxxxxxx"` to `"passwordHash" : ""`
 5. Save `preferences.json`
+
+---
 
 ### 4.2.4. Hiding sensitive data
 
@@ -375,14 +404,18 @@ Financial book data are saved in the hard disk automatically after any command t
 to
 save manually.
 
+---
+
 ### 4.3.2. Editing the data file
 
-Financial book data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
+Financial book data are saved as a `JSON` file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
 update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FinBook will discard all data and start with an empty data file at the next run.
 </div>
+
+---
 
 ### 4.3.3. Importing data : `import`
 
@@ -418,6 +451,8 @@ Examples:
 * `import ../data.csv` imports data from the file `data.csv` which is located one level outside the directory of the
   FinBook executable
 
+---
+
 ### 4.3.4. Exporting data : `export`
 
 Exports data to a `CSV` file
@@ -434,6 +469,8 @@ Examples:
   executable
 * `export ../data.csv` exports data to the file `data.csv` which is located one level outside the directory of the
   FinBook executable
+
+---
 
 ### 4.3.5. Copying a client's data : `copy`
 
@@ -455,21 +492,27 @@ Tags: friends
 
 * Press `Ctrl-V` to paste the copied text.
 
-### Sorting clients : `sort`
+---
+
+### 4.3.6. Sorting clients : `sort`
 
 Sorts clients in the FinBook according to given parameter.
 
-Format: `sort n/ or i/ or m/ ​`
+Format: `sort n/ OR i/ OR m/​`
 
-* Sorts clients in ascending order according to parameter.
-* At least one of the parameters must be provided.
+* At least one parameter must be provided.
+* Only one type of parameter can be provided at one time.
+* Sorts clients in ascending order according to the parameter.
 
 Examples:
 
 * `sort n/` Sorts clients in ascending order according to name.
+* `sort i/` Sorts clients in ascending order according to income.
 * `sort m/` Sorts clients according to their meeting dates in chronological order.
 
-### 4.3.6. Changing Light/Dark mode
+---
+
+### 4.3.7. Changing Light/Dark mode
 
 Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top right of the application.
 
@@ -483,7 +526,9 @@ Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top r
 **:information_source: Your mode preference will be automatically saved**
 </div>
 
-### 4.3.7. Exiting the application : `exit`
+---
+
+### 4.3.8. Exiting the application : `exit`
 
 Exits the application.
 
@@ -501,15 +546,16 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 
 # 6. Glossary
 
-| Term                         | Meaning                                                                                            |
-|------------------------------|----------------------------------------------------------------------------------------------------|
-| Mainstream OS                | Common computer operating systems, Windows, Linux, Unix, OS-X.                                     |
-| Command-line Interface (CLI) | A application that users interact with by typing text.                                             |
-| Command                      | A sequence specified text typed by the user to perform an action.                                  |
-| Prefix                       | A tag to specify the field of data added. Each prefix always ends with a `/`.                      |                                                                                                  
-| Parameter                    | Users input to a command.                                                                          |
-| Field                        | The data type of client. For example, Name and Income are fields of a client.                      |
-| CSV                          | A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values. |
+| Term                         | Meaning                                                                                                                                                                                                                                       |
+|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command-line Interface (CLI) | A application that users interact with by typing text.                                                                                                                                                                                        |
+| Command                      | A sequence specified text typed by the user to perform an action.                                                                                                                                                                             |
+| Prefix                       | A tag to specify the field of data added. Each prefix always ends with a `/`.                                                                                                                                                                 |                                                                                                  
+| Parameter                    | Users input to a command.                                                                                                                                                                                                                     |
+| Field                        | The data type of client. For example, Name and Income are fields of a client.                                                                                                                                                                 |
+| JSON                         | JSON (JavaScript Object Notation) is an open standard file format and data interchange format that uses human-readable text to store and transmit data objects consisting of attribute–value pairs and arrays (or other serializable values). |
+| CSV                          | A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values.                                                                                                                                            |
+| Path                         | A path is a string of characters used to uniquely identify a location in a directory structure.                                                                                                                                               |
 
 ---
 
