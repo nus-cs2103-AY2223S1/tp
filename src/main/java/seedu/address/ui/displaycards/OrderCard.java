@@ -76,7 +76,7 @@ public class OrderCard extends UiPart<Region> {
      * @param shouldDisplayBuyerName A boolean value indicating whether the buyer name should be displayed.
      */
     public void fillOrderCard(boolean shouldDisplayBuyerName) {
-        if (shouldDisplayBuyerName) {
+        if (true) {
             buyerName.setText("from " + order.getBuyer().getName().fullName);
         }
         id.setText("#" + displayedIndex);
