@@ -19,13 +19,13 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list-e`** : Lists all events.
+   * `list-e` : Lists all events.
 
-   * **`add-e`**`n/Sightseeing d/Visit Mountains` : Adds an event with the respective title and description into your event list.
+   * `add-e n/Sightseeing d/Visit Mountains` : Adds an event with the respective title and description into your event list.
 
-   * **`delete-e`**`3` : Deletes the 3rd event shown in the current event list.
+   * `delete-e 3` : Deletes the 3rd event shown in the current event list.
 
-   * **`exit`** : Exits the app.
+   * `exit` : Exits the app.
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -115,7 +115,7 @@ Adds a trip to the trip list.
 
 Format: `add n/TITLE d/DESCRIPTION l/LOCATION D/DATE`
 - All fields are compulsory.
-- Date must follow the format {dd-mm-yyyy}.
+- Date must follow the format `dd-mm-yyyy`.
 
 Examples:
 - `add n/Trip to Iceland d/Skiing in Iceland l/Iceland D/26-12-2023`
