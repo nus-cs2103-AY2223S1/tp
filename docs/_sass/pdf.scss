@@ -1,0 +1,113 @@
+// Adapted from
+// https://www.michaelperrin.fr/blog/2019/11/printing-the-web-part-2-html-and-css-for-printing-books
+// by Richard Domininck 2022
+@page {
+  size: A4;
+  margin: 0.5in;
+
+  @bottom-right {
+    content: "Page " counter(page) " of " counter(pages);
+    font-family: $base-font-family;
+    font-size: small;
+    margin-bottom: 1.5rem;
+  }
+
+  @top-left {
+    content: string(section_title);
+    font-family: $base-font-family;
+    font-size: small;
+    font-style: italic;
+    margin-top: 1.5rem;
+  }
+}
+
+@page :first {
+  @top-left {
+    content: none;
+  }
+}
+
+@media print {
+  article.post {
+    h2:not(:first-of-type) {
+      margin-top: 0;
+      page-break-before: always;
+    }
+
+    h2,
+    h3:not(.glossary-heading) {
+      string-set: section_title content();
+      page-break-after: avoid;
+    }
+
+    h3.glossary-heading {
+      // Use Glossary – (letter) for Glossary items
+      string-set: section_title "Glossary \2013\A0"content();
+    }
+
+    pre,
+    hr,
+    ul,
+    ol {
+      page-break-before: avoid;
+      page-break-after: avoid;
+    }
+
+    p,
+    tr {
+      page-break-inside: avoid;
+    }
+
+    table {
+      td {
+        // FIXME: Remove hardcoding + hacky way
+        img {
+          max-width: 300px;
+          display: inline-block;
+        }
+
+        &:has(img) {
+          text-align: center;
+        }
+      }
+    }
+
+    #toc-heading::after {
+      content: "Click on any item to jump to the corresponding page. Click on the heading to go back to the table of contents.";
+      font-style: italic;
+      font-family: $base-font-family;
+      font-size: 1rem;
+      color: black;
+      display: block;
+    }
+
+    #markdown-toc {
+      &::before {
+        content: "Section" leader(" ") "Page";
+        font-weight: bold;
+        line-height: 200%;
+      }
+
+      ul,
+      ol {
+        list-style-type: none;
+      }
+
+      li a {
+        color: inherit;
+
+        &::after {
+          content: leader(".") target-counter(attr(href), page);
+        }
+      }
+    }
+
+    .def-tooltip {
+      > a {
+        // For PrinceXML compatibility
+        text-decoration: underline;
+        text-underline-style: dotted;
+      }
+    }
+  }
+}

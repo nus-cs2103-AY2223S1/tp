@@ -38,9 +38,7 @@ help del
 help help
 ```
 
-**Expected Output:**
-
-A new window will open showing the instructions.
+**Expected Output:**<br>A new window will open showing the instructions.
 
 If no `COMMAND_WORD` was specified, only a general help message will be provided. The general help message shows a list of commands available to the user and a URL to this User Guide.
 
@@ -60,9 +58,7 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
 reset
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 FoodRem has been reset!
@@ -79,14 +75,13 @@ FoodRem has been reset!
 ```warning
 The data file is only saved when you exit the application using this command.
 ```
+
 **Example Input:**
 
 ```text
 exit
 ```
 
-**Expected Output:**
-
-FoodRem application will close.
+**Expected Output:**<br>FoodRem application will close.
 
 ---
