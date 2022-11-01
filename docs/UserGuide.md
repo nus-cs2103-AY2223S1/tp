@@ -62,7 +62,6 @@ This section introduces the different components of Class-ify's application wind
 | 4   | Result Box            | Displays the system message after the execution of a command. The system message describes the outcome of the entered command. |
 | 5   | Command Box           | Type in your commands here.                                                                                                    |
 | 6   | Storage File Location | Displays the location of the data file on your computer.                                                                       |
---------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -78,9 +77,9 @@ This section introduces the different components of Class-ify's application wind
 a few seconds. Note how the app contains some sample data. In the event that the app does not launch, click 
 [here](#5-faq) for instructions on how to troubleshoot.
 
-5. ![Ui](images/Ui.png)
+![Ui](images/Ui.png)
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
 open the help window.
 
 Here are some example commands you can try:
@@ -123,8 +122,8 @@ Notes are important information that you should pay attention to when using Clas
 Cautions are around to warn you of potential pitfalls that new users may encounter. For example, commands like `clear`
 will delete all data stored locally and this action is irreversible. You will lose your data permanently.
 
-<div markdown="span" class="alert alert-warning">
-:exclamation: Stop and read carefully when you see this!
+<div markdown="span" class="alert alert-warning">:exclamation:
+**Caution:** Stop and read carefully when you see this!
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -175,8 +174,7 @@ Creates a new student record with the following parameters:
 | **Parent's Email**  | `e/`       | No             | Email address of student's parent should follow standard convention format _local-part@domain_.                                                                                                                                                                                                                                                                                                                                             |
 
 **Usage**
-
-*Describe when to use this command here*
+* At the start of every teaching year, add in your new batch of students to Class-ify for easy tracking.
 
 Format: `addStudent nm/STUDENT-NAME id/ID class/CLASS [exam/EXAM-NAME SCORE] [pn/PARENT-NAME] [hp/PHONE-NUMBER] 
 [e/EMAIL]`
@@ -200,6 +198,8 @@ are treated as _JOHN_ by default.
 grades 80 for CA1 and 60 for SA1. Notice the first score for CA1 is overridden by the second score for CA1.
 </div>
 
+<img src="images/InvalidCommandError.png" alt="InvalidCommandError" width="400"/>
+
 <div markdown="span" class="alert alert-warning">:exclamation:
 **Caution:** If you are receiving an invalid command message, do check to ensure that you are using the correct prefix 
 for the intended parameter.
@@ -220,7 +220,8 @@ The index **must be a positive integer**. e.g. 1, 2.
 **Usage**
 
 There are two scenarios when you may need to use this command:
-* when you wish to add a parent's information for a student.
+* when you wish to add the parent's information for a student.
+* when you have completed marking the exam papers and want to add in your students' grades.
 * when there is a mistake in a student record, and you wish to update it.
 
 Format: `edit INDEX [nm/STUDENT-NAME] [id/ID] [exam/EXAM-NAME SCORE] [pn/PARENT-NAME] ...`
