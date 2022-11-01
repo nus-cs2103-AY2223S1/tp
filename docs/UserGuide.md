@@ -239,7 +239,7 @@ Dates must be given in DD-MM-YYYY HHmm format!
 
 Examples:
 * `radd d/11-09-2001 1200 r/Patient tested negative for COVID-19 m/Paracetamol 500mg m/Dextromethorphan`
-* `radd d/28-02-2020 2030 r/Patient experienced vomitting`
+* `radd d/28-02-2020 2030 r/Patient experienced vomiting`
 
 ### Deleting a record: `rdelete`
 
