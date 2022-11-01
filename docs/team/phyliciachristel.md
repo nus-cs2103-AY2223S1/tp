@@ -8,7 +8,7 @@ title: Phylicia Christel's Project Portfolio Page
 #### Overview
 Pupilist is a desktop address book application used for private tutors to handle and organise a student's info, easing their workload. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
-#### Summary of Contrbutions
+#### Summary of Contributions
 
 * **Code contributed**: [tP Code Dashboard](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=phyliciachristel&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
