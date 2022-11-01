@@ -62,7 +62,7 @@ Survin is a desktop application for surveyors to use to keep track of people the
 -   Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
     e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
--   A unique person is defined by their name, phone number, and email. You cannot have 2 people with the same name, phone number, and email.
+-   A person is uniquely characterised by their name, phone number and email. You cannot have 2 people with the same name, phone number, and email.
 
 </div>
 
