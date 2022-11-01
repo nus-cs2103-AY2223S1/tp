@@ -104,7 +104,7 @@ The following notes outline several noteworthy format which the [Feature](#featu
 
 <div markdown="block" class="alert alert-info">
 
-Parameters are the input words that come after a command word to specify how the command should be executed. Click (here)[#parameter-requirements] to view the list of parameter requirements.
+Parameters are the input words that come after a command word to specify how the command should be executed. Click [here](#parameter-requirements) to view the list of parameter requirements.
 
 **:information_source: Regarding parameters:**<br>
 
