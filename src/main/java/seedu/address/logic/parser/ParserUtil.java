@@ -183,7 +183,7 @@ public class ParserUtil {
     public static Slot parseSlot(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
-        if (!Slot.isValidDateTime(trimmedDateTime)) {
+        if (!Slot.isValidSlot(trimmedDateTime)) {
             throw new ParseException(Slot.MESSAGE_CONSTRAINTS);
         }
         return new Slot(dateTime);
