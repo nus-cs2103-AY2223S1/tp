@@ -357,7 +357,7 @@ Exits the program.
 
 Format: `exit`
 
-### 6.11. Viewing daily tips
+### 6.11. Viewing application stage tips
 
 For some specific application stages, we have included a list of useful tips to help you prepare for and ace the deliverables.
 
