@@ -260,6 +260,8 @@ Format: `addT d/DESCRIPTION D/DEADLINE`
 
 * Tasks have no tags when first created.
 
+* Tasks that are past their deadline can still be added since overdue tasks might have to be completed still.
+
 The following scenarios should not happen for your command to run successfully:
 - If the description of the task is empty.
 - If the deadline of the task is empty.
