@@ -47,6 +47,8 @@ Given below are my contributions to the project.
   * Enable assertions and modified build.gradle to create the correct JAR filename. ([#81](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/81), [#184](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/184)) 
   * Reviewed PRs with non-trivial review comments. ([#95](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/95))
   * Reported bugs and suggestions for other team in the same CS2103/T class. ([PE-Dry Run](https://github.com/Hikoya/ped/issues))
+  * Improve test coverage of project. ([#329](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/329))
+  * Answered questions or helped out to solve tasks posted by others in forum. ([Forum](https://github.com/nus-cs2103-AY2223S1/forum/issues?q=is%3Aissue+commenter%3AHikoya)) 
 * **Tools**
   * IntelliJ IDEA
   * JavaFX Scene Builder
