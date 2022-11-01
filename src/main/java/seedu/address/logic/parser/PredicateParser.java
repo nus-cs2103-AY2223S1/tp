@@ -28,7 +28,6 @@ import seedu.address.model.pet.predicates.ColorContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
-import seedu.address.model.pet.predicates.VaccinationStatusPredicate;
 
 /**
  * Parses input arguments and creates a new Predicate.
@@ -46,7 +45,6 @@ public class PredicateParser {
     private static final String PET_NAME_PREFIX = "p_n";
     private static final String PRICE_PREFIX = "p_p";
     private static final String SPECIES_PREFIX = "p_s";
-    private static final String VACCINATION_PREFIX = "p_v";
 
     //For orders
     private static final String ADDITIONAL_REQUEST_PREFIX = "o_ar";
@@ -161,8 +159,6 @@ public class PredicateParser {
             return new PriceContainsKeywordsPredicate<>(Arrays.asList(Double.parseDouble(query)));
         case SPECIES_PREFIX:
             return new SpeciesContainsKeywordsPredicate<>(Arrays.asList(query));
-        case VACCINATION_PREFIX:
-            return new VaccinationStatusPredicate<>(Boolean.parseBoolean(query));
         default:
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));

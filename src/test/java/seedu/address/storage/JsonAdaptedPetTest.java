@@ -13,6 +13,7 @@ import seedu.address.model.order.Price;
 import seedu.address.model.person.Name;
 import seedu.address.model.pet.DateOfBirth;
 import seedu.address.model.pet.Height;
+import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.PetCertificate;
 import seedu.address.model.pet.Weight;
 import seedu.address.testutil.TypicalPets;
@@ -56,7 +57,9 @@ public class JsonAdaptedPetTest {
     @Test
     public void toModelType_validPetDetails_returnsPet() throws Exception {
         JsonAdaptedPet pet = new JsonAdaptedPet(TypicalPets.DOJA);
-        assertEquals(TypicalPets.DOJA, pet.toModelType());
+        Pet temp = TypicalPets.DOJA;
+        Pet modelPet = pet.toModelType();
+        assertEquals(TypicalPets.DOJA, modelPet);
     }
 
     @Test

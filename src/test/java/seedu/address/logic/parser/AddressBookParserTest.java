@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.filtercommandparser.FilterOrderCommandP
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.COLOR_PREFIX;
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PET_NAME_PREFIX;
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PRICE_PREFIX;
-import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.VACCINATION_PREFIX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -106,7 +105,7 @@ public class AddressBookParserTest {
         Pet pet = new PetBuilder().withName("NyankoSensei").build();
 
         String input = AddPetCommand.COMMAND_WORD
-                + "  i/1 "
+                + " 1 "
                 + " p_n/" + pet.getName()
                 + " p_d/" + pet.getDateOfBirth().getPreferredDateInString()
                 + " p_c/" + pet.getColor().getValue()
@@ -115,7 +114,7 @@ public class AddressBookParserTest {
                 + " p_w/" + pet.getWeight().getValue()
                 + " p_s/" + pet.getSpecies().getValue()
                 + " p_v/" + pet.getVaccinationStatus().getVaccinationStatus()
-                + " p_p" + pet.getPrice().getPrice();
+                + " p_p/" + pet.getPrice().getPrice();
 
         AddPetCommand command = (AddPetCommand) parser.parseCommand(input);
         AddPetCommand expected = new AddPetCommand(pet, INDEX_FIRST);
@@ -208,12 +207,10 @@ public class AddressBookParserTest {
                 colorContainsKeywordsPredicate,
                 petNameContainsKeywordsPredicate,
                 priceContainsKeywordsPredicate,
-                speciesContainsKeywordsPredicate,
-                vaccinationStatusPredicate);
+                speciesContainsKeywordsPredicate);
         String input = FilterPetCommand.COMMAND_WORD + " " + COLOR_PREFIX + "/grey "
                 + PET_NAME_PREFIX + "/ashy "
-                + PRICE_PREFIX + "/5.5 "
-                + VACCINATION_PREFIX + "/true";
+                + PRICE_PREFIX + "/5.5 ";
         assertEquals(parser.parseCommand(input), command);
     }
 
@@ -376,19 +373,19 @@ public class AddressBookParserTest {
     public void parseCommand_matchCommand() throws Exception {
         // index 1 -> success
         MatchCommand expected = new MatchCommand(INDEX_FIRST);
-        String input = MatchCommand.COMMAND_WORD + " i/1";
+        String input = MatchCommand.COMMAND_WORD + " 1";
         MatchCommand result = (MatchCommand) parser.parseCommand(input);
         assertEquals(result, expected);
 
         // index 2 -> success
         expected = new MatchCommand(INDEX_SECOND);
-        input = MatchCommand.COMMAND_WORD + " i/2";
+        input = MatchCommand.COMMAND_WORD + " 2";
         result = (MatchCommand) parser.parseCommand(input);
         assertEquals(result, expected);
 
         // index 3 -> success
         expected = new MatchCommand(INDEX_THIRD);
-        input = MatchCommand.COMMAND_WORD + " i/3";
+        input = MatchCommand.COMMAND_WORD + " 3";
         result = (MatchCommand) parser.parseCommand(input);
         assertEquals(result, expected);
     }

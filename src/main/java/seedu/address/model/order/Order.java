@@ -75,18 +75,13 @@ public class Order {
                  AdditionalRequests additionalRequests,
                  LocalDate byDate,
                  Price settledPrice) {
-        UniqueId currId = ORDER_ID_GENERATOR.next();
-        while (UniqueIdGenerator.storedIdOrderContains(currId)) {
-            currId = ORDER_ID_GENERATOR.next();
-        }
-        this.id = currId;
-        this.buyer = buyer;
-        this.requestedPriceRange = requestedPriceRange;
-        this.request = request;
-        this.additionalRequests = additionalRequests;
-        this.byDate = byDate;
-        this.settledPrice = settledPrice;
-        status = OrderStatus.PENDING;
+        this(buyer,
+                requestedPriceRange,
+                request,
+                additionalRequests,
+                byDate,
+                settledPrice,
+                OrderStatus.PENDING);
     }
 
     /**

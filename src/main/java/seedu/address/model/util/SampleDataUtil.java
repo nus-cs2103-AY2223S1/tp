@@ -136,7 +136,7 @@ public class SampleDataUtil {
             getRequest(2, "white", "black", "pokemon"),
             getAdditionalRequests("i need it now"),
             "2022-12-21", 12.5, OrderStatus.PENDING.toString());
-    public static final Order O6 = getOrder(ROY, 11110.0, 15.0,
+    public static final Order O6 = getOrder(ROY, 11111.0, 15.0,
             getRequest(2, "white", "black", "pokemon"),
             getAdditionalRequests("i need it now"),
             "2022-12-21", 12.5, OrderStatus.PENDING.toString());
@@ -158,8 +158,8 @@ public class SampleDataUtil {
             standard, new Species("cat"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
             new Price(7777.77), new HashSet<>());
-    public static final Pet P4 = new Pet(new PetName("Plum"), LI, new Color("white"),
-            new ColorPattern("brown"),
+    public static final Pet P4 = new Pet(new PetName("Page"), LI, new Color("white"),
+            new ColorPattern("white and brown"),
             standard, new Species("cat"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
             new Price(7777.77), new HashSet<>());
