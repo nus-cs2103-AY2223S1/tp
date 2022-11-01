@@ -6,6 +6,8 @@ jobs:
   check-ppp:
     runs-on: ubuntu-20.04
     steps:
+      - name: Set up repository
+        uses: actions/checkout@main
       - name: Query GraphQL API
         uses: octokit/graphql-action@v2.x
         id: get_latest_prs
