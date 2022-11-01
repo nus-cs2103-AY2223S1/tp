@@ -28,6 +28,13 @@ public class ArchiveCommand extends Command {
             + "Example: 1) " + ListCommand.COMMAND_WORD + "\n"
             + "               2) " + COMMAND_WORD + " 1";
 
+    public static final String MESSAGE_INVALID_INDEX_ARCHIVE = "The application index provided is invalid!\n"
+            + "Please note that the index is always referring to the last shown list below\n"
+            + "To ensure the archive function works, please use <list> command to show the current"
+            + " unarchived application list\n"
+            + "Example: 1) " + ListCommand.COMMAND_WORD + "\n"
+            + "               2) " + COMMAND_WORD + " 1";
+
     private final Index targetIndex;
 
     /**
@@ -44,7 +51,7 @@ public class ArchiveCommand extends Command {
         List<Application> lastShownList = model.getFilteredApplicationList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_INDEX_ARCHIVE);
         }
 
         Application applicationToArchive = lastShownList.get(targetIndex.getZeroBased());
