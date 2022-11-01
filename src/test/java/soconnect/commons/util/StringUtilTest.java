@@ -254,13 +254,13 @@ public class StringUtilTest {
     @Test
     public void containsSomeKeywordsIgnoreCase_nullWord_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                StringUtil.containsSomeKeywordsIgnoreCase("typical sentence", null));
+                StringUtil.containsSomeKeywordsIgnoreCase("typical sentence", null, false));
     }
 
     @Test
     public void containsSomeKeywordsIgnoreCase_nullSentence_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                StringUtil.containsSomeKeywordsIgnoreCase(null, "abc"));
+                StringUtil.containsSomeKeywordsIgnoreCase(null, "abc", true));
     }
 
     /*
@@ -295,60 +295,60 @@ public class StringUtilTest {
     public void containsSomeKeywordsIgnoreCase_validInputs_correctResult() {
 
         // Empty sentence
-        assertFalse(StringUtil.containsSomeKeywordsIgnoreCase("", "abc")); // Boundary case
-        assertFalse(StringUtil.containsSomeKeywordsIgnoreCase("    ", "123"));
+        assertFalse(StringUtil.containsSomeKeywordsIgnoreCase("", "abc", false)); // Boundary case
+        assertFalse(StringUtil.containsSomeKeywordsIgnoreCase("    ", "123", false));
 
         // Matches a partial word only
         // Sentence word bigger than query word
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("aaa bbb ccc", "bb"));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("aaa bbb ccc", "bb", false));
         // Query word bigger than sentence word
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("aaa bbb ccc", "bbbb"));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("aaa bbb ccc", "bbbb", false));
 
         // Matches word in the sentence, different upper/lower case letters
         // First word (boundary case)
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("aaa bBb ccc", "Bbb"));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("aaa bBb ccc", "Bbb", false));
         // Last word (boundary case)
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("aaa bBb ccc@1", "CCc@1"));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("aaa bBb ccc@1", "CCc@1", false));
         // Sentence has extra spaces
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("  AAA   bBb   ccc  ", "aaa"));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("  AAA   bBb   ccc  ", "aaa", false));
         // Only one word in sentence (boundary case)
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("Aaa", "aaa"));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("Aaa", "aaa", false));
         // Leading/trailing spaces
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("aaa bbb ccc", "  ccc  "));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("aaa bbb ccc", "  ccc  ", false));
 
         // Matches multiple words in sentence
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("AAA bBb ccc  bbb", "bbB"));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("AAA bBb ccc  bbb", "bbB", false));
     }
 
     @Test
     public void containsSomeKeywordsIgnoreCase_singleWord_match() {
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "John"));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "John", false));
     }
 
     @Test
     public void containsSomeKeywordsIgnoreCase_singleWord_doNotMatch() {
-        assertFalse(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "Rachel"));
+        assertFalse(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "Rachel", false));
     }
 
     @Test
     public void containsSomeKeywordsIgnoreCase_singleWordDifferentOrder_match() {
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "Jhon"));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "Jhon", false));
     }
 
     @Test
     public void containsSomeKeywordsIgnoreCase_multipleWordsDifferentCase_match() {
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "john doe"));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "john doe", false));
     }
 
     @Test
     public void containsSomeKeywordsIgnoreCase_multipleWordsPartiallySame_match() {
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "John DD"));
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "Johm Damyan"));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "John DD", false));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "Johm Damyan", false));
     }
 
     @Test
     public void containsSomeKeywordsIgnoreCase_multipleWordsDifferentOrder_match() {
-        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "Damian doe"));
+        assertTrue(StringUtil.containsSomeKeywordsIgnoreCase("John Doe Damian", "Damian doe", false));
     }
 
 

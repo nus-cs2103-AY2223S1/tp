@@ -38,7 +38,7 @@ public class SearchCommandTest {
 
     @Test
     public void constructor_nullSearch_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new SearchCommand(null, null));
+        assertThrows(NullPointerException.class, () -> new SearchCommand(null, null, null));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class SearchCommandTest {
         ContactContainsAnyKeywordsPredicate firstPredicate = new ContactContainsAnyKeywordsPredicate(argMultimap);
         ContactContainsAllKeywordsPredicate secondPredicate = new ContactContainsAllKeywordsPredicate(argMultimap);
         ContactMightBeRelevantPredicate thirdPredicate =
-                new ContactMightBeRelevantPredicate(argMultimap);
+                new ContactMightBeRelevantPredicate(argMultimap, false);
 
         SearchCommand searchFirstCommand = new SearchCommand(firstPredicate, thirdPredicate);
         SearchCommand searchSecondCommand = new SearchCommand(secondPredicate, thirdPredicate);

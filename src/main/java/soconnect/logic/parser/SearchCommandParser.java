@@ -84,13 +84,14 @@ public class SearchCommandParser implements Parser<SearchCommand> {
 
     private SearchCommand parseSearchWithCondition(ArgumentMultimap argMultimap, Boolean isJointCondition) {
         Predicate<Person> contactMightBeRelevantPredicate =
-                new ContactMightBeRelevantPredicate(argMultimap);
+                new ContactMightBeRelevantPredicate(argMultimap, false);
+        Predicate<Person> contactMightBeLessRelevantPredicate = new ContactMightBeRelevantPredicate(argMultimap, true);
         if (isJointCondition) {
             return new SearchCommand(new ContactContainsAllKeywordsPredicate(argMultimap),
-                    contactMightBeRelevantPredicate);
+                    contactMightBeRelevantPredicate, contactMightBeLessRelevantPredicate);
         } else {
             return new SearchCommand(new ContactContainsAnyKeywordsPredicate(argMultimap),
-                    contactMightBeRelevantPredicate);
+                    contactMightBeRelevantPredicate, contactMightBeLessRelevantPredicate);
         }
     }
 }

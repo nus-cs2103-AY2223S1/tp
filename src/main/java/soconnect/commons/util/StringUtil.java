@@ -84,8 +84,10 @@ public class StringUtil {
      *
      * @param sentence Cannot be null.
      * @param keywords Cannot be null, cannot be empty, can be multiple words.
+     * @param isMatchAccuracyReduced Determines whether to use reduction in keywords match.
      */
-    public static boolean containsSomeKeywordsIgnoreCase(String sentence, String keywords) {
+    public static boolean containsSomeKeywordsIgnoreCase(String sentence, String keywords,
+                                                         boolean isMatchAccuracyReduced) {
         requireAllNonNull(sentence, keywords);
         // Removes invalid non-letters and non-integers characters
         String preppedWord = keywords.replaceAll("[^a-zA-Z0-9]", "").trim();
@@ -98,9 +100,12 @@ public class StringUtil {
         if (wordsInPreppedSentence.containsAll(preppedKeywords)) {
             return true;
         }
-        double reductionMultiplier = 0.75;
-        int reducedKeywordsLength = (int) (preppedKeywords.size() * reductionMultiplier);
-        return wordsInPreppedSentence.containsAll(preppedKeywords.subList(0, reducedKeywordsLength));
+        if (isMatchAccuracyReduced) {
+            double reductionMultiplier = 0.75;
+            int reducedKeywordsLength = (int) (preppedKeywords.size() * reductionMultiplier);
+            return wordsInPreppedSentence.containsAll(preppedKeywords.subList(0, reducedKeywordsLength));
+        }
+        return false;
     }
 
     /**
