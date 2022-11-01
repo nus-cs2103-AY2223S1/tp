@@ -50,7 +50,7 @@ Symbol/Syntax        | Meaning
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/60000 r/Low m/1000 c/POTENTIAL` : Adds a contact named `John Doe` to the list of clients.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/60000 r/LOW m/1000 c/POTENTIAL` : Adds a contact named `John Doe` to the list of clients.
 
    * **`aa`** `1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks` : Adds an appointment to the client in index 1 of the contact book with the date, time and location of the appointment.
 
@@ -415,7 +415,11 @@ _Details coming soon ..._
 ## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FAP home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FAP home folder.<br>
+**Q**: Why do you allow duplicate email and phone number in your add command, given that there won't be two people with the same email or number?<br>
+**A**: Currently we only have duplicate checks for name. We will implement duplicate checks for email and phone number in the future.<br>
+**Q**: Why can't I add appointments even though I typed the date_time correctly?<br>
+**A**: Check that you have typed the date_time in the correct case with the correct spacing. We apologise for the strict requirement and we promise we are working on relaxing the requirements!<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
