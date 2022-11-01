@@ -13,8 +13,8 @@ public abstract class ContactSortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
     public static final String MESSAGE_USAGE =
             ContactCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
-                    + ": Sorts list of persons in some order.\n"
-                    + "Available sorting commands:\n"
+                    + " s/SORT_TYPE: Sorts list of persons in some order.\n"
+                    + "Available SORT_TYPEs:\n"
                     + "a: sorts names of persons in alphabetical order.\n"
                     + "ra: sorts names of persons in reverse alphabetical order.\n"
                     + "ca: sorts persons chronologically by the time they were added into Task Book.\n"

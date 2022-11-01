@@ -5,7 +5,7 @@ title: User Guide
 
 ## Welcome to TaskBook!
 
-In this user guide, you will find instructions on how to install TaskBook and use its many feature to manage your tasks.
+In this user guide, you will find instructions on how to install TaskBook and use its many features to manage your tasks.
 
 Choose a topic from the table of contents below to find out how to manage your apps using Task Book!
 ## Table of Contents
@@ -24,7 +24,7 @@ Choose a topic from the table of contents below to find out how to manage your a
 
 TaskBook is a **desktop app for managing contacts and tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TaskBook can get your contact and task management tasks done faster than traditional GUI apps.
 
-TaskBook is designed to be used by NUS Students to manage all their tasks, from project-related, to module-related, to even daily personal tasks!
+TaskBook helps NUS students to manage all their tasks, from project-related and module-related tasks, to even daily personal tasks!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -38,6 +38,40 @@ While reading this user guide, these symbols will inform you if there is some im
 | :alarm_clock:        | Reminder                                                         |
 | :bulb:               | Bonus information that is not important to the usage of TaskBook |
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Graphical User Interface Components
+
+<figure>
+<img src="images/GuiExample.png">
+<figcaption align = "center"><b>The typical appearance of TaskBook.</b>
+</figcaption>
+</figure>
+
+These are the components of TaskBook, arranged according to their locations as seen in the image above, from left to right, up to down:
+* **File** - A dropdown menu containing the exit button, which is an alternative to the [`bye`](#exiting-the-program--bye) [command](#using-the-examples-in-this-guide). Will gain more features in future versions.
+* **Help** - A dropdown menu containing the help button, which creates a pop-up window with a link to this User Guide. Not to be confused with the [`help`](#viewing-help--help) [command](#using-the-examples-in-this-guide).
+* **Command Box** - A box where you can type in various [commands](#using-the-examples-in-this-guide) to be executed. When empty and not in your focus, it will prompt you with `Enter command here...`.
+* **Results Display** - A scrollable box that displays the result of executed [commands](#using-the-examples-in-this-guide) in the Command Box. If the commands fail to execute, this box will also inform you what caused the failure of the command.
+* **Contact List** - A scrollable box that contains the list of contacts you have added to TaskBook. Odd numbered boxes are darker in colour than even numbered ones.<br>The layout of a contact is as follows, from left to right, top to bottom:
+  * **Index** - The number TaskBook assigns to contacts you add. Can be reshuffled by the [`contact sort`](#sorting-contacts--contact-sort) [command](#using-the-examples-in-this-guide).
+  * **Name** - The name of the contact, situated right of the index.
+  * **Tags** - A series of light blue boxes. If a contact has no tags, this region will not display any boxes.
+  * **Phone Number** - The contact's phone number. If no phone number was added, this field will be `[No phone number]` instead.
+  * **Address** - The contact's address. If no address was added, this field will display `[No address]` instead.
+  * **Email** - The contact's email. If no email was added, this field will display `[No email]` instead.
+* **Task List** - A scrollable box that contains the list of tasks you have added to TaskBook.<br>The layout of a task is as follows, from left to right, top to bottom:
+  * **Index** - The number TaskBook assigns to tasks you add. Can be reshuffled by the [`task sort`](#sorting-tasks--task-sort) [command](#using-the-examples-in-this-guide).
+  * **Description** - The description of the tasks you add, situated right of the index.
+  * **Date** - If the task has a date assigned to it (i.e if the task is a deadline or event), the date will be at the end of the description in square brackets.
+  * **Status** - The first [  ] box. If the task's box is [X], it means the task has been done. Otherwise, if it is blank, the task has not been done.
+  * **Type** - The second [  ] box. Indicates the type of the task. Each task type is a slightly different shade of purple to give you some visual clarity.<br>Types of tasks:
+    * **Todo** - A task that you need to do. Does not have an associated date. In the Task List, these tasks are labelled as [T], and are solid purple.
+    * **Deadline** - A task that you need to do by a particular date. In the Task List, these tasks are labelled as [D], and are faintly purple.
+    * **Event** - A task that involves you attending some event at some date. In the Task List, these tasks are labelled as [E], and are bright purple.
+  * **Assignment** - An indicator on whether the task is assigned by you to someone else, or vice versa. 
+  * **Assignor/Assignee** - The contact that has been assigned a task by you, or vice versa. This can be yourself.
+* **Status Bar** - Indicates the location in your computer where TaskBook is tracking your Contact List and Task List.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -50,13 +84,14 @@ While reading this user guide, these symbols will inform you if there is some im
 3. Copy the file to the folder you want to use as the _home folder_ for your TaskBook.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds, containing sample data.<br>
-<figure>   
 
+<figure>
 <img src="images/Ui.png">
 <figcaption align = "center"><b>GUI you see on start-up may be slightly different due to different data - the illustration you see is for reference only.</b>
 </figcaption>
 </figure>
 
+{:start="5"}
 5. Type the command in the command box and press Enter to execute it.<br>
    Some example commands you can try:
 
@@ -68,16 +103,24 @@ While reading this user guide, these symbols will inform you if there is some im
 
     * `task list` : Lists all tasks, including ones hidden by a previous command.
 
-    * `task todo m/John Doe d/Finish user guide` : Adds a todo with the description `Finish user guide` to the task list.
+    * `task todo m/Bernice Yu d/Create a Todo` : Adds a todo with the description `Create a Todo` to the task list.
 
     * `task delete i/3` : Deletes the 3rd task currently shown in the displayed task list.
 
     * `bye` : Exits the app.
 
-7. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Using the Examples in this Guide
+
+The examples in this guide are formatted with the following conventions:
+* **Command** - Instructions to be typed into the command box. Will be executed when you press enter.
+* **Flag** - Indicators to differentiate various parts of a command. Always of the form `$/`, and is followed by a **parameter**. The `$` varies by **command**.<br>E.g: `s/` in `task sort s/SORT_TYPE`, or `i/` in `contact delete i/INDEX`.
+* **Parameter** - Component of a **command** that is prefixed by a flag. 
+
+--------------------------------------------------------------------------------------------------------------------
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -85,6 +128,8 @@ While reading this user guide, these symbols will inform you if there is some im
 **:information_source: Notes about the command format:**<br>
 
 * Commands, parameters and arguments are case-sensitive, unless otherwise specified.
+
+* Non-ascii characters are removed from user input.
 
 * Flags consisting of a character and `/` specify the type of parameter to be supplied.
   e.g. in `n/NAME`, `n/` is the flag for the `NAME` parameter.
@@ -111,15 +156,6 @@ While reading this user guide, these symbols will inform you if there is some im
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 </div>
-
-### Accepted Date Formats
-
-The following date formats are accepted:
-
-* yyyy-MM-dd (2022-10-31)
-* MMM dd yyyy (Oct 31 2022)
-* MM dd yyyy (10 31 2022)
-* dd MMM yyyy (31 Oct 2022)
 
 ### Viewing help : `help`
 
@@ -153,6 +189,7 @@ Adds a contact to your task book.
 
 Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`
 
+* For more information on the `NAME` parameter, see [NAME Parameter](#name-parameter).
 * Note that adding a new contact [will remove the effect of a `find` command](#finding), displaying the full list of contacts.
 
 Examples:
@@ -193,7 +230,7 @@ Adds a task of type deadline into the task list.
 * Adds a deadline assigned by (`m/`) or assigned to (`o/`) a contact with a description and a deadline date. Optional to include tags.
 * Input "Myself" or omit the `m/` and `o/` flags to assign yourself the deadline.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
-* For more information on `DATE` formats, scroll down to "Accepted Date Formats"
+* For more information on `DATE` formats, see [Accepted Date Formats](#accepted-date-formats).
 * Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 Examples:
@@ -214,7 +251,7 @@ Adds a task of type event into your task list.
 
 * Adds an event assigned by (`m/`) or assigned to (`o/`) a contact with a description and an event date. Optional to include tags.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
-* For more information on `DATE` formats, scroll down to "Accepted Date Formats"
+* For more information on `DATE` formats, see [Accepted Date Formats](#accepted-date-formats).
 * Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 Examples:
@@ -262,6 +299,7 @@ Format: `task edit i/INDEX <m/NAME o/NAME d/DESCRIPTION t/DATE #/TAG…>`
     * A task can be **re-assigned by** "Person X" by providing parameter `m/Person X`.
     * If neither `m/` or `o/` is specified, the current **assignor** or **assignee** will not be changed.
 * Dates `t/` can only be edited if the task is a **deadline** or **event**.
+* For more information on `DATE` formats, see [Accepted Date Formats](#accepted-date-formats).
 
 <div markdown="block" class="alert alert-warning">
 
@@ -288,7 +326,7 @@ Format: `contact delete i/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 * Deletion of contact is blocked if the contact has tasks associated to it.
 
-Examples:
+Example:
 * `contact list` followed by `contact delete i/2` deletes the 2nd contact in your contact list.
 
 #### Deleting a task : `task delete`
@@ -301,7 +339,7 @@ Format: `task delete i/INDEX`
 * The index refers to the index number shown in your displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Example:
 * `task list` followed by `task delete i/2` deletes the 2nd task in your task list.
 
 ### Finding
@@ -321,7 +359,7 @@ Format: `contact find q/QUERY`
 
 * QUERY is not case-sensitive.
 
-Examples:
+Example:
 * `contact find q/ea` will change your displayed contact list to show a contact list where all contacts will have "ea" in their name.
 
 #### Finding tasks : `task find`
@@ -362,7 +400,7 @@ SORT parameters:
 * p: Numerically sort contact phone numbers in ascending order.
 * rp: Numerically sort contact phone numbers in descending order.
 
-Examples:
+Example:
 * `contact sort s/a` will change the displayed contact list to show a contact list where names are sorted by alphabetical order.
 
 #### Sorting tasks : `task sort`
@@ -378,7 +416,7 @@ SORT parameters:
 * cd: Chronologically sort tasks by their associated dates in ascending order. Tasks without dates are at the end of the list, in no particular order.
 * rcd: Chronologically sort tasks by their associated dates in descending order. Tasks without dates are at the end of the list, in no particular order.
 
-Examples:
+Example:
 * `task sort s/a` will change the displayed task list to show a task list sorted by description alphabetical order
 
 ### Marking a task : `task mark`
@@ -391,7 +429,7 @@ Format: `task mark i/INDEX`
 * The index refers to the index number shown in your displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Example:
 * `task list` followed by `task mark i/2` marks the 2nd task in your task list.
 
 ### Unmarking a task : `task unmark`
@@ -404,27 +442,28 @@ Format: `task unmark i/INDEX`
 * The index refers to the index number shown in your displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Example:
 * `task list` followed by `task unmark i/2` marks the 2nd task in your task list.
 
 ### Undo Command : `undo`
 
-Undoes the previous command and reverts your TaskBook to the previous state. A _minimum_ of 15 previous states are guaranteed to be kept in the history, if there are that many commands executed.
+Undoes the previous command and reverts your TaskBook to the previous state.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about Undo:**<br>
 
-* Commands that do not cause a change in state cannot be undone.
+* Up to 15 commands can be undone.
+* Commands can only be undone if there is a change in contact or task state.
 * Undo does not reset the view changes caused by filter or sort. See [contact list](#listing-all-contacts--contact-list) and [task list](#listing-all-tasks--task-list) instead.
 
 </div>
 
 Format: `undo`
 
-Examples:
-* `task todo m/Bob d/Add undo feature` - some command that causes a change in state
-* `undo` will undo the previous command
+Example:
+1. `task todo m/Bob d/Add undo feature` - some command that causes a change in state
+2. `undo` will undo the previous command
 
 ### Redo Command : `redo`
 
@@ -432,10 +471,10 @@ Redoes the previous undo action and reverts your TaskBook to a previously undone
 
 Format: `redo`
 
-Examples:
-* `task delete i/1` - some command that causes a change in state
-* `undo` will undo the previous command
-* `redo` will revert the state such that the task is deleted
+Example:
+1. `task delete i/1` - some command that causes a change in state
+2. `undo` will undo the previous command
+3. `redo` will revert the state such that the task is deleted
 
 ### Exiting the program : `bye`
 
@@ -479,13 +518,32 @@ TaskBook data is saved as a JSON file `[JAR file location]/data/taskbook.json`. 
 If your changes to the data file makes its format invalid, TaskBook will discard all data and start with an empty data file at the next run.
 </div>
 
+## Miscellaneous Notes
+
+### Accepted Date Formats
+
+Any of these date formats are accepted:
+
+* yyyy-MM-dd (2022-10-31)
+* MMM dd yyyy (Oct 31 2022)
+* MM dd yyyy (10 31 2022)
+* dd MMM yyyy (31 Oct 2022)
+
+### NAME Parameter
+
+Where the NAME parameter is required (e.g. `n/NAME`), specify the **exact name**
+* in full
+* in a case-sensitive format
+
+This prevents ambiguity in naming so that you can specify the exact contact where necessary.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 **Q**: How do I save my progress?<br>
 **A**: Your progress is automatically saved after each command.
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------

@@ -42,6 +42,8 @@ public class HelpCommand extends Command {
         .map(Enum::toString)
         .map(s -> "\n  * " + s) // prefix before each command
         .collect(Collectors.joining());
+    public static final String USER_GUIDE_LINK = "User Guide Link: "
+            + "https://ay2223s1-cs2103t-t13-4.github.io/tp/UserGuide.html\n";
     public static final String MESSAGE_GENERAL_USAGE = "Use "
         + COMMAND_WORD + " " + PREFIX_HELP_COMMAND + "COMMAND to find out more about a particular command.\n"
         + "Available commands: " + COMMANDS;
@@ -58,7 +60,7 @@ public class HelpCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         if (commandWord == null) {
-            return new CommandResult(MESSAGE_GENERAL_USAGE);
+            return new CommandResult(USER_GUIDE_LINK + MESSAGE_GENERAL_USAGE);
         }
 
         return new CommandResult(getHelp(commandWord));

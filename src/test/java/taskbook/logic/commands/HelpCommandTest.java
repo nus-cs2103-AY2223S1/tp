@@ -18,7 +18,7 @@ public class HelpCommandTest {
 
     @Test
     public void execute_null_returnsGeneralUsage() {
-        CommandResult expected = new CommandResult(HelpCommand.MESSAGE_GENERAL_USAGE);
+        CommandResult expected = new CommandResult(HelpCommand.USER_GUIDE_LINK + HelpCommand.MESSAGE_GENERAL_USAGE);
         assertCommandSuccess(new HelpCommand(null), model, expected, expectedModel);
     }
 
