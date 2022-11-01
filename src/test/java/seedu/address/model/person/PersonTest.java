@@ -102,11 +102,11 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different previous modules -> returns false
-        editedAlice = new PersonBuilder(ALICE).withCurrentModules(VALID_MODULE_9).build();
+        editedAlice = new PersonBuilder(ALICE).withPreviousModules(VALID_MODULE_9).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different planned modules -> returns false
-        editedAlice = new PersonBuilder(ALICE).withCurrentModules(VALID_MODULE_11).build();
+        editedAlice = new PersonBuilder(ALICE).withPlannedModules(VALID_MODULE_11).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

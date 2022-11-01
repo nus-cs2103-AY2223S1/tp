@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_11;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_7;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_9;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.TypicalPersons.XAVIER;
@@ -57,6 +60,18 @@ public class UserTest {
 
         // different github -> returns false
         editedZephyr = new UserBuilder(ZEPHYR).withGithub(VALID_GITHUB_BOB).build();
+        assertFalse(ZEPHYR.equals(editedZephyr));
+
+        // different current modules -> returns false
+        editedZephyr = new UserBuilder(ZEPHYR).withCurrentModules(VALID_MODULE_7).build();
+        assertFalse(ZEPHYR.equals(editedZephyr));
+
+        // different previous modules -> returns false
+        editedZephyr = new UserBuilder(ZEPHYR).withPreviousModules(VALID_MODULE_9).build();
+        assertFalse(ZEPHYR.equals(editedZephyr));
+
+        // different planned modules -> returns false
+        editedZephyr = new UserBuilder(ZEPHYR).withPlannedModules(VALID_MODULE_11).build();
         assertFalse(ZEPHYR.equals(editedZephyr));
 
     }
