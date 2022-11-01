@@ -57,7 +57,7 @@ Given below are my contributions to the project.
     * Assisted team members in debugging their code in several instances over the course of development
 
   * **Project Management**:
-    * Managed release [`v1.2.1`](#https://github.com/AY2223S1-CS2103T-W15-3/tp/releases/tag/v0.1) (1 release)
+    * Managed release [`v1.2.1`](https://github.com/AY2223S1-CS2103T-W15-3/tp/releases/tag/v0.1) (1 release)
 
   * **Contributions beyond the project team**:
     * Reported bugs and suggestions for other teams in the class: [Reported bugs during the Practical Exam Dry Run](https://github.com/donljh/ped/issues)
