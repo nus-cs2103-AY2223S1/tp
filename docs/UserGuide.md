@@ -269,7 +269,7 @@ __Examples:__
 * `mod mark 1 cs2103t` marks the module `CS2103T` of the 1st batchmate in the currently displayed list as `taken`.
 * `mod mark 3 cs2100 cs2103t cs2101 cs2105` marks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `taken`.
 
-This is the GUI after you executing `mod mark 3 cs2100 cs2103t cs2101 cs2105`. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` are successfully marked as `taken`. The expected changes is annotated with purple rectangular boxes below.
+This is the GUI after executing `mod mark 3 cs2100 cs2103t cs2101 cs2105`. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` are successfully marked as `taken`. The expected changes is annotated with purple rectangular boxes below.
 ![UgModMark](images/UgModMark.png)
 
 
