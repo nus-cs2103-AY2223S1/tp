@@ -2,11 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.index.Index.MESSAGE_USAGE;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
@@ -105,7 +103,7 @@ public class ParserUtil {
         logger.fine("Parsing index: " + oneBasedIndex);
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_USAGE);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Index.MESSAGE_USAGE));
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
@@ -241,44 +239,22 @@ public class ParserUtil {
         requireNonNull(orderString);
         logger.fine("Parsing order: " + orderString);
         String trimmedOrderString = orderString.trim();
-        ArgumentMultimap argMultimap;
-
-        if (isBuyerExisting) {
-            argMultimap =
-                    ArgumentTokenizer.tokenize(trimmedOrderString,
-                            PREFIX_INDEX, // The difference is here.
-                            PREFIX_ORDER_STATUS,
-                            PREFIX_ORDER_REQUESTS,
-                            PREFIX_ORDER_PRICE,
-                            PREFIX_ORDER_PRICE_RANGE,
-                            PREFIX_ORDER_ADDITIONAL_REQUESTS,
-                            PREFIX_ORDER_DATE);
-            if (!arePrefixesPresent(argMultimap,
-                    PREFIX_INDEX, // The difference is here.
-                    PREFIX_ORDER_STATUS,
-                    PREFIX_ORDER_REQUESTS,
-                    PREFIX_ORDER_PRICE,
-                    PREFIX_ORDER_PRICE_RANGE,
-                    PREFIX_ORDER_DATE)) {
-                throw new ParseException(AddOrderCommand.MESSAGE_USAGE_EXISTING_BUYER);
-            }
-        } else {
-            argMultimap =
-                    ArgumentTokenizer.tokenize(trimmedOrderString,
-                            PREFIX_ORDER_STATUS,
-                            PREFIX_ORDER_REQUESTS,
-                            PREFIX_ORDER_PRICE,
-                            PREFIX_ORDER_PRICE_RANGE,
-                            PREFIX_ORDER_ADDITIONAL_REQUESTS,
-                            PREFIX_ORDER_DATE);
-            if (!arePrefixesPresent(argMultimap,
-                    PREFIX_ORDER_STATUS,
-                    PREFIX_ORDER_REQUESTS,
-                    PREFIX_ORDER_PRICE,
-                    PREFIX_ORDER_PRICE_RANGE,
-                    PREFIX_ORDER_DATE)) {
-                throw new ParseException(AddOrderCommand.MESSAGE_USAGE_NEW_BUYER);
-            }
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(trimmedOrderString,
+                PREFIX_ORDER_STATUS,
+                PREFIX_ORDER_REQUESTS,
+                PREFIX_ORDER_PRICE,
+                PREFIX_ORDER_PRICE_RANGE,
+                PREFIX_ORDER_ADDITIONAL_REQUESTS,
+                PREFIX_ORDER_DATE);
+        if (!arePrefixesPresent(argMultimap,
+                PREFIX_ORDER_STATUS,
+                PREFIX_ORDER_REQUESTS,
+                PREFIX_ORDER_PRICE,
+                PREFIX_ORDER_PRICE_RANGE,
+                PREFIX_ORDER_DATE)) {
+            throw isBuyerExisting
+                    ? new ParseException(AddOrderCommand.MESSAGE_USAGE_EXISTING_BUYER)
+                    : new ParseException(AddOrderCommand.MESSAGE_USAGE_NEW_BUYER);
         }
 
         PriceRange priceRange = parsePriceRange(argMultimap.getValue(PREFIX_ORDER_PRICE_RANGE).orElse(""));
@@ -376,9 +352,9 @@ public class ParserUtil {
         }
 
         Age age = parseAge(argMultimap.getValue(PREFIX_ORDER_AGE).orElse(""));
-        Color color = parseColor(argMultimap.getValue(PREFIX_PET_COLOR).orElse(""));
-        ColorPattern colorPattern = parseColorPattern(argMultimap.getValue(PREFIX_PET_COLOR_PATTERN).orElse(""));
-        Species species = parseSpecies(argMultimap.getValue(PREFIX_PET_SPECIES).orElse(""));
+        Color color = parseColor(argMultimap.getValue(PREFIX_ORDER_COLOR).orElse(""));
+        ColorPattern colorPattern = parseColorPattern(argMultimap.getValue(PREFIX_ORDER_COLOR_PATTERN).orElse(""));
+        Species species = parseSpecies(argMultimap.getValue(PREFIX_ORDER_SPECIES).orElse(""));
         return new Request(age, color, colorPattern, species);
     }
 
@@ -394,58 +370,29 @@ public class ParserUtil {
 
         logger.fine("Parsing pet: " + petString);
 
-        ArgumentMultimap argMultimap;
-
-        if (isSupplierExisting) {
-            argMultimap =
-                    ArgumentTokenizer.tokenize(petString,
-                            PREFIX_INDEX, // The difference is here
-                            PREFIX_PET_NAME,
-                            PREFIX_PET_DATE_OF_BIRTH,
-                            PREFIX_PET_COLOR,
-                            PREFIX_PET_COLOR_PATTERN,
-                            PREFIX_PET_HEIGHT,
-                            PREFIX_PET_CERTIFICATE,
-                            PREFIX_PET_SPECIES,
-                            PREFIX_PET_VACCINATION_STATUS,
-                            PREFIX_PET_PRICE,
-                            PREFIX_PET_WEIGHT);
-            if (!arePrefixesPresent(argMultimap,
-                    PREFIX_INDEX, // The difference is here
-                    PREFIX_PET_NAME,
-                    PREFIX_PET_DATE_OF_BIRTH,
-                    PREFIX_PET_COLOR,
-                    PREFIX_PET_COLOR_PATTERN,
-                    PREFIX_PET_HEIGHT,
-                    PREFIX_PET_SPECIES,
-                    PREFIX_PET_PRICE,
-                    PREFIX_PET_WEIGHT)) {
-                throw new ParseException(AddPetCommand.MESSAGE_USAGE_EXISTING_SUPPLIER);
-            }
-        } else {
-            argMultimap =
-                    ArgumentTokenizer.tokenize(petString,
-                            PREFIX_PET_NAME,
-                            PREFIX_PET_DATE_OF_BIRTH,
-                            PREFIX_PET_COLOR,
-                            PREFIX_PET_COLOR_PATTERN,
-                            PREFIX_PET_HEIGHT,
-                            PREFIX_PET_CERTIFICATE,
-                            PREFIX_PET_SPECIES,
-                            PREFIX_PET_VACCINATION_STATUS,
-                            PREFIX_PET_PRICE,
-                            PREFIX_PET_WEIGHT);
-            if (!arePrefixesPresent(argMultimap,
-                    PREFIX_PET_NAME,
-                    PREFIX_PET_DATE_OF_BIRTH,
-                    PREFIX_PET_COLOR,
-                    PREFIX_PET_COLOR_PATTERN,
-                    PREFIX_PET_HEIGHT,
-                    PREFIX_PET_SPECIES,
-                    PREFIX_PET_PRICE,
-                    PREFIX_PET_WEIGHT)) {
-                throw new ParseException(AddPetCommand.MESSAGE_USAGE_NEW_SUPPLIER);
-            }
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(petString,
+                PREFIX_PET_NAME,
+                PREFIX_PET_DATE_OF_BIRTH,
+                PREFIX_PET_COLOR,
+                PREFIX_PET_COLOR_PATTERN,
+                PREFIX_PET_HEIGHT,
+                PREFIX_PET_CERTIFICATE,
+                PREFIX_PET_SPECIES,
+                PREFIX_PET_VACCINATION_STATUS,
+                PREFIX_PET_PRICE,
+                PREFIX_PET_WEIGHT);
+        if (!arePrefixesPresent(argMultimap,
+                PREFIX_PET_NAME,
+                PREFIX_PET_DATE_OF_BIRTH,
+                PREFIX_PET_COLOR,
+                PREFIX_PET_COLOR_PATTERN,
+                PREFIX_PET_HEIGHT,
+                PREFIX_PET_SPECIES,
+                PREFIX_PET_PRICE,
+                PREFIX_PET_WEIGHT)) {
+            throw isSupplierExisting
+                    ? new ParseException(AddPetCommand.MESSAGE_USAGE_EXISTING_SUPPLIER)
+                    : new ParseException(AddPetCommand.MESSAGE_USAGE_NEW_SUPPLIER);
         }
 
         PetName name = parsePetName(argMultimap.getValue(PREFIX_PET_NAME).orElse(""));

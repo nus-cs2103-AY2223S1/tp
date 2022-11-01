@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MatchCommand;
@@ -26,14 +26,16 @@ public class MatchCommandParser implements Parser<MatchCommand> {
      */
     @Override
     public MatchCommand parse(String userInput) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_INDEX);
 
-        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_INDEX) || !argMultimap.getPreamble().isEmpty()) {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput);
+
+        String preamble = argMultimap.getPreamble();
+        if (preamble.isBlank()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    MatchCommand.MESSAGE_USAGE));
+                    MESSAGE_MISSING_INDEX + MatchCommand.MESSAGE_USAGE));
         }
 
-        String indexStr = argMultimap.getValue(PREFIX_INDEX).orElse("");
+        String indexStr = preamble.split(" ")[0];
         Index index = ParserUtil.parseIndex(indexStr);
 
         return new MatchCommand(index);

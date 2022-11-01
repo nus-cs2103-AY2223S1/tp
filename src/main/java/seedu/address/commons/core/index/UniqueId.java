@@ -31,4 +31,9 @@ public class UniqueId implements Comparable<UniqueId> {
         }
         return this.id.equals(((UniqueId) other).id);
     }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

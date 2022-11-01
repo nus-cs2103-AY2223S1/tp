@@ -60,7 +60,7 @@ public class AddPetCommand extends Command {
     public static final String MESSAGE_USAGE_EXISTING_SUPPLIER = COMMAND_WORD
             + ": Adds a new pet to an existing supplier. "
             + "Parameters: "
-            + PREFIX_INDEX + "INDEX "
+            + "INDEX "
             + COMMON_PARAMETERS
             + PREFIX_INDEX + "1 "
             + COMMON_SAMPLE_PARAMETERS;
