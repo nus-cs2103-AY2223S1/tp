@@ -7,15 +7,15 @@ import seedu.address.model.Model;
 
 /**
  * The abstract base class of all DeleteCommand variations,
- * including DeleteBuyerCommand, DeleteDelivererCommand, DeleteSupplierCommand, DeleteOrderCommand, Delete.
+ * including DeleteBuyerCommand, DeleteDelivererCommand, DeleteSupplierCommand, DeleteOrderCommand, DeletePetCommand.
  */
 public abstract class DeleteCommand extends Command {
-    public static final String COMMAND_WORD = "delete-[KEY]";
+    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_INPUT = "delete-KEY";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_INPUT
             + ": Deletes the person/item identified by index used in the displayed person/item list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Format: " + COMMAND_WORD + " 1\n"
+            + "Parameter: INDEX (must be a positive integer)\n"
             + "Examples:\n"
             + "delete-b 1 : deletes the buyer of index 1\n"
             + "delete-d 2 : deletes the deliverer of index 2\n"

@@ -162,68 +162,6 @@ public class Pet {
     }
 
     /**
-     * Constructs a pet completely.
-     *
-     * @param name The name of this pet.
-     * @param color The color of this pet. Could be red.
-     * @param colorPattern The color pattern. Could be stripped.
-     * @param dateOfBirth The date of birth.
-     * @param species Its species, for example, chihuahua.
-     * @param weight Its weight.
-     * @param height Its height (or length if it walks on fours).
-     * @param price Its price for sale.
-     */
-    public Pet(PetName name,
-               Color color,
-               ColorPattern colorPattern,
-               DateOfBirth dateOfBirth,
-               Species species,
-               Weight weight,
-               Height height,
-               Price price) {
-        this(name,
-                null,
-                color,
-                colorPattern,
-                dateOfBirth,
-                species,
-                weight,
-                height,
-                VaccinationStatus.defaultStatus(),
-                price,
-                null);
-    }
-
-    /**
-     * Constructs a pet completely.
-     *
-     * @param name The name of this pet.
-     * @param color The color of this pet. Could be red.
-     * @param colorPattern The color pattern. Could be stripped.
-     * @param dateOfBirthString The date of birth in string.
-     * @param species Its species, for example, chihuahua.
-     * @param weight Its weight.
-     * @param height Its height (or length if it walks on fours).
-     */
-    public Pet(PetName name,
-               Color color,
-               ColorPattern colorPattern,
-               String dateOfBirthString,
-               Species species,
-               Weight weight,
-               Height height,
-               Price price) throws IllegalValueException {
-        this(name,
-                color,
-                colorPattern,
-                DateOfBirth.parseString(dateOfBirthString),
-                species,
-                weight,
-                height,
-                price);
-    }
-
-    /**
      * Gets the age of a pet.
      * @return The age
      */
@@ -314,10 +252,15 @@ public class Pet {
 
         return otherPet != null
                 && otherPet.getName().equals(getName())
-                && otherPet.getSupplier().equals(getSupplier())
+                && otherPet.getPrice().equals(getPrice())
                 && otherPet.getCertificates().equals(getCertificates())
                 && otherPet.getColor().equals(getColor())
-                && otherPet.getDateOfBirth().equals(getDateOfBirth());
+                && otherPet.getDateOfBirth().equals(getDateOfBirth())
+                && otherPet.getSpecies().equals(getSpecies())
+                && otherPet.getColorPattern().equals(getColorPattern())
+                && otherPet.getVaccinationStatus().equals(getVaccinationStatus())
+                && otherPet.getWeight().equals(getWeight())
+                && otherPet.getHeight().equals(getHeight());
     }
 
     public PetName getName() {

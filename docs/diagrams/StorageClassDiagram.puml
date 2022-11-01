@@ -23,7 +23,6 @@ Class JsonAdaptedSupplier
 Class JsonAdaptedDeliverer
 Class JsonAdaptedOrder
 Class JsonAdaptedPet
-Class JsonAdaptedTag
 Class JsonAdaptedPriceRange
 Class JsonAdaptedRequest
 }
@@ -51,9 +50,6 @@ JsonSerializableAddressBook --> "*" JsonAdaptedSupplier
 JsonSerializableAddressBook --> "*" JsonAdaptedDeliverer
 JsonSerializableAddressBook --> "*" JsonAdaptedPet
 JsonSerializableAddressBook --> "*" JsonAdaptedOrder
-JsonAdaptedBuyer --> "*" JsonAdaptedTag
-JsonAdaptedSupplier --> "*" JsonAdaptedTag
-JsonAdaptedDeliverer --> "*" JsonAdaptedTag
 JsonAdaptedPet --> "*" JsonAdaptedTag
 JsonAdaptedPet --> "1" JsonAdaptedSupplier
 JsonAdaptedOrder --> "1" JsonAdaptedBuyer

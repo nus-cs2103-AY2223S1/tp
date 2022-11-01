@@ -4,6 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.filtercommandparser.FilterOrderCommandParser.ADDITIONAL_REQUEST_PREFIX;
+import static seedu.address.logic.parser.filtercommandparser.FilterOrderCommandParser.ORDER_STATUS_PREFIX;
+import static seedu.address.logic.parser.filtercommandparser.FilterOrderCommandParser.PRICE_RANGE_PREFIX;
+import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.COLOR_PREFIX;
+import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PET_NAME_PREFIX;
+import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PRICE_PREFIX;
+import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.VACCINATION_PREFIX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -24,6 +31,7 @@ import seedu.address.logic.commands.MatchCommand;
 import seedu.address.logic.commands.addcommands.AddBuyerCommand;
 import seedu.address.logic.commands.addcommands.AddDelivererCommand;
 //import seedu.address.logic.commands.addcommands.AddPetCommand;
+import seedu.address.logic.commands.addcommands.AddPetCommand;
 import seedu.address.logic.commands.addcommands.AddSupplierCommand;
 import seedu.address.logic.commands.deletecommands.DeleteBuyerCommand;
 import seedu.address.logic.commands.deletecommands.DeleteDelivererCommand;
@@ -49,6 +57,7 @@ import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 //import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.predicates.ColorContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
@@ -56,6 +65,7 @@ import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.VaccinationStatusPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.PetBuilder;
 import seedu.address.testutil.TypicalBuyers;
 import seedu.address.testutil.TypicalDeliverers;
 import seedu.address.testutil.TypicalPersonCategories;
@@ -91,30 +101,27 @@ public class AddressBookParserTest {
         assertEquals(new AddSupplierCommand(supplier, new ArrayList<>()), command);
     }
 
-    /*
-
     @Test
     public void parseCommand_addPet() throws Exception {
         Pet pet = new PetBuilder().withName("NyankoSensei").build();
 
         String input = AddPetCommand.COMMAND_WORD
                 + "  i/1 "
-                + " pt_n/" + pet.getName()
-                + " pt_d/" + pet.getDateOfBirth()
-                + " pt_c/" + pet.getColor()
-                + " pt_cp/" + pet.getColorPattern()
-                + " pt_h/" + pet.getHeight()
-                + " pt_w/" + pet.getWeight()
-                + " pt_s/" + pet.getSpecies()
-                + " pt_v/" + pet.getVaccinationStatus()
-                + " pt_p" + pet.getPrice();
+                + " p_n/" + pet.getName()
+                + " p_d/" + pet.getDateOfBirth().getPreferredDateInString()
+                + " p_c/" + pet.getColor().getValue()
+                + " p_cp/" + pet.getColorPattern().getValue()
+                + " p_h/" + pet.getHeight().getValue()
+                + " p_w/" + pet.getWeight().getValue()
+                + " p_s/" + pet.getSpecies().getValue()
+                + " p_v/" + pet.getVaccinationStatus().getVaccinationStatus()
+                + " p_p" + pet.getPrice().getPrice();
 
         AddPetCommand command = (AddPetCommand) parser.parseCommand(input);
         AddPetCommand expected = new AddPetCommand(pet, INDEX_FIRST);
         assertEquals(command, expected);
     }
 
-     */
 
     @Test
     public void parseCommand_clear() throws Exception {
@@ -203,7 +210,10 @@ public class AddressBookParserTest {
                 priceContainsKeywordsPredicate,
                 speciesContainsKeywordsPredicate,
                 vaccinationStatusPredicate);
-        String input = FilterPetCommand.COMMAND_WORD + " c/grey n/ashy p/5.5 v/true";
+        String input = FilterPetCommand.COMMAND_WORD + " " + COLOR_PREFIX + "/grey "
+                + PET_NAME_PREFIX + "/ashy "
+                + PRICE_PREFIX + "/5.5 "
+                + VACCINATION_PREFIX + "/true";
         assertEquals(parser.parseCommand(input), command);
     }
 
@@ -216,7 +226,10 @@ public class AddressBookParserTest {
                 additionalRequestPredicate,
                 orderStatusPredicate,
                 priceRangePredicate);
-        String input = FilterOrderCommand.COMMAND_WORD + " ar/fat os/Delivering pr/34.5-79.9";
+        String input = FilterOrderCommand.COMMAND_WORD + " "
+                + ADDITIONAL_REQUEST_PREFIX + "/fat "
+                + ORDER_STATUS_PREFIX + "/Delivering "
+                + PRICE_RANGE_PREFIX + "/34.5-79.9";
         assertEquals(parser.parseCommand(input), command);
     }
 

@@ -211,12 +211,12 @@ of pet he/she would like.
 
 Format: `add-b n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION`
 
+<div markdown="span" class="alert alert-primary">
+
 :information_source: What is the difference between address and location? Address is the specific street number and unit
 number of the place. Location is the country this person is based. Since we focus on international pet sale, it is good
 to have location as a separate attribute. Different countries have different regulations on pet sale, and you may need
 to filter persons by their locations for some reason.
-
-<div markdown="span" class="alert alert-primary">
 
 </div>
 
@@ -349,8 +349,11 @@ Format: `add-p i/INDEX_OF_SUPPLIER p_n/PET_NAME p_d/DATE_OF_BIRTH p_c/COLOR p_cp
 
 `i/INDEX_OF_SUPPLIER` is the one-based index of the supplier you would like to add this pet to. You can find out the
 index just in the display list. You may want to use the [List Command](#listing-contacts-or-items--list) to find the
-supplier,
-if you have filtered the list.
+supplier, if you have filtered the list.
+
+Examples:
+
+* `add-p i/1 p_n/Wu Lezheng p_d/2001-11-20 p_c/red p_cp/stripped p_h/39.5 p_s/chihuahua p_v/true p_w/15.3 p_p20 p_cert/Good-Dog Cert. p_cert/Royal Blood Cert. p_t/naughty p_t/sold`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -612,17 +615,17 @@ requests, Order status, Price range.
 
 | Attribute           | Prefix | Format                     | Example         |
 |---------------------|--------|----------------------------|-----------------|
-| Additional requests | ar     | ar/KEYWORD                 | ar/non-shedding |
-| Order Status        | os     | os/KEYWORD                 | os/Negotating   |
-| Price Range         | pr     | pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
+| Additional requests | o_ar   | ar/KEYWORD                 | ar/non-shedding |
+| Order Status        | o_st   | os/KEYWORD                 | os/Negotating   |
+| Price Range         | o_pr   | pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
 
 Format: `filter-o PREFIX/INPUT`
 
 Examples:
 
-* `filter-o os/Pending`
-* `filter-o as/Negotiating pr/90-900`
-* `filter-o ar/good with children os/Delivering pr/80-100`
+* `filter-o o_st/Pending`
+* `filter-o o_st/Negotiating o_pr/90-900`
+* `filter-o o_ar/good with children o_st/Delivering o_pr/80-100`
 
 Notes:
 
@@ -644,28 +647,28 @@ Notes:
 Displays only Pets based on the given attributes. There are five possible attributes to filter: Color, Name,
 Price, Species, Vaccination status.
 
-| Attribute          | Prefix | Format    | Example         |
-|--------------------|--------|-----------|-----------------|
-| Color              | c      | c/KEYWORD | c/pink          |
-| Name               | n      | n/KEYWORD | n/nyanko-sensei |
-| Price              | p      | p/PRICE   | p/209           |
-| Species            | s      | s/KEYWORD | s/ostrich       |
-| Vaccination Status | v      | v/KEYWORD | v/false         |
+| Attribute          | Prefix | Format      | Example           |
+|--------------------|--------|-------------|-------------------|
+| Color              | p_c    | p_c/KEYWORD | p_c/pink          |
+| Name               | p_n    | p_n/KEYWORD | p_n/nyanko-sensei |
+| Price              | p_p    | p_p/PRICE   | p_p/209           |
+| Species            | p_s    | p_s/KEYWORD | p_s/ostrich       |
+| Vaccination Status | p_v    | p_v/KEYWORD | p_v/false         |
 
 Format: `filter-p PREFIX/INPUT`
 
 Examples:
 
-* `filter-p c/white`
-* `filter-p c/black v/true`
-* `filter-p c/black n/doraemon p/50 s/cat v/true`
+* `filter-p p_c/white`
+* `filter-p p_c/black p_v/true`
+* `filter-p p_c/black p_n/doraemon p_p/50 p_s/cat p_v/true`
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
 ### Sorting contacts : `sort`
 
-Format: `sort LIST_PARAMETER [ATTRIBUTES...]`
+Format: `sort LIST_TYPE [ATTRIBUTES...]`
 
 <div markdown="span" class="alert alert-warning">
 
@@ -678,13 +681,13 @@ items [here](#list-key-types-table).
 
 #### List Attribute Table
 
-| List type | Attributes                                                                                                                  |
-|-----------|-----------------------------------------------------------------------------------------------------------------------------|
-| Buyer     | *Number of Order*, Name, Phone, Email, Location, Address                                                                    |
-| Supplier  | *Number of Pet On sale*, Name, Phone, Email, Location, Address                                                              |
-| Deliverer | *Number of Order*, Name, Phone, Email, Location, Address                                                                    |
-| Order     | *Due Date*, Price Range, Price, Status                                                                                      |
-| Pet       | *Price*, Name, Color, Color Pattern, Birth Date, Species, Height, Weight, Vaccination Status, Characteristics, Certificates |
+| List type | Attributes                                                                |
+|-----------|---------------------------------------------------------------------------|
+| Buyer     | *Number of Order*, Name, Phone, Email, Location, Address                  |
+| Supplier  | *Number of Pet On sale*, Name, Phone, Email, Location, Address            |
+| Deliverer | *Number of Order*, Name, Phone, Email, Location, Address                  |
+| Order     | *Due Date*, Price Range, Price, Status                                    |
+| Pet       | *Price*, Name, Color, Color Pattern, Birth Date, Species, Height, Weight  |
 
 > The italicised text attribute represents the default sorting attribute for each list. <br>
 > For example, `sort pet` will sort the Pets list in default by the price attribute.
@@ -710,9 +713,6 @@ items [here](#list-key-types-table).
 | Species               | species, s, -s, /s                           |
 | Height                | height, h, -h, /h                            |
 | Weight                | weight, w, -w, /w                            |
-| Vaccination Status    | vaccinationstatus, vstatus, vs, -vs, /vs     |
-| Characteristics       | characteristics, chara, cha, ch, -ch, /ch    |
-| Certificates          | certificate, cert, -cert, /cert              |
 
 Examples:
 
@@ -850,8 +850,11 @@ These prefixes are for you to indicate different fields when you add a new [buye
 | `p_v/`    | Pet             | Vaccination status                | `true` if the pet is vaccinated, otherwise `false`. Required.                                                                                                                                                                                                                                                                      | `p_v/false`                                     |
 | `p_cert/` | Pet             | Certificate                       | A string of any characters. Other certificates this pet holds. Optional. Can have multiple.                                                                                                                                                                                                                                        | `p_cert/US certified`, `p_cert/noble blood`     |
 
-### Command Summary
+<div markdown="span" class="alert alert-primary">
+:bulb: `-0` is also considered as non-negative.
+</div>
 
+### Command Summary
 
 |                                  Action                                   | Format                                                                                    | Examples                                                                         |
 |:-------------------------------------------------------------------------:|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|

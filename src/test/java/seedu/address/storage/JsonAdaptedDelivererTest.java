@@ -35,6 +35,7 @@ public class JsonAdaptedDelivererTest {
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final List<String> VALID_IDS = BENSON.getOrders().stream().map(Objects::toString)
             .collect(Collectors.toList());
+    private static final String VALID_LOCATION = BENSON.getLocation().toString();
 
     //    private static final List<JsonAdaptedOrder> VALID_ORDERS = BENSON.getOrders().stream()
     //            .map(JsonAdaptedOrder::new)

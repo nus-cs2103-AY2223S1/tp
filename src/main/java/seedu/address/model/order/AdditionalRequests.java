@@ -12,6 +12,9 @@ import java.util.List;
  */
 public class AdditionalRequests {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Additional request should only contain alphanumeric characters and spaces, and it should not be blank";
+
     private final List<String> additionalRequests = new ArrayList<>();
 
     /**
@@ -24,6 +27,11 @@ public class AdditionalRequests {
         additionalRequests.addAll(Arrays.asList(descriptions));
     }
 
+    /**
+     * Constructs the AdditionalRequests object with an array.
+     *
+     * @param descriptions The string descriptions of these additional requests.
+     */
     public AdditionalRequests(Collection<String> descriptions) {
         additionalRequests.addAll(descriptions);
     }

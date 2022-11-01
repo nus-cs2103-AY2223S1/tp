@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.pet.Pet;
 
@@ -14,19 +14,19 @@ import seedu.address.model.pet.Pet;
  * Filters and lists all pets in address book whose attributes match the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FilterPetCommand extends Command {
+public class FilterPetCommand extends FilterCommand {
     public static final String COMMAND_WORD = "filter-p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all pets with attributes: "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: PREFIX/[KEYWORDS] PREFIX/[KEYWORDS] ...\n"
             + "There are five possible attributes to filter: Color, Name, Price, Species, Vaccination status \n"
-            + "For Color, use the prefix 'c' \n"
-            + "For Name, use the prefix 'n' \n"
-            + "For Price, use the prefix 'p' \n"
-            + "For Species, use the prefix 's' \n"
-            + "For Vaccination Status, use the prefix 'v' \n"
-            + "Example: " + COMMAND_WORD + " n/Ashy s/Cat";
+            + "For Color, use the prefix " + FilterPetCommandParser.COLOR_PREFIX + "\n"
+            + "For Name, use the prefix " + FilterPetCommandParser.PET_NAME_PREFIX + "\n"
+            + "For Price, use the prefix " + FilterPetCommandParser.PRICE_PREFIX + "\n"
+            + "For Species, use the prefix " + FilterPetCommandParser.SPECIES_PREFIX + "\n"
+            + "For Vaccination Status, use the prefix " + FilterPetCommandParser.VACCINATION_PREFIX + "\n"
+            + "Example: " + COMMAND_WORD + " p_n/Ashy p_s/Cat";
 
     private final Predicate<Pet> colorPredicate;
     private final Predicate<Pet> namePredicate;

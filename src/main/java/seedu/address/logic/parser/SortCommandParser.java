@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.sortcommands.SortBuyerCommand;
 import seedu.address.logic.commands.sortcommands.SortCommand;
 import seedu.address.logic.commands.sortcommands.SortDelivererCommand;
@@ -35,7 +34,7 @@ public class SortCommandParser implements Parser<SortCommand> {
     public SortCommand parse(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
         final String listType = matcher.group("listType");

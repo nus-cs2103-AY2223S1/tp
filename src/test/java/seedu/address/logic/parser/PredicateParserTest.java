@@ -2,6 +2,11 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.COLOR_PREFIX;
+import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PET_NAME_PREFIX;
+import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PRICE_PREFIX;
+import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.SPECIES_PREFIX;
+import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.VACCINATION_PREFIX;
 
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -90,8 +95,8 @@ public class PredicateParserTest {
         PhoneContainsKeywordsPredicate<Buyer> expected = new PhoneContainsKeywordsPredicate<>(
                 Arrays.asList("999"));
         try {
-            Predicate<Buyer> result1 = PredicateParser.parseBuyer("p/ 999");
-            Predicate<Buyer> result2 = PredicateParser.parseBuyer("p/999 \n");
+            Predicate<Buyer> result1 = PredicateParser.parseBuyer("ph/ 999");
+            Predicate<Buyer> result2 = PredicateParser.parseBuyer("ph/999 \n");
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {
@@ -178,8 +183,8 @@ public class PredicateParserTest {
         PhoneContainsKeywordsPredicate<Deliverer> expected = new PhoneContainsKeywordsPredicate<>(
                 Arrays.asList("999"));
         try {
-            Predicate<Deliverer> result1 = PredicateParser.parseDeliverer("p/ 999");
-            Predicate<Deliverer> result2 = PredicateParser.parseDeliverer("p/999 \n");
+            Predicate<Deliverer> result1 = PredicateParser.parseDeliverer("ph/ 999");
+            Predicate<Deliverer> result2 = PredicateParser.parseDeliverer("ph/999 \n");
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {
@@ -266,8 +271,8 @@ public class PredicateParserTest {
         PhoneContainsKeywordsPredicate<Supplier> expected = new PhoneContainsKeywordsPredicate<>(
                 Arrays.asList("999"));
         try {
-            Predicate<Supplier> result1 = PredicateParser.parseSupplier("p/ 999");
-            Predicate<Supplier> result2 = PredicateParser.parseSupplier("p/999 \n");
+            Predicate<Supplier> result1 = PredicateParser.parseSupplier("ph/ 999");
+            Predicate<Supplier> result2 = PredicateParser.parseSupplier("ph/999 \n");
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {
@@ -299,8 +304,8 @@ public class PredicateParserTest {
         ColorContainsKeywordsPredicate<Pet> expected = new ColorContainsKeywordsPredicate<>(
                 Arrays.asList("white"));
         try {
-            Predicate<Pet> result1 = PredicateParser.parsePet("c/ white");
-            Predicate<Pet> result2 = PredicateParser.parsePet("c/white \n");
+            Predicate<Pet> result1 = PredicateParser.parsePet(COLOR_PREFIX + "/ white");
+            Predicate<Pet> result2 = PredicateParser.parsePet(COLOR_PREFIX + "/white \n");
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {
@@ -313,8 +318,8 @@ public class PredicateParserTest {
         PetNameContainsKeywordsPredicate<Pet> expected = new PetNameContainsKeywordsPredicate<>(
                 Arrays.asList("plum"));
         try {
-            Predicate<Pet> result1 = PredicateParser.parsePet("n/ plum");
-            Predicate<Pet> result2 = PredicateParser.parsePet("n/plum \n");
+            Predicate<Pet> result1 = PredicateParser.parsePet(PET_NAME_PREFIX + "/ plum");
+            Predicate<Pet> result2 = PredicateParser.parsePet(PET_NAME_PREFIX + "/plum \n");
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {
@@ -327,8 +332,8 @@ public class PredicateParserTest {
         PriceContainsKeywordsPredicate<Pet> expected = new PriceContainsKeywordsPredicate<>(
                 Arrays.asList(5.67));
         try {
-            Predicate<Pet> result1 = PredicateParser.parsePet("p/ 5.67");
-            Predicate<Pet> result2 = PredicateParser.parsePet("p/ 5.67 \n");
+            Predicate<Pet> result1 = PredicateParser.parsePet(PRICE_PREFIX + "/ 5.67");
+            Predicate<Pet> result2 = PredicateParser.parsePet(PRICE_PREFIX + "/ 5.67 \n");
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {
@@ -341,8 +346,8 @@ public class PredicateParserTest {
         SpeciesContainsKeywordsPredicate<Pet> expected = new SpeciesContainsKeywordsPredicate<>(
                 Arrays.asList("cat"));
         try {
-            Predicate<Pet> result1 = PredicateParser.parsePet("s/ cat");
-            Predicate<Pet> result2 = PredicateParser.parsePet("s/cat \n");
+            Predicate<Pet> result1 = PredicateParser.parsePet(SPECIES_PREFIX + "/ cat");
+            Predicate<Pet> result2 = PredicateParser.parsePet(SPECIES_PREFIX + "/cat \n");
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {
@@ -354,8 +359,8 @@ public class PredicateParserTest {
     public void parsePet_vaccinationStatus_vaccinationStatusPredicate() {
         VaccinationStatusPredicate<Pet> expected = new VaccinationStatusPredicate<>(true);
         try {
-            Predicate<Pet> result1 = PredicateParser.parsePet("v/ true");
-            Predicate<Pet> result2 = PredicateParser.parsePet("v/ true \n");
+            Predicate<Pet> result1 = PredicateParser.parsePet(VACCINATION_PREFIX + "/ true");
+            Predicate<Pet> result2 = PredicateParser.parsePet(VACCINATION_PREFIX + "/ true \n");
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {
