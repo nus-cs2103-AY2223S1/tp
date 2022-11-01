@@ -111,7 +111,7 @@ public class ModelManagerTest {
         modelManager = new ModelManager(inTrack, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(inTrack, userPrefs);
         modelManager.descendSortTime();
-        assertFalse(modelManager.equals(modelManagerCopy));
+        assertTrue(modelManager.equals(modelManagerCopy));
 
     }
 
