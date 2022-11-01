@@ -45,7 +45,7 @@ To better understand the usage of YellowBook, we have provided a usage scenario 
 
 3. More to be added
 
-4. As you have have noticed, YellowBook's commands are mnemonically named. A [Command Summary](#Command summary) with these helpful tips can be found below.
+4. As you have have noticed, YellowBook's commands are mnemonically named. A [Command Summary](#command-summary) with these helpful tips can be found below.
 
 5. Now that you are ready, feel free to add your own contacts and tasks to YellowBook!
 

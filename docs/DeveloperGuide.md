@@ -557,26 +557,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student who often has to email others | store people’s emails    | remember their emails |
 | `* * *`  | student who prefers calling                | see the person’s phone number  | call them |
 | `* * *`  | student who prefers visiting someone in person |  see the person’s address  | visit them |
-| `* * *`  | SWE student                                | save the github usernames of my contacts | view their repo |
 | `* * *`  | student                                    | edit the information on people’s profiles | update the information when necessary |
 | `* * *`  | student who pefers a compact social circle | delete contacts                | stop keeping old contacts |
 | `* * *`  | team leader                                | add and remove people from a project when forming the project group | know who is part of the project group |
 | `* * *`  | team leader                                | remove a project and the people associated with it once the project is done | avoid cluttering my workspace |
 | `* * *`  | team member                                | group contacts                 | know which people are involved in which projects |
-| `* * *`  | team member                                | give status updates on individual tasks | inform the group on my progress |
-| `* * *`  | forgetful student                          | keep track of my tasks         | know which tasks need to be completed |
 | `* * *`  | forgetful student                          | mark tasks as complete         | know if I have completed the task already |
 | `* * *`  | forgetful student                          | note the deadline of my tasks  | complete my tasks on time |
-| `* * *`  | forgetful person                           | save people’s profiles with photos | remember their names |
 | `* * *`  | forgetful person                           | keep notes on the people I’ve met | remember important things about them |
 | `* *`    | team leader                                | see my team’s progress towards completing their assigned tasks | know if my team is on track |
 | `* *`    | team leader                                | assign tasks to my team members | divide the work efficiently |
 | `* *`    | team leader                                | archive a project and the people associated with it once the project is done | avoid cluttering my workspace|
 | `* *`    | team member                                | send reminders to other team members | remind them to do their work |
+| `* *`    | team member                                | give status updates on individual tasks | inform the group on my progress |
 | `* *`    | team member                                | use an idea board | generate inspiration with my teammates |
+| `* * `   | SWE student                                | save the github usernames of my contacts | view their repo |
 | `* *`    | anxious student                            | see the percentage completion of the tasks | feel at ease |
 | `* *`    | anxious student                            | see if I am on track with my deadlines | be assured that my tasks are not behind schedule |
 | `* *`    | forgetful student                          | be reminded of upcoming deadlines | ensure that I won't miss them |
+| `* *`    | forgetful student                          | keep track of my tasks         | know which tasks need to be completed |
+| `* *`    | forgetful person                           | save people’s profiles with photos | remember their names |
 | `* *`    | artistic student                           | change the colour palette of my UI to my preference | enjoy looking at the UI |
 | `* *`    | student with color blindness               | have my software be composed of minimal colors | distinguish all elements |
 | `* *`    | student who does work late at night        | use dark mode                  | choose not to strain my eyes |
