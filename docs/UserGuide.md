@@ -348,20 +348,18 @@ Examples:
 - `unmark 1` will mark the first task in the team as incomplete.
 
 ### Find tasks : `find task`
-Find all tasks in the current team by name and displays them in the task list.
 
-
-If multiple words are provided, separated by spaces, e.g. `find member -n Alex Beatrice`, members with names containing
-**either** the words "Alex" or "Beatrice" will be returned.
+Find all tasks in the current team whose names contain any of the given keywords.
 
 To reset the task list, see `list tasks` command below.
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** The search is **not** case-sensitive.
-In other words, `find task -n project` and `find task -n Project` will return the same results.
-</div>
-
 Format: `find task -n TASK_NAME`
+
+* The search is case-insensitive. e.g. `user guide` will match `User Guide`
+* The order of the keywords does not matter. e.g. `User Guide` will match `guide user`
+* Only the name is searched.
+* Only full words will be matched e.g. `user` will not match `userguide`
+* Persons matching at least one keyword will be returned (e.g. `user` will return `user guide`, `user stories`)
 
 Examples
 * `find task -n User Guide` finds tasks with **names** containing **either** the word "User" or "Guide".
