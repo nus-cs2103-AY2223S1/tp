@@ -89,7 +89,7 @@ Features marked with * can only be utilised when users are at the home page.
 
 * Items in square brackets are optional. The `*` after a set of square brackets means that it can be used multiple times<br>
   e.g. `n/NAME [e/EMAIL]` can be used as `n/John Doe e/john@u.nus.edu` or as `n/John Doe`.
-  e.g. `[la/LINK_ALIAS]*` can be used as `la/google`, `la/facebook`, and `la/luminus` or just as `la/google`.
+  e.g. `[la/LINK_ALIAS]*` can be used as `la/google la/facebook la/luminus` or just as `la/google`.
 
 * A round bracket surrounding multiple square brackets indicate a need for at least one of the items in square brackets
 to be present.  
@@ -382,53 +382,32 @@ home page and view more details of a specific module, you may use the
 <br>
 
 ### 2.3. Links
-All links in Plannit are composed of a URL and a user-defined alias (case-sensitive).
+All links in Plannit are composed of a URL and an alias (case-sensitive). Aliases are short nicknames defined by you 
+for each module-related link that you found to be helpful. The succinct nature of aliases empowers you to identify 
+and launch module-related links from Plannit in a swift manner. Additionally, the personalised nature of aliases 
+enables you to attach your own meanings to generically-named links, saving you the
+hassle of searching and remembering links.
 
-| :exclamation: Plannit provides no guarantee of the link URL's existence |
-|-------------------------------------------------------------------------|
+E.g., Using the alias `tut t10 v fun` to label the link `nus-sg.zoom.us/j/81374731875?pwd=ZE9hWFlNVGJVNENFQm1SREhVVEs5Zz09`
+allows you to join the zoom room effortlessly whenever you want to.
 
 #### 2.3.1. Add link
 You may add link(s) to a specific module using the `add-link` command.
 Links will be added by its URL and alias.
 
-If there exists a link URL or alias that is detected as invalid within a chained command,
-none of the links in the command will be added. 
+If there exists a link URL or alias that is detected as invalid within a command,
+none of the link(s) in the command will be added. 
 Link aliases will be paired with link URLs according to their respective order of input (left-to-right).
 
-<table>
-<tr>
-  <th>Field</th>
-  <th>Flag</th>
-  <th>Constraints</th>
-</tr>
-<tr>
-  <td><b>Module Code</b></td>
-  <td><code>m/</code></td>
-  <td>
-    Can only be non-empty string of alphanumeric characters
-  </td>
-</tr>
-<tr>
-  <td><b>Link Alias</b></td>
-  <td><code>la/</code></td>
-  <td>
-    <li>Alphanumeric and whitespace characters</li>
-    <li>Trailing and leading whitespace characters will be removed</li>
-    <li>Character limit of 15</li>
-    <li>At least 1 alphanumeric character</li>
-  </td>
-</tr>
-<tr>
-  <td><b>Link URL</b></td>
-  <td><code>la/</code></td>
-  <td>
-    <li>Whitespace characters are not allowed</li>
-    <li>At least one top-level domain, i.e., consists of at least one period character <code>.</code></li>
-    <li>Domain length of 1 to 256 characters (e.g., the domain is `google` for 'www.google.com')</li>
-    <li>Supported by 'https' or 'http' (the inclusion of <code>https://</code> or <code>http://</code> is optional)</li>
-  </td>
-</tr>
-</table>
+| :exclamation: **Alert:** Plannit provides no guarantee of the link URL's existence |
+|------------------------------------------------------------------------------------|
+
+
+| Field           | Flag  | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|-----------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Link URL**    | `l/`  | <li>Supported by 'https' or 'http' (used by most URLs)</li><li>The inclusion of http headers `http://` or `https://` at the front of the input is optional (exact spelling required if included)<li>Whitespace characters are not allowed</li><li>At least one top-level domain, e.g., `.com` or `.org`</li><li>Only hyphen `-` or alphanumeric characters allowed for and on the left of the top level domain (besides the optional https header)</li><li>Domain length of 1 to 256 characters (e.g., the domain is `google` for `www.google.com`)</li><li>Any non-whitespace characters found on a typical english keyboard allowed for the remainder of the input</li> |
+| **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 Format: `add-link m/MODULE_CODE l/LINK_URL la/LINK_ALIAS [l/LINK_URL la/LINK_ALIAS]*`
 * You cannot add a link to a non-existent module code.
@@ -449,6 +428,11 @@ add-link m/CS2040 l/https://www.nusmods.com l/open.kattis.com la/nus mods la/kat
 ```
 In the above example, we are adding the links with the URL `https://www.nusmods.com` and `open.kattis.com`
 to the module with module code `CS2040`, represented by the link alias `nus mods` and `kattis` respectively.
+Here's a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                    | After executing the command                                                    |
+|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/add-link-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-link-after.png"/></p>{:/} |
 
 #### 2.3.2. Delete link
 You may delete link(s) from a specific module using the `delete-link` command. 
@@ -458,30 +442,11 @@ Multiple links can be deleted at once using their corresponding alias.
 If there exists a link alias that is detected as invalid within a chained command,
 none of the links in the command will be deleted.
 
-<table>
-<tr>
-  <th>Field</th>
-  <th>Flag</th>
-  <th>Constraints</th>
-</tr>
-<tr>
-  <td><b>Module Code</b></td>
-  <td><code>m/</code></td>
-  <td>
-    Can only be non-empty string of alphanumeric characters
-  </td>
-</tr>
-<tr>
-  <td><b>Link Alias</b></td>
-  <td><code>la/</code></td>
-  <td>
-    <li>Alphanumeric and whitespace characters</li>
-    <li>Trailing and leading whitespace characters will be removed</li>
-    <li>Character limit of 15</li>
-    <li>At least 1 alphanumeric character</li>
-  </td>
-</tr>
-</table>
+
+| Field           | Flag  | Constraints                                                                                                                                                                                |
+|-----------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                    |
+| **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li> |
 
 Format: `delete-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
 * You cannot delete a link from a non-existent module code.
@@ -499,10 +464,18 @@ delete-link m/CS2040 la/nus mods la/kattis
 ```
 In the above example, we are deleting the links with the URL `https://www.nusmods.com` and `open.kattis.com`
 from the module with module code `CS2040`, using their corresponding link alias `nus mods` and `kattis` respectively.
+Here's a screenshot of Plannit before and after executing the command:
+
+| Before executing the command                                                       | After executing the command                                                       |
+|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-link-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-link-after.png"/></p>{:/} |
 
 #### 2.3.3. Open link
 You may open link(s) from a specific module to your default browser using the `open-link` command.
 Links will be opened by means of their corresponding alias.
+
+| :bulb: **Tip:** Hover your cursor over aliases in Plannit to peak at their associated URL |
+|-------------------------------------------------------------------------------------------|
 
 An alternative way to open links is by means of clicking on their aliases on the application window.
 
@@ -510,33 +483,14 @@ Multiple links can be opened at once using its corresponding alias according to 
 (left to right). If there exists a link alias that is detected as invalid within a chained command,
 the links to its left will be opened while the links to its right will not be opened.
 
-| :exclamation: Permissions from your operating system may be required for some users to open links from Plannit using either way |
-|---------------------------------------------------------------------------------------------------------------------------------|
+| :exclamation: **Alert:** Permissions from your operating system may be required for some users to open links from Plannit using either way<br>(They are enabled by default for most users) |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
-<table>
-<tr>
-  <th>Field</th>
-  <th>Flag</th>
-  <th>Constraints</th>
-</tr>
-<tr>
-  <td><b>Module Code</b></td>
-  <td><code>m/</code></td>
-  <td>
-    Can only be non-empty string of alphanumeric characters
-  </td>
-</tr>
-<tr>
-  <td><b>Link Alias</b></td>
-  <td><code>la/</code></td>
-  <td>
-    <li>Alphanumeric and whitespace characters</li>
-    <li>Trailing and leading whitespace characters will be removed</li>
-    <li>Character limit of 15</li>
-    <li>At least 1 alphanumeric character</li>
-  </td>
-</tr>
-</table>
+
+| Field           | Flag  | Constraints                                                                                                                                                                                |
+|-----------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                    |
+| **Link Alias**  | `la/` | <li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li> |
 
 Format: `open-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
 * You cannot open a link from a non-existent module code.
