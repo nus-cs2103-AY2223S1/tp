@@ -13,20 +13,21 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 
 # Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer. Click
+   [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) for further instructions on 
+   how to download and install Java `11`.
 
-2. Download the latest `truthtable.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-4/tp).
+3. Download the latest `truthtable.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-4/tp).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your TruthTable.
+4. Copy the file to the folder you want to use as the _home folder_ for your TruthTable.
 
-4. Double-click the file to start the app. A window which looks similar to the screenshot below should appear in a few 
+5. Double-click the file to start the app. A window which looks similar to the screenshot below should appear in a few 
    seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window, which contains a link to this document.<br>
    Some example commands you can try:
-
    - `add member 1`
    - `add task "My First Task"`
 
@@ -38,16 +39,89 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Important notes on how to use the commands:**<br>
 
 - Quotes are optional for words (i.e. `add member "word"` and `add member word` are equivalent) when there is
   to be passed into commands.
   - However, for words containing spaces, they should be surrounded with quotation marks.
-    Otherwise, they will be treated as 2 separate words (i.e. `add member "two words"` indicates that you are
-    adding the member named `two words`, however, `add member two words` is adding the member named `two` with some
+  - Otherwise, they will be treated as 2 separate words (e.g. `add member "two words"` indicates that you are
+    adding the member named `two words`. However, `add member two words` is adding the member named `two` with some
     other argument `word`)
-- Arguments are delimited with flags (`add member "word" --email="sample@email.com"`)
+- Arguments are separated with "flags" (`add member "word" --email="sample@email.com"`)
 </div>
+
+## Commands to Manage Persons
+
+### Creating a new person `add person`
+
+Adds a person to TruthTable.
+
+Format: `add person -n NAME -p PHONE_NUMBER -e EMAIL -a ADDRESS [-t TAG]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person can have any number of tags (including 0)
+</div>
+
+Examples:
+* `add person -n "John Doe" -p 98765432 -e johnd@example.com -a "John street, block 123, #01-01"`
+* `add person -n "Betsy Crowe" -e betsycrowe@example.com -a "Newgate Prison" -p 1234567 -t criminal friend`
+
+### Listing all persons : `list persons`
+
+Shows a list of all persons in TruthTable.
+
+Format: `list persons`
+
+### Editing a person : `edit person`
+
+Edits an existing person in TruthTable.
+
+Format: `edit person PERSON_INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]`
+
+* Edits the person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person 
+  list. The index **must be a positive integer** 1, 2, 3,...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `-t` without
+  specifying any tags after it.
+
+Examples:
+*  `edit person 1 -p 91234567 -e johndoe@example.com` Edits the phone number and email address of the 1st person to be 
+   `91234567` and `johndoe@example.com` respectively.
+*  `edit person 2 -n Betsy Crower -t` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing 
+   tags.
+
+### Locating persons by name: `find person`
+
+Finds person whose names contain any of the given keywords.
+
+Format: `find person KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g. `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`)
+
+Examples:
+* `find person John` returns `john` and `John Doe`
+* `find person alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find person alex david'](images/findAlexDavidResult.png)
+
+### Deleting a person : `delete person`
+
+Deletes the specified person from TruthTable.
+
+Format: `delete person PERSON_INDEX`
+
+* Deletes the person at the specified `PERSON_INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3,...
+
+Examples:
+* `list persons` followed by `delete person 2` deletes the 2nd person in the address book.
+* `find person Betsy` followed by `delete person 1` deletes the 1st person in the results of the `find` command.
 
 ## Commands to Manage Teams
 
