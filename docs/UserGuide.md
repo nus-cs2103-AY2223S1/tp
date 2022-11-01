@@ -359,7 +359,29 @@ Format: `exit`
 
 ### 6.11. Viewing daily tips
 
-_Details coming soon ..._
+For some specific application stages, we have included a list of useful tips to help you prepare for and ace the deliverables.
+
+Below is a list of application stages that we have tips for.
+
+| Application Stage |
+|--------|
+| `Application Sent` |
+| `Online Assessment` |
+| `Technical Interview` |
+| `Behavioral Interview` |
+| `Phone Interview` |
+| `Rejected` |
+
+To view the tips in the narrow Ui format, click the light bulb button on the application card. A window will appear displaying tips for the stage that the application is currently at.
+
+![Click the Light Bulb](images/ClickLightBulb.png)
+
+![Tips Window](images/TipsWindow.png)
+
+To view the tips in the wide Ui format, simple click and select the application you would like to view the tips for. The tips will appear in the right panel.
+
+![Tips Panel](images/TipsPanel.png)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
