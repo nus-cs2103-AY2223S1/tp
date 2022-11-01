@@ -6,6 +6,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_11;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_7;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_9;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -92,6 +95,18 @@ public class PersonTest {
 
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different current modules -> returns false
+        editedAlice = new PersonBuilder(ALICE).withCurrentModules(VALID_MODULE_7).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different previous modules -> returns false
+        editedAlice = new PersonBuilder(ALICE).withPreviousModules(VALID_MODULE_9).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different planned modules -> returns false
+        editedAlice = new PersonBuilder(ALICE).withPlannedModules(VALID_MODULE_11).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

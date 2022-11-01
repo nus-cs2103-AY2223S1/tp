@@ -6,6 +6,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.tag.Tag;
+
 public class ModuleTest {
 
     @Test
@@ -50,5 +52,36 @@ public class ModuleTest {
         assertTrue(Module.isValidModuleName("CS2040S")); // 2 letter prefix module name with suffix
         assertTrue(Module.isValidModuleName("UTR1000A")); // 3 letter prefix module name with suffix
         assertTrue(Module.isValidModuleName("GESS1025R")); // 4 letter prefix module name with suffix
+        assertTrue(Module.isValidModuleName("cs2040s")); // completely un-capitalised module name
+        assertTrue(Module.isValidModuleName("Cs2040s")); // first letter capitalised module name
+        assertTrue(Module.isValidModuleName("CS2040s")); // prefix capitalised module name
+        assertTrue(Module.isValidModuleName("cs2040S")); // suffix capitalised module name
+        assertTrue(Module.isValidModuleName("dAo1047X")); // random letters capitalised module name
     }
+
+    @Test
+    public void equals() {
+        final Module standardModule = new Module("CS2103T");
+
+        // same values -> returns true
+        Module moduleWithSameName = new Module("CS2103T");
+        assertTrue(standardModule.equals(moduleWithSameName));
+
+        // same values but different capitalisation -> returns true
+        moduleWithSameName = new Module("Cs2103t");
+        assertTrue(standardModule.equals(moduleWithSameName));
+
+        // same object -> returns true
+        assertTrue(standardModule.equals(standardModule));
+
+        // null -> returns false
+        assertFalse(standardModule.equals(null));
+
+        // different types -> returns false
+        assertFalse(standardModule.equals(new Tag("friends")));
+
+        // different moduleNames -> returns false
+        assertFalse(standardModule.equals(new Module("CS2101")));
+    }
+
 }

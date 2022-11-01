@@ -9,9 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Module {
 
-    public static final String MESSAGE_CONSTRAINTS = "Module names should contain a 2-4 capitalised-letter prefix, "
-            + "followed by a 4 digit module code, and an optional capitalised-letter suffix";
-    public static final String VALIDATION_REGEX = "^[A-Z]{2,4}[0-9]{4}[A-Z]{0,1}$";
+    public static final String MESSAGE_CONSTRAINTS = "Module names should contain a 2-4 letter prefix, followed by a "
+            + "4 digit module code, and an optional letter suffix";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z]{2,4}[0-9]{4}[a-zA-Z]{0,1}$";
 
     public final String moduleName;
 
@@ -23,7 +23,7 @@ public class Module {
     public Module(String moduleName) {
         requireNonNull(moduleName);
         checkArgument(isValidModuleName(moduleName), MESSAGE_CONSTRAINTS);
-        this.moduleName = moduleName;
+        this.moduleName = moduleName.toUpperCase();
     }
 
     /**

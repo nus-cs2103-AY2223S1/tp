@@ -37,4 +37,26 @@ public class NameTest {
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
     }
+
+    @Test
+    public void equals() {
+        final Name standardName = new Name("Pam Beesly");
+
+        // same values -> returns true
+        Name sameName = new Name("Pam Beesly");
+        assertTrue(standardName.equals(sameName));
+
+        // same object -> returns true
+        assertTrue(standardName.equals(standardName));
+
+        // null -> returns false
+        assertFalse(standardName.equals(null));
+
+        // different types -> returns false
+        assertFalse(standardName.equals(new Phone("94445555")));
+
+        // different names -> returns false
+        assertFalse(standardName.equals(new Name("Kevin Malone")));
+    }
+
 }

@@ -117,9 +117,12 @@ public class AddressBookTest {
         // different types -> returns false
         assertFalse(ab.equals(5));
 
+        // different personsList -> returns false
+        AddressBook differentAddressBook = new AddressBookBuilder().withPerson(CARL).withPerson(DANIEL).build();
+        assertFalse(ab.equals(differentAddressBook));
+
         // different addressBook -> returns false
-        AddressBook differentAddressBook = new AddressBookBuilder().withPerson(CARL).withPerson(DANIEL)
-                .withUser(XAVIER).build();
+        differentAddressBook = new AddressBookBuilder().withUser(XAVIER).build();
         assertFalse(ab.equals(differentAddressBook));
 
         // different user -> returns false

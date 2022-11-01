@@ -47,4 +47,26 @@ public class GithubTest {
         assertTrue(Github.isValidUsername("peterjack-peterjack-peterjack-peterjack")); // username 39 characters
         assertTrue(Github.isValidUsername("")); // empty username
     }
+
+    @Test
+    public void equals() {
+        final Github standardGithub = new Github("ryan-howard");
+
+        // same values -> returns true
+        Github githubWithSameName = new Github("ryan-howard");
+        assertTrue(standardGithub.equals(githubWithSameName));
+
+        // same object -> returns true
+        assertTrue(standardGithub.equals(standardGithub));
+
+        // null -> returns false
+        assertFalse(standardGithub.equals(null));
+
+        // different types -> returns false
+        assertFalse(standardGithub.equals(new Address("88 West Coast Drive, #01-110")));
+
+        // different usernames -> returns false
+        assertFalse(standardGithub.equals(new Github("stanLey-huds0n")));
+    }
+
 }
