@@ -12,7 +12,6 @@ import java.time.format.TextStyle;
 import java.util.Locale;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.datetime.exceptions.DatetimeIsPastException;
 
 /**
  * Contains utilities for other datetime-related classes, including parsers.
@@ -67,10 +66,9 @@ public class DatetimeCommonUtils {
             DATETIME_MESSAGE_CONSTRAINTS_BASE + ", e.g. 2022-01-01 08:00";
     public static final String DATETIME_MESSAGE_CONSTRAINTS_UNPARSABLE =
             DATETIME_MESSAGE_CONSTRAINTS_BASE + ", and it must be valid!";
-    
-    public static final String DATETIME_MESSAGE_CONSTRAINTS_DATETIMEPASSED = "Date and time inputted must be after the current time";
 
-
+    public static final String DATETIME_MESSAGE_CONSTRAINTS_DATETIMEPASSED = "Please input a date and time that is "
+            + "after the current time. The current date and time as of now is ";
 
     /**
      * Converts a DayOfWeek to a readable form, e.g. Mon, Tue
@@ -103,7 +101,7 @@ public class DatetimeCommonUtils {
      * @throws ParseException If the date is invalid.
      */
     public static void assertDateValid(String dateString) throws ParseException {
-        try { 
+        try {
             LocalDate.parse(dateString, DATE_INPUT_FORMATTER);
         } catch (DateTimeParseException ex) {
             throw new ParseException(DATE_MESSAGE_CONSTRAINTS_UNPARSABLE);
@@ -116,7 +114,6 @@ public class DatetimeCommonUtils {
      *
      * @param datetimeString Datetime string
      * @throws ParseException If the datetime is invalid.
-     * @throws  DatetimeIsPastException If the datetime is after the current time
      */
     public static void assertDatetimeValid(String datetimeString) throws ParseException {
         LocalDateTime parsedDatetime;
@@ -125,8 +122,9 @@ public class DatetimeCommonUtils {
         } catch (DateTimeParseException ex) {
             throw new ParseException(DATETIME_MESSAGE_CONSTRAINTS_UNPARSABLE);
         }
-        if(parsedDatetime.isBefore(LocalDateTime.now())) {
-            throw new DatetimeIsPastException();
+        if (parsedDatetime.isBefore(LocalDateTime.now())) {
+            throw new ParseException(DATETIME_MESSAGE_CONSTRAINTS_DATETIMEPASSED
+                    + LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATETIME_INPUT_FORMAT)));
         }
     }
 
@@ -134,10 +132,12 @@ public class DatetimeCommonUtils {
      * Checks whether the LocalDateTime is after the current time as given by LocalDateTime.now().
      *
      * @param localDateTime the LocalDateTime of the input date and start time
+     * @throws ParseException If the LocalDateTime is after LocalDateTime.now()
      */
-    public static void assertStartDatetimeIsAfterCurrentDatetime(LocalDateTime localDateTime) {
+    public static void assertStartDatetimeIsAfterCurrentDatetime(LocalDateTime localDateTime) throws ParseException {
         if (localDateTime.isBefore(LocalDateTime.now())) {
-            throw new DatetimeIsPastException();
+            throw new ParseException(DATETIME_MESSAGE_CONSTRAINTS_DATETIMEPASSED
+                    + LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATETIME_INPUT_FORMAT)));
         }
     }
 
@@ -199,11 +199,10 @@ public class DatetimeCommonUtils {
         assertDateValid(date);
         String[] times = splitTimeRangeString(timeRange);
         assertTimeRangeValid(times[0], times[1]);
-        
+
         DatetimeRange parsedDatetimeRange = DatetimeRange.fromFormattedString(date, times[0], times[1]);
 
         assertStartDatetimeIsAfterCurrentDatetime(parsedDatetimeRange.getStartDatetime());
-        
         return parsedDatetimeRange;
     }
 

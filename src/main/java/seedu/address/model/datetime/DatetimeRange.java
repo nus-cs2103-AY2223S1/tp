@@ -19,7 +19,6 @@ public class DatetimeRange {
     public final LocalDateTime startDatetime;
     public final LocalDateTime endDatetime;
 
-
     /**
      * Constructs a {@code DatetimeRange}.
      *
@@ -32,11 +31,10 @@ public class DatetimeRange {
         this.startDatetime = startDatetime;
         this.endDatetime = endDatetime;
     }
-    
+
     public LocalDateTime getStartDatetime() {
         return startDatetime;
     }
-    
 
     /**
      * Creates a DatetimeRange from formatted strings, when start date and end date is same.
