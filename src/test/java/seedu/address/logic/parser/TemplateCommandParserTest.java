@@ -44,4 +44,5 @@ class TemplateCommandParserTest {
         assertParseSuccess(parser, "student ", expectedTemplateCommand);
         assertParseSuccess(parser, " student ", expectedTemplateCommand);
     }
+    
 }

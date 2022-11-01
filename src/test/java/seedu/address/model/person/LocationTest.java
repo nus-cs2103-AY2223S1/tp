@@ -57,4 +57,5 @@ class LocationTest {
         Location locA = new Location("SOC 1st floor toilet");
         assertEquals(locA.toString(), "SOC 1st floor toilet");
     }
+
 }
