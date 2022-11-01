@@ -56,7 +56,7 @@ public class DeleteTaskAllCommandTest {
         );
 
         String expectedMessage = String.format(DeleteTaskAllCommand.MESSAGE_ASSIGN_TASK_SUCCESS + "\n"
-                +DeleteTaskAllCommand.MESSAGE_ARGUMENTS,
+                + DeleteTaskAllCommand.MESSAGE_ARGUMENTS,
                 DANIEL.getName(), groupName, assignmentToDelete);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());

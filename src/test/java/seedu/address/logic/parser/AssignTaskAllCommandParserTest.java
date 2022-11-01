@@ -31,13 +31,8 @@ public class AssignTaskAllCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "low",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskAllCommand.MESSAGE_USAGE));
 
-        // invalid group
-//        assertParseFailure(parser, " " + PREFIX_GROUP + " " + " "
-//                        + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "low",
-//                String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupName.MESSAGE_CONSTRAINTS));
-
         // no group prefix
-        assertParseFailure(parser, " " +  "Group" + " "
+        assertParseFailure(parser, " " + "Group" + " "
                         + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "low",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskAllCommand.MESSAGE_USAGE));
 
@@ -50,11 +45,6 @@ public class AssignTaskAllCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " "
                 + PREFIX_TASK + " " + PREFIX_WORKLOAD + "low",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, Assignment.MESSAGE_CONSTRAINTS));
-
-        // no workload
-//        assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " "
-//                + PREFIX_TASK + "Task",
-//                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskAllCommand.MESSAGE_USAGE));
 
         // invalid workload
         assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " "

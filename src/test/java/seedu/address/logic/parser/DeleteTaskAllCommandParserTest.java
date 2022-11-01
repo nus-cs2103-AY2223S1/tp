@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -27,10 +26,6 @@ public class DeleteTaskAllCommandParserTest {
         // no group
         assertParseFailure(parser, " " + PREFIX_TASK + "Task" + " ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskAllCommand.MESSAGE_USAGE));
-
-        // invalid group
-//        assertParseFailure(parser, " " + PREFIX_GROUP + " " + " " + PREFIX_TASK + "Task",
-//                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskAllCommand.MESSAGE_USAGE));
 
         // no task
         assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " ",
