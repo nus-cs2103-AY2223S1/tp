@@ -20,24 +20,24 @@ Given below are my contributions to the project.
     * In charge of defining, assigning and implementation of features / project tasks.
     * Check documentation of overall code and ensures uniformity.
     * Ensure project deliverables are done on time.
-    * Fixed minor bugs[\#117]()
+    * Fixed minor bugs[\#117](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/117)
 
 * **Enhancements to existing features**:
     * Changed the icon of the current application
       * Credit: https://www.flaticon.com/free-icons/leaf
-    * Wrote additional tests for existing features to increase coverage by 6.06% (Pull requests [\#191]())
+    * Wrote additional tests for existing features to increase coverage by 6.06% (Pull requests [\#191](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/191))
     * Refactored the attendance related commands into a ```attendance``` command.
 
 * **Documentation**: 
     * User Guide:
-        * Added documentation for the features `Attendance` [\#119]()
+        * Added documentation for the features `Attendance` [\#119](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/119)
         * Added documentation for introduction, command summary, glossary.
         * Edited the styling of the User Guide.
-        * Replaced all traces of AB3 and replaced with GREWZ related features. [\#196]()
+        * Replaced all traces of AB3 and replaced with GREWZ related features. [\#196](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/196)
     * Developer Guide:
-        * Added implementation details of the `Attendance delete` feature. [\#119]()
-        * Updated Developer Guide to include User Stories, Use Cases. [\#87]()
-        * Created UML Diagrams for Attendance delete command. [\#86]()
+        * Added implementation details of the `Attendance delete` feature. [\#119](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/119)
+        * Updated Developer Guide to include User Stories, Use Cases. [\#87](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/87)
+        * Created UML Diagrams for Attendance delete command. [\#86](https://github.com/AY2223S1-CS2103T-W12-4/tp/pull/86)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#206]()
