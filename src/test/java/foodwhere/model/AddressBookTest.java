@@ -16,11 +16,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import foodwhere.model.review.comparator.ReviewsComparatorList;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.model.review.Review;
 import foodwhere.model.review.ReviewBuilder;
+import foodwhere.model.review.comparator.ReviewsComparatorList;
 import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.StallBuilder;
 import foodwhere.model.stall.comparator.StallsComparatorList;

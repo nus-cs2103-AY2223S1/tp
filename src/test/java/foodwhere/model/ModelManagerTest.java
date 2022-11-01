@@ -18,20 +18,20 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
 
-import foodwhere.model.review.Review;
-import foodwhere.model.review.ReviewBuilder;
-import foodwhere.model.review.comparator.ReviewsComparatorList;
-import foodwhere.model.stall.comparator.StallsComparatorList;
-import foodwhere.model.stall.exceptions.DuplicateStallException;
-import foodwhere.model.stall.exceptions.StallNotFoundException;
-import foodwhere.testutil.TypicalReviews;
-import foodwhere.testutil.TypicalStalls;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.GuiSettings;
 import foodwhere.model.commons.Name;
+import foodwhere.model.review.Review;
+import foodwhere.model.review.ReviewBuilder;
+import foodwhere.model.review.comparator.ReviewsComparatorList;
 import foodwhere.model.stall.StallContainsKeywordsPredicate;
+import foodwhere.model.stall.comparator.StallsComparatorList;
+import foodwhere.model.stall.exceptions.DuplicateStallException;
+import foodwhere.model.stall.exceptions.StallNotFoundException;
 import foodwhere.testutil.AddressBookBuilder;
+import foodwhere.testutil.TypicalReviews;
+import foodwhere.testutil.TypicalStalls;
 
 public class ModelManagerTest {
 
@@ -253,7 +253,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void deleteReview_ReviewInAddressBook_success() {
+    public void deleteReview_reviewInAddressBook_success() {
         modelManager.addStall(TypicalStalls.CARL);
         modelManager.addReview(CARL);
         assertTrue(modelManager.hasReview(CARL));
