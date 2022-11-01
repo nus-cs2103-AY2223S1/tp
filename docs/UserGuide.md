@@ -170,13 +170,13 @@ Example:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the parameters:**<br>
+**:information_source: About the parameters:**<br>
 
 `MEAL_TYPE` is **not** case-sensitive.
 
 * E.g. `edit 2 t/dinner` is the same as `edit 2 t/dInNeR`.
 
-**:information_source: Notes about editing food items:**<br>
+**:information_source: About editing food items:**<br>
 
 A food item will not be edited if the resulting total calorie intake for the day exceeds 2147483647 calories.
 
