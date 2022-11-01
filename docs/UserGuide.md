@@ -250,7 +250,7 @@ Format: `select -p INDEX`
 * The GUI changes to display just the selected property in the property directory,
 while clients interested in that property are shown in the client directory.
 
-### Clearing all entries : `clear`
+### Clearing all entries : `clear -p`
 
 Clears all properties from the property directory.
 
@@ -332,6 +332,12 @@ Format: `select -c INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The GUI changes to display just the selected client in the client directory,
 while properties the client is interested in are shown in the property directory.
+
+### Clearing all entries : `clear -c`
+
+Clears all clients from the client directory.
+
+Format: `clear -c`
 
 --------------------------------------------------------------------------------------------------------------------
 
