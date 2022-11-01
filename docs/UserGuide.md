@@ -295,7 +295,7 @@ Format: `unmark id/PATIENT_ID dsi/DATE_AND_SLOT_INDEX`
 - The ID **must be a positive integer** 1, 2, 3, ...
 - The ID **must belong to a patient**.
 - The **DATE_AND_SLOT_INDEX must be indicated** and can have only **1**.
-- The **date that is to be unmarked as failed visited must be date that have pass**. eg, if today is 2022-11-11, the date to be unmark as fail visited must be the date before 2022-11-11.
+- The **date that is to be unmarked as failed visited must be a date that have passed**. eg, if today is 2022-11-11, the date to be unmark as fail visited must be the date before 2022-11-11.
 
 Examples:
 
