@@ -26,11 +26,11 @@ public class SampleDataUtil {
             new Trip(new Title("Honeymoon"), new Description("Lorem ipsum dolor sit amet."),
                 getEventSet("girlfriend"), new Location("Jeju Island"), new DateField("13-04-2021")),
             new Trip(new Title("Business Trip"), new Description("Consectetur adipiscing elit."),
-                getEventSet("neighbours")),
+                getEventSet("neighbours"), new Location("Jeju Island"), new DateField("13-04-2021")),
             new Trip(new Title("Solo Trip"), new Description("Sed do eiusmod tempor."),
-                getEventSet("family")),
+                getEventSet("family"), new Location("Jeju Island"), new DateField("13-04-2021")),
             new Trip(new Title("Backpacking"), new Description("Incididunt ut labore et dolore magna aliqua."),
-                getEventSet("classmates")),
+                getEventSet("classmates"), new Location("Jeju Island"), new DateField("13-04-2021")),
             new Trip(new Title("Conference"), new Description("Dolore eu fugiat nulla pariatur."),
                 getEventSet("colleagues"), new Location("New York"), new DateField("31-12-2023"))
         };

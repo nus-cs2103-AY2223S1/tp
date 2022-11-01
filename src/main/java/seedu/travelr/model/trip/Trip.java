@@ -30,19 +30,6 @@ public class Trip {
     private final Itineraries events = new Itineraries();
 
     /**
-     * Every field must be present and not null.
-     */
-    public Trip(Title title, Description description, Set<Event> events) {
-        requireAllNonNull(title, description, events);
-        this.title = title;
-        this.description = description;
-        this.events.setInternalList(events);
-        this.location = Location.getDefaultLocation();
-        this.done = false;
-        this.dateField = DateField.getDefaultDateField();
-    }
-
-    /**
      * Used in JsonAdaptedTrips
      * Every field must be present and not null.
      */
