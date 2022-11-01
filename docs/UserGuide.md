@@ -247,8 +247,7 @@ Example:
 
 ### Viewing a summary of the calorie intake progress: `review`
 
-Shows the total calories consumed, the calorie target and the deficient or excess amount of calories for the current day. 
-The list of foods for the current day will also be displayed.
+Shows the total calories consumed, the calorie target and the deficient or excess amount of calories for the current day. The list of foods for the current day will also be displayed.
 
 Format: `review`
 
