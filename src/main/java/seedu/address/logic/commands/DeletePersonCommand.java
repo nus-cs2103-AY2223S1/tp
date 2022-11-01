@@ -44,6 +44,7 @@ public class DeletePersonCommand extends Command {
         }
         assert personToDelete != null;
         model.deletePerson(personToDelete);
+        model.goToHomePage();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 

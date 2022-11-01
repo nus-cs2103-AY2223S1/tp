@@ -16,11 +16,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.HomeCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -89,6 +91,45 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredModuleList().remove(0));
+    }
+
+    @Test
+    public void getHomeStatus_modifyHomeStatus_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getHomeStatus().remove(0));
+    }
+
+    @Test
+    public void getAddressBook() {
+        ReadOnlyAddressBook expectedAddressBook = new AddressBook();
+        assertEquals(expectedAddressBook, logic.getAddressBook());
+    }
+
+    @Test
+    public void getAddressBookFilePath() {
+        Path expectedAddressBookFilePath = new UserPrefs().getAddressBookFilePath();
+        assertEquals(expectedAddressBookFilePath, logic.getAddressBookFilePath());
+    }
+
+    @Test
+    public void getGuiSettings() {
+        GuiSettings expectedGuiSettings = new UserPrefs().getGuiSettings();
+        assertEquals(expectedGuiSettings, logic.getGuiSettings());
+    }
+
+
+    @Test
+    public void setGuiSettings() {
+        GuiSettings expectedGuiSettings = new GuiSettings(1, 2, 3, 4);
+        UserPrefs expectedUserPrefs = new UserPrefs();
+        expectedUserPrefs.setGuiSettings(expectedGuiSettings);
+        Model expectedModel = new ModelManager(new AddressBook(), expectedUserPrefs);
+        logic.setGuiSettings(expectedGuiSettings);
+        assertEquals(expectedModel, model);
     }
 
     /**

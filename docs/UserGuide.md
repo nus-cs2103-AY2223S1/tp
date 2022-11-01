@@ -2,13 +2,23 @@
 layout: page
 title: User Guide
 ---
-**Plannit** is a **unified desktop application** that aims to **help NUS
-students manage their academic details.**  It will be the **go-to platform**
-for you to access all modules links and information without needing to
-tediously navigate through multiple websites.
 
-This application is **optimized for use via a Command Line Interface** (CLI)
-while still having the benefits of a Graphical User Interface (GUI).
+* **Plannit** is an **all-in-one application** that streamlines the execution of module
+  deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and
+  **module-mates** (i.e., students in the same module) to increase their productivity.
+
+
+* Plannit will be the **go-to platform** for them to access all modules links and information
+without needing to tediously navigate through multiple websites.
+
+
+* Plannit allows tracking of student contacts by module.
+Students do not have to worry about forgetting which friend takes which module.
+
+
+* Plannit is **optimized for use via a Command Line Interface (CLI)**
+while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, Plannit can help you track your module information and tasks faster than traditional GUI apps!
 
 * Table of Contents
 {:toc}
@@ -98,12 +108,13 @@ Features marked with * can only be utilised when users are at the home page.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add m/MODULE`, `MODULE` is a parameter which can be used as `add m/MODULE`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [e/EMAIL]` can be used as `n/John Doe e/john@u.nus.edu` or as `n/John Doe`.
+* Items in square brackets are optional. The `*` after a set of square brackets means that it can be used multiple times<br>
+  e.g. `n/NAME [e/EMAIL]` can be used as `n/John Doe e/john@u.nus.edu` or as `n/John Doe`.
+  e.g. `[la/LINK_ALIAS]*` can be used as `la/google`, `la/facebook`, and `la/luminus` or just as `la/google`.
 
 * A round bracket surrounding multiple square brackets indicate a need for at least one of the items in square brackets
 to be present.  
-  e.g `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER`
+  e.g. `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER`
 to be present.
 
 * Parameters can be in any order.<br>
@@ -124,15 +135,20 @@ the parameter will be taken.<br>
 You can add a module into Plannit.
 
 This command will require one flag, and one flag is optional:
-* `m/`: To be followed by the module code of the module to be added into Plannit.
-* `t/`: (Optional flag) To be followed by the module title of the module to be added into Plannit.
+
+| Field                       | Flag | Constraints                                                                                                                            |
+|-----------------------------|------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**             | `m/` | {::nomarkdown}Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul>{:/} |
+| **Module Title (Optional)** | `t/` | Can be any string of characters                                                                                                        |
 
 Format: `add-module m/MODULE_CODE [t/MODULE_TITLE]`
 * Module code will be automatically treated as uppercase. For example, `cs1231s` will be treated 
   as `CS1231S`.
-* You may optionally add a module title. If provided module title is empty, then Plannit 
-interprets it as that there is no module title. 
+* If provided module title is empty, then a module without a title will be added to Plannit. 
 * You cannot add a duplicate module code.
+
+<div markdown="span" class="alert alert-info"> :information_source: **Note:** Module codes in Plannit are **case-insensitive**, as opposed to person [names](#241-add-person) which are case-sensitive.
+</div>
 
 Examples:
 ```
@@ -157,10 +173,13 @@ Adding a module will bring you back to the home page.
 You can delete the module with the indicated module code from Plannit.
 
 This command will require one flag:
-* `m/`: To be followed by the module code of the module to be deleted from Plannit.
+
+| Field           | Flag | Constraints                                                                                                                            |
+|-----------------|------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/` | {::nomarkdown}Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul>{:/} |
 
 Format: `delete-module m/MODULE_CODE`
-* You cannot delete a non-existent module code.
+* Module code must correspond to currently displayed module on screen (case-insensitive)
 
 Example:
 
@@ -177,8 +196,11 @@ Deleting a module will bring you back to the home page.
 You can edit a module on Plannit using the `edit-module` command.
 
 This command will require an index and at least one of the following flags:
-* `m/`: To be followed by the new module code of the module to be edited on Plannit.
-* `t/`: To be followed by the new module title of the module to be edited on Plannit.
+
+| Field            | Flag | Constraints                                                                                                                            |
+|------------------|------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**  | `m/` | {::nomarkdown}Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul>{:/} |
+| **Module Title** | `t/` | Can be any string of characters                                                                                                        |
 
 Format: `edit-module INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`
 * `INDEX` is the currently displayed index number of the module you are editing for on the screen.
@@ -210,6 +232,10 @@ edit-module 3 t/Software Engineering
 ```
 In the above example, we are changing the module title of the third module on Plannit to 
 `Software Engineering`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Editing a module will bring you back to the home page.
+</div>
 
 #### 2.1.4. Find module
 When you are on the home page, you can search for modules whose module codes start with the specified keywords.
@@ -383,36 +409,60 @@ home page and view more details of a specific module, you may use the
 <br>
 
 ### 2.3. Links
-All links in Plannit are represented by a unique (case-sensitive) alias.
+All links in Plannit are composed of a URL and a user-defined alias (case-sensitive).
 
-Alias:
-* Alphanumeric and whitespace characters
-* Character limit of 15
-* At least 1 alphanumeric character
-
-Link URL (Plannit provides no guarantee of the link's existence):
-* At least one top-level domain (e.g. com)
-* Domain length of 1 to 256 characters (e.g. for 'www.google.com', the domain is 'google')
-* Supported by 'https' or 'http'
+| :exclamation: Plannit provides no guarantee of the link URL's existence |
+|-------------------------------------------------------------------------|
 
 #### 2.3.1. Add link
-You may add link(s) to a specific module using the `add-link` command. 
-Each link URL is to be paired with a link alias, both of which are unique within a module.
+You may add link(s) to a specific module using the `add-link` command.
+Links will be added by its URL and alias.
 
-Multiple links can be added at once. Link aliases will be paired with link URLs according to their respective
-order of input (left-to-right).
 If there exists a link URL or alias that is detected as invalid within a chained command,
-none of the links in the command will be added.
+none of the links in the command will be added. 
+Link aliases will be paired with link URLs according to their respective order of input (left-to-right).
 
-This command will require three flags:
-* `m/`: To be followed by the module code of the module which is associated with the link
-* `l/`: To be followed by the link URL which is associated with the link
-* `la/`: To be followed by the link alias which is associated with the link
+<table>
+<tr>
+  <th>Field</th>
+  <th>Flag</th>
+  <th>Constraints</th>
+</tr>
+<tr>
+  <td><b>Module Code</b></td>
+  <td><code>m/</code></td>
+  <td>
+    Can only be non-empty string of alphanumeric characters
+  </td>
+</tr>
+<tr>
+  <td><b>Link Alias</b></td>
+  <td><code>la/</code></td>
+  <td>
+    <li>Alphanumeric and whitespace characters</li>
+    <li>Trailing and leading whitespace characters will be removed</li>
+    <li>Character limit of 15</li>
+    <li>At least 1 alphanumeric character</li>
+  </td>
+</tr>
+<tr>
+  <td><b>Link URL</b></td>
+  <td><code>la/</code></td>
+  <td>
+    <li>Whitespace characters are not allowed</li>
+    <li>At least one top-level domain, i.e., consists of at least one period character <code>.</code></li>
+    <li>Domain length of 1 to 256 characters (e.g., the domain is `google` for 'www.google.com')</li>
+    <li>Supported by 'https' or 'http' (the inclusion of <code>https://</code> or <code>http://</code> is optional)</li>
+  </td>
+</tr>
+</table>
 
-Format: `add-link m/MODULE_CODE l/LINK_URL la/LINK_ALIAS`
+Format: `add-link m/MODULE_CODE l/LINK_URL la/LINK_ALIAS [l/LINK_URL la/LINK_ALIAS]*`
 * You cannot add a link to a non-existent module code.
 * You cannot add a link using a link alias that already exists in the module represented by the module code.
 * You cannot add a link using a link URL that already exists in the module represented by the module code.
+(HTTP headers are ignored for uniqueness of link URLs.)
+  * E.g., 'https://www.google.com', 'http://www.google.com', 'www.google.com' are considered the same link URL
 
 Example:
 ```
@@ -435,11 +485,32 @@ Multiple links can be deleted at once using their corresponding alias.
 If there exists a link alias that is detected as invalid within a chained command,
 none of the links in the command will be deleted.
 
-This command will require two flags:
-* `m/`: To be followed by the module code of the module which is associated with the link
-* `la/`: To be followed by the link alias which is associated with the link
+<table>
+<tr>
+  <th>Field</th>
+  <th>Flag</th>
+  <th>Constraints</th>
+</tr>
+<tr>
+  <td><b>Module Code</b></td>
+  <td><code>m/</code></td>
+  <td>
+    Can only be non-empty string of alphanumeric characters
+  </td>
+</tr>
+<tr>
+  <td><b>Link Alias</b></td>
+  <td><code>la/</code></td>
+  <td>
+    <li>Alphanumeric and whitespace characters</li>
+    <li>Trailing and leading whitespace characters will be removed</li>
+    <li>Character limit of 15</li>
+    <li>At least 1 alphanumeric character</li>
+  </td>
+</tr>
+</table>
 
-Format: `delete-link m/MODULE_CODE la/LINK_ALIAS`
+Format: `delete-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
 * You cannot delete a link from a non-existent module code.
 * You cannot delete a link using a non-existent link alias from an existing module.
 
@@ -461,17 +532,40 @@ You may open link(s) from a specific module to your default browser using the `o
 Links will be opened by means of their corresponding alias.
 
 An alternative way to open links is by means of clicking on their aliases on the application window.
-Permissions from your operating system may be required for some users to use this feature.
 
 Multiple links can be opened at once using its corresponding alias according to their order of input
 (left to right). If there exists a link alias that is detected as invalid within a chained command,
 the links to its left will be opened while the links to its right will not be opened.
 
-This command will require two flags:
-* `m/`: To be followed by the module code of the module which is associated with the link
-* `la/`: To be followed by the link alias which is associated with the link
+| :exclamation: Permissions from your operating system may be required for some users to open links from Plannit using either way |
+|---------------------------------------------------------------------------------------------------------------------------------|
 
-Format: `open-link m/MODULE_CODE la/LINK_ALIAS`
+<table>
+<tr>
+  <th>Field</th>
+  <th>Flag</th>
+  <th>Constraints</th>
+</tr>
+<tr>
+  <td><b>Module Code</b></td>
+  <td><code>m/</code></td>
+  <td>
+    Can only be non-empty string of alphanumeric characters
+  </td>
+</tr>
+<tr>
+  <td><b>Link Alias</b></td>
+  <td><code>la/</code></td>
+  <td>
+    <li>Alphanumeric and whitespace characters</li>
+    <li>Trailing and leading whitespace characters will be removed</li>
+    <li>Character limit of 15</li>
+    <li>At least 1 alphanumeric character</li>
+  </td>
+</tr>
+</table>
+
+Format: `open-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
 * You cannot open a link from a non-existent module code.
 * You cannot open a link using a non-existent link alias from an existing module.
 
@@ -512,7 +606,7 @@ In the above example, we are adding a contact with name `Dinosaur Lim`, email `d
 `91234567` into Plannit.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Adding a person will bring you back to the home page.
+Adding a person to Plannit will bring you back to the home page.
 </div>
 
 #### 2.4.2. Add person to module
@@ -561,6 +655,10 @@ Example:
 delete-person n/Dinosaur Lim
 ```
 In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Deleting a person from Plannit will bring you back to the home page.
+</div>
 
 #### 2.4.4. Delete person from module
 You can remove the association between a person and a module (if it exists) using the `delete-person-from-module`
@@ -616,6 +714,10 @@ edit-person 1 n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
 ```
 In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
 `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number `91234567` in Plannit.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Editing a person will bring you back to the home page.
+</div>
 
 
 #### 2.4.6. Find person

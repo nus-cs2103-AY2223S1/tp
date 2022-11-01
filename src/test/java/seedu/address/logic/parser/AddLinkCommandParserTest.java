@@ -42,6 +42,12 @@ public class AddLinkCommandParserTest {
     }
 
     @Test
+    public void parse_missingModuleCode_throwsParseException() {
+        assertParseFailure(parser, VALID_MODULE_LINK_CS2103T, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddLinkCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_invalidArgsEmptyModuleUrlAndAliasWithFlags_throwsParseException() {
         assertParseFailure(parser, VALID_MODULE_CODE_WITH_PREFIX + " "
                 + PREFIX_MODULE_LINK_URL + " " + PREFIX_MODULE_LINK_ALIAS + " ",
