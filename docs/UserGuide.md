@@ -214,7 +214,7 @@ The following commands are for managing your hackathon tasks. These tasks can be
 Adds a task to the task list. 
 * You cannot add a task with the same name as one that currently exists in the task list. 
 
-Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]`
+Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]`
 
 Refer to the [Task Parameters](#task-parameters) section for more details.
 
@@ -227,12 +227,12 @@ Examples:
 #### Deleting a task: `deleteTask`
 
 Deletes a task from the task list.
-* Note: The task will be permanently deleted. If you want to mark a task as complete but have it remain in the task list, use the [`editTask`](#editing-a-task-edittask) command instead. 
+* **Note: The task will be permanently deleted**. To mark a task as `completed` but have it remain in the task list, use the [`editTask`](#editing-a-task-edittask) command instead. 
 
-Format: `deleteTask TASK_NUMBER`
-* Deletes the task at the specified `TASK_NUMBER`.
-* The task number refers to the task number shown in the displayed task list.
-* The task number **must be a positive integer** 1, 2, 3, …​
+Format: `deleteTask INDEX`
+* Deletes the task at the specified `INDEX`.
+* The index refers to the task number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `deleteTask 1` deletes the first task from the displayed task list
@@ -241,44 +241,40 @@ Examples:
 
 Edits the parameter(s) of an existing task in the task list.
 
-Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/ISDONE]`
+Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]`
 
 * Edits the task at the specified index. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​ and less than or equal to the number of task in the task list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* To un-assign a member from a task, write `none` in the EMAIL_OF_PERSON_ASSIGNED field `pe/` i.e. `pe/none`.
-* To mark a task's status as `completed` (or `not completed`) write `t` (or `f`) in the status field `do` e.g. `do/t`
+* To un-assign a member from a task, write `none` in the EMAIL_OF_PERSON_ASSIGNED field, i.e. `pe/none`.
+* To mark a task's status as `completed` or `not completed`, write `true` or `false` in the IS_DONE field, e.g. `do/true`.
 
 Examples:
-* `editTask 1 n/Create UI pr/high` edits the name and priority of the 1st task in the displayed task list to be `Create UI` and `HIGH` respectively.
-* `editTask 2 c/frontend pe/charlotte@example.com` edits the category of the 2nd task in the displayed task list to be `frontend` and assigns the task to a new member `Charlotte`.
-* `editTask 3 pe/none` un-assigns a member from the 3rd task in the displayed task list.
-* `editTask 4 do/t` marks the 4th task in the displayed task list as completed.
+* `editTask 2 c/frontend pe/charlotte@example.com` edits the category of the 2nd task in the displayed task list to be `frontend` and assigns the task to  the member with email `charlotte@example.com`.
+* `editTask 4 do/true` marks the 4th task in the displayed task list as `completed`.
 
 Refer to the [Task Parameters](#task-parameters) section for more details about task parameters.
 
 #### Viewing all tasks: `listTasks`
 
-Lists all existing tasks from the task list.
-Used after calling [`filter`](#filtering-a-task-filter) to remove existing filters and list all existing tasks.
+Displays all existing tasks in the task list. Use this after using the [`filter`](#filtering-a-task-filter) command to remove the filter.
 
 Format: `listTasks`
 
 #### Filtering a Task: `filter`
 
-Filters the task list based on either **TASK_CATEGORY** or **TASK_DEADLINE** or **BOTH**.
+Filters the task list based on either CATEGORY or DEADLINE or both. Use this when you want to view only tasks in a certain category or before a certain deadline.
 
-Format: `filter [c/TASK_CATEGORY] [dl/DEADLINE]`
+Format: `filter [c/CATEGORY] [dl/DEADLINE]`
 
-* Filters the task based on the user input.
-* At least one of the optional fields must be provided.
-* Filtered tasks will be displayed in the task list.
-* To list all tasks, call the `listTasks` command.
+* Filters the task list based on the parameters provided.
+* At least one of the optional parameters must be provided.
+* Only tasks that match the filter condition will be displayed in the task list.
+* To remove the filter, use the [`listTasks`](#viewing-all-tasks-listtasks) command.
 
 Examples:
-*  `filter c/backend` displays only tasks that have `backend` as **TASK_CATEGORY**
-*  `filter dl/2022-12-12` displays only tasks that have **DEADLINE** before or equal to `2022-12-12`
-*  `filter c/backend dl/2022-12-12` displays only tasks that have `backend` as **TASK_CATEGORY** and **DEADLINE** before or equal to `2022-12-12`
+*  `filter c/backend` displays only tasks that have `backend` as CATEGORY
+*  `filter c/backend dl/2022-12-12` displays only tasks that have `backend` as CATEGORY and DEADLINE on `2022-12-12` or before
 
 #### Sorting the task list by deadline: `sortByDeadline`
 
