@@ -201,10 +201,15 @@ Format: `appt INDEX d/APPOINTMENT_DATE_TIME`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The appointment date **cannot be before the current date**.
 * If a pre-existing appointment is present, it will be overridden by the new appointment.
+* Appointments that have passed will not be removed automatically, and require either a new appointment to override or the `apptcl` command in the next section below to be used.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Appointment date & time must be given in DD-MM-YYYY HHmm format!
 </div>
+
+Examples:
+* `appt 1 d/11-09-2024 1200` adds an appointment for the patient with index 1, with a date and time of 11/09/2024, 1200.
+* `appt 2 d/15-11-2025 1400` adds an appointment for the patient with index 2, with a date and time of 15/11/2024, 1400.
 
 ### Clearing an appointment: `apptcl`
 
@@ -216,6 +221,10 @@ Format: `apptcl INDEX`
 * Clears any appointment under the patient with the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The command will return the 
+
+Examples:
+* `apptcl 1` clears the appointment (if any) of the patient with index 1.
 
 ## Record Commands
 > Commands relating to the record list of a patient, such as adding or deleting a record
