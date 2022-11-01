@@ -86,7 +86,7 @@ public class DeleteCommand extends Command {
         personList.addAll(model.getFilteredPersonList());
 
         for (Person p : personList) {
-            if (p.hasMultipleSurveys()) {
+            if (survey.isPresent() && p.hasMultipleSurveys()) {
                 Set<Survey> surveys = p.getSurveys();
                 Set<Survey> editedSurvey = new HashSet<>();
                 editedSurvey.addAll(surveys);
