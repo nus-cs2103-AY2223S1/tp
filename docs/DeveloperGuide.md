@@ -93,7 +93,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `HealthcareXpressParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,7 +110,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `HealthcareXpressParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HealthcareXpressParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -176,7 +176,7 @@ Step 1. The user executes `Add c/P n/Lily g/F p/91103813 a/ABC STREET 111 e/lily
 
 </div>
 
-Step 2. The `AddressBookParser` will parse the user command to return an `AddCommandParser` with the patient's details.
+Step 2. The `HealthcareXpressParser` will parse the user command to return an `AddCommandParser` with the patient's details.
 
 Step 3. The `AddCommandParser` will parse the respective patient's details using fixed prefixes and check their validity. The `Uid` for the patient will also be generated and used along with the parsed patient's details to create a patient if all the inputs are valid. Then, it returns an `AddCommand` with the patient created.
 
@@ -224,13 +224,13 @@ The following activity diagram summarizes what happens when a user executes an a
 
 #### Proposed implementation for marking Appointments between Nurses and Patients
 
-The marking mechanism is facilitated by `Appointment`, `VisitStatus`, LogicManager`, `AddressBookParser`, `MarkCommandParser`, `MarkCommand`, `Model`, `AddressBook`, and `UniquePersonList`
+The marking mechanism is facilitated by `Appointment`, `VisitStatus`, LogicManager`, `HealthcareXpressParser`, `MarkCommandParser`, `MarkCommand`, `Model`, `AddressBook`, and `UniquePersonList`
 
 `Appointment` is an association class between Nurse and Patient, and also keeps track of the date and time of the appointment, and if the Patient has been visited by the Nurse.
 
 ![AppointmentClassDiagram](images/AppointmentClassDiagram.png)
 
-The `AddressBookParser` will take in user input and recognise it as a `MarkCommand`, and pass on the user input to `MarkCommandParser`
+The `HealthcareXpressParser` will take in user input and recognise it as a `MarkCommand`, and pass on the user input to `MarkCommandParser`
 
 `MarkCommandParser` will then identify the appointment of interest, by parsing the index given by the user.
 
@@ -242,7 +242,7 @@ Given blow is an example usage scenario and how the mark mechanism works.
 
 Step 1. The user enters the command `mark id/1` command to mark the appointment at index 1 as visited.
 
-Step 2. The `AddressBookParser` will parse the user command and pass the input to the `MarkCommandParser`
+Step 2. The `HealthcareXpressParser` will parse the user command and pass the input to the `MarkCommandParser`
 
 Step 3. The `MarkCommandParser` will parse the index, and ensure that the index is present. It will then return a `MarkCommand` with the index.
 
@@ -285,7 +285,7 @@ Given below is an example usage scenario and how the list function behaves at ea
 
 Step 1. The user executes `list c/n g/f` to list all female nurses.
 
-Step 2. `AddressBookParser` parses the user command to return a `ListCommandParser` with the given criteria.
+Step 2. `HealthcareXpressParser` parses the user command to return a `ListCommandParser` with the given criteria.
 
 Step 3. The `ListCommandParser` parses the criteria using fixed prefixes and check their validity. Then, it returns an `ListCommand` with the criteria `category=N, gender=F`.
 

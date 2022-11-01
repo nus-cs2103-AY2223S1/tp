@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -87,5 +88,14 @@ public class PatientTest {
         // different tags -> returns false
         editedAlice = new PatientBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void toStringTest() {
+        Patient alice = new PatientBuilder().build();
+        String expectedToStringAlice = "Category: P; Uid: 100; Name: Amy Bee; Phone: 85355255; Email: amy@gmail.com; "
+                + "Gender: F; Address: 123, Jurong West Ave 6, #08-111; "
+                + "Home Visits Date and Time: Home Visit date and slot has not been set yet.;";
+        assertEquals(expectedToStringAlice, alice.toString());
     }
 }

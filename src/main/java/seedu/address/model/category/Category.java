@@ -107,4 +107,8 @@ public class Category {
     public boolean isNextOfKin() {
         return this.categoryName.equals(NEXTOFKIN_SYMBOL);
     }
+
+    public String toFormattedString() {
+        return String.format("Category: %s;", categoryName);
+    }
 }

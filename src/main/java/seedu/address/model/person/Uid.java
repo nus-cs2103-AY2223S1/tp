@@ -112,4 +112,8 @@ public class Uid implements Comparable<Uid> {
     public int compareTo(Uid o) {
         return uid.compareTo(o.getUid());
     }
+
+    public String toFormattedString() {
+        return String.format("Uid: %s;", uid.toString());
+    }
 }

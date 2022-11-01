@@ -63,7 +63,7 @@ public class Gender {
 
     @Override
     public String toString() {
-        return this.gender;
+        return gender;
     }
 
     @Override
@@ -88,5 +88,9 @@ public class Gender {
         return other == this
                 || (other instanceof Gender)
                         && gender.equalsIgnoreCase(((Gender) other).gender);
+    }
+
+    public String toFormattedString() {
+        return String.format("Gender: %s;", gender);
     }
 }
