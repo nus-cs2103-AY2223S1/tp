@@ -5,7 +5,7 @@ import static seedu.clinkedin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import seedu.clinkedin.logic.commands.DeleteTagTypeCommand;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
+import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.TagType;
 
 /**

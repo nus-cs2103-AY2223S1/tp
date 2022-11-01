@@ -23,7 +23,7 @@ import seedu.clinkedin.model.person.Phone;
 import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
+import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;

@@ -1,4 +1,4 @@
-package seedu.clinkedin.model.person.exceptions;
+package seedu.clinkedin.model.tag.exceptions;
 
 import seedu.clinkedin.model.tag.TagType;
 

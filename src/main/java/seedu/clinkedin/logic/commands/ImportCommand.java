@@ -24,7 +24,7 @@ import seedu.clinkedin.model.AddressBook;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.person.exceptions.DuplicateTagTypeException;
+import seedu.clinkedin.model.tag.exceptions.DuplicateTagTypeException;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.storage.JsonSerializableAddressBook;
 
