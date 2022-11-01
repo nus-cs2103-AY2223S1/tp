@@ -84,7 +84,7 @@ h4 {
 
 h2:before {
   content: counter(h2, decimal) ". ";
-  counter-increment : 0;
+  counter-increment : h2;
 }
 
 h3:before {
