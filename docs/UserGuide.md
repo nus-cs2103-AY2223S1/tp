@@ -263,7 +263,7 @@ Other examples:
 Format: `f n/NAME`
 
 </div>
-  
+
 #### Finding your client by phone number : `find`
 
 Find your clients whose phone number matches the input number.
@@ -419,8 +419,8 @@ You can use this command when:
 * Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
 
 Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
-                        
-![update](images/UserGuide/update.png)  
+
+![update](images/UserGuide/update.png)
 Example given: `update 1 p/12345678`
 
 <div markdown="block" class="alert alert-block alert-success">
@@ -439,7 +439,7 @@ Only parameters you provide will be changed.
 * Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
 
 Other example:
-* `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed client's 
+* `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed client's
   name, phone number and address to be `John Doe`, `91234567` and `21 Lower Kent Ridge Rd` respectively.
 
 <div markdown="block" class="alert alert-block alert-info">
@@ -488,7 +488,7 @@ You can use this command when:
 * `MEETINGTIME` should be in the format `DD-MM-YYYY-HH:MM`.
 * mt/ should be put before each separate meeting time.
 * The client's existing meeting times remain unchanged.
-   
+
 Format: `meeting INDEX mt/MEETINGTIME...`
 
 Examples:
@@ -548,9 +548,9 @@ You can use this command when:
 
 Format: `sync`
 
-![sync](images/UserGuide/sync.png)    
+![sync](images/UserGuide/sync.png)
 
-<div markdown="block" class="alert alert-block alert-danger">   
+<div markdown="block" class="alert alert-block alert-danger">
 
 :heavy_exclamation_mark: **Caution:**
 As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
