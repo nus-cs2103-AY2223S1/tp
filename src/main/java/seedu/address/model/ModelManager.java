@@ -171,7 +171,13 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredStudentListByTg(TutorialGroup tutorialGroup) {
-        Predicate<Student> inSameTutorialGrp = s -> s.getTutorialGroup().equals(tutorialGroup);
+        Predicate<Student> inSameTutorialGrp = s -> {
+            if (s.getTutorialGroup() != null) {
+                return s.getTutorialGroup().equals(tutorialGroup);
+            } else {
+                return false;
+            }
+        };
         requireNonNull(inSameTutorialGrp);
         filteredStudents.setPredicate(inSameTutorialGrp);
     }
