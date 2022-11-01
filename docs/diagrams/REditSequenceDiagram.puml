@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":REditCommandParser" as REditCommandParser LOGIC_COLOR
+participant ":REditCommand" as REditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("redit 2 r/5")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("redit 2 r/5")
+activate AddressBookParser
+
+create REditCommandParser
+AddressBookParser -> REditCommandParser
+activate REditCommandParser
+REditCommandParser --> AddressBookParser : :REditCommandParser
+deactivate REditCommandParser
+
+AddressBookParser -> REditCommandParser : parse("2 r/5")
+activate REditCommandParser
+
+create REditCommand
+REditCommandParser -> REditCommand : REditCommand(Index, EditReviewDescriptor)
+activate REditCommand
+REditCommand -> REditCommandParser : :REditCommand
+deactivate REditCommand
+
+REditCommandParser --> AddressBookParser : :REditCommand
+deactivate REditCommandParser
+
+AddressBookParser --> LogicManager : :REditCommand
+deactivate AddressBookParser
+
+LogicManager -> REditCommand : execute()
+activate REditCommand
+
+REditCommand -> Model : setReview()
+activate Model
+
+Model --> REditCommand
+deactivate Model
+
+create CommandResult
+REditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> REditCommand : :CommandResult
+deactivate CommandResult
+
+REditCommand --> LogicManager : :CommandResult
+@enduml
