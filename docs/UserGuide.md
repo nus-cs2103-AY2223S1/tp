@@ -12,9 +12,9 @@ title: User Guide
 ## 1. Introduction to WorkBook
 
 Are you a Computing student that finds it really hard to collate and manage all your internship progress together?
-Do you find it really hard to get an internship because you do not know how to prepare for the different interview stages? Fret not,
-WorkBook is just the right tool for you! <br><br>
-Welcome to WorkBook! :wave: <br><br>WorkBook is an **internship application tracker** that helps Computing students **prepare sufficiently** for their upcoming interviews to **secure** that internship.
+Do you find it really hard to get an internship because you do not know how to prepare for the different interview stages? Fret not<br><br>
+
+WorkBook is just the right tool for you! :wave: <br><br>WorkBook is an **internship application tracker** that helps Computing students **prepare sufficiently** for their upcoming interviews to **secure** that internship.
 We also ensure that you never miss an interview or an application deadline ever again! 
 Workbook is optimized for fast typists and utilizes a **Command Line Interface (CLI)** style while still having the benefits of a 
 **Graphical User Interface (GUI)**. <br><br> So what are you waiting for? Transform your internship hunt with WorkBook today!
@@ -43,16 +43,16 @@ Workbook is optimized for fast typists and utilizes a **Command Line Interface (
 
    * **`exit`** : Exits the app.
 
-6. You can refer to the [things to note](#3-things-to-note) below for details of each command.
+6. You can jump straight to [here](#6-what-you-can-do) for a summary of the commands.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3. About Our User Guide
 
 This guide serves to:<br>
 
-1. Educate new users on how to get started with WorkBook!
-2. Explain the purpose and how to use each and every command!
-3. Display a summary of all the commands you can utilize!
+1. Educate new users on how to get started with WorkBook.
+2. Explain the purpose and how to use each and every command.
+3. Display a summary of all the commands you can utilize.
 
 
 
@@ -153,14 +153,14 @@ This guide serves to:<br>
 
 ### 6.1. Adding your internship application:
 
-Congratulations you have sent out a new internship application now you can,
-add the application to WorkBook in [sorted order](#3-things-to-note).
+Congrats! You have already done the hard work - applying for that internship you've always wanted. 
+Now, simply add the details into WorkBook and we can begin tracking your application!
 
 Format: `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** The date and time you provide could represent multiple things:<br>
-  * The date and it happened
+  * The date and time it happened
   * The deadline of the corresponding `Stage`
 </div>
 
@@ -172,8 +172,8 @@ Examples:
 
 ### 6.2. Editing your internship application:
 
-In the scenario that your internship application has progressed to a different stage and requires updating this command,
-edits your existing application in the WorkBook.
+Good job! You've passed the Resume Screening and have been invited to complete an Online Assessment for your internship application.
+Now's a good time to use this command to update the application so that WorkBook can continue to give you relevant tips and reminders!
 
 Format: `edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
 
@@ -194,7 +194,11 @@ Examples:
 
 ### 6.3. Listing all existing internship applications: 
 
-Lists all of your internship applications in WorkBook.
+Lists all of your internship applications in WorkBook in a [sorted order](#3-things-to-note).
+
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** Your most recent upcoming internship application will be at the top of the list!
+</div>
 
 Format: `list`
 
@@ -203,7 +207,7 @@ Format: `list`
 If you wanted to view all your internship applications corresponding to a particular company, stage or role,
 then this command is for you! <br>
 
-It can find internships whose company, role or stage names contain any of the respective keywords.
+It can find internships whose company, role or stage names contain all the respective keywords.
 
 Format: `find c/COMPANY | r/ROLE | s/STAGE`
 
@@ -211,7 +215,7 @@ Format: `find c/COMPANY | r/ROLE | s/STAGE`
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** <br>
-* Only full words will be matched e.g. `met` will not match `Meta`.
+* Case does not matter e.g. `meta` will match `Meta`.
 * Order of the keywords does not matter e.g. `Jane Street` will match `Street Jane`.
 </div>
 
@@ -228,8 +232,8 @@ Examples:
 
 ### 6.5. Deleting your internship application:
 
-If you wanted to remove an internship application then this command,<br>
-Deletes the specified internship application from WorkBook.
+If you wanted to remove an internship application then this command
+deletes the specified internship application from WorkBook.
 
 Format: `delete INDEX`
 
@@ -239,7 +243,7 @@ Format: `delete INDEX`
 
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Caution**
-* The command will only be executed if the index provided corresponds to a internship application
+* The command will only be executed if the index provided corresponds to an internship application
 </div>
 
 Examples:
@@ -248,7 +252,8 @@ Examples:
 
 ### 6.6. Clearing your existing internship applications:
 
-Clears all internship applications in the WorkBook.
+It's a new cycle of summer internship applications and that means it's time for some spring-cleaning! 
+Use this command to clear all the applications you've previously saved in WorkBook!
 
 Format: `clear`
 
