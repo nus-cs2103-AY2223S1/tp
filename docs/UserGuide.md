@@ -73,7 +73,7 @@ An inventory item's name must be more than 1 character long.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An inventory item can have any number of tags (including 0)
+An inventory item can have any number of tags (including 0). A tag **cannot** have more than 30 characters.
 </div>
 
 Examples:
