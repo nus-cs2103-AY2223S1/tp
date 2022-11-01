@@ -1,31 +1,26 @@
 package seedu.address.logic.commands.filtercommands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.order.Order;
-import seedu.address.model.order.OrderStatus;
-import seedu.address.model.order.Price;
-import seedu.address.model.order.predicates.AdditionalRequestPredicate;
-import seedu.address.model.order.predicates.OrderStatusPredicate;
-import seedu.address.model.order.predicates.PriceRangePredicate;
-import seedu.address.model.pet.Pet;
-import seedu.address.model.pet.predicates.ColorContainsKeywordsPredicate;
-import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
-import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
-import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
-import seedu.address.testutil.TypicalOrders;
-import seedu.address.testutil.TypicalPets;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_PETS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.function.Predicate;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
-import static seedu.address.commons.core.Messages.MESSAGE_PETS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.predicates.ColorContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
+import seedu.address.testutil.TypicalPets;
 
 public class FilterPetCommandTest {
     private Model pModel = new ModelManager(TypicalPets.getTypicalPetsAddressBook(), new UserPrefs());

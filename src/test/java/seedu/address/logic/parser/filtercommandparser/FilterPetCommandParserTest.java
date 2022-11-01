@@ -1,26 +1,18 @@
 package seedu.address.logic.parser.filtercommandparser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.filtercommands.FilterOrderCommand;
-import seedu.address.logic.commands.filtercommands.FilterPetCommand;
-import seedu.address.model.order.Order;
-import seedu.address.model.order.OrderStatus;
-import seedu.address.model.order.Price;
-import seedu.address.model.order.predicates.AdditionalRequestPredicate;
-import seedu.address.model.order.predicates.OrderStatusPredicate;
-import seedu.address.model.order.predicates.PriceRangePredicate;
-import seedu.address.model.pet.Pet;
-import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.SPECIES_PREFIX;
 
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.filtercommandparser.FilterOrderCommandParser.*;
-import static seedu.address.logic.parser.filtercommandparser.FilterOrderCommandParser.PRICE_RANGE_PREFIX;
-import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.filtercommands.FilterPetCommand;
+import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
 
 public class FilterPetCommandParserTest {
     private FilterPetCommandParser parser = new FilterPetCommandParser();
