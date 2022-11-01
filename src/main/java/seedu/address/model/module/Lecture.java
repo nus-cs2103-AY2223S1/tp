@@ -53,7 +53,8 @@ public class Lecture extends Lesson {
 
     @Override
     public String toFullString() {
-        return super.getModule() + " " + typeToString() + " on " + toDayString()  + " " + super.getStartTime() + " to " + super.getEndTime();
+        return super.getModule() + " " + typeToString() + " on "
+                + toDayString() + " " + super.getStartTime() + " to " + super.getEndTime();
     }
 
 }
