@@ -25,8 +25,7 @@ Rapportbook is the ideal client management application for new and tech-savy fin
 Click on the [user guide](https://ay2223s1-cs2103t-t13-2.github.io/tp/UserGuide.html) to get started!
 
 ### Acknowledgements
-1. Remark feature by [j-lum](https://github.com/se-edu/addressbook-level3/compare/tutorial-add-remark), from 
-   tutorial 2 of TP, week 6.
+1. Remark feature by [j-lum](https://github.com/se-edu/addressbook-level3/compare/tutorial-add-remark), from tutorial 2 of TP, week 6.
 
 ### Footnotes from the original project
 
