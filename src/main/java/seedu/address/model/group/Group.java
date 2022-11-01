@@ -79,7 +79,7 @@ public class Group {
 
         Group otherGroup = (Group) other;
         return otherGroup.getName().equals(getName())
-                && otherGroup.getMembers().equals(getMembers());
+                && this.checkSameMembers(otherGroup);
     }
 
     @Override
@@ -102,5 +102,21 @@ public class Group {
             builder.append("None | ");
         }
         return builder.toString();
+    }
+
+    public boolean checkSameMembers(Group otherGroup) {
+        for (Person p : otherGroup.getMembers()) {
+            if (!this.contains(p)) {
+                return false;
+            }
+        }
+
+        for (Person p : this.getMembers()) {
+            if (!otherGroup.contains(p)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
