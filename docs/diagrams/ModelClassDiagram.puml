@@ -18,6 +18,7 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class Telegram
 
 Class UniqueModuleList
 Class Module
@@ -47,17 +48,17 @@ Person *--> Phone
 Person *--> Email
 Person *--> ModuleCode
 Person *--> "*" Tag
+Person *--> Telegram
 
 Name -[hidden]right-> Phone
 ModuleCode -[hidden]right-> TutorialDetails
 TutorialDetails -[hidden]right-> LectureDetails
-LectureDetails -[hidden]right-> ZoomLink
 
 AddressBook *--> "1" UniqueModuleList
 UniqueModuleList --> "~* all" Module
 Module *--> ModuleCode
 Module *--> LectureDetails
 Module *--> TutorialDetails
-Module *--> ZoomLink
+Module *--> "0..2" ZoomLink
 Module *--> "*" AssignmentDetails
 @enduml

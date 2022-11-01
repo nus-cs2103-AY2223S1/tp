@@ -6,19 +6,17 @@ object "<u>:AddModuleCommandParser</u>" as AddModuleCommandParser LOGIC_COLOR
 object "<u>:AddressBookParser</u>" as AddressBookParser LOGIC_COLOR
 object "<u>:Model</u>" as Model MODEL_COLOR
 object "<u>:CommandResult</u>" as CommandResult LOGIC_COLOR
-object "<u>:Index</u>" as Index COMMONS_COLOR {
-    zeroBasedIndex = 0
-}
 object "<u>moduleToAdd:Module" as Module LOGIC_COLOR
+object "<u>:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
+object "<u>:ParserUtil" as ParserUtil LOGIC_COLOR
 
 AddressBookParser --> AddModuleCommandParser : calls
 AddressBookParser --> AddModuleCommand
 AddModuleCommandParser -> AddModuleCommand
-AddModuleCommandParser --> Index
+AddModuleCommandParser --> ArgumentMultimap : instantiates
+ParserUtil --> ArgumentMultimap : parses
 AddModuleCommand --> Model
 AddModuleCommand --> CommandResult : outputs
-AddModuleCommand -> Index
 AddModuleCommand --> Module
 Model -> Module : Adds
-
 @enduml
