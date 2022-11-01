@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.FindRecordCommand;
 import seedu.address.model.record.RecordContainsKeywordsPredicate;
 
@@ -17,7 +18,8 @@ public class FindRecordCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", FindRecordCommand.MESSAGE_NOTHING_TO_FIND);
+        assertParseFailure(parser, "     ",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindRecordCommand.MESSAGE_USAGE));
     }
 
     @Test

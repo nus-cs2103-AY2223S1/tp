@@ -102,6 +102,7 @@ Format: `add n/NAME b/BIRTHDATE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 * The command can only be called when the patient addressbook is displayed (after using `list`).
 * Patient's name entered in is case-insensitive.
+* Name should only contain alphanumeric characters (eg. s/o is not a valid input).
 * Birthdate **cannot be after the current date**.
 * Duplicate patients are not allowed.
     * Patients are considered duplicate when they have the same `NAME` and `ADDRESS`.
