@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandPar
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PET_NAME_PREFIX;
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PRICE_PREFIX;
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.SPECIES_PREFIX;
-import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.VACCINATION_PREFIX;
 
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -348,19 +347,6 @@ public class PredicateParserTest {
         try {
             Predicate<Pet> result1 = PredicateParser.parsePet(SPECIES_PREFIX + "/ cat");
             Predicate<Pet> result2 = PredicateParser.parsePet(SPECIES_PREFIX + "/cat \n");
-            assertEquals(result1, expected);
-            assertEquals(result2, expected);
-        } catch (IllegalValueException e) {
-            assert false;
-        }
-    }
-
-    @Test
-    public void parsePet_vaccinationStatus_vaccinationStatusPredicate() {
-        VaccinationStatusPredicate<Pet> expected = new VaccinationStatusPredicate<>(true);
-        try {
-            Predicate<Pet> result1 = PredicateParser.parsePet(VACCINATION_PREFIX + "/ true");
-            Predicate<Pet> result2 = PredicateParser.parsePet(VACCINATION_PREFIX + "/ true \n");
             assertEquals(result1, expected);
             assertEquals(result2, expected);
         } catch (IllegalValueException e) {

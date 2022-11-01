@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.filtercommandparser.FilterOrderCommandP
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.COLOR_PREFIX;
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PET_NAME_PREFIX;
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PRICE_PREFIX;
-import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.VACCINATION_PREFIX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -208,12 +207,10 @@ public class AddressBookParserTest {
                 colorContainsKeywordsPredicate,
                 petNameContainsKeywordsPredicate,
                 priceContainsKeywordsPredicate,
-                speciesContainsKeywordsPredicate,
-                vaccinationStatusPredicate);
+                speciesContainsKeywordsPredicate);
         String input = FilterPetCommand.COMMAND_WORD + " " + COLOR_PREFIX + "/grey "
                 + PET_NAME_PREFIX + "/ashy "
-                + PRICE_PREFIX + "/5.5 "
-                + VACCINATION_PREFIX + "/true";
+                + PRICE_PREFIX + "/5.5 ";
         assertEquals(parser.parseCommand(input), command);
     }
 
