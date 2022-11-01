@@ -78,10 +78,7 @@ public class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new Friday(model.getFriday()), new UserPrefs());
-        expectedModel.setStudent(firstStudent, editedStudent);
-
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(remarkCommand, model, expectedMessage, model);
     }
 
     @Test

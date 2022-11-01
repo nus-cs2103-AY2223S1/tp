@@ -42,7 +42,7 @@ public class GradesList {
      * @param newGrade
      */
     public static void editGrade(GradesList gradesList, Grade newGrade) {
-        String key = newGrade.examName;
+        String key = newGrade.getExamName();
         gradesList.gradesMap.put(key, newGrade);
     }
 

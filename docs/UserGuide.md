@@ -68,6 +68,12 @@ type fast, FRIDAY can get your contact management tasks done faster than traditi
 
 </div>
 
+### Clearing all existing data: `clear`
+
+Clears all existing data in FRIDAY, resulting in an empty Student list.
+
+Format: `clear`
+
 ### Adding a student: `add`
 
 Adds a student to FRIDAY, with the given name, Telegram handle, consultation date, Mastery Check date, and tags.

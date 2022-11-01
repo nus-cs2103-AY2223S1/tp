@@ -1,5 +1,6 @@
 package friday.logic.commands;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import friday.commons.core.Messages;
@@ -18,6 +19,8 @@ public class MarkMasteryCheckCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
     public static final String MESSAGE_ALREADY_MARKED = "'s Mastery Check has already been marked as passed!";
+    public static final String MESSAGE_CANNOT_PASS = "'s Mastery Check cannot be marked as passed as the date(%s) has"
+            + " not been reached yet. (Today's date: %s)";
 
     private Index index;
 
@@ -36,6 +39,10 @@ public class MarkMasteryCheckCommand extends Command {
         Student studentToMark = lastShownList.get(index.getZeroBased());
         if (studentToMark.getMasteryCheck().getIsPassed()) {
             throw new CommandException(studentToMark.getName() + MESSAGE_ALREADY_MARKED);
+        } else if (!studentToMark.getMasteryCheck().canPass()) {
+            String str = String.format(MESSAGE_CANNOT_PASS, studentToMark.getMasteryCheck().getValue(),
+                    LocalDate.now());
+            throw new CommandException(studentToMark.getName() + str);
         } else {
             studentToMark.getMasteryCheck().markAsPassed();
         }
