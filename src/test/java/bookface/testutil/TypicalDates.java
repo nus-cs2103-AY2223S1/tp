@@ -4,6 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * A utility class containing a typical date {@code Date} object to be used in tests.
+ */
 public class TypicalDates {
 
 
