@@ -120,7 +120,12 @@ public class JsonAdaptedPet {
         if (color == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Color.class.getSimpleName()));
         }
-        final Color modelColor = new Color(color);
+        final Color modelColor;
+        if (!color.matches("[a-zA-Z]+")) {
+            modelColor = new Color("");
+        } else {
+            modelColor = new Color(color);
+        }
 
         if (colorPattern == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
