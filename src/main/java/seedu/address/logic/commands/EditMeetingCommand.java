@@ -23,7 +23,7 @@ import seedu.address.model.person.Name;
  * Edits the details of an existing meeting in the address book.
  */
 public class EditMeetingCommand extends Command {
-    public static final String COMMAND_WORD = "editm";
+    public static final String COMMAND_WORD = "editM";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the meeting identified "
             + "by the index number used in the displayed meeting list. "

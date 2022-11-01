@@ -12,7 +12,7 @@ import seedu.address.model.person.Name;
  */
 public class ViewListingClientsCommand extends Command {
 
-    public static final String COMMAND_WORD = "listingClients";
+    public static final String COMMAND_WORD = "listLC";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views interested clients of this listing. "
             + "Parameters: "

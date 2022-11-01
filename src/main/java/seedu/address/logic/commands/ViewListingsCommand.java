@@ -10,7 +10,7 @@ import seedu.address.model.Model;
  */
 public class ViewListingsCommand extends Command {
 
-    public static final String COMMAND_WORD = "listings";
+    public static final String COMMAND_WORD = "listL";
 
     public static final String MESSAGE_SUCCESS = "Listed all listings";
 
