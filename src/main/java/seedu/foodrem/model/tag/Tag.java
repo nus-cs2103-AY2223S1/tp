@@ -1,7 +1,6 @@
 package seedu.foodrem.model.tag;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Tag in FoodRem.

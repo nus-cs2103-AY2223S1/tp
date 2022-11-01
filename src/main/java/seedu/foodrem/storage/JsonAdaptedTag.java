@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.foodrem.model.tag.Tag;
-import seedu.foodrem.model.tag.TagName;
 
 /**
  * Jackson-friendly version of {@link Tag}.
