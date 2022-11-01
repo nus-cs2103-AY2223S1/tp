@@ -165,9 +165,6 @@ public class ParserUtil {
         requireNonNull(location);
         logger.fine("Parsing location: " + location);
         String trimmedLocation = location.trim();
-        if (!Email.isValidEmail(trimmedLocation)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
         return new Location(trimmedLocation);
     }
 
