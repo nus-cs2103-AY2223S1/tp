@@ -163,8 +163,6 @@ Adds a bill attached to an appointment with input information including amount a
 
 * A bill date must be in the format `yyyy-MM-dd`, eg. `2022-11-12`.
 
-* A bill date before appointment date is allowed as there may be reservation fee.
-
 #### Command word
 
 `addbill`, `ab`
