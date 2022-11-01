@@ -25,7 +25,6 @@ public class RemindCommandTest {
 
     @Test
     public void execute_noUpcomingInterviews() {
-        UpcomingInterviewPredicateStub predicate = new UpcomingInterviewPredicateStub();
         CommandResult expectedCommandResult = new CommandResult(SHOWING_REMIND_MESSAGE, true, false, false);
         RemindCommandStub command = new RemindCommandStub();
         assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
@@ -37,7 +36,6 @@ public class RemindCommandTest {
         Model localModel = new ModelManager(getTypicalApplicationBookWithUpcomingInterview(), new UserPrefs());
         Model localExpectedModel = new ModelManager(getTypicalApplicationBookWithUpcomingInterview(), new UserPrefs());
 
-        UpcomingInterviewPredicateStub predicate = new UpcomingInterviewPredicateStub();
         CommandResult expectedCommandResult = new CommandResult(SHOWING_REMIND_MESSAGE, true, false, false);
         RemindCommandStub command = new RemindCommandStub();
         assertCommandSuccess(command, localModel, expectedCommandResult, localExpectedModel);

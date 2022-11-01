@@ -16,7 +16,7 @@ public class InterviewDate {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the format of yyyy-mm-dd with proper month and leap year support";
-    private static final DateTimeFormatter COMMAND_DATE_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
+    public static final DateTimeFormatter COMMAND_DATE_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
     private static final DateTimeFormatter DISPLAY_DATE_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy");
     public final LocalDate value;
 
