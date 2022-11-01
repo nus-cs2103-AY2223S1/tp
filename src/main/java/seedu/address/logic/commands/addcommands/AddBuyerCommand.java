@@ -24,7 +24,7 @@ import seedu.address.model.person.Buyer;
  * If this buyer comes with multiple orders (where one order can have a pet as well), these orders and pets
  * will be also added to their respective unique lists.
  */
-public class AddBuyerCommand extends Command {
+public class AddBuyerCommand extends AddPersonCommand {
 
     public static final String COMMAND_WORD = "add-b";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a buyer to the address book. "

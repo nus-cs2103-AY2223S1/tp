@@ -22,7 +22,7 @@ import seedu.address.model.pet.Pet;
 /**
  * Adds a supplier to the address book.
  */
-public class AddSupplierCommand extends Command {
+public class AddSupplierCommand extends AddPersonCommand {
 
     public static final String COMMAND_WORD = "add-s";
 
