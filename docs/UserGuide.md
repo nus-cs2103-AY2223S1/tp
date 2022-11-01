@@ -399,6 +399,8 @@ Show the percentage of tasks whose label(s) contain any of the given keywords th
 
 Format: `progressT KEYWORD [MORE_KEYWORDS]`
 
+* The filter is case-sensitive, e.g. `cs2103t` will not match `CS2103T`.
+
 * Both complete and incomplete tasks are listed. 
 
 * Tasks with deadlines that are already past are also listed.

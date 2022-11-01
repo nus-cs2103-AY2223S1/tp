@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 
@@ -20,6 +21,7 @@ public class TaskProgressCommand extends Command {
             + "Example: " + COMMAND_WORD + " CS2101 CS2103T";
 
     public static final String MESSAGE_SHOW_PROGRESS_SUCCESS = "Task Completion: %1$.1f %%";
+    public static final String MESSAGE_SHOW_NO_TASKS = "No tasks under this tag!";
 
     private final TaskContainsKeywordsPredicate predicate;
 
@@ -28,9 +30,13 @@ public class TaskProgressCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         double percentageComplete = model.getPercentageCompletion(predicate);
+
+        if (percentageComplete < 0) {
+            throw new CommandException(MESSAGE_SHOW_NO_TASKS);
+        }
 
         return new CommandResult(
                 String.format(MESSAGE_SHOW_PROGRESS_SUCCESS,
