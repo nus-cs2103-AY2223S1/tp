@@ -57,7 +57,7 @@ public class StudentCard extends UiPart<Region> {
         email.setText(student.getEmail().value);
         telegram.setText(student.getTelegram().telegram);
         response.setText("Response: " + student.getResponse().value);
-        attendance.setText("Attendance: " + student.getAttendance().attendance + "/10");
+        attendance.setText("Attendance: " + student.getAttendance().attendance);
         if (student.needsHelp()) {
             applyStyleToHelpTag();
         } else {
