@@ -16,7 +16,11 @@ public class Weight implements Comparable<Weight> {
      * @param value The weight in double.
      */
     public Weight(double value) {
-        this.value = value;
+        if (value < 0) {
+            this.value = 0;
+        } else {
+            this.value = value;
+        }
     }
 
     @Override

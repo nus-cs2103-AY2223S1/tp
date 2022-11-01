@@ -66,19 +66,19 @@ public class PredicateParser {
         }
         String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
-            case ADDRESS_PREFIX:
-                return new AddressContainsKeywordsPredicate<>(Arrays.asList(query));
-            case EMAIL_PREFIX:
-                return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
-            case LOC_PREFIX:
-                return new LocationContainsKeywordsPredicate<>(Arrays.asList(query));
-            case NAME_PREFIX:
-                return new NameContainsKeywordsPredicate<>(Arrays.asList(query));
-            case PHONE_PREFIX:
-                return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
-            default:
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        case ADDRESS_PREFIX:
+            return new AddressContainsKeywordsPredicate<>(Arrays.asList(query));
+        case EMAIL_PREFIX:
+            return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
+        case LOC_PREFIX:
+            return new LocationContainsKeywordsPredicate<>(Arrays.asList(query));
+        case NAME_PREFIX:
+            return new NameContainsKeywordsPredicate<>(Arrays.asList(query));
+        case PHONE_PREFIX:
+            return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
+        default:
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
 
@@ -95,19 +95,19 @@ public class PredicateParser {
         }
         String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
-            case ADDRESS_PREFIX:
-                return new AddressContainsKeywordsPredicate<>(Arrays.asList(query));
-            case EMAIL_PREFIX:
-                return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
-            case LOC_PREFIX:
-                return new LocationContainsKeywordsPredicate<>(Arrays.asList(query));
-            case NAME_PREFIX:
-                return new NameContainsKeywordsPredicate<>(Arrays.asList(query));
-            case PHONE_PREFIX:
-                return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
-            default:
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        case ADDRESS_PREFIX:
+            return new AddressContainsKeywordsPredicate<>(Arrays.asList(query));
+        case EMAIL_PREFIX:
+            return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
+        case LOC_PREFIX:
+            return new LocationContainsKeywordsPredicate<>(Arrays.asList(query));
+        case NAME_PREFIX:
+            return new NameContainsKeywordsPredicate<>(Arrays.asList(query));
+        case PHONE_PREFIX:
+            return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
+        default:
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
 
@@ -124,19 +124,19 @@ public class PredicateParser {
         }
         String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
-            case ADDRESS_PREFIX:
-                return new AddressContainsKeywordsPredicate<>(Arrays.asList(query));
-            case EMAIL_PREFIX:
-                return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
-            case LOC_PREFIX:
-                return new LocationContainsKeywordsPredicate<>(Arrays.asList(query));
-            case NAME_PREFIX:
-                return new NameContainsKeywordsPredicate<>(Arrays.asList(query));
-            case PHONE_PREFIX:
-                return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
-            default:
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        case ADDRESS_PREFIX:
+            return new AddressContainsKeywordsPredicate<>(Arrays.asList(query));
+        case EMAIL_PREFIX:
+            return new EmailContainsKeywordsPredicate<>(Arrays.asList(query));
+        case LOC_PREFIX:
+            return new LocationContainsKeywordsPredicate<>(Arrays.asList(query));
+        case NAME_PREFIX:
+            return new NameContainsKeywordsPredicate<>(Arrays.asList(query));
+        case PHONE_PREFIX:
+            return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
+        default:
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
 
@@ -153,19 +153,19 @@ public class PredicateParser {
         }
         String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
-            case COLOR_PREFIX:
-                return new ColorContainsKeywordsPredicate<>(Arrays.asList(query));
-            case PET_NAME_PREFIX:
-                return new PetNameContainsKeywordsPredicate<>(Arrays.asList(query));
-            case PRICE_PREFIX:
-                return new PriceContainsKeywordsPredicate<>(Arrays.asList(Double.parseDouble(query)));
-            case SPECIES_PREFIX:
-                return new SpeciesContainsKeywordsPredicate<>(Arrays.asList(query));
-            case VACCINATION_PREFIX:
-                return new VaccinationStatusPredicate<>(Boolean.parseBoolean(query));
-            default:
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
+        case COLOR_PREFIX:
+            return new ColorContainsKeywordsPredicate<>(Arrays.asList(query));
+        case PET_NAME_PREFIX:
+            return new PetNameContainsKeywordsPredicate<>(Arrays.asList(query));
+        case PRICE_PREFIX:
+            return new PriceContainsKeywordsPredicate<>(Arrays.asList(Double.parseDouble(query)));
+        case SPECIES_PREFIX:
+            return new SpeciesContainsKeywordsPredicate<>(Arrays.asList(query));
+        case VACCINATION_PREFIX:
+            return new VaccinationStatusPredicate<>(Boolean.parseBoolean(query));
+        default:
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
         }
     }
 
@@ -182,35 +182,33 @@ public class PredicateParser {
         }
         String query = nameKeywords[1].trim();
         switch (nameKeywords[0]) {
-            case ADDITIONAL_REQUEST_PREFIX:
-                return new AdditionalRequestPredicate<>(Arrays.asList(query));
-            case ORDER_STATUS_PREFIX:
-                if (!OrderStatus.isValidOrderStatus(query)) {
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
-                }
-                if (query.equals(OrderStatus.DELIVERING.toString())) {
-                    return new OrderStatusPredicate<>(OrderStatus.DELIVERING);
-                } else if (query.equals(OrderStatus.NEGOTIATING.toString())) {
-                    return new OrderStatusPredicate<>(OrderStatus.NEGOTIATING);
-                } else if (query.equals(OrderStatus.PENDING.toString())) {
-                    return new OrderStatusPredicate<>(OrderStatus.PENDING);
-                }
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
-            case PRICE_RANGE_PREFIX:
-                String[] prices = query.split("-");
-                Price lowerBound = new Price(Double.parseDouble(prices[0]));
-                Price upperBound = new Price(Double.parseDouble(prices[1]));
+        case ADDITIONAL_REQUEST_PREFIX:
+            return new AdditionalRequestPredicate<>(Arrays.asList(query));
+        case ORDER_STATUS_PREFIX:
+            if (!OrderStatus.isValidOrderStatus(query)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FilterOrderCommand.MESSAGE_USAGE));
+            }
+            if (query.equals(OrderStatus.DELIVERING.toString())) {
+                return new OrderStatusPredicate<>(OrderStatus.DELIVERING);
+            } else if (query.equals(OrderStatus.NEGOTIATING.toString())) {
+                return new OrderStatusPredicate<>(OrderStatus.NEGOTIATING);
+            } else if (query.equals(OrderStatus.PENDING.toString())) {
+                return new OrderStatusPredicate<>(OrderStatus.PENDING);
+            }
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+        case PRICE_RANGE_PREFIX:
+            String[] prices = query.split("-");
+            Price lowerBound = new Price(Double.parseDouble(prices[0]));
+            Price upperBound = new Price(Double.parseDouble(prices[1]));
 
-                if (lowerBound.getPrice() > upperBound.getPrice()) {
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
-                }
-                return new PriceRangePredicate<>(lowerBound, upperBound);
-            default:
+            if (lowerBound.getPrice() > upperBound.getPrice()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+            }
+            return new PriceRangePredicate<>(lowerBound, upperBound);
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         }
     }
 }
