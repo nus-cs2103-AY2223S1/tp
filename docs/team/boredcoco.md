@@ -9,22 +9,20 @@ PetCode - is a desktop address book application used for coordinating pet delive
 
 Given below are my contributions to the project.
 
-* **New Feature**: *to be added*.
-    * What it does: *to be added*.
-    * Justification: *to be added*.
-    * Highlights: *to be added*.
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: *Filter fir relevant Orders or Pets*.
+    * What it does: *Using specific attributes, the user can find Pets or Orders matching those attributes*.
+    * Justification: *The user may want to take a quick look at Orders or Pets that have specific attributes so that he or she can bulk buy from a Supplier*
+    * Highlights: *This feature supports entering multiple fields*.
 
 * **New Feature**: *to be added*.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=boredcoco&breakdown=true)
 
 * **Project management**:
-    * *to be added*.
+    * *Managed testing and writing test code [\#280](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/280#issue-1428340017)*.
 
 * **Enhancements to existing features**:
-  * Find a Buyer, Supplier or Deliver
-  * Filter for relevant Orders or Pets
+  * Find a Buyer, Supplier or Deliver instead of simply finding a person.
 
 * **Documentation**:
     * User Guide:
@@ -43,12 +41,10 @@ Given below are my contributions to the project.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): *to be added*.
-    * Contributed to forum discussions (examples: *to be added*.
-    * Reported bugs and suggestions for other teams in the class (examples: *to be added*.)
+    * Reported bugs and suggestions for other teams in the class (examples: [/#4](https://github.com/boredcoco/ped/issues/1#issue-1426879221).)
     * Some parts of the history feature I added was adopted by several other class mates (*to be added*)
 
 * **Tools**:
-    * Integrated a third party library (Natty) to the project (*to be added*)
-    * Integrated a new Github plugin (CircleCI) to the team repo
+    * *To be added*
 
 * _{you can add/remove categories in the list above}_

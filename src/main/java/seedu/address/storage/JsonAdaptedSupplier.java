@@ -84,7 +84,6 @@ class JsonAdaptedSupplier {
         if (!PersonCategory.isValidPersonCategory(personCategory)) {
             throw new IllegalValueException(PersonCategory.MESSAGE_CONSTRAINTS);
         }
-        final PersonCategory modelPersonCategory = PersonCategory.getFromString(personCategory);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -118,6 +117,6 @@ class JsonAdaptedSupplier {
         }
         final Address modelAddress = new Address(address);
 
-        return new Supplier(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelIds);
+        return new Supplier(modelName, modelPhone, modelEmail, modelAddress, modelIds);
     }
 }

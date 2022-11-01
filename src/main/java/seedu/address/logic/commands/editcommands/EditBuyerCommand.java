@@ -64,7 +64,7 @@ public class EditBuyerCommand extends EditCommand {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(buyerToEdit.getAddress());
         List<UniqueId> updateOrders = buyerToEdit.getOrderIds();
 
-        return new Buyer(updatedPersonCategory, updatedName, updatedPhone, updatedEmail, updatedAddress, updateOrders);
+        return new Buyer(updatedName, updatedPhone, updatedEmail, updatedAddress, updateOrders);
     }
 
 }

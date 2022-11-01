@@ -18,20 +18,20 @@ public class Buyer extends Person {
     /**
      * Constructs a Buyer object.
      *
-     * @param personCategory By default, it should be PersonCategory.Buyer
      * @param name           The name of this person.
      * @param phone          The phone number in string.
      * @param email          The email, which will be checked against regex.
      * @param address        The address of this person, which will be checked against the regex.
+     * @param location       The location (country) of this person.
      * @param orders         The orders that this buyer requests.
      */
-    public Buyer(PersonCategory personCategory,
-                 Name name,
+    public Buyer(Name name,
                  Phone phone,
                  Email email,
                  Address address,
+                 Location location,
                  Collection<? extends UniqueId> orders) {
-        super(PersonCategory.BUYER, name, phone, email, address);
+        super(PersonCategory.BUYER, name, phone, email, address, location);
         if (orders != null) {
             this.orders.addAll(orders);
         }

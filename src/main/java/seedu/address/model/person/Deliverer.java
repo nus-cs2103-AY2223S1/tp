@@ -16,20 +16,20 @@ public class Deliverer extends Person {
     /**
      * Constructs a deliverer object.
      *
-     * @param personCategory By default, it should be PersonCategory.Deliverer
      * @param name The name of this person.
      * @param phone The phone number in string.
      * @param email The email, which will be checked against regex.
      * @param address The address of this person, which will be checked against the regex.
+     * @param location The location (country) of this person.
      * @param orders The orders that this deliverer is dispatched.
      */
-    public Deliverer(PersonCategory personCategory,
-                     Name name,
+    public Deliverer(Name name,
                      Phone phone,
                      Email email,
                      Address address,
+                     Location location,
                      List<UniqueId> orders) {
-        super(PersonCategory.DELIVERER, name, phone, email, address);
+        super(PersonCategory.DELIVERER, name, phone, email, address, location);
         if (orders != null) {
             this.orders.addAll(orders);
         }

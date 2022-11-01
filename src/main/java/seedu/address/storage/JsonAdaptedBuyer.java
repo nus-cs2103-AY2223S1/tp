@@ -117,6 +117,6 @@ class JsonAdaptedBuyer {
         }
         final Address modelAddress = new Address(address);
 
-        return new Buyer(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelIds);
+        return new Buyer(modelName, modelPhone, modelEmail, modelAddress, modelIds);
     }
 }
