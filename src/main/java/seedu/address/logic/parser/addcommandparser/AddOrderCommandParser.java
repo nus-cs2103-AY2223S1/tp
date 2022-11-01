@@ -35,7 +35,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
                     AddOrderCommand.MESSAGE_USAGE_EXISTING_BUYER));
         }
 
-        String indexStr = argMultimap.getValue(PREFIX_INDEX).orElse("");
+        String indexStr = argMultimap.getValue(PREFIX_INDEX).orElse("").split(" ")[0];
         Index index = ParserUtil.parseIndex(indexStr);
         Order order = ParserUtil.parseOrder(userInput, true);
 

@@ -37,7 +37,7 @@ public class AddPetCommandParser implements Parser<AddPetCommand> {
                     AddPetCommand.MESSAGE_USAGE_EXISTING_SUPPLIER));
         }
 
-        String indexStr = argMultimap.getValue(PREFIX_INDEX).orElse("");
+        String indexStr = argMultimap.getValue(PREFIX_INDEX).orElse("").split(" ")[0];
         Index index = ParserUtil.parseIndex(indexStr);
         Pet pet = ParserUtil.parsePet(args, true);
 
