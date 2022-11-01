@@ -222,7 +222,7 @@ Format: `list_contact`
 
 #### Finding contacts by name: `find_contact`
 
-> Find contacts whose names contain any of the given keywords.
+> Finds contacts whose names contain any of the given keywords.
 
 Format: `find_contact KEYWORD [MORE_KEYWORDS]`
 
