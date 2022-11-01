@@ -32,16 +32,16 @@ Here are the symbols and text styles to look out for while using this guide:
 
 | Symbol               | Meaning                            |
 |----------------------|------------------------------------|
-| :information-source: | Important information to take note |
+| :information_source: | Important information to take note |
 | :bulb:               | Tips for all users                 |
 | :star:               | Tips for advanced users            |
 | :exclamation:        | Critical information to be wary of |
 
-| Text Style             | Meaning                                                          |
-|------------------------|------------------------------------------------------------------|
-| [Link to glossary      | Clickable link to navigate to a section in the guide](#glossary) |
-| `text with background` | Text relevant to the commands                                    |
-| <kbd>Esc</kbd>         | Keyboard button                                                  |
+| Text Style                    | Meaning                                              |
+|-------------------------------|------------------------------------------------------|
+| [Link to glossary](#glossary) | Clickable link to navigate to a section in the guide |
+| `text with background`        | Text relevant to the commands                        |
+| <kbd>Esc</kbd>                | Keyboard button                                      |
 
 
 
