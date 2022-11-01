@@ -2,8 +2,6 @@ package hobbylist.model.activity;
 
 import java.util.function.Predicate;
 
-import hobbylist.logic.commands.RateAboveCommand;
-
 /**
  * Tests that rate of activity is higher than request.
  */

@@ -45,10 +45,10 @@ public class RateAboveCommandTest {
     }
 
     @Test
-    public void execute_zero_allActivityFound() {
-        String expectedMessage = RateAboveCommand.RESPOND_MESSAGE + "2" + ".";
-        RatePredicate predicate = new RatePredicate(2);
-        RateAboveCommand command = new RateAboveCommand(2);
+    public void execute_five_zeroActivitiesFound() {
+        String expectedMessage = RateAboveCommand.RESPOND_MESSAGE + "5" + ".";
+        RatePredicate predicate = new RatePredicate(5);
+        RateAboveCommand command = new RateAboveCommand(5);
         expectedModel.updateFilteredActivityList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredActivityList());
