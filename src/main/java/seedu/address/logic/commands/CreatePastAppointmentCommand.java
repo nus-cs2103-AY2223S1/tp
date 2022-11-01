@@ -30,7 +30,7 @@ public class CreatePastAppointmentCommand extends Command {
             + PREFIX_MEDICATION + "ibuprofen "
             + PREFIX_DIAGNOSIS + "headache, medicine given for 3 days ";
     public static final String MESSAGE_SUCCESS = "Past appointment created for %1$s.\n";
-    public final static String DUPLICATE_APPOINTMENT_MESSAGE = "Duplicate past appointments are not allowed.";
+    public static final String DUPLICATE_APPOINTMENT_MESSAGE = "Duplicate past appointments are not allowed.";
     private final Index index;
     private final PastAppointment appt;
 

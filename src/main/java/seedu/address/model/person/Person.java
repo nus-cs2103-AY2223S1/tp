@@ -58,6 +58,11 @@ public class Person {
         this.upcomingAppointment = Optional.ofNullable(upcomingAppointment);
     }
 
+    /**
+     * Checks to ensure the patient has the exact past appointment.
+     * @param appt the appointment to check the patient's past appointments against.
+     * @return true if he has that past appointment, false otherwise.
+     */
     public boolean hasPastAppointment(PastAppointment appt) {
         int length = pastAppointments.size();
 
@@ -101,7 +106,7 @@ public class Person {
     /**
      * Removes the most recent {@code PastAppointment} from the stored list of {@code PastAppointment}s.
      */
-    public void deleteMostRecentPastAppointment() throws CommandException {
+    public void deleteMostRecentPastAppointment() {
         // Ensure not deleting from an empty list,
         // Should not trigger as getPastAppointmentCount() should be called beforehand to check.
         if (getPastAppointmentCount() <= 0) {
