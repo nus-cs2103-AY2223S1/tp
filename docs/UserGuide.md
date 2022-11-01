@@ -525,7 +525,7 @@ This allows you to view all Events that have been previously added.
 
 Format: `allEvents`
 
-![result for 'listEventsSample'](images/ShowAllEvents.png)
+![result for 'listEventsSample'](images/allEventsSample.png)
 
 ### Searching for an Event : `findEvent`
 
