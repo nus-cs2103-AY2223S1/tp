@@ -20,7 +20,7 @@ internship management tasks done faster than traditional GUI apps.
 
 3. Copy the file to the folder you want to use as the _home folder_ for InTrack.
 
-4. Launch the app by double-clicking the file by using the command `java -jar InTrack.jar` in your terminal. The GUI 
+4. Launch the app by double-clicking the file or by using the command `java -jar InTrack.jar` in your terminal. The GUI 
    similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
