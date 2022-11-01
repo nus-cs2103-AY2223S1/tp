@@ -107,6 +107,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPatient(Name name) {
+        requireNonNull(name);
+        return healthContact.getPatientList().stream().anyMatch(patient -> patient.getName().isSameName(name));
+    }
+
+    @Override
     public boolean hasPatientWithExactlySameName(Patient patient) {
         requireNonNull(patient);
         return hasPatientWithExactlySameName(patient.getName());
@@ -118,12 +124,6 @@ public class ModelManager implements Model {
         return healthContact.getPatientList().stream()
                 .map(p -> p.getName())
                 .anyMatch(n -> n.equals(name));
-    }
-
-    @Override
-    public boolean hasPatient(Name name) {
-        requireNonNull(name);
-        return healthContact.getPatientList().stream().anyMatch(patient -> patient.getName().isSameName(name));
     }
 
     @Override

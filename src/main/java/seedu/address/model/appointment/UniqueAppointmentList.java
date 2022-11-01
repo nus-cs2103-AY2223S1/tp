@@ -61,7 +61,6 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
             throw new AppointmentNotFoundException();
         }
 
-//        boolean hasNewAppointment = internalList.stream().anyMatch(a -> a.equals(editedAppointment));
         boolean hasNewAppointment = internalList.stream().filter(a -> !a.equals(target))
                 .anyMatch(a -> a.equals(editedAppointment));
         if (hasNewAppointment) {

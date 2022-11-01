@@ -17,8 +17,9 @@ public class Slot {
     public static final String MESSAGE_CONSTRAINTS =
             "Slot should be like 'yyyy-MM-dd HH:mm'";
 
-    public final LocalDateTime localDateTime;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    public final LocalDateTime localDateTime;
 
     /**
      * Constructs a {@code Slot}.

@@ -10,9 +10,7 @@ import seedu.address.model.patient.Name;
  * Represents an Appointment of a patient in the HealthConnect
  */
 public class Appointment {
-    /**
-     * The FOREIGN KEY to identify a patient
-     */
+
     private final Name name;
     private final MedicalTest medicalTest;
     private final Slot slot;
@@ -45,6 +43,9 @@ public class Appointment {
         return doctor;
     }
 
+    /**
+     * Returns true if two appointments have same information.
+     */
     public boolean isSameAppointment(Appointment appointment) {
         return appointment != null
                 && this.name.isSameName(appointment.getName())
