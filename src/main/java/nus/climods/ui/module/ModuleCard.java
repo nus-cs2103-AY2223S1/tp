@@ -73,7 +73,7 @@ public class ModuleCard extends UiPart<Region> {
     private VBox lessonInfo;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ModuleCard} with the given {@code module} to display.
      */
     public ModuleCard(Module module) {
         super(FXML);

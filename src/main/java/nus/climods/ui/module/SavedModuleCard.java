@@ -31,7 +31,7 @@ public class SavedModuleCard extends UiPart<Region> {
     private Label lessonsData;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code SavedModuleCard} with the given {@code UserModule} to display.
      */
     public SavedModuleCard(UserModule module) {
         super(FXML);
