@@ -64,7 +64,7 @@ public class ArgumentMultimap {
      * @return true if 2 or more prefixes are stored
      */
     public boolean containsMultiplePrefix() {
-        Integer sizeOffSet = argMultimap.size() - 1;
-        return sizeOffSet > 1;
+        Integer sizeOffset = argMultimap.size() - 1;
+        return sizeOffset > 1;
     }
 }
