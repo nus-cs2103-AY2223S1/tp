@@ -13,9 +13,9 @@ import javafx.collections.ObservableMap;
 import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.link.exceptions.DuplicateLinkException;
 import seedu.clinkedin.model.person.exceptions.DuplicateNoteException;
-import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
+import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 
 
 /**
