@@ -76,7 +76,7 @@ If you can type fast, Plannit can help you track your module information and tas
 </div>
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**
-Features marked with * can only be utilised when users are at the home page.
+Features marked with * can only be utilised when you are at the home page.
 </div>
 
 ## 2. Features
@@ -85,7 +85,7 @@ Features marked with * can only be utilised when users are at the home page.
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* You are to include the parameter in the command that are labelled in `UPPER_CASE`.<br>
   e.g. in `add m/MODULE`, `MODULE` is a parameter which can be used as `add m/MODULE`.
 
 * Items in square brackets are optional. The `*` after a set of square brackets means that it can be used multiple times<br>
