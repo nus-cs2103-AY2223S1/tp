@@ -241,7 +241,7 @@ It is recommended to include the full name of the person instead of aliases for 
 [Back to Top](#sectresbook)
 
 #### Phone
-This is phone number of the person to be recorded in the SectresBook. This is a valid property to find a person by using the [`find` command](#locating-persons-by-name-or-contact-number-find).
+This is phone number of the person to be recorded in the SectresBook. This is a valid property to find a person by using the [`find` command](#locating-persons-by-name-or-contact-number--find).
 
 This property can be identified from the GUI by the icon of a mobile phone.
 
@@ -296,7 +296,7 @@ Although there is no constraint, please ensure that your screen can accommodate 
 [Back to Top](#sectresbook)
 
 #### Loan
-This is amount of money that is owed by a person, or is to be paid to that person. This is a property that cannot be manipulated directly, but can only be edited with the [`editLoan` command](#editing-loan-of-a-person-editloan).
+This is amount of money that is owed by a person, or is to be paid to that person. This is a property that cannot be manipulated directly, but can only be edited with the [`editLoan` command](#editing-loan-of-a-person--editloan).
 
 This property can be identified from the GUI by the icon of the hand holding two stacks of coins.
 
