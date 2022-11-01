@@ -25,7 +25,7 @@
     "religion" : "Christian",
     "surveys" : [ {
       "surveyName" : "Shopping Survey",
-      "isDone" : false
+      "isDone" : true
     } ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
