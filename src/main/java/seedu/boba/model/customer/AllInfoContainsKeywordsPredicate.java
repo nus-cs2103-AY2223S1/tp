@@ -10,8 +10,15 @@ import java.util.function.Predicate;
 public class AllInfoContainsKeywordsPredicate implements Predicate<Customer> {
     private final List<String> keywords;
 
-
+    /**
+     * Constructor for this class
+     * @param keywords
+     */
     public AllInfoContainsKeywordsPredicate(List<String> keywords) {
+        assert keywords != null;
+        if (keywords == null) {
+            throw new RuntimeException("Keyword list cannot be null");
+        }
         this.keywords = keywords;
     }
 

@@ -27,6 +27,7 @@ public class VersionedBobaBot extends BobaBot {
      * @param bobaBot BobaBot to be initialised as the first state
      */
     public VersionedBobaBot(ReadOnlyBobaBot bobaBot) {
+        assert bobaBot != null;
         this.currentStatePointer = 0;
         this.sizeLimit = 20; // Default value
         bobaBotStateList.add(this.currentStatePointer, bobaBot);
@@ -39,6 +40,7 @@ public class VersionedBobaBot extends BobaBot {
      * @param stepLimit maximum number of previous states tracked
      */
     public VersionedBobaBot(ReadOnlyBobaBot bobaBot, int stepLimit) {
+        assert bobaBot != null;
         this.currentStatePointer = 0;
         this.sizeLimit = stepLimit; // Default value
         bobaBotStateList.add(this.currentStatePointer, bobaBot);
