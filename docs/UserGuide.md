@@ -3,6 +3,48 @@ layout: page
 title: User Guide
 ---
 
+## Table of Contents
+- [ConnectNUS User Guide](#connectnus-user-guide)
+- [Navigating the User Guide](#navigating-the-user-guide)
+- [Quick Start](#quick-start)
+- [Features](#features)
+  - [Viewing help](#viewing-help)
+  - [User profile features](#user-features)
+    - [Adding user](#adding-user)
+    - [Editing user](#editing-user)
+    - [Deleting user](#deleting-user)
+  - [Contact list features](#contact-list-features)
+    - [Adding contacts](#adding-contacts)
+    - [Listing contacts](#listing-contacts)
+    - [Finding contacts](#finding-contacts)
+    - [Editing contacts](#editing-contacts)
+    - [Deleting contacts](#deleting-contacts)
+    - [Clearing all contacts](#clearing-all-contacts)
+  - [Module features](#module-features)
+    - [Editing user's modules](#edit-users-modules)
+    - [Editing contact's modules](#edit-contacts-modules)
+    - [Checking modules left](#checking-modules-left)
+    - [Refreshing to Next Semester](#refreshing-to-next-semester)
+  - [Timetable features](#timetable-features)
+    - [Adding lessons](#adding-lessons)
+    - [Listing lessons / Viewing timetable](#listing-lessons--viewing-timetable)
+    - [Deleting lessons](#deleting-lessons)
+  - [Filtering features](#filtering-features)
+    - [Filtering Tags](#filtering-tags)
+    - [Filtering Current Modules](#filtering-current-modules)
+    - [Filtering Planned Modules](#filtering-planned-modules)
+    - [Filtering Previous Modules](#filtering-previous-modules)
+  - [Data features](#data-features)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file) 
+  - [Other features](#other-features)
+    - [Undo / Redo](#undo--redo)
+    - [Copying GitHub URL](#copying-github-url)
+    - [Exiting the program](#exiting-the-program)
+- [Command Summary](#command-summary)
+
+---
+
 # ConnectNUS User Guide
 
 ConnectNUS is **designed for NUS Computer Science students** by providing a centralised platform for them to keep track
@@ -16,6 +58,10 @@ ConnectNUS is **optimised for use via a Command Line Interface** (CLI) while sti
 **Graphical User Interface** (GUI). For Computer Science students who are generally fast typers, ConnectNUS is an
 excellent platform for you to get your contact management tasks done quickly, so you can save time and effort
 finding out about your friends' schedules, and focus on getting your projects and module bidding done.
+
+
+## Navigating the User Guide
+
 
 ## Quick Start
 
@@ -52,10 +98,27 @@ Step 6: The GUI similar to the below should appear in a few seconds. Do note tha
 
 Step 7: Refer to the [Features](#features) section below to for more details on how to use ConnectNUS.
 
-## Navigating the User Guide
+## Features
+
+These are features implemented within ConnectNUS.
+
+These features are split into the following purposes:
+- [Help](#viewing-help)
+- [User profile features](#user-features)
+- [Contact list features](#contact-list-features)
+- [Module features](#module-features)
+- [Timetable features](#timetable-features)
+- [Filtering features](#filtering-features)
+- [Data features](#data-features)
+- [Other features](#other-features)
+
+You may refer to each individual section for more information on the purpose and function of these features.
+
+Each feature can be run using a command, and the commands follow the following format:
+
 **Notes about the command format:**
 
-* Words in `UPPER_CASE` are the parameters to be **supplied by the user**. \
+* Words in `UPPER_CASE` are the parameters to be **supplied by you**. \
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 * Items in square brackets are **optional**. \
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -68,66 +131,26 @@ Step 7: Refer to the [Features](#features) section below to for more details on 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. \
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-## Table of Contents
-- [Features](#features)
-  - [Data features](#data-features)
-    - [Saving the data](#saving-the-data)
-    - [Editing the data file](#editing-the-data-file)
-  - [User profile features](#user-features)
-    - [Adding user](#adding-user)
-    - [Editing user](#editing-user)
-    - [Deleting user](#deleting-user)
-  - [Address book features](#address-book-features)
-    - [Adding contacts](#adding-contacts)
-    - [Listing contacts](#listing-contacts)
-    - [Finding contacts](#finding-contacts)
-    - [Editing contacts](#editing-contacts)
-    - [Deleting contacts](#deleting-contacts)
-    - [Clearing all contacts](#clearing-all-contacts)
-  - [Module features](#module-features)
-    - [Editing user's modules](#edit-users-modules)
-    - [Editing contact's modules](#edit-contacts-modules)
-    - [Checking modules left](#checking-modules-left)
-    - [Next Semester](#next-semester)
-  - [Timetable features](#timetable-features)
-    - [Adding lessons](#adding-lessons)
-    - [Listing lessons / Viewing timetable](#listing-lessons--viewing-timetable)
-    - [Deleting lessons](#deleting-lessons)
-  - [Filtering features](#filtering-features)
-    - [Filtering Tags](#filtering-tags)
-    - [Filtering Current Modules](#filtering-current-modules)
-    - [Filtering Planned Modules](#filtering-planned-modules)
-    - [Filtering Previous Modules](#filtering-previous-modules)
-  - [Other features](#other-features)
-    - [Undo / Redo](#undo--redo--undo-redo)
-    - [GitHub URL button](#github-url-button)
-    - [Viewing help](#viewing-help)
-    - [Exiting the program](#exiting-the-program--exit)
-- [Command Summary](#command-summary)
 
----
+## Viewing help
 
-## Features
+Shows a message explaining how to access the help page.
 
-## Data features
+<img src="images/HelpWindow.png" width="800" />
 
-### Saving the data
-
-ConnectNUS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-
-### Editing the data file
-
-ConnectNUS data is saved as a JSON file `[JAR file location]/data/ConnectNUS.json`. Advanced users are welcome to update data directly by editing that data file.
-
-
-
-❗**Caution:** If your changes to the data file makes its format invalid, ConnectNUS will discard all data and start with an empty data file at the next run.
+Format: `help`
 
 [Scroll back to top](#table-of-contents)
 
 
 ## User features
+
+These are features that allow you to manage your profile in ConnectNUS, to keep track of your own details.
+
+You may:
+- [Add user](#adding-user)
+- [Edit user](#editing-user)
+- [Delete user](#deleting-user)
 
 ### Adding user
 
@@ -178,7 +201,17 @@ Format: `delete user`
 
 [Scroll back to top](#table-of-contents)
 
-## Address book features
+## Contact list features
+
+These are features that allow you to manage the list of persons in ConnectNUS, so you can keep track of the details you need.
+
+You may:
+- [Add contacts](#adding-contacts)
+- [List contacts](#listing-contacts)
+- [Find contacts](#finding-contacts)
+- [Edit contacts](#editing-contacts)
+- [Delete contacts](#deleting-contacts)
+- [Clear all contacts](#clearing-all-contacts)
 
 ### Adding contacts
 
@@ -199,7 +232,7 @@ Examples:
 
 ### Listing contacts
 
-Shows a list of all persons in your address book.
+Shows a list of all persons in your contact list, so you can view all your contacts.
 
 Format: `list`
 
@@ -209,7 +242,7 @@ Format: `list`
 
 ### Finding contacts
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose names contain any of the given keywords, for easy viewing of those you are looking for.
 
 Format: `find KEYWORD [MORE_KEYWORDS]…`
 
@@ -234,8 +267,6 @@ Edit a specified contact from your contact list.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [t/TAG]…`
 
-
-
 * Edits the contact at the specified `INDEX` with specified details.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -258,8 +289,6 @@ Deletes a specified contact from your contact list.
 
 Format: `delete INDEX`
 
-
-
 * Deletes the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -272,7 +301,7 @@ Examples:
 
 ### Clearing all contacts
 
-Deletes all contacts from your contact list with one command.
+Deletes all contacts from your contact list with one command, so you can an empty contact list to start with.
 
 Format: `clear`
 
@@ -283,9 +312,18 @@ Format: `clear`
 
 ## Module features
 
+These are features that allow you to manage the current, previous and planned modules that you or your contacts have.
+These features allow you to easily manage your academic progress and find people to collaborate with for modules.
+
+You may:
+- [Edit user's modules](#edit-users-modules)
+- [Edit contact's modules](#edit-contacts-modules)
+- [Check modules left](#checking-modules-left)
+- [Refresh to next semester](#refreshing-to-next-semester)
+
 ### Edit user's modules
 
-Directly edit your own module list by adding or deleting modules from the list.
+Directly edit your own module list by adding or deleting modules from the list, so you can keep track of your module plan.
 
 Format: `module user [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]… [rm/MODULE_TO_REMOVE]…`
 
@@ -305,7 +343,8 @@ Examples:
 
 ### Edit contact's modules
 
-Directly edit your contact's module list by adding or deleting modules from their list.
+Directly edit your contact's module list by adding or deleting modules from their list, so you can keep track of
+your friend's module plans and easily find contacts to collaborate with. 
 
 Format: `module INDEX [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]… [rm/MODULE_TO_REMOVE]…`
 
@@ -330,7 +369,8 @@ Examples:
 
 ### Checking Modules Left
 
-Check which modules you need to clear in order to fulfill core requirements or focus area requirements.
+Check which modules you need to clear in order to fulfill core requirements or focus area requirements, to quickly see
+the remaining modules you have yet to clear.
 
 Format: `modsleft INDEX`
 
@@ -361,9 +401,10 @@ Examples:
 
 [Scroll back to top](#table-of-contents)
 
-### Next Semester
+### Refreshing to Next Semester
 
-Shifts all the current modules in both the user and all persons in the contact list into their previous modules during a new semester.
+Shifts all the current modules in both the user and all persons in the contact list into their previous modules during a new semester,
+allowing you to quickly refresh ConnectNUS for all persons and user for the next semester of modules.
 
 Format: `nextsem`
 
@@ -376,6 +417,13 @@ Example:
 [Scroll back to top](#table-of-contents)
 
 ## Timetable features
+
+These features allow you to manage and view both yours and your contacts' lessons for the week, to easily plan and deconflict your schedules.
+
+You may:
+- [Add lessons](#adding-lessons)
+- [View timetable](#listing-lessons--viewing-timetable)
+- [Delete lessons](#deleting-lessons)
 
 ### Adding lessons
 
@@ -462,9 +510,19 @@ Examples:
 
 ## Filtering features
 
+These features allow you to only see the list of people adhering to the criteria set, so that you can view only those persons
+relevant.
+
+You may filter by:
+- [Tag](#filtering-tags)
+- [Current Module](#filtering-current-modules)
+- [Previous Module](#filtering-previous-modules)
+- [Planned Module](#filtering-planned-modules)
+
 ### Filtering Tags
 
-Filters the tags of contacts to return a list of persons with any of the tags specified by the user.
+Filters the tags of contacts to return a list of persons with any of the tags specified by you, so you can only view
+persons that are of a certain group specified by the tag.
 
 Format: `filtertag TAG_NAME [TAG_NAME]…`
 
@@ -473,7 +531,7 @@ Format: `filtertag TAG_NAME [TAG_NAME]…`
 
 Examples:
 
-* `filtertag friends` lists all contacts with a family tag.
+* `filtertag friends` lists all contacts with a friends tag.
 
 <img src="images/filtertag friends.png" width="800" />
 
@@ -485,7 +543,8 @@ Examples:
 
 ### Filtering Current Modules
 
-Filters the current modules of contacts to return a list of persons with any of the current modules specified by the user.
+Filters the current modules of contacts to return a list of persons with any of the current modules specified by you,
+so you can easily find groupmates or people to collaborate with.
 
 Format: `filtercurrmod CURRENT_MODULE [CURRENT_MODULE]…`
 
@@ -502,7 +561,8 @@ Examples:
 
 ### Filtering Previous Modules
 
-Filters the previous modules of contacts to return a list of persons with any of the previous modules specified.
+Filters the previous modules of contacts to return a list of persons with any of the previous modules specified,
+so you can easily find and consult people who have finish the module.
 
 Format: `filterprevmod PREVIOUS_MODULE [PREVIOUS_MODULE]…`
 
@@ -519,7 +579,8 @@ Examples:
 
 ### Filtering Planned Modules
 
-Filters the planned modules of contacts to return a list of persons with any of the planned modules specified.
+Filters the planned modules of contacts to return a list of persons with any of the planned modules specified, so you can
+arrange to take lessons together during module bidding.
 
 Format: `filterplanmod PLANNED_MODULE [PLANNED_MODULE]…`
 
@@ -534,11 +595,45 @@ Examples:
 
 [Scroll back to top](#table-of-contents)
 
+
+## Data features
+
+These features allow you to directly manipulate the data stored by ConnectNUS, so you can quickly view and edit yours or a person's
+data on the file, which will be reflected in ConnectNUS GUI.
+
+You may:
+- [Save data](#saving-the-data)
+- [Edit data](#editing-the-data-file)
+
+### Saving the data
+
+ConnectNUS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+[Scroll back to top](#table-of-contents)
+
+
+### Editing the data file
+
+ConnectNUS data is saved as a JSON file `[JAR file location]/data/ConnectNUS.json`. Advanced users are welcome to update data directly by editing that data file,
+so you can quickly manipulate the data based on areas you wish to edit.
+
+❗**Caution:** If your changes to the data file makes its format invalid, ConnectNUS will discard all data and start with an empty data file at the next run.
+
+[Scroll back to top](#table-of-contents)
+
+
 ## Other features
 
-### Undo / Redo : `Undo` `Redo`
+These are additional features implemented to improve the functionality of the application.
 
-Undo / Redo your latest action.
+You may:
+- [Undo / Redo](#undo--redo)
+- [Copy GitHub URL](#copying-github-url)
+- [Exit](#exiting-the-program)
+
+### Undo / Redo
+
+Undo / Redo your latest action, in case an error has been made.
 
 Format: `undo` `redo`
 
@@ -556,23 +651,17 @@ Examples:
 
 <img src="images/UndoRedoExample2.png" width="800" />
 
+[Scroll back to top](#table-of-contents)
 
-### GitHub URL button
+### Copying GitHub URL
 
-The copy GitHub Profile URL button copies the user or contact's GitHub profile URL into your clipboard which you can then paste into your browser.
+The copy GitHub Profile URL button copies the user or contact's GitHub profile URL into your clipboard which you can then paste into your browser, so you can view their profile.
 
 <img src="images/GithubButton.png" width="200" />
 
-### Viewing help
+[Scroll back to top](#table-of-contents)
 
-Shows a message explaining how to access the help page.
-
-<img src="images/HelpWindow.png" width="800" />
-
-Format: `help`
-
-
-### Exiting the program : `exit`
+### Exiting the program
 
 Exits the program.
 
@@ -581,7 +670,6 @@ Format: `exit`
 [Scroll back to top](#table-of-contents)
 
 ## Command summary
-
 
 <table>
   <tr>
