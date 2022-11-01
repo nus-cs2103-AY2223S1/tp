@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.application.commons.core.Messages;
 import seedu.application.commons.core.index.Index;
 import seedu.application.logic.commands.exceptions.CommandException;
 import seedu.application.model.Model;
