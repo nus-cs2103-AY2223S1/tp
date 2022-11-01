@@ -29,7 +29,7 @@ Given below are my contributions to the project.
   * Categorised fields by columns based on type of information.
   * Updated application icon.
   * Updated isRoomClean to a green/red icon signifying yes/no respectively.
-  * Enable text wrapping.
+  * Enabled text wrapping.
   * Allow Ui to be resizable.
 
 * **Documentation**:
@@ -38,12 +38,12 @@ Given below are my contributions to the project.
     * Added UiComponentsLabels.png.
     * Added component use table.
     * Added GuestBook icon.
-    * Update "FAQ" list.
-    * Update help message.
+    * Updated "FAQ" list.
+    * Updated help message.
 
   * Developer Guide:
     * Refactored Ui section.
-    * Update diagram under Ui section.
+    * Updated diagram under Ui section.
     * Added implementation of `add` and `edit` commands.
     * Added activity diagrams of `add` and `edit` commands.
     * Added acknowledgements for icons.
@@ -57,7 +57,7 @@ Given below are my contributions to the project.
   * Maintained issue trackers.
 
 * **Project management**:
-  * Add Github tags, milestones, assignee.
+  * Added Github tags, milestones, assignee.
   * Used Github issue tracker.
   * Followed the branching workflow.
   * Contributed to meetings by sharing screen and facilitating discussions.
