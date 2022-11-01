@@ -160,7 +160,7 @@ Format: `add-et n/EVENT NAME t/TRIP NAME`
 - The EVENT NAME must exist in the events list.
 
 Examples:
-- `add-et n/asd t/qwe` adds the event titled asd in the bucket list to the itinerary of the trip with the title qwe
+- `add-et n/Visit the Swiss Alps t/Trip to Switzerland` adds the event titled `Visit the Swiss Alps` in the bucket list to the itinerary of the trip with the title `Trip to Switzerland`.
 
 <div class="alert alert-block alert-success"><b>Use case: </b> <code>add-et</code> can be used to help you to plan your trip's itinerary. You can pick and choose any event that exists in your bucket list and add them into a specified trip's itinerary, which you can then view via the `select` command. </div>
 
@@ -168,13 +168,13 @@ Examples:
 Remove the specified event from the specified trip. The event will then be returned to the bucket list.
 
 Format: `delete-et n/EVENT NAME t/TRIP NAME`
-- Remove the event with the specified event titled EVENT NAME from the specified trip titled TRIP NAME
+- Remove the event with the specified event titled `EVENT NAME` from the specified trip titled `TRIP NAME`
 - Event is added to the bucket list.
 - The TRIP NAME must exist in the trips list.
 - The EVENT NAME must exist in the trip itinerary.
 
 Examples:
-- `delete-et n/asd t/qwe` remove the event titled asd from the itinerary of the trip titled qwe's and returns it to the bucket list.
+- `delete-et n/Visit the Swiss Alps t/Trip to Switzerland` remove the event titled `Visit the Swiss Alps` from the itinerary of the trip titled `Trip to Switzerland` and returns it to the bucket list.
 
 
 <div class="alert alert-block alert-success"><b>Use case: </b> Perhaps you have changed your mind about including a particular event in a specified trip's itinerary. You can then use <code>delete-et</code> to remove that event and put it back to your bucket list, where you can save it for future trips. </div>
@@ -191,7 +191,7 @@ Format: `select INDEX`
 ### Managing a Trip's Completion Status
 
 #### Marking trips as done: `mark`
-Mark the trip in the specified INDEX as done.
+Mark the trip in the specified INDEX as done. After the specified trip has been marked as completed, it will be moved downwards to the set of completed trips in the trip list. 
 
 ![MarkCompletedUi](images/MarkCompletedUi.png)
 
@@ -206,7 +206,7 @@ Examples:
 <div class="alert alert-block alert-success"><b>Use case: </b> Congratulations, you have just completed a trip! You can now mark it as completed using the <code>mark</code> command. </div>
 
 #### Marking trips as not done: `unmark`
-Mark the trip in the specified INDEX as not done.
+Mark the trip in the specified INDEX as not done. After the specified trip has been marked as incomplete, it will be moved upwards to the set of incomplete trips in the trip list. 
 
 Format: `unmark INDEX`
 - Marks the trip at the specified INDEX as not done.
@@ -315,5 +315,6 @@ Travelr data are saved locally automatically after any command that changes the 
 * **Bucket list**: List of events that haven't been added to any trips
 * **Displayed events list**: List of events being displayed in the right panel of the UI
 * **Displayed trips list**: List of trips being displayed in the left panel of the UI
+* **GUI**: Stands for Graphical User Interface, which refers to the user interface that you will be interacting with.
 
 
