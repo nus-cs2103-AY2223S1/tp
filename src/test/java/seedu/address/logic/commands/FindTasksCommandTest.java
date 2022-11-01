@@ -14,20 +14,14 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
-//import seedu.address.model.task.DescriptionContainsKeywordsPredicateTest;
 
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindTaskCommand}.
  */
 public class FindTasksCommandTest {
-    // private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    //private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model model = new ModelManager(getTypicalAddressBookForTask(), new UserPrefs());
- //   private Model expectedModel = model;
     private Model expectedModel = new ModelManager(getTypicalAddressBookForTask(), new UserPrefs());
-  //  private Model expectedModel = new ModelManager((model.getAddressBook()), new UserPrefs());
-
     @Test
     public void equals() {
 
@@ -52,7 +46,7 @@ public class FindTasksCommandTest {
         // null -> returns false
         assertFalse(findTaskFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different task -> returns false
         assertFalse(findTaskFirstCommand.equals(findTaskSecondCommand));
     }
 
@@ -68,12 +62,12 @@ public class FindTasksCommandTest {
 //        assertEquals(Collections.emptyList(), model.getFilteredTaskList());
 //    }
 
-    //need put assert equals the list of stuff..
+
     @Test
-    public void executeFullWord_tasksFound() {
+    public void executeFullWord_taskFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 1);
 
-        DescriptionContainsKeywordsPredicate predicate = preparePredicate("Task one");
+        DescriptionContainsKeywordsPredicate predicate = preparePredicate("task one");
         FindTasksCommand command = new FindTasksCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         command.execute(model);
@@ -92,7 +86,7 @@ public class FindTasksCommandTest {
 
     @Test
     public void executePartialMiddleWord_tasksFound() {
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 3);
         DescriptionContainsKeywordsPredicate predicate = preparePredicate("as ");
         FindTasksCommand command = new FindTasksCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
@@ -101,9 +95,29 @@ public class FindTasksCommandTest {
     }
 
     @Test
-    public void executeTaskWithAllLowerCase_noTaskFound() {
+    public void executeTaskWithAllLowerCase_taskFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 1);
         DescriptionContainsKeywordsPredicate predicate = preparePredicate("HoMEWorK");
+        FindTasksCommand command = new FindTasksCommand(predicate);
+        expectedModel.updateFilteredTaskList(predicate);
+        command.execute(model);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void executeTaskWithAllUpperCase_taskFound() {
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 1);
+        DescriptionContainsKeywordsPredicate predicate = preparePredicate("Past YeaR");
+        FindTasksCommand command = new FindTasksCommand(predicate);
+        expectedModel.updateFilteredTaskList(predicate);
+        command.execute(model);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void executeTaskWithAllUpperCase_taskFound2() {
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 1);
+        DescriptionContainsKeywordsPredicate predicate = preparePredicate("past year");
         FindTasksCommand command = new FindTasksCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         command.execute(model);

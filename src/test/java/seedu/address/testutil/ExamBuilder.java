@@ -8,7 +8,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Exam objects.
  */
 public class ExamBuilder {
 
@@ -21,7 +21,7 @@ public class ExamBuilder {
     private ExamDate examDate;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code ExamBuilder} with the default details.
      */
     public ExamBuilder() {
         Module m = new Module(new ModuleCode(DEFAULT_MODULE));

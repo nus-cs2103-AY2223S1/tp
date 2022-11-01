@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FindTasksCommand;
 import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
-import seedu.address.model.task.DescriptionContainsKeywordsPredicateTest;
 
 import java.util.Arrays;
 
@@ -20,7 +19,7 @@ public class FindTasksCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindTasksCommand() {
         // no leading and trailing whitespaces
         FindTasksCommand expectedFindTasksCommand =
                 new FindTasksCommand(new DescriptionContainsKeywordsPredicate(Arrays.asList("ask, on")));
@@ -31,7 +30,7 @@ public class FindTasksCommandParserTest {
     }
 
     @Test
-    public void parse_validAllCapsArgsPassToPredicateAsLowerCase_returnsFindCommand() {
+    public void parse_validAllCapsArgsPassToPredicateAsLowerCase_returnsFindTasksCommand() {
         // no leading and trailing whitespaces
         FindTasksCommand expectedFindTasksCommand =
                 new FindTasksCommand(new DescriptionContainsKeywordsPredicate(Arrays.asList("ask, on")));
@@ -42,7 +41,7 @@ public class FindTasksCommandParserTest {
     }
 
     @Test
-    public void parse_validMixCaseArgsPassToPredicateAsLowerCase_returnsFindCommand() {
+    public void parse_validMixCaseArgsPassToPredicateAsLowerCase_returnsFindTasksCommand() {
         // no leading and trailing whitespaces
         FindTasksCommand expectedFindTasksCommand =
                 new FindTasksCommand(new DescriptionContainsKeywordsPredicate(Arrays.asList("ask, on")));

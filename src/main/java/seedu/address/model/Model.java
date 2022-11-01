@@ -154,6 +154,7 @@ public interface Model {
 
     void replaceModule(Module target, Module editedModule);
 
+
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

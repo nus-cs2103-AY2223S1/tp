@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.testutil.EditExamDescriptorBuilder;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -27,15 +26,15 @@ public class EditExamDescriptorTest {
         // different values -> returns false
         assertFalse(DESC_EXAMONE.equals(DESC_EXAMTWO));
 
-        // different name -> returns false
+        // different description -> returns false
         EditExamCommand.EditExamDescriptor editedExamOne = new EditExamDescriptorBuilder(DESC_EXAMONE).withDescription(VALID_DESCRIPTION_EXAMTWO).build();
         assertFalse(DESC_EXAMONE.equals(editedExamOne));
 
-        // different phone -> returns false
+        // different module -> returns false
         editedExamOne = new EditExamDescriptorBuilder(DESC_EXAMONE).withModule(VALID_MODULE_EXAMTWO).build();
         assertFalse(DESC_EXAMONE.equals(editedExamOne));
 
-        // different email -> returns false
+        // different date -> returns false
         editedExamOne = new EditExamDescriptorBuilder(DESC_EXAMONE).withDate(VALID_DATE_EXAMTWO).build();
         assertFalse(DESC_EXAMONE.equals(editedExamOne));
 

@@ -2,23 +2,25 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.exam.Exam;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.EditExamDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -54,6 +56,36 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+
+    public static final String EXAMMODULEONE = " " + PREFIX_MODULE + VALID_MODULE_EXAMONE;
+    public static final String EXAMMODULETWO = " " + PREFIX_MODULE + VALID_MODULE_EXAMTWO;
+    public static final String EXAMDESCRIPTIONONE = " " + PREFIX_EXAM_DESCRIPTION + VALID_DESCRIPTION_EXAMONE;
+    public static final String EXAMDESCRIPTIONTWO = " " + PREFIX_EXAM_DESCRIPTION + VALID_DESCRIPTION_EXAMTWO;
+    public static final String EXAMDATEONE = " " + PREFIX_EXAM_DATE + VALID_DATE_EXAMONE;
+    public static final String EXAMDATETWO = " " + PREFIX_EXAM_DATE + VALID_DATE_EXAMTWO;
+    public static final String INVALID_MODULE = " " + PREFIX_MODULE + "2001";
+    public static final String INVALID_EXAM_DESCRIPTION = " " + PREFIX_EXAM_DESCRIPTION + " ";
+    public static final String INVALID_FORMAT_EXAM_DATEONE = " " + PREFIX_EXAM_DATE + "2022-08-20";
+    public static final String INVALID_FORMAT_EXAM_DATETWO = " " + PREFIX_EXAM_DATE + "20-008-2024";
+    public static final String INVALID_FORMAT_EXAM_DATETHREE = " " + PREFIX_EXAM_DATE + "20/08/2024";
+    public static final String INVALID_FORMAT_EXAM_DATEFOUR = " " + PREFIX_EXAM_DATE + "20-13-2024";
+    public static final String INVALID_FORMAT_EXAM_DATEFIVE = " " + PREFIX_EXAM_DATE + "32-01-2024";
+    public static final String INVALID_FORMAT_EXAM_DATESIX = " " + PREFIX_EXAM_DATE + "00-01-2024";
+    public static final String INVALID_FORMAT_EXAM_DATESEVEN = " " + PREFIX_EXAM_DATE + "aa-bb-cccc";
+
+    public static final String INVALID_EXAM_DATEONE = " " + PREFIX_EXAM_DATE + "29-02-2023";
+    public static final String INVALID_EXAM_DATETWO = " " + PREFIX_EXAM_DATE + "31-11-2024";
+
+    public static final String INVALID_PAST_EXAMDATEONE = " " + PREFIX_EXAM_DATE + "20-01-2021";
+    public static final String INVALID_PAST_EXAMDATETWO = " " + PREFIX_EXAM_DATE + "29-10-2022";
+
+
+
+
+
+
+
+
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -108,6 +140,19 @@ public class CommandTestUtil {
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
+    //must do after model itself executes.
+    public static void assertTasksHaveSameExamSuccess(Model actualModel, Model expectedModel) {
+        ObservableList<Task> filteredList = expectedModel.getFilteredTaskList();
+        for(int i = 0; i<filteredList.size(); i++) {
+            Task expectedModelTask = expectedModel.getFilteredTaskList().get(i);
+            Task modelTask = actualModel.getFilteredTaskList().get(i);
+            assertTrue(expectedModelTask.isLinked() == modelTask.isLinked());
+            if (expectedModelTask.isLinked()) {
+                assertTrue(expectedModelTask.getExam().equals(modelTask.getExam()));
+            }
+        }
+    }
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
@@ -118,11 +163,14 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
-
+       // List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Exam> expectedFilteredListForExams = new ArrayList<>(actualModel.getFilteredExamList());
+        List<Task> expectedFilteredListForTask = new ArrayList<>(actualModel.getFilteredTaskList());
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+       // assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredListForExams, actualModel.getFilteredExamList());
+        assertEquals(expectedFilteredListForTask, actualModel.getFilteredTaskList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
@@ -136,6 +184,31 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered task list to show only the task at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTaskAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+
+        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+        final String[] description = {task.getDescription().description.toLowerCase()};
+        model.updateFilteredTaskList(new DescriptionContainsKeywordsPredicate(Arrays.asList(description)));
+
+        assertEquals(1, model.getFilteredTaskList().size());
+    }
+    /**
+     * Updates {@code model}'s filtered module list to show only the module at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showModuleAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
+        Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
+        final String[] moduleCode = {module.getModuleCode().moduleCode.toLowerCase()};
+        model.updateFilteredModuleList(new ModuleCodeContainsKeywordsPredicate(Arrays.asList(moduleCode)));
+        assertEquals(1, model.getFilteredModuleList().size());
     }
 
 }

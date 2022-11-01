@@ -1,9 +1,11 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalExams.EXAMONE;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
@@ -87,6 +89,23 @@ public class ModelManagerTest {
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
+
+    @Test
+    public void hasExam_nullExam_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasExam(null));
+    }
+    @Test
+    public void hasExam_examPresent_returnsTrue() {
+        modelManager.addExam(EXAMONE);
+        assertTrue(modelManager.hasExam(EXAMONE));
+    }
+
+    @Test
+    public void hasExam_examNotPresent_returnsFalse() {
+        assertFalse(modelManager.hasExam(EXAMONE));
+    }
+
+
 
     /*
     @Test

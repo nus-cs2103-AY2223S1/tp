@@ -182,8 +182,11 @@ public class EditExamCommand extends Command {
             // state check
             EditExamDescriptor e = (EditExamDescriptor) other;
 
-            return module.equals(e.module)
-                    && description.equals(e.description) && examDate.equals(e.examDate);
+//            return module.equals(e.module)
+//                    && description.equals(e.description) && examDate.equals(e.examDate);
+            //not sure if this is correct...
+            return getModule().equals(e.getModule()) && getDescription().equals(e.getDescription())
+                    && getExamDate().equals(e.getExamDate());
         }
     }
 }

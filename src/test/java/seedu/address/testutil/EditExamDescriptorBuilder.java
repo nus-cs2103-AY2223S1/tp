@@ -1,10 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.EditExamCommand;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.exam.ExamDate;
@@ -13,7 +8,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditExamDescriptor objects.
  */
 public class EditExamDescriptorBuilder {
 
@@ -28,7 +23,7 @@ public class EditExamDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditExamDescriptor} with fields containing {@code exam}'s details
      */
     public EditExamDescriptorBuilder(Exam exam) {
         descriptor = new EditExamCommand.EditExamDescriptor();
@@ -38,7 +33,7 @@ public class EditExamDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Description} of the {@code EditExamDescriptor} that we are building.
      */
     public EditExamDescriptorBuilder withDescription(String description) {
         descriptor.setDescription(new ExamDescription(description));
@@ -46,7 +41,7 @@ public class EditExamDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Module} of the {@code EditExamDescriptor} that we are building.
      */
     public EditExamDescriptorBuilder withModule(String module) {
         descriptor.setModule(new Module(new ModuleCode(module)));
@@ -54,7 +49,7 @@ public class EditExamDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code ExamDate} of the {@code EditExamDescriptor} that we are building.
      */
     public EditExamDescriptorBuilder withDate(String examDate) {
         descriptor.setExamDate(new ExamDate(examDate));
