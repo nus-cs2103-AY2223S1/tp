@@ -28,7 +28,9 @@ Pupilist can get your scheduling done faster with single line CLI command inputs
 ---
 
 ## Introducing Pupilist
-{to be added layout of ui and pointers to indicate where command box is etc}
+<p align="center">
+  <img src="images/annotated-UI.png" alt="Pupilist's annotated UI"/>
+</p>
 
 ## Glossary
 
