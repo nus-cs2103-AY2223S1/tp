@@ -39,7 +39,7 @@ This guides aims to: <br>
 
 **Tip Box**
 <div markdown="block" class="alert alert-success">
-**:bulb: Tip:** Provides advanced users with pointers to enhance your experience
+**:bulb: Tip:** Provides advanced users with pointers to enhance their experience
 </div>
 
 **Warning Box**
@@ -333,7 +333,7 @@ _After executing command: `view 1`_
 
 ### Copy details of internship : `copy`
 
-Your friend is asking for one of your internship application details? Copy all the details of internship application into your computer's [clipboard](#glossary).
+Quickly share your application details by copying it into your computer's [clipboard](#glossary).
 
 Format: `copy INDEX`
 
@@ -356,7 +356,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Ready for a new internship season? Clears all entries from the internship tracker.
+Staring a new internship season? Clear all entries from the internship tracker.
 
 Format: `clear`
 
@@ -384,7 +384,7 @@ Format: `redo`
 
 ### Viewing help : `help`
 
-Display the command summary and a message explaining how to access the help page.
+If you need a quick refresher on the available commands, head right to the help page. Link to the user guide is also available.
 
 Format: `help`
 
