@@ -177,10 +177,6 @@ class JsonAdaptedTutor {
         }
         final Rating modelRating = new Rating(rating);
 
-        if (comments == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    CommentList.class.getSimpleName()));
-        }
         final CommentList modelComments = new CommentList(tutorComments);
 
         final Set<Tag> modelTags = new HashSet<>(tutorTags);
