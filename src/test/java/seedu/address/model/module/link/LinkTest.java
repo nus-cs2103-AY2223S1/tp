@@ -9,6 +9,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LINK_U
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LINK_URL_2;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LINK_URL_3;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LINK_URL_4;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LINK_URL_5;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LINK_URL_6;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_4;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_5;
@@ -18,6 +20,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_4_WITH_HTTP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_5_WITH_HTTPS_WWW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_5_WITH_WWW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_6;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_WITHOUT_HTTPS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalLinks.VALID_LINK_2;
@@ -82,17 +85,27 @@ public class LinkTest {
     public void isValidLinkUrl() {
         String linkUrlWithHttps = VALID_MODULE_LINK_URL;
         String linkUrlWithoutHttps = VALID_MODULE_LINK_URL_WITHOUT_HTTPS;
+        String linkUrlWithWww = VALID_MODULE_LINK_URL_5_WITH_WWW;
+        String linkUrlWithHttpsWww = VALID_MODULE_LINK_URL_5_WITH_HTTPS_WWW;
         String linkUrlWithOnlyWhitespace = "       ";
         String linkUrlWithWhitespace = INVALID_MODULE_LINK_URL_2;
         String linkUrlWithNoDomain = INVALID_MODULE_LINK_URL_3;
         String linkUrlWithForbiddenSpecialCharacters = INVALID_MODULE_LINK_URL_4;
-        String linkUrlWithWww = VALID_MODULE_LINK_URL_5_WITH_WWW;
-        String linkUrlWithHttpsWww = VALID_MODULE_LINK_URL_5_WITH_HTTPS_WWW;
+        String linkUrlWithHttpsMisspelled = INVALID_MODULE_LINK_URL_5;
+        String linkUrlWithHttpsWithNonAlphanumericDomain = INVALID_MODULE_LINK_URL_6;
+        String linkUrlWithHttpsWithNonAlphanumericPath = VALID_MODULE_LINK_URL_6;
 
         //valid link url with https header -> returns true
         assertTrue(Link.isValidLinkUrl(linkUrlWithHttps));
         //valid link url with no https header -> returns true
         assertTrue(Link.isValidLinkUrl(linkUrlWithoutHttps));
+        //link url with www prefix -> returns true
+        assertTrue(Link.isValidLinkUrl(linkUrlWithWww));
+        //link url with https://www prefix -> returns true
+        assertTrue(Link.isValidLinkUrl(linkUrlWithHttpsWww));
+        //link url with non-alphanumeric characters in path -> returns true
+        assertTrue(Link.isValidLinkUrl(linkUrlWithHttpsWithNonAlphanumericPath));
+
         //link url with only whitespace -> returns false
         assertFalse(Link.isValidLinkUrl(linkUrlWithOnlyWhitespace));
         //link url with whitespace in between -> returns false
@@ -101,12 +114,10 @@ public class LinkTest {
         assertFalse(Link.isValidLinkUrl(linkUrlWithNoDomain));
         //link url with forbidden special characters -> returns false
         assertFalse(Link.isValidLinkUrl(linkUrlWithForbiddenSpecialCharacters));
-
-        //link url with www prefix -> returns true
-        assertTrue(Link.isValidLinkUrl(linkUrlWithWww));
-
-        //link url with https://www prefix -> returns true
-        assertTrue(Link.isValidLinkUrl(linkUrlWithHttpsWww));
+        //link url with https misspelled, https// instead of https://  -> returns false
+        assertFalse(Link.isValidLinkUrl(linkUrlWithHttpsMisspelled));
+        //link url with non-alphanumeric characters in domain -> returns false
+        assertFalse(Link.isValidLinkUrl(linkUrlWithHttpsWithNonAlphanumericDomain));
     }
 
     @Test

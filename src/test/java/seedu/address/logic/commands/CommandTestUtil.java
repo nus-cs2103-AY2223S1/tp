@@ -75,6 +75,7 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_LINK_URL_4_WITH_HTTP = "http://google.com";
     public static final String VALID_MODULE_LINK_URL_5_WITH_WWW = "www.facebook.com";
     public static final String VALID_MODULE_LINK_URL_5_WITH_HTTPS_WWW = "https://www.facebook.com";
+    public static final String VALID_MODULE_LINK_URL_6 = "https://google.com$$";
     // Module code cannot have brackets
     public static final String INVALID_MODULE_CODE = "(CS2103T)";
     public static final String VALID_MODULE_LINK_CS2103T = " " + PREFIX_MODULE_LINK_ALIAS
@@ -115,6 +116,8 @@ public class CommandTestUtil {
     public static final String INVALID_MODULE_LINK_URL_2 = "git hub.com";
     public static final String INVALID_MODULE_LINK_URL_3 = "https://googlecom";
     public static final String INVALID_MODULE_LINK_URL_4 = "https://¯\\_(ツ)_/¯.com";
+    public static final String INVALID_MODULE_LINK_URL_5 = "https//google.com";
+    public static final String INVALID_MODULE_LINK_URL_6 = "https://$google$.com";
     public static final String INVALID_TASK_DESC = " " + PREFIX_TASK_DESCRIPTION; // empty string
     public static final String INVALID_TASK_NUMBER_DESC_NON_NUMERIC =
             " " + PREFIX_TASK_NUMBER_TO_DELETE + "-99$9";

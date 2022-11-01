@@ -38,12 +38,6 @@ public class OpenLinkCommand extends Command {
     private static final String MESSAGE_LINK_LAUNCH_FAILURE = "Your desktop prevents"
             + " link URLs to be opened from Plannit. "
             + "Please enable system security permissions for Plannit to use this feature.";
-    private static final String OS_NAME_LOWERCASE_WINDOWS = "windows";
-    private static final String WINDOWS_OPEN_LINK_COMMAND_KEY = "rundll32 url.dll,FileProtocolHandler ";
-    private static final String OS_NAME_LOWERCASE_MAC = "mac";
-    private static final String MAC_OPEN_LINK_COMMAND_KEY = "open ";
-    private static final String OS_NAME_LOWERCASE_LINUX = "linux";
-    private static final String LINUX_OPEN_LINK_COMMAND_KEY = "xdg-open";
 
     private final ModuleCode moduleCode;
     private final List<String> linkAliases;
@@ -95,37 +89,12 @@ public class OpenLinkCommand extends Command {
                     .orElseThrow(() -> new CommandException(String.format(MESSAGE_MISSING_LINK_ALIAS,
                             linkAlias, moduleToOpenLinks.getModuleCode().getModuleCodeAsUpperCaseString())));
             try {
-                openLinkFromPlannit(linkToOpen.linkUrl);
+                linkToOpen.open();
             } catch (IOException | SecurityException ex) {
                 throw new CommandException(MESSAGE_LINK_LAUNCH_FAILURE);
             }
         }
     }
-
-    //@@author shwene-reused
-    //Reused from https://stackoverflow.com/questions/5226212/how-to-open-the-default-webbrowser-using-java
-    //with slight modification
-    private static void openLinkFromPlannit(String linkUrl) throws IOException, SecurityException {
-        assert linkUrl != null;
-        boolean isLinkUrlPaddedWithHttps = linkUrl.startsWith(LINK_HEADER_PROTOCOL_HTTPS);
-        boolean isLinkUrlPaddedWithHttp = linkUrl.startsWith(LINK_HEADER_PROTOCOL_HTTP);
-        if (!(isLinkUrlPaddedWithHttps || isLinkUrlPaddedWithHttp)) {
-            linkUrl = LINK_HEADER_PROTOCOL_HTTP + linkUrl;
-        }
-        final String finalLinkUrl = linkUrl;
-
-        String os = System.getProperty("os.name").toLowerCase();
-        Runtime rt = Runtime.getRuntime();
-        if (os.contains(OS_NAME_LOWERCASE_WINDOWS)) {
-            rt.exec(WINDOWS_OPEN_LINK_COMMAND_KEY + finalLinkUrl);
-        } else if (os.contains(OS_NAME_LOWERCASE_MAC)) {
-            rt.exec(MAC_OPEN_LINK_COMMAND_KEY + finalLinkUrl);
-        } else if (os.contains(OS_NAME_LOWERCASE_LINUX)) {
-            String[] cmd = {LINUX_OPEN_LINK_COMMAND_KEY, finalLinkUrl};
-            rt.exec(cmd);
-        }
-    }
-    //@@author
 
     @Override
     public boolean equals(Object other) {

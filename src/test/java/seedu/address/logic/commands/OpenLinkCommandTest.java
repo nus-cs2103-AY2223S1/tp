@@ -38,8 +38,6 @@ public class OpenLinkCommandTest {
         ModuleCode moduleCode = moduleToOpenLinks.getModuleCode();
         List<String> moduleLinkAliasesToOpen = moduleToOpenLinks.copyLinks().stream()
                 .map(link -> link.linkAlias).collect(Collectors.toList());
-        String moduleLinkUrlsToOpen = moduleToOpenLinks.copyLinks().stream()
-                .map(link -> String.format("[%s]\n", link.linkUrl)).collect(Collectors.joining(""));
 
         OpenLinkCommand openLinkCommand = new OpenLinkCommand(
                 new ModuleCode(MODULE_CODE_WITH_LINK), moduleLinkAliasesToOpen);

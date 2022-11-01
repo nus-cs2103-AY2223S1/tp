@@ -1,8 +1,5 @@
 package seedu.address.ui;
 
-import static seedu.address.model.module.link.Link.LINK_HEADER_PROTOCOL_HTTP;
-import static seedu.address.model.module.link.Link.LINK_HEADER_PROTOCOL_HTTPS;
-
 import java.io.IOException;
 
 import javafx.collections.ObservableList;
@@ -18,6 +15,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.link.Link;
 import seedu.address.model.module.task.Task;
 
 /**
@@ -28,12 +26,6 @@ public class ModuleCard extends UiPart<Region> {
     private static final String MESSAGE_LINK_LAUNCH_FAILURE = "Error: Your desktop prevents"
             + " link URLs to be opened from Plannit. "
             + "Please enable system security permissions for Plannit to use this feature.";
-    private static final String OS_NAME_LOWERCASE_WINDOWS = "windows";
-    private static final String WINDOWS_OPEN_LINK_COMMAND_KEY = "rundll32 url.dll,FileProtocolHandler ";
-    private static final String OS_NAME_LOWERCASE_MAC = "mac";
-    private static final String MAC_OPEN_LINK_COMMAND_KEY = "open ";
-    private static final String OS_NAME_LOWERCASE_LINUX = "linux";
-    private static final String LINUX_OPEN_LINK_COMMAND_KEY = "xdg-open";
     private static final String LINK_BORDER_COLOR = "-fx-border-color: #FFCC66;"; //Light Yellow
     private static final String LINK_BORDER_RADIUS = "-fx-border-radius: 2;";
     private static final String LINK_TEXT_COLOR = "-fx-text-fill: white";
@@ -83,7 +75,7 @@ public class ModuleCard extends UiPart<Region> {
         if (hasLinksAdded) {
             module.getLinks().stream()
                     .forEach(link -> links.getChildren()
-                            .add(createHyperLinkNode(link.linkAlias, link.linkUrl)));
+                            .add(createHyperLinkNode(link)));
             links.setPadding(new Insets(5, 0, 5, 0));
             links.setHgap(5);
             links.setVgap(5);
@@ -103,23 +95,17 @@ public class ModuleCard extends UiPart<Region> {
         }
     }
 
-    private static Hyperlink createHyperLinkNode(String linkAlias, String linkUrl) {
-        Hyperlink hyperLinkNode = new Hyperlink(linkAlias);
+    private static Hyperlink createHyperLinkNode(Link link) {
+        Hyperlink hyperLinkNode = new Hyperlink(link.linkAlias);
         hyperLinkNode.setStyle(LINK_BORDER_COLOR + LINK_BORDER_RADIUS + LINK_TEXT_COLOR);
         final Tooltip linkUrlHint = new Tooltip();
-        linkUrlHint.setText(linkUrl);
+        linkUrlHint.setText(link.linkUrl);
         linkUrlHint.setShowDelay(Duration.seconds(0.5));
         hyperLinkNode.setTooltip(linkUrlHint);
 
-        boolean isLinkUrlPaddedWithHttps = linkUrl.startsWith(LINK_HEADER_PROTOCOL_HTTPS);
-        boolean isLinkUrlPaddedWithHttp = linkUrl.startsWith(LINK_HEADER_PROTOCOL_HTTP);
-        if (!(isLinkUrlPaddedWithHttps || isLinkUrlPaddedWithHttp)) {
-            linkUrl = LINK_HEADER_PROTOCOL_HTTP + linkUrl;
-        }
-        final String finalLinkUrl = linkUrl;
         hyperLinkNode.setOnAction(e -> {
             try {
-                launchLinkFromPlannit(finalLinkUrl);
+                link.open();
             } catch (IOException | SecurityException ex) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(MESSAGE_LINK_LAUNCH_FAILURE);
@@ -128,23 +114,6 @@ public class ModuleCard extends UiPart<Region> {
         });
         return hyperLinkNode;
     }
-
-    //@@author shwene-reused
-    //Reused from https://stackoverflow.com/questions/5226212/how-to-open-the-default-webbrowser-using-java
-    //with slight modification
-    private static void launchLinkFromPlannit(String linkUrl) throws IOException, SecurityException {
-        String os = System.getProperty("os.name").toLowerCase();
-        Runtime rt = Runtime.getRuntime();
-        if (os.contains(OS_NAME_LOWERCASE_WINDOWS)) {
-            rt.exec(WINDOWS_OPEN_LINK_COMMAND_KEY + linkUrl);
-        } else if (os.contains(OS_NAME_LOWERCASE_MAC)) {
-            rt.exec(MAC_OPEN_LINK_COMMAND_KEY + linkUrl);
-        } else if (os.contains(OS_NAME_LOWERCASE_LINUX)) {
-            String[] cmd = {LINUX_OPEN_LINK_COMMAND_KEY, linkUrl};
-            rt.exec(cmd);
-        }
-    }
-    //@@author
 
     @Override
     public boolean equals(Object other) {
