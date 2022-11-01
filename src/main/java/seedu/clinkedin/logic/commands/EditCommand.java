@@ -34,11 +34,11 @@ import seedu.clinkedin.model.person.Phone;
 import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
 import seedu.clinkedin.model.tag.exceptions.DuplicateTagException;
 import seedu.clinkedin.model.tag.exceptions.TagNotFoundException;
+import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 
 /**
  * Edits the details of an existing person in the address book.

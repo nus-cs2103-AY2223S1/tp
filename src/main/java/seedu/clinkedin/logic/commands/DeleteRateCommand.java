@@ -11,8 +11,8 @@ import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.exceptions.TagNotFoundException;
+import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 
 /**
  * Deletes rating of an existing person in the address book.

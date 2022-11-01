@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.TagType;
+import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 
 /**
  * Deletes a specified tag type.

@@ -7,8 +7,8 @@ import seedu.clinkedin.logic.parser.Prefix;
 import seedu.clinkedin.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.tag.exceptions.DuplicateTagTypeException;
 import seedu.clinkedin.model.tag.TagType;
+import seedu.clinkedin.model.tag.exceptions.DuplicateTagTypeException;
 
 /**
  * Creates a new tag type.
