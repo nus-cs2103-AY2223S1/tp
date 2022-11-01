@@ -14,8 +14,8 @@ Class UserPrefs
 
 Class UniqueEateryList
 Class Eatery
-Class Address
-Class Email
+Class Location
+Class Cuisine
 Class Name
 Class Phone
 Class Tag
