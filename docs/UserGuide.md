@@ -33,12 +33,12 @@ Pupilist can get your scheduling done faster with single line CLI command inputs
 ## Glossary
 
 
-| Term      | Description                                                                                                                                                                                                                                                                                                                                        |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CLI       | Command-Line-Input, refers to text-based command inputs you will enter in the CommandBox.                                                                                                                                                                                                                                                          |
-| GUI       | Graphical-User-Interface, refers to the UI displayed to you.                                                                                                                                                                                                                                                                                       |
-| Parameter | Refers to the information you will need to give to Pupilist along with your<br> command so that Pupilist can execute an action based on that information.<br> For example, in the [`View`](#viewing-persons-details-view) command requires a NAME parameter for Pupilist to display information of the Person ,assuming a valid name in view mode. |
-| Prefixes  | A prefix indicates the type of field you are keying in. You can find the list of prefixes supported by Pupilist[here](#prefixes-summaries)                                                                                                                                                                                                         |
+| Term      | Description                                                                                                                                                                                                                                                                                                                                         |
+| ----------- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CLI       | Command-Line-Input, refers to text-based command inputs you will enter in the CommandBox.                                                                                                                                                                                                                                                           |
+| GUI       | Graphical-User-Interface, refers to the UI displayed to you.                                                                                                                                                                                                                                                                                        |
+| Parameter | Refers to the information you will need to give to Pupilist along with your<br> command so that Pupilist can execute an action based on that information.<br> For example, in the [`View`](#viewing-persons-details-view) command requires a NAME parameter for Pupilist to display information of the Student ,assuming a valid name in view mode. |
+| Prefixes  | A prefix indicates the type of field you are keying in. You can find the list of prefixes supported by Pupilist[here](#prefixes-summaries)                                                                                                                                                                                                          |
 
 ## Quick start
 
@@ -91,9 +91,9 @@ Shows a message explaining how to access the help page, and a list of basic comm
 
 Format: `help`
 
-### Adding a person: `add`
+### Adding a student: `add`
 
-Adds a person to the address book. A person is considered a duplicate only if the names are the same (non case-sensitive).<br>
+Adds a student to the address book. A student is considered a duplicate only if the names are the same (non case-sensitive).<br>
 **Usage**: List mode only
 
 Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN [t/TAG]...`
@@ -102,18 +102,18 @@ Examples:
 
 * `add n/Farisa p/87159999 lp/Sec 4 Chemistry`
 
-### Listing all persons : `list`
+### Listing all students : `list`
 
-Shows a list of all persons in the address book. Changes the address book to list mode.
-Also allows you to see the next session for you to attend along with the person you
+Shows a list of all students in the address book. Changes the address book to list mode.
+Also allows you to see the next session for you to attend along with the student you
 are going to be teaching next.<br>
 **Usage**: All modes
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a student : `edit`
 
-Edits an existing person in the address book.
+Edits an existing student in the address book.
 For fields requiring an INDEX, existing fields have to contain a value before editing is allowed, else there will be no INDEX.<br>
 **Usage**: View mode only
 
@@ -129,16 +129,16 @@ It requires at least one of the optional fields:
 - a/: To be followed by INDEX of attendance to be updated, then updated attendance
 - g/: To be followed by INDEX of grade to be updated, then updated grade
 - s/: To be followed by INDEX of session to be updated, then updated session
-- t/: To be followed by the person's tags, all tags can be removed by typing `t/` without specifying any tags after it
+- t/: To be followed by the student's tags, all tags can be removed by typing `t/` without specifying any tags after it
 
 Examples:
 
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
   `edit h/2 math not done` updates 2nd field of `Alex Yeoh`'s HOMEWORK to `math not done`
 
-### Removing specific field in person: `remove`
+### Removing specific field in student: `remove`
 
-Removes a specific field of a person in the address book at the specified index.<br>
+Removes a specific field of a student in the address book at the specified index.<br>
 **Usage**: View mode only
 
 It requires one field:
@@ -159,9 +159,9 @@ Examples:
 * `view John Doe` returns `John Doe` <br>
   `remove h/2 a/1` removes `John Doe`'s *homework at second index* and *attendance at first index*
 
-### Marking specific field in person: `mark`
+### Marking specific field in student: `mark`
 
-Marks a specific field of a person in the address book.<br>
+Use `mark` command to mark a specific field of a student in the address book.<br>
 **Usage**: View mode only
 
 It requires one field:
@@ -169,18 +169,22 @@ It requires one field:
 - h/: To be followed by INDEX of homework to be marked
 - a/: To be followed by INDEX of attendance to be marked
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Allows for marking of only one field in a single command.
+Does not allow commands such as `mark h/2 a/1` or `mark a/2 a/3`.
+</div>
 
 Format: `mark [h/ a/]INDEX`
 
 Examples:
 
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
-  `mark a/1` marks `Alex Yeoh`'s *attendance at first index*
+  `mark h/1` marks `Alex Yeoh`'s *homework at first index*
+  ![result for 'mark Alex Yeoh'](images/markAlexYeoh.png)
 
-### Unmarking specific field in person: `unmark`
+### Unmarking specific field in student: `unmark`
 
-Unmarks a specific field of a person in the address book.<br>
+Use `unmark` command to unmark a specific field of a student in the address book.<br>
 **Usage**: View mode only
 
 It requires one field:
@@ -188,18 +192,22 @@ It requires one field:
 - h/: To be followed by INDEX of homework to be unmarked
 - a/: To be followed by INDEX of attendance to be unmarked
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Allows for unmarking of only one field in a single command.
+Does not allow commands such as `unmark h/2 a/1` or `unmark a/2 a/3`.
+</div>
 
 Format: `unmark [h/ a/]INDEX`
 
 Examples:
 
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
-  `unmark h/4` unmarks `Alex Yeoh`'s *homework at fourth index*
+  `unmark a/1` unmarks `Alex Yeoh`'s *attendance at first index*
+  ![result for 'unmark Alex Yeoh'](images/unmarkAlexYeoh.png)
 
-### Locating persons by name: `find`
+### Locating students by name: `find`
 
-Finds persons whose names contain any of the given keywords.<br>
+Finds students whose names contain any of the given keywords.<br>
 **Usage**: All modes
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
@@ -208,7 +216,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -217,28 +225,28 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Viewing persons details: `view`
+### Viewing students details: `view`
 
-View details of a person. Required to `edit` or `remove` person's details.
-You can only view one person's details at one time.<br>
+View details of a student. Required to `edit` or `remove` student's details.
+You can only view one student's details at one time.<br>
 **Usage**: All modes
 
 Format: `view NAME`
 
-* The command requires the full `NAME` of a person.
+* The command requires the full `NAME` of a student.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 
 ![result for 'view alex yeoh'](images/viewAlexYeohResult.png)
 
-### Deleting a person : `delete`
+### Deleting a student : `delete`
 
-Deletes the specified person from the address book.<br>
+Deletes the specified student from the address book.<br>
 **Usage**: View or list mode only
 
 Format: `delete INDEX`
 
-* Deletes the person with the specified `INDEX`.
+* Deletes the student with the specified `INDEX`.
 * In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
@@ -269,8 +277,9 @@ Examples:
 
 ### Adding Grade Progress to student: `grade`
 
-Adds a description of grade progress to student in address book.
-GRADE_PROGRESS does not require a fixed format and is up to the user to manually standardise. Does not check for duplicate entries.<br>
+Use `grade` command to add a description of grade progress to student in address book.
+As GRADE_PROGRESS does not require any fixed format and it is up to the user to have their own formats.
+Pupilist does not check for duplicate entries of grades.
 **Usage**: View or list mode only
 
 Format: `grade INDEX g/GRADE_PROGRESS`
@@ -352,7 +361,7 @@ Pupilist helps to organise your session timings automatically, no need for comma
 It will show you this feature on launch of the application and when you use the [`list`](#listing-all-persons--list) command.
 
 Pupilist takes your current device time and sees the sessions that are upcoming if you have any,<br>
-then shows you the name of the person and the session timing. If you don't have any sessions with anyone, <br>
+then shows you the name of the student and the session timing. If you don't have any sessions with anyone, <br>
 it will also tell you that there are no next session timing.
 
 ![next session feature](images/next_session.png)
@@ -415,9 +424,13 @@ _Details coming soon ..._
 ### Prefixes summaries
 
 
-| Prefix | Definition                             | Usage                                                                                                                                                                                      | Example        |
-| -------- | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| n/     | Name                                   | A string of alphanumeric characters. Whitespaces are allowed. Required                                                                                                                     | n/Alex Ho      |
-| p/     | Phone number                           | Numbers only. Required. Whitespaces not allowed and at least 3 digits.                                                                                                                     | p/97402341     |
-| t/     | Tag that is associated to the student. | A string of characters. Optional.                                                                                                                                                          | t/Star student |
-| s/     | Session timing of lessons              | A String of input in the format of`DDD HH:mm` <br>where DDD is three characters making up the day, HH are two numbers making up the hour and <br> mm are two numbers making up the minute. | s/tue 08:30    |
+| Prefix | Definition                             | Usage                                                                                                                                                                       | Example              |
+|--------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
+| a/     | Attendance                             | Numbers in the format of `YYYY-MM-DD` <br>where YYYY are four numbers making up the year, MM are two numbers making up the month and DD are two numbers making up the day.  | a/2022-12-08         |
+| g/     | Subject and its grade                  | Words related to subject and grade                                                                                                                                          | g/Math: A+           |
+| h/     | Homework                               | Words related to homework                                                                                                                                                   | hw/Science Worksheet |
+| lp/    | Lesson plan                            | Words related to lesson plan                                                                                                                                                | lp/Diversity         |
+| n/     | Name                                   | Only numbers and letters. Spaces are allowed. Required field                                                                                                                | n/Alex Ho            |
+| p/     | Phone number                           | Numbers only. Required Field. Spaces are not allowed and at least 3 numbers.                                                                                                | p/97402341           |
+| s/     | Session timing of lessons              | Numbers in the format of`DDD HH:mm` <br>where DDD is three characters making up the day, HH are two numbers making up the hour and mm are two numbers making up the minute. | s/tue 08:30          |
+| t/     | Tag that is associated to the student. | Any words. Optional.                                                                                                                                                        | t/Star student       |

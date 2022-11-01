@@ -148,7 +148,7 @@ public class AttendanceList {
      * @return int percentage of days present
      */
     public int percentagePresent() {
-        float percentage = (totalNumberOfDaysPresent() * 100 / size());
+        float percentage = (totalNumberOfDaysPresent() * 100 / (float) size());
         return Math.round(percentage);
     }
 
