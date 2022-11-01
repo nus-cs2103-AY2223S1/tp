@@ -25,9 +25,9 @@ public class SearchCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Searches all people whose information contains "
             + "the specified keyword (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [CONDITION] [KEYWORD]...\n"
-            + "Example: " + COMMAND_WORD + " t/friend, "
-            + COMMAND_WORD + " " + AND_CONDITION + " n/John a/NUS"
+            + "Parameters: search [CONDITION] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...\n"
+            + "Examples: " + COMMAND_WORD + " t/friend, "
+            + COMMAND_WORD + " " + AND_CONDITION + " n/John a/NUS, "
             + COMMAND_WORD + " " + OR_CONDITION + " p/12345678 e/betsy@nus.edu";
 
     private final Predicate<Person> predicate;
