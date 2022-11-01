@@ -28,7 +28,7 @@ If you can type fast, Plannit can help you track your module information and tas
 This guide is targeted at new users who are looking at learning more about 
 our app.
 1. If this is your very first time using the application, welcome! You may head 
-   over to the [quick start](#1-quick-start) to begin your journey with us!
+   over to the [quick start](#1-quick-start) section to begin your journey with us!
 2. If you already have a specific feature in mind, you can check out the 
    [command summary](#11-command-summary) section.
 3. Throughout this guide, you will encounter the icons :bulb:,
