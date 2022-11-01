@@ -69,7 +69,13 @@ SoConnect is a **desktop app for managing contacts and tasks**. It aims to help 
 
 Adds a contact to your SoConnect.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** The `TAG` has to be created first before adding into a contact. 
+
+Refer to [`Creating a Tag`](#Creating a Tag) on how to create a tag.
+</div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
