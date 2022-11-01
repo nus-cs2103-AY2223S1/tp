@@ -41,7 +41,6 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 ## 2 Features
 
 <div markdown="block" class="alert alert-info">
-
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -252,93 +251,170 @@ Examples:
 
 ![list](images/userguide/list.png)
 
-### 2.4 Schedules
+### 2.4 Schedule Manager
 
-#### 2.4.1 Add a teaching schedule `sadd`
+As a professor in SoC, you must be busy with teaching. ProfNUS is here to help you out! The following features are designed to help you manage your schedules more efficiently.
 
-Adds a schedule of a module in the ProfNUS.
+#### 2.4.1 Schedule Manager Command Parameters
+
+In this section, we list all the parameters you will encounter of following commands. Take a look before you continue.
+
+| Parameter     | Description & Restriction                                    | Example       |
+| ------------- | ------------------------------------------------------------ | ------------- |
+| `MODULE_CODE` | This parameter represents the code of a module. Using module code can uniquely determine a module. The format should abide by the  [Module Code Format of NUS](https://www.nus.edu.sg/registrar/docs/info/nusbulletin/AY201213_GeneralInformation.pdf). | `CS2103T`     |
+| `WEEKDAY`     | This parameter represents the day in a week. We provide seven options for you: `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday`.                                                                                                            Please take note that this parameter is **case sensitive**. Weekdays in lower case will not be accepted. | `Monday`      |
+| `PERIOD`      | This parameter represents the time slot of your schedule. Your `PERIOD` should follow the format of `HH:MM-HH:MM`. To be consistent with NUS regular class duration, we  have set the following **restrictions** to this parameter:                                                                                                              1. No class should start before `07:00` or end after `10:00`.                                2. The time should be on the whole or half hour.                                                   3. The duration should be longer than or equal to one hour, and shorter        than or equal to three hours.                                                                                                             Please take note that ProfNUS adopts 24-hour clock, so `02:00` will be treated as 2am. | `10:00-12:00` |
+| `CLASS_TYPE`  | This parameter represents the class category. We provide four types of classes for you: `lec`, `tut`, `lab`, `rec`, representing Lecture, Tutoria, Lab, and Reflection, respectively.                                                                                     Please take note that this parameter is **case sensitive**. Any uppercase character will not be accepted. | `lec`         |
+| `CLASS_GROUP` | This parameter represents the group label if there are multiple lecture, tutorial, lab, or reflection groups. | `L1`          |
+| `VENUE`       | This parameter represents the venue of a class.              | `LT16`        |
+| `INDEX`       | This parameter represents the index of a schedule in the displayed list. Indices are **one-based**. | `1`           |
+
+#### 2.4.2 Add your schedule `sadd`
+
+You can add a schedule by using this command. 
 
 **Format**: `sadd m/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE`
 
-- Adds a schedule with the module it belongs to, the weekday, the time period, the type of the class, and the venue.
-- `MODULE_CODE` needs to abide by the [Module Code Format of NUS](https://www.nus.edu.sg/registrar/docs/info/nusbulletin/AY201213_GeneralInformation.pdf)
-- The `WEEKDAY` should be one of `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` and `Sunday`.
-- The `PERIOD` includes the start time and the end time which are both in the format of the *modern 24-hour clock*.
-- The `CLASS_TYPE` should be one of `lec`, `tut`, `lab`, and `rec`, which represent lecture, tutorial, laborartory, and reflection respectively.
+<div markdown="block" class="alert alert-info">
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid.
+ **:information_source: Note**<br>
+
+- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+
 </div>
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If the schedule to be added conflicts with any existing schedule, the ProfNUS will not perform any operation.
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+
+- Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid.
+- If the schedule to be added conflicts with any existing schedule, ProfNUS will not perform any operation.
+
 </div>
-**Example**: `sadd m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD`
 
-![sadd](images/userguide/sadd.png)
+**Example**: 
+
+Now, let's use `sadd` to add a schedule with following information:
+
+`m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD`
+
+**Step 1:** type command `sadd m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` in the command text box.
+
+![sadd](images/userguide/sadd_step1.png)
+
+**Step 2:** Press enter, then you can see the new schedule has been added to the list.
+
+![sadd_step2](images/userguide/sadd_step2.png)
 
 
-#### 2.4.2 Edit a schedule `sedit`
+#### 2.4.3 Edit your schedule `sedit`
 
 Edits a schedule in the ProfNUS.
 
 **Format**: `sedit INDEX [m/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE] `
 
-- The `INDEX` needs to be a positive integer and refers to the index number shown in the displayed schedule list.
-- At least one of the optional fields must be provided.
-- All optional fileds must abide by the requirements given in the feature ***Add a schedule `sadd`***, if any.
+<div markdown="block" class="alert alert-info">
 
-**Example**: `sedit 3 w/Wednesday ct/09:00-10:00 cg/T09 cv/COM2-0218`
+ **:information_source: Note**<br>
 
-![sedit](images/userguide/sedit.png)
+- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- You are expected to provide at least one optional parameter
+- Your newly typed parameters will overwrite corresponding existing information.
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+
+- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. Otherwise, **no** schedule will be edited by ProfNUS.
+
+</div>
+
+**Example**: 
+
+Now, let's use `sedit` command to edit a schedule with the following information:
+
+`1 w/Monday ct/09:00-10:00 cc/tut cv/COM2-0218`
+
+**Step 1:** Type the command `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103` in the command text box.
+
+![sedit](images/userguide/sedit_step1.png)
+
+**Step 2:** Press enter, then you will see the first schedule in the list has been edited.
+
+![sedit_step2](images/userguide/sedit_step2.png)
 
 
-#### 2.4.3 Delete a schedule `sdelete`
+#### 2.4.4 Delete your schedule `sdelete`
 
 Deletes a schedule from the ProfNUS.
 
 **Format**: `sdelete INDEX`
 
-- The `INDEX` needs to be a positive integer and refers to the index number shown in the displayed schedule list.
+<div markdown="block" class="alert alert-info">
 
-**Example**: `sdelete 2`
+ **:information_source: Note**<br>
 
-![sdelete](images/userguide/sdelete.png)
+- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+
+- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. Otherwise, **no** schedule will be deleted by ProfNUS.
+
+</div>
 
 
-#### 2.4.4 Clear your teaching schedule: `sclear`
+#### 2.4.5 Clear your schedule `sclear`
 
-Clears some selected schedules/all schedules from the ProfNUS.
+This command helps you clear all schedules/all schedules of selected modules.
+**Format**: `sclear [m/MODULE_CODE] [m/MODULE_CODE] ...`
 
-**Format**: `sclear`
-**Format**: `sclear [m/MODULE_CODE] [m/MORE_MODULE_CODES]`
+<div markdown="block" class="alert alert-info">
 
-- If only one single command `sclear`, it will clear all schedules.
-- `[m/MODULE_CODE]` can be optional or more than one.
-- `sclear [m/MODULE_CODE_1] [m/MODULE_CODE_2]` will clear all `MODULE_CODE_1` and `MODULE_CODE_2` schedules.
-- If all `[m/MODULE_CODE]` don't exist, it will not clear any schedules.
+ **:information_source: Note**<br>
+
+- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- If no optional `MODULE_CODE` is given, all schedules will be cdeleted
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+
+- If the `MODULE_CODE` you type in doesn't exist, ProfNUS will **not** clear any schedule you have
+
+</div>
 
 **Example**: `sclear m/CS2103T m/CS2103`
 
-#### 2.4.5 View your teaching schedule: `view`
+#### 2.4.6 View your schedule `view`
 
-Shows the list of some selected schedules/all schedules from the ProfNUS.
+You can use this command to view the list of selected/all schedules.
+**Format**: `view [m/MODULE_CODE] [w/WEEKDAY]`
 
-**Format**: `view`
-**Format**: `view [m/MODULE_CODE] [m/MORE_MODULE_CODES] [w/WEEKDAY] [w/MORE_WEEKDAYS]`
+<div markdown="block" class="alert alert-info">
 
-- If only one single command `view`, it will show the list all schedules.
-- `[m/MODULE_CODE]`and`[w/WEEKDAY]`can be optional or more than one.
-- `view [m/MODULE_CODE_1] [m/MODULE_CODE_2] [w/WEEKDAY] [w/WEEKDAY_2]` will show all schedules of `MODULE_CODE_1`and`MODULE_CODE_2` as well as schedules either on `WEEKDAY` or `WEEKDAY_2`.
-- If all `[m/MODULE_CODE]` don't exist or they have no schedules, it will show empty list.
+ **:information_source: Note**<br>
 
-**Example**: `view m/CS2040S m/CS1101S`
+- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- There can be more than one existance for both optional parameters.
+- You can view all your schedules by simply typing `view` without any parameter.
 
-![view by module](images/userguide/view by module.png)
+</div>
 
-#### 2.4.6 View your teaching schedule: `tview`
+**Example**: `view m/CS2030S w/Monday`
 
-Shows the timetable of all schedules from the ProfNUS.
+![view by module](images/userguide/view.png)
+
+#### 2.4.7 View your timetable `tview`
+
+Want to make your own timetable? Use `tview` command! It helps you creates your own weekly timetable.
 
 **Format**: `tview`
 **Example**: `tview`
@@ -403,4 +479,15 @@ _Details coming soon ..._
 | find a student/teaching assistant     | `find KEYWORD [MORE_KEYWORD]`                                                                                      | `find Adam Do`                                                                                                                                                              |
 | help                                  | `help`                                                                                                             | `help`                                                                                                                                                                      |
 | exit                                  | `exit`                                                                                                             | `exit`                                                                                                                                                                      |
+
+### 4.4 Schedule Manager Command Summary
+
+| Action                                                    | Format                                                       | Example                                                      |
+| --------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [Add your schedule](#242-add-your-schedule-sadd)          | `sadd m/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE` | `sadd m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` |
+| [Edit your schedule](#243-edit-your-schedule-sedit)       | `sedit INDEX [m/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE]` | `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103`        |
+| [Delete your schedule](#244-delete-your-schedule-sdelete) | `sdelete INDEX`                                              | `sdelete 1`                                                  |
+| [Clear your schedule](#245-clear-your-schedule-sclear)    | `sclear [m/MODULE_CODE]...`                                  | `sclear m/CS2103T m/CS1101S`                                 |
+| [View your schedule list](#246-view-your-schedule-view)   | `view [m/MODULE_CODE]... [w/WEEKDAY]...`                     | `view m/CS2103T w/Monday`                                    |
+| [View your timetable](#247-view-your-timetable-tview)     | `tview`                                                      | `tview`                                                      |
 
