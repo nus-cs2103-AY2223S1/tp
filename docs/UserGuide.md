@@ -10,7 +10,7 @@ Introducing ModQuik, a Teaching Assistant tool made for you!
 
 ModQuik is a convenient tool that allows you to keep track of your classes, monitor your students' grades and set up reminders for your tasks(such as creating tutorial slides or marking homework). 
 ModQuik is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
-If you can type fast, ModQuik can get your lesson management tasks done faster than traditional GUI apps. 
+If you can type fast, ModQuik can get your lesson management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -73,20 +73,22 @@ This guide aims to
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME ph/PHONE`, `ph/PHONE n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g., if you specify `ph/12341234 ph/56785678`, only `ph/56785678` will be taken.
 
-* The following prefix parameters `D/` and `T/` have more than 1 definition, depending on the type of command inputted.</br>
+* The following prefix parameters, `D/` and `T/`, have more than 1 definition, depending on the type of command inputted.</br>
     - `D/` stands for `DAY` in `tutorial` commands, and `DATE` in `consultation` and `reminder` commands.</br>
       Format of `DAY` is an integer from 1 (Monday) to 7 (Sunday).</br>
       Format of `DATE` should be yyyy-MM-dd. e.g., 2022-02-24
-- `T/` stands for `TIMESLOT` in `tutorial` and `consultation` commands, and `TIME` in `reminder` commands.</br>
+    - `T/` stands for `TIMESLOT` in `tutorial` and `consultation` commands, and `TIME` in `reminder` commands.</br>
       Format of `TIMESLOT` should be HH:mm-HH:mm. e.g. 08:00-09:00</br>
       Format of `TIME` should be HH:mm. e.g., 13:00.
 
 * Inapplicable parameters for commands that do not take in parameters (such as [`help`] and [`exit`]) will be ignored.<br>
   e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
+* To make it convenient for you, you could click on `Tab` button to switch between the different tabs (`Student`, `Grade Chart`, `Consultation`, `Tutorial`) and the command box.
+ Alternatively, you can use the [`switch`] command.
 
 
 </div>
