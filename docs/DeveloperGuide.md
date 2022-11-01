@@ -1019,7 +1019,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Deleting tags
 
-   1. Prerequisite: The tag `friend` exists in Rapportbook
+   1. Prerequisite: The tag `friend` exists in Rapportbook.
 
    2. Test case: `tag delete friend` or `t d friend`<br>
 
@@ -1039,7 +1039,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites:
 
-      1. There are clients in Rapportbook
+      1. There are clients in Rapportbook.
 
       2. The tag `friend` exists in Rapportbook.
 
@@ -1051,7 +1051,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites:
 
-      1. There are clients in Rapportbook
+      1. There are clients in Rapportbook.
 
       2. The first client is tagged `friend`.
 
@@ -1109,7 +1109,7 @@ testers are expected to do more *exploratory* testing.
 
       1. Messages have been created.
 
-      2. There are clients in Rapportbook
+      2. There are clients in Rapportbook.
 
    2. Test case: `message generate 1 2` or `m g 1 2`<br>
 
@@ -1121,7 +1121,7 @@ testers are expected to do more *exploratory* testing.
 
       1. Messages have been created.
 
-      2. There are clients in Rapportbook
+      2. There are clients in Rapportbook.
 
    2. Test case: `message delete 1` or `m d 1` <br>
 
@@ -1133,7 +1133,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites:
 
-        1. There are clients in Rapportbook
+        1. There are clients in Rapportbook.
 
     2. Test case: `reminder 1 d=Zoom meeting dt=22-11-30 11:00` or `r 1 d=Zoom meeting dt=22-11-30 11:00` <br>
 
@@ -1145,7 +1145,7 @@ testers are expected to do more *exploratory* testing.
 
         1. Reminders have been created.
 
-        2. There are clients in Rapportbook
+        2. There are clients in Rapportbook.
 
     2. Test case: `reminder delete 1` or `r d 1` <br>
 
@@ -1157,7 +1157,7 @@ testers are expected to do more *exploratory* testing.
 
         1. Reminders have been created.
 
-        2. There are clients in Rapportbook
+        2. There are clients in Rapportbook.
 
     2. Test case: `reminder clear` or `r c`<br>
 
