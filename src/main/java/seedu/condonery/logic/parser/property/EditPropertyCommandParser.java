@@ -72,7 +72,7 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
             editPropertyDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
-            try{
+            try {
                 Integer.parseInt(argMultimap.getValue(PREFIX_PRICE).get());
             } catch (NumberFormatException e) {
                 throw new ParseException(Messages.MESSAGE_NUMBER_OUT_OF_RANGE);
