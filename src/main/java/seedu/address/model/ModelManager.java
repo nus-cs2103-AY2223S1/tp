@@ -14,7 +14,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.CanHelpWithTaskPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.DefaultComparator;

@@ -25,7 +25,7 @@ public class CanHelpWithTaskPredicate implements Predicate<Person> {
      * @return {@code Predicate} to execute on the person.
      */
     public static CanHelpWithTaskPredicate withTask(Task task) {
-        CanHelpWithTaskPredicate predicate = new CanHelpWithTaskPredicate(-1);
+        CanHelpWithTaskPredicate predicate = new CanHelpWithTaskPredicate(1);
         predicate.setTask(task);
         return predicate;
     }
@@ -57,7 +57,7 @@ public class CanHelpWithTaskPredicate implements Predicate<Person> {
         System.out.println(other);
         return other == this // short circuit if same instance
                 || (other instanceof CanHelpWithTaskPredicate
-                && taskIndex == ((CanHelpWithTaskPredicate) other).taskIndex);
+                && taskIndex.getZeroBased() == ((CanHelpWithTaskPredicate) other).taskIndex.getZeroBased());
     }
 
 }
