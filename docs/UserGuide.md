@@ -46,7 +46,7 @@ If you can type fast, ModQuik can get your lesson management tasks done faster t
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. About this User Guide
-This guide aims to 
+This guide aims to
 * Teach first-time users how to start using ModQuik
 * Explain the features of each command and how to use them.
 * Provides a summary of the:
