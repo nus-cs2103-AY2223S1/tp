@@ -514,9 +514,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user          | group my appointments by some keys               | view and arrange appointments in one go                                       |
 | `*`      | user          | ungroup my patients                              | view the original patient list                                                |
 | `*`      | user          | ungroup my appointments                          | view the original appointment list                                            |
+| `*`      | user          | hide my patients by some conditions              | concentrate on other patients not satisfying the conditions                   |
+| `*`      | user          | hide my appointments by some conditions          | deal with appointments that do not satisfy the conditions better              |
 | `*`      | user          | unhide my patients                               | view the original patient list                                                |
 | `*`      | user          | unhide my appointments                           | view the original appointment list                                            |
-| `*`      | lazy user     | view my previous commands                        | avoid repeating to input the same or similar commands over and over           |
+| `*`      | lazy user     | view my previous commands                        | avoid repeating to input the same or similar commands over and over again     |
 
 *{More to be added}*
 
