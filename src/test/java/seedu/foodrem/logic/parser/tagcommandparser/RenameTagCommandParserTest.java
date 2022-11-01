@@ -58,4 +58,14 @@ public class RenameTagCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS,
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RenameTagCommand.getUsage()));
     }
+
+    @Test
+    public void parse_invalidCommandFailure() {
+        // invalid args
+        assertParseFailure(parser,
+                CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS_WITH_WHITESPACES
+                        + CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS_WITH_WHITESPACES
+                        + CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS_WITH_WHITESPACES,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RenameTagCommand.getUsage()));
+    }
 }
