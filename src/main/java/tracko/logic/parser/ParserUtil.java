@@ -155,10 +155,6 @@ public class ParserUtil {
 
         int integerQuantity = Integer.parseInt(trimmedQuantity);
 
-//        if (!AppUtil.isIntegerLessThanMaxInt(integerQuantity)) {
-//            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
-//        }
-
         return new Quantity(integerQuantity);
     }
 
