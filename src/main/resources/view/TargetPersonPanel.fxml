@@ -15,13 +15,13 @@
 
 <?import javafx.scene.control.Label?>
 <VBox styleClass="secondary-pane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="340" prefWidth="340" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-  <Label fx:id="showingInfoFor" styleClass="pane-header" text="Showing information for" />
+  <Label fx:id="showingInfoFor" styleClass="pane-header" text="Showing information for" wrapText="true" />
   <HBox alignment="CENTER_LEFT" spacing="5">
     <Label fx:id="name" styleClass="target-person-name" text="\$first" />
   </HBox>
   <HBox styleClass="target-person-tag-container">
     <Label fx:id="tagLabel" styleClass="target-person-tag" text="Tags: " />
-    <FlowPane fx:id="tags" />
+    <FlowPane fx:id="tags" styleClass="hotpink-border" HBox.hgrow="ALWAYS" minWidth="-Infinity" prefWidth="1" />
   </HBox>
 
   <TextFlow>
