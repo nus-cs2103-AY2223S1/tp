@@ -1,14 +1,9 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -24,11 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.parser.AddCommandParser;
-import seedu.address.logic.parser.AddNoteCommandParser;
-import seedu.address.logic.parser.CliSyntax;
-import seedu.address.logic.parser.EditCommandParser;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -37,10 +28,7 @@ import seedu.address.model.person.Loan;
 import seedu.address.model.person.LoanHistory;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Reason;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.NoteBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.person.exceptions.LoanOutOfBoundsException;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -99,7 +87,14 @@ public class EditLoanCommandTest {
 
         Loan initialLoan = personInFilteredList.getLoan();
         Loan incrementLoan = new Loan("-$31.66");
-        Loan changedLoan = new Loan(initialLoan.getAmount() + incrementLoan.getAmount());
+        Loan changedLoan;
+
+        try {
+            changedLoan = initialLoan.addBy(incrementLoan);
+        } catch (LoanOutOfBoundsException e) {
+            fail();
+            return;
+        }
 
         EditLoanDescriptor editLoanDescriptor = new EditLoanDescriptor(changedLoan,
                 new LoanHistory(incrementLoan, new Reason("Testing")));
@@ -140,6 +135,60 @@ public class EditLoanCommandTest {
         EditLoanCommand editCommand = new EditLoanCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    /**
+     * Checks that a value too large causes an LoanOutOfBounds exception caught
+     */
+    @Test
+    public void execute_loanTooLarge_throwsOutOfBounds() {
+        Loan incrementLoan = new Loan("500000000000.01");
+
+        LoanHistory loanHistory = new LoanHistory(
+                incrementLoan,
+                new Reason("Test")
+        );
+
+        EditLoanDescriptor descriptor =
+                new EditLoanDescriptor(incrementLoan, loanHistory);
+
+        EditLoanCommand editLoanCommand =
+                new EditLoanCommand(INDEX_FIRST_PERSON, descriptor);
+
+        try {
+            editLoanCommand.execute(model);
+        } catch (CommandException e) {
+            fail();
+        }
+
+        assertCommandFailure(editLoanCommand, model, EditLoanCommand.OUT_OF_BOUNDS_NOTIFICATION);
+    }
+
+    /**
+     * Checks that a value too small causes an LoanOutOfBounds exception caught
+     */
+    @Test
+    public void execute_loanTooSmall_throwsOutOfBounds() {
+        Loan incrementLoan = new Loan("-500000000000.01");
+
+        LoanHistory loanHistory = new LoanHistory(
+                incrementLoan,
+                new Reason("Test")
+        );
+
+        EditLoanDescriptor descriptor =
+                new EditLoanDescriptor(incrementLoan, loanHistory);
+
+        EditLoanCommand editLoanCommand =
+                new EditLoanCommand(INDEX_FIRST_PERSON, descriptor);
+
+        try {
+            editLoanCommand.execute(model);
+        } catch (CommandException e) {
+            fail();
+        }
+
+        assertCommandFailure(editLoanCommand, model, EditLoanCommand.OUT_OF_BOUNDS_NOTIFICATION);
     }
 
     /**

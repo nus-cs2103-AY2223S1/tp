@@ -4,17 +4,18 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.model.DeepCopyable;
+import seedu.address.model.person.exceptions.LoanOutOfBoundsException;
 
 /**
  * Loan represents a class encapsulating an amount of money presently owed to the club.
  */
 public class Loan implements DeepCopyable {
     public static final String MESSAGE_CONSTRAINTS =
-            "Loan amounts should only contain numerics, and a maximum of 1 decimal dot (.), an optional "
-            + "dollar sign ($) and either plus or minus signs (+/-) if desired.\n"
-            + "The signs, if used, must appear at the start of the parameter.\n"
-            + "The maximum amount may not exceed 1 trillion, both in the positive and negative "
-            + "direction, and the precision may not exceed 2 decimal places.";
+            "Loan amounts should only contain numerics. Optionally, the decimal point (.), "
+            + "the dollar sign ($) and either plus or minus signs (+/-) may be used if desired.\n"
+            + "The sign, if used, must appear at the start of the number and before the dollar sign.\n"
+            + "The loan amount must be between negative 1 trillion and positive 1 trillion, both "
+            + "inclusive, and the precision may not exceed 2 decimal places.";
 
 
     public static final String VALIDATION_REGEX = "^[-|+]?[$]?[0-9]\\d*(\\.\\d{0,2})?$";
@@ -78,13 +79,30 @@ public class Loan implements DeepCopyable {
 
 
     /**
-     * Increases the current loan by byAmount. If byAmount is negative, then the
-     * resulting amountOwed will be negative.
+     * Subtracts the current loan with another loan and returns a new Loan object
+     * @param byLoan the amount to increase by
+     */
+    public Loan subtractBy(Loan byLoan) throws LoanOutOfBoundsException {
+        try {
+            return new Loan(getAmount() - byLoan.getAmount());
+        } catch (IllegalArgumentException e) {
+            throw new LoanOutOfBoundsException(
+                    String.format("%f - %f will be out of bounds", getAmount(), byLoan.getAmount()));
+        }
+    }
+
+    /**
+     * Adds the current loan with another loan and returns a new Loan object
      *
      * @param byLoan the amount to increase by
      */
-    public Loan subtractBy(Loan byLoan) {
-        return new Loan(getAmount() - byLoan.getAmount());
+    public Loan addBy(Loan byLoan) throws LoanOutOfBoundsException {
+        try {
+            return new Loan(getAmount() + byLoan.getAmount());
+        } catch (IllegalArgumentException e) {
+            throw new LoanOutOfBoundsException(
+                    String.format("%f + %f will be out of bounds", getAmount(), byLoan.getAmount()));
+        }
     }
 
 
@@ -144,6 +162,6 @@ public class Loan implements DeepCopyable {
 
     @Override
     public Loan deepCopy() {
-        return new Loan(String.valueOf(amountOwed));
+        return new Loan(amountOwed);
     }
 }

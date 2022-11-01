@@ -24,6 +24,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddCommandParser;
 import seedu.address.logic.parser.AddNoteCommandParser;
 import seedu.address.logic.parser.CliSyntax;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -281,6 +282,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void filterPersonListByName(String preamble, String messageUsage, ParseException pe) throws ParseException {
             throw new AssertionError("This method should not be called.");
         }
 

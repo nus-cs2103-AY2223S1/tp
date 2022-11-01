@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.model.person.exceptions.LoanOutOfBoundsException;
 
 public class LoanTest {
 
@@ -88,6 +91,83 @@ public class LoanTest {
         assertEquals(new Loan("0.55").getAmount(), 0.55);
         assertEquals(new Loan("-0.55").getAmount(), -0.55);
         assertEquals(new Loan("-999999999999.99").getAmount(), -999_999_999_999.99);
+    }
+
+    @Test
+    public void loanSubtractionCorrect() {
+        try {
+            assertEquals(new Loan("33.55")
+                    .subtractBy(new Loan("2.55")).getAmount(), 31);
+        } catch (LoanOutOfBoundsException e) {
+            fail();
+        }
+        try {
+            assertEquals(new Loan("33.01")
+                    .subtractBy(new Loan("0.59")).getAmount(), 32.42);
+        } catch (LoanOutOfBoundsException e) {
+            fail();
+        }
+
+        try {
+            assertEquals(new Loan("1000000000000")
+                    .subtractBy(new Loan("0.01")).getAmount(), 999_999_999_999.99);
+        } catch (LoanOutOfBoundsException e) {
+            fail();
+        }
+
+        try {
+            assertEquals(new Loan("0")
+                    .subtractBy(new Loan("0.01")).getAmount(), -0.01);
+        } catch (LoanOutOfBoundsException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void loanAdditionCorrect() {
+        try {
+            assertEquals(new Loan("33.55")
+                    .addBy(new Loan("2.55")).getAmount(), 36.1);
+        } catch (LoanOutOfBoundsException e) {
+            fail();
+        }
+
+        try {
+            assertEquals(new Loan("33.21")
+                    .addBy(new Loan("0.59")).getAmount(), 33.8);
+        } catch (LoanOutOfBoundsException e) {
+            fail();
+        }
+
+        try {
+            assertEquals(new Loan("999999999999.99")
+                    .addBy(new Loan("0.01")).getAmount(), 1_000_000_000_000.0);
+        } catch (LoanOutOfBoundsException e) {
+            fail();
+        }
+
+        try {
+            assertEquals(new Loan("0")
+                    .addBy(new Loan("0.01")).getAmount(), 0.01);
+        } catch (LoanOutOfBoundsException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void loanAddition_numberTooLarge_outOfBounds() {
+        assertThrows(LoanOutOfBoundsException.class, () ->
+                new Loan("1000000000000").addBy(new Loan("0.01")));
+        assertThrows(LoanOutOfBoundsException.class, () ->
+                new Loan("999999999103").addBy(new Loan("1002")));
+    }
+
+    @Test
+    public void loanSubtraction_numberTooSmall_outOfBounds() {
+        assertThrows(LoanOutOfBoundsException.class, () ->
+                new Loan("-1000000000000").subtractBy(new Loan("0.01")));
+        assertThrows(LoanOutOfBoundsException.class, () ->
+                new Loan("-999999999103").subtractBy(new Loan("1002")));
     }
 
     @Test

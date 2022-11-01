@@ -22,6 +22,7 @@ import seedu.address.model.person.LoanHistory;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.exceptions.LoanOutOfBoundsException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,14 +35,16 @@ public class EditLoanCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the loan value of the person identified "
             + "by the index number used in the displayed person list. "
             + "The existing loan value will be added to the input value.\n"
-            + "Parameters: INDEX (can be a positive or negative integer) "
-            + PREFIX_LOAN_AMOUNT + "AMOUNT"
+            + "Parameters: INDEX (can be a positive or negative integer) <OR> NAME (must be valid) "
+            + PREFIX_LOAN_AMOUNT + "AMOUNT "
             + PREFIX_LOAN_REASON + "REASON\n"
-            + "Example: " + COMMAND_WORD + "1 "
-            + PREFIX_LOAN_AMOUNT + "20"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_LOAN_AMOUNT + "20 "
             + PREFIX_LOAN_REASON + "Buy logistics";
 
     public static final String MESSAGE_EDIT_LOAN_SUCCESS = "Edited loan of person: %1$s";
+    public static final String OUT_OF_BOUNDS_NOTIFICATION =
+            Messages.TOTAL_LOAN_OUT_OF_BOUNDS + "\n" + Loan.MESSAGE_CONSTRAINTS;
 
     private final Index index;
     private final EditLoanDescriptor editLoanDescriptor;
@@ -68,7 +71,12 @@ public class EditLoanCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editLoanDescriptor);
+        Person editedPerson;
+        try {
+            editedPerson = createEditedPerson(personToEdit, editLoanDescriptor);
+        } catch (LoanOutOfBoundsException e) {
+            throw new CommandException(OUT_OF_BOUNDS_NOTIFICATION);
+        }
 
         model.setPerson(personToEdit, editedPerson);
 
@@ -91,7 +99,8 @@ public class EditLoanCommand extends Command {
     }
 
 
-    private static Person createEditedPerson(Person personToEdit, EditLoanDescriptor editLoanDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditLoanDescriptor editLoanDescriptor)
+            throws LoanOutOfBoundsException {
         assert personToEdit != null;
 
         Name updatedName = personToEdit.getName();
@@ -101,10 +110,8 @@ public class EditLoanCommand extends Command {
         Birthday updatedBirthday = personToEdit.getBirthday();
         Set<Tag> updatedTags = personToEdit.getTags();
 
-        double newLoanValue = editLoanDescriptor.getLoan().orElseGet(() -> new Loan(0)).getAmount()
-                + personToEdit.getLoan().getAmount();
-
-        Loan updatedLoan = new Loan(newLoanValue);
+        Loan updatedLoan = personToEdit.getLoan().addBy(editLoanDescriptor.getLoan()
+                    .orElse(new Loan(0)));
 
         List<LoanHistory> updatedLoanHistory = new ArrayList<>(personToEdit.getHistory());
         editLoanDescriptor.getHistory().ifPresent(updatedLoanHistory::add);

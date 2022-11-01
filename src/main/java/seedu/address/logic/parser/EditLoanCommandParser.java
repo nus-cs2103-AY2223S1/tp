@@ -1,16 +1,9 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AMBIGUOUS_NAME;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOAN_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOAN_REASON;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditLoanCommand;
@@ -18,7 +11,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Loan;
 import seedu.address.model.person.LoanHistory;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Reason;
 
 /**
@@ -51,7 +43,7 @@ public class EditLoanCommandParser implements Parser<EditLoanCommand> {
         try {
             index = ParserUtil.parseIndex(preamble);
         } catch (ParseException pe) {
-            filterPersonListByName(preamble, pe);
+            model.filterPersonListByName(preamble, EditLoanCommand.MESSAGE_USAGE, pe);
             index = Index.fromOneBased(1);
         }
 
@@ -68,32 +60,4 @@ public class EditLoanCommandParser implements Parser<EditLoanCommand> {
 
         return new EditLoanCommand(index, editLoanDescriptor);
     }
-
-    /**
-     * Filters the {@code ObservableList<Person>} by person name
-     * @param preamble the name to search for, by complete word
-     * @param pe the ParseException to throw on failure
-     * @throws ParseException if there is nobody found by the find command, or there exist
-     *      an ambiguity
-     */
-    private void filterPersonListByName(String preamble, ParseException pe) throws ParseException {
-        try {
-            new FindCommandParser().parse(preamble).execute(model);
-        } catch (ParseException ignored) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditLoanCommand.MESSAGE_USAGE), pe);
-        }
-
-        ObservableList<Person> filteredPersonList = model.getFilteredPersonList();
-
-        String splitPreamble = Arrays.stream(preamble.split(" "))
-                .map(x -> "\"" + x.trim() + "\"")
-                .collect(Collectors.joining(" or "));
-
-        if (filteredPersonList.size() == 0) {
-            throw new ParseException(String.format(MESSAGE_INVALID_NAME, splitPreamble), pe);
-        } else if (filteredPersonList.size() > 1) {
-            throw new ParseException(String.format(MESSAGE_INVALID_AMBIGUOUS_NAME, splitPreamble), pe);
-        }
-    }
-
 }

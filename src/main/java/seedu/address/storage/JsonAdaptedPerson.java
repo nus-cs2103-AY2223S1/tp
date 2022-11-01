@@ -68,7 +68,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        loan = String.valueOf(source.getLoan().getAmount());
+        loan = source.getLoan().toString();
         history = source.getHistory().stream().map(JsonAdaptedLoanHistory::new).collect(Collectors.toList());
 
     }
