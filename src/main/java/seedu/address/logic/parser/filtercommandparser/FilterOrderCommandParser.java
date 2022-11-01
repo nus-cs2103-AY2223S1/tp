@@ -14,9 +14,9 @@ import seedu.address.model.order.Order;
  * Parses input arguments and creates a new FilterOrderCommand object.
  */
 public class FilterOrderCommandParser implements Parser<FilterOrderCommand> {
-    private static final String ADDITIONAL_REQUEST_PREFIX = "ar";
-    private static final String ORDER_STATUS_PREFIX = "os";
-    private static final String PRICE_RANGE_PREFIX = "pr";
+    public static final String ADDITIONAL_REQUEST_PREFIX = "o_ar";
+    public static final String ORDER_STATUS_PREFIX = "o_st";
+    public static final String PRICE_RANGE_PREFIX = "o_pr";
 
     private static Predicate<Order> defaultPredicate = new Predicate<Order>() {
         @Override
@@ -49,7 +49,7 @@ public class FilterOrderCommandParser implements Parser<FilterOrderCommand> {
             String arg = nameKeywords[i];
             arg = arg.trim();
 
-            switch (arg.substring(0, 2)) {
+            switch (arg.substring(0, 4)) {
             case ADDITIONAL_REQUEST_PREFIX:
                 additionalRequestPredicate = PredicateParser.parseOrder(arg);
                 break;

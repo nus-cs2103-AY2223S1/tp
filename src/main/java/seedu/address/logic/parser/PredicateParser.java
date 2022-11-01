@@ -49,9 +49,9 @@ public class PredicateParser {
     private static final String VACCINATION_PREFIX = "p_v";
 
     //For orders
-    private static final String ADDITIONAL_REQUEST_PREFIX = "ar";
-    private static final String ORDER_STATUS_PREFIX = "os";
-    private static final String PRICE_RANGE_PREFIX = "pr";
+    private static final String ADDITIONAL_REQUEST_PREFIX = "o_ar";
+    private static final String ORDER_STATUS_PREFIX = "o_st";
+    private static final String PRICE_RANGE_PREFIX = "o_pr";
 
     /**
      * Parses the given {@code String} of arguments in the context of a Predicate
