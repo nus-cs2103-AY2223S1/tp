@@ -8,6 +8,8 @@ optimized for use via a Command Line Interface** (CLI) while still having the
 benefits of a Graphical User Interface (GUI). If you can type fast, TAA can get your students and tasks management done
 faster than traditional GUI apps.
 
+This document will guide you on the usage of TAA, with explanations of the commands and examples on how to use the application so that you will have a seamless experience in using TAA.
+
 * Table of Contents
 {:toc}
 
@@ -22,12 +24,12 @@ faster than traditional GUI apps.
 3. Copy the file to the folder you want to use as the home folder for your TAA.
 
 4. Double-click the file to start the app. The GUI appear in your app should be similar as the one shown below:<br>
-   <img src="images/TAA.png" width="500">
+   <img src="images/default screen.png" width="500">
 
 5. Type the command in the command box and press Enter or click the Send button to execute. Some example commands you can try:
-   * `student add` `n/John p/96123456 e/john@example.com g/T03`: Adds a student named John to the TAA.
-   * `student edit` `1 g/T01`: Edits the student John to change his tutorial group from T03 to T01.
-   * `student delete` `1`: Removes the student John from TAA.
+   * `task add` `tn/Assignment 1 i/Due ASAP d/12/12/2022`: Creates a task called Assignment 1.
+   * `task edit` `1 d/30/12/2022`: Edits the task Assignment 1 to change its deadline to 30/12/2022.
+   * `task delete` `1`: Removes the task Assignment 1 from TAA.
 
 6. Refer to the Features below for details of each command.
 
@@ -65,12 +67,18 @@ faster than traditional GUI apps.
 
 </div>
 
-### Add students: `student add`
+### Add students:
+
+Adds a student with the given phone number, email, tutorial group, and tags to the list of students
 
 - Command `student add n/studentName p/phoneNumber e/email g/tutorialGroup(optional) t/tags(optional)`
-- Adds a student with the given phone number, email, tutorial group, and tags to the list of students
 
-Notes:
+E.g. `student add n/James Ho p/98765432 e/a@gmail.com g/T03 t/yearTwo`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
 - `<studentName>` should be alphanumeric and should not be blank
 - `<phoneNumber>` should only contain numbers, and it should be at least 3 digits long
 - `<email>` should contain in the format: local-part@domain
@@ -79,114 +87,256 @@ Notes:
   - domain should be at least 2 characters long
 - `<tutorialGroup>` should follow the format Txx, where x is a numeric value, and it should not be blank
 - `<tags>` should be alphanumeric with no white space
+</div>
 
-### Remove students: `student delete`
+### Remove students:
+
+Removes the indexed students(s) from the list of students
 
 - Command `student delete <indices>`
-- Removes the indexed students(s) from the list of students
 
-Notes:
+E.g. `student delete 1 3`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
 - Each `index` must be a positive integer which corresponds to an existing student
 - You can delete multiple students at once by separating the indices with a space. e.g. `student delete 1 2 3`
+</div>
 
-### Edit students: `student edit`
+### Edit students: 
+
+Edits the student by its given index with at least 1 variable specified to change.
 
 - Command `student edit <index> n/<studentName>(optional) p/<studentPhone>(optional) e/<studentEmail>(optional) g/<tutorialGroup>(optional) t/<tag>(optional)`
-- Edits the student by its given index with at least 1 variable specified to change.
 
-Notes:
+E.g. `student edit 1 g/T05`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
 - `index` must be a positive integer and must correspond to an existing student.
-- You may remove all of a student's tags by typing `t/` without specifying any tags after it.
+- `<studentName>` should be alphanumeric and should not be blank
+- `<phoneNumber>` should only contain numbers, and it should be at least 3 digits long
+- `<email>` should contain in the format: local-part@domain
+  - local-part should only contain alphanumerics and these special characters, excluding the parentheses, (+_.-)
+  - local-part should not start or end with any special characters
+  - domain should be at least 2 characters long
+- `<tutorialGroup>` should follow the format Txx, where x is a numeric value, and it should not be blank
+- `<tags>` should be alphanumeric with no white space
+</div>
 
 
-### List students: `student list`
+
+### List students: 
+
+Shows a list of all students
 
 - Command `student list`
-- Shows a list of all students
+
+<img src="images/student list.png" width="500">
 
 ### Add new task: `task add`
+Adds a task to the list of tasks
 
+The task is initially assigned to no students if no student variable is entered
 - Command `task add tn/<taskName> i/<taskDescription> d/<taskDeadline> s/<student(s)>(optional)`
-- Adds a task to the list of tasks
-- The task is initially assigned to no students if no student variable is entered
 
-Notes:
+E.g. `task add tn/Grade Mission 1 i/Due Tomorrow d/10/12/2022 s/James Ho`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
 - `taskName` should only contain alphanumeric characters and spaces, and it should not be blank
 - `taskDescription` should not be blank
 - `taskDeadline` should be in the format of DD/MM/YYYY with its days and months within range
 - `student(s)`, referenced by their name, should exist
+</div>
 
-### Remove task: `task delete`
+### Remove task: 
 
+Removes the indexed task(s) from the list of tasks
 - Command `task delete <indices>`
-- Removes the indexed task(s) from the list of tasks
 
-Notes:
+E.g. `task delete 2 4`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
 - Each `index` must be a positive integer which corresponds to an existing task
 - You can delete multiple tasks at once by separating the indices with a space. e.g. `task delete 1 2 3`
+</div>
 
-### Edit task: `task edit`
+### Edit task: 
+
+Edits the task by its given index with at least 1 variable specified to change.
 
 - Command `task edit <index> tn/<taskName>(optional) i/<taskDescription>(optional) d/<taskDeadline>(optional) s/<student(s)>(optional)`
-- Edits the task by its given index with at least 1 variable specified to change.
 
-Notes:
+E.g. `task edit 1 d/11/12/2020`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
 - `index` must be a positive integer and valid
+- `taskName` should only contain alphanumeric characters and spaces, and it should not be blank
+- `taskDescription` should not be blank
+- `taskDeadline` should be in the format of DD/MM/YYYY with its days and months within range
+- `student(s)`, referenced by their name, should exist
+</div>
 
-### List tasks: `task list`
+### List tasks: 
+
+Shows a list of tasks
 
 - Command `task list`
-- Shows a list of tasks
 
-### Add new tutorial group: `tutorial add`
+<img src="images/task list.png" width="500">
+
+### Add new tutorial group: 
+
+Adds the tutorial group with the name `tutorialGroup`
 
 - Command `tutorial add g/<tutorialGroup>`
-- Adds the tutorial group with the name `tutorialGroup`
 
-### Remove tutorial group: `tutorial delete`
+E.g. `tutorial add g/T01`
 
-- Command `tutorial delete g/<tutorialGroup>`
-- Removes the tutorial group with the name `tutorialGroup`
+<div markdown="block" class="alert alert-info">
 
-### Enroll a student into a group: `student enroll`
+**:information_source: Notes:**<br>
+
+- `tutorialGroup` should follow the format Txx, where x is a numeric value, and it should not be blank
+</div>
+
+### List tutorial groups: 
+
+Shows a list of tutorial groups
+
+- Command `tutorial list`
+
+<img src="images/tutorial list.png" width="500">
+
+### Remove tutorial group: 
+
+Removes the tutorial group with the name `tutorialGroup`
+
+- Command `tutorial delete <index>`
+
+E.g. `tutorial delete 1`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+- `tutorialGroup` should follow the format Txx, where x is a numeric value, and it should not be blank
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:bulb: Tips:**<br>
+
+- do a `tutorial list` command first, to see which index the tutorial group is at
+</div>
+
+### Enroll a student into a group: 
+
+Enrolls the student at index i to the group named `groupName`
 
 - Command `student enroll <index> g/<groupName>`
-- Enrolls the student at index i to the group named `groupName`
 
-### Expel a student from a group: `student expel`
+E.g. `student enrol 1 g/T03`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+- `index` must be a positive integer and valid
+</div>
+
+### Expel a student from a group: 
+
+Removes the student at index i from the group `groupName`.
 
 - Command `student expel <index> g/<groupName>`
-- Removes the student at index i from the group `groupName`.
 
-### View all students in a tutorial group: `tutorial filter`
+E.g. `student expel 1 g/T03`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+- `index` must be a positive integer and valid
+</div>
+
+### View all students in a tutorial group: 
+
+Displays only students from the group `groupName` in the GUI.
 
 - Command `tutorial filter g/<groupName>`
-- Displays only students from the group `groupName` in the GUI.
 
-### Reset filters and show all students `student unfilter`
+E.g. tutorial filter g/T01
+
+<img src="images/tutorial filter.png" width="500">
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+- `index` must be a positive integer and valid
+</div>
+
+### Reset filters and show all students:
+
+Undoes the `tutorial filter` command and displays all students in the GUI.
 
 - Command `student unfilter`
-- Undoes the `tutorial filter` command and displays all students in the GUI.
 
-### Mark assignment as graded or ungraded: `grade edit`
+### Mark assignment as graded or ungraded: 
+
+Marks the specified student's assignment as graded (`T`) or ungraded (`F`)
 
 - Command `grade edit <studentIndex> <taskIndex> gr/<T or F>`
-- Marks the specified student's assignment as graded (`T`) or ungraded (`F`)
 
-### Display assignment grade status: `grade view`
+E.g. `grade edit 1 1 gr/T`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+- `index` must be a positive integer and valid
+</div>
+
+### Display assignment grade status: 
+
+Shows the grade status of the specified student's assignment
 
 - Command `grade view <studentIndex> <taskIndex>`
-- Shows the grade status of the specified student's assignment
 
-### Display user guide url: `help me`
+E.g. `grade view 3 7`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+- `index` must be a positive integer and valid
+</div>
+
+### Display user guide url: 
+
+Shows a popup with the user guide url in it
 
 - Command `help me`
-- Shows a popup with the user guide url in it
 
-### Exit the app: `bye bye`
+### Exit the app: 
+
+Exit and close the app
 
 - Command `bye bye`
-- Exit and close the app
 
 ---
 
@@ -219,7 +369,7 @@ Notes:
 | **Edit task**                      | `task edit <index> tn/<taskName>(optional) i/<taskDescription>(optional) d/<taskDeadline>(optional) s/<student(s)>(optional)` `e.g. task edit 1 d/11/12/2020`                    |
 | **List tasks**                     | `task list`                                                                                                                                                                      |
 | **Add tutorial group**             | `tutorial add g/<tutorialGroup>` e.g. `tutorial add g/T01`                                                                                                                       |
-| **Remove tutorial group**          | `tutorial delete g/<tutorialGroup>` e.g. `tutorial delete g/T01`                                                                                                                 |
+| **Remove tutorial group**          | `tutorial delete <index>` e.g. `tutorial delete 1`                                                                                                                               |
 | **Enrol student**                  | `student enroll <index> g/<groupName>` e.g. `student enrol 1 g/T03`                                                                                                              |
 | **Expel student**                  | `student expel <index> g/<groupName>` e.g. `student expel 1 g/T03`                                                                                                               |
 | **Mark assignment as graded**      | `grade edit <studentIndex> <taskIndex> gr/T` e.g. `grade edit 1 1 gr/T`                                                                                                          |
