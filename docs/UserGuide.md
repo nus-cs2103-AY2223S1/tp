@@ -84,16 +84,10 @@ Pupilist can get your scheduling done faster with single line CLI command inputs
 
 </div>
 
-### Viewing help : `help`
 
-Shows a message explaining how to access the help page, and a list of basic commands.<br>
-**Usage**: All modes
+### Adding details
 
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-### Adding a student: `add`
+#### Adding a student: `add`
 
 Adds a student to Pupilist. A student is considered a duplicate only if the names are the same (non case-sensitive).<br>
 **Usage**: List mode only
@@ -104,15 +98,86 @@ Examples:
 
 * `add n/Farisa p/87159999 lp/Sec 4 Chemistry`
 
-### Listing all students : `list`
+#### Adding Homework to student: `hw`
 
-Shows a list of all students in Pupilist. Changes Pupilist to list mode.
-Next session is also shown.<br>
-**Usage**: All modes
+Adds a description of homework to student in Pupilist.
+Does not check for duplicate homework entries.<br>
+**Usage**: View or list mode only
 
-Format: `list`
+Format: `hw INDEX h/HOMEWORK`
 
-### Editing a student : `edit`
+* Adds homework to student with the specified `INDEX`.
+* In view mode, INDEX should always be 1 (as per the view list)
+
+Examples:
+
+* `hw 1 h/math assignment` adds math assignment to first student in Pupilist.
+
+#### Adding Grade Progress to student: `grade`
+
+Use `grade` command to add a description of grade progress to student in Pupilist.
+As GRADE_PROGRESS does not require any fixed format and it is up to the user to have their own formats.
+Pupilist does not check for duplicate entries of grades.<br>
+**Usage**: View or list mode only
+
+Format: `grade INDEX g/GRADE_PROGRESS`
+
+* Adds grade progress to student with the specified `INDEX`.
+* In view mode, INDEX should always be 1 (as per the view list)
+
+Examples:
+
+* `grade 1 g/Math: D+` adds Math: D+ grade to first student in Pupilist.
+
+#### Adding Attendance to student : `attendance`
+
+Adds a formatted description of dates students attended class in Pupilist.
+Does not check for duplicate entries.<br>
+**Usage**: View or list mode only
+
+Format: `attendance INDEX a/ATTENDANCE`
+
+* Adds attendance to student with the specified `INDEX`.<br>
+* Attendance must be in `YYYY-MM-DD` format
+* In view mode, INDEX should always be 1 (as per the view list)
+
+Examples:
+
+* `attendance 1 a/2022-12-08` marks 2022-12-08 attendance for first student in Pupilist.
+
+#### Adding Session to student: `session`
+
+Adds a formatted session timing to student, expected to repeat weekly.
+Does not check for duplicate entries.<br>
+**Usage**: View or list mode only
+
+Format: `session INDEX s/TUITION_TIME`
+
+* Adds tuition time to student with the specified `INDEX`.<br>
+* Tuition time must be in `DDD HH:MM` format where `HH:MM` ranges from 00:00 to 23:59
+* In view mode, INDEX should always be 1 (as per the view list)
+
+Examples:
+
+* `session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in Pupilist.
+
+#### Update Lesson Plan for student: `lesson`
+
+Updates a student's lesson plan by overwriting the current one.<br>
+**Usage**: View or list mode only
+
+Format: `lesson INDEX lp/LESSON_PLAN`
+
+* Updates lesson plan of student with the specified `INDEX`.<br>
+* In view mode, INDEX should always be 1 (as per the view list)
+
+Examples:
+
+* `lesson 1 lp/science` changes lesson plan of first student to science.
+
+### Editing details
+
+#### Editing a student : `edit`
 
 Edits an existing student in Pupilist.
 For fields requiring an INDEX, existing fields have to contain a value before editing is allowed, else there will be no INDEX.<br>
@@ -137,30 +202,7 @@ Examples:
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
   `edit h/2 math not done` updates 2nd field of `Alex Yeoh`'s HOMEWORK to `math not done`
 
-### Removing specific field in student: `remove`
-
-Removes a specific field of a student in Pupilist at the specified index.<br>
-**Usage**: View mode only
-
-It requires one field:
-
-- h/: To be followed by INDEX of homework to be removed
-- a/: To be followed by INDEX of attendance to be removed
-- g/: To be followed by INDEX of grade to be removed
-- s/: To be followed by INDEX of session to be removed
-
-Allows for edits of multiple fields in a single command. However, a single command should remove at most one item from each field. <br>
-
-Format: `remove [h/ a/ g/ s/]INDEX`
-
-Examples:
-
-* `view Alex Yeoh` returns `Alex Yeoh` <br>
-  `remove h/2` removes `Alex Yeoh`'s *homework at second index*
-* `view John Doe` returns `John Doe` <br>
-  `remove h/2 a/1` removes `John Doe`'s *homework at second index* and *attendance at first index*
-
-### Marking specific field in student: `mark`
+#### Marking specific field in student: `mark`
 
 Use `mark` command to mark a specific field of a student in Pupilist.<br>
 **Usage**: View mode only
@@ -183,7 +225,7 @@ Examples:
   `mark h/1` marks `Alex Yeoh`'s *homework at first index*
   ![result for 'mark Alex Yeoh'](images/markAlexYeoh.png)
 
-### Unmarking specific field in student: `unmark`
+#### Unmarking specific field in student: `unmark`
 
 Use `unmark` command to unmark a specific field of a student in Pupilist.<br>
 **Usage**: View mode only
@@ -206,7 +248,63 @@ Examples:
   `unmark a/1` unmarks `Alex Yeoh`'s *attendance at first index*
   ![result for 'unmark Alex Yeoh'](images/unmarkAlexYeoh.png)
 
-### Locating students by name: `find`
+### Removing details
+
+#### Removing specific field in student: `remove`
+
+Removes a specific field of a student in Pupilist at the specified index.<br>
+**Usage**: View mode only
+
+It requires one field:
+
+- h/: To be followed by INDEX of homework to be removed
+- a/: To be followed by INDEX of attendance to be removed
+- g/: To be followed by INDEX of grade to be removed
+- s/: To be followed by INDEX of session to be removed
+
+Allows for edits of multiple fields in a single command. However, a single command should remove at most one item from each field. <br>
+
+Format: `remove [h/ a/ g/ s/]INDEX`
+
+Examples:
+
+* `view Alex Yeoh` returns `Alex Yeoh` <br>
+  `remove h/2` removes `Alex Yeoh`'s *homework at second index*
+* `view John Doe` returns `John Doe` <br>
+  `remove h/2 a/1` removes `John Doe`'s *homework at second index* and *attendance at first index*
+
+#### Deleting a student : `delete`
+
+Deletes the specified student from Pupilist.<br>
+**Usage**: View or list mode only
+
+Format: `delete INDEX`
+
+* Deletes the student with the specified `INDEX`.
+* In view mode, INDEX should always be 1 (as per the view list)
+
+Examples:
+
+* `delete 1` removes the first student in Pupilist.
+
+#### Clearing all entries : `clear`
+
+Clears all entries from Pupilist.<br>
+**Usage**: All modes
+
+Format: `clear`
+
+### Viewing details
+
+#### Listing all students : `list`
+
+Shows a list of all students in Pupilist. Changes Pupilist to list mode.
+Next session is also shown.<br>
+**Usage**: All modes
+
+Format: `list`
+
+#### Locating students by name: `find`
 
 Finds students whose names contain any of the given keywords.<br>
 **Usage**: All modes
@@ -226,7 +324,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Viewing students details: `view`
+#### Viewing students details: `view`
 
 View details of a student. Required to `edit` or `remove` student's details.
 Only view one student's details can be viewed at a time.<br>
@@ -240,105 +338,7 @@ Format: `view NAME`
 
 ![result for 'view alex yeoh'](images/viewAlexYeohResult.png)
 
-### Deleting a student : `delete`
-
-Deletes the specified student from Pupilist.<br>
-**Usage**: View or list mode only
-
-Format: `delete INDEX`
-
-* Deletes the student with the specified `INDEX`.
-* In view mode, INDEX should always be 1 (as per the view list)
-
-Examples:
-
-* `delete 1` removes the first student in Pupilist.
-
-### Clearing all entries : `clear`
-
-Clears all entries from Pupilist.<br>
-**Usage**: All modes
-
-Format: `clear`
-
-### Adding Homework to student: `hw`
-
-Adds a description of homework to student in Pupilist.
-Does not check for duplicate homework entries.<br>
-**Usage**: View or list mode only
-
-Format: `hw INDEX h/HOMEWORK`
-
-* Adds homework to student with the specified `INDEX`.
-* In view mode, INDEX should always be 1 (as per the view list)
-
-Examples:
-
-* `hw 1 h/math assignment` adds math assignment to first student in Pupilist.
-
-### Adding Grade Progress to student: `grade`
-
-Use `grade` command to add a description of grade progress to student in Pupilist.
-As GRADE_PROGRESS does not require any fixed format and it is up to the user to have their own formats.
-Pupilist does not check for duplicate entries of grades.<br>
-**Usage**: View or list mode only
-
-Format: `grade INDEX g/GRADE_PROGRESS`
-
-* Adds grade progress to student with the specified `INDEX`.
-* In view mode, INDEX should always be 1 (as per the view list)
-
-Examples:
-
-* `grade 1 g/Math: D+` adds Math: D+ grade to first student in Pupilist.
-
-### Adding Attendance to student : `attendance`
-
-Adds a formatted description of dates students attended class in Pupilist.
-Does not check for duplicate entries.<br>
-**Usage**: View or list mode only
-
-Format: `attendance INDEX a/ATTENDANCE`
-
-* Adds attendance to student with the specified `INDEX`.<br>
-* Attendance must be in `YYYY-MM-DD` format
-* In view mode, INDEX should always be 1 (as per the view list)
-
-Examples:
-
-* `attendance 1 a/2022-12-08` marks 2022-12-08 attendance for first student in Pupilist.
-
-### Adding Session to student: `session`
-
-Adds a formatted session timing to student, expected to repeat weekly.
-Does not check for duplicate entries.<br>
-**Usage**: View or list mode only
-
-Format: `session INDEX s/TUITION_TIME`
-
-* Adds tuition time to student with the specified `INDEX`.<br>
-* Tuition time must be in `DDD HH:MM` format where `HH:MM` ranges from 00:00 to 23:59
-* In view mode, INDEX should always be 1 (as per the view list)
-
-Examples:
-
-* `session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in Pupilist.
-
-### Update Lesson Plan for student: `lesson`
-
-Updates a student's lesson plan by overwriting the current one.<br>
-**Usage**: View or list mode only
-
-Format: `lesson INDEX lp/LESSON_PLAN`
-
-* Updates lesson plan of student with the specified `INDEX`.<br>
-* In view mode, INDEX should always be 1 (as per the view list)
-
-Examples:
-
-* `lesson 1 lp/science` changes lesson plan of first student to science.
-
-### Viewing daily schedule: `show`
+#### Viewing daily schedule: `show`
 
 Displays all sessions scheduled on a certain day of the week. Changes Pupilist to schedule mode.<br>
 **Usage**: All modes
@@ -349,14 +349,25 @@ Examples:
 
 * `show MON` lists all tuition timings scheduled for Monday.
 
-### Exiting the program : `exit`
+### Running the app
+
+#### Viewing help : `help`
+
+Shows a message explaining how to access the help page, and a list of basic commands.<br>
+**Usage**: All modes
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+#### Exiting the program : `exit`
 
 Exits the program.<br>
 **Usage**: All modes
 
 Format: `exit`
 
-### Next Session
+#### Next Session
 
 Pupilist helps to organise session timings automatically. No command is required for this feature.
 This feature is shown on launch of the application and when the [`list`](#listing-all-persons--list) command is used.
@@ -366,11 +377,11 @@ the student and the session timing.
 
 ![next session feature](images/NextSession.png)
 
-### Saving the data
+#### Saving the data
 
 Pupilist data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 
 Pupilist data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -378,7 +389,7 @@ Pupilist data are saved as a JSON file `[JAR file location]/data/addressbook.jso
 If your changes to the data file makes its format invalid, Pupilist will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+#### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
