@@ -22,7 +22,7 @@ public class AddCommand extends Command {
             + ": Adds an eatery to the food guide. "
             + "Parameters: "
             + PREFIX_NAME + " NAME "
-            + PREFIX_PRICE + " PRICE "
+            + "[" + PREFIX_PRICE + " PRICE] "
             + PREFIX_CUISINE + " CUISINE "
             + PREFIX_LOCATION + " LOCATION "
             + "[" + PREFIX_TAG + " TAG]...\n"
