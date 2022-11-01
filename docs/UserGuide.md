@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -14,7 +14,6 @@ Hi Profs! Welcome to the User Guide for **Tuthub**, a Command Line Interface (CL
 Tuthub is a desktop app for NUS professors who wish to track and choose their next batch of teaching assistants/tutors based on their past performance and records but have little time to spare for tedious administrative work. Tuthub helps profs who can type fast find the best TAs faster than traditional Graphical User Interface (GUI) apps.
 
 --------------------------------------------------------------------------------------------------------------------
-
 
 ## About This Document
 
@@ -122,7 +121,7 @@ The following table describes the sections in detail:
 
 ## Features
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 If you are new to Tuthub or need a refresher for available commands, `help` displays a table of Tuthub command summary and a link to our User Guide for your convenience.
 
@@ -155,13 +154,13 @@ Examples:
 * `add n/John Doe p/98765432 e/e1234567 m/CS2100 y/3 s/A0123456X tn/1 r/5.0`
 * `add n/Betsy Crowe t/seniorTa e/e1234567 m/CS1101S y/3 p/1234567 s/A0123456X tn/2 r/4.5`
 
-### Listing all tutors : `list`
+### Listing all tutors: `list`
 
 Shows a list of all tutors registered in Tuthub.
 
 Format: `list`
 
-### Viewing a tutor : `view`
+### Viewing a tutor: `view`
 
 If you would like to find out more about a particular tutor, view a tutor to see all available information about their contact details and past performance.
 
@@ -183,8 +182,7 @@ You may also click on a `Tutor List Card` to execute a `view` command instead
 
 </div>
 
-
-### Commenting on a tutor : `comment`
+### Commenting on a tutor: `comment`
 
 Adds a comment on the specified tutor.
 
@@ -195,7 +193,7 @@ Format: `comment INDEX c/COMMENT`
 Examples:
 * `comment 1 c/Tasks not Finished` adds a comment of "Tasks not Finished" on the 1st tutor.
 
-### Deleting comments on a tutor : `deletecomment` or `dc`
+### Deleting comments on a tutor: `deletecomment` or `dc`
 
 Deletes a comment from the specified tutor.
 
@@ -206,8 +204,7 @@ Format: `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`
 Examples:
 * `deletecomment 1 1` and `dc 1 1` deletes the 1st comment from the 1st tutor.
 
-
-### Editing a tutor : `edit`
+### Editing a tutor: `edit`
 
 Edits an existing tutor in Tuthub.
 
@@ -276,7 +273,7 @@ Examples:
 * `sort a r/` sorts the tutors in ascending order (low to high) based on tutor ratings.
 * `sort d tn/` sorts the tutors in descending order (high to low) based on tutor teaching nominations.
 
-### Deleting a tutor : `delete`
+### Deleting a tutor: `delete`
 
 Deletes the specified tutors from Tuthub.
 
@@ -290,7 +287,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in Tuthub.
 * `find n/Betsy` followed by `delete 1` deletes the 1st tutor with name containing `Betsy` in the results of the `find` command (given that such tutor exists).
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from Tuthub. This could be particularly useful if you would like to clear all the sample data when using Tuthub for the first time.
 
@@ -306,7 +303,7 @@ Format: `clear`
 
 Tuthub data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits Tuthub app.
 
