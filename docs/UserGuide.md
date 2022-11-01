@@ -115,7 +115,7 @@ slot, and doctor.
 
 * Slot must be in the format `yyyy-MM-dd HH:mm`, eg. `2022-11-12 13:00`.
 
-* If slot is entered with time `24:00`, it will be saved as the `00:00` of the next date.
+* The input of four parameters must be different with the combination in other appointments.
 
 * Doctor and medical test are case-sensitive.
 
@@ -168,11 +168,11 @@ parameters already exists in HealthContact.
 
 Adds a bill attached to an appointment with input information including amount and bill date.
 
-* Amount must be positive number with at most 2 decimal places.
+* An amount must be positive number with at most 2 decimal places.
 
 * One appointment can be attached to no more than one bill.
 
-* Bill date must be in the format `yyyy-MM-dd`, eg. `2022-11-12`.
+* A bill date must be in the format `yyyy-MM-dd`, eg. `2022-11-12`.
 
 * The onus is on the user to check that the bill date entered is the same as the appointment date or later.
 
