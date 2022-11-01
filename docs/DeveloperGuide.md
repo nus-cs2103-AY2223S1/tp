@@ -3,7 +3,46 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+- [ConnectNUS Developer Guide](#connectnus-developer-guide)
+- [Navigating the Developer Guide](#navigating-the-developer-guide)
+- [Acknowledgements](#acknowledgements)
+- [Setting up](#setting-up-getting-started)
+- [Design](#design)
+  - [Architecture](#architecture)
+  - [UI Component](#ui-component)
+  - [Logic Component](#logic-component)
+  - [Model Component](#model-component)
+  - [Storage Component](#Storage-Component)
+  - [Common Classes](#common-classes)
+- [Implementation](#implementation)
+  - [Edit contact modules](#edit-contact-modules)
+  - [Edit user modules](#edit-user-modules)
+  - [Check modules left](#checking-modules-left)
+  - [Refreshing to next semester](#refreshing-to-next-semester)
+  - [Add lessons](#adding-lessons)
+  - [View timetable](#viewing-timetable)
+  - [Undo / Redo](#undo--redo)
+  - [Filter contacts](#filter-contacts)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: requirements](#appendix-requirements)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-functional requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **ConnectNUS Developer Guide**
+
+* {intro our app, value}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Navigating the Developer Guide**
+
+* {who will read, There is an explanation on how to use the developer guide (e.g. meaning of various formatting conventions, icons, colour codes) }
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -132,16 +171,6 @@ The `Model` component,
 
 </div>
 
-#### Person Class
-Each `Person` in the AddressBook is implemented in the following way:
-
-![Person Class Diagram](images/PersonClassDiagram.png)
-
-All `Person`s have a `Name`, `Email`, `Address` and `Phone` and a set of `CurrentModule`, `PreviousModule`, and `PlannedModule`.
-`Person`s can have a `Github` URL to their profile added, and as many `Modules` as desired.
-
-`User` Class is implemented the same way.
-
 
 ### Storage component
 
@@ -164,47 +193,55 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add / Delete Module
+### Edit contact modules
 
-#### Proposed Implementation of Module class
+#### Person Class
+Each `Person` in the AddressBook is implemented in the following way:
+
+![Person Class Diagram](images/PersonClassDiagram.png)
+
+All `Person`s have a `Name`, `Email`, `Address` and `Phone` and a set of `CurrentModule`, `PreviousModule`, and `PlannedModule`.
+`Person`s can have a `Github` URL to their profile added, and as many `Modules` as desired.
+
+`User` Class is implemented the same way.
+
+#### Module class
 `CurrentModule`, `PlannedModule`, and `PreviousModule` implement the `Module` interface.
 
 ![Module Class Diagram](images/ModuleClassDiagram.png)
 
 All implementations of `Module`s have a name.
 
-`CurrentModule` has additional fields, which are implementations of `Lesson`s. These are `Tutorial`, `Recitation`, `Lab`, and `Lecture`.
+#### Design considerations
 
-All implementations of `Lesson`s have a `StartTime` and `EndTime`.
+why we chose to have planned, curr and prev mods as own classes or wtv
 
-### Timetable feature
+### Edit user modules
 
-#### Implementation
+Similar to edit contact modules blah blah... user implemented same way as person... module class same... diff command
 
-The timetable feature is an extension of `CurrentModule` to allow users to see upcoming classes with the common
-class types in School of Computing such as lab, lecture, recitation and tutorial.
+#### Design considerations of editing user modules
+
+use same parser as contacts or wtv for space since same function
+
+### Checking modules left
+
+#### Design considerations
+
+only AY2021/22 enrolment bc we selfish blah blah...
 
 
-In NUS School of Computing, every module generally has lab, lecture, recitation and tutorial slots which sometimes makes
-it difficult for students to keep track of especially when students take several “CS” coded modules in a semester. With
-this feature, users will be able to collate all different class types as well as the lesson timings.
-The user will also be able to keep track of his/her friend’s timetable to know when they will be free in situations
-where they would need to decide on a timing to meet up to do group projects, such as in CS2103/T.
+### Refreshing to next semester
 
-As such, the user can conveniently view his/her upcoming classes as well as his/her friends to easily keep track of
-schedules
+sequence diagram or sth
 
-Additionally, the following classes and methods are implemented to support adding Lessons:
+#### Design considerations
 
-We implemented an abstract `Lesson` class and the classes `Lab`, `Lecture`, `Recitation` and `Tutorial` that inherits from it.
-Each of the class types have the class fields, `type`, `module`, `day`, `startTime`, and `endTime`.
+no clue lmao laura u do but if rly nth j remove the design considerations header and from the toc also
 
-The following class diagram illustrates the class diagram of the `Lesson` class and subclasses.
-
-![LessonClassDiagram](images/LessonClassDiagram-0.png)
-
-Each `Lesson` has a `moduleName:String`, `day:int` (between 1-7 inclusive, where 1 is Monday and 7 is Sunday),
-`type:String` (where type is tut / rec / lab / lec), `start:LocalTime` and `end:LocalTime` to in HH:mm format.
+### Adding lessons
+ConnectNUS has a feature that allows you to add lessons to your profile as well as any persons stored in the contact list,
+so that it is easy to keep track of yours and your friend's schedules.
 
 The command has the prefix `lesson` and has the parameters
 `user / INDEX (must be a positive integer) [l/TYPE] [m/MODULE] [d/DAY] [start/START TIME] [end/END TIME]`
@@ -219,21 +256,100 @@ Given below are some examples of a user command to add a `Lesson`
 3. Example 3 : Command to add a `Lecture` for the module CS2109S that starts at 10am and ends at 12pm every Friday to the fifth contact
 - `lesson 5 l/lec m/cs2109s d/5 start/10:00 end/12:00`
 
+#### Lesson class
+In NUS School of Computing, every module generally has lab, lecture, recitation and tutorial slots. 
+
+We implemented an abstract `Lesson` class and the classes `Lab`, `Lecture`, `Recitation` and `Tutorial` that inherits from it.
+Each of the class types have the class fields, `type`, `module`, `day`, `startTime`, and `endTime`.
+
+The following class diagram illustrates the class diagram of the `Lesson` class and subclasses.
+
+![LessonClassDiagram](images/LessonClassDiagram-0.png)
+
+Each `Lesson` has a `moduleName:String`, `day:int` (between 1-7 inclusive, where 1 is Monday and 7 is Sunday),
+`type:String` (where type is tut / rec / lab / lec), `start:LocalTime` and `end:LocalTime` to in HH:mm format.
+
+#### Implementation flow
+
 Given below is a sequence diagram to illustrate how the timetable mechanism behaves after the user attempts to add a tutorial.
 
 ![Timetable](images/Timetable-0.png)
 
-Given below is an activity diagram to illustrate the behaviour of adding a Lesson
+Given below is an activity diagram to illustrate the behaviour of adding a Lesson within `Logic`.
 
 ![LessonActivityDiagram](images/LessonActivityDiagram-0.png)
 
-### Showing the Timetable
+#### Design considerations
+**Aspect 1: How to implement the `Lesson` Class:**
+
+* **Alternative 1 (current choice):** No dependency on `CurrentModule` i.e. moduleName is a `String`.
+  * Pros:
+    * Faster as there is no need to check through set of `CurrentModule`s before adding lesson.
+    * More flexible as user is able to add lessons or activities that are not in the list of `CurrentModule` e.g. if contact is a TA.
+  * Cons: Lack of input validation - user may input invalid lessons that he/she is not taking.
+
+
+* **Alternative 2:** Dependency on `CurrentModule` i.e. moduleName is a `CurrentModule`.
+  * Pros: Input validation - user can only input lessons for modules being taken.
+  * Cons:
+    * Slower due to need to check if `Lesson`'s module is in the list of `CurrentModule`s every time a `Lesson` is added.
+    * Unable to accommodate alternative activities being added in the timetable.
+
+
+* **Decision:** Alternative 1 as speed is important. There are a lot of lessons are expected to be added, since there is about 15 lessons a week per person,
+that has to be multiplied by the number of contacts in ConnectNUS. 
+
+**Aspect 2: How to implement the day in `Lesson` Class:**
+
+* **Alternative 1 (current choice):** Day as `int` between 1 and 7.
+  * Pros: Quick sorting of lessons by day as operations on primitives like `int` is very fast.
+  * Cons: Unintuitive for a user to consider day as an integer between 1 and 7.
+
+
+* **Alternative 2:** Day as `String`.
+  * Pros: Easy conversion to String to display.
+  * Cons: Difficult to sort lessons by day.
+
+* **Alternative 3:** Day as `DayOfWeek`.
+  * Pros: 
+    * Quick to sort due to numeric value of each `DayOfWeek`.
+    * Has function to convert to `String` value of day.
+    * Safety: validates input to be only within the week.
+  * Cons: 
+    * Slower sorting as `DayOfWeek` has to be converted to `int` to sort.
+    * Does not address issue of unintuitive input for day in command.
+
+* **Decision:** Alternative 1 as speed is important as mentioned in Aspect 1.
+
+
+**Aspect 3: Data Structure to store all `Lesson`s:**
+
+* **Alternative 1 (current choice):** `Hashset`.
+  * Pros: Very fast adding of lessons, with removal of duplicates.
+  * Cons: Slow sorting due to need to convert to list before sorting.
+
+
+* **Alternative 2:** `List`.
+  * Pros: Easy sorting due to included function.
+  * Cons: No removal of duplicates
+
+
+* **Decision:** Alternative 1 for fewer bugs due to duplicates that may fall through our checks. As sorting is only done
+during `timetable` commands which will be called significantly fewer times than `lesson` commands, speed of sorting is not
+as significant of an issue.
+
+### Viewing timetable
+ConnectNUS gives you the ability to view not only your own timetable, but that of your contacts as well, after `Lesson`s
+have been added to your profile and their contact. This makes deconflicting schedules significantly faster and meetings can
+be arranged easily.
 
 The command has the prefix `timetable` and has the parameters
 `user / INDEX (must be a positive integer)`
 
 When the user executes the timetable command, a window will pop up which will display the timetable of the user 
-or the specified index in the user's contacts.
+or the specified index in the user's contacts, similar to the window shown below.
+
+![Timetable window](images/TimetableWindow.png)
 
 The timetable will display the lists of all lessons added to the user or user's contacts of the specified index in
 chronological order.
@@ -248,10 +364,32 @@ Given below are some examples of a user command to show a `Timetable`.
 3. Example 3 : Command to show the timetable of the user's tenth contact,
 - `timetable 10`
 
+### Implementation flow
+
 Given below is a sequence diagram to illustrate how the timetable is displayed after the user attempts to show his/her
 timetable.
 
-![TimetableSequenceDiagram](images/TimetableSequenceDiagram-0.png)
+![TimetableSequenceDiagram](images/TimetableSequenceDiagram.png)
+
+`ModelManager`, which implements the `Model` class, stores an attribute `timetable`, which is a `HashSet` of `Lesson`s
+that is being shown in the Timetable Window. 
+
+Before `UI` shows the `TimetableWindow` to the user, the `timetable:HashSet` is obtained from `Logic` and `Model` and then
+sorted and converted to `String` which is displayed in the `TimetableWindow` which is now made visible.
+
+#### Design considerations
+
+**Aspect: How to implement the timetable feature:**
+
+* **Alternative 1:** Displaying in the main window at all times.
+  * Pros: User does not have to run a command to see his/her and his/her contact's timetable.
+  * Cons: User may have to scroll if there is insufficient space to see the full timetable.
+
+* **Alternative 2:** User runs a command to display his/her and his/her contact's timetable which creates a new window.
+  * Pros: User will have a larger space to see the timetable.
+  * Cons: We must ensure the implementation of the additional commands are correct and the UI displays correctly.
+* **Decision:** Since we expect the timetable feature to not be used often (only when arranging meetings), we chose alternative 1
+to reduce the clutter on the main window.
 
 Possible Extensions:
 
@@ -264,7 +402,7 @@ Possible Extensions:
 
 3. Improving the GUI of the `Timetable` pop-up window for more visually pleasing user experience.
 
-### \[Proposed\] Undo/redo feature
+### Undo / redo
 
 #### Proposed Implementation
 
@@ -379,7 +517,21 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 Reason for implementation: All filter methods could have been implemented as one class instead of multiple subclasses. However as the different filtering specifications would have to access different classes to filter the contact list, each filter command has been abstracted out as a different class.
 
-### \[Proposed\] Filter feature
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Saves the entire address book.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+  
+### Filter contacts
 
 #### Proposed Implementation
 
@@ -401,38 +553,6 @@ Step 3. When `NextSemCommand` is called, it will call on `Person#updatePrevMods`
 Step 4. The changes will be reflected in the PersonCard and UserProfile Uis.
 
 The following activity diagram summarizes what happens when a user executes a shift command:
-
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-**Aspect: How to implement the timetable feature:**
-
-* **Alternative 1 (current choice):** Displaying in the main window.
-    * Pros: User does not have to run a command to see his/her and his/her contact's timetable.
-    * Cons: User may have to scroll if there is insufficient space to see the full timetable.
-
-* **Alternative 2:** User runs a command to display his/her and his/her contact's timetable.
-    * Pros: User will have a larger space to see the timetable.
-    * Cons: We must ensure the implementation of the additional commands are correct and the UI displays correctly.
-
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 

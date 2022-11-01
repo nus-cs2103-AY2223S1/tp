@@ -5,6 +5,7 @@ Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
 Participant ":Logic" as logic LOGIC_COLOR
 Participant ":Model" as model MODEL_COLOR
+Participant ":Timetable" as timetable #777
 
 user -[USER_COLOR]> ui : "timetable user"
 activate ui UI_COLOR
@@ -15,13 +16,43 @@ activate logic LOGIC_COLOR
 logic -[LOGIC_COLOR]> model : setTimetable(lessons)
 activate model MODEL_COLOR
 
-model -[MODEL_COLOR]-> logic
+
 deactivate model
 
 
 logic --[LOGIC_COLOR]> ui
 deactivate logic
 
-ui--[UI_COLOR]> user
+ui--[UI_COLOR]> ui : "handleTimetable()"
+activate ui
+
+ui -[UI_COLOR]> logic : getTimetable();
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> model : getTimetable(lessons)
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> logic: timetable:HashSet<Lesson>
+deactivate model
+
+logic -[LOGIC_COLOR]-> ui: timetable:HashSet<Lesson>
+deactivate logic
+
+ui -[#777]-> timetable ** : Timetable(timetable).toString()
+activate timetable
+
+timetable -[#777]-> timetable : sort()
+activate timetable
+
+deactivate timetable
+
+timetable -[#777]-> ui : timetableString
+deactivate timetable
+
+ui--[UI_COLOR]> ui
 deactivate ui
+
+ui--[UI_COLOR]> user: TimetableWindow
+deactivate ui
+
 @enduml
