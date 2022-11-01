@@ -14,6 +14,7 @@ import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,6 +27,7 @@ class JsonAdaptedStudent {
     private final String name;
     private final String phone;
     private final String email;
+    private final String tutorialGroup;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -34,10 +36,16 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email,
+                              @JsonProperty("tutorialGroup") String tutorialGroup,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        if (tutorialGroup != null) {
+            this.tutorialGroup = tutorialGroup;
+        } else {
+            this.tutorialGroup = null;
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -50,6 +58,11 @@ class JsonAdaptedStudent {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        if (source.getTutorialGroup() != null) {
+            tutorialGroup = source.getTutorialGroup().toString();
+        } else {
+            tutorialGroup = null;
+        }
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -65,7 +78,6 @@ class JsonAdaptedStudent {
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -91,7 +103,11 @@ class JsonAdaptedStudent {
         final Email modelEmail = new Email(email);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Student(modelName, modelPhone, modelEmail, modelTags);
+        if (tutorialGroup == null) {
+            return new Student(modelName, modelPhone, modelEmail, modelTags);
+        } else {
+            final TutorialGroup modelTutorialGroup = new TutorialGroup(tutorialGroup);
+            return new Student(modelName, modelPhone, modelEmail, modelTags, modelTutorialGroup);
+        }
     }
-
 }

@@ -12,6 +12,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TutorialGroup;
 
 /**
  * Adds a student to the address book.
@@ -34,7 +35,7 @@ public class StudentAddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book";
-
+    public static final String MESSAGE_TUTORIAL_GROUP_NOT_FOUND = "This tutorial group is not found.";
     private final Student toAdd;
 
     /**
@@ -49,10 +50,15 @@ public class StudentAddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        TutorialGroup toAddTG = toAdd.getTutorialGroup();
+
         if (model.hasStudent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        if (toAddTG != null && !model.hasTutorialGroup(toAddTG)) {
+            throw new CommandException(MESSAGE_TUTORIAL_GROUP_NOT_FOUND);
+        }
         model.addStudent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

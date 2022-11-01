@@ -19,7 +19,6 @@ public class StudentBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_TUTORIAL_GROUP = "T01";
 
     private Name name;
     private Phone phone;
@@ -35,7 +34,7 @@ public class StudentBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         tags = new HashSet<>();
-        tutorialGroup = new TutorialGroup(DEFAULT_TUTORIAL_GROUP);
+        tutorialGroup = null;
     }
 
     /**
@@ -46,7 +45,9 @@ public class StudentBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         tags = new HashSet<>(studentToCopy.getTags());
-        tutorialGroup = studentToCopy.getTutorialGroup();
+        if (studentToCopy.getTutorialGroup() != null) {
+            tutorialGroup = studentToCopy.getTutorialGroup();
+        }
     }
 
     /**
@@ -85,12 +86,24 @@ public class StudentBuilder {
      * Sets the {@code Tutorial Group} of the {@code Student} that we are building.
      */
     public StudentBuilder withTutorialGroup(String tutorialGroup) {
-        this.tutorialGroup = new TutorialGroup(tutorialGroup);
+        if (tutorialGroup == null) {
+            this.tutorialGroup = null;
+        } else {
+            this.tutorialGroup = new TutorialGroup(tutorialGroup);
+        }
         return this;
     }
 
+    /**
+     * Sets the {@code Student} with its given parameters.
+     */
     public Student build() {
-        return new Student(name, phone, email, tags, tutorialGroup);
+
+        if (tutorialGroup == null) {
+            return new Student(name, phone, email, tags);
+        } else {
+            return new Student(name, phone, email, tags, tutorialGroup);
+        }
     }
 
 }

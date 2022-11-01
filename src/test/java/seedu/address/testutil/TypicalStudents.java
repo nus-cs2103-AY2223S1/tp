@@ -55,7 +55,6 @@ public class TypicalStudents {
             .withPhone("9482427")
             .withEmail("lydia@example.com").build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best")
-            .withTutorialGroup("T04")
             .withPhone("9482442")
             .withEmail("anna@example.com").build();
 

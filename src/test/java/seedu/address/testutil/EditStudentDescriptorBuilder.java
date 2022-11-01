@@ -68,7 +68,11 @@ public class EditStudentDescriptorBuilder {
      * Sets the {@code TutorialGroup} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withTutorialGroup(String tutorialGroup) {
-        descriptor.setTutorialGroup(new TutorialGroup(tutorialGroup));
+        if (tutorialGroup == null) {
+            descriptor.setTutorialGroup(null);
+        } else {
+            descriptor.setTutorialGroup(new TutorialGroup(tutorialGroup));
+        }
         return this;
     }
 

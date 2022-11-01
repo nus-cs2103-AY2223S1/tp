@@ -84,8 +84,13 @@ public class StudentEditCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
+        TutorialGroup toAddTG = editedStudent.getTutorialGroup();
+
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+        if (toAddTG != null && !model.hasTutorialGroup(toAddTG)) {
+            throw new CommandException(MESSAGE_TUTORIAL_GROUP_NOT_FOUND);
         }
 
         model.setStudent(studentToEdit, editedStudent);

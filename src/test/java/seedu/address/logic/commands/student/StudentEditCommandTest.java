@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_STUDENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
@@ -39,7 +40,7 @@ public class StudentEditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Student editedStudent = new StudentBuilder().build();
+        Student editedStudent = new StudentBuilder().withTutorialGroup(VALID_TUTORIAL_GROUP_AMY).build();
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
         StudentEditCommand studentEditCommand = new StudentEditCommand(INDEX_FIRST_PERSON, descriptor);
 
@@ -56,12 +57,12 @@ public class StudentEditCommandTest {
         Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
         Student lastStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
 
-        StudentBuilder personInList = new StudentBuilder(lastStudent);
+        StudentBuilder personInList = new StudentBuilder(lastStudent).withTutorialGroup(null);
         Student editedStudent = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(lastStudent).withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withTutorialGroup(null).withTags(VALID_TAG_HUSBAND).build();
         StudentEditCommand editCommand = new StudentEditCommand(indexLastStudent, descriptor);
 
         String expectedMessage = String.format(StudentEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);

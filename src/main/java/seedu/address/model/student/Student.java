@@ -46,7 +46,9 @@ public class Student {
         this.email = email;
         this.tags.addAll(tags);
         this.tutorialGroup = tutorialGroup;
-        tutorialGroup.addStudentToTutorialGroup(this);
+        if (tutorialGroup != null) {
+            tutorialGroup.addStudentToTutorialGroup(this);
+        }
     }
 
     public Name getName() {
@@ -132,6 +134,11 @@ public class Student {
                 .append(getEmail());
 
         Set<Tag> tags = getTags();
+        TutorialGroup tutorialGroup = getTutorialGroup();
+        if (tutorialGroup != null) {
+            builder.append("; Tutorial Group: ")
+                   .append(getTutorialGroup());
+        }
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);

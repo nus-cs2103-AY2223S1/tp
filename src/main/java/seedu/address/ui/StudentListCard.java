@@ -48,7 +48,11 @@ public class StudentListCard extends UiPart<Region> {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ".");
-        tutorialGroup.setText(student.getTutorialGroup().toString());
+        if (student.getTutorialGroup() != null) {
+            tutorialGroup.setText(student.getTutorialGroup().toString());
+        } else {
+            tutorialGroup.setText("No tutorial group yet");
+        }
         name.setText(this.student.getName().fullName);
         phone.setText(this.student.getPhone().value);
         email.setText(this.student.getEmail().value);

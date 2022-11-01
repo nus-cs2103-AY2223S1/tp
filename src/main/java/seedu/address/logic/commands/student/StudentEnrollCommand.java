@@ -70,8 +70,7 @@ public class StudentEnrollCommand extends Command {
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
 
-        if (studentToEdit.belongsTo(editedStudent.getTutorialGroup())
-                && !model.hasTutorialGroup(editedStudent.getTutorialGroup())) {
+        if (!model.hasTutorialGroup(editedStudent.getTutorialGroup())) {
             throw new CommandException(MESSAGE_TUTORIAL_GROUP_NOT_FOUND);
         }
 
