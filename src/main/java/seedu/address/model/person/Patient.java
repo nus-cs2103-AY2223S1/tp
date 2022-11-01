@@ -73,7 +73,7 @@ public class Patient extends Person {
 
     public String getNextOfKinDetails() {
         String[] output = new String[] { NO_NEXTOFKIN_SET };
-        nextOfKin.ifPresent(x -> output[0] = x.toString());
+        nextOfKin.ifPresent(x -> output[0] = "NOK: " + x.toString());
         return output[0];
     }
 

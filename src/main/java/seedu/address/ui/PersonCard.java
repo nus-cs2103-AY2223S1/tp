@@ -66,6 +66,8 @@ public class PersonCard extends UiPart<Region> {
     private Label unavailableDates;
     @FXML
     private Label physInfo;
+    @FXML
+    private Label nokInfo;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to
@@ -82,18 +84,21 @@ public class PersonCard extends UiPart<Region> {
             unavailableDates.setText("Unavailable Dates: " + ((Nurse) person).getUnavailableDatesInString());
             category.getChildren().add(new Label(NURSE_LABEL_TEXT));
             physInfo.setText(NOT_APPLICABLE);
+            nokInfo.setText(NOT_APPLICABLE);
         } else if (person instanceof Patient) {
             dateSlots.setText("HomeVisits DateSlot: " + ((Patient) person).getDatesSlotsInString());
             homeVisits.setText("HomeVisits: " + NOT_APPLICABLE);
             unavailableDates.setText("Unavailable Dates: " + NOT_APPLICABLE);
             category.getChildren().add(new Label(PATIENT_LABEL_TEXT));
             physInfo.setText(((Patient) person).getPhysicianDetails());
+            nokInfo.setText(((Patient) person).getNextOfKinDetails());
         } else {
             dateSlots.setText(NOT_APPLICABLE);
             homeVisits.setText(NOT_APPLICABLE);
             unavailableDates.setText(NOT_APPLICABLE);
             category.getChildren().add(new Label(NAN_LABEL_TEXT));
             physInfo.setText(NOT_APPLICABLE);
+            nokInfo.setText(NOT_APPLICABLE);
         }
         name.setText(person.getName().fullName);
         if (person.getGender().gender.equals(MALE_SYMBOL)) {
