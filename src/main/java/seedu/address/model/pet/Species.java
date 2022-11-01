@@ -14,7 +14,7 @@ public class Species implements Comparable<Species> {
      * @param value The string representation of the species.
      */
     public Species(String value) {
-        if (value == null) {
+        if (value == null || !value.matches("^[a-zA-Z0-9\\s]+$")) {
             this.value = "";
         } else {
             this.value = value;

@@ -15,7 +15,7 @@ public class ColorPattern implements Comparable<ColorPattern> {
      * @param value The string representation of color pattern.
      */
     public ColorPattern(String value) {
-        if (value == null) {
+        if (value == null || !value.matches("^[a-zA-Z0-9\\s]+$")) {
             this.value = "";
         } else {
             this.value = value;

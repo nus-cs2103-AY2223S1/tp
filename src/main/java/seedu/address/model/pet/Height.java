@@ -16,7 +16,11 @@ public class Height implements Comparable<Height> {
      * @param value The height in double floating point number.
      */
     public Height(double value) {
-        this.value = value;
+        if (value < 0) {
+            this.value = 0;
+        } else {
+            this.value = value;
+        }
     }
 
     @Override

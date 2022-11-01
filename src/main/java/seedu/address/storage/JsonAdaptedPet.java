@@ -117,15 +117,8 @@ public class JsonAdaptedPet {
         }
         final Supplier modelSupplier = supplier.toModelType();
 
-        if (color == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Color.class.getSimpleName()));
-        }
         final Color modelColor = new Color(color);
 
-        if (colorPattern == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ColorPattern.class.getSimpleName()));
-        }
         final ColorPattern modelColorPattern = new ColorPattern(colorPattern);
 
         if (dateOfBirth == null) {
@@ -134,9 +127,6 @@ public class JsonAdaptedPet {
         }
         final DateOfBirth modelDateOfBirth = DateOfBirth.parseString(dateOfBirth);
 
-        if (species == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Species.class.getSimpleName()));
-        }
         final Species modelSpecies = new Species(species);
 
         if (weight == null) {
@@ -150,6 +140,10 @@ public class JsonAdaptedPet {
         final Height modelHeight = new Height(height);
 
         final VaccinationStatus modelVax = new VaccinationStatus(vaccinationStatus);
+
+        if (price == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
+        }
         final Price modelPrice = new Price(price);
 
         final Set<PetCertificate> modelCerts = new HashSet<>();

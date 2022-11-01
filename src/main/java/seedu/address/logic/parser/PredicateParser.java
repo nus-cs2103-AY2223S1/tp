@@ -107,7 +107,7 @@ public class PredicateParser {
             return new PhoneContainsKeywordsPredicate<>(Arrays.asList(query));
         default:
             throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
 
@@ -186,8 +186,8 @@ public class PredicateParser {
             return new AdditionalRequestPredicate<>(Arrays.asList(query));
         case ORDER_STATUS_PREFIX:
             if (!OrderStatus.isValidOrderStatus(query)) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FilterOrderCommand.MESSAGE_USAGE));
             }
             if (query.equals(OrderStatus.DELIVERING.toString())) {
                 return new OrderStatusPredicate<>(OrderStatus.DELIVERING);
@@ -196,8 +196,7 @@ public class PredicateParser {
             } else if (query.equals(OrderStatus.PENDING.toString())) {
                 return new OrderStatusPredicate<>(OrderStatus.PENDING);
             }
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         case PRICE_RANGE_PREFIX:
             String[] prices = query.split("-");
             Price lowerBound = new Price(Double.parseDouble(prices[0]));
@@ -209,8 +208,7 @@ public class PredicateParser {
             }
             return new PriceRangePredicate<>(lowerBound, upperBound);
         default:
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         }
     }
 }
