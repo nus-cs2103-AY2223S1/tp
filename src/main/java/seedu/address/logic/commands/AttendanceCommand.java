@@ -40,7 +40,6 @@ public class AttendanceCommand extends Command {
      */
     public AttendanceCommand(Index index, String attendance) {
         requireAllNonNull(index, attendance);
-
         this.index = index;
         this.attendance = attendance;
     }
