@@ -54,8 +54,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDITIONAL_NOTES_AMY = "alive student";
     public static final String VALID_DIFFERENT_ADDITIONAL_NOTES_AMY = "dead student";
     public static final String VALID_ADDITIONAL_NOTES_BOB = "alive student";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_INTERMEDIATE = "intermediate";
+    public static final String VALID_TAG_BEGINNER = "beginner";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -111,7 +111,7 @@ public class CommandTestUtil {
                 .withAddress(VALID_ADDRESS_AMY).withMoneyOwed(VALID_MONEY_OWED_AMY)
                 .withMoneyPaid(VALID_MONEY_PAID_AMY).withRatesPerClass(VALID_RATES_PER_CLASS_AMY)
                 .withAdditionalNotes(VALID_ADDITIONAL_NOTES_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_INTERMEDIATE, VALID_TAG_BEGINNER).build();
     }
 
     static {
@@ -120,7 +120,7 @@ public class CommandTestUtil {
                 .withAddress(VALID_ADDRESS_BOB).withMoneyOwed(VALID_MONEY_OWED_BOB)
                 .withMoneyPaid(VALID_MONEY_PAID_BOB).withRatesPerClass(VALID_RATES_PER_CLASS_BOB)
                 .withAdditionalNotes(VALID_ADDITIONAL_NOTES_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_INTERMEDIATE, VALID_TAG_BEGINNER).build();
     }
 
     /**
