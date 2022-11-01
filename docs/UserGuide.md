@@ -240,35 +240,29 @@ to filter persons by their locations for some reason.
 Example:
 * To add a single buyer: `add-b n/Hongyi ph/11223344 e/email@u.nus.edu a/UTR 138600 l/Singapore`
 
-<div markdown="span" class="alert alert-warning">
-
 :exclamation: After meeting a new customer with an order and would like to add her/him to your list of contacts, we have a
 nice feature for you to add a buyer and his/her orders in one shot! Check it out below :point_down: <br><br>
 Format: `add-b n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION o/add-o(order1 prefixes and fields) o/add-o(order2 prefixes and fields)…​`
 
-    <div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-primary">
 
-    :bulb: **Tip:** Note that you can input as many `o/add-o` prefixes as you need, this allows you to create many new orders for one buyer.
-    After each `add-o`, simply enter the details for the order, and you don't have to specify the index of the associated buyer this time. For more
-    information, you can refer to the [Add Order](#adding-an-order-to-a-buyer-add-o) section.
+:bulb: **Tip:** Note that you can input as many `o/add-o` prefixes as you need, this allows you to create many new orders for one buyer.
+After each `add-o`, simply enter the details for the order, and you don't have to specify the index of the associated buyer this time. For more
+information, you can refer to the [Add Order](#adding-an-order-to-a-buyer-add-o) section.
 
-    </div>
+</div>
 
-    <div markdown="span" class="alert alert-primary">
-    
-    :bulb: **Tip:** For more details on what each prefix represents, kindly refer to [List of Prefixes](#list-of-prefixes).
-    
-    </div>
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** For more details on what each prefix represents, kindly refer to [List of Prefixes](#list-of-prefixes).
+
+</div>
 
 Examples:
 * To add a buyer with one
   order: `add-b n/Hongyi ph/11223344 e/email@u.nus.edu a/UTR 138600 l/Singapore o/add-o o_st/Pending o_r/add-r o_a/1 o_sp/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
 * To add a buyer with two
   orders: `add-b n/Hongyi ph/11223344 e/email@u.nus.edu a/UTR 138600 l/Singapore o/add-o o_st/Pending o_r/add-r o_a/1 o_sp/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery o/add-o  o_st/Negotiating o_r/add-r o_a/3 o_sp/Chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty `
-
-</div>
-
-
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
