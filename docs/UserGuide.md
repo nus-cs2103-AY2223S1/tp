@@ -189,6 +189,8 @@ Adds a contact to your task book.
 
 Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`
 
+* For more information on the `NAME` parameter, see [NAME Parameter](#name-parameter).
+
 Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `contact add n/Betsy Crowe #/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 #/criminal`
@@ -516,6 +518,13 @@ Any of these date formats are accepted:
 * MM dd yyyy (10 31 2022)
 * dd MMM yyyy (31 Oct 2022)
 
+### NAME Parameter
+
+Where the NAME parameter is required (e.g. `n/NAME`), specify the **exact name**
+* in full
+* in a case-sensitive format
+
+This prevents ambiguity in naming so that you can specify the exact contact where necessary.
 
 --------------------------------------------------------------------------------------------------------------------
 
