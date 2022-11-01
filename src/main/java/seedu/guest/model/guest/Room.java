@@ -9,14 +9,14 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
  */
 public class Room {
 
-    // Maximum number of characters able to be entered into Room
-    private static final int MAX_LENGTH_ROOM = 100;
-
     public static final String MESSAGE_CONSTRAINTS =
             "Rooms should only contain alphanumeric characters and hyphens (-). "
             + "They cannot start or end with a hyphen. "
             + "Hyphens can only be used between 2 alphanumeric characters."
             + "You should enter a minimum of 1 character and a maximum of 100 characters.";
+
+    // Maximum number of characters able to be entered into Room
+    private static final int MAX_LENGTH_ROOM = 100;
 
     // Room contains alphanumeric characters with an optional hyphen only in between, and don't start with a hyphen
     // It can also accept a hyphen as long as it is in between 2 alphanumeric characters
