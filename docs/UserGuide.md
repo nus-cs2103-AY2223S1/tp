@@ -334,35 +334,92 @@ Example:
 
 - `delete 1` deletes the employee with employee ID of 1.
 
-#### Adding multiple employees at once: `batchadd`
+#### Adding multiple employees at once: `batch-add`
 
-Adds multiple employees to Coydir all at once.
+Adds multiple employees to Coydir by importing their data from `.csv` file
 
-:warning: **Make sure to have uploaded CSV file to make use of this command, and that employees' fields are compatible with Coydir**: CSV file can be uploaded under the 'data' folder of Coydir.
+This feature will come in handy when:
 
-:warning: **Fields to be added in batchadd would be name, phone, email, position, department, address, tags, and total number of leaves**
+1. You are a new user and have your employee data stored in a `.csv` file.
+2. There has been a recruitment cycle and the company has recruited multiple employees.
 
-:warning: **Do not have commas between each field in the CSV file.**
+With this feature, you would not need to spend time to manually add each employee in!
 
-This command results in one of two cases below:
+Format: `batch-add FILENAME`
 
-**Case 1: CSV file exists**
+Example:`batch-add coydir.csv`
 
-if a CSV file of employees exists in the 'data' folder of Coydir, Coydir will read from the CSV file to add the employees.
+How can you use this feature?
 
-**Case 2: CSV file does not exist**
+#### Step 1 (Creating CSV file) :
 
-if a CSV file does not exist in the 'data' folder of Coydir, Coydir will
-throw an error.
+Things to note:
+- A header row is required to indicate the purpose of the field and must be the first row in the `.csv` file.
+- No commas to be used in the file.
+- For multiple tags for an employee, the tags should be separated by " \ ".
+- For the fields, make sure that they follow the same specifications as written in the `add` command.
 
-Format: `batchadd FILENAME`
+Order of headers is as such (**Order must be followed**):
 
-Example:
+| Index | Field          | Requirement    | Default Value |  
+|-------|----------------|----------------|---------------|  
+| 1.    | `NAME`         | **Compulsory** | -             |  
+| 2.    | `PHONE`        | Optional       | N/A           |  
+| 3.    | `EMAIL`        | Optional       | N/A           |  
+| 4.    | `POSITION`     | **Compulsory** | -             |  
+| 5.    | `DEPARTMENT`   | **Compulsory** | -             |  
+| 6.    | `ADDRESS`      | Optional       | N/A           |  
+| 7.    | `NO_OF_LEAVES` | Optional       | 14            |  
+| 8.    | `TAGS`         | Optional       | _None_ |  
 
-- `batchadd employees.csv`
+Sample `.csv` file:
 
-Sample CSV file as such:
-![](./images/Sample_CSV.png)
+![](images/batch-add-images/sampleCSV.png)
+
+Sample `.xlsx` file:  
+![](images/batch-add-images/SampleExcel.png)  
+Note: You can export this to `.csv`.
+
+#### Step 2 (Uploading CSV file) :
+
+1. Go to the folder where you stored the `jar` file.
+2. Move CSV file to the `data` folder.  
+   ![](images/batch-add-images/movingFile.png)
+
+_If you are a new user (have not run any command yet), you will not see the `data` folder.   
+You can run the [`clear` command](#clearing-the-data--clear) to remove the sample employees first.   
+After this, you should be able to see the `data` folder._
+
+#### Step 3 (Running CSV file) :
+
+1. Once done, run `batch-add FILENAME` in the command box.
+
+Successful Batch Add:  
+![](images/batch-add-images/BatchAddSuccess.png)
+
+Unsuccessful Batch Add:
+
+In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv` will be added.
+
+**Case 1 (Duplicate Employee):**
+
+If there is another employee with the same name in the database or in the csv, command will fail   
+and error will be raised.  
+![](images/batch-add-images/DuplicateEmployee.png)
+
+**Case 2 (Any of the fields in wrong format):**
+
+If any of the fields are in a wrong format (as specified in `add` command), command will fail   
+and error with regard to field in the wrong format will be raised
+
+![](images/batch-add-images/Incorrect Format.png)  
+_In this case, a `Phone` field was in the wrong format._
+
+As of version `1.4.0` , this feature only supports `.csv` files and adding employees with the fields mentioned above.
+
+In the upcoming versions, we will expand `batch-add` feature to:
+1. Support different types of files
+2. Include more fields like rating etc.
 
 #### View details of an employee: `view`
 
@@ -500,8 +557,8 @@ If the employee ID, or the index is invalid, Coydir will prompt the users accord
 Format: `delete-leave id/ID i/INDEX`
 
 | Field   | TAG | Description                       | Requirement    | Default Value |
-| ------- | --- | --------------------------------- | -------------- | ------------- |
-| `ID`    | id/ | Name                              | **Compulsory** | N.A.          |
+| ------- | --- |-----------------------------------| -------------- | ------------- |
+| `ID`    | id/ | Employee ID                       | **Compulsory** | N.A.          |
 | `INDEX` | i/  | Index of leave in the leave table | **Compulsory** | N.A.          |
 
 Example:
@@ -652,6 +709,13 @@ Format: `exit`
 
 Clears all the data currently stored in the database.
 
+If you are a new user, you can use this command after you have experimented with Coydir   
+to start keying in your actual employee information.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**  
+Once you run this command, you lose all data immediately.  
+</div>  
+
 Format: `clear`
 
 #### Saving the data
@@ -684,7 +748,7 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 ## Command summary
 
 | Action              | Format, Examples                                                                                                                                                                                                                                 |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|---------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Add**             | `add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal`                                                      |
 | **Edit**            | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal` |
 | **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                               |
@@ -694,7 +758,7 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 | **Find**            | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                                                                                             |
 | **Add leave**       | `add-leave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `add-leave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                                                                                |
 | **Delete leave**    | `delete-leave id/ID i/INDEX`<br> e.g. `delete-leave id/1 i/3`                                                                                                                                                                                    |
-| **rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                                                                                                                   |
+| **Rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                                                                                                                   |
 | **View Department** | `viewdepartment DEPARTMENT`<br> e.g. `view-department Finance`                                                                                                                                                                                   |
 | **Help**            | `help`                                                                                                                                                                                                                                           |
 | **Exit**            | `exit`                                                                                                                                                                                                                                           |
