@@ -43,8 +43,10 @@ public class AssignTaskAllCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " g/Group Alpha task/Coursework 0 w/High d/2022-01-01 23:59";
 
-    public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Group: %2$s Task: %3$s";
+    public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Group: %2$s Task: %3$s | ";
     public static final String MESSAGE_INVALID_GROUP = "This group is not in the address book.";
+    public static final String MESSAGE_NO_PREFIX_GROUP = "Group must be specified with g/GROUP.\n";
+    public static final String MESSAGE_NO_PREFIX_TASK = "Task must be specified with task/TASK.\n";
     public static final String MESSAGE_NO_MEMBERS = "This group does not have any members.";
     public static final String MESSAGE_NO_TASKS_ADDED = "All members of this group already have this task.";
     public static final String MESSAGE_MEMBER_LIST_ERROR = "The group specified has an erroneous member list.";
