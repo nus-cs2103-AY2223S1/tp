@@ -29,7 +29,7 @@ import seedu.address.model.tuitionclass.exceptions.TuitionClassNotFoundException
  */
 public class UniqueTuitionClassList implements Iterable<TuitionClass> {
 
-    private final ObservableList<TuitionClass> internalList = FXCollections.observableArrayList();
+    public final ObservableList<TuitionClass> internalList = FXCollections.observableArrayList();
     private final ObservableList<TuitionClass> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
