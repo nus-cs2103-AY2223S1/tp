@@ -30,7 +30,7 @@ class TemplateCommandParserTest {
     }
 
     @Test
-    public void parse_validTAInput_returnsTemplateCommand() {
+    public void parse_validTaInput_returnsTemplateCommand() {
         TemplateCommand expectedTemplateCommand = new TemplateCommand("ta");
         assertParseSuccess(parser, "   ta   ", expectedTemplateCommand);
         assertParseSuccess(parser, "ta ", expectedTemplateCommand);
