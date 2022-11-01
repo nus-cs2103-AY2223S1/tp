@@ -92,17 +92,17 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 ### 2.2 Data Fields
 
-| Field               | Parameter | Length Limit | Constraints                                                                   |
-|---------------------|-----------|--------------|-------------------------------------------------------------------------------|
-| **Name**            | `n`       | 50           | Can only contain alphanumeric characters and spaces                           |
-| **Phone**           | `p`       | 20           | Can only contain numbers, at least 3 digits long                              |
-| **Address**         | `a`       | 100          | Can take any values, but not blank                                            |
-| **CAP**             | `c`       | None         | Can only consist of 2 numeric values in the form of `CURRENT_CAP/MAX_CAP`     |
-| **Gender**          | `g`       | None         | Can only be `male` or `female` in any capitalization                          |
-| **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                           |
+| Field               | Parameter | Length Limit | Constraints                                                                     |
+|---------------------|-----------|--------------|---------------------------------------------------------------------------------|
+| **Name**            | `n`       | 50           | Can only contain alphanumeric characters and spaces                             |
+| **Phone**           | `p`       | 20           | Can only contain numbers, at least 3 digits long                                |
+| **Address**         | `a`       | 100          | Can take any values, but not blank                                              |
+| **CAP**             | `c`       | None         | Can only consist of 2 numeric values in the form of `CURRENT_CAP/MAX_CAP`       |
+| **Gender**          | `g`       | None         | Can only be `male` or `female` in any capitalization                            |
+| **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                             |
 | **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of `MM-yyyy`, starting from the year 0000 |                           
-| **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                           |
-| **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces     |
+| **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                             |
+| **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces       |
 
 * `CURRENT_CAP` must be smaller than or equal to `MAX_CAP`
 * Special punctuations: `-` `#` `,` `:` `&` `(` `)` `"` `'` `/` `[` `]`
@@ -299,10 +299,13 @@ Switches between different lists in InternConnect stored in `data/` folder.
 Format: `checkout FILE_NAME`
 
 * `FILE_NAME` should not include any extension, as it would always be a JSON file.
-* The command will create a new list populated with the sample data if the specified `FILE_NAME.json` doesn't exist. Otherwise, it will switch to a previously created list.
+* The command will attempt to load the specified `FILE_NAME.json`.
+* If the file contains invalid data, the file will be erased.
+* If the file doesn't exist, a new file will be created, populated with sample data.
+* If the file contains valid data, the file will be loaded.
 
 Examples:
-* `checkout 27-oct-2022` loads data from `data/27-oct-2022.json` if it exists. Otherwise, a new file will be created and populated with sample data.
+* `checkout 27-oct-2022` attempt to load data from `data/27-oct-2022.json`.
 
 
 ### 3.11 Clearing all entries: `clear`
