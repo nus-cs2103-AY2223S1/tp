@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.TaskEditCommand.MESSAGE_NOT_EDITED;
 import static seedu.address.logic.parser.ArgumentMultimap.arePrefixesPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
@@ -59,7 +60,7 @@ public class TaskEditCommandParser implements Parser<TaskEditCommand> {
 
 
         if (newName == null && newDeadline == null) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskEditCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_NOT_EDITED, TaskEditCommand.MESSAGE_USAGE));
         }
 
         return new TaskEditCommand(teamIndex, taskIndex, newName, newDeadline);

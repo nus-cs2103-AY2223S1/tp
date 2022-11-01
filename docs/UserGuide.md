@@ -74,7 +74,7 @@ Format: `help`
 
 ### Adding a member: `add`
 
-Adds a new person to EZLead.
+Adds a new person to EZLead. 
 
 Format: `add n/NAME p/PHONE-NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
@@ -223,6 +223,16 @@ Format: `editteam t/TEAM-INDEX n/NEW-TEAM-NAME`
 Examples:
 * `editteam t/1 n/TEAMNEW` Changes the first team's name to 'TEAMNEW'.
 
+### Manually editing save file:
+
+For advanced users, the data and state of EZLEAD is stored in `data/addressbook.json`.
+You can manually modify the data directly by accessing this JSON file.
+
+However, EZLEAD cannot verify validity of the data if it was manually modified. Any invalid data will cause EZLEAD
+to load in an EMPTY state.
+
+![JSONSaveFile.png](images/JSONSaveFile.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -248,7 +258,7 @@ Examples:
 | **Task Delete**     | `taskdelete t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskdelete t/1 task/1`                                                                                    |
 | **Task Mark**       | `taskmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskmark t/1 task/1`                                                                                        |
 | **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                    |
-| **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX n/NEW-TASK-NAME [d/NEW DD-MM-YYYY]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                    |
+| **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX [n/NEW-TASK-NAME] [d/NEW DD-MM-YYYY]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                  |
 | **Team Add**        | `create n/TEAM-NAME` <br> e.g. `create n/TEAM1`                                                                                                                |
 | **Team Delete**     | `delteam t/TEAM-INDEX` <br> e.g. `delteam t/1`                                                                                                                 |
 | **Team Edit**       | `editteam t/TEAM-INDEX n/NEW-TEAM-NAME` <br> e.g. `editteam t/1 n/TEAMNEW`                                                                                     |
