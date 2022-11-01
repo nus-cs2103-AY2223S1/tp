@@ -9,8 +9,8 @@ import static tracko.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "A tag's name should be alphanumeric and "
-            + "should not be more than 30 characters long.";
+    public static final String MESSAGE_CONSTRAINTS = "A tag's name should be alphanumeric, should only be 1 word "
+            + "and should not be more than 30 characters long.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
