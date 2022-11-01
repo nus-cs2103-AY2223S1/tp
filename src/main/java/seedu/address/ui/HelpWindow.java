@@ -130,8 +130,6 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String LIST_MIX_DEMO_INPUT = "list a/431 g/F";
     private static final String LIST_MIX_DEMO_OUTPUT = "Listed all persons with specifications: "
             + "ADDRESS: 431, CATEGORY: NIL, GENDER: F, TAG: NIL";
-            + " Phone: 87438807; Email: alexyeoh@example.com; Address: Blk 30 Geylang Street 29, #06-40;"
-            + " Tags: [friends]; Home Visits Date and Time:11/11/2022 14:00 , ; Visit Status: visited";
     private static final String CLEAR_USAGE_HELP = "";
     private static final String DELETE_USAGE_HELP = "Delete Person from list: \n"
             + "delete id/ID ";
