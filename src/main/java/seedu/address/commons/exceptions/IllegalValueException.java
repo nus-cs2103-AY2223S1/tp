@@ -18,4 +18,11 @@ public class IllegalValueException extends Exception {
     public IllegalValueException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    /**
+     * @param cause of the main exception
+     */
+    public IllegalValueException(Throwable cause) {
+        super(cause);
+    }
 }

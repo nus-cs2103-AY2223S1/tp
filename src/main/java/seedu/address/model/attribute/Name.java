@@ -1,12 +1,15 @@
 package seedu.address.model.attribute;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
+import seedu.address.logic.parser.Prefix;
 
 /**
  * Represents a Attribute's name in the address book. Guarantees: immutable; is valid as declared in
  * {@link #isValidName(String)}
  */
-public class Name extends AbstractAttribute<String> {
+public class Name extends AbstractAttribute<String> implements PrefixedAttribute {
 
     public static final String TYPE = "Name";
     public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphanumeric "
@@ -36,5 +39,10 @@ public class Name extends AbstractAttribute<String> {
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public Prefix getPrefix() {
+        return PREFIX_NAME;
     }
 }

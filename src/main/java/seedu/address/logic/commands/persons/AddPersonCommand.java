@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
 /**
  * Adds a person to the address book.
  */
-public class AddCommand extends PersonCommand implements PureCommandInterface {
+public class AddPersonCommand extends PersonCommand implements PureCommandInterface {
 
     public static final String SUBCOMMAND_WORD = "new";
 
@@ -44,7 +44,7 @@ public class AddCommand extends PersonCommand implements PureCommandInterface {
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
+    public AddPersonCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
     }
@@ -64,8 +64,8 @@ public class AddCommand extends PersonCommand implements PureCommandInterface {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+            || (other instanceof AddPersonCommand // instanceof handles nulls
+                && toAdd.equals(((AddPersonCommand) other).toAdd));
     }
 
     @Override

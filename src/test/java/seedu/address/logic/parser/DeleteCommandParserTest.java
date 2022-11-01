@@ -3,12 +3,14 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.persons.DeleteCommand;
-import seedu.address.logic.parser.persons.DeleteCommandParser;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.model.group.Group;
+import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations outside of
@@ -18,15 +20,37 @@ import seedu.address.logic.parser.persons.DeleteCommandParser;
  */
 public class DeleteCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private Parser<DeleteCommand<Person>> parserP = CmdBuilder.makeDelParserPerson();
+    private Parser<DeleteCommand<Group>> parserG = CmdBuilder.makeDelParserGroup();
+    private Parser<DeleteCommand<Task>> parserT = CmdBuilder.makeDelParserTask();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+    public void parsePerson_validArgs_returnsDeleteCommand() {
+        assertParseSuccess(parserP, "1", CmdBuilder.makeDelPerson(INDEX_FIRST));
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    public void parsePerson_invalidArgs_throwsParseException() {
+        assertParseFailure(parserP, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parseTask_validArgs_returnsDeleteCommand() {
+        assertParseSuccess(parserT, "1", CmdBuilder.makeDelTask(INDEX_FIRST));
+    }
+
+    @Test
+    public void parseTask_invalidArgs_throwsParseException() {
+        assertParseFailure(parserT, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parseGrp_validArgs_returnsDeleteCommand() {
+        assertParseSuccess(parserG, "1", CmdBuilder.makeDelGrp(INDEX_FIRST));
+    }
+
+    @Test
+    public void parseGrp_invalidArgs_throwsParseException() {
+        assertParseFailure(parserG, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }
