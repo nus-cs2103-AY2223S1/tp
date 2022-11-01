@@ -38,6 +38,11 @@ public interface Logic {
     /** Returns an unmodifiable view of the list of promotion images*/
     ObservableList<Image> getPromotionList();
 
+    /**
+     * Parses all the image files stored in the folder indicated by the filepath.
+     *
+     * @param filePath String representation of the FilePath of the folder containing the promotion images
+     */
     void parseAllPromotion(String filePath);
 
     /**

@@ -133,16 +133,29 @@ public class BobaBotModelManager implements BobaBotModel {
         bobaBot.setPerson(target, editedCustomer);
     }
 
+    /**
+     * Stores the current version of bobaBot into VersionedBobaBot.
+     */
     @Override
     public void commitBobaBot() {
         versionedBobaBot.commit(this.bobaBot);
     }
 
+    /**
+     * Retrieves the previous state/version of bobaBot from VersionedBobaBot.
+     *
+     * @throws PreviousStateNotFoundException if bobaBot is in the initialised state
+     */
     @Override
     public void undoBobaBot() throws PreviousStateNotFoundException {
         versionedBobaBot.undo(this.bobaBot);
     }
 
+    /**
+     * Retrieves the state/version of bobaBot before the undoCommand from VersionedBobaBot.
+     *
+     * @throws NextStateNotFoundException if bobaBot is in the most updated state.
+     */
     @Override
     public void redoBobaBot() throws NextStateNotFoundException {
         versionedBobaBot.redo(this.bobaBot);
@@ -215,11 +228,21 @@ public class BobaBotModelManager implements BobaBotModel {
         filteredCustomers.setPredicate(predicate);
     }
 
+    /**
+     * Retrieves the promotionList.
+     *
+     * @return an ObservableList consisting of the parsed promotion images
+     */
     @Override
     public ObservableList<Image> getPromotionList() {
         return promotionManager.getPromotionList();
     }
 
+    /**
+     * Parses all the image files stored in the folder indicated by the filepath.
+     *
+     * @param filePath String representation of the FilePath of the folder containing the promotion images
+     */
     @Override
     public void parseAllPromotion(String filePath) {
         promotionManager.parseAllPromotions(filePath);
