@@ -59,12 +59,19 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Validates whether multiple prefixes are stored in Argument Multimap.
+     * Validates whether only a single prefix and a single keyword are stored in Argument MultiMap.
      *
-     * @return true if 2 or more prefixes are stored
+     * @return true if there are 2 or more prefixes or keywords stored.
      */
     public boolean containsMultiplePrefix() {
         Integer sizeOffset = argMultimap.size() - 1;
+
+        for (List<String> prefixWords: argMultimap.values()) {
+            if (prefixWords.size() > 1) {
+                return true;
+            }
+        }
+
         return sizeOffset > 1;
     }
 }

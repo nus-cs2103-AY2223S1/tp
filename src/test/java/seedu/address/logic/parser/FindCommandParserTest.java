@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NOK_PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -63,6 +64,8 @@ public class FindCommandParserTest {
         // Name, phone, nokPhone and email prefixes parsed
         assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + NOK_PHONE_DESC_AMY + EMAIL_DESC_AMY,
                 ONLY_ONE_PREFIX_MESSAGE);
+
+        assertParseFailure(parser, NAME_DESC_AMY + NAME_DESC_BOB, ONLY_ONE_PREFIX_MESSAGE);
     }
 
     @Test

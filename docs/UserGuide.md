@@ -442,6 +442,7 @@ Finds student with the matching contact number.
 Format: `find p/CONTACT_NUMBER`
 
 - Only full numbers will be matched e.g., `8123` will not match `81234567`.
+- Only one contact number can be searched at each time.
 
 Example:
 
@@ -453,6 +454,7 @@ Finds all students with a particular next of kin's contact number.
 
 Formats: `find np/NEXT_OF_KIN_CONTACT_NUMBER`
 
+- Only full numbers will be matched e.g., `8123` will not match `81234567`.
 - Only one contact number can be searched at each time.
 
 <div markdown="span" class="alert alert-danger">❗ **Caution:** Do not include more than one contact number such as find np/91232323 81231232.
