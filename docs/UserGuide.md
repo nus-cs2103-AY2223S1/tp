@@ -329,6 +329,10 @@ Examples:
 If there is no GitHub username associated with the person at the specified `INDEX', an error will be thrown.
 </div>
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+</div>
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3.5 Pie Chart Feature
