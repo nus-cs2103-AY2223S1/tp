@@ -3,7 +3,47 @@ layout: page
 title: User Guide
 ---
 
-Everything you need to know about TruthTable.
+This document contains everything you need to know about TruthTable.
+
+## About TruthTable
+
+TruthTable is a **desktop application** that enables team leaders to **manage their software
+engineering teams** in one application.
+
+TruthTable is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a
+Graphical User Interface (GUI).
+
+If you can type fast, TruthTable can get your task management done _blazingly fast_, faster than traditional GUI
+applications.
+
+## Using this guide
+
+If you are a software engineering team leader looking to get started with TruthTable, make sure the [pre-requisites 
+are installed](#getting-started).
+
+[//]: # (TODO: link to team migration/onboarding section and features)
+This document can also guide you on how to migrate your existing project information onto TruthTable, and 
+familiarise you with all of TruthTable's features. 
+
+If you are an experienced user of TruthTable, this guide also contains valuable tips on how you can maximise your 
+productivity while using TruthTable.
+
+Here are the symbols and text styles to look out for while using this guide:
+
+| Symbol               | Meaning                            |
+|----------------------|------------------------------------|
+| :information-source: | Important information to take note |
+| :bulb:               | Tips for all users                 |
+| :star:               | Tips for advanced users            |
+| :exclamation:        | Critical information to be wary of |
+
+| Text Style             | Meaning                                                          |
+|------------------------|------------------------------------------------------------------|
+| [Link to glossary      | Clickable link to navigate to a section in the guide](#glossary) |
+| `text with background` | Text relevant to the commands                                    |
+| <kbd>Esc</kbd>         | Keyboard button                                                  |
+
+
 
 ## Table of Contents
 
@@ -11,18 +51,6 @@ Everything you need to know about TruthTable.
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
-# Introduction to TruthTable
-
-TruthTable is a **desktop application** that enables team leads to **manage their software 
-engineering teams** in one application. 
-
-TruthTable is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a 
-Graphical User Interface (GUI).
-
-
-If you can type fast, TruthTable can get your task management done _blazingly fast_, faster than traditional GUI 
-applications.
 
 ## Key Features
 
@@ -86,7 +114,7 @@ will see the available commands in TruthTable that you can execute.
 ---
 
 
-# Getting Started
+## Getting Started
 
 1. Ensure you have Java `11` or above installed in your computer. If not, don't worry! Click
    [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) for further instructions on 
@@ -110,7 +138,7 @@ will see the available commands in TruthTable that you can execute.
 
 ---
 
-# Features
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -132,9 +160,9 @@ will see the available commands in TruthTable that you can execute.
 You will find that the syntax is very similar to other command line interfaces like `git` and `docker`!
 </div>
 
-## Commands to Manage Persons
+### Commands to Manage Persons
 
-### Creating a new person `add person`
+#### Creating a new person `add person`
 
 Adds a person to TruthTable.
 
@@ -148,13 +176,13 @@ Examples:
 * `add person -n "John Doe" -p 98765432 -e johnd@example.com -a "John street, block 123, #01-01"`
 * `add person -n "Betsy Crowe" -e betsycrowe@example.com -a "Newgate Prison" -p 1234567 -t criminal friend`
 
-### Listing all persons : `list persons`
+#### Listing all persons : `list persons`
 
 Shows a list of all persons in TruthTable.
 
 Format: `list persons`
 
-### Editing a person : `edit person`
+#### Editing a person : `edit person`
 
 Edits an existing person in TruthTable.
 
@@ -174,7 +202,7 @@ Examples:
 *  `edit person 2 -n Betsy Crower -t` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing 
    tags.
 
-### Locating persons by name: `find person`
+#### Locating persons by name: `find person`
 
 Finds person whose names contain any of the given keywords.
 
@@ -191,7 +219,7 @@ Examples:
 * `find person alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find person alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete person`
+#### Deleting a person : `delete person`
 
 Deletes the specified person from TruthTable.
 
@@ -205,9 +233,9 @@ Examples:
 * `list persons` followed by `delete person 2` deletes the 2nd person in the address book.
 * `find person Betsy` followed by `delete person 1` deletes the 1st person in the results of the `find person` command.
 
-## Commands to Manage Teams
+### Commands to Manage Teams
 
-### Creating a new team `add team`
+#### Creating a new team `add team`
 
 Add a new team to your list of teams. Will show an error there is already an existing team with the same name. 
 
@@ -222,7 +250,7 @@ Examples:
 - `add team CS2102 -d "Database Systems"` will create a new team by the name of "CS2102" and "Database Systems"
   as description
 
-### Set a new team `set team`
+#### Set a new team `set team`
 
 Sets the application to an existing team, i.e., changes the current "working" team to another. Will throw an error if the team does not exist
 
@@ -232,7 +260,7 @@ Examples:
 
 - `set team CS2103` will change the current working team to be the "CS2103" team.
 
-### Edit current team `edit team`
+#### Edit current team `edit team`
 
 Format: `edit team [-n TEAM_NAME] [-d TEAM_DESCRIPTION]`
 
@@ -240,7 +268,7 @@ Examples:
 - `edit team -n CS2103 -d "Software Engineering"` will edit the name of the current team to CS2103 and description
   to "Software Engineering"
 
-### Delete an existing team `delete team`
+#### Delete an existing team `delete team`
 
 Delete an existing team from the user's list of teams. Throws an error under these conditions.
 
@@ -253,9 +281,9 @@ Examples:
 
 - `delete team CS2103` will delete the team with the name "CS2103"
 
-## Commands to Manage Members
+### Commands to Manage Members
 
-### Adding a new member to the team `add member`
+#### Adding a new member to the team `add member`
 
 Add a new team member to the user’s currently selected team. Will throw an error if the member already exists in the team.
 
@@ -265,7 +293,7 @@ Examples:
 
 - `add member 1` will add the first person in the list of people as a member of the current team.
 
-### Delete a member from team `delete member`
+#### Delete a member from team `delete member`
 
 Delete a team member from the user’s team.
 
@@ -275,7 +303,7 @@ Examples:
 
 - `delete member 2` will delete the second member of the current team.
 
-### Find members : `find member`
+#### Find members : `find member`
 
 Finds all members in the current team whose names or emails contain any of the given keywords.
 
@@ -300,13 +328,13 @@ Examples
 * `find member -e alex@gmail.com`  finds team members with **emails** containing "alex@gmail.com".
 
 
-### Listing all members of the team : `list members`
+#### Listing all members of the team : `list members`
 
 View all the members currently in the team, in the form of a list.
 
 Format: `list members`
 
-### Sort members : `sort members`
+#### Sort members : `sort members`
 Sorts all members in the current team by name and displays them in the member list.
 
 Format: `sort members ORDER`
@@ -316,9 +344,9 @@ Examples
 * `sort members dsc` sorts the team members in **reverse alphabetical** order (as per their names).
 * `sort members res` **resets** the order of the team members shown.
 
-## Commands to Manage Tasks
+### Commands to Manage Tasks
 
-### Add task to team : `add task`
+#### Add task to team : `add task`
 
 Add a new task to your current team. The task name is compulsory, while other fields such as assignee index and
 deadline are optional.
@@ -336,7 +364,7 @@ first member in the team list and set the deadline "02-Dec-2022 23:59", to the c
 task list, with the name "Review PR", assign the task
 to the first and third member in your team list and set the deadline of the task to be 02-Dec-2022 23:59.
 
-### Edit task in team : `edit task`
+#### Edit task in team : `edit task`
 
 Edits a specified task in the current team. The task index is compulsory, while the other fields are optional and
 will be overwritten accordingly.
@@ -355,7 +383,7 @@ as "02-Dec-2022 23:59".
 list, setting the name as "Update UG" and changing the deadline as "02-Dec-2022 23:59". The assignees are not changed
 in this case.
 
-### Assign task to team member: `assign task`
+#### Assign task to team member: `assign task`
 
 Assign an existing task to a team member in the user’s team. Will display an error message if either the team member or
 the task is not found in the user’s team.
@@ -367,7 +395,7 @@ Examples:
 - `assign task 1 -a 1` will assign the first task on the task list to the first member in the team.
 - `assign task 2 -a 2` will assign the second task on the task list to the second member in the team.
 
-### Assign task to random team member: `assign random`
+#### Assign task to random team member: `assign random`
 
 Assign an existing task to a random team member in the user’s team. Will display an error message if either the task is
 not found in the user’s team or if there are no team members to assign the task to (if the team is empty,
@@ -379,7 +407,7 @@ Examples:
 
 - `assign random 1` will assign the first task on the task list to a random team member.
 
-### Set Deadline for task: `set deadline`
+#### Set Deadline for task: `set deadline`
 
 Set a deadline for an existing task. Will display an error message if task is not found in the user’s team.
 If a deadline has been set for the task before, a new deadline will be set if command is run again.
@@ -392,7 +420,7 @@ Examples:
 - `set deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 December 2023
 11.59pm.
 
-### Delete task from team : `delete task`
+#### Delete task from team : `delete task`
 
 Delete an existing task from the team given the task's index. Will display an error message if the task is not found in
 the user’s team, i.e., when the index exceeds the number of tasks.
@@ -403,7 +431,7 @@ Examples:
 
 - `delete task 1` will delete the first task of the current team.
 
-### Mark tasks as done: `mark`
+#### Mark tasks as done: `mark`
 
 Mark a specified task as done. To undo this command, see the `unmark` command below.
 
@@ -413,7 +441,7 @@ Examples:
 
 - `mark 1` will mark the first task in the team as done.
 
-### Unmark tasks as done: `unmark`
+#### Unmark tasks as done: `unmark`
 
 Mark a specified task as incomplete. This will undo the `mark` command.
 
@@ -423,7 +451,7 @@ Examples:
 
 - `unmark 1` will mark the first task in the team as incomplete.
 
-### Find tasks : `find task`
+#### Find tasks : `find task`
 
 Find all tasks in the current team whose names contain any of the given keywords.
 
@@ -440,7 +468,7 @@ Format: `find task -n TASK_NAME`
 Examples
 * `find task -n User Guide` finds tasks with **names** containing **either** the word "User" or "Guide".
 
-### List tasks in team: `list tasks`
+#### List tasks in team: `list tasks`
 
 View all the tasks currently in the user’s team in the form of a list. List can also be filtered based on complete or
 remaining tasks.
@@ -455,13 +483,13 @@ Examples:
 - `list tasks -i` will list all the incomplete tasks of the current team.
 - `list tasks -c` will list all the completed tasks of the current team.
 
-### View summary of task assignments in team: `summary`
+#### View summary of task assignments in team: `summary`
 
 View the number of tasks assigned to each user in the team.
 
 Format: `summary`
 
-### Sort tasks : `sort tasks`
+#### Sort tasks : `sort tasks`
 Sorts all tasks in the current team by name and displays them in the task list
 
 Format: `sort tasks ORDER`
@@ -471,7 +499,7 @@ Examples
 * `sort tasks dsc` sorts the tasks in **descending** order.
 * `sort tasks res` **resets** the order of the tasks shown.
 
-### Filter tasks by team member : `tasksof`
+#### Filter tasks by team member : `tasksof`
 Find all tasks in your current team that have been assigned to a particular team member.
 
 Format: `tasksof MEMBER_INDEX`
@@ -479,9 +507,9 @@ Format: `tasksof MEMBER_INDEX`
 Examples
 * `tasksof 1` will show all tasks assigned to the first member in your current team's member list.
 
-## Commands to Manage Links / URLs
+### Commands to Manage Links / URLs
 
-### Add a new link : `add link`
+#### Add a new link : `add link`
 
 Add a new link to the user's currently selected team.
 
@@ -491,7 +519,7 @@ Examples:
 
 - `add link -n google -l https://google.com` will add a link named "google" with the URL "https://google.com"
 
-### Edit an existing link : `edit link`
+#### Edit an existing link : `edit link`
 
 Edit an existing link in the user's currently selected team.
 
@@ -502,7 +530,7 @@ Examples:
 - `edit link 1 -n facebook -l https://facebook.com` will update the 1st link to have the name "facebook" with the 
   URL of "https://facebook.com"
 
-- ### Delete an existing link : `delete link`
+#### Delete an existing link : `delete link`
 
 Delete the specified link from the user's currently selected team.
 
@@ -512,38 +540,38 @@ Examples:
 
 - `delete link 1`
 
-## Miscellaneous Commands
+### Miscellaneous Commands
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Deletes all the people from the application.
 
 Format: `clear`
 
-### Switching between light and dark theme: `theme`
+#### Switching between light and dark theme: `theme`
 
 Toggles between light theme and dark theme.
 
 Format: `theme`
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Viewing help : `help`
+#### Viewing help : `help`
 
 Shows the URL to this help page, which will list all available commands.
 
 Format: `help`
 
-### Saving the data
+#### Saving the data
 
 TruthTable data is saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
-### Editing the data file
+#### Editing the data file
 
 TruthTable data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
 update data directly by editing that data file.
@@ -553,13 +581,13 @@ If your changes to the data file makes its format invalid, TruthTable will disca
 data file on the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+#### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 ---
 
-# FAQ
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -567,9 +595,11 @@ the data of your previous TruthTable home folder.
 
 ---
 
-# Command summary
+## Command summary
 
 | Action | Format, Examples |
-| ------ | ---------------- |
+|--------|------------------|
 | TBC    | TBC              |
 | TBC    | TBC              |
+
+## Glossary
