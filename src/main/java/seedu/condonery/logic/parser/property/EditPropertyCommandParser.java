@@ -43,7 +43,7 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_TAG,
                         PREFIX_PROPERTY_TYPE, PREFIX_IMAGE_UPLOAD, PREFIX_INTERESTEDCLIENTS,
-                        PREFIX_PROPERTY_STATUS, PREFIX_PROPERTY_STATUS);
+                        PREFIX_PROPERTY_STATUS);
         EditPropertyDescriptor editPropertyDescriptor =
                 new EditPropertyDescriptor();
         Index index;

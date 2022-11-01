@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRESS_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_BOB;
 import static seedu.condonery.testutil.Assert.assertThrows;
-import static seedu.condonery.testutil.TypicalClients.ALICE_CLIENT;
+import static seedu.condonery.testutil.TypicalClients.AMY_CLIENT;
 import static seedu.condonery.testutil.TypicalClients.BOB_CLIENT;
 
 import org.junit.jupiter.api.Test;
@@ -22,20 +22,20 @@ public class ClientTest {
     @Test
     public void isSameClient() {
         // same object -> returns true
-        assertTrue(ALICE_CLIENT.isSameClient(ALICE_CLIENT));
+        assertTrue(AMY_CLIENT.isSameClient(AMY_CLIENT));
 
         // null -> returns false
-        assertFalse(ALICE_CLIENT.isSameClient(null));
+        assertFalse(AMY_CLIENT.isSameClient(null));
 
         // same name, all other attributes different -> returns true
-        Client editedAlice = new ClientBuilder().withName("Alice")
+        Client editedAmy = new ClientBuilder().withName("Amy Bee")
                 .withAddress(CLIENT_VALID_ADDRESS_BOB)
                 .withTags("tag1", "tag2").build();
-        assertTrue(ALICE_CLIENT.isSameClient(editedAlice));
+        assertTrue(AMY_CLIENT.isSameClient(editedAmy));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new ClientBuilder().withName(CLIENT_VALID_NAME_BOB).build();
-        assertFalse(ALICE_CLIENT.isSameClient(editedAlice));
+        editedAmy = new ClientBuilder().withName(CLIENT_VALID_NAME_BOB).build();
+        assertFalse(AMY_CLIENT.isSameClient(editedAmy));
 
         // name differs in case, all other attributes same -> returns false
         Client editedBob = new ClientBuilder().withName(CLIENT_VALID_NAME_BOB.toLowerCase()).build();

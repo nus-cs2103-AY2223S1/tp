@@ -10,7 +10,7 @@ import seedu.condonery.model.property.PropertyStatusContainsKeywordsPredicate;
 
 /**
  * Finds and lists all properties in Condonery whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class StatusPropertyCommand extends Command {
 
@@ -23,7 +23,12 @@ public class StatusPropertyCommand extends Command {
 
     private final PropertyStatusContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates a StatusPropertyCommand to find the specified {@code Property}
+     * @param predicate
+     */
     public StatusPropertyCommand(PropertyStatusContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 

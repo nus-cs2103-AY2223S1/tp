@@ -180,6 +180,7 @@ public class MainWindow extends UiPart<Stage> {
         System.out.println(logic.getUserImageDirectoryPath());
         if (file != null) {
             try {
+                Files.createDirectories(logic.getUserImageDirectoryPath());
                 Files.copy(
                     Files.newInputStream(file.toPath()),
                     logic.getUserImageDirectoryPath().resolve(name),
