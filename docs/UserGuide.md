@@ -209,12 +209,12 @@ Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHO
 Examples:
 * `add n/Google ph/98765432 e/johnd@example.com r/Y2 summer break p/Backend Intern pr/APPLIED d/11-12-2022 web/https://careers.google.com/jobs t/high t/java`
 * `add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`
-* `add n/Tiktok p/backend engineer`
+* `add n/Gojek p/Mobile Intern`
 
-![help message](images/BeforeAddCommand.png)
+![BeforeAddCommand](images/BeforeAddCommand.png)
 _Before executing command:  `add n/Gojek p/Mobile Intern`_
 
-![help message](images/AfterAddCommand.png)
+![AfterAddCommand](images/AfterAddCommand.png)
 _After executing command: `add n/Gojek p/Mobile Intern`_
 
 <div style="page-break-after: always;"></div>
@@ -237,9 +237,7 @@ Format: `list [c/CATEGORY [DESCENDING]]`
 
 Examples:
 * `list c/date true`
-* `list c/position false`
-
-<div style="page-break-after: always;"></div>
+* `list c/position`
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Info:** If the `DESCENDING` parameter is empty or is spelt incorrectly, it will be set to `false`
@@ -257,6 +255,12 @@ Examples:
 
 `list c/company_name` is equivalent to `list c/n`
 </div>
+
+![BeforeListCommand](images/BeforeListCommand.png)
+_Before executing command:  `list c/position`_
+
+![AfterListCommand](images/AfterListCommand.png)
+_After executing command: `list c/position`_
 
 <div style="page-break-after: always;"></div>
 
@@ -281,8 +285,6 @@ Examples:
 * `find c/position engineer` returns a list of internships with a position of Algorithm Engineer and Software Engineer
 * `find sea shop` returns a list of internships with company name of Sea Labs, Shopee, and Shopback
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** 
 
@@ -297,6 +299,12 @@ Examples:
 `find c/position engineer` is equivalent to `find c/p engineer`
 </div>
 
+![BeforeFindCommand](images/BeforeFindCommand.png)
+_Before executing command:  `find sea shop`_
+
+![AfterFindCommand](images/AfterFindCommand.png)
+_After executing command: `find sea shop`_
+
 <div style="page-break-after: always;"></div>
 
 ### View details of an internship: `view`
@@ -309,12 +317,12 @@ Format: `view INDEX`
 * More details about the company at the index will be displayed.
 
 Examples:
-* `list` followed by `view 1` displays more details of the 1st internship in list.
+* `find sea shop` followed by `view 1` displays more details of the 1st internship in list.
 
-![before_view](images/BeforeViewCommand.png)
+![BeforeViewCommand](images/BeforeViewCommand.png)
 _Before executing command:  `view 1`_
 
-![after_view](images/AfterViewCommand.png)
+![AfterViewCommand](images/AfterViewCommand.png)
 _After executing command: `view 1`_
 
 <div style="page-break-after: always;"></div>
@@ -329,7 +337,13 @@ Format: `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/DA
 
 Examples:
 * `list` followed by `edit 2 p/quant researcher d/01-01-2023` will edit the position and assignment date of the 1st internship in the list to quant researcher and 1 January 2023 respectively.
-* `find google` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
+* `find sea shop` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
+
+![BeforeEditCommand](images/BeforeEditCommand.png)
+_Before executing command:  `edit 1 pr/REJECTED`_
+
+![AfterEditCommand](images/AfterEditCommand.png)
+_After executing command: `edit 1 pr/REJECTED`_
 
 <div style="page-break-after: always;"></div>
 
@@ -354,13 +368,25 @@ Format: `delete INDEX…​`
 
 Examples:
 * `list` followed by `delete 1 3` deletes the 1st and 3rd internship from the list.
-* `find TikTok` followed by `delete 1` deletes the 1st internship in the results of the `find` command.
+* `find sea shop` followed by `delete 1` deletes the 1st internship in the results of the `find` command.
+
+![BeforeDeleteCommand](images/BeforeDeleteCommand.png)
+_Before executing command:  `delete 1`_
+
+![AfterDeleteCommand](images/AfterDeleteCommand.png)
+_After executing command: `delete 1`_
 
 ### Clearing all entries : `clear`
 
 Starting a new internship season? Clear all entries from the internship tracker.
 
 Format: `clear`
+
+![BeforeClearCommand](images/BeforeClearCommand.png)
+_Before executing command:  `clear`_
+
+![AfterClearCommand](images/AfterClearCommand.png)
+_After executing command: `clear`_
 
 <div style="page-break-after: always;"></div>
 
@@ -373,6 +399,12 @@ Format: `undo`
 <div markdown="block" class="alert alert-info">
 **:information_source: Info:** <br>
 You can only undo `add`,`clear`,`delete`,`edit`,`redo` commands
+
+![BeforeUndoCommand](images/BeforeUndoCommand.png)
+_Before executing command:  `undo`_
+
+![AfterUndoCommand](images/AfterUndoCommand.png)
+_After executing command: `undo`_
 
 </div>
 
