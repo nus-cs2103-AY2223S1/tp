@@ -167,6 +167,10 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Income.MESSAGE_FORMAT_CONSTRAINTS);
         }
 
+        if (!Income.isPositiveIncome(income)) {
+            throw new IllegalValueException(Income.VALUE_FORMAT_CONSTRAINTS);
+        }
+
         final Income modelIncome = new Income(income);
 
         if (riskAppetite == null) {

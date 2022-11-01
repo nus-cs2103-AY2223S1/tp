@@ -166,6 +166,9 @@ public class ParserUtil {
         if (!Income.isValidFormat(trimmedIncome)) {
             throw new ParseException(Income.MESSAGE_FORMAT_CONSTRAINTS);
         }
+        if (!Income.isPositiveIncome(trimmedIncome)) {
+            throw new ParseException(Income.VALUE_FORMAT_CONSTRAINTS);
+        }
         return new Income(income);
     }
 
