@@ -21,7 +21,7 @@
   </HBox>
   <HBox styleClass="target-person-tag-container">
     <Label fx:id="tagLabel" styleClass="target-person-tag" text="Tags: " />
-    <FlowPane fx:id="tags" />
+    <FlowPane fx:id="tags" styleClass="hotpink-border" HBox.hgrow="ALWAYS" minWidth="-Infinity" prefWidth="1" />
   </HBox>
 
   <TextFlow>
