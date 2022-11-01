@@ -21,7 +21,7 @@ public class Rating {
      * Maximum of 2 decimals.
      * The first value should be between 0 (MIN_RATING) and 5 (MAX_RATING).
      */
-    public static final String VALIDATION_REGEX = "^[" + MIN_RATING + "-" + MAX_RATING + "{1}](\\.[0-9]([0-9]?))?$";
+    public static final String VALIDATION_REGEX = "^[" + MIN_RATING + "-" + MAX_RATING + "](\\.[0-9]([0-9]?))?$";
 
     public final String value;
 
