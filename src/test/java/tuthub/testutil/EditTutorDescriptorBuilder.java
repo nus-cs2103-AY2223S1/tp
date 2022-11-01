@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import tuthub.logic.commands.EditCommand.EditTutorDescriptor;
 import tuthub.model.tag.Tag;
+import tuthub.model.tutor.CommentList;
 import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
@@ -43,6 +44,7 @@ public class EditTutorDescriptorBuilder {
         descriptor.setYear(tutor.getYear());
         descriptor.setStudentId(tutor.getStudentId());
         descriptor.setTeachingNomination(tutor.getTeachingNomination());
+        descriptor.setComments(new CommentList(tutor.getComments().getList()));
         descriptor.setRating(tutor.getRating());
         descriptor.setTags(tutor.getTags());
     }
