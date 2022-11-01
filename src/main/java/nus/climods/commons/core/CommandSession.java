@@ -16,7 +16,6 @@ import nus.climods.storage.exceptions.StorageException;
 public class CommandSession {
 
     private final CommandExecutor commandExecutor;
-
     private final List<String> commandHistory;
     private ListIterator<String> commandScroller;
 
@@ -28,6 +27,7 @@ public class CommandSession {
     public CommandSession(CommandExecutor commandExecutor) {
         this.commandHistory = new ArrayList<>();
         this.commandExecutor = commandExecutor;
+        this.commandScroller = commandHistory.listIterator();
     }
 
     private void resetCommandScroller() {
