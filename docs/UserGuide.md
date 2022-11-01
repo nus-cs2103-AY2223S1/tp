@@ -17,7 +17,7 @@ We hope you find PleaseHireUs to be very useful in your internship hunt.
 
 <div style="page-break-after: always;"></div>
 
-## Table of Content
+## Table of Contents
 * Table of Contents
 {:toc}
 <div style="page-break-after: always;"></div>
@@ -29,7 +29,7 @@ This guides aims to: <br>
 1. Teach first-time users how to start using PleaseHireUs
 2. Show and explain to users how to use the features available
 3. Provide users with a summary of the features available
-4. Provide advance users with tips to improve their experience
+4. Provide advanced users with tips to improve their experience
 
 ## Navigating the User Guide 
 **Information Box**
@@ -39,7 +39,7 @@ This guides aims to: <br>
 
 **Tip Box**
 <div markdown="block" class="alert alert-success">
-**:bulb: Tip:** Provides advance users with pointers to enhance your experience
+**:bulb: Tip:** Provides advanced users with pointers to enhance their experience
 </div>
 
 **Warning Box**
@@ -315,7 +315,7 @@ Examples:
 
 ### View details of an internship: `view`
 
-Need to contact the HR? View more details of internship application.
+Need to contact HR? View more details of internship application.
 
 Format: `view INDEX`
 
@@ -335,7 +335,7 @@ _After executing command: `view 1`_
 
 ### Copy details of internship : `copy`
 
-Your friend is asking for one of your internship application details? Copy all the details of internship application into your computer's [clipboard](#glossary).
+Quickly share your application details by copying it into your computer's [clipboard](#glossary).
 
 Format: `copy INDEX`
 
@@ -358,7 +358,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Ready for a new internship season? Clears all entries from the internship tracker.
+Starting a new internship season? Clear all entries from the internship tracker.
 
 Format: `clear`
 
@@ -386,7 +386,7 @@ Format: `redo`
 
 ### Viewing help : `help`
 
-Display the command summary and a message explaining how to access the help page.
+If you need a quick refresher on the available commands, head right to the help page. Link to the user guide is also available.
 
 Format: `help`
 
