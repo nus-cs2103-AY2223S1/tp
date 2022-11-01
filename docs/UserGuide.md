@@ -35,25 +35,25 @@ Pupilist can get your scheduling done faster with single line CLI command inputs
 ## Glossary
 
 
-| Term      | Description                                                                                                                                                                                                                                                             |
-| ----------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CLI       | Command-Line Interface. Refers to programs that receive commands in the form of a single line of text.                                                                                                                                                                  |
-| GUI       | Graphical User Interface. Refers to the screen displayed.                                                                                                                                                                                                               |
-| Parameter | Refers to any information Pupilist may require to execute a specific command.<br> For example, in the [`View`](#viewing-persons-details-view) command requires a NAME parameter for Pupilist to display information of the Student ,assuming a valid name in view mode. |
-| Prefixes  | A prefix indicates the type of field you are keying in. The list of prefixes supported by Pupilist can be found [here](#prefixes-summaries).                                                                                                                              |
+| Term       | Description                                                                                                                                                                                                                                                             |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CLI        | Command-Line Interface. Refers to programs that receive commands in the form of a single line of text.                                                                                                                                                                  |
+| GUI        | Graphical User Interface. Refers to the screen displayed.                                                                                                                                                                                                               |
+| Parameter  | Refers to any information Pupilist may require to execute a specific command.<br> For example, in the [`View`](#viewing-persons-details-view) command requires a NAME parameter for Pupilist to display information of the Student ,assuming a valid name in view mode. |
+| Prefixes   | A prefix indicates the type of field you are keying in. The list of prefixes supported by Pupilist can be found [here](#prefixes-summaries).                                                                                                                            |
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `Pupilist.jar` from [here](https://github.com/AY2223S1-CS2103T-W09-4/tp/releases).
-3. Copy the file to the folder you want to use as the _home folder_ for your address book.
+3. Copy the file to the folder you want to use as the _home folder_ for Pupilist.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
-   * **`add`**`n/John Doe p/98765432 lp/Algorithms` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 lp/Algorithms` : Adds a contact named `John Doe` to Pupilist.
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
    * **`clear`** : Deletes all contacts.
    * **`exit`** : Exits the app.
@@ -95,7 +95,7 @@ Format: `help`
 
 ### Adding a student: `add`
 
-Adds a student to the address book. A student is considered a duplicate only if the names are the same (non case-sensitive).<br>
+Adds a student to Pupilist. A student is considered a duplicate only if the names are the same (non case-sensitive).<br>
 **Usage**: List mode only
 
 Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN [t/TAG]...`
@@ -106,7 +106,7 @@ Examples:
 
 ### Listing all students : `list`
 
-Shows a list of all students in the address book. Changes the address book to list mode.
+Shows a list of all students in Pupilist. Changes Pupilist to list mode.
 Also allows you to see the next session for you to attend along with the student you
 are going to be teaching next.<br>
 **Usage**: All modes
@@ -115,7 +115,7 @@ Format: `list`
 
 ### Editing a student : `edit`
 
-Edits an existing student in the address book.
+Edits an existing student in Pupilist.
 For fields requiring an INDEX, existing fields have to contain a value before editing is allowed, else there will be no INDEX.<br>
 **Usage**: View mode only
 
@@ -140,7 +140,7 @@ Examples:
 
 ### Removing specific field in student: `remove`
 
-Removes a specific field of a student in the address book at the specified index.<br>
+Removes a specific field of a student in Pupilist at the specified index.<br>
 **Usage**: View mode only
 
 It requires one field:
@@ -163,7 +163,7 @@ Examples:
 
 ### Marking specific field in student: `mark`
 
-Use `mark` command to mark a specific field of a student in the address book.<br>
+Use `mark` command to mark a specific field of a student in Pupilist.<br>
 **Usage**: View mode only
 
 It requires one field:
@@ -186,7 +186,7 @@ Examples:
 
 ### Unmarking specific field in student: `unmark`
 
-Use `unmark` command to unmark a specific field of a student in the address book.<br>
+Use `unmark` command to unmark a specific field of a student in Pupilist.<br>
 **Usage**: View mode only
 
 It requires one field:
@@ -243,7 +243,7 @@ Format: `view NAME`
 
 ### Deleting a student : `delete`
 
-Deletes the specified student from the address book.<br>
+Deletes the specified student from Pupilist.<br>
 **Usage**: View or list mode only
 
 Format: `delete INDEX`
@@ -253,18 +253,18 @@ Format: `delete INDEX`
 
 Examples:
 
-* `delete 1` removes the first student in the address book.
+* `delete 1` removes the first student in Pupilist.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.<br>
+Clears all entries from Pupilist.<br>
 **Usage**: All modes
 
 Format: `clear`
 
 ### Adding Homework to student: `hw`
 
-Adds a description of homework to student in address book.
+Adds a description of homework to student in Pupilist.
 Does not check for duplicate homework entries.<br>
 **Usage**: View or list mode only
 
@@ -275,11 +275,11 @@ Format: `hw INDEX h/HOMEWORK`
 
 Examples:
 
-* `hw 1 h/math assignment` adds math assignment to first student in address book.
+* `hw 1 h/math assignment` adds math assignment to first student in Pupilist.
 
 ### Adding Grade Progress to student: `grade`
 
-Use `grade` command to add a description of grade progress to student in address book.
+Use `grade` command to add a description of grade progress to student in Pupilist.
 As GRADE_PROGRESS does not require any fixed format and it is up to the user to have their own formats.
 Pupilist does not check for duplicate entries of grades.<br>
 **Usage**: View or list mode only
@@ -291,11 +291,11 @@ Format: `grade INDEX g/GRADE_PROGRESS`
 
 Examples:
 
-* `grade 1 g/Math: D+` adds Math: D+ grade to first student in address book.
+* `grade 1 g/Math: D+` adds Math: D+ grade to first student in Pupilist.
 
 ### Adding Attendance to student : `attendance`
 
-Adds a formatted description of dates students attended class in address book.
+Adds a formatted description of dates students attended class in Pupilist.
 Does not check for duplicate entries.<br>
 **Usage**: View or list mode only
 
@@ -307,7 +307,7 @@ Format: `attendance INDEX a/ATTENDANCE`
 
 Examples:
 
-* `attendance 1 a/2022-12-08` marks 2022-12-08 attendance for first student in address book.
+* `attendance 1 a/2022-12-08` marks 2022-12-08 attendance for first student in Pupilist.
 
 ### Adding Session to student: `session`
 
@@ -323,7 +323,7 @@ Format: `session INDEX s/TUITION_TIME`
 
 Examples:
 
-* `session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in address book.
+* `session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in Pupilist.
 
 ### Update Lesson Plan for student: `lesson`
 
@@ -341,7 +341,7 @@ Examples:
 
 ### Viewing daily schedule: `show`
 
-Displays all sessions scheduled on a certain day of the week. Changes address book to schedule mode.<br>
+Displays all sessions scheduled on a certain day of the week. Changes Pupilist to schedule mode.<br>
 **Usage**: All modes
 
 Format: `show [DDD]`
@@ -362,11 +362,10 @@ Format: `exit`
 Pupilist helps to organise your session timings automatically. No command is required for this feature.
 This feature is shown on launch of the application and when the [`list`](#listing-all-persons--list) command is used.
 
-Pupilist takes your current device time and sees the sessions that are upcoming if you have any, 
-then shows you the name of the student and the session timing. If you don't have any sessions with anyone, 
-it will also tell you that there are no next session timing.
+Pupilist checks for the upcoming sessions based on your current device time, then displays the name of 
+the student and the session timing.
 
-![next session feature](images/next_session.png)
+![next session feature](images/NextSession.png)
 
 ### Saving the data
 
@@ -388,12 +387,12 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.<br>
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Pupilist home folder.<br>
 **Q**: How do I start?<br>
 **A**: Launch the app and use the help to learn all about the commands!<br>
 **Q**: Where do I check for updates on the app?<br>
-**A**: Check periodically on github for our latest updates on the app.
+**A**: Check periodically on GitHub for our latest updates on the app.
 
 ---
 
@@ -403,7 +402,7 @@ _Details coming soon ..._
 
 
 | Action                 | Format, Examples                                                                                                                                                             |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**                | `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN [t/TAG]...` <br> e.g., `add n/James Ho p/96775567 lp/english`                                                                      |
 | **Add Attendance**     | `attendance INDEX a/ATTENDANCE`<br> e.g., `attendance 2 a/2022-12-08`                                                                                                        |
 | **Add Grade**          | `grade INDEX g/GRADE`<br> e.g., `grade 2 g/English: B+`                                                                                                                      |
