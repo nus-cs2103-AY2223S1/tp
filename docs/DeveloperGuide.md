@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 <div style="text-align:center;">
-<img src="images/classifyLogo.png">
+<img src="images/ClassifyLogo.png">
 </div>
 
 * Table of Contents
@@ -32,6 +32,8 @@ This developer guide covers the architecture, design choices and implementation 
 * Refer to our [Appendix: Requirements](#6-appendix-requirements) section for Class-ify's requirements.
 * Refer to our [Appendix: Instructions for manual testing](#7-appendix-instructions-for-manual-testing) section to learn how to test Class-ify manually.
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. **Acknowledgements**
@@ -39,11 +41,15 @@ This developer guide covers the architecture, design choices and implementation 
 * Class-ify is adapted from the [AddressBook-Level3](https://se-education.org/addressbook-level3/) project created by the SE-EDU initiative.
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -163,6 +169,8 @@ The `Storage` component,
 #### 4.1.5 Common classes
 
 Classes used by multiple components are in the `seedu.classify.commons` package.
+
+Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -495,6 +503,8 @@ The following sequence diagram depicts how different components such as `Logic` 
   - Cons:
     - Reorders the whole `StudentRecord` each time the sorting is done
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. **Documentation, logging, testing, configuration, dev-ops**
@@ -504,6 +514,8 @@ The following sequence diagram depicts how different components such as `Logic` 
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -528,7 +540,6 @@ Ministry of Education (MOE) Teachers who:
 Class-ify is a class management application built specially for Ministry of Education (MOE) teachers to
 monitor their student's academic progress easily. Teachers can generate exam statistics for each class,
 and Class-ify quickly flags out students who require more support for contacting.
-
 
 ### 6.2 User stories
 
@@ -692,6 +703,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *More to be added*
 
 ### 6.4 Non-Functional Requirements
+
 - **Technical Requirement**:
   - Class-ify should work on any mainstream operating system (OS) as long as it has Java version 11 or above installed.
   - Class-ify should work on both 32-bit and 64-bit environments.
@@ -716,6 +728,8 @@ Through the CLI, users interact with the application by typing in text commands
 * **MSS**: Main Success Scenario (MSS) describes the most straightforward interaction for a given use case, 
 which assumes that nothing goes wrong
 * **32-bit/64-bit environment**: Refers to systems that use a 32-bit/64-bit processor respectively.
+
+Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -837,3 +851,5 @@ Prerequisites: Missing `data/classify.json` file
 1. Dealing with missing/corrupted data files
       1. Test case: Delete `data/classify.json` file and relaunch the application.
          Expected: Application will be populated with sample data.
+
+Click <a href="#top">here</a> to return to the top.
