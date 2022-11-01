@@ -216,7 +216,7 @@ public RemarkCommand parse(String args) throws ParseException {
 
 <div markdown="span" class="alert alert-primary">
 
-:information_source: Don’t forget to update `AddressBookParser` to use our new `RemarkCommandParser`!
+:information_source: Don’t forget to update `FridayParser` to use our new `RemarkCommandParser`!
 
 </div>
 

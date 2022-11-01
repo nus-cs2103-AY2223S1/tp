@@ -1,68 +1,29 @@
 @startuml
+
 !include style.puml
+title Sorting students
 
-box Logic LOGIC_COLOR_T1
-Participant ":LogicManager" as logicManager LOGIC_COLOR
-Participant "scp:SortCommandParser" as sortCommandParser LOGIC_COLOR
-Participant "c:Comparator" as comparator LOGIC_COLOR
-Participant "sc:SortCommand" as sortCommand LOGIC_COLOR
-Participant "r:CommandResult" as commandResult LOGIC_COLOR
-end box
+start
 
-box Model MODEL_COLOR_T1
-Participant "m:ModelManager" as modelManager MODEL_COLOR
-Participant "sl:SortedList<Student>" as sortedList MODEL_COLOR
-end box
+:Receives a ""sort"" command;
 
-[-> logicManager : execute("sort n/a")
-activate logicManager LOGIC_COLOR
+if () then ([valid command])
+    :Parses the ""sort""
+    command, criteria and order;
 
-logicManager -[LOGIC_COLOR]> sortCommandParser : parse("sort n/a")
-activate sortCommandParser LOGIC_COLOR
+    :Sorts all students based on the criteria and order;
 
-create comparator
-sortCommandParser -[LOGIC_COLOR]> comparator
-activate comparator LOGIC_COLOR
+    :Displays all sorted students to the user;
 
-comparator --[LOGIC_COLOR]> sortCommandParser : ""c""
-deactivate comparator
+    :Shows a success message;
 
-create sortCommand
-sortCommandParser -[LOGIC_COLOR]> sortCommand : sortCommand(c)
-activate sortCommand LOGIC_COLOR
+else ([else])
 
-sortCommand --[LOGIC_COLOR]> sortCommandParser : ""sc""
-deactivate sortCommand
+    :Shows an invalid
+    command message;
 
-sortCommandParser --[LOGIC_COLOR]> logicManager : ""sc""
-deactivate sortCommandParser
+endif
 
-logicManager -[LOGIC_COLOR]> sortCommand : sc.execute(m)
-activate sortCommand LOGIC_COLOR
+stop
 
-sortCommand -[MODEL_COLOR]> modelManager : m.updateSortedStudentList(c)
-activate modelManager MODEL_COLOR
-
-modelManager -[MODEL_COLOR]> sortedList : sl.setComparator(c)
-activate sortedList MODEL_COLOR
-
-sortedList --[MODEL_COLOR]> modelManager
-deactivate sortedList
-
-modelManager --[MODEL_COLOR]> sortCommand
-deactivate modelManager
-
-create commandResult
-sortCommand -[LOGIC_COLOR]> commandResult
-activate commandResult LOGIC_COLOR
-
-commandResult --[LOGIC_COLOR]> sortCommand : ""r""
-deactivate commandResult
-
-sortCommand --[LOGIC_COLOR]> logicManager : ""r""
-deactivate sortCommand
-
-[<[LOGIC_COLOR]-- logicManager : ""r""
-
-deactivate logicManager
 @enduml
