@@ -189,7 +189,7 @@
 }
 
 .context-menu .label {
-    -fx-text-fill: #3C3C3C;
+    -fx-text-fill: #FFFFFF;
 }
 
 .menu-bar {
@@ -209,10 +209,11 @@
     -fx-focus-color: #707BE3;
 }
 
-.context-menu:focused {
+.context-menu {
     -fx-background-color:#3C3C3C;
     -fx-focus-color:#3C3C3C;
 }
+
 .menu .left-container {
     -fx-background-color: #FFF2E7;
 }
