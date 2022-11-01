@@ -39,8 +39,9 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Mass Linkers.
 
-4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The GUI similar to the one below should appear. The below image is annotated with the various sections of the UI. 
+   1. Note for OS-X users: If you face difficulty running Mass Linkers, refer to [the FAQ](#faq)<br>
+   ![Ui](images/UiBreakDown.png)
 
 5. Type a command in the command box and press Enter to execute it. Refer to the section on [Features](#features) below for details and usage of each command. You can also use the [`help`](#view-help-help) command in Mass Linkers to view a summary of all available commands and their syntax.
 
@@ -223,11 +224,8 @@ Left-click the row with the batchmate's name in the Students panel.
 
 - The selected row would turn blue and the Modules panel would display all the modules of the batchmate.
 
-This is the GUI when Mass Linkers is opened.
-![UgViewModBefore](images/UgViewModBefore.png)
-
 This is the GUI after you left-click the 1st batchmate in the Students panel. The 1st row turns blue and the Modules panel displays all the modules of the 1st batchmate.
-![UgViewModAfter](images/UgViewModAfter.png)
+![UgViewMod](images/UgViewMod.png)
 
 #### 2. Add module to a batchmate: `mod add`
 
@@ -236,17 +234,16 @@ Adds module(s) to a specified batchmate in the _Modules panel_.
 __Format:__ `mod add INDEX MODULE [MORE_MODULES]...`
 
 * Adds module(s) to the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
-* * Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Unrestricted Elective`. More information can be found under [Module Categorisation](#module-categorisation).
+* Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Unrestricted Elective`. More information can be found under [Module Categorisation](#module-categorisation).
 
 __Examples:__
 * `mod add 1 ma1521` adds the module `MA1521` to the 1st batchmate in the currently displayed list.
 * `mod add 3 cs2100 cs2103t cs2101 cs2105` adds the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` to the 3rd batchmate in the currently displayed list.
 
-This is the GUI before `mod add 1 ma1521` is executed.
-![UgModAddBefore](images/UgModAddBefore.png)
+This is the GUI after executing `mod add 1 ma1521`. The module `MA1521` is successfully added to the 1st batchmate and automatically categorised as `Mathematics`. The expected changes is annotated with a purple rectangular box below.
+![UgModAdd](images/UgModAdd.png)
 
-This is the GUI after you press Enter to execute the command. The module `ma1521` is successfully added to the 1st batchmate and automatically categorised as `Mathematics`.
-![UgModAddAfter](images/UgModAddAfter.png)
+
 
 #### 3. Delete module from a batchmate: `mod delete`
 
@@ -272,11 +269,9 @@ __Examples:__
 * `mod mark 1 cs2103t` marks the module `CS2103T` of the 1st batchmate in the currently displayed list as `taken`.
 * `mod mark 3 cs2100 cs2103t cs2101 cs2105` marks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `taken`.
 
-This is the GUI before `mod mark 3 cs2100 cs2103t cs2101 cs2105` is executed. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` current have `taking` as their status.
-![UgModMarkBefore](images/UgModMarkBefore.png)
+This is the GUI after you executing `mod mark 3 cs2100 cs2103t cs2101 cs2105`. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` are successfully marked as `taken`. The expected changes is annotated with purple rectangular boxes below.
+![UgModMark](images/UgModMark.png)
 
-This is the GUI after you press Enter to execute the command. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` are successfully marked as `taken`.
-![UgModMarkAfter](images/UgModMarkAfter.png)
 
 #### 5. Unmark module as not taken: `mod unmark`
 
