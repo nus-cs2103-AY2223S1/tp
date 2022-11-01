@@ -251,44 +251,44 @@ This section describes some noteworthy details on how certain features are imple
 ### Sort feature
 
 #### Rationale
-This is a feature that enables the sorting of students using various criteria. With many students to keep track of, we 
-decided to add this feature to allow users to quickly organize their students in different ways. 
+This is a feature that enables the sorting of students using various criteria. With many students to keep track of, we
+decided to add this feature to allow users to quickly organize their students in different ways.
 
 #### Implementation
 
 The current implementation of the sort feature allows users to sort all students based on the given criteria, in ascending
-or descending order. The classes corresponding to the current list of criteria are: `Name`, `TelegramHandle`, `Consultation`, 
+or descending order. The classes corresponding to the current list of criteria are: `Name`, `TelegramHandle`, `Consultation`,
 `MasteryCheck`, and `Grade`. 
 
-In this section, we will use the following Activity Diagram to outline the process when the `sort` command is executed. 
+In this section, we will use the following Activity Diagram to outline the process when the `sort` command is executed.
 
 ![Sort Command Activity Diagram](images/SortCommandActivityDiagram.png)
 
-The `sort` command will be executed by `SortCommand`. Before that, `SortCommandParser` uses instances of `Prefix` and 
-`Order` in `CliSyntax` to parse the user input and decide what comparator is passed to `SortCommand`. The sorted list 
-is stored as `sortedStudents` in `ModelManager`, and is updated every time `SortCommand` is run. 
+The `sort` command will be executed by `SortCommand`. Before that, `SortCommandParser` uses instances of `Prefix` and
+`Order` in `CliSyntax` to parse the user input and decide what comparator is passed to `SortCommand`. The sorted list
+is stored as `sortedStudents` in `ModelManager`, and is updated every time `SortCommand` is run.
 
-To assist with the sorting, classes `Name`, `TelegramHandle`, `Consultation`, and `MasteryCheck` implement the `Comparable` 
+To assist with the sorting, classes `Name`, `TelegramHandle`, `Consultation`, and `MasteryCheck` implement the `Comparable`
 interface, where the natural ordering of `String` and `LocalDate` are used to implement the `compareTo` method. The `Grade`
-class does not implement the interface as its attributes are `String`s. 
+class does not implement the interface as its attributes are `String`s.
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
-1. FRIDAY initialises an `ObservableList<Student>` named `students` and 
+1. FRIDAY initialises an `ObservableList<Student>` named `students` and
 a `SortedList<Student>` named `sortedStudents` upon launch.
 
-2. The user executes `sort n/a` command to sort the students by name in ascending order. 
+2. The user executes `sort n/a` command to sort the students by name in ascending order.
 
-3. The user input is passed to 
+3. The user input is passed to
 `LogicManager`, which then calls the `SortCommandParser#parse` method to parse the argument `n/a`.
 
-4. The `SortCommandParser` checks that the criteria and order are valid, and creates a `SortCommand` with a `Comparator` 
+4. The `SortCommandParser` checks that the criteria and order are valid, and creates a `SortCommand` with a `Comparator`
 that orders the student names alphabetically.
 
-5. The `LogicManager` calls the `SortCommand#execute` method, which in turn calls  `Model#updateSortedStudentList` 
-to update `sortedStudents` with the given `Comparator`. 
+5. The `LogicManager` calls the `SortCommand#execute` method, which in turn calls  `Model#updateSortedStudentList`
+to update `sortedStudents` with the given `Comparator`.
 
-6. The list `students` is set to `sortedStudents`, and the `StudentListPanel#setList` method is called to refresh the 
+6. The list `students` is set to `sortedStudents`, and the `StudentListPanel#setList` method is called to refresh the
 `ListView` in the UI with the new `students` list.
 
 The following Sequence Diagram summarises the aforementioned steps.
@@ -314,7 +314,7 @@ The following Sequence Diagram summarises the aforementioned steps.
             Users can sort a detail in descending order to see which students have the detail missing.
     * Cons: Top of the list may be cluttered with students with missing details when sorted in descending order.
 
-* **Alternative 2** Students with missing details are sorted last in descending order. 
+* **Alternative 2** Students with missing details are sorted last in descending order.
   * Pros: Students with relevant details are immediately available at the top of the list.
 
 Reason for choosing alternative 1: provide a way for users to quickly see which students have missing details.
@@ -332,7 +332,7 @@ Given below is an example usage scenario and how the alias mechanism behaves at 
 1. The user launches the application for the first time. FRIDAY will initialise an `ALiasManager`
 with an empty `UniqueAliasList`.
 
-2. The user executes `alias list ls` command to add an alias `ls` for the command `list`. The `alias` command 
+2. The user executes `alias list ls` command to add an alias `ls` for the command `list`. The `alias` command
 will check that `list` is in the `reservedCommandList` and `ls` is not in the `UniqueAliasList`. After both conditions
 are fulfilled, an `Alias("list","ls")` object will be created and will be added to the `UniqueAliasList` with
 `Model#addAlias(Alias toadd)`.
@@ -362,7 +362,7 @@ The grades are then stored in a `GradesList` which is unique for every student a
 
 Given below is an example usage scenario and how the grading mechanism behaves at each step.
 
-1. The user executes the `grade 5 ra1/90 pa/69.90` command to edit the grades of Reading Assessment 1 and 
+1. The user executes the `grade 5 ra1/90 pa/69.90` command to edit the grades of Reading Assessment 1 and
 Practical Assessment for the 5th student in FRIDAY. `GradeCommandParser` checks that the command is valid, and searches for the specific scores from the user's input using the `Prefix` of the examinations. `GradeCommandParser` then creates a new `EditGradeDescriptor` which is then used to create the new `GradeCommand`.
 
 2. The `GradeCommand` will access the `GradesList` of the specified student and the individual grades specified by the user. The `GradesList` is updated, where Reading Assessment 1 and Practical Assessment examinations are updated with the new scores, and the other examinations have the same scores as before.
@@ -798,7 +798,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. FRIDAY shows an error message.
 
       Use case resumes at step 2.
-    
+
 
 ### Non-Functional Requirements
 
@@ -842,7 +842,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-   
+
 
 ### Adding a student
 1. Adding a student with different details
@@ -879,9 +879,9 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `sort t/a` <br>
        Expected: Students sorted by Telegram handle in alphabetical order. Students with missing Telegram handles are sorted last.
     3. Test case: `sort m/d` <br>
-       Expected: Students sorted by Mastery Check dates, from latest to earliest. Students with missing Mastery Check dates are sorted first. 
+       Expected: Students sorted by Mastery Check dates, from latest to earliest. Students with missing Mastery Check dates are sorted first.
     4. Test case: `sort g/a` <br>
-       Expected: Students not sorted. Error details shown in the status message. 
+       Expected: Students not sorted. Error details shown in the status message.
     5. Other incorrect delete commands to try: `sort`, `sort n/`, `sort n/b` <br>
        Expected: Similar to previous.
 

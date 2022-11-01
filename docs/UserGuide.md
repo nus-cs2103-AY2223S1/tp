@@ -168,7 +168,7 @@ Format: `list`
 
 ### Sorting students: `sort`
 
-Sorts all students in FRIDAY with the given criteria, in ascending or descending order. 
+Sorts all students in FRIDAY with the given criteria, in ascending or descending order.
 If the `find` command was run before this, using `sort` will undo the result and all students will be sorted.
 
 Format: `sort CRITERIA/ORDER`
