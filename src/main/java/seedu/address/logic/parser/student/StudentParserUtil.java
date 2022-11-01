@@ -178,7 +178,7 @@ public class StudentParserUtil {
     public static Participation parseParticipation(String participation) throws ParseException {
         Objects.requireNonNull(participation);
         String trimmedParticipation = participation.trim();
-        if (!TelegramHandle.isValidTelegram(trimmedParticipation)) {
+        if (!Participation.isValidParticipation(trimmedParticipation)) {
             throw new ParseException(Participation.MESSAGE_CONSTRAINTS);
         }
         return new Participation(trimmedParticipation);

@@ -74,13 +74,8 @@ public class EditStudentCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
-        Student editedStudent = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        assertCommandSuccess(editStudentCommand, model, expectedMessage, ModelType.STUDENT, expectedModel);
+        assertCommandFailure(editStudentCommand, model, Messages.MESSAGE_UNCHANGED_FIELD);
     }
 
     @Test

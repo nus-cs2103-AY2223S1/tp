@@ -112,8 +112,7 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getId().equals(getId()) && otherStudent.getTutorialName().equals(getTutorialName())
-                && otherStudent.getTutorialModule().equals(getTutorialModule());
+                && otherStudent.getId().equals(getId());
     }
 
     /**

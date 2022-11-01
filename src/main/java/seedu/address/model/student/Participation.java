@@ -10,9 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Participation {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Participation marks should only contain numbers";
-    public static final String VALIDATION_REGEX = "\\d";
-    public final String value;
+            "Participation marks should only contain non-negative whole numbers";
+    public static final String VALIDATION_REGEX = "\\d+";
+    public final Integer value;
 
     /**
      * Constructs a {@code Participation}.
@@ -22,7 +22,7 @@ public class Participation {
     public Participation(String participation) {
         requireNonNull(participation);
         checkArgument(isValidParticipation(participation), MESSAGE_CONSTRAINTS);
-        value = participation;
+        value = Integer.parseInt(participation);
     }
 
     /**
@@ -34,7 +34,7 @@ public class Participation {
 
     @Override
     public String toString() {
-        return value;
+        return value.toString();
     }
 
     @Override

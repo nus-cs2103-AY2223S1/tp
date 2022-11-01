@@ -81,8 +81,8 @@ class JsonAdaptedStudent {
         telegram = source.getTelegram().telegram;
         tutorialModule = source.getTutorialModule().moduleCode;
         tutorialName = source.getTutorialName().fullName;
-        attendance = source.getAttendance().value;
-        participation = source.getParticipation().value;
+        attendance = String.valueOf(source.getAttendance().value);
+        participation = String.valueOf(source.getParticipation().value);
         grade = source.getGrade().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

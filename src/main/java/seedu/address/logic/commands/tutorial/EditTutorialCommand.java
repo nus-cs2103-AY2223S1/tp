@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.tutorial;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_UNCHANGED_FIELD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -99,7 +100,8 @@ public class EditTutorialCommand extends Command {
      * edited with {@code editTutorialDescriptor}.
      */
     private static Tutorial createEditedTutorial(Tutorial tutorialToEdit,
-                                                 EditTutorialDescriptor editTutorialDescriptor) {
+                                                 EditTutorialDescriptor editTutorialDescriptor)
+            throws CommandException {
         assert tutorialToEdit != null;
 
         TutorialName updatedName = editTutorialDescriptor.getName().orElse(tutorialToEdit.getName());
@@ -108,7 +110,12 @@ public class EditTutorialCommand extends Command {
         WeeklyTimeslot updatedTimeslot = editTutorialDescriptor.getTimeslot()
                 .orElse(tutorialToEdit.getTimeslot());
 
-        return new Tutorial(updatedName, updatedModule, updatedVenue, updatedTimeslot);
+        Tutorial editedTutorial = new Tutorial(updatedName, updatedModule, updatedVenue, updatedTimeslot);
+
+        if (editedTutorial.equals(tutorialToEdit)) {
+            throw new CommandException(MESSAGE_UNCHANGED_FIELD);
+        }
+        return editedTutorial;
     }
 
     @Override

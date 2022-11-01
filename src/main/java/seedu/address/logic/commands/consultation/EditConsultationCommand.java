@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.consultation;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_UNCHANGED_FIELD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -91,7 +92,8 @@ public class EditConsultationCommand extends Command {
      * edited with {@code editConsultDescriptor}.
      */
     private static Consultation createEditedConsult(Consultation consultToEdit,
-                                                    EditConsultDescriptor editConsultDescriptor) {
+                                                    EditConsultDescriptor editConsultDescriptor)
+            throws CommandException {
         assert consultToEdit != null;
 
         ConsultationName updatedName = editConsultDescriptor.getName().orElse(consultToEdit.getName());
@@ -101,8 +103,13 @@ public class EditConsultationCommand extends Command {
         ConsultationDescription updatedDescription = editConsultDescriptor.getDescription()
                 .orElse(consultToEdit.getDescription());
 
+        Consultation editedConsultation = new Consultation(updatedName, updatedModule,
+                updatedVenue, updatedTimeSlot, updatedDescription);
 
-        return new Consultation(updatedName, updatedModule, updatedVenue, updatedTimeSlot, updatedDescription);
+        if (editedConsultation.equals(consultToEdit)) {
+            throw new CommandException(MESSAGE_UNCHANGED_FIELD);
+        }
+        return editedConsultation;
     }
 
     @Override
