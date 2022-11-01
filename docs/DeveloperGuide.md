@@ -525,7 +525,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `idENTify` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use Case: UC01 - Add a Patient**
+**Use Case: UC01 - Show a list of patients**
+
+**Guarantees**: A list of patients’ contact is shown.
+
+**MSS**
+
+1. User requests to list patients.
+2. idENTify shows a list of patients.
+
+
+    Use case ends.
+
+**Extensions**
+- 2a. The list is empty.
+
+
+     Use case ends.
+
+**Use Case: UC02 - Show a list of appointments**
+
+**Guarantees**: A list of appointments is shown.
+
+**MSS**
+1. User requests to list appointments.
+2. idENTify shows a list of appointments.
+
+
+     Use case ends.
+
+
+
+**Extensions**
+- 2a. The list is empty.
+
+
+    Use case ends.
+
+**Use Case: UC03 - Add a Patient**
 
 **Guarantees**: A patient contact is added into idENTify.
 
@@ -535,7 +572,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. idENTify adds the patient.
 
 
-    Use case ends
+     Use case ends.
 
 
 **Extensions**
@@ -545,52 +582,73 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1a2. User enters new data.
   - Steps 1a1-1a2 are repeated until the data entered are correct.
 
-  Use case resumes at step 2.
+    Use case resumes at step 2.
 
-**Use Case: UC02 - Show a list of patients**
+**Use Case: UC04 - Book an appointment**
 
-**Guarantees**: A list of patients’ contact is shown.
-
-**MSS**
-
-1. User requests to list patients
-2. idENTify shows a list of patients.
-
-    Use case ends
-
-**Extensions**
-- 2a. The list is empty.
-
-
-     Use case ends
-
-**Use Case: UC03 - Show a list of appointments**
-
-**Guarantees**: A list of appointments is shown.
+**Guarantees:** An appointment is booked for the patient only if the data entered are correct.
 
 **MSS**
-1. User requests to list appointments
-2. idENTify shows a list of appointments
 
-   Use case ends
+1.  User gets the <ins>list of patients(UC01)<ins>.
+2.  User requests to book an appointment for a specified patient.
+3.  idENTify shows that an appointment has been booked for that patient.
+
+
+    Use case ends.
 
 **Extensions**
-- 2a. The list is empty.
 
-    Use case ends
+* 2a.  idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
 
-**Use Case: UC04 - Delete a patient**
+    Use case resumes at step 3.
+
+**Use Case: UC05 - Delete a patient**
 
 **Guarantees**: The patient will be deleted from the patient list only if the data entered are correct.
 
 **MSS**
-1. User gets the <ins>list of patients(UC02)<ins>.
+1. User gets the <ins>list of patients(UC01)<ins>.
 2. User requests to delete a specific patient in the list.
 3. idENTify deletes the patient.
 
-    Use case ends
 
-**Use Case: UC05 - find a patient**
+    Use case ends.
+
+**Extensions**
+
+* 2a.  idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
+  
+    Use case resumes at step 3.
+
+**Use Case: UC06 - cancel an appointment**
+
+
+**Guarantees:** The appointment will be deleted from the appointment list only if the data entered are correct.
+
+**MSS**
+1.  User gets the <ins>list of appointments(UC02)<ins>.
+2.  User requests to cancel a specific appointment in the list.
+3.  idENTify shows that the appointment has been cancelled.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct. 
+
+    Use case resumes at step 3.
+
+**Use Case: UC07 - find a patient**
 
 **Guarantees:**  A list of patients that matches the given query if applicable.
 1.  User requests to find a patient.
@@ -606,58 +664,75 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use Case: UC06 -  Book an appointment**
+**Use Case: UC08 - find an appointment**
 
-**Guarantees:** An appointment is booked for the patient only if the data entered are correct.
-
-**MSS**
-
-1.  User gets the <ins>list of patients(UC02)<ins>.
-2.  User requests to book an appointment for a specified patient.
-3.  idENTify shows that an appointment has been booked for that patient.
+**Guarantees:**  A list of appointments that matches the given query if applicable.
+1.  User requests to find an appointment.
+2.  idENTify shows a list of appointments that matches the given query.
 
 
     Use case ends.
 
 **Extensions**
 
-* 2a.  idENTify detects an error in the entered data.
-  - 2a1. idENTify shows an error message.
-  - 2a2. User enters new data.
-  - Steps 2a1-2a2 are repeated until the data entered are correct.
+- 2a. The list is empty.
 
-  Use case resumes at step 3.
-
-**Use Case: UC07 - cancel an appointment**
-
-
-**Guarantees:** The appointment will be deleted from the appointment list only if the data entered are correct.
-
-**MSS**
-1.  User gets the <ins>list of appointments(UC03)<ins>.
-2.  User requests to cancel a specific appointment in the list.
-3.  idENTify shows that the appointment has been cancelled.
 
     Use case ends.
 
-**Extensions**
-
-* 2a. idENTify detects an error in the entered data.
-  - 2a1. idENTify shows an error message.
-  - 2a2. User enters new data.
-  - Steps 2a1-2a2 are repeated until the data entered are correct.
-
-
-  Use case resumes at step 3.
-
-**Use Case: UC08 - mark an appointment**
+**Use Case: UC09 - mark an appointment**
 
 **Guarantees:** The appointment will be marked as done only if the data entered are correct.
 
 **MSS**
-1.  User gets the <ins>list of appointments(UC03)<ins>.
+1.  User gets the <ins>list of appointments(UC02)<ins>.
 2.  User requests to mark a specified appointment for a specified patient.
 3.  idENTify marks the selected appointment.
+
+
+    Use case ends.
+
+
+**Extensions**
+
+* 2a. idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
+
+    Use case resumes at step 3.
+
+**Use Case: UC10 - unmark an appointment**
+
+**Guarantees:** The appointment will be unmarked as not done only if the data entered are correct.
+
+**MSS**
+1.  User gets the <ins>list of appointments(UC02)<ins>.
+2.  User requests to mark a specified appointment for a specified patient.
+3.  idENTify marks the selected appointment.
+
+
+    Use case ends.
+
+
+**Extensions**
+
+* 2a. idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
+
+    Use case resumes at step 3.
+
+**Use Case: UC11 - edit a patient**
+
+**Guarantees:** The patient's contact will have its fields edited only if the data entered are correct.
+
+**MSS**
+1.  User gets the <ins>list of patients(UC01)<ins>.
+2.  User requests to edit a specified patient details.
+3.  idENTify edits the selected patient contact.
+
 
     Use case ends.
 
@@ -668,10 +743,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 2a2. User enters new data.
   - Steps 2a1-2a2 are repeated until the data entered are correct.
 
+    Use case resumes at step 3.
 
-  Use case resumes at step 3.
-
- **Use Case: UC09 - edit an appointment**
+ **Use Case: UC12 - edit an appointment**
 
 **Guarantees:** The appointment will have its fields edited only if the data entered are correct.
 
@@ -680,27 +754,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  User requests to edit a specified appointment for a specified patient.
 3.  idENTify edits the selected appointment.
 
-    Use case ends.
-
-**Extensions**
-
-* 2a. idENTify detects an error in the entered data.
-  - 2a1. idENTify shows an error message.
-  - 2a2. User enters new data.
-  - Steps 2a1-2a2 are repeated until the data entered are correct.
-
-
-  Use case resumes at step 3.
-
-
-**Use Case: UC10 - edit a patient**
-
-**Guarantees:** The patient's contact will have its fields edited only if the data entered are correct.
-
-**MSS**
-1.  User gets the <ins>list of patients(UC02)<ins>.
-2.  User requests to edit a specified patient details.
-3.  idENTify edits the selected patient contact.
 
     Use case ends.
 
@@ -711,34 +764,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 2a2. User enters new data.
   - Steps 2a1-2a2 are repeated until the data entered are correct.
 
+    Use case resumes at step 3.
 
-  Use case resumes at step 3.
+**Use Case: UC13 - sort the patient list**
 
-**Use Case: UC11 - sort the patient list**
-
-**Guarantees:** There does not exist two patients with both the same name and the same phone number.
+**Guarantees:** The patient list will be sorted in ascending order.
 
 **MSS**
-1.  User gets the <ins>list of patients(UC02)<ins>.
+1.  User gets the <ins>list of patients(UC01)<ins>.
 2.  idENTify displays the patient list sorted by their names.
+
 
     Use case ends.
 
 **Extensions**
 
 * 2a. idENTify detects multiple patients with the same name.
-    - 2a1. idENTify compares their phone numbers.
-    - 2a2. idENTify sort them by their phone numebrs.
+    - 2a1. idENTify compares their other information.
+    - 2a2. idENTify sort them by their other information.
     - 2a3. idENTify displays the sorted patient list.
 
-    
-**Use Case: UC12 - sort the appointment list**
 
-**Guarantees:** There does not exist two appointments occurring at the same time and attached with the same patient.
+    Use case ends.
+    
+**Use Case: UC14 - sort the appointment list**
+
+**Guarantees:** The appointment list will be sorted in ascending order.
 
 **MSS**
-1.  User gets the <ins>list of appointments(UC03)<ins>.
+1.  User gets the <ins>list of appointments(UC02)<ins>.
 2.  idENTify displays the appointment list sorted by their datetime.
+
 
     Use case ends.
 
@@ -750,70 +806,185 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a3. idENTify displays the sorted appointment list.
 
 
-**Use Case: UC13 - group patients**
+    Use case ends.
 
-**Guarantees:** There are restricted types of tags assigned to patients.
+**Use Case: UC15 - group patients**
+
+**Guarantees:** Patients will be grouped by their tags.
 
 **MSS**
-1.  User gets the <ins>list of patients(UC02)<ins>.
-2.  User enters command to group patients.
-3.  idENTify displays the patient list grouped by their tags.
+1. User enters command to group patients.
+2. idENTify displays the patient list grouped by their tags.
+
 
     Use case ends.
 
 **Extensions**
 
-* 3a. idENTify detects multiple patients with the same tags.
-    - 3a1. idENTify compares their other information.
-    - 3a2. idENTify sort them by the information mentioned above.
-    - 3a3. idENTify displays the sorted patient list.
+* 2a. idENTify detects multiple patients with the same tags.
+    - 2a1. idENTify compares their other information.
+    - 2a2. idENTify sort them by their other information.
+    - 2a3. idENTify displays the sorted patient list.
 
 
-**Use Case: UC14 - group appointments**
+    Use case ends.
 
-**Guarantees:** There are restricted types of tags assigned to appointments and every appointment is attached to one 
-and only one patient.
+**Use Case: UC16 - group appointments**
+
+**Guarantees:** Appointments will be grouped by their some criteria.
 
 **MSS**
-1.  User gets the <ins>list of appointments(UC03)<ins>.
-2.  User enters command to group appointments either by their tags or patient or mark status.
-3.  idENTify displays the appointment list grouped by the specified key.
+1. User enters command to group appointments with some criterion.
+2. idENTify displays the appointment list grouped according to the specified criterion.
+
 
     Use case ends.
 
 **Extensions**
 
-* 2a. idENTify detects an error in the entered data.
-    - 2a1. idENTify shows an error message.
-    - 2a2. User enters new data.
-    - Steps 2a1-2a2 are repeated until the data entered are correct. 
-  Use case resumes at step 3.
-
-* 3a. idENTify detects multiple appointments with the same keys.
-    - 3a1. idENTify compares their other information.
-    - 3a2. idENTify sort them by the information mentioned above.
-    - 3a3. idENTify displays the sorted appointment list.
+* 1a. idENTify detects an error in the entered data.
+    - 1a1. idENTify shows an error message.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered are correct.
   
+      Use case resumes at step 2.
 
-**Use Case: UC15 - ungroup patients**
+
+* 2a. idENTify detects multiple appointments that should have the same order.
+    - 2a1. idENTify compares their other information.
+    - 2a2. idENTify sort them by their other information.
+    - 2a3. idENTify displays the sorted appointment list.
+
+
+    Use case ends.
+
+**Use Case: UC17 - ungroup patients**
+
+**Guarantees:** The patient list will be the same as before grouping.
 
 **MSS**
-1.  User gets the <ins>list of patients(UC02)<ins>.
-2.  User enters command to ungroup patients.
-3.  idENTify displays the patient list sorted by default comparator (UC11).
+1. User enters command to ungroup patients.
+2. idENTify displays the patient list <ins>sorted by default(UC13)<ins>.
+
 
     Use case ends.
 
 
-**Use Case: UC16 - ungroup appointments**
+**Use Case: UC18 - ungroup appointments**
+
+**Guarantees:** The appointment list will be the same as before grouping.
 
 **MSS**
-1.  User gets the <ins>list of appointments(UC03)<ins>.
-2.  User enters command to ungroup appointments.
-3.  idENTify displays the patient list sorted by default comparator (UC12).
+1. User enters command to ungroup appointments.
+2. idENTify displays the appointment list <ins>sorted by default(UC14)<ins>.
+
 
     Use case ends.
 
+
+**Use Case: UC19 - hide patients**
+
+**Guarantees:** Patients satisfying given conditions will not be shown.
+
+**MSS**
+1. User enters command to hide patients with specified conditions.
+2. idENTify displays the patient list without hidden patients.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. idENTify detects an error in the entered data.
+  - 1a1. idENTify shows an error message.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered are correct.
+
+    Use case resumes at step 2.
+
+**Use Case: UC20 - hide appointments**
+
+**Guarantees:** Appointments satisfying given conditions will not be shown.
+
+**MSS**
+1. User enters command to hide appointments with specified conditions.
+2. idENTify displays the appointment list without hidden appointments.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. idENTify detects an error in the entered data.
+  - 1a1. idENTify shows an error message.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered are correct.
+
+    Use case resumes at step 2.
+
+**Use Case: UC21 - unhide patients**
+
+**Guarantees:** The patient list will be the same as before hiding.
+
+**MSS**
+1. User enters command to unhide patients.
+2. idENTify displays the <ins>whole patient list (UC01)<ins>.
+
+
+    Use case ends.
+
+
+**Use Case: UC22 - unhide appointments**
+
+**Guarantees:** The appointment list will be the same as before hiding.
+
+**MSS**
+1. User enters command to unhide appointments.
+2. idENTify displays the <ins>whole appointment list (UC02)<ins>.
+
+
+    Use case ends.
+
+
+**Use Case: UC23 - clear entries**
+
+**Guarantees:** All entries will be cleared.
+
+**MSS**
+1. User enters command to clear all entries of current patient and appointment lists.
+2. idENTify displays an empty patient list and an empty appointment list.
+
+
+    Use case ends.
+
+**Use Case: UC24 - show help page**
+
+**Guarantees:** A help page will be provided.
+
+**MSS**
+1. User enters command to ask for help about how to use the app.
+2. idENTify shows a page including some information to help users.
+
+
+    Use case ends.
+
+**Use Case: UC24 - show command history**
+
+**MSS**
+1. User enters command to view previous commands.
+2. idENTify shows previous commands to users.
+
+
+    Use case ends.
+
+**Use Case: UC25 - exit the app**
+
+**MSS**
+1. User enters command to exit.
+2. idENTify saves current data and exits.
+
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
