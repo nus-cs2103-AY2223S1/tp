@@ -531,6 +531,7 @@ You can use this command when:
 
 **Constraints**
 * This uses your device's present local time as reference. All meetings scheduled to be earlier than the present time will removed.
+* Sync command does not refresh the meetings displayed on the person profile, you need to re-click on person card.
 
 Format: `sync`
 
