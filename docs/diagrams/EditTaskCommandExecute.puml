@@ -1,0 +1,28 @@
+@startuml
+autoactivate on
+box "Logic" #LightBlue
+participant "e:EditTaskCommand" as e
+participant "result:CommandResult" as result
+end box
+box "Model" #Pink
+participant ":Model" as M
+participant "editedTask:Task" as t
+end box
+
+
+[-> e : execute()
+e -> e :  createEditedTask\n(taskToEdit, copy, personList)
+e -> t **
+activate t
+return
+return editedTask
+
+e -> M : setTask(taskToEdit, editedTask)
+return
+
+e -> result ** : new CommandResult\n(MESSAGE_EDIT_TASK_SUCCESS)
+activate result
+return
+return result
+destroy e
+@enduml

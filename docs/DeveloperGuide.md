@@ -228,6 +228,49 @@ The `clear` feature is implemented by acting on the current filtered`TaskPanel`,
 4. The `TaskPanel` is resetted to be an empty one.
 5. The `GUI` is updated to show the new `TaskPanel` with zero task.
 
+
+### Task edit feature
+
+#### Current Implementation
+
+The task editing feature is primarily implemented within `EditTaskCommand` and the `EditTaskCommandParser` objects utilizing the help of `EditTaskDescriptor`.
+The `EditTaskDescriptor` object contains the new value(s) of the data that needs to be edited.
+
+#### Example usage of `task edit`
+
+1. The user adds a `Task` to the `TaskPanel`.
+2. The user types in the command `task edit 1 ti/TITLE` 
+The `EditTaskCommand` is created together with the `EditTaskDescriptor` object as shown below.
+
+![Sequence diagram](images/EditTaskCommandParse.png)
+
+3. The command return is executed. The copy of the `EditTaskDescriptor` object is used  during the `EditTaskCommand#createEditedTask` method, after which it is destroyed.
+The edited copy of the task then replaces the current task in the task list.
+
+![Sequence diagram](images/EditTaskCommandExecute.png)
+
+4. Finally, the GUI is updated to reflect the changes made. In this case, it will show the task at index 1 with the new title.
+
+
+#### `EditTaskDescriptor` implementation
+
+`EditTaskDescriptor` is implemented as a public nested class within `EditTaskCommand`. The class contains the edited values which are provided by the user that can be manipulated.
+`EditTaskDescriptor` has `get` and `set` methods:
+
+- `setTitle()` / `getTitle()`
+- `setProject()` / `getProject()`
+- `setDeadline()` / `getDeadline()`
+- `setAssignedContactIndexes(assignedContactIndexes)` / `getAssignedContactIndexes()`
+- `setUnassignedContactsIndexes(unassignedContactIndexes)` / `getUnassignedContactsIndexes()`
+- 
+
+where the `get` methods return `Optional<T>` objects containing the value to be edited, if any.
+
+`EditTaskDescriptor` also has:
+1. A constructor which accepts another `EditTaskDescriptor`, which creates a defensive copy of the original, which is only called in the constructor of `EditTaskCommand`.
+2. A `isAnyFieldEdited` method is implemented to check whether the user input any values to be edited.
+
+
 ### Assign Person(s) to Task Feature
 
 #### Current Implementation

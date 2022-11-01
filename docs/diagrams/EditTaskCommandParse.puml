@@ -1,0 +1,36 @@
+@startuml
+autoactivate on
+box "Logic" #LightBlue
+participant ":EditTaskCommandParser" as ETCP
+participant "desc:EditTaskDescriptor" as ETD
+participant "copy:EditTaskDescriptor" as copyETD
+participant "e:EditTaskCommand" as ETC
+end box
+
+
+[-> ETCP : parse(arguments)
+
+
+
+ETCP -> ETD ** :
+activate ETD
+return desc
+
+
+ETCP -> ETC ** : new EditTaskCommand(index, desc)
+activate ETC
+
+note over copyETD
+Defensive copyETD of desc created
+end note
+
+ETC -> copyETD ** : new EditTaskDescriptor(desc)
+activate copyETD
+return copyETD
+
+destroy ETD
+
+return ETC
+destroy copyETD
+return ETC
+@enduml
