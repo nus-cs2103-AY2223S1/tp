@@ -5,7 +5,7 @@ title: Hong Sheng's Project Portfolio Page 😁
 
 ### Project: LongTimeNoSee(LTNS)
 
-Long Time No See (LTNS) is a desktop task tracking app made for student financial advisors to manage their contact base and stay connected with their clients. Made simpler with an intuitive and minimalistic graphical user interface (GUI) and customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
+Long Time No See (LTNS) is a desktop task tracking app made for financial advisors to manage their contact base and stay connected with their clients. Made simpler with an intuitive and minimalistic graphical user interface (GUI) and customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
 
 Given below are my contributions to the project.
 
@@ -40,13 +40,16 @@ Given below are my contributions to the project.
       * <img src="..\images\viewIncome.png">
     * Credits: *NIL*
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=hongshenggg&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-    * TODO
+    * Coordinate zoom meetings and assign tasks.
+    * Manages the PR made by Damien
 
 * **Enhancements to existing features**:
-    * TODO
+    * Added test cases to pin, viewPin and viewIncome features
+    * Added year limitation to viewIncome feature
+    * Added Graph implementation for viewIncome (Initially reports only in result box)
 
 * **Documentation**:
     * User Guide:
@@ -55,6 +58,7 @@ Given below are my contributions to the project.
         * Inserted documentation for pin feature
         * Inserted documentation for viewPin feature
         * Inserted documentation for viewIncome feature
+        * Created the command summary section
     * Developer Guide:
         * Focused on writing the MSS for pin feature
         * Inserted documentation for pin feature

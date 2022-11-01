@@ -74,7 +74,11 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
-
+    /**
+     * Deletes the given person.
+     * The person must exist in the address book.
+     */
+    void pinPerson(Person person);
 
     /**
      * Adds the given person.
