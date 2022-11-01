@@ -24,7 +24,8 @@ public class LoanCommand extends Command {
     public static final String MESSAGE_USAGE = Command.generateMessage(COMMAND_WORD, "Loans to the"
             + " user identified by the index number in user list from the book identified by the index number in book"
             + " list", "USER_INDEX (must be a positive integer), BOOK_INDEX (must be a "
-            + "positive integer)", COMMAND_WORD + " 3 2");
+            + "positive integer), [DUE_DATE] (refer to User Guide for valid date formats)",
+            COMMAND_WORD + " 3 2 [2022-10-30]");
 
     public static final String MESSAGE_LOAN_SUCCESS = "User %1$s loaned book %2$s. (Due date: %3$s)";
 
@@ -91,6 +92,15 @@ public class LoanCommand extends Command {
         model.updateFilteredBookList(Model.PREDICATE_SHOW_ALL_BOOKS);
         return new CommandResult(String.format(MESSAGE_LOAN_SUCCESS, personToLoan.getName(),
                 bookToLoan.getTitle(), parsedDate));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof LoanCommand // instanceof handles nulls
+                && targetUserIndex.equals(((LoanCommand) other).targetUserIndex)
+        && targetBookIndex.equals(((LoanCommand) other).targetBookIndex)
+        && parsedDate.equals(((LoanCommand) other).parsedDate));
     }
 }
 

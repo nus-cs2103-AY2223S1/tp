@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.BookFace;
 import bookface.model.book.Book;
 
@@ -20,6 +21,41 @@ public class TypicalBooks {
             .withAuthor("Roger Smith").build();
     public static final Book GET_MOTIVATED = new BookBuilder().withTitle("Get Motivated")
             .withAuthor("Lim Chee Teck").build();
+
+    public static final Book HOW_TO_RUN;
+
+    static {
+        try {
+            HOW_TO_RUN = new BookBuilder().withTitle("How to Run")
+                    .withAuthor("Ronald Dickson").withReturnDate("29/10/2022").buildLoanedBook();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static final Book HOW_TO_EAT;
+
+    static {
+        try {
+            HOW_TO_EAT = new BookBuilder().withTitle("How to Eat")
+                    .withAuthor("Ronald Vickson").withReturnDate("29/10/2022").buildLoanedBook();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static final Book HOW_TO_CRY;
+
+    static {
+        try {
+            HOW_TO_CRY = new BookBuilder().withTitle("How to Cry")
+                    .withAuthor("Ronald Pickson").withReturnDate("29/10/2022").buildLoanedBook();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
     private TypicalBooks() {} // prevents instantiation
 
@@ -37,6 +73,10 @@ public class TypicalBooks {
 
     public static List<Book> getTypicalBooks() {
         return new ArrayList<>(Arrays.asList(HOW_TO_SPELL, MAKING_A_COMPUTER, GET_MOTIVATED));
+    }
+
+    public static List<Book> getTypicalLoanedBooks() {
+        return new ArrayList<>(Arrays.asList(HOW_TO_RUN, HOW_TO_EAT, HOW_TO_CRY));
     }
 
     public static List<Book> getSingleBook() {

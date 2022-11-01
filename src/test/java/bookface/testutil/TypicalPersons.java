@@ -1,6 +1,7 @@
 package bookface.testutil;
 
 import static bookface.testutil.TypicalBooks.getSingleBook;
+import static bookface.testutil.TypicalBooks.getTypicalBooks;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,7 +55,7 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code BookFace} with all the typical persons.
+     * Returns an {@code BookFace} with all the typical persons and a typical book.
      */
     public static BookFace getTypicalBookFaceData() {
         BookFace ab = new BookFace();
@@ -62,6 +63,31 @@ public class TypicalPersons {
             ab.addPerson(person);
         }
         for (Book book : getSingleBook()) {
+            ab.addBook(book);
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code BookFace} with all the typical persons and all typical books.
+     */
+    public static BookFace getAllTypicalBookFaceData() {
+        BookFace ab = new BookFace();
+        for (Person person : getTypicalPersons()) {
+            ab.addPerson(person);
+        }
+        for (Book book : getTypicalBooks()) {
+            ab.addBook(book);
+        }
+        return ab;
+    }
+
+    public static BookFace getLoanedTypicalBookFaceData() {
+        BookFace ab = new BookFace();
+        for (Person person : getTypicalPersons()) {
+            ab.addPerson(person);
+        }
+        for (Book book : getTypicalBooks()) {
             ab.addBook(book);
         }
         return ab;
