@@ -359,7 +359,6 @@ Examples:
 
 Returns a list of clients who has a scheduled meeting in the next 7 days.
 
-
 You can use this command when:
 1. You need to check which upcoming client meetings you need to prepare for.
 <br>
@@ -367,6 +366,8 @@ You can use this command when:
 **Constraints**
 * This uses your device's present local time as reference.
 * As long as a client has a meeting in the next 7 days, it will be shown.
+* Upcoming Meetings does not auto refresh, so meetings that pass after you have opened 
+  `Upcoming Meetings` will only be refreshed when a new window is opened.
 
 Format: Menu bar on the top of the application or press `F2`.
 
