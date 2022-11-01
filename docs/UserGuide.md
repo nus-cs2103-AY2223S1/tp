@@ -111,15 +111,16 @@ Adds an itinerary to Waddle.
 Format: `add d/DESCRIPTION sd/START DATE du/DURATION [c/COUNTRY] [p/NUMBER OF WADDLERS] [b/BUDGET]`
 
 * Adds a new itinerary with `DESCRIPTION` to the itinerary list.
-* `START DATE` should be given in the format `yyyy-mm-dd`, and `DURATION` is the number of days.
-  - e.g. `sd/2022-12-10 du/10` would mean that the trip is from 10 Dec 2022 to 20 Dec 2022.
+* `START DATE` should be given in the format `yyyy-mm-dd`.
+* `DURATION` is the length of the trip and must be between 1 and 365 days.
+  - e.g. `sd/2022-12-10 du/10` would mean that the trip is from 10 Dec 2022 to 19 Dec 2022.
 * `BUDGET` is in dollars ($) and can include cents.
   - e.g. `b/1000.50` is $1000 and 50¢.
-* You cannot add an itinerary with the same description as an existing itinerary in the list.
-  * Note that Waddle only accepts english alphabets and spaces for `DESCRIPTION` and `COUNTRY`, special characters
-  like `'`, `&`, `!` are not allowed.
-  * Example of invalid input: `d/My Trip!!` `c/Côte d'Ivoire`
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+* You cannot add an itinerary with the same description as an existing itinerary.
+* Waddle only accepts english letters and spaces for `DESCRIPTION` and `COUNTRY`, special characters like `'`, `&`, `!` are not allowed.
+  * Example of invalid input: `d/My Trip!!`, `c/Côte d'Ivoire`, `c/中国`
+</div>
 
 Examples:
 * `add d/My Japan Trip sd/2022-12-12 du/6`

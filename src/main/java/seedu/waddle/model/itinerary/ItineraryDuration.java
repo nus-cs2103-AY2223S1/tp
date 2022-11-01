@@ -3,12 +3,14 @@ package seedu.waddle.model.itinerary;
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.commons.util.AppUtil.checkArgument;
 
+import seedu.waddle.logic.commands.exceptions.CommandException;
+
 /**
  * Represents an Itinerary's duration in days.
  */
 public class ItineraryDuration {
     public static final String MESSAGE_CONSTRAINTS =
-            "Duration should only contain a positive number.";
+            "Duration must be between 1 and 365 days.";
     public static final String VALIDATION_REGEX = "\\d+";
 
     private final int duration;
@@ -32,7 +34,13 @@ public class ItineraryDuration {
         if (!test.matches(VALIDATION_REGEX)) {
             return false;
         }
-        return Integer.parseInt(test) >= 0;
+        int value;
+        try {
+            value = Integer.parseInt(test);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return value >= 1 && value <= 365;
     }
 
     public int getValue() {
