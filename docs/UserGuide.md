@@ -95,7 +95,7 @@ Before you learn any commands, please read the following notes about HackAssist 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Any parameters given for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -212,7 +212,7 @@ Format: `list`
 Adds a task to the task list.
 * You cannot add a task same as one that currently exists in the taskList (this would result in duplicates)
 
-Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE [pe/EMAIL OF PERSON ASSIGNED]`
+Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]`
 
 Refer to the [Task Parameters](#task-parameters) section for more details.
 
@@ -243,7 +243,7 @@ Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK
 * Edits the task at the specified index. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​ and less than or equal to the number of task in the task list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* To un-assign a member from a task, write `none` in the person email field `pe/` i.e. `pe/none`.
+* To un-assign a member from a task, write `none` in the EMAIL_OF_PERSON_ASSIGNED field `pe/` i.e. `pe/none`.
 * To mark a task's status as `completed` (or `not completed`) write `t` (or `f`) in the status field `do` e.g. `do/t`
 
 Examples:
@@ -257,7 +257,7 @@ Refer to the [Task Parameters](#task-parameters) section for more details about 
 #### Viewing all tasks: `listTasks`
 
 Lists all existing tasks from the task list.
-Used after calling [filter](#filtering-a-task--filter) to remove existing filters and list all existing tasks.
+Used after calling [filter](#filtering-a-task-filter) to remove existing filters and list all existing tasks.
 
 Format: `listTasks`
 
@@ -273,9 +273,9 @@ Format: `filter [c/TASK_CATEGORY] [dl/DEADLINE]`
 * To list all tasks, call the `listTasks` command.
 
 Examples:
-*  `filter c/backend` displays only tasks that have backend as **TASK_CATEGORY**
-*  `filter dl/2022-12-12` displays only tasks that have **DEADLINE** before or equal to 2022-12-12
-*  `filter c/backend dl/2022-12-12` displays only tasks that have backend as **TASK_CATEGORY** and **DEADLINE** before or equal to 2022-12-12
+*  `filter c/backend` displays only tasks that have `backend` as **TASK_CATEGORY**
+*  `filter dl/2022-12-12` displays only tasks that have **DEADLINE** before or equal to `2022-12-12`
+*  `filter c/backend dl/2022-12-12` displays only tasks that have `backend` as **TASK_CATEGORY** and **DEADLINE** before or equal to `2022-12-12`
 
 #### Sorting the task list by deadline: `sortByDeadline`
 
@@ -306,7 +306,7 @@ Examples:
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HackAssist home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Task parameters
@@ -318,6 +318,6 @@ Examples:
 | pr/PRIORITY             | Should be either  `high`, `medium`, or `low` (case-insensitive)                                                                                        |
 | c/CATEGORY              | Should be one of the following (case-insensitive): <br/>- `database`<br/>- `frontend`<br/>- `backend`<br/>- `uiux`<br/>- `presentation`<br/>- `others` |
 | dl/DEADLINE             | Should be in the format `YYYY-MM-DD` and after the current date                                                                                        |
-| pe/PERSON EMAIL ADDRESS | Should be the email address of an existing member (case-insensitive). For the `editTask` command, it can also be empty, e.g. `pe/`.                    |
-| do/ISDONE               | *For `editTask` command only.* Should be either `true` or `false` (case-insensitive)                                                                   |
+| pe/EMAIL_OF_PERSON_ASSIGNED | Should be the email address of an existing member (case-insensitive). For the `editTask` command, it can also be `none`, i.e. `pe/none`.                    |
+| do/IS_DONE               | *For `editTask` command only.* Should be either `true` or `false` (case-insensitive)                                                                   |
 
