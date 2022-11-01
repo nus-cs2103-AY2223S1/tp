@@ -4,11 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
-import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_5_TO_6PM;
-import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_5_TO_7PM;
-import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_6_TO_7PM;
-import static seedu.rc4hdb.testutil.TypicalBookings.MR_BOB_TUESDAY_6_TO_7PM;
-import static seedu.rc4hdb.testutil.TypicalBookings.getExampleBookingDescriptor;
+import static seedu.rc4hdb.testutil.TypicalBookings.*;
+import static seedu.rc4hdb.testutil.TypicalResidents.ALICE;
 import static seedu.rc4hdb.testutil.TypicalVenues.DISCUSSION_ROOM;
 import static seedu.rc4hdb.testutil.TypicalVenues.DISCUSSION_ROOM_NAME;
 import static seedu.rc4hdb.testutil.TypicalVenues.HALL;
@@ -32,6 +29,19 @@ public class UniqueVenueListTest {
 
     private final UniqueVenueList uniqueVenueList = new UniqueVenueList();
     private final UniqueVenueList emptyUniqueVenueList = new UniqueVenueList();
+
+    /**
+     * Returns a booking descriptor with contents equal to MR_ALICE_MONDAY_5_TO_6PM.
+     * @return An example booking descriptor for testing purposes
+     */
+    private BookingDescriptor getExampleBookingDescriptor() {
+        BookingDescriptor bookingDescriptor = new BookingDescriptor();
+        bookingDescriptor.setResident(ALICE);
+        bookingDescriptor.setDayOfWeek(MONDAY);
+        bookingDescriptor.setVenueName(MEETING_ROOM_VENUE_NAME);
+        bookingDescriptor.setHourPeriod(HP_5_TO_6PM);
+        return bookingDescriptor;
+    }
 
     @BeforeEach
     public void initEach() {

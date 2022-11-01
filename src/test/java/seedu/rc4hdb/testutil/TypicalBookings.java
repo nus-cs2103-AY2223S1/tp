@@ -1,5 +1,6 @@
 package seedu.rc4hdb.testutil;
 
+import seedu.rc4hdb.model.venues.booking.Booking;
 import static seedu.rc4hdb.testutil.TypicalResidents.ALICE;
 import static seedu.rc4hdb.testutil.TypicalResidents.BOB;
 import static seedu.rc4hdb.testutil.TypicalVenues.MEETING_ROOM_VENUE_NAME;
@@ -45,18 +46,5 @@ public class TypicalBookings {
 
     public static final RecurrentBooking MR_BOB_TUESDAY_6_TO_7PM =
             new RecurrentBooking(MEETING_ROOM_VENUE_NAME, BOB, HP_6_TO_7PM, TUESDAY);
-
-    /**
-     * Returns a booking descriptor with contents equal to MR_ALICE_MONDAY_5_TO_6PM.
-     * @return An example booking descriptor for testing purposes
-     */
-    public static BookingDescriptor getExampleBookingDescriptor() {
-        BookingDescriptor bookingDescriptor = new BookingDescriptor();
-        bookingDescriptor.setResident(ALICE);
-        bookingDescriptor.setDayOfWeek(MONDAY);
-        bookingDescriptor.setVenueName(MEETING_ROOM_VENUE_NAME);
-        bookingDescriptor.setHourPeriod(HP_5_TO_6PM);
-        return bookingDescriptor;
-    }
 
 }
