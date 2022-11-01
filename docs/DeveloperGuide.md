@@ -403,6 +403,31 @@ The following activity diagram outlines what happens when a user executes the `s
 
 ![SuggestActivityDiagram](images/SuggestActivityDiagram.png)
 
+
+### Locate gym feature
+
+#### Implementation
+
+The locate gym mechanism is facilitated by `LocateGymCommand`, which extends `Command`. It overrides the
+following operation:
+
+* `LocateGymCommand#execute()`: Returns a list of gyms sorted by distance.
+
+Given below is an example usage scenario and how the locate-gym mechanism behaves at each step.
+
+Step 1. The user launches the application.
+
+Step 2. The user executes `locate CLB`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is called
+subsequently, which then creates an `LocateGymCommand` object.
+
+Step 3. The `LocateGymCommand` created is executed by `LocateGymCommand#execute()`.
+
+Step 4. `LocateGymCommand#execute()` calls the following methods from `Model`:
+
+* `Model#getNusGymLocations()`
+
+The following activity diagram outlines what happens when a user executes the `locate` command:
+![LocateCommandActivityDiagram](images/LocateCommandActivityDiagram.png)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

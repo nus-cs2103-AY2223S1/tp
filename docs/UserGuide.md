@@ -238,9 +238,9 @@ Sets a target calorie intake for the current day.
 
 Format: `target CALORIE`
 
-* `CALORIE` can only take on integer values.
-* The initial target calorie intake is set at 2000 calories. 
-
+* `CALORIE` can only take on integer values in between 0 and 2147483647 inclusively.
+* The initial target calorie intake is set at 2000 calories.
+* The percentage for the progress bar display will be based on the target calorie intake.
 Example:
 
 * `target 2500` sets a target calorie intake of 2500 calories for the current day and displays the list of foods for the current day.
@@ -302,9 +302,14 @@ Locates and ranks the nearest gyms to user's location in NUS.
 
 Format: `locate LOCATION`
 
+Parameters: COM2, S13, S17, CLB, UHC, LT1, LT9, AS6
+
 Example:
 
 * `locate S17` returns a list of gyms sorted from nearest to furthest from S17.
+
+:fast_forward: **Future update:**<br>
+More nus locations will be added.
 
 ### Suggesting a healthy-lifestyle tip: `tip`
 

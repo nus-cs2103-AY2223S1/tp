@@ -119,7 +119,7 @@ public class ParserUtil {
         // https://goo.gl/maps/2Zxpi6xsmfUNzU2h7
         out.put("CLB", new Location("CLB", "1.296642317024345, 103.77322870790687"));
         // https://goo.gl/maps/TBxRtewZLVCgkEdF6
-        out.put("USC", new Location("UHC", "1.2991034341416665, 103.77639982958577"));
+        out.put("UHC", new Location("UHC", "1.2991034341416665, 103.77639982958577"));
         // https://goo.gl/maps/bURCv14zruYzxxNV9
         out.put("LT1", new Location("LT1", "1.299463315530677, 103.77114712647649"));
         // https://goo.gl/maps/e8vnmt5FzS19NbNk8
