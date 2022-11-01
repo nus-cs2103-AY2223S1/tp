@@ -361,6 +361,10 @@ public class ModelManager implements Model {
             } else {
                 try {
                     history.deleteHealthContactHistory(history.getHealthContactHistorySize() - 1);
+                    history.updateRedoHealthContactHistory();
+                    history.updateRedoPatientsHistory();
+                    history.updateRedoAppointmentsHistory();
+                    history.updateRedoBillsHistory();
                     setHealthContact(history.getHealthContactHistory(history.getHealthContactHistorySize() - 2));
                     filteredPatients.setPredicate(history.getPatientsPredicate(history.getPatientsHistorySize() - 2));
                     filteredAppointments.setPredicate(history
