@@ -92,8 +92,11 @@ For information on all commands that can be used to manipulate the Staff Panel, 
 
 **:information_source: Notes about the command format:**<br>
 
+* Commands word for using a command is case-insensitive.
+  e.g. For the `addproj` command, it can be used with these command words: `Addproj`, `addProj`, `ADDPROJ`
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addproj pn/PROJECT_NAME`, `PROJECT_NAME` is a parameter which can be used as `addProj pn/CS2103T`.
+  e.g. in `addproj pn/PROJECT_NAME`, `PROJECT_NAME` is a parameter which can be used as `addproj pn/CS2103T`.
 
 * Items in square brackets are optional.<br>
   e.g `pn/PROJECT_NAME [t/TAG]` can be used as `pn/2101 t/fun` or as `pn/2101`.
@@ -112,9 +115,6 @@ For information on all commands that can be used to manipulate the Staff Panel, 
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* Commands word for using a command is case-insensitive.
-  e.g. For the `addproj` command, it can be used with these command words: `Addproj`, `addProj`, `ADDPROJ`
 
 </div>
 
@@ -263,6 +263,7 @@ Format: `addstaff INDEX sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STA
 
 ```yaml
 Note:
+ * Staff names must be unique.
  * All fields for Staff members are required, except `TAGS`
  * Index refers to the numbering of the desired Project in the displayed Project list. The Staff will be added to the specified Project.
  * If no Project is shown on the Project list, addstaff will give an error. Use list to display all 
