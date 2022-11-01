@@ -5,7 +5,7 @@ title: User Guide
 
 IdENTify is a **desktop app made for ENT administrative staff to manage patients' contact details and appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, idENTify can get your patients/appointments' management tasks done faster than traditional GUI apps.
 
-* Table of Contents
+1. Table of Contents
 {:toc}
 
 ## Quick Start
