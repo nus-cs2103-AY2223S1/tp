@@ -6,6 +6,9 @@ import java.util.Objects;
  * Abstracts the color of a pet.
  */
 public class Color implements Comparable<Color> {
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "Colors should only contain alphanumeric characters and spaces, and it should not be blank";
     private final String value;
 
     /**

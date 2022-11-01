@@ -4,6 +4,8 @@ package seedu.address.model.pet;
  * Represents the species (kind) of a pet.
  */
 public class Species implements Comparable<Species> {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Species should only contain alphanumeric characters and spaces, and it should not be blank";
     private final String value;
 
     /**

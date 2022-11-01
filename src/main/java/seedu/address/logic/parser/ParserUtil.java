@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.index.Index.MESSAGE_USAGE;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
@@ -87,8 +89,11 @@ import seedu.address.model.pet.Weight;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_PERSON_CATEGORY = PersonCategory.MESSAGE_CONSTRAINTS;
+    /*
+     * The first character of the additional request must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     private static final Logger logger = LogsCenter.getLogger(ParserUtil.class);
     /**
@@ -100,7 +105,7 @@ public class ParserUtil {
         logger.fine("Parsing index: " + oneBasedIndex);
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_USAGE);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
@@ -179,7 +184,7 @@ public class ParserUtil {
         requireNonNull(location);
         logger.fine("Parsing location: " + location);
         String trimmedLocation = location.trim();
-        if (location.isEmpty() || location.isBlank()) {
+        if (!isInputAlphanumericAndNotBlank(trimmedLocation)) {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
         return new Location(trimmedLocation);
@@ -192,6 +197,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code orderString} is invalid.
      */
     public static AddPersonCommand parseAddPersonCommand(String args, PersonCategory category) throws ParseException {
+        requireAllNonNull(args, category);
+
+        logger.fine("Parsing person: " + args + " category: " + category);
+
         ArgumentMultimap argMultimap = getPersonAttributes(args, category);
 
         Name name = parseName(argMultimap.getValue(PREFIX_NAME).orElse(""));
@@ -220,44 +229,6 @@ public class ParserUtil {
             break;
         }
         return null;
-    }
-
-    private static ArgumentMultimap getPersonAttributes(String args, PersonCategory category) throws ParseException {
-        ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args,
-                    PREFIX_NAME,
-                    PREFIX_PHONE,
-                    PREFIX_EMAIL,
-                    PREFIX_ADDRESS,
-                    PREFIX_LOCATION,
-                    PREFIX_ORDER,
-                    PREFIX_PET);
-
-        if (!arePrefixesPresent(argMultimap,
-                PREFIX_NAME,
-                PREFIX_ADDRESS,
-                PREFIX_PHONE,
-                PREFIX_EMAIL,
-                PREFIX_LOCATION) || !argMultimap.getPreamble().isEmpty()) {
-            switch (category) {
-            case BUYER:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        AddBuyerCommand.MESSAGE_USAGE));
-
-            case DELIVERER:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        AddDelivererCommand.MESSAGE_USAGE));
-
-            case SUPPLIER:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        AddSupplierCommand.MESSAGE_USAGE));
-
-            default:
-                // There are only three enum constants
-                break;
-            }
-        }
-        return argMultimap;
     }
 
     /**
@@ -343,14 +314,6 @@ public class ParserUtil {
             petList.add(parsePet(pet, isSupplierExisting));
         }
         return petList;
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**
@@ -497,7 +460,7 @@ public class ParserUtil {
         VaccinationStatus vaccinationStatus =
                 parseVaccinationStatus(argMultimap.getValue(PREFIX_PET_VACCINATION_STATUS).orElse("false"));
 
-        Pet pet = new Pet(name,
+        return new Pet(name,
                 null,
                 color,
                 colorPattern,
@@ -508,8 +471,6 @@ public class ParserUtil {
                 vaccinationStatus,
                 price,
                 certificates);
-
-        return pet;
     }
 
     /**
@@ -563,10 +524,23 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> requests} into a {@code AdditionalRequests}.
+     *
+     * @throws ParseException if the given {@code request} is invalid.
      */
-    public static AdditionalRequests parseAdditionalRequests(Collection<String> requests) {
+    public static AdditionalRequests parseAdditionalRequests(Collection<String> requests) throws ParseException {
         requireNonNull(requests);
-        return new AdditionalRequests(requests);
+        String[] parameters = new String[requests.size()];
+        int index = 0;
+        for (String request: requests) {
+            logger.fine("Parsing additional request: " + request);
+            String trimmedRequest = request.trim();
+            if (!isInputAlphanumericAndNotBlank(trimmedRequest)) {
+                throw new ParseException(AdditionalRequests.MESSAGE_CONSTRAINTS);
+            }
+            parameters[index] = trimmedRequest;
+            index++;
+        }
+        return new AdditionalRequests(parameters);
     }
 
     /**
@@ -604,39 +578,57 @@ public class ParserUtil {
         } catch (NumberFormatException ex) {
             throw new ParseException(Age.MESSAGE_USAGE);
         }
+        if (intAge < 0) {
+            throw new ParseException(Age.MESSAGE_USAGE);
+        }
         return new Age(intAge);
     }
 
     /**
      * Parses a {@code String color} into an {@code Color}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code color} is invalid.
      */
-    public static Color parseColor(String color) {
+    public static Color parseColor(String color) throws ParseException {
         requireNonNull(color);
         logger.fine("Parsing color: " + color);
         String trimmedColor = color.trim();
+        if (!isInputAlphanumericAndNotBlank(trimmedColor)) {
+            throw new ParseException(Color.MESSAGE_CONSTRAINTS);
+        }
         return new Color(trimmedColor);
     }
 
     /**
-     * Parses a {@code String colorPattern} into an {@code ColorcolorPattern}.
+     * Parses a {@code String colorPattern} into an {@code colorPattern}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code colorPattern} is invalid.
      */
-    public static ColorPattern parseColorPattern(String colorPattern) {
+    public static ColorPattern parseColorPattern(String colorPattern) throws ParseException {
         requireNonNull(colorPattern);
         logger.fine("Parsing color pattern: " + colorPattern);
         String trimmedColorPattern = colorPattern.trim();
+        if (!isInputAlphanumericAndNotBlank(trimmedColorPattern)) {
+            throw new ParseException(ColorPattern.MESSAGE_CONSTRAINTS);
+        }
         return new ColorPattern(trimmedColorPattern);
     }
 
     /**
      * Parses a {@code String species} into an {@code species}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code species} is invalid.
      */
-    public static Species parseSpecies(String species) {
+    public static Species parseSpecies(String species) throws ParseException {
         requireNonNull(species);
         logger.fine("Parsing species: " + species);
         String trimmedSpecies = species.trim();
+        if (!isInputAlphanumericAndNotBlank(trimmedSpecies)) {
+            throw new ParseException(Species.MESSAGE_CONSTRAINTS);
+        }
         return new Species(trimmedSpecies);
     }
 
@@ -684,6 +676,8 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> certificates} into a {@code Set<PetCertificate>}.
+     *
+     * @throws ParseException if some of the given {@code certificates} are invalid.
      */
     public static Set<PetCertificate> parseCertificates(Collection<String> certificates) throws ParseException {
         requireNonNull(certificates);
@@ -697,10 +691,15 @@ public class ParserUtil {
     /**
      * Parses a {@code String petCertificate} into an {@code PetCertificate}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code certificate} is invalid.
      */
-    public static PetCertificate parsePetCertificate(String certificate) {
+    public static PetCertificate parsePetCertificate(String certificate) throws ParseException {
         requireNonNull(certificate);
         String trimmedCertificate = certificate.trim();
+        if (!isInputAlphanumericAndNotBlank(trimmedCertificate)) {
+            throw new ParseException(PetCertificate.MESSAGE_CONSTRAINTS);
+        }
         return new PetCertificate(trimmedCertificate);
     }
 
@@ -742,5 +741,55 @@ public class ParserUtil {
         }
 
         return new Weight(doubleWeight);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    private static boolean isInputAlphanumericAndNotBlank(String test) {
+        return (!test.isBlank()) && test.matches(VALIDATION_REGEX);
+    }
+
+    private static ArgumentMultimap getPersonAttributes(String args, PersonCategory category) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_NAME,
+                        PREFIX_PHONE,
+                        PREFIX_EMAIL,
+                        PREFIX_ADDRESS,
+                        PREFIX_LOCATION,
+                        PREFIX_ORDER,
+                        PREFIX_PET);
+
+        if (!arePrefixesPresent(argMultimap,
+                PREFIX_NAME,
+                PREFIX_ADDRESS,
+                PREFIX_PHONE,
+                PREFIX_EMAIL,
+                PREFIX_LOCATION) || !argMultimap.getPreamble().isEmpty()) {
+            switch (category) {
+            case BUYER:
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddBuyerCommand.MESSAGE_USAGE));
+
+            case DELIVERER:
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddDelivererCommand.MESSAGE_USAGE));
+
+            case SUPPLIER:
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddSupplierCommand.MESSAGE_USAGE));
+
+            default:
+                // There are only three enum constants
+                break;
+            }
+        }
+        return argMultimap;
     }
 }
