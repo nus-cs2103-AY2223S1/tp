@@ -26,7 +26,7 @@ public class PickCommand extends Command {
     public static final String MESSAGE_MODULE_MISSING = "This module is not in your module list";
     public static final String MESSAGE_INVALID_LESSON_TYPE = "This lesson type is not offered in this module";
     public static final String MESSAGE_INVALID_LESSON_ID = "This class is not offered or an invalid one";
-    public static final String MESSAGE_DUPLICATE_LESSON_ID = "This class already exist in your current module";
+    public static final String MESSAGE_PICK_UNSELECTABLE_LESSON = "This lesson timing is fixed and cannot be picked";
 
     private final String toPick;
     private final LessonTypeEnum lessonType;
@@ -60,6 +60,11 @@ public class PickCommand extends Command {
             module.loadMoreData();
         } catch (ApiException e) {
             throw new CommandException("Error 404 something went wrong");
+        }
+
+        //check if lesson class code is unselectable
+        if (module.getUnselectableLessonTypeEnums(curr.getSelectedSemester()).contains(lessonType)) {
+            throw new CommandException(MESSAGE_PICK_UNSELECTABLE_LESSON);
         }
 
         //check if lesson type is offered
