@@ -15,7 +15,7 @@ import seedu.address.model.meeting.Meeting;
  */
 public class AddMeetingCommand extends Command {
 
-    public static final String COMMAND_WORD = "addm";
+    public static final String COMMAND_WORD = "addM";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the address book. "
             + "Parameters: "

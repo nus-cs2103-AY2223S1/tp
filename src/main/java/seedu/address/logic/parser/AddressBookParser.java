@@ -10,27 +10,24 @@ import seedu.address.logic.commands.AddClientCommand;
 import seedu.address.logic.commands.AddInterestedClientCommand;
 import seedu.address.logic.commands.AddListingCommand;
 import seedu.address.logic.commands.AddOfferCommand;
-import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.AddTagsToListingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteClientCommand;
 import seedu.address.logic.commands.DeleteListingCommand;
 import seedu.address.logic.commands.DeleteOfferCommand;
-import seedu.address.logic.commands.DeletePersonCommand;
 import seedu.address.logic.commands.EditClientCommand;
 import seedu.address.logic.commands.EditListingCommand;
 import seedu.address.logic.commands.EditOfferCommand;
-import seedu.address.logic.commands.EditPersonCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindClientCommand;
 import seedu.address.logic.commands.FindOffersForListingCommand;
-import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ViewClientListCommand;
 import seedu.address.logic.commands.ViewListingClientsCommand;
 import seedu.address.logic.commands.ViewListingsCommand;
-import seedu.address.logic.commands.ViewPersonListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses user input.
@@ -59,9 +56,6 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddPersonCommand.COMMAND_WORD:
-            return new AddPersonCommandParser().parse(arguments);
-
         case AddClientCommand.COMMAND_WORD:
             return new AddClientCommandParser().parse(arguments);
 
@@ -77,9 +71,6 @@ public class AddressBookParser {
         case AddOfferCommand.COMMAND_WORD:
             return new AddOfferCommandParser().parse(arguments);
 
-        case EditPersonCommand.COMMAND_WORD:
-            return new EditPersonCommandParser().parse(arguments);
-
         case EditClientCommand.COMMAND_WORD:
             return new EditClientCommandParser().parse(arguments);
 
@@ -88,9 +79,6 @@ public class AddressBookParser {
 
         case EditOfferCommand.COMMAND_WORD:
             return new EditOfferCommandParser().parse(arguments);
-
-        case DeletePersonCommand.COMMAND_WORD:
-            return new DeletePersonCommandParser().parse(arguments);
 
         case DeleteClientCommand.COMMAND_WORD:
             return new DeleteClientCommandParser().parse(arguments);
@@ -104,14 +92,11 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindPersonCommand.COMMAND_WORD:
-            return new FindPersonCommandParser().parse(arguments);
+        case FindClientCommand.COMMAND_WORD:
+            return new FindClientCommandParser().parse(arguments);
 
         case FindOffersForListingCommand.COMMAND_WORD:
             return new FindOffersForListingCommandParser().parse(arguments);
-
-        case ViewPersonListCommand.COMMAND_WORD:
-            return new ViewPersonListCommand();
 
         case ViewClientListCommand.COMMAND_WORD:
             return new ViewClientListCommand();

@@ -1,11 +1,15 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingId;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Name;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building Listing objects.
@@ -14,13 +18,15 @@ public class ListingBuilder {
 
     public static final String DEFAULT_ID = "House";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final Client DEFAULT_CLIENT = TypicalClients.BOB;
+    public static final Client DEFAULT_CLIENT = new ClientBuilder().build();
     public static final String DEFAULT_ASKING_PRICE = "1";
+    public static final Set<Tag> DEFAULT_TAGS = new HashSet<>();
 
     private ListingId id;
     private Address address;
     private Name owner;
     private Price askingPrice;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code ListingBuilder} with the default details.
@@ -30,6 +36,7 @@ public class ListingBuilder {
         this.address = new Address(DEFAULT_ADDRESS);
         this.owner = DEFAULT_CLIENT.getName();
         this.askingPrice = new Price(DEFAULT_ASKING_PRICE);
+        this.tags = DEFAULT_TAGS;
     }
 
     /**
@@ -71,6 +78,15 @@ public class ListingBuilder {
      */
     public ListingBuilder withAddress(String address) {
         this.address = new Address(address);
+        return this;
+    }
+
+
+    /**
+     * Sets the {@code Tag} of the {@code Listing} that we are building.
+     */
+    public ListingBuilder withTags(Set<Tag> tags) {
+        this.tags = tags;
         return this;
     }
 

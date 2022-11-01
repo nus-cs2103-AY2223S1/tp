@@ -52,6 +52,7 @@ public class AddListingCommand extends Command {
         this.address = address;
         this.name = name;
         this.askingPrice = askingPrice;
+        this.toAdd = new Listing(id, address, name, askingPrice);
     }
 
     @Override
@@ -72,7 +73,7 @@ public class AddListingCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddListingCommand // instanceof handles nulls
-                && toAdd.equals(((AddListingCommand) other).toAdd));
+                && toAdd.getId().equals(((AddListingCommand) other).toAdd.getId()));
     }
 
 }
