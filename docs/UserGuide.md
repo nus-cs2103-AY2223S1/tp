@@ -261,8 +261,8 @@ Search Types:
 
 Examples:
 * `find n/Bobby` Returns applicants with names matching `bobby` and `Bobby Cortez`
-* `find g/Female c/3.5 2` returns female applicants with a CAP value of 3.5 or 2.0
-* `find g/Male t/offered KIV` returns male applicants who have an offered or KIV tag attached to them
+* `find g/Female c/3.5 2` returns female applicants with a CAP value of `3.5` or `2.0`
+* `find g/Male t/offered KIV` returns male applicants who have an `offered` or `KIV` tag attached to them
 * `find g/Male e/gmail` returns male applicants who have a `gmail` substring in their email address
 
 
