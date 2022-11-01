@@ -359,11 +359,11 @@ public class ModelManager implements Model {
                 filteredBills.setPredicate(history.getBillsPredicate(history.getBillsHistorySize() - 1));
                 history.deleteHealthContactHistory(history.getHealthContactHistorySize() - 1);
             } else {
-                throw new CommandException("Undo cannot be done as there was no previous action");
+                throw new CommandException("Undo cannot be done as there was no previous change in data");
             }
 
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException("Undo cannot be done as there was no previous action");
+            throw new CommandException("Undo cannot be done as there was no previous change in data");
         }
 
     }
@@ -378,7 +378,7 @@ public class ModelManager implements Model {
             filteredBills.setPredicate(history.getRedoBillsPredicate(history.getRedoBillsHistorySize() - 1));
             history.deleteRedoHealthContactHistory(history.getRedoHealthContactHistorySize() - 1);
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException("Redo cannot be done as there was no previous action");
+            throw new CommandException("Redo cannot be done as there is no previous change in data to be restored");
         }
 
     }
