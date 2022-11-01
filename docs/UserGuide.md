@@ -94,7 +94,6 @@ This user guide will help you get started and understand how FABook can **seamle
   <br>
 
 * Names are case-sensitive. e.g. John Doe and john doe are treated as the different names.
-  <br>
 
  </div>
 
@@ -127,7 +126,9 @@ You can replace `list` with `l` for convenience.
 #### Creating a client contact : `create`
 
 Creates a client contact with their information in your FABook. Any contact information you don't have on hand can be updated later.
+<br>
 
+**Rationale**
 * If you have multiple meeting times with your client, simply repeat the field `mt/TIME`.
 * The `[nw/NETWORTH]` field only accepts inputs that starts with the dollar sign, are numeric,and have more than 4 digits. We want to standardise the currency and the minimum amount net worth of a client.
 eg. `nw/$1234`.
@@ -177,7 +178,9 @@ Format: `c n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETW
 #### Assigning PDF file to a client : `filepath`
 
 Assigns a PDF file to a client in your FABook.
+<br>
 
+**Constraints**
 * `INDEX` is the index of the client in the currently displayed list.
 * The filepath is the absolute path of the PDF on the local disk of your computer. e.g. `C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
 * Only file paths that lead to a PDF is allowed. e.g. `C:/Users/Ryzen/Downloads/CS2103T-T08-3.docx` is an invalid filepath.
@@ -195,16 +198,16 @@ Examples:
 <div markdown="block" class="alert alert-info">
 
 :white_check_mark: **Input Shortcut:**
-You can replace `find` with `f` for convenience for all retrieving commands.<br>
+You can replace `find` with `f` for convenience for all retrieving commands.
 
 </div>
 
 #### Finding your client by name : `find`
 
-Lets say 
-
 Find your clients whose name contain any of the given keywords.
+<br>
 
+**Constraints**
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched. e.g. `find n/Kent` won’t return clients living on Kent Ridge Road
@@ -231,6 +234,11 @@ Format: `f n/NAME`
 
 Find your clients whose phone number matches the input number.
 
+You can use this command when: 
+1. You need to check if an unsaved phone number belongs to any one of your clients.
+<br>
+
+**Constraints**
 * Only full numbers will be matched e.g. `7654` will not match `80765432`
 * All clients matching the number will be returned. e.g. All clients in the same household will be returned if they share the same home number.
 
@@ -252,6 +260,12 @@ Format: `f p/NUMBER`
 
 Find your clients whose addresses matches the input address.
 
+
+You can use this command when: 
+1. You are around the area and you want to meet up with clients near you.
+<br>
+
+**Constraints**
 * The search is case-insensitive. e.g `serangoon` will match `Serangoon`
 * The order of the keywords does not matter. e.g. `Kio Mo Ang` will match `Ang Mo Kio`
 * Only the address is searched. e.g. `find a/Kent` won’t return clients with the name 'Kent'
@@ -277,10 +291,14 @@ Format: `f a/ADDRESS`
 
 #### Finding your client by tag : `find`
 
-Imagine you want to consolidate the clients you have `SECURED` and share with them the new perks your company has rolled out. Or you want to find all `POTENTIAL` clients so you can make a concerted and targeted effort to convert them into customers. Then this is the command you will want to run.
-
 You can find your clients whose tag matches the input tag.
 
+You can use this command when: 
+1. you need to consolidate `SECURED` clients to share new perks your company has. 
+2. you need to consolidate `POTENTIAL` clients so that you can make a targeted effort to secure these clients.
+<br>
+
+**Constraints**
 * TAG can only be either `SECURED` or `POTENTIAL`
 * If multiple tags are given, only the last one is used.
 
@@ -298,10 +316,13 @@ Format: `f t/TAG`
 
 #### Opening PDF file of your client : `file`
 
-Maybe you are having a meeting with your client and you forgot the details of the financial plans that you had structured for him. Simply pull up the PDF that you stored for this client.
-
 This will open a client's assigned PDF file in your PDF file viewer.
 
+You can use this command when:
+1. You forgot the details of a client's financial plans during the meeting. Simply pull up the PDF that you stored for this client.
+<br>
+
+**Constraints**
 * `INDEX` is the index of the client in the currently displayed list.
 * Moving or renaming the PDF file in your local disk will cause the command to not work, which will require you to reassign a file path to the client again.
 
@@ -316,6 +337,12 @@ Examples:
 
 Returns a list of clients who has a scheduled meeting in the next 7 days.
 
+
+You can use this command when:
+1. You need to check which upcoming client meetings you need to prepare for.
+<br>
+
+**Constraints**
 * This uses your device's present local time as reference.
 * As long as a client has a meeting in the next 7 days, it will be shown.
 
@@ -336,11 +363,21 @@ As this command syncs with your device's system clock, please make sure the curr
 
 Updates the information of a client stored in your FABook.
 
+You can use this command when:
+1. A client changes address, phone number, email
+2. You want to edit the description of a client.
+3. A client's net worth changes.
+4. You have secured a `POTENTIAL` client.
+<br>
+
+**Constraints**
 * Edits the client with the provided index.
 * `INDEX` is the index of the client in the currently displayed list.<br>
 * You must provide **at least one** of the optional fields .
 * You can also update the description of a client through the [`description` command](#updating-clients-description-description).
 * You must update the meeting time of a client through the [`meeting` command](#add-meetings-meeting), [`deletemeeting` command](#delete-meetings-deletemeeting) and [`sync` commands](#remove-past-meetings-sync).
+* Does not allow you to update a person to have the same name and phone number as a current person in the FABook.
+* Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
 
 Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
                         
@@ -352,14 +389,6 @@ Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRI
 Only parameters you provide will be changed.
 
 </div>
-
-* Edits the person with the provided index.
-* `INDEX` is the index of the person in the currently displayed list.<br>
-* You must provide **at least one** of the optional fields .
-* You can also update the description of a contact through the [`description` command](#giving-a-description-to-a-person-description).
-* You must update the meeting time of a contact through the [`meeting` command](#add-meetings-meeting), [`deletemeeting` command](#delete-meetings-deletemeeting) and [`sync` commands](#remove-past-meetings-sync).
-* Does not allow you to update a person to have the same name and phone number as a current person in the FABook.
-* Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
 
 Example:
 * `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed client's 
@@ -377,6 +406,11 @@ Format: `u INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION
 
 Updates your client's description data field.
 
+You can use this command when:
+1. You have a verbose change in client description.
+<br>
+
+**Constraints**
 * `INDEX` is the index of the client in the currently displayed list.
 * Updating description of your client can also be done through the 'update' command. See [Update command](#updating-clients-description-description)
 
@@ -396,6 +430,11 @@ Format: `desc INDEX ds/DESCRIPTION`
    
 Updates one or more meeting times to your client in your FABook.
 
+You can use this command when:
+1. You have scheduled a new meeting with your client.
+<br>
+
+**Constraints**
 * `INDEX` is the index of the client in the currently displayed list.
 * `MEETINGTIME` should be in the format `DD-MM-YYYY-HH:MM`.
 * mt/ should be put before each separate meeting time.
@@ -413,7 +452,12 @@ Examples:
 
 Deletes the specified client from your FABook.
 
-* INDEX is the index of the client in the currently displayed list.
+You can use this command when:
+1. You drop a client.
+<br>
+
+**Constraints**
+* `INDEX` is the index of the client in the currently displayed list.
 * Deletes the client with the specified index in your FABook.
 
 Format: `delete INDEX`
@@ -427,6 +471,11 @@ Examples:
    
 Deletes a meeting from your client in your FABook.
 
+You can use this command when:
+1. Your client or you cancels a meeting.
+<br>
+
+**Constraints**
 * `INDEX` is the index of the client in the currently displayed list.
 * `MEETINGTIME` should be in the format `DD-MM-YYYY-HH:MM`.
 * If the given meeting time is not on the list, the client's meetings remain unchanged.
@@ -441,6 +490,11 @@ Examples:
 
 Removes every scheduled meeting time that has already passed.
 
+You can use this command when:
+1. You want an up to date list of meetings.
+<br>
+
+**Constraints**
 * This uses your device's present local time as reference. All meetings scheduled to be earlier than the present time will removed.
 
 Format: `sync`
@@ -482,6 +536,11 @@ You can replace `clear` with `cl` for convenience.
 
 Undos your last command.
 
+You can use this command when:
+1. When you make a mistake editing the contact book.
+<br>
+
+**Constraints**
 * The command intended to be undone should be an undoable command.
 * Undoable commands are: `clear`, `create`, `delete`, `description`, `meeting`, `deletemeeting`, `redo` and `update`
 * Non-undoable commands are: `exit`, `find `, `help`, `list`, `file`, `sync` and `filepath`
