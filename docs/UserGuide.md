@@ -161,7 +161,7 @@ Examples:
 
 ### Marking specific field in person: `mark`
 
-Marks a specific field of a person in the address book.<br>
+Use `mark` command to mark a specific field of a person in the address book.<br>
 **Usage**: View mode only
 
 It requires one field:
@@ -180,7 +180,7 @@ Examples:
 
 ### Unmarking specific field in person: `unmark`
 
-Unmarks a specific field of a person in the address book.<br>
+Use `unmark` command to unmark a specific field of a person in the address book.<br>
 **Usage**: View mode only
 
 It requires one field:
@@ -269,8 +269,9 @@ Examples:
 
 ### Adding Grade Progress to student: `grade`
 
-Adds a description of grade progress to student in address book.
-GRADE_PROGRESS does not require a fixed format and is up to the user to manually standardise. Does not check for duplicate entries.<br>
+Use `grade` command to add a description of grade progress to student in address book.
+As GRADE_PROGRESS does not require any fixed format and it is up to the user to have their own formats.
+Pupilist does not check for duplicate entries of grades.
 **Usage**: View or list mode only
 
 Format: `grade INDEX g/GRADE_PROGRESS`
@@ -416,8 +417,9 @@ _Details coming soon ..._
 
 
 | Prefix | Definition                             | Usage                                                                                                                                                                                      | Example        |
-| -------- | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+|--------|----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
 | n/     | Name                                   | A string of alphanumeric characters. Whitespaces are allowed. Required                                                                                                                     | n/Alex Ho      |
 | p/     | Phone number                           | Numbers only. Required. Whitespaces not allowed and at least 3 digits.                                                                                                                     | p/97402341     |
 | t/     | Tag that is associated to the student. | A string of characters. Optional.                                                                                                                                                          | t/Star student |
 | s/     | Session timing of lessons              | A String of input in the format of`DDD HH:mm` <br>where DDD is three characters making up the day, HH are two numbers making up the hour and <br> mm are two numbers making up the minute. | s/tue 08:30    |
+| g/     | Subject and its grade                  | A string of characters                                                                                                                                                                     | g/Math: A+     |
