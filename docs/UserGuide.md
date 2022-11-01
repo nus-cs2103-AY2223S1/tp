@@ -49,7 +49,7 @@ our app.
 
 
 5. Type the command in the command box and press Enter to execute it. e.g.
-   `add-module m/CS2103T`. For more commands, you may refer to the [command summary](#11-command-summary).
+   `add-module m/CS2103T`. For more commands, you may refer to the [Command summary](#11-command-summary).
    Alternatively, head over to [Features](#2-features) to find the details of each command.
 
 6. After a command has been executed, a message will be displayed in the result 
