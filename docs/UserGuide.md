@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
