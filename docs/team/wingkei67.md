@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Chen Guanzhou's Project Portfolio Page
+title: Zhao Yao's Project Portfolio Page
 ---
 
 ## Project: idENTify
@@ -12,30 +12,31 @@ Given below are my contributions to the project.
 
 Code contributed: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=wingkei67&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 Enhancements implemented:
-* `app` command enhancement: Allows addition of patients without optional fields and duplicate patients.
-* `group patients` command: Allows the model to group patients based on their keys.
-* `group appts` command: Allows the model to group appointments based on their keys. e.g. group by appointment tags, status or date.
-* `ungroup patients` command: Allows removal of a person's appointment from the appointment list.
-* `ungroup appts` command: Allows the model to hide patients based on conditions specified e.g hide by patient names or tags, makes use of the singleton.
+* `add` command enhancement: Allows addition of patients without optional fields and duplicate patients.
+* `group patients` command: Allows the model to group patients based on their tags.
+* `group appts` command: Allows the model to group appointments based on some keys. e.g. group by appointment tag, status or date.
+* `ungroup` command: Allows the model to ungroup patients or appointments.
+* `sort patients` feature: Enables the model to auto-sort patients in the patient list.
+* `sort appts` features: Enables the model to auto-sort appointments in the appointment list. 
+* Implement light and dark modes for our app.
+* Beautify the styles and layouts of our GUI.
 
 Contributions to the UG:
-* Added `delete`, `cancel`, `hide patients`, `hide appts`, `unhide patients`, `unhide appts` feature description and examples.
-* Updated screenshot for `help` command.
-* Updated command summary.
+* Added `add`, `group patients`, `group appts` and `ungroup` feature descriptions and examples.
 
 Contributions to the DG:
-Added explanations and UML diagrams for `cancel` command.
-
-Contributions to the UG:
+* Added explanations and UML diagrams for `group patients`, `group appts` and `ungroup` command.
+* Updated use cases for all commands in v1.4.
+* Updated use stories for all commands in v1.4.
 
 Contributions to team-based tasks:
-* Created and set up the organisation and repository in the initial stages of the project.
+* Draw the mock UI for v1.2.
 
 Review/mentoring contributions:
-- [PR review 1]()
-- [PR review 2]()
-- [PR review 3]()
-- [PR review 4]()
+- [PR_Review_1](https://github.com/AY2223S1-CS2103T-T17-4/tp/pull/81)
+- [PR_Review_2](https://github.com/AY2223S1-CS2103T-T17-4/tp/pull/84)
+- [PR_Review_3](https://github.com/AY2223S1-CS2103T-T17-4/tp/pull/131)
+- [PR_Review_4](https://github.com/AY2223S1-CS2103T-T17-4/tp/pull/154)
 
 Contributions beyond the project team:
 - [Bugs reported during PE-D](https://github.com/wingkei67/ped/issues)
