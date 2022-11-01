@@ -47,6 +47,7 @@ public class AssignmentCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
+        // this.assignments.setOrientation(Orientation.HORIZONTAL);
         person.getAssignments()
                 .forEach((key, value) -> {
                     String input = "";
@@ -56,7 +57,12 @@ public class AssignmentCard extends UiPart<Region> {
                         a++;
                     }
                     String assignmentString = key + ": \n" + input;
-                    assignments.getChildren().add(new Label(assignmentString));
+                    Label label = new Label(assignmentString);
+
+                    label.setWrapText(true);
+                    label.setMaxWidth(500);
+
+                    assignments.getChildren().add(label);
                 });
     }
 
