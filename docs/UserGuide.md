@@ -204,11 +204,14 @@ Example: `tag 1 -t optional`
 listing all tasks, unmarked tasks, all tasks under a module name, etc. You may apply multiple list flags in one
 command to filter a list down to the results you are looking for. To reset the list, use the command `ls -a`.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
-Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match.
-It is also case-insensitive.
-Any command that searches for tags finds all tags that exactly match, but is also case-insensitive.
-<br><br></div>
+<div markdown="span" class="alert alert-warning">
+
+**:exclamation: Caution:**<br>
+* Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match.
+* It is also case-insensitive. 
+* Any command that searches for tags finds all tags that exactly match, but is also case-insensitive.
+
+</div>
 
 Current filters applied will be shown in the UI at the top bar.
 
@@ -252,7 +255,7 @@ Format: `ls -t TAG_NAME`
 
 * `TAG_NAME`: The tag you are looking for should be an exact match and alphanumeric, ie must not contain any spaces.
 
-Example: `ls -t highPriority` will find tags with `highpriority` (case-insensitive)
+Example: `ls -t highPriority` will find tags with `highpriority` (Case-insensitive)
 
 #### Listing all tasks with deadline on or after a date : `ls -d`
 
@@ -299,7 +302,9 @@ Format: `archive TASK_NUMBER`
 Examples:
 * `archive 1`: archives first task in task list.
 
-<div markdown="span" class="alert alert-warning">:warning: **NOTE**: 
+<div markdown="span" class="alert alert-warning">
+
+:warning: **Warning:**:
 
 This command is irreversible!
 
@@ -312,7 +317,7 @@ Displays a list of archived tasks.
 
 ![Screenshot of Archived Window](images/user-guide/ArchivedDemo.png)
 
-Format: `showArchive`
+Format: `showarchive`
 
 ### Editing a task : `edit`
 
@@ -326,10 +331,12 @@ Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME*]`
 * (Optional)`DATE`: Must be in the format of YYYY-MM-DD.
 * (Optional)`TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**<br>
 The edit command accepts optional date and optional tags similar to the add command, where any original dates or tags
 will be removed if no date or tag is given. 
-<br><br></div>
+</div>
 
 Examples:
 * `edit 1 -t revision -n Recitation` Edits the tag to "revision" and taskName to "Recitation".
