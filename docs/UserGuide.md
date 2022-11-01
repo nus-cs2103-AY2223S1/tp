@@ -362,8 +362,8 @@ the data of your previous Property directory and Client directory home folder.
 | **Range -p**  | `range -p l/LOWER_BOUND u/UPPER_BOUND`<br> e.g., `range -p l/1,000,000 u/3,000,000`                                                              |
 | **List -p**   | `list -p`                                                                                                                                        |
 | **Select -p** | `select -p INDEX` <br> e.g., `select -p 2`                                                                                                       |
-| **Status -p** | `status -p`                                                                                                                                      |
-| **Type -p**   | `type -p`                                                                                                                                        |
+| **Status -p** | `status -p` <br> e.g., `status -p AVAILABLE`                                                                                                     |
+| **Type -p**   | `type -p PROPERTY_TYPE` <br> e.g., `type -p HDB`                                                                                                 |
 
 **Client Directory**
 
