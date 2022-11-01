@@ -46,10 +46,6 @@ public class CommandUtil {
     public static final String[] ACCEPTABLE_SORT_SPECIES_PARAMETER = new String[]{"SPECIES", "S", "-S", "/S"};
     public static final String[] ACCEPTABLE_SORT_HEIGHT_PARAMETER = new String[]{"HEIGHT", "H", "-H", "/H"};
     public static final String[] ACCEPTABLE_SORT_WEIGHT_PARAMETER = new String[]{"WEIGHT", "W", "-W", "/W"};
-    public static final String[] ACCEPTABLE_SORT_VACCINATION_STATUS_PARAMETER = new String[]{"VACCINATIONSTATUS",
-        "VSTATUS", "-VS", "/VS", "VS"};
-    public static final String[] ACCEPTABLE_SORT_CERTIFICATES_PARAMETER = new String[]{"CERTIFICATE", "CERT", "-CERT",
-        "/CERT"};
 
     /**
      * Checks if a given parameter matches any parameter in a given parameter array.

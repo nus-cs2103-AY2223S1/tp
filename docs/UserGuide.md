@@ -681,13 +681,13 @@ items [here](#list-key-types-table).
 
 #### List Attribute Table
 
-| List type | Attributes                                                                                                                  |
-|-----------|-----------------------------------------------------------------------------------------------------------------------------|
-| Buyer     | *Number of Order*, Name, Phone, Email, Location, Address                                                                    |
-| Supplier  | *Number of Pet On sale*, Name, Phone, Email, Location, Address                                                              |
-| Deliverer | *Number of Order*, Name, Phone, Email, Location, Address                                                                    |
-| Order     | *Due Date*, Price Range, Price, Status                                                                                      |
-| Pet       | *Price*, Name, Color, Color Pattern, Birth Date, Species, Height, Weight, Vaccination Status, Characteristics, Certificates |
+| List type | Attributes                                                                |
+|-----------|---------------------------------------------------------------------------|
+| Buyer     | *Number of Order*, Name, Phone, Email, Location, Address                  |
+| Supplier  | *Number of Pet On sale*, Name, Phone, Email, Location, Address            |
+| Deliverer | *Number of Order*, Name, Phone, Email, Location, Address                  |
+| Order     | *Due Date*, Price Range, Price, Status                                    |
+| Pet       | *Price*, Name, Color, Color Pattern, Birth Date, Species, Height, Weight  |
 
 > The italicised text attribute represents the default sorting attribute for each list. <br>
 > For example, `sort pet` will sort the Pets list in default by the price attribute.
@@ -713,9 +713,6 @@ items [here](#list-key-types-table).
 | Species               | species, s, -s, /s                           |
 | Height                | height, h, -h, /h                            |
 | Weight                | weight, w, -w, /w                            |
-| Vaccination Status    | vaccinationstatus, vstatus, vs, -vs, /vs     |
-| Characteristics       | characteristics, chara, cha, ch, -ch, /ch    |
-| Certificates          | certificate, cert, -cert, /cert              |
 
 Examples:
 
