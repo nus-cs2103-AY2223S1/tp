@@ -24,7 +24,8 @@ public class ListDebtorsCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MONEY + "20.00";
 
-    public static final String MESSAGE_SUCCESS_SPECIFIC = "Listed all persons with debts amounting to more than $%1$s.";
+    public static final String MESSAGE_SUCCESS_SPECIFIC = "Listed all persons with debts amounting to more than "
+                                                            + "or equal to $%1$s.";
     public static final String MESSAGE_SUCCESS_GENERIC = "Listed all persons with debts.";
     public static final String MESSAGE_NO_DEBTORS = "There are no persons with debts";
 

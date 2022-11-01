@@ -7,6 +7,8 @@ Welcome to the PayMeLah user guide!
 
 Are you a student who enjoys participating in group buys? Or perhaps do you just need some way to remember how much money your friends owe you? PayMeLah is a desktop app for **keeping track of** and **managing the debts** your friends owe you. It can also help **do simple calculations** for you, such as including GST or splitting debts amongst your friends. What’s more, it is optimised for you to do everything from just your keyboard!
 
+<div style="page-break-after: always;"></div>
+
 ### Using this guide
 If you are a new user looking to get started with PayMeLah, this user guide can help you with [the installation process](#quick-start), guide you through [adding your first debt to PayMeLah](#adding-your-first-debt), and familiarise you with how to use all of [PayMeLah’s features](#features).
 
@@ -27,19 +29,18 @@ Here are some of the symbols and text formatting to look out for as you make use
 |               `Text`               | Text relevant to PayMeLah user commands |
 |          <kbd>Ctrl</kbd>           | A keyboard key |
 
-<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 
 * Table of Contents
 {:toc}
 
-<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick start
-
 ### Installing PayMeLah
 
 1. To run the PayMeLah application, you will need to have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer ([Mac](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows](https://phoenixnap.com/kb/install-java-windows)).
@@ -56,17 +57,73 @@ Here are some of the symbols and text formatting to look out for as you make use
 1. Now, let’s continue to learn how to [navigate the application](#navigating-the-application-interface) before familiarising ourselves with the [features](#features) you can use in PayMeLah.
 
 [Return to Table of Contents](#table-of-contents)
-<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Navigating the application interface
 
+* PayMeLah uses a Command Line Interface (CLI) - which means that you perform actions by entering commands for PayMeLah to carry out.
+* Once a command has been successfully carried out, PayMeLah will display the results accordingly.
+* Refer to the diagram below to find out about the different components of PayMeLah that are responsible for receiving commands, displaying results, and more.
+
+| Number | Component Name | Details                                                                                                                                               |
+|:------:|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+|   1.   | Command Box    | The box where you enter commands for PayMeLah to carry out.                                                                                           | 
+|   2.   | Message Box    | The box where a success message will be displayed when PayMeLah carries out a command successfully, or an error message when PayMeLah fails to do so. |
+|   3.   | Person Card    | The card containing personal details.                                                                                                                 | 
+|   4.   | Debt List      | The box containing the list of debts owed by a person.                                                                                                | 
+|   5.   | Person List    | The box containing the full list of person cards. Only one person card can be viewed at a time.                                                       |
+
+<img src="images/UiDetails.png" width="800" /> <br>
+
+| Number | Component Name  | Details                                       |
+|:------:|-----------------|-----------------------------------------------|
+|   1.   | Person Index    | The index of the person in the person list.   | 
+|   2.   | Name            | The person’s name.                            |
+|   3.   | Phone Number    | The person’s phone number.                    | 
+|   4.   | Telegram Handle | The person’s Telegram handle.                 | 
+|   5.   | Tags            | The tags attached to the person.              | 
+|   6.   | Address         | The person’s address.                         | 
+|   7.   | Total Debt      | The total amount of money owed by the person. | 
+
+<img src="images/PersonCard.png" width="800" /> <br>
+
+| Number | Component Name | Details                                     |
+|:------:|----------------|---------------------------------------------|
+|   1.   | Debt Index     | The index of the debt in the debt list.     | 
+|   2.   | Description    | The debt’s description.                     |
+|   3.   | Money          | The amount of money owed for the debt.      |
+|   4.   | Date/Time      | The date and time of the debt.              |
+|   5.   | Payment Status | The debt’s payment status (paid or unpaid). |
+
+<img src="images/DebtList.png" width="800" /> <br>
+
+<div id="advanced-keyboard-shortcuts" markdown="block" class="alert alert-info">
+**:star: Advanced keyboard shortcuts:**
+Although you can make use of the mouse to perform some functions in PayMeLah, you may also use various keyboard shortcuts to do so. 
+
+|                Keyboard Key                 | Function                                                                                                                                                                                                                                                                                                                                              |
+|:-------------------------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|               <kbd>Tab</kbd>                | When you are in the command box, press <kbd>Tab</kbd> twice to navigate to the person list. When you are in the person list, use <kbd>Tab</kbd> to move down the list. At the end of the person list, press <kbd>Tab</kbd> once to return to the command box.                                                                                         |
+|      <kbd>Shift</kbd> + <kbd>Tab</kbd>      | Same as <kbd>Tab</kbd> but moves up instead.                                                                                                                                                                                                                                                                                                          |
+|              <kbd>Space</kbd>               | When you are in the person list, use <kbd>Space</kbd> to expand or close the person card you are currently on. After expanding the person card, press <kbd>Tab</kbd> followed by <kbd>Space</kbd> to navigate to the person’s debt list. Once you are done viewing the person's debt list, press <kbd>Tab</kbd> again to navigate to the person list. |
+|  <kbd>PageUp</kbd> and <kbd>PageDown</kbd>  | When you are in the person list, use <kbd>PageUp</kbd> and <kbd>PageDown</kbd> to move up or down the list, automatically expanding each person card as you move. When you are in a person's debt list, use <kbd>PageUp</kbd> and <kbd>PageDown</kbd> to move up or down the debt list.                                                               |
+| <kbd>UpArrow</kbd> and <kbd>DownArrow</kbd> | Similar to <kbd>PageUp</kbd> and <kbd>PageDown</kbd>, but without expanding the person cards.                                                                                                                                                                                                                                                         |
+|               <kbd>Home</kbd>               | When you are in the person list, press the <kbd>Home</kbd> key to jump to the first person in the list. When you are in a person's debt list, press the <kbd>Home</kbd> key to jump to the first debt in the list.                                                                                                                                    |
+|               <kbd>End</kbd>                | When you are in the person list, press the <kbd>End</kbd> key to jump to the last person in the list. When you are in a person's debt list, press the <kbd>End</kbd> key to jump to the last debt in the list.                                                                                                                                        |
+</div>
+
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### Adding your first debt
 
 Once you have familiarised yourself with PayMeLah’s [user interface](#navigating-the-application), it is time to officially start using PayMeLah! The following section provides a step-by-step guide that walks you through the process of adding a debt to PayMeLah. You can choose to follow the sample commands word-for-word, or if you are feeling adventurous, you can try replacing the sample inputs with your own inputs instead.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-secondary">
 **:star: Using the keyboard instead of the mouse**
 
 As this section is meant for new users, it will not cover how to navigate the application using keyboard shortcuts to avoid overloading new users with information. However, PayMeLah is still ultimately designed to be the fastest for users who prefer keyboard shortcuts - If this describes you, do refer to the section on [advanced keyboard shortcuts](#advanced-keyboard-shortcuts) to learn more.
@@ -92,8 +149,9 @@ As this section is meant for new users, it will not cover how to navigate the ap
 Of course, this is not yet the end of your journey with PayMeLah - there are still several other commands you may require while using PayMeLah, including commands such as `deletedebt` and `find`. You can find out more about these commands in the [features](#features) section below.
 
 [Return to Table of Contents](#table-of-contents)
-<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -104,45 +162,54 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 * The first word in the command is the command phrase that specifies which command will be carried out by PayMeLah.
   e.g. in `add n/<name>`, `add` is the command phrase for PayMeLah to add a person.
 
-* Words in diamond brackets `<>` are parameters to be supplied by you.<br>
-  e.g. in `add n/<name>`, `<name>` is a parameter which can be used as `add n/John`.
+* Words in diamond brackets `<>` are inputs to be supplied by you.<br>
+  e.g. in `add n/<name>`, `<name>` is an input which can be used as `add n/John`.
 
-* To separate parameters that represent different information, you should precede ambiguous parameters with their paired prefixes that end with `/`. <br>
-  e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the parameters `<name>` and `<tag>` respectively.
+* To separate inputs that represent different information, you should precede ambiguous inputs with their paired prefixes that end with `/`. <br>
+  e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the inputs `<name>` and `<tag>` respectively.
 
 * Items in square brackets `[]` are optional.<br>
   e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable: `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
 
-* Command fields with … can be used multiple times, but remember to separate each usage with a whitespace in between.<br>
-  e.g. in `adddebt <person index…>`, `<person index…>` is a parameter which can be used as `adddebt 1` or as `adddebt 1 2`.<br>
-  e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of prefix and parameter which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend`.
+* Command fields with `…` can be used multiple times, but remember to separate each usage with a whitespace in between.<br>
+  e.g. in `adddebt <person index…>`, `<person index…>` is an input which can be used as `adddebt 1` or as `adddebt 1 2`.<br>
+  e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of prefix and input which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend`.
 
-* Parameters can be in any order.<br>
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+Be very careful with how a command is formatted! If the `…` is found within the diamond brackets `<>` that correspond to an input as in `<person index…>`, then only the input itself is to be repeated. However if the `…` is found outside the `<>` as in `[t/<tag>]…`, then both the prefix and input must be repeated.
+</div>
+
+* Inputs can be in any order.<br>
   e.g. if the command specifies `d/<description> m/<money>`, `m/<money> d/<description>` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If an input is expected only once in the command, but you specified it multiple times, only the last occurrence of the input will be taken.<br>
   e.g. if the command requires `p/<phone number>` and you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. This is useful for correcting a wrong input without having to use backspace.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)
+* Extraneous inputs for commands that do not take in inputs (such as `help`, `list`, `exit` and `clear`)
   will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-#### Parameter-specific behavior
+</div>
 
-* Whenever `<date>` is specified as a parameter, you should input it in the format `yyyy-mm-dd` where `y` is year, `m` is month and `d` is day.<br>
+#### Input-specific behavior
+
+<div markdown="block" class="alert alert-info">
+
+* Whenever `<date>` is specified as an input, you should input it in the format `yyyy-mm-dd` where `y` is year, `m` is month and `d` is day.<br>
   e.g. September 5 2022 should be input as `2022-09-05`.
 
-* Whenever `<time>` is specified as a parameter, you should input it in the format `hh:mm` where `h` is the hour in 24h clock format, and `m` is the minute.<br>
+* Whenever `<time>` is specified as an input, you should input it in the format `hh:mm` where `h` is the hour in 24h clock format, and `m` is the minute.<br>
   e.g. 5:15PM should be input as `17:15` as per 24h clock notation.
 
-* Whenever `<money>` is specified as a parameter, you should input the amount in dollars and cents. You can also let PayMeLah help you with calculations by ending with '+' to add GST, or '++' to add both Service Charge and GST to the amount specified. All calculated values are automatically rounded up to the nearest cent.<br>
+* Whenever `<money>` is specified as an input, you should input the amount in dollars and cents. You can also let PayMeLah help you with calculations by ending with '+' to add GST, or '++' to add both Service Charge and GST to the amount specified. **All calculated values are automatically rounded up to the nearest cent.**<br>
   e.g. when you input `2.00++`, PayMeLah will store a debt with a money amount that has Service Charge and GST added, i.e. `2.36`.
 
 </div>
 
 [Return to Table of Contents](#table-of-contents)
-<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Viewing help : `help`
 
@@ -153,16 +220,15 @@ If you get lost while using PayMeLah, this is the one command to remember!
 
 Format: `help`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-secondary">
 **:star: Advanced Tip:**
 Pressing <kbd> F1 </kbd> will also open up the help message.
 </div>
 
-
 ### Adding a person: `add`
 
 Adds a person to PayMeLah. <br>
-This command will let you add the people who owe you money (and some of their information, like their phone number or telegram handle) to PayMeLah.
+This command will let you add the people who owe you money (and some of their information, like their phone number or Telegram handle) to PayMeLah.
 
 Format: `add n/<name> [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
@@ -171,8 +237,8 @@ A person can have any number of tags (including 0).
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 tele/johndoe a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend a/Newgate Prison t/criminal`
+* `add n/John Doe p/98765432 tele/johndoe a/John street, block 123, #01-01` will add a person named `John Doe` with `98765432` as his phone number, `johndoe` as their Telegram handle and `John street, block 123, #01-01` as their address to PayMeLah.
+* `add n/Betsy Crowe t/friend a/Newgate Prison t/criminal` will add a person named `Betsy Crowe` with `Newgate Prison` as their address and both `friend` and `criminal` as their tags to PayMeLah.
 
 ### Adding a debt: `adddebt`
 
@@ -182,7 +248,7 @@ This command will help you add debts to the people in PayMeLah, so that the app 
 Format: `adddebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including '++' at the back of the amount. A single '+' will add only GST instead.
+You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including `++` at the back of the amount. A single `+` will add only GST instead.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -205,26 +271,22 @@ Example:
 
 ### Splitting a debt: `splitdebt`
 
-Splits a debt among several people in PayMeLah such that each person owes the same amount (rounded up to the closest cent).
+Splits a debt among several people in PayMeLah for you to track. <br>  
+This command will help you with the Maths of dividing shared costs equally among people in PayMeLah. Sharing is made easy as PayMeLah does the Maths for you!
+
+Format: `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can split a debt among as many people as you want. You can even include yourself with index '0'. But you cannot split a debt between just yourself.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Splitting a debt is just like adding a debt to multiple people; however, here we divide the money of the debt over the people who shared it. Sharing is made easy as we do the Maths for you!
+Splitting a debt is just like [adding a debt](#adding-a-debt-adddebt) to multiple people; however, here we divide the money of the debt over the people who shared it (and round up to the closest cent). Thus, similarly, You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including `++` at the back of the amount. A single `+` will add only GST instead.
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Since `splitdebt` works very similarly to `adddebt`, you can skip the following bullet points if you are already familiar with how `adddebt` works.
-</div>
-
-* You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including '++' at the back of the amount. A single '+' will add only GST instead.
 * If you do not specify date and time, they will conveniently default to the current date and time.
 * If you specify the date but not the time, the time will default to midnight. Be careful that this default behaviour is different from the previous.
 * One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of these items being the same.
-
-Format: `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
 
 Examples:
 * `splitdebt 1 2 d/Pizza m/33.99 date/2022-10-12 time/13:00`
@@ -232,7 +294,8 @@ Examples:
 
 ### Clearing debts: `cleardebts`
 
-Clears all of a debtor's debts from PayMeLah such that he has no debts(paid and unpaid) left.
+Clears all of a debtor's debts from PayMeLah. <br>
+You can use this command to delete all of a person’s debts and your relationship can start afresh!
 
 Format: `cleardebts <person index>`
 
@@ -241,7 +304,8 @@ Example:
 
 ### Marking debts as paid: `mark`
 
-Marks the debts specified from a person in PayMeLah as paid. Multiple debts can be specified for marking as paid.
+Marks the debts specified from a person in PayMeLah as paid. Specifying multiple debts will mark all those debts as paid. <br>
+This command will help you keep track of which debts have been paid and which debts have not been paid.
 
 Format: `mark <person index> debt/<debt index…>`
 
@@ -250,27 +314,38 @@ Example:
 
 ### Marking debts as unpaid: `unmark`
 
-Marks the debts specified from a person in PayMeLah as unpaid. Multiple debts can be specified for marking as unpaid.
+Marks the debts specified from a person in PayMeLah as unpaid. Specifying multiple debts will mark all those debts as unpaid. <br>
+This command will help you undo any mistake you made when marking a debt as paid.
 
 Format: `unmark <person index> debt/<debt index…>`
 
 Example:
 * `unmark 2 debt/2 3`
 
-### Deleting debts: `deletedebts`
+### Deleting debts: `deletedebt`
 
-Deletes the debts specified from a person in PayMeLah. Multiple debts can be specified for deletion. 
+Deletes the specified debts from a person in PayMeLah. Specifying multiple debts will delete those debts from the person specified. <br>
+This command will help you fully remove debts from people in PayMeLah, so that their current debts can be better organised.
 
-Format: `deletedebts <person index> debt/<debt index…>`
+Format: `deletedebt <person index> debt/<debt index…>`
 
 Example:
-* `deletedebts 2 debt/2 3`
+* `deletedebt 2 debt/2 3`
 
 ### Getting the statement: `statement`
 
-Gets a statement of the total sum of debts you are owed.
+Gets a statement of the total sum of debts you are owed from everyone in the displayed person list. <br>
+This command will save you the time and effort of manually summing up debts in PayMeLah.
 
 Format: `statement`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**
+
+The statement will only sum up the debts that are not marked as paid from the list that is currently displayed. This means that if you have shortened the list using the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt), the statement will only sum up the debts that are not marked as paid from the shortened list.
+
+</div>
 
 Example: `statement` returns `You are owed $583.90 in total.`
 
@@ -304,7 +379,7 @@ Example: `sort n/+` sorts and displays the list of persons in ascending alphabet
 ### Editing a person: `edit`
 
 Edits an existing person in PayMeLah.<br>
-You can use this command to edit information about people you have already added in PayMeLah, in case some of their particulars such as their phone number or telegram handle have changed.
+You can use this command to edit information about people you have already added in PayMeLah, in case some of their particulars such as their phone number or Telegram handle have changed.
 
 Format: `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
@@ -317,8 +392,8 @@ Format: `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<addres
 * Cannot be used to modify a person's debts
 
 Examples:
-*  `edit 1 p/91234567 tele/johndoe` Edits the phone number and telegram handle of the 1st person to be `91234567` and `@johndoe` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 tele/johndoe` will edit the phone number and Telegram handle of the 1st person to be `91234567` and `@johndoe` respectively.
+*  `edit 2 n/Betsy Crower t/` will edit the name of the 2nd person to be `Betsy Crower` and clear all their existing tags.
 
 ### Locating persons by fields: `find`
 
@@ -424,6 +499,7 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -431,6 +507,7 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 
@@ -454,8 +531,9 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 * _Prefix_: A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.
 
 [Return to Table of Contents](#table-of-contents)
-<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
@@ -467,7 +545,7 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 | **Mark debts**    | `mark <person index> debt/<debt index…>` <br> e.g., `mark 2 debt/2 3`                                                                                                                                                                                   |
 | **Unmark debts**  | `unmark <person index> debt/<debt index…>` <br> e.g., `unmark 2 debt/2 3`                                                                                                                                                                               |
 | **Clear debts**   | `cleardebts <person index>` <br> e.g., `cleardebts 3`                                                                                                                                                                                                   |
-| **Delete debts**  | `deletedebts <person index> debt/<debt index…>` <br> e.g., `deletedebts 2 debt/2 3`                                                                                                                                                                     |
+| **Delete debts**  | `deletedebt <person index> debt/<debt index…>` <br> e.g., `deletedebt 2 debt/2 3`                                                                                                                                                                       |
 | **Clear**         | `clear`                                                                                                                                                                                                                                                 |
 | **Delete**        | `delete <index>`<br> e.g., `delete 3`                                                                                                                                                                                                                   |
 | **Edit**          | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                                                                                                    |
@@ -479,3 +557,5 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 | **Get statement** | `statement`                                                                                                                                                                                                                                             |
 | **Help**          | `help`                                                                                                                                                                                                                                                  |
 | **Undo**          | `undo`                                                                                                                                                                                                                                                  |
+
+[Return to Table of Contents](#table-of-contents)
