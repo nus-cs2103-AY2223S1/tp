@@ -2,8 +2,10 @@ package seedu.travelr.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_EVENT;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.travelr.testutil.Assert.assertThrows;
 
@@ -34,6 +36,14 @@ public class CommandTestUtil {
 
     public static final String VALID_EVENT_EATING = "Eating";
     public static final String VALID_EVENT_SIGHTSEEING = "Sightseeing";
+    
+    public static final String VALID_LOCATION_GERMANY = "Germany";
+    public static final String VALID_LOCATION_JAPAN = "Japan";
+
+    public static final String VALID_DATE = "01-01-2000";
+            
+            
+
 
     public static final String TITLE_DESC_GERMANY = " " + PREFIX_TITLE + VALID_TITLE_GERMANY;
     public static final String TITLE_DESC_ANTARCTICA = " " + PREFIX_TITLE + VALID_TITLE_ANTARCTICA;
@@ -41,6 +51,8 @@ public class CommandTestUtil {
     public static final String DESCRIPTION_DESC_ANTARCTICA = " " + PREFIX_DESC + VALID_DESCRIPTION_ANTARCTICA;
     public static final String EVENT_DESC_EATING = " " + PREFIX_EVENT + VALID_EVENT_EATING;
     public static final String EVENT_DESC_SIGHTSEEING = " " + PREFIX_EVENT + VALID_EVENT_SIGHTSEEING;
+    public static final String LOCATION_DESC = " " + PREFIX_LOCATION + VALID_LOCATION_GERMANY;
+    public static final String DATE_DESC = " " + PREFIX_DATE + VALID_DATE;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in titles
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESC; // empty string not allowed for description

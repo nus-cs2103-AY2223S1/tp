@@ -1,9 +1,11 @@
 package seedu.travelr.logic.parser;
 
+import static seedu.travelr.logic.commands.CommandTestUtil.DATE_DESC;
 import static seedu.travelr.logic.commands.CommandTestUtil.DESCRIPTION_DESC_ANTARCTICA;
 import static seedu.travelr.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GERMANY;
 import static seedu.travelr.logic.commands.CommandTestUtil.EVENT_DESC_EATING;
 import static seedu.travelr.logic.commands.CommandTestUtil.EVENT_DESC_SIGHTSEEING;
+import static seedu.travelr.logic.commands.CommandTestUtil.LOCATION_DESC;
 import static seedu.travelr.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.travelr.logic.commands.CommandTestUtil.TITLE_DESC_ANTARCTICA;
 import static seedu.travelr.logic.commands.CommandTestUtil.TITLE_DESC_GERMANY;
@@ -28,37 +30,37 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_ANTARCTICA
-                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING, new AddCommand(expectedTrip));
+                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING + LOCATION_DESC + DATE_DESC, new AddCommand(expectedTrip));
 
         // multiple titles - last title accepted
         assertParseSuccess(parser, TITLE_DESC_GERMANY + TITLE_DESC_ANTARCTICA
-                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING, new AddCommand(expectedTrip));
+                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING + LOCATION_DESC + DATE_DESC, new AddCommand(expectedTrip));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, TITLE_DESC_ANTARCTICA
-                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING, new AddCommand(expectedTrip));
+                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING + LOCATION_DESC + DATE_DESC, new AddCommand(expectedTrip));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, TITLE_DESC_ANTARCTICA
-                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING, new AddCommand(expectedTrip));
+                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING + LOCATION_DESC + DATE_DESC, new AddCommand(expectedTrip));
 
         // multiple descriptions - last description accepted
         assertParseSuccess(parser, TITLE_DESC_ANTARCTICA + DESCRIPTION_DESC_GERMANY
-                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING, new AddCommand(expectedTrip));
+                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING + LOCATION_DESC + DATE_DESC, new AddCommand(expectedTrip));
 
         // multiple events - all accepted
         Trip expectedTripMultipleEvents = new TripBuilder(ANTARCTICA).withEvents(
                 VALID_EVENT_EATING, VALID_EVENT_SIGHTSEEING)
                 .build();
         assertParseSuccess(parser, TITLE_DESC_ANTARCTICA + DESCRIPTION_DESC_ANTARCTICA
-                + EVENT_DESC_SIGHTSEEING + EVENT_DESC_EATING, new AddCommand(expectedTripMultipleEvents));
+                + EVENT_DESC_SIGHTSEEING + EVENT_DESC_EATING + LOCATION_DESC + DATE_DESC, new AddCommand(expectedTripMultipleEvents));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero events
         Trip expectedTrip = new TripBuilder(GERMANY).withEvents().build();
-        assertParseSuccess(parser, TITLE_DESC_GERMANY + DESCRIPTION_DESC_GERMANY,
+        assertParseSuccess(parser, TITLE_DESC_GERMANY + DESCRIPTION_DESC_GERMANY + LOCATION_DESC + DATE_DESC,
                 new AddCommand(expectedTrip));
     }
 
