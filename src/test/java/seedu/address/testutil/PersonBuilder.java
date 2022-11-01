@@ -108,7 +108,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(personCategory, name, phone, email, address);
+        return new Person(personCategory, name, phone, email, address, location);
     }
 
     /**
@@ -117,7 +117,7 @@ public class PersonBuilder {
      */
     public Buyer buildBuyer() {
         personCategory = PersonCategory.BUYER;
-        return new Buyer(name, phone, email, address, new ArrayList<>());
+        return new Buyer(name, phone, email, address, location, new ArrayList<>());
     }
 
     /**
@@ -126,7 +126,7 @@ public class PersonBuilder {
      */
     public Deliverer buildDeliverer() {
         personCategory = PersonCategory.DELIVERER;
-        return new Deliverer(name, phone, email, address, new ArrayList<>());
+        return new Deliverer(name, phone, email, address, location, new ArrayList<>());
     }
 
     /**
@@ -135,6 +135,6 @@ public class PersonBuilder {
      */
     public Supplier buildSupplier() {
         personCategory = PersonCategory.SUPPLIER;
-        return new Supplier(name, phone, email, address, new ArrayList<>());
+        return new Supplier(name, phone, email, address, location, new ArrayList<>());
     }
 }

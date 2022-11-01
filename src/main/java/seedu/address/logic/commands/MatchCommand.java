@@ -63,7 +63,16 @@ public class MatchCommand extends Command {
                         petScoreMap.getOrDefault(x, 0.0));
         model.sortPet(comparator);
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS,
+                false,
+                false,
+                true,
+                ListCommand.LIST_PET,
+                false,
+                null,
+                false,
+                null,
+                null);
     }
 
     @Override

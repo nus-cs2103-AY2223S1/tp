@@ -1,8 +1,13 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_COLOR;
@@ -13,6 +18,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_CERTIFICATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR_PATTERN;
@@ -23,6 +29,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_VACCINATION_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_WEIGHT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.ModelManager.ACCEPTABLE_DATE_FORMATS;
 import static seedu.address.model.ModelManager.PREFERRED_DATE_FORMAT;
 
@@ -41,8 +48,12 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.addcommands.AddBuyerCommand;
+import seedu.address.logic.commands.addcommands.AddDelivererCommand;
 import seedu.address.logic.commands.addcommands.AddOrderCommand;
+import seedu.address.logic.commands.addcommands.AddPersonCommand;
 import seedu.address.logic.commands.addcommands.AddPetCommand;
+import seedu.address.logic.commands.addcommands.AddSupplierCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.AdditionalRequests;
 import seedu.address.model.order.Order;
@@ -51,11 +62,14 @@ import seedu.address.model.order.Price;
 import seedu.address.model.order.PriceRange;
 import seedu.address.model.order.Request;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Age;
 import seedu.address.model.pet.Color;
 import seedu.address.model.pet.ColorPattern;
@@ -165,10 +179,85 @@ public class ParserUtil {
         requireNonNull(location);
         logger.fine("Parsing location: " + location);
         String trimmedLocation = location.trim();
-        if (!Email.isValidEmail(trimmedLocation)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        if (location.isEmpty() || location.isBlank()) {
+            throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
         return new Location(trimmedLocation);
+    }
+
+    /**
+     * Parses a {@code String args} into an {@code Person (Buyer, Deliverer, or Supplier}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code orderString} is invalid.
+     */
+    public static AddPersonCommand parseAddPersonCommand(String args, PersonCategory category) throws ParseException {
+        ArgumentMultimap argMultimap = getPersonAttributes(args, category);
+
+        Name name = parseName(argMultimap.getValue(PREFIX_NAME).orElse(""));
+        Phone phone = parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
+        Email email = parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
+        Address address = parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
+        Location location = parseLocation(argMultimap.getValue(PREFIX_LOCATION).orElse(""));
+
+        switch (category) {
+        case BUYER:
+            Buyer buyer = new Buyer(name, phone, email, address, location, null);
+            List<Order> orders = parseOrders(argMultimap.getAllValues(PREFIX_ORDER), false);
+            return new AddBuyerCommand(buyer, orders);
+
+        case DELIVERER:
+            Deliverer deliverer = new Deliverer(name, phone, email, address, location, null);
+            return new AddDelivererCommand(deliverer);
+
+        case SUPPLIER:
+            Supplier supplier = new Supplier(name, phone, email, address, location, null);
+            List<Pet> pets = parsePets(argMultimap.getAllValues(PREFIX_PET), false);
+            return new AddSupplierCommand(supplier, pets);
+
+        default:
+            // There are only three enum constants
+            break;
+        }
+        return null;
+    }
+
+    private static ArgumentMultimap getPersonAttributes(String args, PersonCategory category) throws ParseException {
+        ArgumentMultimap argMultimap =
+            ArgumentTokenizer.tokenize(args,
+                    PREFIX_NAME,
+                    PREFIX_PHONE,
+                    PREFIX_EMAIL,
+                    PREFIX_ADDRESS,
+                    PREFIX_LOCATION,
+                    PREFIX_ORDER,
+                    PREFIX_PET);
+
+        if (!arePrefixesPresent(argMultimap,
+                PREFIX_NAME,
+                PREFIX_ADDRESS,
+                PREFIX_PHONE,
+                PREFIX_EMAIL,
+                PREFIX_LOCATION) || !argMultimap.getPreamble().isEmpty()) {
+            switch (category) {
+            case BUYER:
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddBuyerCommand.MESSAGE_USAGE));
+
+            case DELIVERER:
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddDelivererCommand.MESSAGE_USAGE));
+
+            case SUPPLIER:
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddSupplierCommand.MESSAGE_USAGE));
+
+            default:
+                // There are only three enum constants
+                break;
+            }
+        }
+        return argMultimap;
     }
 
     /**
@@ -257,23 +346,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code personCategory} into a {@code PersonCategory} and returns it. Leading and trailing whitespaces
-     * will be trimmed.
-     * @throws ParseException if the specified person category is invalid (not a buyer, deliverer, or supplier).
-     */
-    public static PersonCategory parsePersonCategory(String personCategory) throws ParseException {
-        String trimmed = personCategory.trim();
-        checkArgument(PersonCategory.isValidPersonCategory(trimmed), MESSAGE_INVALID_PERSON_CATEGORY);
-        return Arrays.stream(PersonCategory.class.getEnumConstants())
-                .filter(x -> x.toString().equals(trimmed))
-                .findFirst().orElse(PersonCategory.BUYER);
-    }
-
-    /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 

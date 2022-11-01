@@ -43,7 +43,7 @@ public class AddPetCommand extends Command {
                     + PREFIX_PET_PRICE + "PRICE"
                     + "[" + PREFIX_PET_CERTIFICATE + "CERTIFICATE]...\n"
 
-                    + "Example: " + COMMAND_WORD + " ";
+                    + "\nExample: " + COMMAND_WORD + " ";
 
     public static final String COMMON_SAMPLE_PARAMETERS = PREFIX_PET_NAME + "Wu Lezheng "
             + PREFIX_PET_DATE_OF_BIRTH + "2001-11-20 "
@@ -115,5 +115,14 @@ public class AddPetCommand extends Command {
         toAdd.setSupplier(associatedSupplier);
         model.addPet(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof AddPetCommand)) {
+            return false;
+        }
+        AddPetCommand otherCommand = (AddPetCommand) other;
+        return otherCommand.index.equals(this.index) && otherCommand.toAdd.isSamePet(this.toAdd);
     }
 }
