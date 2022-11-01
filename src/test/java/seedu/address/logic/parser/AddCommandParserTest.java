@@ -79,8 +79,8 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + TAG_DESC_BEGINNER, new AddCommand(expectedStudent));
 
         // multiple tags - all accepted
-        Student expectedStudentMultipleTags
-                = new StudentBuilder(BOB).withTags(VALID_TAG_BEGINNER, VALID_TAG_INTERMEDIATE).build();
+        Student expectedStudentMultipleTags =
+                new StudentBuilder(BOB).withTags(VALID_TAG_BEGINNER, VALID_TAG_INTERMEDIATE).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + NOK_PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_INTERMEDIATE + TAG_DESC_BEGINNER,
                 new AddCommand(expectedStudentMultipleTags));
