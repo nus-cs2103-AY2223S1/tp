@@ -49,8 +49,8 @@ Click [here](#tutorial-for-cli) to learn more about what is CLI.
 ## Glossary
 
 * **CLI** : [Command Line Interface](https://en.wikipedia.org/wiki/Command-line_interface) is a text-based _user interface_ (UI) used to run programs, 
-manage computer files and interact with the computer.<br>
-:point_right: Click [here](#tutorial-for-cli) if you are not familiar with CLI.
+manage computer files and interact with the computer.<br> 
+Click [here](#tutorial-for-cli) if you are not familiar with CLI.
 * **User Interface** : The point at which human users interact with a computer, website or application.
 * **GUI** : [Graphical User Interface](https://en.wikipedia.org/wiki/Graphical_user_interface) is a type of user interface
 through which users interact with electronic devices via visual indicator representations.
@@ -476,4 +476,21 @@ you can use to get access to hidden functionalities on your personal computer.
 
 ## Behind Everything
 
-### Why we are using two different lists to 
+### Why we are using two different lists?
+
+* **Task Panel List**
+
+    As software project team leaders, it is important to have a clear vision of tasks to be implemented,
+since there could be many projects and each project may have so many items to keep in track.
+Thus, **Arrow** has a task panel list to keep every task organized. 
+Details of each task can be added, which helps the team managers no fear of leaving out any progress.
+
+
+* **Contact List**
+
+    The most important part of a software project is the team members serving at different positions,
+**Arrow** helps tracking details of every team member and links them to their tasks to be finished.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### This is the end of Arrow user guide, if you reach this far, thank you for your reading and hope you enjoying using our app :)
