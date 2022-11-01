@@ -121,17 +121,6 @@ For information on all commands that can be used to manipulate the Staff Panel, 
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Help :** `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-[Back to top](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
 ## **Project Commands**
 This segment contains information regarding all the commands that can be used to manage Projects.
 ### Project Glossary
@@ -524,6 +513,20 @@ Examples:
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+## General Commands
+This segment contains information on all the commands that are not related to any specific feature.
+
+### **Help :** `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+[Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 ### **Exiting the program :** `exit`
 
 Exits the program.
@@ -600,8 +603,7 @@ This segment contains summary tables of all the commands you can use in HR Pro M
 | **Unmark Tasks** | `unmarktask INDEX`<br> e.g., `unmarktask 1`                                                                                   |
 
 
-### **Miscellaneous Commands Summary**
-
+### **General Commands Summary**
 
 | Action                    | Format, Examples |
 |---------------------------|------------------|
