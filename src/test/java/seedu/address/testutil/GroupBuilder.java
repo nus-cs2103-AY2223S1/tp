@@ -1,16 +1,19 @@
 package seedu.address.testutil;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.group.Group;
 import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.util.SampleDataUtil;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * A utility class to help with building Group objects.
+ */
 public class GroupBuilder extends AbstractSingleItemBuilder {
 
     public static final String DEFAULT_NAME = "Team_Alpha";

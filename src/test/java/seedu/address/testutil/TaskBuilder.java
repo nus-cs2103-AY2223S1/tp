@@ -1,5 +1,12 @@
 package seedu.address.testutil;
 
+import static java.util.Objects.requireNonNull;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Description;
 import seedu.address.model.attribute.Name;
@@ -10,13 +17,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * A utility class to help with building Task objects.
+ */
 public class TaskBuilder extends AbstractSingleItemBuilder {
 
     public static final String DEFAULT_NAME = "Make your bed";

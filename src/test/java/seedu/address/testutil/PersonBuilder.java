@@ -85,6 +85,9 @@ public class PersonBuilder extends AbstractDisplayItemBuilder {
         return this;
     }
 
+    /**
+     * Adds a new parent to the {@code PersonBuilder} that is being built.
+     */
     public PersonBuilder withParent(AbstractSingleItem item) {
         this.parents.add(item);
         return this;
