@@ -1,11 +1,9 @@
 package seedu.rc4hdb.testutil;
 
-import seedu.rc4hdb.model.venues.booking.Booking;
 import static seedu.rc4hdb.testutil.TypicalResidents.ALICE;
 import static seedu.rc4hdb.testutil.TypicalResidents.BOB;
 import static seedu.rc4hdb.testutil.TypicalVenues.MEETING_ROOM_VENUE_NAME;
 
-import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.RecurrentBooking;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;

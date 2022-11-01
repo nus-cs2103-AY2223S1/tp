@@ -1,5 +1,8 @@
 package seedu.rc4hdb.model.venues;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +22,7 @@ public class DailySchedule {
     private final Resident[] bookedBy;
 
     private DailySchedule(Resident[] bookedBy, Day day) {
+        requireAllNonNull(bookedBy, day);
         this.day = day;
         this.bookedBy = bookedBy;
     }
@@ -55,6 +59,7 @@ public class DailySchedule {
      * Build the {@code bookedBy} array with the {@code bookings}.
      */
     private static Resident[] buildBookedByList(List<Booking> bookings) throws BookingClashesException {
+        requireNonNull(bookings);
         Resident[] bookedBy = new Resident[24];
         for (Booking booking : bookings) {
             populateBookedByList(bookedBy, booking.getHourPeriod(), booking.getResident());
@@ -66,6 +71,7 @@ public class DailySchedule {
      * Factory method for producing a list of {@code DailySchedule} instances which represent a weekly schedule.
      */
     public static List<DailySchedule> generateWeeklySchedule(List<Booking> bookings) throws BookingClashesException {
+        requireNonNull(bookings);
         return Day.DAYS_OF_WEEK.stream().map(Day::new).map(day ->
                 new DailySchedule(buildBookedByList(bookings.stream()
                         .filter(booking -> booking.isSameDay(day))

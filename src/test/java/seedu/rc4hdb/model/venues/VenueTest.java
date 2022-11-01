@@ -1,12 +1,29 @@
 package seedu.rc4hdb.model.venues;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.rc4hdb.testutil.TypicalBookings.HP_5_TO_6PM;
+import static seedu.rc4hdb.testutil.TypicalBookings.MONDAY;
+import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_5_TO_6PM;
+import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_5_TO_7PM;
+import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_6_TO_7PM;
+import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_TUESDAY_6_TO_7PM;
+import static seedu.rc4hdb.testutil.TypicalBookings.MR_BOB_TUESDAY_6_TO_7PM;
+import static seedu.rc4hdb.testutil.TypicalResidents.ALICE;
+import static seedu.rc4hdb.testutil.TypicalVenues.DISCUSSION_ROOM_NAME;
+import static seedu.rc4hdb.testutil.TypicalVenues.MEETING_ROOM;
+import static seedu.rc4hdb.testutil.TypicalVenues.MEETING_ROOM_VENUE_NAME;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
@@ -14,9 +31,6 @@ import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
-import static seedu.rc4hdb.testutil.TypicalBookings.*;
-import static seedu.rc4hdb.testutil.TypicalResidents.ALICE;
-import static seedu.rc4hdb.testutil.TypicalVenues.*;
 import seedu.rc4hdb.testutil.VenueBuilder;
 
 public class VenueTest {
