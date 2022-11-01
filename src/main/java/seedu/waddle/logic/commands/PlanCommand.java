@@ -6,6 +6,7 @@ import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import java.time.LocalTime;
 
+import seedu.waddle.commons.core.Messages;
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.exceptions.CommandException;
@@ -59,6 +60,7 @@ public class PlanCommand extends Command {
         Itinerary itinerary = stageManager.getSelectedItinerary();
 
         Item plannedItem;
+
         try {
             plannedItem = itinerary.planItem(itemIndex, dayNumber, startTime);
         } catch (IndexOutOfBoundsException e) {

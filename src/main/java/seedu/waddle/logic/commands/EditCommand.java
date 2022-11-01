@@ -83,6 +83,7 @@ public class EditCommand extends Command {
 
         Itinerary editedItinerary = new Itinerary(updatedName, updatedCountry, updatedStartDate, updatedDuration,
                 updatedPeople, updatedBudget);
+        editedItinerary.setUnscheduledItems(itineraryToEdit.getUnscheduledItemList());
         editedItinerary.setDays(itineraryToEdit.getDays());
         editedItinerary.calculateSpending();
         return editedItinerary;

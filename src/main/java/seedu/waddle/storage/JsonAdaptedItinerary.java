@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.waddle.commons.exceptions.IllegalValueException;
+import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.itinerary.Budget;

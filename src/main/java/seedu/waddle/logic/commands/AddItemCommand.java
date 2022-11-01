@@ -6,6 +6,7 @@ import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITEM_DURATION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
+import seedu.waddle.commons.core.Messages;
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
@@ -54,7 +55,6 @@ public class AddItemCommand extends Command {
         if (itinerary.hasItem(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
-
         itinerary.addItem(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

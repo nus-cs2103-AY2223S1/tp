@@ -111,6 +111,12 @@ public class EditItemCommand extends Command {
             }
             Item itemToEdit = itinerary.getItem(multiIndex);
             Item editedItem = createEditedItem(itemToEdit, editItemDescriptor);
+            //if new cos causes over budget throw command exception
+            if (itinerary.getBudget().calculateLeftOverBudget()
+                    + itemToEdit.getCost().getValue() - editedItem.getCost().getValue() < 0) {
+                throw new CommandException(Messages.MESSAGE_OVER_BUDGET);
+            }
+
             if (!itemToEdit.isSameItem(editedItem) && day.hasItem(editedItem)) {
                 throw new CommandException(MESSAGE_DUPLICATE_ITEM);
             }

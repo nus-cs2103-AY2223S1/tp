@@ -12,6 +12,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.waddle.commons.core.Messages;
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.commons.core.index.MultiIndex;
 import seedu.waddle.logic.commands.exceptions.CommandException;
@@ -110,6 +111,12 @@ public class Itinerary {
         }
     }
 
+    public void setUnscheduledItems(UniqueItemList unscheduledItemList) {
+        for (Item item : unscheduledItemList) {
+            addItem(item);
+        }
+    }
+
     /**
      * Returns true if both itineraries have the same name.
      * This defines a weaker notion of equality between two itineraries.
@@ -203,6 +210,9 @@ public class Itinerary {
      */
     public Item planItem(Index itemIndex, DayNumber dayNumber, LocalTime startTime) throws CommandException {
         Item item = this.unscheduledItemList.get(itemIndex.getZeroBased());
+        if (this.budget.calculateLeftOverBudget() - item.getCost().getValue() < 0) {
+            throw new CommandException(Messages.MESSAGE_OVER_BUDGET);
+        }
         item.setStartTime(startTime);
         Day day = this.days.get(dayNumber.dayNumber.getZeroBased());
         try {
@@ -283,7 +293,7 @@ public class Itinerary {
         if (this.startDate != null) {
             if (this.duration != null) {
                 return Text.indent("Dates: " + this.startDate + " - "
-                        + this.startDate.getValue().plusDays(this.duration.getValue()), indents);
+                        + this.startDate.getValue().plusDays(this.duration.getValue() - 1), indents);
             } else {
                 return Text.indent("Dates: " + this.startDate, indents);
             }
