@@ -1,11 +1,16 @@
 package seedu.uninurse.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.medication.Medication;
@@ -143,6 +148,9 @@ public class UpdatedPatientCard extends UiPart<Region> {
 
     private HBox getIndexBox(int index) {
         HBox indexBox = new HBox();
+        indexBox.setMinWidth(20.0);
+        indexBox.setMaxWidth(20.0);
+        indexBox.setAlignment(Pos.CENTER);
         indexBox.setStyle("-fx-background-color: #bfcddb;"
                 + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
                 // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
