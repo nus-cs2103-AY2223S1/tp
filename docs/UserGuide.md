@@ -72,7 +72,7 @@ Adds a contact to your SoConnect.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** The `TAG` has to be created first before adding into a contact. 
+**:information_source: Note:** The tag has to be made first before you can add it into a contact. 
 
 Refer to [`Creating a Tag`](#Creating a Tag) on how to create a tag.
 </div>
@@ -233,6 +233,8 @@ A contact can have any number of tags. Add as many as you want.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** The tag has to be made first before you can add it into a contact.
+
+Refer to [`Creating a Tag`](#Creating a Tag) on how to create a tag.
 </div>
 
 * Adds a `TAG` to the contact at the specified `INDEX`. The index refers to the index number shown in the displayed list of contacts. The index **must be a positive integer** 1, 2, 3, …​

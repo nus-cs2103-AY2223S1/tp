@@ -12,6 +12,9 @@ public class Phone {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+    public static final String MESSAGE_PHONE_TOO_LONG =
+            "The Phone is too long. Keep it within 45 characters, including whitespaces.";
+    public static final int CHARACTER_LIMIT = 45;
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
@@ -23,6 +26,8 @@ public class Phone {
     public Phone(String phone) {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidLength(phone), MESSAGE_PHONE_TOO_LONG
+        );
         value = phone;
     }
 
@@ -31,6 +36,16 @@ public class Phone {
      */
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string does not exceed the character limit.
+     *
+     * @param text The given string.
+     * @return True if it does not exceed the character limit. False if otherwise.
+     */
+    public static boolean isValidLength(String text) {
+        return text.length() > CHARACTER_LIMIT ? false : true;
     }
 
     @Override

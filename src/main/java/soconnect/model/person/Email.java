@@ -21,6 +21,9 @@ public class Email {
             + "    - end with a domain label at least 2 characters long\n"
             + "    - have each domain label start and end with alphanumeric characters\n"
             + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
+    public static final String MESSAGE_EMAIL_TOO_LONG =
+            "The Email is too long. Keep it within 45 characters, including whitespaces.";
+    public static final int CHARACTER_LIMIT = 45;
     // alphanumeric and special characters
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
     private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
@@ -28,7 +31,9 @@ public class Email {
     private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
             + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
     private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
-    private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
+    private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*"
+            + DOMAIN_PART_REGEX + "\\."
+            + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
     public final String value;
@@ -41,6 +46,7 @@ public class Email {
     public Email(String email) {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidLength(email), MESSAGE_EMAIL_TOO_LONG);
         value = email;
     }
 
@@ -49,6 +55,16 @@ public class Email {
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string does not exceed the character limit.
+     *
+     * @param text The given string.
+     * @return True if it does not exceed the character limit. False if otherwise.
+     */
+    public static boolean isValidLength(String text) {
+        return text.length() > CHARACTER_LIMIT ? false : true;
     }
 
     @Override
