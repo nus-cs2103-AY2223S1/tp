@@ -17,7 +17,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class ModuleBuilder {
 
     public static final String DEFAULT_LECTURE_DETAILS = "lectureDetail";
-    public static final String DEFAULT_MODULE_CODE = "moduleCode";
+    public static final String DEFAULT_MODULE_CODE = "CS1101S";
     public static final String DEFAULT_TUTORIAL_DETAILS = "tutorialDetail";
     public static final String DEFAULT_ZOOM_LINK = "https://nus-sg.zoom.us";
 
