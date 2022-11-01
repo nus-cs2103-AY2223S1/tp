@@ -121,7 +121,7 @@ Student ID must also be unique.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
-If you have two students with the same name, you can swap the order of the student's name to save it in GREWZ.
+If you have two students with the same name, you can swap the order of the student's first and last name.
 </div>
 
 Examples:
@@ -223,13 +223,13 @@ Clears all entries from the student list.
 Format: `clear`
 
 ## Attendance commands
-A feature to add an attendance list of a maximum of 12 lessons. 
-Teaching assistants can keep track of the attendance of their students. 
-As of now, we only offer the option of having one attendance list per student.
+We developed a feature to add an attendance list of a maximum of 12 lessons to help you record attendance for your students. 
+You can mark/unmark attendance of your students. 
+Currently, we only support one attendance list per student.
 
 ### Adding an attendance list to a student: `attendance add`
 
-Adds an attendance list to a student contact. 
+Adds an attendance list to a student in contacts. 
 
 Format: `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`
 
@@ -238,13 +238,17 @@ Examples:
 * `attendance add 1 c/CS2040 s/1`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
-Maximum lesson number is 12, if the size is 0, the attendance list will be N.A. 
+Currently, we support a maximum of 12 lessons. If the size of the attendance list keyed in is 0, the attendance list will be listed as N.A. 
 There can only be a maximum of one attendance list for each student for ease of typing.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If you add an attendance list to a student with an attendance list, it overwrites the current attendance list data.
+Be careful when adding attendance to a student as adding an attendance list to a student with a pre-existing attendance list will overwrite the current attendance list of the student.
 </div>
+
+Expected outcome:
+![AttendanceAdd](images/AttendanceAdd.png)
+After using ```attendance add``` command
 
 ### Marking attendance of student: `attendance mark`
 
@@ -253,23 +257,31 @@ Marks attendance of given student in class list. In this case, we use 0 for abse
 Format: `attendance mark INDEX l/LESSON m/ATTENDANCE_VALUE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
-Lesson number starts from 1.
-Attendance value is 0 for absent, 1 for present because it is faster for CLI users to type numerical values instead of full words.
+The first lesson starts from 1. GREWZ only accepts 0 and 1 for attendance values which correspond to absent and present respectively.
+As it is faster for you to type numerical values over full words, we adopted such an approach for your convenience.
 </div>
 
 Examples:
 * `attendance mark 1 l/1 m/1`
 * `attendance mark 1 l/1 m/0`
 
-### Deleting attendance of student: `attendance delete`
+Expected outcome:
+![AttendanceMark](images/AttendanceMark.png)
+After using ```attendance mark``` command
 
-Deletes entire attendance list of student in class list
+### Deleting attendance of a student: `attendance delete`
+
+Deletes the entire attendance list of a student in the contacts.
 
 Format: `attendance delete INDEX`
 
 Examples:
 * `attendance delete 1`
 * `attendance delete 2`
+
+Expected outcome:
+![AttendanceDelete](images/AttendanceDelete.png)
+After using ```attendance delete``` command
 
 Task Commands
 ---
