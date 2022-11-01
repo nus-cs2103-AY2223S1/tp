@@ -205,6 +205,8 @@ Format: `project -v`
 
 Adds a client to the AddressBook. A unique client ID will be automatically generated. 
 
+![add client command](images/AddClientCommand.png)
+
 Format: `client -a n/CLIENT_NAME p/PROJECT_ID [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`
 
 * Adds the client to the list of clients and to the project with the specified `PROJECT_ID`.
@@ -228,6 +230,8 @@ Examples:
 
 Edits the specified existing client.
 
+![edit client command](images/EditClientCommand.png)
+
 Format: `client -e c/CLIENT_ID [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`
 
 * Edits the client with the specified `CLIENT_ID`. The ID refers to the unique ID generated upon adding a client. The ID
@@ -247,6 +251,8 @@ Examples:
 ### Deleting a client : `client -d`
 
 Removes the specified existing client.
+
+![delete client command](images/DeleteClientCommand.png)
 
 Format: `client -d CLIENT_ID`
 
