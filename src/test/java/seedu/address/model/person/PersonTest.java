@@ -46,7 +46,7 @@ public class PersonTest {
         // same name, phone and email, different survey -> returns false
         editedAlice = new PersonBuilder().withName(ALICE.getName().fullName)
                 .withEmail(ALICE.getEmail().value).withPhone(ALICE.getPhone().value)
-                .withSurvey(VALID_SURVEY_BOB).build();
+                .withSurvey(VALID_SURVEY_BOB, false).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
