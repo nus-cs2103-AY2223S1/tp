@@ -28,7 +28,6 @@ public class UndoCommand extends Command {
         }
 
         model.undoApplicationBook();
-        model.updateApplicationListWithInterview();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

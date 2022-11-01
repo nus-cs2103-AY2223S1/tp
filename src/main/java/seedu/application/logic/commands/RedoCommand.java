@@ -28,7 +28,6 @@ public class RedoCommand extends Command {
         }
 
         model.redoApplicationBook();
-        model.updateApplicationListWithInterview();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

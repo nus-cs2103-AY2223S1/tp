@@ -26,7 +26,6 @@ public class RemindCommandStub extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredApplicationsWithUpcomingInterviewList(UPCOMING_INTERVIEW_PREDICATE);
         return new CommandResult(SHOWING_REMIND_MESSAGE, true, false, false);
     }
 

@@ -18,7 +18,6 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredApplicationList(Model.HIDE_ARCHIVE_IN_LIST);
-        model.updateApplicationListWithInterview();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
