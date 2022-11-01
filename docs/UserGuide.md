@@ -84,7 +84,7 @@ Adds a contact to the application.
 Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB`
 
 - The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), gender (`g`), date of birth(`d`).
-- Date format accepted is: dd/mm/yyyy.
+- Date format accepted is: `dd/mm/yyyy`.
 - The genders accepted by the contact list are: `M`/`m`/`Male`/`male` for male, `F`/`f`/`Female`/`female` for female.
 
 Examples:
@@ -127,7 +127,7 @@ Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d
   The index must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index.
 - Existing values will be updated to the input values.
 - At least one of the optional fields must be provided.
-- Date format accepted is: dd/mm/yyyy.
+- Date format accepted is: `dd/mm/yyyy`.
 - The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
 for male, `F`/`f`/`Female`/`female` for female.
 
@@ -135,7 +135,7 @@ Examples:
 *  `editPerson 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
    `91234567` and `johndoe@example.com` respectively.
 *  `editPerson 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s contact: edits name to be `Charlotte`,
-edits gender to be `Female` and edits date of birth to be `3.4.1998`.
+edits gender to be `Female` and edits date of birth to be `3/4/1998`.
 
 ### Locating persons by name: `find`
 
