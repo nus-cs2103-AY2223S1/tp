@@ -159,7 +159,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The undo/redo mechanism is facilitated by `UndoableCommands` and `CommandManager`. 
+The undo/redo mechanism is facilitated by `UndoableCommands` and `CommandManager`.
 
 `UndoableCommand` extends from `Command` and implements its own undo and redo methods. `Command`s that implement `UndoableCommand` include:
 * `CreateCommand` — Deletes and adds saved person object for undo and redo methods respectively.
@@ -186,7 +186,7 @@ Step 3. The user executes `add n/David …​` to add a new person. `CommandMana
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
 
 </div>
-    
+
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Logic#undo()` which calls `CommandManager#undo()` , which will pop the latest `UndoableCommand` from the `undoStack` and calls the `#UndoableCommand#undo()` method of that command which reverts the addressbook back to its previous state. The command popped is pushed to the `redoStack`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
@@ -225,7 +225,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Saves the entire address book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
-  
+
 ### Opening of Person specific PDF files
 
 ### Implementation
@@ -236,7 +236,7 @@ The opening mechanism is facilitated by `OpenPersonFileCommand` and `FileUtil`.
 
 `OpenPersonFileCommand` stores the target index of the list of persons, whose PDF will be opened.
 
-`FileUtil` implements `FileUtil#openPdfFile(String)` — If PDF file in from the String exists, 
+`FileUtil` implements `FileUtil#openPdfFile(String)` — If PDF file in from the String exists,
 the PDF will be opened.
 It's exposed in the `OpenPersonFileCommand` as `OpenPersonFileCommand#execute(Model)`
 
@@ -249,32 +249,32 @@ Step 2. The user executes `file 2` command to open the file of the 2nd person in
 Step 3. The parser will parse the input command `file` and target index `2` and store the target index in the
 newly created `OpenPersonFileCommand`.
 
-Step 4. `OpenPersonFileCommand#execute(Model)` is called by the Logic Manager while in turn calls 
+Step 4. `OpenPersonFileCommand#execute(Model)` is called by the Logic Manager while in turn calls
 `FileUtil#openPdfFile(String)` and the PDF file stored in the file path will be opened on the Users default PDF viewer.
 
 ### Person Enhancement
 
 #### Enhancement 1
 The person model now contains a `Net Worth` field.
-`Net Worth` is implemented as a class where it contains a `final string value`, `final static string` 
+`Net Worth` is implemented as a class where it contains a `final string value`, `final static string`
 `MESSAGE_CONSTRAINTS` and `final static string` `VALIDATION_REGEX`.
 
 #### Design Considerations
 - Net Worth accepts a Net Worth object that has an immutable value.
 - Net Worth is a compulsory field. A user will only engage with a client if they know their net worth.
-- Net Worth `VALIDATION_REGEX` ensures that clients of more than 1000 dollars is engaged and the currency is 
+- Net Worth `VALIDATION_REGEX` ensures that clients of more than 1000 dollars is engaged and the currency is
   standardise to be in dollars
 
 #### Alternatives
 
-* **Alternative 1 (current choice):** Compulsory Net Worth field in person and `VALIDATION_REGEX` calculated in 
+* **Alternative 1 (current choice):** Compulsory Net Worth field in person and `VALIDATION_REGEX` calculated in
   dollars and must be more than 4 digits.
     * Pros: Standardisation of currency and minimum net worth.
-    * Cons: Unable to create a contact without knowing the client's net worth and net worth must be more than a 
+    * Cons: Unable to create a contact without knowing the client's net worth and net worth must be more than a
       minimum amount.
 
-* **Alternative 2:** Non-compulsory Net Worth field and `VALIDATION_REGEX` has no currency constraints nor minimum 
-  amount. 
+* **Alternative 2:** Non-compulsory Net Worth field and `VALIDATION_REGEX` has no currency constraints nor minimum
+  amount.
     * Pros: Flexibility in creating a contact.
     * Cons: No means of comparison between a contact of different currency.
 
@@ -283,12 +283,12 @@ The person model now contains a `Net Worth` field.
 #### Implementation
 The Upcoming Meetings function is facilitated by the `MeetingsWindow`, `MeetingCard` and `MeetingListPane` classes.
 `MeetingsWindow` extends `UIPart<Stage>` and is linked to an FXML Menu Item `meetingsMenuItem` in `MainWindow`
-During construction of `MainWindow` object, a `MeetingsWindow` object is instantiated and `setAccelerator()` is 
-called. 
+During construction of `MainWindow` object, a `MeetingsWindow` object is instantiated and `setAccelerator()` is
+called.
 
 The `MainWindow#setAccelerator()` function sets a shortcut that links the call of `MeetingsWindow` to `F2`.
 
-The construction of a `MeetingsWindow` object, will create a `MeetingsListPanel` and a `private` `meetingsMessage` 
+The construction of a `MeetingsWindow` object, will create a `MeetingsListPanel` and a `private` `meetingsMessage`
 `label` that takes in a `MEETINGS_MESSAGE`
 
 
@@ -299,7 +299,7 @@ The construction of a `MeetingsWindow` object, will create a `MeetingsListPanel`
 <What css used>
 
 #### Alternatives
-    
+
 #### Enhancement 2
 
 The person model now contains a `Meeting Time` field.
@@ -311,10 +311,10 @@ The person model now contains a `Meeting Time` field.
 - `final static String VALIDATION_REGEX`
 
 #### Design Considerations
-- Use of Java API `java.time.LocalDateTime` to parse and format any valid given `String meetingTime` into the following 
+- Use of Java API `java.time.LocalDateTime` to parse and format any valid given `String meetingTime` into the following
   format of 'dd-MM-yyyy-HH:mm'
 - `displayValue`, `value` and `date` serve different usages.
-  - `displayValue` serves to return a nicer string representation of the meeting time, where the full name of the 
+  - `displayValue` serves to return a nicer string representation of the meeting time, where the full name of the
   month is displayed instead of its numeric form e.g. `12-OCTOBER-2022-12:00` instead of `12-10-2022-12:00`
   - `value` is used for parsing and passed around the program as a string.
   - `date` is stored as a LocalDateTime to allow comparisons between LocalDateTime objects.
@@ -350,7 +350,7 @@ The person model now contains a `Meeting Time` field.
 * faces trouble in scheduling client meet-ups for both time and location
 * wish to filter based on address
 
-**Value proposition**: 
+**Value proposition**:
 * manage clients faster than a typical mouse/GUI driven app
 * categorise client according to status and risk for the user to plan their schedule
 * inbuilt calendar to track meetings
@@ -440,7 +440,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The name is not found.
 
   * 1a1. FABook shows an error message with suggested format.
-  
+
     Use case ends.
 
 * 1b. No input optional field was given.
@@ -468,7 +468,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The client is not found.
 
   * 1a1. FABook shows an error message with command explanation.
-  
+
     Use case ends.
 
 * 1b. No description was given.
@@ -495,7 +495,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 1b. No such client name was found. 
+* 1b. No such client name was found.
 
     * 1b1. FABook shows an error message with suggested format
 
@@ -516,13 +516,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. No client number was provided.
 
     * 1a1. FABook shows an error message with suggested format
-  
+
       Use case ends.
 
 * 1b. No such client number was found.
 
     * 1b1. FABook shows an empty list
-  
+
       Use case ends.
 
 * 1c. No full phone number provided.
@@ -554,7 +554,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. FABook shows an empty list
 
       Use case ends.
-    
+
 **Use case: UC09 - Delete a person**
 
 **MSS**
