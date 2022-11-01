@@ -37,10 +37,11 @@ public class Deadline implements Comparable<Deadline> {
     }
 
     /**
+     * Parses the deadline string and returns a LocalDate instance if the deadline is a valid date.
      *
-     * @param deadline
-     * @return
-     * @throws DateTimeParseException
+     * @param deadline A deadline.
+     * @return An instance of LocalDate.
+     * @throws DateTimeParseException Thrown if the deadline provided is not a valid date.
      */
     private static LocalDate parseDate(String deadline) throws DateTimeParseException {
         LocalDate parsedDate = LocalDate.parse(deadline,

@@ -339,7 +339,6 @@ public class ParserUtil {
             } catch (DateTimeParseException e) {
                 throw new ParseException(Deadline.INVALID_DATE);
             }
-            
             descriptionList.add(parsedDeadline);
         }
         return descriptionList;

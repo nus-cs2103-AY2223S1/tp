@@ -41,7 +41,7 @@ To better understand the usage of YellowBook, we have provided a usage scenario 
 
 1. YellowBook comes with a list of sample contacts and tasks by default.
 
-2. Let's start by listing all the contacts in YellowBook. Type `listC` in the command box and press Enter to execute it. You should see a list of contacts. Try using `listT` to list all the tasks. 
+2. Let's start by listing all the contacts in YellowBook. Type `listC` in the command box and press Enter to execute it. You should see a list of contacts. Try using `listT` to list all the tasks.
 
 3. More to be added
 
@@ -103,7 +103,7 @@ Redo the last command.
 
 Format: `redo`
 
-* For exceptionally large contact/task lists, it may take a few seconds to redo the command. 
+* For exceptionally large contact/task lists, it may take a few seconds to redo the command.
 
 * Redo is not available for commands that do not modify the contact/task data (e.g. list, help, findC, findT, filterC, filterT etc.)
 
@@ -254,7 +254,7 @@ Format: `addT d/DESCRIPTION D/DEADLINE`
 
 * Tasks are unique. There cannot be more than one task with the same description, deadline and tag list in the task list.
 
-* The description and deadline of the task are not allowed to be empty. 
+* The description and deadline of the task are not allowed to be empty.
 
 * Newly added tasks are marked as not done by default.
 
@@ -357,7 +357,7 @@ Format: `findT [d/DESCRIPTION] [D/DEADLINE (dd-mm-yyyy)] [s/STATUS (complete / i
 Example:
 
 * `findT d/cs2103t D/25-12-2022` will return task(s) with description containing `cs2103t` and deadline `25th December 2022`.
-* 
+
 * `findT s/incomplete` will return task(s) that are not complete.
 
 ### Filtering tasks by label: `filterT`
@@ -403,7 +403,7 @@ Format: `progressT KEYWORD [MORE_KEYWORDS]`
 
 * The filter is case-sensitive, e.g. `cs2103t` will not match `CS2103T`.
 
-* Both complete and incomplete tasks are listed. 
+* Both complete and incomplete tasks are listed.
 
 * Tasks with deadlines that are already past are also listed.
 
@@ -464,14 +464,14 @@ Shows a list of all existing labels in the address book.
 
 ### Adding a label to a contact/task: `addL`
 
-Adds a label to an existing contact/task in YellowBook. Each contact/task can have multiple labels. 
-At the same time, the label is added to the label list, shown under the "tags" tab of the app. 
+Adds a label to an existing contact/task in YellowBook. Each contact/task can have multiple labels.
+At the same time, the label is added to the label list, shown under the "tags" tab of the app.
 This list is unique, meaning each label with a distinct name is only shown once, even if more than one contact/task has the same label.
 
-Multiple labels can be added in the same command. 
+Multiple labels can be added in the same command.
 However, only a maximum of one contact and one task can be labelled within the same command.
 
-The following scenarios should not happen for your command to run successfully: 
+The following scenarios should not happen for your command to run successfully:
 - Contact/task does not exist
 - Contact/task already has the required label
 - No label is provided
@@ -486,15 +486,15 @@ Example:
 
 ### Removing a label from a contact/task: `deleteL`
 
-Removes a label from an existing contact/task in YellowBook. 
+Removes a label from an existing contact/task in YellowBook.
 
-If contact/task is last remaining contact/task with said label, label is removed from the label list. 
+If contact/task is last remaining contact/task with said label, label is removed from the label list.
 Otherwise, it is only removed from the specified contact/task label list.
 
-Multiple labels can be deleted in the same command. 
+Multiple labels can be deleted in the same command.
 However, only a maximum of one contact and one task can be edited within the same command.
 
-The following scenarios should not happen for your command to run successfully: 
+The following scenarios should not happen for your command to run successfully:
 - Contact/task does not exist
 - Label does not exist on specified contact/task
 - No contact/task is provided
@@ -517,11 +517,11 @@ Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]`
 
 * The label is case-sensitive, e.g. `cs2103t` will not delete labels named `CS2103T`.
 
-* Multiple labels can be specified. 
+* Multiple labels can be specified.
 
 * If a contact/task has multiple labels, it will not be deleted as long as it has at least one label.
   Instead, the labels will be removed from the contact/task.
-  
+
 The following scenarios should not happen for your command to run successfully:
 - Label does not exist
 - No label is provided
