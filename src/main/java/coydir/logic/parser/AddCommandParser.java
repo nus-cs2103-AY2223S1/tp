@@ -74,7 +74,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         }
         if (!argMultimap.getAllValues(PREFIX_LEAVE).isEmpty()) {
-            numberOfLeaves = Integer.valueOf(ParserUtil.parseId(argMultimap.getValue(PREFIX_LEAVE).get()));
+            numberOfLeaves = Integer.valueOf(ParserUtil.parseNumber(argMultimap.getValue(PREFIX_LEAVE).get()));
         }
 
         EmployeeId employeeId = new EmployeeId();

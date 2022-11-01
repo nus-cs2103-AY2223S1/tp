@@ -27,7 +27,7 @@ public class RateCommandParser implements Parser<RateCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
         }
-        String id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
+        String id = ParserUtil.parseNumber(argMultimap.getValue(PREFIX_ID).get());
         Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATE).get());
         return new RateCommand(new EmployeeId(id), rating);
     }

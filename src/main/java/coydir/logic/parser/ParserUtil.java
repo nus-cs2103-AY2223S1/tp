@@ -25,7 +25,9 @@ import coydir.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Number should be a non-zero positive integer.";
+    public static final String MESSAGE_INVALID_NUMBER =
+            "Number should be a positive integer (non-zero, not too large).\n"
+            + "Check out our User Guide for more information by entering 'help'!";
     public static final String MESSAGE_INVALID_ARGUMENT = "Keyword argument cannot be empty.";
 
     /**
@@ -36,7 +38,7 @@ public class ParserUtil {
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_NUMBER);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
@@ -54,14 +56,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code int} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code oneBasedIndex} into an {@code String} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer less than MAX_INT).
      */
-    public static String parseId(String oneBasedIndex) throws ParseException {
+    public static String parseNumber(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_NUMBER);
         }
         return trimmedIndex;
     }
