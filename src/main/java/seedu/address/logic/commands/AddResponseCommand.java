@@ -25,8 +25,8 @@ public class AddResponseCommand extends Command {
             + "in the last student listing.\n "
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MESSAGE_COUNT + "7 ";
     public static final String MESSAGE_ADDRESPONSE_SUCCESS = "Edited response count for Student ";
-    public static final String MESSAGE_MISSING_PREFIX = "Must include the prefix m/ and a number afterward" +
-        " for a valid addresponse command";
+    public static final String MESSAGE_MISSING_PREFIX = "Must include the prefix m/ and a number afterward"
+        + " for a valid addresponse command";
     public static final String MESSAGE_INVALID_INDEX = "Index for addresponse must be non-zero positive integer!";
 
     private final Index index;
