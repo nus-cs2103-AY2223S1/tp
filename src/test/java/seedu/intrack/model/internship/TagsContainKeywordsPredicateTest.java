@@ -55,10 +55,6 @@ public class TagsContainKeywordsPredicateTest {
         // Only one matching keyword
         predicate = new TagsContainKeywordsPredicate(Arrays.asList("Urgent", "Remote"));
         assertTrue(predicate.test(new InternshipBuilder().withTags("Urgent").build()));
-
-        // Mixed-case keywords
-        predicate = new TagsContainKeywordsPredicate(Arrays.asList("uRgEnT", "rEmOtE"));
-        assertTrue(predicate.test(new InternshipBuilder().withTags("Urgent", "Remote").build()));
     }
 
     @Test

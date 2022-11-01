@@ -33,7 +33,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     /**
      * Format to parse date time string, this ensures that the date parsed is not unnecessarily rounded
      */
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code AddTaskCommand}
