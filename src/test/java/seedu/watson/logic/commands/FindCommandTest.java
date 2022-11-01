@@ -5,9 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.watson.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.watson.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.watson.testutil.TypicalStudents.ALICE;
+import static seedu.watson.testutil.TypicalStudents.BENSON;
 import static seedu.watson.testutil.TypicalStudents.CARL;
+import static seedu.watson.testutil.TypicalStudents.DANIEL;
 import static seedu.watson.testutil.TypicalStudents.ELLE;
 import static seedu.watson.testutil.TypicalStudents.FIONA;
+import static seedu.watson.testutil.TypicalStudents.GEORGE;
 import static seedu.watson.testutil.TypicalStudents.getTypicalDatabase;
 
 import java.util.ArrayList;
@@ -55,7 +59,7 @@ public class FindCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
-    @Test
+    /*@Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         FindCommandPredicate predicate = preparePredicate(" ");
@@ -73,6 +77,136 @@ public class FindCommandTest {
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+    }*/
+
+    @Test
+    public void execute_nameKeywordNotInList_noPersonFound() {
+        ArrayList<String> keywords = new ArrayList<>();
+        String name = "Hoon";
+        keywords.add(0, name);
+        keywords.add(1, "");
+        keywords.add(2, "");
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        FindCommandPredicate predicate = preparePredicateUsingList(keywords);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_singleNameKeyword_onePersonFound() {
+        ArrayList<String> keywords = new ArrayList<>();
+        String name = "Fiona";
+        keywords.add(0, name);
+        keywords.add(1, "");
+        keywords.add(2, "");
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        FindCommandPredicate predicate = preparePredicateUsingList(keywords);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(FIONA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleNameKeywords_multiplePersonsFound() {
+        ArrayList<String> keywords = new ArrayList<>();
+        String name = "Fiona Daniel Kurz";
+        keywords.add(0, name);
+        keywords.add(1, "");
+        keywords.add(2, "");
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        FindCommandPredicate predicate = preparePredicateUsingList(keywords);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, DANIEL,FIONA), model.getFilteredPersonList());
+    }
+
+    // Show that arguments are case-insensitive
+    @Test
+    public void execute_multipleNameKeywordsDifferentCase_multiplePersonsFound() {
+        ArrayList<String> keywords = new ArrayList<>();
+        String name = "FiOna daniel kurZ";
+        keywords.add(0, name);
+        keywords.add(1, "");
+        keywords.add(2, "");
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        FindCommandPredicate predicate = preparePredicateUsingList(keywords);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, DANIEL,FIONA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_singleClassKeyword_personsFromSameClassFound() {
+        ArrayList<String> keywords = new ArrayList<>();
+        String studentClass = "1A";
+        keywords.add(0, "");
+        keywords.add(1, studentClass);
+        keywords.add(2, "");
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
+        FindCommandPredicate predicate = preparePredicateUsingList(keywords);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_singleSubjectKeyword_personsWithSameSubjectFound() {
+        ArrayList<String> keywords = new ArrayList<>();
+        String subjects = "MATH";
+        keywords.add(0, "");
+        keywords.add(1, "");
+        keywords.add(2, subjects);
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
+        FindCommandPredicate predicate = preparePredicateUsingList(keywords);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleSubjectKeywords_personsWithSameSubjectsFound() {
+        ArrayList<String> keywords = new ArrayList<>();
+        String subjects = "MATH ENGLISH";
+        keywords.add(0, "");
+        keywords.add(1, "");
+        keywords.add(2, subjects);
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
+        FindCommandPredicate predicate = preparePredicateUsingList(keywords);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredPersonList());
+    }
+
+    // Test to confirm that subject keywords are case-insensitive
+    @Test
+    public void execute_multipleSubjectKeywordsDifferentCase_personsWithSameSubjectsFound() {
+        ArrayList<String> keywords = new ArrayList<>();
+        String subjects = "mAtH eNgliSH";
+        keywords.add(0, "");
+        keywords.add(1, "");
+        keywords.add(2, subjects);
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
+        FindCommandPredicate predicate = preparePredicateUsingList(keywords);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredPersonList());
     }
 
     /**

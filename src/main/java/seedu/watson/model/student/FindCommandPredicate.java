@@ -33,7 +33,7 @@ public class FindCommandPredicate implements Predicate<Student> {
                 ? false
                 : Arrays.asList(keywords.get(2).split(" ")).stream()
                                        .anyMatch(keyword ->
-                student.getSubjectsTaken().toString().toLowerCase().contains(keyword));
+                student.getSubjectsTaken().toString().toLowerCase().contains(keyword.toLowerCase()));
         return checkName || checkClass || checkSubject;
     }
 
