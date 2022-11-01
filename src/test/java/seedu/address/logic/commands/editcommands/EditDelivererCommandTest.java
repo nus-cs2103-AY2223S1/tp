@@ -343,6 +343,11 @@ public class EditDelivererCommandTest {
         public List<Pet> getPetsFromSupplier(Supplier supplier) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void clearMasterList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

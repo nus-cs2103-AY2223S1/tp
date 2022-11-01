@@ -172,4 +172,8 @@ public interface Model {
      */
     List<Pet> getPetsFromSupplier(Supplier supplier);
 
+    /**
+     * Clears the main display list
+     */
+    void clearMasterList();
 }

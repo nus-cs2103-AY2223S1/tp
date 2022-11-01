@@ -25,25 +25,22 @@ public class FilterPetCommand extends FilterCommand {
             + "For Name, use the prefix " + FilterPetCommandParser.PET_NAME_PREFIX + "\n"
             + "For Price, use the prefix " + FilterPetCommandParser.PRICE_PREFIX + "\n"
             + "For Species, use the prefix " + FilterPetCommandParser.SPECIES_PREFIX + "\n"
-            + "For Vaccination Status, use the prefix " + FilterPetCommandParser.VACCINATION_PREFIX + "\n"
             + "Example: " + COMMAND_WORD + " p_n/Ashy p_s/Cat";
 
     private final Predicate<Pet> colorPredicate;
     private final Predicate<Pet> namePredicate;
     private final Predicate<Pet> pricePredicate;
     private final Predicate<Pet> speciesPredicate;
-    private final Predicate<Pet> vaxPredicate;
 
     /**
      * Creates a FilterLocCommand to filter the specified {@code Location}.
      */
     public FilterPetCommand(Predicate<Pet> cPredicate, Predicate<Pet> nPredicate, Predicate<Pet> pPredicate,
-                            Predicate<Pet> sPredicate, Predicate<Pet> vsPredicate) {
+                            Predicate<Pet> sPredicate) {
         this.colorPredicate = cPredicate;
         this.namePredicate = nPredicate;
         this.pricePredicate = pPredicate;
         this.speciesPredicate = sPredicate;
-        this.vaxPredicate = vsPredicate;
     }
 
     /**
@@ -54,8 +51,7 @@ public class FilterPetCommand extends FilterCommand {
             @Override
             public boolean test(Pet pet) {
                 return colorPredicate.test(pet) && namePredicate.test(pet) && pricePredicate.test(pet)
-                        && speciesPredicate.test(pet)
-                        && vaxPredicate.test(pet);
+                        && speciesPredicate.test(pet);
             }
         };
     }
@@ -77,7 +73,6 @@ public class FilterPetCommand extends FilterCommand {
                 && colorPredicate.equals(((FilterPetCommand) other).colorPredicate)
                 && namePredicate.equals(((FilterPetCommand) other).namePredicate)
                 && pricePredicate.equals(((FilterPetCommand) other).pricePredicate)
-                && speciesPredicate.equals(((FilterPetCommand) other).speciesPredicate)
-                && vaxPredicate.equals(((FilterPetCommand) other).vaxPredicate)); // state check
+                && speciesPredicate.equals(((FilterPetCommand) other).speciesPredicate)); // state check
     }
 }

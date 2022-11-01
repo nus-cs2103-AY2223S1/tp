@@ -18,7 +18,6 @@ public class FilterPetCommandParser implements Parser<FilterPetCommand> {
     public static final String PET_NAME_PREFIX = "p_n";
     public static final String PRICE_PREFIX = "p_p";
     public static final String SPECIES_PREFIX = "p_s";
-    public static final String VACCINATION_PREFIX = "p_v";
 
     private static Predicate<Pet> defaultPredicate = new Predicate<Pet>() {
         @Override
@@ -47,7 +46,6 @@ public class FilterPetCommandParser implements Parser<FilterPetCommand> {
         Predicate<Pet> namePredicate = defaultPredicate;
         Predicate<Pet> pricePredicate = defaultPredicate;
         Predicate<Pet> speciesPredicate = defaultPredicate;
-        Predicate<Pet> vaxPredicate = defaultPredicate;
 
         for (String arg: nameKeywords) {
             arg = arg.trim();
@@ -66,14 +64,11 @@ public class FilterPetCommandParser implements Parser<FilterPetCommand> {
             case SPECIES_PREFIX:
                 speciesPredicate = PredicateParser.parsePet(arg);
                 break;
-            case VACCINATION_PREFIX:
-                vaxPredicate = PredicateParser.parsePet(arg);
-                break;
             default:
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
             }
         }
-        return new FilterPetCommand(colorPredicate, namePredicate, pricePredicate, speciesPredicate, vaxPredicate);
+        return new FilterPetCommand(colorPredicate, namePredicate, pricePredicate, speciesPredicate);
     }
 }
