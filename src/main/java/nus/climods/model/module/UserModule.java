@@ -50,8 +50,10 @@ public class UserModule {
 
     private void updateLessonDataDisplay() {
         StringBuilder str = new StringBuilder();
+
         for (LessonTypeEnum k : lessons.keySet()) {
-            str.append(k.name()).append(" ").append(lessons.get(k));
+            str.append(k.name()).append(" ")
+                    .append(lessons.get(k));
         }
 
         lessonsDataDisplay.set(str.toString());

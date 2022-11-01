@@ -319,7 +319,8 @@ public class Module {
         String toDisplay = "";
 
         for (Lesson l : lessons) {
-            toDisplay += String.format("Timing: %s, %s-%s\n", l.getDay(), l.getStartTime(), l.getEndTime());
+            toDisplay += String.format("%s, %s-%s, %s\n",
+                    l.getDay(), l.getStartTime(), l.getEndTime(), l.getVenue());
         }
 
         return toDisplay;
