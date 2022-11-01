@@ -851,7 +851,7 @@ and only one patient.
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. It is recommended to follow the steps in order.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -864,33 +864,166 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample patient and appointment information. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a patient
 
-### Deleting a person
+1. Test case: `add n/John Doe p/12345678`
+   1. Expected results:
+      1. An acknowledgement message regarding the added patient appears.
+      2. A new entry appears in the patient list with the name `John Doe`, phone number `12345678` and 0 upcoming appointments.
+2. Test case: `add n/John`
+   1. Expected results:
+      1. An invalid command format error message appears.
+      2. No new entries are added.
+      
+### Deleting a patient
+Section Prerequisites: Completed all the steps in the previous section `Adding a patient`.
 
-1. Deleting a person while all persons are being shown
+1. Test case: `delete 6` It should be a patient without any upcoming appointments.
+   1. Expected results:
+      1. An acknowledgement message regarding the patient deleted appears.
+      2. The patient should no longer appear in the patient list.
+   
+2. Test case: `delete 6`. It should be a patient with at least 1 upcoming appointment.
+   1. Expected results:
+      1. Similar to previous
+      2. Additionally, there should be no more appointments belonging to the patient in the appointment list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+3. Test case: `delete 0`
+    1. Expected results:
+       1. An invalid command format error message appears.
+       2. No entries in the patient appointment lists were deleted.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+### Booking an appointment
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+Section Prerequisite: Completed all the steps in the previous section `Deleting a patient`.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+1. Test case: `book 1 r/Swimmer's Ear d/2022-12-30 10:00`
+   1. Expected results:
+      1. An acknowledgement message that an appointment was booked for the target patient appears.
+      2. A new entry with the reason `Swimmer's Ear`, date `Dec 30 2022 10:00` and state `Non-recurring` should appear in the appointment list.
 
-1. _{ more test cases …​ }_
+2. Test case: `book 2 r/Rhinitis d/2020-10-10 10:30 pe/1Y`
+   1. Expected results:
+      1. Similar to previous, but with a new appointment entry with reason `Rhinitis`, date `2020-10-10` and state `Recurring every 1 year` should appear instead.
+
+3. Test case `book`
+   1. Expected result: 
+      1. An invalid command format error message appears.
+      2. No new entries are added.
+
+### Cancelling an appointment
+Section Prerequisite: Completed all the steps in the previous section `Booking an appointment`.
+
+1. Test case: `cancel 1`.
+   1. Expected results:
+      1. An acknowledgement message that the target appointment was deleted appears.
+      2. The appointment should no longer appear on the appointment list.
+
+2. Test case: `cancel 9999`.
+   1. Expected results:
+      1. An invalid appointment index error message appears.
+      2. No entries in the patient or appointment lists were deleted.
+
+### Editing existing patients
+Section Prerequisite: At least 1 patient exists in the patient list.
+
+1. Test case: `edit patients 1 e/test@example.com a/Blk 10 Clementi Street #12-34`
+   1. Expected results:
+      1. An acknowledgement message that the patient's information was edited appears.
+      2. The patient entry contains the updated email and address information.
+
+2. Test case: `edit patients 1 n/Jane`
+   1. Expected result: Same as previous, but contains with only the name updated. You may need to scroll down to see the updated patient entry.
+
+3. Test case: `edit`
+   1. Expected results:
+      1. A command incomplete message appears.
+      2. No entries in the patient or appointment lists were modified.
+
+### Editing existing appointments
+Section Prerequisite: At least 1 appointment exists in the patient list.
+
+1. Test case: `edit appts 1 r/Sore Throat`
+   1. Expected results:
+       1. An acknowledgement message that the appointment's information was edited appears.
+       2. The appointment entry contains the updated reason.
+  
+2. Test case: `edit appts`
+   1. Expected results:
+       1. An invalid command format error message appears.
+       2. No entries in the patient or appointment lists were modified.
+      
+### Marking appointments as complete
+Section Prerequisite: The 2nd appointment in the appointment list should be unmarked. If the appointment is marked or missing, replace the `2` in the following commands with another appointment entry that is currently unmarked.
+
+1. Test case: `mark 2`
+   1. Expected results:
+      1. An acknowledgement message that the appointment was marked appears.
+      2. The appointment's mark status changes from `[]` to `[X]`.
+
+2. Test case: `mark 2`
+   1. Expected results:
+      1. An error message indicated that the appointment is already marked appears.
+      2. There is no change in the mark status of the appointment.
+
+### Marking appointments as incomplete
+Section Prerequisite: Completed all the steps in the previous section `Marking appointments as complete`.
+
+Repeat the same test cases in the previous section, but using `unmark 2` instead. 
+
+The expected results should be similar as those in the previous section, but with acknowledgment messages indicating 
+that the appointment was unmarked, and that the appointment's marked status changes from `[X]` to `[]`.
+
+### Listing results
+Section Prerequisites:
+- There is at least 1 entry in each of the patient and appointment lists.
+- Filter the list using a find command (E.g., `find n/test r/test`) before performing any test case in this section.
+  - Ensure that the resulting patient and appointment lists contains fewer patients and appointments prior to entering the command.
+  - It is fine if no results are displayed.
+
+1. Test case: `list patients`
+   1. Expected results:
+      1. An acknowledgement message that all patients are listed appears.
+      2. The patient list displays all patients.
+      3. The other list (appointment list in this case) should stay unchanged.
+
+2. Test case: `list appts`
+   1. Expected result: Same as previous, but with appointments instead.
+
+3. Test case: `list all`
+   1. Expected results:
+      1. An acknowledgement message that all patients and appointment are listed appears.
+      2. Both patient and appointment lists displays all results.
+
+4. Test case: `list`
+   1. Expected results:
+      1. A command incomplete message appears.
+      2. Both patient and appointment lists stay unchanged.
+
+### Grouping results
+Section Prerequisite: There are at least 2 entries in each of the patient and appointment lists with different tags
+attached to them.
+
+1. Test case: `group patients`
+   1. Expected results:
+      1. An acknowledgement message that all patients are grouped appears.
+      2. Entries in the patient list with similar tags should be grouped together.
+      
+2. Test case: `ungroup patients`
+   1. Expected results:
+       1. An acknowledgement message that all patients are ungrouped appears.
+       2. The changes to the patient list that occurred in the previous test case should be reverted.
+       
+
 
 ### Saving data
 
