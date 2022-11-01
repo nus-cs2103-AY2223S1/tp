@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
-import seedu.address.ui.Observer;
 
 /**
  * The API of the Model component.
@@ -88,15 +87,4 @@ public interface Model {
 
     /** Deletes meetings with times that are before the local time on machine. */
     void syncMeetingTimes();
-
-    /**
-     * Stores observers to be updated.
-     * @param observer object
-     */
-    void addUi(Observer observer);
-
-    /**
-     * Notifies observers about update.
-     */
-    void notifyUIs(Person updatedPerson);
 }

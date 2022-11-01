@@ -51,6 +51,11 @@ public class MeetingCard extends UiPart<Region> {
         mainDisplayListener = mainDisplay;
     }
 
+    /**
+     * Checks if a given local date time is within one week from now
+     * @param meetingTime
+     * @return Boolean. True if within one week
+     */
     private boolean isWithinOneWeek(LocalDateTime meetingTime) {
         LocalDateTime now = LocalDateTime.now();
         return meetingTime.isAfter(now) && meetingTime.isBefore(now.plusWeeks(1));

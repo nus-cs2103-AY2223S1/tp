@@ -360,7 +360,6 @@ Examples:
 
 Returns a list of clients who has a scheduled meeting in the next 7 days.
 
-
 You can use this command when:
 1. You need to check which upcoming client meetings you need to prepare for.
 <br>
@@ -368,6 +367,8 @@ You can use this command when:
 **Constraints**
 * This uses your device's present local time as reference.
 * As long as a client has a meeting in the next 7 days, it will be shown.
+* Upcoming Meetings does not auto refresh, so meetings that pass after you have opened 
+  `Upcoming Meetings` will only be refreshed when a new window is opened.
 
 Format: Menu bar on the top of the application or press `F2`.
 
@@ -401,6 +402,7 @@ You can use this command when:
 * You must update the meeting time of a client through the [`meeting` command](#add-meetings-meeting), [`deletemeeting` command](#delete-meetings-deletemeeting) and [`sync` commands](#remove-past-meetings-sync).
 * Does not allow you to update a person to have the same name and phone number as a current person in the FABook.
 * Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
+* Person profiles and do not refresh when person is updated, they are only updated when we re-click the person card
 
 Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
 
