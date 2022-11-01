@@ -17,6 +17,8 @@ title: FinBook User Guide
    &emsp; 4.1.1. [Adding a client: `add`](#411-adding-a-client-add)<br>
    &emsp; 4.1.2. [Editing a client: `edit`](#412-editing-a-client--edit)<br>
    &emsp; 4.1.3. [Deleting a client: `delete`](#413-deleting-a-client--delete)<br>
+   &emsp; &emsp; 4.1.3.1. [Deleting a single client](#4131-deleting-a-single-client)<br>
+   &emsp; &emsp; 4.1.3.2. [Deleting multiple clients](#4132-deleting-multiple-clients)<br>
    &emsp; 4.1.4. [Listing all clients: `list`](#414-listing-all-clients--list)<br>
    &emsp; 4.1.5. [Finding a client: `find`](#415-finding-a-client--find)<br>
    &emsp; 4.1.6. [Viewing Portfolio of a specific client: `view`](#416-viewing-portfolio-of-a-specific-client-view)<br>
@@ -166,11 +168,11 @@ For example,
 
 3. Copy the file to the folder you want to use as the home folder for your FinBook.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
+4. Double-click the file to start the app. The GUI similar to the image below should appear in a few seconds. Note how the app
    contains some sample data.<br>
    ![Ui](images/Ui_dark.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+5. Type the command in the command box and press **Enter** to execute it. e.g. typing **`help`** and pressing **Enter** will
    open the help window.<br>
    Some example commands you can try:
 
@@ -200,9 +202,9 @@ For example,
 
 ### 4.1.1. Adding a client: `add`
 
-Adds a client to the FinBook.
+Adds a client to the FinBook so that you will not forget your client's personal information.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME [m/UPCOMING_MEETING_DATES] [t/TAGS r/RISK_LEVEL]
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME [m/UPCOMING_MEETING_DATES] [t/TAGS] [r/RISK_LEVEL]
 [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
 * `add` command will refresh the portfolio panel to display "`no client selected for view yet!`".
 
@@ -211,20 +213,25 @@ Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12 Jan 2022 16:30 t/VIPClient
   r/high pl/Prudential Health note/Client is currently having COVID` adds a client named John Doe, with a mobile number 
-  of 98765432, email address of johnd@example.com etc. to the client list.
+  of 98765432, email address of johnd@example.com [etc.](#23-command-format) to the client list.
 * `add n/Betsy Crowe t/VIPPClient e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan` 
-  adds a client named Betsy Crowe, with a mobile number of 1234567, email address of betsycrowe@example.com etc. to the client list.
+  adds a client named Betsy Crowe, with a mobile number of 1234567, email address of betsycrowe@example.com [etc.](#23-command-format) to the client list.
+
+|                                                                                                                        ![UG_add](images/UG_add.png)                                                                                                                         |
+|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| <sub>*Used command:* `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/$1000 m/20 Nov 2022 16:30 ml/13 Computing Drive t/VIPClient r/High pl/Prudential Retirement Plan note/currently having COVID ` to add John Doe to the client list</sub> |
+
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source:**
+**:information_source: Notes:**
 * `add` command will refresh the portfolio panel to display "no client selected for view yet!".
 * `m/UPCOMING_MEETING_DATES` can be in the `dd Mmm yyyy` or `dd Mmm yyyy HH:mm` format.
 
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Only the latest parameter of each prefix is accepted. Eg. `add n/Johnny n/John p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000` will only add the name of client as John. 
+Only the latest parameter of each prefix is accepted. Eg. `add n/Johnny n/John p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000` will only add the client name as John. 
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -233,7 +240,7 @@ Only the latest parameter of each prefix is accepted. Eg. `add n/Johnny n/John p
 
 ### 4.1.2. Editing a client : `edit`
 
-Edits an existing client in the FinBook.
+Edits an existing client in the FinBook so that you can maintain an updated list of your clients’ personal information for better analysis.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] [m/UPCOMING_MEETING_DATES]
 [t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
@@ -253,7 +260,8 @@ Examples:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: `edit` command will automatically view the updated portfolio of the edited client.**
+**:information_source: Notes:** 
+* `edit` command will automatically view the updated portfolio of the edited client.
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -262,7 +270,7 @@ Examples:
 
 ### 4.1.3. Deleting a client : `delete`
 
-Four formats of deleting a client.
+Four formats of deleting a client so that you can easily so that maintain an updated list of your clients’ personal information.
 
 1. `delete INDEX`
 2. `delete INDEX1, INDEX2, …`
@@ -273,9 +281,11 @@ Four formats of deleting a client.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `delete` command will refresh the portfolio panel to display "no client selected for view yet!".
 
-#### Deleting a single client
+<br>
 
-Deletes the specified client from the FinBook.
+#### 4.1.3.1. Deleting a single client
+
+**Deletes the specified client from the FinBook.**
 
 Format: `delete INDEX`
 
@@ -286,7 +296,9 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the FinBook.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-#### Deleting multiple clients
+<br>
+
+#### 4.1.3.2. Deleting multiple clients
 
 **Deletes multiple specified clients from the FinBook.**
 
@@ -298,19 +310,21 @@ Format: `delete INDEX1, INDEX2, …`
 Examples:
 
 * `list` followed by `delete 1, 2, 5` deletes the 1st, 2nd and 5th client in the FinBook.
-  <br/><br/>
+
+<br>
 
 **Deletes a range of clients from the FinBook.**
 
 Format: `delete STARTINDEDX - ENDINDEX`
 
 * Deletes the client from `STARTINDEX` to `ENDINDEX` inclusive.
-* Value of`STARTINDEX` must be smaller than `ENDINDEX`.
+* Value of `STARTINDEX` must be smaller than `ENDINDEX`.
 
-Examples:
+Example:
 
 * `list` followed by `delete 1-3` deletes the 1st, 2nd and 3rd client in the FinBook.
-  <br/><br/>
+
+<br>
 
 **Deletes all clients from the FinBook.**
 
@@ -318,7 +332,7 @@ Format: `delete all`
 
 * Deletes all clients in FinBook.
 
-Examples:
+Example:
 
 * `list` followed by `delete all` deletes the all clients in the FinBook.
 
@@ -380,7 +394,7 @@ Views a specific's client portfolio so that you can analyse each client before t
 
 Format: `view INDEX`
 
-* Displays the portfolio of client at index `INDEX` on the Portfolio section
+* Displays the portfolio of client at index `INDEX` on the Portfolio section.
 * Portfolio includes risk level, current plans purchased by the client and additional remarks.
 
 Examples:
@@ -389,9 +403,14 @@ Examples:
 * `view 2` displays the risk level and current plans purchased by the 2nd client of the Financial book data.
 * `find n/Alex` then `view 1` will display the portfolio of Alex.
 
+|                     ![UG_add](images/UG_view.png)                     |
+|:---------------------------------------------------------------------:|
+| <sub>*Used command:* `view 1 ` *to view portfolio of Alex Yeoh*</sub> |
+
+
 <div markdown="block" class="alert alert-info">
 
-**:information_source:**
+**:information_source: Notes:**
 * `find` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the updated client list.
 * `sort` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the updated client list.
 </div>
@@ -410,7 +429,8 @@ Format: `lock`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: If a password has not been set, leave the password field empty to unlock the application**
+**:information_source: Notes:**
+* If a password has not been set, leave the password field empty to unlock the application.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -445,7 +465,8 @@ Examples:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: It is recommended to take note of the warnings and follow the suggestions, if there are any**
+**:information_source: Notes:**
+* It is recommended to take note of the warnings and follow the suggestions, if there are any.
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -477,7 +498,8 @@ Toggles the visibility of FinBook by clicking on the `open eye` or `closed eye` 
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Your mode preference will be automatically saved**
+**:information_source: Notes:**
+* Your mode preference will be automatically saved.
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -623,7 +645,8 @@ Toggles the theme of FinBook by clicking on the `sun` or `moon` icon on the top 
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Your mode preference will be automatically saved**
+**:information_source: Notes:**
+* Your mode preference will be automatically saved.
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -645,6 +668,15 @@ Format: `exit`
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous FinBook home folder. Alternatively, you may use the `export` and `import` commands.
+
+**Q**: If I do not have Java 11, how do I install it on my computer?<br>
+**A**: You can navigate to this site here and download Java 11 according to your system’s specifications.
+
+**Q**: Do I need an internet connection to run FinBook?<br>
+**A**: No, FinBook can boot up and run all functionalities without an internet connection.
+
+**Q**: Can I use FinBook on my mobile device?<br>
+**A**: No, FinBook is only designed to run on your desktop/laptop.
 
 [⬆ back to Table of Contents](#table-of-contents)
 
