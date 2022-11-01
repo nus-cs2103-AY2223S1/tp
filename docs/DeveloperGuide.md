@@ -258,7 +258,7 @@ decided to add this feature to allow users to quickly organize their students in
 
 The current implementation of the sort feature allows users to sort all students based on the given criteria, in ascending
 or descending order. The classes corresponding to the current list of criteria are: `Name`, `TelegramHandle`, `Consultation`,
-`MasteryCheck`, and `Grade`. 
+`MasteryCheck`, and `Grade`.
 
 In this section, we will use the following Activity Diagram to outline the process when the `sort` command is executed.
 
