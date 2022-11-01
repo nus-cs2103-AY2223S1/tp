@@ -5,14 +5,15 @@ title: Lim Jun Hong Don's Project Portfolio Page
 
 ## Project: TrackO
 
-TrackO is a desktop application that helps small home-based business owners manage their orders and inventory efficiently
+**TrackO** is a desktop application that helps small home-based business owners manage their orders and inventory efficiently
 in the form of an integrated solution built using Java with around 14 kLOC. The user interacts with the application via a 
 CLI, and the application responds with its GUI, created with JavaFX.
 
 Given below are my contributions to the project.
 
-* ## Summary of Contributions
-  * **Code contributed**: [Code contributed](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=donljh&breakdown=true)
+## Summary of Contributions
+
+  * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=donljh&breakdown=true)
 
   * **Major Enhancement**: Heavily refactored the code from AB3 during the initial stages of development.
     * What was done: Renamed packages and methods, adapted large chunks of code to new use cases and fixing test cases.
