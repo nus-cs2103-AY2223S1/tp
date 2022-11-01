@@ -210,7 +210,8 @@ Format: `client -a n/CLIENT_NAME p/PROJECT_ID [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]
 * Adds the client to the list of clients and to the project with the specified `PROJECT_ID`.
 * `CLIENT_NAME` must only contain alphanumeric characters (cannot be empty or start with a space).
 * `PROJECT_ID` must exist and be a positive integer (1, 2, 3 ...​).
-* `CLIENT_MOBILE` must only contain numbers and must be more than 3 digits long.
+* `CLIENT_MOBILE` must only contain numbers and must be more than 3 digits long such that any number with a country 
+  code can be added without any prefix or connecting symbol.
 * `CLIENT_EMAIL` must be in the format LOCAL_NAME@DOMAIN_NAME.com (local name must be longer than 3 characters).
 
 Examples:
