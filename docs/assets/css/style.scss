@@ -106,11 +106,6 @@ h5:before {
   counter-increment: h5;
 }
 
-h6:before {
-  content: counter(h2, decimal) "." counter(h3, decimal) "." counter(h4, decimal) "." counter(h5, decimal) "." counter(h6, decimal) ". ";
-  counter-increment: h6;
-}
-
 #markdown-toc, #markdown-toc ul {
   list-style-type: none;
   counter-reset: item;
