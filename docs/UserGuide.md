@@ -107,7 +107,7 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
 2. The GUI similar to the below should appear in a few seconds. FindMyIntern will load some sample data.<br>
 
    <p align="center">
-       <img src="images/AnnotatedUi.png" width="1200" />
+       <img src="images/AnnotatedUi.png" />
    </p>
 
 3. Let's add your first internship application with the [`add` command](#adding-an-internship-application-add)!
@@ -115,6 +115,7 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
 4. Type `add c/Shopee l/careers.shopee.sg d/My first internship application a/27 Oct` and press Enter to execute it.
 
 5. Congratulations! You have just added your first internship application to FindMyIntern! A message like the one below showing the result of your command should appear in the result box.
+   
    <p align="center">
       <img src="images/firstInternshipApplication.png" />
    </p>
@@ -131,7 +132,7 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
 <div class="me-3">
   <span class="badge text-bg-info">INFO</span>
 </div>
-<div markdown="span">
+<div markdown="1">
 **Command format**<br>
 This section contains **everything you need to know** about the commands used in FindMyIntern.
 
@@ -161,7 +162,6 @@ Below shows the command format used in FindMyIntern.
 
 To navigate to a specific command, you can just click on any of the commands to jump straight into it.
 
-- [Viewing help: `help`](#viewing-help-help)
 - [Adding an internship application: `add`](#adding-an-internship-application-add)
 - [Editing an internship application: `edit`](#editing-an-internship-application-edit)
 - [Marking an internship application status: `mark`](#marking-an-internship-application-status-mark)
@@ -171,26 +171,8 @@ To navigate to a specific command, you can just click on any of the commands to 
 - [Finding for an internship application: `find`](#finding-for-internship-applications-or-tags-find)
 - [Sorting the internship applications: `sort`](#sorting-the-list-of-internship-applications-sort)
 - [Clearing all internship applications: `clear`](#clearing-all-internship-applications-clear)
+- [Viewing help: `help`](#viewing-help-help)
 - [Exiting the program: `exit`](#exiting-the-program-exit)
-
-#### Viewing help: `help`
-
-Shows a message explaining how to access the user guide, and the data file location.
-
-<p align="center">
-    <img src="images/helpMessage.png" width="500"/>
-</p>
-
-<div class="d-flex alert alert-secondary">
-    <div class="me-3">
-        <span class="badge text-bg-dark">FORMAT</span>
-    </div>
-    <div markdown="span" class="w-100">
-        ```
-        help
-        ```
-    </div>
-</div>
 
 #### Adding an internship application: `add`
 
@@ -208,7 +190,7 @@ Adds an internship application to the tracker.
 </div>
 
 * Default [application status](#application-status) is "Applied".
-* `INTERVIEW_DATE_TIME` is optional, but if included, will automatically change [application status](#application-status) to "Shortlisted".
+* `INTERVIEW_DATE_TIME` is optional, but if included, will automatically change application status to "Shortlisted".
 * `TAG` is optional, but can be used multiple times.
 * `TAG` can be used to attach keywords to an internship application which may help in your internship application tracking.
   * Such keywords may include `backend` or `frontend` for the internship role, or `summer` or `off season` for the internship period.
@@ -292,7 +274,7 @@ Examples:
 * `edit 1 d/Data analyst intern` - Edits the description of the 1st internship application
   in the list to `Data analyst intern`.
 * `edit 2 i/23/11/2022 15:00` - Edits the interview date/time of the 2nd internship application
-  to `23 Nov 2022, 3:00 PM`, and changes the [application status](#application-status) to "Shortlisted".
+  to `23 Nov 2022, 3:00 PM`, and changes the application status to "Shortlisted".
 * `edit 3 t/frontend t/summer` - Edits the tags of the 3rd internship application, removing existing tags and
   adding `frontend` and `summer` tags
 
@@ -314,15 +296,15 @@ Marks an internship [application status](#application-status).
 * Updates the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed
   internship application list. The index **must be a positive integer** 1, 2, 3…
 
-* Updates the internship application to the specified [`APPLICATION_STATUS`](#application-status).
+* Updates the internship application to the specified `APPLICATION_STATUS`.
 
 * [`APPLICATION_STATUS`](#application-status) is case-insensitive.
 
 
 Examples:
-* `mark 3 s/interviewed` - Marks the 3rd internship [application status](#application-status) as `interviewed`
-* `mark 2 s/Accepted` - Marks the 2nd internship [application status](#application-status) as `accepted`
-* `mark 4 s/rejecteD` - Marks the 4th internship [application status](#application-status) as `rejected`
+* `mark 3 s/interviewed` - Marks the 3rd internship application status as `interviewed`
+* `mark 2 s/Accepted` - Marks the 2nd internship application status as `accepted`
+* `mark 4 s/rejecteD` - Marks the 4th internship application status as `rejected`
 
 #### Listing all internship applications: `list`
 
@@ -376,7 +358,7 @@ Examples:
 
 * Filters for internship applications of the specified [`APPLICATION_STATUS`](#application-status).
 
-* [`APPLICATION_STATUS`](#application-status) is case-insensitive.
+* `APPLICATION_STATUS` is case-insensitive.
 
 Examples:
 * `filter accepted` - Shows a list of internship applications marked as `accepted`
@@ -492,6 +474,25 @@ Clears all internship applications from the tracker.
 
 This command will clear the entire list of internships without warning. This command is **irreversible**!
 </div>
+</div>
+
+#### Viewing help: `help`
+
+Shows a message explaining how to access the user guide, and the data file location.
+
+<p align="center">
+    <img src="images/helpMessage.png" width="500"/>
+</p>
+
+<div class="d-flex alert alert-secondary">
+    <div class="me-3">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```
+        help
+        ```
+    </div>
 </div>
 
 #### Exiting the program: `exit`
