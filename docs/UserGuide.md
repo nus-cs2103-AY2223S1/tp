@@ -211,12 +211,12 @@ of pet he/she would like.
 
 Format: `add-b n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION`
 
+<div markdown="span" class="alert alert-primary">
+
 :information_source: What is the difference between address and location? Address is the specific street number and unit
 number of the place. Location is the country this person is based. Since we focus on international pet sale, it is good
 to have location as a separate attribute. Different countries have different regulations on pet sale, and you may need
 to filter persons by their locations for some reason.
-
-<div markdown="span" class="alert alert-primary">
 
 </div>
 
@@ -853,7 +853,9 @@ These prefixes are for you to indicate different fields when you add a new [buye
 | `p_v/`    | Pet             | Vaccination status                | `true` if the pet is vaccinated, otherwise `false`. Required.                                                                                                                                                                                                                                                                      | `p_v/false`                                     |
 | `p_cert/` | Pet             | Certificate                       | A string of any characters. Other certificates this pet holds. Optional. Can have multiple.                                                                                                                                                                                                                                        | `p_cert/US certified`, `p_cert/noble blood`     |
 
+<div markdown="span" class="alert alert-primary">
 :bulb: `-0` is also considered as non-negative.
+</div>
 
 ### Command Summary
 
