@@ -26,7 +26,7 @@ If you can type fast, OmniHealth can get your patient management tasks done fast
 
    * **`list`** : Lists all patients.
 
-   * **`add`**`n/John Doe b/14-11-2000 p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient named `John Doe` to OmniHealth.
+   * **`add`**`n/John Doe b/14-11-2000 p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient named `John Doe` with the specified information to OmniHealth.
 
    * **`delete`**`3` : Deletes the 3rd patient shown in the current list.
 
@@ -62,10 +62,6 @@ If you can type fast, OmniHealth can get your patient management tasks done fast
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* The dd field of any commands utilising dates in the command accepts dates in the range 1-31. If a date is input such as `31-11-2000`, i.e. 31st November which does not exist, the date will automatically
-be rounded down to become 30-11-2000. However, inputting a date greater than 31 will result in an error.
-
 </div>
 
 ## General Commands
