@@ -289,7 +289,6 @@ The following commands are only available in [**focus mode**](#modes).
 | `grade`   | `grade INDEX... s/SESSION_NAME g/GRADE_VALUE` |
 | `scores`  | `scores s/SESSION_NAME`                       |
 | `view`    | `view INDEX`                                  |
-| `lists`   | `lists`                                       |
 | `export`  | `export`                                      |
 | `unfocus` | `unfocus`                                     |
 
@@ -402,17 +401,6 @@ Format: `view INDEX`
 
 Example:
 * `grade 2 s/Lab 1 g/93` then `view 2` will return `1. Lab 1: 93`, which is the grade of the student at index 2 for the session **Lab 1**.
-
-### List all sessions: `lists`
-
-{% include note.html content="
-
-Lists the sessions that have been created for the focused class.
-
-" %}
-
-Format: `lists`
-* Lists the sessions that have been created for the focused class.
 
 ### Export class data: `export`
 
