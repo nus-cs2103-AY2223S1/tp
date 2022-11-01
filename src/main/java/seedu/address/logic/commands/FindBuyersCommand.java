@@ -10,9 +10,9 @@ import seedu.address.model.buyer.NameContainsKeywordsPredicate;
  * Finds and lists all buyers in buyer book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindBuyerCommand extends Command {
+public class FindBuyersCommand extends Command {
 
-    public static final String COMMAND_WORD = "findbuyer";
+    public static final String COMMAND_WORD = "findbuyers";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all buyers whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -21,7 +21,7 @@ public class FindBuyerCommand extends Command {
 
     private final NameContainsKeywordsPredicate predicate;
 
-    public FindBuyerCommand(NameContainsKeywordsPredicate predicate) {
+    public FindBuyersCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -36,7 +36,7 @@ public class FindBuyerCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindBuyerCommand // instanceof handles nulls
-                && predicate.equals(((FindBuyerCommand) other).predicate)); // state check
+                || (other instanceof FindBuyersCommand // instanceof handles nulls
+                && predicate.equals(((FindBuyersCommand) other).predicate)); // state check
     }
 }

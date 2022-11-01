@@ -19,7 +19,7 @@ import seedu.address.logic.commands.DeleteBuyerCommand;
 import seedu.address.logic.commands.DeletePropertyCommand;
 import seedu.address.logic.commands.EditBuyerCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindBuyerCommand;
+import seedu.address.logic.commands.FindBuyersCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListBuyersCommand;
 import seedu.address.logic.commands.ListPropertiesCommand;
@@ -79,9 +79,9 @@ public class BuyerBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindBuyerCommand command = (FindBuyerCommand) parser.parseCommand(
-                FindBuyerCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindBuyerCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindBuyersCommand command = (FindBuyersCommand) parser.parseCommand(
+                FindBuyersCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindBuyersCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

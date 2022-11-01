@@ -17,8 +17,8 @@ import seedu.address.logic.commands.EditPropertyCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterBuyersCommand;
 import seedu.address.logic.commands.FilterPropertiesCommand;
-import seedu.address.logic.commands.FindBuyerCommand;
-import seedu.address.logic.commands.FindPropertyCommand;
+import seedu.address.logic.commands.FindBuyersCommand;
+import seedu.address.logic.commands.FindPropertiesCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListBuyersCommand;
 import seedu.address.logic.commands.ListPropertiesCommand;
@@ -70,11 +70,11 @@ public class CobbParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindBuyerCommand.COMMAND_WORD:
-            return new FindBuyerCommandParser().parse(arguments);
+        case FindBuyersCommand.COMMAND_WORD:
+            return new FindBuyersCommandParser().parse(arguments);
 
-        case FindPropertyCommand.COMMAND_WORD:
-            return new FindPropertyCommandParser().parse(arguments);
+        case FindPropertiesCommand.COMMAND_WORD:
+            return new FindPropertiesCommandParser().parse(arguments);
 
         case ListBuyersCommand.COMMAND_WORD:
             return new ListBuyersCommand();

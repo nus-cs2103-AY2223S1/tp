@@ -10,9 +10,9 @@ import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
  * Finds and lists all properties in property book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindPropertyCommand extends Command {
+public class FindPropertiesCommand extends Command {
 
-    public static final String COMMAND_WORD = "findprop";
+    public static final String COMMAND_WORD = "findprops";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all properties whose property name contain any of "
@@ -22,7 +22,7 @@ public class FindPropertyCommand extends Command {
 
     private final PropertyNameContainsKeywordsPredicate predicate;
 
-    public FindPropertyCommand(PropertyNameContainsKeywordsPredicate predicate) {
+    public FindPropertiesCommand(PropertyNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -37,7 +37,7 @@ public class FindPropertyCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindPropertyCommand // instanceof handles nulls
-                && predicate.equals(((FindPropertyCommand) other).predicate)); // state check
+                || (other instanceof FindPropertiesCommand // instanceof handles nulls
+                && predicate.equals(((FindPropertiesCommand) other).predicate)); // state check
     }
 }

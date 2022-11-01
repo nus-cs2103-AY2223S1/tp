@@ -18,7 +18,7 @@ import seedu.address.model.buyer.NameContainsKeywordsPredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
-public class FindBuyerCommandTest {
+public class FindBuyersCommandTest {
     private Model model = new ModelManager(getTypicalBuyersBook(), getTypicalPropertyBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalBuyersBook(), getTypicalPropertyBook(), new UserPrefs());
 
@@ -29,14 +29,14 @@ public class FindBuyerCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindBuyerCommand findFirstCommand = new FindBuyerCommand(firstPredicate);
-        FindBuyerCommand findSecondCommand = new FindBuyerCommand(secondPredicate);
+        FindBuyersCommand findFirstCommand = new FindBuyersCommand(firstPredicate);
+        FindBuyersCommand findSecondCommand = new FindBuyersCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindBuyerCommand findFirstCommandCopy = new FindBuyerCommand(firstPredicate);
+        FindBuyersCommand findFirstCommandCopy = new FindBuyersCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -53,7 +53,7 @@ public class FindBuyerCommandTest {
     //    public void execute_zeroKeywords_noPersonFound() {
     //        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
     //        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-    //        FindBuyerCommand command = new FindBuyerCommand(predicate);
+    //        FindBuyersCommand command = new FindBuyersCommand(predicate);
     //        expectedModel.updateFilteredPersonList(predicate);
     //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     //        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -63,7 +63,7 @@ public class FindBuyerCommandTest {
     //    public void execute_multipleKeywords_multiplePersonsFound() {
     //        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
     //        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-    //        FindBuyerCommand command = new FindBuyerCommand(predicate);
+    //        FindBuyersCommand command = new FindBuyersCommand(predicate);
     //        expectedModel.updateFilteredPersonList(predicate);
     //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     //        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
