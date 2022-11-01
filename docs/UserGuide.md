@@ -103,23 +103,6 @@ This user guide will help you get started and understand how FABook can **seamle
 
 [Return to Table of Contents](#table-of-contents)
 
-## Glossary
-
-| Term                     | Definiion                                                                                                                                                                                                                                                                            |
-|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Alphanumeric             | Refers to characters that are the combined set of the 26 alphabetic characters, a to Z, both lowercase and uppercase, and the 10 Arabic numerals, 0 to 9.                                                                                                                            |
-| Client                   | Any person who may be seeking financial products.                                                                                                                                                                                                                                    |
-| Command Line Interface   | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                                                       |
-| dd-MM-yyyy-hh:mm         | Date format whereby `dd` refers to the 2 digit days, `MM` refers to the 2 digit months, `YYYY` refers to the 4 digits years, `hh` refers to the 2 digits hours, `mm` refers to the 2 digits minutes. They are each separated by a hyphen: `-` character.                             |
-| Financial adviser        | A financial adviser or financial advisor is a professional who provides financial services to clients based on their financial situation. In many countries, financial advisors must complete specific training and be registered with a regulatory body in order to provide advice. |
-| Graphical User Interface | A graphical user interface (GUI) is an interface through which a user interacts with electronic devices such as computers and smartphones through the use of icons, menus and other visual indicators or representations (graphics).                                                 |
-| Index                    | The number that corresponds to the position of the client in the list. The index must be a numeral above 0.                                                                                                                                                                          |
-| Java                     | The programming language used for this application. Java is a general-purpose computer programming language designed to produce programs that will run on any computer system.                                                                                                       |
-| JAR                      | JAR stands for Java ARchive. FABook uses JAR to deliver its distribution. JAR is a file format based on the popular ZIP file format and is used for aggregating many files into one.                                                                                                 |
-| JSON                     | JSON stands for JavaScript Object Notation. JSON is the format used to store your FABook's data. JSON is a lightweight format for storing and transporting data.                                                                                                                     |
-
-[Return to Table of Contents](#table-of-contents)
-
 ### General
 
 #### Viewing help : `help`
@@ -672,6 +655,24 @@ If your changes to the data file makes its format invalid, FABook will discard a
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+| Term                     | Definiion                                                                                                                                                                                                                                                                            |
+|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Alphanumeric             | Refers to characters that are the combined set of the 26 alphabetic characters, a to Z, both lowercase and uppercase, and the 10 Arabic numerals, 0 to 9.                                                                                                                            |
+| Client                   | Any person who may be seeking financial products.                                                                                                                                                                                                                                    |
+| Command Line Interface   | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                                                       |
+| dd-MM-yyyy-hh:mm         | Date format whereby `dd` refers to the 2 digit days, `MM` refers to the 2 digit months, `YYYY` refers to the 4 digits years, `hh` refers to the 2 digits hours, `mm` refers to the 2 digits minutes. They are each separated by a hyphen: `-` character.                             |
+| Financial adviser        | A financial adviser or financial advisor is a professional who provides financial services to clients based on their financial situation. In many countries, financial advisors must complete specific training and be registered with a regulatory body in order to provide advice. |
+| Graphical User Interface | A graphical user interface (GUI) is an interface through which a user interacts with electronic devices such as computers and smartphones through the use of icons, menus and other visual indicators or representations (graphics).                                                 |
+| Index                    | The number that corresponds to the position of the client in the list. The index must be a numeral above 0.                                                                                                                                                                          |
+| Java                     | The programming language used for this application. Java is a general-purpose computer programming language designed to produce programs that will run on any computer system.                                                                                                       |
+| JAR                      | JAR stands for Java ARchive. FABook uses JAR to deliver its distribution. JAR is a file format based on the popular ZIP file format and is used for aggregating many files into one.                                                                                                 |
+| JSON                     | JSON stands for JavaScript Object Notation. JSON is the format used to store your FABook's data. JSON is a lightweight format for storing and transporting data.                                                                                                                     |
+
+[Return to Table of Contents](#table-of-contents)
+
 
 ## Command summary
 
