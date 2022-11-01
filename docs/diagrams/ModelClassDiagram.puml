@@ -15,11 +15,18 @@ Class UserPrefs
 Class UniquePersonList
 Class Person
 Class Address
+Class Appointment
+Class Birthdate
 Class Email
 Class Name
 Class Phone
 Class Tag
 
+Class RecordList
+Class Record
+Class Medication
+Class RecordData
+Class RecordDate
 }
 
 Class HiddenOutside #FFFFFF
@@ -36,15 +43,25 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
+Person *--> Birthdate
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Appointment
+Person *--> RecordList
 Person *--> "*" Tag
 
-Name -[hidden]right-> Phone
+Name -[hidden]right-> Birthdate
 Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Address -[hidden]right-> RecordList
+RecordList -[hidden]right-> Email
+
+RecordList --> "~* all" Record
+Record *--> Medication
+Record *--> RecordDate
+Record *--> RecordData
 
 ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Record
 @enduml
