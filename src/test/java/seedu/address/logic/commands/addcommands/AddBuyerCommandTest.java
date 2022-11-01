@@ -43,8 +43,8 @@ public class AddBuyerCommandTest {
         Buyer validBuyer = new PersonBuilder().buildBuyer();
         CommandResult commandResult = new AddBuyerCommand(validBuyer, new ArrayList<>()).execute(modelStub);
 
-        String expectedResult = "\n" + "0 orders added\n"
-                + String.format(AddBuyerCommand.MESSAGE_SUCCESS, validBuyer);
+        String expectedResult = String.format(AddBuyerCommand.MESSAGE_SUCCESS, validBuyer)
+                + "\n" + "0 orders added.\n";
 
         assertEquals(expectedResult, commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validBuyer), modelStub.buyersAdded);

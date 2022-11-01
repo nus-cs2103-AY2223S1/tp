@@ -84,9 +84,9 @@ public class AddBuyerCommand extends AddPersonCommand {
         toAdd.addOrders(orders.stream().map(Order::getId).collect(Collectors.toList()));
         model.addBuyer(toAdd);
 
-        return new CommandResult("\n" //TODO To keep a single MESSAGE_SUCCESS
-                + numOrdersAdded + (numOrdersAdded == 1 ? " order" : " orders") + " added\n"
-                + String.format(MESSAGE_SUCCESS, toAdd));
+        //TODO To keep a single MESSAGE_SUCCESS
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)
+                + "\n" + numOrdersAdded + (numOrdersAdded == 1 ? " order" : " orders") + " added\n");
     }
 
     @Override
