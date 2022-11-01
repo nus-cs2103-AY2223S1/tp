@@ -42,7 +42,7 @@ public class StartTime implements Comparable<StartTime> {
             String [] parsedTime = test.split(":", 2);
             Integer formatCheck = Integer.parseInt(parsedTime[0]) + Integer.parseInt(parsedTime[1]);
             boolean lengthCheck = parsedTime[0].length() == 2 && parsedTime[1].length() == 2;
-            LocalTime.of(Integer.parseInt(parsedTime[0]), Integer.parseInt(parsedTime[1]), 0);
+            LocalTime.of(Integer.parseInt(parsedTime[0]), Integer.parseInt(parsedTime[1]));
             if (!lengthCheck) {
                 return 0;
             }
