@@ -101,6 +101,10 @@ public class EditCommand extends Command {
         Itinerary itineraryToEdit = lastShownList.get(index.getZeroBased());
         Itinerary editedItinerary = createEditedItinerary(itineraryToEdit, editItineraryDescriptor);
 
+        if (editedItinerary.calculateSpending() > editedItinerary.getBudget().getValue()) {
+            throw new CommandException(Messages.MESSAGE_ITINERARY_OVER_BUDGET);
+        }
+
         if (!itineraryToEdit.isSameItinerary(editedItinerary) && model.hasItinerary(editedItinerary)) {
             throw new CommandException(MESSAGE_DUPLICATE_ITINERARY);
         }

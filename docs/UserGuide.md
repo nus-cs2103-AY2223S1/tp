@@ -148,6 +148,11 @@ Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START DATE] [du/DURATION] [p
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** 
+* If you are editing the budget, please ensure that it is sufficient to cover the cost of all the planned items. An error would be shown otherwise.
+</div>
+
 Examples:
 * `edit 1 du/15 sd/2022-10-04` Edits the duration and start date of the first itinerary to be `15` and `2022-10-04` respectively.
 * `edit 2 c/India` Edits the country of the second itinerary to be `India`.
@@ -236,6 +241,11 @@ Format: `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** 
+* If you are editing the cost, please ensure that the new cost stays within the budget of the itinerary. An error would be shown otherwise.
+</div>
+
 Examples:
 * `edit 1 d/Go skiing` would edit the description of the 1st item in the unscheduled item list to be `Go skiing`.
 * `edit 2.2 p/3 c/100` would edit the priority and cost of the 2nd item in the Day 2 list to be `3` and `100` respectively.
@@ -264,6 +274,11 @@ Format: `plan INDEX d/DAY NUMBER st/START TIME`
 * `START TIME` should be given in the format `hh:mm`, or `hh:mm:ss` where `hh` is the hour in 24-hour format, `mm` is the minute, and `ss` is the seconds.
 * The end time of the item is calculated by adding the `DURATION` of the item to the `START TIME`.
 * You can only add an item if there is no clash in timing between the start and end time of the new item, and the start and end time of any existing scheduled item.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** 
+* When scheduling an item, please ensure that the item stays within the budget of the itinerary. An error would be shown otherwise.
+</div>
 
 Examples:
 * `plan 2 d/3 st/12:00` would schedule the 2nd item in the unscheduled item list on Day 3, starting at 12pm.
