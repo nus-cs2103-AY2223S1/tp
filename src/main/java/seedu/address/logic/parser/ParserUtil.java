@@ -14,10 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.question.Description;
-import seedu.address.model.student.Attendance;
-import seedu.address.model.student.StuEmail;
-import seedu.address.model.student.StuName;
-import seedu.address.model.student.Telegram;
+import seedu.address.model.student.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Content;
 import seedu.address.model.tutorial.Group;
@@ -232,6 +229,21 @@ public class ParserUtil {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
         return new Telegram(telegram);
+    }
+
+    /**
+     * Parses a {@code String response} into a {@code Response}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code response} is invalid
+     */
+    public static Response parseResponse(String response) throws ParseException {
+        requireNonNull(response);
+        String trimmedResponse = response.trim();
+        if (!Response.isValidResponse(trimmedResponse)) {
+            throw new ParseException(Response.MESSAGE_CONSTRAINTS);
+        }
+        return new Response(response);
     }
 
     /**

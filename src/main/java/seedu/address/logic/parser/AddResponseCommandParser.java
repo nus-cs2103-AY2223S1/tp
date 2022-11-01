@@ -33,8 +33,8 @@ public class AddResponseCommandParser implements Parser<AddResponseCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddResponseCommand.MESSAGE_USAGE));
         }
 
-        String messageCount = argMultimap.getValue(PREFIX_MESSAGE_COUNT).orElse("");
+        Response response = ParserUtil.parseResponse(argMultimap.getValue(PREFIX_MESSAGE_COUNT).orElse(""));
 
-        return new AddResponseCommand(index, new Response(messageCount));
+        return new AddResponseCommand(index, response);
     }
 }

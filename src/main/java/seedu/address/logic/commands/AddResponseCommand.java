@@ -24,7 +24,7 @@ public class AddResponseCommand extends Command {
             + "The student is identified by the index number used "
             + "in the last student listing.\n "
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MESSAGE_COUNT + "7 ";
-    public static final String MESSAGE_ADDRESPONSE_SUCCESS = "Added response count for Student ";
+    public static final String MESSAGE_ADDRESPONSE_SUCCESS = "Edited response count for Student ";
 
     private final Index index;
     private final Response response;
