@@ -348,6 +348,9 @@ Given below is an example usage scenario for the command.
 The add appointment feature allows Omnihealth to manage future appointments for patients. Each `Patient` holds an appointment
 reference for record keeping that the user is able to edit and clear.
 
+The feature currently does not support automatic removal of appointments which dates have passed, and require a new appointment
+to override the old appointment or for the existing appointment to be cleared with the `apptcl` command.
+
 #### Implementation:
 The add appointment command mechanism is facilitated by the `AddAppointmentCommandParser` class which extends the `AddressbookParser`.
 

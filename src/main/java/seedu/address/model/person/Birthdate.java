@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Person's birthdate in the address book.
@@ -14,9 +15,11 @@ import java.time.format.DateTimeParseException;
  */
 public class Birthdate {
 
-    public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+            .withResolverStyle(ResolverStyle.STRICT);
     public static final DateTimeFormatter DISPLAYED_DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
-    public static final String MESSAGE_INVALID_DATE_FORMAT = "Birthdates have to be of format dd-MM-yyyy!";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Birthdates have to be of format dd-MM-yyyy! "
+            + "Please also ensure this is a valid date!";
     public static final String MESSAGE_FUTURE_DATE = "Birthdates must not be later than the current date!";
     private final LocalDate birthdate;
 

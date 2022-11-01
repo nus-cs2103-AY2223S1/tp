@@ -8,6 +8,7 @@ import static seedu.address.model.record.Medication.MESSAGE_NO_MEDICATION_GIVEN;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,8 +17,10 @@ import java.util.Set;
  * Represents a single record in the record list of a Person object.
  */
 public class Record implements Comparable<Record> {
-    public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
-    public static final String MESSAGE_INVALID_DATE_FORMAT = "Record dates have to be of format dd-MM-yyyy HHmm!";
+    public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
+            .withResolverStyle(ResolverStyle.STRICT);
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Record dates have to be of format dd-MM-yyyy HHmm!"
+            + "Please also ensure this is a valid date!";
     public static final String MESSAGE_FUTURE_DATE = "Record dates must not be later than the current date!";
     /* Data Fields */
     public final String record;
