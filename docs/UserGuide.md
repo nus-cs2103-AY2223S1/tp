@@ -1,4 +1,4 @@
----
+ ---
 layout: page
 title: User Guide
 ---
@@ -27,7 +27,7 @@ If you can type fast, OmniHealth can get your patient management tasks done fast
 
    * **`list`** : Lists all patients.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient named `John Doe` to OmniHealth.
+   * **`add`**`n/John Doe b/14-11-2000 p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient named `John Doe` to OmniHealth.
 
    * **`delete`**`3` : Deletes the 3rd patient shown in the current list.
 
@@ -238,8 +238,8 @@ Dates must be given in DD-MM-YYYY HHmm format!
 </div>
 
 Examples:
-* `radd d/11-09-2001 1200 r/Patient tested negative for COVID-19 m/Paracetomol 500mg m/Dextromethorphan`
-* `radd d/28-02-2024 2030 r/Patient experienced vomitting`
+* `radd d/11-09-2001 1200 r/Patient tested negative for COVID-19 m/Paracetamol 500mg m/Dextromethorphan`
+* `radd d/28-02-2020 2030 r/Patient experienced vomitting`
 
 ### Deleting a record: `rdelete`
 
