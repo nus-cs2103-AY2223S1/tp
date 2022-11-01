@@ -121,4 +121,22 @@ public class DeleteTaskAllCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS + "\n" + updatedPersonsString));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DeleteTaskAllCommand)) {
+            return false;
+        }
+
+        // state check
+        DeleteTaskAllCommand e = (DeleteTaskAllCommand) other;
+        return group.equals(e.group)
+                && task.equals(e.task);
+    }
 }

@@ -1,0 +1,78 @@
+package seedu.address.logic.parser;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WORKLOAD;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.model.person.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.AssignTaskAllCommand;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Deadline;
+import seedu.address.model.assignment.Workload;
+
+public class AssignTaskAllCommandParserTest {
+
+    private AssignTaskAllCommandParser parser = new AssignTaskAllCommandParser();
+
+    @Test
+    public void parse_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> parser.parse(null));
+    }
+
+    @Test
+    public void parse_invalidInput_throwsParseException() {
+        // no group
+        assertParseFailure(parser, " " + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "low",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskAllCommand.MESSAGE_USAGE));
+
+        // invalid group
+//        assertParseFailure(parser, " " + PREFIX_GROUP + " " + " "
+//                        + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "low",
+//                String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupName.MESSAGE_CONSTRAINTS));
+
+        // no group prefix
+        assertParseFailure(parser, " " +  "Group" + " "
+                        + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "low",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskAllCommand.MESSAGE_USAGE));
+
+        // no task
+        assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " "
+                + PREFIX_WORKLOAD + "low",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskAllCommand.MESSAGE_USAGE));
+
+        // invalid task
+        assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " "
+                + PREFIX_TASK + " " + PREFIX_WORKLOAD + "low",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Assignment.MESSAGE_CONSTRAINTS));
+
+        // no workload
+//        assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " "
+//                + PREFIX_TASK + "Task",
+//                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskAllCommand.MESSAGE_USAGE));
+
+        // invalid workload
+        assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " "
+                + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "very high",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Workload.MESSAGE_CONSTRAINTS));
+
+        // invalid deadline
+        assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " "
+                        + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "low" + " "
+                        + PREFIX_DEADLINE + "2022-02-30",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Deadline.MESSAGE_CONSTRAINTS));
+    }
+
+    @Test
+    public void parse_validInput_commandParseSuccess() {
+        assertParseSuccess(parser, " " + PREFIX_GROUP + "Group" + " "
+                + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "low" + " "
+                + PREFIX_DEADLINE + "2022-02-28",
+                new AssignTaskAllCommand("Group", new Assignment("Task")));
+    }
+}
