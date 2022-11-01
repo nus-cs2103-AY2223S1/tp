@@ -23,6 +23,7 @@ import seedu.uninurse.model.ModelManager;
 import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.task.NonRecurringTask;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.testutil.PersonBuilder;
 
@@ -65,7 +66,7 @@ class EditTaskCommandTest {
         Patient secondPatient = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
 
         Task initialTask = secondPatient.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
-        Task editedTask = new Task(TASK_STUB);
+        Task editedTask = new NonRecurringTask(TASK_STUB);
 
         Patient editedPatient = new PersonBuilder(secondPatient)
                 .withTasks(secondPatient.getTasks().edit(INDEX_FIRST_ATTRIBUTE.getZeroBased(), editedTask)
@@ -90,7 +91,7 @@ class EditTaskCommandTest {
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, INDEX_FIRST_ATTRIBUTE,
-                new Task(TASK_STUB));
+                new NonRecurringTask(TASK_STUB));
 
         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -103,7 +104,7 @@ class EditTaskCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getUninurseBook().getPersonList().size());
 
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, INDEX_FIRST_ATTRIBUTE,
-                new Task(TASK_STUB));
+                new NonRecurringTask(TASK_STUB));
 
         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -113,7 +114,8 @@ class EditTaskCommandTest {
         Patient firstPatient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         Index outOfBoundIndex = Index.fromOneBased(firstPatient.getTasks().size() + 1);
-        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_PERSON, outOfBoundIndex, new Task(TASK_STUB));
+        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_PERSON, outOfBoundIndex,
+                new NonRecurringTask(TASK_STUB));
 
         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_TASK_INDEX);
     }
@@ -124,7 +126,7 @@ class EditTaskCommandTest {
 
         Task initialTask = secondPatient.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
-        Task duplicateTask = new Task(initialTask.getTaskDescription(), initialTask.getDateTime());
+        Task duplicateTask = new NonRecurringTask(initialTask.getTaskDescription(), initialTask.getDateTime());
 
         EditTaskCommand editTaskCommand =
                 new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, duplicateTask);
@@ -135,11 +137,11 @@ class EditTaskCommandTest {
     @Test
     public void equals() {
         final EditTaskCommand standardCommand = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
-                new Task(TASK_STUB, DATE_TIME_ONE));
+                new NonRecurringTask(TASK_STUB, DATE_TIME_ONE));
 
         // same values -> returns true
         EditTaskCommand commandWithSameValues = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
-                new Task(TASK_STUB, DATE_TIME_ONE));
+                new NonRecurringTask(TASK_STUB, DATE_TIME_ONE));
 
         assertEquals(standardCommand, commandWithSameValues);
 
@@ -151,10 +153,10 @@ class EditTaskCommandTest {
 
         // different index -> returns false
         assertNotEquals(standardCommand, new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE,
-                new Task(TASK_STUB)));
+                new NonRecurringTask(TASK_STUB)));
 
         // different task -> returns false
         assertNotEquals(standardCommand, new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
-                new Task("not task stub")));
+                new NonRecurringTask("not task stub")));
     }
 }

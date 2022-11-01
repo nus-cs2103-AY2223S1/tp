@@ -6,13 +6,11 @@ import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Task for a Patient.
- * Guarantees: immutable; is valid as declared in {@link #isValidTaskDescription(String)}
+ *  * Guarantees: immutable; is valid as declared in {@link #isValidTaskDescription(String)}
  */
-public class Task {
-    // consideration for v1.3: display status of task, which is to be
-    // set in constructor since task is immutable
+public abstract class Task {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tasks can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Task description can take any values, and it should not be blank";
 
     /*
      * The first character of the task must not be a whitespace,
@@ -27,7 +25,7 @@ public class Task {
     /**
      * Constructs a {@code Task} with the given {@code description}.
      */
-    public Task(String description) {
+    protected Task(String description) {
         requireNonNull(description);
         checkArgument(isValidTaskDescription(description), MESSAGE_CONSTRAINTS);
         taskDescription = description;
@@ -37,7 +35,7 @@ public class Task {
     /**
      * Constructs a {@code Task} with the given {@code description} and {@code dateAndTime}.
      */
-    public Task(String description, DateTime dateAndTime) {
+    protected Task(String description, DateTime dateAndTime) {
         requireAllNonNull(description, dateAndTime);
         checkArgument(isValidTaskDescription(description), MESSAGE_CONSTRAINTS);
         taskDescription = description;
@@ -45,16 +43,15 @@ public class Task {
     }
 
     /**
-     * Returns true if a given string is a valid task description.
+     * Returns if the Task is today.
      */
-    public static boolean isValidTaskDescription(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
     public boolean isTaskToday() {
         return dateTime.isToday();
     }
 
+    /**
+     * Returns if the Task is on the given {@code DateTime}.
+     */
     public boolean isTaskOnDay(DateTime test) {
         return dateTime.isDate(test);
     }
@@ -67,8 +64,16 @@ public class Task {
         return dateTime;
     }
 
-    public String getRecurrenceString() {
-        return "One-Time";
+    /**
+     * Returns the String representation of the recurrence.
+     */
+    public abstract String getRecurrenceString();
+
+    /**
+     * Returns true if a given string is a valid task description.
+     */
+    public static boolean isValidTaskDescription(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

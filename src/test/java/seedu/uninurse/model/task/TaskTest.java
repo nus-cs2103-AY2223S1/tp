@@ -16,13 +16,13 @@ public class TaskTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Task(null));
+        assertThrows(NullPointerException.class, () -> new NonRecurringTask(null));
     }
 
     @Test
     public void constructor_invalidTaskDescription_throwsIllegalArgumentException() {
         String invalidTaskDescription = "";
-        assertThrows(IllegalArgumentException.class, () -> new Task(invalidTaskDescription));
+        assertThrows(IllegalArgumentException.class, () -> new NonRecurringTask(invalidTaskDescription));
     }
 
     @Test
@@ -58,7 +58,7 @@ public class TaskTest {
 
         // same values -> returns true
         String taskInsulinDescription = "Administer 1 unit of insulin";
-        Task taskInsulinCopy = new Task(taskInsulinDescription, DATE_TIME_ONE);
+        Task taskInsulinCopy = new NonRecurringTask(taskInsulinDescription, DATE_TIME_ONE);
         assertEquals(TASK_INSULIN, taskInsulinCopy);
 
         // different types -> returns false

@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.uninurse.logic.commands.EditTaskCommand;
 import seedu.uninurse.model.task.DateTime;
-import seedu.uninurse.model.task.Task;
+import seedu.uninurse.model.task.NonRecurringTask;
 
 /**
  * Contains unit tests for {@code EditTaskCommandParser}.
@@ -34,7 +34,7 @@ class EditTaskCommandParserTest {
                 + PREFIX_TASK_DESCRIPTION + nonEmptyTask + " | " + DATE_TIME_STRING;
 
         EditTaskCommand expectedCommand = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
-                new Task(nonEmptyTask, new DateTime(DATE_TIME_STRING)));
+                new NonRecurringTask(nonEmptyTask, new DateTime(DATE_TIME_STRING)));
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

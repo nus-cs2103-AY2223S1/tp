@@ -34,7 +34,7 @@ class TaskListTest {
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(TASK_HEALTH_RECORDS);
         tasks.add(TASK_INSULIN);
-        tasks.add(new Task("test", new DateTime(getCurrentDate())));
+        tasks.add(new NonRecurringTask("test", new DateTime(getCurrentDate())));
 
         TaskList taskList = new TaskList(tasks);
 
