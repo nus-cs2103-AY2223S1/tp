@@ -7,8 +7,6 @@ show-toc: true
 
 {% include_relative _ug/About.md %}
 
-{% include page-break.html %} <!-- Force a page break -->
-
 {% include toc.md header=true show-in-toc=true ordered=true %}
 
 ## Features

@@ -15,9 +15,7 @@ Example of a [Tag](#tag):
 newtag n/Vegetables
 ```
 
-**Example Output:**
-
-Command Output Box:
+**Example Output:**<br>Command Output Box:
 
 ```text
 New tag added: Vegetables
@@ -37,9 +35,7 @@ New tag added: Vegetables
 listtag
 ```
 
-**Example Output:**
-
-Command Output Box:
+**Example Output:**<br>Command Output Box:
 
 ```text
 Listed all tags:
@@ -61,9 +57,7 @@ Carrots
 tag 1 n/Vegetables
 ```
 
-**Example Output:**
-
-Command Output Box:
+**Example Output:**<br>Command Output Box:
 
 ```text
 Item tagged successfully.
@@ -90,9 +84,7 @@ Tags: {Vegetables}
 untag 1 n/Vegetables
 ```
 
-**Example Output:**
-
-Command Output Box:
+**Example Output:**<br>Command Output Box:
 
 ```text
 Item untagged successfully
@@ -123,9 +115,7 @@ The first `TAG_NAME` in the command refers to the current tag you wish to rename
 renametag n/Vegetables n/Veggies
 ```
 
-**Example Output:**
-
-Command Output Box:
+**Example Output:**<br>Command Output Box:
 
 ```text
 Original tag: Vegetables
@@ -146,9 +136,7 @@ Renamed tag: Veggies
 deletetag n/Veggies
 ```
 
-**Example Output:**
-
-Command Output Box:
+**Example Output:**<br>Command Output Box:
 
 ```text
 Tag deleted: Veggies
@@ -168,9 +156,7 @@ Tag deleted: Veggies
 filtertag n/fruits
 ```
 
-**Example Output:**
-
-Command Output Box:
+**Example Output:**<br>Command Output Box:
 
 ```text
 Filtered by tag: fruits
