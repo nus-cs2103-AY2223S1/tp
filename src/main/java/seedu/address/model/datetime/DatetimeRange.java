@@ -96,7 +96,6 @@ public class DatetimeRange {
     @Override
     public String toString() {
         if (!startDatetime.toLocalDate().equals(endDatetime.toLocalDate())) {
-            System.out.println(startDatetime.toLocalDate().toString());
             return String.format("%s to %s", startDatetime, endDatetime);
         }
         // If start date and end date is same, no need to show it twice

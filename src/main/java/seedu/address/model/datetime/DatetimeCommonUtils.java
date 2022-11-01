@@ -26,7 +26,7 @@ public class DatetimeCommonUtils {
     public static final String DATE_MESSAGE_CONSTRAINTS_BASE = String.format(
             "Date should be in %s format", DATE_INPUT_FORMAT);
     public static final String DATE_MESSAGE_CONSTRAINTS =
-            DATE_MESSAGE_CONSTRAINTS_BASE + ", e.g. 2022-01-01";
+            DATE_MESSAGE_CONSTRAINTS_BASE + ", e.g. 2023-01-01";
     public static final String DATE_MESSAGE_CONSTRAINTS_UNPARSABLE =
             DATE_MESSAGE_CONSTRAINTS_BASE + ", and it must be valid!";
 
@@ -63,7 +63,7 @@ public class DatetimeCommonUtils {
     public static final String DATETIME_MESSAGE_CONSTRAINTS_BASE = String.format(
             "Datetime should be in %s %s format", DATE_INPUT_FORMAT, TIME_INPUT_FORMAT);
     public static final String DATETIME_MESSAGE_CONSTRAINTS =
-            DATETIME_MESSAGE_CONSTRAINTS_BASE + ", e.g. 2022-01-01 08:00";
+            DATETIME_MESSAGE_CONSTRAINTS_BASE + ", e.g. 2023-01-01 08:00";
     public static final String DATETIME_MESSAGE_CONSTRAINTS_UNPARSABLE =
             DATETIME_MESSAGE_CONSTRAINTS_BASE + ", and it must be valid!";
 
