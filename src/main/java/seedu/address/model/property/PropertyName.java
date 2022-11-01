@@ -51,6 +51,10 @@ public class PropertyName {
                 && fullName.equalsIgnoreCase(((PropertyName) other).fullName)); // state check
     }
 
+    public int compareTo(Object other) {
+        return fullName.compareToIgnoreCase(((PropertyName) other).fullName);
+    }
+
     @Override
     public int hashCode() {
         return fullName.hashCode();

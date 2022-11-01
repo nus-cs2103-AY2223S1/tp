@@ -26,12 +26,12 @@ public class PropertyNameComparator implements Comparator<PropertyName> {
 
     @Override
     public int compare(PropertyName firstName, PropertyName secondName) {
-        int comparisonValue = firstName.fullName.compareTo(secondName.fullName);
+        int comparisonValue = firstName.compareTo(secondName);
         return order.equals(new Order("ASC")) ? comparisonValue : -comparisonValue;
     }
 
     @Override
     public String toString() {
-        return "Sorted by name in " + order;
+        return "Sorted by property name in " + order;
     }
 }

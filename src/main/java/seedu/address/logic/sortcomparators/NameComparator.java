@@ -25,7 +25,7 @@ public class NameComparator implements Comparator<Name> {
 
     @Override
     public int compare(Name firstName, Name secondName) {
-        int comparisonValue = firstName.fullName.compareTo(secondName.fullName);
+        int comparisonValue = firstName.compareTo(secondName);
         return order.equals(new Order("ASC")) ? comparisonValue : -comparisonValue;
     }
 

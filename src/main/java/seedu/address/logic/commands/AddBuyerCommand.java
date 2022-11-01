@@ -20,7 +20,7 @@ public class AddBuyerCommand extends Command {
 
     public static final String COMMAND_WORD = "addbuyer";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a buyer to Cobb. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a buyer to Cobb."
             + "Parameters: "
             + PREFIX_NAME + " NAME "
             + PREFIX_PHONE + " PHONE "
@@ -28,7 +28,7 @@ public class AddBuyerCommand extends Command {
             + PREFIX_ADDRESS + " ADDRESS "
             + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE] "
             + "[" + PREFIX_CHARACTERISTICS + " DESIRED CHARACTERISTICS] "
-            + "[" + PREFIX_PRIORITY + " PRIORITY]"
+            + "[" + PREFIX_PRIORITY + " PRIORITY]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " John Doe "
             + PREFIX_PHONE + " 98765432 "
