@@ -34,6 +34,8 @@ If you want to find out more about GREWZ features and commands, jump over to [Fe
 
 If you want the quick overview of GREWZ commands, jump over to [Command Summary](#command-summary)
 
+If you want you have a question, jump over to [FAQs](#faq)
+
 Take note of the following symbols and formatting used in this document:
 
 
@@ -54,7 +56,7 @@ Take note of the following symbols and formatting used in this document:
 3. Copy the file to the folder you want to use as the [_home folder_](#glossary) for your GREWZ.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/Annotated_UI.png "GREWZ UI")
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
