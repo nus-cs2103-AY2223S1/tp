@@ -1,11 +1,11 @@
 package foodwhere.logic.commands;
 
+import static foodwhere.logic.commands.CommandTestUtil.assertCommandFailure;
 import static foodwhere.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static foodwhere.logic.commands.SEditCommand.MESSAGE_INVALID_INDEX_ERROR;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.index.Index;
@@ -63,18 +63,12 @@ public class SEditCommandTest {
         assertCommandSuccess(sEditCommand, model, expectedMessage, expectedModel);
     }
 
-    @Disabled("Moved checking of any editable fields into SEditCommand")
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
         SEditCommand sEditCommand =
                 new SEditCommand(TypicalIndexes.INDEX_FIRST_STALL, new SEditCommand.EditStallDescriptor());
-        Stall editedStall = model.getFilteredStallList().get(TypicalIndexes.INDEX_FIRST_STALL.getZeroBased());
 
-        String expectedMessage = String.format(SEditCommand.MESSAGE_EDIT_STALL_SUCCESS, editedStall);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        assertCommandSuccess(sEditCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(sEditCommand, model, SEditCommand.MESSAGE_NOT_EDITED);
     }
 
     @Test
@@ -101,7 +95,7 @@ public class SEditCommandTest {
         SEditCommand.EditStallDescriptor descriptor = new EditStallDescriptorBuilder(firstStall).build();
         SEditCommand sEditCommand = new SEditCommand(TypicalIndexes.INDEX_SECOND_STALL, descriptor);
 
-        CommandTestUtil.assertCommandFailure(sEditCommand, model, SEditCommand.MESSAGE_DUPLICATE_STALL);
+        assertCommandFailure(sEditCommand, model, SEditCommand.MESSAGE_DUPLICATE_STALL);
     }
 
     @Test
@@ -114,7 +108,7 @@ public class SEditCommandTest {
         SEditCommand sEditCommand = new SEditCommand(TypicalIndexes.INDEX_FIRST_STALL,
                 new EditStallDescriptorBuilder(stallInList).build());
 
-        CommandTestUtil.assertCommandFailure(sEditCommand, model, SEditCommand.MESSAGE_DUPLICATE_STALL);
+        assertCommandFailure(sEditCommand, model, SEditCommand.MESSAGE_DUPLICATE_STALL);
     }
 
     @Test
@@ -124,7 +118,7 @@ public class SEditCommandTest {
                 new EditStallDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build();
         SEditCommand sEditCommand = new SEditCommand(outOfBoundIndex, descriptor);
 
-        CommandTestUtil.assertCommandFailure(sEditCommand, model, MESSAGE_INVALID_INDEX_ERROR);
+        assertCommandFailure(sEditCommand, model, MESSAGE_INVALID_INDEX_ERROR);
     }
 
     /**
@@ -141,7 +135,7 @@ public class SEditCommandTest {
         SEditCommand sEditCommand = new SEditCommand(outOfBoundIndex,
                 new EditStallDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
 
-        CommandTestUtil.assertCommandFailure(sEditCommand, model, MESSAGE_INVALID_INDEX_ERROR);
+        assertCommandFailure(sEditCommand, model, MESSAGE_INVALID_INDEX_ERROR);
     }
 
     @Test
