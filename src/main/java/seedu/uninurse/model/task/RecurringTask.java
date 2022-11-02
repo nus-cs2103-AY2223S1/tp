@@ -29,7 +29,7 @@ public class RecurringTask extends Task {
     /**
      * Returns whether the task date is past the current date.
      */
-    public boolean pastTaskDate() {
+    public boolean passedTaskDate() {
         return super.getDateTime().isPastDate();
     }
 
@@ -48,11 +48,16 @@ public class RecurringTask extends Task {
     public static boolean isValidRecurAndFreq(String test) {
         String[] recurAndFreq = test.trim().split(" ");
 
-        if (recurAndFreq.length > 2) {
+        if (recurAndFreq.length != 2) {
             return false;
         }
 
-        int freq = parseInt(recurAndFreq[0].trim(), 10);
+        int freq;
+        try {
+            freq = parseInt(recurAndFreq[0].trim(), 10);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
 
         if (freq <= 0) {
             return false;
@@ -114,6 +119,7 @@ public class RecurringTask extends Task {
 
         return this.getTaskDescription().equals(o.getTaskDescription())
                 && this.getDateTime().equals(o.getDateTime())
-                && this.recurrence.equals(o.recurrence);
+                && this.recurrence.equals(o.recurrence)
+                && this.frequency == (o.frequency);
     }
 }

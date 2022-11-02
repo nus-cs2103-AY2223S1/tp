@@ -199,10 +199,10 @@ public class TaskList implements GenericList<Task> {
         ArrayList<Task> updatedTasks = new ArrayList<>(internalTaskList);
 
         for (Task task : internalTaskList) {
-            if (task instanceof RecurringTask && ((RecurringTask) task).pastTaskDate()) {
+            if (task instanceof RecurringTask && ((RecurringTask) task).passedTaskDate()) {
                 RecurringTask recurringTaskTracker = (RecurringTask) task;
                 // This is to populate all the tasks up till this point in case the user inputs a past date for the task
-                while (recurringTaskTracker.pastTaskDate()) {
+                while (recurringTaskTracker.passedTaskDate()) {
                     RecurringTask nextRecurringTask = recurringTaskTracker.getNextRecurringTask();
                     if (!updatedTasks.contains(nextRecurringTask)) {
                         updatedTasks.add(nextRecurringTask);
