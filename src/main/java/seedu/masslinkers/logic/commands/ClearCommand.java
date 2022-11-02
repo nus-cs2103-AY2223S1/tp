@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.masslinkers.model.MassLinkers;
 import seedu.masslinkers.model.Model;
-
+//@@author
 /**
  * Clears the mass linkers.
  */

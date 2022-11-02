@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.masslinkers.commons.core.GuiSettings;
 import seedu.masslinkers.model.student.DetailsContainsKeywordsPredicate;
 import seedu.masslinkers.testutil.MassLinkersBuilder;
-
+//@@author chm252
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();

@@ -10,6 +10,7 @@ import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.ModelManager;
 import seedu.masslinkers.model.UserPrefs;
 
+//@@author
 public class ClearCommandTest {
 
     @Test

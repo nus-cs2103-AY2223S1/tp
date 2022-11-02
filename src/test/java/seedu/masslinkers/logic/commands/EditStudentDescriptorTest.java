@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.masslinkers.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.masslinkers.testutil.EditStudentDescriptorBuilder;
 
+//@@author
 public class EditStudentDescriptorTest {
 
     @Test

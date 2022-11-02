@@ -9,7 +9,7 @@ import seedu.masslinkers.commons.core.index.Index;
 import seedu.masslinkers.logic.commands.exceptions.CommandException;
 import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.student.Student;
-
+//@@author
 /**
  * Deletes a student identified using it's displayed index from the mass linkers.
  */

@@ -2,26 +2,39 @@
 layout: page
 title: User Guide
 ---
-## **About Mass Linkers**
-Mass Linkers is a powerful Desktop application tool that helps **Computer Science (CS) students** find study support from batchmates, making it easier to form study groups and look for module-related guidance. 
+## **Using Mass Linkers: your quick start guide**
 
-It provides a **centralised** platform for CS students to 
-- save their batchmates’ contact and module details  
-- search for batchmates with common interests or who are taking similar modules **conveniently** 
+Welcome to Mass Linkers -- a powerful Desktop application tool that helps **Computer Science (CS) students** find study support from batchmates.
 
-It is optimised for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
+Mass Linkers helps you find batchmates to form study groups and seek study advice through the following way.
+
+It provides a **centralised** platform for you to 
+- save your batchmates’ contact and module details 
+- search for batchmates with common interests or who are taking similar modules as you **conveniently**.
+
+A fast typer? Mass Linkers is made just for you.
+It is optimised for use via a **Command Line Interface (CLI)** while still having the benefits of an aesthetic **Graphical User Interface (GUI)**.
 
 ## **Using the User Guide**
 In this *User Guide*, we will take you through the many useful features and functions of Mass Linkers, and provide you crucial information on how the different commands are used.
 
-We advise users to follow the User Guide sequentially as it provides a natural flow of how the sequence of commands should be executed.
+Feeling lost as a first-time user? We advise you to follow the User Guide sequentially, starting from [Getting started](#getting-started), as it provides a natural flow of how the commands should be executed.
 
+If you are more familiar with CLI or Mass Linkers, head over to the [Command summary](#command-summary) to start using the app.
+
+The following icons are used in the _User Guide_ to denote special information to look out for.
 #### Meaning of icons
+<div markdown="block" class="alert alert-info">
 **:information_source:**: __additional information__ such as specific requirements of parameters and the nature of command
+</div>
 
+<div markdown="span" class="alert alert-primary">
 **:bulb:**: __tip__ on how to carry out certain functionalities
+</div>
 
+<div markdown="span" class="alert alert-warning">
 **:warning:**: __warning__ as the command can create drastic changes to the existing App data
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -31,26 +44,35 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Quick start**
+## **Getting started**
 
 1. Ensure you have Java `11` or above installed in your computer.
+    * To check for the Java version in your computer, you can first open the command-line or terminal window. Then, run the command `java -version`. The output will display the version of the Java package installed on your system.
 
 2. Download the latest `MassLinkers.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Mass Linkers.
 
-4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. If done correctly, the GUI similar to the one below should appear in a few seconds. The image below is annotated with the various sections of the UI.
+   * Note for OS-X users: If you face difficulty running Mass Linkers, refer to the [FAQ](#faq) section.<br>
+![Ui](images/UiBreakDown.png)
 
-5. Type a command in the command box and press Enter to execute it. Refer to the section on [Features](#features) below for details and usage of each command. You can also use the [`help`](#view-help-help) command in Mass Linkers to view a summary of all available commands and their syntax.
+5. The app has been populated with some sample data. If you wish to start with an empty set of data, execute the [Clear](#2-clear-all-data-clear) command.
+6. Type a command in the command box and press Enter to execute it. Refer to the section on [Features](#features) below for details and usage of each command. 
+7. You can also use the [`help`](#view-help-help) command in Mass Linkers to view a summary of all available commands and their syntax.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Features**
+There are 4 main types of commands used in Mass Linkers - Batchmate commands, Interest commands, Module commands and General commands.
+
+By segregating the commands in this manner, this makes it easier to make modifications and conduct a search based on different fields (ie. seach by common interests, modules or personal information).
+
+The following notes outline several noteworthy format which the [Feature](#features) section uses in detailing the usage of different commands.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about command format:**<br>
+**:information_source: Take note of the Command Format:**<br>
 
 * Words in `UPPER_CASE` are parameters to be supplied by the user.<br>
   Example:
@@ -81,9 +103,10 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 
 </div>
 
-<div markdown="block" class="alert alert-info">
+Parameters are the input words that come after a command word to specify how the command should be executed. Click [here](#parameter-requirements) to view the list of parameter requirements.
 
-**:information_source: Notes about parameters:**<br>
+<div markdown="block" class="alert alert-info">
+**:information_source: Regarding parameters:**<br>
 
 * For all commands involving `INDEX`, `INDEX` refers to the index number shown in the currently displayed list.<br>
   * ___Beware!!!___ This may not be the full list of batchmates you have in Mass Linkers! For example, you may have entered the [find command](#find-a-batchmate-find), so the currently displayed list will be the result of `find` which is not the full list.
@@ -92,6 +115,9 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 </div>
 
 ### A. Batchmate commands
+
+Batchmate commands handle the management of a batchmate's personal information such as Name, Telegram, GitHub and Phone number.
+
 #### 1. Add a batchmate: `add`
 
 Adds a batchmate to the list of batchmates in the _Students panel_.
@@ -109,10 +135,6 @@ __Examples:__
 
 #### 2. Edit a batchmate: `edit`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-To edit a module, simply delete that module using [__mod delete__](#delete-module-from-a-batchmate-mod-delete) and add the new module using [__mod add__](#add-module-to-a-batchmate-mod-add).
-</div>
-
 Edits the information of a specified batchmate in the _Students panel_.
 
 __Format:__ `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]...`
@@ -121,10 +143,13 @@ __Format:__ `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing interests, the existing interests of the batchmate will be completely replaced by the new ones.
-* You can remove all the batchmate’s interests by typing `i/` without specifying any interests after it.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can remove all batchmates’ interests by typing `i/` without specifying any interests after it.
+</div>
 
 __Examples:__
-* `edit 1 g/johndoe p/91234567 e/johndoe@example.com` edits the github username, phone number and email address of the 1st batchmate in the currently displayed list to be `johndoe`, `91234567` and `johndoe@example.com` respectively.
+* `edit 1 g/johndoe p/91234567 e/johndoe@example.com` edits the GitHub username, phone number and email address of the 1st batchmate in the currently displayed list to be `johndoe`, `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Bob Tan i/` edits the name of the 2nd batchmate in the currently displayed list to be `Bob Tan` and clears all existing interests.
 
 #### 3. Delete a batchmate: `delete`
@@ -168,6 +193,13 @@ Shows a list of all batchmates in the _Students panel_.
 __Format:__ `list`
 
 ### B. Interest commands
+Interest commands handle the management of a batchmate's list of interests, such as addition of interests, deletion of interests and searching batchmates with specified interests.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: What are considered interests:**<br>
+Interests can include batchmates' hobbies such as games, CS specialisations, etc.
+</div>
 
 #### 1. Add interests: `addInt`
 
@@ -208,6 +240,8 @@ __Examples:__
 * `findInt swe security` returns all batchmates whose interests contain both `swe` and `security`.
 
 ### C. Module commands
+Module commands handle the management of a batchmate's list of modules, such as addition of modules, deletion of modules and searching batchmates with specified modules.
+
 <div markdown="block" class="alert alert-info">:information_source: **Note:**
 Commands used to manage a batchmate's personal information in [Batchmate commands](#batchmate-commands) and [Interest commands](#interest-commands) follow the 1 command word syntax. E.g., `add`, `addInt`.
 Whereas, commands that manage a module detail in [Module commands](#module-commands) can have multiple command words preceded by the `mod` keyword. E.g., `mod add`, `mod mark all`, `mod find taken`.
@@ -223,11 +257,8 @@ Left-click the row with the batchmate's name in the Students panel.
 
 - The selected row would turn blue and the Modules panel would display all the modules of the batchmate.
 
-This is the GUI when Mass Linkers is opened.
-![UgViewModBefore](images/UgViewModBefore.png)
-
 This is the GUI after you left-click the 1st batchmate in the Students panel. The 1st row turns blue and the Modules panel displays all the modules of the 1st batchmate.
-![UgViewModAfter](images/UgViewModAfter.png)
+![UgViewMod](images/UgViewMod.png)
 
 #### 2. Add module to a batchmate: `mod add`
 
@@ -236,17 +267,14 @@ Adds module(s) to a specified batchmate in the _Modules panel_.
 __Format:__ `mod add INDEX MODULE [MORE_MODULES]...`
 
 * Adds module(s) to the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
-* * Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Unrestricted Elective`. More information can be found under [Module Categorisation](#module-categorisation).
+* Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Unrestricted Elective`. More information can be found under [Module Categorisation](#module-categorisation).
 
 __Examples:__
 * `mod add 1 ma1521` adds the module `MA1521` to the 1st batchmate in the currently displayed list.
 * `mod add 3 cs2100 cs2103t cs2101 cs2105` adds the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` to the 3rd batchmate in the currently displayed list.
 
-This is the GUI before `mod add 1 ma1521` is executed.
-![UgModAddBefore](images/UgModAddBefore.png)
-
-This is the GUI after you press Enter to execute the command. The module `ma1521` is successfully added to the 1st batchmate and automatically categorised as `Mathematics`.
-![UgModAddAfter](images/UgModAddAfter.png)
+This is the GUI after executing `mod add 1 ma1521`. The module `MA1521` is successfully added to the 1st batchmate and automatically categorised as `Mathematics`. The expected changes is annotated with a purple rectangular box below.
+![UgModAdd](images/UgModAdd.png)
 
 #### 3. Delete module from a batchmate: `mod delete`
 
@@ -260,6 +288,10 @@ __Examples:__
 * `mod delete 1 cs2103t` deletes the module `CS2103T` from the 1st batchmate in the currently displayed list.
 * `mod delete 3 cs2100 cs2103t cs2101 cs2105` deletes the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` from the 3rd batchmate in the currently displayed list.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To edit a module, simply delete that module using [__mod delete__](#delete-module-from-a-batchmate-mod-delete) and add the new module using [__mod add__](#add-module-to-a-batchmate-mod-add).
+</div>
+
 #### 4. Mark module as taken: `mod mark`
 
 Marks module(s) of a specified batchmate as `taken` in the _Modules panel_, which means the batchmate has taken the module(s) before.
@@ -272,11 +304,9 @@ __Examples:__
 * `mod mark 1 cs2103t` marks the module `CS2103T` of the 1st batchmate in the currently displayed list as `taken`.
 * `mod mark 3 cs2100 cs2103t cs2101 cs2105` marks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `taken`.
 
-This is the GUI before `mod mark 3 cs2100 cs2103t cs2101 cs2105` is executed. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` current have `taking` as their status.
-![UgModMarkBefore](images/UgModMarkBefore.png)
+This is the GUI after executing `mod mark 3 cs2100 cs2103t cs2101 cs2105`. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` are successfully marked as `taken`. The expected changes is annotated with purple rectangular boxes below.
+![UgModMark](images/UgModMark.png)
 
-This is the GUI after you press Enter to execute the command. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` are successfully marked as `taken`.
-![UgModMarkAfter](images/UgModMarkAfter.png)
 
 #### 5. Unmark module as not taken: `mod unmark`
 
@@ -328,6 +358,7 @@ __Examples:__
 
 
 ### D. General commands
+General commands are commands which do not fall under any of the above categories.  
 
 #### 1. View help: `help`
 
@@ -350,27 +381,27 @@ __Format:__ `exit`
 
 #### 4. Save the data
 
-Data in Mass Linkers is saved in the hard disk automatically after executing any command that changes the data. There is no need to save manually.
+Mass Linkers ensures your data is saved automatically each time after you execute a command which changes the data. Hence, you do not need to conduct a save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### **Parameter Requirements**
 
-Below is the summary of requirements of each parameter for the various commands. 
+Below is the summary of requirements to take note of for each parameter for the different commands. 
 
-| Parameter       | Requirements                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name            | Only alphabetical with spaces allowed. <br/> Examples: `Joe`, `John Doe`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| Telegram handle | May only contain alphanumeric characters or underscores and have a minimum length of 5 characters.<br> Consecutive and/or starting/ending with underscores are not allowed as per Telegram requirements. <br/> Examples: `johndoe`, `john_doe123`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| Phone number    | Should contain only numerical values (i.e. `0-9`), and at most one "`+`" at the beginning for country code (optional). <br> Should have a length of 7-16 characters (inclusive of country code). <br> Incorrect phone numbers are still accepted, though they are discouraged and a warning will be shown.  <br/> Examples: `98383913`, `+12064512559`, `(+65) 98383913` (Warning will be shown)                                                                                                                                                                                                                                                                                                                                               |
-| GitHub username | Follows the requirements as stated [here](https://github.com/shinnn/github-username-regex). <br/> Examples: `john1`, `john-doe`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Interest        | Only alphanumerical characters allowed. <br/> Examples: `SWE`, `ai`, `algo`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Email           | Emails should be of the format local-part@domain and adhere to the following constraints: <br> 1. The local-part should only contain alphanumeric characters and these special characters within the quotation marks: "`+_.-`". The local-part may not start or end with any special characters.<br> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br>The domain name must:<br>- end with a domain label at least 2 characters long<br>- have each domain label start and end with alphanumeric characters<br>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. <br/> Examples: `john12@gmail.com`, `joe-lim@u.nus.edu` |
-| Modules         | Module names should be numbers prefixed with alphabet(s) and be less than 10 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Parameter       | Requirements                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name            | Only alphabetical with spaces allowed. <br/> Examples: `Joe`, `John Doe`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Telegram handle | May only contain alphanumeric characters or underscores and have a minimum length of 5 characters.<br> Consecutive and/or starting/ending with underscores are not allowed as per Telegram requirements. <br/> Examples: `johndoe`, `john_doe123`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Phone number    | Should contain only numerical values (i.e. `0-9`), and at most one "`+`" at the beginning for country code (optional). <br> Should have a length of 7-16 characters (inclusive of country code). <br> Incorrect phone numbers are still accepted, though they are discouraged and a warning will be shown.  <br/> Examples: `98383913`, `+12064512559`, `(+65) 98383913` (Warning will be shown)                                                                                                                                                                                                                                                                                                                                                           |
+| GitHub username | May only contain alphanumeric characters or hyphens and have a length between 1 - 39 characters.<br> Consecutive and/or starting with hyphens are not allowed as per GitHub requirements. <br/> Examples: `john1`, `john-doe`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Interest        | Only alphanumerical characters allowed. <br/> Examples: `swe`, `ai`, `algo`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Email           | Emails should be of the format local-part@domain and adhere to the following constraints: <br> 1. The local-part should only contain alphanumeric characters and these special characters within the quotation marks: "`+_.-`". The local-part may not start or end with any special characters.<br> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br>The domain name must:<br>- end with a domain label at least 2 characters long<br>- have each domain label start and end with alphanumeric characters<br>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. <br/> Examples: `john12@gmail.com`, `joe-lim@u.nus.edu`, `joe@mail` |
+| Modules         | Module names should be numbers prefixed with alphabet(s) and be less than 10 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 ### **Module Categorisation**
 
-Modules are automatically categorised upon creation.
+Modules are automatically categorised when you create them. The categorisation is modelled after the prefixes which [NUS modules](https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4) use.
 
 Below is the categorisation:
 
@@ -387,6 +418,8 @@ _Module prefix refers to the first two characters of every module name._
 --------------------------------------------------------------------------------------------------------------------
 
 ## **FAQ**
+Facing an issue? Below are several commonly asked questions, which address technical and privacy concerns.
+
 #### Technical Support
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install Mass Linkers in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Mass Linkers home folder.

@@ -18,6 +18,7 @@ import seedu.masslinkers.model.ModelManager;
 import seedu.masslinkers.model.UserPrefs;
 import seedu.masslinkers.model.student.Student;
 
+//@@author
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.

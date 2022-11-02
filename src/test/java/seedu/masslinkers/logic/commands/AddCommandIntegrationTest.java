@@ -13,6 +13,7 @@ import seedu.masslinkers.model.UserPrefs;
 import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.testutil.StudentBuilder;
 
+//@@author
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */

@@ -12,6 +12,7 @@ import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.model.student.Telegram;
 import seedu.masslinkers.model.student.UniqueStudentList;
 
+//@@author
 /**
  * Wraps all data at the mass linkers level
  * Duplicates are not allowed (by .isSameStudent comparison)

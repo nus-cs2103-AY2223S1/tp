@@ -8,6 +8,7 @@ import java.util.Objects;
 
 import seedu.masslinkers.commons.core.GuiSettings;
 
+//@@author
 /**
  * Represents User's preferences.
  */

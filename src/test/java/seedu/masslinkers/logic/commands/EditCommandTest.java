@@ -32,6 +32,7 @@ import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.testutil.EditStudentDescriptorBuilder;
 import seedu.masslinkers.testutil.StudentBuilder;
 
+//@@author
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.masslinkers.commons.exceptions.IllegalValueException;
 import seedu.masslinkers.model.student.Mod;
 
+//@@author jonasgwt
 /**
  * Jackson-friendly version of {@link Mod}.
  */

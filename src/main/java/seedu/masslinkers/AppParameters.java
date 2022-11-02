@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 import javafx.application.Application;
 import seedu.masslinkers.commons.core.LogsCenter;
 import seedu.masslinkers.commons.util.FileUtil;
-
+//@@author
 /**
  * Represents the parsed command-line parameters given to the application.
  */

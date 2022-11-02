@@ -23,6 +23,7 @@ import seedu.masslinkers.model.interest.Interest;
 import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.testutil.StudentBuilder;
 
+//@@author ElijahS67
 public class DeleteInterestCommandTest {
     private static final Interest INTEREST_AI = new Interest("AI");
     private static final Interest INTEREST_SWE = new Interest("SWE");
