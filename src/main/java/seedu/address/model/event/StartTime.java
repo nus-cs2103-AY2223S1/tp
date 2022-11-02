@@ -10,7 +10,8 @@ import java.time.LocalTime;
 
 /**
  * Represents an Event's starting time in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidStartTime(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidStartTimeFormat(String)} and
+ * {@link #isValidStartTimeValue(String)}
  */
 public class StartTime implements Comparable<StartTime> {
 
@@ -18,6 +19,7 @@ public class StartTime implements Comparable<StartTime> {
             + " hh and mm must be a zero padded number of length 2, e.g. 02:30";
     public static final String MESSAGE_VALUE_CONSTRAINTS = "%s exceeds the range of valid time value.";
     private static final DecimalFormat TIME_FORMATTER = new DecimalFormat("00");
+    private static final String TIME_DELIMITER = ":";
     private static final String VALIDATION_REGEX = "\\d{2}:\\d{2}";
     public final LocalTime time;
 
@@ -28,9 +30,9 @@ public class StartTime implements Comparable<StartTime> {
     public StartTime(String startTime) {
         requireNonNull(startTime);
         assert !startTime.isBlank();
-        checkArgument(isValidStartTime(startTime), MESSAGE_FORMAT_CONSTRAINTS);
+        checkArgument(isValidStartTimeFormat(startTime), MESSAGE_FORMAT_CONSTRAINTS);
         checkArgument(isValidStartTimeValue(startTime), String.format(MESSAGE_VALUE_CONSTRAINTS, startTime));
-        String [] parsedTime = startTime.split(":", 2);
+        String [] parsedTime = startTime.split(TIME_DELIMITER, 2);
         this.time = LocalTime.of(Integer.parseInt(parsedTime[0]), Integer.parseInt(parsedTime[1]));
     }
 
@@ -38,7 +40,7 @@ public class StartTime implements Comparable<StartTime> {
      * Checks if a given string follows the valid StartTime input format.
      * @return boolean value.
      */
-    public static boolean isValidStartTime(String test) {
+    public static boolean isValidStartTimeFormat(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -49,7 +51,7 @@ public class StartTime implements Comparable<StartTime> {
      */
     public static boolean isValidStartTimeValue(String test) {
         try {
-            String [] parsedTime = test.split(":", 2);
+            String [] parsedTime = test.split(TIME_DELIMITER, 2);
             LocalTime.of(Integer.parseInt(parsedTime[0]), Integer.parseInt(parsedTime[1]));
         } catch (DateTimeException e) {
             return false;
