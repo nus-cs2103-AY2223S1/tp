@@ -20,11 +20,13 @@ public class AddResponseCommand extends Command {
 
     public static final String COMMAND_WORD = "addresponse";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": adds the number of messages a student sends. "
+            + ": edits response count of a student. "
             + "The student is identified by the index number used "
             + "in the last student listing.\n "
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MESSAGE_COUNT + "7 ";
-    public static final String MESSAGE_ADDRESPONSE_SUCCESS = "Added response count for Student ";
+    public static final String MESSAGE_ADDRESPONSE_SUCCESS = "Edited response count for Student ";
+    public static final String MESSAGE_MISSING_PREFIX = "Must include the prefix m/ and a number afterward"
+        + " for a valid addresponse command";
 
     private final Index index;
     private final Response response;
