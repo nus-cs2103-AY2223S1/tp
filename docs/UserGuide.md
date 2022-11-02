@@ -4,7 +4,7 @@ title: User Guide
 ---
 # uNivUSal
 
-uNivUSal is a **desktop app for managing contacts catered to CS2103T students, TAs, and professors**, optimized for use 
+uNivUSal is a **desktop app for managing contacts catered to CS2103T students, TAs, and professors**, optimized for use
 via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 
@@ -13,10 +13,11 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
   * [Person Fields](#person-fields):
     1. [occupation](#a-occupation--o) : `o/`
     2. [name](#b-name--n) : `n/`
-    3. [phone](#c-phone--pphone) : `p/`
-    4. [tutorial](#d-tutorial--tuttutorial) : `tut/`
-    5. [social medias](#e-social-medias--ssocial-medias) : `s/`
-    6. [tags](#f-tags--ttags) : `t/`
+    3. [phone](#c-phone--p) : `p/`
+    4. [email](#d-email--e) : `e/`
+    5. [tutorial](#e-tutorial--tut) : `tut/`
+    6. [address](#f-address--a) : `a/`
+    7. [tags](#g-tags--t) : `t/`
   * [Basic Features](#basic-features):
     1. [Adding a person](#a-adding-a-person-add) : `add`
     2. [Editing a person](#b-editing-a-person--edit) : `edit`
@@ -24,7 +25,7 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
     4. [Listing all persons](#d-listing-all-persons--list) : `list`
     5. [Clearing all entries](#e-clearing-all-entries--clear) : `clear`
     6. [Find a person](#f-find-entries-by-keywords-of-fields--find-keyword-eg-find-john) : `find`
-    7. [Sorting entries by field](#g-sort-entries-by-field--sort-prefix-eg-sort-n) : `sort`
+    7. [Sorting entries by field](#g-sort-entries-by-field--sort-field_prefix-eg-sort-n) : `sort`
   * [Enhanced Features](#enhanced-features):
     1. [Quickly edit a person](#a-quickly-edit-a-persons-features)
     2. [Add a person to favorite](#b-add-a-person-to-favorite--fav) : `fav`
@@ -32,12 +33,16 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
     4. [Remove a person from a group](#d-removing-a-person-from-a-group--ungroup) : `ungroup`
     5. [Open a group window](#e-opening-a-group-window--group) : `group`
     6. [Email all persons in a group](#f-email-all-persons-in-a-group--emailall) : `emailall`
-    7. [Find persons with a preferred social media](#g-find-persons-with-a-preferred-social-media--social) : `social`
+    7. [Add a person's social](#g-add-a-persons-socials--include) : `include`
+    8. [Delete a person's social](#h-delete-a-persons-socials--exclude) : `exclude`
+    9. [Set a person's preferred social media](#i-set-a-persons-preferred-social-media--prefer)
+    10. [Open a person's social media](#j-open-a-persons-social-media--open) : `open`
+    11. [Find persons with a preferred social media](#k-find-persons-with-a-preferred-social-media--social) : `social`
   * [General App Features](#general-app-features):
     1. [Viewing help](#a-viewing-help--help) : `help`
-    2. [Viewing history](#a-viewing-history--history) : `history`
-    3. [Undoing last command](#b-undo-last-modification--undo) : `undo`
-    4. [Exiting the app](#c-exiting-the-program--exit) : `exit`
+    2. [Viewing history](#b-viewing-history--history) : `history`
+    3. [Undoing last command](#c-undo-last-modification--undo) : `undo`
+    4. [Exiting the app](#d-exiting-the-program--exit) : `exit`
 * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -51,11 +56,11 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
 
 3. Copy the file to the folder you want to use as the _home folder_ for your uNivUSal.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
 Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
 open the help window.
 
 6. Refer to the [Features](#features) below for details of each command.
@@ -104,7 +109,7 @@ Sets the name of a person in uNivUSal.
 Format: `n/NAME`
 * `NAME` can be more than one word long but cannot be empty.
 
-### c. phone : `p/PHONE`
+### c. phone : `p/`
 
 Sets the phone number of a person in uNivUSal.
 
@@ -113,7 +118,24 @@ Format : `p/PHONE`
 
 Example : `p/97865486`
 
-### d. tutorial : `tut/TUTORIAL`
+### d. email : `e/`
+
+Sets the email of a person in uNivUSal.
+
+Format : `e/EMAIL`
+
+Emails should be of the format local-part@domain and adhere to the following constraints:
+* The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, 
+(+_.-). The local-part may not start or end with any special characters. 
+* This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+ The domain name must:
+  * end with a domain label at least 2 characters long 
+  * have each domain label start and end with alphanumeric characters 
+  * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
+Example : `e/betty@u.nus.edu`
+
+### e. tutorial : `tut/`
 
 Sets the tutorial group of a person in uNivUSal.
 
@@ -122,21 +144,21 @@ Format : `tut/TUTORIAL`
 
 Example : `tut/T08`
 
-### e. social medias : `s/SOCIAL MEDIAS`
+### f. address : `a/`
 
-Sets the social medias of a person in uNivUSal.
+Sets the address of a person in uNivUSal.
 
-Format : `s/SOCIAL MEDIAS`
+Format : `a/ADDRESS`
 
-Example : 
+Example : `a/36 College Avenue`
 
-### f. tags : `t/TAGS`
+### g. tags : `t/`
 
 Sets tag(s) of a person in uNivUSal.
 
-Format : `t/TAG`
+Format : `t/TAGS`
 
-Example : `t/ classmate`
+Example : `t/classmate friend`
 
 ## Basic Features
 
@@ -171,7 +193,7 @@ Format: `edit INDEX [o/OCCUPATION] [n/NAME] [p/PHONE] [e/EMAIL] [tut/TUTORIAL] [
   specifying any tags after it.
 
 Examples:
-* `edit 1 p/91234567 e/janedoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` 
+* `edit 1 p/91234567 e/janedoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
 and `janedoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and **clears** all existing tags.
 
@@ -306,7 +328,92 @@ Format: `emailall GROUPNAME`
 Examples:
 * `emailall friends` opens the email client to all persons in the group `friends`.
 
-### g. Find persons with a preferred social media : `social`
+### g. Add a person's socials : `include`
+
+Adds a valid SOCIAL to an existing person in uNivUSal.
+
+General format: `include INDEX s/SOCIAL #/SOCIAL_INFO`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+* `SOCIAL_INFO` currently includes:
+  * Whatsapp phone number
+  * Telegram username
+  * Email
+  * Instagram username
+* `SOCIAL` is case-insensitive
+
+Format(WHATSAPP): `include INDEX s/WHATSAPP #/WHATSAPP_PHONE_NUMBER`
+
+Format(Telegram): `include INDEX s/TELEGRAM #/TELEGRAM_USERNAME`
+
+Format(Email): `include INDEX s/EMAIL #/EMAIL
+
+Format(Instagram): `include INDEX s/INSTAGRAM #/INSTAGRAM_USERNAME`
+
+Examples:
+* `include 1 s/WHATSAPP #/87654321`
+* `include 1 s/TELEGRAM #/JohnDoe321`
+* `include 1 s/EMAIL #/johnd@example.com`
+* `include 1 s/INSTAGRAM #/johndoe`
+
+### h. Delete a person's socials : `exclude`
+
+Deletes the specified person's socials from uNivUSal.
+
+Format: `exclude INDEX s/SOCIAL`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+* `SOCIAL` is case-insensitive
+
+Examples:
+* `exclude 1 s/TELEGRAM`
+* `exclude 1 s/INSTAGRAM`
+
+### i. Set a person's preferred social media : `prefer`
+
+Set the specified person's preferred social media in uNivUSal.
+
+Format: `prefer INDEX s/SOCIAL`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+* `SOCIAL` is case-insensitive
+
+Examples:
+* `prefer 1 s/TELEGRAM`
+* `prefer 1 s/INSTAGRAM`
+
+### j. Open a person's social media : `open`
+
+Open the specified person's social media in uNivUSal.
+
+Format: `open INDEX s/SOCIAL`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+  * Preferred (the person's currently preferred social media that has been set)
+* `SOCIAL` is case-insensitive
+
+Examples:
+* `open 1 s/TELEGRAM`
+* `open 1 s/INSTAGRAM`
+* `open 1 s/PREFERRED`
+
+### k. Find persons with a preferred social media : `social`
 
 Filters the current list to people who set their preferred social media to the input.
 
@@ -320,6 +427,7 @@ Format: `social SOCIAL`
 
 Examples:
 * `social telegram` will display a filtered list of persons with `telegram` as their preferred social media.
+
 
 ## General App Features
 
@@ -383,22 +491,26 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                | Format, Examples                                                                                                                                                                                             |
-|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**              | `help`                                                                                                                                                                                                       |
-| **History**           | `history`                                                                                                                                                                                                    |
-| **Add**               | `add o/OCCUPATION n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​` <br>e.g., `add o/STUDENT n/James Ho p/22224444 e/jamesho@example.com tut/T08 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **List**              | `list`                                                                                                                                                                                                       |
-| **Edit**              | `edit INDEX [o/OCCUPATION] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                |
-| **Delete**            | `delete INDEX [OPTIONAL PREFIX/]`<br> e.g., `delete 3`,`delete 3 p/`                                                                                                                                         |
-| **Clear**             | `clear`                                                                                                                                                                                                      |                                                                             |                                                                                                          |
-| **Undo**              | `undo`                                                                                                                                                                                                       |
-| **Sort**              | `sort FIELD_PREFIX/` <br> e.g., `sort n/`                                                                                                                                                                    |
-| **Find**              | `find KEYWORD` <br> e.g., `find John / find J`                                                                                                                                                               |
-| **Add To Group**      | `addtogroup INDEX GROUP`                                                                                                                                                                                     |
-| **Ungroup**           | `ungroup INDEX GROUP`                                                                                                                                                                                        |
-| **Open Group Window** | `group GROUPNAME`                                                                                                                                                                                            |
-| **Favorite**          | `fav INDEX`                                                                                                                                                                                                  |
-| **Social**            | `social SOCIAL`                                                                                                                                                                                              |
-| **Email All**         | `emailall GROUPNAME`                                                                                                                                                                                         |
-| **Exit**              | `exit`                                                                                                                                                                                                       |
+| Action                | Format, Examples                                                                                                                                                                                              |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**              | `help`                                                                                                                                                                                                        |
+| **History**           | `history`                                                                                                                                                                                                     |
+| **Add**               | `add o/OCCUPATION n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​` <br>e.g., `add o/STUDENT n/James Ho p/22224444 e/jamesho@example.com tut/T08 a/123, Clementi Rd, 1234665 t/friend t/colleague`  |
+| **List**              | `list`                                                                                                                                                                                                        |
+| **Edit**              | `edit INDEX [o/OCCUPATION] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                 |
+| **Delete**            | `delete INDEX [OPTIONAL PREFIX/]`<br> e.g., `delete 3`,`delete 3 p/`                                                                                                                                          |
+| **Clear**             | `clear`                                                                                                                                                                                                       |
+| **Undo**              | `undo`                                                                                                                                                                                                        |
+| **Sort**              | `sort FIELD_PREFIX/` <br> e.g., `sort n/`                                                                                                                                                                     |
+| **Find**              | `find KEYWORD` <br> e.g., `find John / find J`                                                                                                                                                                |
+| **Add To Group**      | `addtogroup INDEX GROUP`                                                                                                                                                                                      |
+| **Ungroup**           | `ungroup INDEX GROUP`                                                                                                                                                                                         |
+| **Open Group Window** | `group GROUPNAME`                                                                                                                                                                                             |
+| **Favorite**          | `fav INDEX`                                                                                                                                                                                                   |
+| **Include**           | `include INDEX s/SOCIAL #/SOCIAL_INFO`                                                                                                                                                                        |
+| **Exclude**           | `exclude INDEX s/SOCIAL`                                                                                                                                                                                      |
+|  **Prefer**           | `open INDEX s/SOCIAL`                                                                                                                                                                                         |
+| **Open**              | `open INDEX s/SOCIAL`                                                                                                                                                                                         |
+| **Social**            | `social SOCIAL`                                                                                                                                                                                               |                                                                                                                                                                      |
+| **Email All**         | `emailall GROUPNAME`                                                                                                                                                                                          |
+| **Exit**              | `exit`                                                                                                                                                                                                        |

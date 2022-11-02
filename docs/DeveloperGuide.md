@@ -340,6 +340,33 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Sorting feature
+
+#### Implementation
+
+The sorting feature sorts persons based on the given input taken as field. It uses the Comparator function.
+
+Given below is an example usage scenario and how the sorting mechanism behaves at each step.
+
+Step 1. The user executes `sort n/` to sort the list by `n/` which is name, alphabetically.
+
+Step 2. The `sortCommandParser#parse` then parses the arguments inputted.
+
+Step 3. A `SortCommand` object is created.
+
+Step 4. `SortCommand#execute` will then call `updateSortedPersonList(comoparator)`, hence updating the sorted list
+in the `AddressBook` based on the parsed comparator, which was `NameComparator`.
+
+Step 5. `CommandResult` contains a successful sort message and GUI will show the sorted list.
+
+The following sequence diagram shows how the `createGroup()` command works:
+
+![CreateGroupSequenceDiagram](images/SortSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CreateGroupCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -549,13 +576,13 @@ testers are expected to do more *exploratory* testing.
 1. Ensuring quick edit does nothing
    1. Prerequisites: Have at least 1 person shown in the main window, close, and restart the app.
 
-   1. Click one of the person cards shown. On some platforms, a double click may be necessary. Clicking more than twice is fine.<br>
+   2. Click one of the person cards shown. On some platforms, a double click may be necessary. Clicking more than twice is fine.<br>
       Expected: an edit command shows up in the command box.
 
-   1. Run the edit command.<br>
+   3. Run the edit command.<br>
       Expected: the command runs without any problems.
 
-   1. Undo the last command: `undo` <br>
+   4. Undo the last command: `undo` <br>
       Expected: the undo command fails to undo any action because the last action does not modify the person.
-1. 
+
 2. _{ more test cases …​ }_

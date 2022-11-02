@@ -31,6 +31,7 @@ import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
+
 /**
  * Runs the application.
  */
@@ -82,12 +83,23 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            storage.saveAddressBook(initialData);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+            try {
+                storage.saveAddressBook(initialData);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+            try {
+                storage.saveAddressBook(initialData);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -168,6 +180,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
+        primaryStage.setFullScreen(true);
         ui.start(primaryStage);
     }
 
