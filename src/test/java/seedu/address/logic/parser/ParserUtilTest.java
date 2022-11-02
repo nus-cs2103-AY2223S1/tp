@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_INDEXES;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEXES;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -96,6 +97,12 @@ public class ParserUtilTest {
         indexes.add(Index.fromOneBased(2));
         indexes.add(Index.fromOneBased(3));
         assertEquals(ParserUtil.parseIndexes("2 3"), indexes);
+    }
+
+    @Test
+    public void parseIndexes_duplicateInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_DUPLICATE_INDEXES, ()
+                -> ParserUtil.parseIndexes("1 1"));
     }
 
     @Test
