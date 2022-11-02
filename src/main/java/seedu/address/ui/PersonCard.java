@@ -77,8 +77,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Button preferred;
     @FXML
-    private Button browse;
-    @FXML
     private Circle cir2;
 
     /**
@@ -123,30 +121,6 @@ public class PersonCard extends UiPart<Region> {
         Image im = new Image(social.getImageUrl(), false);
         cir2.setFill(new ImagePattern(im));
         cir2.setEffect(new DropShadow(+25d, 0d, +2d, Color.AQUAMARINE));
-        final FileChooser f = new FileChooser();
-        browse.setText("Browse");
-        browse.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                File file = f.showOpenDialog(primaryStage);
-                if (file != null) { // only proceed, if file was chosen
-                    String newImageUrl = file.toURI().toString();
-                    social.addUrl(newImageUrl);
-                    System.out.println(social.toString());
-                    Image im = new Image(newImageUrl, false);
-                    cir2.setFill(new ImagePattern(im));
-                    try (Reader reader = new FileReader("data/addressbook.json")) {
-                        // Read JSON file
-                        PictureStorage saver = new PictureStorage(displayedIndex, social, newImageUrl);
-                        saver.saveStorage();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                }
-                }
-            });
 
         whatsapp.setOnAction(new EventHandler<ActionEvent>() {
             @Override
