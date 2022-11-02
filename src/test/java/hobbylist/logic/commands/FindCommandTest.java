@@ -4,7 +4,6 @@ import static hobbylist.commons.core.Messages.MESSAGE_ACTIVITIES_LISTED_OVERVIEW
 import static hobbylist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -63,7 +62,7 @@ public class FindCommandTest {
         assertFalse(findFirstCommand.equals(null));
 
         // different activity -> returns false
-        assertFalse(findFirstCommand.equals(findFirstCommandCopy));
+        assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
