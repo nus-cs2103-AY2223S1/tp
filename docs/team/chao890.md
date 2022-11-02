@@ -61,9 +61,9 @@ Given below are my contributions to the project.
 
 #### Reviewing Contributions
 * Pull Requests reviewed:
-  * [#63] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/63)
-  * [#111] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/111)
-  * [#119] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/119)
-  * [#143] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/143)
-  * [#225] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/225)
-  * [#226] (https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/226)
+  * [#63](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/63)
+  * [#111](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/111)
+  * [#119](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/119)
+  * [#143](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/143)
+  * [#225](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/225)
+  * [#226](https://github.com/AY2223S1-CS2103T-T15-1/tp/pull/226)
