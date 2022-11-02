@@ -14,7 +14,7 @@ public class Occupation {
         NONE
     }
     public static final String MESSAGE_CONSTRAINTS =
-            "Occupations should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Valid occupations are {TA, STUDENT, PROFESSOR}";
 
     /*
      * The first character of the occupation must not be a whitespace,
