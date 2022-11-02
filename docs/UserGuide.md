@@ -52,7 +52,8 @@ your data is secured.** With FinBook, you can set a unique [password](#422-setti
 meetings and portfolio as well as many [other features](#43-general) to make your daily workflow much
 **more efficient**!
 
-FinBook is optimized for use via a **Command Line Interface (CLI)**, which means most of our commands are done by typing.
+FinBook is optimized for use via a **Command Line Interface (CLI)**, which means most of our commands are done by
+typing.
 If you can type fast, managing your clients will be a breeze with FinBook. Can’t type fast? Don’t worry!
 Our Graphical User Interface (GUI) will help you slowly adjust to using our CLI.
 
@@ -64,7 +65,8 @@ So what are you waiting for? Start using FinBook.
 
 # 2. How to Use this User Guide?
 
-1. To get familiar with this user guide you can continue reading, [How to Use this User Guide](#2-how-to-use-this-user-guide).
+1. To get familiar with this user guide you can continue
+   reading, [How to Use this User Guide](#2-how-to-use-this-user-guide).
 2. If you are a new user, you can get started with [Quick Start](#3-quick-start) to familiarise yourself with FinBook.
 3. If you are familiar with FinBook, you can refer to the [Features](#4-features) to see details of all available
    commands or refer at [Command Summary](#7-command-summary).
@@ -78,7 +80,7 @@ So what are you waiting for? Start using FinBook.
 | Symbol               | Meaning                                                                                    |
 |----------------------|--------------------------------------------------------------------------------------------|
 | :information_source: | Additional information that may be useful to know when using FinBook                       |
-| :exclamation:        | Important information or warnings that you should take note of when using FinBook          | 
+| :exclamation:        | Important information or warnings that you should take note of when using FinBook          |
 | `command`            | The highlighted words indicate a command that can be typed into the Command Box of FinBook |
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -94,8 +96,8 @@ The UI consists of:
 | Components     | Purpose                                |
 |----------------|----------------------------------------|
 | Menu Bar       | Consists of File and Help              |
-| Theme Button   | To toggle between Light/Dark mode      | 
-| Hide Button    | To toggle between hide and unhide mode | 
+| Theme Button   | To toggle between Light/Dark mode      |
+| Hide Button    | To toggle between hide and unhide mode |
 | Command Box    | To enter commands to be executed       |
 | Message Box    | Display results of executed command    |
 | Clients Panel  | Displays clients of FinBook            |
@@ -133,8 +135,8 @@ For example,
 | m/     | MEETINGDATE or <br/> MEETINGDATEWITHTIME | Meeting date and time of client<br/> **:information_source: Parameter restrictions:**<br> Date should be in the form of dd MMM yyyy [HH:mm]. Meeting time is optional.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | **Valid Examples:** <br/>- 20 Nov 2022 <br/>- 05 Oct 2023 10:30 <br/>  **Invalid Examples:** <br/>- 13-Aug-2022 <br/>- 15 Jul 2023 16.30      |
 | t/     | TAG                                      | Tag of client <br/> **:information_source: Parameter restrictions:**<br>-Tags names should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | **Valid Examples:** <br/>- VIPClient <br/>- 10 <br/>  **Invalid Examples:** <br/>- VIP-Client <br/>- * <br/>                                  |
 | r/     | RISK                                     | Risk level of client's portfolio <br/> **:information_source: Parameter restrictions:**<br>- Risk level can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | **Valid Examples:** <br/>- High <br/>- abc <br/>                                                                                              |
-| pl/    | PLANS                                    | Plans regarding client's portfolio <br/> **:information_source: Parameter restrictions:**<br>- Plan names should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | **Valid Examples:** <br/>- NTUC Income Plan <br/>- OCBC Plan 2020 <br/>                                                                       |                                                                          
-| note/  | ADDITIONAL NOTES                         | Additional notes to client's portfolio <br/> **:information_source: Parameter restrictions:**<br>- Notes should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | **Valid Examples:** <br/>- Plans to save for retirement <br/>- Currently have COVID <br/>                                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+| pl/    | PLANS                                    | Plans regarding client's portfolio <br/> **:information_source: Parameter restrictions:**<br>- Plan names should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | **Valid Examples:** <br/>- NTUC Income Plan <br/>- OCBC Plan 2020 <br/>                                                                       |
+| note/  | ADDITIONAL NOTES                         | Additional notes to client's portfolio <br/> **:information_source: Parameter restrictions:**<br>- Notes should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | **Valid Examples:** <br/>- Plans to save for retirement <br/>- Currently have COVID <br/>                                                     |
 
 <div markdown="block" class="alert alert-info">  
 
@@ -175,11 +177,13 @@ For example,
 
 3. Copy the file to the folder you want to use as the home folder for your FinBook.
 
-4. Double-click the file to start the app. The GUI similar to the image below should appear in a few seconds. Note how the app
+4. Double-click the file to start the app. The GUI similar to the image below should appear in a few seconds. Note how
+   the app
    contains some sample data.<br>
    ![Ui](images/Ui_dark.png)
 
-5. Type the command in the command box and press **Enter** to execute it. e.g. typing **`help`** and pressing **Enter** will
+5. Type the command in the command box and press **Enter** to execute it. e.g. typing **`help`** and pressing **Enter**
+   will
    open the help window.<br>
    Some example commands you can try:
 
@@ -213,32 +217,33 @@ Adds a client to the FinBook so that you will not forget your client's personal 
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME [m/UPCOMING_MEETING_DATES] [t/TAGS] [r/RISK_LEVEL]
 [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
-* `add` command will refresh the portfolio panel to display "`no client selected for view yet!`".
 
+* `add` command will refresh the portfolio panel to display "`no client selected for view yet!`".
 
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12 Jan 2022 16:30 t/VIPClient
-  r/high pl/Prudential Health note/Client is currently having COVID` adds a client named John Doe, with a mobile number 
+  r/high pl/Prudential Health note/Client is currently having COVID` adds a client named John Doe, with a mobile number
   of 98765432, email address of johnd@example.com [etc.](#23-command-format) to the client list.
-* `add n/Betsy Crowe t/VIPPClient e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan` 
-  adds a client named Betsy Crowe, with a mobile number of 1234567, email address of betsycrowe@example.com [etc.](#23-command-format) to the client list.
+* `add n/Betsy Crowe t/VIPPClient e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan`
+  adds a client named Betsy Crowe, with a mobile number of 1234567, email address of
+  betsycrowe@example.com [etc.](#23-command-format) to the client list.
 
 |                                                                                                                        ![UG_add](images/UG_add.png)                                                                                                                        |
 |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | <sub>*Used command:* `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/$1000 m/20 Nov 2022 16:30 ml/13 Computing Drive t/VIPClient r/High pl/Prudential Retirement Plan note/currently having COVID` to add John Doe to the client list</sub> |
 
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
+
 * `add` command will refresh the portfolio panel to display "no client selected for view yet!".
 * `m/UPCOMING_MEETING_DATES` can be in the `dd Mmm yyyy` or `dd Mmm yyyy HH:mm` format.
 
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Only the latest parameter of each prefix is accepted. Eg. `add n/Johnny n/John p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000` will only add the client name as John. 
+Only the latest parameter of each prefix is accepted. Eg. `add n/Johnny n/John p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000` will only add the client name as John.
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -247,7 +252,8 @@ Only the latest parameter of each prefix is accepted. Eg. `add n/Johnny n/John p
 
 ### 4.1.2. Editing a client : `edit`
 
-Edits an existing client in the FinBook so that you can maintain an updated list of your clients’ personal information for better analysis.
+Edits an existing client in the FinBook so that you can maintain an updated list of your clients’ personal information
+for better analysis.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] [m/UPCOMING_MEETING_DATES]
 [t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
@@ -262,13 +268,15 @@ Examples:
 
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567`
   and `johndoe@example.com` respectively and automatically displays the updated portfolio of the 1st client.
-* `edit 2 n/Betsy Crower` Edits the name of the 2nd client to be `Betsy Crower` and automatically displays the updated portfolio of `Betsy Crower`.
-
+* `edit 2 n/Betsy Crower` Edits the name of the 2nd client to be `Betsy Crower` and automatically displays the updated
+  portfolio of `Betsy Crower`.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes:** 
+**:information_source: Notes:**
+
 * `edit` command will automatically view the updated portfolio of the edited client.
+
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -277,7 +285,8 @@ Examples:
 
 ### 4.1.3. Deleting a client : `delete`
 
-Four formats of deleting a client so that you can easily so that maintain an updated list of your clients’ personal information.
+Four formats of deleting a client so that you can easily so that maintain an updated list of your clients’ personal
+information.
 
 1. `delete INDEX`
 2. `delete INDEX1, INDEX2, …`
@@ -414,12 +423,15 @@ Examples:
 |:---------------------------------------------------------------------:|
 | <sub>*Used command:* `view 1 ` *to view portfolio of Alex Yeoh*</sub> |
 
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
-* `find` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the updated client list.
-* `sort` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the updated client list.
+
+* `find` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the
+  updated client list.
+* `sort` command then `view INDEX` will display the portfolio according to the new `INDEX` given according to the
+  updated client list.
+
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -437,7 +449,9 @@ Format: `lock`
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
+
 * If a password has not been set, leave the password field empty to unlock the application.
+
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -473,7 +487,9 @@ Examples:
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
+
 * It is recommended to take note of the warnings and follow the suggestions, if there are any.
+
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -496,8 +512,8 @@ Steps to reset the password:
 
 ### 4.2.4. Hiding sensitive data
 
-Toggles the visibility of FinBook by clicking on the `open eye` or `closed eye` icon on the top right of the application.
-
+Toggles the visibility of FinBook by clicking on the `open eye` or `closed eye` icon on the top right of the
+application.
 
 |               ![Shown](images/Ui_shown.png)                               |
 |:-------------------------------------------------------------------------:|
@@ -510,7 +526,9 @@ Toggles the visibility of FinBook by clicking on the `open eye` or `closed eye` 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
+
 * Your mode preference will be automatically saved.
+
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -531,7 +549,8 @@ save manually.
 
 ### 4.3.2. Editing the data file
 
-Financial book data are saved as a `JSON` file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
+Financial book data are saved as a `JSON` file `[JAR file location]/data/addressbook.json`. Advanced users are welcome
+to
 update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -649,7 +668,6 @@ Examples:
 
 Toggles the theme of FinBook by clicking on the `sun` or `moon` icon on the top right of the application.
 
-
 |              ![Dark mode](images/Ui_dark_w_arrow.png)              |
 |:------------------------------------------------------------------:|
 |      <sub>If icon is a `moon` FinBook is in Dark mode.</sub>       |
@@ -661,7 +679,9 @@ Toggles the theme of FinBook by clicking on the `sun` or `moon` icon on the top 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
+
 * Your mode preference will be automatically saved.
+
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -682,16 +702,16 @@ Format: `exit`
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous FinBook home folder. Alternatively, you may use the `export` and `import` commands.
+the data of your previous FinBook home folder. Alternatively, you may use the `export` and `import` commands.<br>
 
 **Q**: If I do not have Java 11, how do I install it on my computer?<br>
-**A**: You can navigate to this site here and download Java 11 according to your system’s specifications.
+**A**: You can navigate to this site here and download Java 11 according to your system’s specifications.<br>
 
 **Q**: Do I need an internet connection to run FinBook?<br>
-**A**: No, FinBook can boot up and run all functionalities without an internet connection.
+**A**: No, FinBook can boot up and run all functionalities without an internet connection.<br>
 
 **Q**: Can I use FinBook on my mobile device?<br>
-**A**: No, FinBook is only designed to run on your desktop/laptop.
+**A**: No, FinBook is only designed to run on your desktop/laptop.<br>
 
 [⬆ back to Table of Contents](#table-of-contents)
 
@@ -703,7 +723,7 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 |------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Command-line Interface (CLI) | A application that users interact with by typing text.                                                                                                                                                                                        |
 | Command                      | A sequence specified text typed by the user to perform an action.                                                                                                                                                                             |
-| Prefix                       | A tag to specify the field of data added. Each prefix always ends with a `/`.                                                                                                                                                                 |                                                                                                  
+| Prefix                       | A tag to specify the field of data added. Each prefix always ends with a `/`.                                                                                                                                                                 |
 | Parameter                    | Users input to a command.                                                                                                                                                                                                                     |
 | Field                        | The data type of client. For example, Name and Income are fields of a client.                                                                                                                                                                 |
 | JSON                         | JSON (JavaScript Object Notation) is an open standard file format and data interchange format that uses human-readable text to store and transmit data objects consisting of attribute–value pairs and arrays (or other serializable values). |
@@ -723,7 +743,7 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                                                                                              |
 | **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                            |
 | **List**             | `list`                                                                                                                                                                                                                                                                                                                                                          |
-| **Find**             | `find [n/NAME] [t/TAG]` <br> e.g., `find t/VIPClient`                                                                                                                                                                                                                                                                                                           | 
+| **Find**             | `find [n/NAME] [t/TAG]` <br> e.g., `find t/VIPClient`                                                                                                                                                                                                                                                                                                           |
 | **View Portfolio**   | `view INDEX` <br> e.g., `view 1`                                                                                                                                                                                                                                                                                                                                |
 | **Lock application** | `lock`                                                                                                                                                                                                                                                                                                                                                          |
 | **Password**         | `password [old/OLDPASSWORD] new/NEWPASSWORD`<br> e.g.,`password old/foobar new/barfoo`                                                                                                                                                                                                                                                                          |

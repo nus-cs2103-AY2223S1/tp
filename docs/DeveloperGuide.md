@@ -5,34 +5,35 @@ title: Developer Guide
 
 Table of Contents
 
-1. [Acknowledgements](#1-acknowledgements)
-2. [Setting up, getting started](#2-setting-up-getting-started)
-3. [Design](#3-design)  
-   3.1. [Architecture](#31-architecture)  
-   3.2. [UI component](#32-ui-component)   
-   3.3. [Logic component](#33-logic-component)  
-   3.4. [Model component](#34-model-component)   
-   3.5. [Storage component](#35-storage-component)   
-   3.6. [Common classes](#36-common-classes)
-4. [Implementation](#4-implementation)   
-   4.1. [Import command](#41-import-command)
-5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)
-6. [Appendix: Requirements](#6-appendix-requirements)   
-   6.1. [Product scope](#61-product-scope)  
-   6.2. [User stories](#62-user-stories)   
-   6.3. [Use cases](#63-use-cases)   
-   6.4. [Non-Functional Requirements](#64-non-functional-requirements)   
-   6.5. [Glossary](#65-glossary)
-7. [Appendix: Instructions for manual testing](#7-appendix-instructions-for-manual-testing)   
-   7.1. [Launch and shutdown](#71-launch-and-shutdown)   
-   7.2. [Deleting a client](#72-deleting-a-client)  
-   7.3. [Saving data](#73-saving-data)
+1. [Acknowledgements](#1-acknowledgements)<br>
+2. [Setting up, getting started](#2-setting-up-getting-started)<br>
+3. [Design](#3-design)<br>
+   3.1. [Architecture](#31-architecture)<br>
+   3.2. [UI component](#32-ui-component)<br>
+   3.3. [Logic component](#33-logic-component)<br>
+   3.4. [Model component](#34-model-component)<br>
+   3.5. [Storage component](#35-storage-component)<br>
+   3.6. [Common classes](#36-common-classes)<br>
+4. [Implementation](#4-implementation)<br>
+   4.1. [Import command](#41-import-command)<br>
+5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
+6. [Appendix: Requirements](#6-appendix-requirements)<br>
+   6.1. [Product scope](#61-product-scope)<br>
+   6.2. [User stories](#62-user-stories)<br>
+   6.3. [Use cases](#63-use-cases)<br>
+   6.4. [Non-Functional Requirements](#64-non-functional-requirements)<br>
+   6.5. [Glossary](#65-glossary)<br>
+7. [Appendix: Instructions for manual testing](#7-appendix-instructions-for-manual-testing)<br>
+   7.1. [Launch and shutdown](#71-launch-and-shutdown)   <br>
+   7.2. [Deleting a client](#72-deleting-a-client)  <br>
+   7.3. [Saving data](#73-saving-data)<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **1. Acknowledgements**
 
-This project is based on the [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S1/tp) project created by the [SE-EDU initiative](https://se-education.org).
+This project is based on the [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S1/tp) project created by
+the [SE-EDU initiative](https://se-education.org).
 
 Libraries used:
 
@@ -136,7 +137,8 @@ The `UI` component,
 
 ### 3.3. Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**
+API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -173,7 +175,8 @@ How the parsing works:
 
 ### 3.4. Model component
 
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**
+API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/UpdatedModelClassDiagramWithPortfolio.png" width="450" />
 
@@ -197,7 +200,8 @@ The `Model` component,
 
 ### 3.5. Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**
+API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png"/>
 
@@ -205,11 +209,13 @@ The `Storage` component,
 
 * can save both address book data and user preference data in `JSON` format, and read them back into corresponding
   objects.
-* has a `Storage` interface which inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+* has a `Storage` interface which inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be
+  treated as either one (if only
   the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
-* has `CsvAdaptedPerson` which is used to save `Person`s in the address book in `CSV` format, and read them back into corresponding
+* has `CsvAdaptedPerson` which is used to save `Person`s in the address book in `CSV` format, and read them back into
+  corresponding
   `Person`s.
 
 ### 3.6. Common classes
@@ -600,13 +606,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. Test case: Importing an invalid JSON file<br>   
+    1. Test case: Importing an invalid JSON file<br>
        Expected: list of clients will be empty and nothing is shown
 
-    2. Test case: Importing an invalid CSV file<br>   
+    2. Test case: Importing an invalid CSV file<br>
        Expected: list of clients will be empty and nothing is shown
 
-    3. Test case: Editing the JSON file when the application is not launched with invalid datas<br>   
+    3. Test case: Editing the JSON file when the application is not launched with invalid datas<br>
        Expected: list of clients will be empty and nothing is shown
 
     4. Test case: Missing JSON file<br>
