@@ -5,7 +5,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-* **NutriGoals** is a desktop application catered for fitness enthusiasts to manage their diet.<br>
+* **NutriGoals** is a desktop application catered for NUS students who wish to get healthier by tracking their calorie intake.<br>
 * Usages:
     * Keep track of meals consumed
     * Calculate calorie consumption
