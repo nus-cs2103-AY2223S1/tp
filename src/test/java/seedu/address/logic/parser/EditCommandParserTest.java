@@ -45,7 +45,7 @@ import seedu.address.testutil.EditClientDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String Product_EMPTY = " " + PREFIX_PRODUCT;
+    private static final String PRODUCT_EMPTY = " " + PREFIX_PRODUCT;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditClientCommand.MESSAGE_USAGE);
@@ -93,6 +93,15 @@ public class EditCommandParserTest {
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, " i/1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
+
+        // while parsing {@code PREFIX_PRODUCT} alone will reset the products of the {@code Client} being edited,
+        // parsing it together with a valid product results in error
+        assertParseFailure(parser, " i/1" + PRODUCT_DESC_PRODUCT1 + PRODUCT_DESC_PRODUCT2 + PRODUCT_EMPTY,
+                Product.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " i/1" + PRODUCT_DESC_PRODUCT1 + PRODUCT_EMPTY + PRODUCT_DESC_PRODUCT2,
+                Product.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " i/1" + PRODUCT_EMPTY + PRODUCT_DESC_PRODUCT1 + PRODUCT_DESC_PRODUCT2,
+                Product.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, " i/1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
@@ -195,7 +204,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_resetProducts_success() {
         Index targetIndex = INDEX_THIRD_ELEMENT;
-        String userInput = " i/" + targetIndex.getOneBased() + Product_EMPTY;
+        String userInput = " i/" + targetIndex.getOneBased() + PRODUCT_EMPTY;
 
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withProducts().build();
         EditClientCommand expectedCommand = new EditClientCommand(targetIndex, descriptor);

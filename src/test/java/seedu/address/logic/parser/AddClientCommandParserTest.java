@@ -14,6 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTHDAY_3_DE
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRODUCT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -42,6 +43,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.product.Product;
 import seedu.address.testutil.ClientBuilder;
 
 public class AddClientCommandParserTest {
@@ -121,6 +123,10 @@ public class AddClientCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                 + PRODUCT_DESC_PRODUCT2 + PRODUCT_DESC_PRODUCT1, Address.MESSAGE_CONSTRAINTS);
 
+        // invalid product
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + INVALID_PRODUCT_DESC + PRODUCT_DESC_PRODUCT1, Product.MESSAGE_CONSTRAINTS);
+
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
                 Name.MESSAGE_CONSTRAINTS);
@@ -137,13 +143,13 @@ public class AddClientCommandParserTest {
         // ep: [1jan, 31jan, 1feb, 28feb, ... (basically all valid dates)][invalid dates]
         // 30 feb, not exist
         assertParseFailure(parser,
-                NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_BIRTHDAY_1_DESC, Birthday.MESSAGE_CONSTRAINTS);
+                NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_BIRTHDAY_1_DESC, Birthday.MESSAGE_FORMAT_CONSTRAINTS);
         // 29 feb 2001, non leap year
         assertParseFailure(parser,
-                NAME_DESC_AMY + PHONE_DESC_AMY + INVALID_BIRTHDAY_2_DESC, Birthday.MESSAGE_CONSTRAINTS);
+                NAME_DESC_AMY + PHONE_DESC_AMY + INVALID_BIRTHDAY_2_DESC, Birthday.MESSAGE_FORMAT_CONSTRAINTS);
         // 31 nov, not exist
         assertParseFailure(parser,
-                NAME_DESC_AMY + PHONE_DESC_AMY + INVALID_BIRTHDAY_3_DESC, Birthday.MESSAGE_CONSTRAINTS);
+                NAME_DESC_AMY + PHONE_DESC_AMY + INVALID_BIRTHDAY_3_DESC, Birthday.MESSAGE_FORMAT_CONSTRAINTS);
     }
 
     @Test

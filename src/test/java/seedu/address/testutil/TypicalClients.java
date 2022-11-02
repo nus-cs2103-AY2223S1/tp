@@ -37,7 +37,7 @@ public class TypicalClients {
             .withEmail("heinz@example.com").withAddress("wall street")
            .build();
     public static final Client DANIEL = new ClientBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withProducts("friends").build();
+            .withEmail("cornelia@example.com").withAddress("10th street").withProducts("Product2").build();
     public static final Client ELLE = new ClientBuilder().withName("Elle Meyer").withPhone("94822241")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
     public static final Client FIONA = new ClientBuilder().withName("Fiona Kunz").withPhone("94824271")

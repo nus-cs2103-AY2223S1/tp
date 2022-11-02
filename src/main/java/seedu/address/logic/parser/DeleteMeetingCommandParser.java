@@ -3,8 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
-import java.util.stream.Stream;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -20,7 +18,7 @@ public class DeleteMeetingCommandParser implements Parser<DeleteMeetingCommand> 
      */
     public DeleteMeetingCommand parse(String args) throws ParseException {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INDEX);
-        if (!arePrefixesPresent(argumentMultimap, PREFIX_INDEX)) {
+        if (!ParserUtil.arePrefixesPresent(argumentMultimap, PREFIX_INDEX)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMeetingCommand.MESSAGE_USAGE));
         }
 
@@ -31,9 +29,5 @@ public class DeleteMeetingCommandParser implements Parser<DeleteMeetingCommand> 
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMeetingCommand.MESSAGE_USAGE), pe);
         }
-    }
-
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

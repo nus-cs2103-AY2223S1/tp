@@ -100,6 +100,9 @@ public class EditMeetingCommand extends Command {
         Description updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
         MeetingTime updatedEndTime = editMeetingDescriptor.getEndTime().orElse(meetingToEdit.getMeetingEndTime());
         MeetingTime updatedStartTime = editMeetingDescriptor.getStartTime().orElse(meetingToEdit.getMeetingStartTime());
+        if (MeetingDate.isBeforeToday(updatedDate)) {
+            throw new CommandException(MeetingDate.MESSAGE_INVALID_DATE);
+        }
         if (updatedEndTime.isBefore(updatedStartTime)) {
             throw new CommandException(MESSAGE_END_TIME_BEFORE_START_TIME);
         }

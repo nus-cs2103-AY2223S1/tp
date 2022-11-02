@@ -36,7 +36,7 @@
     "address" : "10th street",
     "birthday" : "",
     "meetings" : [ ],
-    "products" : [ "friends" ]
+    "products" : [ "Product2" ]
   }, {
     "@UUID" : "deed0742-5740-4514-87e7-bd9bef479046",
     "name" : "Elle Meyer",

@@ -10,6 +10,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -114,9 +115,9 @@ public class ParserUtil {
             return LocalDate.parse(date, DateTimeFormatter.ofPattern("ddMMuuuu").withResolverStyle(STRICT));
         } catch (DateTimeParseException e) {
             if (type.equals("meeting")) {
-                throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
+                throw new ParseException(MeetingDate.MESSAGE_FORMAT_CONSTRAINTS);
             } else {
-                throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Birthday.MESSAGE_FORMAT_CONSTRAINTS);
             }
         }
     }
@@ -179,5 +180,13 @@ public class ParserUtil {
             productSet.add(parseProduct(productName));
         }
         return productSet;
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

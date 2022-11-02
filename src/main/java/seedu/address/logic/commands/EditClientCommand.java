@@ -101,7 +101,8 @@ public class EditClientCommand extends Command {
      * Creates and returns a {@code Client} with the details of {@code clientToEdit}
      * edited with {@code EditClientDescriptor}.
      */
-    private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
+    private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor)
+            throws CommandException {
         assert clientToEdit != null;
 
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
@@ -119,6 +120,10 @@ public class EditClientCommand extends Command {
 
         Client client = new Client(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedBirthday, updatedProducts);
+
+        if (!client.isBirthdayValid()) {
+            throw new CommandException(Birthday.MESSAGE_DATE_CONSTRAINTS);
+        }
 
         // update client in each meeting this client has
         List<Meeting> meetings = clientToEdit.getMeetings();

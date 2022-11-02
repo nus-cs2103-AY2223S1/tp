@@ -17,7 +17,6 @@ import seedu.address.logic.commands.DeleteProductCommand;
 import seedu.address.logic.commands.EditClientCommand;
 import seedu.address.logic.commands.EditMeetingCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListClientCommand;
 import seedu.address.logic.commands.ListMeetingCommand;
@@ -70,9 +69,6 @@ public class MyInsuRecParser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
 
         case ListClientCommand.COMMAND_WORD:
             return new ListClientCommandParser().parse(arguments);

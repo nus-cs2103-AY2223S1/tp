@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 
 /**
@@ -54,6 +55,10 @@ public class AddClientCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!toAdd.isBirthdayValid()) {
+            throw new CommandException(Birthday.MESSAGE_DATE_CONSTRAINTS);
+        }
 
         if (model.hasClient(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
