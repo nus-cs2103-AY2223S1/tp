@@ -229,8 +229,9 @@ Examples:
 
 #### 5.1.7 Sorting: `sort KEYWORD`/  `sort KEYWORD desc`
 
-Sorts the contacts shown in the list of clients by alphabetical order. It is ascending by default.
-You can sort the contacts in descending order by adding `desc` behind the `KEYWORD`.
+* Sorts the contacts shown in the list of clients by alphabetical order. It is ascending by default.
+* You can sort the contacts in descending order by adding `desc` behind the `KEYWORD`.
+* The `KEYWORD` is case-insensitive. e.g. sort NaME is the same as sort name. However, do note that the command word sort is case sensitive and must be in lower case.
 
 Format: sort `KEYWORD` / sort `KEYWORD desc`
 
