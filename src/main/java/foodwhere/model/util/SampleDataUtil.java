@@ -1,8 +1,6 @@
 package foodwhere.model.util;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -65,12 +63,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
-    /**
-     * Returns a review set containing the list of reviews given.
-     */
-    public static Set<Review> getReviewSet(Review... reviews) {
-        return new HashSet<>(List.of(reviews));
-    }
-
 }
