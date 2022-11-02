@@ -32,7 +32,7 @@ public class AddToGroupCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds the person identified "
             + "by the index number used in the displayed person list to the identified group. "
-            + "Group names should not contain spaces.\n"
+            + "Group names should contain alphanumeric characters and should not contain spaces.\n"
             + "Parameters: INDEX (must be a positive integer) GROUPNAME\n"
             + "Example: " + COMMAND_WORD + " 1 friends";
 
