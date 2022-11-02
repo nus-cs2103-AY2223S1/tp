@@ -18,10 +18,11 @@ import seedu.phu.model.internship.Internship;
  */
 public class ReminderBarFooter extends UiPart<Region> {
 
+    protected static final String DEFAULT_REMINDER_TEXT = "Upcoming (in the next 7 days):  ";
     private static final String FXML = "ReminderBarFooter.fxml";
     private static final String REMINDER_ICON_PATH = "/images/reminder_icon.png";
-    private static final String DEFAULT_REMINDER_TEXT = "Upcoming (in the next 7 days):  ";
     private static final int UPCOMING_DAYS = 7;
+
 
     @FXML
     private Label reminderStatus;
@@ -38,6 +39,9 @@ public class ReminderBarFooter extends UiPart<Region> {
         reminderIcon.setImage(new Image(getClass().getResourceAsStream(REMINDER_ICON_PATH)));
     }
 
+    /**
+     * Updates the reminder text
+     */
     public void setReminderText(ReadOnlyInternshipBook book) {
         String upcomingAssessments = getStatusCount(ApplicationProcess.ApplicationProcessState.ASSESSMENT, book)
                 + " " + ApplicationProcess.ApplicationProcessState.ASSESSMENT + " ";
@@ -48,7 +52,7 @@ public class ReminderBarFooter extends UiPart<Region> {
         reminderStatus.setText(DEFAULT_REMINDER_TEXT + upcomingAssessments + upcomingInterviews + pendingOffers);
     }
 
-    private int getStatusCount(ApplicationProcess.ApplicationProcessState ap, ReadOnlyInternshipBook book) {
+    protected int getStatusCount(ApplicationProcess.ApplicationProcessState ap, ReadOnlyInternshipBook book) {
         return book.getInternshipList().filtered(new Predicate<Internship>() {
             @Override
             public boolean test(Internship internship) {
