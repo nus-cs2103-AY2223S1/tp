@@ -371,13 +371,13 @@ Below is a list of application stages that we have tips for.
 | `Phone Interview` |
 | `Rejected` |
 
-To view the tips in the narrow Ui format, click the light bulb button on the application card. A window will appear displaying tips for the stage that the application is currently at.
+If WorkBook is in the [narrow layout](#responsive-ui-when-window-resizing), simply click on the light bulb icon to view the tips for that application.
 
 ![Click the Light Bulb](images/ClickLightBulb.png)
 
 ![Tips Window](images/TipsWindow.png)
 
-To view the tips in the wide Ui format, simple click and select the application you would like to view the tips for. The tips will appear in the right panel.
+To view the tips in the [wide layout](#responsive-ui-when-window-resizing), simple click and select the application you would like to view the tips for. The tips will appear in the right panel.
 
 ![Tips Panel](images/TipsPanel.png)
 
