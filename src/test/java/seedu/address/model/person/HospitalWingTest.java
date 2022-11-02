@@ -53,9 +53,9 @@ public class HospitalWingTest {
 
     @Test
     public void isValidEnum() {
-        assertAll(() -> assertEquals("EAST", HospitalWing.HospitalWingTypes.EAST.name()), (
-                ) -> assertEquals("WEST", HospitalWing.HospitalWingTypes.WEST.name()), (
-                        ) -> assertEquals("NORTH", HospitalWing.HospitalWingTypes.NORTH.name()), (
-                                ) -> assertEquals("SOUTH", HospitalWing.HospitalWingTypes.SOUTH.name()));
+        assertAll(() -> assertEquals("EAST", HospitalWing.HospitalWingTypes.EAST.name()),
+                () -> assertEquals("WEST", HospitalWing.HospitalWingTypes.WEST.name()),
+                        () -> assertEquals("NORTH", HospitalWing.HospitalWingTypes.NORTH.name()),
+                                () -> assertEquals("SOUTH", HospitalWing.HospitalWingTypes.SOUTH.name()));
     }
 }
