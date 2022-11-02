@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -52,6 +53,33 @@ public class ArgumentMultimap {
             return new ArrayList<>();
         }
         return new ArrayList<>(argMultimap.get(prefix));
+    }
+
+    /**
+     * Returns all unique values of {@code prefix}.
+     * If the prefix does not exist or has no values, this will return an empty list.
+     * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
+     */
+    public List<String> getAllValuesIgnoreCase(Prefix prefix) {
+        if (!argMultimap.containsKey(prefix)) {
+            return new ArrayList<>();
+        }
+
+        HashSet<String> visitedStrings = new HashSet<>();
+        List<String> inputStrings = argMultimap.get(prefix);
+        List<String> uniqueStrings = new ArrayList<>();
+
+        // Start from the end of the list, so that only the last occurrence will be taken
+        for (int i = inputStrings.size() - 1; i >= 0; i--) {
+            String str = inputStrings.get(i);
+            if (visitedStrings.contains(str.toUpperCase())) {
+                continue;
+            }
+            visitedStrings.add(str.toUpperCase());
+            uniqueStrings.add(str);
+        }
+
+        return uniqueStrings;
     }
 
     /**

@@ -131,7 +131,7 @@ class ViewCommandTest {
     /**
      * A model stub with a student in a focus mode, having two graded sessions.
      */
-    private class ModelStubOneStudentWithGrades extends ModelStub {
+    private static class ModelStubOneStudentWithGrades extends ModelStub {
 
         private final ModuleClass focusedClass = CS1231S.addSession(LAB_1).addSession(ASSIGNMENT_1);
 

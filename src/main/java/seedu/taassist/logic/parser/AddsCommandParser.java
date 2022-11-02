@@ -35,7 +35,7 @@ public class AddsCommandParser implements Parser<AddsCommand> {
             date = new Date(LocalDate.now());
         }
 
-        Set<Session> sessions = ParserUtil.parseSessions(argMultimap.getAllValues(PREFIX_SESSION), date);
+        Set<Session> sessions = ParserUtil.parseSessions(argMultimap.getAllValuesIgnoreCase(PREFIX_SESSION), date);
 
         return new AddsCommand(sessions);
     }

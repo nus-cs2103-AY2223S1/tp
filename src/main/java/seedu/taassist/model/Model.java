@@ -109,8 +109,11 @@ public interface Model {
      */
     boolean hasModuleClass(ModuleClass moduleClass);
 
-    /** Checks if all {@code ModuleClass} in {@code moduleClasses} exists in the model */
+    /** Checks if all {@code ModuleClass} in {@code moduleClasses} exists in the model. */
     boolean hasModuleClasses(Collection<ModuleClass> moduleClasses);
+
+    /** Returns an existing {@code ModuleClass} with the same name as {@code moduleClass}. */
+    ModuleClass getModuleClassWithSameName(ModuleClass moduleClass);
 
     /**
      * Replaces the module class {@code target} in the list with {@code editedModuleClass}.

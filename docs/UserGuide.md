@@ -42,15 +42,16 @@ should be used. Start by looking at the [quick start](#quick-start) guide to get
   * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
   * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-### Modes
+</div>
+  
+## Modes
 In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to (module) class. Therefore,
 [some commands](#features-available-in-focus-mode) can only be executed when you are in focus mode. Commands that you can run in the default (unfocused) mode can also
 be run in focus mode. On the other hand, commands that are available only in focus mode cannot be executed in the default (unfocused) mode.
 
 Let's first begin with the commands available in the default mode.
 
-</div>
+
 
 | Command    | Format                                                             |
 | ---------- |--------------------------------------------------------------------|
@@ -176,8 +177,12 @@ Adds one or more classes to TA-Assist.
 
 Format: `addc c/CLASS_NAME...`
 * Add classes with specified names. 
-* The class names are **case-insensitive** (i.e. if a class with a name **CS1101S** already exists, `addc c/cs1101s` will not add a
-new class `cs1101s`).
+* The class names are **case-insensitive**.
+  * e.g. If a class with a name **CS1101S** already exists, `addc c/cs1101s` will not add a
+  new class `cs1101s`.
+* If there are duplicate class names, the class name is taken to be the last valid class parameter `c/`.
+  * e.g. If a class with a name **CS1101S** does not exist, `addc c/CS1101S c/cs1101s` will add one class with the name
+  **cs1101s**.
 
 Examples:
 * `addc c/CS2103T c/CS2100` adds the classes named **CS2103T** and **CS2100**.
@@ -207,7 +212,7 @@ Assigns students to a class.
 
 Format: `assign INDEX... c/CLASS_NAME`
 * Assigns students specified by the given indices to an existing `CLASS_NAME` class.
-* The class names are **case-insensitive**.
+* The class name is **case-insensitive**.
 
 Example:
 * `list` followed by `assign 1 3 5 6 c/CS1231S` assigns the **1st**, **3rd**, **5th** and **6th** student in the displayed student list to the **CS1231S** class.
@@ -222,7 +227,7 @@ Unassigns students from a class.
 
 Format: `unassign INDEX... c/CLASS_NAME`
 * Unassigns students specified by the given indices from an existing `CLASS_NAME` class.
-* The class names are **case-insensitive**.
+* The class name is **case-insensitive**.
 
 Example:
 * `list` followed by `unassign 1 3 5 6 c/CS1231S` unassigns the **1st**, **3rd**, **5th** and **6th** student in the displayed student list from the **CS1231S** class.
@@ -329,7 +334,11 @@ overall grade for the module CS2100.
 Format: `adds s/SESSION_NAME... [d/DATE]`
 * Creates new sessions with name `SESSION_NAME` on the same `DATE`. If the `DATE` field is empty, the current date will be used.
 * `DATE` field should follow the format `YYYY-MM-DD`.
-* The session names are **case-insensitive** (i.e. if a session **Lab 1** already exists, `adds s/lab 1` will not create a new session **lab 1**). 
+* The session names are **case-insensitive**.
+  * e.g. If a session **Lab 1** already exists, `adds s/lab 1` will not create a new session **lab 1**. 
+* If there are session names, the session name is taken to be the last valid session parameter `s/`.
+  * e.g. If a session with a name **LAB1** does not exist, `adds s/LAB1 s/lab1` will add one session with the name
+    **lab1**.
 
 Example:
 - `adds s/Lab1 s/Tutorial1 d/2022-08-11` will create sessions `Lab1` and `Tutorial1` on 11  August 2022.
@@ -385,7 +394,7 @@ Example:
   <img src="images/scoresAssignment1Result.png" width="600"/>
 
   In the above example,
-  * **Bernice Yu** has been allocated a score of **10.0** for **tutorial 1** 
+  * **Bernice Yu** has been allocated a score of **10.0** for **tutorial 1**.
   * **tutorial 1** for **Alex Yeoh**, **Charlotte Oliveiro** and **Irfan Ibrahim** have not been graded, hence their cells have been marked red.
 
 ### View session grades of student: `view`
