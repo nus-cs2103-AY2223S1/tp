@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Teacher’s Address Book (TAB) is a **desktop app made for teachers for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAB can get your contact management tasks done faster than traditional GUI apps.
+Teacher’s Address Book (TAB) is a **desktop app made for teachers, teaching assistants(TA) and professors for managing contacts of each other, as well as their students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAB can get your contact management tasks done faster than traditional GUI apps.
+
+TAs and Professors are now taking on more roles in different modules. As such, TAB allows the creation of multiple addressbooks which can be used to store the contact information of each specific module, which leads to neater organisation of contacts.
 * Table of Contents
 {:toc}
 
@@ -47,6 +49,8 @@ For teachers who are teaching more than one module, please use one TAB for each 
 
 **:information_source: Notes about the command format:**<br>
 
+* All commands are **case sentitive**
+* All tokenizers are **case sentitive**
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -87,9 +91,22 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL pos/POSITION a/ADDRESS t/MODULE-GROUP
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A teaching assistant or professor can have more than one tag. A student can only have one tag.
+
+Format of parameters:
+* `NAME`: Alphanumerical
+* `PHONE_NUMBER`: Numerical
+* `Email`: local-part@domain
+  * local-part: Alphanumerical and the following special characters, excluding the parentheses, (+_.-)
+  * domain: The domain name must:
+    * end with a domain label at least 2 characters long
+    * have each domain label start and end with alphanumeric characters
+    * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+* `Position`: `Student`, `TA`, or `Professor`
+* `Address`: Any value, but cannot be blank
+* `Tags`: {Alphanumeric Module}-{Alphanumeric Tutorial group}
 </div>
 
-Adds a new contact with the provided details. Required fields include name, phone number, email, and position. Tags representing the module and tutorial group a person is associated with are optional and must be in the format of module-tutorial group.
+Adds a new contact with the provided details. Required fields include name, phone number, email, position, and tag. Tags represent the module and tutorial group a person is associated with and must be in the format of module-tutorial group.
 
 Examples:
 * `add n/Alex Yeoh p/87438807 e/alexyeoh@example.com pos/Student a/Blk 30 Geylang Street 29, #06-40 t/CS2103T-T17`
@@ -105,11 +122,36 @@ Format: `list`
 
 Shows the detailed information of a person.
 
+General displayed information are:
+* Name
+* Position
+* Phone
+* Email
+* Tags
+* Address
+* Remarks
+
+There are also additional information unique to each role
+
+Professors:
+* Roles: `Coordinator`, `Tutor`, `Lecturer`and/or `Advisor`
+
+TA:
+* Availability: `Available` or `Unavailable` 
+
+Student
+* Attendance: represented as a fraction _e.g. 9/10_
+* Grade: represented as a fraction. This grade is the overall grade calculated from the list of already graded Assignments.
+* Graph containing each Assignment and their scores(only if their grae has been updated)
 Format: `show INDEX`
 
 * Shows the detailed information of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you cannot see all the added assignments in the graph, simply enlarge your tab!
+</div>
 
 Examples:
 * `show 3` shows the detailed information of the 3rd person in TAB.
@@ -170,7 +212,7 @@ Adds assignments to all students in the TAB.
 Format: `assignments assignments/ ASSIGNMENT_1 w/ASSIGNMENT_1_WEIGHTAGE, ASSIGNMENT_2 w/ASSIGNMENT_2_WEIGHTAGE…​`
 
 * The assignments are added to all students in the TAB. Students that are added to the TAB afterwards will automatically be instantiated with the assignments.
-* The weightage of the assignments must add up to 100%. The command will fail otherwise.
+* The weightage of the assignments must be integers that add up to 100%. The command will fail otherwise.
 * At most 10 assignments can be added.
 
 Examples: 
