@@ -9,14 +9,12 @@ Waddle is an app for easy-to-use travel itinerary creation and management.
 
 Given below are my contributions to the project.
 
-* **New Feature**: to be added soon
-
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ciaoosuuu&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=cfsy&breakdown=true)
 
 * **Project management**:
   * to be added soon
 
-* **Enhancements to existing features**:
+* **Enhancements Implemented**:
   * to be added soon
 
 * **Documentation**:
@@ -30,5 +28,3 @@ Given below are my contributions to the project.
 
 * **Tools**:
   * to be added soon
-
-* _{you can add/remove categories in the list above}_
