@@ -21,7 +21,8 @@ public class Budget {
     public Budget(String budgetStr) {
         requireNonNull(budgetStr);
         checkArgument(isValidBudget(budgetStr), MESSAGE_CONSTRAINTS);
-        this.initialBudget = Float.parseFloat(budgetStr);
+        // round off the decimal to 2dp (money)
+        this.initialBudget = Math.round(Float.parseFloat(budgetStr) * 100.0F) / 100.0F;
         this.spending = 0;
     }
 
@@ -52,7 +53,7 @@ public class Budget {
     }
 
     public void updateSpending(float amount) {
-        this.spending += amount;
+        this.spending = Math.round((this.spending + amount) * 100.0F) / 100.0F;
     }
 
     public float calculateLeftOverBudget() {
@@ -64,7 +65,7 @@ public class Budget {
     }
 
     public void setSpending(float amt) {
-        this.spending = amt;
+        this.spending = Math.round(amt * 100.0F) / 100.0F;;
     }
 
     @Override

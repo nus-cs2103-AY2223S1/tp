@@ -19,7 +19,8 @@ public class Cost {
     public Cost(String cost) {
         requireNonNull(cost);
         checkArgument(isValidCost(cost), MESSAGE_CONSTRAINTS);
-        this.cost = Float.parseFloat(cost);
+        // round off the decimal to 2dp (money)
+        this.cost = Math.round(Float.parseFloat(cost) * 100.0F) / 100.0F;
     }
 
     /**
