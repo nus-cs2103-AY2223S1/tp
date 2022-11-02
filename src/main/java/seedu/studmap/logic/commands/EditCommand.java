@@ -80,9 +80,7 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        CommandResult c = executeNoRefresh(model);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return c;
+        return executeNoRefresh(model);
     }
 
     @Override
