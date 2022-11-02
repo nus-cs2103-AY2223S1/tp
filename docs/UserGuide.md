@@ -132,12 +132,11 @@ This guide serves to:<br>
 
 * The Ui will change dynamically when resized.
 
-* When the Ui is resized narrower past a certain point, the Ui will change to a narrow format.
+* If the window width is too small, WorkBook will switch to a narrow layout for a better UX.
 
-    ![Narrow Ui](images/UiNarrow.png)
+* Otherwise, WorkBook will be in the wide layout which has an extra right panel for displaying tips.
 
-* When the Ui is resized wider past a certain point, the Ui will change to a wide format.
-    ![Wide Ui](images/Ui.png)
+    ![ResponsiveUI](images/ResponsiveUi.gif)
 
 
 </div>
