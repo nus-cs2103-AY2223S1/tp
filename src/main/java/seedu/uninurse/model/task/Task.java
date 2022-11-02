@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.AppUtil.checkArgument;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
+
 /**
  * Represents a Task for a Patient.
  *  * Guarantees: immutable; is valid as declared in {@link #isValidTaskDescription(String)}
@@ -63,6 +65,18 @@ public abstract class Task {
     public DateTime getDateTime() {
         return dateTime;
     }
+
+    /**
+     * Returns whether the task date is past the current date.
+     */
+    public boolean passedTaskDate() {
+        return dateTime.isPastDate();
+    }
+
+    /**
+     * TODO
+     */
+    public abstract List<Task> updateTask(List<Task> taskList);
 
     /**
      * Returns the String representation of the recurrence.

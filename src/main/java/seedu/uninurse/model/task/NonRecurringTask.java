@@ -1,5 +1,7 @@
 package seedu.uninurse.model.task;
 
+import java.util.List;
+
 /**
  * TODO JavaDoc for NonRecurringTask class
  */
@@ -17,6 +19,10 @@ public class NonRecurringTask extends Task {
      */
     public NonRecurringTask(String description, DateTime dateAndTime) {
         super(description, dateAndTime);
+    }
+
+    public List<Task> updateTask(List<Task> taskList) {
+        return taskList;
     }
 
     @Override

@@ -18,8 +18,8 @@ import seedu.uninurse.model.ModificationType;
  * Supports a minimal set of list operations.
  */
 public class TaskList implements GenericList<Task> {
-    private ArrayList<Task> internalTaskList;
-    private ArrayList<Task> filteredTaskLists;
+    private List<Task> internalTaskList;
+    private List<Task> filteredTaskLists;
 
     /**
      * Constructs an empty {@code TaskList}.
@@ -192,28 +192,17 @@ public class TaskList implements GenericList<Task> {
     }
 
     /**
-     * Updates the internaltasklist with all the new tasks generated because of RecurringTasks
+     * Updates this TaskList with all the new tasks generated because of RecurringTasks
      * and their next RecurringTask once past the task date.
      */
-    public void updateRecurringTasks() {
-        ArrayList<Task> updatedTasks = new ArrayList<>(internalTaskList);
-
+    public void updateTasks() {
+        List<Task> updatedTasks = new ArrayList<>(internalTaskList);
         for (Task task : internalTaskList) {
-            if (task instanceof RecurringTask && ((RecurringTask) task).passedTaskDate()) {
-                RecurringTask recurringTaskTracker = (RecurringTask) task;
-                // This is to populate all the tasks up till this point in case the user inputs a past date for the task
-                while (recurringTaskTracker.passedTaskDate()) {
-                    RecurringTask nextRecurringTask = recurringTaskTracker.getNextRecurringTask();
-                    if (!updatedTasks.contains(nextRecurringTask)) {
-                        updatedTasks.add(nextRecurringTask);
-                    }
-                    recurringTaskTracker = nextRecurringTask;
-                }
+            if (task.passedTaskDate()) {
+                updatedTasks = task.updateTask(updatedTasks);
             }
         }
-
         updatedTasks.sort(Comparator.comparing(Task::getDateTime));
-
         internalTaskList = updatedTasks;
     }
 
