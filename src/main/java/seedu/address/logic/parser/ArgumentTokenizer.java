@@ -74,11 +74,10 @@ public class ArgumentTokenizer {
         int endingPrefixIndex = argsString.indexOf(" " + prefix, fromIndex);
         return prefixIndex != -1
                 ? prefixIndex + 1 // +1 as offset for whitespace
-                : endingPrefixIndex != -1
+                : endingPrefixIndex != -1 && endingPrefixIndex == argsString.length() - 1 - prefix.length()
                 ? endingPrefixIndex + 1 // +1 as offset for whitespace
                 : -1;
     }
-
     /**
      * Extracts prefixes and their argument values, and returns an {@code ArgumentMultimap} object that maps the
      * extracted prefixes to their respective arguments. Prefixes are extracted based on their zero-based positions in
