@@ -31,7 +31,7 @@ Given below are my contributions to the project.
     * What it does: Allows users to sort the list of internship applications by the earliest upcoming task of each internship.
     * Justification: This is to allow users to sort the internships to improve user experience, for example to see what internship interview is coming up.
     * Highlights: This command is slightly harder to implement as it requires one of have a deeper understanding of how the different classes couples with another.
-  this command is further enhanced later on by my teammates and is able to sort internships by their salaries as well.
+  this command is further enhanced later on by my teammates and is able to sort internships by their salaries as well. 
 
 
 * **New Feature**: `addtag` command(PR:[#118](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/118))
@@ -47,21 +47,21 @@ Given below are my contributions to the project.
 * **Project management**:
     * Created Milestone v1.1 and created some issues for the team.
     * Created  the tags to be used for labelling issues.
+    * Helped to write some parts of the demo UG including taking screenshots of application.
 
-* **Enhancements to existing features**:
-    * [To be added soon]
-    * [To be added soon]
+* **Reviewing contributions**:
+    * PRs reviewed: [#111](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/111), [#130](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/130)
+  , [#140](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/140)
 
 * **Documentation**:
     * User Guide:
-        * [To be added soon]
-        * [To be added soon]
+        * Added documentation for the features `status`, `remark`, `sort`, `addtag` and `deltag`.
+        * Wrote some notes for the features listed.
     * Developer Guide:
-        * [To be added soon]
+        * Wrote the documentation for `remark` command. 
+        * Provided sequence diagrams and activity diagrams for better understanding of the command's implementation.
+        * Wrote some parts of the user stories.
 
 * **Community**:
-    * [To be added soon]
-* **Tools**:
-    * [To be added soon]
+    * Contributed to forum discussions(examples:[#90](https://github.com/nus-cs2103-AY2223S1/forum/issues/90), [#102](https://github.com/nus-cs2103-AY2223S1/forum/issues/102), [#303](https://github.com/nus-cs2103-AY2223S1/forum/issues/303), [#304](https://github.com/nus-cs2103-AY2223S1/forum/issues/304))
 
-* _{you can add/remove categories in the list above}_
