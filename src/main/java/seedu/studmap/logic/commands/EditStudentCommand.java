@@ -104,7 +104,7 @@ public abstract class EditStudentCommand<T extends StudentEditor> extends Comman
         }
 
         // state check
-        EditStudentCommand e = (EditStudentCommand) other;
+        EditStudentCommand<?> e = (EditStudentCommand<?>) other;
 
         return indicesToEdit.equals(e.indicesToEdit) && studentEditor.equals(e.studentEditor);
     }
