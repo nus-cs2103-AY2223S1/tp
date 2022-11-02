@@ -64,8 +64,10 @@ public class MeetingDate {
      */
     public LocalDateTime convert() {
         String temp = value;
-        if (!value.contains(":")) {
+        if (!temp.contains(":") && !temp.isEmpty()) {
             temp = temp + " 00:00";
+        } else if (temp.isEmpty()) {
+            temp = "31 Dec 9999 23:59";
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM uuuu HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(temp, formatter);
