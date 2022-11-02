@@ -3,6 +3,7 @@ package seedu.intrack.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -144,18 +145,21 @@ public class UniqueInternshipList implements Iterable<Internship> {
      * with the nearest date and time in ascending order
      */
     public void dateSortAscending() {
-        ObservableList<Internship> noDates = FXCollections.observableArrayList();
+        ObservableList<Internship> nonOrExpiredDates = FXCollections.observableArrayList();
         ObservableList<Internship> copyInternalList = FXCollections.observableArrayList();
+        LocalDateTime currentTime = LocalDateTime.now();
         for (int i = 0; i < internalList.size(); i++) {
             if (internalList.get(i).getTasks().size() == 0) {
-                noDates.add(internalList.get(i));
+                nonOrExpiredDates.add(internalList.get(i));
+            } else if (internalList.get(i).getNearestTaskDate().isBefore(currentTime)) {
+                nonOrExpiredDates.add(internalList.get(i));
             } else {
                 copyInternalList.add(internalList.get(i));
             }
         }
         copyInternalList.sort(Comparator.comparing(o -> o.getNearestTaskDate()));
-        for (int i = 0; i < noDates.size(); i++) {
-            copyInternalList.add(noDates.get(i));
+        for (int i = 0; i < nonOrExpiredDates.size(); i++) {
+            copyInternalList.add(nonOrExpiredDates.get(i));
         }
         FXCollections.copy(internalList, copyInternalList);
     }
@@ -165,19 +169,22 @@ public class UniqueInternshipList implements Iterable<Internship> {
      * with the nearest date and time in descending order
      */
     public void dateSortDescending() {
-        ObservableList<Internship> noDates = FXCollections.observableArrayList();
+        ObservableList<Internship> nonOrExpiredDates = FXCollections.observableArrayList();
         ObservableList<Internship> copyInternalList = FXCollections.observableArrayList();
+        LocalDateTime currentTime = LocalDateTime.now();
         for (int i = 0; i < internalList.size(); i++) {
             if (internalList.get(i).getTasks().size() == 0) {
-                noDates.add(internalList.get(i));
+                nonOrExpiredDates.add(internalList.get(i));
+            } else if (internalList.get(i).getNearestTaskDate().isBefore(currentTime)) {
+                nonOrExpiredDates.add(internalList.get(i));
             } else {
                 copyInternalList.add(internalList.get(i));
             }
         }
         copyInternalList.sort(Comparator.comparing(o -> o.getNearestTaskDate()));
         Collections.reverse(copyInternalList);
-        for (int i = 0; i < noDates.size(); i++) {
-            copyInternalList.add(noDates.get(i));
+        for (int i = 0; i < nonOrExpiredDates.size(); i++) {
+            copyInternalList.add(nonOrExpiredDates.get(i));
         }
         FXCollections.copy(internalList, copyInternalList);
     }
@@ -186,14 +193,14 @@ public class UniqueInternshipList implements Iterable<Internship> {
      * Sorts all the {@code Internship} in the list by their respective salaries in ascending order
      */
     public void salarySortAscending() {
-        internalList.sort(Comparator.comparing(o -> o.getSalary().value));
+        internalList.sort(Comparator.comparing(o -> Integer.parseInt(o.getSalary().value)));
     }
 
     /**
      * Sorts all the {@code Internship} in the list by their respective salaries in descending order
      */
     public void salarySortDescending() {
-        internalList.sort(Comparator.comparing(o -> o.getSalary().value));
+        internalList.sort(Comparator.comparing(o -> Integer.parseInt(o.getSalary().value)));
         Collections.reverse(internalList);
     }
 }

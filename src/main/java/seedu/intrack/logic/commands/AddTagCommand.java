@@ -3,6 +3,7 @@ package seedu.intrack.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -26,6 +27,10 @@ public class AddTagCommand extends Command {
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Added new tag(s) to internship application: \n%1$s";
 
+    public static final String MESSAGE_ADD_TAG_DUPLICATE = "Duplicated tag(s) detected, tags are case sensitive and"
+           + " duplicated tag(s) will not be added to an internship, however,"
+           + " non-duplicated tag(s) in the command will still be added.";
+
     private final Index index;
     private final List<Tag> tags;
 
@@ -48,16 +53,32 @@ public class AddTagCommand extends Command {
         }
 
         Internship internshipToEdit = lastShownList.get(index.getZeroBased());
+        Set<Tag> initialTagList = new HashSet<>();
+
+        // create duplicate of old tags
+        for (Tag tag : internshipToEdit.getTags()) {
+            initialTagList.add(tag);
+        }
+
         for (Tag tagToAdd : tags) {
             internshipToEdit.addTag(tagToAdd);
         }
+
         Set<Tag> newTagList = internshipToEdit.getTags();
+
         Internship editedInternship = new Internship(internshipToEdit.getName(), internshipToEdit.getPosition(),
                 internshipToEdit.getStatus(), internshipToEdit.getEmail(),
                 internshipToEdit.getWebsite(), internshipToEdit.getTasks(), internshipToEdit.getSalary(),
                 newTagList, internshipToEdit.getRemark());
 
         model.setInternship(internshipToEdit, editedInternship);
+
+        //diff commandresult where new tags are added but duplicates arent'
+        for (Tag tagToAdd : tags) {
+            if (initialTagList.contains(tagToAdd)) {
+                return new CommandResult(String.format(MESSAGE_ADD_TAG_DUPLICATE, editedInternship));
+            }
+        }
 
         return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedInternship));
     }

@@ -32,6 +32,9 @@ public class Internship {
     private final Remark remark;
     private final List<LocalDateTime> tasksDates = new ArrayList<>();
 
+    //Determine if have upcoming tasks
+    private boolean hasUpcomingTasks;
+
     /**
      * Every field must be present and not null.
      */
@@ -123,7 +126,7 @@ public class Internship {
     }
 
     /**
-     * Returns the date and time of the task with the nearest date and time before the current date
+     * Returns the date and time of the task of the closest upcoming task, or earliest task if there aren't any
      * @return LocalDateTime of the nearest date and time
      */
     public LocalDateTime getNearestTaskDate() {
@@ -137,7 +140,7 @@ public class Internship {
                 nearestDate = tasksDates.get(i);
                 break;
             }
-            if (nearestDate.isAfter(currentDate) || nearestDate.isEqual(currentDate)) {
+            if (nearestDate.isAfter(currentDate)) {
                 //once gets nearest time, breaks
                 nearestDate = tasksDates.get(i);
                 break;
@@ -168,6 +171,21 @@ public class Internship {
      */
     public void clearTag() {
         tags.clear();
+    }
+
+    /**
+     * Checks if an internship have an upcoming task
+     * @return a boolean determining if an internship have an upcoming task
+     */
+    public boolean isHasUpcomingTasks() {
+        if (tasksDates.isEmpty()) {
+            return false;
+        } else {
+            LocalDateTime earliestTime = getNearestTaskDate();
+            LocalDateTime now = LocalDateTime.now();
+            boolean hasUpcomeTask = earliestTime.isAfter(now);
+            return hasUpcomeTask;
+        }
     }
 
     /**

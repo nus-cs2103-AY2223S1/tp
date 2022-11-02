@@ -193,11 +193,27 @@ Expected outcome:
 * The status of the first internship application in InTrack will be updated to 'Offered' inside a small green box.
 
 ### Adding a tag to an internship application : `addtag`
+
 Adds one or more `Tag`s to the internship application at the specified `INDEX` from InTrack.
-`INDEX` refers to the index number of the desired entry as shown in the displayed internship list and **must be a
+`INDEX` refers to the index number of the desired entry as shown in the displayed internship list and **must be a 
 positive unsigned integer**.
 
 Format: `addtag INDEX TAG [MORE_TAGS]`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about `addtag`:**<br>
+
+`TAG` is case sensitive, for example `urgent` and `Urgent` are considered as separate tags. Duplicate tags however will not be added to the internship.
+
+If a user inputs multiple `TAG`s in a `addtag` command, the duplicate `TAG`s will not be added while the new ones will.
+
+</div>
+
+| Parameter | Representation                        | Constraints                                                |
+|-----------|---------------------------------------|------------------------------------------------------------|
+| `INDEX`   | The index of the internship           | Must be a positive unsigned integer                        |
+| `TAG`     | The tag to be added to the internship | Must not be blank and must be a singular alphanumeric word |
 
 Example of usage:
 
@@ -208,10 +224,16 @@ Expected outcome:
 * The `Urgent` tag will appear on the internship application panel with the selected `INDEX`.
 
 ### Deleting a tag from an internship application : `deltag`
+
 Deletes one or more existing `Tag`s from the internship application at the specified `INDEX` from InTrack.
 `INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
 
 Format: `deltag INDEX TAG [MORE_TAGS]`
+
+| Parameter | Representation                        | Constraints                                                |
+|-----------|---------------------------------------|------------------------------------------------------------|
+| `INDEX`   | The index of the internship           | Must be a positive unsigned integer                        |
+| `TAG`     | The tag to be added to the internship | Must not be blank and must be a singular alphanumeric word |
 
 Example of usage:
 
@@ -265,9 +287,10 @@ Format: `edit [c/NEW_COMPANY] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE] [t/
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note about editing the `status` field:**<br>
+**:information_source: Note about editing the `status` and `remark` field:**<br>
 
-The status of the application can only be edited via the [`status` command](#updating-status-of-an-internship-application--status).
+The status and remark of the application can only be edited via the [`status` command](#updating-status-of-an-internship-application--status)
+and [`remark` command](#adding-a-remark-to-an-internship-application--remark) respectively.
 
 </div>
 
@@ -283,16 +306,26 @@ Expected outcome:
   https://google.com, the tags are changed to just URGENT and the salary becomes $1000.
 * Edits the position field of the selected entry to become SWE. All other details of the entry remain unchanged.
 
+
 ### Adding a task to a selected internship application : `addtask`
 
 Adds a task to a selected internship application at the selected `Internship` from InTrack.
 
 Format: `addtask TASK_NAME /at TASK_TIME`
 
-* `TASK_NAME` refers to the name of the task to be added.
-* `TASK_NAME` can take any value, but must not be left blank.
-* `TASK_TIME` refers to the time the added task is due or at.
-* `TASK_TIME` must be in the format `dd-MM-yyyy HH:mm`.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about `addtask`:**<br>
+
+Before a task can be added to an application, the internship must first be selected via the [`select` command](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/docs/UserGuide.md#selecting-an-internship-application--select).
+
+</div>
+
+| Parameter   | Representation                               | Constraints                                  |
+|-------------|----------------------------------------------|----------------------------------------------|
+| `TASK_NAME` | Name of the task to be added                 | Can take any values, but should not be blank |
+| `TASK_TIME` | The time that the added task is due          | Must be in the format `dd-MM-yyyy HH:mm`     |
+
 
 Example of usage:
 
@@ -300,8 +333,7 @@ Example of usage:
 
 Expected outcome:
 
-* The selected `Internship` would be updated with the new task added in the list in an ascending manner, with the
-  internship with the task that has the earliest date and time that is on or after the current time at the top.
+* The selected `Internship` would be updated with the new task added in the list in an ascending manner, with the task that has the earliest date and time at the top of the internship application on the right.
 
 ### Deleting a task from a selected internship application : `deltask`
 
@@ -321,21 +353,25 @@ Expected outcome:
 
 ### Adding a remark to an internship application : `remark`
 
-Adds a `remark` to the internship application at the specified `INDEX` from InTrack.
-`INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
+Adds a `remark` to the selected internship application from InTrack.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note about `remark`:**<br>
 
-Before the application can be edited, it must first be selected via the [`select` command](#selecting-an-internship-application--select).
+Before a remark can be added to an application, the internship must first be selected via the [`select` command](#selecting-an-internship-application--select).
 
 </div>
 
-Format: `remark r/[REMARK]`
+Format: `remark r/ [REMARK]`
 
 * If the `REMARK` field in the command is empty and there is an existing remark in the internship application, the
   remark will be cleared.
+
+| Parameter | Representation                       | Constraints                                                                                                                                  |
+|-----------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| `REMARK`  | The remark given for the application | No constraints, anything can be a remark, if the `REMARK` field in the command is empty, the remark field of the application will be deleted |       |
+
 
 Example of usage:
 
@@ -355,6 +391,7 @@ Expected outcome:
 * The remark field at the bottom of the selected internship application panel will be cleared.
 
 ### Sending an email to a company : `mail`
+
 Sends an email to the email address registered to a selected internship by launching the default mail app with the
 target email recipient already set.
 
@@ -389,7 +426,7 @@ Format: `clear`
 
 Finds internship applications which has company name containing any of the given keywords.
 
-Format: findn KEYWORD [MORE_KEYWORDS]
+Format: findc KEYWORD [MORE_KEYWORDS]
 
 * The search is case-insensitive. E.g. `google` will match `Google`.
 * The order of keywords does not matter. E.g. `Bytedance Tiktok` will match `Tiktok Bytedance`.
@@ -441,7 +478,7 @@ Expected outcome:
 
 ### Filtering internship applications by status : `filter`
 
-Filters the list of internship applications based on their status, using `p` for "Progress", `r` for "Rejected" and
+Filters all internship applications based on their status, using `p` for "Progress", `r` for "Rejected" and
 `o` for "Offered". 
 
 Format: `filter STATUS`, where `STATUS` must be either `p`, `o` or `r`
@@ -454,23 +491,28 @@ Expected outcome:
 
 ### Sorting internship applications: `sort`
 
-Sorts the list of internship applications on the left panel via their `ORDER_TYPE` which is either `time` or `salary`, 
-in either ascending or descending `ORDER`.
-Format: `sort ORDER_TYPE ORDER`
+Sorts the current list of internship applications on the left panel via their `SORT_TYPE` which is either `time` or `salary`, 
+in either ascending or descending `SORT_ORDER`.
+Format: `sort SORT_TYPE SORT_ORDER`
 
-* For sorting by the time of their tasks, internships are also sorted with the current date and time taken
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about `SORT`:**<br>
+For sorting by the time of their tasks, internships are also sorted with the current date and time taken
 into consideration.
-* The date of the task that is the earliest and is on or after the current date (if any) in the internship will be used
-as the factor in sorting, if there aren't any, the date of the task with the earliest date will be used instead for 
-that internship.
-* `sort time a`  will sort all internships in an ascending manner, with the
-internship with the task that has the earliest date and time that is on or after the current time at the top. 
-* If an internship only has one task however, only that task's date and time is taken into consideration, so even if 
-that task is before the current date but has the earliest date and time, it will still be at the top.
-* `sort time d`  will sort all internships in a descending manner, with the internship with the task that has the 
-furthest date and time that is on or after the current time at the top.
-* For sorting by of their salaries, internships are just sorted by the value of their salaries. 
 
+Internships are sorted by their earliest **upcoming tasks**, thus dates of tasks that are before the current date is **not taken into account**
+when sorting is conducted.
+
+This means that internships without any upcoming tasks (i.e. internships without any tasks or with all tasks that are past the current date), will not 
+be sorted in any particular order and will be kept at the bottom of the list of internships instead no matter what SORT_ORDER is given.
+
+</div>
+
+| Parameter    | Representation                                   | Constraints                                                                                      |
+|--------------|--------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| `SORT_TYPE`  | The attribute that the internships are sorted by | Is not case sensitive and can only take `time` and `salary` as input fields, and cannot be blank |
+| `SORT_ORDER` | The order that the internships are sorted in     | Is not case sensitive and can only take `a` and `d` as input fields, and cannot be blank         |
 
 Example of usage:
 
@@ -489,6 +531,13 @@ Expected outcome:
 
 * The list of internships are sorted in an ascending manner,
 with the internship with the lowest salary at the top.
+
+### Viewing statistics of internship applications : `stats`
+
+Displays statistics of the current list of internship applications based on the number of offered, in-progress and 
+rejected applications.
+
+Format: `stats`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -512,15 +561,15 @@ with the internship with the lowest salary at the top.
 | **Edit**             | `edit c/NEW_NAME p/NEW_POSITION e/NEW_EMAIL w/NEW_WEBSITE t/NEW_TAGS s/NEW_SALARY` <br/> e.g. `edit s/1200`                                                                              |
 | **Status**           | `status INDEX STATUS`<br/> e.g. `status 1 o`                                                                                                                                             |
 | **Remark**           | `remark r/[REMARK]`<br/> e.g. `remark r/Revise graphs`                                                                                                                                   |
-| **Find by Company**  | `findn KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findn Google`                                                                                                                                 |
+| **Find by Company**  | `findc KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findc Google`                                                                                                                                 |
 | **Find by Position** | `findp KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findp Frontend`                                                                                                                               |
 | **Find by Tag**      | `findt KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findt Urgent`                                                                                                                                 |
 | **Filter**           | `filter STATUS` <br/> e.g. `filter o`                                                                                                                                                    |
 | **Sort**             | `sort SORT_TYPE SORT_ORDER`<br/> e.g. `sort time a`                                                                                                                                      |
 | **Stats**            | `stats`                                                                                                                                                                                  |
 | **Select**           | `select INDEX` <br/> e.g. `select 1`                                                                                                                                                     |
-| **Add Task**         | `addtask TASK_NAME /at TASK_TIME`<br/> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                                                                           |
+| **Add Task**         | `addtask TASK_NAME /at TASK_TIME `<br/> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                                                                          |
 | **Delete Task**      | `deltask INDEX` <br/> e.g. `deltask `                                                                                                                                                    |
-| **Add Tag**          | `addtag INDEX TAG`<br/> e.g. `addtag 1 Urgent`                                                                                                                                           |
-| **Delete Tag**       | `deltag INDEX TAG`<br/> e.g. `deltag 1 Urgent`                                                                                                                                           |
+| **Add Tag**          | `addtag INDEX TAG [MORE_TAGS]`<br/> e.g. `addtag 1 Urgent`                                                                                                                               |
+| **Delete Tag**       | `deltag INDEX TAG [MORE_TAGS]`<br/> e.g. `deltag 1 Urgent`                                                                                                                               |
 | **Mail**             | `mail`                                                                                                                                                                                   |
