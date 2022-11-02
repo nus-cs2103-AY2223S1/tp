@@ -94,7 +94,7 @@ access to the Table of Contents to quickly jump to another section without manua
 If it is your first time using a Command Line Interface, you are recommended to try out the sample commands provided
 to gain a better understanding of how a Command Line Interface works.
 
-Once you are proficient with the various commands types and features, you may refer to the section [Command Summary](#command-summary), 
+Once you are proficient with the various commands and features, you may refer to the section [Command Summary](#command-summary), 
 which will provide you with a summary of all the command formats of all features provided by ConnectNUS.
 
 As recommended in the introduction, we would like to direct you to read the [Glossary](#glossary) section next.
