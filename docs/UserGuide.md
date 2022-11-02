@@ -423,8 +423,17 @@ SORT parameters:
 * p: Numerically sort contact phone numbers in ascending order.
 * rp: Numerically sort contact phone numbers in descending order.
 
+<div markdown="block" class="alert alert-warning">
+
+**:information_source: Notes about alphabetical sorting:**<br>
+
+Alphabetical sorting will prioritize valid letters by their ASCII values, meaning capital letters come before their non-capital counterparts with `contact sort s/a`. This order is reversed for `contact sort s/ca`.
+
+</div>
+
 Example:
-* `contact sort s/a` will change the displayed contact list to show a contact list where names are sorted by alphabetical order.
+* `contact sort s/a` will change the displayed contact list to show a contact list where names are sorted by alphabetical order. 
+  * Given 3 contacts: alfonzo, Alpha, and Betsy, the ordering will be: Alpha > Betsy > alfonzo.
 
 #### Sorting tasks : `task sort`
 
@@ -439,8 +448,17 @@ SORT parameters:
 * cd: Chronologically sort tasks by their associated dates in ascending order. Tasks without dates are at the end of the list, in no particular order.
 * rcd: Chronologically sort tasks by their associated dates in descending order. Tasks without dates are at the end of the list, in no particular order.
 
+<div markdown="block" class="alert alert-warning">
+
+**:information_source: Notes about alphabetical sorting:**<br>
+
+Alphabetical sorting will prioritize valid letters by their ASCII values, meaning capital letters come before their non-capital counterparts with `task sort s/a`. This order is reversed for `task sort s/ca`.
+
+</div>
+
 Example:
-* `task sort s/a` will change the displayed task list to show a task list sorted by description alphabetical order
+* `task sort s/a` will change the displayed task list to show a task list sorted by description alphabetical order.
+  * Given 3 tasks with descriptions: Walk the dog, Do homework, do chores, the order will: Do homework > Walk the dog > do chores.
 
 ### Marking a task : `task mark`
 
