@@ -267,9 +267,9 @@ command to filter a list down to the results you are looking for. To reset the l
 <div markdown="span" class="alert alert-warning">
 **:exclamation: Caution:** <br>
 
-* Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match.
-* It is also case-insensitive.
+* Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match. It is also case-insensitive. 
 * Any command that searches for tags finds all tags that exactly match, but is also case-insensitive.
+
 </div>
 
 Current filters applied will be shown in the UI at the top bar.
