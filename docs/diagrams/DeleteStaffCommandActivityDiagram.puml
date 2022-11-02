@@ -5,20 +5,30 @@ start
 :User inputs\n delstaff command;
 :Parse input;
 if () then ([valid input])
-    :Get PROJECT_NAME \ninputted;
-    if () then ([Valid PROJECT_NAME])
-        :Get project with\n PROJECT_NAME;
-        :Get STAFF_NAME \ninputted;
-        if () then ([Valid STAFF_NAME])
-            : Get staff with\n STAFF_NAME from project;
-            : Remove staff\n from project;
-            : Update staff\n list UI;
-            : Return success\n message;
+    :Check for empty List;
+    if () then ([Not empty])
+        :Get INDEX \ninputted;
+        if () then ([Valid INDEX])
+            :Get Staff at INDEX\nof displayed Staff List\nand its STAFF_NAME;
+            :Get PROJECT_NAME\ninputted;
+            if () then ([Within Displayed Project List])
+                : Get Project with\n PROJECT_NAME from\n displayed Project List;
+                : Find Staff with STAFF_NAME\nfrom Project;
+                if () then ([Found])
+                    :Delete Staff from Staff List;
+                    : Update displayed Staff List with\nProject's updated Staff list;
+                    : Return success\n message;
+                else ([else])
+                    :Throw exception for Invalid Staff;
+                endif
+            else ([else])
+                : Throw exception for\nProject not displayed\n or within HR Pro Max++ ;
+            endif
         else ([else])
-            : Throw exception for\n missing staff;
-        endif
+            : Throw exception for\n invalid Staff INDEX;
+    endif
     else ([else])
-        : Throw exception for\n missing project;
+    :Throw CommandException;
     endif
 else ([else])
 : Throw parseException;
