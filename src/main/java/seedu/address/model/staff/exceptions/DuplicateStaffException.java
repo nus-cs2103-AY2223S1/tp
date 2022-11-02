@@ -1,7 +1,7 @@
 package seedu.address.model.staff.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Staffs
+ * Signals that the operation will result in duplicate Staff
  * (Staff are considered duplicates if they have the same
  * identity).
  */
