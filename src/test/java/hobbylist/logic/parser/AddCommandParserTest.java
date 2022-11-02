@@ -101,11 +101,17 @@ public class AddCommandParserTest {
                 + CommandTestUtil.TAG_DESC_ENTERTAINMENT
                 + CommandTestUtil.TAG_DESC_EXERCISE, Description.MESSAGE_CONSTRAINTS);
 
-        // invalid tag
+        // tag containing invalid character
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.NAME_DESC_BOXING
                 + CommandTestUtil.DESCRIPTION_DESC_BOXING
                 + CommandTestUtil.INVALID_TAG_DESC
-                + CommandTestUtil.VALID_TAG_ENTERTAINMENT, Tag.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.TAG_DESC_ENTERTAINMENT, Tag.MESSAGE_CONSTRAINTS);
+
+        // tag more than 15 characters
+        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.NAME_DESC_BOXING
+                + CommandTestUtil.DESCRIPTION_DESC_BOXING
+                + CommandTestUtil.TOO_LONG_TAG_DESC
+                + CommandTestUtil.TAG_DESC_ENTERTAINMENT, Tag.TAG_NAME_TOO_LONG);
 
         // two invalid values, only first invalid value reported
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.INVALID_NAME_DESC
