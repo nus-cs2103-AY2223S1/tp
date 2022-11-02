@@ -5,42 +5,60 @@ title: Benjamin Sim's Project Portfolio Page
 
 ### Project: Duke The Market
 
-Duke The Market is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Duke The Market is a desktop contact management system application used for managing customer contacts in department stores. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=Benjamin-Sim&tabRepo=AY2223S1-CS2103-F09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* **Code contributed**: [RepoSense link]()
+* **Enhancements implemented**:
 
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * **New Feature**: Added the ability to sort persons when listing them.
+    * What it does: Allows the user to sort all persons in the application by their name, gender or date of birth.
 
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+    * Justification: Sorting persons improves the user's productivity as he can easily locate people in the contact list.
+
+    * Highlights: This feature required redesigning the original `list` command. Furthermore, designing how the sorting operation would function was challenging as it required detailed analysis of how data was handled and presented on the GUI.
+
+  * **New Feature**: Added the ability to sort events when listing them.
+    * What it does: Allows the user to sort all events in the application by their event title or date.
+
+    * Justification: Sorting events improves the user's productivity as he can easily locate events in the event list.
+
+    * Highlights: This featue required redesigning the `listEvents` command created by another team member.
+
+
+  * **Testing**: Added substantial unit tests and integration tests for the sort persons feature, increasing test coverage from 48% to 50% (Pull request [#192](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/192))
+
+  * **Testing**: Added some unit tests tests for the sort events feature. (Pull request [#192](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/192))
+
+  * **Refactoring**: Refactored the original `list` command to `listPersons` to distinguish it from the `listEvents` command.
+
+  * **Misc**: Updated the help URL in the application to the product's user guide URL. (Pull request [#75](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/75))
+
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the `listPersons` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#listing-all-persons--listpersons)) and `listEvents` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#listing-all-events-listevents)) features.
+
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of the `listPersons` feature. [Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#sort-persons)
+    * Added use cases UC02, UC03, UC04, UC05 [Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#use-cases)
+
+
+* **Team-Based Tasks**:
+  * Updated product name on product website. (Pull request [#14](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/14))
+  * Managed milestones v1.1, v1.2, v1.3, v1.4 (Created and closed milestones, created issue tracker labels, etc.)
+  * Handled product releases for v1.2 and v1.3 (including uploading and testing of JAR files) ([Link](https://github.com/AY2223S1-CS2103-F09-2/tp/releases))
+  * Perfomed various miscellaneous team tasks such as updating the JAR filename, enabling assertions, updating team's GitHub repo URL on the product website. (Pull request [#75](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/75))
+
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with non-trivial review comments):
+  [#205](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/205#pullrequestreview-1161465923),
+  [#103](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/103),
+  [#74](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/74#pullrequestreview-1143187992),
+  [#55](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/55#pullrequestreview-1139049629),
+  [#52](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/52#pullrequestreview-1136739682)
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
