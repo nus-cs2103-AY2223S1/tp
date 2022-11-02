@@ -376,22 +376,6 @@ Examples:
 * `find n/John n/alex` will find all clients with John or Alex in their names.
 * `find t/VIPClient t/YuFamily` will find all clients with either `VIPClient` or `YuFamily` tags.
 
-Finds all clients whose names or tags contain any of the specified keywords (case-insensitive) and displays them as a
-list with index numbers.
-
-Format: `find [n/NAME] [t/TAG]`
-
-* Updated list of clients whose name or tag contain any of the specified keywords is displayed in the list of clients on
-  the left.
-* At least one of the parameters must be provided.
-* Only one type of parameter can be provided at one time.
-* `find` command will refresh the portfolio panel to display "`no client selected for view yet!`".
-
-Examples:
-
-* `find n/John n/alex` will find all clients with John or Alex in their names.
-* `find t/VIPClient t/YuFamily` will find all clients with either `VIPClient` or `YuFamily` tags.
-
 [⬆ back to Table of Contents](#table-of-contents)
 
 ---
