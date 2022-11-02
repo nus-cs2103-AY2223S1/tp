@@ -5,7 +5,7 @@ title: Teh Yi Kuang's Project Portfolio Page
 
 ### Project: BookFace
 
-BookFace replaces a paper-based system or manual tracking of books, providing greater speed/efficiency in identifying where a book is, or when it is due.
+BookFace replaces a paper-based system or manual tracking of books, providing greater speed/efficiency for librarians to manage all user and book records.
 
 **Summary of Contributions**
 
