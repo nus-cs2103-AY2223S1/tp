@@ -1,10 +1,14 @@
 package seedu.address.ui.popupwindow;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -27,6 +31,7 @@ import seedu.address.model.pet.Weight;
 public class PopupPanelForPet extends PopUpPanel {
 
     private static final String FXML = "PopupPanelForPet.fxml";
+    private final Stage stage;
 
     @FXML
     private TextField colorField;
@@ -55,13 +60,20 @@ public class PopupPanelForPet extends PopUpPanel {
     /**
      * Constructs a {@code PopupPanelForPet} by setting input sequence and prompt text style.
      */
-    public PopupPanelForPet() {
+    public PopupPanelForPet(Stage stage) {
         super(FXML);
+        this.stage = stage;
         petNameField.requestFocus();
         generateInputSequence(petNameField, speciesField, heightField, weightField,
                 dateOfBirthField, colorField, colorPatternField, priceField);
         setPromptTextStyle(petNameField, speciesField, heightField, weightField,
                 dateOfBirthField, colorField, colorPatternField, priceField);
+    }
+
+    @FXML
+    void openFileExplorer(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(stage);
     }
 
     @Override

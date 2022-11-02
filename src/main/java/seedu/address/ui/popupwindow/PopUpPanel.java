@@ -80,7 +80,7 @@ public abstract class PopUpPanel extends UiPart<Region> {
      */
     public boolean checkGivenFieldsAllFilled(TextInputControl... textInputFields) {
         for (TextInputControl textInputField : textInputFields) {
-            if (textInputField.getText().isEmpty()) {
+            if (textInputField.getText().isEmpty() || textInputField.getText().startsWith(" ")) {
                 textInputField.requestFocus();
                 textInputField.setStyle(ERROR_FOCUS_STYLE);
                 return false;
