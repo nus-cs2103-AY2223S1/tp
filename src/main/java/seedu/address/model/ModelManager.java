@@ -2,10 +2,14 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.ParserUtil.DATE_FORMAT_PATTERN;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -17,6 +21,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Reminder;
 
@@ -125,6 +130,8 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+        deletePersonReminders(target);
+        addPersonReminders(editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -184,6 +191,30 @@ public class ModelManager implements Model {
     @Override
     public void deletePersonReminders(Person personToDelete) {
         unsortedReminders.removeIf(pair -> pair.getKey().equals(personToDelete));
+    }
+
+    private void addPersonReminders(Person personToAdd) {
+        Reminder toRemove = null;
+        Reminder toAdd = null;
+        Iterator<Reminder> i = personToAdd.getReminders().iterator();
+        while (i.hasNext()) {
+            Reminder r = i.next();
+            if (r.task.contains("Happy Birthday")) {
+                toRemove = r;
+                LocalDate birthday = personToAdd.getBirthday().value.withYear(LocalDate.now().getYear());
+                if (birthday.isBefore(LocalDate.now())) {
+                    birthday = birthday.plusYears(1);
+                }
+                r = new Reminder(Messages.generateHappyBirthdayMessage(personToAdd.getName()),
+                        birthday.format(DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)));
+                toAdd = r;
+            }
+            unsortedReminders.add(new Pair<>(personToAdd, r));
+        }
+        if (toRemove != null) {
+            personToAdd.deleteReminder(toRemove);
+            personToAdd.getReminders().add(toAdd);
+        }
     }
 
     @Override
