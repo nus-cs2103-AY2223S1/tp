@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR_LONG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LINKS;
 
 import java.util.List;
 import java.util.Optional;
@@ -81,9 +80,9 @@ public class EditLinkCommand extends Command {
             return new CommandResult(commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        List<Link> lastShownList = model.getFilteredLinkList();
+        List<Link> lastShownList = model.getLinkList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getOneBased() > lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_LINK_DISPLAYED_INDEX);
         }
 
@@ -103,7 +102,6 @@ public class EditLinkCommand extends Command {
         }
 
         model.setLink(linkToEdit, editedLink);
-        model.updateFilteredLinkList(PREDICATE_SHOW_ALL_LINKS);
         return new CommandResult(String.format(MESSAGE_EDIT_LINK_SUCCESS, editedLink));
     }
 

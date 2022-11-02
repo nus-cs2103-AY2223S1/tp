@@ -19,7 +19,6 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
-    Predicate<Link> PREDICATE_SHOW_ALL_LINKS = unused -> true;
 
     /** Replaces user prefs data with the data in {@code userPrefs}. */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
@@ -115,9 +114,7 @@ public interface Model {
 
     void deleteLink(Link link);
 
-    ObservableList<Link> getFilteredLinkList();
-
-    void updateFilteredLinkList(Predicate<Link> predicate);
+    ObservableList<Link> getLinkList();
 
     void setTask(Task target, Task editedTask);
 }

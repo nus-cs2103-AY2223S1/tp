@@ -190,10 +190,6 @@ public class TruthTable implements ReadOnlyTruthTable {
         return teams.asUnmodifiableObservableList();
     }
 
-    public ObservableList<Link> getLinkList() {
-        return getTeam().getLinkList();
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
