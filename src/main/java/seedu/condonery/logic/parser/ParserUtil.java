@@ -206,8 +206,7 @@ public class ParserUtil {
      */
     public static PropertyStatusEnum parsePropertyStatus(String propertyStatus) throws ParseException {
         requireNonNull(propertyStatus);
-        return PropertyStatusEnum.valueOf(propertyStatus) == null
-                ? PropertyStatusEnum.AVAILABLE : PropertyStatusEnum.valueOf(propertyStatus);
+        return PropertyStatusEnum.valueOf(propertyStatus);
     }
 
 }
