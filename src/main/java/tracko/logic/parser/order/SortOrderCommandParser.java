@@ -28,7 +28,9 @@ public class SortOrderCommandParser implements Parser<SortOrderCommand> {
 
         String compareKeyword = trimmedArgs;
 
-        return new SortOrderCommand(new OrderDateTimeComparator(compareKeyword));
+        OrderDateTimeComparator comparator = new OrderDateTimeComparator(compareKeyword);
+
+        return new SortOrderCommand(comparator);
     }
 
 }

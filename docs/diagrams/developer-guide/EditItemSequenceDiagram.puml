@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TrackOParser" as TrackOParser LOGIC_COLOR
 participant "parser:EditItemCommandParser" as EditItemCommandParser LOGIC_COLOR
 participant "ArgumentTokenizer" as ArgumentTokenizer<<class>> LOGIC_COLOR
-participant ":EditItemDescriptor" as EditItemDescriptor LOGIC_COLOR
+participant "descriptor:EditItemDescriptor" as EditItemDescriptor LOGIC_COLOR
 participant "command:EditItemCommand" as EditItemCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -99,7 +99,7 @@ create CommandResult
 EditItemCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> EditItemCommand
+CommandResult --> EditItemCommand : result
 deactivate CommandResult
 
 EditItemCommand --> LogicManager : result
