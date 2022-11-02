@@ -54,20 +54,20 @@ public class PriceRange {
         }
 
         String[] rangeValues = test.split("-");
-        
+
         double leftValue;
         double rightValue;
-        
+
         try {
             leftValue = Double.parseDouble(rangeValues[0].trim());
             rightValue = Double.parseDouble(rangeValues[1].trim());
         } catch (NumberFormatException e) {
             return false;
         }
-        
+
         boolean isLeftValueValid = leftValue >= 0;
         boolean isRightValueValid = rightValue >= 0;
-        
+
         return isLeftValueValid
                 && isRightValueValid
                 && (leftValue - rightValue <= 0);
