@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 
 import coydir.commons.core.index.Index;
 import coydir.model.Model;
+import coydir.model.person.EmployeeId;
 import coydir.model.person.Person;
 
 /**
@@ -52,4 +53,20 @@ public class TestUtil {
     public static Person getPerson(Model model, Index index) {
         return model.getFilteredPersonList().get(index.getZeroBased());
     }
+
+    public static void setMaxEmployeeId(int count) {
+        EmployeeId.setCount(count);
+    }
+
+    public static void restartEmployeeId(int count) {
+        EmployeeId.restart();
+        setMaxEmployeeId(count);
+    }
+
+    public static String getNextEmployeeId() {
+        int count = EmployeeId.getCount();
+        setMaxEmployeeId(count + 1);
+        return String.valueOf(count);
+    }
+
 }

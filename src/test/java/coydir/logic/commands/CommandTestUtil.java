@@ -30,9 +30,9 @@ public class CommandTestUtil {
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_NAME_PRITTAM = "Prittam Kok";
-    public static final String VALID_EMPLOYEE_ID_AMY = "10";
-    public static final String VALID_EMPLOYEE_ID_BOB = "11";
-    public static final String VALID_EMPLOYEE_ID_PRITTAM = "12";
+    public static final String VALID_EMPLOYEE_ID_AMY = "111";
+    public static final String VALID_EMPLOYEE_ID_BOB = "222";
+    public static final String VALID_EMPLOYEE_ID_PRITTAM = "333";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_PHONE_PRITTAM = "00000000";

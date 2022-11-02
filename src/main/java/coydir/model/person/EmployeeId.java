@@ -38,17 +38,37 @@ public class EmployeeId {
     /**
      * Constructs a {@code EmployeeId} with a given ID.
      * Uses the raw integer value of the ID (no leading zeroes).
+     * Called by factory method {@code addEmployeeId}.
+     * Also used primarily in testing.
      */
     public EmployeeId(String id) {
+        requireNonNull(id);
+        checkArgument(isValidNumber(id), MESSAGE_CONSTRAINTS);
+        this.value = String.valueOf(Integer.parseInt(id));
+    }
+
+    public static void restart() {
+        allIds.clear();
+        count = 0;
+    }
+
+    public static EmployeeId addEmployeeId(String id) {
         requireNonNull(id);
         checkArgument(isValidEmployeeId(id), MESSAGE_CONSTRAINTS);
         int rawValue = Integer.parseInt(id);
         allIds.add(rawValue);
-        this.value = String.valueOf(rawValue);
+        return new EmployeeId(String.valueOf(rawValue));
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid number, and can possibly be an employee ID.
+     */
+    public static boolean isValidNumber(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid new Employee ID.
      */
     public static boolean isValidEmployeeId(String test) {
         if (!test.matches(VALIDATION_REGEX)) {
