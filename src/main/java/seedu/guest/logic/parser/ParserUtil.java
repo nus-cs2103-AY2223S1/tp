@@ -167,6 +167,9 @@ public class ParserUtil {
         if (!Request.isValidRequest(trimmedRequest)) {
             throw new ParseException(Request.MESSAGE_CONSTRAINTS);
         }
+        if (trimmedRequest.equals("")) {
+            return new Request();
+        }
         return new Request(trimmedRequest);
     }
 }
