@@ -137,12 +137,14 @@ Curious about the various commands? Refer to the [Features](#features) below to 
 
 ### What is an Entry
 
-Think of PennyWise as a budgeting diary that has infinite number of pages. You can write as much data as you want 
-to track your expenditure or income, PennyWise will keep track of them. An entry is what PennyWise terms as a 
+Think of PennyWise as a helpful personal budgeting assistant. Whenever you spend or earn money, all you need to do is 
+tell PennyWise and PennyWise will help you log and save it as a new Entry! An Entry is what PennyWise terms as a 
 particular expenditure or income logged into the application. PennyWise defines an expenditure and income as things that
-you spend money on, and things that make you money respectively!
+you spend money on, and things that make you money respectively! Not only that, PennyWise will help you 
+analyse your data, so you can easily get an overview of your overall expenditure or income.
 
-An entry is defined by the following items:
+However, in order to do this, PennyWise will need some data from you! Whenever you log an entry, whether expenditures or
+incomes, you need to tell PennyWise the following:
 
 * Type: whether it is an expenditure or income
 * Description: what is this particular entry about
