@@ -2,7 +2,6 @@ package tracko.logic.parser.order;
 
 import static java.util.Objects.requireNonNull;
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static tracko.logic.commands.order.EditOrderCommand.QUANTITY_NOT_A_VALID_INTEGER;
 import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
@@ -104,18 +103,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
 
         if (isItemPrefixPresent && isQuantityPrefixPresent) {
             String item = argMultimap.getValue(PREFIX_ITEM).get();
-            Integer quantity;
-            try {
-                quantity = Integer.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get());
-
-                if (quantity < 0) {
-                    throw new ParseException(QUANTITY_NOT_A_VALID_INTEGER);
-                }
-
-            } catch (NumberFormatException e) {
-                throw new ParseException(QUANTITY_NOT_A_VALID_INTEGER);
-            }
-
+            Integer quantity = ParserUtil.parseNonNegativeUnsignedInteger(argMultimap.getValue(PREFIX_QUANTITY).get());
             editOrderDescriptor.setUnlinkedItemToEdit(new Pair<String, Integer>(item, quantity));
         }
     }
