@@ -358,6 +358,7 @@ Deleted data can not be retrieved. Do use this command cautiously!
 * Optional. A resident can have any number of tags, including 0
 * When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
 * You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
+* Multiple tags can be added to the command using multiple keywords e.g `t/president t/exchange`.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -610,18 +611,20 @@ RC4HDB saves your data after every command. There is no need to save manually.
 ---
 
 ### File Command Format:
-* All file commands have a `FOLDER_NAME` field, which signifies the name of the **sub** data folder or the [CSV](#glossary-of-terms) file to be targeted depending on the command that is being used.
-* Do not include any file types in the `FOLDER_NAME`.
-* The following symbols are not to be used in `FOLDER_NAME`.
+* All file commands have a `FOLDER_NAME` or `FILE_NAME` field depending on the command that is being used. 
+* `FOLDER_NAME` signifies the name of the **sub** data folder that is being used.
+* `FILE_NAME` refers to the [CSV](#glossary-of-terms) file to be targeted.
+* Do not include any file types in the `FOLDER_NAME` or `FILE_NAME`.
+* The following symbols are not to be used in `FOLDER_NAME` or `FILE_NAME`:
   * Empty spaces
   * `.` dots
   * `/` forward slashes
   * `\ ` backslashes
 
 ### Examples:
-* `rc4_data_2022` is a valid `FOLDER_NAME`.
-* `rc4_data_2022.json` is an invalid `FOLDER_NAME` due to the inclusion of the file type, `.json`.
-* The following are invalid `FOLDER_NAME` due to the inclusion of restricted symbols.
+* `rc4_data_2022` is a valid `FOLDER_NAME`/`FILE_NAME`.
+* `rc4_data_2022.json` is an invalid `FOLDER_NAME`/`FILE_NAME` due to the inclusion of the file type, `.json`.
+* The following are invalid `FOLDER_NAME`/`FILE_NAME` due to the inclusion of restricted symbols.
   * `rc4 data 2022` has empty spaces.
   * `rc4.data.2022` has dots.
   * `rc4/data/2022` has forward slashes.
@@ -683,7 +686,7 @@ Examples:
 
 **RC4HDB** provides users with the ability to import data from [CSV](#glossary-of-terms) files. In order for RC4HDB to find your files, place them in the [**main**](#finding-your-data) data folder.
 
-Format: `file import FOLDER_NAME`
+Format: `file import FILE_NAME`
 
 :information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
 
