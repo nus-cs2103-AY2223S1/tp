@@ -21,7 +21,7 @@ Class VenueBook
 Class Booking
 Class Venue
 Class Resident
-
+Class UniqueVenueList
 }
 
 Class HiddenOutside #FFFFFF
@@ -40,14 +40,16 @@ ModelManager -left-> "1" UserPrefs
 ModelManager --> "~*" Venue
 ModelManager --> "~*" Booking
 ModelManager --> " 1" VenueBook
-Venue *--> "*" Booking
 
 ResidentBook *--> "1" UniqueResidentList
 UniqueResidentList --> "~* all" Resident
 ModelManager --> "~* filtered" Resident
+VenueBook *--> "1" UniqueVenueList
+UniqueVenueList --> "~*" Venue
+Venue --> "~*" Booking
 
-Booking -[hidden]left-> Resident
-Venue -[hidden]right-> VenueBook
-Venue -[hidden]up-> VenueBook
+VenueBook -[hidden]right-> UserPrefs
+VenueBook -[hidden]right-> ModelManager
+Venue -[hidden]right-> Booking
 
 @enduml
