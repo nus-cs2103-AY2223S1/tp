@@ -31,7 +31,7 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_USAGE = FULL_COMMAND_WORD + ": Edits the details of the task at the specified "
         + "INDEX in the displayed task list. "
         + "Existing values will be overwritten by the input values.\n"
-        + "Parameters: INDEX (must be a positive integer) "
+        + "Parameters: INDEX "
         + "[" + PREFIX_MODULE + "MODULE]* "
         + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]*\n"
         + "Example: " + FULL_COMMAND_WORD + " 1 "
@@ -89,7 +89,8 @@ public class EditTaskCommand extends Command {
         }
 
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        if (!taskToEdit.getModule().isSameModule(editedTask.getModule())) {
+        if (!taskToEdit.getModule().isSameModule(editedTask.getModule())
+            && taskToEdit.isLinked()) {
             return new CommandResult(
                 MESSAGE_EXAM_UNLINKED + String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
         }
@@ -121,6 +122,16 @@ public class EditTaskCommand extends Command {
     public static class EditTaskDescriptor {
         private Module module;
         private TaskDescription description;
+
+        public EditTaskDescriptor() {}
+
+        /**
+         * Copy constructor.
+         */
+        public EditTaskDescriptor(EditTaskDescriptor toCopy) {
+            setModule(toCopy.module);
+            setDescription(toCopy.description);
+        }
 
         /**
          * Returns true if at least one field is edited.
@@ -162,8 +173,8 @@ public class EditTaskCommand extends Command {
             // state check
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
-            return module.equals(e.module)
-                && description.equals(e.description);
+            return getModule().equals(e.getModule())
+                && getDescription().equals(e.getDescription());
         }
     }
 }

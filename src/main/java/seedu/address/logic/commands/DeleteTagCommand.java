@@ -20,7 +20,7 @@ public class DeleteTagCommand extends Command {
     public static final String COMMAND_WORD = "tagdel";
     public static final String MESSAGE_USAGE = "t " + COMMAND_WORD + ": deletes tags linked to the task.\n"
             + "Parameters: " + "INDEX " + PREFIX_TAG + "KEYWORD [SECOND_KEYWORD]\n"
-            + "Example: " + "t " + COMMAND_WORD + " " + "t/" + "priority\n";
+            + "Example: " + "t " + COMMAND_WORD + " 1 " + "t/" + "priority";
     public static final String NO_PRIORITY_TAG_TO_DELETE =
             "There is no priority tag to delete from the task.";
     public static final String NO_DEADLINE_TAG_TO_DELETE =

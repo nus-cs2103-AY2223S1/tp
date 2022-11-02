@@ -16,4 +16,11 @@ public class TypicalIndexes {
     public static Index INDEX_FOURTH = Index.fromOneBased(4);
     public static Index INDEX_FIFTH = Index.fromOneBased(5);
     public static Index INDEX_SIXTH = Index.fromOneBased(6);
+
+    public static final Index INDEX_FIRST_TASK = Index.fromOneBased(1);
+    public static final Index INDEX_SECOND_TASK = Index.fromOneBased(2);
+    public static final Index INDEX_UNMARKED_TASK = Index.fromOneBased(1);
+    public static final Index INDEX_MARKED_TASK = Index.fromOneBased(6);
+    public static final Index INDEX_LINKED_TASK = Index.fromOneBased(4);
+
 }

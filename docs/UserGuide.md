@@ -13,6 +13,7 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
     - [Listing modules](#listing-modules)
     - [Finding modules](#finding-modules)
     - [Deleting modules](#deleting-modules)
+    - [Editing modules](#editing-modules)
   - [Tasks-Related Features](#tasks-related-features)
     - [Adding a task](#adding-a-task)
     - [Deleting a task](#deleting-a-task)
@@ -47,7 +48,7 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `modpro.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-2/tp).
+2. Download the latest `modpro.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-2/tp/releases/download/v1.3.1/modpro.jar).
 
 3. Copy the file to the folder you want to use as the _home folder_ for MODPRO.
 
@@ -95,7 +96,7 @@ the module list
 * `MODULAR_CREDIT` refers to the number of modular credits that the module has
 * `MODULE_CODE` must be at least 6 characters long and the first two characters
 of the module code must be an alphabetical character
-* `MODULAR_CREDIT` must be at least 0 and not more than 20
+* `MODULAR_CREDIT` must be at least 0 and not more than 45
 * If the module name is empty, an error message will be displayed
 
 Examples:
@@ -471,7 +472,7 @@ Example:
 `e del 1` deletes the first exam in the exam list.
 <div markdown="span" class="alert alert-info">
 
-**Note:** All tasks currently linked to the exam will be unlinked after the exam is deleted.
+:information_source:**Note:** All tasks currently linked to the exam will be unlinked after the exam is deleted.
 </div>
 
 ### Linking an exam
@@ -543,6 +544,21 @@ Exits the program
 
 Format: `exit`
 
+--------------------------------------------------------------------------
+## General
+
+### Saving data to the data file
+* All MODPRO data will be manually saved to the hard disk after the execution of each command.
+There is no need to manually save the data.
+
+### Editing the data file
+* MODPRO data is saved as a JSON file at `[JAR FILE LOCATION]/data/modpro.json`. Advanced users are allowed
+to modify the data at the JSON file
+
+<div markdown="span" class="warning-for-modpro-data-change">:exclamation: **Warning:**
+If changes made to the modpro.json makes the format invalid or invalid data is used, 
+MODPRO will discard all data stored and start with an empty data file.
+</div>
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 

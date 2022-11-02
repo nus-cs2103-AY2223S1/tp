@@ -42,8 +42,8 @@
                             <Label prefHeight="17.0" prefWidth="411.0" style="-fx-padding: 0 0 0 222;" text="Deletes the task in the task list" textFill="WHITE" />
                         </HBox>
                         <HBox prefHeight="38.0" prefWidth="495.0">
-                            <Label style="-fx-padding: 0 0 0 20;" text="T edit INDEX [m/MODULE] [d/DESCRIPTION]" textFill="WHITE" />
-                            <Label style="-fx-padding: 0 0 0 43;" text="Edits the task in the task list" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 20;" text="T edit INDEX [m/MODULE]* [d/DESCRIPTION]*" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 31;" text="Edits the task in the task list" textFill="WHITE" />
                         </HBox>
                         <HBox prefHeight="36.0" prefWidth="495.0">
                             <Label style="-fx-padding: 0 0 0 20;" text="T list" textFill="WHITE" />
@@ -70,11 +70,11 @@
                             <Label style="-fx-padding: 0 0 0 191;" text="Unmarks the task in the task list" textFill="WHITE" />
                         </HBox>
                         <HBox prefHeight="41.0" prefWidth="495.0">
-                            <Label prefHeight="34.0" prefWidth="371.0" style="-fx-padding: 0 0 0 20;" text="T tagadd INDEX p/PRIORITY_STATUS dl/DEADLINE" textFill="WHITE" wrapText="true" />
-                            <Label style="-fx-padding: 0 0 0 80;" text="Tags the task in the task list with priority status and/or deadline" textFill="WHITE" wrapText="true" />
+                            <Label prefHeight="36.0" prefWidth="453.0" style="-fx-padding: 0 0 0 20;" text="T tagadd INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*" textFill="WHITE" wrapText="true" />
+                            <Label style="-fx-padding: 0 0 0 0;" text="Tags the task in the task list with priority status and/or deadline" textFill="WHITE" wrapText="true" />
                         </HBox>
                         <HBox prefHeight="41.0" prefWidth="495.0">
-                            <Label prefHeight="37.0" prefWidth="290.0" style="-fx-padding: 0 0 0 20;" text="T tagedit INDEX p/PRIORITY_STATUS dl/DEADLINE" textFill="WHITE" wrapText="true" />
+                            <Label prefHeight="37.0" prefWidth="290.0" style="-fx-padding: 0 0 0 20;" text="T tagedit INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*" textFill="WHITE" wrapText="true" />
                             <Label style="-fx-padding: 0 0 0 57;" text="Edits the tag linked to the task in the task list" textFill="WHITE" wrapText="true" />
                         </HBox>
                         <HBox prefHeight="38.0" prefWidth="500.0">
@@ -103,8 +103,8 @@
                             <Label prefHeight="35.0" prefWidth="261.0" style="-fx-padding: 0 0 0 20;" text="M add c/MODULE_CODE m/MODULE_NAME mc/MODULAR_CREDIT" textFill="WHITE" wrapText="true" />
                             <Label prefHeight="36.0" prefWidth="207.0" style="-fx-padding: 0 0 0 35;" text="Adds the module to the module list" textFill="WHITE" wrapText="true" />
                         </HBox>
-                        <HBox prefHeight="43.0" prefWidth="497.0">
-                            <Label prefHeight="47.0" prefWidth="259.0" style="-fx-padding: 0 0 0 20;" text="M edit INDEX [c/MODULE CODE] [m/MODULE NAME] [mc/MODULE CREDIT]" textFill="WHITE" wrapText="true" />
+                        <HBox prefHeight="66.0" prefWidth="497.0">
+                            <Label prefHeight="61.0" prefWidth="259.0" style="-fx-padding: 0 0 0 20;" text="M edit INDEX [c/MODULE CODE]* [m/MODULE NAME]* [mc/MODULE CREDIT]*" textFill="WHITE" wrapText="true" />
                             <Label style="-fx-padding: 10 0 0 36;" text="Edits the module in the module list" textFill="WHITE" wrapText="true" />
                         </HBox>
                         <HBox prefHeight="41.0" prefWidth="497.0">
@@ -119,13 +119,13 @@
                             <Label prefHeight="17.0" prefWidth="268.0" style="-fx-padding: 8 0 0 20;" text="M find KEYWORD" textFill="WHITE" />
                             <Label style="-fx-padding: 0 15 0 170;" text="Finds all modules whose module code matches the keyword" textFill="WHITE" wrapText="true" />
                         </HBox>
-                        <HBox prefHeight="35.0" prefWidth="500.0">
+                        <HBox prefHeight="44.0" prefWidth="497.0">
                             <Label prefHeight="35.0" prefWidth="261.0" style="-fx-padding: 0 0 0 20;" text="E add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE" textFill="WHITE" wrapText="true" />
                             <Label prefHeight="36.0" prefWidth="207.0" style="-fx-padding: 0 0 0 35;" text="Adds the exam to the exam list" textFill="WHITE" wrapText="true" />
                         </HBox>
                         <HBox prefHeight="41.0" prefWidth="500.0">
-                            <Label prefHeight="47.0" prefWidth="259.0" style="-fx-padding: 0 0 0 20;" text="E edit INDEX [m/MODULE] [ex/EXAM_DESCRIPTION] [ed/EXAM_DATE]" textFill="WHITE" wrapText="true" />
-                            <Label style="-fx-padding: 13 0 0 37;" text="Edits the exam in the exam list" textFill="WHITE" wrapText="true" />
+                            <Label prefHeight="39.0" prefWidth="272.0" style="-fx-padding: 0 0 0 20;" text="E edit INDEX [m/MODULE]* [ex/EXAM_DESCRIPTION]* [ed/EXAM_DATE]*" textFill="WHITE" wrapText="true" />
+                            <Label style="-fx-padding: 13 0 0 23;" text="Edits the exam in the exam list" textFill="WHITE" wrapText="true" />
                         </HBox>
                         <HBox prefHeight="46.0" prefWidth="500.0">
                             <Label style="-fx-padding: 10 0 0 20;" text="E del INDEX" textFill="WHITE" />
@@ -137,23 +137,23 @@
                         </HBox>
                         <HBox prefHeight="36.0" prefWidth="500.0">
                             <Label prefHeight="17.0" prefWidth="120.0" style="-fx-padding: 0 0 0 20;" text="E unlink INDEX " textFill="WHITE" />
-                            <Label style="-fx-padding: 0 0 0 174;" text="Unlinks the task from the exam" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 176;" text="Unlinks the task from the exam" textFill="WHITE" />
                         </HBox>
                         <HBox prefHeight="38.0" prefWidth="500.0">
                             <Label prefHeight="17.0" prefWidth="110.0" style="-fx-padding: 0 0 0 20;" text="E showT INDEX" textFill="WHITE" />
-                            <Label style="-fx-padding: 0 0 0 183;" text="View all tasks linked to the exam" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 186;" text="View all tasks linked to the exam" textFill="WHITE" />
                         </HBox>
                         <HBox prefHeight="37.0" prefWidth="500.0">
                             <Label prefHeight="17.0" prefWidth="110.0" style="-fx-padding: 0 0 0 20;" text="clearAll" textFill="WHITE" />
-                            <Label style="-fx-padding: 0 0 0 182;" text="Clears all exams,modules and tasks" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 184;" text="Clears all exams,modules and tasks" textFill="WHITE" />
                         </HBox>
                         <HBox prefHeight="30.0" prefWidth="500.0">
                             <Label prefHeight="17.0" prefWidth="110.0" style="-fx-padding: 0 0 0 20;" text="help" textFill="WHITE" />
-                            <Label style="-fx-padding: 0 0 0 182;" text="View all available commands" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 184;" text="View all available commands" textFill="WHITE" />
                         </HBox>
                         <HBox prefHeight="28.0" prefWidth="500.0">
                             <Label prefHeight="17.0" prefWidth="110.0" style="-fx-padding: 0 0 0 20;" text="exit" textFill="WHITE" />
-                            <Label style="-fx-padding: 0 0 0 181;" text="To exit MODPRO application" textFill="WHITE" />
+                            <Label style="-fx-padding: 0 0 0 184;" text="To exit MODPRO application" textFill="WHITE" />
                         </HBox>
                     </VBox>
                 </HBox>

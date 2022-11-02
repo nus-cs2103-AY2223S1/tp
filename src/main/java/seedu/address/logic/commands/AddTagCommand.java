@@ -22,7 +22,9 @@ public class AddTagCommand extends Command {
     public static final String COMMAND_WORD = "tagadd";
     public static final String MESSAGE_USAGE = "t " + COMMAND_WORD + ": tags a task in the task list.\n"
             + "Parameters: INDEX " + "[" + PREFIX_PRIORITY_STATUS + "PRIORITY_STATUS]* "
-            + "[" + PREFIX_DEADLINE + "DEADLINE]*";
+            + "[" + PREFIX_DEADLINE + "DEADLINE]*\n"
+            + "Example: " + "t " + COMMAND_WORD + " 1"
+            + " " + PREFIX_PRIORITY_STATUS + "HIGH";
 
     public static final String TAG_ADDED_SUCCESS = "The tag(s) has/have been added successfully";
 

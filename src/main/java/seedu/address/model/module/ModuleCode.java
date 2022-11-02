@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ModuleCode {
     public static final String MODULE_CODE_CONSTRAINTS = "Module code should be at least 6 "
             + "characters long, with first two characters "
-            + "being alphabetic characters";
+            + "being alphabetical characters";
     public static final String VALIDATION_REGEX = "^[A-Za-z]{2}[A-Za-z0-9]*";
 
     public final String moduleCode;

@@ -12,12 +12,20 @@ import seedu.address.model.module.ModuleCode;
  */
 public class ExamBuilder {
 
-    public static final String DEFAULT_EXAM_DESCRIPTION = "Final Exam";
-    public static final String DEFAULT_MODULE = "CS2030S";
-    public static final String DEFAULT_EXAM_DATE = "01-11-2023";
+//<<<<<<< HEAD
+//    public static final String DEFAULT_EXAM_DESCRIPTION = "Final Exam";
+//    public static final String DEFAULT_MODULE = "CS2030S";
+//    public static final String DEFAULT_EXAM_DATE = "01-11-2023";
+//
+//    private ExamDescription examDescription;
+//    private Module module;
+//=======
+    public static final String DEFAULT_MODULE = "CS2103T";
+    public static final String DEFAULT_DESCRIPTION = "Midterms";
+    public static final String DEFAULT_DATE = "29-12-2022";
 
-    private ExamDescription examDescription;
     private Module module;
+    private ExamDescription examDescription;
     private ExamDate examDate;
 
     /**
@@ -27,28 +35,62 @@ public class ExamBuilder {
         Module m = new Module(new ModuleCode(DEFAULT_MODULE));
         DistinctModuleList list =  new DistinctModuleList();
         list.addModule(m);
-        examDescription = new ExamDescription(DEFAULT_EXAM_DESCRIPTION);
-        examDate = new ExamDate(DEFAULT_EXAM_DATE);
+        examDescription = new ExamDescription(DEFAULT_DESCRIPTION);
+        examDate = new ExamDate(DEFAULT_DATE);
         module = new Module(new ModuleCode(DEFAULT_MODULE));
     }
 
 
+//    public ExamBuilder(Exam examToCopy) {
+//        examDescription = examToCopy.getDescription();
+//        module = examToCopy.getModule();
+//        examDate = examToCopy.getExamDate();
+//    }
+
+
+//    public ExamBuilder withDescription(String examDescription) {
+//        this.examDescription = new ExamDescription(examDescription);
+//        return this;
+//    }
+
+//    public ExamBuilder withModule(String moduleCode) {
+//        this.module = new Module(new ModuleCode(moduleCode));
+//        return this;
+//    }
+//=======
+//        module = new Module(new ModuleCode(DEFAULT_MODULE));
+//        examDescription = new ExamDescription(DEFAULT_DESCRIPTION);
+//        examDate = new ExamDate(DEFAULT_DATE);
+//    }
+
+    /**
+     * Initializes the ExamBuilder with the data of {@code examToCopy}.
+     */
     public ExamBuilder(Exam examToCopy) {
-        examDescription = examToCopy.getDescription();
         module = examToCopy.getModule();
+        examDescription = examToCopy.getDescription();
         examDate = examToCopy.getExamDate();
     }
 
-
-    public ExamBuilder withDescription(String examDescription) {
-        this.examDescription = new ExamDescription(examDescription);
+    /**
+     * Sets the {@code Module} of the {@code Exam} that we are building.
+     */
+    public ExamBuilder withModule(String module) {
+        this.module = new Module(new ModuleCode(module));
         return this;
     }
 
-    public ExamBuilder withModule(String moduleCode) {
-        this.module = new Module(new ModuleCode(moduleCode));
+    /**
+     * Sets the {@code ExamDescription} of the {@code Exam} that we are building.
+     */
+    public ExamBuilder withDescription(String description) {
+        this.examDescription = new ExamDescription(description);
         return this;
     }
+
+    /**
+     * Sets the {@code ExamDate} of the {@code Exam} that we are building.
+     */
     public ExamBuilder withDate(String date) {
         this.examDate = new ExamDate(date);
         return this;
