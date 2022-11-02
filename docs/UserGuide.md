@@ -375,6 +375,12 @@ Examples:
 * `issue -d 1` Deletes issue with `ISSUE_ID` 1.
 * `issue -d 3` Deletes issue with `ISSUE_ID` 3.
 
+### Listing all issues : `issue -l`
+
+Shows a list of all issues.
+
+Format: `issues -l`
+
 ### Finding an issue : `issue -f`
 
 Finds and lists all the issues matching the search criteria.
@@ -487,35 +493,35 @@ If your changes to the data file makes its format invalid, DevEnable will discar
 
 # Command summary
 
-| Action                         | Format, Examples |
-|--------------------------------|------------------|
-| **Add Project**                | `project -a`     |
-| **Edit Project**               | `project -e`     |
-| **Delete Project**             | `project -d`     |
-| **List Projects**              | `project -l`     |
-| **Find Project**               | `project -f`     |
-| **Pin Projects**               | `project -p`     |
-| **Sort Projects**              | `project -s`     |
-| **Set Default View (Project)** | `project -v`     |
-| **Add Client**                 | `client -a`      |
-| **Edit Client**                | `client -e`      |
-| **Delete Client**              | `client -d`      |
-| **List Clients**               | `client -l`      |
-| **Find Client**                | `client -f`      |
-| **Pin Clients**                | `client -p`      |
-| **Sort Clients**               | `client -s`      |
-| **Set Default View (Client)**  | `client -v`      |
-| **Add Issue**                  | `issue -a`       |
-| **Edit Issue**                 | `issue -e`       |
-| **Delete Issue**               | `issue -d`       |
-| **List Issues**                | `issue -l`       |
-| **Find Issue**                 | `issue -f`       |
-| **Pin Issue**                  | `issue -p`       |
-| **Sort Issues**                | `issue -s`       |
-| **Mark Issue**                 | `issue -m`       |
-| **Unmark Issue**               | `issue -u`       |
-| **Set Default View (Issue)**   | `issue -v`       |
-| **Clear**                      | `clear`          |
-| **Help**                       | `help`           |
-| **Exit**                       | `exit`           |
+| Action                         | Format                                                                          |
+|--------------------------------|:-------------------------------------------------------------------------------------------|
+| **Add Project**                | `project -a n/PROJECT_NAME [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE] `                     |
+| **Edit Project**               | `project -e p/PROJECT_ID [n/PROJECT_NAME] [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`       |
+| **Delete Project**             | `project -d PROJECT_ID`                                                                    |
+| **List Projects**              | `project -l`                                                                               |
+| **Find Project**               | `project -f [n/PROJECT_NAME] [r/REPOSITORY] [p/PROJECT_ID] [c/CLIENT_ID] [l/CLIENT_LABEL]` |
+| **Pin Projects**               | `project -p PROJECT_ID`                                                                    |
+| **Sort Projects**              | `project -s [p/PROJECT_ID] [d/DEADLINE] [i/ISSUE_COUNT] [n/PROJECT_NAME]`                  |
+| **Set Default View (Project)** | `project -v`                                                                               |
+| **Add Client**                 | `client -a n/CLIENT_NAME p/PROJECT_ID [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`                  |
+| **Edit Client**                | `client -e c/CLIENT_ID [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`                 |
+| **Delete Client**              | `client -d CLIENT_ID`                                                                      |
+| **List Clients**               | `client -l`                                                                                |
+| **Find Client**                | `client -f [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL] [c/CLIENT_ID]`               |
+| **Pin Clients**                | `client -p CLIENT_ID`                                                                      |
+| **Sort Clients**               | `client -s [c/CLIENT_ID] [n/CLIENT_NAME]`                                                  |
+| **Set Default View (Client)**  | `client -v`                                                                                |
+| **Add Issue**                  | `issue -a p/PROJECT_ID t/TITLE [d/DEADLINE] [u/URGENCY]`                                   |
+| **Edit Issue**                 | `issue -e i/ISSUE_ID [t/TITLE] [d/DEADLINE] [u/URGENCY]`                                   |
+| **Delete Issue**               | `issue -d ISSUE_ID`                                                                        |
+| **List Issues**                | `issue -l`                                                                                 |
+| **Find Issue**                 | `issue -f [t/TITLE] [n/PROJECT_NAME] [p/PROJECT_ID] [u/URGENCY] [s/STATUS] [i/ISSUE_ID]`   |
+| **Pin Issue**                  | `issue -p ISSUE_ID`                                                                        |
+| **Sort Issues**                | `issue -s [i/ISSUE_ID] [d/DEADLINE] [u/URGENCY]`                                           |
+| **Mark Issue**                 | `issue -m ISSUE_ID`                                                                        |
+| **Unmark Issue**               | `issue -u ISSUE_ID`                                                                        |
+| **Set Default View (Issue)**   | `issue -v`                                                                                 |
+| **Clear**                      | `clear`                                                                                    |
+| **Help**                       | `help`                                                                                     |
+| **Exit**                       | `exit`                                                                                     |
 
