@@ -41,6 +41,7 @@ public class DeleteProjectCommand extends ProjectCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
+        ui.showProjects();
         List<Project> lastShownList = model.getFilteredProjectList();
 
         for (Project p : lastShownList) {
@@ -62,13 +63,12 @@ public class DeleteProjectCommand extends ProjectCommand {
                 }
 
                 model.deleteProject(p);
-                ui.showProjects();
                 model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
                 return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, p));
             }
         }
 
-        throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_ID);
+        throw new CommandException(Messages.MESSAGE_PROJECT_NOT_FOUND);
 
     }
 
