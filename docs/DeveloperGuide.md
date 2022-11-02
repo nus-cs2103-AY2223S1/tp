@@ -292,7 +292,31 @@ Cons:
 
 #### 4.2.3 Edit command
 
-*To be updated*
+**Description**
+
+The `EditCommand` updates the student record at a given index. Under the hood, a new `Student` object is created to replace the student to be edited.
+
+**Implementation**
+
+Editing a student record involves 2 main steps:
+
+**Step 1: Parsing the command**
+
+1. After the user inputs the `EditCommand`, the `StudentRecordParser` will identify the command and create a `EditCommandParser` instance in the `LogicManager`.
+
+2. The `EditCommandParser` parses the rest of the user's input and creates a new `EditCommand` object which will be executed by the `LogicManager`
+
+**Step 2: Executing the command**
+
+The `EditCommand` instance now communicates with the `ModelManager` to execute the command.
+
+1. The `createEditedStudent` method is called to create a new `editedStudent` that with the edited fields updated.
+
+2. The `editedStudent` replaces the  student to be edited with the `setStudent` method. 
+
+3. The `updateFilteredStudentList` method is called to show all student records.
+
+4. A new `Command Result` instance is created and returned to `LogicManager`
 
 #### 4.2.4 Find command
 
@@ -354,13 +378,13 @@ The sequence diagram below illustrates the interaction between the `Logic` and `
 
 Given below is an example usage scenario of how the ViewAll mechanism behaves at each step. 
 
-Step 1. The user executes `viewAll` command. 
+Step 1. The user inputs "viewAll". 
 
-Step 2. The `StudentRecordParser` will identify the command and create a `ViewAllCommand` object in the `LogicManager`
+Step 2. The `StudentRecordParser` will identify the command and create a `ViewAllCommand` object in the `LogicManager`.
 
-Step 3. `ViewAllCommand#execute` is called which updates the `FilteredStudentList` in `Model`
+Step 3. `ViewAllCommand#execute` is called which updates the `FilteredStudentList` in `Model`.
 
-Step 4. Classify updates and displays a list of all student records
+Step 4. Classify updates and displays a list of all student records.
 
 #### 4.2.6 ViewClass command
 
