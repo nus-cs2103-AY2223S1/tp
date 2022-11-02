@@ -45,7 +45,6 @@ checkUp's features include creating, viewing and managing patients' medical reco
 checkUp also allows users to:
 * search for patients by:
   * name;
-  * NRIC;
   * phone number;
   * email address; and
   * medical condition.
