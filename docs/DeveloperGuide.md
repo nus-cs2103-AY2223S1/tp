@@ -7,19 +7,19 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## Acknowledgements
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -150,7 +150,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -259,14 +259,14 @@ Both the `mark` and `unmark` commands follow [general command implementation flo
 
 #### Design considerations
 
-* One design consideration involoved marking/unmarking multiple tasks by adding a space before inputting the index of another task. 
-However, users could forget to input spaces when inputting indexes of multiple tasks, leading to unintended tasks being 
-marked/unmarked. This was considered to be an acceptable trade-off as users would be completing tasks one at a time 
+* One design consideration involoved marking/unmarking multiple tasks by adding a space before inputting the index of another task.
+However, users could forget to input spaces when inputting indexes of multiple tasks, leading to unintended tasks being
+marked/unmarked. This was considered to be an acceptable trade-off as users would be completing tasks one at a time
 most of the time, so a mass mark/unmark feature is a nice-to-have one.
 
 ### \[Proposed\] Edit task feature
 
-#### About 
+#### About
 
 CodeConnect will allow the user to edit an existing task in the task list.
 
@@ -289,13 +289,13 @@ Outline of how components work together when the user enters a `edit` task comma
 
 #### Design Considerations
 
-Initially we felt that being able to edit more than 1 feature per edit task command was not as important, as 
+Initially we felt that being able to edit more than 1 feature per edit task command was not as important, as
 a task object does not have that many fields to begin with. However, we felt that implementing it will still
 make it a lot easier in the event that a user want to have multiple changes to a task.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -305,7 +305,7 @@ make it a lot easier in the event that a user want to have multiple changes to a
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## Appendix: Requirements
 
 ### Product scope
 
@@ -468,7 +468,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
