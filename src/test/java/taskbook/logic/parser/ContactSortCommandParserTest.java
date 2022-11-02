@@ -34,18 +34,6 @@ public class ContactSortCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsContactSortPhoneAscendingCommand() {
-        // Note: the space at the start of the userInput is necessary due to ArgumentTokenizer behavior.
-        assertParseSuccess(parser, " s/p", new ContactSortPhoneAscendingCommand());
-    }
-
-    @Test
-    public void parse_validArgs_returnsContactSortPhoneDescendingCommand() {
-        // Note: the space at the start of the userInput is necessary due to ArgumentTokenizer behavior.
-        assertParseSuccess(parser, " s/rp", new ContactSortPhoneDescendingCommand());
-    }
-
-    @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, " a",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ContactSortCommand.MESSAGE_USAGE));
