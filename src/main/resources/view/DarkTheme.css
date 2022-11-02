@@ -144,6 +144,7 @@
     -fx-font-family: "Arial";
     -fx-font-size: 20px;
     -fx-text-fill: white;
+    -fx-alignment: "center-right";
 }
 
 .cell_big_label {
@@ -156,6 +157,14 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
+    -fx-alignment: "center-right";
+}
+
+.cell_mark_label {
+    -fx-font-family: "Arial";
+    -fx-font-size: 15px;
+    -fx-text-fill: #010504;
+    -fx-alignment: "center-right";
 }
 
 .stack-pane {

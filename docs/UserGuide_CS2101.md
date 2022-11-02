@@ -219,7 +219,7 @@ command to work as expected.
     - A student can have any number of tags (including 0).
     - Tags must only contain alphanumeric characters.
     
-<div markdown="span" class="alert alert-info">ℹ **Note:** Tags must contain at least 1 alphanumeric character and cannot contain spacings.
+<div markdown="span" class="alert alert-info">ℹ **Note:** Tags must contain at least 1 alphanumeric character, cannot contain spacings and limited to `40` characters long.
 </div>
 
 Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
