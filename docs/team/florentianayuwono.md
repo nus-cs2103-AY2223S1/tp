@@ -25,27 +25,26 @@ Up until 2 November 2022, I have contributed 1781 LoC (roughly 4,185 additions a
 
 ### Project Management
 
-**Release**: Contributed in release of `v1.2` and `v1.3` (2 releases) on GitHub.
+**Releases and Milestones**: 
+* `v1.1`: 1 issue and 1 PR.
+* `v1.2`: 8 issues and 4 PRs.
+* `v1.3`: 18 issues and 6 PRs.
+* `v1.4`: 17 issues and 2 PRs.
 
-**Enhancements to existing features**:
-  * Revamped the GUI theme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+**Enhancement to existing features**: 
+* Revamped the GUI theme and CSS structure (Pull requests [\#142](), [\#128]()).
 
-  * **Documentation**:
-    * User Guide:
-      * Added documentation for the features `delete` and `find` [\#72]()
-      * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-    * Developer Guide:
-      * Added implementation details of the `delete` feature.
+**Documentation**:
+* User Guide:
+  * Added documentation for the `search` feature (Pull requests [\#152](), [\#125](), [\#75]()).
+  * Updated links and overall project documentation (Pull requests [\#152](), [\#125](), [\#82](), [\#12]()).
+* Developer Guide:
+  * Added implementation details and sequence diagram for the `search` feature (Pull requests [\#152](), [\#75]()).
 
-  * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+**Community**:
+* 24 PRs reviewed (with 64 review comments).
+* Contributed to 4 posts in forum discussions.
+* Reported 26 bugs and suggestions for other teams in the class.
 
-  * **Tools**:
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
-
-  * _{you can add/remove categories in the list above}_
+**Tools**:
+* Coming soon.
