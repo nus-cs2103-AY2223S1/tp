@@ -12,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.addcommands.AddSupplierCommand;
 import seedu.address.logic.parser.ParserUtil;
@@ -31,6 +32,7 @@ import seedu.address.model.pet.Pet;
 public class PopupPanelForSupplier extends PopUpPanel {
 
     private static final String FXML = "PopupPanelForSupplier.fxml";
+    private final Stage stage;
     private final List<PopupPanelForPet> petComponents;
 
     @FXML
@@ -60,8 +62,9 @@ public class PopupPanelForSupplier extends PopUpPanel {
     /**
      * Constructs a {@code PopupPanelForSupplier} by setting input sequence, prompt text style and keyboard shortcut.
      */
-    public PopupPanelForSupplier() {
+    public PopupPanelForSupplier(Stage stage) {
         super(FXML);
+        this.stage = stage;
         petComponents = new ArrayList<>();
         generateInputSequence(nameField, phoneField, emailField, countryField, addressField, addComponentButton);
         setPromptTextStyle(nameField, phoneField, emailField, countryField, addressField);
@@ -77,7 +80,7 @@ public class PopupPanelForSupplier extends PopUpPanel {
      */
     @FXML
     public void addPetComponent(ActionEvent event) {
-        PopupPanelForPet petComponent = new PopupPanelForPet();
+        PopupPanelForPet petComponent = new PopupPanelForPet(stage);
         petComponents.add(petComponent);
         int numOfComponents = petComponents.size();
         componentPlaceholder.addRow(numOfComponents - 1, petComponent.getRoot());

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -15,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.Command;
@@ -33,9 +35,11 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(AddCommandPopupWindow.class);
     private static final String FXML = "AddCommandPopupWindow.fxml";
+    private static final String ICON_APPLICATION = "/images/petCode.png";
     private final Stage stage;
     private final Logic logic;
     private final ResultDisplay resultDisplay;
+    private final Image image = new Image(MainApp.class.getResourceAsStream(ICON_APPLICATION));
     private PopUpPanel popUpPanel;
 
     @FXML
@@ -61,6 +65,7 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
         this.logic = logic;
         this.typeToBeAdded.setText(typeToBeAdded);
         this.resultDisplay = resultDisplay;
+        this.stage.getIcons().add(image);
         setCloseWindowKey(KeyCode.ESCAPE);
         setSaveButtonShortcut(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN));
     }
@@ -86,7 +91,7 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
             popupContentPlaceholder.getChildren().add(popupPanelForBuyer.getRoot());
             break;
         case AddCommandWithPopup.ADD_SUPPLIER:
-            PopupPanelForSupplier popupPanelForSupplier = new PopupPanelForSupplier();
+            PopupPanelForSupplier popupPanelForSupplier = new PopupPanelForSupplier(stage);
             popUpPanel = popupPanelForSupplier;
             popupContentPlaceholder.getChildren().add(popupPanelForSupplier.getRoot());
             break;
@@ -156,8 +161,8 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 
         getRoot().initStyle(StageStyle.DECORATED);
-        getRoot().setWidth(screenBounds.getWidth());
-        getRoot().setHeight(screenBounds.getHeight());
+        getRoot().setWidth(screenBounds.getWidth() * 0.6);
+        getRoot().setHeight(screenBounds.getHeight() * 0.75);
         getRoot().setX(screenBounds.getMinX());
         getRoot().setY(screenBounds.getMinY());
         getRoot().setMaxWidth(screenBounds.getWidth() * 2);

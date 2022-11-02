@@ -404,9 +404,9 @@ Examples:
 
 Adds a contact with a pop-up window that has prompt texts for what to input without the need to enter any
 prefixes. This reduces the need to memorise prefixes.
-Given below is the pop-up window for adding a buyer.
+Given below is the pop-up window for adding a supplier.
 
-![pop up window for adding a supplier](images/AddBuyerWithPopup.png)
+![pop up window for adding a supplier](images/AddSupplierWithPopup.png)
 
 The followings are two ways to use this command:
 
@@ -438,7 +438,7 @@ This ensures that you can use all the available shortcuts.
 
 <div markdown="span" class="alert alert-primary">
 
-**:bulb: Tip:** If a compulsory text field is ***empty*** during saving, the cursor will be brought to that text field,
+**:bulb: Tip:** If a compulsory text field is ***empty*** or a text field **starts with whitespace** during saving, the cursor will be brought to that text field,
 which will be highlighted in red.
 
 </div>
@@ -454,6 +454,8 @@ The error message and the correct format of the input will be shown in the **mai
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: This command is only available for **adding a buyer or supplier** for the current version.
+Note that the three buttons for adding pets to a supplier, which are `Upload photo`, `Upload pet certificate`, `Upload vaccination proof` (you can refer to the picture above),
+only **open the file explorer** and **do nothing more**. You may be able to upload files from your local disk to the storage of PetCode in future versions.
 
 </div>
 
