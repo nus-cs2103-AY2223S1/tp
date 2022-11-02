@@ -46,7 +46,7 @@ public class UngroupCommandParser implements Parser<UngroupCommand> {
         if (!Group.isValidGroupName(splitArgs[1])) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddToGroupCommand.MESSAGE_USAGE));
         }
-        groupToRemove = new Group(splitArgs[1]);
+        groupToRemove = new Group(splitArgs[1].toLowerCase());
 
         return new UngroupCommand(index, groupToRemove);
     }
