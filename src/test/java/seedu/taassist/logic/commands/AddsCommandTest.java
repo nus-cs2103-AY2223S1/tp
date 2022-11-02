@@ -1,9 +1,7 @@
 package seedu.taassist.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.taassist.logic.commands.CommandTestUtil.VALID_CLASS_CS1101S;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_SESSION_LAB1;
-import static seedu.taassist.logic.commands.CommandTestUtil.VALID_SESSION_TUT3;
 import static seedu.taassist.testutil.Assert.assertThrows;
 
 import java.util.HashSet;
