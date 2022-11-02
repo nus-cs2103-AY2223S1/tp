@@ -305,13 +305,11 @@ You can only undo <em>undoable</em> commands!
 </div>
 
 <div markdown="block" class="alert alert-success">
-**:bulb: Tip:**
-If you have undone your previous undoable command by mistake, fret not as you can easily redo this 
-to reapply the initial changes!
-</div>
 
-<div markdown="block" class="alert alert-warning">
-**:exclamation: Caution:** Stacking multiple `undo` commands may confuse you as to which <em>undoable</em> command you are
+**:bulb: Tip:** <br>
+* If you have undone your previous undoable command by mistake, fret not as you can easily redo this 
+to reapply the initial changes!
+* Stacking multiple `undo` commands may confuse you as to which <em>undoable</em> command you are
 undoing and which state your WorkBook is in!
 </div>
 
@@ -346,13 +344,11 @@ its original state before both `edit` and `clear` commands. When a `redo` comman
 the WorkBook will return the state with the edited stage and email for the first internship.
 
 <div markdown="block" class="alert alert-success">
-**:bulb: Tip:** <br>
-If you have redone your previous undo command by mistake, fret not as you can easily undo this again
-to remove the initial changes!
-</div>
 
-<div markdown="block" class="alert alert-warning">
-**:exclamation: Caution:** Stacking multiple `redo` commands may confuse you as to which <em>undoable</em> command you are
+**:bulb: Tip:** <br>
+* If you have redone your previous undo command by mistake, fret not as you can easily undo this again
+to remove the initial changes!
+* Stacking multiple `redo` commands may confuse you as to which <em>undoable</em> command you are
 undoing and which state your WorkBook is in!
 </div>
 
