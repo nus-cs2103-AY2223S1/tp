@@ -48,7 +48,8 @@ public class EditModuleCommand extends Command {
             + "[" + PREFIX_MODULE_DESCRIPTION + "MODULE DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Software Engineering "
+            + "cs2103t "
+            + PREFIX_NAME + "SWE "
             + PREFIX_MODULE_DESCRIPTION + "Practical exam for this is the following week";
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited module: %1$s";
@@ -76,7 +77,7 @@ public class EditModuleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Module> lastShownList = model.getFilteredModuleList();
+        List<Module> lastShownList = model.getAllModuleList();
         boolean isInModuleList = false;
         int positionInList = 0;
         String targetCodeToUpperCase = moduleCode.toString().toUpperCase();

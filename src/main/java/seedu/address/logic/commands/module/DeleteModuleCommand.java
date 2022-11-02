@@ -46,7 +46,7 @@ public class DeleteModuleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Module> moduleList = model.getFilteredModuleList();
+        List<Module> moduleList = model.getAllModuleList();
         Module moduleToDelete;
         int positionInList = 0;
         boolean isInModuleList = false;

@@ -20,6 +20,8 @@ import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.StudentContainsModulePredicate;
+import seedu.address.model.person.TutorContainsModulePredicate;
 
 /**
  * Represents the in-memory model of the profNus data.
@@ -219,6 +221,13 @@ public class ModelManager implements Model {
         updateFilteredModuleList(new ModuleCodeContainsKeywordPredicate(moduleCode));
         updateFilteredScheduleList(new ScheduleContainsKeywordsPredicate(Arrays
                 .asList(moduleCode.toString())));
+    }
+
+    @Override
+    public void viewModuleDetails(ModuleCode moduleCode) {
+        requireNonNull(moduleCode);
+        updateFilteredStudentList(new StudentContainsModulePredicate(moduleCode));
+        updateFilteredTutorList(new TutorContainsModulePredicate(moduleCode));
     }
 
 

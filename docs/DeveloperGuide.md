@@ -141,9 +141,11 @@ The `Schedule` component
 
 - represents a schedule of its corresponding module
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative design is to let `Schedule` object have a reference of the module it belongs to. The diagram is as follows:<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative design is to let `Schedule` object have a reference of the module it belongs to. The diagram is as follows: <br>
+  <div align=center><img src="images/NewScheduleUML.png" alt="NewScheduleUML" style="zoom: 50%; width=450; " /></div>
+</div>
 
-<img src="images/NewScheduleUML.png" alt="NewScheduleUML" style="zoom: 50%; width=450" />
+  
 
 ### Storage component
 
@@ -317,7 +319,8 @@ During the execution, the following validity checks will be conducted:
 - Module existence check — The model will check if it can find the module indicated by the new schedule. If no module is found, then a `CommandException` will be thrown.
 - Schedule conflict check — The model will check if the new schedule conflicts with any existing schedules that the user has. If conflict happens, then a `CommandException` will be thrown.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command isn't executed successfully and a `CommandException` is thrown, then the new schedule won't be added to the ProfNUS.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command isn't executed successfully and a `CommandException` is thrown, then the new schedule won't be added to the ProfNUS.</div>
+
 
 ### [Proposed] EditSchedule feature
 
@@ -339,7 +342,8 @@ During the execution, the following validity checks will be conducted:
 - Schedule conflict check — The model will check if the edited schedule conflicts with any existing schedules that the user has. If conflict happens, then a `CommandException` will be thrown.
 - Optional parameters check — The parser will check if at least one of fields of the `Schedule` is edited. If no modification exists, then a `ParserException` will be thrown.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the edit schedule command isn't executed successfully and a `CommandException` or `ParserException` is thrown, then no schedule will be edited.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the edit schedule command isn't executed successfully and a `CommandException` or `ParserException` is thrown, then no schedule will be edited.</div>
+
 
 
 ### [Proposed] ViewSchedule feature

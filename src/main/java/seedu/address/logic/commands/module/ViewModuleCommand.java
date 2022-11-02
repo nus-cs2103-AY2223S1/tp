@@ -13,8 +13,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.person.StudentContainsModulePredicate;
-import seedu.address.model.person.TutorContainsModulePredicate;
 
 /**
  * Shows module details in profNUS to the user.
@@ -42,7 +40,7 @@ public class ViewModuleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Module> moduleList = model.getFilteredModuleList();
+        List<Module> moduleList = model.getAllModuleList();
         Module moduleToView;
 
         int positionInList = 0;
@@ -61,8 +59,7 @@ public class ViewModuleCommand extends Command {
 
         Index targetIndex = Index.fromZeroBased(positionInList);
         moduleToView = moduleList.get(targetIndex.getZeroBased());
-        model.updateFilteredStudentList(new StudentContainsModulePredicate(moduleToView.getCode()));
-        model.updateFilteredTutorList(new TutorContainsModulePredicate(moduleToView.getCode()));
+        model.viewModuleDetails(moduleToView.getCode());
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleToView), false, false,
                 false, false, true, false, false, false);
     }
