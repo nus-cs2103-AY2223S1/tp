@@ -154,7 +154,10 @@ public class Resident implements BookingField {
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            for (Tag t : tags) {
+                builder.append(t + ", ");
+            }
+            builder.delete(builder.length() - 2, builder.length());
         }
         return builder.toString();
     }
