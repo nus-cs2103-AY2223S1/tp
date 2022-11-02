@@ -253,7 +253,7 @@ Format: `tag remove INDEX t/TAG`
 Example:
 * `tag remove 1 t/friend` removes the friend tag from the first contact shown in the list.
 
-### Viewing tags `[coming in v2.0]`
+### Viewing tags `[Coming soon in v1.5]`
 
 ## Customisation Features
 
