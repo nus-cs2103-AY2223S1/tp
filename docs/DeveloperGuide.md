@@ -573,22 +573,46 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Launching the application
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder and navigate to the folder.
 
-   1. Double-click the jar file Expected: Shows the _GUI_ with a set of sample contacts. The window size may not be optimum.
+   1. Ensure that you have the correct version of `java 11` installed by doing `java --version`.
+
+   1. Run the command `java -jar Friendnancial.jar` : Shows the _GUI_ with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to the desired size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   1. Re-launch the app by rerunning the command `java -jar Friendnancial.jar`.<br>
+      Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a person
+
+1. Adding a person successfully
+
+   1. Prerequisites: The user has opened the `Friendnancial.jar` and the application is running.
+
+   1. Test Case: `add n/John Doe p/98765432 e/johndoe@successfultest.com a/John Street, Block 123, #01-01 b/18-08-2000 t/friend`<br>
+      Expected: A contact named John Doe has been added to Friendnancial with all optional and required fields present.
+
+   1. Test Case: `add n/Jane Doe p/92345678 e/janedoe@successfultest.com a/Jane Street, Block 321 #01-01 b/18-09-2000`<br>
+      Expected: A contact named Jane Doe has been added to Friendnancial with all required fields present.
+
+1. Adding a person unsuccessfully
+
+   1. Prerequisites: The user has opened the `Friendnancial.jar` and the application is running.
+
+   1. Test Case: `add n/Johnny Doe p/98761234 a/Johnny Street, Block 231, #04-21 b/18-07-2000`<br>
+      Expected: No contact named Johnny Doe is added to Friendnancial. Error details are shown in the status message in the application. The command fails with missing required fields.
+
+   1. Test Case: `add n/Daniel s/o Danny p/98765431 e/daniel@failingtest.come a/Daniel Street, Block 132, #04-23 b/18-01-2000`<br>
+      Expected: No contact named Daniel s/o Danny is added to Friendnancial. Error details are shown in the status message in the application. Only alphenumeric values are allowed for names.
+
+### Editing a person
 
 ### Deleting a person
 
@@ -607,13 +631,37 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Updating insurance
+
+### Adding a reminder
+
+### Deleting a reminder
+
+### Listing all contacts
+
+### Finding specific contacts
+
+### Viewing help
+
+### Clearing all entries
+
+### Exiting the Application
+
+1. Closing the application when finished
+
+    1. Exit the application using the `exit` command or by closing the window.<br>
+       Expected: The application will close and all the changes made will be saved.
+
+    1. You may then reopen the application and continue using it.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: Access to the `/data` folder that will be created in the same folder containing the `Friendnancial.jar` file.
 
-1. _{ more test cases …​ }_
+   1. Test Case: Navigate to the `/data` folder that is in the same folder containing the `Friendnancial.jar` file and delete the `addressbook.json` file. Then reopen the application. <br>
+      Expected: The application will be repopulated with the initial starting data and no changes saved.
 
 --------------------------------------------------------------------------------------------------------------------
 
