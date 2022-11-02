@@ -599,7 +599,7 @@ A **non-empty** word(s) which fulfills the `COMPANY_NAME` parameter constraints.
 
 2. `phone`: Represents the phone number. <br/>
 **EITHER** `"NA"` which represents no phone number provided
-**OR** a number which fulfills the `PHONE` parameter constraints.
+**OR** a phone number which fulfills the `PHONE` parameter constraints.
 
 3. `email`: Represents the email. <br />
 **EITHER** `"NA"` which represents no email provided
