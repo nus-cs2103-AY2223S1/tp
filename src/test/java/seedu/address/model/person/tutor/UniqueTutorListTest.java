@@ -9,12 +9,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTutors.TUTOR1;
 import static seedu.address.testutil.TypicalTutors.TUTOR2;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.model.person.tutor.exceptions.DuplicateTutorException;
 import seedu.address.model.person.tutor.exceptions.TutorNotFoundException;
 import seedu.address.testutil.TutorBuilder;
@@ -168,4 +170,19 @@ public class UniqueTutorListTest {
         assertThrows(UnsupportedOperationException.class, ()
                 -> uniqueTutorList.asUnmodifiableObservableTutorList().remove(0));
     }
+
+    @Test
+    public void sort_default_success() {
+        ArrayList<Tutor> expected = new ArrayList<>(Arrays.asList(
+                new TutorBuilder().withName("Zedd").build(),
+                new TutorBuilder().withName("Adam").build(),
+                new TutorBuilder().withName("Macey").build()));
+        expected.forEach(uniqueTutorList::add);
+        uniqueTutorList.sort(SortCommand.SortBy.ALPHA);
+        uniqueTutorList.sort(SortCommand.SortBy.REVERSE);
+        uniqueTutorList.sort(SortCommand.SortBy.DEFAULT);
+        ArrayList<Tutor> actual = new ArrayList<>(uniqueTutorList.internalList);
+        assertEquals(expected, actual);
+    }
+
 }

@@ -7,12 +7,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
 import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS2;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.model.tuitionclass.exceptions.DuplicateTuitionClassException;
 import seedu.address.model.tuitionclass.exceptions.TuitionClassNotFoundException;
 import seedu.address.testutil.TuitionClassBuilder;
@@ -184,5 +186,19 @@ public class UniqueTuitionClassListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () ->
                 uniqueTuitionClassList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void sort_default_success() {
+        ArrayList<TuitionClass> expected = new ArrayList<>(Arrays.asList(
+                new TuitionClassBuilder().withName("P5ENG").build(),
+                new TuitionClassBuilder().withName("S2MATH").build(),
+                new TuitionClassBuilder().withName("P1ART").build()));
+        expected.forEach(uniqueTuitionClassList::add);
+        uniqueTuitionClassList.sort(SortCommand.SortBy.ALPHA);
+        uniqueTuitionClassList.sort(SortCommand.SortBy.REVERSE);
+        uniqueTuitionClassList.sort(SortCommand.SortBy.DEFAULT);
+        ArrayList<TuitionClass> actual = new ArrayList<>(uniqueTuitionClassList.internalList);
+        assertEquals(expected, actual);
     }
 }

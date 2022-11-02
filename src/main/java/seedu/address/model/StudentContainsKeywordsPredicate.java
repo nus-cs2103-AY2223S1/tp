@@ -35,8 +35,9 @@ public class StudentContainsKeywordsPredicate<T> implements Predicate<T> {
                     && student.getSchool().school.toLowerCase()
                     .contains(keywords.get(PREFIX_SUBJECT_OR_SCHOOL).toLowerCase())
                     && student.getLevel().level.toLowerCase().contains(keywords.get(PREFIX_LEVEL).toLowerCase())
-                    && student.getTags().stream().anyMatch(tag -> tag.tagName.toLowerCase()
-                    .contains(keywords.get(PREFIX_TAG).toLowerCase()));
+                    && (student.getTags().stream().anyMatch(tag -> tag.tagName.toLowerCase()
+                    .contains(keywords.get(PREFIX_TAG).toLowerCase()))
+                    || (student.getTags().isEmpty() && keywords.get(PREFIX_TAG).equals("")));
         }
         throw new ClassCastException("StudentContainsKeywords predicate can only be applied to Student.");
     }

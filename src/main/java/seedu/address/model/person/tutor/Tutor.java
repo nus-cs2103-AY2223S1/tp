@@ -2,7 +2,9 @@ package seedu.address.model.person.tutor;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -25,7 +27,7 @@ public class Tutor extends Person {
     private final Qualification qualification;
     private final Institution institution;
     private final List<TuitionClass> tuitionClasses = new ArrayList<>();
-    private final String uniqueId;
+    private final HashMap<Integer, Object> uniqueId = new HashMap<>();
 
 
     /**
@@ -38,7 +40,7 @@ public class Tutor extends Person {
         id++;
         this.qualification = qualification;
         this.institution = institution;
-        this.uniqueId = id + "tutor";
+        this.uniqueId.put(1, id);
     }
 
     /**
@@ -54,7 +56,7 @@ public class Tutor extends Person {
         this.qualification = qualification;
         this.institution = institution;
         this.tuitionClasses.addAll(tuitionClasses);
-        this.uniqueId = id + "tutor";
+        this.uniqueId.put(1, id);
     }
 
     public Qualification getQualification() {
@@ -69,8 +71,12 @@ public class Tutor extends Person {
         return tuitionClasses;
     }
 
-    public String getUniqueId() {
+    public HashMap<Integer, Object> getUniqueId() {
         return uniqueId;
+    }
+
+    public void updateTimeAddedToList() {
+        this.uniqueId.put(0, Instant.now());
     }
 
     public void minusId() {

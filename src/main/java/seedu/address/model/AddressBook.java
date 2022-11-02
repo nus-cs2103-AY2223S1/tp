@@ -120,10 +120,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
         if (target instanceof Student && editedPerson instanceof Student) {
-            students.setStudent((Student) target, (Student) editedPerson);
+            Student editedStudent = (Student) editedPerson;
+            editedStudent.updateTimeAddedToList();
+            students.setStudent((Student) target, editedStudent);
         } else {
             assert(target instanceof Tutor && editedPerson instanceof Tutor);
-            tutors.setTutor((Tutor) target, (Tutor) editedPerson);
+            Tutor editedTutor = (Tutor) editedPerson;
+            editedTutor.updateTimeAddedToList();
+            tutors.setTutor((Tutor) target, editedTutor);
         }
     }
 
@@ -172,6 +176,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setTuitionClass(TuitionClass target, TuitionClass editedClass) {
         requireNonNull(editedClass);
         tuitionClasses.setTuitionClass(target, editedClass);
+        editedClass.updateTimeAddedToList();
 
         //find and edit every person in this class
         for (Student student : students) {

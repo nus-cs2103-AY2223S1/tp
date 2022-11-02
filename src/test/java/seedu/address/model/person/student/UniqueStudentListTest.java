@@ -9,12 +9,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.STUDENT1;
 import static seedu.address.testutil.TypicalStudents.STUDENT2;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.model.person.student.exceptions.DuplicateStudentException;
 import seedu.address.model.person.student.exceptions.StudentNotFoundException;
 import seedu.address.testutil.StudentBuilder;
@@ -166,5 +168,19 @@ public class UniqueStudentListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
                 -> uniqueStudentList.asUnmodifiableObservableStudentList().remove(0));
+    }
+
+    @Test
+    public void sort_default_success() {
+        ArrayList<Student> expected = new ArrayList<>(Arrays.asList(
+                new StudentBuilder().withName("Zedd").build(),
+                new StudentBuilder().withName("Adam").build(),
+                new StudentBuilder().withName("Macey").build()));
+        expected.forEach(uniqueStudentList::add);
+        uniqueStudentList.sort(SortCommand.SortBy.ALPHA);
+        uniqueStudentList.sort(SortCommand.SortBy.REVERSE);
+        uniqueStudentList.sort(SortCommand.SortBy.DEFAULT);
+        ArrayList<Student> actual = new ArrayList<>(uniqueStudentList.internalList);
+        assertEquals(expected, actual);
     }
 }
