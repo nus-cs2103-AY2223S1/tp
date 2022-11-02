@@ -1,15 +1,15 @@
 package seedu.address.model.property;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.address.model.characteristics.Characteristics;
-import seedu.address.testutil.PropertyBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.characteristics.Characteristics;
+import seedu.address.testutil.PropertyBuilder;
 
 public class FilterPropsContainingAnyCharacteristicPredicateTest {
 
@@ -82,7 +82,8 @@ public class FilterPropsContainingAnyCharacteristicPredicateTest {
         assertFalse(predicate.test(new PropertyBuilder().build()));
 
         // Multiple non-matching predicates
-        predicate = new FilterPropsContainingAnyCharacteristicPredicate(new Characteristics("HDB; bright; sunny; windy"));
+        predicate = new FilterPropsContainingAnyCharacteristicPredicate(
+                new Characteristics("HDB; bright; sunny; windy"));
         assertFalse(predicate.test(new PropertyBuilder().withCharacteristics("landed; 5-room; dim; gloomy").build()));
 
     }
