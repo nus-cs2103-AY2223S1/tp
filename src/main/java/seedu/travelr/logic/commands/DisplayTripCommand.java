@@ -37,7 +37,7 @@ public class DisplayTripCommand extends Command {
         List<Trip> lastShownList = model.getFilteredTripList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_TRIP_INDEX);
         }
 
         Trip tripToDisplay = lastShownList.get(targetIndex.getZeroBased());

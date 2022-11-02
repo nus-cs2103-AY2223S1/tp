@@ -3,6 +3,7 @@ package seedu.travelr.logic.parser;
 import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.travelr.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.travelr.testutil.TypicalIndexes.INDEX_FIRST_TRIP;
 
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,9 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a",
+                MESSAGE_INVALID_INDEX
+                        + "\n\n"
+                        + String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }

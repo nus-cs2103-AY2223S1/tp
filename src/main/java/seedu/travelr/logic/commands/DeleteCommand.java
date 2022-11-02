@@ -38,7 +38,7 @@ public class DeleteCommand extends Command {
         List<Trip> lastShownList = model.getFilteredTripList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TRIP_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_TRIP_INDEX);
         }
 
         Trip tripToDelete = lastShownList.get(targetIndex.getZeroBased());
