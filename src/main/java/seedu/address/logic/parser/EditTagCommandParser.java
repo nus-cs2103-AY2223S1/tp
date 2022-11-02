@@ -18,7 +18,8 @@ import seedu.address.model.tag.PriorityTag;
  * create a EditTagCommand object.
  */
 public class EditTagCommandParser implements Parser<EditTagCommand> {
-    public static final String INVALID_INDEX_EDIT_TAG = "The index for tagedit should be a positive integer.";
+    public static final String INVALID_INDEX_EDIT_TAG = "The index for tagedit should be greater than 0 "
+            + "and less than 2147483648.";
 
     @Override
     public EditTagCommand parse(String args) throws ParseException {
