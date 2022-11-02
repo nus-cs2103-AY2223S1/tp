@@ -65,7 +65,7 @@ public class FilterPropsContainingAllCharacteristicsPredicateTest {
 
     @Test
     public void test_propertyDoesNotContainCharacteristics_returnFalse() {
-        //No matching characteristics
+        // No matching characteristics
         FilterPropsContainingAllCharacteristicsPredicate predicate =
                 new FilterPropsContainingAllCharacteristicsPredicate(new Characteristics("HDB"));
         assertFalse(predicate.test(new PropertyBuilder().withCharacteristics("Condo").build()));
