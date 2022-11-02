@@ -14,9 +14,9 @@ import seedu.address.model.Model;
  */
 @CommandLine.Command(name = AssignCommand.COMMAND_WORD,
         aliases = {"as"}, mixinStandardHelpOptions = true, subcommands = {
-    AssignTaskCommand.class,
-    AssignTaskRandomlyCommand.class,
-})
+            AssignTaskCommand.class,
+            AssignTaskRandomlyCommand.class,
+        })
 public class AssignCommand extends Command {
     public static final String COMMAND_WORD = "assign";
 

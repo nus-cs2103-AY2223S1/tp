@@ -14,12 +14,12 @@ import seedu.address.model.Model;
  */
 @CommandLine.Command(name = DeleteCommand.COMMAND_WORD,
         aliases = {"d"}, mixinStandardHelpOptions = true, subcommands = {
-    DeleteLinkCommand.class,
-    DeleteMemberCommand.class,
-    DeletePersonCommand.class,
-    DeleteTaskCommand.class,
-    DeleteTeamCommand.class,
-})
+            DeleteLinkCommand.class,
+            DeleteMemberCommand.class,
+            DeletePersonCommand.class,
+            DeleteTaskCommand.class,
+            DeleteTeamCommand.class,
+        })
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
