@@ -114,6 +114,6 @@ public class AddTaskCommand extends Command {
                 || (other instanceof AddTaskCommand // instanceof handles nulls
                 && taskName.equals(((AddTaskCommand) other).taskName)) // state check
                 && Arrays.equals(assignees, ((AddTaskCommand) other).assignees)
-                && deadline == null? false : deadline.equals(((AddTaskCommand) other).deadline);
+                && deadline == null ? false : deadline.equals(((AddTaskCommand) other).deadline);
     }
 }

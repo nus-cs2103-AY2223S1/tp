@@ -183,11 +183,11 @@ public class EditPersonCommand extends Command {
                 return true;
             } else if (other instanceof Arguments) {
                 Arguments target = (Arguments) other;
-                return this.name == null? false: this.name.equals(target.name)
-                        && this.phone == null? false: this.phone.equals(target.phone)
-                        && this.email == null? false: this.email.equals(target.email)
-                        && this.address == null? false: this.address.equals(target.address)
-                        && this.tags == null? false: this.tags.equals(target.tags);
+                return this.name == null ? false : this.name.equals(target.name)
+                        && this.phone == null ? false : this.phone.equals(target.phone)
+                        && this.email == null ? false : this.email.equals(target.email)
+                        && this.address == null ? false : this.address.equals(target.address)
+                        && this.tags == null ? false : this.tags.equals(target.tags);
             } else {
                 return false;
             }

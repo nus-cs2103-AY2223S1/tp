@@ -186,8 +186,8 @@ public class EditTaskCommand extends Command {
                 return true;
             } else if (other instanceof Arguments) {
                 Arguments target = (Arguments) other;
-                return this.name == null? false: this.name.equals(target.name)
-                        && this.deadline == null? false: this.deadline.equals(target.deadline)
+                return this.name == null ? false : this.name.equals(target.name)
+                        && this.deadline == null ? false : this.deadline.equals(target.deadline)
                         && Arrays.equals(assignees, target.assignees);
             } else {
                 return false;

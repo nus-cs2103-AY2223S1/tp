@@ -138,8 +138,8 @@ public class EditLinkCommand extends Command {
                 return true;
             } else if (other instanceof Arguments) {
                 Arguments target = (Arguments) other;
-                return this.name == null? false: this.name.equals(target.name)
-                        && this.url == null? false: this.url.equals(target.url);
+                return this.name == null ? false : this.name.equals(target.name)
+                        && this.url == null ? false : this.url.equals(target.url);
             } else {
                 return false;
             }

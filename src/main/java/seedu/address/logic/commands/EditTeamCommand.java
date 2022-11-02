@@ -147,8 +147,8 @@ public class EditTeamCommand extends Command {
                 return true;
             } else if (other instanceof Arguments) {
                 Arguments target = (Arguments) other;
-                return this.name == null? false: this.name.equals(target.name)
-                        && this.description == null? false: this.description.equals(target.description);
+                return this.name == null ? false : this.name.equals(target.name)
+                        && this.description == null ? false : this.description.equals(target.description);
             } else {
                 return false;
             }
