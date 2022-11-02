@@ -12,7 +12,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.ClientId;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
 
@@ -59,7 +58,7 @@ class JsonSerializableAddressBook {
 
         for (JsonAdaptedProject jsonAdaptedProject : projects) {
             Project project = jsonAdaptedProject.toModelType();
-            if (addressBook.hasProject(project) || addressBook.hasProjectId(project.getID())) {
+            if (addressBook.hasProject(project) || addressBook.hasProjectId(project.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PROJECT);
             }
             addressBook.addProject(project);
@@ -68,14 +67,14 @@ class JsonSerializableAddressBook {
                 continue;
             }
 
-            if (!addressBook.hasClient(projectClient) && !addressBook.hasClientId(projectClient.getID())) {
+            if (!addressBook.hasClient(projectClient) && !addressBook.hasClientId(projectClient.getId())) {
                 projectClient.addProjects(project);
                 addressBook.addClient(projectClient);
                 continue;
             }
 
-            if (addressBook.hasClientId(projectClient.getID())) {
-                Client existingClient = addressBook.getClientById(projectClient.getID());
+            if (addressBook.hasClientId(projectClient.getId())) {
+                Client existingClient = addressBook.getClientById(projectClient.getId());
                 if (!existingClient.hasSameDetails(projectClient)) {
                     throw new IllegalValueException(MESSAGE_INVALID_CLIENT);
                 }

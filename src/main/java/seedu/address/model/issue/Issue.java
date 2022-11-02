@@ -261,7 +261,7 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     }
 
     @Override
-    public int getID() {
+    public int getId() {
         return this.issueId.getIdInt();
     }
 
