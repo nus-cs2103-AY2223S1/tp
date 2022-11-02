@@ -53,8 +53,10 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* If a parameter is specified multiple times, only the last occurrence of the parameter will be considered regardless of the  validity of previous parameter inputs.<br>
+  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken which will be successful.
+  e.g. if you specify `d/A/B/C d/01/01/2022`, only `d/01/01/2022` will be taken which will be successful.
+  e.g. if you specify `d/01/01/2022 d/A/B/C`, only `d/A/B/C` will be taken which will output an error message.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
