@@ -82,7 +82,7 @@ public class EditLinkCommand extends Command {
         requireNonNull(model);
         List<Link> lastShownList = model.getLinkList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getOneBased() > lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_LINK_DISPLAYED_INDEX);
         }
 
