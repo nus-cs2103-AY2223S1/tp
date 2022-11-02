@@ -7,12 +7,8 @@ Welcome to InTrack!
 
 InTrack is a desktop application for Computer Science students to manage their different internship applications. 
 
-InTrack allows users to
-* seamlessly search for and update their various applications, as well as
-* keep track of the
-relevant timings and deadlines,
-
-all through a simple and easy-to-use platform!
+InTrack allows users to seamlessly search for and update their various applications, as well as keep track of the
+relevant timings and deadlines, all through a simple and easy-to-use platform!
 
 InTrack is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User 
 Interface (GUI). If you're a Computer Science student who can type fast, InTrack can help you manage your
