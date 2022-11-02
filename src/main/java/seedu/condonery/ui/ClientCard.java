@@ -4,6 +4,8 @@ import java.io.File;
 import java.nio.file.Path;
 import java.util.Comparator;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -56,8 +58,8 @@ public class ClientCard extends UiPart<Region> {
         super(FXML);
         this.client = client;
         id.setText(displayedIndex + ". ");
-        name.setText(client.getName().fullName);
-        address.setText(client.getAddress().value);
+        name.setText(StringUtils.abbreviate(client.getName().fullName, 140));
+        address.setText(StringUtils.abbreviate(client.getAddress().value, 140));
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
