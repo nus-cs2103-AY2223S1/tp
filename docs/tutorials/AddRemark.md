@@ -289,13 +289,13 @@ Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998
 
 ## Updating Storage
 
-AddressBook stores data by serializing `JsonAdaptedStudent` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedStudent` to work with our new `Student`!
+Friday stores data by serializing `JsonAdaptedStudent` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedStudent` to work with our new `Student`!
 
 While the changes to code may be minimal, the test data will have to be updated as well.
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty FRIDAY!
+:exclamation: You must delete Friday’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause Friday to default to an empty FRIDAY!
 
 </div>
 
@@ -398,4 +398,4 @@ You should end up with a test that looks something like [this](https://github.co
 
 ## Conclusion
 
-This concludes the tutorial for adding a new `Command` to AddressBook.
+This concludes the tutorial for adding a new `Command` to Friday.

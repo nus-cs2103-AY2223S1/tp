@@ -9,7 +9,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":VersionedFriday" as VersionedFriday MODEL_COLOR
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
@@ -30,15 +30,15 @@ deactivate FridayParser
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoCommand -> Model : undoFriday()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> VersionedFriday : undo()
+activate VersionedFriday
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+VersionedFriday -> VersionedFriday :resetData(ReadOnlyFriday)
+VersionedFriday --> Model :
+deactivate VersionedFriday
 
 Model --> UndoCommand
 deactivate Model

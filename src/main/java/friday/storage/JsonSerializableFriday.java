@@ -22,8 +22,9 @@ import friday.model.student.Student;
 class JsonSerializableFriday {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
-    public static final String MESSAGE_INVALID_KEYWORD = "Alias map contains invalid mapping(s)";
+    public static final String MESSAGE_INVALID_KEYWORD = "Alias map contains invalid keyword(s)";
     public static final String MESSAGE_DUPLICATE_ALIAS = "Alias map contains duplicate alias(es).";
+    public static final String MESSAGE_INVALID_ALIAS = "Alias map contains invalid alias(es).";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedAlias> aliases = new ArrayList<>();
@@ -67,6 +68,9 @@ class JsonSerializableFriday {
             ReservedKeyword keyword = jsonAdaptedAlias.toReservedKeywordModelType();
             if (!ReservedKeyword.isValidReservedKeyword(keyword.toString())) {
                 throw new IllegalValueException(MESSAGE_INVALID_KEYWORD);
+            }
+            if (!Alias.isValidAlias(alias.toString())) {
+                throw new IllegalValueException(MESSAGE_INVALID_ALIAS);
             }
             if (friday.hasAlias(alias)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ALIAS);
