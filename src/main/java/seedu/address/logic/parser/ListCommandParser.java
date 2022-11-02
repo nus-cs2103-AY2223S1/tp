@@ -39,6 +39,7 @@ public class ListCommandParser implements Parser {
         Optional<Address> address = argMultimap.getValue(PREFIX_ADDRESS).map(Address::new);
         Optional<Tag> tag = argMultimap.getValue(PREFIX_TAG).map(Tag::new);
 
+        boolean[] parametersAreValid = new boolean[]{true};
         List<Optional<Category>> category = new ArrayList<>();
         argMultimap.getValue(PREFIX_CATEGORY).ifPresentOrElse(
                 x -> {
@@ -46,6 +47,7 @@ public class ListCommandParser implements Parser {
                         category.add(Optional.of(new Category(x.toUpperCase())));
                     } else {
                         category.add(Optional.empty());
+                        parametersAreValid[0] = false;
                     }
                 }, () -> category.add(Optional.empty()));
         assert (category.size() == 1);
@@ -57,11 +59,12 @@ public class ListCommandParser implements Parser {
                         gender.add(Optional.of(new Gender(x.toUpperCase())));
                     } else {
                         gender.add(Optional.empty());
+                        parametersAreValid[0] = false;
                     }
                 }, () -> gender.add(Optional.empty()));
         assert (gender.size() == 1);
-
-        return new ListCommand(address, category.get(0), gender.get(0), tag);
+        assert (parametersAreValid.length == 1);
+        return new ListCommand(address, category.get(0), gender.get(0), tag, parametersAreValid[0]);
     }
 
 }
