@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Project Portfolio Page (albertarielw)
+title: Project Portfolio Page (@albertarielw)
 ---
 
 ### Project: HackAssist
