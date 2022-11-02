@@ -8,13 +8,13 @@ package Command {
 
 Class "<<interface>>\nModelCommand" as ModelCommand
 Class "<<interface>>\nStorageCommand" as StorageCommand
-Class "<<interface>>\nFileCommand" as FileCommand
+Class "<<interface>>\nStorageModelCommand" as StorageModelCommand
 Class "<<interface>>\nMiscCommand" as MiscCommand
 Class "<<interface>>\nCommand" as Command
 }
 
 ModelCommand .up.|> Command
-FileCommand .up.|> Command
+StorageModelCommand .up.|> Command
 MiscCommand .up.|> Command
 StorageCommand .up.|> Command
 

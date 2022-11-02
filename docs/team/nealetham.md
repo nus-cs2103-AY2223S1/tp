@@ -21,6 +21,7 @@ The above are my more notable contributions. You may view them and my other cont
 ### Enhancements implemented:
 
 I made the following enhancements to our product:
+
 1. Reworked the Ui to comply with our specifications and user's needs.
 2. Reworked `find` to perform substring search.
 3. Implemented all quality-of-life functionalities. You may view them [here](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#quality-of-life).
