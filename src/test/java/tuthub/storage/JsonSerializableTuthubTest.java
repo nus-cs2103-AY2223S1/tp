@@ -19,6 +19,8 @@ public class JsonSerializableTuthubTest {
     private static final Path TYPICAL_TUTORS_FILE = TEST_DATA_FOLDER.resolve("typicalTutorsTuthub.json");
     private static final Path INVALID_TUTOR_FILE = TEST_DATA_FOLDER.resolve("invalidTutorTuthub.json");
     private static final Path DUPLICATE_TUTOR_FILE = TEST_DATA_FOLDER.resolve("duplicateTutorTuthub.json");
+    private static final Path DUPLICATE_STUDENTID_FILE = TEST_DATA_FOLDER.resolve("duplicateTutorStudentIdTuthub.json");
+    private static final Path DUPLICATE_EMAIL_FILE = TEST_DATA_FOLDER.resolve("duplicateTutorEmailTuthub.json");
 
     @Test
     public void toModelType_typicalTutorsFile_success() throws Exception {
@@ -43,6 +45,22 @@ public class JsonSerializableTuthubTest {
     @Test
     public void toModelType_duplicateTutors_throwsIllegalValueException() throws Exception {
         JsonSerializableTuthub dataFromFile = JsonUtil.readJsonFile(DUPLICATE_TUTOR_FILE,
+                JsonSerializableTuthub.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableTuthub.MESSAGE_DUPLICATE_TUTOR,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateTutorsStudentId_throwsIllegalValueException() throws Exception {
+        JsonSerializableTuthub dataFromFile = JsonUtil.readJsonFile(DUPLICATE_STUDENTID_FILE,
+                JsonSerializableTuthub.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableTuthub.MESSAGE_DUPLICATE_TUTOR,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateTutorsEmail_throwsIllegalValueException() throws Exception {
+        JsonSerializableTuthub dataFromFile = JsonUtil.readJsonFile(DUPLICATE_EMAIL_FILE,
                 JsonSerializableTuthub.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableTuthub.MESSAGE_DUPLICATE_TUTOR,
                 dataFromFile::toModelType);

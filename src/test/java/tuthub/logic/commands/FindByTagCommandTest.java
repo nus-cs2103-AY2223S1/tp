@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tuthub.commons.core.Messages.MESSAGE_TUTORS_LISTED_OVERVIEW;
 import static tuthub.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tuthub.testutil.TypicalTutors.LOPEZ;
-import static tuthub.testutil.TypicalTutors.MIKE;
+import static tuthub.testutil.TypicalTutors.NATHAN;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,7 +25,7 @@ import tuthub.model.tutor.Tutor;
  * Contains integration tests (interaction with the model) for {@code FindByTagCommand}.
  */
 public class FindByTagCommandTest {
-    private List<Tutor> testTaList = Arrays.asList(LOPEZ, MIKE);
+    private List<Tutor> testTaList = Arrays.asList(LOPEZ, NATHAN);
     private Model model = new ModelManager(getTestTaTuthub(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTestTaTuthub(), new UserPrefs());
 
@@ -73,7 +73,7 @@ public class FindByTagCommandTest {
         FindByTagCommand command = new FindByTagCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(LOPEZ, MIKE), model.getFilteredTutorList());
+        assertEquals(Arrays.asList(LOPEZ, NATHAN), model.getFilteredTutorList());
     }
 
     @Test
@@ -83,7 +83,7 @@ public class FindByTagCommandTest {
         FindByTagCommand command = new FindByTagCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(LOPEZ, MIKE), model.getFilteredTutorList());
+        assertEquals(Arrays.asList(LOPEZ, NATHAN), model.getFilteredTutorList());
     }
 
     private Tuthub getTestTaTuthub() {
