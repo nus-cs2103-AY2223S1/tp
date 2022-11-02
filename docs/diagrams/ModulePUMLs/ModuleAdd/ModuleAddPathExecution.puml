@@ -9,8 +9,20 @@ start
 if () then ([contains all valid tags])
     :check if parameter inputs are valid;
     if () then ([valid inputs])
-        :add module to ModuleList;
-        :display add success message;
+
+        :check verbose or simplified input;
+        if () then ([verbose input])
+            :add module to ModuleList;
+            :display add success message;
+        else ([simplified input])
+            :fetch module information from NUSMods;
+            if () then ([error when fetching])
+                :add module to ModuleList;
+                :display add success message;
+            else ([else])
+                :show fetch error message;
+            endif
+        endif
     else ([else])
         :display invalid input error message;
     endif
