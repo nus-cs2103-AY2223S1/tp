@@ -15,10 +15,16 @@ Given below are my contributions to the project.
 * **Enhancements Implemented**:
   * Implemented the following features:
     * New UI
+      * Created new classes for UI elements
+      * Implemented UI page change for `select` and `home` commands
     * `select` command
+      * Created `SelectCommand` and `SelectCommandParser` classes
     * `home` command
+      * Created `HomeCommand` class
     * `free` command
+      * Created `FreeCommand` class
     * `copy` command
+      * Created `CopyCommand` class
   * Created the following supporting classes:
     * `StageManager` class to keep track of the current page and selected itinerary
     * `Day` class to encapsulate a day in an itinerary
