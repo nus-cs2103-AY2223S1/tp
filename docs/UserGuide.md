@@ -362,7 +362,7 @@ _More food items coming soon in a future release..._
 | **Review** | `review`                                                | `review`                          |
 | **List**   | `list [DATE]`                                           | `list`                            |
 | **Setup**  | `setup g/GENDER w/WEIGHT h/HEIGHT i/IDEAL_WEIGHT a/AGE` | `setup g/m w/70 h/175 i/70 a/20`  |
-| **locate** | `locate LOCATION`                                       | `locate CLB`                      |
+| **Locate** | `locate LOCATION`                                       | `locate CLB`                      |
 | **Profile**| `profile`                                               | `profile`                         |
 | **Suggest**| `suggest`                                               | `suggest`                         |
 | **Tip**    | `tip`                                                   | `tip`                             |
