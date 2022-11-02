@@ -685,3 +685,9 @@ HealthContact data are saved in the hard disk automatically after any command th
 
 HealthContact data are saved as a JSON file `[JAR file location]/data/healthcontact.json`. Advanced users are welcome to update data directly by editing that data file.
 * If the changes to the data file makes its format invalid, HealthContact will discard all data and start with an empty data file at the next run.
+
+# 2. FAQ
+1. Q: How do I find out which appointment a bill is for?
+- Use the FindAppointmentCommand to find all appointments for a patient using the patient name on the bill. Then, use the SelectAppointmentCommand to see which appointment is the bill for.
+
+2. Q: 
