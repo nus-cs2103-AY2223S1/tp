@@ -54,6 +54,7 @@ public class SortIssueCommand extends IssueCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
+        ui.showIssues();
         String sortKeyString = "";
 
         if (sortKey.equals(PREFIX_ISSUE_ID)) {
@@ -73,7 +74,6 @@ public class SortIssueCommand extends IssueCommand {
 
         model.sortIssuesByPin();
 
-        ui.showIssues();
         model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
         return new CommandResult(MESSAGE_SUCCESS + " according to " + sortKeyString);
     }

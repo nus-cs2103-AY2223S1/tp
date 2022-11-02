@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -58,6 +59,10 @@ public class EditClientCommand extends ClientCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         ui.showClients();
+        if (!model.hasClientId(this.clientId.getIdInt())) {
+            throw new CommandException(Messages.MESSAGE_CLIENT_NOT_FOUND);
+        }
+
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
         Client toEditClient = model.getClientById(clientId.getIdInt());

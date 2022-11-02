@@ -54,6 +54,7 @@ public class AddProjectCommand extends ProjectCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
+        ui.showProjects();
 
         Project toAddProject = toAddProjectWithoutModel.apply(model);
 
@@ -73,7 +74,6 @@ public class AddProjectCommand extends ProjectCommand {
         }
 
         model.addProject(toAddProject);
-        ui.showProjects();
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAddProject));
     }

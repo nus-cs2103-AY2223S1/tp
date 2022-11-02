@@ -233,8 +233,8 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     }
 
     /**
-     * Returns true if both projects have the same identity and data fields.
-     * This defines a stronger notion of equality between two projects.
+     * Returns true if both issues have the same identity and data fields.
+     * This defines a stronger notion of equality between two issues.
      */
     @Override
     public boolean equals(Object other) {
