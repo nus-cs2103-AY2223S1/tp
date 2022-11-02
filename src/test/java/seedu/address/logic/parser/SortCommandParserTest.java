@@ -30,22 +30,6 @@ public class SortCommandParserTest {
         assertThrows(ParseException.class, () -> parser.parse(""));
     }
 
-    /*
-    @Test
-    public void parse_buyer_success() {
-        for (String param : CommandUtil.ACCEPTABLE_BUYER_PARAMETER) {
-            try {
-                Comparator<Buyer> comparator = getBuyerComparator(param);
-                SortBuyerCommand expected = new SortBuyerCommand(comparator);
-                assertParseSuccess(parser, param, expected);
-            } catch (ParseException e) {
-                assert false;
-            }
-        }
-    }
-
-     */
-
     private Comparator<Buyer> getBuyerComparator(String attributes) throws ParseException {
         String[] attributesArr = attributes.split("\\s+");
         assertAlphabets(attributesArr[firstAttributePos]);

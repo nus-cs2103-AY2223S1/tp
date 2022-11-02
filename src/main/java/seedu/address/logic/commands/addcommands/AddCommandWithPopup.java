@@ -35,4 +35,10 @@ public class AddCommandWithPopup extends Command {
         return CommandResult.createAddByPopupCommandResult(String.format(MESSAGE_SUCCESS, typeToAdd), typeToAdd);
     }
 
+    @Override
+    public boolean equals(Object object) {
+        return (this == object) || (object instanceof AddCommandWithPopup
+                && ((AddCommandWithPopup) object).typeToAdd.equals(typeToAdd));
+    }
+
 }
