@@ -44,11 +44,11 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_OCCUPATION + "OCCUPATION "
+            + "[" + PREFIX_OCCUPATION + "OCCUPATION] "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TUTORIAL + "EMAIL] "
+            + "[" + PREFIX_TUTORIAL + "TUT CLASS] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -174,7 +174,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(occupation, name, phone, email, address, tags, social);
+            return CollectionUtil.isAnyNonNull(occupation, name, phone, email, tutorial, address, tags, social);
         }
 
 
