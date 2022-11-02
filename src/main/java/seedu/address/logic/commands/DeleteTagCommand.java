@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
@@ -69,5 +70,13 @@ public class DeleteTagCommand extends Command {
         }
         model.replaceTask(currentTask, changedTask, true);
         return new CommandResult(TAG_DELETED_SUCCESSFULLY);
+    }
+
+    @Override
+    public boolean equals(Object otherDeleteTagCommand) {
+        return otherDeleteTagCommand == this
+                || (otherDeleteTagCommand instanceof DeleteTagCommand
+                && keywords.equals(((DeleteTagCommand) otherDeleteTagCommand).keywords)
+                && index.equals(((DeleteTagCommand) otherDeleteTagCommand).index));
     }
 }

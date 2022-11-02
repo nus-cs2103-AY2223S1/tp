@@ -26,6 +26,12 @@ public class EditTagCommandParser implements Parser<EditTagCommand> {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer
                 .tokenize(args, PREFIX_DEADLINE, PREFIX_PRIORITY_STATUS);
         Index index;
+        try {
+            Integer.parseInt(argumentMultimap.getPreamble());
+        } catch (NumberFormatException npe) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditTagCommand.MESSAGE_USAGE));
+        }
         if (!areAnyPrefixesPresent(argumentMultimap, PREFIX_PRIORITY_STATUS, PREFIX_DEADLINE)) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     EditTagCommand.MESSAGE_USAGE));
@@ -35,16 +41,12 @@ public class EditTagCommandParser implements Parser<EditTagCommand> {
         } catch (ParseException pe) {
             throw new ParseException(INVALID_INDEX_EDIT_TAG);
         }
-        PriorityTag priorityTag = null;
-        DeadlineTag deadlineTag = null;
         String priorityStatus = argumentMultimap.getValue(PREFIX_PRIORITY_STATUS).orElse(null);
         String deadline = argumentMultimap.getValue(PREFIX_DEADLINE).orElse(null);
-        if (priorityStatus != null) {
-            priorityTag = ParserUtil.parsePriorityTag(priorityStatus);
-        }
-        if (deadline != null) {
-            deadlineTag = ParserUtil.parseDeadlineTag(deadline);
-        }
+        PriorityTag priorityTag = priorityStatus != null ? ParserUtil
+                .parsePriorityTag(priorityStatus) : null;
+        DeadlineTag deadlineTag = deadline != null ? ParserUtil
+                .parseDeadlineTag(deadline) : null;
         return new EditTagCommand(index, priorityTag, deadlineTag);
     }
 

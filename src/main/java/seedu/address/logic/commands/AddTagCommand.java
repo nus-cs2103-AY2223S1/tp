@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY_STATUS;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -79,5 +80,14 @@ public class AddTagCommand extends Command {
         }
         model.replaceTask(currentTask, taggedTask, true);
         return new CommandResult(TAG_ADDED_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object otherAddTagCommand) {
+        return otherAddTagCommand == this
+                || (otherAddTagCommand instanceof AddTagCommand
+                && Objects.equals(priorityTag, ((AddTagCommand) otherAddTagCommand).priorityTag)
+                && Objects.equals(deadlineTag, ((AddTagCommand) otherAddTagCommand).deadlineTag)
+                && index.equals(((AddTagCommand) otherAddTagCommand).index));
     }
 }

@@ -18,11 +18,17 @@ import seedu.address.model.tag.PriorityTag;
  * AddTagCommandParser parses the arguments and supplies these arguments
  * to the AddTagCommand.
  */
-public class AddTagCommandParser implements Parser<Command> {
+public class AddTagCommandParser implements Parser<AddTagCommand> {
     @Override
-    public Command parse(String args) throws ParseException {
+    public AddTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
         String[] indexWithTags = args.strip().split("\\s", 2);
+        try {
+            Integer.parseInt(indexWithTags[0]);
+        } catch (NumberFormatException npe) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddTagCommand.MESSAGE_USAGE));
+        }
         if (indexWithTags.length != 2) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTagCommand.MESSAGE_USAGE));
@@ -35,16 +41,12 @@ public class AddTagCommandParser implements Parser<Command> {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTagCommand.MESSAGE_USAGE));
         }
-        PriorityTag priorityTag = null;
-        DeadlineTag deadlineTag = null;
         String priorityStatus = argMultiMap.getValue(PREFIX_PRIORITY_STATUS).orElse(null);
         String deadline = argMultiMap.getValue(PREFIX_DEADLINE).orElse(null);
-        if (priorityStatus != null) {
-            priorityTag = ParserUtil.parsePriorityTag(priorityStatus);
-        }
-        if (deadline != null) {
-            deadlineTag = ParserUtil.parseDeadlineTag(deadline);
-        }
+        PriorityTag priorityTag = priorityStatus != null ? ParserUtil
+                .parsePriorityTag(priorityStatus) : null;
+        DeadlineTag deadlineTag = deadline != null ? ParserUtil
+                .parseDeadlineTag(deadline) : null;
         return new AddTagCommand(priorityTag, deadlineTag, index);
     }
 
