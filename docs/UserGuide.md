@@ -26,7 +26,7 @@ This section will explain the parameters and the format of commands.
 | t/     | TAG             | Tag person (i.e tag as friend)                                                                                 |
 | r/     | RATING          | Rate Professor/Teaching Assistant (on a scale of 0 to 5)                                                       |
 | y/     | YEAR            | Year of Undergraduate Study (from 1 - 4)                                                                       |
-| l/     | LOCATION        | Location of Professor/Teaching Assistant/Student in NUS                                                        |
+| l/     | LOCATION        | Location of Professor/Teaching Assistant/Student in NUS. If not provided, default value is `NUS`.              |
 | s/     | SPECIALISATION  | Professor's Specialisation                                                                                     |
 | o/     | OFFICE_HOURS    | Professor's office hours for consultation <br>Refer to section [3](#3-features) for the format of OFFICE_HOURS |
 | typ/   | TYPE            | Type of Contacts. (STRICTLY prof or stu or ta)                                                                 |
@@ -94,6 +94,10 @@ This section will explain the parameters and the format of commands.
 ## 3.1 Add-Related Commands
 The Add-Related commands include `student`, `prof` and `ta`. These are the commands related to adding a new person to the application.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+You cannot add people with same names, e.g. "Michelle" cannot be a student and a prof at the same time.
+</div>
+
 ### 3.1.1 Adding a new Student Contact: `student`
 
 Adds a new Student contact to your contacts list.
@@ -106,7 +110,7 @@ A student can have multiple module codes and tags. But a student must have at le
 
 Examples:
 * `student n/John Doe y/1 m/CS4226 m/CS5242 p/98765432 e/JohnD@example.com g/M t/friends t/owesMoney l/UTown Residences git/johnnyd`
-* `add n/Betsy Crowe t/friend m/CS2100 e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `student n/Betsy Crowe t/friend m/CS2100 g/F e/betsycrowe@example.com p/1234567 t/criminal`
 
 <div style="page-break-after: always;"></div>
 
@@ -154,7 +158,7 @@ Format: `delete INDEX1 INDEX2...`
 * The order of the indexes does not matter as long as they are valid i.e. they are not out of bounds.
 
 Example:
-* `Delete 1 2 3`
+* `delete 1 2 3`
 
 ### 3.2.2 Edit contacts: `edit`
 Edits an existing person in contact list.
@@ -348,7 +352,7 @@ This pie chart shows how many of each type of contact you have, and updates itse
 
 ## 3.6 Fast Template Command
 
-Returns a template with all the fields of a Person on the CLI.
+Returns a template with all the fields of a Person on the CLI so that users do not have to remember and enter prefixes themselves, and can easily add a new Person to the address book.
 
 Format: `tt PERSON`
 * PERSON can be `prof`, `student`, or `ta`.
@@ -407,14 +411,10 @@ Step by Step Guide:
 3. Enter into the CLI import sampleimportdata.csv
 
 Before import:
-![before import](images/BeforeImport.jpg)
+![before import](images/BeforeImport.png)
 
 After import:
-![after import](images/AfterImport.jpg)
-
-<div markdown="span" class="alert alert-info">:information_source: Note:
-Reload the application to see the updated pie chart.
-</div>
+![after import](images/AfterImport.png)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
