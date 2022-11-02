@@ -13,9 +13,9 @@ public class PetGrader {
 
     private static final double DEFAULT_AGE_SCORE_WEIGHT = 100;
     private static final double DEFAULT_COLOR_SCORE_WEIGHT = 100;
-    private static final double DEFAULT_COLOR_PATTERN_SCORE_WEIGHT = 200;
-    private static final double DEFAULT_SPECIES_SCORE_WEIGHT = 200;
-    private static final double DEFAULT_PRICE_SCORE_WEIGHT = 20;
+    private static final double DEFAULT_COLOR_PATTERN_SCORE_WEIGHT = 100;
+    private static final double DEFAULT_SPECIES_SCORE_WEIGHT = 500;
+    private static final double DEFAULT_PRICE_SCORE_WEIGHT = 50;
 
     private final Order order;
     private final double ageScoreWeight;
@@ -79,7 +79,7 @@ public class PetGrader {
 
         double priceScore;
         PriceRange priceRange = order.getRequestedPriceRange();
-        int priceRangeSituation = priceRange.isWithinRange(pet.getPrice());
+        int priceRangeSituation = priceRange.comparePrice(pet.getPrice());
 
         if (priceRangeSituation == WITHIN_RANGE) {
             priceScore = priceScoreWeight;
