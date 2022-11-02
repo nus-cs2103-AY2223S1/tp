@@ -74,14 +74,22 @@ public class Social {
 
     /**
      * Checks if string representation is the same as other's
-     * string representation.
+     * string representation and that other object is an instance
+     * of social.
      * @param other
      * @return True if string representation is the same as other's
-     *      string representation.
+     *      string representation and that other object is an instance
+     *      of social.
      */
     @Override
     public boolean equals(Object other) {
-        return this.toString().equals(other.toString());
+        if (this == other) {
+            return true;
+        } else if (!(other instanceof Social)) {
+            return false;
+        }
+        Social s = (Social) other;
+        return this.platform.equals(s.platform) && this.handle.equals(s.handle);
     }
 
 }
