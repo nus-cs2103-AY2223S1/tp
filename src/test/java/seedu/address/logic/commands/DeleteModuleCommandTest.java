@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+//import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -13,7 +13,7 @@ import seedu.address.model.UserPrefs;
  */
 public class DeleteModuleCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+  //  private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     /*
     @Test

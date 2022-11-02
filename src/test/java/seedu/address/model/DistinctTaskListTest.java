@@ -95,7 +95,7 @@ public class DistinctTaskListTest {
         assertFalse(distinctTaskList.taskList.get(1).isLinked());
     }
     @Test
-    public void updateExamFieldForTaskWhereNoTasksLinkedToExam2() {
+    public void updateExamFieldForTaskWhereNoTasksLinkedToExam() {
         distinctTaskList.addTask(TASKONE);
         distinctTaskList.addTask(TASKTWO);
         Task editedTask = TASKONE.linkTask(new ExamBuilder().build());

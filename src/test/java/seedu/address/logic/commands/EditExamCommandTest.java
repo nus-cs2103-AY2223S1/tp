@@ -5,8 +5,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_EXAM;
 import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.commands.EditExamCommand.MESSAGE_EXAM_NOT_EDITED;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalExams.getTypicalAddressBookForExam;
+//import static seedu.address.testutil.TypicalExams.getTypicalAddressBookForExam;
 import static seedu.address.testutil.TypicalIndexes.*;
+import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,41 +30,17 @@ import seedu.address.testutil.ExamBuilder;
  */
 public class EditExamCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBookForExam(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    //no task linked and then change the exam -- can change all field, one field, (espmodule), or mix
-
-    //some task is linked to other exam -- change the field(all, one, mix)
-    // no affect like the exam name or whether the task is linked to exam.
-
-    //one task is linked to that exam -- change the field(mix without module)... -- check if task and exam changes accordingly
-
-    // one task is linked to that exam-- change the field(only module) -- check if task dropped the module and if the all the task is linked correctly, and same exam)
-    // check if the exam got change.
-
-    //one task is linked to that exam -- change the field(mix with module) -- check if similar as above.
-
-    // do the same for several tasks
-
-    // do the part where u change to make it to be like duplicate exams-- can change one where the module name is alr the same. --
-    //oh and check if like the task got change, it shouldnt change
-
-    // do the part where the change the duplicate exam where the module is the one that change , task shouldnt change or dropped links as
-    // this shouldnt be allowed.
-    //all the like fields not put proepelry .
-
-    ////////////////////
-    //no task linked and then change the exam -- can change all field, one field, (espmodule), or mix
-
-    //at least one field to edit.
     @Test
     public void execute_allFieldsSpecifiedUnfilteredListWithoutAnyTaskLinked_success() {
-        Exam editedExam = new ExamBuilder().build();
+        Exam editedExam = new ExamBuilder(new Exam(new Module(new ModuleCode("CS2030S")),
+                new ExamDescription("Final Exam"), new ExamDate("01-11-2023"))).build();
         EditExamCommand.EditExamDescriptor descriptor = new EditExamDescriptorBuilder(editedExam).build();
         EditExamCommand editExamCommand = new EditExamCommand(INDEX_SECOND, descriptor);
 
         String expectedMessage = String.format(EditExamCommand.MESSAGE_EDIT_EXAM_SUCCESS, editedExam);
-        Model expectedModel = new ModelManager(getTypicalAddressBookForExam(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.replaceExam(model.getFilteredExamList().get(1), editedExam, false);
         assertCommandSuccess(editExamCommand, model, expectedMessage, expectedModel);
         assertTasksHaveSameExamSuccess(model, expectedModel);
@@ -71,12 +48,12 @@ public class EditExamCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredListWithoutAnyTaskLinked2_success() {
-        EditExamCommand.EditExamDescriptor descriptor = new EditExamDescriptorBuilder().withModule("CS2030S").withDescription("CA PAPER").build();
-        EditExamCommand editExamCommand = new EditExamCommand(INDEX_SECOND, descriptor);
         Exam editedExam = new Exam(new Module(new ModuleCode("CS2030S")),
                 new ExamDescription("CA PAPER"), model.getFilteredExamList().get(1).getExamDate());
+        EditExamCommand.EditExamDescriptor descriptor = new EditExamDescriptorBuilder(editedExam).build();
+        EditExamCommand editExamCommand = new EditExamCommand(INDEX_SECOND, descriptor);
         String expectedMessage = String.format(EditExamCommand.MESSAGE_EDIT_EXAM_SUCCESS, editedExam);
-        Model expectedModel = new ModelManager(getTypicalAddressBookForExam(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.replaceExam(model.getFilteredExamList().get(1), editedExam, false);
         assertCommandSuccess(editExamCommand, model, expectedMessage, expectedModel);
         assertTasksHaveSameExamSuccess(model, expectedModel);
@@ -86,15 +63,17 @@ public class EditExamCommandTest {
         LinkExamCommand linkExamCommand = new LinkExamCommand(examIndex, taskIndex);
         linkExamCommand.execute(model);
     }
+
     @Test
     public void execute_allFieldsSpecifiedUnfilteredListWithoutTaskLinkedToTheSpecificExam_success() throws CommandException {
-        Exam editedExam = new ExamBuilder().build();
+        Exam editedExam = new ExamBuilder(new Exam(new Module(new ModuleCode("CS2030S")),
+                new ExamDescription("Final Exam"), new ExamDate("01-11-2023"))).build();
         EditExamCommand.EditExamDescriptor descriptor = new EditExamDescriptorBuilder(editedExam).build();
         EditExamCommand editExamCommand = new EditExamCommand(INDEX_SECOND, descriptor);
-        linkHelper(model, INDEX_FIRST, INDEX_FIRST);
+        linkHelper(model, INDEX_FIRST, INDEX_THIRD);
         String expectedMessage = String.format(EditExamCommand.MESSAGE_EDIT_EXAM_SUCCESS, editedExam);
-        Model expectedModel = new ModelManager(getTypicalAddressBookForExam(), new UserPrefs());
-        linkHelper(expectedModel, INDEX_FIRST, INDEX_FIRST);
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        linkHelper(expectedModel, INDEX_FIRST, INDEX_THIRD);
         Exam exam = model.getFilteredExamList().get(1);
         expectedModel.replaceExam(exam, editedExam, false);
         assertCommandSuccess(editExamCommand, model, expectedMessage, expectedModel);
@@ -104,15 +83,16 @@ public class EditExamCommandTest {
     //tasks link to that exam but exam field edits only the description and date, module remains same.
     @Test
     public void execute_allFieldsSpecifiedUnfilteredListWithTasksLinkedToTheSpecificExam_success() throws CommandException {
-        Exam editedExam = new ExamBuilder().build();
+        Exam editedExam = new ExamBuilder(new Exam(new Module(new ModuleCode("CS2030S")),
+                new ExamDescription("Final Exam"), new ExamDate("01-11-2023"))).build();
         EditExamCommand.EditExamDescriptor descriptor = new EditExamDescriptorBuilder(editedExam).build();
         EditExamCommand editExamCommand = new EditExamCommand(INDEX_FIRST, descriptor);
-        linkHelper(model, INDEX_FIRST, INDEX_FIRST);
         linkHelper(model, INDEX_FIRST, INDEX_THIRD);
+        linkHelper(model, INDEX_FIRST, INDEX_FIFTH);
         String expectedMessage = String.format(EditExamCommand.MESSAGE_EDIT_EXAM_SUCCESS, editedExam);
-        Model expectedModel = new ModelManager(getTypicalAddressBookForExam(), new UserPrefs());
-        linkHelper(expectedModel, INDEX_FIRST, INDEX_FIRST);
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         linkHelper(expectedModel, INDEX_FIRST, INDEX_THIRD);
+        linkHelper(expectedModel, INDEX_FIRST, INDEX_FIFTH);
         Exam exam = model.getFilteredExamList().get(0);
         expectedModel.replaceExam(exam, editedExam, false);
         expectedModel.updateExamFieldForTask(exam, editedExam);
@@ -127,15 +107,15 @@ public class EditExamCommandTest {
                 new ExamDescription("Exam one"), new ExamDate("20-08-2023"))).build();
         EditExamCommand.EditExamDescriptor descriptor = new EditExamDescriptorBuilder(editedExam).build();
         EditExamCommand editExamCommand = new EditExamCommand(INDEX_FIRST, descriptor);
-        linkHelper(model, INDEX_FIRST, INDEX_FIRST);
         linkHelper(model, INDEX_FIRST, INDEX_THIRD);
-        linkHelper(model, INDEX_SECOND, INDEX_SECOND);
+        linkHelper(model, INDEX_FIRST, INDEX_FIFTH);
+        linkHelper(model, INDEX_SECOND, INDEX_FOURTH);
         String expectedMessage = String.format(EditExamCommand.MESSAGE_EDIT_EXAM_SUCCESS + "\n"
                 + "Warning! All the tasks previously linked to this exam are now unlinked.", editedExam);
-        Model expectedModel = new ModelManager(getTypicalAddressBookForExam(), new UserPrefs());
-        linkHelper(expectedModel, INDEX_FIRST, INDEX_FIRST);
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         linkHelper(expectedModel, INDEX_FIRST, INDEX_THIRD);
-        linkHelper(expectedModel, INDEX_SECOND, INDEX_SECOND);
+        linkHelper(expectedModel, INDEX_FIRST, INDEX_FIFTH);
+        linkHelper(expectedModel, INDEX_SECOND, INDEX_FOURTH);
         Exam exam = model.getFilteredExamList().get(0);
         expectedModel.replaceExam(exam, editedExam, false);
         expectedModel.unlinkTasksFromExam(exam);
@@ -150,15 +130,15 @@ public class EditExamCommandTest {
                 new ExamDescription("Midterm Paper"), new ExamDate("28-12-2023"))).build();
         EditExamCommand.EditExamDescriptor descriptor = new EditExamDescriptorBuilder(editedExam).build();
         EditExamCommand editExamCommand = new EditExamCommand(INDEX_FIRST, descriptor);
-        linkHelper(model, INDEX_FIRST, INDEX_FIRST);
         linkHelper(model, INDEX_FIRST, INDEX_THIRD);
-        linkHelper(model, INDEX_SECOND, INDEX_SECOND);
+        linkHelper(model, INDEX_FIRST, INDEX_FIFTH);
+        linkHelper(model, INDEX_SECOND, INDEX_FOURTH);
         String expectedMessage = String.format(EditExamCommand.MESSAGE_EDIT_EXAM_SUCCESS + "\n"
                 + "Warning! All the tasks previously linked to this exam are now unlinked.", editedExam);
-        Model expectedModel = new ModelManager(getTypicalAddressBookForExam(), new UserPrefs());
-        linkHelper(expectedModel, INDEX_FIRST, INDEX_FIRST);
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         linkHelper(expectedModel, INDEX_FIRST, INDEX_THIRD);
-        linkHelper(expectedModel, INDEX_SECOND, INDEX_SECOND);
+        linkHelper(expectedModel, INDEX_FIRST, INDEX_FIFTH);
+        linkHelper(expectedModel, INDEX_SECOND, INDEX_FOURTH);
         Exam exam = model.getFilteredExamList().get(0);
         expectedModel.replaceExam(exam, editedExam, false);
         expectedModel.unlinkTasksFromExam(exam);
@@ -178,12 +158,12 @@ public class EditExamCommandTest {
 
     @Test
     public void execute_duplicateExamUnfilteredListWithTasksLinked_failure() throws CommandException {
-        linkHelper(model, INDEX_FIRST, INDEX_FIRST);
+        linkHelper(model, INDEX_FIRST, INDEX_THIRD);
         Exam exam = model.getFilteredExamList().get(INDEX_FIRST.getZeroBased());
         EditExamCommand.EditExamDescriptor descriptor = new EditExamDescriptorBuilder(exam).build();
         EditExamCommand editExamCommand = new EditExamCommand(INDEX_SECOND, descriptor);
         assertCommandFailure(editExamCommand, model, MESSAGE_DUPLICATE_EXAM);
-        assertTrue(model.getFilteredTaskList().get(0).getExam().isSameExam(exam));
+        assertTrue(model.getFilteredTaskList().get(2).getExam().isSameExam(exam));
     }
 
     @Test
@@ -192,9 +172,9 @@ public class EditExamCommandTest {
                 new ExamDescription("Midterm Paper"), new ExamDate("28-12-2023"))).build();
         EditExamCommand.EditExamDescriptor descriptor = new EditExamDescriptorBuilder(exam).build();
         EditExamCommand editExamCommand = new EditExamCommand(INDEX_FIRST, descriptor);
-        linkHelper(model, INDEX_FIRST, INDEX_FIRST);
-        Model expectedModel = new ModelManager(getTypicalAddressBookForExam(), new UserPrefs());
-        linkHelper(expectedModel, INDEX_FIRST, INDEX_FIRST);
+        linkHelper(model, INDEX_FIRST, INDEX_THIRD);
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        linkHelper(expectedModel, INDEX_FIRST, INDEX_THIRD);
         String expectedMessage = "This module does not exist";
         assertThrows(CommandException.class, expectedMessage, () -> editExamCommand.execute(model));
         assertEquals(expectedModel, model);

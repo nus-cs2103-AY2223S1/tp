@@ -45,21 +45,21 @@ public class DescriptionContainsKeywordsPredicateTest {
         //keyword is the smaller one
         //the one that goes inside test is all the task in the task list.
         DescriptionContainsKeywordsPredicate predicate = new DescriptionContainsKeywordsPredicate(Collections.singletonList("task"));
-        assertTrue(predicate.test(new TaskBuilder().withName("task").build()));
+        assertTrue(predicate.test(new TaskBuilder().withTaskDescription("task").build()));
 
         //One keyword mixed case
          predicate = new DescriptionContainsKeywordsPredicate(Collections.singletonList("task"));
-        assertTrue(predicate.test(new TaskBuilder().withName("TAsK").build()));
+        assertTrue(predicate.test(new TaskBuilder().withTaskDescription("TAsK").build()));
 
         // Multiple keywords
         predicate = new DescriptionContainsKeywordsPredicate(Arrays.asList("task", "one"));
-        assertTrue(predicate.test(new TaskBuilder().withName("TasK ONe").build()));
+        assertTrue(predicate.test(new TaskBuilder().withTaskDescription("TasK ONe").build()));
 
         predicate = new DescriptionContainsKeywordsPredicate(Arrays.asList("task", "one"));
-        assertTrue(predicate.test(new TaskBuilder().withName("TasK Two Task ONe").build()));
+        assertTrue(predicate.test(new TaskBuilder().withTaskDescription("TasK Two Task ONe").build()));
 
         predicate = new DescriptionContainsKeywordsPredicate(Arrays.asList("as"));
-        assertTrue(predicate.test(new TaskBuilder().withName("TasK Two Task ONe").build()));
+        assertTrue(predicate.test(new TaskBuilder().withTaskDescription("TasK Two Task ONe").build()));
 
     }
 
@@ -67,11 +67,11 @@ public class DescriptionContainsKeywordsPredicateTest {
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         DescriptionContainsKeywordsPredicate predicate = new DescriptionContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new TaskBuilder().withName("Task one").build()));
+        assertFalse(predicate.test(new TaskBuilder().withTaskDescription("Task one").build()));
 
         // Non-matching keyword
         predicate = new DescriptionContainsKeywordsPredicate(Arrays.asList("task"));
-        assertFalse(predicate.test(new TaskBuilder().withName("homework paper").build()));
+        assertFalse(predicate.test(new TaskBuilder().withTaskDescription("homework paper").build()));
 
     }
 }

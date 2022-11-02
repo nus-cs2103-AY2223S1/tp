@@ -20,8 +20,8 @@ import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindTaskCommand}.
  */
 public class FindTasksCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBookForTask(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBookForTask(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     @Test
     public void equals() {
 
@@ -72,6 +72,7 @@ public class FindTasksCommandTest {
         expectedModel.updateFilteredTaskList(predicate);
         command.execute(model);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
+
     }
 
     @Test

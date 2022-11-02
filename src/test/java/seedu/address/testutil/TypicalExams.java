@@ -26,23 +26,23 @@ public class TypicalExams {
     /**
      * Returns an {@code AddressBook} with all the typical exams.
      */
-    public static AddressBook getTypicalAddressBookForExam() {
-        Module firstModule = new Module(new ModuleCode("CS2030S"), new ModuleName("Programming"), new ModuleCredit(4));
-        Module secondModule = new Module(new ModuleCode("CS2040S"), new ModuleName("Algorithm"), new ModuleCredit(4));
-        AddressBook ab = new AddressBook();
-        ab.addModule(firstModule);
-        ab.addModule(secondModule);
-        Task firstTask = new Task(new Module(new ModuleCode("CS2030S")), new TaskDescription("HW1"));
-        Task secondTask = new Task(new Module(new ModuleCode("CS2040S")), new TaskDescription("HW2"));
-        Task thirdTask = new Task(new Module(new ModuleCode("CS2030S")), new TaskDescription("HW3"));
-        ab.addTask(firstTask);
-        ab.addTask(secondTask);
-        ab.addTask(thirdTask);
-        for (Exam exam : getTypicalExams()) {
-            ab.addExam(exam);
-        }
-        return ab;
-    }
+//    public static AddressBook getTypicalAddressBookForExam() {
+//        Module firstModule = new Module(new ModuleCode("CS2030S"), new ModuleName("Programming"), new ModuleCredit(4));
+//        Module secondModule = new Module(new ModuleCode("CS2040S"), new ModuleName("Algorithm"), new ModuleCredit(4));
+//        AddressBook ab = new AddressBook();
+//        ab.addModule(firstModule);
+//        ab.addModule(secondModule);
+//        Task firstTask = new Task(new Module(new ModuleCode("CS2030S")), new TaskDescription("HW1"));
+//        Task secondTask = new Task(new Module(new ModuleCode("CS2040S")), new TaskDescription("HW2"));
+//        Task thirdTask = new Task(new Module(new ModuleCode("CS2030S")), new TaskDescription("HW3"));
+//        ab.addTask(firstTask);
+//        ab.addTask(secondTask);
+//        ab.addTask(thirdTask);
+//        for (Exam exam : getTypicalExams()) {
+//            ab.addExam(exam);
+//        }
+//        return ab;
+//    }
 
     public static List<Exam> getTypicalExams() {
         return new ArrayList<>(Arrays.asList(EXAMONE,EXAMTWO));

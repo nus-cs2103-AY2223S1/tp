@@ -19,6 +19,7 @@ public class TaskBuilder {
     private Module module;
     private Exam exam;
 
+
     /**
      * Creates a {@code TaskBuilder} with the default details.
      */
@@ -38,10 +39,11 @@ public class TaskBuilder {
     }
 
 
-    public TaskBuilder withName(String taskDescription) {
+    public TaskBuilder withTaskDescription(String taskDescription) {
         this.taskDescription = new TaskDescription(taskDescription);
         return this;
     }
+
 
     public TaskBuilder withModule(String moduleCode) {
         this.module = new Module(new ModuleCode(moduleCode));

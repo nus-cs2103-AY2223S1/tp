@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.address.testutil.TypicalTasks.getTypicalAddressBookForTask;
+import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+//import static seedu.address.testutil.TypicalTasks.getTypicalAddressBookForTask;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +27,7 @@ public class ListTasksCommandTest {
 
     @BeforeEach
     public void setUp() {
-       model = new ModelManager(getTypicalAddressBookForTask(), new UserPrefs());
+       model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     }
 

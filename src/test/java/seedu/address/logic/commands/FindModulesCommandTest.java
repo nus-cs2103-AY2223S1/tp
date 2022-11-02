@@ -16,11 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULES_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalTasks.getTypicalAddressBookForTask;
+import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
 public class FindModulesCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBookForTask(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBookForTask(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     @Test
     public void equals() {
         ModuleCodeContainsKeywordsPredicate firstPredicate =

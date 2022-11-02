@@ -301,31 +301,13 @@ public class ModelManager implements Model {
         examFilteredList.setPredicate(predicate);
     }
 
-
-
     @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
-        && moduleFilteredList.equals(other.moduleFilteredList)
-                && taskFilteredList.equals(other.taskFilteredList)
-                && examFilteredList.equals(other.examFilteredList);
-
-
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof ModelManager
+                && this.addressBook.equals(((ModelManager) other).addressBook));
     }
+
 
     public boolean isExamLinkedToTask(Exam examToEdit) {
         requireNonNull(examToEdit);
