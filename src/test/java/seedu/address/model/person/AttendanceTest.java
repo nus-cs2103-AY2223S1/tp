@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 public class AttendanceTest {
 
+    private static final String ATTENDANCE_STUB = "2022-08-01";
+
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Attendance(null));
@@ -39,21 +41,21 @@ public class AttendanceTest {
 
     @Test
     public void test_markAsPresent() {
-        Attendance testAtt = new Attendance("2022-08-12");
+        Attendance testAtt = new Attendance(ATTENDANCE_STUB);
         testAtt.markAsPresent();
         assertEquals(testAtt.getIsPresent(), true);
     }
 
     @Test
     public void test_markAsAbsent() {
-        Attendance testAtt = new Attendance("2022-08-12");
+        Attendance testAtt = new Attendance(ATTENDANCE_STUB);
         testAtt.markAsAbsent();
         assertEquals(testAtt.getIsPresent(), false);
     }
 
     @Test
     public void test_attendanceCheckString() {
-        Attendance testAtt = new Attendance("2022-08-12");
+        Attendance testAtt = new Attendance(ATTENDANCE_STUB);
         assertEquals(testAtt.attendanceCheckString(), " [Absent]");
         testAtt.markAsPresent();
         assertEquals(testAtt.attendanceCheckString(), " [Present]");
@@ -63,7 +65,7 @@ public class AttendanceTest {
 
     @Test
     public void test_setIsPresent() {
-        Attendance testAtt = new Attendance("2022-08-12");
+        Attendance testAtt = new Attendance(ATTENDANCE_STUB);
         testAtt.setIsPresent(true);
         assertTrue(testAtt.getIsPresent());
         testAtt.setIsPresent(false);
@@ -81,12 +83,13 @@ public class AttendanceTest {
 
     @Test
     public void equals() {
-        Attendance testAtt = new Attendance("2022-02-02");
+        Attendance testAtt = new Attendance(ATTENDANCE_STUB);
         // to check self
         assertEquals(testAtt, testAtt);
         // to check with other commands
         assertFalse(testAtt.equals(new Homework("homework")));
-
+        // to check with null object
+        assertFalse(testAtt.equals(null));
     }
 
 }
