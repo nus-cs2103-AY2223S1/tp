@@ -43,7 +43,7 @@ title: User Guide
     The GUI similar to the below should appear in a few seconds. When the app is started for the first time, sample data is included to help you get started.<br>
    ![Ui](images/Ui.png)
 
-6. Type commands into the command box and press Enter to execute them.<br>
+5. Type commands into the command box and press Enter to execute them.<br>
    Here are some example commands you can try:
     * **`help`** : Shows a message explaining how to access the help page.
    
@@ -65,7 +65,7 @@ title: User Guide
 
     * **`exit`** : Exits the app.
 
-7. Refer to the [Features](#features) section below for details of each command.
+6. Refer to the [Features](#features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
