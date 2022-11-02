@@ -115,10 +115,9 @@ public class StringUtil {
     }
 
     /**
-     * Splits a string by the symbol given
+     * Splits a string by its slashes
      *
      * @param value a String to be processed
-     * @param symbol symbol to split the string
      * @Return String[]
      */
     public static String[] splitBySlash(String value) {
@@ -126,8 +125,7 @@ public class StringUtil {
     }
 
     /**
-     * Converts a string array {@code String[]} to a double array {@code double[]},
-     * with every element having only two decimal places.
+     * Converts a string array {@code String[]} to a double array {@code double[]}.
      *
      * @param strArr String array to be converted
      * @Return double[]

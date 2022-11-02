@@ -269,9 +269,9 @@ public class StringUtilTest {
         assertEquals(StringUtil.splitBySlash("a/b/c/d")[2], secondExpectedStrArr[2]); // >=3 str
         assertEquals(StringUtil.splitBySlash("a/b/c/d")[3], secondExpectedStrArr[3]); // >=3 str
 
-        assertEquals(StringUtil.splitBySlash("hey / whatsup")[0], 
+        assertEquals(StringUtil.splitBySlash("hey / whatsup")[0],
                 thirdExpectedStrArr[0]); // strings with whitespace
-        assertEquals(StringUtil.splitBySlash("hey / whatsup")[1], 
+        assertEquals(StringUtil.splitBySlash("hey / whatsup")[1],
                 thirdExpectedStrArr[1]); // strings with whitespace
     }
 
