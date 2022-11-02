@@ -14,7 +14,7 @@ import seedu.address.model.profile.EventsAttending;
 import seedu.address.model.profile.Profile;
 
 /**
- * Deletes a profile identified using it's displayed index from the address book.
+ * Deletes a profile identified using it's displayed index from the NUScheduler.
  */
 public class DeleteProfileCommand extends ProfileCommand {
 

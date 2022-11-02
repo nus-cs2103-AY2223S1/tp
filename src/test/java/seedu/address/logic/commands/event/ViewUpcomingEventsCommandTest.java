@@ -22,7 +22,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.StartDateWithinTimeFramePredicate;
 import seedu.address.testutil.EventBuilder;
-import seedu.address.testutil.TypicalAddressBook;
+import seedu.address.testutil.TypicalNuScheduler;
 
 public class ViewUpcomingEventsCommandTest {
     private static final int ONE_DAY = 1;
@@ -35,8 +35,8 @@ public class ViewUpcomingEventsCommandTest {
     private LocalDate secondEndDate = currentDate.plusDays(FIVE_DAYS);
     private StartDateWithinTimeFramePredicate secondPredicate =
             new StartDateWithinTimeFramePredicate(currentDate, secondEndDate);
-    private Model model = new ModelManager(TypicalAddressBook.getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalAddressBook.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalNuScheduler.getTypicalNuScheduler(), new UserPrefs());
+    private Model expectedModel = new ModelManager(TypicalNuScheduler.getTypicalNuScheduler(), new UserPrefs());
 
     @Test
     public void equals() {

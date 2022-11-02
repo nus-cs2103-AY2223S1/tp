@@ -20,14 +20,14 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
-import seedu.address.testutil.TypicalAddressBook;
+import seedu.address.testutil.TypicalNuScheduler;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindProfileCommandTest {
-    private Model model = new ModelManager(TypicalAddressBook.getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalAddressBook.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalNuScheduler.getTypicalNuScheduler(), new UserPrefs());
+    private Model expectedModel = new ModelManager(TypicalNuScheduler.getTypicalNuScheduler(), new UserPrefs());
 
     @Test
     public void equals() {

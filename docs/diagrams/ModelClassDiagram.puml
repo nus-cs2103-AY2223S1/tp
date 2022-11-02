@@ -17,13 +17,14 @@ Class UniqueEventList
 Class Event
 Class DateTime
 Class Title
+Class Attendees
 Class Profile
 Class Telegram
 Class Email
 Class Name
 Class Phone
 Class Tag
-
+Class EventsAttending
 }
 
 Class HiddenOutside #FFFFFF
@@ -45,12 +46,14 @@ Profile *--> Phone
 Profile *--> Email
 Profile *--> Telegram
 Profile *--> "*" Tag
+Profile *--> EventsAttending
 
 NuScheduler *--> "1" UniqueEventList
 UniqueEventList --> "~* all" Event
 Event *--> Title
 Event *--> "startDate" DateTime
 Event *--> "endDate" DateTime
+Event *--> Attendees
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Telegram

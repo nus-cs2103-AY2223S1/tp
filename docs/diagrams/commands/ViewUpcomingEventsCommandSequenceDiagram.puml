@@ -1,0 +1,53 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+Participant ":LogicManager" as logicManager LOGIC_COLOR_T3
+Participant ":NuSchedulerParser" as nuSchedulerParser LOGIC_COLOR_T3
+Participant ":EventCommandParser" as EventCommandParser LOGIC_COLOR_T3
+Participant ":ViewUpcomingEventsCommandParser" as ViewUpcomingEventsCommandParser LOGIC_COLOR_T3
+Participant "v:ViewUpcomingEventsCommand" as ViewUpcomingEventsCommand LOGIC_COLOR_T3
+Participant ":CommandResult" as commandResult LOGIC_COLOR_T3
+Participant ":ParserUtil" as parserUtil LOGIC_COLOR_T2
+
+endBox
+
+box Model MODEL_COLOR_T1
+Participant "model:Model" as model MODEL_COLOR_T3
+endBox
+
+-> logicManager ++: execute("event -u 1")
+logicManager -> nuSchedulerParser ++: parseCommand("event -u 1")
+
+create EventCommandParser
+nuSchedulerParser -> EventCommandParser ++
+return
+nuSchedulerParser -> EventCommandParser ++: parse(" -u 1")
+
+create ViewUpcomingEventsCommandParser
+EventCommandParser -> ViewUpcomingEventsCommandParser ++
+return
+EventCommandParser -> ViewUpcomingEventsCommandParser ++: parse(" -u 1")
+
+ViewUpcomingEventsCommandParser -> parserUtil ++: parseDays("1")
+return d
+
+create ViewUpcomingEventsCommand
+ViewUpcomingEventsCommandParser -> ViewUpcomingEventsCommand ++: ViewUpcomingEventsCommand(d, predicate)
+return v
+return v
+destroy ViewUpcomingEventsCommandParser
+return v
+destroy EventCommandParser
+return v
+
+logicManager -> ViewUpcomingEventsCommand ++: execute(model)
+ViewUpcomingEventsCommand -> model ++: updateFilteredEventList(predicate)
+return
+
+create commandResult
+ViewUpcomingEventsCommand -> commandResult ++
+return
+return
+return
+@enduml

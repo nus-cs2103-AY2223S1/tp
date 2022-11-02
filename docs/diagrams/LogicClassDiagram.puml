@@ -11,6 +11,7 @@ Class NuSchedulerParser
 Class XCommandParser
 Class ZXCommandParser
 Class ZXCommand
+Class YCommandParser
 Class YCommand
 Class XCommand
 Class CommandResult
@@ -33,10 +34,10 @@ HiddenOutside ..> Logic
 LogicManager .right.|> Logic
 LogicManager --->"1" NuSchedulerParser
 NuSchedulerParser ..> XCommandParser : creates >
+NuSchedulerParser ..> YCommandParser : creates >
 XCommandParser ..> ZXCommandParser : creates >
 ZXCommandParser ..> ZXCommand : creates >
-
-NuSchedulerParser ..> YCommand : creates >
+YCommandParser ..> YCommand : creates >
 
 XCommand -up-|> Command
 ZXCommand -up-|> XCommand
