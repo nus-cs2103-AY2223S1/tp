@@ -11,11 +11,11 @@ import seedu.address.model.order.PriceRange;
  */
 public class PetGrader {
 
-    private static final double DEFAULT_AGE_SCORE_WEIGHT = 100;
+    private static final double DEFAULT_AGE_SCORE_WEIGHT = 30;
     private static final double DEFAULT_COLOR_SCORE_WEIGHT = 100;
     private static final double DEFAULT_COLOR_PATTERN_SCORE_WEIGHT = 100;
     private static final double DEFAULT_SPECIES_SCORE_WEIGHT = 500;
-    private static final double DEFAULT_PRICE_SCORE_WEIGHT = 50;
+    private static final double DEFAULT_PRICE_SCORE_WEIGHT = 5;
 
     private final Order order;
     private final double ageScoreWeight;
@@ -91,7 +91,9 @@ public class PetGrader {
                             - pet.getPrice().getPrice());
         }
 
-        return ageScore + colorScore + colorPatternScore + speciesScore + priceScore;
+        double sum = ageScore + colorScore + colorPatternScore + speciesScore + priceScore;
+        System.out.println(pet.getName() + "'s score: " + sum);
+        return sum;
     }
 
     public double getAgeScoreWeight() {

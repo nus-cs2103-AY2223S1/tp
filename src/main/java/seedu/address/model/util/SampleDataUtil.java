@@ -116,62 +116,62 @@ public class SampleDataUtil {
             new Location("Singapore"), new ArrayList<>());
 
     //Orders
-    public static final Order O1 = getOrder(ALEX, 50.0, 70.5,
-            getRequest(2, "white", "black", "pokemon"),
-            getAdditionalRequests("1", "2", "3"),
-            "2022-12-21", 80, OrderStatus.PENDING.toString());
-    public static final Order O2 = getOrder(BERNICE, 10.2, 15.0,
-            getRequest(2, "white", "black", "pokemon"),
-            getAdditionalRequests("1", "2", "3"),
+    public static final Order O1 = getOrder(ALEX, 90.5, 50,
+            getRequest(2, "black", "royal blue and brown", "Persian cat"),
+            getAdditionalRequests("free delivery", "fast delivery", "quick deal"),
+            "2022-10-01", 80, OrderStatus.PENDING.toString());
+    public static final Order O2 = getOrder(BERNICE, 15.0, 10.2,
+            getRequest(4, "white", "blue and pink", "German shepherd"),
+            getAdditionalRequests("free pet food", "discount", "fast delivery"),
+            "2022-11-20", -1, OrderStatus.NEGOTIATING.toString());
+    public static final Order O3 = getOrder(CHARLOTTE, -1, -1,
+            getRequest(7, "lemon", "charcoal and yellow", "chihuahua"),
+            getAdditionalRequests("healthy", "no infectious disease", "clean"),
             "2022-12-21", 12.5, OrderStatus.PENDING.toString());
-    public static final Order O3 = getOrder(CHARLOTTE, 10.3, 15.0,
-            getRequest(2, "white", "black", "pokemon"),
-            getAdditionalRequests("1", "2", "3"),
-            "2022-12-21", 12.5, OrderStatus.PENDING.toString());
-    public static final Order O4 = getOrder(DAVID, 10.1, 15.0,
-            getRequest(2, "white", "black", "pokemon"),
-            getAdditionalRequests("1", "2", "3"),
-            "2022-12-21", 12.5, OrderStatus.PENDING.toString());
-    public static final Order O5 = getOrder(IRFAN, 11110.0, 15.0,
-            getRequest(2, "white", "black", "pokemon"),
-            getAdditionalRequests("i need it now"),
-            "2022-12-21", 12.5, OrderStatus.PENDING.toString());
-    public static final Order O6 = getOrder(ROY, 11111.0, 15.0,
-            getRequest(2, "white", "black", "pokemon"),
-            getAdditionalRequests("i need it now"),
-            "2022-12-21", 12.5, OrderStatus.PENDING.toString());
+    public static final Order O4 = getOrder(DAVID, 200, -1,
+            getRequest(0, "yellow", "red and yellow", "golden retriever"),
+            getAdditionalRequests("house-trained", "healthy", "free delivery"),
+            "2023-01-11", 112.5, OrderStatus.DELIVERING.toString());
+    public static final Order O5 = getOrder(IRFAN, 90, 80,
+            getRequest(1, "blue", "lime green and electric blue", "American bobtail cat"),
+            getAdditionalRequests("quick deal", "no louses"),
+            "2022-12-08", 89.5, OrderStatus.NEGOTIATING.toString());
+    public static final Order O6 = getOrder(ROY, 129, 110,
+            getRequest(2, "grey", "lavender and teal", "Javanese cat"),
+            getAdditionalRequests("discount"),
+            "2022-01-04", 123.5, OrderStatus.DELIVERING.toString());
 
     //Pets
-    private static final DateOfBirth standard = getStandard();
-    public static final Pet P1 = new Pet(new PetName("Shiro"), SHIN_CHAN, new Color("white"),
-            new ColorPattern("white"),
-            standard, new Species("dog"), new Weight(10.05),
-            new Height(100.5), new VaccinationStatus(true),
-            new Price(9999.99), new HashSet<>());
-    public static final Pet P2 = new Pet(new PetName("Ashy"), CONG, new Color("white"),
+    private static final int NOW = 2022;
+    public static final Pet SHIRO = new Pet(new PetName("Shiro"), SHIN_CHAN, new Color("black"),
+            new ColorPattern("royal blue and brown"),
+            getDateOfBirthForAge(2), new Species("Persian cat"), new Weight(27.9),
+            new Height(34.0), new VaccinationStatus(true),
+            new Price(1000), new HashSet<>());
+    public static final Pet ASHY = new Pet(new PetName("Ashy"), CONG, new Color("grey"),
             new ColorPattern("white and brown"),
-            standard, new Species("cat"), new Weight(10.05),
-            new Height(100.5), new VaccinationStatus(true),
-            new Price(8888.88), new HashSet<>());
-    public static final Pet P3 = new Pet(new PetName("Plum"), EMMA, new Color("white"),
+            getDateOfBirthForAge(3), new Species("Javanese cat"), new Weight(20.8),
+            new Height(38.9), new VaccinationStatus(true),
+            new Price(32), new HashSet<>());
+    public static final Pet PLUM = new Pet(new PetName("Plum"), EMMA, new Color("light brown"),
+            new ColorPattern("royal blue and brown"),
+            getDateOfBirthForAge(2), new Species("chihuahua"), new Weight(10.05),
+            new Height(19.5), new VaccinationStatus(false),
+            new Price(80), new HashSet<>());
+    public static final Pet PAGE = new Pet(new PetName("Page"), NGUYEN, new Color("brown"),
+            new ColorPattern("light brown"),
+            getDateOfBirthForAge(4), new Species("Persian cat"), new Weight(32.1),
+            new Height(36.7), new VaccinationStatus(false),
+            new Price(50), new HashSet<>());
+    public static final Pet SNOWY = new Pet(new PetName("Snowy"), EMMA, new Color("black"),
+            new ColorPattern("royal blue and brown"),
+            getDateOfBirthForAge(4), new Species("Persian cat"), new Weight(24.1),
+            new Height(21.2), new VaccinationStatus(true),
+            new Price(90), new HashSet<>());
+    public static final Pet BUDDY = new Pet(new PetName("Buddy"), EMMA, new Color("grey"),
             new ColorPattern("white and brown"),
-            standard, new Species("cat"), new Weight(10.05),
-            new Height(100.5), new VaccinationStatus(true),
-            new Price(7777.77), new HashSet<>());
-    public static final Pet P4 = new Pet(new PetName("Page"), NGUYEN, new Color("white"),
-            new ColorPattern("white and brown"),
-            standard, new Species("cat"), new Weight(10.05),
-            new Height(100.5), new VaccinationStatus(true),
-            new Price(7777.77), new HashSet<>());
-    public static final Pet P5 = new Pet(new PetName("Snowy"), EMMA, new Color("white"),
-            new ColorPattern("white and brown"),
-            standard, new Species("cat"), new Weight(10.05),
-            new Height(100.5), new VaccinationStatus(true),
-            new Price(7777.77), new HashSet<>());
-    public static final Pet P6 = new Pet(new PetName("Buddy"), EMMA, new Color("white"),
-            new ColorPattern("white and brown"),
-            standard, new Species("cat"), new Weight(10.05),
-            new Height(100.5), new VaccinationStatus(true),
+            getDateOfBirthForAge(1), new Species("golden retriever"), new Weight(30.1),
+            new Height(27.4), new VaccinationStatus(true),
             new Price(7777.77), new HashSet<>());
 
 
@@ -192,12 +192,13 @@ public class SampleDataUtil {
     }
 
     public static Pet[] getSamplePets() {
-        return new Pet[] {P1, P2, P3, P4, P5, P6};
+        return new Pet[] {SHIRO, ASHY, PLUM, PAGE, SNOWY, BUDDY};
     }
 
-    private static DateOfBirth getStandard() {
+    private static DateOfBirth getDateOfBirthForAge(int age) {
+        int diff = NOW - age;
         try {
-            return DateOfBirth.parseString("2020-10-10");
+            return DateOfBirth.parseString(diff + "-10-29");
         } catch (IllegalValueException e) {
             throw new RuntimeException(e);
         }
