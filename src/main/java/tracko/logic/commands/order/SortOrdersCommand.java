@@ -12,7 +12,7 @@ import tracko.model.order.OrderDateTimeComparator;
  * Sorts the displayed list of orders by its timeCreated based on the argument keyword.
  * Keyword matching is case insensitive.
  */
-public class SortOrderCommand extends Command {
+public class SortOrdersCommand extends Command {
 
     public static final String COMMAND_WORD = "sorto";
 
@@ -23,7 +23,7 @@ public class SortOrderCommand extends Command {
 
     private final OrderDateTimeComparator comparator;
 
-    public SortOrderCommand(OrderDateTimeComparator comparator) {
+    public SortOrdersCommand(OrderDateTimeComparator comparator) {
         this.comparator = comparator;
     }
 
@@ -39,7 +39,7 @@ public class SortOrderCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof SortOrderCommand // instanceof handles nulls
-                && comparator.equals(((SortOrderCommand) other).comparator)); // state check
+                || (other instanceof SortOrdersCommand // instanceof handles nulls
+                && comparator.equals(((SortOrdersCommand) other).comparator)); // state check
     }
 }

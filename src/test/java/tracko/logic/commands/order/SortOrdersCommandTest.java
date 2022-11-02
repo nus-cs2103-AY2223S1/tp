@@ -15,7 +15,7 @@ import tracko.model.ModelManager;
 import tracko.model.UserPrefs;
 import tracko.model.order.OrderDateTimeComparator;
 
-class SortOrderCommandTest {
+class SortOrdersCommandTest {
 
     private Model model;
     private Model sortedNewModel;
@@ -37,7 +37,7 @@ class SortOrderCommandTest {
 
     @Test
     public void execute_sortedNewList_success() {
-        SortOrderCommand command = new SortOrderCommand(newComparator);
+        SortOrdersCommand command = new SortOrdersCommand(newComparator);
         String expectedMessage = String.format(Messages.MESSAGE_ORDERS_SORTED_OVERVIEW,
                 model.getSortedOrderList().size());
         assertCommandSuccess(command, model, expectedMessage, sortedNewModel);
@@ -46,7 +46,7 @@ class SortOrderCommandTest {
 
     @Test
     public void execute_sortedOldList_success() {
-        SortOrderCommand command = new SortOrderCommand(oldComparator);
+        SortOrdersCommand command = new SortOrdersCommand(oldComparator);
         String expectedMessage = String.format(Messages.MESSAGE_ORDERS_SORTED_OVERVIEW,
                 model.getSortedOrderList().size());
         assertCommandSuccess(command, model, expectedMessage, sortedOldModel);
@@ -55,14 +55,14 @@ class SortOrderCommandTest {
 
     @Test
     public void equals() {
-        SortOrderCommand sortFirstCommand = new SortOrderCommand(newComparator);
-        SortOrderCommand sortSecondCommand = new SortOrderCommand(oldComparator);
+        SortOrdersCommand sortFirstCommand = new SortOrdersCommand(newComparator);
+        SortOrdersCommand sortSecondCommand = new SortOrdersCommand(oldComparator);
 
         // same object -> returns true
         assertTrue(sortFirstCommand.equals(sortFirstCommand));
 
         // same values -> returns true
-        SortOrderCommand sortFirstCommandCopy = new SortOrderCommand(newComparator);
+        SortOrdersCommand sortFirstCommandCopy = new SortOrdersCommand(newComparator);
         assertTrue(sortFirstCommand.equals(sortFirstCommandCopy));
 
         // different types -> returns false
