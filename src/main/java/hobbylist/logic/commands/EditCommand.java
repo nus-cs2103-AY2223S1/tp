@@ -2,7 +2,6 @@ package hobbylist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -27,6 +26,7 @@ import hobbylist.model.tag.Tag;
  */
 public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_ACTIVITY_SUCCESS = "Edited Activity: %1$s";
+    public static final String MESSAGE_EDIT_ACTIVITY_NO_CHANGE = "No change to Activity: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ACTIVITY = "This activity already exists in the HobbyList.";
 
@@ -90,9 +90,14 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ACTIVITY);
         }
 
-        model.setActivity(activityToEdit, editedActivity);
-        model.updateFilteredActivityList(Model.PREDICATE_SHOW_ALL_ACTIVITIES);
-        return new CommandResult(String.format(MESSAGE_EDIT_ACTIVITY_SUCCESS, editedActivity));
+        if (!activityToEdit.equals(editedActivity)) {
+            model.setActivity(activityToEdit, editedActivity);
+            model.updateFilteredActivityList(Model.PREDICATE_SHOW_ALL_ACTIVITIES);
+            return new CommandResult(String.format(MESSAGE_EDIT_ACTIVITY_SUCCESS, editedActivity));
+        } else {
+            model.updateFilteredActivityList(Model.PREDICATE_SHOW_ALL_ACTIVITIES);
+            return new CommandResult(String.format(MESSAGE_EDIT_ACTIVITY_NO_CHANGE, editedActivity));
+        }
     }
 
     /**
@@ -107,7 +112,12 @@ public class EditCommand extends Command {
         Description updatedDescription = editActivityDescriptor.getDescription()
                 .orElse(activityToEdit.getDescription());
         Set<Tag> updatedTags = editActivityDescriptor.getTags().orElse(activityToEdit.getTags());
-        List<Date> date = editActivityDescriptor.getDate().orElse(activityToEdit.getDate());
+        Optional<Date> date = null;
+        if (editActivityDescriptor.checkDate() != null) {
+            date = editActivityDescriptor.checkDate();
+        } else {
+            date = activityToEdit.getDate();
+        }
         Status updatedStatus = editActivityDescriptor.getStatus().orElse(activityToEdit.getStatus());
         return new Activity(updatedName, updatedDescription, updatedTags, date, activityToEdit.getRating(),
                 updatedStatus, activityToEdit.getReview());
@@ -139,7 +149,7 @@ public class EditCommand extends Command {
         private Name name;
         private Description description;
         private Set<Tag> tags;
-        private List<Date> date;
+        private Optional<Date> date;
         private Status status;
 
         public EditActivityDescriptor() {}
@@ -160,6 +170,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
+
             return CollectionUtil.isAnyNonNull(name, description, tags, date, status);
         }
 
@@ -186,8 +197,8 @@ public class EditCommand extends Command {
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
-        public void setDate(List<Date> dl) {
-            this.date = (dl != null) ? new ArrayList<>(dl) : null;
+        public void setDate(Optional<Date> optionalDate) {
+            this.date = optionalDate;
         }
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
@@ -197,8 +208,14 @@ public class EditCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
-        public Optional<List<Date>> getDate() {
-            return (date != null) ? Optional.of(Collections.unmodifiableList(date)) : Optional.empty();
+        public Optional<Date> getDate() {
+            if (this.date == null) {
+                return Optional.empty();
+            }
+            return this.date;
+        }
+        public Optional<Date> checkDate() {
+            return this.date;
         }
 
         public void setStatus(Status status) {

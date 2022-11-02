@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -51,7 +50,13 @@ public class EditCommandParser implements Parser<EditCommand> {
                     .get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editActivityDescriptor::setTags);
-        parseDateForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_DATE)).ifPresent(editActivityDescriptor::setDate);
+        if (argMultimap.getValue(CliSyntax.PREFIX_DATE).isPresent()) {
+            if (argMultimap.getValue(CliSyntax.PREFIX_DATE).get().equals("")) {
+                editActivityDescriptor.setDate(Optional.empty());
+            } else {
+                editActivityDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(CliSyntax.PREFIX_DATE)));
+            }
+        }
         if (argMultimap.getValue(CliSyntax.PREFIX_STATUS).isPresent()) {
             editActivityDescriptor
                     .setStatus(ParserUtil.parseStatus(argMultimap.getValue(CliSyntax.PREFIX_STATUS)
@@ -78,13 +83,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
-    private Optional<List<Date>> parseDateForEdit(List<String> s) throws ParseException {
+    private Optional<Date> parseDateForEdit(Optional<String> s) throws ParseException {
         assert s != null;
-        if (s.isEmpty()) {
-            return Optional.empty();
-        }
-
-        return Optional.of(ParserUtil.parseDate(s));
+        return ParserUtil.parseDate(s);
     }
 
 }

@@ -4,7 +4,7 @@ import static hobbylist.commons.core.Messages.MESSAGE_ACTIVITIES_LISTED_OVERVIEW
 import static hobbylist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,49 +14,63 @@ import org.junit.jupiter.api.Test;
 import hobbylist.model.Model;
 import hobbylist.model.ModelManager;
 import hobbylist.model.UserPrefs;
+import hobbylist.model.activity.DateMatchesGivenDatePredicate;
 import hobbylist.model.activity.NameOrDescContainsKeywordsPredicate;
+import hobbylist.model.activity.RatingMatchesGivenValuePredicate;
 import hobbylist.testutil.TypicalActivities;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(TypicalActivities.getTypicalHobbyList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalActivities.getTypicalHobbyList(), new UserPrefs());
+    private final Model model = new ModelManager(TypicalActivities.getTypicalHobbyList(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(TypicalActivities.getTypicalHobbyList(), new UserPrefs());
 
     @Test
     public void equals() {
-        NameOrDescContainsKeywordsPredicate firstPredicate =
+        NameOrDescContainsKeywordsPredicate firstKeywordPredicate =
                 new NameOrDescContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameOrDescContainsKeywordsPredicate secondPredicate =
+        DateMatchesGivenDatePredicate firstDatePredicate = new DateMatchesGivenDatePredicate("2022-01-01");
+        RatingMatchesGivenValuePredicate firstRatingPredicate = new RatingMatchesGivenValuePredicate(3);
+        NameOrDescContainsKeywordsPredicate secondKeywordPredicate =
                 new NameOrDescContainsKeywordsPredicate(Collections.singletonList("second"));
+        DateMatchesGivenDatePredicate secondDatePredicate = new DateMatchesGivenDatePredicate("2021-02-02");
+        RatingMatchesGivenValuePredicate secondRatingPredicate = new RatingMatchesGivenValuePredicate(2);
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindCommand findFirstCommand = new FindCommand(firstKeywordPredicate,
+                                                        firstDatePredicate,
+                                                        firstRatingPredicate);
+        FindCommand findSecondCommand = new FindCommand(secondKeywordPredicate,
+                                                        secondDatePredicate,
+                                                        secondRatingPredicate);
 
         // same object -> returns true
-        assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertEquals(findFirstCommand, findFirstCommand);
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
-        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        FindCommand findFirstCommandCopy = new FindCommand(firstKeywordPredicate,
+                                                            firstDatePredicate,
+                                                            firstRatingPredicate);
+        assertEquals(findFirstCommand, findFirstCommandCopy);
 
         // different types -> returns false
         assertFalse(findFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(findFirstCommand.equals(null));
+        assertNotEquals(null, findFirstCommand);
 
         // different activity -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
+        assertNotEquals(findFirstCommand, findSecondCommand);
     }
 
     @Test
     public void execute_zeroKeywords_noActivityFound() {
         String expectedMessage = String.format(MESSAGE_ACTIVITIES_LISTED_OVERVIEW, 0);
-        NameOrDescContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredActivityList(predicate);
+        NameOrDescContainsKeywordsPredicate keywordPredicate = preparePredicate(" ");
+        DateMatchesGivenDatePredicate datePredicate = new DateMatchesGivenDatePredicate("");
+        RatingMatchesGivenValuePredicate ratingPredicate = new RatingMatchesGivenValuePredicate(-1);
+        FindCommand command = new FindCommand(keywordPredicate, datePredicate, ratingPredicate);
+        expectedModel.updateFilteredActivityList(keywordPredicate.or(datePredicate).or(ratingPredicate));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredActivityList());
     }
@@ -64,9 +78,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleActivitiesFound() {
         String expectedMessage = String.format(MESSAGE_ACTIVITIES_LISTED_OVERVIEW, 3);
-        NameOrDescContainsKeywordsPredicate predicate = preparePredicate("Charlotte Exercise Chicken");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredActivityList(predicate);
+        NameOrDescContainsKeywordsPredicate keywordPredicate = preparePredicate("Charlotte Exercise Chicken");
+        DateMatchesGivenDatePredicate datePredicate = new DateMatchesGivenDatePredicate("2022");
+        RatingMatchesGivenValuePredicate ratingPredicate = new RatingMatchesGivenValuePredicate(1);
+        FindCommand command = new FindCommand(keywordPredicate, datePredicate, ratingPredicate);
+        expectedModel.updateFilteredActivityList(keywordPredicate.or(datePredicate).or(ratingPredicate));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(TypicalActivities.ACTIVITY_C, TypicalActivities.ACTIVITY_E,
                 TypicalActivities.ACTIVITY_F), model.getFilteredActivityList());

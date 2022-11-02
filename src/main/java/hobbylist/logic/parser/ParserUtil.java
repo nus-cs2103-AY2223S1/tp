@@ -3,10 +3,9 @@ package hobbylist.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import hobbylist.commons.core.index.Index;
@@ -89,22 +88,25 @@ public class ParserUtil {
      * The String date is in yyyy-mm-dd format
      * @throws ParseException if the given {@code date} is invalid or out of calendar.
      */
-    public static List<Date> parseDate(List<String> listDate) throws ParseException {
-        requireNonNull(listDate);
-        List<Date> s = new ArrayList<>();
-        for (String d : listDate) {
-            requireNonNull(d);
-            String trimmedD = d.trim();
+    public static Optional<Date> parseDate(Optional<String> optionalDateString) throws ParseException {
+        requireNonNull(optionalDateString);
+        Optional<Date> optionalDate = Optional.empty();
+        if (optionalDateString.isPresent()) {
+            String dateString = optionalDateString.get();
+            String trimmedD = dateString.trim();
             if (!Date.isValidDateString(trimmedD)) {
                 throw new ParseException(Date.MESSAGE_EXCEPTION);
             }
             try {
-                s.add(new Date(d));
+                optionalDate = Optional.of(new Date(dateString));
             } catch (DateTimeParseException de) {
                 throw new ParseException("Sorry, the input date is out of human calendar scope.");
             }
+
+        } else {
+            optionalDate = Optional.ofNullable(null);
         }
-        return s;
+        return optionalDate;
     }
 
     // Solution adapted from https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files
@@ -136,6 +138,10 @@ public class ParserUtil {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
+            System.out.println(tagName);
+            if (tagName.length() > 15) {
+                throw new ParseException(Tag.TAG_NAME_TOO_LONG);
+            }
             tagSet.add(parseTag(tagName));
         }
         return tagSet;

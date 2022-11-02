@@ -1,6 +1,7 @@
 package hobbylist.storage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import hobbylist.commons.core.Messages;
 import hobbylist.commons.exceptions.IllegalValueException;
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
@@ -29,7 +31,7 @@ class JsonAdaptedActivity {
     private final String name;
     private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedDate> date = new ArrayList<>();
+    private final String date;
     private final int rating;
     private final String status;
     private final String review;
@@ -40,7 +42,7 @@ class JsonAdaptedActivity {
     @JsonCreator
     public JsonAdaptedActivity(@JsonProperty("name") String name, @JsonProperty("description") String description,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                               @JsonProperty("date") List<JsonAdaptedDate> date,
+                               @JsonProperty("date") String date,
                                @JsonProperty("rating") int rating,
                                @JsonProperty("status") String status,
                                @JsonProperty("review") String review) {
@@ -50,9 +52,7 @@ class JsonAdaptedActivity {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        if (date != null) {
-            this.date.addAll(date);
-        }
+        this.date = date;
         this.rating = rating;
         this.status = status;
         this.review = review;
@@ -68,11 +68,7 @@ class JsonAdaptedActivity {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         rating = source.getRating();
-        //JsonAdaptedDate d = new JsonAdaptedDate("2003-03-03");
-        //date.add(d);
-        if (!source.getDate().isEmpty()) {
-            date.add(new JsonAdaptedDate(source.getDate().get(0)));
-        }
+        date = source.getDate().isPresent() ? source.getDate().get().toString() : null;
         status = source.getStatus().toString();
         review = source.getReview().isPresent() ? source.getReview().get().toString() : null;
     }
@@ -84,11 +80,18 @@ class JsonAdaptedActivity {
      */
     public Activity toModelType() throws IllegalValueException {
         final List<Tag> activityTags = new ArrayList<>();
-        final List<Date> activityDate = new ArrayList<>();
-        final Status modelStatus;
-        for (JsonAdaptedDate date : date) {
-            activityDate.add(date.toModelType());
+
+        final Optional<Date> activityDate;
+        if (this.date == null) {
+            activityDate = Optional.empty();
+        } else {
+            if (!Date.isValidDateString(date)) {
+                throw new IllegalValueException(Date.MESSAGE_EXCEPTION);
+            }
+            activityDate = Optional.of(new Date(date));
         }
+
+        final Status modelStatus;
         for (JsonAdaptedTag tag : tagged) {
             activityTags.add(tag.toModelType());
         }
@@ -112,11 +115,17 @@ class JsonAdaptedActivity {
 
         final Set<Tag> modelTags = new HashSet<>(activityTags);
 
+        if (rating > 5 || rating < 0) {
+            throw new IllegalValueException(Messages.MESSAGE_INVALID_RATING);
+        }
+
         // Solution adapted from https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files
         if (status == null || status.equals("")) {
             modelStatus = new Status();
-        } else {
+        } else if (Arrays.asList(Status.VALID_STATUSES).contains(status)) {
             modelStatus = new Status(status);
+        } else {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINT);
         }
 
         final Optional<Review> modelReview;
@@ -125,7 +134,6 @@ class JsonAdaptedActivity {
         } else {
             modelReview = Optional.of(new Review(review));
         }
-
         return new Activity(modelName, modelDescription, modelTags, activityDate, rating, modelStatus, modelReview);
 
     }

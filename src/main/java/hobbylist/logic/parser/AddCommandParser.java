@@ -2,7 +2,6 @@ package hobbylist.logic.parser;
 
 import static hobbylist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -40,7 +39,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
-        List<Date> date = ParserUtil.parseDate(argMultimap.getAllValues(CliSyntax.PREFIX_DATE));
+        Optional<Date> date = ParserUtil.parseDate(argMultimap.getValue(CliSyntax.PREFIX_DATE));
         Status status = new Status();
         if (argMultimap.getValue(CliSyntax.PREFIX_STATUS).isPresent()) {
             status = ParserUtil.parseStatus(argMultimap.getValue(CliSyntax.PREFIX_STATUS).get());

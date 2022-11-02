@@ -7,8 +7,10 @@ title: User Guide
 
 ## Table of Contents
 
-* Table of Contents 
-{:toc}
+<div class="toc-no-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -95,7 +97,7 @@ to be added
 </div>
 
 
-### Adding a hobby activity : `add`
+### 5.1 Adding a hobby activity : `add`
 
 Adds a hobby activity to HobbyList.
 
@@ -109,7 +111,7 @@ Examples:
 * `add n/42km run d/NUS Run event t/sport`
 * `add n/Badminton d/play badminton t/sport entertainment_2 date/2022-10-19 s/completed`
 
-### Editing an activity : `edit`
+### 5.2 Editing an activity : `edit`
 
 Edits a specified activity from HobbyList.
 
@@ -133,7 +135,7 @@ Examples:
 
   *Removes the tags of the second activity and sets the date to `2022-10-21`.*
 
-### Deleting an activity : `delete`
+### 5.3 Deleting an activity : `delete`
 
 Deletes a specified activity from HobbyList.
 
@@ -145,7 +147,7 @@ Format: `delete INDEX`
 
 Example: `delete 1`
 
-### Listing all hobby activities : `list`
+### 5.4 Listing all hobby activities : `list`
 
 Shows a list of all hobby activities in HobbyList.
 
@@ -154,7 +156,7 @@ Format: `list`
 Example: `list`
 
 
-### Rating an activity: `rate`
+### 5.5 Rating an activity: `rate`
 
 Adds rating and/or writes review for an activity in the HobbyList.
 
@@ -170,7 +172,7 @@ Example:
 * `rate 2 r/4 re/Interesting movie`
 
 
-### Selecting an activity: `select`
+### 5.6 Selecting an activity: `select`
 
 Displays all details of the selected activity from HobbyList on the panel to the right of the list panel.
 
@@ -181,7 +183,7 @@ Format: `select INDEX`
 
 Example: `select 1`
 
-### Finding activities: `find`
+### 5.7 Finding activities: `find`
 
 #### With keywords:
 
@@ -221,7 +223,7 @@ Format: `find rate/VALUE`
 
 Example: `find rate/3`
 
-### Finding activities with tags : `findTag`
+### 5.8 Finding activities with tags : `findTag`
 
 Shows a list of all hobby activities whose tags match the one specified in the command.
 
@@ -233,7 +235,7 @@ Example:
 * `findTag book`
 * `findTag ANIME`
 
-### Finding activities with status: `findStatus`
+### 5.9 Finding activities with status: `findStatus`
 
 Shows a list of all hobby activities whose status match the status specified in the command.
 
@@ -246,7 +248,7 @@ Example:
 * `findStatus COMPLETED`
 * `findStatus ongoing`
 
-### Finding activities with rating value above certain value : `r/above`
+### 5.10 Finding activities with rating value above certain value : `r/above`
 
 Shows a list of all hobby activities whose rating value is greater or equal than the required value.
 
@@ -256,13 +258,13 @@ Format: `r/above VALUE`
 
 Example: `r/above 1`
 
-### Getting help : `help`
+### 5.11 Getting help : `help`
 
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Deleting all activities: `clear`
+### 5.12 Deleting all activities: `clear`
 
 Deletes all activities from HobbyList
 
@@ -270,7 +272,7 @@ Format: `clear`
 
 Example: `clear`
 
-### Exiting the program : `exit`
+### 5.13 Exiting the program : `exit`
 
 Exits the program.
 
@@ -278,9 +280,19 @@ Format: `exit`
 
 Example: `exit`
 
-### Renaming the commands
+### 5.14 Renaming the commands
 
-If you do not like the names of the command, you can select `preferences` in the menu bar and `edit aliases` to rename any of the commands.
+If you do not like the names of the command, you can select `preferences` in the menu bar and `edit aliases` to rename any of the commands. You can rename the commands into anything, as long as they are not exactly the same, and contains no whitespaces.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** 
+If you do not want to use your mouse, you can press the `F2` key to open the window, and switch fields to edit by pressing the `tab` key. Pressing `enter` while any field is in focus will save and close your settings.
+
+If you really want to, you can shorten the commands to a single character to speed up typing commands, like the example below:
+
+![Example alias settings](images/ExampleAliases.png)
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
