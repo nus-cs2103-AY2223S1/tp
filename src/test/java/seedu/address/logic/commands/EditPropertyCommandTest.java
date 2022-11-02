@@ -9,7 +9,8 @@ import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditPropertyCommand.EditPropertyDescriptor;
+import seedu.address.logic.commands.property.EditPropertyCommand;
+import seedu.address.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.address.model.BuyerBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

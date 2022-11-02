@@ -8,7 +8,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FindBuyersCommand;
+import seedu.address.logic.commands.buyer.FindBuyersCommand;
+import seedu.address.logic.parser.buyer.FindBuyersCommandParser;
 import seedu.address.model.buyer.NameContainsKeywordsPredicate;
 
 public class FindBuyersCommandParserTest {
