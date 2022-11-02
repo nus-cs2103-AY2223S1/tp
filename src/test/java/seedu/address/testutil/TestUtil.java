@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalPersons.RECORD1;
-import static seedu.address.testutil.TypicalPersons.RECORD2;
-import static seedu.address.testutil.TypicalPersons.RECORD3;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalRecords.RECORD1;
+import static seedu.address.testutil.TypicalRecords.RECORD2;
+import static seedu.address.testutil.TypicalRecords.RECORD3;
 
 import java.io.IOException;
 import java.nio.file.Files;

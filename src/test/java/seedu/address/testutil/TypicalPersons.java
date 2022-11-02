@@ -19,22 +19,12 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
-import seedu.address.model.record.Record;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalPersons {
 
-    public static final Record RECORD1 = new RecordBuilder().withRecordDate("10-10-2011 1400")
-            .withRecordData("Covid-19")
-            .withMedications("Paracetamol 500mg").build();
-    public static final Record RECORD2 = new RecordBuilder().withRecordDate("10-10-2010 1400")
-            .withRecordData("Cold").build();
-    public static final Record RECORD3 = new RecordBuilder().withRecordDate("10-11-2011 1410")
-            .withRecordData("Rashes (Allergic Reaction)")
-            .withMedications("Cetrizine 10 tabs", " Ketotifen 1 botl")
-            .build();
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline").withBirthdate("04-04-1944")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
@@ -42,7 +32,8 @@ public class TypicalPersons {
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier").withBirthdate("08-08-1988")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").withRecordList(RECORD1, RECORD2, RECORD3)
+            .withTags("owesMoney", "friends")
+            .withRecordList(TypicalRecords.RECORD1, TypicalRecords.RECORD2, TypicalRecords.RECORD3)
             .withAppointment("05-05-2024 1200").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withBirthdate("02-02-2002")
             .withPhone("95352563").withEmail("heinz@example.com").withAddress("wall street").build();
@@ -55,7 +46,7 @@ public class TypicalPersons {
             .withPhone("9482427").withEmail("lydia@example.com").withAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withBirthdate("15-05-1975")
             .withPhone("9482442").withEmail("anna@example.com")
-            .withAddress("4th street").withRecordList(RECORD1).build();
+            .withAddress("4th street").withRecordList(TypicalRecords.RECORD1).build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")

@@ -7,9 +7,9 @@ import static seedu.address.logic.commands.AddRecordCommand.MESSAGE_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
-import static seedu.address.testutil.TypicalPersons.RECORD1;
-import static seedu.address.testutil.TypicalPersons.RECORD2;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalRecords.RECORD1;
+import static seedu.address.testutil.TypicalRecords.RECORD2;
 
 import org.junit.jupiter.api.Test;
 

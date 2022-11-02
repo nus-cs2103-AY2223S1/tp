@@ -25,6 +25,9 @@ public class RecordList {
      */
     public void add(Record toAdd) {
         requireNonNull(toAdd);
+        if (contains(toAdd)) {
+            throw new DuplicateRecordException();
+        }
         recordList.add(toAdd);
     }
 
@@ -93,7 +96,15 @@ public class RecordList {
                 && recordList.equals(((RecordList) other).recordList)); // state check
     }
 
+    /**
+     * Adds a Record to the list.
+     * The record must not already exist in the list.
+     */
     public void delete(Record record) {
+        requireNonNull(record);
+        if (!recordList.remove(record)) {
+            throw new RecordNotFoundException();
+        }
         recordList.remove(record);
     }
 
