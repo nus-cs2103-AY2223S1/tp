@@ -109,6 +109,9 @@ public class ApplicantBuilder {
         return new Applicant(name, phone, email, scholarship, applicationStatus, majors);
     }
 
+    /**
+     * Builds a pinned applicant.
+     */
     public Applicant build_pinned() {
         Pin pin = new Pin(true);
         return new Applicant(name, phone, email, scholarship, applicationStatus, majors, pin);

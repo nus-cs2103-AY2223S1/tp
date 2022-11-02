@@ -1,12 +1,13 @@
 package seedu.trackascholar.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.trackascholar.logic.commands.PinCommand;
-
 import static seedu.trackascholar.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.trackascholar.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.trackascholar.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.trackascholar.testutil.TypicalIndexes.INDEX_FIRST_APPLICANT;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.trackascholar.logic.commands.PinCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

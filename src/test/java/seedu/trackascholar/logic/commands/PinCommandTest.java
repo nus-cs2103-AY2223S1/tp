@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.showApplicantAtIndex;
+import static seedu.trackascholar.testutil.TypicalApplicants.ALICE;
 import static seedu.trackascholar.testutil.TypicalApplicants.getTypicalTrackAScholar;
 import static seedu.trackascholar.testutil.TypicalIndexes.INDEX_FIRST_APPLICANT;
 import static seedu.trackascholar.testutil.TypicalIndexes.INDEX_SECOND_APPLICANT;
-import static seedu.trackascholar.testutil.TypicalApplicants.ALICE;
 
 import org.junit.jupiter.api.Test;
 
