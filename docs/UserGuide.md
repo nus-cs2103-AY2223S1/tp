@@ -177,8 +177,6 @@ Adds a bill attached to an appointment with input information including amount a
 
 * The onus is on the user to check that the bill date entered is the same as the appointment date or later.
 
-* The onus is on the user to check that the bill date entered is the same as the appointment date or later.
-
 #### Command word
 
 `addbill`, `ab`
