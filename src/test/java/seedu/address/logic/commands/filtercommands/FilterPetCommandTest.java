@@ -132,6 +132,24 @@ public class FilterPetCommandTest {
     }
 
     @Test
+    public void equals_differentVaccination_returnsFalse() {
+        FilterPetCommand firstCommand = new FilterPetCommand(
+                new ColorContainsKeywordsPredicate<>(Arrays.asList("orange")),
+                new PetNameContainsKeywordsPredicate<>(Arrays.asList("raichu")),
+                new PriceContainsKeywordsPredicate<>(Arrays.asList(109.54)),
+                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("raichu")),
+                new VaccinationStatusPredicate<>(false));
+        FilterPetCommand secondCommand = new FilterPetCommand(
+                new ColorContainsKeywordsPredicate<>(Arrays.asList("orange")),
+                new PetNameContainsKeywordsPredicate<>(Arrays.asList("raichu")),
+                new PriceContainsKeywordsPredicate<>(Arrays.asList(109.54)),
+                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("raichu")),
+                new VaccinationStatusPredicate<>(true));
+
+        assertFalse(firstCommand.equals(secondCommand));
+    }
+
+    @Test
     public void generatePredicate_noMatchingKeywords_noOrdersFound() {
         String expectedMessage = String.format(MESSAGE_PETS_LISTED_OVERVIEW, 0);
 
@@ -216,7 +234,7 @@ public class FilterPetCommandTest {
     }
 
     @Test
-    public void generatePredicate_matchingSpecies_onePetFound() {
+    public void generatePredicate_matchingSpecies_twoPetsFound() {
         String expectedMessage = String.format(MESSAGE_PETS_LISTED_OVERVIEW, 2);
 
         SpeciesContainsKeywordsPredicate<Pet> speciesContainsKeywordsPredicate =
@@ -230,6 +248,25 @@ public class FilterPetCommandTest {
 
         FilterPetCommand command = new FilterPetCommand(defaultPredicate, defaultPredicate, defaultPredicate,
                 speciesContainsKeywordsPredicate, defaultPredicate);
+        pExpectedModel.updateFilteredPetList(command.generatePredicate());
+        assertCommandSuccess(command, pModel, expectedMessage, pExpectedModel);
+        assertEquals(TypicalPets.getTypicalPets(), pModel.getFilteredPetList());
+    }
+
+    @Test
+    public void generatePredicate_matchingVaccinationStatus_onePetFound() {
+        String expectedMessage = String.format(MESSAGE_PETS_LISTED_OVERVIEW, 2);
+
+        VaccinationStatusPredicate<Pet> vaccinationStatusPredicate = new VaccinationStatusPredicate<>(true);
+        Predicate<Pet> defaultPredicate = new Predicate<Pet>() {
+            @Override
+            public boolean test(Pet pet) {
+                return true;
+            }
+        };
+
+        FilterPetCommand command = new FilterPetCommand(defaultPredicate, defaultPredicate, defaultPredicate,
+                defaultPredicate, vaccinationStatusPredicate);
         pExpectedModel.updateFilteredPetList(command.generatePredicate());
         assertCommandSuccess(command, pModel, expectedMessage, pExpectedModel);
         assertEquals(TypicalPets.getTypicalPets(), pModel.getFilteredPetList());

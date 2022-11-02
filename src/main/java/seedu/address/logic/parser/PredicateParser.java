@@ -162,7 +162,8 @@ public class PredicateParser {
         case SPECIES_PREFIX:
             return new SpeciesContainsKeywordsPredicate<>(Arrays.asList(query));
         case VACCINATION_PREFIX:
-            if (query != Boolean.toString(true) && query != Boolean.toString(false)) {
+            query = query.trim();
+            if (!query.equals(Boolean.toString(true)) && !query.equals(Boolean.toString(false))) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
             }
             return new VaccinationStatusPredicate<>(Boolean.parseBoolean(query));
