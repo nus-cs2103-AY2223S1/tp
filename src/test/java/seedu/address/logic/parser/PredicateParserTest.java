@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandPar
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PET_NAME_PREFIX;
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.PRICE_PREFIX;
 import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.SPECIES_PREFIX;
+import static seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser.VACCINATION_PREFIX;
 
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -29,6 +30,7 @@ import seedu.address.model.pet.predicates.ColorContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.VaccinationStatusPredicate;
 import seedu.address.testutil.Assert;
 
 public class PredicateParserTest {
@@ -112,6 +114,12 @@ public class PredicateParserTest {
     public void parseBuyer_invalidPrefix_throwParseException() {
         Assert.assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseBuyer("z/"));
+    }
+
+    @Test
+    public void parseBuyer_invalidPrefixAndInput_throwParseException() {
+        Assert.assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseBuyer("z/helloworld"));
     }
 
     @Test
@@ -203,6 +211,12 @@ public class PredicateParserTest {
     }
 
     @Test
+    public void parseDeliverer_invalidPrefixAndInput_throwParseException() {
+        Assert.assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseDeliverer("z/invalidinvalidinvaldiid"));
+    }
+
+    @Test
     public void parseDeliverer_emptyArguments_throwParseException() {
         Assert.assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseDeliverer("s/"));
@@ -291,6 +305,12 @@ public class PredicateParserTest {
     }
 
     @Test
+    public void parseSupplier_invalidPrefixAndInvalidInput_throwParseException() {
+        Assert.assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseSupplier("z/wowowowo"));
+    }
+
+    @Test
     public void parseSupplier_emptyArguments_throwParseException() {
         Assert.assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE), () -> PredicateParser.parseSupplier("s/"));
@@ -354,6 +374,27 @@ public class PredicateParserTest {
     }
 
     @Test
+    public void parsePet_vaccination_vaccinationPredicate() {
+        VaccinationStatusPredicate<Pet> expected = new VaccinationStatusPredicate<>(true);
+        try {
+            Predicate<Pet> result1 = PredicateParser.parsePet(VACCINATION_PREFIX + "/ true");
+            Predicate<Pet> result2 = PredicateParser.parsePet(VACCINATION_PREFIX + "/true \n");
+            assertEquals(result1, expected);
+            assertEquals(result2, expected);
+        } catch (IllegalValueException e) {
+            assert false;
+        }
+    }
+
+    @Test
+    public void parsePet_invalidVaccination_throwsParseException() {
+        String input = VACCINATION_PREFIX + "/ hi";
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE);
+
+        Assert.assertThrows(ParseException.class, expectedMessage, () -> PredicateParser.parsePet(input));
+    }
+
+    @Test
     public void parsePet_emptyString_throwParseException() {
         Assert.assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FilterPetCommand.MESSAGE_USAGE), () -> PredicateParser.parsePet(""));
@@ -363,6 +404,12 @@ public class PredicateParserTest {
     public void parsePet_invalidPrefix_throwParseException() {
         Assert.assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FilterPetCommand.MESSAGE_USAGE), () -> PredicateParser.parsePet("z/"));
+    }
+
+    @Test
+    public void parsePet_invalidPrefixInvalidInput_throwParseException() {
+        Assert.assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FilterPetCommand.MESSAGE_USAGE), () -> PredicateParser.parsePet("z/ungur"));
     }
 
     @Test
