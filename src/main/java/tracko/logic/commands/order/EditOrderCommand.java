@@ -59,7 +59,7 @@ public class EditOrderCommand extends Command {
     public static final String MESSAGE_ORDER_ALREADY_MARKED =
             "An order marked as paid and/or delivered cannot be edited!";
 
-    public static final String MESSAGE_QUANTITY_INVALID = "Quantity should be an integer less than 2147483648";
+    public static final String MESSAGE_QUANTITY_INVALID = "Quantity should be an integer less than 2,147,483,648.";
 
     public static final String MESSAGE_QUANTITY_ACCOMPANIED_WITH_ITEM = "Item prefix should be "
             + "accompanied with a quantity prefix, and vice versa.";

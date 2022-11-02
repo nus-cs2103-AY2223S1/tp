@@ -66,11 +66,11 @@ and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**.
 
 Adds an item to the list of tracked inventory.
 
-Format: `addi n/ITEM_NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE`
-- `SELL_PRICE` is the price that the user sells the item for
-- `COST_PRICE` is the price that the user purchased the item for
+Format: `addi n/ITEM_NAME q/QUANTITY d/DESCRIPTION sp/SELL_PRICE cp/COST_PRICE [t/TAG]…​ `
+- `SELL_PRICE` is the amount that is received as revenue per unit of item sold
+- `COST_PRICE` is the amount that it costs to produce per unit of the item
 - `SELL_PRICE` and `COST_PRICE` should be given as a number rounded to the nearest cent
-- TrackO allows users to input a `COST_PRICE` that is greater than the `SELL_PRICE` although user will be selling at a loss
+- TrackO allows items to have a larger `COST_PRICE` than `SELL_PRICE`, where items can be sold at a loss
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An inventory item's name must be more than 1 character long.
@@ -81,8 +81,8 @@ An inventory item can have any number of tags (including 0). A tag should only c
 </div>
 
 Examples:
-* `addi n/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1`
-* `addi n/Chair q/10 d/This is a wooden dining chair t/Furniture t/Mahogany sp/50 cp/20`
+* `addi i/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1`
+* `addi i/Chair q/10 d/This is a wooden dining chair t/Furniture t/Mahogany sp/50 cp/20`
 
 ### Listing all inventory items: `listi`
 
@@ -104,8 +104,8 @@ Format: `findi KEYWORD [MORE_KEYWORDS]`
   e.g. `shirt` will return `dress shirt`, `collared shirt`
 
 Examples:
-- `findi oil` returns orders with the keyword `oil` such as `Olive Oil` and `Vegetable Oil`
-- `findi yellow pillow` returns orders with the keywords `yellow` and `pillow` such as `yellow blanket`, `ergonomic pillow` and `yellow pillow`
+- `findi oil` returns items with item names containing keyword `oil` such as `Olive Oil` and `Vegetable Oil`
+- `findi yellow pillow` returns items with the item name containing keywords `yellow` and `pillow` such as `yellow blanket`, `ergonomic pillow` and `yellow pillow`
 
 ### Deleting an inventory item : `deletei`
 
@@ -114,10 +114,9 @@ Deletes the specified item from the list of tracked inventory.
 Format: `deletei INDEX`
 
 * Deletes the item at the specified `INDEX`.
-
 * `INDEX` refers to the index number shown in the displayed inventory list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
-* Deleting items with active orders is not permitted.
+* TrackO does not allow items that are currently involved with unpaid/undelivered orders to be deleted
 
 Examples:
 * `listi` followed by `deletei 2` deletes the 2nd item in the list of tracked inventory.
@@ -178,7 +177,7 @@ Lists all the orders a store has.
 
 Format: `listo`
 
-### Locating orders by keyword and delivery/payment status: `findo`
+### Finding order(s): `findo`
 
 Finds an order with item names containing any of the given keywords.
 
@@ -200,16 +199,14 @@ in their address.
 * The search keywords used are case-insensitive. e.g. `keychain` will match `Keychain`
 * The order of the keywords does not matter. e.g. `apple keychain` will match `Keychain Apple`
 * Only full words will be matched e.g. `Gardens,` will not match `Gardens` and `keychain` will not match `keychains`
-* Orders matching at least one keyword will be returned (i.e. `OR` search).<br>
+* Orders matching at least one keyword will be returned<br>
   e.g. `findo apple keychain` will return `apple painting`, `banana keychain`
 
 Examples:
-* `findo n/Alex` returns all orders with the name `Alex` 
 * `findo n/Alex a/Clementi` returns all orders with the name `Alex` and an address including the word `Clementi`
 * `findo n/Alex Barbara a/Clementi Geylang` returns all orders with the name `Alex` or `Barbara` and an address including the word `Clementi` or `Geylang`
-* `findo -D` returns all orders which have been delivered 
-* `findo -d n/Alex` returns all orders with the name `Alex` which have been delivered
-* `findo -d -p n/Alex` returns all orders with `Alex` which have been paid and delivered
+* `findo -D` returns all orders which have not been delivered
+* `findo -d -p n/Alex` returns all orders with the name `Alex` which have been paid and delivered
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Completed orders are orders which have been paid **and** delivered. You can search using both -p **and** -d to find completed orders! 
@@ -256,8 +253,8 @@ Format: `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUA
 
 * Edits the order at the specified `INDEX`.
 * This feature is case-insensitive.
-* The index refers to the index number shown in the displayed order list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` refers to the index number shown in the displayed order list.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * Every field is optional, but if you were to include `i/ITEM_NAME`, you must also include 
   `q/QUANTITY`. Both fields need to be present to update an order's list of ordered items.
 * You can only edit an order's list of ordered items to consist of items that exists in your inventory. <br> 
@@ -291,8 +288,8 @@ Marks an existing order in the order list as paid and/or delivered.
 Format: `marko INDEX [-p] [-d]`
 
 * Marks the order at the specified `INDEX` as paid and/or delivered. 
-* The index refers to the index number shown in the currently displayed list. 
-* The index **must be a positive integer** 1, 2, 3, …​ 
+* The 'INDEX' refers to the index number shown in the currently displayed list. 
+* The 'INDEX' **must be a positive integer** 1, 2, 3, …​ 
 * Flag `-p` marks the order as paid. 
 * Flag `-d` marks the order as delivered. 
 * Flags are case-sensitive and specific to the character. 
