@@ -365,80 +365,31 @@ Deleted data can not be retrieved. Do use this command cautiously!
 
 ## **Viewing Residents**
 
-You might find yourself overloaded with information. These commands can help to include, and exclude
-fields from being seen, find specific residents, and search residents whose fields match a specific keyword.
+You might find yourself overloaded with information. These commands can help you hide resident fields from view, 
+find specific residents, or search for residents whose fields match a specific keyword. By de-cluttering your screen, 
+these commands will allow you to focus only on the information you need!
 
 ### Listing all residents : `list`
 
 Lists *all* the residents in the **RC4HDB** database. If the table view is showing a filtered portion of the residents,
 calling `list` will restore and display the full list of residents.
 
-[comment]: <> (Additionally, you can specify fields &#40;represented as columns&#41; to be **included** or **excluded** as well!)
-
-[comment]: <> (This can be done using `list /i` or `list /e`.)
-
 Format:
 
-- `list` to display *all* residents from the database with *all* columns included in the table.
-
+- `list` to display *all* residents from the database with *all* columns shown in the table.
   Calling `list` on our sample data will produce the following result:
+  
+
   ![list command](images/ug-photos/list_command.png)
 
 
-[comment]: <> (- `list /i LETTER [MORE_LETTERS]` to display *all* residents in **RC4HDB** while **including** only the fields)
-
-[comment]: <> (   corresponding to the specified letters)
-
-
-[comment]: <> (- `list /e LETTER [MORE_LETTERS]` to display *all* residents in **RC4HDB** while **excluding** only the fields)
-
-[comment]: <> (   corresponding to the specified letters)
-
-[comment]: <> (  Calling `list /i n p e` or `list /e i r g h m t` would both produce the following result:)
-
-[comment]: <> (![list command]&#40;../images/ug-photos/list_i_list_e_command.png&#41;)
-
 Examples:
 
-- `list` returns a table of *all* residents from the database with *all* fields included in the view
-
-[comment]: <> (- `list /i n p e` returns a table with only the *name*, *phone* and *email* fields included in the view)
-
-[comment]: <> (- `list /e r g h` returns a table with all fields except *room*, *gender* and *house* included in the view)
+- `list` returns a table of *all* residents from the database with *all* fields included in the view.
 
 Note:
 
 - Any input entered after the `list` command will be ignored.
-
-[comment]: <> (- Each field to be included or excluded from the table should be entered as a *single letter*, that is, )
-
-[comment]: <> (  the first letter of the corresponding field name.)
-
-[comment]: <> (- The relative order of each letter *does not matter*, and the letters can be in either upper or lower case. )
-
-[comment]: <> (  Duplicate letters are ignored.)
-
-[comment]: <> (- Only letters corresponding to the first letter of a valid field in the table can be specified, )
-
-[comment]: <> (  *any other letter will be considered invalid*.)
-
-[comment]: <> (- Letters *must* be separated by a single whitespace. )
-
-[comment]: <> (- There needs to be at least one field &#40;and hence column&#41; included in the table view at all times.)
-
-[comment]: <> (<div markdown="span" class="alert alert-primary">:bulb: **Tip:**)
-
-[comment]: <> (*&#40;For advanced users!&#41;* The `list` command, as well as the `list /i` and `list /e` extensions, are )
-
-[comment]: <> ([*idempotent*]&#40;glossary.md#idempotent&#41; and [*state-independent*]&#40;glossary.md#state-independent&#41;. This means that)
-
-[comment]: <> (using the `list` command with a set of *&#40;optional&#41;* letters will return the same result regardless of what the current )
-
-[comment]: <> (table looks like. Calling the same command again will not change the table view any further.)
-
-[comment]: <> (</div>)
-
-
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -448,46 +399,45 @@ Note:
 
 ### Showing only some columns : `showonly`
 
-Shows only the specified columns in the **current** table view.
+Shows only the specified columns from the **current** table view.
 
 If your screen is too cluttered, you may use `showonly` to show only the columns you need!
 Take note that:
 
 1. You can only use `showonly` on existing columns in the current table view, and
-2. The `showonly` command does not modify the list of residents being displayed. Filtered residents stay filtered!
+2. The `showonly` command does not modify the list of residents being displayed. Filtered residents *stay filtered*!
 
 Format: `showonly LETTER [MORE_LETTERS]`
 
-Calling `filter g/M` (click [here](#filtering-residents-by-field--filter) to learn about `filter`) followed by `showonly n g h` will produce the following result:
+Calling `filter /all g/M` (click [here](#filtering-residents-by-field--filter) to learn about `filter`) followed by
+`showonly n g h` will produce the following result:
+
+
 ![showonly](images/ug-photos/showonly_command.png)
-As you can see,`showonly` works with a list of residents that have passed the filter! This is one way you can use our commands in conjunction with one another.
 
-Examples **(sequential)**:
+As you can see,`showonly` hides the specified columns and preserves the filter! This is one way you can 
+use our commands in conjunction with one another.
 
-- `showonly n p e` on a full table returns a table with only the *name*, *phone* and *email* columns shown.
-- Calling `showonly r g h` on the table from the previous point is **invalid** as the *room*, *gender* and
-  *house* columns are not shown in the present table.
-- However, calling `showonly n e` on said table is **valid**, and will return a table with only the *name* and
+Sequential examples:
+
+1. `showonly n g h` on a full table returns a table with only the *name*, *gender* and *house* columns shown, as above.
+2. Using `showonly r p e` on the table from point 1 is **invalid** as the *room*, *phone* and
+  *email* columns are *not present* in the current table.
+3. However, using `showonly n g` on said table is **valid**, and will return a table with only the *name* and
   *email* columns shown.
 
 <br>
+
 Note:
 
-- Each column to be shown should be entered as a single letter, e.g. `n p e` that corresponds to the first
-  letter of the field in the column. This is in contrast to the prefixes, e.g. `n/`, `p/`, used in `add` or `filter`.
-- The relative order of each letter does not matter, and the letters can be in either upper or lower case.
-  Duplicate letters are ignored.
-- Similarly, letters *must* be separated by a single whitespace.
-- Only valid letters can be specified, and there needs to be at least one column shown in the table at all times.
-- You can always `reset` the table to the full, default view at any time!
+- Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
+  - This **should not** be confused with the `n/` or `p/` prefixes used in `add` or `filter`.
+- Letters *must* be separated by a single whitespace.
+- The order of each letter does not matter.
+- Duplicate letters are ignored. 
+- There needs to be at least one column shown in the table at all times.
+- You can always use `reset` to restore the full table view!
 
-[comment]: <> (<div markdown="span" class="alert alert-primary">:bulb: **Tip:**)
-
-[comment]: <> (*&#40;For advanced users!&#41;* Notice that `showonly`, unlike `list /i`, is dependent on the state of the current table.)
-
-[comment]: <> (Hence, some calls to `showonly` may be invalid if the specified columns are not present in the current table view.)
-
-[comment]: <> (</div>)
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -497,43 +447,37 @@ Note:
 
 ### Hiding only some columns : `hideonly`
 
-Hides only the specified columns in the **current** table view.
+Hides only the specified columns from the **current** table view.
 
 Use `hideonly` if there are more columns to show than hide.
-As with `showonly`, take note that:
+Like `showonly`:
 
 1. You can only use `hideonly` on existing columns in the current table view, and
-2. The `hideonly` command does not modify the list of residents being displayed. Residents found using `find` stay
-   displayed in the table!
+2. The `hideonly` command does not modify the list of residents being displayed. Residents found using `find` *stay
+   displayed* in the table!
 
 Format: `hideonly LETTER [MORE_LETTERS]`
 
-Examples **(sequential)**:
+Sequential examples:
 
-- `hideonly n p e m t` on a full table returns a table with only the *name*, *phone*, *email*, *matric* and *tags*
-  columns hidden. In other words, we get a table showing only the *index*, *room*, *gender* and *house* columns.
-- Calling `hideonly n e` on the table from the previous point is **invalid** as the *name* and *email* columns are not
-  currently shown in the present table.
-- However, calling `hideonly i h` on said table is **valid**, and will return a table with only the *room* and *gender*
-  columns shown, as the *index* and *house* columns have been hidden.
+1. `hideonly i r p e m t` on a full table returns a table with only the *index*, *room*, *phone*, *email*, *matric* 
+   and *tags* columns hidden. 
+   * In other words, we see a table with only the *name*, *gender* and *house* columns shown.
+2. Using `hideonly r e` on the table from point 1 is **invalid** as the *room* and *email* columns *are not
+   present* in the current table.
+3. However, using `hideonly r` on said table is **valid**, and will return a table with only the *gender* and *house*
+   columns shown, as the *room* column has been hidden.
 
 Note:
 
-- Each column to be hidden should be entered as a single letter, e.g. `r m g h` that corresponds to the first
-  letter of the field in the column. This is in contrast to the prefixes, e.g. `r/`, `h/`, used in `edit` or `filter`.
-- The relative order of each letter does not matter, and the letters can be in either upper or lower case.
-  Duplicate letters are ignored.
-- Similarly, letters *must* be separated by a single whitespace.
-- Only valid letters can be specified, and there needs to be at least one column shown in the table at all times.
-- You can always `reset` the table to the full, default view at any time!
+- Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
+    - This **should not** be confused with the `n/` or `p/` prefixes used in `edit` or `filter`.
+- Letters *must* be separated by a single whitespace.
+- The order of each letter does not matter.
+- Duplicate letters are ignored.
+- There needs to be at least one column shown in the table at all times.
+- You can always use `reset` to restore the full table view!
 
-[comment]: <> (<div markdown="span" class="alert alert-primary">:bulb: **Tip:**)
-
-[comment]: <> (*&#40;For advanced users!&#41;* Notice that `hideonly`, unlike `list /i`, is dependent on the state of the current table. )
-
-[comment]: <> (Hence, some calls to `hideonly` may be invalid if the specified columns are not present in the current table view.)
-
-[comment]: <> (</div>)
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -552,7 +496,7 @@ Format: `reset`
 Note:
 - Any input entered after the `reset` command will be ignored.
 - This command is different from the `list` command in that it does not affect the list of residents being displayed.
-  However, both commands cause the full set of resident fields to be displayed in the table.
+  - However, both commands cause the full set of resident fields to be displayed in the table.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -566,21 +510,23 @@ Finds residents whose names contain any of the given keywords.
 
 Format: `find NAME [ADDITIONAL_NAMES]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `peter` will match `Peter`
+* The order of the keywords does not matter. e.g. `Peter Pang` will match `Pang Peter`
 * Only the name is searched.
-* Full and partial words will be matched e.g. `Han` will match `Hans`
+* Full and partial words will be matched e.g. `Nav` will match `Navarun`
 * Residents matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Quek Wei` will return `Quek Xiang`, `Jun Wei`
 
 Calling `find mel` on our sample data will produce the following result:
+
 ![find_command](images/ug-photos/find_command.png)
+
 As you can see, the resident with the name "Melvin" contains the string "mel", and thus would appear as one a result of the `find` command.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`
-* `find char li` returns `Charlotte Oliveiro`, `David Li`<br>
+* `find shawn` returns `shawn` and `Shawn Tan`
+* `find elizabeth david` returns `Elizabeth Ong`, `David Lee`
+* `find char li` returns `Charmaine Yee`, `William Li`<br>
   <!--- ![result for 'find alex david'](images/findAlexDavidResult.png) --->
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -985,25 +931,26 @@ Examples:
 
 **A**: You can use the `filter` command to search for people using the other fields.
 
-**Q: Why are the inputs for `showonly` and `hideonly` single letters, but slash-separated prefixes and values for `add`, `edit`, `filter`?**
+**Q:** Why is there a need to use `hideonly` if we can already use `showonly`?
 
+**A**: You can use `hideonly` when you want to display more fields than you want to hide. For example,
+`hideonly i` has the same effect as `showonly n p e r g h m t` on a full table. Using `hideonly` helps to save 
+time on typing!
 
-**A**: This is because in `add`, `edit` and `filter`, we need to make sure the values entered by the user are attached
-to the correct fields. For example, in `edit 2 n/Tan Yong Xun e/tyx@email.com`, the prefixes are used to tell us that
-the new value for `name` is `Tan Yong Xun` and the new value for `email` is `tyx@email.com`.
-For `showonly` and `hideonly`, however, there is no such value tied to each column name. All we need is to know the
-unique first letters of each field name to determine which columns to show or hide. We ***could have*** used
-standalone prefixes for the command format, but we found single letters to be more intuitive (and easier to type)!
+**Q:** How do I remember which commands use letters (as compared to other commands which use key/value) as inputs?
 
-[comment]: <> (**Q: What is the difference between `list /i n p e` and `showonly n p e`?**)
+**A**: Only the column hiding features, i.e. `showonly` and `hideonly`, use letters. You can remember this by 
+associating the "only" in these commands to the convenience of typing *only* letters!
 
-[comment]: <> (**A**: There are two differences. Firstly, calling `list` will result in *all* residents being listed. This means that )
+**Q:** The section for `showonly` and `hideonly` says that `i n p e r g h m t` are valid letters. However, I am getting 
+an error message that says "Please enter columns to show or hide that are currently in the table view." when using these
+valid letters. 
 
-[comment]: <> (any effects of `find` or `filter` will be erased, and the full resident list will be displayed in the table. Secondly, )
-
-[comment]: <> (`list /i` &#40;and any other version of `list`&#41; will produce the same result *regardless* of the current state of the table. )
-
-[comment]: <> (This is unlike `showonly`, which can only restrict the table view based on columns that are already present.  )
+**A:** `i n p e r g h m t` *are* indeed valid letters. Recall that `showonly` and `hideonly` [only work on columns that are currently shown in the table view](#showing-only-some-columns--showonly).
+This means that for `showonly n p e` and `hideonly n p e` to work, the **name**, **phone**, and **email** columns *must 
+be present* in the current table. The error message mentioned above means that the specified columns are 
+*not fully present* in the table. Please make sure to *only* enter letters corresponding to the columns you see on your 
+screen when typing these commands. 
 
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
