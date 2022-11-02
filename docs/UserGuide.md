@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+![NUScheduler](images/logoText.png)
+
 NUScheduler is a desktop app for **NUS students who have a large network of contacts to manage, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUScheduler can get your contact management tasks done faster than traditional GUI apps.
 
 With NUScheduler, you can store the contact details of the NUS community around you and manage your classes and events effectively.
@@ -68,6 +70,18 @@ The following is the main user interface of NUScheduler.
 * **Profile List**: Displays the list of profiles stored and the relevant details.
 * **Event List**: Displays the list of events stored and the relevant details.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the user interface:**<br>
+
+* The profile list is in alphabetical order while the event list is in chronological order, sorted by their starting date.
+
+* In each profile, the name, email and phone number will always be displayed while the telegram username and tags will only be displayed if they exist.
+
+* In each event, the title, start date, end date and duration of the event will always be displayed while the participants of the event and tags will only be displayed if they exist.
+
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -77,7 +91,7 @@ The following is the main user interface of NUScheduler.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `profile -a n/NAME`, `NAME` is a parameter which can be used as `profile -a n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -95,14 +109,6 @@ The following is the main user interface of NUScheduler.
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Command words and option flags are case-sensitive i.e. `profile -v` will work, but not `PROFILE -v` and `profile -V`.
-
-**:information_source: Notes about the display:**<br>
-
-* `Profile`'s are listed in alphabetical order while `Event`'s are listed in chronological order, sorted by their starting date.
-
-* Under `Profile`, the `Name`, `Email` and `PhoneNumber` will always be displayed while `Telegram` and `Tag`s will only be displayed if they exist.
-
-* Under `Event`, the `Title`, `StartDate`, `EndDate` and duration of event will always be displayed while `Attendees`, the participants of an `Event` and `Tag`s will only be displayed if they exist.
 
 </div>
 
@@ -240,7 +246,7 @@ Example:
 
 Adds one or more existing profiles as attendees to an existing event in NUScheduler.
 
-Format: `event -ap EVENT_INDEX pr/PROFILE_INDEX...`
+Format: `event -ap EVENT_INDEX pr/PROFILE_INDEX…`
 
 * Adds profiles at the specified `PROFILE_INDEX`. This index refers to the index number shown in the displayed profile list. The index **must be a positive integer** 1, 2, 3, ...
 * Profiles are added to the event at the specified `EVENT_INDEX`. This index refers to the index number shown in the displayed event list. It follows the same constraints as `PROFILE_INDEX`.
@@ -259,7 +265,7 @@ Example:
 
 Removes one or more attendees from an existing event in NUScheduler.
 
-Format: `event -dp EVENT_INDEX pr/ATTENDEE_INDEX...`
+Format: `event -dp EVENT_INDEX pr/ATTENDEE_INDEX…`
 
 * Removes attendees at the specified `ATTENDEE_INDEX`. This index refers to the index number shown in the displayed attendee list of the event. The index **must be a positive integer** 1, 2, 3, ...
 * Attendees are removed from the event at the specified `EVENT_INDEX`. This index refers to the index number shown in the displayed event list. It follows the same constraints as `ATTENDEE_INDEX`.
@@ -386,7 +392,7 @@ Use shortcuts to quickly enter tags.
 
 Example:
 
-* `profile -a n/Damith e/damith@comp.nus.edu.sg p/65164359 t/prof` Creates a profile with the name `Damith` and tag `professor`.
+* `profile -a n/Damith e/damith@comp.nus.edu.sg p/65164359 t/prof` Creates a profile with the name `Damith` and the tag `professor`.
 * `event -e 1 t/tut` Edits the tag of the 1st event shown to `tutorial`.
 
 | Shortcut | Result       |
@@ -398,7 +404,6 @@ Example:
 | rec      | recitation   |
 | ta       | tutor        |
 | tut      | tutorial     |
-
 
 #### Quick Links
 
@@ -493,8 +498,8 @@ You can simply install the app in the other computer and overwrite the data file
 | **View Profiles**                  | `profile -v`                                                                           |
 | **Find Profile**                   | `profile -f KEYWORD [MORE_KEYWORDS]…`                                                  |
 | **Add Event**                      | `event -a n/TITLE s/START e/END [t/TAG]…`                                              |
-| **Add Profiles to an Event**       | `event -ap EVENT_INDEX pr/PROFILE_INDEX...`                                            |
-| **Delete Attendees from an Event** | `event -dp EVENT_INDEX pr/ATTENDEE_INDEX...`                                           |
+| **Add Profiles to an Event**       | `event -ap EVENT_INDEX pr/PROFILE_INDEX…`                                              |
+| **Delete Attendees from an Event** | `event -dp EVENT_INDEX pr/ATTENDEE_INDEX…`                                             |
 | **Delete Event**                   | `event -d INDEX`                                                                       |
 | **Edit Event**                     | `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`                                  |
 | **View Events**                    | `event -v`                                                                             |
