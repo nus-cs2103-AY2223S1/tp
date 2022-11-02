@@ -3,8 +3,8 @@ package seedu.clinkedin.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.clinkedin.testutil.Assert.assertThrows;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.clinkedin.testutil.Assert.assertThrows;
 import static seedu.clinkedin.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
