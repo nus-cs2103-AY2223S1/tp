@@ -3,6 +3,7 @@ package seedu.clinkedin.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.clinkedin.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.clinkedin.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -42,6 +43,35 @@ public class AddRateCommandTest {
         Person personToEdit = model.getFilteredPersonList().get(0);
         AddRateCommand rateCommand = new AddRateCommand(Index.fromOneBased(1), personToEdit.getRating());
         assertThrows(CommandException.class, () -> rateCommand.execute(model));
+    }
+
+    @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        Rating rating = new Rating("6");
+        AddRateCommand rateCommand = new AddRateCommand(Index.fromOneBased(100), rating);
+        assertThrows(CommandException.class, () -> rateCommand.execute(model));
+    }
+
+    @Test
+    public void execute_personHasRatingAlready_throwsCommandException() {
+        Rating rating = new Rating("6");
+        AddRateCommand rateCommand = new AddRateCommand(Index.fromOneBased(1), rating);
+        assertThrows(CommandException.class, () -> rateCommand.execute(model));
+    }
+
+    @Test
+    public void execute_validIndex_success() {
+        Person personToEdit = model.getFilteredPersonList().get(1);
+        Rating rating = new Rating("6");
+        AddRateCommand rateCommand = new AddRateCommand(Index.fromOneBased(2), rating);
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTagTypeMap(),
+                personToEdit.getStatus(), personToEdit.getNote(), rating, personToEdit.getLinks());
+
+        String expectedMessage = String.format(AddRateCommand.MESSAGE_ADD_RATING_SUCCESS, editedPerson);
+
+        expectedModel.setPerson(personToEdit, editedPerson);
+        assertCommandSuccess(rateCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

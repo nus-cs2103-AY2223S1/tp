@@ -1,5 +1,6 @@
 package seedu.clinkedin.logic.commands;
 
+import static seedu.clinkedin.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,6 +9,7 @@ import static seedu.clinkedin.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.clinkedin.commons.core.index.Index;
+import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.ModelManager;
 import seedu.clinkedin.model.UserPrefs;
@@ -41,6 +43,27 @@ public class AddNoteCommandTest {
         Person personToEdit = model.getFilteredPersonList().get(0);
         AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(1), personToEdit.getNote());
         assertThrows(DuplicateNoteException.class, () -> addNoteCommand.execute(model));
+    }
+
+    @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        Note note = new Note("She is strong at Java.");
+        AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(100), note);
+        assertThrows(CommandException.class, () -> addNoteCommand.execute(model));
+    }
+
+    @Test
+    public void execute_validIndex_success() {
+        Note note = new Note("She graduates in 1 year.");
+        AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(1), note);
+        Person personToEdit = model.getFilteredPersonList().get(0);
+        Note newNote = personToEdit.mergeNote(note);
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTagTypeMap(), personToEdit.getStatus(), newNote,
+                personToEdit.getRating(), personToEdit.getLinks());
+        String expectedMessage = String.format(AddNoteCommand.MESSAGE_ADD_NOTE_SUCCESS, editedPerson);
+        expectedModel.setPerson(personToEdit, editedPerson);
+        assertCommandSuccess(addNoteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
