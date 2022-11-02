@@ -85,8 +85,6 @@ public class EditMeetingCommand extends Command {
         assert meetingToEdit != null;
 
         String updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
-        //        editMeetingDescriptor.getDate();
-        //        meetingToEdit.getDateAndTime();
         String updatedDate = editMeetingDescriptor.getDate().orElse(meetingToEdit.getDateAndTime());
         String updatedLocation = editMeetingDescriptor.getLocation().orElse(meetingToEdit.getLocation());
         ArrayList<Person> persons = editMeetingDescriptor.getPeople().orElse(meetingToEdit.getArrayListPersonToMeet());
