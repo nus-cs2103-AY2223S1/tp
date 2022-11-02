@@ -20,7 +20,7 @@ public class RecordList {
 
     /**
      * Adds a record to the RecordList.
-     *
+     * The person must not already exist in the list.
      * @param toAdd Record to add.
      */
     public void add(Record toAdd) {
@@ -97,8 +97,8 @@ public class RecordList {
     }
 
     /**
-     * Adds a Record to the list.
-     * The record must not already exist in the list.
+     * Removes the equivalent record from the list.
+     * The record must exist in the list.
      */
     public void delete(Record record) {
         requireNonNull(record);

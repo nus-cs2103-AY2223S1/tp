@@ -6,7 +6,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ],
+    "tagged" : [ "LatexAllergy" ],
     "recordList" : [],
     "appointment": "01-01-2024 0000"
   }, {
@@ -15,7 +15,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ],
+    "tagged" : [ "DustAllergy", "LatexAllergy" ],
     "recordList" : [],
     "appointment" : "05-05-2024 1200"
   }, {
@@ -33,7 +33,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tagged" : [ "friends" ],
+    "tagged" : [ "LatexAllergy" ],
     "recordList" : [],
     "appointment" : "No appointment scheduled!"
   }, {
