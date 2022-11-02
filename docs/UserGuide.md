@@ -308,7 +308,7 @@ Examples:
 
 #### Listing all tasks: `list_task`
 
-> Shows a list of all tasks.
+Shows a list of all tasks. Tasks are sorted chronologically by deadline. Tasks without deadlines are listed below tasks with deadlines and sorted by their names alphabetically.
 
 Format: `list_task`
 
