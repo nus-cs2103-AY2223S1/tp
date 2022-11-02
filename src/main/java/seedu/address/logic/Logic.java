@@ -41,7 +41,7 @@ public interface Logic {
     ObservableList<Client> getFilteredClientList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' project book file path.
      */
     Path getAddressBookFilePath();
 

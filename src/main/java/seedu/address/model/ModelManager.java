@@ -17,7 +17,7 @@ import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the project book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -34,7 +34,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with project book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -358,5 +358,20 @@ public class ModelManager implements Model {
     public void sortIssuesByPin() {
         addressBook.sortIssuesByPin();
         updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+    }
+
+    @Override
+    public void sortProjectsByCurrentCategory() {
+        addressBook.sortProjectsByCurrentCategory();
+    }
+
+    @Override
+    public void sortClientsByCurrentCategory() {
+        addressBook.sortClientsByCurrentCategory();
+    }
+
+    @Override
+    public void sortIssuesByCurrentCategory() {
+        addressBook.sortIssuesByCurrentCategory();
     }
 }

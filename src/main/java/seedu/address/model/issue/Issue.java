@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.Deadline;
 import seedu.address.model.Pin;
+import seedu.address.model.SortCategory;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
@@ -22,6 +23,9 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
 
     public static final String MESSAGE_INVALID_ISSUE_ID_SORT_KEY =
             "Enter either a 0 to sort in ascending order or a 1 to sort in descending order";
+
+    private static SortCategory sortCategory = SortCategory.ID;
+    private static int sortOrder = 0;
 
     // Components of an issue
     private Title title;
@@ -158,6 +162,22 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         return this.pin.isPinned();
     }
 
+    public static SortCategory getSortCategory() {
+        return sortCategory;
+    }
+
+    public static int getSortOrder() {
+        return sortOrder;
+    }
+
+    public static void setSortCategory(SortCategory newSortCategory) {
+        sortCategory = newSortCategory;
+    }
+
+    public static void setSortOrder(int newSortOrder) {
+        sortOrder = newSortOrder;
+    }
+
     public String uiRepresentation() {
         return this.title + " " + this.issueId.uiRepresentation();
     }
@@ -261,7 +281,7 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     }
 
     @Override
-    public int getID() {
+    public int getId() {
         return this.issueId.getIdInt();
     }
 

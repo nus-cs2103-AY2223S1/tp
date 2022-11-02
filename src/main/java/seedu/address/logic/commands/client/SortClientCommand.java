@@ -9,10 +9,12 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
+import seedu.address.model.SortCategory;
+import seedu.address.model.client.Client;
 import seedu.address.ui.Ui;
 
 /**
- * Sort clients in address book.
+ * Sort clients in project book.
  */
 public class SortClientCommand extends ClientCommand {
 
@@ -20,9 +22,9 @@ public class SortClientCommand extends ClientCommand {
 
     public static final String MESSAGE_SUCCESS = "Sorted clients";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort clients in address book. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort clients in project book. \n"
             + "Sort by client id: "
-            + PREFIX_CLIENT_ID + "0 (ascending) or"
+            + PREFIX_CLIENT_ID + "0 (ascending) or "
             + PREFIX_CLIENT_ID + "1 (descending)."
             + "Sort by name: "
             + PREFIX_NAME + "0 (alphabetical) or "
@@ -50,14 +52,17 @@ public class SortClientCommand extends ClientCommand {
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
         String sortKeyString = "";
+        Client.setSortOrder(this.sortOrder);
 
         if (sortKey.equals(PREFIX_CLIENT_ID)) {
             model.sortClientsById(sortOrder);
+            Client.setSortCategory(SortCategory.ID);
             sortKeyString = "client id";
         }
 
         if (sortKey.equals(PREFIX_NAME)) {
             model.sortClientsByName(sortOrder);
+            Client.setSortCategory(SortCategory.NAME);
             sortKeyString = "name.";
         }
         model.sortClientsByPin();

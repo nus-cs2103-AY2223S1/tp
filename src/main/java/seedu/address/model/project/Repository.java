@@ -34,13 +34,16 @@ public class Repository {
     }
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Repository should be entered in <Username/RepoName> format";
+            "Repository should be entered in <Username/RepoName> format \n"
+            + "Username: Maximum of 39 characters with 1 or more alphanumeric characters \n"
+            + "Repository: Maximum of 39 characters with 1 or more alphanumeric characters \n"
+            + "Dashes are allowed";
 
     /*
-     * Username should have a maximum of 39 characters with 1 or more alphanumeric characters.
+     * Username and repository name should have a maximum of 39 characters with 1 or more alphanumeric characters.
      * Dashes are allowed.
      */
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]([a-zA-Z0-9-]{0,38})/[a-zA-Z0-9-_.]+";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]([a-zA-Z0-9-]{0,38})/[a-zA-Z0-9]([a-zA-Z0-9-]{0,38})";
 
     private String projectRepository;
 
