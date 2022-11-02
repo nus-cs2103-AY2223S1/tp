@@ -1,9 +1,9 @@
 ---
 layout: page
-title: HackAssist User Guide
+title: User Guide
 ---
 
-HackAssist is a desktop app for helping hackathon team leaders manage project tasks more easily.
+HackAssist is a desktop application which aims to help manage tasks in software development hackathons. 
 
 It is optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a **Graphical User Interface** (GUI). If you can type fast, HackAssist can get your task management done faster than traditional GUI apps.
 
@@ -14,22 +14,16 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. 
+   * To check if you have Java installed, please open up a terminal (search for `Command Prompt` on Windows and `Terminal` on Mac OS) and type in `java -version`. This will show your java version, if you have it installed.
+   * If you do not have Java 11 or above installed, please proceed to this [link](https://www.oracle.com/java/technologies/downloads/#java11) and download the appropriate Java for your operating system.
 
 2. Download the latest `HackAssist.jar` from [here](https://github.com/AY2223S1-CS2103T-F12-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your HackAssist.
 
-4. Double-click the file to start the app. A GUI similar to the one shown below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Quickstart_Updated.png)
-
-    i. [Command Box] This is where you key in commands. Press Enter on your keyboard to execute the command.
-  
-    ii. [Feedback Box] This is where you can see the response from HackAssist when you execute a command. You will either see a confirmation message, or an error message informing you what went wrong with your command.
-  
-    iii. [Settings] This portion displays what the current sort and filter settings are, if any. 
-  
-    iv. [List Display Panel] This is where the current list is displayed which includes details about each member or task. To switch between viewing members and viewing tasks, click on the `Members` and `Tasks` tabs.
+4. Double-click the file to start the app. A GUI similar to the one shown below will appear in a few seconds. Note how HackAssist contains sample data for you to experiment with.<br>
+   ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -47,24 +41,24 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Command summary
 
-| Action               | Format, Examples                                                                                                                                                                                                               |
-|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                          |
-| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                            |
-| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                   |
-| **Find**             | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                                                                                    |
-| **List People**      | `list`                                                                                                                                                                                                                         |
-| **Clear**            | `clear`                                                                                                                                                                                                                        |
-| **Help**             | `help`                                                                                                                                                                                                                         |
-| **Add Task**         | `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` |
-| **Edit Task**        | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/ISDONE]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                        |
-| **Delete Task**      | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`                                                                                                                                                                             |
-| **List Tasks**       | `listTasks`                                                                                                                                                                                                                    |
-| **Filter Task**      | `filter [c/TASK_CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                           |
-| **Sort by Deadline** | `sortByDeadline [o/ORDER]` <br> e.g., `sortByDeadline o/asc`                                                                                                                                                                   |
-| **Sort by Priority** | `sortByPriority [o/ORDER]` <br> e.g., `sortByPriority o/desc`                                                                                                                                                                  |
+## Layout
+
+![Ui](images/layout1.png)
+
+![Ui](images/layout2.png)
+
+1. Command Box: This is where you key in your commands. Press Enter to execute it.
+  
+2. Feedback Box: This is where you can see the response from HackAssist when you execute a command. You will either see a confirmation message, or an error message informing you what went wrong with your command.
+
+3. Tabs: This is where you can choose for HackAssist to display Members or Tasks List
+
+4. Members/ Tasks List: This is where the current list is displayed which includes details about each member or task.
+
+5. Storage Location: This is where you can see the location of HackAssist data file.
+
+6. Tasks List Setting: This portion displays what the current sort and filter setting for Tasks List are, if any. |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -308,12 +302,36 @@ Examples:
 * `sortByPriority` sorts tasks by priority in descending order.
 * `sortByPriority o/asc` sorts tasks by priority in ascending order.
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+
+| Action               | Format, Examples                                                                                                                                                                                                                |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                        |
+| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                             |
+| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                 |
+| **Find**             | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                                                                                     |
+| **List People**      | `list`                                                                                                                                                                                                                          |
+| **Clear**            | `clear`                                                                                                                                                                                                                         |
+| **Help**             | `help`                                                                                                                                                                                                                          |
+| **Add Task**         | `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com`  |
+| **Edit Task**        | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/ISDONE]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                         |
+| **Delete Task**      | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`                                                                                                                                                                              |
+| **List Tasks**       | `listTasks`                                                                                                                                                                                                                     |
+| **Filter Task**      | `filter [c/TASK_CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                            |
+| **Sort by Deadline** | `sortByDeadline [o/ORDER]` <br> e.g., `sortByDeadline o/asc`                                                                                                                                                                    |
+| **Sort by Priority** | `sortByPriority [o/ORDER]` <br> e.g., `sortByPriority o/desc`                                                                                                                                                                   |
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HackAssist home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Task parameters
 
 | Parameter               | Format                                                                                                                                                 |
