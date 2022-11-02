@@ -9,12 +9,15 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.order.OrderStatus;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.testutil.TypicalOrders;
 
 public class ParserUtilTest {
+    //For persons
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
@@ -24,6 +27,13 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+
+    //For orders
+    private static final String INVALID_ORDER_STATUS = "Sleeping";
+    private static final String INVALID_REQUEST = "p_s/139746 p_a/";
+
+    private static final String VALID_ORDER_STATUS = OrderStatus.PENDING.getStatus();
+    private static final String VALID_REQUEST = TypicalOrders.ORDER_3.getRequest().toString();
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -139,10 +149,19 @@ public class ParserUtilTest {
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
+    @Test
+    public void parseOrder_null_throws() throws Exception {
+        assertThrows(NullPointerException.class, null, ()
+                -> ParserUtil.parseOrder(null, true));
+    }
 
-    //TODO Uncomment this
-    //    @Test
-    //    public void parseOrder_null_throws() throws Exception {
-    //        assertThrows(NullPointerException.class, "", () -> ParserUtil.parseOrder(null, null));
-    //    }
+    @Test
+    public void parseOrderStatus_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseOrderStatus(null));
+    }
+
+    @Test
+    public void parseOrderStatus_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderStatus(INVALID_ORDER_STATUS));
+    }
 }
