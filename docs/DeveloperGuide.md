@@ -10,7 +10,6 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-z
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -548,10 +547,7 @@ inputted by the user.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-
-## **Appendix: Requirements**
-
-### Product scope
+## **Appendix A: Product scope**
 
 **Target user profile**:
 
@@ -567,7 +563,7 @@ allow them to save time on managing orders and logistics instead of
 traditional GUI applications such as Excel, or even pen and paper.
 
 
-### User stories
+## **Appendix B: User stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -595,9 +591,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*   `   | business owner who is a new user             | use more verbose commands to complete my tasks                          | get more used to the syntax of the commands in the application                    |
 | `*   `   | tired business owner working at night        | view the application's GUI in dark mode                                 | my eyes don't get strained                                                        |
 
-*{More to be added}*
-
-### Use cases
+## **Appendix C: Use cases**
 
 (For all use cases below, the **System** is the `TrackO` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -764,7 +758,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at 1.
 
-### Non-Functional Requirements
+## **Appendix D: Non-Functional Requirements**
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. The software should be portable. Moving from one device to another should not create any problems as long as it is on a _mainstream OS_ with Java `11` or above installed.
@@ -773,7 +767,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. Should be able to hold up to 100 items without a noticeable sluggishness in performance for typical usage.
 6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-### Glossary
+## **Appendix E: Glossary**
 
 * **Mainstream OS (Operating System)**: Windows, Linux, Unix, OS-X
 * **CLI**: Command Line Interface, receives commands from user in the form of lines of text
@@ -783,7 +777,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix F: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
