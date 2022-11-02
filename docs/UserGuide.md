@@ -182,6 +182,7 @@ Pins a project to the top of the project list.
 Format: `project -p PROJECT_ID`
 
 * Pins the project with the specified `PROJECT_ID`.
+* Executing the command on an already pinned project will unpin the project.
 * The ID **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -321,6 +322,7 @@ Pins a client to the top of the client list.
 Format: `client -p CLIENT_ID`
 
 * Pins the client with the specified `CLIENT_ID`.
+* Executing the command on an already pinned client will unpin the client.
 * The ID **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -452,7 +454,8 @@ Pins an issue to the top of the issue list.
 
 Format: `issue -p ISSUE_ID`
 
-* Pins the issue with the specified `ISSUE_ID`.
+* Pins the issue with the specified `ISSUE_ID`. 
+* Executing the command on an already pinned issue will unpin the issue.
 * The ID **must be a positive integer** 1, 2, 3, …​
 
 Examples:

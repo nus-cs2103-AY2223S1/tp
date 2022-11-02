@@ -359,4 +359,19 @@ public class ModelManager implements Model {
         addressBook.sortIssuesByPin();
         updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
     }
+
+    @Override
+    public void sortProjectsByCurrentCategory() {
+        addressBook.sortProjectsByCurrentCategory();
+    }
+
+    @Override
+    public void sortClientsByCurrentCategory() {
+        addressBook.sortClientsByCurrentCategory();
+    }
+
+    @Override
+    public void sortIssuesByCurrentCategory() {
+        addressBook.sortIssuesByCurrentCategory();
+    }
 }

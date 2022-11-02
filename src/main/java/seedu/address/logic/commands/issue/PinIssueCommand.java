@@ -53,6 +53,7 @@ public class PinIssueCommand extends IssueCommand {
         }
         Issue toPinIssue = model.getIssueById(this.toPinIssueId.getIdInt());
         toPinIssue.togglePin();
+        model.sortIssuesByCurrentCategory();
         model.sortIssuesByPin();
         ui.showIssues();
         model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
