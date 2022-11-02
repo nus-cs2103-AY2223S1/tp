@@ -36,7 +36,7 @@ title: User Guide
     - [Filtering Previous Modules](#filtering-previous-modules)
   - [Data features](#data-features)
     - [Saving the data](#saving-the-data)
-    - [Editing the data file](#editing-the-data-file) 
+    - [Editing the data file](#editing-the-data-file)
   - [Other features](#other-features)
     - [Undo / Redo](#undo--redo)
     - [Copying GitHub URL](#copying-github-url)
@@ -344,7 +344,7 @@ Examples:
 ### Edit contact's modules
 
 Directly edit your contact's module list by adding or deleting modules from their list, so you can keep track of
-your friend's module plans and easily find contacts to collaborate with. 
+your friend's module plans and easily find contacts to collaborate with.
 
 Format: `module INDEX [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]… [rm/MODULE_TO_REMOVE]…`
 
@@ -774,7 +774,7 @@ Format: `exit`
       <code>Eg. module user curr/CS2100 prev/CS1231S plan/CS2106 rm/ST2334</code>
     </td>
   </tr>
-   
+
   <tr>
     <td><strong>Editing Contact's Modules</strong>
     </td>
@@ -821,7 +821,7 @@ Format: `exit`
       <code>Eg. lesson 1 l/tut m/CS2103T d/1 start/12:00 end/13:00</code>
     </td>
   </tr>
-     
+
 
   <tr>
     <td><strong>Viewing Lessons / Timetable</strong>
@@ -911,7 +911,7 @@ Format: `exit`
     <td><strong>Undo / Redo</strong>
     </td>
     <td>
-      <code>undo</code> 
+      <code>undo</code>
       <code>redo</code>
     </td>
   </tr>

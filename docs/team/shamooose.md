@@ -20,7 +20,7 @@ Given below are my contributions to the project.
 * **New Feature**: Module commands
   * What it does: Allows for users to directly add or delete modules from their own profiles or their contact's profiles.
   * Justification: This is to allow for more seamless editing of module lists with a single command.
- 
+
 
 * **New Feature**: Modules left
   * What it does: Allows for users to check which modules they have yet to take to fulfill core or focus area requirements.
@@ -58,13 +58,13 @@ Given below are my contributions to the project.
     * Updated ModelClassDiagram and BetterModelClassDiagram to include `github` [#91](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/91)
     * Updated StorageClassDiagram to include `JsonAdaptedUser`, `modules` and `lessons` [#91](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/91)
     * Adjusted width of images [#189](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/189)
-    * Added UserClassDiagram and edited documentation of `user` class [#191](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/191)
-    * Updated PersonClassDiagram to include `Tag` [#191](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/191)
+    * Added UserClassDiagram and edited documentation of `user` class [#192](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/192)
+    * Updated PersonClassDiagram to include `Tag` [#192](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/192)
 
 
 * **Contributions to Team-based tasks**:
   * Created milestones
-  
+
 
 * **Review / mentoring contributions**:
   * PRs approved: [#53](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/53), [#61](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/61), [#68](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/68), [#89](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/89), [#90](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/90), [#168](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/168), [#175](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/175), [#188](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/188)
