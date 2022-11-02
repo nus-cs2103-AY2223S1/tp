@@ -22,10 +22,13 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
 ### 2.1 How to use this user guide?
 
 #### Table of contents
-The table of contents is at the top of the page. From there, you can click on any of the sections to jump to it.
+The [table of contents](#table-of-contents) is at the top of the page. From there, you can click on any of the sections to jump to it.
 
 #### Quick start
 If you want to **quick**ly get **start**ed with using HobbyList, you can read and follow the instructions in the [Quick start](#3-quick-start) section
+
+#### Features
+The [features](#5-features) section contains a list of all the features that HobbyList currently has. Within each feature, you can read up on how each feature is used and look at some examples.
 
 --------------------------------------------------------------------------------------------------------------------
 
