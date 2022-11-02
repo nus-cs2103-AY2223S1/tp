@@ -22,7 +22,7 @@ worrying about organising your data.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your NutriGoals.
 
-4. Double-click the file to start the app. A screen similar to the below should appear in a few seconds. 
+4. Double-click the file to start the app. A screen similar to the one below should appear in a few seconds. 
 Note how the app contains some sample data.
 ![sampleUi](images/sampleUi.png)
 
@@ -63,9 +63,10 @@ as `nutrigoals.jar`. Do not delete or edit these files.
 * Food items displayed in Food List are sorted according to meal type, in the order: breakfast, lunch, dinner.
 * Upon launching the application, Food List will display food items recorded on the current day.
 * Progress Bar changes based on the total calorie intake for the current day as compared to the target calorie intake.
-  Refer to the `target` command [here](#setting-a-target-calorie-intake-target).
-* The percentage of Progress Bar can go beyond 100%, but note that if the target calorie intake is set to 0, the 
+* To check the total calorie intake for the current day and the target calorie intake, refer to the `review` command [here](#viewing-a-summary-of-the-calorie-intake-progress-review).
+* The Progress Bar percentage can go beyond 100%, but note that if the target calorie intake is set to 0, the 
 percentage will be fixed at 100%.
+* To set the target calorie intake, refer to the `target` command [here](#setting-a-target-calorie-intake-target).
 
 </div>
 
@@ -111,7 +112,6 @@ Format: `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`
 * `FOOD_NAME` should only contain alphanumeric characters and spaces, and should not be blank. Names should also not 
 exceed 27 characters.
 
-
 Example:
 
 * `add n/bread c/100 t/breakfast` adds bread into the food list, and tags it as a breakfast item with 100 calories.
@@ -120,11 +120,15 @@ Example:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+**:information_source: About the parameters:**<br>
 
 `MEAL_TYPE` is **not** case-sensitive.
 
 * E.g. `add n/hotpot c/500 t/dinner` is the same as `add n/hotpot c/500 t/dInNeR`.
+
+**:information_source: Adding food items:**<br>
+
+A food item will not be added into the food list if the resulting total calorie intake for the day exceeds 2147483647 calories.
 
 </div>
 
@@ -166,11 +170,15 @@ Example:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+**:information_source: About the parameters:**<br>
 
 `MEAL_TYPE` is **not** case-sensitive.
 
 * E.g. `edit 2 t/dinner` is the same as `edit 2 t/dInNeR`.
+
+**:information_source: About editing food items:**<br>
+
+A food item will not be edited if the resulting total calorie intake for the day exceeds 2147483647 calories.
 
 </div>
 
@@ -192,9 +200,10 @@ Example:
 
 **:information_source: Note:**<br>
 
-`DATE` must be a valid date for the command to be executed.
+`DATE` must be a valid date for the command to be executed. Note that the year `0000` is considered invalid.
 
 * E.g. `list 2022-02-31` is an invalid command.
+* E.g. `list 0000-01-01` is an invalid command. 
 
 </div>
 
@@ -229,16 +238,16 @@ Sets a target calorie intake for the current day.
 
 Format: `target CALORIE`
 
-* `CALORIE` can only take on integer values.
-* The initial target calorie intake is set at 2000 calories. 
-
+* `CALORIE` can only take on integer values in between 0 and 2147483647 inclusively.
+* The initial target calorie intake is set at 2000 calories.
+* The percentage for the progress bar display will be based on the target calorie intake.
 Example:
 
 * `target 2500` sets a target calorie intake of 2500 calories for the current day and displays the list of foods for the current day.
 
-### Viewing a summary of the daily calorie intake: `review`
+### Viewing a summary of the calorie intake progress: `review`
 
-Shows the total calories consumed, the calorie target and the deficient or excess amount of calories for the day. The list of foods for the day will also be displayed.
+Shows the total calories consumed, the calorie target and the deficient or excess amount of calories for the current day. The list of foods for the current day will also be displayed.
 
 Format: `review`
 
@@ -293,9 +302,14 @@ Locates and ranks the nearest gyms to user's location in NUS.
 
 Format: `locate LOCATION`
 
+Parameters: COM2, S13, S17, CLB, UHC, LT1, LT9, AS6
+
 Example:
 
 * `locate S17` returns a list of gyms sorted from nearest to furthest from S17.
+
+:fast_forward: **Future update:**<br>
+More nus locations will be added.
 
 ### Suggesting a healthy-lifestyle tip: `tip`
 
@@ -346,21 +360,22 @@ _More food items coming soon in a future release..._
 
 ## Command summary
 
-| Action      | Format                                                  | Example                          |
-|-------------|---------------------------------------------------------|----------------------------------|
-| **Help**    | `help`                                                  | `help`                           |
-| **Add**     | `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`                 | `add n/donut c/1000 t/breakfast` |
-| **Delete**  | `delete INDEX`                                          | `delete 1`                       |
-| **Edit**    | `edit INDEX [n/FOOD_NAME] [c/CALORIES] [t/MEAL_TYPE]`   | `edit 2 n/rice c/300 t/dinner`   |
-| **Find**    | `find FOOD_NAME`                                        | `find chicken rice`              |
-| **Target**  | `target`                                                | `target 2000`                    |
-| **Review**  | `review`                                                | `review`                         |
-| **List**    | `list [DATE]`                                           | `list`                           |
-| **Setup**   | `setup g/GENDER w/WEIGHT h/HEIGHT i/IDEAL_WEIGHT a/AGE` | `setup g/m w/70 h/175 i/70 a/20` |
-| **Profile** | `profile`                                               | `profile`                        |
-| **Suggest** | `suggest`                                               | `suggest`                        |
-| **Tip**     | `tip`                                                   | `tip`                            |
-| **Clear**   | `clear`                                                 | `clear`                          |
-| **Exit**    | `exit`                                                  | `exit`                           |
+| Action     | Format                                                  | Example                           |
+|------------|---------------------------------------------------------|-----------------------------------|
+| **Help**   | `help`                                                  | `help`                            |
+| **Add**    | `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`                 | `add n/donut c/1000 t/breakfast`  |
+| **Delete** | `delete INDEX`                                          | `delete 1`                        |
+| **Edit**   | `edit INDEX [n/FOOD_NAME] [c/CALORIES] [t/MEAL_TYPE]`   | `edit 2 n/rice c/300 t/dinner`    |
+| **Find**   | `find FOOD_NAME`                                        | `find chicken rice`               |
+| **Target** | `target`                                                | `target 2000`                     |
+| **Review** | `review`                                                | `review`                          |
+| **List**   | `list [DATE]`                                           | `list`                            |
+| **Setup**  | `setup g/GENDER w/WEIGHT h/HEIGHT i/IDEAL_WEIGHT a/AGE` | `setup g/m w/70 h/175 i/70 a/20`  |
+| **Locate** | `locate LOCATION`                                       | `locate CLB`                      |
+| **Profile**| `profile`                                               | `profile`                         |
+| **Suggest**| `suggest`                                               | `suggest`                         |
+| **Tip**    | `tip`                                                   | `tip`                             |
+| **Clear**  | `clear`                                                 | `clear`                           |
+| **Exit**   | `exit`                                                  | `exit`                            |
 
 </div>
