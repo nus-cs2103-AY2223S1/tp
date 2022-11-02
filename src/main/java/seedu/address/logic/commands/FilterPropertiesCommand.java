@@ -26,16 +26,14 @@ public class FilterPropertiesCommand extends Command {
     public static final String COMMAND_WORD = "filterprops";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all properties in Cobb that satisfy the given"
-            + " price range AND contains all the given characteristics AND has the given owner name AND has the given"
-            + " owner phone.\n"
+            + " price range AND contains all the given characteristics AND has the given owner name.\n"
             + "Pass in " + PREFIX_FUZZY + " to loosen the filtering criteria, meaning filtered properties will only"
             + " need to satisfy the given price range OR contain at least one given characteristic OR have the given"
-            + " owner name or phone.\n"
+            + " owner name.\n"
             + "Parameters: "
             + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE] "
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
             + "[" + PREFIX_OWNER_NAME + " OWNER NAME]"
-            + "[" + PREFIX_PHONE + " OWNER PHONE"
             + "[" + PREFIX_FUZZY + "]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CHARACTERISTICS + " Near MRT; Kid-Friendly " + PREFIX_FUZZY;
