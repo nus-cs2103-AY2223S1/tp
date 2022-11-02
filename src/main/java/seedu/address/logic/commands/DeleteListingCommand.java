@@ -7,6 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingId;
+import seedu.address.model.listing.exceptions.ListingNotFoundException;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -30,16 +31,16 @@ public class DeleteListingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Listing target = model.getListing(id);
-
-        if (!model.hasListing(target)) {
+        try {
+            Listing target = model.getListing(id);
+            model.deleteListing(target);
+            model.deleteOffersFor(target);
+            model.deleteMeetingsAbout(target);
+            return new CommandResult(String.format(MESSAGE_DELETE_LISTING_SUCCESS, target));
+        } catch (ListingNotFoundException le) {
             throw new CommandException(Messages.MESSAGE_INVALID_LISTING_ID);
         }
 
-        model.deleteListing(target);
-        model.deleteOffersFor(target);
-        model.deleteMeetingsAbout(target);
-        return new CommandResult(String.format(MESSAGE_DELETE_LISTING_SUCCESS, target));
     }
 
     @Override
