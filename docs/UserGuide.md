@@ -190,7 +190,7 @@ Example of usage:
 
 Expected outcome:
 
-* The status of the first internship application in InTrack will be updated to 'Offered' inside a small green box.
+* The status of the first internship application in InTrack will be updated to `Offered`.
 
 ### Adding a tag to an internship application : `addtag`
 Adds one or more `Tag`s to the internship application at the specified `INDEX` from InTrack.
@@ -285,7 +285,7 @@ Expected outcome:
 
 ### Adding a task to a selected internship application : `addtask`
 
-Adds a task to a selected internship application at the selected `Internship` from InTrack.
+Adds a task to the currently selected internship application.
 
 Format: `addtask TASK_NAME /at TASK_TIME`
 
@@ -305,7 +305,7 @@ Expected outcome:
 
 ### Deleting a task from a selected internship application : `deltask`
 
-Deletes the task at the specified index in the task list of a selected internship application.
+Deletes the task at the specified index in the task list of the currently selected internship application.
 
 Format: `deltask TASK_INDEX`
 
