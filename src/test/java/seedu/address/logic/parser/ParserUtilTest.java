@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.student.Telegram;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -27,6 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_RESPONSE = "rawr7";
+    private static final String INVALID_TELEGRAM = "hello";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -35,6 +37,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_RESPONSE = "81";
+    private static final String VALID_TELEGRAM = "@hello";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -102,6 +105,22 @@ public class ParserUtilTest {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    }
+
+    @Test
+    public void parseTelegram_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTelegram((String) null));
+    }
+
+    @Test
+    public void parseTelegram_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTelegram(INVALID_TELEGRAM));
+    }
+
+    @Test
+    public void parseTelegram_validValueWithoutWhitespace_returnsTelegram() throws Exception {
+        Telegram expectedTelegram = new Telegram(VALID_TELEGRAM);
+        assertEquals(expectedTelegram, ParserUtil.parseTelegram(VALID_TELEGRAM));
     }
 
     @Test

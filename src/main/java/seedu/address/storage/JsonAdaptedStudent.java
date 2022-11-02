@@ -93,7 +93,7 @@ public class JsonAdaptedStudent {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Response.class.getSimpleName()));
         }
         if (!Response.isValidResponse(response)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Response.MESSAGE_CONSTRAINTS);
         }
         final Response modelResponse = new Response(response);
 
@@ -102,7 +102,7 @@ public class JsonAdaptedStudent {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName()));
         }
         if (!Attendance.isValidAttendance(attendance)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);
         }
         final Attendance modelAttendance = new Attendance(attendance);
 
