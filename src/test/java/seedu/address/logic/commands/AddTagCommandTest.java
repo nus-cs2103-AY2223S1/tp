@@ -1,6 +1,20 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_DEADLINE_TAG_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_LAST_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_PRIORITY_TAG_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
@@ -14,19 +28,6 @@ import seedu.address.model.task.Task;
 import seedu.address.testutil.DeadlineTagBuilder;
 import seedu.address.testutil.PriorityTagBuilder;
 import seedu.address.testutil.TaskBuilder;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_DEADLINE_TAG_TASK;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
-import static seedu.address.testutil.TypicalIndexes.INDEX_LAST_TASK;
-import static seedu.address.testutil.TypicalIndexes.INDEX_PRIORITY_TAG_TASK;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
-import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
 /**
  * Integration test for AddTagCommandTest together with some unit testing
@@ -86,8 +87,7 @@ public class AddTagCommandTest {
         Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         PriorityTag priorityTag = new PriorityTagBuilder().build();
         AddTagCommand addTagCommand = new AddTagCommand(priorityTag, null, outOfBoundsIndex);
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_TASK_INDEX_TOO_LARGE,
-                model.getFilteredTaskList().size() + 1);
+        String expectedMessage = Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
         assertCommandFailure(addTagCommand, model, expectedMessage);
     }
 
@@ -132,8 +132,7 @@ public class AddTagCommandTest {
         assertTrue(outOfBoundsIndex.getZeroBased() < model.getAddressBook().getTaskList().size());
         PriorityTag priorityTag = new PriorityTagBuilder().build();
         AddTagCommand addTagCommand = new AddTagCommand(priorityTag, null, outOfBoundsIndex);
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_TASK_INDEX_TOO_LARGE,
-                model.getFilteredTaskList().size() + 1);
+        String expectedMessage = Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
         assertCommandFailure(addTagCommand, model, expectedMessage);
     }
 

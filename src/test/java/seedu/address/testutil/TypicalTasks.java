@@ -3,8 +3,6 @@ package seedu.address.testutil;
 import static seedu.address.testutil.TypicalExams.getTypicalExams;
 import static seedu.address.testutil.TypicalModules.getTypicalModules;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,8 +10,6 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
-import seedu.address.model.tag.DeadlineTag;
-import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.task.Task;
 
 /**
@@ -21,8 +17,6 @@ import seedu.address.model.task.Task;
  */
 public class TypicalTasks {
 
-    private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    private static LocalDate TASK_DEADLINE = LocalDate.parse("31-12-2022",dtf);
     public static final Task TASK1 = new TaskBuilder().withModule("cs2001")
         .withTaskDescription("description 1")
         .withStatus("incomplete")
@@ -56,12 +50,12 @@ public class TypicalTasks {
 
     public static final Task TASK_G = new TaskBuilder().withModule("cs2100")
             .withTaskDescription("Task G")
-            .withPriorityTag(new PriorityTag("High"))
+            .withPriorityTag(new PriorityTagBuilder().build())
             .build();
 
     public static final Task TASK_H = new TaskBuilder().withModule("cs2103t")
             .withTaskDescription("Task H")
-            .withDeadlineTag(new DeadlineTag(TASK_DEADLINE))
+            .withDeadlineTag(new DeadlineTagBuilder().build())
             .build();
 
     public static final Task TASK_I = new TaskBuilder().withModule("cs2103t")

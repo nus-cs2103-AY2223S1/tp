@@ -12,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
+import seedu.address.model.tag.exceptions.BothTagsCannotBeNullException;
 import seedu.address.model.task.Task;
 
 /**
@@ -31,7 +32,7 @@ public class EditTagCommand extends Command {
             + "the same as the current priority status for the task.";
     public static final String DEADLINE_TAG_UNCHANGED = "The deadline provided is"
             + " the same as the current deadline for the task.";
-    private static final String TAG_EDITED_SUCCESSFULLY = "The tag(s) has/have been edited successfully.";
+    public static final String TAG_EDITED_SUCCESSFULLY = "The tag(s) has/have been edited successfully.";
 
     private final Index index;
     private final PriorityTag priorityTag;
@@ -48,6 +49,9 @@ public class EditTagCommand extends Command {
     public EditTagCommand(Index index, PriorityTag priorityTag,
             DeadlineTag deadlineTag) {
         requireNonNull(index);
+        if (priorityTag == null && deadlineTag == null) {
+            throw new BothTagsCannotBeNullException();
+        }
         this.index = index;
         this.deadlineTag = deadlineTag;
         this.priorityTag = priorityTag;
