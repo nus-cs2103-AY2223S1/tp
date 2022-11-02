@@ -1,4 +1,4 @@
-package tracko.logic.commands;
+package tracko.logic.commands.order;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,13 +16,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import tracko.commons.core.GuiSettings;
-// import tracko.logic.commands.exceptions.CommandException;
-import tracko.logic.commands.order.AddOrderCommand;
+import tracko.logic.commands.CommandResult;
 import tracko.model.Model;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.ReadOnlyUserPrefs;
 import tracko.model.TrackO;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.order.Order;
 import tracko.testutil.OrderBuilder;
 
@@ -132,37 +131,37 @@ public class AddOrderCommandTest {
         }
 
         @Override
-        public void addItem(Item item) {
+        public void addItem(InventoryItem inventoryItem) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Item getItem(String itemName) {
+        public InventoryItem getItem(String itemName) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Item> getFilteredItemList() {
+        public ObservableList<InventoryItem> getFilteredItemList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteItem(Item item) {
+        public void deleteItem(InventoryItem inventoryItem) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasItem(Item item) {
+        public boolean hasItem(InventoryItem inventoryItem) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setItem(Item target, Item editedItem) {
+        public void setItem(InventoryItem target, InventoryItem editedInventoryItem) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredItemList(Predicate<Item> predicate) {
+        public void updateFilteredItemList(Predicate<InventoryItem> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -172,7 +171,7 @@ public class AddOrderCommandTest {
         }
 
         @Override
-        public ObservableList<Item> getInventoryList() {
+        public ObservableList<InventoryItem> getInventoryList() {
             throw new AssertionError("This method should not be called.");
         }
 

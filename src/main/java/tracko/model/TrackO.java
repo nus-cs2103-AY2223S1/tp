@@ -5,8 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.InventoryList;
-import tracko.model.item.Item;
+import tracko.model.item.exceptions.ItemUnmodifiableException;
 import tracko.model.order.Order;
 import tracko.model.order.OrderList;
 
@@ -64,6 +65,12 @@ public class TrackO implements ReadOnlyTrackO {
         orders.delete(order);
     }
 
+    public void setOrder(Order orderToEdit, Order editedOrder) {
+        requireNonNull(editedOrder);
+
+        orders.setOrder(orderToEdit, editedOrder);
+    }
+
     /**
      * Marks an order as paid and/or delivered
      * @param order order to be marked
@@ -78,8 +85,11 @@ public class TrackO implements ReadOnlyTrackO {
         // decreases the quantity of each item delivered in the inventory list according to the quantity delivered
         if (isDelivered) {
             items.reduceItems(order);
-
             order.setDelivered();
+        }
+
+        if (order.isCompleted()) {
+            setOrder(order, order.getCopyWithRecordedItems());
         }
     }
 
@@ -90,8 +100,8 @@ public class TrackO implements ReadOnlyTrackO {
 
     // ITEM METHODS =======================================================================
 
-    public void setItems(List<Item> items) {
-        this.items.setItems(items);
+    public void setItems(List<InventoryItem> inventoryItems) {
+        this.items.setItems(inventoryItems);
     }
 
     public void setItems(InventoryList inventoryList) {
@@ -100,34 +110,37 @@ public class TrackO implements ReadOnlyTrackO {
 
     /**
      * Adds an item to be tracked.
-     * @param item The item to be added
+     * @param inventoryItem The item to be added
      */
-    public void addItem(Item item) {
-        items.add(item);
+    public void addItem(InventoryItem inventoryItem) {
+        items.add(inventoryItem);
     }
 
     /**
      * Returns an item that has the given item name.
      * @param itemName The given item name
      */
-    public Item getItem(String itemName) {
+    public InventoryItem getItem(String itemName) {
         return items.get(itemName);
     }
 
     /**
      * Deletes an item to be tracked.
-     * @param item The item to be added
+     * @param inventoryItem The item to be added
      */
-    public void deleteItem(Item item) {
-        items.delete(item);
+    public void deleteItem(InventoryItem inventoryItem) {
+        if (orders.containsOrderWithItem(inventoryItem)) {
+            throw new ItemUnmodifiableException();
+        }
+        items.delete(inventoryItem);
     }
 
     /**
      * Returns true if an item with the same identity as {@code item} exists in the inventory list.
      */
-    public boolean hasItem(Item item) {
-        requireNonNull(item);
-        return items.contains(item);
+    public boolean hasItem(InventoryItem inventoryItem) {
+        requireNonNull(inventoryItem);
+        return items.contains(inventoryItem);
     }
 
     /**
@@ -135,13 +148,16 @@ public class TrackO implements ReadOnlyTrackO {
      * {@code target} must exist in the inventory list.
      * The item identity of {@code editedItem} must not be the same as another existing item in the inventory list.
      */
-    public void setItem(Item target, Item editedItem) {
-        requireNonNull(editedItem);
-        items.setItem(target, editedItem);
+    public void setItem(InventoryItem target, InventoryItem editedInventoryItem) {
+        requireNonNull(editedInventoryItem);
+        if (orders.containsOrderWithItem(target)) {
+            throw new ItemUnmodifiableException();
+        }
+        items.setItem(target, editedInventoryItem);
     }
 
     @Override
-    public ObservableList<Item> getInventoryList() {
+    public ObservableList<InventoryItem> getInventoryList() {
         return items.asUnmodifiableObservableList();
     }
 
@@ -166,16 +182,9 @@ public class TrackO implements ReadOnlyTrackO {
         return orders.hashCode();
     }
 
-    public void setOrder(Order orderToEdit, Order editedOrder) {
-        requireNonNull(editedOrder);
-
-        orders.setOrder(orderToEdit, editedOrder);
-    }
-
     public void refreshInventoryData() {
         items.refreshData();
     }
-
 
     public void refreshOrderData() {
         orders.refreshData();

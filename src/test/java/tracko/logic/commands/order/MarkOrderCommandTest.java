@@ -1,4 +1,4 @@
-package tracko.logic.commands;
+package tracko.logic.commands.order;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
-import tracko.logic.commands.order.MarkOrderCommand;
+import tracko.logic.commands.CommandTestUtil;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.UserPrefs;

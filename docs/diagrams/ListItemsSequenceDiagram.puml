@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+skinparam noteTextAlignment left
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackOParser" as TrackOParser LOGIC_COLOR
+participant "command:ListItemsCommand" as ListItemsCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+
+end box
+
+[-> LogicManager : execute("listi")
+activate LogicManager
+
+LogicManager -> TrackOParser : parseCommand("listi")
+activate TrackOParser
+
+create ListItemsCommand
+TrackOParser -> ListItemsCommand
+activate ListItemsCommand
+
+ListItemsCommand --> TrackOParser : command
+deactivate ListItemsCommand
+
+TrackOParser --> LogicManager : command
+deactivate TrackOParser
+
+LogicManager -> ListItemsCommand : execute(model)
+activate ListItemsCommand
+
+ListItemsCommand -> Model : updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+activate Model
+deactivate Model
+
+note right
+PREDICATE_SHOW_ALL_ITEMS:
+Predicate to show all items
+end note
+
+create CommandResult
+ListItemsCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListItemsCommand : result
+deactivate CommandResult
+
+ListItemsCommand --> LogicManager : result
+deactivate ListItemsCommand
+[<--LogicManager
+
+destroy ListItemsCommand
+deactivate LogicManager
+@enduml

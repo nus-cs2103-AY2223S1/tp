@@ -7,7 +7,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import tracko.commons.core.LogsCenter;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 
 /**
  * Panel containing the list of orders.
@@ -17,14 +17,14 @@ public class ItemListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ItemListPanel.class);
 
     @javafx.fxml.FXML
-    private ListView<Item> itemListView;
+    private ListView<InventoryItem> itemListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public ItemListPanel(ObservableList<Item> itemList) {
+    public ItemListPanel(ObservableList<InventoryItem> inventoryItemList) {
         super(FXML);
-        itemListView.setItems(itemList);
+        itemListView.setItems(inventoryItemList);
         itemListView.setCellFactory(listView -> new ItemListViewCell() {{
                 setStyle("-fx-background-insets: 3px;");
             }
@@ -34,16 +34,16 @@ public class ItemListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of an {@code Item} using an {@code ItemCard}.
      */
-    class ItemListViewCell extends ListCell<Item> {
+    class ItemListViewCell extends ListCell<InventoryItem> {
         @Override
-        protected void updateItem(Item item, boolean empty) {
-            super.updateItem(item, empty);
+        protected void updateItem(InventoryItem inventoryItem, boolean empty) {
+            super.updateItem(inventoryItem, empty);
 
-            if (empty || item == null) {
+            if (empty || inventoryItem == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ItemCard(item, getIndex() + 1).getRoot());
+                setGraphic(new ItemCard(inventoryItem, getIndex() + 1).getRoot());
             }
         }
     }

@@ -17,10 +17,11 @@ import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
 import tracko.model.item.Description;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.ItemName;
 import tracko.model.item.Price;
 import tracko.model.item.Quantity;
+import tracko.model.item.exceptions.ItemUnmodifiableException;
 import tracko.model.tag.Tag;
 
 /**
@@ -53,6 +54,8 @@ public class EditItemCommand extends Command {
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the inventory list.";
+    public static final String MESSAGE_UNCOMPLETED_ORDER_ITEM = "Item cannot be edited, there exists uncompleted "
+            + "orders for item:\n%1$s";
 
     private final Index index;
     private final EditItemDescriptor editItemDescriptor;
@@ -72,40 +75,47 @@ public class EditItemCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Item> lastShownList = model.getFilteredItemList();
+        ObservableList<InventoryItem> lastShownList = model.getFilteredItemList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
         }
 
-        Item itemToEdit = lastShownList.get(index.getZeroBased());
-        Item editedItem = createEditedItem(itemToEdit, editItemDescriptor);
+        InventoryItem inventoryItemToEdit = lastShownList.get(index.getZeroBased());
+        InventoryItem editedInventoryItem = createEditedItem(inventoryItemToEdit, editItemDescriptor);
 
-        if (!itemToEdit.isSameItem(editedItem) && model.hasItem(editedItem)) {
+        if (!inventoryItemToEdit.isSameItem(editedInventoryItem) && model.hasItem(editedInventoryItem)) {
             throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
 
-        model.setItem(itemToEdit, editedItem);
-        model.refreshData();
-        model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
-        return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
+        try {
+            model.setItem(inventoryItemToEdit, editedInventoryItem);
+            model.refreshData();
+            model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
+            return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedInventoryItem));
+        } catch (ItemUnmodifiableException e) {
+            return new CommandResult(String.format(MESSAGE_UNCOMPLETED_ORDER_ITEM, editedInventoryItem));
+        }
     }
 
     /**
      * Creates and returns a {@code Item} with the details of {@code itemToEdit}
      * edited with {@code editItemDescriptor}.
      */
-    private static Item createEditedItem(Item itemToEdit, EditItemDescriptor editItemDescriptor) {
-        assert itemToEdit != null;
+    private static InventoryItem createEditedItem(InventoryItem inventoryItemToEdit,
+                                                  EditItemDescriptor editItemDescriptor) {
+        assert inventoryItemToEdit != null;
 
-        ItemName updatedItemName = editItemDescriptor.getItemName().orElse(itemToEdit.getItemName());
-        Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(itemToEdit.getTotalQuantity());
-        Description updatedDescription = editItemDescriptor.getDescription().orElse(itemToEdit.getDescription());
-        Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(itemToEdit.getTags());
-        Price sellPrice = editItemDescriptor.getSellPrice().orElse(itemToEdit.getSellPrice());
-        Price costPrice = editItemDescriptor.getCostPrice().orElse(itemToEdit.getCostPrice());
+        ItemName updatedItemName = editItemDescriptor.getItemName().orElse(inventoryItemToEdit.getItemName());
+        Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(inventoryItemToEdit.getTotalQuantity());
+        Description updatedDescription = editItemDescriptor.getDescription()
+            .orElse(inventoryItemToEdit.getDescription());
+        Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(inventoryItemToEdit.getTags());
+        Price sellPrice = editItemDescriptor.getSellPrice().orElse(inventoryItemToEdit.getSellPrice());
+        Price costPrice = editItemDescriptor.getCostPrice().orElse(inventoryItemToEdit.getCostPrice());
 
-        return new Item(updatedItemName, updatedDescription, updatedQuantity, updatedTags, sellPrice, costPrice);
+        return new InventoryItem(updatedItemName, updatedDescription, updatedQuantity,
+            updatedTags, sellPrice, costPrice);
     }
 
     @Override

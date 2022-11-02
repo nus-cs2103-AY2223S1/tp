@@ -10,12 +10,12 @@ import static tracko.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
 import static tracko.logic.commands.CommandTestUtil.INVALID_SELL_PRICE_DESC;
 import static tracko.logic.commands.CommandTestUtil.ITEM_DESCRIPTION_DESC_DEFAULT;
 import static tracko.logic.commands.CommandTestUtil.ITEM_DESCRIPTION_DESC_SECOND;
-import static tracko.logic.commands.CommandTestUtil.ITEM_NAME_DESC_AMY;
 import static tracko.logic.commands.CommandTestUtil.ITEM_NAME_DESC_DEFAULT;
+import static tracko.logic.commands.CommandTestUtil.ITEM_NAME_PEN;
 import static tracko.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static tracko.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static tracko.logic.commands.CommandTestUtil.QUANTITY_DESC_AMY;
 import static tracko.logic.commands.CommandTestUtil.QUANTITY_DESC_DEFAULT;
+import static tracko.logic.commands.CommandTestUtil.QUANTITY_PEN;
 import static tracko.logic.commands.CommandTestUtil.SELL_PRICE_DESC_DEFAULT;
 import static tracko.logic.commands.CommandTestUtil.SELL_PRICE_DESC_SECOND;
 import static tracko.logic.commands.CommandTestUtil.VALID_DEFAULT_COST_PRICE;
@@ -31,18 +31,18 @@ import org.junit.jupiter.api.Test;
 import tracko.logic.commands.item.AddItemCommand;
 import tracko.logic.parser.item.AddItemCommandParser;
 import tracko.model.item.Description;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.ItemName;
 import tracko.model.item.Price;
 import tracko.model.item.Quantity;
-import tracko.testutil.ItemBuilder;
+import tracko.testutil.InventoryItemBuilder;
 
 public class AddItemCommandParserTest {
     private AddItemCommandParser parser = new AddItemCommandParser();
 
     @Test
     public void parseInitial_allFieldsPresent_success() {
-        Item expectedItem = new ItemBuilder().build();
+        InventoryItem expectedItem = new InventoryItemBuilder().build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + ITEM_NAME_DESC_DEFAULT + QUANTITY_DESC_DEFAULT
@@ -50,12 +50,12 @@ public class AddItemCommandParserTest {
                 new AddItemCommand(expectedItem));
 
         // multiple item names - last item name accepted
-        assertParseSuccess(parser, ITEM_NAME_DESC_AMY + ITEM_NAME_DESC_DEFAULT + QUANTITY_DESC_DEFAULT
+        assertParseSuccess(parser, ITEM_NAME_PEN + ITEM_NAME_DESC_DEFAULT + QUANTITY_DESC_DEFAULT
                 + ITEM_DESCRIPTION_DESC_DEFAULT + SELL_PRICE_DESC_DEFAULT + COST_PRICE_DESC_DEFAULT,
                 new AddItemCommand(expectedItem));
 
         // multiple quantities - last quantity accepted
-        assertParseSuccess(parser, ITEM_NAME_DESC_DEFAULT + QUANTITY_DESC_AMY + QUANTITY_DESC_DEFAULT
+        assertParseSuccess(parser, ITEM_NAME_DESC_DEFAULT + QUANTITY_PEN + QUANTITY_DESC_DEFAULT
                 + ITEM_DESCRIPTION_DESC_DEFAULT + SELL_PRICE_DESC_DEFAULT + COST_PRICE_DESC_DEFAULT,
                 new AddItemCommand(expectedItem));
 

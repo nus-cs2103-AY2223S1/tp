@@ -1,0 +1,232 @@
+@startuml
+!include style.puml
+skinparam noteTextAlignment left
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackOParser" as TrackOParser LOGIC_COLOR
+participant "parser:AddOrderCommandParser" as AddOrderCommandParser1 LOGIC_COLOR
+participant "parser:AddOrderCommandParser" as AddOrderCommandParser2 LOGIC_COLOR
+participant "parser:AddOrderCommandParser" as AddOrderCommandParser3 LOGIC_COLOR
+participant "toAdd:Order" as toAdd LOGIC_COLOR
+participant "command:AddOrderCommand" as AddOrderCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult1 LOGIC_COLOR
+participant "result:CommandResult" as CommandResult2 LOGIC_COLOR
+participant "result:CommandResult" as CommandResult3 LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addo n/John Doe\np/98765432\ne/johnd@example.com\na/311, Clementi Ave 2, #02-25")
+activate LogicManager
+
+LogicManager -> TrackOParser : parseCommand("addo n/John Doe\np/98765432\ne/johnd@example.com\na/311, Clementi Ave 2, #02-25")
+activate TrackOParser
+
+create AddOrderCommandParser1
+TrackOParser -> AddOrderCommandParser1
+activate AddOrderCommandParser1
+
+AddOrderCommandParser1 --> TrackOParser : parser
+deactivate AddOrderCommandParser1
+
+TrackOParser -> AddOrderCommandParser1 : parse("n/John Doe\np/98765432\ne/johnd@example.com\na/311, Clementi Ave 2, #02-25")
+activate AddOrderCommandParser1
+
+
+create toAdd
+note right
+<i>(omitted to reduce diagram complexity)</i>
+<b>parse</b> method argument is processed as follows:
+* separated into prefixes ("n/", "p/", etc) using the ArgumentTokenizer class,
+* have accompanying values (John Doe, 98765432, etc)
+encapsulated in relevant data classes (Name, Phone, etc)
+after validation using the ParserUtil utility class,
+* passed as arguments for Order instantiation
+end note
+AddOrderCommandParser1 -> toAdd : create order with empty item data
+activate toAdd
+
+toAdd --> AddOrderCommandParser1 : toAdd
+deactivate
+
+create AddOrderCommand
+AddOrderCommandParser1 -> AddOrderCommand : AddOrderCommand(toAdd)
+activate AddOrderCommand
+
+AddOrderCommand --> AddOrderCommandParser1 : command
+deactivate AddOrderCommand
+
+AddOrderCommandParser1 --> TrackOParser : command
+deactivate AddOrderCommandParser1
+
+AddOrderCommandParser1 -[hidden]-> TrackOParser
+destroy AddOrderCommandParser1
+
+TrackOParser --> LogicManager: command
+deactivate TrackOParser
+
+LogicManager -> AddOrderCommand : execute(model)
+activate AddOrderCommand
+
+create CommandResult1
+AddOrderCommand -> CommandResult1
+activate CommandResult1
+
+CommandResult1 --> AddOrderCommand : result
+deactivate CommandResult1
+
+AddOrderCommand --> LogicManager : result
+deactivate AddOrderCommand
+
+note left
+The returned CommandResult1 object
+here contains the message that the
+UI will use to prompt user to enter
+further inputs for item data and
+instructions to end the command sequence
+end note
+<-- LogicManager : result
+deactivate LogicManager
+
+
+-> LogicManager : execute("i/Eraser q/3")
+activate LogicManager
+
+LogicManager -> TrackOParser : parseAndUpdateCommand("i/Eraser q/3", command)
+activate TrackOParser
+
+create AddOrderCommandParser2
+TrackOParser -> AddOrderCommandParser2
+activate AddOrderCommandParser2
+
+AddOrderCommandParser2 --> TrackOParser : parser
+deactivate AddOrderCommandParser2
+
+TrackOParser -> AddOrderCommandParser2 : parseAndUpdate("i/Eraser q/3", command)
+activate AddOrderCommandParser2
+
+
+note right
+<i>(omitted to reduce diagram complexity)</i>
+Quantity input (in this case 3) is validated
+and encapsulated in a Quantity object, similar
+to the <b>parse</b> method in the previous input
+end note
+AddOrderCommandParser2 -> AddOrderCommand : stageForValidation("Eraser", quantity)
+activate AddOrderCommand
+
+AddOrderCommand --> AddOrderCommandParser2 : command
+deactivate AddOrderCommand
+
+AddOrderCommandParser2 --> TrackOParser : command
+deactivate AddOrderCommandParser2
+
+AddOrderCommandParser2 -[hidden]-> TrackOParser
+destroy AddOrderCommandParser2
+
+TrackOParser --> LogicManager : command
+deactivate TrackOParser
+
+LogicManager -> AddOrderCommand : execute(model)
+activate AddOrderCommand
+
+AddOrderCommand -> Model : getItem("Eraser")
+activate Model
+
+Model --> AddOrderCommand : inventoryItem (InventoryItem with matching name -- "Eraser")
+deactivate Model
+
+AddOrderCommand -> toAdd: addToItemList(inventoryItem, quantity)
+activate toAdd
+
+toAdd --> AddOrderCommand
+deactivate toAdd
+
+create CommandResult2
+AddOrderCommand -> CommandResult2
+activate CommandResult2
+
+CommandResult2 --> AddOrderCommand : result
+deactivate CommandResult2
+
+AddOrderCommand --> LogicManager : result
+deactivate AddOrderCommand
+
+note left
+The returned CommandResult2 object
+here contains the message that the
+UI will use to prompt user to enter
+further inputs for item data and instructions
+to end the command sequence
+end note
+
+<-- LogicManager: result
+deactivate LogicManager
+
+-> LogicManager : execute("done")
+activate LogicManager
+
+LogicManager -> TrackOParser : parseAndUpdateCommand("done", command)
+activate TrackOParser
+
+create AddOrderCommandParser3
+TrackOParser -> AddOrderCommandParser3
+activate AddOrderCommandParser3
+
+AddOrderCommandParser3 --> TrackOParser : parser
+deactivate AddOrderCommandParser3
+
+TrackOParser -> AddOrderCommandParser3 : parseAndUpdate("done", command)
+activate AddOrderCommandParser3
+
+AddOrderCommandParser3 -> AddOrderCommand : setAwaitingInput(false)
+activate AddOrderCommand
+
+AddOrderCommand --> AddOrderCommandParser3
+deactivate AddOrderCommand
+
+AddOrderCommandParser3 --> TrackOParser
+deactivate AddOrderCommandParser3
+
+AddOrderCommandParser3 -[hidden]-> TrackOParser
+destroy AddOrderCommandParser3
+
+TrackOParser --> LogicManager
+deactivate TrackOParser
+
+LogicManager -> AddOrderCommand : execute(model)
+activate AddOrderCommand
+
+AddOrderCommand -> Model : addOrder(toAdd)
+activate Model
+
+Model --> AddOrderCommand
+deactivate Model
+
+
+create CommandResult3
+AddOrderCommand -> CommandResult3
+activate CommandResult3
+
+CommandResult3 --> AddOrderCommand : result
+deactivate CommandResult3
+
+AddOrderCommand --> LogicManager : result
+deactivate AddOrderCommand
+
+note left
+Command sequence ends here,
+system will stop awaiting further
+input for the AddOrderCommand
+end note
+
+AddOrderCommand -[hidden]-> TrackOParser
+destroy AddOrderCommand
+
+
+<-- LogicManager: result
+deactivate LogicManager
+@enduml

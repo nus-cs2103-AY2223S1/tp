@@ -178,7 +178,13 @@ public class ParserUtil {
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
         String trimmedPrice = price.trim();
-        Double doublePrice = Double.parseDouble(trimmedPrice);
+        Double doublePrice;
+
+        try {
+            doublePrice = Double.parseDouble(trimmedPrice);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
 
         if (!(StringUtil.isNonNegativeUnsignedFloat(trimmedPrice)
                 && Price.isValidPrice(doublePrice))) {

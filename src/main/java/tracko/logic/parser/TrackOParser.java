@@ -56,6 +56,8 @@ public class TrackOParser {
     public MultiLevelCommand parseAndUpdateCommand(String userInput, MultiLevelCommand command) throws ParseException {
         if (command instanceof AddOrderCommand) {
             return new AddOrderCommandParser().parseAndUpdate(userInput, (AddOrderCommand) command);
+        } else if (command instanceof ClearCommand) {
+            return new ClearCommandParser().parseAndUpdate(userInput, (ClearCommand) command);
         }
         throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
     }
@@ -119,7 +121,9 @@ public class TrackOParser {
             return new EditItemCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            // an empty string is used as a dummy input for the parser method.
+            // no inputs from the user is taken in as arguments for the ClearCommand method
+            return new ClearCommandParser().parse("");
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

@@ -5,8 +5,11 @@ import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import tracko.commons.util.DateTimeUtil;
+import tracko.model.item.InventoryItem;
+import tracko.model.item.Quantity;
 
 /**
  * Represents an Order in the address book.
@@ -84,19 +87,21 @@ public class Order {
     }
 
     /**
-     * Adds the given {@code ItemQuantityPair} to the order's item list. If a pair already exists with the same item,
-     * updates the {@code Quantity} instead.
-     * @param itemQuantityPair The given {@code ItemQuantityPair}.
+     * Adds the given {@code InventoryItem} and {@code Quantity} to the order's list of oredered items as an
+     * {@code ItemQuantityPair}. If a pair already exists with the same item, updates the {@code Quantity} instead.
+     * @param item The given {@code InventoryItem}
+     * @param quantity The given {@code Quantity}
      */
-    public void addToItemList(ItemQuantityPair itemQuantityPair) {
+    public void addToItemList(InventoryItem item, Quantity quantity) {
+        ItemQuantityPair toAdd = new ItemQuantityPair(item, quantity);
         for (int i = 0; i < itemList.size(); i++) {
             ItemQuantityPair currentPair = itemList.get(i);
-            if (currentPair.hasSameItem(itemQuantityPair)) {
-                currentPair.setQuantity(itemQuantityPair.getQuantity());
+            if (currentPair.hasSameItem(toAdd)) {
+                currentPair.setQuantity(toAdd.getQuantity());
                 return;
             }
         }
-        this.itemList.add(itemQuantityPair);
+        this.itemList.add(toAdd);
     }
 
     public LocalDateTime getTimeCreated() {
@@ -105,8 +110,7 @@ public class Order {
 
     public boolean isDeliverable() {
         return itemList.stream()
-                        .map(pair -> pair.getQuantityValue() < pair.getItem().getTotalQuantityValue())
-                        .anyMatch(x -> x == true);
+                        .allMatch(ItemQuantityPair::isDeliverable);
     }
 
     public boolean isCompleted() {
@@ -121,6 +125,10 @@ public class Order {
         this.isDelivered = true;
     }
 
+    public boolean containsItem(InventoryItem inventoryItem) {
+        return itemList.stream().anyMatch(pair -> pair.getItem().equals(inventoryItem));
+    }
+
     /**
      * Calculates the total price of a customer's ordered items.
      */
@@ -131,6 +139,16 @@ public class Order {
             totalOrderPrice += pair.calculatePrice();
         }
         return totalOrderPrice;
+    }
+
+    /**
+     * Returns a copy of this {@code Order}, that holds immutable copies of its list of ordered {@code Item}s.
+     * @return A copy of this {@code Order}, that holds immutable copies of its list of ordered {@code Item}s.
+     */
+    public Order getCopyWithRecordedItems() {
+        List<ItemQuantityPair> recordedItems = itemList.stream()
+            .map(ItemQuantityPair::getImmutableItemCopy).collect(Collectors.toList());
+        return new Order(name, phone, email, address, timeCreated, recordedItems, isPaid, isDelivered);
     }
 
     @Override
@@ -170,7 +188,7 @@ public class Order {
         for (ItemQuantityPair itemQuantityPair : getItemList()) {
             sb.append("\u2022 " + itemQuantityPair.toString() + "\n");
         }
-        sb.append("Total Order Price: $" + String.format("%.2f", calculateTotalOrderPrice()) + "\n");
+        sb.append("Total Order Revenue: $" + String.format("%.2f", calculateTotalOrderPrice()) + "\n");
         sb.append("Paid status: " + getPaidStatus() + "\n");
         sb.append("Delivery status: " + getDeliveryStatus() + "\n");
         return sb.toString();

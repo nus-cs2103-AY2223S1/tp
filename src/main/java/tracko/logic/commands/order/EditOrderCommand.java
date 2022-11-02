@@ -16,7 +16,7 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.Quantity;
 import tracko.model.item.exceptions.ItemNotFoundException;
 import tracko.model.order.Address;
@@ -38,7 +38,7 @@ public class EditOrderCommand extends Command {
             + "Existing name, phone, email, address values will "
             + "be overwritten by the input values. An item tag ("
             + CliSyntax.PREFIX_ITEM + ") needs to be accompanied by a "
-            + "quantity tag (" + CliSyntax.PREFIX_QUANTITY + ")."
+            + "quantity tag (" + CliSyntax.PREFIX_QUANTITY + "). \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + CliSyntax.PREFIX_NAME + "NAME] "
             + "[" + CliSyntax.PREFIX_PHONE + "PHONE] "
@@ -55,6 +55,9 @@ public class EditOrderCommand extends Command {
             + "not exist in the inventory list.";
     public static final String MESSAGE_ONE_ORDERED_ITEM = "An order list cannot have 0 items. "
             + "Perhaps you want to delete the order instead?";
+
+    public static final String MESSAGE_ORDER_ALREADY_MARKED =
+            "An order marked as paid and/or delivered cannot be edited!";
 
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;
@@ -74,13 +77,18 @@ public class EditOrderCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Order> lastShownList = model.getFilteredOrderList();
+        List<Order> lastShownList = model.getSortedOrderList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
         Order orderToEdit = lastShownList.get(index.getZeroBased());
+
+        if (orderToEdit.isCompleted() || orderToEdit.getDeliveryStatus() || orderToEdit.getPaidStatus()) {
+            throw new CommandException(MESSAGE_ORDER_ALREADY_MARKED);
+        }
+
         Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor, model);
 
         model.setOrder(orderToEdit, editedOrder);
@@ -106,15 +114,15 @@ public class EditOrderCommand extends Command {
         Optional<Pair<String, Integer>> unlinkedItem = editOrderDescriptor.getUnlinkedItemToEdit();
         if (!unlinkedItem.equals(Optional.empty())) {
             Pair<String, Integer> itemToCompare = unlinkedItem.get();
-            Item item;
+            InventoryItem inventoryItem;
 
             try {
-                item = model.getItem(itemToCompare.getKey());
+                inventoryItem = model.getItem(itemToCompare.getKey());
             } catch (ItemNotFoundException e) {
                 throw new CommandException(MESSAGE_NONEXISTENT_ITEM);
             }
 
-            ItemQuantityPair itemToEdit = new ItemQuantityPair(item, new Quantity(itemToCompare.getValue()));
+            ItemQuantityPair itemToEdit = new ItemQuantityPair(inventoryItem, new Quantity(itemToCompare.getValue()));
             editOrderDescriptor.updateItemList(orderToEdit, itemToEdit);
         }
 
@@ -259,6 +267,7 @@ public class EditOrderCommand extends Command {
             if (!hasItemBeenUpdated && itemToEdit.getQuantityValue() != 0) {
                 orderedItems.add(itemToEdit);
             }
+
             this.itemList = orderedItems;
         }
 

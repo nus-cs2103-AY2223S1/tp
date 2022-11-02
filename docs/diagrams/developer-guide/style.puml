@@ -37,6 +37,12 @@
 !define ORDER_MODEL_COLOR_T3 #545DAB
 !define ORDER_MODEL_COLOR_T4 #383E72
 
+!define ITEM_MODEL_COLOR #FF6C64
+!define ITEM_MODEL_COLOR_T1 #FF6C64
+!define ITEM_MODEL_COLOR_T2 #E05F58
+!define ITEM_MODEL_COLOR_T3 #C0514B
+!define ITEM_MODEL_COLOR_T4 #803632
+
 !define USER_COLOR #000000
 
 skinparam BackgroundColor #FFFFFFF
@@ -44,6 +50,14 @@ skinparam BackgroundColor #FFFFFFF
 skinparam Shadowing false
 
 skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Object {
     FontColor #FFFFFF
     BorderThickness 1
     BorderColor #FFFFFF

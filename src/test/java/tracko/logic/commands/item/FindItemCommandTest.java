@@ -1,10 +1,10 @@
-package tracko.logic.commands;
+package tracko.logic.commands.item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.commons.core.Messages.MESSAGE_ITEMS_FOUND_OVERVIEW;
-import static tracko.testutil.TypicalItems.ITEM_1;
+import static tracko.testutil.TypicalItems.INVENTORY_ITEM_1;
 import static tracko.testutil.TypicalItems.getTrackOWithTypicalItems;
 
 import java.util.Arrays;
@@ -12,7 +12,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import tracko.logic.commands.item.FindItemCommand;
+import tracko.logic.commands.CommandTestUtil;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.UserPrefs;
@@ -67,7 +67,7 @@ public class FindItemCommandTest {
         FindItemCommand command = new FindItemCommand(predicate);
         expectedModel.updateFilteredItemList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ITEM_1), model.getFilteredItemList());
+        assertEquals(Arrays.asList(INVENTORY_ITEM_1), model.getFilteredItemList());
     }
 
     /**

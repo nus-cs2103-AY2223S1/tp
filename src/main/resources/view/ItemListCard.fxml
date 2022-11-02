@@ -33,18 +33,16 @@
                         <Insets left="1"/>
                     </padding>
                 </HBox>
-                <VBox style="-fx-padding: 0 20 0 20;" spacing="2">
+                <VBox style="-fx-padding: 0 20 0 20;" spacing="2" HBox.hgrow="ALWAYS">
                     <VBox spacing="2">
                         <Label fx:id="itemName" text="\$first" styleClass="cell_big_label_item" />
-                        <HBox spacing="2">
-                            <HBox styleClass="light-green-container" alignment="CENTER" spacing="5.0">
-                                <Region styleClass="sellPrice-icon" id="sellPriceIcon"/>
-                                <Label fx:id="sellPrice" text="\$sellPrice" wrapText="true"/>
-                            </HBox>
-                            <HBox styleClass="costPrice-container" alignment="CENTER" spacing="5.0">
-                                <Region styleClass="costPrice-icon" id="costPriceIcon"/>
-                                <Label fx:id="costPrice" text="\$costPrice" wrapText="true"/>
-                            </HBox>
+                        <HBox styleClass="light-green-container" alignment="CENTER_LEFT" spacing="5.0">
+                            <Region styleClass="sellPrice-icon" id="sellPriceIcon"/>
+                            <Label fx:id="sellPrice" text="\$sellPrice" wrapText="true"/>
+                        </HBox>
+                        <HBox styleClass="costPrice-container" alignment="CENTER_LEFT" spacing="5.0">
+                            <Region styleClass="costPrice-icon" id="costPriceIcon"/>
+                            <Label fx:id="costPrice" text="\$costPrice" wrapText="true"/>
                         </HBox>
                         <HBox fx:id="quantityRow" alignment="CENTER" styleClass="quantity-row" spacing="5.0">
                             <Region styleClass="quantity-icon" id="quantityIcon"/>
@@ -54,7 +52,9 @@
                     <VBox id="descriptionBox">
                         <Label fx:id="description" styleClass="cell_small_label_item" text="\$description" />
                     </VBox>
-                    <HBox fx:id="tags" spacing="5.0"/>
+                    <HBox HBox.hgrow="ALWAYS">
+                    <FlowPane fx:id="tags"/>
+                    </HBox>
                 </VBox>
             </HBox>
         </VBox>
