@@ -120,10 +120,10 @@ components are numbered, and their names and descriptions will be displayed in a
 [//]: # (TODO: reference to team explanation / why at least 1 will always appear)
 This section displays all the teams that you have created in TruthTable. Only the names of each team is listed.  
 
-| Number | Component  | Description                                    |
-|--------|------------|:-----------------------------------------------|
-| 1      | Team Index | The index of the team in the list of all teams |  
-| 2      | Team Name  | The name of the team at the specified index    |
+| Number | Component | Description                                    |
+|--------|-----------|:-----------------------------------------------|
+| 1      | Index     | The index of the team in the list of all teams |  
+| 2      | Name      | The name of the team at the specified index    |
 
 
 ### Current Team Section
@@ -148,17 +148,33 @@ links, tasks, and members related to said team.
 
 ### Persons Section
 
-[//]: # (TODO: reference to person explanation on what these fields mean)
+![Persons Section](images/PersonsSection.png)
+
 This section displays the names, phone number, email, address, and tags of all persons that you have created in 
-TruthTable.
+TruthTable. This section is also known as the "Contacts" section.
+
+| Number | Component    | Description                                            |
+|--------|--------------|--------------------------------------------------------|
+| 1      | Index        | The index of a person in all the persons in TruthTable |
+| 2      | Name         | The name of a person at a specific index               |
+| 3      | Tags         | The tags associated with a person                      |
+| 4      | Phone Number | The phone number of a person                           |
+| 5      | Email        | The email address of a person                          |
+| 6      | Address      | The address of a person                                |
+
 
 ### Command Section
+
+![Command Section](images/CommandSection.png)
 
 This section contains an input box where you can enter the commands for the actions that you wish to perform. Try 
 typing `help` in the input box and press <kbd>Enter</kbd> to see what happens!
 
-Above the input box, you will see the output of the latest command that you have entered. In the case of `help`, you 
-will see all the available commands in TruthTable that you can execute.
+| Number | Component         | Description                                                                                       |
+|--------|-------------------|---------------------------------------------------------------------------------------------------|
+| 1      | Command Result    | The result of executing a command in the Command Input Box                                        |
+| 2      | Command Input Box | The input box for commands to be entered, which can be executed by pressing <br/><kbd>Enter</kbd> |
+
 
 [Back to Table of Contents](#table-of-contents)
 
