@@ -41,13 +41,13 @@ public class DeleteTagCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "LABEL]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "CS2103T";
 
-    public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted Tag: %1$s";
-    public static final String MESSAGE_TAG_NOT_DELETED = "At least 1 tag to delete must be provided.";
-    public static final String MESSAGE_TAGS_DO_NOT_EXIST = "The tag(s) you want to remove are not found "
+    public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted Label: %1$s";
+    public static final String MESSAGE_TAG_NOT_DELETED = "At least 1 label to delete must be provided.";
+    public static final String MESSAGE_TAGS_DO_NOT_EXIST = "The label(s) you want to remove are not found "
         + "on the selected contact/task.";
     public static final String MESSAGE_MISSING_INDEX = "At least 1 contact or task index must be provided.";
 

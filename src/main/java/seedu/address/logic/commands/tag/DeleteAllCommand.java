@@ -36,13 +36,13 @@ public class DeleteAllCommand extends Command {
     public static final String COMMAND_WORD = "deleteA";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes all tasks and contacts whose tags contain any of "
-            + "the specified keyword (case-insensitive).\n"
-            + "Any tags that contains any of the specified keyword are also deleted.\n"
+            + ": Deletes all tasks and contacts whose labels contain any of "
+            + "the specified keyword (case-sensitive).\n"
+            + "Any labels that contains any of the specified keyword are also deleted.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " CS2103T";
 
-    public static final String MESSAGE_TAGS_DO_NOT_EXIST = "The tag(s) you want to remove cannot be found";
+    public static final String MESSAGE_TAGS_DO_NOT_EXIST = "The label(s) you want to remove cannot be found";
 
     private final PersonContainsKeywordsPredicate personPredicate;
     private final TaskContainsKeywordsPredicate taskPredicate;
