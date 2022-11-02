@@ -53,6 +53,7 @@ public class ParserUtil {
     }
 
     /**
+     * Leading and trailing whitespaces will be trimmed
      *
      * @param info
      * @return trimmed info
