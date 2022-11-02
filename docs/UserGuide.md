@@ -148,7 +148,7 @@ You can add an activity to HobbyList using this command.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Additional information for add:**<br>
+:information_source: **Additional information for `add`:**<br>
 
 * `[t/TAG]...` only accepts alphanumeric with underscores.
 * `[s/STATUS]` only accepts **UPCOMING**, **ONGOING** or **COMPLETED** as STATUS. e.g. `s/ongoing`(case-insensitive).
@@ -188,7 +188,7 @@ You can edit an activity already in HobbyList using this command.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Additional information for edit:**<br>
+:information_source: **Additional information for `edit`:**<br>
 
 * Edits the activity at the specified `INDEX`. The index refers to the index number shown in the displayed activity list. The `INDEX` **must be a positive integer** 1, 2, 3, …
 * At least **one** of the optional fields must be provided.
@@ -221,7 +221,7 @@ You can delete an activity from HobbyList using this command.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Additional information for delete:**<br>
+:information_source: **Additional information for `delete`:**<br>
 
 * Deletes the activity at the specified `INDEX`.
 * The index refers to the index number shown in the displayed activity list.
@@ -238,7 +238,7 @@ Example:
 
 :exclamation: **Caution:**<br>
 
-The `delete` command is final and cannot be undone. To prevent regrets, you might want to back up your save file which can be found in the `data` folder in the same folder as your HobbyList.jar file.
+The `delete` command is final and cannot be undone. To prevent regrets, you might want to back up your save file which can be found in the `data` folder which is in the same folder as your HobbyList.jar file.
 
 </div>
 
@@ -263,7 +263,7 @@ You can add a rating and optionally write a review for an activity in the HobbyL
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Additional information for rate:**<br>
+:information_source: **Additional information for `rate`:**<br>
 
 * The `INDEX` refers to the index number shown in the displayed activity list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
@@ -290,7 +290,7 @@ You can display all details of the selected activity from HobbyList on the selec
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Additional information for rate:**<br>
+:information_source: **Additional information for `select`:**<br>
 
 * The `INDEX` refers to the index number shown in the displayed activity list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
@@ -299,6 +299,7 @@ You can display all details of the selected activity from HobbyList on the selec
 
 Example: 
 * `select 1`
+
   *Displays the first activity in the selected activity panel.*
 
 ### 5.7 Finding activities: `find`
@@ -349,7 +350,7 @@ You can show a list of all activities with tags matching the ones specified usin
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Additional information for rate:**<br>
+:information_source: **Additional information for `findTag`:**<br>
 
 * All activities with any tag matching any of the `KEYWORDS` are shown.
 * The `KEYWORDS` are case-sensitive.
@@ -373,7 +374,7 @@ You can show a list of all activities with status matching the status specified 
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Additional information for rate:**<br>
+:information_source: **Additional information for `findStatus`:**<br>
 
 * The feature only works with the `STATUS` being **UPCOMING**, **ONGOING** or **COMPLETED** (case-insensitive).
 * If input `STATUS` is different from the three statuses above, it is treated as **NONE** and HobbyList shows all the activities with a status of **NONE**.
@@ -394,35 +395,71 @@ Examples:
 
 ### 5.10 Finding activities with rating value above certain value : `r/above`
 
-Shows a list of all hobby activities whose rating value is greater or equal than the required value.
+You can show a list of all activities whose rating value is greater or equal than the required value using this command.
 
-Format: `r/above VALUE`
+> Format: `r/above VALUE`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Additional information for `r/above`:**<br>
 
 * `VALUE` only accepts integer numbers from 1 to 5 (inclusive).
 
-Example: `r/above 1`
+</div>
+
+Example: 
+* `r/above 1`
+
+  *Shows a list of all activities with a rating greater than or equal to 1.*
 
 ### 5.11 Getting help : `help`
 
-Shows a message explaining how to access the help page.
+You can get a message explaining how to access the help page using this command.
 
-Format: `help`
+> Format: `help`
+
+Example:
+* `help`
+
+  *Gets a window showing a link to this user guide.*
 
 ### 5.12 Deleting all activities: `clear`
 
-Deletes all activities from HobbyList
+You can delete all activities from HobbyList using this command.
 
-Format: `clear`
+> Format: `clear`
 
-Example: `clear`
+Example:
+* `clear`
+
+  *Removes all activities from HobbyList.*
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**<br>
+
+The `clear` command is final and cannot be undone. To prevent regrets, you might want to back up your save file which can be found in the `data` folder which is in the same folder as your HobbyList.jar file.
+
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**<br>
+
+You might want to [rename](#5-14-renaming-the-commands) the `clear` command into something long so that you will not enter it accidentally and lose all your data.
+
+</div>
 
 ### 5.13 Exiting the program : `exit`
 
-Exits the program.
+You can exit the program using this command. Alternatively, you can close the window.
 
-Format: `exit`
+> Format: `exit`
 
-Example: `exit`
+Example:
+* `exit`
+
+  *Exits HobbyList.*
 
 ### 5.14 Renaming the commands
 
