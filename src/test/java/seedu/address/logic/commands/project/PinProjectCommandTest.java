@@ -2,9 +2,9 @@ package seedu.address.logic.commands.project;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PROJECT_NOT_FOUND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.project.PinProjectCommand.MESSAGE_PIN_SUCCESS;
+import static seedu.address.logic.commands.project.PinProjectCommand.MESSAGE_PROJECT_NOT_FOUND;
 import static seedu.address.logic.commands.project.PinProjectCommand.MESSAGE_UNPIN_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 

@@ -3,7 +3,6 @@ package seedu.address.logic.commands.client;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -20,6 +19,7 @@ public class PinClientCommand extends ClientCommand {
 
     public static final String MESSAGE_PIN_SUCCESS = "Client pinned: %1$s";
     public static final String MESSAGE_UNPIN_SUCCESS = "Client unpinned: %1$s";
+    public static final String MESSAGE_CLIENT_NOT_FOUND = "This client id does not exist.";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
             + ": Pins the client identified by the client id \n"
@@ -49,13 +49,13 @@ public class PinClientCommand extends ClientCommand {
      */
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
-        ui.showClients();
         if (!model.hasClientId(this.toPinClientId.getIdInt())) {
-            throw new CommandException(Messages.MESSAGE_CLIENT_NOT_FOUND);
+            throw new CommandException(MESSAGE_CLIENT_NOT_FOUND);
         }
         Client toPinClient = model.getClientById(this.toPinClientId.getIdInt());
         toPinClient.togglePin();
         model.sortClientsByPin();
+        ui.showClients();
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
         return new CommandResult(String.format(
                 toPinClient.isPinned() ? MESSAGE_PIN_SUCCESS : MESSAGE_UNPIN_SUCCESS,
