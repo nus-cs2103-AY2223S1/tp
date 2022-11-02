@@ -640,11 +640,11 @@ command `list orders` before using `filter-o`. When filtering pets, use the comm
 Displays only Orders based on the given attribute(s). There are three possible attributes to filter: Additional
 requests, Order status, Price range.
 
-| Attribute           | Prefix | Format                     | Example         |
-|---------------------|--------|----------------------------|-----------------|
-| Additional requests | o_ar   | ar/KEYWORD                 | ar/non-shedding |
-| Order Status        | o_st   | os/KEYWORD                 | os/Negotiating  |
-| Price Range         | o_pr   | pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
+| Attribute           | Prefix | Format                       | Example         |
+|---------------------|--------|------------------------------|-----------------|
+| Additional requests | o_ar   | o_ar/KEYWORD                 | ar/non-shedding |
+| Order Status        | o_st   | o_st/KEYWORD                 | os/Negotiating  |
+| Price Range         | o_pr   | o_pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
 
 Format: `filter-o PREFIX/INPUT`
 
