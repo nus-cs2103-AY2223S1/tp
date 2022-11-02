@@ -25,9 +25,13 @@ internship applications more efficiently and effectively than traditional GUI ap
 First time using InTrack? We highly recommend reading this user guide in order.
 
 Searching for information about specific features? You might find it helpful to navigate to the relevant sections via
-the Table of Contents below for more detailed explanations of individual features.
+the [Table of Contents](#table-of-contents) for more detailed explanations of individual features.
 
 Alternatively, consider looking at the [Command Summary](#command-summary) for a brief outline of all the commands.
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Table of Contents
 
 * Table of Contents
 {:toc}
