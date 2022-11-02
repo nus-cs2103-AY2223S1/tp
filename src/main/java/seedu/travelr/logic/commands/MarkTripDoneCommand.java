@@ -46,7 +46,7 @@ public class MarkTripDoneCommand extends Command {
 
         List<Trip> list = model.getFilteredTripList();
         if (index.getZeroBased() >= list.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TRIP_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_TRIP_INDEX);
         }
 
         Trip tripToMarkDone = list.get(index.getZeroBased());

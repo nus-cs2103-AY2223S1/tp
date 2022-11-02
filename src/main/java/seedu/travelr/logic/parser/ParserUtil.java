@@ -20,7 +20,9 @@ import seedu.travelr.model.event.Event;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_EMPTY_INDEX = "Index cannot be empty.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer. " +
+            "(Index must be an integer more than 1, but less than or equal to 2147483647)";
     public static final String EVENT_DESCRIPTION_PLACEHOLDER =
             "This is a placeholder text for the event description.";
 
@@ -31,6 +33,11 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+
+        if (oneBasedIndex.isEmpty()) {
+            throw new ParseException(MESSAGE_EMPTY_INDEX);
+        }
+
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
