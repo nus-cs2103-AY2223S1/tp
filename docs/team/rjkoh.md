@@ -57,6 +57,7 @@ Given below are my contributions to the project.
     * Updated DG from Google Docs: [#26](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/26)
     * Use cases 2, 3, 9-14: [#26](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/26), [#57](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/57)
     * Added NFRs: [#26](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/26)
+    * Cosmetic tweaks to class diagrams for consistency: [#190](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/190)
 
 
 * **Contributions to Team-based tasks**: 
