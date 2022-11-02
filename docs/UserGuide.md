@@ -100,7 +100,8 @@ As such, the features available to you are split into **4** main features:
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…` after them can be used multiple times.<br>
-  e.g. `[t/TAG]…​` can be used as `​` (i.e. 0 times).
+  e.g. `[t/TAG]…​` can be used as `​` (i.e. 0 times).<br>
+  and e.g. `c/cov…​` can be used 1 or more times.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -331,7 +332,7 @@ Store policies from a large assortment of companies, with different coverages an
 
 Adds a policy to the address book.
 
-Format: `addPolicy ti/TITLE cmp/COMPANY_CODE cms/Y1COMMISION% Y2COMISSION% Y3ONWARDS% cov/COVERAGE [cov/COVERAGE]...`
+Format: `addPolicy ti/TITLE cmp/COMPANY_CODE cms/Y1COMMISION% Y2COMISSION% Y3ONWARDS% cov/COVERAGE...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A policy must have one or more coverages.
