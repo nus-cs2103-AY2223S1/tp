@@ -1,177 +1,63 @@
 ---
 layout: page
-title: Project Portfolio Page for Nicholas Seah
+title: Nicholas Seah's Project Portfolio Page
 ---
 
-### Overview
+### Project: RC4HDB
 
-**RC4 Housing Database** offers a convenient and intuitive interface for RC4 housing management staff to 
-streamline their daily operations.
+RC4HDB is a housing database that offers a convenient and intuitive interface for housing management staff to streamline their daily operations. 
 
+Given below are my contributions to the project.
 
-### Summary of Contributions
+* **New Feature**: Added the ability to show/hide table columns. 
+    * What it does: allows the user to hide any number of unwanted columns in the table. Columns that have been hidden can be restored by using the reset command.
+    * Justification: This feature improves the product significantly because a user can de-clutter their screen and only focus on the information that they require, saving them time and effort in their work.
+    * Highlights: This enhancement affects the UI directly and had to be implemented carefully to minimise coupling between components. I was able to apply the observer pattern in developing this feature.
 
-#### Code contributed:
+* **New Feature**: Added the venue booking feature that allows the user to manage recurrent venue bookings.
+    * Justification: This feature improves the product significantly as low-level operations such as clearing expired bookings and checking for booking clashes are handled for the user by RC4HDB.
 
-1. `ResidentField.java`, and its subclasses `Gender.java`, `House.java`, `MatricNumber.java`, `Name.java`, 
-   `Phone.java`, and `Room.java`
-   
-2. `ColumnManipulatorCommand.java`, and its subclasses `ListCommand.java`, `ResetCommand.java`, `ShowOnlyCommand.java` and `HideOnlyCommand.java`
-   
-3. `Rc4hdbParser.java`, `ColumnManipulatorCommandParser.java`, and its subclasses `ShowOnlyCommandParser.java` and `HideOnlyCommandParser.java`
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nseah21&breakdown=true)
 
-4. `Model.java`, and its subclass `ModelManager.java`
+* **Project management**:
+    * Completed the product [demonstrations](https://docs.google.com/presentation/d/1Rn9v81qwurx_IT_5V9oPZOge1VDZUPD1IxE3DUWkpYg/edit?usp=sharing) for both v1.2 and v1.3.
+    * Created the skeletal project portfolio page for my team
+    * Created the [UI mockup](https://drive.google.com/file/d/1W8m0SWCyVR849i6FcgitcHIZaWRen2Ip/view?usp=share_link) for RC4HDB
 
-5. `Logic.java`, and its subclass `LogicManager.java`
+* **Enhancements to existing features**:
+    * Updated the GUI to use a TableView so that users could view resident data in a more convenient and condensed layout (Pull requests [\#76](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/76))
+    * Updated the GUI to use a TabPane so that users could use `CTRL-TAB` to switch tables between residents and venues easily (Pull requests [\#110](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/110))
+    * Wrote additional tests for existing features to increase coverage (Pull requests [\#114](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/114), [\#127](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/127), [\#152](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/152), [\#196](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/196))
+    * Overloaded the list command to allow users to include or exclude specified columns when listing (removed in v1.4 as this was an intermediate feature) (Pull requests [\#76](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/76))
 
-6. `Venue.java`, `Booking.java`, and its subclass `RecurrentBooking.java`
+* **Documentation**:
+    * User Guide:
+        * Added documentation for the features `list`, `showonly`, `hideonly`, `reset` and `find`. You can view them [here](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#viewing-residents).
+        * Added documentation to the [FAQ](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#faq), [glossary-of-terms](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#glossary-of-terms), [quality-of-life](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#quality-of-life) and [authors](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#authors) sections. 
+    * Developer Guide:
+        * Updated the [acknowledgements section](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#acknowledgements) 
+        * Updated the [design section for the Model component](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#model-component), and added [two UML diagrams](#appendix-for-uml-diagrams-added-for-documentation) for this section
+        * Added [implementation details](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#showhide-feature-for-resident-fields) for the `showonly`, `hideonly` and `reset` features, and added [a diagram illustrating the reference relationships for MainWindow](#appendix-for-uml-diagrams-added-for-documentation) for this section
+        * Added [use cases](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#user-cases) and [user stories](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#user-stories) for RC4HDB
+        * Added test cases to the [manual testing section](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#viewing-residents) for `list`, `showonly`, `hideonly`, and `reset`
 
-7. The UI classes `MainWindow.java` and `ResidentTableView.java`
-
-
-You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nseah21&breakdown=true). 
-The test code written can also be found at the same link.
-
-#### Enhancements implemented:
-
-1. Reworked the UI to use a `TableView` instead of a `ListView`
-
-2. Reworked the UI to allow for the use of `CTRL-TAB` for switching between `ResidentTableView` and `VenueTableView` 
+* **Community**:
+    * PRs reviewed (with non-trivial review comments): [\#30](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/30), [\#55](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/55), [\#57](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/57), [\#72](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/72), [\#73](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/73), [\#98](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/98), [\#114](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/114), [\#122](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/122), [\#132](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/132), [\#182](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/182)
+    * Participated in forum discussions (examples: [\#383](https://github.com/nus-cs2103-AY2223S1/forum/issues/383), [\#401](https://github.com/nus-cs2103-AY2223S1/forum/issues/401))
+    * Reported bugs and suggestions for other teams in the class (examples: [\#310](https://github.com/AY2223S1-CS2103T-T12-4/tp/issues/310), [\#315](https://github.com/AY2223S1-CS2103T-T12-4/tp/issues/315), [\#328](https://github.com/AY2223S1-CS2103T-T12-4/tp/issues/328), [\#332](https://github.com/AY2223S1-CS2103T-T12-4/tp/issues/332), [\#362](https://github.com/AY2223S1-CS2103T-T12-4/tp/issues/362))
     
-3. Added the feature for users to hide unwanted columns to de-clutter their screen
+#### Appendix for UML diagrams added for documentation
+
+* **Class diagram for Model component:**
+
+![](../images/LatestModelClassDiagram.png)
 
 
-#### Contributions to the UG:
+* **Class diagram for possible extension of Model component with better OOP:**
 
-1. [Listing all residents : `list`](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#listing-all-residents--list)
-   
-2. [Showing resident fields : `showonly`](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#showing-only-some-columns--showonly)
-   
-3. [Hiding resident fields : `hideonly`](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#hiding-only-some-columns--hideonly)
-   
-4. [Resetting hidden resident fields : `reset`](https://ay2223s1-cs2103t-w12-3.github.io/tp/u#resetting-hidden-columns--reset)
-   
-5. [Locating residents by name : `find`](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#locating-residents-by-name--find)
-
-#### Contributions to the DG:
-
-1. [Acknowledgements](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#acknowledgements)
-
-3. [Design for Model component](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#model-component)
-   
-4. [Implementation of column hiding feature](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#showhide-feature-for-resident-fields)
-   
-5. [Use cases](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#use-cases)
-   
-6. [User stories](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#user-stories)
-
-7. [Manual testing section for viewing residents](https://ay2223s1-cs2103t-w12-3.github.io/tp/DeveloperGuide.html#viewing-residents)
+![](../images/UpdatedModelClassDiagram.png)
 
 
-#### Contributions in terms of UML diagrams: 
+* **Diagram illustrating the reference relationships of MainWindow and its subclasses:**
 
-
-1. Class diagram for Model component
-
-2. Class diagram for possible extension of Model component with better OOP
-
-3. Diagram illustrating the reference relationships of MainWindow and its subclasses
-
-Please refer to the appendix for the UML diagrams mentioned in this section. 
-
-
-<!-- Provide links to the diagrams in the appendix at the bottom of the page -->
-
-#### Contributions to team-based tasks:
-
-1. Added the skeletal project portfolio page for my team
-   
-2. Created the UI mockup for RC4HDB
-   
-3. Completed the demonstrations for both v1.2 and v1.3. The demonstrations can be found [here](https://docs.google.com/presentation/d/1Rn9v81qwurx_IT_5V9oPZOge1VDZUPD1IxE3DUWkpYg/edit?usp=sharing).
-
-
-#### Review/mentoring contributions:
-
-I reviewed and commented on the following pull requests, listed in reverse-chronological order:
-
-1. [Add Sample Data #182](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/182)
-
-2. [UG reorganisation #132](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/132)
-   
-3. [Implement command history #122](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/122)
-
-4. [Implement file commands #98](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/98)
-
-5. [Remove person logic #73](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/73)
-
-6. [Add resident field #72](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/72)
-   
-7. [Classify commands into subtypes #57](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/57)
-
-8. [Update Use Cases and DG Format #55](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/55)
-
-9. [Update UG and DG #30](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/30)
-
-
-
-I also gave guidance to my team by:
-
-1. Providing feedback and enforcing internal code quality standards within our team
-
-2. Highlighting and correcting logical errors in our code 
-      
-3. Giving advice on how to use streams in our code (in order to make our code more declarative)
-
-
-#### Contributions beyond the project team:
-
-Beyond the project team, I also participated actively in the forum. These are some threads in which I clarified my doubts:
-
-1. [Dropping (half) a feature #401](https://github.com/nus-cs2103-AY2223S1/forum/issues/401)
-
-2. [Do reducing or adding more constraints on user input allowed in v1.4? #383](https://github.com/nus-cs2103-AY2223S1/forum/issues/383)
-
-
-<!-- Provide links to the threads here -->
-
-For the practical examination dry run, I also surfaced critical bugs in the other team's product. Some examples of these are:
-
-1. [Unable to add patients with duplicate name #328](https://github.com/AY2223S1-CS2103T-T12-4/tp/issues/328)
-
-2. [Adding a patient task with invalid time for description turns out to be successful #315](https://github.com/AY2223S1-CS2103T-T12-4/tp/issues/315)
-
-3. [Able to add patients with duplicate phone numbers #310](https://github.com/AY2223S1-CS2103T-T12-4/tp/issues/310)
-
-### Appendix for UML diagrams
-
-#### Colour coding guide
-
-![Colour coding guide](../images/ColourCoding.png)
-
-<br>
-
-#### Class diagram for Model component
-
-![Class diagram for Model component](../images/LatestModelClassDiagram.png)
-
-<br>
-
-#### Class diagram for possible extension of Model component with better OOP
-
-![Class diagram with better OOP](../images/UpdatedModelClassDiagram.png)
-
-<br>
-
-#### Diagram illustrating the reference relationships of MainWindow and its subclasses
-
-![MainWindow reference relationships](MainWindowRelationships.png)
-
-<br>
-
-<!-- Embed the diagrams here -->
-
-[comment]: <> (### Contributions to the User Guide:)
-
-
-<!-- Embed the diagrams here -->
+![](../images/MainWindowRelationships.png)
