@@ -40,7 +40,7 @@ public class WardNumberTest {
     }
 
     @Test
-    public void isValidWardNumber() {
+    public void isValidWardNumberTest() {
         // invalid ward numbers
         assertFalse(WardNumber.isValidWardNumber("D"));
         assertFalse(WardNumber.isValidWardNumber("D1234567"));
@@ -66,9 +66,12 @@ public class WardNumberTest {
         String expectedMessage2 = "Ward: F690";
         WardNumber wardNumber1 = new WardNumber("D123");
         WardNumber wardNumber2 = new WardNumber("F690");
+
+        // same ward
         assertEquals(expectedMessage1, wardNumber1.toString());
         assertEquals(expectedMessage2, wardNumber2.toString());
 
+        // different ward
         assertNotEquals(expectedMessage1, wardNumber2.toString());
         assertNotEquals(expectedMessage2, wardNumber1.toString());
     }
@@ -96,4 +99,20 @@ public class WardNumberTest {
         assertFalse(wardNumber.equals(differentWardNumber));
     }
 
+    @Test
+    public void hashCodeTest() {
+        WardNumber wardNumber1 = new WardNumber("D123");
+        WardNumber wardNumber2 = new WardNumber("D123");
+        WardNumber wardNumber3 = new WardNumber("D456");
+
+        // same object -> same hashcode
+        assertEquals(wardNumber1.hashCode(), wardNumber1.hashCode());
+
+        // same values -> same hashcode
+        assertEquals(wardNumber1.hashCode(), wardNumber2.hashCode());
+
+        // different values -> different hashcode
+        assertNotEquals(wardNumber1.hashCode(), wardNumber3.hashCode());
+        assertNotEquals(wardNumber2.hashCode(), wardNumber3.hashCode());
+    }
 }
