@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -36,6 +39,7 @@ public class AddDelivererCommand extends AddPersonCommand {
     public static final String MESSAGE_SUCCESS = "New deliverer added: %1$s";
     public static final String MESSAGE_DUPLICATE_DELIVERER = "This deliverer already exists in the address book";
 
+    private static final Logger LOGGER = LogsCenter.getLogger(AddDelivererCommand.class);
     private final Deliverer toAdd;
 
     /**
@@ -51,6 +55,7 @@ public class AddDelivererCommand extends AddPersonCommand {
         requireNonNull(model);
 
         if (model.hasDeliverer(toAdd)) {
+            LOGGER.severe("Duplicate deliverer: " + toAdd.toString());
             throw new CommandException(MESSAGE_DUPLICATE_DELIVERER);
         }
 

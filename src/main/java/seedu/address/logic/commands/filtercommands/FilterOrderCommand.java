@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 
@@ -57,7 +58,16 @@ public class FilterOrderCommand extends FilterCommand {
         Predicate<Order> finalPredicate = generatePredicate();
         model.updateFilteredOrderList(finalPredicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()));
+                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()),
+                false,
+                false,
+                true,
+                ListCommand.LIST_ORDER,
+                false,
+                null,
+                false,
+                null,
+                null);
     }
 
 
