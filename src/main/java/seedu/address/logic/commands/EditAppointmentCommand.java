@@ -46,7 +46,7 @@ public class EditAppointmentCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the HealthContact.";
     public static final String MESSAGE_PATIENT_NOT_EXIST = "This patient does not exist in the HealthContact";
-    public static final String MESSAGE_PATIENT_NAME_CASE_UNMATCHED = "The case of name of the patient is not matched";
+    public static final String MESSAGE_PATIENT_NAME_CASE_UNMATCHED = "The case of the patient's name is wrong, a strict match is required.";
 
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
