@@ -283,7 +283,7 @@ You can add a schedule by using this command.
 
  **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- Refer to section [Schedule Manager Command Parameters](#341-schedule-manager-command-parameters) for more information about the parameters
 
 </div>
 
@@ -321,7 +321,7 @@ Edits a schedule in the ProfNUS.
 
  **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- Refer to section [Schedule Manager Command Parameters](#341-schedule-manager-command-parameters) for more information about the parameters
 - You are expected to provide at least one optional parameter
 - Your newly typed parameters will overwrite corresponding existing information.
 
@@ -360,7 +360,7 @@ Deletes a schedule from the ProfNUS.
 
  **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- Refer to section [Schedule Manager Command Parameters](#341-schedule-manager-command-parameters) for more information about the parameters
 
 </div>
 
@@ -394,7 +394,7 @@ This command helps you clear all schedules/all schedules of selected modules.
 
  **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- Refer to section [Schedule Manager Command Parameters](#341-schedule-manager-command-parameters) for more information about the parameters
 - If no optional `MODULE_CODE` is given, all schedules will be cdeleted
 
 </div>
@@ -418,7 +418,7 @@ You can use this command to view the list of selected/all schedules.
 
  **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- Refer to section [Schedule Manager Command Parameters](#341-schedule-manager-command-parameters) for more information about the parameters
 - Schedules matching at least one keyword will be returned to you.
 - You can view all your schedules by typing `view` without any parameter.
 
