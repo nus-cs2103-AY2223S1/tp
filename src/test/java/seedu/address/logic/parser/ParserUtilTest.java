@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.addcommands.AddOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Request;
@@ -173,6 +174,18 @@ public class ParserUtilTest {
         } catch (ParseException e) {
             assert false;
         }
+    }
+
+    @Test
+    public void parseOrder_noPrefixesPresentExistingBuyer_throwsParseException() {
+        String expected = AddOrderCommand.MESSAGE_USAGE_EXISTING_BUYER;
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrder("bv/rubf", true));
+    }
+
+    @Test
+    public void parseOrder_noPrefixesPresentNoExistingBuyer_throwsParseException() {
+        String expected = AddOrderCommand.MESSAGE_USAGE_NEW_BUYER;
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrder("bv/rubf", true));
     }
 
     @Test
