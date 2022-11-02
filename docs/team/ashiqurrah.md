@@ -48,7 +48,7 @@ It is written in Java.
 
 * **Contributions to team-based tasks**:
   * Setting up of Github Repo Page
-  * Updated the [AboutUs](https://ay2223s1-cs2103t-w09-4.github.io/tp/AboutUs.html) page 
+  * Updating of Github Repo README.md
   * Release of Pupilist `v1.3.0` and `v1.3.1` 
 
 * **Review/mentoring contributions**:
