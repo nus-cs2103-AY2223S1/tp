@@ -71,7 +71,6 @@ public class NoConflictMeetingList implements Iterable<Meeting> {
         }
 
         if (contains(editedMeeting) && !target.willConflict(editedMeeting)) {
-            // Any timing conflicts with the original timing is okay
             throw new ConflictingMeetingException();
         }
 
@@ -100,7 +99,7 @@ public class NoConflictMeetingList implements Iterable<Meeting> {
      */
     public void setMeetings(List<Meeting> meetings) {
         requireAllNonNull(meetings);
-        if (!meetingsDoNotConflict(meetings)) {
+        if (!hasNoConflictingMeetings(meetings)) {
             throw new ConflictingMeetingException();
         }
 
@@ -138,7 +137,7 @@ public class NoConflictMeetingList implements Iterable<Meeting> {
     /**
      * Returns true if {@code meetings} do not contain conflicting meetings.
      */
-    private boolean meetingsDoNotConflict(List<Meeting> meetings) {
+    private boolean hasNoConflictingMeetings(List<Meeting> meetings) {
         for (int i = 0; i < meetings.size() - 1; i++) {
             for (int j = i + 1; j < meetings.size(); j++) {
                 if (meetings.get(i).willConflict(meetings.get(j))) {

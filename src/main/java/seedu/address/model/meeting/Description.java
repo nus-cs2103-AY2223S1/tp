@@ -15,7 +15,6 @@ public class Description {
      */
     public Description(String description) {
         requireNonNull(description);
-        // check argument in the future
         details = description;
     }
 

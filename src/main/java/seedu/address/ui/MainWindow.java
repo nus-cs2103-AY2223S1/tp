@@ -201,10 +201,6 @@ public class MainWindow extends UiPart<Stage> {
         mainScene.getStylesheets().add(getClass().getResource(DARK_EXTENSION_CSS).toExternalForm());
     }
 
-    public ClientListPanel getClientListPanel() {
-        return clientListPanel;
-    }
-
     private void setListPanel(CommandSpecific specific) {
         switch (specific) { // clear only in case, since we don't want to clear for default
         case CLIENT:
@@ -241,7 +237,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
             setListPanel(commandResult.getCommandSpecific());
 
             if (commandResult.isShowHelp()) {
