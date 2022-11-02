@@ -908,7 +908,7 @@ Note that performing undo commands and inputting a new command after will set th
 **A** No, SectresBook fully works without the need for internet connection.
 
 **Q** I have an existing data file but the app does not show any of the information, what is wrong?<br>
-**A** Your data file is corrupted. If you know howto, please open the JSON data file<sup>[7](#glossary)</sup> in a text editor and remove the offending data. Otherwise, please refer to someone who knows howto remedy a corrupted data file.
+**A** Your data file is corrupted. If you know how to, please open the JSON data file<sup>[7](#glossary)</sup> in a text editor and remove the offending data. Otherwise, please refer to someone who knows how to remedy a corrupted data file.
 
 **Q** Who can I contact for questions regarding this version of the program if the information I need cannot be found in this guide?<br>
 **A** Please contact the person from whom you obtained this present version from, or contact any of our developers (links to Github):
