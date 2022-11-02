@@ -89,8 +89,8 @@ class CsvUtilTest {
     }
     @Test
     public void importCsv_validProfessorDetailsOptionalTag_returnsProfessor() {
-        //ProfessorBuilder professorBuilder = new ProfessorBuilder().;
-        Professor expected = professorBuilder.build();
+        ProfessorBuilder professorBuilder = new ProfessorBuilder();
+        Professor expected = (Professor) professorBuilder.withTags().build();
         try {
             Professor actual = (Professor) CsvUtil.importCsv(VALID_PROF_NO_TAGS_IMPORT_FILE.toFile()).get(0);
             assertEquals(expected, actual);
