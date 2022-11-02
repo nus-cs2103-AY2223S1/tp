@@ -32,6 +32,16 @@ Given below are my contributions to the project.
   * Credits: The `SetPersonDescriptor` nested class was inspired by the `EditPersonDescriptor` from AB3. This provided
              the necessary abstraction to facilitate the easy addition of new attributes.
 
+* **New Feature**: Added the skeleton for the Person Detail Page.
+  * What it does: Allows the user to select a person inside the address book and view additional details such as the
+                  contact details and Github repos.
+  * Justification: As our product allows users to add in a large number of different attributes to each person, trying
+                   to display all that information in the main panel will quickly cause it to be cluttered and difficult
+                   to use. By moving most of the information to the Detail Page, we can leave only the most essential
+                   attributes on the main page. This means that our users can quickly and easily identify the person
+                   they are looking for, and then, if needed, expand their Detail Page to see all the information
+                   relevant to that person.
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=wrewsama&breakdown=true)
 
 * **Documentation**:
