@@ -24,9 +24,10 @@ public class ActivityBuilder {
     private Name name;
     private Description description;
     private Set<Tag> tags;
-    private Optional<Date> dateList;
+    private Optional<Date> date;
     private Status status;
     private Optional<Review> review;
+    private int rating;
 
     /**
      * Creates a {@code ActivityBuilder} with the default details.
@@ -35,9 +36,10 @@ public class ActivityBuilder {
         name = new Name(DEFAULT_NAME);
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
-        dateList = Optional.empty();
+        date = Optional.empty();
         status = new Status();
         review = Optional.empty();
+        rating = 0;
     }
 
     /**
@@ -47,9 +49,10 @@ public class ActivityBuilder {
         name = activityToCopy.getName();
         description = activityToCopy.getDescription();
         tags = new HashSet<>(activityToCopy.getTags());
-        dateList = activityToCopy.getDate();
+        date = activityToCopy.getDate();
         status = activityToCopy.getStatus();
         review = activityToCopy.getReview();
+        rating = activityToCopy.getRating();
     }
 
     /**
@@ -85,11 +88,34 @@ public class ActivityBuilder {
     }
 
     /**
+     * Sets the {@Code Status} of the {@code Activity} that we are building.
+     */
+    public ActivityBuilder withStatus(String status) {
+        this.status = new Status(status);
+        return this;
+    }
+
+    /**
+     * Sets the {@Code Date} of the {@code Activity} that we are building.
+     */
+    public ActivityBuilder withDate(String date) {
+        this.date = Optional.of(new Date(date));
+        return this;
+    }
+
+    /**
+     * Sets the {@Code Rating} of the {@code Activity} that we are building.
+     */
+    public ActivityBuilder withRating(int rating) {
+        this.rating = rating;
+        return this;
+    }
+
+    /**
      * Try to build an activity for test.
      */
     public Activity build() {
-
-        return new Activity(name, description, tags, dateList, status, review);
+        return new Activity(name, description, tags, date, rating, status, review);
     }
 
 }

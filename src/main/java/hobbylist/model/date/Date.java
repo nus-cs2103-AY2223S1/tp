@@ -79,9 +79,10 @@ public class Date {
      * Format state as text for viewing.
      */
     public String toViewString() {
-        return '[' + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ']';
+        return '[' + toDisplayedString() + ']';
 
     }
+
     /**
      * Return yyyy-mm format of this date.
      */
@@ -89,6 +90,7 @@ public class Date {
         String[] temp = this.getOriginalString().split("-");
         return temp[0] + "-" + temp[1];
     }
+
     /**
      * Return yyyy format of this date.
      */

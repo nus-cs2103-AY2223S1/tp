@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+## Table of Contents
+
 <div class="toc-no-bullet-points">
 <a name="toc"></a>
   * Table of Contents
@@ -348,9 +350,19 @@ Format: `exit`
 
 Example: `exit`
 
-### Renaming the commands
+### 5.14 Renaming the commands
 
-If you do not like the names of the command, you can select `preferences` in the menu bar and `edit aliases` to rename any of the commands.
+If you do not like the names of the command, you can select `preferences` in the menu bar and `edit aliases` to rename any of the commands. You can rename the commands into anything, as long as they are not exactly the same, and contains no whitespaces.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** 
+If you do not want to use your mouse, you can press the `F2` key to open the window, and switch fields to edit by pressing the `tab` key. Pressing `enter` while any field is in focus will save and close your settings.
+
+If you really want to, you can shorten the commands to a single character to speed up typing commands, like the example below:
+
+![Example alias settings](images/ExampleAliases.png)
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
