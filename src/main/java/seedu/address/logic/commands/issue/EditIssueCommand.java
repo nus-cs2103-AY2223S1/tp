@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_URGENCY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Deadline;
@@ -59,6 +60,11 @@ public class EditIssueCommand extends IssueCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         ui.showIssues();
+
+        if (!model.hasIssueId(this.issueId.getIdInt())) {
+            throw new CommandException(Messages.MESSAGE_ISSUE_NOT_FOUND);
+        }
+
         Issue toEditIssue = model.getIssueById(issueId.getIdInt());
 
         if (newTitle != null) {

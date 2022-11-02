@@ -3,6 +3,7 @@ package seedu.address.logic.commands.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -19,7 +20,6 @@ public class PinProjectCommand extends ProjectCommand {
 
     public static final String MESSAGE_PIN_SUCCESS = "Project pinned: %1$s";
     public static final String MESSAGE_UNPIN_SUCCESS = "Project unpinned: %1$s";
-    public static final String MESSAGE_PROJECT_NOT_FOUND = "This project id does not exist.";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
             + ": Pins the project identified by the project id \n"
@@ -48,13 +48,13 @@ public class PinProjectCommand extends ProjectCommand {
      */
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
+        ui.showProjects();
         if (!model.hasProjectId(this.toPinProjectId.getIdInt())) {
-            throw new CommandException(MESSAGE_PROJECT_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_PROJECT_NOT_FOUND);
         }
         Project toPinProject = model.getProjectById(this.toPinProjectId.getIdInt());
         toPinProject.togglePin();
         model.sortProjectsByPin();
-        ui.showProjects();
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(
                 toPinProject.isPinned() ? MESSAGE_PIN_SUCCESS : MESSAGE_UNPIN_SUCCESS,

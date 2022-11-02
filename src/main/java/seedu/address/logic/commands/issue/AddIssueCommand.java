@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_URGENCY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -41,7 +42,6 @@ public class AddIssueCommand extends IssueCommand {
 
     public static final String MESSAGE_SUCCESS = "New issue added: %1$s";
     public static final String MESSAGE_DUPLICATE_ISSUE = "This issue already exists in the address book";
-    public static final String MESSAGE_PROJECT_NOT_FOUND = "This project id does not exist in the address book";
 
     //    private final Issue toAdd;
     private final IssueWithoutModel toAddWithoutModel;
@@ -59,9 +59,10 @@ public class AddIssueCommand extends IssueCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
+        ui.showIssues();
 
         if (!model.hasProjectId(projectId.getIdInt())) {
-            throw new CommandException(MESSAGE_PROJECT_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_PROJECT_NOT_FOUND);
         }
 
         Issue toAdd = toAddWithoutModel.apply(model);
@@ -70,7 +71,6 @@ public class AddIssueCommand extends IssueCommand {
             throw new CommandException(MESSAGE_DUPLICATE_ISSUE);
         }
 
-        ui.showIssues();
         model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
 
 
