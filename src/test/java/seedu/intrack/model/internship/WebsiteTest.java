@@ -31,16 +31,17 @@ public class WebsiteTest {
         // valid websites
         assertTrue(Website.isValidWebsite("https://www.apple.com")); // url with https
         assertTrue(Website.isValidWebsite("http://www.apple.com/careers")); // url with https and directory
-        assertTrue(Website.isValidWebsite("www.apple.com")); // standard url
-        assertTrue(Website.isValidWebsite("www.apple.com/careers/#/sg")); // standard url with multiple directory
-        assertTrue(Website.isValidWebsite("apple.com")); // url without www
-        assertTrue(Website.isValidWebsite("www.apple.com"));
-        assertTrue(Website.isValidWebsite("microsoft.com"));
-        assertTrue(Website.isValidWebsite("google.com"));
+        assertTrue(Website.isValidWebsite("https://www.apple.com/careers/#/sg")); // standard url with multiple directory
+        assertTrue(Website.isValidWebsite("https://apple.com")); // url without www
+        assertTrue(Website.isValidWebsite("http://microsoft.com")); // url with http
+        assertTrue(Website.isValidWebsite("http://google.com"));
         assertTrue(Website.isValidWebsite("http://www.apple.com/xyz?abc=dkd&p=q&c=2")); // url with directory path
-        assertTrue(Website.isValidWebsite("www.apple.gov.bd")); // url with subdomain
-        assertTrue(Website.isValidWebsite("www.apple.com.en"));
-        assertTrue(Website.isValidWebsite("www.apple.vu"));
-        assertTrue(Website.isValidWebsite("www.apple.u/")); // url with subdomain ending with /
+        assertTrue(Website.isValidWebsite("http://www.apple.gov.bd")); // url with subdomain
+        assertTrue(Website.isValidWebsite("http://www.apple.com.en"));
+        assertTrue(Website.isValidWebsite("http://www.apple.vu"));
+        assertTrue(Website.isValidWebsite("https://www.apple.u/")); // url with subdomain ending with /
+        assertTrue(Website.isValidWebsite("ftp://www.apple.com")); // url with ftp
+        assertTrue(Website.isValidWebsite("http://google.com ")); // url with spaces
+        assertTrue(Website.isValidWebsite("https://www.google.com/search?q=test ."));
     }
 }

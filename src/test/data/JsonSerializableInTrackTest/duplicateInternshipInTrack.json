@@ -5,7 +5,7 @@
     "status" : "Progress",
     "phone": "94351253",
     "email": "alice@example.com",
-    "website": "www.microsoft.com",
+    "website": "https://www.microsoft.com",
     "salary": "100000",
     "tagged": [ "friends" ],
     "remark": ""
@@ -15,7 +15,7 @@
     "status" : "Progress",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "website": "www.microsoft.com",
+    "website": "https://www.microsoft.com",
     "salary": "100000",
     "remark": ""
   } ]
