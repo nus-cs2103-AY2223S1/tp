@@ -62,7 +62,7 @@ public class UniqueProductList implements Iterable<Product> {
      */
     public void setProducts(List<Product> products) {
         requireAllNonNull(products);
-        if (!productsAreUnique(products)) {
+        if (!hasUniqueProducts(products)) {
             throw new DuplicateProductException();
         }
 
@@ -96,7 +96,7 @@ public class UniqueProductList implements Iterable<Product> {
     /**
      * Returns true if {@code products} contains only unique products.
      */
-    private boolean productsAreUnique(List<Product> products) {
+    private boolean hasUniqueProducts(List<Product> products) {
         for (int i = 0; i < products.size() - 1; i++) {
             for (int j = i + 1; j < products.size(); j++) {
                 if (products.get(i).equals(products.get(j))) {

@@ -58,7 +58,7 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
 
     /**
      * Replaces the contents of the client list with {@code meetings}.
-     * {@code meetings} must not contain duplicate meetings.
+     * {@code meetings} must not contain meetings with timing conflicts.
      */
     public void setMeetings(List<Meeting> meetings) {
         this.meetings.setMeetings(meetings);
@@ -110,8 +110,6 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
         requireNonNull(editedClient);
 
         clients.setClient(target, editedClient);
-
-        // this part is necessary to affect the noconflictmeetinglist
         target.getMeetings().forEach(meetings::remove);
         editedClient.getMeetings().forEach(meetings::add);
     }
