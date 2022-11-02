@@ -34,7 +34,7 @@ public class GetAppointmentByDateCommandParser implements Parser<GetAppointmentB
         List<LocalDate> appointments = new ArrayList<>();
         for (String arg : trimmedArgs.split("\\s+")) {
             try {
-                LocalDate appointment = LocalDate.parse(arg, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+                LocalDate appointment = LocalDate.parse(arg, DateTimeFormatter.ofPattern("dd-MM-uuuu"));
                 appointments.add(appointment);
             } catch (DateTimeParseException e) {
                 throw new ParseException(
