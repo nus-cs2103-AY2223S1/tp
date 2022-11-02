@@ -399,6 +399,7 @@ Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/B
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one optional detail must be modified.
 * Maintain value of details not edited by the command.
+* Editing the client's products removes all existing products and adds all products specified.
 
 Use case:
 1. A client changed his address! Update the client details instead of having to removing the old record and creating a new record.
