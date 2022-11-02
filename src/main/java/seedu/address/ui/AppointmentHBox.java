@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -26,11 +27,17 @@ public class AppointmentHBox extends UiPart<Region> {
      * Creates a {@code AppointmentFlowPane} with the given {@code appointmentDate},
      * {@code appointmentTime} and index to display.
      */
-    public AppointmentHBox(int index, Appointment appointment) {
+    public AppointmentHBox(int index, Appointment appointment, Node owner) {
         super(FXML);
         indexLabel.setText(String.valueOf(index));
         dateLabel.setText(appointment.getDate().toString());
         timeLabel.setText(appointment.getTimeFormat());
         locationLabel.setText(appointment.getLocation().toString());
+        appointmentHBox.setOnMousePressed((x) -> {
+            owner.requestFocus();
+            System.out.println("He");
+        });
     }
+
+
 }

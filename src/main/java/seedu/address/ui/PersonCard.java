@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -68,13 +69,18 @@ public class PersonCard extends UiPart<Region> {
         addTagLabels(person);
         appointments.setStyle(TRANSPARENT_BACKGROUND);
         appointments.setItems(person.getAppointments().getObservableList());
-        appointments.setCellFactory(listView -> new AppointmentListViewCell());
+        appointments.setCellFactory(listView -> new AppointmentListViewCell(this.getRoot()));
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class AppointmentListViewCell extends ListCell<Appointment> {
+        private Node owner;
+        protected AppointmentListViewCell(Node owner) {
+           this.owner = owner;
+        }
+
         protected void updateItem(Appointment appointment, boolean empty) {
             super.updateItem(appointment, empty);
 
@@ -83,7 +89,7 @@ public class PersonCard extends UiPart<Region> {
                 setText(null);
                 setStyle(TRANSPARENT_BACKGROUND);
             } else {
-                setGraphic(new AppointmentHBox(getIndex() + 1, appointment).getRoot());
+                setGraphic(new AppointmentHBox(getIndex() + 1, appointment, owner).getRoot());
                 setStyle(TRANSPARENT_BACKGROUND);
             }
         }
