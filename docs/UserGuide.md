@@ -283,6 +283,12 @@ lose your data permanently!
 
 ### 4.3 Managing display of student records
 
+<div markdown="span" class="alert alert-info">:information_source:
+   **Note:**
+   The default display, when starting the application, shows all student records in Classify.
+   Commands related to managing display are not saved upon exiting the application.
+</div>
+
 #### 4.3.1 Viewing all student records : `viewAll`
 
 **Description**
@@ -372,10 +378,6 @@ Format: `toggleView`
 <div markdown="span" class="alert alert-primary">:bulb:
    **Tip:** The default display renders the students' parent details as a reminder that these optional fields exists.   
 </div>
-
-Examples:
-* `viewClass 2A` Displays the list of students with the class `2A`.
-* `viewClass Loyalty1` Displays the list of students with the class `LOYALTY1`.
 
 <div style="page-break-after: always;"></div>
 
