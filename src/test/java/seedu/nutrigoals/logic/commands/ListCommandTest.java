@@ -1,8 +1,11 @@
 package seedu.nutrigoals.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.showFoodAtIndex;
 import static seedu.nutrigoals.testutil.FoodBuilder.DEFAULT_EARLIER_TIME;
+import static seedu.nutrigoals.testutil.FoodBuilder.DEFAULT_LATER_TIME;
 import static seedu.nutrigoals.testutil.TypicalFoods.getTypicalNutriGoals;
 import static seedu.nutrigoals.testutil.TypicalIndexes.INDEX_FIRST_MEAL;
 
@@ -76,5 +79,32 @@ public class ListCommandTest {
 
         expectedModel.updateFilteredFoodList(datePredicate);
         assertCommandSuccess(listCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        DateTime dateTime = new DateTime(DEFAULT_EARLIER_TIME);
+        IsFoodAddedOnThisDatePredicate predicate = new IsFoodAddedOnThisDatePredicate(dateTime);
+        final ListCommand listCommand = new ListCommand(predicate);
+
+        // same values -> returns true
+        DateTime sameDate = new DateTime(DEFAULT_LATER_TIME);
+        IsFoodAddedOnThisDatePredicate copyPredicate = new IsFoodAddedOnThisDatePredicate(sameDate);
+        ListCommand commandWithSameValues = new ListCommand(copyPredicate);
+        assertTrue(listCommand.equals(commandWithSameValues));
+
+        // same object -> returns true
+        assertTrue(listCommand.equals(listCommand));
+
+        // null -> returns false
+        assertFalse(listCommand.equals(null));
+
+        // different types -> returns false
+        assertFalse(listCommand.equals(new ClearCommand()));
+
+        // different date -> returns false
+        DateTime differentDate = new DateTime();
+        IsFoodAddedOnThisDatePredicate differentPredicate = new IsFoodAddedOnThisDatePredicate(differentDate);
+        assertFalse(listCommand.equals(new ListCommand(differentPredicate)));
     }
 }
