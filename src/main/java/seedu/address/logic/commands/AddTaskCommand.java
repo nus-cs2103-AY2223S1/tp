@@ -17,9 +17,9 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task list.\n"
             + "Parameters: "
-            + "{name}" + " "
-            + PREFIX_DEADLINE + "{deadline}" + " "
-            + PREFIX_MODULE + "{module}" + "\n"
+            + "{task_name} "
+            + PREFIX_DEADLINE + "{deadline} "
+            + "[" + PREFIX_MODULE + "{module}]\n"
             + "Example: " + COMMAND_WORD + " "
             + "Lab2" + " "
             + PREFIX_DEADLINE + "tomorrow 23:59" + " "

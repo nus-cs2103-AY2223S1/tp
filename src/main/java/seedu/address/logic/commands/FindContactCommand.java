@@ -26,7 +26,7 @@ public class FindContactCommand extends Command {
      */
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons matching a given filter.\n"
-            + "Parameters: [type_prefix] [key_1] ...\n"
+            + "Parameters: {field_prefix + keyword} ...\n"
             + "Example 1: " + COMMAND_WORD + " n/ Jacob n/ Alice";
 
     private final Predicate<Person> predicate;

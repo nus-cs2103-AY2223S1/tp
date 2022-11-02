@@ -20,7 +20,7 @@ public class FindTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks in the TaskList whose description "
             + "contains the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: {field_prefix + keyword} ...\n"
             + "Example: " + COMMAND_WORD + " n/ lecture 20";
 
     private final Predicate<Task> predicate;
