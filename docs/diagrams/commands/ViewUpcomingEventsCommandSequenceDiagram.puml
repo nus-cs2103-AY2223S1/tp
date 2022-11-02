@@ -2,7 +2,7 @@
 !include ../style.puml
 
 box Logic LOGIC_COLOR_T1
-Participant ": LogicManager" as logicManager LOGIC_COLOR_T3
+Participant ":LogicManager" as logicManager LOGIC_COLOR_T3
 Participant ":NuSchedulerParser" as nuSchedulerParser LOGIC_COLOR_T3
 Participant ":EventCommandParser" as EventCommandParser LOGIC_COLOR_T3
 Participant ":ViewUpcomingEventsCommandParser" as ViewUpcomingEventsCommandParser LOGIC_COLOR_T3
