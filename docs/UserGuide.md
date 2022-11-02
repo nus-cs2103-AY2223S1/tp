@@ -231,7 +231,7 @@ The following is an example of how the `select` command can be run in the GUI.
 
 ![SelectTrip](images/SelectTrip.png)
 
-After the trip has been successfully selected, a confirmation message will be shown in the output box. You will also be able to see your selected trip in the selected trip box, along with the list of events in its itinerary.
+After the trip has been successfully selected, a confirmation message will be shown in the output box. You will be able to see your selected trip in the selected trip box, along with the list of events in its itinerary.
 
 ![SelectTripDone](images/SelectTripDone.png)
 
