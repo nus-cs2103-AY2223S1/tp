@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-DevEnable is a **desktop app for managing developer projects, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, DevEnable can get your project management tasks done faster than traditional GUI apps.
+DevEnable is a **desktop app for developers to manage their projects, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, DevEnable can get your project management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -75,6 +75,7 @@ Format: `clear`
 ## Project Commands
 
 > NOTE: Clicking the Repository Link of a project will copy it to the clipboard
+
 ### Adding a project: `project -a`
 
 Adds a project to the AddressBook. A unique project ID will be automatically generated.
@@ -499,7 +500,7 @@ If your changes to the data file makes its format invalid, DevEnable will discar
 | **Edit Project**               | `project -e p/PROJECT_ID [n/PROJECT_NAME] [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`       |
 | **Delete Project**             | `project -d PROJECT_ID`                                                                    |
 | **List Projects**              | `project -l`                                                                               |
-| **Find Project**               | `project -f [n/PROJECT_NAME] [r/REPOSITORY] [p/PROJECT_ID] [c/CLIENT_ID] [l/CLIENT_LABEL]` |
+| **Find Projects**              | `project -f [n/PROJECT_NAME] [r/REPOSITORY] [p/PROJECT_ID] [c/CLIENT_ID] [l/CLIENT_LABEL]` |
 | **Pin Projects**               | `project -p PROJECT_ID`                                                                    |
 | **Sort Projects**              | `project -s [p/PROJECT_ID] [d/DEADLINE] [i/ISSUE_COUNT] [n/PROJECT_NAME]`                  |
 | **Set Default View (Project)** | `project -v`                                                                               |
@@ -507,7 +508,7 @@ If your changes to the data file makes its format invalid, DevEnable will discar
 | **Edit Client**                | `client -e c/CLIENT_ID [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`                 |
 | **Delete Client**              | `client -d CLIENT_ID`                                                                      |
 | **List Clients**               | `client -l`                                                                                |
-| **Find Client**                | `client -f [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL] [c/CLIENT_ID]`               |
+| **Find Clients**               | `client -f [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL] [c/CLIENT_ID]`               |
 | **Pin Clients**                | `client -p CLIENT_ID`                                                                      |
 | **Sort Clients**               | `client -s [c/CLIENT_ID] [n/CLIENT_NAME]`                                                  |
 | **Set Default View (Client)**  | `client -v`                                                                                |
@@ -515,8 +516,8 @@ If your changes to the data file makes its format invalid, DevEnable will discar
 | **Edit Issue**                 | `issue -e i/ISSUE_ID [t/TITLE] [d/DEADLINE] [u/URGENCY]`                                   |
 | **Delete Issue**               | `issue -d ISSUE_ID`                                                                        |
 | **List Issues**                | `issue -l`                                                                                 |
-| **Find Issue**                 | `issue -f [t/TITLE] [n/PROJECT_NAME] [p/PROJECT_ID] [u/URGENCY] [s/STATUS] [i/ISSUE_ID]`   |
-| **Pin Issue**                  | `issue -p ISSUE_ID`                                                                        |
+| **Find Issues**                | `issue -f [t/TITLE] [n/PROJECT_NAME] [p/PROJECT_ID] [u/URGENCY] [s/STATUS] [i/ISSUE_ID]`   |
+| **Pin Issues**                 | `issue -p ISSUE_ID`                                                                        |
 | **Sort Issues**                | `issue -s [i/ISSUE_ID] [d/DEADLINE] [u/URGENCY]`                                           |
 | **Mark Issue**                 | `issue -m ISSUE_ID`                                                                        |
 | **Unmark Issue**               | `issue -u ISSUE_ID`                                                                        |
