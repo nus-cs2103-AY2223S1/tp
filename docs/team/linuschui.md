@@ -11,33 +11,37 @@ ConnectNUS is a desktop address book application used for NUS CS students to kee
 ## Contributions
 Given below are my contributions to the project.
 
-* **New Feature**: to be added
-    * What it does:
-    * Justification:
+* **New Feature**: Timetable
+    * What it does: View user's or person's timetable for the week (with the lessons added).
+    * Justification: Easily arrange meetings by viewing everyone's schedule to find their free time.
     * Highlights:
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=rjkoh&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+    <img src="../images/TimetableWindow.png" width="300" />
+* **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=linuschui&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **Project management**: to be added
-
-* **Enhancements to existing features**: to be added
+* **Enhancements to existing features**: Add module to contacts
+    * What it does: Add current. previous and planned modules to any persons saved in contact.
+    * Justification:
+        * Current: Find group mates or people to work with.
+        * Previous: Find people to consult or obtain resources like cheatsheets.
+        * Planned: Find people to plan tutorials with.
+    * Created test cases for the `Module`, `Lesson` and their related classes.
 
 * **Documentation**: to be added
     * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+        * Added Introduction section [\#165](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/165)
+        * Added Quick Start section [\#167](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/167)
+        * Added documentation for the feature `timetable` [\#103](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/103)
+        * Added Navigating the User Guide and Glossary sections: [\#193](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/193)
+        * Updated the documentation for the features `timetable` and `help` for better readability [\#193](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/193)
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+        * Added implementation details of the `timetable` feature. [\#102](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/102)
+        * Added Introduction, Glossary and Acknowledgement sections : to be added
 
-* **Community**: to be added
-    * PRs reviewed (with non-trivial review comments): [\#x](), [\#y](),
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+* **Review / mentoring contributions**:
+    * Reported bugs and suggestions for other teams in the class [SectresBook](https://github.com/AY2223S1-CS2103T-W12-2/tp)
+    * PRs approved: [PRs approved by me](https://github.com/AY2223S1-CS2103T-T14-4/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
+    * Identified bugs with `CommandResult` in features `add` and `timetable`.
+    * Guided implementation of displaying the `Timetable` using `LessonComparator`
 
-* **Tools**: to be added
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+**Contributions beyond the project team**: None.
