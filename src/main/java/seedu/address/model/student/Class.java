@@ -123,11 +123,10 @@ public class Class {
 
     /**
      * Returns a formatted time for avail command.
+     * Note {@code time} should never be null.
      */
     private String toAvailCommandTimeString(LocalTime time) {
-        if (time == null) {
-            return "";
-        }
+        assert time != null;
         return time.toString().replace(":", "");
     }
 
