@@ -165,7 +165,7 @@ public class Module implements Comparable<Module> {
         Module otherModule = (Module) other;
         return otherModule.getName().equals(getName())
                 && otherModule.getCode().equals(getCode())
-                && otherModule.getCredits() == getCredits()
+                && otherModule.getCredits().equals(getCredits())
                 && otherModule.isDone() == this.isDone();
     }
 

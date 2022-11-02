@@ -22,12 +22,15 @@ public class CdModuleCommand extends Command {
     /**
      * Creates an instance of CdModuleCommand, for use with JCommander.
      */
-    public CdModuleCommand() {}
+    public CdModuleCommand() {
+    }
 
     /**
      * Creates an instance of CdModuleCommand with the specified {@code argument}, for testing.
      */
-    public CdModuleCommand(String argument) { this.argument = argument; }
+    public CdModuleCommand(String argument) {
+        this.argument = argument;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -45,14 +48,14 @@ public class CdModuleCommand extends Command {
             ModCode moduleCode = new ModCode(argument);
             if (!model.hasModuleWithModCode(moduleCode)) {
                 throw new CommandException(String.format("Module code %s does not exist.",
-                        moduleCode.toString()));
+                        moduleCode));
             }
             Module previousModule = model.parseModuleFromCode(moduleCode);
             if (previousModule.isDone()) {
                 throw new CommandException("Cannot cd into a module that is already marked as done.");
             }
             model.setCurrentModule(moduleCode);
-            return new CommandResult(String.format("Changed current module to %s!", moduleCode.toString()));
+            return new CommandResult(String.format("Changed current module to %s!", moduleCode));
         } catch (IllegalArgumentException exception) {
             throw new CommandException(String.format("Invalid module code. Usage:\n%s",
                     MESSAGE_USAGE));

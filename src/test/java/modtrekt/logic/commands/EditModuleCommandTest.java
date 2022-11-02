@@ -1,16 +1,21 @@
 package modtrekt.logic.commands;
 
 import static modtrekt.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
+import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.ModtrektParser;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.module.ModCredit;
 import modtrekt.model.module.ModName;
+import modtrekt.model.module.Module;
+import modtrekt.testutil.ModelStub;
+import modtrekt.testutil.ModuleBuilder;
 
 class EditModuleCommandTest {
 
@@ -183,4 +188,44 @@ class EditModuleCommandTest {
         assertThrows(ParseException.class, () -> new ModtrektParser().parseCommand("edit module -c CS2103T"));
         assertThrows(ParseException.class, () -> new ModtrektParser().parseCommand("edit -c CS2103T"));
     }
+
+    // With ModelStub
+
+    @Test
+    public void testParser_successfulModuleEditModCode() {
+        ModelStub model = new ModelStub();
+        Module module = new ModuleBuilder().build();
+        model.addModule(module);
+        assertDoesNotThrow(() -> new ModtrektParser().parseCommand("edit module CS1231S -c CS2109S").execute(model));
+        assertEquals(model.hasModuleWithModCode(new ModCode("CS1231S")), false);
+        assertEquals(model.hasModuleWithModCode(new ModCode("CS2109S")), true);
+    }
+
+    @Test
+    public void testParser_successfulModuleEditModName() {
+        ModelStub model = new ModelStub();
+        Module module = new ModuleBuilder().build();
+        model.addModule(module);
+        assertDoesNotThrow(() -> new ModtrektParser().parseCommand("edit module CS1231S -n \"Hello\"").execute(model));
+        assertNotEquals(model.parseModuleFromCode(new ModCode("CS1231S")).getName().toString(), "Discrete Structures");
+        assertEquals(model.parseModuleFromCode(new ModCode("CS1231S")).getName().toString(), "Hello");
+    }
+
+    @Test
+    public void testParser_successfulModuleEditModCredit() {
+        ModelStub model = new ModelStub();
+        Module module = new ModuleBuilder().build();
+        model.addModule(module);
+        assertDoesNotThrow(() -> new ModtrektParser().parseCommand("edit module CS1231S -cr 3").execute(model));
+        assertNotEquals(model.parseModuleFromCode(new ModCode("CS1231S")).getCredits().toString(), "4");
+        assertEquals(model.parseModuleFromCode(new ModCode("CS1231S")).getCredits().toString(), "3");
+    }
+
+    @Test
+    public void testParser_noSuchModuleEdit() {
+        ModelStub model = new ModelStub();
+        assertThrows(CommandException.class, () -> new ModtrektParser()
+                .parseCommand("edit module CS2109S").execute(model));
+    }
+
 }
