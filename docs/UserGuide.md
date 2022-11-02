@@ -149,7 +149,7 @@ You can add an activity to HobbyList using this command.
 
 :information_source: **Additional information for `add`:**<br>
 
-* `[t/TAG]...` only accepts alphanumeric with underscores.
+* `[t/TAG]...` only accepts alphanumeric with underscores and can only be at most 15 characters long.
 * `[s/STATUS]` only accepts **UPCOMING**, **ONGOING** or **COMPLETED** as STATUS. e.g. `s/ongoing`(case-insensitive).
 * If `STATUS` is not specified, it will be displayed as **Status: NONE** by default.
 
