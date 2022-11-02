@@ -26,8 +26,6 @@ public class ImportCommand extends FileCommand implements StorageCommand {
 
     public static final String MESSAGE_SUCCESS = "Successfully imported %s.";
 
-    public static final String MESSAGE_FILE_EXISTS = "%s already exists.";
-
     public static final String MESSAGE_FILE_DOES_NOT_EXIST = "%s does not exist. Please provide an existing file.";
 
     public static final String MESSAGE_INVALID_FILE_DATA = "Failed to import from %s.\n%s";
@@ -56,7 +54,7 @@ public class ImportCommand extends FileCommand implements StorageCommand {
             storage.saveResidentBook(residentBook, folderPath);
             return new CommandResult(String.format(MESSAGE_SUCCESS, csvFileName));
         } catch (FileAlreadyExistsException e) {
-            throw new CommandException(String.format(MESSAGE_FILE_EXISTS, folderName), e);
+            throw new CommandException(String.format(MESSAGE_FILE_ALREADY_EXISTS, folderName), e);
         } catch (NoSuchElementException e) {
             throw new CommandException(String.format(MESSAGE_FILE_DOES_NOT_EXIST, csvFileName), e);
         } catch (DataConversionException e) {
