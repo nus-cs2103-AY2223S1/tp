@@ -40,4 +40,11 @@ public class MeetingFilterDatePredicate implements Predicate<Meeting> {
         return meetingDate.isAfter(afterDate) && meetingDate.isBefore(beforeDate)
             || meetingDate.isEqual(afterDate) || meetingDate.isEqual(beforeDate);
     }
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof MeetingFilterDatePredicate
+                && beforeDate.equals(((MeetingFilterDatePredicate) other).beforeDate)
+                && afterDate.equals(((MeetingFilterDatePredicate) other).afterDate));
+    }
 }
