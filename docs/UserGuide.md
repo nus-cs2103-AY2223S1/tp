@@ -526,7 +526,7 @@ Listed here are some frequently asked questions. Should you require any other as
 **A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file is **corrupted**, causing GuestBook to reset it to prevent any malicious files from being used.
 
 **Q**: Why am I getting error messages for fields that are correct, or I'm not even editing?<br>
-**A**: If you are using the `add`/`edit` commands and input the `name`/`request` fields, ensure that they do not contain any field prefixes after whitespace in their content (e.g., `rq/Extra bed & p/c`). You may refer to [Field summary](#field-summary) for more information.
+**A**: If you are using the `add`/`edit` commands and input the `name`/`request` fields, ensure that they do not contain any field prefixes after whitespace in their content (e.g., `rq/Extra bed & p/c`), as GuestBook could be parsing part of your input as another field. Note that this check is case-sensitive, so `rq/Extra bed & P/C` will be parsed correctly. You may refer to [Field summary](#field-summary) for more information about field constraints.
 
 [Return to Table of Contents](#table-of-contents)
 
