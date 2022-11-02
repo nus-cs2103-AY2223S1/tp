@@ -309,7 +309,7 @@ You can change the grading status for the assignments using this command. If the
 
 <div markdown="block" class="alert alert-info">
 
-  **:information_source: Note 2:** The name of assignments should contain only numbers and alphabets (all upper case). If you include any lower case in the assignment name, it will be automatically converted to upper case.
+  **:information_source: Note 1:** The name of assignments should contain only numbers and alphabets (all upper case). If you include any lower case in the assignment name, it will be automatically converted to upper case.
 
 </div>
 
