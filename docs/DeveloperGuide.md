@@ -238,7 +238,7 @@ The `EditTaskDescriptor` object contains the new value(s) of the data that needs
 #### Example usage of `task edit`
 
 1. The user adds a `Task` to the `TaskPanel`.
-2. The user types in the command `task edit 1 ti/TITLE` 
+2. The user types in the command `task edit 1 ti/TITLE`.
 The `EditTaskCommand` is created together with the `EditTaskDescriptor` object as shown below.
 
 ![Sequence diagram](images/EditTaskCommandParse.png)
@@ -261,7 +261,6 @@ The edited copy of the task then replaces the current task in the task list.
 - `setDeadline()` / `getDeadline()`
 - `setAssignedContactIndexes(assignedContactIndexes)` / `getAssignedContactIndexes()`
 - `setUnassignedContactsIndexes(unassignedContactIndexes)` / `getUnassignedContactsIndexes()`
-- 
 
 where the `get` methods return `Optional<T>` objects containing the value to be edited, if any.
 
@@ -289,7 +288,7 @@ The `task assign` feature assigns/unassigns contacts to the task specified by th
 8. The `Task` to be modified is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
 9. The `Person`s to be assigned are fetched from the `AddressBook` using the specified `Index`, using its zero-based 
    form, or through matching his full name.
-10. The `Person`s are assigned/unassigned to the `Task`
+10. The `Person`s are assigned/unassigned to the `Task`.
 11. The `GUI` is updated to show the new `TaskPanel` with the `Task`'s assigned contacts updated.
 
 The AssignTaskCommandParser relies on the ArgumentMultimap abstraction, which helps to tokenize the user input by 
