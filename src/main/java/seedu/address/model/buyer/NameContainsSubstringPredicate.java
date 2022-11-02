@@ -3,7 +3,7 @@ package seedu.address.model.buyer;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Buyer}'s {@code Name} is contained in the given string.
+ * Tests that a {@code Buyer}'s {@code Name} contains the given string.
  */
 public class NameContainsSubstringPredicate implements Predicate<Buyer> {
     private final String string;

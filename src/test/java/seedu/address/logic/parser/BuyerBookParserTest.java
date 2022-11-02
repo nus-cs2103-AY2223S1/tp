@@ -15,11 +15,13 @@ import seedu.address.logic.commands.DeleteBuyerCommand;
 import seedu.address.logic.commands.DeletePropertyCommand;
 import seedu.address.logic.commands.EditBuyerCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindBuyersCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListBuyersCommand;
 import seedu.address.logic.commands.ListPropertiesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.buyer.Buyer;
+import seedu.address.model.buyer.NameContainsSubstringPredicate;
 import seedu.address.testutil.BuyerBuilder;
 import seedu.address.testutil.BuyerUtil;
 import seedu.address.testutil.EditBuyerDescriptorBuilder;
@@ -70,17 +72,13 @@ public class BuyerBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
-    // removed as the predicate in FindBuyersCommand cannot be compared using equals
-    //    @Test
-    //    public void parseCommand_find() throws Exception {
-    //        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-    //        String fullString = keywords.stream().collect(Collectors.joining(" "));
-    //        FindBuyersCommand command = (FindBuyersCommand) parser.parseCommand(
-    //                FindBuyersCommand.COMMAND_WORD + " " + fullString);
-    //        Predicate<Buyer> combinedPredicate = new NameContainsKeywordsPredicate(keywords)
-    //        .or(new NameContainsSubstringPredicate(fullString));
-    //        assertEquals(new FindBuyersCommand(combinedPredicate), command);
-    //    }
+    @Test
+    public void parseCommand_find() throws Exception {
+        String fullString = "foo bar baz";
+        FindBuyersCommand command = (FindBuyersCommand) parser.parseCommand(
+                FindBuyersCommand.COMMAND_WORD + " " + fullString);
+        assertEquals(new FindBuyersCommand(new NameContainsSubstringPredicate(fullString)), command);
+    }
 
     @Test
     public void parseCommand_help() throws Exception {

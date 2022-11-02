@@ -2,14 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
-
 import seedu.address.logic.commands.FindBuyersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.NameContainsSubstringPredicate;
 
 /**
