@@ -22,7 +22,7 @@ public class Deadline implements Comparable<Deadline> {
             DateTimeFormatter.ofPattern("EEE, dd MMM yyyy");
     public static final DateTimeFormatter READABLE_FORMATTER_WITHOUT_YEAR =
             DateTimeFormatter.ofPattern("EEE, dd MMM");
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
     private static final String VALIDATION_REGEX = "^[a-zA-Z0-9 ?]+$";
 
     private final LocalDate date;
