@@ -64,7 +64,7 @@ public class PropertyCard extends UiPart<Region> {
         price.setText("$" + property.getPrice().value);
         property.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(new Label(StringUtils.abbreviate(tag.tagName, 15))));
         displayPicture.setClip(new Circle(40, 40, 40));
         propertyType.setText(property.getPropertyTypeEnum().toString());
         propertyStatus.setText(property.getPropertyStatusEnum().toString());

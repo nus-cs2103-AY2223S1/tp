@@ -62,7 +62,7 @@ public class ClientCard extends UiPart<Region> {
         address.setText(StringUtils.abbreviate(client.getAddress().value, 140));
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(new Label(StringUtils.abbreviate(tag.tagName, 15))));
         displayPicture.setClip(new Circle(40, 40, 40));
         Path imagePath = client.getImagePath();
         if (imagePath != null) {
