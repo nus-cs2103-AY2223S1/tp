@@ -728,7 +728,7 @@ Format: Click on the "*File*" tab at the top left hand corner of `myStudent` and
 * The default location is in a folder named `data` in the same location where you downloaded the myStudent.jar file.
 * Exporting will replace any csv files that were exported previously, if they exist.
 
-<div style="background-color:#FFC5B4">
+<div markdown="block" class="alert alert-warning">
 
 :warning: **Warning**  
 The export function will **NOT** work if any of the .csv files in the save folder is opened during the exporting.  
