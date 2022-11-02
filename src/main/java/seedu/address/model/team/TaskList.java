@@ -179,7 +179,6 @@ public class TaskList implements Iterable<Task> {
             if (task.checkAssignee(person)) {
                 Task newTask = task.removeAssignee(person);
                 internalList.set(i, newTask);
-                return;
             }
         }
     }
@@ -193,7 +192,6 @@ public class TaskList implements Iterable<Task> {
             if (task.checkAssignee(target)) {
                 Task newTask = task.setAssignee(target, editedPerson);
                 internalList.set(i, newTask);
-                return;
             }
         }
     }
