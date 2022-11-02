@@ -9,8 +9,9 @@ import seedu.address.model.Model;
  * Tracks past undoable commands.
  */
 public class CommandManager {
-    public static final String MESSAGE_EMPTY_UNDOSTACK = "No commands to undo";
-    public static final String MESSAGE_EMPTY_REDOSTACK = "No commands to redo";
+    public static final String MESSAGE_EMPTY_UNDOSTACK = "No commands to undo.\nUndoable Commands:"
+            + "\ncreate, delete, update, clear, description, meeting, deletemeeting and redo";
+    public static final String MESSAGE_EMPTY_REDOSTACK = "No commands to redo.";
 
     private final Stack<UndoableCommand> undoStack;
     private final Stack<UndoableCommand> redoStack;

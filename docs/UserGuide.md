@@ -11,6 +11,7 @@ This user guide will help you get started and understand how FABook can **seamle
 
 # Table of Contents
 
+* TOC 
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -149,7 +150,7 @@ Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw
 
 ##### Common Data Field Formats
 
-| Data Field           | Format, Example                 | Remarks                                                                                         |
+| Data Field           | Format                          | Remarks                                                                                         |
 |----------------------|---------------------------------|-------------------------------------------------------------------------------------------------|
 | **`n/NAME`**         | `n/[name]`                      | Name should only contain alphanumeric characters and spaces, and it should not be blank         |
 | **`p/PHONE_NUMBER`** | `p/[phone_number]`              | Phone Number should only contain numbers and should be at least 3 digits long                   |
@@ -173,10 +174,6 @@ Example given: `create n/The Rock p/98765432 a/Hollywood ds/An actor and entrepr
 It is recommended to only have 1 `TAG` per client.
 
 </div>
-
-* If you have multiple meeting times with your client, simply repeat the field `mt/TIME`.
-* Does not allow you to create a person with the same name and phone number as a current person in the FABook.
-* Allows you to create a person with same name but different phone number or same number and different name as a current person in the FABook.
 
 Other examples:
 * `create n/John Doe p/98765432 a/John street, block 123, #01-01`
@@ -205,7 +202,7 @@ Assigns a PDF file to a client in your FABook.
 Format: `filepath INDEX f/FILEPATH`
 
 ![filepath](images/UserGuide/filepath.png)
-Example given: `filepath 2 f/C:\Users\reaga\Desktop\CS2103T/Sample Wealth Accumulation Plan.pdf`
+Example given: `filepath 2 f/C:\Users\Eugene Tay\Downloads\Tutorial_8_qns.pdf`
 
 Other example:
 * `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
@@ -313,8 +310,8 @@ Format: `f a/ADDRESS`
 You can find your clients whose tag matches the input tag.
 
 You can use this command when:
-1. you need to consolidate `SECURED` clients to share new perks your company has.
-2. you need to consolidate `POTENTIAL` clients so that you can make a targeted effort to secure these clients.
+1. You need to consolidate `SECURED` clients to share new perks your company has.
+2. You need to consolidate `POTENTIAL` clients so that you can make a targeted effort to secure these clients.
 <br>
 
 **Constraints**
@@ -367,7 +364,7 @@ You can use this command when:
 **Constraints**
 * This uses your device's present local time as reference.
 * As long as a client has a meeting in the next 7 days, it will be shown.
-* Upcoming Meetings does not auto refresh, so meetings that pass after you have opened 
+* Upcoming Meetings does not auto refresh, so meetings that pass after you have opened
   `Upcoming Meetings` will only be refreshed when a new window is opened.
 
 Format: Menu bar on the top of the application or press `F2`.
@@ -578,8 +575,8 @@ You can use this command when:
 
 **Constraints**
 * The command intended to be undone should be an undoable command.
-* Undoable commands are: `clear`, `create`, `delete`, `description`, `meeting`, `deletemeeting`, `redo` and `update`
-* Non-undoable commands are: `exit`, `find `, `help`, `list`, `file`, `sync` and `filepath`
+* Undoable commands are: `create`, `delete`, `update`, `clear`, `description`, `meeting`, `deletemeeting` and `redo`
+* Non-undoable commands are: `exit`, `find`, `help`, `list`, `file`, `sync` and `filepath`
 
 Format: `undo`
 
@@ -670,7 +667,7 @@ If your changes to the data file makes its format invalid, FABook will discard a
 | Alphanumeric             | Refers to characters that are the combined set of the 26 alphabetic characters, a to Z, both lowercase and uppercase, and the 10 Arabic numerals, 0 to 9.                                                                                                                            |
 | Client                   | Any person who may be seeking financial products.                                                                                                                                                                                                                                    |
 | Command Line Interface   | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                                                       |
-| dd-MM-yyyy-hh:mm         | Date format whereby `dd` refers to the 2 digit days, `MM` refers to the 2 digit months, `YYYY` refers to the 4 digits years, `hh` refers to the 2 digits hours, `mm` refers to the 2 digits minutes. They are each separated by a hyphen: `-` character.                             |
+| dd-MM-yyyy-hh:mm         | Date format whereby `dd` refers to the 2 digit days, `MM` refers to the 2 digit months, `yyyy` refers to the 4 digits years, `hh` refers to the 2 digits hours, `mm` refers to the 2 digits minutes. They are each separated by a hyphen: `-` character.                             |
 | Financial adviser        | A financial adviser or financial advisor is a professional who provides financial services to clients based on their financial situation. In many countries, financial advisors must complete specific training and be registered with a regulatory body in order to provide advice. |
 | Graphical User Interface | A graphical user interface (GUI) is an interface through which a user interacts with electronic devices such as computers and smartphones through the use of icons, menus and other visual indicators or representations (graphics).                                                 |
 | Index                    | The number that corresponds to the position of the client in the list. The index must be a numeral above 0.                                                                                                                                                                          |
