@@ -10,9 +10,9 @@ import static tuthub.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names can only contain letters, hyphens(-) or apostrophes(') between "
+            "Names can only contain letters, hyphens(-), apostrophes(') or backslashes(/) between "
                 + "first name and last name, and must contain at least 1 word.\n"
-                + "E.g: Alex, Jack Alexander, Harry O'Neil, Smith-Jones.";
+                + "E.g: Alex, Jack Alexander, Harry O'Neil, Smith-Jones, Rohan s/o Samar.";
 
     /*
      * Name cannot be blank.
