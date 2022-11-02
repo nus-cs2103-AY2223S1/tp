@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+![HobbyList](images/hobbylist_logo.jpg)
+
 ## Table of Contents
 
 * Table of Contents 
