@@ -112,11 +112,11 @@ Displays your list of reminders.
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g., if you specify `ph/12341234 ph/56785678`, only `ph/56785678` will be taken.
 
-* The following prefix parameters, `D/` and `T/`, have more than 1 definition, depending on the type of command inputted.</br>
-    - `D/` stands for `DAY` in `tutorial` commands, and `DATE` in `consultation` and `reminder` commands.</br>
-      Format of `DAY` is an integer from 1 (Monday) to 7 (Sunday).</br>
+* The following prefix parameters, `D/` and `T/`, have more than 1 definition, depending on the type of command inputted.<br>
+    - `D/` stands for `DAY` in `tutorial` commands, and `DATE` in `consultation` and `reminder` commands.<br>
+      Format of `DAY` is an integer from 1 (Monday) to 7 (Sunday).<br>
       Format of `DATE` should be yyyy-MM-dd. e.g., 2022-02-24
-    - `T/` stands for `TIMESLOT` in `tutorial` and `consultation` commands, and `TIME` in `reminder` commands.</br>
+    - `T/` stands for `TIMESLOT` in `tutorial` and `consultation` commands, and `TIME` in `reminder` commands.<br>
       Format of `TIMESLOT` should be HH:mm-HH:mm. e.g. 08:00-09:00</br>
       Format of `TIME` should be HH:mm. e.g., 13:00.
 
@@ -140,12 +140,12 @@ Format: `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m
 
 * `PHONE` should be 8 digits long as per standard telephone numbers in Singapore.
 * `STUDENT_ID` should follow the following format AXXXXXXXY, where X is a number, and Y is an alphabet.
+* `ATTENDANCE` and `PARTICIPATION` can only take in integers greater than 0. If a value is not given, they will automatically be set to 0.
+* `GRADE` can take in `A+`, `A`, `A-`, `B+`, `B`, `B-`, `C+`, `C`, `D+`, `D`, `F`. If a value is not given, it will automatically be set to `PENDING...`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0).
 </div>
-
-* `ATTENDANCE` and `PARTICIPATION` can only take in integers greater than 0. If a value is not given, they will automatically be set to 0.
 
 Examples:
 * `add student n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
@@ -240,6 +240,7 @@ Adds a tutorial to ModQuik.
 
 Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
 * `DAY` should take in a number from 1 (Monday) to 7 (Sunday).
+* `TIMESLOT` should take in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
 
 Examples:
 * `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
@@ -282,6 +283,8 @@ Examples:
 Adds a consultation to ModQuik.
 
 Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`
+* `DATE` should take in a date in the format yyyy-MM-dd, e.g. 2022-10-24.
+* `TIMESLOT` should take in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
 
 Examples:
 * `add consultation n/JakeKim m/CS2103T D/2022-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
@@ -332,6 +335,7 @@ Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 
 Examples:
 * `add reminder n/Mark Midterms D/2022-01-01 T/15:00 d/300 papers to mark p/HIGH`
+* `add reminder n/Mark Midterms T/15:00 D/2022-01-01 d/300 papers to mark p/HIGH`
 
 <a name="edit-reminder"></a>
 #### 4.4.2 Editing a reminder: `edit reminder`
