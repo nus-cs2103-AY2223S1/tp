@@ -827,10 +827,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Closing the application when finished
 
-    1. Exit the application using the `exit` command or by closing the window.<br>
-       Expected: The application will close and all the changes made will be saved.
+   1. Exit the application using the `exit` command or by closing the window.<br>
+   Expected: The application will close and all the changes made will be saved.
 
-    1. You may then reopen the application and continue using it.
+   1. You may then reopen the application and continue using it.
 
 
 ### Saving data
