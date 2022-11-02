@@ -31,6 +31,9 @@ public class CommandTestUtil {
     public static final String VALID_TYPE_INCOME = "i";
     public static final String VALID_TYPE_EXPENDITURE = "e";
 
+    public static final String VALID_GRAPH_TYPE_CATEGORY = "c";
+    public static final String VALID_GRAPH_TYPE_MONTH = "m";
+
     public static final String VALID_MONTH_MARCH = "2022-03";
     public static final String VALID_MONTH_APRIL = "2022-04";
 

@@ -2,7 +2,10 @@ package seedu.pennywise.model.entry;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_AMT_DINNER;
+import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_AMT_INVESTMENT;
 import static seedu.pennywise.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -47,5 +50,26 @@ public class AmountTest {
     public void toFormattedString() {
         String amount = "10";
         assertEquals(new Amount(amount).toFormattedString(), "$10.00");
+    }
+
+    @Test
+    public void equals() {
+        final Amount amount = new Amount(VALID_AMT_DINNER);
+
+        // same values -> returns true
+        Amount amountWithSameValues = new Amount(VALID_AMT_DINNER);
+        assertEquals(amount, amountWithSameValues);
+
+        // same object -> returns true
+        assertEquals(amount, amount);
+
+        // null -> returns false
+        assertNotEquals(null, amount);
+
+        // different types -> returns false
+        assertNotEquals(amount, new Object());
+
+        // different descriptor -> returns false
+        assertNotEquals(amount, new Amount(VALID_AMT_INVESTMENT));
     }
 }
