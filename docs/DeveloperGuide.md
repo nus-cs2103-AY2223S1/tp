@@ -349,7 +349,7 @@ Step 3. The `delete` command then deletes the student by calling `Model#deletePe
 
 ### \[Implemented\] Sort Command
 The sort command allows users to sort the respective list from Oldest to the Newest entry, Alphabetically or in Reverse order.  
-Sorting by default means sorting by oldest to newest.  
+Sorting by default means sorting by oldest to newest updated entry. Editing an entry is considered updating it.  
 *(To be added)*: sort by class timings, level.
 
 #### Implementation

@@ -452,9 +452,9 @@ Sorts the current list chronologically, alphabetically, or in reverse order.
 
 Format: `sort [default/alpha/reverse]`
 
-* **default**: sorts the list in order of entries added from oldest to newest.
-* **alpha**: sorts the list alphabetically with reference to the name.
-* **reverse**: sorts the list in reverse order.
+* **default**: Sorts the list in order of entries updated from oldest to newest. Editing an entry is considered as updating it.
+* **alpha**: Sorts the list alphabetically with reference to the name.
+* **reverse**: Sorts the list in reverse order.
 
 Examples:
 * `sort alpha`
