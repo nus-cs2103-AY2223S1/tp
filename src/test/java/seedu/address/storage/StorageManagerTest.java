@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
+import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 
 import java.nio.file.Path;
 
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.PersonBook;
-import seedu.address.model.ReadOnlyPersonBook;
+import seedu.address.model.BuyerBook;
+import seedu.address.model.ReadOnlyBuyerBook;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -24,10 +24,10 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonPersonBookStorage personBookStorage = new JsonPersonBookStorage(getTempFilePath("ab"));
+        JsonBuyerBookStorage buyerBookStorage = new JsonBuyerBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonPropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(getTempFilePath("pb"));
-        storageManager = new StorageManager(personBookStorage, propertyBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(buyerBookStorage, propertyBookStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -49,21 +49,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void personBookReadSave() throws Exception {
+    public void buyerBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonPersonBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonPersonBookStorageTest} class.
+         * {@link JsonBuyerBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonBuyerBookStorageTest} class.
          */
-        PersonBook original = getTypicalPersonsBook();
-        storageManager.savePersonBook(original);
-        ReadOnlyPersonBook retrieved = storageManager.readPersonBook().get();
-        assertEquals(original, new PersonBook(retrieved));
+        BuyerBook original = getTypicalBuyersBook();
+        storageManager.saveBuyerBook(original);
+        ReadOnlyBuyerBook retrieved = storageManager.readBuyerBook().get();
+        assertEquals(original, new BuyerBook(retrieved));
     }
 
     @Test
-    public void getPersonBookFilePath() {
-        assertNotNull(storageManager.getPersonBookFilePath());
+    public void getBuyerBookFilePath() {
+        assertNotNull(storageManager.getBuyerBookFilePath());
     }
 
 }

@@ -20,7 +20,7 @@ public class AddBuyerCommand extends Command {
 
     public static final String COMMAND_WORD = "addbuyer";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a buyer to Cobb. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a buyer to Cobb."
             + "Parameters: "
             + PREFIX_NAME + " NAME "
             + PREFIX_PHONE + " PHONE "
@@ -28,6 +28,7 @@ public class AddBuyerCommand extends Command {
             + PREFIX_ADDRESS + " ADDRESS "
             + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE] "
             + "[" + PREFIX_CHARACTERISTICS + " DESIRED CHARACTERISTICS] "
+            + "[" + PREFIX_PRIORITY + " PRIORITY]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " John Doe "
             + PREFIX_PHONE + " 98765432 "
@@ -38,7 +39,7 @@ public class AddBuyerCommand extends Command {
             + PREFIX_PRIORITY + " high ";
 
     public static final String MESSAGE_SUCCESS = "New buyer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This buyer already exists in Cobb";
+    public static final String MESSAGE_DUPLICATE_BUYER = "This buyer already exists in Cobb";
 
     private final Buyer toAdd;
 
@@ -54,11 +55,11 @@ public class AddBuyerCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasBuyer(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_BUYER);
         }
 
-        model.addPerson(toAdd);
+        model.addBuyer(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

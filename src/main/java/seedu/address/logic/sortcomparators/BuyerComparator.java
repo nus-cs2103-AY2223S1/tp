@@ -45,8 +45,6 @@ public class BuyerComparator implements Comparator<Buyer> {
             return timeComparator.get()
                     .compare(firstBuyer.getEntryTime(), secondBuyer.getEntryTime());
         }
-
-
     }
 
     @Override

@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_HIGH;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
+import static seedu.address.testutil.TypicalBuyers.ALICE;
+import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,82 +19,82 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.model.buyer.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.buyer.exceptions.DuplicateBuyerException;
+import seedu.address.testutil.BuyerBuilder;
 
 public class BuyerBookTest {
 
-    private final PersonBook personBook = new PersonBook();
+    private final BuyerBook buyerBook = new BuyerBook();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), personBook.getPersonList());
+        assertEquals(Collections.emptyList(), buyerBook.getBuyerList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> personBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> buyerBook.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyPersonBook_replacesData() {
-        PersonBook newData = getTypicalPersonsBook();
-        personBook.resetData(newData);
-        assertEquals(newData, personBook);
+    public void resetData_withValidReadOnlyBuyerBook_replacesData() {
+        BuyerBook newData = getTypicalBuyersBook();
+        buyerBook.resetData(newData);
+        assertEquals(newData, buyerBook);
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateBuyers_throwsDuplicateBuyerException() {
         // Two buyers with the same identity fields
-        Buyer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withPriority(VALID_PRIORITY_HIGH)
+        Buyer editedAlice = new BuyerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withPriority(VALID_PRIORITY_HIGH)
                 .build();
         List<Buyer> newBuyers = Arrays.asList(ALICE, editedAlice);
-        PersonBookStub newData = new PersonBookStub(newBuyers);
+        BuyerBookStub newData = new BuyerBookStub(newBuyers);
 
-        assertThrows(DuplicatePersonException.class, () -> personBook.resetData(newData));
+        assertThrows(DuplicateBuyerException.class, () -> buyerBook.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> personBook.hasPerson(null));
+    public void hasBuyer_nullBuyer_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> buyerBook.hasBuyer(null));
     }
 
     @Test
-    public void hasPerson_personNotInPersonBook_returnsFalse() {
-        assertFalse(personBook.hasPerson(ALICE));
+    public void hasBuyer_buyerNotInBuyerBook_returnsFalse() {
+        assertFalse(buyerBook.hasBuyer(ALICE));
     }
 
     @Test
-    public void hasPerson_personInPersonBook_returnsTrue() {
-        personBook.addPerson(ALICE);
-        assertTrue(personBook.hasPerson(ALICE));
+    public void hasBuyer_buyerInBuyerBook_returnsTrue() {
+        buyerBook.addBuyer(ALICE);
+        assertTrue(buyerBook.hasBuyer(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInPersonBook_returnsTrue() {
-        personBook.addPerson(ALICE);
-        Buyer editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withPriority(VALID_PRIORITY_HIGH)
+    public void hasBuyer_buyerWithSameIdentityFieldsInBuyerBook_returnsTrue() {
+        buyerBook.addBuyer(ALICE);
+        Buyer editedAlice = new BuyerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withPriority(VALID_PRIORITY_HIGH)
                 .build();
-        assertTrue(personBook.hasPerson(editedAlice));
+        assertTrue(buyerBook.hasBuyer(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> personBook.getPersonList().remove(0));
+    public void getBuyerList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> buyerBook.getBuyerList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyPersonBook whose buyers list can violate interface constraints.
+     * A stub ReadOnlyBuyerBook whose buyers list can violate interface constraints.
      */
-    private static class PersonBookStub implements ReadOnlyPersonBook {
+    private static class BuyerBookStub implements ReadOnlyBuyerBook {
         private final ObservableList<Buyer> buyers = FXCollections.observableArrayList();
 
-        PersonBookStub(Collection<Buyer> buyers) {
+        BuyerBookStub(Collection<Buyer> buyers) {
             this.buyers.setAll(buyers);
         }
 
         @Override
-        public ObservableList<Buyer> getPersonList() {
+        public ObservableList<Buyer> getBuyerList() {
             return buyers;
         }
     }

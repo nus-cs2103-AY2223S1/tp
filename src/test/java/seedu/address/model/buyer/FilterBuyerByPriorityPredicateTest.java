@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.BuyerBuilder;
 
 
 public class FilterBuyerByPriorityPredicateTest {
@@ -43,7 +43,7 @@ public class FilterBuyerByPriorityPredicateTest {
 
         FilterBuyerByPriorityPredicate predicate =
                 new FilterBuyerByPriorityPredicate(new Priority("high"));
-        assertTrue(predicate.test(new PersonBuilder().withPriority("HIGH").build()));
+        assertTrue(predicate.test(new BuyerBuilder().withPriority("HIGH").build()));
     }
 
     @Test
@@ -51,6 +51,6 @@ public class FilterBuyerByPriorityPredicateTest {
         //Different Priority
         FilterBuyerByPriorityPredicate predicate =
                 new FilterBuyerByPriorityPredicate(new Priority("normal"));
-        assertFalse(predicate.test(new PersonBuilder().withPriority("high").build()));
+        assertFalse(predicate.test(new BuyerBuilder().withPriority("high").build()));
     }
 }

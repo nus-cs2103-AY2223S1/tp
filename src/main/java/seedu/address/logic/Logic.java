@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyPersonBook;
+import seedu.address.model.ReadOnlyBuyerBook;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
@@ -26,14 +26,14 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the PersonBook.
+     * Returns the BuyerBook.
      *
-     * @see seedu.address.model.Model#getPersonBook()
+     * @see seedu.address.model.Model#getBuyerBook()
      */
-    ReadOnlyPersonBook getPersonBook();
+    ReadOnlyBuyerBook getBuyerBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Buyer> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of buyers */
+    ObservableList<Buyer> getFilteredBuyerList();
 
     /**
      * Returns the PropertyBook.
@@ -47,9 +47,9 @@ public interface Logic {
 
 
     /**
-     * Returns the user prefs' buyer model file path.
+     * Returns the user prefs' buyer book file path.
      */
-    Path getPersonBookFilePath();
+    Path getBuyerBookFilePath();
 
     /**
      * Returns the user prefs' property book file path.

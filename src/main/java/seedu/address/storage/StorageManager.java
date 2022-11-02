@@ -7,27 +7,27 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyPersonBook;
+import seedu.address.model.ReadOnlyBuyerBook;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of PersonBook data in local storage.
+ * Manages storage of BuyerBook data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private PersonBookStorage personBookStorage;
+    private BuyerBookStorage buyerBookStorage;
     private UserPrefsStorage userPrefsStorage;
     private PropertyBookStorage propertyBookStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code PersonBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code BuyerBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(PersonBookStorage personBookStorage, PropertyBookStorage propertyBookStorage,
+    public StorageManager(BuyerBookStorage buyerBookStorage, PropertyBookStorage propertyBookStorage,
                           UserPrefsStorage userPrefsStorage) {
-        this.personBookStorage = personBookStorage;
+        this.buyerBookStorage = buyerBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.propertyBookStorage = propertyBookStorage;
     }
@@ -50,33 +50,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ PersonBook methods ==============================
+    // ================ BuyerBook methods ==============================
 
     @Override
-    public Path getPersonBookFilePath() {
-        return personBookStorage.getPersonBookFilePath();
+    public Path getBuyerBookFilePath() {
+        return buyerBookStorage.getBuyerBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyPersonBook> readPersonBook() throws DataConversionException, IOException {
-        return readPersonBook(personBookStorage.getPersonBookFilePath());
+    public Optional<ReadOnlyBuyerBook> readBuyerBook() throws DataConversionException, IOException {
+        return readBuyerBook(buyerBookStorage.getBuyerBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyPersonBook> readPersonBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyBuyerBook> readBuyerBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return personBookStorage.readPersonBook(filePath);
+        return buyerBookStorage.readBuyerBook(filePath);
     }
 
     @Override
-    public void savePersonBook(ReadOnlyPersonBook personBook) throws IOException {
-        savePersonBook(personBook, personBookStorage.getPersonBookFilePath());
+    public void saveBuyerBook(ReadOnlyBuyerBook buyerBook) throws IOException {
+        saveBuyerBook(buyerBook, buyerBookStorage.getBuyerBookFilePath());
     }
 
     @Override
-    public void savePersonBook(ReadOnlyPersonBook personBook, Path filePath) throws IOException {
+    public void saveBuyerBook(ReadOnlyBuyerBook buyerBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        personBookStorage.savePersonBook(personBook, filePath);
+        buyerBookStorage.saveBuyerBook(buyerBook, filePath);
     }
 
     // ================ PropertyBook methods ==============================

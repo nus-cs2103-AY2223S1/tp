@@ -15,7 +15,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyPropertyBook;
 
 /**
- * A class to access PersonBook data stored as a json file on the hard disk.
+ * A class to access BuyerBook data stored as a json file on the hard disk.
  */
 public class JsonPropertyBookStorage implements PropertyBookStorage {
 

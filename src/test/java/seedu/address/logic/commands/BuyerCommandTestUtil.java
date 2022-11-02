@@ -17,14 +17,14 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.BuyerBook;
 import seedu.address.model.Model;
-import seedu.address.model.PersonBook;
 import seedu.address.model.PropertyBook;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.NameContainsKeywordsPredicate;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditBuyerDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -81,11 +81,11 @@ public class BuyerCommandTestUtil {
     public static final EditBuyerCommand.EditBuyerDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditBuyerDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withPriceRange(VALID_PRICE_RANGE_AMY).withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_AMY)
                 .withPriority(VALID_PRIORITY_HIGH).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditBuyerDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withPriceRange(VALID_PRICE_RANGE_BOB).withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_BOB)
                 .withPriority(VALID_PRIORITY_LOW).build();
@@ -123,17 +123,17 @@ public class BuyerCommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the person book, filtered buyer list and selected buyer in {@code actualModel} remain unchanged
+     * - the buyer book, filtered buyer list and selected buyer in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        PersonBook expectedPersonBook = new PersonBook(actualModel.getPersonBook());
-        List<Buyer> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        BuyerBook expectedBuyerBook = new BuyerBook(actualModel.getBuyerBook());
+        List<Buyer> expectedFilteredList = new ArrayList<>(actualModel.getFilteredBuyerList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedPersonBook, actualModel.getPersonBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedBuyerBook, actualModel.getBuyerBook());
+        assertEquals(expectedFilteredList, actualModel.getFilteredBuyerList());
     }
 
     /**
@@ -156,16 +156,16 @@ public class BuyerCommandTestUtil {
 
     /**
      * Updates {@code model}'s filtered list to show only the buyer at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * buyer book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showBuyerAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBuyerList().size());
 
-        Buyer buyer = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Buyer buyer = model.getFilteredBuyerList().get(targetIndex.getZeroBased());
         final String[] splitName = buyer.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredBuyerList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredBuyerList().size());
     }
 
     /**

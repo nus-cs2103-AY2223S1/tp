@@ -52,7 +52,7 @@ public class MatchBuyerCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Buyer> lastShownList = model.getFilteredPersonList();
+        List<Buyer> lastShownList = model.getFilteredBuyerList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_BUYER_DISPLAYED_INDEX);
@@ -84,11 +84,7 @@ public class MatchBuyerCommand extends Command {
         assert(!predicatesList.isEmpty());
 
         Predicate<Property> combinedPredicate;
-        if (isMatchingAll) {
-            combinedPredicate = predicatesList.stream().reduce(Predicate::and).get();
-        } else {
-            combinedPredicate = predicatesList.stream().reduce(Predicate::or).get();
-        }
+        combinedPredicate = predicatesList.stream().reduce(Predicate::and).get();
 
         new FilterPropertiesCommand(combinedPredicate).execute(model);
 

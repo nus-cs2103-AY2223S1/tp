@@ -11,12 +11,12 @@ public class AddBuyerCommandIntegrationTest {
     //    @BeforeEach
     //    public void setUp() {
     //        model = new ModelManager(getTypicalPersonsBook(), getTypicalPropertyBook(), new UserPrefs());
-    //        model.setPersonListPanel(new PersonListPanel(FXCollections.observableArrayList()));
+    //        model.setPersonListPanel(new BuyerListPanel(FXCollections.observableArrayList()));
     //    }
 
     //    @Test
     //    public void execute_newPerson_success() {
-    //        Buyer validBuyer = new PersonBuilder().build();
+    //        Buyer validBuyer = new BuyerBuilder().build();
     //
     //        Model expectedModel = new ModelManager(model.getPersonModel(), model.getPropertyModel(), new UserPrefs());
     //

@@ -16,7 +16,7 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Buyer> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Buyer> PREDICATE_SHOW_ALL_BUYERS = unused -> true;
 
     /**
      * {@code Predicate} that always evaluate to true
@@ -46,14 +46,14 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' buyer model file path.
+     * Returns the user prefs' buyer book file path.
      */
-    Path getPersonBookFilePath();
+    Path getBuyerBookFilePath();
 
     /**
-     * Sets the user prefs' buyer model file path.
+     * Sets the user prefs' buyer book file path.
      */
-    void setPersonBookFilePath(Path personBookFilePath);
+    void setBuyerBookFilePath(Path buyerBookFilePath);
 
     /**
      * Returns the user prefs' property book file path.
@@ -65,58 +65,58 @@ public interface Model {
      */
     void setPropertyBookFilePath(Path propertyBookFilePath);
 
-    //=========== PersonBook ================================================================================
+    //=========== BuyerBook ================================================================================
 
     /**
-     * Replaces buyer model data with the data in {@code personModel}.
+     * Replaces buyer book data with the data in {@code buyerBook}.
      */
-    void setPersonBook(ReadOnlyPersonBook personBook);
+    void setBuyerBook(ReadOnlyBuyerBook buyerBook);
 
     /**
-     * Returns the PersonBook
+     * Returns the BuyerBook
      */
-    ReadOnlyPersonBook getPersonBook();
+    ReadOnlyBuyerBook getBuyerBook();
 
     /**
      * Returns true if a buyer with the same identity as {@code buyer} exists in the address book.
      */
-    boolean hasPerson(Buyer buyer);
+    boolean hasBuyer(Buyer buyer);
 
     /**
      * Deletes the given buyer.
-     * The buyer must exist in the address book.
+     * {@code buyer} must exist in the buyer book.
      */
-    void deletePerson(Buyer target);
+    void deleteBuyer(Buyer buyer);
 
     /**
      * Adds the given buyer.
-     * {@code buyer} must not already exist in the address book.
+     * {@code buyer} must not already exist in the buyer book.
      */
-    void addPerson(Buyer buyer);
+    void addBuyer(Buyer buyer);
 
     /**
      * Replaces the given buyer {@code target} with {@code editedBuyer}.
      * {@code target} must exist in the address book.
      * The buyer identity of {@code editedBuyer} must not be the same as another existing buyer in the address book.
      */
-    void setPerson(Buyer target, Buyer editedBuyer);
+    void setBuyer(Buyer target, Buyer editedBuyer);
 
     //=========== Filtered Buyer List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the filtered buyer list
      */
-    ObservableList<Buyer> getFilteredPersonList();
+    ObservableList<Buyer> getFilteredBuyerList();
 
     /**
      * Updates the filter of the filtered buyer list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Buyer> predicate);
+    void updateFilteredBuyerList(Predicate<Buyer> predicate);
 
     /**
-     * Sorts the person book's buyer list by the given {@code comparator}.
+     * Sorts the buyer book's buyer list by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
     void sortBuyerList(Comparator<Buyer> comparator);

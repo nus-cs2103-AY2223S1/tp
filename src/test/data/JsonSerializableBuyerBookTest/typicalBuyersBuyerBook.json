@@ -1,0 +1,60 @@
+{
+  "_comment": "BuyerBook save file which contains the same Buyer values as in TypicalBuyers#getTypicalBuyersBook()",
+  "buyers" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "priceRange" : "200 - 500",
+    "desiredCharacteristics" : "Bright",
+    "priority" : "NORMAL"
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "priceRange" : "300 - 600",
+    "desiredCharacteristics" : "Near MRT",
+    "priority" : "HIGH"
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "email" : "heinz@example.com",
+    "address" : "wall street",
+    "priceRange" : "300 - 600",
+    "desiredCharacteristics" : "Near School",
+    "priority" : "LOW"
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "email" : "cornelia@example.com",
+    "address" : "10th street",
+    "priceRange" : "",
+    "desiredCharacteristics" : "",
+    "priority" : "LOW"
+  }, {
+    "name" : "Elle Meyer",
+    "phone" : "9482224",
+    "email" : "werner@example.com",
+    "address" : "michegan ave",
+    "priceRange" : "",
+    "desiredCharacteristics" : "",
+    "priority" : "NORMAL"
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "email" : "lydia@example.com",
+    "address" : "little tokyo",
+    "priceRange" : "500 - 700",
+    "desiredCharacteristics" : "",
+    "priority" : "HIGH"
+  }, {
+    "name" : "George Best",
+    "phone" : "9482442",
+    "email" : "anna@example.com",
+    "address" : "4th street",
+    "priceRange" : "",
+    "desiredCharacteristics" : "Cooling",
+    "priority" : "NORMAL"
+  } ]
+}

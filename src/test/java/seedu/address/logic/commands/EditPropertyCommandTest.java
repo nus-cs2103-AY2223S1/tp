@@ -3,16 +3,16 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_NAME_PROPERTY1;
 import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_PRICE_PROPERTY1;
+import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditPropertyCommand.EditPropertyDescriptor;
+import seedu.address.model.BuyerBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.PersonBook;
 import seedu.address.model.PropertyBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.property.Property;
@@ -21,7 +21,7 @@ import seedu.address.testutil.PropertyBuilder;
 
 class EditPropertyCommandTest {
 
-    private Model model = new ModelManager(getTypicalPersonsBook(), getTypicalPropertyBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalBuyersBook(), getTypicalPropertyBook(), new UserPrefs());
 
     @Test
     void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -32,8 +32,8 @@ class EditPropertyCommandTest {
         EditPropertyCommand editPropertyCommand = new EditPropertyCommand(INDEX_FIRST_ITEM, descriptor);
 
         String expectedMessage = String.format(EditPropertyCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty);
-        Model expectedModel = new ModelManager(new PersonBook(
-                model.getPersonBook()), new PropertyBook(model.getPropertyBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new BuyerBook(
+                model.getBuyerBook()), new PropertyBook(model.getPropertyBook()), new UserPrefs());
 
         expectedModel.setProperty(currentProperty, editedProperty);
         assertCommandSuccess(editPropertyCommand, model, expectedMessage, expectedModel);
@@ -51,8 +51,8 @@ class EditPropertyCommandTest {
         EditPropertyCommand editPropertyCommand = new EditPropertyCommand(INDEX_FIRST_ITEM, descriptor);
 
         String expectedMessage = String.format(EditPropertyCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty);
-        Model expectedModel = new ModelManager(new PersonBook(
-                model.getPersonBook()), new PropertyBook(model.getPropertyBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new BuyerBook(
+                model.getBuyerBook()), new PropertyBook(model.getPropertyBook()), new UserPrefs());
 
         expectedModel.setProperty(currentProperty, editedProperty);
         assertCommandSuccess(editPropertyCommand, model, expectedMessage, expectedModel);
@@ -66,8 +66,8 @@ class EditPropertyCommandTest {
 
         String expectedMessage = String.format(EditPropertyCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty);
 
-        Model expectedModel = new ModelManager(new PersonBook(
-                model.getPersonBook()), new PropertyBook(model.getPropertyBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new BuyerBook(
+                model.getBuyerBook()), new PropertyBook(model.getPropertyBook()), new UserPrefs());
 
         assertCommandSuccess(editPropertyCommand, model, expectedMessage, expectedModel);
     }

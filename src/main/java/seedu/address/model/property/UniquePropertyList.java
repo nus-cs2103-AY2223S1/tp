@@ -53,7 +53,7 @@ public class UniquePropertyList implements Iterable<Property> {
     /**
      * Replaces the property {@code target} in the list with {@code editedProperty}.
      * {@code target} must exist in the list.
-     * The buyer identity of {@code editedPerson} must not be the same as another existing buyer in the list.
+     * The property identity of {@code editedProperty} must not be the same as another existing property in the list.
      */
     public void setProperty(Property target, Property editedProperty) {
         requireAllNonNull(target, editedProperty);
@@ -87,8 +87,8 @@ public class UniquePropertyList implements Iterable<Property> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code properties}.
+     * {@code properties} must not contain duplicate properties.
      */
     public void setProperties(List<Property> properties) {
         requireAllNonNull(properties);

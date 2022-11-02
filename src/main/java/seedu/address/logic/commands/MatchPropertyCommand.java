@@ -76,16 +76,12 @@ public class MatchPropertyCommand extends Command {
         assert(!predicatesList.isEmpty());
 
         Predicate<Buyer> combinedPredicate;
-        if (isMatchingAll) {
-            combinedPredicate = predicatesList.stream().reduce(Predicate::and).get();
-        } else {
-            combinedPredicate = predicatesList.stream().reduce(Predicate::or).get();
-        }
+        combinedPredicate = predicatesList.stream().reduce(Predicate::and).get();
 
         new FilterBuyersCommand(combinedPredicate).execute(model);
 
         return new CommandResult(String.format(MESSAGE_MATCHED_PROPERTY_SUCCESS,
-                model.getFilteredPersonList().size(), propertyToMatch));
+                model.getFilteredBuyerList().size(), propertyToMatch));
     }
 
     @Override

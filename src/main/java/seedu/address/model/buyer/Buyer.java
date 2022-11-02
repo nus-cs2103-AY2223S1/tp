@@ -12,7 +12,7 @@ import seedu.address.model.pricerange.PriceRange;
 
 
 /**
- * Represents a Buyer in the address book.
+ * Represents a Buyer in the buyer book.
  * Guarantees: field values are validated, immutable.
  * Only priceRange and desiredCharacteristics may be null.
  */
@@ -85,7 +85,7 @@ public class Buyer {
     }
 
     /**
-     * Returns true if both buyers have the same name.
+     * Returns true if both buyers have the same phone or email.
      * This defines a weaker notion of equality between two buyers.
      */
     public boolean isSameBuyer(Buyer otherBuyer) {
@@ -94,8 +94,8 @@ public class Buyer {
         }
 
         return otherBuyer != null
-                && otherBuyer.getName().equals(getName())
-                && otherBuyer.getPhone().equals(getPhone());
+                && (otherBuyer.getPhone().equals(getPhone())
+                    || otherBuyer.getEmail().equals(getEmail()));
     }
 
     /**
