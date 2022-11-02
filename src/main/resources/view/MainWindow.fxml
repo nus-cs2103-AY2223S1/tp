@@ -52,7 +52,7 @@
           </VBox>
           <VBox>
             <VBox fx:id="scheduleList" minWidth="340" prefWidth="300" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-              <StackPane fx:id="statisticsPlaceholder" prefHeight="170.0" prefWidth="200.0" minHeight="170.0">
+              <StackPane fx:id="statisticsPlaceholder" prefHeight="170.0" prefWidth="200.0" minHeight="185.0">
                 <padding>
                   <Insets bottom="10" top="5" />
                 </padding>
