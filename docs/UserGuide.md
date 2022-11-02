@@ -102,14 +102,14 @@ which contains `u`, `nus`, and `edu` as `DOMAIN_LABEL` separated by `.`
 | **Name**            | `n`       | 50           | Can only contain alphanumeric characters and spaces                           |
 | **Phone**           | `p`       | 20           | Can only contain numbers, at least 3 digits long                              |
 | **Address**         | `a`       | 100          | Can take any values, but not blank                                            |
-| **CAP**             | `c`       | None         | Can only consist of 2 numeric values in the form of `CURRENT_CAP/MAX_CAP`     |
+| **CAP**             | `c`       | None         | Can only consist of 2 positive numeric values in the form of `CURRENT_CAP/MAX_CAP`     |
 | **Gender**          | `g`       | None         | Can only be `male` or `female` in any capitalization                          |
 | **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                           |
 | **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of `MM-yyyy`, starting from the year 0000 |                           
 | **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                           |
 | **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces     |
 
-* `CURRENT_CAP` must be smaller than or equal to `MAX_CAP`
+* `CURRENT_CAP` must be a positive value smaller than or equal to `MAX_CAP`
 * Special punctuations: `-` `#` `,` `:` `&` `(` `)` `"` `'` `/` `[` `]`
 
 
