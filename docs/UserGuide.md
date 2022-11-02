@@ -98,7 +98,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 | **Phone**           | `p`       | 20           | Can only contain numbers, at least 3 digits long                                |
 | **Address**         | `a`       | 100          | Can take any values, but not blank                                              |
 | **CAP**             | `c`       | None         | Can only consist of 2 numeric values in the form of `CURRENT_CAP/MAX_CAP`       |
-| **Gender**          | `g`       | None         | Can only be `male` or `female` in any capitalization                            |
+| **Gender**          | `g`       | None         | Can only be `male` or `female`, will be converted to lower-case.                |
 | **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                             |
 | **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of `MM-yyyy`, starting from the year 0000 |                           
 | **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                             |
@@ -260,9 +260,9 @@ Search Types:
 
 Examples:
 * `find n/Bobby` Returns applicants with names matching `bobby` and `Bobby Cortez`
-* `find g/Female c/3.5 2` returns female applicants with a CAP value of 3.5 or 2.0
-* `find g/Male t/offered KIV` returns male applicants who have an offered or KIV tag attached to them
-* `find g/Male e/gmail` returns male applicants who have a `gmail` substring in their email address
+* `find g/female c/3.5 2` returns female applicants with a CAP value of 3.5 or 2.0
+* `find g/male t/offered KIV` returns male applicants who have an offered or KIV tag attached to them
+* `find g/male e/gmail` returns male applicants who have a `gmail` substring in their email address
 
 
 ### 3.8 Importing applicants from an external JSON file: `import`
