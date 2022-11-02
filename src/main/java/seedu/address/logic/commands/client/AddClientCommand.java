@@ -39,6 +39,7 @@ public class AddClientCommand extends ClientCommand {
             + PREFIX_PROJECT_ID + "1";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "A client with the same name already exists!";
     private static final String MESSAGE_CLIENT_ALREADY_PRESENT = "This project already has a client";
     private static final String MESSAGE_PROJECT_NOT_FOUND = "This project id does not exist in the project book";
 
@@ -71,8 +72,7 @@ public class AddClientCommand extends ClientCommand {
         }
 
         if (model.hasClient(toAddClient)) {
-            Client existingClient = model.getClient(toAddClient);
-            existingClient.addProjects(toModifyProject);
+            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         } else {
             toAddClient.addProjects(toModifyProject);
             model.addClient(toAddClient);
