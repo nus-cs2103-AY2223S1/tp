@@ -265,6 +265,10 @@ public class ParserUtil {
         Price price = parsePrice(argMultimap.getValue(PREFIX_ORDER_PRICE).orElse(""));
         OrderStatus orderStatus = parseOrderStatus(argMultimap.getValue(PREFIX_ORDER_STATUS).orElse(""));
 
+        if (priceRange.comparePrice(price) != 0) {
+
+        }
+
         return new Order(null, priceRange, request, additionalRequests, byDate, price, orderStatus);
     }
 
@@ -389,6 +393,7 @@ public class ParserUtil {
                 PREFIX_PET_HEIGHT,
                 PREFIX_PET_SPECIES,
                 PREFIX_PET_PRICE,
+                PREFIX_PET_VACCINATION_STATUS,
                 PREFIX_PET_WEIGHT)) {
             throw isSupplierExisting
                     ? new ParseException(AddPetCommand.MESSAGE_USAGE_EXISTING_SUPPLIER)

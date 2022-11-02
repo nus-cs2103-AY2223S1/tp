@@ -28,13 +28,8 @@ public class PriceRange implements Comparable<PriceRange> {
      * @param upperBound The bound that the final price is expected not to be greater than
      */
     public PriceRange(Price lowerBound, Price upperBound) {
-        if (lowerBound.getPrice() > upperBound.getPrice()) {
-            this.lowerBound = upperBound;
-            this.upperBound = lowerBound;
-        } else {
-            this.upperBound = upperBound;
-            this.lowerBound = lowerBound;
-        }
+        this.upperBound = upperBound;
+        this.lowerBound = lowerBound;
     }
 
     public Price getUpperBound() {
@@ -72,7 +67,10 @@ public class PriceRange implements Comparable<PriceRange> {
      * @return {@code WITHIN_RANGE} if the price passed is within the range,
      *      {@code LOWER_THAN_RANGE}, {@code HIGHER_THAN_RANGE} respectively.
      */
-    public int isWithinRange(Price price) {
+    public int comparePrice(Price price) {
+        if (price.isNotApplicablePrice()) {
+            return WITHIN_RANGE;
+        }
         if (lowerBound.isNotApplicablePrice()) {
             if (upperBound.isNotApplicablePrice()) {
                 return WITHIN_RANGE;

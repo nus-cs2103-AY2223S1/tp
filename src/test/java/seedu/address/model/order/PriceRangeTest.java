@@ -2,6 +2,7 @@ package seedu.address.model.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -132,5 +133,135 @@ public class PriceRangeTest {
         assertEquals(firstPriceRange, firstPriceRangeCopy);
 
         assertNotEquals(firstPriceRange, secondPriceRange);
+    }
+
+    @Test
+    public void comparePrice_closedRangeAndMiddlePrice_withinRange() {
+        Price upperBound = new Price(79.5);
+        Price lowerBound = new Price(19.5);
+        Price price = new Price(50);
+        PriceRange priceRange = new PriceRange(lowerBound, upperBound);
+
+        assertEquals(priceRange.comparePrice(price), PriceRange.WITHIN_RANGE);
+    }
+
+    @Test
+    public void comparePrice_closedRangeAndNotApplicablePrice_withinRange() {
+        Price upperBound = new Price(79.5);
+        Price lowerBound = new Price(19.5);
+        Price price = Price.getNotApplicablePrice();
+        PriceRange priceRange = new PriceRange(lowerBound, upperBound);
+
+        assertEquals(priceRange.comparePrice(price), PriceRange.WITHIN_RANGE);
+    }
+
+    @Test
+    public void comparePrice_openRangeAndNotApplicablePrice1_withinRange() {
+        Price upperBound = Price.getNotApplicablePrice();
+        Price lowerBound = new Price(19.5);
+        Price price = Price.getNotApplicablePrice();
+        PriceRange priceRange = new PriceRange(lowerBound, upperBound);
+
+        assertEquals(priceRange.comparePrice(price), PriceRange.WITHIN_RANGE);
+    }
+
+    @Test
+    public void comparePrice_openRangeAndNotApplicablePrice2_withinRange() {
+        Price upperBound = Price.getNotApplicablePrice();
+        Price lowerBound = Price.getNotApplicablePrice();
+        Price price = Price.getNotApplicablePrice();
+        PriceRange priceRange = new PriceRange(lowerBound, upperBound);
+
+        assertEquals(priceRange.comparePrice(price), PriceRange.WITHIN_RANGE);
+    }
+
+    @Test
+    public void comparePrice_openRangeAndNotApplicablePrice3_withinRange() {
+        Price upperBound = new Price(79.5);
+        Price lowerBound = Price.getNotApplicablePrice();
+        Price price = Price.getNotApplicablePrice();
+        PriceRange priceRange = new PriceRange(lowerBound, upperBound);
+
+        assertEquals(priceRange.comparePrice(price), PriceRange.WITHIN_RANGE);
+    }
+
+    @Test
+    public void comparePrice_openRangeAndNotApplicablePrice4_withinRange() {
+        Price upperBound = new Price(79.5);
+        Price lowerBound = Price.getNotApplicablePrice();
+        Price price = new Price(79.5);
+        PriceRange priceRange = new PriceRange(lowerBound, upperBound);
+
+        assertEquals(priceRange.comparePrice(price), PriceRange.WITHIN_RANGE);
+    }
+
+    @Test
+    public void comparePrice_openRangeAndNotApplicablePrice5_withinRange() {
+        Price upperBound = new Price(79.5);
+        Price lowerBound = Price.getNotApplicablePrice();
+        Price price = new Price(79.5);
+        PriceRange priceRange = new PriceRange(lowerBound, upperBound);
+
+        assertEquals(priceRange.comparePrice(price), PriceRange.WITHIN_RANGE);
+    }
+
+    @Test
+    public void comparePrice_openRangeAndNotApplicablePrice6_withinRange() {
+        Price upperBound = Price.getNotApplicablePrice();
+        Price lowerBound = new Price(79.5);
+        Price price = new Price(79.5);
+        PriceRange priceRange = new PriceRange(lowerBound, upperBound);
+
+        assertEquals(priceRange.comparePrice(price), PriceRange.WITHIN_RANGE);
+    }
+
+    @Test
+    public void comparePrice_openRangeAndNotApplicablePrice7_withinRange() {
+        Price upperBound = Price.getNotApplicablePrice();
+        Price lowerBound = Price.getNotApplicablePrice();
+        Price price = new Price(79.5);
+        PriceRange priceRange = new PriceRange(lowerBound, upperBound);
+
+        assertEquals(priceRange.comparePrice(price), PriceRange.WITHIN_RANGE);
+    }
+
+    @Test
+    public void comparePrice_closedRangeAndMiddlePrice_lower() {
+        Price upperBound = new Price(79.5);
+        Price lowerBound = new Price(19.5);
+        Price price = new Price(19.4);
+        PriceRange priceRange = new PriceRange(lowerBound, upperBound);
+
+        assertEquals(priceRange.comparePrice(price), PriceRange.LOWER_THAN_RANGE);
+    }
+
+    @Test
+    public void comparePrice_openRangeAndMiddlePrice_lower() {
+        Price upperBound = Price.getNotApplicablePrice();
+        Price lowerBound = new Price(19.5);
+        Price price = new Price(19.4);
+        PriceRange priceRange = new PriceRange(lowerBound, upperBound);
+
+        assertEquals(priceRange.comparePrice(price), PriceRange.LOWER_THAN_RANGE);
+    }
+
+    @Test
+    public void comparePrice_closedRangeAndMiddlePrice_higher() {
+        Price upperBound = new Price(50);
+        Price lowerBound = new Price(19.5);
+        Price price = new Price(51);
+        PriceRange priceRange = new PriceRange(lowerBound, upperBound);
+
+        assertEquals(priceRange.comparePrice(price), PriceRange.HIGHER_THAN_RANGE);
+    }
+
+    @Test
+    public void comparePrice_openRangeAndMiddlePrice_higher() {
+        Price upperBound = new Price(50);
+        Price lowerBound = Price.getNotApplicablePrice();
+        Price price = new Price(51);
+        PriceRange priceRange = new PriceRange(lowerBound, upperBound);
+
+        assertEquals(priceRange.comparePrice(price), PriceRange.HIGHER_THAN_RANGE);
     }
 }
