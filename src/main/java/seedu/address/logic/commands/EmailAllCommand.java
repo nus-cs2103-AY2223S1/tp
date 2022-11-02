@@ -34,7 +34,8 @@ public class EmailAllCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_SUCCESS = "Successfully opened web browser.";
     public static final String MESSAGE_GROUP_NOT_FOUND = "The group does not exist.";
-    public static final String MESSAGE_ERROR = "An error has occurred when trying to email the group.";
+    public static final String MESSAGE_ERROR = "One or more members of this group does not have an email set!\n"
+            + "Try adding an email using the edit command!";
 
     private final Group groupToEmail;
     private final IsPersonInGroup predicate;
