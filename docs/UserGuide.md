@@ -78,9 +78,9 @@ This section introduces the different components of Class-ify's application wind
 a few seconds. Note how the app contains some sample data. In the event that the app does not launch, click 
 [here](#5-faq) for instructions on how to troubleshoot.
 
-5. ![Ui](images/Ui.png)
+![Ui](images/Ui.png)
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
 open the help window.
 
 Here are some example commands you can try:
@@ -306,6 +306,10 @@ are in the class.
 Format: `viewClass CLASS`
 * Class name can only contain alphanumeric characters.
 * Class name is case-insensitive.
+
+Example:
+* `viewClass 1A` displays the list of students in class 1A
+  ![viewClass](images/viewClass.png)
 
 <div markdown="span" class="alert alert-info">:information_source:
    **Note:**
