@@ -197,6 +197,11 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void updateApplicationListWithInterview(Predicate<Application> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public void sortApplicationListByCompany(boolean shouldReverse) {
             throw new AssertionError("This method should not be called.");
         }

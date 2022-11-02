@@ -27,8 +27,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Application> filteredApplications;
     private final SortedList<Application> sortedFilteredApplications;
-    private final ObservableList<Application> applicationsWithInterview;
-    private final FilteredList<Application> applicationsWithUpcomingInterviews;
+    private final FilteredList<Application> applicationsWithInterview;
+    private final ObservableList<Application> applicationsWithUpcomingInterviews;
 
     /**
      * Initializes a ModelManager with the given versionedApplicationBook and userPrefs.
@@ -43,8 +43,8 @@ public class ModelManager implements Model {
         filteredApplications = initialiseFilteredList(this.versionedApplicationBook);
         sortedFilteredApplications = new SortedList<>(filteredApplications);
         initialiseSortOrder();
-        applicationsWithInterview = filterApplicationsWithInterview();
-        applicationsWithUpcomingInterviews = applicationsWithInterview.filtered(new UpcomingInterviewPredicate());
+        applicationsWithInterview = filterApplicationsWithInterview().filtered(Model.HIDE_ARCHIVE_IN_LIST);
+        applicationsWithUpcomingInterviews = filterApplicationsWithUpcomingInterview();
     }
 
     public ModelManager() {
@@ -97,7 +97,14 @@ public class ModelManager implements Model {
 
     private ObservableList<Application> filterApplicationsWithInterview() {
         return versionedApplicationBook.getApplicationList()
+                .filtered(Application::hasInterview)
+                .sorted(new InterviewComparator());
+    }
+
+    private ObservableList<Application> filterApplicationsWithUpcomingInterview() {
+        return versionedApplicationBook.getApplicationList()
                 .filtered(application -> application.hasInterview() && !application.isArchived())
+                .filtered(new UpcomingInterviewPredicate())
                 .sorted(new InterviewComparator());
     }
 
@@ -245,6 +252,12 @@ public class ModelManager implements Model {
     public void updateFilteredApplicationList(Predicate<Application> predicate) {
         requireNonNull(predicate);
         filteredApplications.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateApplicationListWithInterview(Predicate<Application> predicate) {
+        requireNonNull(predicate);
+        applicationsWithInterview.setPredicate(predicate);
     }
 
     @Override

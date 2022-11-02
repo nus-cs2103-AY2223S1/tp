@@ -139,6 +139,12 @@ public interface Model {
     void updateFilteredApplicationList(Predicate<Application> predicate);
 
     /**
+     * Updates the filter of the applications with interview list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateApplicationListWithInterview(Predicate<Application> predicate);
+
+    /**
      * Sorts the application list by company.
      * If the {@code shouldReverse} argument is true, the list is sorted in the reversed order.
      *
