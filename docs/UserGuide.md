@@ -93,7 +93,7 @@ watson{
 # Hello! I Am <watson>Watson!</watson>
 <div class="infobox">
 Welcome to the <watson>Watson</watson> user guide!
-Watson is a helpful **desktop application** that helps school teachers
+Watson is a helpful <em>desktop application</em> that helps school teachers
 track the data of their students. It can handle student particulars, sort students, handle grades and more!
 </div>
 
@@ -157,9 +157,9 @@ from your `Downloads` folder into the `Watson` folder.
 
 5. Double-click on `Watson.jar` to start the application.
 
+---
 # Watson: The Basics
 
----
 
 ## The Login Page
 
