@@ -577,7 +577,7 @@ You can use this command when:
 
 **Constraints**
 * The command intended to be undone should be an undoable command.
-* Undoable commands are: `clear`, `create`, `delete`, `description`, `meeting`, `deletemeeting`, `redo` and `update`
+* Undoable commands are: `create`, `delete`, `update`, `clear`, `description`, `meeting`, `deletemeeting` and `redo`
 * Non-undoable commands are: `exit`, `find `, `help`, `list`, `file`, `sync` and `filepath`
 
 Format: `undo`
