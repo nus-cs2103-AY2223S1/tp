@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_PROJECTS_LISTED_PLURAL_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalProjects.COCONUT;
@@ -56,7 +56,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noProjectFound() {
-        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_PLURAL_OVERVIEW, 0);
         ProjectNameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
@@ -66,7 +66,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleProjectsFound() {
-        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_PLURAL_OVERVIEW, 3);
         ProjectNameContainsKeywordsPredicate predicate = preparePredicate("Coco Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);

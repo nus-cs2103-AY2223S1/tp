@@ -276,7 +276,7 @@ you should first use the [view command](#view-the-staff-list-within-a-project--v
 Adds a Staff member into the Project at the specified `INDEX`. 
 
 
-Format: `addstaff INDEX sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT_NUMBER [t/TAGS]`
+Format: `addstaff INDEX sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sp/STAFF_PHONE [t/TAGS]`
 
 ```yaml
 Note:
@@ -347,7 +347,7 @@ Examples:
 Edits the Staff details of a Staff in the Project which has its name specified.
 The Project must be in the currently displayed Project list for this command to work as expected.
 
-Format: `editstaff INDEX pn/PROJECT_NAME [sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT_NUMBER
+Format: `editstaff INDEX pn/PROJECT_NAME [sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sp/STAFF_PHONE
 t/TAGS]`
 
 ```yaml
@@ -363,7 +363,7 @@ Note:
 ```
 
 Examples:
-* `editstaff 1 pn/CS2103T sn/John Doe` edits the Staff name of the first Staff of the displayed Staff list of `CS2103T` to `John Doe`
+* `editstaff 1 pn/CS2103T sn/John Doe` edits the Staff name of the first Staff of the displayed Staff list of `CS2103T` to `John Doe` 
 
 [Back to top](#table-of-contents)
 
