@@ -306,7 +306,8 @@ public class HelpWindow extends UiPart<Stage> {
      * @return An array of strings that fits the criteria.
      */
     public String[] searchResult(String str) {
-        return commandList.stream().filter(x -> x.contains(str)).toArray(String[]::new);
+        String strLowerCase = str.toLowerCase();
+        return commandList.stream().filter(x -> x.toLowerCase().contains(strLowerCase)).toArray(String[]::new);
     }
 
     /**
