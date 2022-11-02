@@ -3,6 +3,8 @@ package hobbylist.model.activity;
 import static hobbylist.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
+
 // Solution adapted from https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files
 
 /**
@@ -12,8 +14,10 @@ public class Status {
     public static final String STATUS_UPCOMING = "UPCOMING";
     public static final String STATUS_ONGOING = "ONGOING";
     public static final String STATUS_COMPLETED = "COMPLETED";
+    public static final String STATUS_NONE = "NONE";
     public static final String MESSAGE_CONSTRAINT = "Completion status should be either UPCOMING"
             + ", ONGOING or COMPLETED.";
+    public static final String[] VALID_STATUSES = {STATUS_COMPLETED, STATUS_ONGOING, STATUS_UPCOMING, STATUS_NONE};
 
     /**
      * Different status of an activity.
@@ -43,22 +47,21 @@ public class Status {
      */
     public static boolean isValidStatus(String status) {
         String toCheck = status.toUpperCase();
-        return (toCheck.equals("NONE") || toCheck.equals("UPCOMING")
-                || toCheck.equals("ONGOING") || toCheck.equals("COMPLETED"));
+        return (Arrays.asList(VALID_STATUSES).contains(toCheck));
     }
 
     private static State getState(String status) {
         String state = status.toUpperCase();
-        if (state.equals("UPCOMING")) {
+        switch (state) {
+        case STATUS_UPCOMING:
             return State.UPCOMING;
-        }
-        if (state.equals("ONGOING")) {
+        case STATUS_ONGOING:
             return State.ONGOING;
-        }
-        if (state.equals("COMPLETED")) {
+        case STATUS_COMPLETED:
             return State.COMPLETED;
+        default:
+            return State.NONE;
         }
-        return State.NONE;
     }
 
     public boolean hasStatus() {
@@ -72,13 +75,14 @@ public class Status {
      */
     public boolean match(String status) {
         String state = status.toUpperCase();
-        if (state.equals("UPCOMING")) {
+        switch (state) {
+        case STATUS_UPCOMING:
             return this.status.equals(State.UPCOMING);
-        } else if (state.equals("ONGOING")) {
+        case STATUS_ONGOING:
             return this.status.equals(State.ONGOING);
-        } else if (state.equals("COMPLETED")) {
+        case STATUS_COMPLETED:
             return this.status.equals(State.COMPLETED);
-        } else {
+        default:
             return this.status.equals(State.NONE);
         }
     }
