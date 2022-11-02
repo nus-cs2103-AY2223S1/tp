@@ -143,12 +143,15 @@ If your changes to the data file makes its format invalid, HackAssist will disca
 #### Adding a person: `add`
 
 Adds a person to the address book.
+* Note: You cannot add a task if another task with the same name already exists in the task list. 
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
 A person can have any number of tags (including 0)
 </div>
+
+Refer to the [Person Parameters](#person-parameters) section for details about the format of each parameter.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -312,6 +315,17 @@ Examples:
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HackAssist home folder.
+
+add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
+--------------------------------------------------------------------------------------------------------------------
+## Person parameters
+
+| Parameter               | Format                                                                                                                                                 |
+|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/NAME                  | Should contain only alphanumeric characters and spaces                                                                                                 |
+| d/PHONE_NUMBER          | Should contain only numbers                                                                                                                |
+| e/EMAIL                 | Has 2 parts seperated by a '@' character.<br /> <br /> The first should only contain alphanumeric characters and these special characters, +_.- <br /> <br />The second part should consists of one or more labels. These lables should :<br /> - have start and end with alphanumeric characters, <br /> - have be at least 2 characters long <br /> - have be separated only by hyphens, if any.                                                                                                                             |
+| c/ADDRESS                | No restriction on what characters can be entered in this field                                                                                                                                                                                  |
 
 --------------------------------------------------------------------------------------------------------------------
 ## Task parameters
