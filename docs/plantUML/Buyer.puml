@@ -33,7 +33,7 @@ NORMAL
 HIGH
 }
 
-Buyer --> "0..1 " Characteristics
-Buyer --> "0..1" PriceRange
+Buyer --> "     desiredCharacteristics 0..1" Characteristics
+Buyer --> "priceRange 0..1" PriceRange
 
 @enduml

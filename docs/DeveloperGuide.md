@@ -301,32 +301,34 @@ denote his budget, requirements for the property, and buyer priority respectivel
 
 These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
 When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
-When the user creates a buyer, the entry time is also automatically stored as an `LocalDateTime` object. 
+When the user creates a buyer, the entry time is also automatically stored as an `LocalDateTime`. 
 
 This is the class diagram of a `Buyer`.
 
-![PersonClassDiagram](images/BuyerClassDiagram.png)
+![BuyerClassDiagram](images/BuyerClassDiagram.png)
 
 The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
 
-Design considerations:
-No duplicate buyers can be added to the buyer list. This means that no two buyers with the same phone or email can exist. We considered using only name to identify a buyer, so that two people with the same name but different contact numbers can be added. However, we decided against it as users likely differentiate their contacts by name and would not want to save a duplicated name contact, hence the current implementation would serve as a needed warning of a duplicated name attempt to the user.
+#### Design considerations:
+No duplicate buyers can be added to the buyer list. This means that no two buyers with the same phone or email can exist. We considered using only name to identify a buyer, so that two people with the name but different contact numbers can be added. However, we decided against it as there could be two people with the exact same name. Therefore, we decided to use phone or email since these should be unique to every person. 
+The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortbuyers` command.  
 
 ### Creating a property
 
 The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
 
 The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
+When the user creates a property, the entry time is also automatically stored as an `LocalDateTime`.
 
 This is the class diagram of a `Property`.
 
-![PropertyClassDiagram](images/PropertyClassDiagram.png)
+![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
 
 The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
 
-Design considerations:
-No duplicate properties can be added to the property list. This means that no two properties with the same name and price can exist. We considered using only name to identify a property, but later decided against it since in real life different units under the same property name can be listed at the same time. In the future, we might allow two properties with same name and price but different characteristics to be added to the property list because this can also be a possible scenario in real life.
-
+#### Design considerations:
+No duplicate properties can be added to the property list. This means that no two properties with the same address can exist. We used name and price to identify a property in previous iterations, but later decided against it since in real life there could be identical properties with the exact same name and price. The only thing unique to the property would be the unit number recorded in the address.
+The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortprops` command.
 ### Owner specification within a property
 
 To identify the owner of the property, we decided to include an `Owner` object within a `Property`. This `Owner` class contains two fields: `name` and `phone`.

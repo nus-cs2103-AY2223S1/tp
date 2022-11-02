@@ -13,7 +13,7 @@ public class Price {
             "Price should only contain numbers and an optional exponent within the maximum range of a Double."
             + " For example: 123.45";
     private static final double EPSILON = 0.01d;
-    public final String value;
+    private final String value;
     private final double numericalValue;
 
     /**
