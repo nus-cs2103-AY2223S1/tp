@@ -202,7 +202,7 @@ Adding a student record can be divided into 2 main steps: parsing the user input
 
 **Step 1: Parsing the command**
 
-The delete command is first parsed.
+The add student command is first parsed.
 
 1. `MainWindow` calls the `execute` method of `LogicManager` to execute the given user’s command.
 2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be an `addStudent` command and creates a new `AddStudentCommandParser` instance to parse the user’s command.
@@ -410,7 +410,7 @@ The user's input command is first parsed.
 2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a `ViewClassCommand` and creates a new `ViewClassCommandParser` instance to parse the user’s input.
 3. `ViewClassCommandParser` checks whether the user input is valid by parsing it into the `parseClass` method in `ParserUtil`.
 4. If the input is valid, a new `ClassPredicate` instance is created. 
-5. ViewClassCommandParser` then creates a new `ViewClassCommand` instance which will be executed by the `LogicManager`.
+5. `ViewClassCommandParser` then creates a new `ViewClassCommand` instance which will be executed by the `LogicManager`.
 
 **Step 2: Executing the command**
 
