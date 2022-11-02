@@ -395,8 +395,8 @@ You can use this command when:
 * Edits the client with the provided index.
 * `INDEX` is the index of the client in the currently displayed list.<br>
 * You must provide **at least one** of the optional fields .
-* You can also update the description of a client through the [`description` command](#updating-clients-description-description).
-* You must update the meeting time of a client through the [`meeting` command](#add-meetings-meeting), [`deletemeeting` command](#delete-meetings-deletemeeting) and [`sync` commands](#remove-past-meetings-sync).
+* You can also update the description of a client through the [`description` command](#updating-your-clients-description--description).
+* You must update the meeting time of a client through the [`meeting` command](#updating-meetings--meeting), [`deletemeeting` command](#delete-meetings--deletemeeting) and [`sync` commands](#remove-past-meetings--sync).
 * Does not allow you to update a person to have the same name and phone number as a current person in the FABook.
 * Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
 * Person profiles and do not refresh when person is updated, they are only updated when we re-click the person card
@@ -412,14 +412,6 @@ Example given: `update 1 p/12345678`
 Only parameters you provide will be changed.
 
 </div>
-
-* Edits the person with the provided index.
-* `INDEX` is the index of the person in the currently displayed list.<br>
-* You must provide **at least one** of the optional fields .
-* You can also update the description of a contact through the [`description` command](#giving-a-description-to-a-person-description).
-* You must update the meeting time of a contact through the [`meeting` command](#add-meetings-meeting), [`deletemeeting` command](#delete-meetings-deletemeeting) and [`sync` commands](#remove-past-meetings-sync).
-* Does not allow you to update a person to have the same name and phone number as a current person in the FABook.
-* Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
 
 Other example:
 * `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed client's
@@ -443,7 +435,7 @@ You can use this command when:
 
 **Constraints**
 * `INDEX` is the index of the client in the currently displayed list.
-* Updating description of your client can also be done through the 'update' command. See [Update command](#updating-clients-description-description)
+* Updating description of your client can also be done through the 'update' command. See [Update command](#updating-your-clients-information--update)
 
 Format: `description INDEX ds/DESCRIPTION`
 
