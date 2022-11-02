@@ -39,9 +39,14 @@ public class Reward {
         checkArgument(integerValue >= 0, MESSAGE_CONSTRAINTS);
         value = String.valueOf(integerValue);
 
+        // @@author tanwencong-reused
+        // Reused from https://stackoverflow.com/questions/22872484/javafx-how-can-i-display-emoji
+        // with minor modifications
         // Generate reward emoji
         byte[] emojiByteCode = new byte[] {(byte) 0xF0, (byte) 0x9F, (byte) 0x8E, (byte) 0x81};
         String emoji = new String(emojiByteCode, StandardCharsets.UTF_8);
+        // @@author
+
         displayValue = emoji + " " + value;
     }
 

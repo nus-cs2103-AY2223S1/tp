@@ -37,9 +37,13 @@ public class BirthdayMonth {
 
         assert integerValue > 0 && integerValue < 13;
 
+        // @@author tanwencong-reused
+        // Reused from https://stackoverflow.com/questions/22872484/javafx-how-can-i-display-emoji
+        // with minor modifications
         // Generate birthday cake emoji
         byte[] emojiByteCode = new byte[] {(byte) 0xF0, (byte) 0x9F, (byte) 0x8E, (byte) 0x82};
         String emoji = new String(emojiByteCode, StandardCharsets.UTF_8);
+        // @@author
 
         monthString = emoji + " " + monthStrings[integerValue - 1];
         value = String.valueOf(integerValue);

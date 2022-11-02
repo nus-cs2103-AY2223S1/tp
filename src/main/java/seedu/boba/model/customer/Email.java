@@ -46,9 +46,14 @@ public class Email {
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
 
+        // @@author tanwencong-reused
+        // Reused from https://stackoverflow.com/questions/22872484/javafx-how-can-i-display-emoji
+        // with minor modifications
         // Generate email emoji
         byte[] emojiByteCode = new byte[] {(byte) 0xF0, (byte) 0x9F, (byte) 0x93, (byte) 0xA7};
         String emoji = new String(emojiByteCode, StandardCharsets.UTF_8);
+        // @@author
+
         displayValue = emoji + " " + value;
     }
 
