@@ -14,6 +14,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientMobile;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.ui.Ui;
 
 /**
@@ -27,6 +28,8 @@ public class EditClientCommand extends ClientCommand {
 
     public static final String MESSAGE_DUPLICATE_CLIENT_NAME = "A client with this name already "
             + "exists in the project book";
+
+    public static final String MESSAGE_CLIENT_NOT_FOUND = "Client with id is not found";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
@@ -62,6 +65,10 @@ public class EditClientCommand extends ClientCommand {
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         ui.showClients();
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+
+        if (!HasIntegerIdentifier.containsId(model.getFilteredClientList(), clientId.getIdInt())) {
+            throw new CommandException(MESSAGE_CLIENT_NOT_FOUND);
+        }
 
         Client toEditClient = model.getClientById(clientId.getIdInt());
 
