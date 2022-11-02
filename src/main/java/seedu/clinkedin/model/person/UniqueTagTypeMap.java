@@ -16,13 +16,13 @@ import seedu.clinkedin.logic.parser.CliSyntax;
 import seedu.clinkedin.logic.parser.Prefix;
 import seedu.clinkedin.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.clinkedin.logic.parser.exceptions.PrefixNotFoundException;
-import seedu.clinkedin.model.person.exceptions.DuplicateTagTypeException;
-import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
 import seedu.clinkedin.model.tag.exceptions.DuplicateTagException;
+import seedu.clinkedin.model.tag.exceptions.DuplicateTagTypeException;
 import seedu.clinkedin.model.tag.exceptions.TagNotFoundException;
+import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 
 /**
  * A list of tagtypes that enforces uniqueness between its elements and does not
