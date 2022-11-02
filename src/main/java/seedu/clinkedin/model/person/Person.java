@@ -230,8 +230,8 @@ public class Person {
 
         Set<Link> links = getLinks();
         if (!links.isEmpty()) {
-            builder.append("\nLinks: ");
-            links.forEach(builder::append);
+            builder.append("\nLinks:\n");
+            links.forEach(link -> builder.append(String.format("- %s\n", link.toString())));
         }
 
         builder.append("\n\nStatus: ")
