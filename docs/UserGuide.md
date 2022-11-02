@@ -60,7 +60,7 @@ From top to bottom:
 
 2. Filter status display:
     * This displays any filters applied on the list using commands such as `ls` or `find`, for more information
-      please refer to [**Feature**](#features) section below.
+      please refer to the [**Features**](#features) section below.
 
 3. Main task list:
     * This displays all your *current* tasks.
@@ -187,7 +187,7 @@ Edits an existing task in the task list, at least one field needs to be edited.
 
 Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME]*`
 
-**Reminder**: Params in `[]` are **optional**, and `-t TAG_NAME` can be used multiple times.
+**Reminder**: Parameters in `[]` are **optional**, and `-t TAG_NAME` can be used multiple times.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about usage of the edit command:**
@@ -264,8 +264,8 @@ Format: `clear`
 listing all tasks, unmarked tasks, all tasks under a module name, etc. You may apply multiple list flags in one
 command to filter a list down to the results you are looking for. To reset the list, use the command `ls -a`.
 
-<div markdown="span" class="alert alert-warning">
-**:exclamation: Caution:** <br>
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about usage of the list command:**
 
 * Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match. It is also case-insensitive. 
 * Any command that searches for tags finds all tags that exactly match, but is also case-insensitive.
