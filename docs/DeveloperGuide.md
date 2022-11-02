@@ -400,8 +400,7 @@ Step 4. `SuggestCommand#execute()` then calls the following methods from `Model`
 * `Model#isUserCreated()`
 * `Model#calculateSuggestedCalorie()`
 
-Step 5. `SuggestCommand#execute()` returns a `CommandResult` that displays an estimated suggested amount of calories 
-the user should consume per day.
+Step 5. `SuggestCommand#execute()` returns a `CommandResult` that displays an estimated suggested amount of calories the user should consume per day.
 
 The following activity diagram outlines what happens when a user executes the `suggest` command:
 
