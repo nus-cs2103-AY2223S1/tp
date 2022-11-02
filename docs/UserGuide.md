@@ -3,20 +3,80 @@ layout: page
 title: User Guide
 ---
 
-TrackO is a **desktop app built for small business owners to help them manage orders and their inventory, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you prefer and are fast at typing, TrackO can get your order and inventory management tasks done faster than traditional GUI apps.
+# Welcome To TrackO's User Guide!
 
-* Table of Contents
-{:toc}
+Tired of configuring multiple ugly spreadsheets on Microsoft Excel or Google Sheets to track your business?
+
+Or are you perhaps finding it increasingly difficult to manage pen and paper records as your business grows?
+
+Then **TrackO** might just be **the** solution for you! With TrackO, you no longer need to worry about data inconsistencies 
+when you update your data across multiple spreadsheets or paper records. No more complicated formulas to link data 
+between spreadsheets. No need for inefficient paper records that pile up in your storeroom.
+
+In this user guide, you will find step-by-step instructions on how to install **TrackO**, as well as learn about the
+neat functionalities of **TrackO** that will make your life easier!
+
+If you are looking to help develop this project, take a look at our [Developer Guide](DeveloperGuide.md) too.
+
+## Table of Contents
+
+* [Introduction](#introduction)
+* [Layout]
+* [Using this guide]
+* [Quick start](#quick-start)
+* [Features]
+  * Inventory management
+    * [Adding an inventory item: `addi`](#adding-an-inventory-item-addi)
+    * [Listing all inventory items: `list`](#listing-all-inventory-items-listi)
+    * [Finding an inventory item: `findi`](#finding-an-inventory-item-findi)
+    * [Deleting an inventory item: `deletei`](#deleting-an-inventory-item-deletei)
+    * [Editing an inventory item: `editi`](#editing-an-inventory-item-editi)
+  * Order management
+    * [Adding an order: `addo`](#adding-an-order-addo)
+    * [Listing all orders: `listo`](#listing-all-orders-listo)
+    * [Finding order(s): `findo`](#finding-orders-findo)
+    * [Sorting orders by time created: `sorto`](#sorting-orders-by-time-created-sorto)
+    * [Deleting an order: `deleto`](#deleting-an-order-deleteo)
+    * [Editing an order: `edito`](#editing-an-order-edito)
+    * [Marking an order as paid/delivered: `marko`](#marking-an-order-as-paiddelivered-marko)
+  * [Getting help](#getting-help-help)
+  * [Clearing data in TrackO](#clearing-all-data-in-tracko-clear)
+  * [Exiting TrackO](#exiting-tracko--exit)
+* [Command Summary](#command-summary)
+* [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
+## Introduction
+**TrackO** is a desktop application built for small home-based business owners (just like you!) to manage their orders 
+and inventory items. It is an **integrated solution** that merges the process of tracking orders and inventory in one
+place, optimized for use via a Command Line Interface ([CLI](#cli)), while still having the benefits of a Graphical User Interface
+([GUI](#gui)).
 
+If you prefer and are fast at typing, **TrackO** can get your order and inventory management tasks done faster than
+the traditional solution of pen and paper, and even popular GUI applications such as spreadsheets
+(_e.g, Microsoft Excel, Google Sheets, etc._).
+
+Even if you are not _that_ comfortable with typing, fret not! **TrackO** is built with you
+in mind -- the functionalities are beginner-friendly and extremely easy to pick up.
+
+As a broad overview, **TrackO** provides users with the ability to:
+* View and manage inventory data
+* View and manage order data
+* Ensure consistency between inventory and order data
+_(e.g, automatically updating in-stock quantities on marking orders as paid/delivered)_
+
+Currently, **TrackO** only supports tracking inventory items that are countable by units _(e.g. 1 apple, 2 cookies, etc)_.
+Our development team will introduce more powerful inventory tracking functionalities _(e.g. by weight, by litres, etc)_
+in future enhancements of the product (stay tuned!).
+
+--------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the latest `TrackO.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your TrackO.
+1. Copy the file to the folder you want to use as the _home folder_ for your TrackO. { INSERT SCREENSHOTS HERE }
 
 1. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -103,7 +163,7 @@ Examples:
 - `findi oil` returns `Olive Oil` and `Vegetable Oil`
 - `findi blue` returns `Blue Shirt`, `Blue Pants`
 
-### Deleting an inventory item : `deletei`
+### Deleting an inventory item: `deletei`
 
 Deletes the specified item from the list of tracked inventory.
 
@@ -166,13 +226,13 @@ Format: `i/ITEM_NAME q/QUANTITY`
 
 Lastly, to end the command, you can enter `done` to tell TrackO to track the order or `cancel` to completely abort the command.
 
-### Listing all orders : `listo`
+### Listing all orders: `listo`
 
 Lists all the orders a store has.
 
 Format: `listo`
 
-### Locating orders by keyword: `findo`
+### Finding order(s): `findo`
 
 Finds an order with item names containing any of the given keywords.
 
@@ -236,7 +296,7 @@ Examples:
 * `findo i/Paper` followed by `deleteo 1` deletes the 1st item in the results of the `findo i/Paper` command.
 * `sorto new` followed by `deleteo 1` deletes the most recently created order
 
-### Editing details of an order: `edito`
+### Editing an order: `edito`
 
 Edits an existing order in the order list.
 
@@ -272,7 +332,7 @@ Examples:
 * When the fifth order in the list has `Tables` in quantity `3` in its order list, and you have `Chairs` in your inventory,
 `edito 5 i/chairs q/15` will add `15 Chairs` to the order list.
 
-### Marking an order as paid or delivered: `marko`
+### Marking an order as paid/delivered: `marko`
 
 Marks an existing order in the order list as paid and/or delivered. 
 
@@ -295,7 +355,7 @@ Examples:
 * `marko 1 -d` Marks the order at index `1` in the currently displayed list as `delivered`.
 * `marko 1 -p -d` Marks the order at index `1` in the currently displayed list as both `paid` and `delivered`.
 
-### Clearing all existing data in TrackO : `clear`
+### Clearing all data in TrackO: `clear`
 
 Clears all data (in both `Order List` and `Inventory List`) from TrackO.
 
@@ -314,7 +374,7 @@ Clears all data (in both `Order List` and `Inventory List`) from TrackO.
 
 Shows a window with a link to the user guide.
 
-### Exiting the program : `exit`
+### Exiting TrackO: `exit`
 
 Exits the program.
 
@@ -339,3 +399,15 @@ Format: `exit`
 | **Clear**                    | `clear`<br/> followed by `confirm` or `cancel` when prompted                                                                                                                                                                                               |
 | **Getting Help**             | `help`                                                                                                                                                                                                                                                     |
 | **Exit**                     | `exit`                                                                                                                                                                                                                                                     |
+
+## Glossary
+### CLI
+`CLI` stands for `Command Line Interface`. A `CLI` is a text-based user interface in which a program connects to the user. 
+Through a `CLI`, users interact with a system or application by typing in commands in the form of text. The system then executes
+the typed in command in response.
+
+### GUI
+`GUI` stands for `Graphical User Interface`. A `GUI` is a user interface that provides interactive visual components _(e.g. icons, etc)_.
+Through a `GUI`, users interact with a system or application by clicking on these elements. The system then responds to the user's actions
+by updating the user interface.
+
