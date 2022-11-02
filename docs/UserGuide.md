@@ -7,7 +7,9 @@ title: User Guide
 - [ConnectNUS User Guide](#connectnus-user-guide)
 - [Navigating the User Guide](#navigating-the-user-guide)
 - [Quick Start](#quick-start)
+- [Glossary](#glossary)
 - [Features](#features)
+  - [Notes about the command format](#notes-about-the-command-format)
   - [Viewing help](#viewing-help)
   - [User profile features](#user-features)
     - [Adding user](#adding-user)
@@ -48,20 +50,111 @@ title: User Guide
 # ConnectNUS User Guide
 
 ConnectNUS is **designed for NUS Computer Science students** by providing a centralised platform for them to keep track
-of their and their friends' modules and timetables. Capitalising on the features of adding previous, current and
-future modules, as well as timetables, ConnectNUS provides users with the convenience of viewing your friends' schedules
-and eliminates the problem of having to search through multiple group and private chats to know when your friends will
-be free to meet up to do group projects. The module filter feature is a useful tool to help you find friends who are currently
-taking the same modules as you now or friends who are interested in taking the same modules together in the next semester.
+of their and their friends' modules and timetables. With features such as adding previous, current and
+future modules, as well as timetables, ConnectNUS provides you with the convenience of viewing your friends' schedules
+and eliminates the hassle of having to search through multiple group and private chats to know when your friends will
+be free to meet up to do group projects. You can also use the module filters to help you find friends who have previously
+taken, currently taking or interested in taking the specified module.
 
 ConnectNUS is **optimised for use via a Command Line Interface** (CLI) while still having the benefits of a
 **Graphical User Interface** (GUI). For Computer Science students who are generally fast typers, ConnectNUS is an
-excellent platform for you to get your contact management tasks done quickly, so you can save time and effort
-finding out about your friends' schedules, and focus on getting your projects and module bidding done.
+excellent platform for you to get your CS related tasks management done quickly, so you can spend less time searching 
+through chats, and spend more time making meaningful connections and engaging in productive work.
 
+The goal of this User Guide is to empower you, as NUS Computer Science students, with the knowledge to **maximise the full 
+potential** of ConnectNUS and capitalise on the features ConnectNUS offers for you to make your CS experience
+**better than better**.
+
+Before you start using ConnectNUS, you are recommended to read the [Navigating the User Guide](#navigating-the-user-guide),
+[Glossary](#glossary), [Quick Start](#quick-start) as well as [Notes about the command format](#notes-about-the-command-format) 
+sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this 
+User Guide and help you navigate it with ease.
 
 ## Navigating the User Guide
 
+For each of the [Features](#features) in this User Guide, you will be provided with
+1. An overview of the feature to introduce its purpose and function.
+2. The command format to use the particular feature.
+3. Sample commands for you to try out the feature.
+4. Explanation on valid command parameters.
+5. Screenshots of the expected behaviour of the sample command to help you understand how the command works.
+
+The User Guide is divided into the sections by each feature :
+- [User profile features](#user-features) 
+- [Contact list features](#contact-list-features)
+- [Module features](#module-features)
+- [Timetable features](#timetable-features)
+- [Filtering features](#filtering-features)
+- [Other features](#other-features)
+
+You can jump into the various sections from the Table of Contents to learn about all related commands to the respective 
+features and click on [Scroll back to top](#table-of-contents), which can be found at the end of every section, to 
+access to the Table of Contents to quickly jump to another section without manually scrolling through the User Guide.
+
+If it is your first time using a Command Line Interface, you are recommended to try out the sample commands provided
+to gain a better understanding of how a Command Line Interface works.
+
+Once you are proficient with the various commands types and features, you may refer to the section [Command Summary](#command-summary), 
+which will provide you with a summary of all the command formats of all features provided by ConnectNUS.
+
+As recommended in the introduction, we would like to direct you to read the [Glossary](#glossary) section next.
+
+[Scroll back to top](#table-of-contents)
+
+## Glossary
+
+The glossary illustrated in the table below will help you understand the terminologies used in this 
+User Guide.
+
+<table>
+  <tr>
+    <th><strong>Terminology</strong></th>
+    <th><strong>Meaning / Purpose</strong></th>
+  </tr>
+  <tr>
+    <td><strong>Command Line Interface (CLI)</strong></td>
+    <td>
+      A text-based interface that is used to operate software (such as ConnectNUS) and operating systems. CLI
+      allows a user to perform tasks by entering commands. </br>
+      Users enter the specific command, press “Enter”, and then wait for a response. 
+      After receiving the command, the CLI processes it accordingly and shows the output/result on the screen.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Graphical User Interface (GUI)</strong></td>
+    <td>
+      A system of interactive visual components for computer software. A GUI displays objects that convey information, 
+      and represent actions that can be taken by the user. The objects change color, size, or visibility when the user 
+      interacts with them.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Index</strong></td>
+    <td>
+      An identifier which is the number corresponding to order of which your contacts are listed out, and used in 
+      conjunction with the commands to specify the contact with the given index. Each contact is identified with a 
+      unique index.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>💡Tip</strong></td>
+    <td>
+      To provide you with suggestions on how to use the commands as well as address potential confusions when using
+      these commands, so you will be able to better understand how the commands work.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>❗Caution</strong></td>
+    <td>
+      To inform you of some unintended consequences that may occur when you use the commands, so you will be  
+      able to use them appropriately.
+    </td>
+  </tr>
+</table>
+
+As recommended in the introduction, we would like to direct you to read the [Quick Start](#quick-start) section next.
+
+[Scroll back to top](#table-of-contents)
 
 ## Quick Start
 
@@ -98,6 +191,10 @@ Step 6: The GUI similar to the below should appear in a few seconds. Do note tha
 
 Step 7: Refer to the [Features](#features) section below to for more details on how to use ConnectNUS.
 
+As recommended in the introduction, we would like to direct you to read the [Notes about the command format](#notes-about-the-command-format) section next.
+
+[Scroll back to top](#table-of-contents)
+
 ## Features
 
 These are features implemented within ConnectNUS.
@@ -116,7 +213,7 @@ You may refer to each individual section for more information on the purpose and
 
 Each feature can be run using a command, and the commands follow the following format:
 
-**Notes about the command format:**
+## Notes about the command format
 
 * Words in `UPPER_CASE` are the parameters to be **supplied by you**. \
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -131,14 +228,19 @@ Each feature can be run using a command, and the commands follow the following f
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. \
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+[Scroll back to top](#table-of-contents)
 
 ## Viewing help
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the help page. 
+You can click on the button to copy the URL and paste it in a web browser to be directed back to this
+User Guide should you require assistance in the future.
 
 <img src="images/HelpWindow.png" width="800" />
 
 Format: `help`
+
+💡 **Tip:** Ensure that you have a stable Internet connection to access the User Guide online.
 
 [Scroll back to top](#table-of-contents)
 
@@ -453,6 +555,9 @@ Examples:
 ### Listing lessons / Viewing timetable
 
 Shows the list of lessons in a separate window, sorted by day and time.
+
+- To view your own timetable, use the format for user.
+- To view your contacts' timetable, use the format for contact.
 
 Format for user: `timetable user`
 
