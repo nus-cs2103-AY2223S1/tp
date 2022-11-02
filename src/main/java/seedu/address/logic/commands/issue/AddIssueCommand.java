@@ -30,7 +30,7 @@ public class AddIssueCommand extends IssueCommand {
             + PREFIX_PROJECT_ID + "PROJECT_ID "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_URGENCY + "URGENCY(0, 1, 2) \n"
+            + PREFIX_URGENCY + "URGENCY(0, 1, 2, 3) \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_PROJECT_ID + "1 "

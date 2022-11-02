@@ -30,7 +30,7 @@ public class EditIssueCommand extends IssueCommand {
             + PREFIX_ISSUE_ID + "ISSUE_ID "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_URGENCY + "URGENCY "
+            + PREFIX_URGENCY + "URGENCY(0, 1, 2, 3) "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_ISSUE_ID + "1 "
