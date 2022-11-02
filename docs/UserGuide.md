@@ -383,7 +383,7 @@ Fields supported in `find`:
 - Class Date `dt/`
 - Tag `t/`
 
-<div markdown="span" class="alert alert-danger">❗ **Caution:** Only one prefix should be used in a find command at a time.
+<div markdown="span" class="alert alert-danger">❗ **Caution:** Only one type of prefix should be used in a find command at a time.
 </div>
 
 #### Find by Name:
