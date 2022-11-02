@@ -1,0 +1,79 @@
+@startuml
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
+participant "d:DoneModuleCommand" as DoneModuleCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ModuleList" as ModuleList MODEL_COLOR
+participant ":UniqueModuleList" as UniqueModuleList MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+end box
+
+[-> LogicManager : execute("done module CS1101S")
+activate LogicManager
+
+LogicManager -> ModtrektParser : parseCommand("done module CS1101S")
+activate ModtrektParser
+
+create DoneModuleCommand
+ModtrektParser -> DoneModuleCommand
+activate DoneModuleCommand
+
+DoneModuleCommand --> ModtrektParser
+deactivate DoneModuleCommand
+
+ModtrektParser --> LogicManager : command
+deactivate ModtrektParser
+
+LogicManager -> DoneModuleCommand : execute()
+activate DoneModuleCommand
+
+DoneModuleCommand -> Model : getCurrentModule()
+activate Model
+
+Model --> DoneModuleCommand
+deactivate Model
+
+DoneModuleCommand -> Module : done()
+activate Module
+
+Module --> DoneModuleCommand
+deactivate Module
+
+DoneModuleCommand -> Model : setModule(Module, ModuleDone)
+activate Model
+
+Model -> ModuleList : setModule(Module, ModuleDone)
+activate ModuleList
+
+ModuleList -> UniqueModuleList : setModule(Module, ModuleDone)
+activate UniqueModuleList
+
+UniqueModuleList --> ModuleList
+deactivate UniqueModuleList
+
+ModuleList --> Model
+deactivate ModuleList
+
+Model --> DoneModuleCommand
+deactivate Model
+
+create CommandResult
+DoneModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DoneModuleCommand
+deactivate CommandResult
+
+DoneModuleCommand --> LogicManager : result
+deactivate DoneModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

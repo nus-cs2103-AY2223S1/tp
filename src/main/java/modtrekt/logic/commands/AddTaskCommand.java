@@ -91,7 +91,7 @@ public class AddTaskCommand extends Command {
         }
 
         model.addTask(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getDescription()));
     }
 
     @Override

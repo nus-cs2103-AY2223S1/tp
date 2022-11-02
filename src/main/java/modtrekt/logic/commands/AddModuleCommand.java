@@ -31,6 +31,10 @@ public class AddModuleCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Yay! I added a new module: %1$s!";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " <MODULE CODE>";
+    public static final String VERBOSE_MESSAGE_USAGE = COMMAND_WORD + " <MODULE CODE> \n"
+            + "-n <MODULE NAME> \n"
+            + "-cr <MODULE CREDITS>";
 
     @Parameter(description = "<alphanumeric module code>", required = true,
             converter = ModCodeConverter.class)
@@ -90,11 +94,15 @@ public class AddModuleCommand extends Command {
                 model.addModule(module);
                 return new CommandResult(String.format(MESSAGE_SUCCESS, module));
             } catch (IOException | InterruptedException e) {
-                throw new CommandException(
-                        "Error fetching module data from NUSMods, please try inputting manually");
+                throw new CommandException("Error fetching module data from NUSMods, "
+                        + "please try inputting manually using the following syntax: \n"
+                        + VERBOSE_MESSAGE_USAGE);
             }
         } else if (this.name == null || this.credit == null) {
-            throw new CommandException("Invalid command");
+            throw new CommandException("Invalid command, please see below for the command usage \n"
+                    + MESSAGE_USAGE + "\n"
+                    + "OR \n"
+                    + VERBOSE_MESSAGE_USAGE);
         } else {
             Module module = new Module(modCode, name, credit, new ModTaskCount("0"));
             model.addModule(module);

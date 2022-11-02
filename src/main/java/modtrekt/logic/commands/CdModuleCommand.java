@@ -5,6 +5,7 @@ import com.beust.jcommander.Parameter;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.model.Model;
 import modtrekt.model.module.ModCode;
+import modtrekt.model.module.Module;
 
 /**
  * Changes the current module that is shown to the user.
@@ -23,6 +24,11 @@ public class CdModuleCommand extends Command {
      */
     public CdModuleCommand() {}
 
+    /**
+     * Creates an instance of CdModuleCommand with the specified {@code argument}, for testing.
+     */
+    public CdModuleCommand(String argument) { this.argument = argument; }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (argument.equals("..")) {
@@ -40,6 +46,10 @@ public class CdModuleCommand extends Command {
             if (!model.hasModuleWithModCode(moduleCode)) {
                 throw new CommandException(String.format("Module code %s does not exist.",
                         moduleCode.toString()));
+            }
+            Module previousModule = model.parseModuleFromCode(moduleCode);
+            if (previousModule.isDone()) {
+                throw new CommandException("Cannot cd into a module that is already marked as done.");
             }
             model.setCurrentModule(moduleCode);
             return new CommandResult(String.format("Changed current module to %s!", moduleCode.toString()));

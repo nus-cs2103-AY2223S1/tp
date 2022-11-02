@@ -18,6 +18,7 @@ public class ModuleBuilder {
     private ModName name;
     private ModCode code;
     private ModCredit credit;
+    private boolean isDone = false;
 
     /**
      * Creates a {@code ModuleBuilder} with the default details.
@@ -61,9 +62,17 @@ public class ModuleBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code isDone} of the {@code Module} that we are building.
+     */
+    public ModuleBuilder withDone(boolean isDone) {
+        this.isDone = isDone;
+        return this;
+    }
+
 
     public Module build() {
-        return new Module(code, name, credit, new ModTaskCount("0"));
+        return new Module(code, name, credit, new ModTaskCount("0"), isDone);
     }
 
 }
