@@ -260,9 +260,9 @@ information, you can refer to the [Add Order](#adding-an-order-to-a-buyer-add-o)
 
 Examples:
 * To add a buyer with one
-  order: `add-b n/Hongyi ph/11223344 e/email@u.nus.edu a/UTR 138600 l/Singapore o/add-o o_st/Pending o_r/add-r o_a/1 o_sp/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
+  order: `add-b n/Hongyi ph/11223344 e/hhygg@u.nus.edu a/UTR 138600 l/Singapore o/add-o o_st/Pending o_r/add-r o_a/1 o_sp/Siamese cat o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
 * To add a buyer with two
-  orders: `add-b n/Hongyi ph/11223344 e/email@u.nus.edu a/UTR 138600 l/Singapore o/add-o o_st/Pending o_r/add-r o_a/1 o_sp/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery o/add-o  o_st/Negotiating o_r/add-r o_a/3 o_sp/Chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty `
+  orders: `add-b n/Hongyi ph/11223344 e/hhygg@u.nus.edu a/UTR 138600 l/Singapore o/add-o o_st/Pending o_r/add-r o_a/1 o_sp/Siamese cat o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery o/add-o  o_st/Negotiating o_r/add-r o_a/3 o_sp/Shih Tzu o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty`
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -275,7 +275,7 @@ Format: `add-d n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION`
 
 Examples:
 
-* To add a single deliverer: `add-d n/Hongyi ph/11223344 e/email@u.nus.edu a/UTR 138600 l/Singapore`
+* To add a single deliverer: `add-d n/Lezheng ph/19657471 e/lez998@u.nus.edu a/PGP Residences 118429 l/Singapore`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -316,11 +316,11 @@ you can refer to the [Add Pet](#adding-a-pet-to-a-supplier--add-p) section.
 Examples:
 
 * To add a single
-  supplier: `add-s n/Carol Pet House ph/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/USA`
+  supplier: `add-s n/Carol Pet House ph/17238965 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/Singapore`
 * To add a supplier with one pet for
-  sale: `add-s n/Carol Pet House ph/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/USA p/add-p p_n/Page p_d/2022-1-1 p_c/pink p_cp/pure pink p_h/41 p_s/pig p_cert/US certified p_v/true p_w/102 p_p/270`
+  sale: `add-s n/Carol Pet House ph/17238965 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/Singapore p/add-p p_n/Luck p_d/2022-01-01 p_c/pink p_cp/pure pink p_h/41.2 p_s/pig p_cert/US certified p_v/true p_w/102.5 p_p/270.3`
 * To add a supplier with two pets for
-  sale: `add-s n/Carol Pet House ph/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/USA p/add-p p_n/Page p_d/2022-1-1 p_c/pink p_cp/pure pink p_h/41 p_s/pig p_cert/US certified p_v/true p_w/102 p_p/270 p/add-p p_n/Snupy p_d/2021-05-31 p_c/white p_cp/dotted p_h/89.3 p_cert/US certified p_s/rabbit p_v/false p_w/32 p_p/330`
+  sale: `add-s n/Carol Pet House ph/17238965 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/Singapore p/add-p p_n/Luck p_d/2022-01-01 p_c/pink p_cp/pure pink p_h/41.2 p_s/pig p_cert/US certified p_v/true p_w/102.5 p_p/270.3 p/add-p p_n/Snupy p_d/2021-05-31 p_c/white p_cp/dotted p_h/89.3 p_cert/US certified p_s/rabbit p_v/false p_w/32.8 p_p/330.3`
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -351,8 +351,8 @@ should be like. In the future, you may be able to define your own requests as te
 
 Examples:
 
-* `add-o 1 o_st/Pending o_r/add-r o_a/1 o_sp/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
-* `add-o 1 o_st/Negotiating o_r/add-r o_a/3 o_sp/Chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty`
+* `add-o 1 o_st/Pending o_r/add-r o_a/1 o_sp/German shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
+* `add-o 1 o_st/Negotiating o_r/add-r o_a/3 o_sp/chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty`
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -369,7 +369,7 @@ supplier, if you have filtered the list.
 
 Examples:
 
-* `add-p 1 p_n/Wu Lezheng p_d/2001-11-20 p_c/red p_cp/stripped p_h/39.5 p_s/chihuahua p_v/true p_w/15.3 p_p/20 p_cert/GoodDog Cert p_cert/Royal Blood Cert`
+* `add-p 1 p_n/Kawaii p_d/2001-11-20 p_c/red p_cp/stripped p_h/39.5 p_s/Bengal cat p_v/true p_w/15.3 p_p/20 p_cert/GoodDog Cert p_cert/Royal Blood Cert`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -910,7 +910,7 @@ These prefixes are for you to indicate different fields when you add a new [buye
 
 |                                  Action                                   | Format                                                                                    | Examples                                                               |
 |:-------------------------------------------------------------------------:|-------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
-|                 **[Add](#adding-a-contact-or-item-add)**                  | `add-ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION`                     | `add-b n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 l/Singapore` |
+|                 **[Add](#adding-a-contact-or-item-add)**                  | `add-ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION`                     | `add-b n/Hongyi p/11223344 e/hhygg@u.nus.edu a/UTR 138600 l/Singapore` |
 | **[Add](#adding-a-person-with-a-popup-window--add)** (using popup window) | `add buyer`, `add supplier`                                                               |                                                                        |
 |                 **[Clear](#clearing-all-entries--clear)**                 | `clear`                                                                                   |                                                                        |
 |             **[Delete](#deleting-a-contact-or-item--delete)**             | `delete-KEY INDEX`                                                                        | `delete-b 1`, `delete-d 2`, `delete-s 3`, `delete-o 1`, `delete-p 2`   |
