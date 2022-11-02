@@ -49,7 +49,7 @@ public class EmployeeId {
 
     public static void restart() {
         allIds.clear();
-        count = 0;
+        count = 1;
     }
 
     public static EmployeeId addEmployeeId(String id) {

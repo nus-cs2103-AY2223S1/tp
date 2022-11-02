@@ -18,6 +18,7 @@ import org.junit.jupiter.api.io.TempDir;
 import coydir.commons.exceptions.DataConversionException;
 import coydir.model.Database;
 import coydir.model.ReadOnlyDatabase;
+import coydir.testutil.TestUtil;
 
 public class JsonDatabaseStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonDatabaseStorageTest");
@@ -68,6 +69,7 @@ public class JsonDatabaseStorageTest {
 
         // Save in new file and read back
         jsonDatabaseStorage.saveDatabase(original, filePath);
+        TestUtil.restartEmployeeId(1);
         ReadOnlyDatabase readBack = jsonDatabaseStorage.readDatabase(filePath).get();
         assertEquals(original, new Database(readBack));
 
@@ -75,15 +77,16 @@ public class JsonDatabaseStorageTest {
         original.addPerson(HOON);
         original.removePerson(ALICE);
         jsonDatabaseStorage.saveDatabase(original, filePath);
+        TestUtil.restartEmployeeId(1);
         readBack = jsonDatabaseStorage.readDatabase(filePath).get();
         assertEquals(original, new Database(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
         jsonDatabaseStorage.saveDatabase(original); // file path not specified
+        TestUtil.restartEmployeeId(1);
         readBack = jsonDatabaseStorage.readDatabase().get(); // file path not specified
         assertEquals(original, new Database(readBack));
-
     }
 
     @Test
