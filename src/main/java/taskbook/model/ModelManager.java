@@ -164,6 +164,7 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task task) {
         versionedTaskBook.addTask(task);
+        updateFilteredTaskListPredicate(PREDICATE_SHOW_ALL_TASKS);
     }
 
     @Override

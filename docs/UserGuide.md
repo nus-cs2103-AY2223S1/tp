@@ -134,6 +134,9 @@ The examples in this guide are formatted with the following conventions:
 * Flags consisting of a character and `/` specify the type of parameter to be supplied.
   e.g. in `n/NAME`, `n/` is the flag for the `NAME` parameter.
 
+* The `NAME` parameter for all commands must be the **full name** of the contact 
+  e.g. if the contact is named `Alex Yeoh`, a command must use `n/Alex Yeoh` and not `n/Alex` or `n/Alex Y` etc.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `n/NAME`, `NAME` is a parameter which can be used as `n/John Doe`.
 
@@ -143,8 +146,8 @@ The examples in this guide are formatted with the following conventions:
 * Diamond brackets mean that at least 1 item inside them must be supplied by the user. <br>
   e.g. `task find <q/QUERY a/ASSIGNMENT x/DONE>` can be used as `task find q/John` or as `task find a/FROM x/X`, but not just `task find`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[#/TAG]…​` can be used as ` ` (i.e. 0 times), `#/friend`, `#/friend #/family` etc.
+* Items with `…`​ after them can be used multiple times including zero times. Otherwise, they can only be used once by default.<br>
+  e.g. `[#/TAG]…​` can be used as ` ` (i.e. 0 times), `#/friend`, `#/friend #/family` etc, while `n/NAME` (which does not have the square brackets and `…`​) must be used exactly once.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -183,11 +186,27 @@ Format: `task list`
 
 ### Adding
 
+<div markdown="block" class="alert alert-warning">
+
+**:bulb: Note:**<br>
+* For contacts: A contact is considered a duplicate and cannot be added to the TaskBook if they have the **same name** as an existing contact.
+* For tasks: A task is considered a duplicate and cannot be added to the TaskBook if they fulfill **all** of the following criteria with respect to an existing task:
+    * same type of task (i.e. `todo`, `event` or `deadline`)
+    * same contact name
+    * same assignment
+    * same description
+    * same date (for `event`, `deadline` tasks only)
+    
+</div>
+
 #### Adding a contact : `contact add`
 
 Adds a contact to your task book.
 
 Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`
+
+* For more information on the `NAME` parameter, see [NAME Parameter](#name-parameter).
+* Note that adding a new contact [will remove the effect of a `find` command](#finding), displaying the full list of contacts.
 
 Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -206,6 +225,7 @@ Adds a task of type todo into your task list.
 * Adds a todo assigned by (`m/`) or assigned to (`o/`) a contact with a description. Optional to include tags.
 * Input "Myself" or omit the `m/` and `o/` flags to assign yourself a todo.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
+* Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 <div markdown="block" class="alert alert-info">
 
@@ -217,8 +237,8 @@ Adds a task of type todo into your task list.
 </div>
 
 Examples:
-* `task todo m/John d/Finish user guide` adds a todo called “Finish user guide” assigned by John to you.
-* `task todo o/Sam d/Finish the assignment #/cs2103` adds a todo called “Finish the assignment” tagged as "cs2103" and assigned to Sam.
+* `task todo m/Alex Yeoh d/Finish user guide` adds a todo called “Finish user guide” assigned by Alex Yeoh to you.
+* `task todo o/Bernice Yu d/Finish the assignment #/cs2103` adds a todo called “Finish the assignment” tagged as "cs2103" and assigned to Bernice Yu.
 * `task todo o/Myself d/Upload slides` adds a todo called “Upload slides” which is self-assigned by you.
 * `task todo d/Finish essay` adds a todo called "Finish essay" which you assign to yourself.
 
@@ -228,7 +248,7 @@ Adds a task of type deadline into the task list.
 
 **Assigned by** Format: `task deadline m/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
-**Assigned to** Format: `task deadline o/Name d/DESCRIPTION t/DATE [#/TAG]…`
+**Assigned to** Format: `task deadline o/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
 **Self-assigned** Format: `task deadline d/DESCRIPTION t/DATE`
 
@@ -236,6 +256,7 @@ Adds a task of type deadline into the task list.
 * Input "Myself" or omit the `m/` and `o/` flags to assign yourself the deadline.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
 * For more information on `DATE` formats, see [Accepted Date Formats](#accepted-date-formats).
+* Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 <div markdown="block" class="alert alert-info">
 
@@ -247,8 +268,8 @@ Adds a task of type deadline into the task list.
 </div>
 
 Examples:
-* `task deadline m/John d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by John to you.
-* `task deadline o/Sam d/Finish the assignment t/Jan 31 2022 #/cs2103` adds a deadline called “Finish the assignment” and tagged as "cs2103" which is assigned to Sam.
+* `task deadline m/Alex Yeoh d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by Alex Yeoh to you.
+* `task deadline o/Bernice Yu d/Finish the assignment t/Jan 31 2022 #/cs2103` adds a deadline called “Finish the assignment” and tagged as "cs2103" which is assigned to Bernice Yu.
 * `task deadline o/Myself d/Upload slides t/2022-12-31` adds a deadline called “Upload Slides” which self-assigned by you.
 * `task deadline d/Finish essay t/Jan 31 2022` adds a deadline called “Finish essay” which you assign to yourself.
 
@@ -265,6 +286,7 @@ Adds a task of type event into your task list.
 * Adds an event assigned by (`m/`) or assigned to (`o/`) a contact with a description and an event date. Optional to include tags.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
 * For more information on `DATE` formats, see [Accepted Date Formats](#accepted-date-formats).
+* Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 <div markdown="block" class="alert alert-info">
 
@@ -276,12 +298,19 @@ Adds a task of type event into your task list.
 </div>
 
 Examples:
-* `task event m/John d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by John to you.
-* `task event o/Sam d/Finish the assignment t/Jan 31 2022 #/cs2103` adds an event called “Finish the assignment” tagged as "cs2103" which is assigned to Sam.
+* `task event m/Alex Yeoh d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by Alex Yeoh to you.
+* `task event o/Bernice Yu d/Finish the assignment t/Jan 31 2022 #/cs2103` adds an event called “Finish the assignment” tagged as "cs2103" which is assigned to Bernice Yu.
 * `task event o/Myself d/Upload Slides t/Jan 31 2022` adds an event called “Upload Slides” which is self-assigned by you.
 * `task event d/Finish essay t/Jan 31 2022` adds an event called “Finish essay” which you assigned to yourself.
 
 ### Editing
+
+<div markdown="block" class="alert alert-warning">
+
+**:bulb: Note:**<br>
+* [As mentioned above](#Adding), you cannot edit a contact/task into a duplicate of an existing contact/task in the TaskBook.
+
+</div>
 
 #### Editing a contact : `contact edit`
 
@@ -373,6 +402,13 @@ Example:
 * `task list` followed by `task delete i/2` deletes the 2nd task in your task list.
 
 ### Finding
+
+<div markdown="block" class="alert alert-warning">
+
+**:bulb: Note:**<br>
+* When you add a new contact/task, the effect of any `find` command will be removed, and the full list of contacts/tasks will be displayed.
+
+</div>
 
 #### Finding contacts : `contact find`
 
@@ -552,6 +588,13 @@ Any of these date formats are accepted:
 * MM dd yyyy (10 31 2022)
 * dd MMM yyyy (31 Oct 2022)
 
+### NAME Parameter
+
+Where the NAME parameter is required (e.g. `n/NAME`), specify the **exact name**
+* in full
+* in a case-sensitive format
+
+This prevents ambiguity in naming so that you can specify the exact contact where necessary.
 
 --------------------------------------------------------------------------------------------------------------------
 
