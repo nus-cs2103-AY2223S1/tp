@@ -25,8 +25,8 @@ You can reach us at the email `zbz.lvlv@gmail.com`
 
 [[portfolio](team/onepersonhere.md)]
 
-* Role: Developer
-* Responsibilities: Backend
+* Role: Co-Lead
+* Responsibilities: Code Quality
 
 ### Justin Cheng
 
