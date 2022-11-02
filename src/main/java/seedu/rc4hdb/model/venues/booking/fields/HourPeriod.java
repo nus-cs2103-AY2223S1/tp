@@ -33,6 +33,10 @@ public class HourPeriod extends StringField implements BookingField {
         endHour = new Hour(hours[1]);
     }
 
+    public String toString() {
+        return startHour + "-" + endHour;
+    }
+
     /**
      * Returns true if a given string is a valid hour period.
      */
