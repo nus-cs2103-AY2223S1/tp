@@ -10,7 +10,6 @@ import java.util.function.Predicate;
 import seedu.address.logic.commands.FindBuyersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.model.buyer.NameContainsKeywordsPredicate;
 import seedu.address.model.buyer.NameContainsSubstringPredicate;
 
 /**
@@ -30,18 +29,6 @@ public class FindBuyersCommandParser extends Parser<FindBuyersCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindBuyersCommand.MESSAGE_USAGE));
         }
 
-        List<Predicate<Buyer>> predicatesList = new ArrayList<>();
-
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-        Predicate<Buyer> wordPredicate = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
-
-        Predicate<Buyer> substringPredicate = new NameContainsSubstringPredicate(trimmedArgs);
-
-        predicatesList.add(wordPredicate);
-        predicatesList.add(substringPredicate);
-
-        Predicate<Buyer> combinedPredicate = predicatesList.stream().reduce(Predicate::or).get();
-
-        return new FindBuyersCommand(combinedPredicate);
+        return new FindBuyersCommand(new NameContainsSubstringPredicate(trimmedArgs));
     }
 }

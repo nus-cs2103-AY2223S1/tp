@@ -21,7 +21,7 @@ import seedu.address.model.BuyerBook;
 import seedu.address.model.Model;
 import seedu.address.model.PropertyBook;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.model.buyer.NameContainsKeywordsPredicate;
+import seedu.address.model.buyer.NameContainsSubstringPredicate;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditBuyerDescriptorBuilder;
@@ -162,8 +162,7 @@ public class BuyerCommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredBuyerList().size());
 
         Buyer buyer = model.getFilteredBuyerList().get(targetIndex.getZeroBased());
-        final String[] splitName = buyer.getName().fullName.split("\\s+");
-        model.updateFilteredBuyerList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredBuyerList(new NameContainsSubstringPredicate(buyer.getName().fullName));
 
         assertEquals(1, model.getFilteredBuyerList().size());
     }

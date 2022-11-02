@@ -5,15 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.buyer.NameContainsKeywordsPredicate;
+import seedu.address.model.buyer.NameContainsSubstringPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -24,10 +21,10 @@ public class FindBuyersCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        NameContainsSubstringPredicate firstPredicate =
+                new NameContainsSubstringPredicate("first");
+        NameContainsSubstringPredicate secondPredicate =
+                new NameContainsSubstringPredicate("second");
 
         FindBuyersCommand findFirstCommand = new FindBuyersCommand(firstPredicate);
         FindBuyersCommand findSecondCommand = new FindBuyersCommand(secondPredicate);
@@ -68,11 +65,4 @@ public class FindBuyersCommandTest {
     //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     //        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     //    }
-
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
-    }
 }

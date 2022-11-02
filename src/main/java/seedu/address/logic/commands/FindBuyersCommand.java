@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.buyer.Buyer;
+import seedu.address.model.buyer.NameContainsSubstringPredicate;
 
 /**
  * Finds and lists all buyers in buyer book whose name contains any of the argument keywords.
@@ -21,9 +22,9 @@ public class FindBuyersCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final Predicate<Buyer> predicate;
+    private final NameContainsSubstringPredicate predicate;
 
-    public FindBuyersCommand(Predicate<Buyer> predicate) {
+    public FindBuyersCommand(NameContainsSubstringPredicate predicate) {
         this.predicate = predicate;
     }
 
