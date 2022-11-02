@@ -629,7 +629,7 @@ Format: `list`
 
 ### Finding patients: `find`
 
-Finds patients whose parameters contain the given keywords.
+You can find specific patients using the `find` command.
 
 Format: `find [KEYWORD]… [xyz/XYZ_KEYWORD]…`
 * `xyz/XYZ_KEYWORD` refers to a keyword for a specific parameter.
