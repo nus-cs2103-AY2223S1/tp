@@ -49,6 +49,6 @@ public class NameTest {
         assertEquals(tempName, new Name("peter jack"));
 
         // different values -> return false
-        assertNotEquals(tempName, new Name("peter the 2nd"));
+        assertNotEquals(tempName, new Name("CaPItal TaN"));
     }
 }
