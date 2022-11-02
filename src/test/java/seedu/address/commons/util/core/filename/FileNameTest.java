@@ -58,6 +58,8 @@ class FileNameTest {
         assertFalse(FileName.isValidFileName(">>>"));
         assertFalse(FileName.isValidFileName("???"));
         assertFalse(FileName.isValidFileName("///"));
+        assertFalse(FileName.isValidFileName("ab"));
+        assertFalse(FileName.isValidFileName("0123456789012345678901234567890"));
 
         // valid fileName
         assertTrue(FileName.isValidFileName("012345678901234567890123456789"));
