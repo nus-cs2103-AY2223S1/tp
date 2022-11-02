@@ -279,33 +279,26 @@ ___
 
 ### Deleting a listing : `deleteL`
 
-Format: `deleteL [l/ LISTING_ID]`
-* Deletes the listing with the given ListingId.
-* 
-    `LISTING_ID` refers to the ListingId of the listing you wish to delete.
+Format: `deleteL [id/INDEX]`
+* Deletes the listing with the given Index.
+* `INDEX` refers to the Index of the listing you wish to delete.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Note that you refer to the Listing you wish to delete by their ListingId instead of the index displayed.
-This was to ensure that you may freely delete Listings without referring to their displayed indexes.
+Note that you refer to the Index of the Listing in the displayed list.
 </div>
 
 Examples:
 
 _Success_
-* `deleteL l/007` Deletes the Listing with ListingId of `007`.
+* `deleteL id/1` Deletes the first Listing in the list.
 
 ![deleteL example](images/deleteL.png)
 
 _Failure_
-* `deleteL l/2356739457` Fails as there is no Listing with such ListingId.
+* `deleteL l/2356739457` Fails as the Index provided does not exist.
 
 ![deleteL Invalid ListingId example](images/deleteLInvalidId.png)
 
-* `deleteL 1` Fails as the parameter entered is an `Index` instead of `ListingId`.
-
-![deleteL Index example](images/deleteLIndex.png)
-
-[Back to top](#features).
 ___
 
 ### Deleting an offer : `deleteO`
