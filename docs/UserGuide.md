@@ -177,10 +177,10 @@ A person is only considered duplicated if the name is exactly the same including
 </div>
 
 Examples:
-* `add -p` followed by `n/John Doe e/johnd@example.com p/98765432 l/1 c/Meta`  
-will add the name, email, phone number and company and link to the internship with index **1**.
+* `add -p` followed by `n/John Doe e/johnd@example.com p/98765432 l/1 c/Meta` 
+adds the name, email, phone number and company and link to the internship with index **1**.
 * `add -p` followed `n/Betsy Crowe t/friend e/betsycrowe@example.com` 
-will add the name, tags and email.
+adds the name, tags and email.
 
 ### 4.1.2. Adding an internship: `add -i`
 
