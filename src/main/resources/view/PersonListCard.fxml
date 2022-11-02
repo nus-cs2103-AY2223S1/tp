@@ -50,14 +50,14 @@
         <padding>
           <Insets top="3" />
         </padding>
-        <Label minWidth="55" styleClass="cell_small_label" text="Address: " />
+        <Label minWidth="53" styleClass="cell_small_label" text="Address: " />
         <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
       </HBox>
       <HBox>
         <padding>
           <Insets top="3" />
         </padding>
-        <Label minWidth="40" styleClass="cell_small_label" text="Email: " />
+        <Label minWidth="38" styleClass="cell_small_label" text="Email: " />
         <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
       </HBox>
       <HBox>
@@ -92,7 +92,7 @@
         <padding>
           <Insets top="3" />
         </padding>
-        <Label minWidth="105" styleClass="cell_small_label" text="Additional Notes: " />
+        <Label minWidth="103" styleClass="cell_small_label" text="Additional Notes: " />
         <Label fx:id="additionalNotes" styleClass="cell_small_label" text="\$additionalNotes" wrapText="true" />
       </HBox>
     </VBox>
