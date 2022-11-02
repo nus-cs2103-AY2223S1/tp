@@ -48,7 +48,7 @@ go in-depth into the sections you are interested to learn more about.
 
 These styles below are consistently used throughout this user guide. This section hopes to provide
 you with a better understanding on how to interpret these formats.
-* [Phrases in blue](#how-to-use-the-user-guide) mean that they are hyperlinked to a 
+* [Phrases in blue](#style-guide) mean that they are hyperlinked to a 
 section of this user guide or to an external website.
 * `Coded phrases` surrounded by a block indicate they are technical terms such as GuestBook commands.
 * **Bolded phrases** are key terms that you should pay attention to.
@@ -88,11 +88,11 @@ section of this user guide or to an external website.
 
 1. Ensure you have `Java 11` or above installed in your Computer. <br><br>
 
-   * If you are using a Mac, open the terminal and enter `java --version`.
-     * To open the terminal, press `command` and `space bar` together to launch Spotlight.
+   * If you are using a Mac, open the `terminal` and enter `java --version`.
+     * To open the `terminal`, press `command` and `space bar` together to launch Spotlight.
      * Following, enter `terminal` in the search bar.
-   * If you are using a Windows, open the command window and enter `java -version`. 
-     * To open the command window, press `Windows` and `R` together to launch the "Run" box.
+   * If you are using a Windows, open the `command window` and enter `java -version`. 
+     * To open the `command window`, press `Windows` and `R` together to launch the "Run" box.
      * Following, enter `cmd` and click `OK`. 
    * If java is installed, you would get a similar output as shown below. You can continue to step 2.
    (Do not worry about what the message says, it is not crucial to learn how to use GuestBook.)
@@ -115,8 +115,12 @@ section of this user guide or to an external website.
 3. Copy the file to the folder you want to use as the **home folder** for your GuestBook. <br> <br>
    ![Ui](images/GuestBookIcon.png) <br><br>
 
-4. Double-click on `guestbook.jar` to start the app. The GUI, similar to the image below, should pop up in a few seconds. 
-Note that the app contains **sample data**.<br><br>
+4. Double-click on `guestbook.jar` to start the app. 
+   * Alternatively, if you wish to use the `terminal` or `command window`, enter 
+   `java -jar guestbook.jar` to start the app. 
+
+   The GUI, similar to the image below, should pop up in a few seconds. Note that the GuestBook
+   comes prepackaged with **sample data**.<br><br>
    ![Ui](images/Ui.png) <br><br>
 
 5. Type the command in the command box and press Enter to execute it. E.g., typing **`help`** and pressing Enter will open the help window.<br><br>

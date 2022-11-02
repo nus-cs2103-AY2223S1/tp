@@ -20,8 +20,8 @@ Given below are my contributions to the project.
   * This field indicates if a room has been cleaned or not.
 
 
-* **New Feature**: Added markRoomsUnclean command.
-  * Allows the user to set the room clean status of all the guest in the hotel to "no" in a single command.
+* **New Feature**: Added markroomsunclean command.
+  * Allows the user to set the room clean status of all the guest in the hotel to `no` in a single command.
   * This feature greatly aids with GuestBook's efficiency. Typing in one command to change all guests' room
 clean statuses saves the user an incredible amount of time compared to individually editing each guest's 
 details.
