@@ -26,7 +26,7 @@ public class CustomCommandBuilder {
     /**
      * Retrieves the macro shortcut that represent this command.
      *
-     * @return
+     * @return the string representing the macro word.
      */
     public String getRepr() {
         return repr;
