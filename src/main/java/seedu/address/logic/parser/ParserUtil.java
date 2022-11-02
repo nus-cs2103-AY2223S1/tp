@@ -151,6 +151,9 @@ public class ParserUtil {
         if (!MeetingTime.isValidMeetingTime(trimmedMeetingTime)) {
             throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
+        if (!MeetingTime.isValidDayMonth(trimmedMeetingTime)) {
+            throw new ParseException(MeetingTime.MESSAGE_INVALID_DATE);
+        }
         return new MeetingTime(trimmedMeetingTime);
     }
 
