@@ -28,7 +28,7 @@ public class Gender {
     public Gender(String genderType) {
         requireNonNull(genderType);
         checkArgument(isValidGender(genderType), MESSAGE_CONSTRAINTS);
-        value = genderType;
+        value = genderType.toLowerCase();
     }
 
     /**
