@@ -31,7 +31,7 @@ public class FindTaskCommand extends Command {
             + COMMAND_WORD + " "
             + PREFIX_TASK_DESCRIPTION + "party "
             + PREFIX_TASK_DEADLINE + "25-12-2022 "
-            + PREFIX_TASK_COMPLETION_STATUS + "completed";
+            + PREFIX_TASK_COMPLETION_STATUS + "complete";
 
     private final TaskContainsKeywordsPredicate predicate;
 
