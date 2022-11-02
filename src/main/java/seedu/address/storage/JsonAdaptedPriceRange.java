@@ -35,7 +35,7 @@ public class JsonAdaptedPriceRange {
      * Converts this Jackson-friendly adapted PriceRange object into the model's {@code PriceRange} object.
      */
     public PriceRange toModelType() throws ParseException {
-        if (lowerBound == null || upperBound == null || lowerBound < 0 || upperBound < 0) {
+        if (lowerBound == null || upperBound == null || lowerBound < -1 || upperBound < -1) {
             throw new ParseException(PriceRange.MESSAGE_USAGE);
         }
         Price modelUpperBound = new Price(upperBound);
