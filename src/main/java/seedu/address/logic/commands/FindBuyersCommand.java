@@ -14,10 +14,10 @@ public class FindBuyersCommand extends Command {
 
     public static final String COMMAND_WORD = "findbuyers";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all buyers whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all buyers whose names contain the specified string.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " bala";
 
     private final NameContainsKeywordsPredicate predicate;
 
