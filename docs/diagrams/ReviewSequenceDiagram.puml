@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":ReviewCommand" as ReviewCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -18,7 +18,7 @@ create IsFoodAddedOnThisDatePredicate
 ReviewCommand -> IsFoodAddedOnThisDatePredicate : IsFoodAddedOnThisDatePredicate(today)
 activate IsFoodAddedOnThisDatePredicate
 
-IsFoodAddedOnThisDatePredicate --> ReviewCommand
+IsFoodAddedOnThisDatePredicate --> ReviewCommand : p
 deactivate IsFoodAddedOnThisDatePredicate
 
 ReviewCommand -> Model : updateFilteredFoodList(p)
@@ -33,13 +33,13 @@ activate Model
 Model --> ReviewCommand
 deactivate Model
 
-ReviewCommand -> Model : getCalorieDifference()
+ReviewCommand -> Model : getCalorieTarget()
 activate Model
 
 Model --> ReviewCommand
 deactivate Model
 
-ReviewCommand -> Model : getCalorieTarget()
+ReviewCommand -> Model : getCalorieDifference()
 activate Model
 
 Model --> ReviewCommand
@@ -52,7 +52,7 @@ activate CommandResult
 CommandResult --> ReviewCommand
 deactivate CommandResult
 
-[<--ReviewCommand
+[<--ReviewCommand : result
 deactivate ReviewCommand
 
 @enduml
