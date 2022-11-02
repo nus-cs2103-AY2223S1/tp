@@ -177,8 +177,6 @@ Adds a bill attached to an appointment with input information including amount a
 
 * The onus is on the user to check that the bill date entered is the same as the appointment date or later.
 
-* The onus is on the user to check that the bill date entered is the same as the appointment date or later.
-
 #### Command word
 
 `addbill`, `ab`
@@ -574,7 +572,7 @@ Format:
 
 * The command words are `deleteappointment` or `da`.
 * The appointment to be deleted is identified by using the index in the displayed list.
-* Deleting an appointment deletes its related bills.
+* Deleting an appointment deletes its related bill.
 * If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
   shown with the correct command format.
 * If the index provided is negative or greater than the number of patients in the list, an error message will be shown
@@ -688,3 +686,10 @@ HealthContact data are saved in the hard disk automatically after any command th
 
 HealthContact data are saved as a JSON file `[JAR file location]/data/healthcontact.json`. Advanced users are welcome to update data directly by editing that data file.
 * If the changes to the data file makes its format invalid, HealthContact will discard all data and start with an empty data file at the next run.
+
+# 2. FAQ
+1. Q: How do I find out which appointment a bill is for?
+- Use the FindAppointmentCommand to find all appointments for a patient using the patient name on the bill. Then, use the SelectAppointmentCommand to see which appointment is the bill for.
+
+2. Q: What do I do if I cannot open the application by double-clicking on it?
+- Try opening the application by running the command `java -jar HealthContact.jar` in the command prompt.
