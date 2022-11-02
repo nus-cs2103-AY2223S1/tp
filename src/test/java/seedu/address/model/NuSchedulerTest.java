@@ -9,9 +9,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CCA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalEvents.PRACTICE;
 import static seedu.address.testutil.TypicalEvents.PRESENTATION;
+import static seedu.address.testutil.TypicalNuScheduler.getTypicalNuScheduler;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.AMY;
 import static seedu.address.testutil.TypicalProfiles.BENSON;
@@ -36,25 +36,25 @@ import seedu.address.model.profile.exceptions.SimilarProfileException;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.ProfileBuilder;
 
-public class AddressBookTest {
+public class NuSchedulerTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final NuScheduler nuScheduler = new NuScheduler();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getProfileList());
+        assertEquals(Collections.emptyList(), nuScheduler.getProfileList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> nuScheduler.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyNuScheduler_replacesData() {
+        NuScheduler newData = getTypicalNuScheduler();
+        nuScheduler.resetData(newData);
+        assertEquals(newData, nuScheduler);
     }
 
     @Test
@@ -64,9 +64,9 @@ public class AddressBookTest {
                 .build();
         List<Profile> newProfiles = Arrays.asList(AMY, bobWithAmyEmail);
         List<Event> emptyEvents = new ArrayList<>();
-        AddressBookStub newData = new AddressBookStub(newProfiles, emptyEvents);
+        NuSchedulerStub newData = new NuSchedulerStub(newProfiles, emptyEvents);
 
-        assertThrows(SimilarProfileException.class, () -> addressBook.resetData(newData));
+        assertThrows(SimilarProfileException.class, () -> nuScheduler.resetData(newData));
     }
 
     @Test
@@ -76,9 +76,9 @@ public class AddressBookTest {
                 .build();
         List<Profile> newProfiles = Arrays.asList(AMY, bobWithAmyPhone);
         List<Event> emptyEvents = new ArrayList<>();
-        AddressBookStub newData = new AddressBookStub(newProfiles, emptyEvents);
+        NuSchedulerStub newData = new NuSchedulerStub(newProfiles, emptyEvents);
 
-        assertThrows(SimilarProfileException.class, () -> addressBook.resetData(newData));
+        assertThrows(SimilarProfileException.class, () -> nuScheduler.resetData(newData));
     }
 
     @Test
@@ -88,9 +88,9 @@ public class AddressBookTest {
                 .withTags(VALID_TAG_HUSBAND).build();
         List<Profile> newProfiles = Arrays.asList(AMY, bobWithAmyTelegram);
         List<Event> emptyEvents = new ArrayList<>();
-        AddressBookStub newData = new AddressBookStub(newProfiles, emptyEvents);
+        NuSchedulerStub newData = new NuSchedulerStub(newProfiles, emptyEvents);
 
-        assertThrows(SimilarProfileException.class, () -> addressBook.resetData(newData));
+        assertThrows(SimilarProfileException.class, () -> nuScheduler.resetData(newData));
     }
 
     @Test
@@ -100,150 +100,150 @@ public class AddressBookTest {
                 .withTags(VALID_TAG_CCA).build();
         List<Event> newEvents = Arrays.asList(PRESENTATION, editedPresentation);
         List<Profile> emptyProfiles = new ArrayList<>();
-        AddressBookStub newData = new AddressBookStub(emptyProfiles, newEvents);
-        assertThrows(DuplicateEventException.class, () -> addressBook.resetData(newData));
+        NuSchedulerStub newData = new NuSchedulerStub(emptyProfiles, newEvents);
+        assertThrows(DuplicateEventException.class, () -> nuScheduler.resetData(newData));
     }
 
     @Test
     public void hasEmail_nullEmail_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasEmail(null));
+        assertThrows(NullPointerException.class, () -> nuScheduler.hasEmail(null));
     }
 
     @Test
     public void hasPhone_nullPhone_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPhone(null));
+        assertThrows(NullPointerException.class, () -> nuScheduler.hasPhone(null));
     }
 
     @Test
     public void hasTelegram_nullTelegram_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasTelegram(null));
+        assertThrows(NullPointerException.class, () -> nuScheduler.hasTelegram(null));
     }
 
     @Test
     public void hasEvent_nullEvent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasEvent(null));
+        assertThrows(NullPointerException.class, () -> nuScheduler.hasEvent(null));
     }
 
     @Test
     public void hasEmail_emailNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasEmail(ALICE));
+        assertFalse(nuScheduler.hasEmail(ALICE));
     }
 
     @Test
     public void hasEmail_emailInAddressBook_returnsTrue() {
-        addressBook.addProfile(ALICE);
-        assertTrue(addressBook.hasEmail(ALICE));
+        nuScheduler.addProfile(ALICE);
+        assertTrue(nuScheduler.hasEmail(ALICE));
     }
 
     @Test
     public void hasPhone_phoneNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPhone(ALICE));
+        assertFalse(nuScheduler.hasPhone(ALICE));
     }
 
     @Test
     public void hasPhone_phoneInAddressBook_returnsTrue() {
-        addressBook.addProfile(ALICE);
-        assertTrue(addressBook.hasPhone(ALICE));
+        nuScheduler.addProfile(ALICE);
+        assertTrue(nuScheduler.hasPhone(ALICE));
     }
 
     @Test
     public void hasTelegram_telegramNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasTelegram(ALICE));
+        assertFalse(nuScheduler.hasTelegram(ALICE));
     }
 
     @Test
     public void hasTelegram_telegramInAddressBook_returnsTrue() {
-        addressBook.addProfile(ALICE);
-        assertTrue(addressBook.hasTelegram(ALICE));
+        nuScheduler.addProfile(ALICE);
+        assertTrue(nuScheduler.hasTelegram(ALICE));
     }
 
     @Test
-    public void hasEvent_eventNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasEvent(PRESENTATION));
+    public void hasEvent_eventNotInNuScheduler_returnsFalse() {
+        assertFalse(nuScheduler.hasEvent(PRESENTATION));
     }
 
     @Test
-    public void hasEvent_eventInAddressBook_returnsTrue() {
-        addressBook.addEvent(PRESENTATION);
-        assertTrue(addressBook.hasEvent(PRESENTATION));
+    public void hasEvent_eventInNuScheduler_returnsTrue() {
+        nuScheduler.addEvent(PRESENTATION);
+        assertTrue(nuScheduler.hasEvent(PRESENTATION));
     }
 
     @Test
-    public void hasProfile_profileWithSameEmailFieldsInAddressBook_returnsTrue() {
-        addressBook.addProfile(AMY);
+    public void hasProfile_profileWithSameEmailFieldsInNuScheduler_returnsTrue() {
+        nuScheduler.addProfile(AMY);
         Profile editedBenson = new ProfileBuilder(BENSON).withEmail(VALID_EMAIL_AMY)
                 .build();
-        assertTrue(addressBook.hasEmail(editedBenson));
+        assertTrue(nuScheduler.hasEmail(editedBenson));
     }
 
     @Test
-    public void hasProfile_profileWithSamePhoneFieldsInAddressBook_returnsTrue() {
-        addressBook.addProfile(AMY);
+    public void hasProfile_profileWithSamePhoneFieldsInNuScheduler_returnsTrue() {
+        nuScheduler.addProfile(AMY);
         Profile editedBenson = new ProfileBuilder(BENSON).withPhone(VALID_PHONE_AMY)
                 .build();
-        assertTrue(addressBook.hasPhone(editedBenson));
+        assertTrue(nuScheduler.hasPhone(editedBenson));
     }
 
     @Test
-    public void hasProfile_profileWithSameTelegramFieldsInAddressBook_returnsTrue() {
-        addressBook.addProfile(AMY);
+    public void hasProfile_profileWithSameTelegramFieldsInNuScheduler_returnsTrue() {
+        nuScheduler.addProfile(AMY);
         Profile editedBenson = new ProfileBuilder(BENSON).withTelegram(VALID_TELEGRAM_AMY)
                 .build();
-        assertTrue(addressBook.hasTelegram(editedBenson));
+        assertTrue(nuScheduler.hasTelegram(editedBenson));
     }
 
     @Test
-    public void hasEvent_eventWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addEvent(PRESENTATION);
+    public void hasEvent_eventWithSameIdentityFieldsInNuScheduler_returnsTrue() {
+        nuScheduler.addEvent(PRESENTATION);
         Event editedPresentation = new EventBuilder(PRESENTATION).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasEvent(editedPresentation));
+        assertTrue(nuScheduler.hasEvent(editedPresentation));
     }
 
     @Test
     public void getProfileList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getProfileList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> nuScheduler.getProfileList().remove(0));
     }
 
     @Test
     public void getEventList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getEventList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> nuScheduler.getEventList().remove(0));
     }
 
     @Test
     public void addEventAttendees_addNewProfiles_profilesAdded() {
-        addressBook.addEvent(PRESENTATION);
-        addressBook.addProfile(FIONA);
-        addressBook.addProfile(GEORGE);
+        nuScheduler.addEvent(PRESENTATION);
+        nuScheduler.addProfile(FIONA);
+        nuScheduler.addProfile(GEORGE);
         assertFalse(PRESENTATION.hasAttendee(FIONA));
         assertFalse(PRESENTATION.hasAttendee(GEORGE));
 
-        addressBook.addEventAttendees(PRESENTATION, List.of(FIONA, GEORGE));
+        nuScheduler.addEventAttendees(PRESENTATION, List.of(FIONA, GEORGE));
         assertTrue(PRESENTATION.hasAttendee(FIONA));
         assertTrue(PRESENTATION.hasAttendee(GEORGE));
     }
 
     @Test
     public void addEventToAttendees_addNewEvent_eventAdded() {
-        addressBook.addProfile(FIONA);
-        addressBook.addProfile(GEORGE);
-        addressBook.addEvent(PRACTICE);
+        nuScheduler.addProfile(FIONA);
+        nuScheduler.addProfile(GEORGE);
+        nuScheduler.addEvent(PRACTICE);
         assertFalse(FIONA.isAttendingEvent(PRACTICE));
         assertFalse(GEORGE.isAttendingEvent(PRACTICE));
 
-        addressBook.addEventToAttendees(PRACTICE, List.of(FIONA, GEORGE));
+        nuScheduler.addEventToAttendees(PRACTICE, List.of(FIONA, GEORGE));
         assertTrue(FIONA.isAttendingEvent(PRACTICE));
         assertTrue(GEORGE.isAttendingEvent(PRACTICE));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose profiles list can violate interface constraints.
+     * A stub ReadOnlyNuScheduler whose profiles list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class NuSchedulerStub implements ReadOnlyNuScheduler {
         private final ObservableList<Profile> profiles = FXCollections.observableArrayList();
         private final ObservableList<Event> events = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Profile> profiles, Collection<Event> events) {
+        NuSchedulerStub(Collection<Profile> profiles, Collection<Event> events) {
             this.profiles.setAll(profiles);
             this.events.setAll(events);
         }

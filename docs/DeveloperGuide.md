@@ -2,6 +2,8 @@
 layout: page
 title: Developer Guide
 ---
+<h2 id="toc-title" class="no-num"> Table of Contents </h2>
+
 * Table of Contents
 {:toc}
 

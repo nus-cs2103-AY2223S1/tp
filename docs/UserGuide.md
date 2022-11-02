@@ -7,8 +7,29 @@ NUScheduler is a desktop app for **NUS students who have a large network of cont
 
 With NUScheduler, you can store the contact details of the NUS community around you and manage your classes and events effectively.
 
+<h2 id="toc-title" class="no-num"> Table of Contents </h2>
+
 * Table of Contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Using this guide
+
+This user guide provides you with the information necessary to start using NUScheduler. 
+
+In this user guide, you may encounter the following icons:
+
+<div markdown="block" class="meaning-icons-container">
+
+* :information_source: **Additional Information:** Provides general information that you might find helpful.
+* :bulb: **Tips:** Provides good to know information on how to more effectively utilise NUScheduler.    
+
+</div>
+
+If you are a new user, check out the [Quick Start](#quick-start) to get started with NUScheduler.
+
+If you are a returning user, the [Command Summary](#command-summary) provides you with a quick overview of some of the commands NUScheduler offers.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -20,20 +41,32 @@ With NUScheduler, you can store the contact details of the NUS community around 
 
 3. Copy the file to the folder you want to use as the _home folder_ for your NUScheduler.
 
-4. Double-click the file to start the app. The GUI similar to the one shown below should appear. Note how the app contains some sample data.
-   
-<img src="images/UiSampleData.png"/>
+4. Double-click the file to start the app. The GUI similar to the one shown below should appear. Note how the app contains some sample data. ![UI with Sample Data](images/UiSampleData.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`profile -a`** : Adds a profile.
+   * <code class="language-plaintext highlighter-rouge"><b>profile -a</b> n/John Doe p/98765432 e/johnd@u.nus.edu t/friend</code>: Adds a profile with the name `John Doe`.
 
-   * **`profile -d `**`2` : Deletes the 2nd profile shown in the current list.
+   * <code class="language-plaintext highlighter-rouge"><b>profile -d</b> 2</code>: Deletes the 2nd profile shown in the current list.
 
-   * **`profile -v`** : Lists all profiles in NUScheduler.
+   * **`profile -v`**: Lists all profiles in NUScheduler.
 
 6. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## User interface
+
+The following is the main user interface of NUScheduler.
+
+![Labelled UI](images/LabelledUI.png)
+
+* **Menu Bar**
+* **Command Box**: Enter your commands here.
+* **Result Display**: Shows the details of the results of your commands.
+* **Profile List**: Displays the list of profiles stored and the relevant details.
+* **Event List**: Displays the list of events stored and the relevant details.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -51,7 +84,7 @@ With NUScheduler, you can store the contact details of the NUS community around 
 
 * Items with `…`​ after them can be used multiple times, including zero times for optional items.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-  e.g. `pr/PROFILE_INDEX...` must be used at least once, such as `pr/1`, `pr/3 pr/5` etc.
+  e.g. `pr/PROFILE_INDEX…​` must be used at least once, such as `pr/1`, `pr/3 pr/5` etc.
 
 * For Event and Profile commands, option flags (-x where x is a placeholder for valid flags e.g. a, d, v) must be used after the event and profile command word.
 
@@ -61,11 +94,13 @@ With NUScheduler, you can store the contact details of the NUS community around 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
+* Command words and option flags are case-sensitive i.e. `profile -v` will work, but not `PROFILE -v` and `profile -V`. 
+
 **:information_source: Notes about the display:**<br>
 
 * `Profile`'s are listed in alphabetical order while `Event`'s are listed in chronological order, sorted by their starting date.
 
-* Under `Profile`, the `Name`, `Email` and `Phone` number will always be displayed while `Telegram` and `Tag`s will only be displayed if they exist.
+* Under `Profile`, the `Name`, `Email` and `PhoneNumber` will always be displayed while `Telegram` and `Tag`s will only be displayed if they exist.
 
 * Under `Event`, the `Title`, `StartDate`, `EndDate` and duration of event will always be displayed while `Attendees`, the participants of an `Event` and `Tag`s will only be displayed if they exist.
 
@@ -81,7 +116,7 @@ Each profile is a set of contact information about a person in your NUS communit
 
 A profile must contain the following information:
 
-* Name, limited to 24 characters including spaces
+* Name, limited to 24 alphanumeric characters including spaces
 * A phone number, at least 3 digits and at most 15 digits long
 * A valid NUS email, e.g. `u.nus.edu`, see [Accepted Email Formats](#accepted-email-formats) for the full list of accepted email domains
 
@@ -117,7 +152,7 @@ Format: `profile -v`
 
 Edits an existing profile in NUScheduler.
 
-Format: `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…`
+Format: `profile -e INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…`
 
 * Edits the profile at the specified `INDEX`. The index refers to the index number shown in the displayed profile list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -133,7 +168,7 @@ Examples:
 
 #### Finding profiles by name: `profile -f`
 
-Find profiles whose names contain any of the given keywords.
+Finds profiles whose names contain any of the given keywords.
 
 Format: `profile -f KEYWORD [MORE_KEYWORDS]…`
 
@@ -175,7 +210,7 @@ An event must contain the following information:
 * Start date
 * End date, which must be on the same day or after the start date
 
-A event may also contain:
+An event may also contain:
 
 * Start time
 * End time
@@ -186,11 +221,12 @@ A event may also contain:
 
 #### Adding an event: `event -a`
 
-Adds an event with a name, a start timing and end timing.
+Adds an event with a name, a start date and end date.
 
 Format: `event -a n/TITLE s/START e/END [t/TAG]…`
 
 * The start and end dates can be specified in various different formats, see [Accepted Date Time Format](#accepted-date-time-formats) for the full list.
+* The start and end dates must both contain either date only or date and time i.e. time is optional.
 * The start date must occur before or on the same day and time as the end date.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -241,7 +277,7 @@ Displays a list of upcoming events, ordered by the date, for the next specified 
 
 Format: `event -u DAYS`
 
-* The days refer to the number of days from the current date. All events within this time frame will be displayed. Events oncurring on the day the command is entered will not be displayed.
+* The days refer to the number of days from the current date. All events within this time frame will be displayed. Events occurring on the day the command is entered will not be displayed.
 * The days **must be a positive integer** 1, 2, 3, …​
 
 Example:
@@ -271,9 +307,9 @@ Example:
 
 #### Finding events by date or title: `event -f`
 
-Find events whose title contain any of the given keywords or start times contain any of the given start times.
+Finds events whose title contain any of the given keywords or start times contain any of the given start times.
 
-Format: `event -f KEYWORD_OR_DATE [MORE]…`
+Format: `event -f KEYWORD_OR_DATE [MORE_KEYWORDS_OR_DATES]…`
 
 * Date search will occur when all inputs are [valid dates](#accepted-date-time-formats), otherwise, keyword search will occur.
 * The date search occurs only by date, ignoring the time, e.g. `11/10/2022 08:00` will match any events that start on `11/10/2022`.
@@ -344,22 +380,24 @@ Access the previous commands you've made within each session.
 
 </div>
 
-#### Tag Aliases
+#### Tag Shortcuts
 
-Use aliases to quickly enter tags.
+Use shortcuts to quickly enter tags.
 
 Example: 
 
-* `events -e 1 t/tut` Edits the tag of the 1st event shown to `tutorial`.  
+* `profile -a n/Damith e/damith@comp.nus.edu.sg p/65164359 t/prof` Creates a profile with the name `Damith` and tag `professor`.
+* `event -e 1 t/tut` Edits the tag of the 1st event shown to `tutorial`.  
 
-| Alias | Result       | 
-|-------|--------------|
-| assm  | assignment   |
-| lec   | lecture      |
-| pres  | presentation |
-| rec   | recitation   |
-| ta    | tutor        |
-| tut   | tutorial     |
+| Shortcut | Result       | 
+|----------|--------------|
+| assm     | assignment   |
+| lec      | lecture      |
+| pres     | presentation |
+| prof     | professor    |
+| rec      | recitation   |
+| ta       | tutor        |
+| tut      | tutorial     |
 
 
 #### Quick Links
@@ -391,48 +429,45 @@ NUScheduler accepts date-time formats both with and without a time specified. Fo
 
 #### Date-only formats
 
-- dd/MM/yyyy
-- dd-MM-yyyy
-- dd MM yyyy
-- dd/MM/yy
-- dd-MM-yy
-- dd MM yy
-- dd/MM (uses current year by default)
-- dd-MM (uses current year by default)
-- dd MM (uses current year by default)
+- `DAY/MONTH/YEAR`
+- `DAY-MONTH-YEAR`
+- `YEAR/MONTH/DAY`
+- `YEAR-MONTH-DAY`
+- `DAY/MONTH` (uses current year by default)
+- `DAY-MONTH` (uses current year by default)
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the date format:**<br>
 
-* Days can be specified with either one or two digits. e.g. `5` and `05` both refer to the same day.
-* Months can be specified with either digits or letters. e.g. `3`, `03`, `mar` and `march` all refer to the same month.
-* Years must be specified with four digits. e.g. `2022`
+* `DAY` can be specified with either one or two digits. e.g. `5` and `05` both refer to the same day.
+* `MONTH` can be specified with either digits or letters. e.g. `3`, `03`, `mar` and `march` all refer to the same month.
+* `YEAR` must be specified with four digits. e.g. `2022`
 
 </div>
 
 #### Date time formats
 
-The following time formats can be appended after a whitespace to the end of any of the above date formats.
+The following time formats can be appended after a whitespace to the end of the above date formats.
 
-- HH:mm
-- HHmm
-- HH:mm:ss
-- HHmmss
+- `HOUR:MINUTE`
+- `HOURMINUTE`
 
 Example:
 * `25/05/2015 10:00`
+* `4-July-2022 2100`
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the date format:**<br>
 
-* Hours, minutes and seconds must be specified using two digits.
-* `dd MM HHmm` is not supported, and will be recognised as `dd MM yyyy`.
+* Time is specified in the 24-hour clock format.
+* `HOUR` and `MINUTE` must be specified using two digits.
+* The time `2400` or `24:00` is the same as `0000` and `00:00`, i.e. it will be recognised as **the same day**.
 
 </div>
 
-### Accepted Email Formats
+### Accepted email formats
 
 NUScheduler checks the emails of your profiles against a list of valid NUS email domains.
 
@@ -442,22 +477,26 @@ NUScheduler checks the emails of your profiles against a list of valid NUS email
 * `@comp.nus.edu.sg`
 * `@u.yale-nus.edu.sg`
 
+### Transfer data to another computer
+
+You can simply install the app in the other computer and overwrite the data file it creates with the file that contains the data of your previous NUScheduler home folder.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action                             | Format, Examples                                                                |
-|------------------------------------|---------------------------------------------------------------------------------|
-| **Add Profile**                    | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [tg/TELEGRAM_USERNAME] [t/TAG]…`      |
-| **Delete Profile**                 | `profile -d INDEX`                                                              |
-| **Edit Profile**                   | `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…` |
-| **View Profiles**                  | `profile -v`                                                                    |
-| **Find Profile**                   | `profile -f KEYWORD [MORE_KEYWORDS]…`                                           |
-| **Add Event**                      | `event -a n/TITLE s/START e/END [t/TAG]…`                                       |
-| **Add Profiles to an Event**       | `event -ap EVENT_INDEX pr/PROFILE_INDEX...`                                     |
-| **Delete Attendees from an Event** | `event -dp EVENT_INDEX pr/ATTENDEE_INDEX...`                                    |
-| **Delete Event**                   | `event -d INDEX`                                                                |
-| **Edit Event**                     | `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`                           |
-| **View Events**                    | `event -v`                                                                      |
-| **View Upcoming Event(s)**         | `event -u DAYS`                                                                 |
-| **Find Event**                     | `event -f KEYWORD_OR_DATE [MORE]…`                                              |
+| Action                             | Format                                                                                 |
+|------------------------------------|----------------------------------------------------------------------------------------|
+| **Add Profile**                    | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [tg/TELEGRAM_USERNAME] [t/TAG]…`             |
+| **Delete Profile**                 | `profile -d INDEX`                                                                     |
+| **Edit Profile**                   | `profile -e INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…` |
+| **View Profiles**                  | `profile -v`                                                                           |
+| **Find Profile**                   | `profile -f KEYWORD [MORE_KEYWORDS]…`                                                  |
+| **Add Event**                      | `event -a n/TITLE s/START e/END [t/TAG]…`                                              |
+| **Add Profiles to an Event**       | `event -ap EVENT_INDEX pr/PROFILE_INDEX...`                                            |
+| **Delete Attendees from an Event** | `event -dp EVENT_INDEX pr/ATTENDEE_INDEX...`                                           |
+| **Delete Event**                   | `event -d INDEX`                                                                       |
+| **Edit Event**                     | `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`                                  |
+| **View Events**                    | `event -v`                                                                             |
+| **View Upcoming Event(s)**         | `event -u DAYS`                                                                        |
+| **Find Event**                     | `event -f KEYWORD_OR_DATE [MORE]…`                                                     |

@@ -5,9 +5,9 @@ import seedu.address.model.event.Event;
 import seedu.address.model.profile.Profile;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a NUScheduler
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyNuScheduler {
 
     /**
      * Returns an unmodifiable view of the profiles list.

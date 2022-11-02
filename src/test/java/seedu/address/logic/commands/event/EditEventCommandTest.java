@@ -10,9 +10,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_PRACTICE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
-import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
+import static seedu.address.testutil.TypicalNuScheduler.getTypicalNuScheduler;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,9 +20,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.event.EditEventCommand.EditEventDescriptor;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.NuScheduler;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.EditEventDescriptorBuilder;
@@ -33,7 +33,7 @@ import seedu.address.testutil.EventBuilder;
  */
 public class EditEventCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalNuScheduler(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -43,7 +43,7 @@ public class EditEventCommandTest {
 
         String expectedMessage = String.format(EditEventCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new NuScheduler(model.getNuScheduler()), new UserPrefs());
         expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
 
         assertCommandSuccess(editEventCommand, model, expectedMessage, expectedModel);
@@ -57,7 +57,7 @@ public class EditEventCommandTest {
 
         String expectedMessage = String.format(EditEventCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new NuScheduler(model.getNuScheduler()), new UserPrefs());
 
         assertCommandSuccess(editEventCommand, model, expectedMessage, expectedModel);
     }
@@ -73,7 +73,7 @@ public class EditEventCommandTest {
 
         String expectedMessage = String.format(EditEventCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new NuScheduler(model.getNuScheduler()), new UserPrefs());
         expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
 
         assertCommandSuccess(editEventCommand, model, expectedMessage, expectedModel);
@@ -95,7 +95,7 @@ public class EditEventCommandTest {
 
         String expectedMessage = String.format(EditEventCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new NuScheduler(model.getNuScheduler()), new UserPrefs());
         expectedModel.setEvent(lastEvent, editedEvent);
 
         assertCommandSuccess(editEventCommand, model, expectedMessage, expectedModel);
@@ -114,8 +114,8 @@ public class EditEventCommandTest {
     public void execute_duplicateEventFilteredList_failure() {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
-        // edit event in filtered list into a duplicate in address book
-        Event eventInList = model.getAddressBook().getEventList().get(INDEX_SECOND_EVENT.getZeroBased());
+        // edit event in filtered list into a duplicate in NUScheduler
+        Event eventInList = model.getNuScheduler().getEventList().get(INDEX_SECOND_EVENT.getZeroBased());
         EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST_EVENT,
                 new EditEventDescriptorBuilder(eventInList).build());
 
@@ -133,14 +133,14 @@ public class EditEventCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of NUScheduler
      */
     @Test
     public void execute_invalidEventIndexFilteredList_failure() {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
         Index outOfBoundIndex = INDEX_SECOND_EVENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEventList().size());
+        // ensures that outOfBoundIndex is still in bounds of NUScheduler list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getNuScheduler().getEventList().size());
 
         EditEventCommand editEventCommand = new EditEventCommand(outOfBoundIndex,
                 new EditEventDescriptorBuilder().withTitle(VALID_TITLE_PRACTICE).build());
