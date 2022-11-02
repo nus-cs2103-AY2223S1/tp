@@ -35,6 +35,7 @@ public class ViewCompletedCommand extends Command {
         FilteredList<Trip> completedTrips = trips.filtered(new TripCompletedPredicate());
         //Does not change.
         model.updateFilteredEventList(new EventCompletedPredicate(completedTrips));
+        model.resetSelectedTrip();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
