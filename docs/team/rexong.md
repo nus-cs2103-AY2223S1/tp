@@ -25,13 +25,22 @@ Given below are my contributions to the project.
   * Find out that bidirectional association between 2 objects were hard to implement with immutability, ie `Meeting` contains a `Client` and a `Client` contains a list of `Meeting`.
 
 * **Documentation**:
-    * README:
-        * Update the Target Users
-    * User Guide:
-        * Added documentation for the features `addMeeting` and `delMeeting`
-        * Added documentation for command feature
-    * Developer Guide: [To be updated]
+  * README:
+    * Update the Target Users. [#47](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/47)
+  * User Guide:
+    * Added documentation for the features `addMeeting` and `delMeeting`. [#57](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/57) and [#58](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/58)
+    * Added documentation for command feature. [#59](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/59)
+    * Updated documentation for the features `addClient` and `delClient`. [#198](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/198) 
+    * Updated documentation for the feature `delMeeting`. [#198](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/198)
+    * Added a `How to use this User Guide` section. [#270](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/270)
+    * Updated `Overview` section by highlighting the keywords. [#270](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/270)
+    * Added `User Interface` section with a Word Document to enable changes. [#270](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/270)
+  * Developer Guide:
+    * Added delete meeting use case. [#67](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/67)
+    * Added `Delete Meeting Feature` section. [#173](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/173)
+    * Added a sequence diagram in `Delete Meeting Feature` section. [#173](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/173)
+    * Added a activity diagram in `Delete Meeting Feature` section. [#173](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/173)
 
-* **Community**: [To be updated]
-
-* **Tools**: [To be updated]
+* **Notable Review Contributions**:
+  * Suggested to use `Optional` for `Birthday` attribute in client, this helps to prevent any possible `NullPointerException` error to be thrown. [#168](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/168)
+  * Gave a comprehensive UG comment in order to standardize the format used in User Guide by all team member such that the User Guide seems like it is done by one person. [#206](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/206)
