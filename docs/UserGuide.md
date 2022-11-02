@@ -98,13 +98,17 @@ Shows a list of all persons in the application.
 Format: `listPersons [s/FIELD]`
 
 * Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one of the following values:
-  * `n` or `N` sort by name ignoring case differences
-  * `d` or `D` sort by date of birth
-  * `g` or `G` sort by gender
+  * `n` or `N` sort by name in ascending lexicographical order, ignoring case differences
+  * `d` or `D` sort by date of birth from oldest to youngest
+  * `g` or `G` sort by gender, females first followed by males
 
 * It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, no sorting is performed.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
 
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Lexicographical order is defined as the order in which letters and symbols are listed in the [American Standard Code for Information Interchange (ASCII)](https://en.wikipedia.org/wiki/ASCII).
+</div>
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The sorted result is permanent on the underlying contact list.<br><br>
@@ -122,8 +126,8 @@ Edits an existing contact in the application.
 
 Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`
 
-- Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
-  The index must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index.
+- Edits the person at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed contact list.
+  The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index. This command is invalid if `INDEX` is a non-positive integer.
 - Existing values will be updated to the input values.
 - At least one of the optional fields must be provided.
 - Date format accepted is: `dd/mm/yyyy`.
@@ -161,8 +165,8 @@ Deletes the specified person from the application.
 Format: `deletePerson INDEX`
 
 * Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index must be **a positive integer** 1, 2, 3, …​
+* The `INDEX` refers to the index number shown in the displayed contact list.
+* The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index. This command is invalid if `INDEX` is a non-positive integer.
 
 Examples:
 * `listPersons` followed by `deletePerson 2` deletes the 2nd person in the application.
@@ -187,8 +191,8 @@ Edits an existing event in the application.
 
 Format: `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`
 
-- Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list.
-  The index must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the event list index.
+- Edits the event at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed event list.
+  The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 
@@ -225,12 +229,11 @@ Deletes an existing event in the application.
 Format: `deleteEvent INDEX`
 
 * Removes the event at the specified `INDEX`.
-* The index refers to the index number shown in the displayed event list
-* The index must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
+* The `INDEX` refers to the index number shown in the displayed event list.
+* The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
 
 Examples:
 * `deleteEvent 2` after listing all events with `listEvents` deletes the event at index 2
-* `deleteEvent 7` after listing all events with `listEvents` deletes the event at index 7
 
 
 ### Listing all events: `listEvents`
@@ -240,12 +243,16 @@ Shows a list of all events in the application.
 Format: `listEvents [s/FIELD]`
 
 * Sorts the events by the specified field in **ascending** order. `FIELD` must take one of the following values:
-  * `e` or `E` sort by event title ignoring case differences
-  * `d` or `D` sort by date
+  * `e` or `E` sort by event title in ascending lexicographical order, ignoring case differences
+  * `d` or `D` sort by date from oldest to newest
 
 * It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, no sorting is performed.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
 
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Lexicographical order is defined as the order in which letters and symbols are listed in the [American Standard Code for Information Interchange (ASCII)](https://en.wikipedia.org/wiki/ASCII).
+</div>
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The sorted result is permanent on the underlying events list.<br><br>
@@ -263,9 +270,9 @@ Examples:
 Format: `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
-* The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index.
-* The `PERSON_INDEX` refers to the index number shown in the displayed person list.
-* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the person list index.
+* The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
+* The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
+* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the contact list index.
 * The `PERSON_INDEX` must refer to a person that is not currently tagged to the event.
 * Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
 
@@ -278,9 +285,9 @@ Example:
 Format: `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
-* The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index.
-* The `PERSON_INDEX` refers to the index number shown in the displayed person list.
-* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the person list index.
+* The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
+* The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
+* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the contact list index.
 * The `PERSON_INDEX` must refer to a person that is currently tagged to the event.
 * Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
 
