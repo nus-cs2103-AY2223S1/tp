@@ -177,8 +177,8 @@ Format: `edit [c/NEW_COMPANY] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE] [t/
 
 **:information_source: Note about editing the `status` and `remark` field:**<br>
 
-The status and remark of the application can only be edited via the [`status` command](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/docs/UserGuide.md#updating-status-of-an-internship-application--status)
-and [`remark` command](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/docs/UserGuide.md#adding-a-remark-to-an-internship-application--remark) respectively.
+The status and remark of the application can only be edited via the [`status` command](#updating-status-of-an-internship-application--status)
+and [`remark` command](#adding-a-remark-to-an-internship-application--remark) respectively.
 
 </div>
 
@@ -203,9 +203,9 @@ Updates the status of the internship application at the specified `INDEX` from I
 Format: `status INDEX STATUS`, where `STATUS` must be either `p`, `o` or `r`
 
 
-| Parameter | Representation                             | Constraints                                                 |
-|-----------|--------------------------------------------|-------------------------------------------------------------|
-| `INDEX`   | The index of the internship                | Must be an unsigned positive number                         |       |
+| Parameter | Representation                             | Constraints                                                  |
+|-----------|--------------------------------------------|--------------------------------------------------------------|
+| `INDEX`   | The index of the internship                | Must be a positive unsigned integer                          |       |
 | `STATUS`   | The status of the internship to be updated | Is not case sensitive but can only be either `o`, `p` or `r` |
 
 
