@@ -12,7 +12,8 @@ import seedu.address.model.Model;
 /**
  * Command that contains all subcommands starting with {@code delete}.
  */
-@CommandLine.Command(name = DeleteCommand.COMMAND_WORD, aliases = {"d"}, mixinStandardHelpOptions = true, subcommands = {
+@CommandLine.Command(name = DeleteCommand.COMMAND_WORD,
+        aliases = {"d"}, mixinStandardHelpOptions = true, subcommands = {
     DeleteLinkCommand.class,
     DeleteMemberCommand.class,
     DeletePersonCommand.class,

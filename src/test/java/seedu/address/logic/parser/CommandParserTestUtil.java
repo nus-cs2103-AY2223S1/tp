@@ -2,19 +2,8 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import picocli.CommandLine;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.RootCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.team.Description;
-import seedu.address.model.team.Task;
-import seedu.address.model.team.TeamName;
-import seedu.address.model.team.Url;
 
 /**
  * Contains helper methods for testing command parsers.

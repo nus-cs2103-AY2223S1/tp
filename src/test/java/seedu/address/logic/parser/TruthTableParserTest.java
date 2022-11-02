@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
 
 public class TruthTableParserTest {
@@ -10,8 +8,9 @@ public class TruthTableParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-//        AddCommand command = (AddCommand) parser.parseCommand(AddCommand.commandSpec.name());
-//        assertEquals(new AddCommand(), command);
+        /*
+        AddCommand command = (AddCommand) parser.parseCommand(AddCommand.commandSpec.name());
+/       assertEquals(new AddCommand(), command);*/
     }
 
     @Test
