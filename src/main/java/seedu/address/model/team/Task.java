@@ -172,6 +172,13 @@ public class Task {
     }
 
     /**
+     * Clears all assignees from a task and returns a new Task
+     */
+    public Task clearAssignees() {
+        return new Task(name, List.of(), completionStatus, this.deadline);
+    }
+
+    /**
      * Checks if task has already been assigned to the specified assignee.
      *
      * @param assignee The specified assignee.

@@ -281,15 +281,18 @@ in this case.
 
 ### Assign task to team member: `assign task`
 
-Assign an existing task to a team member in the user’s team. Will display an error message if either the team member or
-the task is not found in the user’s team.
+Assign an existing task to one or more team members in the user’s team. Will display an error message if either the team
+member(s) or the task is not found in the user’s team.
 
-Format: `assign task TASK_INDEX -a MEMBER_INDEX`
+If the command is used without any member indices, all assignees will be removed from the task.
+
+Format: `assign task TASK_INDEX -a MEMBER_INDICES` or `assign task TASK_INDEX -a` (to clear all assignees).
 
 Examples:
 
 - `assign task 1 -a 1` will assign the first task on the task list to the first member in the team.
-- `assign task 2 -a 2` will assign the second task on the task list to the second member in the team.
+- `assign task 2 -a 1 2` will assign the second task on the task list to both the first and second member in the team.
+- `assign task 2 -a` will **remove all assignees** from the second task on the task list.
 
 ### Assign task to random team member: `assign random`
 

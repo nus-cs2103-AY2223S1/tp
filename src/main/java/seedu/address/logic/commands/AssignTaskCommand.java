@@ -38,15 +38,14 @@ public class AssignTaskCommand extends Command {
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigned task successfully. %1$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This task has already been assigned to %1$s";
-    public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist."
-            + "There are less than %1$s tasks in your list.";
+    public static final String MESSAGE_CLEAR_ASSIGNEES_SUCCESS = "All assignees cleared successfully. %1$s";
     public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
     private Index taskIndex;
 
-    @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, required = true,
-            description = FLAG_TASK_ASSIGNEES_DESCRIPTION)
+    @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, required = true, defaultValue = "",
+            description = FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
     private String[] assignees;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
@@ -69,16 +68,27 @@ public class AssignTaskCommand extends Command {
         if (taskIndex.getZeroBased() >= taskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
+
         List<String> assigneesList;
         if (assignees.length == 1 && Arrays.asList(assignees).contains("")) {
             assigneesList = List.of();
         } else {
             assigneesList = Arrays.asList(assignees);
         }
+
+        if (assigneesList.size() == 0) {
+            Task originalTask = taskList.get(taskIndex.getZeroBased());
+            Task newTask = originalTask.clearAssignees();
+
+            model.getTeam().setTask(originalTask, newTask);
+            return new CommandResult(String.format(MESSAGE_CLEAR_ASSIGNEES_SUCCESS,
+                    taskList.get(taskIndex.getZeroBased())));
+        }
+
         List<Person> memberList = model.getTeam().getTeamMembers();
-        for (int i = 0; i < assigneesList.size(); i++) {
-            if (Integer.parseInt(assigneesList.get(i)) < 1
-                    || Integer.parseInt(assigneesList.get(i)) > memberList.size()) {
+        for (String s : assigneesList) {
+            if (Integer.parseInt(s) < 1
+                    || Integer.parseInt(s) > memberList.size()) {
                 throw new CommandException(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS);
             }
         }
