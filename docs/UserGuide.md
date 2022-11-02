@@ -50,7 +50,7 @@ DevEnable is a **desktop app for managing developer projects, optimized for use 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `client -a p/PROJECT_ID n/CLIENT_NAME [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`, `client -a p/PROJECT_ID n/CLIENT_NAME [e/CLIENT_EMAIL] [m/CLIENT_MOBILE]` are both acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. (Does not apply for Sort command)<br>
   e.g. if you specify `m/12341234 m/56785678`, only `m/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
@@ -179,7 +179,7 @@ Sorts all projects based on a specified key.
 
 Format: `project -s [p/PROJECT_ID] [d/DEADLINE] [i/ISSUE_COUNT] [n/PROJECT_NAME]`
 
-* Exactly one optional value (the prefix/the sorting key) is to be provided.
+* Exactly one optional value (the prefix/the sorting key) is to be provided (Command will not accept multiple optional values).
 * Input 0/1 for each Prefix (e.g. p/0):
   * For `PROJECT_ID`, 0 for ascending and 1 for descending.
   * For `DEADLINE`, 0 for chronological and 1 for reverse chronological.
@@ -304,7 +304,7 @@ Sorts all clients based on a specified key.
 
 Format: `client -s [c/CLIENT_ID] [n/CLIENT_NAME]`
 
-* Exactly one optional value (sorting key) to be provided.
+* Exactly one optional value (the prefix/the sorting key) to be provided (Command will not accept multiple optional values).
 * Input 0/1 for each Prefix (e.g. c/1):
   * For `CLIENT_ID`, 0 for ascending and 1 for descending.
   * For `CLIENT_NAME`, 0 for alphabetical and 1 for reverse alphabetical
@@ -417,7 +417,7 @@ Sorts all issues based on a specified key.
 
 Format: `issue -s [i/ISSUE_ID] [d/DEADLINE] [u/URGENCY]`
 
-* Exactly one optional value (sorting key) to be provided.
+* Exactly one optional value (the prefix/the sorting key) to be provided (Command will not accept multiple optional values).
 * Input 0/1 for each Prefix (e.g. i/0):
   * For `ISSUE_ID`, 0 for ascending and 1 for descending.
   * For `DEADLINE`, 0 for chronological and 1 for reverse chronological.
