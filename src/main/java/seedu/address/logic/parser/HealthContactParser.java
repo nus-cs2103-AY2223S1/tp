@@ -24,7 +24,6 @@ import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SelectAppointmentCommand;
 import seedu.address.logic.commands.SelectPatientCommand;
 import seedu.address.logic.commands.SetPaidCommand;
@@ -97,8 +96,6 @@ public class HealthContactParser {
             return new FindAppointmentCommandParser().parse(arguments);
         } else if (FindBillCommand.COMMAND_WORD.matches(commandWord)) {
             return new FindBillCommandParser().parse(arguments);
-        } else if (RemarkCommand.COMMAND_WORD.matches(commandWord)) {
-            return new RemarkCommandParser().parse(arguments);
         } else if (ListCommand.COMMAND_WORD.matches(commandWord)) {
             return new ListCommand();
         } else if (ExitCommand.COMMAND_WORD.matches(commandWord)) {
