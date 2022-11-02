@@ -1,5 +1,15 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMEZONE;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -17,8 +27,6 @@ import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.person.github.User;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.MainPanelName;
-
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Deletes the specified contact of a given Person.
