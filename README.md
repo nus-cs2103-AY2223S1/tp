@@ -3,7 +3,7 @@
 ![Ui](docs/images/Ui.png)
 
 # OmniHealth
-OmniHealth is a **desktop app for private clinic practitioners to quickly store, edit and search for patients and their records**. It is optimised for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+OmniHealth is a **desktop app for private clinic practitioners to quickly store, edit and search for patients and their records**. It is optimised for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 If you can type fast, OmniHealth can get your patient management tasks done faster than traditional GUI apps! 💊✨
 

@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 Given below are my contributions to the project.
 
 * **Code contributed**: [anthonyhoth's tP Dashboard](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=anthonyhoth&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-* **Enhancements implemented**: 
+* **Enhancements implemented**:
   * Added delete record functionality.
   * Added edit record functionality.
   * Changed the UI theme of the app.
@@ -24,7 +24,7 @@ Given below are my contributions to the project.
   * User Guide: to be added soon
   * Developer Guide: to be added soon
 * **Community**:
-* **Contribution to team-based tasks**: 
+* **Contribution to team-based tasks**:
   * Maintaining issue and PR tags
-* **Review/mentoring contributions**: 
+* **Review/mentoring contributions**:
   * Reviewed teammates' PRs for errors/improvements.
