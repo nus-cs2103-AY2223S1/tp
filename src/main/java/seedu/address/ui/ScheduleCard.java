@@ -39,7 +39,7 @@ public class ScheduleCard extends UiPart<Region> {
     private Label markStatus;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Student} and index to display.
+     * Creates a {@code StudentCode} with the given {@code Student} and index to display.
      */
     public ScheduleCard(Student student, int displayedIndex) {
         super(FXML);

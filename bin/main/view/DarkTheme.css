@@ -1,6 +1,6 @@
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: black; /* Used in the default.html file */
+    background-color: #383838; /* Used in the default.html file */
 }
 
 .label {
@@ -93,47 +93,27 @@
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
-.list-view-schedule {
-    -fx-background-insets: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-padding: 8 0 0 0;
-}
-
 .list-cell {
-    /*-fx-background-radius: 20px;*/
-    /*-fx-label-padding: 0 0 0 0;*/
-    /*-fx-graphic-text-gap : 0;*/
-    -fx-label-padding: 5 5;
-    -fx-graphic-text-gap : 5;
-    -fx-padding: 5px;
-    -fx-background-radius: 15px;
-    -fx-background-insets: 5px;
-    -fx-background-color: transparent;
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 0 0 0 0;
 }
 
 .list-cell:filled:even {
-    /*-fx-background-radius: 20px;*/
-    -fx-background-color: #282828;
+    -fx-background-color: #3c3e3f;
 }
 
 .list-cell:filled:odd {
-    /*-fx-background-radius: 20px;*/
-    -fx-background-color: #282828;
+    -fx-background-color: #515658;
 }
 
 .list-cell:filled:selected #cardPane {
-    /*-fx-background-radius: 20px;*/
-    /*-fx-background-color: #424d5f;*/
-    -fx-border-radius: 15px;
-    -fx-background-radius: 15px;
+    -fx-background-color: #424d5f;
 }
 
 .list-cell:filled:selected #cardPane {
-    /*-fx-border-radius: 20px;*/
     -fx-border-color: #3e7b91;
     -fx-border-width: 1;
-    -fx-border-radius: 15px;
-    -fx-background-radius: 15px;
 }
 
 .list-cell .label {
@@ -141,7 +121,7 @@
 }
 
 .cell_title_label {
-    -fx-font-family: "Arial";
+    -fx-font-family: "Segoe UI Bold";
     -fx-font-size: 20px;
     -fx-text-fill: white;
 }
@@ -186,7 +166,6 @@
 .statistics-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
-    -fx-padding: 17px;
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
@@ -345,9 +324,12 @@
     -fx-padding: 8 1 8 1;
 }
 
-.header_box {
-    -fx-padding: 10 30 10 30;
-    -fx-background-color: #181818;
+.schedule_box {
+    -fx-background-color: black;
+}
+
+.statistics_box {
+    -fx-background-color: black;
 }
 
 #cardPane {

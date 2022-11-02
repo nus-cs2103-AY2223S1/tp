@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.Set;
@@ -61,7 +61,7 @@ public class MarkCommand extends Command {
         List<Student> lastShownList = model.getFilteredScheduleList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_SCHEDULE_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_SCHEDULE_INDEX);
         }
 
         Student studentToMark = lastShownList.get(targetIndex.getZeroBased());
@@ -76,8 +76,8 @@ public class MarkCommand extends Command {
 
         model.setStudent(studentToMark, markedStudent);
 
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_STUDENTS);
 
         return new CommandResult(MESSAGE_SUCCESS);
     }

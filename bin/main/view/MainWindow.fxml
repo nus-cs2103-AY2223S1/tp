@@ -35,9 +35,15 @@
         <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS">
           <VBox>
             <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+              <padding>
+                <Insets bottom="5" left="10" right="10" top="5" />
+              </padding>
             </StackPane>
 
-            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="125" minHeight="100" prefHeight="125" styleClass="pane-with-border" VBox.vgrow="NEVER">
+            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+              <padding>
+                <Insets bottom="5" left="10" right="10" top="5" />
+              </padding>
             </StackPane>
 
             <VBox fx:id="studentList" minWidth="340" prefWidth="300" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
@@ -46,25 +52,18 @@
               </padding>
               <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
-            <padding>
-              <Insets bottom="10" left="10" right="10" top="10" />
-            </padding>
+
           </VBox>
-          <VBox>
-            <VBox fx:id="scheduleList" minWidth="340" prefWidth="300" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-              <StackPane fx:id="statisticsPlaceholder" prefHeight="170.0" prefWidth="200.0" minHeight="170.0">
-                <padding>
-                  <Insets bottom="10" top="5" />
-                </padding>
-              </StackPane>
+          <VBox fx:id="scheduleList" minWidth="340" prefWidth="300" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <StackPane fx:id="statisticsPlaceholder" prefHeight="140.0" prefWidth="200.0" >
               <padding>
-                <Insets bottom="10" left="10" right="10" top="10" />
+                <Insets bottom="10" top="5" />
               </padding>
-              <StackPane fx:id="scheduleListPanelPlaceholder" prefHeight="45.0" prefWidth="438.0" VBox.vgrow="ALWAYS" />
-            </VBox>
+            </StackPane>
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
+            <StackPane fx:id="scheduleListPanelPlaceholder" prefHeight="45.0" prefWidth="438.0" VBox.vgrow="ALWAYS" />
           </VBox>
         </SplitPane>
         <StackPane fx:id="statusbarPlaceholder" />
