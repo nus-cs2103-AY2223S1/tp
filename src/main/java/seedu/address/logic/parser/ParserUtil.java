@@ -189,7 +189,7 @@ public class ParserUtil {
     public static StartTime parseStartTime(String startTime) throws ParseException {
         requireNonNull(startTime);
         String trimmedStartTime = startTime.trim();
-        if (!StartTime.isValidStartTime(startTime)) {
+        if (!StartTime.isValidStartTimeFormat(startTime)) {
             throw new ParseException(MESSAGE_FORMAT_CONSTRAINTS);
         } else if (!StartTime.isValidStartTimeValue(startTime)) {
             throw new ParseException(String.format(MESSAGE_VALUE_CONSTRAINTS, startTime));

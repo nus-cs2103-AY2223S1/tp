@@ -93,7 +93,7 @@ public class JsonAdaptedEvent {
         if (this.startTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Start Time"));
         }
-        if (!StartTime.isValidStartTime(startTime)) {
+        if (!StartTime.isValidStartTimeFormat(startTime)) {
             throw new IllegalValueException(MESSAGE_FORMAT_CONSTRAINTS);
         } else if (!StartTime.isValidStartTimeValue(startTime)) {
             throw new IllegalValueException(String.format(MESSAGE_VALUE_CONSTRAINTS, startTime));
