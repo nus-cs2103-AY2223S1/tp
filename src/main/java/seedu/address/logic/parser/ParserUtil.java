@@ -430,6 +430,12 @@ public class ParserUtil {
             if ((startHour > endHour) || ((startHour == endHour) && (startMin >= endMin))) {
                 throw new ParseException(Schedule.MESSAGE_CLASS_STARTING_ENDINGT_CONSTRAINT);
             }
+
+            double start = startMin == 0 ? startHour : startHour + 0.5;
+            double end = endMin == 0 ? endHour : endHour + 0.5;
+            if (end - start < 1 || end - start > 3) {
+                throw new ParseException(Schedule.MESSAGE_CLASS_TIME_CONSTRAINT);
+            }
             return true;
         } catch (Exception e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
