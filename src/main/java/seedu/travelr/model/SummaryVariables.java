@@ -56,9 +56,9 @@ public class SummaryVariables {
         double tripProgressPercent = (double) totalTripsCompleted / allTripList.size();
         double eventProgressPercent = (double) totalEventsCompleted / allEventList.size();
 
-        HashSet<Location> uniqueLocations = new HashSet<>();
+        HashSet<String> uniqueLocations = new HashSet<>();
         for (Trip trip : completedTripsList) {
-            uniqueLocations.add(trip.getLocation());
+            uniqueLocations.add(trip.getLocation().locationName.toUpperCase());
         }
 
         this.totalUniqueLocations.set(uniqueLocations.size());
