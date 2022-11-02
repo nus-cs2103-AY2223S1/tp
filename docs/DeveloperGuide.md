@@ -412,10 +412,7 @@ The following activity diagram outlines what happens when a user executes the `s
 
 The find mechanism is facilitated by `FindCommand`, which extends `Command`. It overrides the following operations
 
-* `FindCommand#execute()`: Looks through all previously consumed food items and searches for those whose name matches 
-the predicate. Returns the average calorie content for that particular food item if it is inside the list. If it is
-not in the list, checks if the food item is in the default list provided, and returns the suggested calorie content from
-the default list.
+* `FindCommand#execute()`: Looks through all previously consumed food items and searches for those whose name matches the predicate. Returns the average calorie content for that particular food item if it is inside the list. If it is not in the list, checks if the food item is in the default list provided, and returns the suggested calorie content from the default list.
 
 Given below is an example usage scenario and how the find mechanism behaves at each step.
 
