@@ -9,16 +9,16 @@ import static longtimenosee.commons.util.AppUtil.checkArgument;
  */
 public class Commission {
 
-    public static final String MESSAGE_CONSTRAINTS = "Commissions should be positive percentages between "
-            + "and including 0% to 100%, \n"
-            + "taking the format of 'cms/1st yr %, 2nd yr %,"
+    public static final String MESSAGE_CONSTRAINTS = "Commissions should be positive percentages with up to 5 decimals,"
+            + " between and including 0% to 100%, \n"
+            + "taking the format of 'cms/1st yr % 2nd yr %"
             + " 3rd year and beyond %'";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "((([1-9]\\d*)?\\d)(\\.\\d*)?%(\\s)?){3}";
+    public static final String VALIDATION_REGEX = "((([1-9]\\d*)?\\d)(\\.\\d{1,5})?%(\\s)?){3}";
 
     public final String value;
 

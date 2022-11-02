@@ -80,8 +80,19 @@ public class PolicyAssignCommand extends Command {
                 policyToAdd, premium, startDate, endDate)); //add the policy
         //model.deletePerson(personToPin); optional because we don't alter the list
         return new CommandResult(String.format(success
-                ? MESSAGE_ASSIGN_POLICY_SUCCESS : MESSAGE_ASSIGN_PERSON_DUPLICATE, policyToAdd, personToAddTo),
+                ? MESSAGE_ASSIGN_POLICY_SUCCESS : MESSAGE_ASSIGN_PERSON_DUPLICATE, policyToAdd.getTitle(),
+                personToAddTo.getName()),
                 false, false, false, true, false, false);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PolicyAssignCommand // instanceof handles nulls
+                && targetPersonIndex.equals(((PolicyAssignCommand) other).targetPersonIndex) // state check
+                && targetPolicyIndex.equals(((PolicyAssignCommand) other).targetPersonIndex) // state check
+                && premium.equals(((PolicyAssignCommand) other).premium) // state check
+                && startDate.equals(((PolicyAssignCommand) other).startDate) // state check
+                && endDate.equals(((PolicyAssignCommand) other).endDate)); // state check
+    }
 }

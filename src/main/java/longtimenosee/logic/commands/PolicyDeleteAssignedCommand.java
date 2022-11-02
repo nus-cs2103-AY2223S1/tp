@@ -63,8 +63,16 @@ public class PolicyDeleteAssignedCommand extends Command {
         AssignedPolicy assignedPolicy = assignedPolicyArray[targetPolicyIndex.getZeroBased()];
         boolean success = personToDeleteFrom.removePolicy(assignedPolicy);
         return new CommandResult(String.format(success
-                ? MESSAGE_ASSIGN_POLICY_SUCCESS : MESSAGE_ASSIGN_POLICY_FAIL, assignedPolicy, personToDeleteFrom),
+                ? MESSAGE_ASSIGN_POLICY_SUCCESS : MESSAGE_ASSIGN_POLICY_FAIL, assignedPolicy.getPolicy().getTitle(),
+                personToDeleteFrom.getName()),
                 false, false, false, true, false, false);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PolicyDeleteAssignedCommand // instanceof handles nulls
+                && targetPersonIndex.equals(((PolicyDeleteAssignedCommand) other).targetPersonIndex) // state check
+                && targetPolicyIndex.equals(((PolicyDeleteAssignedCommand) other).targetPersonIndex)); // state check
+    }
 }

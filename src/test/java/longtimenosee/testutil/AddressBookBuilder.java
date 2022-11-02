@@ -2,6 +2,7 @@ package longtimenosee.testutil;
 
 import longtimenosee.model.AddressBook;
 import longtimenosee.model.person.Person;
+import longtimenosee.model.policy.Policy;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -25,6 +26,14 @@ public class AddressBookBuilder {
      */
     public AddressBookBuilder withPerson(Person person) {
         addressBook.addPerson(person);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Policy} to the {@code AddressBook} that we are building.
+     */
+    public AddressBookBuilder withPolicy(Policy policy) {
+        addressBook.addPolicy(policy);
         return this;
     }
 
