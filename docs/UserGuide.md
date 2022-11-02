@@ -200,13 +200,14 @@ typing `help` in the input box and press <kbd>Enter</kbd> to see what happens!
 
 CLI applications like TruthTable requires you to execute instructions by typing specific words to make use of the 
 application's features. However, if you are not an experienced user, terms like "commands", "flags", and "parameters" 
-may appear daunting.
+may seem daunting.
 
 But fret not! This section will cover what all these terms actually mean. 
 
-Nevertheless, don't worry too much about memorising the specifics for every command, as there are convenient ways 
-available that will guide you along the way for each "command". Furthermore, the "commands" in TruthTable are designed 
-to be **easy to remember** and **natural**, so you will get up to speed in no time! 
+While you're going through this section, don't worry too much about memorising the details for every "command", as  
+they all have their own help messages for your reference at any time. Furthermore, the "commands" in TruthTable are 
+designed to be **easy to remember** and **natural**, so you will get up to speed in no 
+time! 
 
 ### Commands, flags, and parameters
 
@@ -288,8 +289,8 @@ Here's a summary of what each highlighted section represents.
 
 If a flag is displayed with `...` behind it, this means that the flag takes in an unlimited amount of parameters.
 
-For instance, in the `assign task` command, we can specify an unlimited number of assignees (provided they are valid)
-. A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognised as the assignees to the task with index `1`.
+For instance, in the `assign task` command, we can specify an unlimited number of assignees (provided they are valid). 
+A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognised as the assignees to the task with index `1`.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
