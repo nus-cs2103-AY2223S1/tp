@@ -451,9 +451,9 @@ Format: `issue -s [i/ISSUE_ID] [d/DEADLINE] [u/URGENCY]`
   * For `URGENCY`, 0 for ascending and 1 for descending.
 
 Examples: 
-* `issues -s i/0` Sorts list of issues based on `ISSUE_ID` from lowest to highest.
-* `issues -s d/0` Sorts list of issues based on `DEADLINE` from earliest to latest.
-* `issues -s u/1` Sorts list of issues based on `URGENCY` from highest to lowest.
+* `issue -s i/0` Sorts list of issues based on `ISSUE_ID` from lowest to highest.
+* `issue -s d/0` Sorts list of issues based on `DEADLINE` from earliest to latest.
+* `issue -s u/1` Sorts list of issues based on `URGENCY` from highest to lowest.
 
 ### Marking an issue: `issue -m`
  
