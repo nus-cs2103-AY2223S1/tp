@@ -88,11 +88,11 @@ section of this user guide or to an external website.
 
 1. Ensure you have `Java 11` or above installed in your Computer. <br><br>
 
-   * If you are using a Mac, open the `terminal` and enter `java --version`.
-     * To open the `terminal`, press `command` and `space bar` together to launch Spotlight.
+   * If you are using Mac, open the `Terminal` and enter `java --version`.
+     * To open the `Terminal`, press `command` and `space bar` together to launch Spotlight.
      * Following, enter `terminal` in the search bar.
-   * If you are using a Windows, open the `command window` and enter `java -version`. 
-     * To open the `command window`, press `Windows` and `R` together to launch the "Run" box.
+   * If you are using Windows, open the `Command Window` and enter `java -version`. 
+     * To open the `Command Window`, press `Windows` and `R` together to launch the "Run" box.
      * Following, enter `cmd` and click `OK`. 
    * If java is installed, you would get a similar output as shown below. You can continue to step 2.
    (Do not worry about what the message says, it is not crucial to learn how to use GuestBook.)
@@ -116,7 +116,7 @@ section of this user guide or to an external website.
    ![Ui](images/GuestBookIcon.png) <br><br>
 
 4. Double-click on `guestbook.jar` to start the app. 
-   * Alternatively, if you wish to use the `terminal` or `command window`, enter 
+   * Alternatively, if you wish to use the `Terminal` or `Command Prompt`, enter 
    `java -jar guestbook.jar` to start the app. 
 
    The GUI, similar to the image below, should pop up in a few seconds. Note that the GuestBook

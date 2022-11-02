@@ -311,10 +311,10 @@ The following activity diagram summarises what happens when a user enters a `mar
 Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely to have a case in which the user has to mark different groups of guests' isRoomClean statuses differently as the types of rooms as mostly homogenous. Hence, we decided to proceed with Alternative 2.
 
 **Aspect: Naming of the `markroomsunclean` command**
-* Alternative 1: Using camel case for the command, i.e. `markRoomsUnclean`.
+* Alternative 1: Using camel case for the command, i.e., `markRoomsUnclean`.
   * Pros: Better readability of the command for the user.
   * Cons: Takes a longer time to type and there may be a higher chance of typing the wrong command due to the capitalisation of the letters.
-* Alternative 2: Using lowercase for the command, i.e. `markroomsunclean`.
+* Alternative 2: Using lowercase for the command, i.e., `markroomsunclean`.
   * Pros: Faster and easier to type, lesser chance of typing the wrong command due to consistent lowercasing of letters. It is also consistent with lowercasing of all the other commands, thus the
   commands have greater standardisation.
   * Cons: Might be harder to read the command.
