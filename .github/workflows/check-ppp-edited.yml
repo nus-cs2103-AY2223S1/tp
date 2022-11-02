@@ -46,4 +46,4 @@ jobs:
         run: "echo '${{ steps.get_latest_prs.outputs.data }}' > data.json"
       - name: Validate all PRs are included in PPP
         working-directory: ${{ github.workspace }}/cli-test
-        run: ./check-ppp-is-complete.sh ${{ github.actor }}
+        run: ./check-ppp-is-complete.sh ${{ github.event.pull_request.user.login }}
