@@ -43,7 +43,8 @@ public class Module {
     /**
      * Every field must be present and not null, used to edit a existing module.
      */
-    public Module(ModuleName name, ModuleCode code, ModuleDescription description, Set<Tag> tags, List<Schedule> schedules) {
+    public Module(ModuleName name, ModuleCode code, ModuleDescription description,
+                  Set<Tag> tags, List<Schedule> schedules) {
         this.name = name;
         this.code = code;
         this.description = description;
