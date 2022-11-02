@@ -10,7 +10,7 @@ public class PriceRangeTest {
     public void constructor_lowerBoundHigherThanUpperBound_swap() {
         Price lowerBound = new Price(253.0);
         Price upperBound = new Price(156.76);
-        PriceRange expected = new PriceRange(upperBound, lowerBound);
+        PriceRange expected = new PriceRange(lowerBound, upperBound);
         PriceRange result = new PriceRange(lowerBound, upperBound);
         assertEquals(result, expected);
     }
