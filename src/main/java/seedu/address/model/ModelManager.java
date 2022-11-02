@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.exceptions.ConflictingMeetingException;
 import seedu.address.model.product.Product;
 
 /**
@@ -145,7 +146,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setMeeting(Meeting target, Meeting editedMeeting) {
+    public void setMeeting(Meeting target, Meeting editedMeeting) throws ConflictingMeetingException {
         requireAllNonNull(target, editedMeeting);
 
         myInsuRec.setMeeting(target, editedMeeting);

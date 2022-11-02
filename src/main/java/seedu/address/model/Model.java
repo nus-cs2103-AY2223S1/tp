@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.exceptions.ConflictingMeetingException;
 import seedu.address.model.product.Product;
 
 /**
@@ -99,7 +100,7 @@ public interface Model {
      * {@code target} must exist in the MyInsuRec.
      * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting in the MyInsuRec.
      */
-    void setMeeting(Meeting target, Meeting editedMeeting);
+    void setMeeting(Meeting target, Meeting editedMeeting) throws ConflictingMeetingException;
 
     /**
      * Adds the given product.
