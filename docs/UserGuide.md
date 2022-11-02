@@ -104,13 +104,17 @@ Shows a list of all persons in the application.
 Format: `listPersons [s/FIELD]`
 
 * Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one of the following values:
-  * `n` or `N` sort by name ignoring case differences
-  * `d` or `D` sort by date of birth
-  * `g` or `G` sort by gender
+  * `n` or `N` sort by name in ascending lexicographical order, ignoring case differences
+  * `d` or `D` sort by date of birth from oldest to youngest
+  * `g` or `G` sort by gender, females first followed by males
 
 * It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, no sorting is performed.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
 
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Lexicographical order is defined as the order in which letters and symbols are listed in the [American Standard Code for Information Interchange (ASCII)](https://en.wikipedia.org/wiki/ASCII).
+</div>
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The sorted result is permanent on the underlying contact list.<br><br>
@@ -121,7 +125,6 @@ For example, if `listPersons s/n` and `listPersons` are executed back-to-back, t
 Examples:
 * `listPersons` Lists all persons without performing any sorting.
 * `listPersons s/n` Lists all persons sorted by their names.
-
 
 ### Editing a contact : `editPerson`
 
@@ -258,12 +261,16 @@ Shows a list of all events in the application.
 Format: `listEvents [s/FIELD]`
 
 * Sorts the events by the specified field in **ascending** order. `FIELD` must take one of the following values:
-  * `e` or `E` sort by event title ignoring case differences
-  * `d` or `D` sort by date
+  * `e` or `E` sort by event title in ascending lexicographical order, ignoring case differences
+  * `d` or `D` sort by date from oldest to newest
 
 * It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, no sorting is performed.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
 
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Lexicographical order is defined as the order in which letters and symbols are listed in the [American Standard Code for Information Interchange (ASCII)](https://en.wikipedia.org/wiki/ASCII).
+</div>
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The sorted result is permanent on the underlying events list.<br><br>
@@ -288,8 +295,8 @@ Format: `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 * Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
 
 Example:
-* `tagEvent 1 p/2` tags the 2nd person in the contact list to the 1st event in the event list
-* `tagEvent 2 p/2 4 5` tags the 2nd, 4th, 5th person to in the contact list the 2nd event in the event list
+* `tagEvent 1 p/2` tags the 2nd person in the contact list to the 1st event in the event list.
+* `tagEvent 2 p/2 4 5` tags the 2nd, 4th, 5th person to in the contact list the 2nd event in the event list.
 
 ### Untag persons from an event : `untagEvent`
 
@@ -303,8 +310,21 @@ Format: `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 * Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
 
 Example:
-* `untagEvent 1 p/2` untags the 2nd person in the contact list from the 1st event in the event list
-* `untagEvent 2 p/2 4 5` untags the 2nd, 4th, 5th person in the contact list from the 2nd event in the event list
+* `untagEvent 1 p/2` untags the 2nd person in the contact list from the 1st event in the event list.
+* `untagEvent 2 p/2 4 5` untags the 2nd, 4th, 5th person in the contact list from the 2nd event in the event list.
+
+### Create mailing list for an event : `mailEvent`
+
+Format: `mailEvent INDEX`
+
+* The `INDEX` refers to the index number shown in the displayed event list.
+* The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
+* The mailing list is saved as a CSV file at the following location: `[JAR file location]/data/EVENT_TITLE.csv`. The CSV file has 2 columns:
+  `Name` and `Email`, representing the name and email for every person in the event.
+
+Example:
+* `mailEvent 2` creates mailing list as a CSV file, the name of the csv file is the same as the title of 2nd event
+in the event list.
 
 ### Generating pie charts of statistics of the people tagged to an event in the event list : `makeStats`
 
@@ -365,10 +385,11 @@ _Details coming soon ..._
 | **FindPersons**  | `findPersons KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPersons James Jake`                                                                                                               |
 | **ListPersons**  | `listPersons [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                   |
 | **AddEvent**     | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
-| **EditEvent**    | `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`<br> e.g., `editEvent 2 e/Chocolate Sale p/10% off all chocolates`                                                      |
 | **DeleteEvent**  | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
+| **EditEvent**    | `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`<br> e.g., `editEvent 2 e/Chocolate Sale p/10% off all chocolates`                                                      |
 | **FindEvents**   | `findEvents KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvents Sale Discount`                                                                                                              |
 | **ListEvents**   | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                      |
-| **TagEvent**     | `tagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                                |
-| **UntagEvent**   | `untagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                            |
+| **MailEvent**    | `mailEvent INDEX`<br> e.g., `mailEvent 3`                                                                                                                                              |                                                                                                                                      |
+| **TagEvent**     | `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                              |
+| **UntagEvent**   | `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                          |
 | **Help**         | `help`                                                                                                                                                                                 |
