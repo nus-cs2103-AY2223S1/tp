@@ -48,7 +48,7 @@ public class ItemView {
         final Label priceValue = new Label(item.getPrice().toString());
         priceValue.getStyleClass().add("bold");
         final Label costLabel = new Label("Total Cost: $");
-        final Label costValue = new Label(String.format("%.2f", item.getItemCost()));
+        final Label costValue = new Label(String.format("%.2f", item.getItemValue()));
         costValue.getStyleClass().add("bold");
 
         final Label remarks = new Label(item.getRemarks().toString().isBlank() ? "-" : item.getRemarks().toString());

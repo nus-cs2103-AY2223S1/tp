@@ -3,6 +3,7 @@ package seedu.foodrem.model.item;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -50,6 +51,12 @@ public class Item {
                 ItemRemark remarks,
                 Set<Tag> tagSet) {
         requireAllNonNull(name, quantity, unit, boughtDate, expiryDate, price, remarks, tagSet);
+
+        // Same Bought date and Expiry date is accepted
+        if (!boughtDate.isNotSet() && !expiryDate.isNotSet() && boughtDate.isAfterDate(expiryDate)) {
+            throw new IllegalArgumentException("The item bought date should not be after the item expiry date.");
+        }
+
         this.name = name;
         this.quantity = quantity;
         this.unit = unit;
@@ -106,12 +113,29 @@ public class Item {
         return remarks;
     }
 
-    // TODO: Possibly refactor to avoid using getter methods in ItemPrice and ItemQuantity fields
+    /**
+     * Returns true if the item has expired and false otherwise
+     *
+     * @return The total value of purchasing the specified units of the item.
+     */
+    public boolean isExpired() {
+        return expiryDate.isAfterOrOnDate(LocalDate.now());
+    }
 
     /**
-     * @return The total cost of purchasing the specified units of the item.
+     * Returns true if the item quantity is not zero and false otherwise.
+     *
+     * @return The total value of purchasing the specified units of the item.
      */
-    public double getItemCost() {
+    public boolean hasNonZeroQuantity() {
+        return !quantity.isZero();
+    }
+
+    /**
+     * @return The total value of purchasing the specified units of the item.
+     */
+    public double getItemValue() {
+        // TODO: Possibly refactor to avoid using getter methods in ItemPrice and ItemQuantity fields
         return price.getItemPrice() * quantity.getItemQuantity();
     }
 
