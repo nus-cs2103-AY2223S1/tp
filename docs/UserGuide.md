@@ -39,7 +39,9 @@ title: User Guide
 
 3. Copy the file to the folder you want to use as the _home folder_ for your **CinternS** app.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. When the app is started for the first time, sample data is included to help you get started.<br>
+4. Double-click the file to start the app. In case that does not work, you can also open your terminal, change directory to the one with the jar file, and run the command `java -jar CinternS.jar`.
+
+   The GUI similar to the below should appear in a few seconds. When the app is started for the first time, sample data is included to help you get started.<br>
    ![Ui](images/Ui.png)
 
 5. Type commands into the command box and press Enter to execute them.<br>
@@ -75,13 +77,13 @@ title: User Guide
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add c/COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add c/Google`.
+  e.g. in `add c/COMPANY`, `COMPANY` is a parameter which can be used as `add c/Google`.
 
 * Items in square brackets are optional.
-  e.g `c/COMPANY_NAME [t/TAG]` can be used as `c/Google t/preferred` or as `c/Google`.
+  e.g `c/COMPANY [t/TAG]` can be used as `c/Google t/preferred` or as `c/Google`.
 
 * Items with `...` after them can be used multiple times including zero times.
-  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/preferred`, `t/preferred t/techCompany` etc.
+  e.g. `[t/TAG]...` can be used as `  ` (i.e. 0 times), `t/preferred`, `t/preferred t/techCompany`, etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `d/DATE_APPLIED p/POSITION`, `p/POSITION d/DATE_APPLIED` is also acceptable.
@@ -109,7 +111,7 @@ Format: `help`
 
 Adds an internship application to the list.
 
-Format: `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION s/STATUS [t/TAG]...`
+Format: `add c/COMPANY ct/CONTACT e/EMAIL p/POSITION d/DATE_APPLIED s/STATUS [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 <br>
@@ -322,6 +324,18 @@ Format: `exit`
 
 The data of all the internship applications is saved automatically to the hard disk whenever any changes are made, so no manual saving is necessary.
 
+<div markdown="block" class="alert alert-danger">
+
+**:information_source: Notes about the CinternS save file:**<br>
+
+* A new folder `data` will be created with the file `applicationbook.json`. This is where your data will be stored for the next time you use the app, transferring it to another device or sharing with your friend.
+
+* Please refrain from editing this save file as the file might become corrupted. When CinternS is booted, if the file is corrupted, it will reset the save file. You will NOT be able to retrieve your data!
+
+* If you do wish to edit the save file, please make sure every field is included as specified in the above commands (e.g. each application and interview must have all the fields listed as required above). Do make a copy of your save file before making any edits in the case that your data is lost so that you can recover it (by replacing the save file with the copy).
+
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -347,7 +361,7 @@ We will assist you as soon as possible.
 | Action          | Format, Examples                                                                                                                                                                                               |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**        | `help`                                                                                                                                                                                                         |
-| **Add**         | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION s/STATUS [t/TAG]...` <br> e.g., `add c/Google ct/60221023 d/2022-01-01 e/google@example.com p/Software Engineer s/pending t/preferred` |
+| **Add**         | `add c/COMPANY ct/CONTACT d/DATE_APPLIED e/EMAIL p/POSITION s/STATUS [t/TAG]...` <br> e.g., `add c/Google ct/60221023 d/2022-01-01 e/google@example.com p/Software Engineer s/pending t/preferred` |
 | **List**        | `list`                                                                                                                                                                                                         |
 | **ListArchive** | `list-archive`                                                                                                                                                                                                 |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                                            |
@@ -366,3 +380,9 @@ We will assist you as soon as possible.
 | **Exit**        | `exit`                                                                                                                                                                                                         |
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+* Application: To distinguish "internship application" and "CinternS application", we only use the word "application" for internships and instead use "app" when we are talking about CinternS.
+* GUI: Graphical user interface, the main window where you can interact with while using CinternS.
+* Parameters: Fields that you may be required to provide for each command.
