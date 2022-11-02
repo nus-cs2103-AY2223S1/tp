@@ -67,7 +67,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'SoConnect.jar'
 }
 
 defaultTasks 'clean', 'test'
