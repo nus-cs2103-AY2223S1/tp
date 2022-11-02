@@ -60,15 +60,16 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_invalidNameArgs_throwsParseException() {
-        // empty name input
-        assertParseFailure(parser, " n/", Name.MESSAGE_CONSTRAINTS);
+        // EP: empty input
+        assertParseFailure(parser, " n/", Name.MESSAGE_CONSTRAINTS); // Boundary value
 
-        // symbol input
+        // EP: non-alphanumeric input: symbols
         assertParseFailure(parser, " n/!", Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_validPhoneArgs_returnsFindCommand() {
+        // EP: valid numeric input
         // 8 digit number
         FindCommand expectedFindCommand =
                 new FindCommand(List.of(new PhoneContainsNumberPredicate("87654321")));
@@ -82,35 +83,35 @@ public class FindCommandParserTest {
         // 3 digit number
         FindCommand thirdExpectedFindCommand =
                 new FindCommand(List.of(new PhoneContainsNumberPredicate("123")));
-        assertParseSuccess(parser, " p/123", thirdExpectedFindCommand);
+        assertParseSuccess(parser, " p/123", thirdExpectedFindCommand); // Boundary value
     }
 
     @Test
     public void parse_invalidPhoneArgs_throwsParseException() {
-        // 2 digit number
-        assertParseFailure(parser, " p/12", Phone.MESSAGE_CONSTRAINTS);
+        // EP: less than minimum number of digits: 2 digit number
+        assertParseFailure(parser, " p/12", Phone.MESSAGE_CONSTRAINTS); // Boundary value
 
-        // empty input
-        assertParseFailure(parser, " p/", Phone.MESSAGE_CONSTRAINTS);
+        // EP: empty input
+        assertParseFailure(parser, " p/", Phone.MESSAGE_CONSTRAINTS); // Boundary value
 
-        // non-integer input
+        // EP: non-integer input
         assertParseFailure(parser, " p/1.1", Phone.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, " p/abc", Phone.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_validAddressArgs_returnsFindCommand() {
-        // normal word input
+        // EP: alphabet input
         FindCommand expectedFindCommand =
                 new FindCommand(List.of(new AddressContainsInputPredicate("Bedok")));
         assertParseSuccess(parser, " a/Bedok", expectedFindCommand);
 
-        // number input
+        // EP: numeric input
         FindCommand secondExpectedFindCommand =
                 new FindCommand(List.of(new AddressContainsInputPredicate("55")));
         assertParseSuccess(parser, " a/55", secondExpectedFindCommand);
 
-        // symbol input
+        // EP: symbol input
         FindCommand thirdExpectedFindCommand =
                 new FindCommand(List.of(new AddressContainsInputPredicate("#01")));
         assertParseSuccess(parser, " a/#01", thirdExpectedFindCommand);
@@ -118,23 +119,23 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_invalidAddressArgs_throwsParseException() {
-        // empty input
-        assertParseFailure(parser, " a/", Address.MESSAGE_CONSTRAINTS);
+        // EP: empty input
+        assertParseFailure(parser, " a/", Address.MESSAGE_CONSTRAINTS); // Boundary value
     }
 
     @Test
     public void parse_validEmailArgs_returnsFindCommand() {
-        // normal input
+        // EP: normal valid input
         FindCommand expectedFindCommand =
                 new FindCommand(List.of(new EmailMatchesInputPredicate("Alice@example.com")));
         assertParseSuccess(parser, " e/Alice@example.com", expectedFindCommand);
 
-        // multiple domains
+        // EP: multiple domains
         FindCommand secondExpectedFindCommand =
                 new FindCommand(List.of(new EmailMatchesInputPredicate("Bob@email.co.go")));
         assertParseSuccess(parser, " e/Bob@email.co.go", secondExpectedFindCommand);
 
-        // alphanumeric input
+        // EP: alphanumeric input
         FindCommand thirdExpectedFindCommand =
                 new FindCommand(List.of(new EmailMatchesInputPredicate("Carl_12@example1.co")));
         assertParseSuccess(parser, " e/Carl_12@example1.co", thirdExpectedFindCommand);
@@ -142,27 +143,27 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_invalidEmailArgs_throwsParseException() {
-        // empty input
-        assertParseFailure(parser, " e/", Email.MESSAGE_CONSTRAINTS);
+        // EP: empty input
+        assertParseFailure(parser, " e/", Email.MESSAGE_CONSTRAINTS); // Boundary value
 
-        // missing local part input
+        // EP: missing local part input
         assertParseFailure(parser, " e/@example.com", Email.MESSAGE_CONSTRAINTS);
 
-        // missing domain input
+        // EP: missing domain input
         assertParseFailure(parser, " e/alice@", Email.MESSAGE_CONSTRAINTS);
 
-        // end with period
+        // EP: end with period
         assertParseFailure(parser, " e/a@example.", Email.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_validTagArgs_returnsFindCommand() {
-        // one tag
+        // EP: single tag
         FindCommand expectedFindCommand =
                 new FindCommand(List.of(new TagContainsKeywordsPredicate(List.of("friends"))));
         assertParseSuccess(parser, " t/friends", expectedFindCommand);
 
-        // multiple tags
+        // EP: multiple tags
         FindCommand secondExpectedFindCommand =
                 new FindCommand(List.of(new TagContainsKeywordsPredicate(List.of("friends", "family"))));
         assertParseSuccess(parser, " t/friends t/family", secondExpectedFindCommand);
@@ -170,13 +171,13 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_invalidTagArgs_throwsParseException() {
-        // empty input
-        assertParseFailure(parser, " t/", Tag.MESSAGE_CONSTRAINTS);
+        // EP: empty input
+        assertParseFailure(parser, " t/", Tag.MESSAGE_CONSTRAINTS); // Boundary value
     }
 
     @Test
     public void parse_validBirthdayArgs_returnsFindCommand() {
-        // normal input
+        // EP: valid date input
         FindCommand expectedFindCommand =
                 new FindCommand(List.of(new BirthdayMatchesInputPredicate("2019-05-12")));
         assertParseSuccess(parser, " b/2019-05-12", expectedFindCommand);
@@ -184,21 +185,25 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_invalidBirthdayArgs_throwsParseException() {
-        // empty input
-        assertParseFailure(parser, " b/", Birthday.MESSAGE_FORMAT_CONSTRAINTS);
+        // EP: empty input
+        assertParseFailure(parser, " b/", Birthday.MESSAGE_FORMAT_CONSTRAINTS); // Boundary value
 
-        // incorrect format
+        // EP: numeric input
         assertParseFailure(parser, " b/123", Birthday.MESSAGE_FORMAT_CONSTRAINTS);
+
+        // EP: alphabet input
         assertParseFailure(parser, " b/abc", Birthday.MESSAGE_FORMAT_CONSTRAINTS);
+
+        // EP: incorrect date format
         assertParseFailure(parser, " b/1980-123-20", Birthday.MESSAGE_FORMAT_CONSTRAINTS);
 
-        // future date
+        // EP: valid future date
         assertParseFailure(parser, " b/3000-12-12", Birthday.MESSAGE_DATE_CONSTRAINTS);
     }
 
     @Test
     public void parse_validIncomeArgs_returnsFindCommand() {
-        // normal input
+        // EP: valid numeric input
         FindCommand expectedFindCommand =
                 new FindCommand(List.of(new IncomeMatchesInputPredicate("2000")));
         assertParseSuccess(parser, " i/2000", expectedFindCommand);
@@ -206,26 +211,26 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_invalidIncomeArgs_throwsParseException() {
-        // empty input
-        assertParseFailure(parser, " i/", Income.MESSAGE_FORMAT_CONSTRAINTS);
+        // EP: empty input
+        assertParseFailure(parser, " i/", Income.MESSAGE_FORMAT_CONSTRAINTS); // Boundary value
 
-        // alphabet input
+        // EP: alphabet input
         assertParseFailure(parser, " i/abc", Income.MESSAGE_FORMAT_CONSTRAINTS);
     }
 
     @Test
     public void parse_validRiskAppetiteArgs_returnsFindCommand() {
-        // high
+        // EP: high risk appetite
         FindCommand expectedFindCommand =
                 new FindCommand(List.of(new RiskAppetiteMatchesInputPredicate("H")));
         assertParseSuccess(parser, " ra/H", expectedFindCommand);
 
-        // medium
+        // EP: medium risk appetite
         FindCommand secondExpectedFindCommand =
                 new FindCommand(List.of(new RiskAppetiteMatchesInputPredicate("M")));
         assertParseSuccess(parser, " ra/M", secondExpectedFindCommand);
 
-        // low
+        // EP: low risk appetite
         FindCommand thirdExpectedFindCommand =
                 new FindCommand(List.of(new RiskAppetiteMatchesInputPredicate("L")));
         assertParseSuccess(parser, " ra/L", thirdExpectedFindCommand);
@@ -233,10 +238,10 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_invalidRiskAppetiteArgs_throwsParseException() {
-        // empty input
-        assertParseFailure(parser, " ra/", RiskAppetite.MESSAGE_FORMAT_CONSTRAINTS);
+        // EP: empty input
+        assertParseFailure(parser, " ra/", RiskAppetite.MESSAGE_FORMAT_CONSTRAINTS); // Boundary value
 
-        // invalid input
+        // EP: invalid inputs, not one of the H,M,L options
         assertParseFailure(parser, " ra/abc", RiskAppetite.MESSAGE_FORMAT_CONSTRAINTS);
         assertParseFailure(parser, " ra/HIGH", RiskAppetite.MESSAGE_FORMAT_CONSTRAINTS);
         assertParseFailure(parser, " ra/High", RiskAppetite.MESSAGE_FORMAT_CONSTRAINTS);
@@ -244,15 +249,15 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validPolicyTitleArgs_returnsFindCommand() {
-        // no leading and trailing whitespaces
+        // EP: valid title input
         FindCommand expectedFindCommand =
                 new FindCommand(List.of(new PolicyTitleContainsKeywordsPredicate(Arrays.asList("Health", "Plan"))));
         assertParseSuccess(parser, " ti/Health Plan", expectedFindCommand);
 
-        // multiple whitespaces between keywords
+        // EP: valid title input with whitespaces between keywords
         assertParseSuccess(parser, " ti/ Health  Plan  ", expectedFindCommand);
 
-        // alphanumeric input
+        // EP: valid alphanumeric input
         FindCommand alphanumericExpectedFindCommand =
                 new FindCommand(List.of(new PolicyTitleContainsKeywordsPredicate(Arrays.asList("Life", "101"))));
         assertParseSuccess(parser, " ti/ Life 101 ", alphanumericExpectedFindCommand);
@@ -260,21 +265,21 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_invalidPolicyTitleArgs_throwsParseException() {
-        // empty name input
-        assertParseFailure(parser, " ti/", Title.MESSAGE_FORMAT_CONSTRAINTS);
+        // EP: empty input
+        assertParseFailure(parser, " ti/", Title.MESSAGE_FORMAT_CONSTRAINTS); // Boundary value
 
-        // symbol input
+        // EP: non-alphanumeric input: symbols
         assertParseFailure(parser, " ti/!", Title.MESSAGE_FORMAT_CONSTRAINTS);
     }
 
     @Test
     public void parse_validPolicyCoverageArgs_returnsFindCommand() {
-        // one tag
+        // EP: single coverage
         FindCommand expectedFindCommand =
                 new FindCommand(List.of(new PolicyCoverageMatchesInputPredicate(List.of("LIFE"))));
         assertParseSuccess(parser, " cov/LIFE", expectedFindCommand);
 
-        // multiple tags
+        // EP: multiple coverages
         FindCommand secondExpectedFindCommand =
                 new FindCommand(List.of(new PolicyCoverageMatchesInputPredicate(List.of("HEALTH", "TRAVEL"))));
         assertParseSuccess(parser, " cov/HEALTH cov/TRAVEL", secondExpectedFindCommand);
@@ -282,10 +287,10 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_invalidPolicyCoverageArgs_throwsParseException() {
-        // empty input
-        assertParseFailure(parser, " cov/", Coverage.MESSAGE_CONSTRAINTS);
+        // EP: empty input
+        assertParseFailure(parser, " cov/", Coverage.MESSAGE_CONSTRAINTS); // Boundary value
 
-        // invalid input
+        // EP: invalid input, not one of the valid coverage types
         assertParseFailure(parser, " cov/life", Coverage.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, " cov/L", Coverage.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, " cov/123", Coverage.MESSAGE_CONSTRAINTS);
@@ -293,21 +298,21 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validPolicyCompanyArgs_returnsFindCommand() {
-        // valid input
+        // EP: valid input, one of the valid company options
         FindCommand expectedFindCommand =
                 new FindCommand(List.of(new PolicyCompanyMatchesInputPredicate("AIA")));
         assertParseSuccess(parser, " cmp/AIA", expectedFindCommand);
 
-        // with white spaces
+        // EP: additional white spaces around the company option
         assertParseSuccess(parser, " cmp/ AIA", expectedFindCommand);
     }
 
     @Test
     public void parse_invalidPolicyCompanyArgs_throwsParseException() {
-        // empty input
-        assertParseFailure(parser, " cmp/", Company.MESSAGE_FORMAT_CONSTRAINTS);
+        // EP: empty input
+        assertParseFailure(parser, " cmp/", Company.MESSAGE_FORMAT_CONSTRAINTS); // Boundary value
 
-        // invalid input
+        // EP: invalid input, not one of the valid company options
         assertParseFailure(parser, " cmp/aia", Company.MESSAGE_FORMAT_CONSTRAINTS);
         assertParseFailure(parser, " cmp/Aviva", Company.MESSAGE_FORMAT_CONSTRAINTS);
         assertParseFailure(parser, " cmp/123", Company.MESSAGE_FORMAT_CONSTRAINTS);

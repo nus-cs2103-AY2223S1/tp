@@ -20,6 +20,8 @@ import longtimenosee.commons.core.index.Index;
 import longtimenosee.logic.commands.exceptions.CommandException;
 import longtimenosee.model.AddressBook;
 import longtimenosee.model.Model;
+import longtimenosee.model.event.Event;
+import longtimenosee.model.event.predicate.NameInEventContainsKeywordsPredicate;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
 import longtimenosee.model.policy.Policy;
@@ -166,7 +168,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the policy at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPolicyAtIndex(Model model, Index targetIndex) {
@@ -177,6 +179,20 @@ public class CommandTestUtil {
         model.updateFilteredPolicyList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPolicyList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the event at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showEventAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+
+        Event event = model.getFilteredEventList().get(targetIndex.getZeroBased());
+        final String[] splitName = event.getPersonName().fullName.split("\\s+");
+        model.updateFilteredEventList(new NameInEventContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredEventList().size());
     }
 
 }

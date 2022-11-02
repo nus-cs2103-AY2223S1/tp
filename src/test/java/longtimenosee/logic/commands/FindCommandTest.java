@@ -80,7 +80,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multiplePredicates_onePersonsFound() {
+    public void execute_multiplePredicates_onePersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         NameContainsKeywordsPredicate firstPredicate = prepareNamePredicate("Alice");
         RiskAppetiteMatchesInputPredicate secondPredicate = prepareRiskAppetitePredicate("M");
