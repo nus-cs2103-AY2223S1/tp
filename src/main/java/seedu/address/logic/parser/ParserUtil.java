@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_INDEXES;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEXES;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -82,16 +84,24 @@ public class ParserUtil {
      *
      * @param oneBasedIndexes One-based Indexes.
      * @return List of Indexes.
-     * @throws ParseException if any of the specified indexes are invalid (not non-zero unsigned integer).
+     * @throws ParseException if any of the specified indexes are invalid (not non-zero unsigned integer) or duplicates.
      */
     public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
         String trimmedIndexes = oneBasedIndexes.trim();
         String[] indexes = trimmedIndexes.split("\\s+");
+
+        // Check for duplicate indexes
+        List<String> indexList = Arrays.asList(indexes);
+        Set<String> set = new HashSet<>(indexList);
+        if (set.size() != indexList.size()) {
+            throw new ParseException(MESSAGE_DUPLICATE_INDEXES);
+        }
+
         List<Index> resultIndexes = new ArrayList<>();
         for (int i = 0; i < indexes.length; i++) {
             String index = indexes[i];
             if (!StringUtil.isNonZeroUnsignedInteger(index)) {
-                throw new ParseException(MESSAGE_INVALID_INDEX);
+                throw new ParseException(MESSAGE_INVALID_INDEXES);
             }
             resultIndexes.add(Index.fromOneBased(Integer.parseInt(index)));
         }
@@ -168,8 +178,6 @@ public class ParserUtil {
         requireNonNull(classDatetime);
         String trimmedClassDatetime = classDatetime.trim();
 
-        // todo: invalid date will result the else block in following code -- leading to wrong error message displayed.
-        // todo: to be fixed in future PR
         if (Class.isValidClassString(trimmedClassDatetime)) {
             // the format has been validated in isValidClassString method
             // ie yyyy-MM-dd 0000-2359
@@ -193,6 +201,9 @@ public class ParserUtil {
             LocalDate targetDate = getTargetClassDate(LocalDateTime.now(), startTime);
             return new Class(targetDate, startTime, endTime,
                     targetDate.toString() + trimmedClassDatetime.substring(3));
+        } else if (Class.isValidClassStringFormat(trimmedClassDatetime)) {
+            // Class is of value that cannot be parsed
+            throw new ParseException(Class.INVALID_DATETIME_ERROR_MESSAGE);
         } else {
             // unrecognized format has been input
             throw new ParseException(Class.MESSAGE_CONSTRAINTS);
@@ -254,7 +265,7 @@ public class ParserUtil {
         try {
             result = LocalDate.parse(date);
         } catch (DateTimeParseException de) {
-            throw new ParseException(Class.INVALID_DATETIME_ERROR_MESSAGE);
+            throw new ParseException(Class.INVALID_DATE_ERROR_MESSAGE);
         }
         return result;
     }

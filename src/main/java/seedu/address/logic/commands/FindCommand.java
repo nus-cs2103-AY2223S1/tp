@@ -18,10 +18,14 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all students with keywords in a specific prefix. "
-            + "Prefix supported by this search includes: n/, p/, np/, e/, a/, dt/, t/. "
-            + "The specified keywords are case-insensitive, which displays students as a list with index numbers.\n"
-            + "Parameters: KEYWORD [n/KEYWORD] [p/PHONE] [np/NOK_PHONE] [e/KEYWORD] [a/KEYWORD] [dt/DATE] [t/TAG]\n"
-            + "Example: " + COMMAND_WORD + " n/alice bob charlie";
+            + "Prefixes supported by this search include: n/, p/, np/, e/, a/, dt/, t/. "
+            + "The matched students are displayed in a list on the left hand panel with index numbers.\n"
+            + "The search keywords which are after the prefixes (NAME in the case of n/NAME) are case-insensitive.\n"
+            + "Acceptable parameters: [n/NAME] [p/PHONE] [np/NOK_PHONE] [e/EMAIL] [a/ADDRESS] [dt/DATE] [t/TAG].\n"
+            + "Exactly one type of prefix should be used in a single find command. "
+            + "However, find by multiple tags is allowed.\n"
+            + "Example: " + COMMAND_WORD + " n/alice bob charlie\n"
+            + "Example: " + COMMAND_WORD + " t/python t/beginner";
 
     public static final String ONLY_ONE_PREFIX_MESSAGE = "You can only search with 1 prefix, "
             + "either n/, p/, np/, e/, a/, dt/ or t/";

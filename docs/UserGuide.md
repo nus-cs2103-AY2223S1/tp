@@ -383,7 +383,7 @@ Fields supported in `find`:
 - Class Date `dt/`
 - Tag `t/`
 
-<div markdown="span" class="alert alert-danger">❗ **Caution:** Only one field can be searched at once.
+<div markdown="span" class="alert alert-danger">❗ **Caution:** Only one type of prefix should be used in a find command at a time.
 </div>
 
 #### Find by Name:
@@ -429,7 +429,7 @@ Format: `find a/KEYWORD [MORE_KEYWORDS]`
 - The search is case-insensitive. e.g., `Labrador` will match `LABRADOR`.
 - The order of the keywords does not matter. e.g., `Bukit Timah` will match `Timah Bukit`.
 - Students matching at least one keyword will be returned. e.g., `Bukit Timah` will return `Bukit Batok`, `Timah Hill`.
-- Only full words will be matched e.g., `Labra` will not match `Labrador`.
+- Partial words will be matched e.g., `Labra` will match `Labrador`.
 
 Example:
 
@@ -502,7 +502,7 @@ Examples:
 
 `find t/python` returns all students who have python as a tag, including students who have other tags on top of the
 python tag.
-`find dt/javascript` returns all students with javascript as a tag and other tags besides javascript.
+`find t/javascript` returns all students with javascript as a tag and other tags besides javascript.
 
 [↑ Back to top](#table-of-contents)
 

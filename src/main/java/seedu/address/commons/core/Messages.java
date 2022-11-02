@@ -12,7 +12,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX = "Invalid student index(es) provided.";
     public static final String MESSAGE_STUDENTS_LISTED_OVERVIEW = "%1$d students listed!";
     public static final String MESSAGE_INVALID_STUDENT_SCHEDULE_INDEX = "The student index provided is invalid.\n"
-                                         + "Please refer to the indexes displayed in the schedule list on the right.";
+            + "Please refer to the indexes displayed in the schedule list on the right.";
+    public static final String MESSAGE_DUPLICATE_INDEXES = "Indexes provided must be unique.";
     public static final String MESSAGE_INVALID_PARAMETER_FORMAT = "Please do not enter any extra parameters! \n%1$s";
 
 }

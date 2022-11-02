@@ -293,7 +293,8 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidClassDateTime() {
         assertParseFailure(parser, "1 " + PREFIX_CLASS_DATE_TIME + "2022-05-05 1200 1500", Class.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1 " + PREFIX_CLASS_DATE_TIME + "2022-20-05 1200-1500", Class.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1 " + PREFIX_CLASS_DATE_TIME + "2022-20-05 1200-1500",
+                Class.INVALID_DATETIME_ERROR_MESSAGE);
         assertParseFailure(parser, "1 " + PREFIX_CLASS_DATE_TIME + "2022-05-05 1200-1100",
                 Class.INVALID_DURATION_ERROR_MESSAGE);
     }
