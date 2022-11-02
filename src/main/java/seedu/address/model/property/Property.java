@@ -128,20 +128,21 @@ public class Property {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getPropertyName())
-                .append("; Address: ")
+        builder.append("Name: ")
+                .append(getPropertyName())
+                .append("\nAddress: ")
                 .append(getAddress())
-                .append("; Price: ")
+                .append("\nPrice: ")
                 .append(getPrice())
-                .append("; Description: ")
+                .append("\nDescription: ")
                 .append(getDescription());
 
-        builder.append("; Characteristics: ")
+        builder.append("\nCharacteristics: ")
                 .append(getCharacteristics()
                         .map(Characteristics::toString)
                         .orElse("Not Specified"));
 
-        builder.append("; Owner: ")
+        builder.append("\nOwner: ")
                 .append(getOwner());
         return builder.toString();
     }

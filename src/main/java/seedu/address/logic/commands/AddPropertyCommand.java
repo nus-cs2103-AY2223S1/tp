@@ -20,25 +20,25 @@ public class AddPropertyCommand extends Command {
 
     public static final String COMMAND_WORD = "addprop";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a property to Cobb. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a property to Cobb.\n"
             + "Parameters: "
             + PREFIX_NAME + " NAME "
             + PREFIX_PRICE + " PRICE "
             + PREFIX_ADDRESS + " ADDRESS "
             + PREFIX_DESCRIPTION + " DESCRIPTION "
-            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
             + PREFIX_OWNER_NAME + " OWNER NAME "
-            + PREFIX_PHONE + " PHONE\n"
+            + PREFIX_PHONE + " PHONE "
+            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + " Clementi Ave 2 Second Floor Flat "
+            + PREFIX_NAME + " Clementi Flat "
             + PREFIX_PRICE + " 500000 "
-            + PREFIX_ADDRESS + " 311, Clementi Ave 2, #02-25 "
-            + PREFIX_DESCRIPTION + " ready to be bought "
-            + PREFIX_CHARACTERISTICS + " 5-Room; Near School "
-            + PREFIX_OWNER_NAME + " John Doe "
-            + PREFIX_PHONE + " 80001000 ";
+            + PREFIX_ADDRESS + " 311 Clementi Ave 2, #02-25 "
+            + PREFIX_DESCRIPTION + " Ready to be bought "
+            + PREFIX_OWNER_NAME + " John "
+            + PREFIX_PHONE + " 98765432 "
+            + PREFIX_CHARACTERISTICS + " 3-Room; Near School";
 
-    public static final String MESSAGE_SUCCESS = "New property added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New property added!\n%1$s";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in Cobb";
 
     private final Property property;

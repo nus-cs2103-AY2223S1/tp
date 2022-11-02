@@ -131,21 +131,22 @@ public class Buyer {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
+        builder.append("Name: ")
+                .append(getName())
+                .append("\nPhone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("\nEmail: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("\nAddress: ")
                 .append(getAddress())
-                .append("; Budget: ")
+                .append("\nBudget: ")
                 .append(getPriceRange().map(PriceRange::toString).orElse("Budget: Not Specified"))
-                .append("; Desired Characteristics: ")
+                .append("\nDesired Characteristics: ")
                 .append(getDesiredCharacteristics()
                         .map(Characteristics::toString)
                         .orElse("Not Specified"));
 
-        builder.append(" Priority: ")
+        builder.append("\nPriority: ")
                 .append(getPriority());
 
         return builder.toString();
