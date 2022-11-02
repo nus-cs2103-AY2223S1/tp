@@ -45,9 +45,8 @@ checkUp's features include creating, viewing and managing patients' medical reco
 checkUp also allows users to:
 * search for patients by:
   * name;
-  * phone number;
-  * email address; and
-  * medical condition.
+  * location in the hospital; and
+  * long-term medication.
 * view the total number of patients in the system; and
 * view the total number of patients under specific long-term medication prescriptions.
 
