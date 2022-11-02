@@ -1,10 +1,10 @@
 package seedu.clinkedin.logic.commands;
 
-import static seedu.clinkedin.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.clinkedin.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.clinkedin.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.net.MalformedURLException;
