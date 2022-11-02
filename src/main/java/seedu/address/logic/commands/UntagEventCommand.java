@@ -29,7 +29,7 @@ public class UntagEventCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PERSONS + "1 3 4";
     public static final String MESSAGE_UNTAG_EVENT_SUCCESS = "Untagged Persons: %s to Event: %s";
-    public static final String MESSAGE_INVALID_PERSON = "This person: %d. %s doesn't exist in the event";
+    public static final String MESSAGE_INVALID_PERSON = "This person: %d. %s is not tagged to the event";
     private final Index eventIndex;
     private final List<Index> personIndexes;
 
