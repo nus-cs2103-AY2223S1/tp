@@ -15,6 +15,6 @@ public class Messages {
     public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW = "%1$d project(s) listed!";
     public static final String MESSAGE_INVALID_ISSUE_DISPLAYED_ID = "The issue id provided is invalid";
     public static final String MESSAGE_MISSING_ARGUMENTS = "Missing some arguments! \n%1$s";
-    public static final String MESSAGE_ISSUE_NOT_FOUND = "This issue id does not exist in the address book";
+    public static final String MESSAGE_ISSUE_NOT_FOUND = "This issue id does not exist in the project book";
 
 }

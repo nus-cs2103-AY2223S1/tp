@@ -17,7 +17,7 @@ import seedu.address.model.client.ClientMobile;
 import seedu.address.ui.Ui;
 
 /**
- * Edits the details of an existing client in the address book.
+ * Edits the details of an existing client in the project book.
  */
 public class EditClientCommand extends ClientCommand {
 
@@ -27,7 +27,7 @@ public class EditClientCommand extends ClientCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-            + ": Edits a client in the address book. \n"
+            + ": Edits a client in the project book. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_EMAIL + "EMAIL "

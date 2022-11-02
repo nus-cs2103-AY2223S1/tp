@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.ui.Ui;
 
 /**
- * Sort projects in address book.
+ * Sort projects in project book.
  */
 public class SortProjectCommand extends ProjectCommand {
 
@@ -23,7 +23,7 @@ public class SortProjectCommand extends ProjectCommand {
     public static final String MESSAGE_SUCCESS = "Sorted projects";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_FLAG
-            + ": Sort projects in address book. \n"
+            + ": Sort projects in project book. \n"
             + "Sort by project id: "
             + PREFIX_PROJECT_ID + "0 (ascending) or "
             + PREFIX_PROJECT_ID + "1 (descending). "

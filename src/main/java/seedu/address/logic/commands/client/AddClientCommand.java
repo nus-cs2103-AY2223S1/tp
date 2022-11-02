@@ -17,7 +17,7 @@ import seedu.address.ui.Ui;
 
 
 /**
- * Adds a client to the address book.
+ * Adds a client to the project book.
  */
 public class AddClientCommand extends ClientCommand {
 
@@ -25,7 +25,7 @@ public class AddClientCommand extends ClientCommand {
 
     public static final String MESSAGE_ADD_CLIENT_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-            + ": Adds a client to the address book. \n"
+            + ": Adds a client to the project book. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_MOBILE + "MOBILE "
@@ -40,7 +40,7 @@ public class AddClientCommand extends ClientCommand {
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
     private static final String MESSAGE_CLIENT_ALREADY_PRESENT = "This project already has a client";
-    private static final String MESSAGE_PROJECT_NOT_FOUND = "This project id does not exist in the address book";
+    private static final String MESSAGE_PROJECT_NOT_FOUND = "This project id does not exist in the project book";
 
     private final ClientWithoutModel toAddClientWithoutModel;
     private final ProjectId projectId;

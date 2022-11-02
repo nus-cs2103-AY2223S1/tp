@@ -16,7 +16,7 @@ import seedu.address.model.project.Project;
 import seedu.address.ui.Ui;
 
 /**
- * Deletes a project in the address book.
+ * Deletes a project in the project book.
  */
 public class DeleteProjectCommand extends ProjectCommand {
 

@@ -25,7 +25,7 @@ public class AddIssueCommand extends IssueCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-            + ": Adds an issue to the address book. \n"
+            + ": Adds an issue to the project book. \n"
             + "Parameters: "
             + PREFIX_PROJECT_ID + "PROJECT_ID "
             + PREFIX_TITLE + "TITLE "
@@ -40,8 +40,8 @@ public class AddIssueCommand extends IssueCommand {
 
 
     public static final String MESSAGE_SUCCESS = "New issue added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ISSUE = "This issue already exists in the address book";
-    public static final String MESSAGE_PROJECT_NOT_FOUND = "This project id does not exist in the address book";
+    public static final String MESSAGE_DUPLICATE_ISSUE = "This issue already exists in the project book";
+    public static final String MESSAGE_PROJECT_NOT_FOUND = "This project id does not exist in the project book";
 
     //    private final Issue toAdd;
     private final IssueWithoutModel toAddWithoutModel;
