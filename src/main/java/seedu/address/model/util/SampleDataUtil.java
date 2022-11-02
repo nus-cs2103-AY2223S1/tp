@@ -256,7 +256,7 @@ public class SampleDataUtil {
     public static Order getOrder(Buyer buyer, double upperBound, double lowerBound, Request request,
                                  AdditionalRequests additionalRequests, String byDate,
                                  double settledPrice, String status) {
-        PriceRange priceRange = new PriceRange(new Price(upperBound), new Price(lowerBound));
+        PriceRange priceRange = new PriceRange(new Price(lowerBound), new Price(upperBound));
         Request orderRequest = request;
         AdditionalRequests orderAdditionalRequests = additionalRequests;
         LocalDate orderDate = LocalDate.parse(byDate);

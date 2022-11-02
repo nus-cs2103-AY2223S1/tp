@@ -40,6 +40,6 @@ public class JsonAdaptedPriceRange {
         }
         Price modelUpperBound = new Price(upperBound);
         Price modelLowerBound = new Price(lowerBound);
-        return new PriceRange(modelUpperBound, modelLowerBound);
+        return new PriceRange(modelLowerBound, modelUpperBound);
     }
 }
