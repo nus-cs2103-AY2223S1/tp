@@ -217,7 +217,13 @@ Examples:
 
 Edits a user who is registered with the library.
 
-Format: `edit user INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...`
+Format: `edit user INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...`
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the Edit command:**<br>
+* Although the format specifies that the fields are optional, the command still requires 1 field to be provided in order for it to work
+* If you are inserting additional tags to a user, you must list all the present tags first since the command overrides the current tags with the ones in the Edit command
+</div>
 
 Examples:
 * `edit user 1 p/91234567 e/johndoe@example.com`
@@ -226,10 +232,10 @@ Examples:
 
 Edits a book in the library.
 
-Format: `edit user INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...`
+Format: `edit book INDEX [t/TITLE] [a/AUTHOR]...`
 
 Examples:
-* `edit book t/The Broken House`
+* `edit book 1 t/The Broken House`
 
 ### List all users : `list users`
 
