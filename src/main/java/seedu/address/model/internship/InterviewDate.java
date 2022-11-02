@@ -48,6 +48,8 @@ public class InterviewDate {
         return datetime.format(formatter);
     }
 
+    // solution adapted from
+    // https://stackoverflow.com/a/36716166
     @Override
     public boolean equals(Object other) {
         return Objects.equals(datetime, ((InterviewDate) other).datetime);

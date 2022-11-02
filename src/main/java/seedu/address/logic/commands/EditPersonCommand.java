@@ -87,6 +87,9 @@ public class EditPersonCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        if (editedPerson.getInternshipId() != null) {
+            model.refreshInternshipList();
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 

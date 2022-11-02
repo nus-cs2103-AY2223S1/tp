@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an Internship's unique id in InterNUS.
  * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
  */
-public class InternshipId implements Comparable<InternshipId> {
+public class InternshipId {
     public static final String MESSAGE_CONSTRAINTS =
             "Internship Id must be a non-negative number, and it should not be blank";
 
@@ -68,8 +68,4 @@ public class InternshipId implements Comparable<InternshipId> {
         return id.hashCode();
     }
 
-    @Override
-    public int compareTo(InternshipId other) {
-        return -other.id.toString().compareToIgnoreCase(this.id.toString());
-    }
 }

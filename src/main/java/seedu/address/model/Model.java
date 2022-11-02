@@ -22,9 +22,19 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
+     * {@code Predicate} that always evaluate to false
+     */
+    Predicate<Person> PREDICATE_SHOW_NO_PERSONS = unused -> false;
+
+    /**
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Internship> PREDICATE_SHOW_ALL_INTERNSHIPS = unused -> true;
+
+    /**
+     * {@code Predicate} that always evaluate to false
+     */
+    Predicate<Internship> PREDICATE_SHOW_NO_INTERNSHIPS = unused -> false;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -103,6 +113,11 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
+     * Refreshes person list.
+     */
+    void refreshPersonList();
+
+    /**
      * Sorts the filter of the filtered person list by the given {@code comparator}.
      *
      * @throws NullPointerException if {@code comparator} is null.
@@ -145,6 +160,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredInternshipList(Predicate<Internship> predicate);
+
+    /**
+     * Refreshes internship list.
+     */
+    void refreshInternshipList();
 
     /**
      * Sorts the filtered internship list by the given {@code comparator}.

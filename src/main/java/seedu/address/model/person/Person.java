@@ -118,6 +118,8 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+        // solution adapted from
+        // https://stackoverflow.com/a/36716166
         return otherPerson.getPersonId().equals(getPersonId())
                 && otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())

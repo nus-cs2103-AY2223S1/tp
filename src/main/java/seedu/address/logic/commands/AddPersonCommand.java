@@ -139,6 +139,8 @@ public class AddPersonCommand extends Command {
             return false;
         }
 
+        // solution adapted from
+        // https://stackoverflow.com/a/36716166
         AddPersonCommand otherCommand = (AddPersonCommand) other;
         return name.equals(otherCommand.name)
                 && Objects.equals(phone, otherCommand.phone)

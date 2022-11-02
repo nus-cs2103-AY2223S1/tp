@@ -63,6 +63,8 @@ public class Email {
         return value;
     }
 
+    // solution adapted from
+    // https://stackoverflow.com/a/36716166
     @Override
     public boolean equals(Object other) {
         return Objects.equals(value, ((Email) other).value);

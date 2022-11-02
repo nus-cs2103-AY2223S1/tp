@@ -43,6 +43,8 @@ public class Phone {
         return value;
     }
 
+    // solution adapted from
+    // https://stackoverflow.com/a/36716166
     @Override
     public boolean equals(Object other) {
         return Objects.equals(value, ((Phone) other).value);
