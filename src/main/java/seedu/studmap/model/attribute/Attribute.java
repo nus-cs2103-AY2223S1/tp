@@ -37,7 +37,7 @@ public abstract class Attribute {
         switch (attributeTypeEnum) {
 
         case NAME:
-            resultComparator = Comparator.comparing(Student::getNameString);
+            resultComparator = Comparator.comparing(Student::getNameString, String::compareToIgnoreCase);
             break;
 
         case PHONE:
@@ -45,27 +45,35 @@ public abstract class Attribute {
             break;
 
         case MODULE:
-            resultComparator = Comparator.comparing(Student::getModuleString);
+            resultComparator = Comparator.comparing(Student::getModuleString, String::compareToIgnoreCase);
             break;
 
         case ID:
-            resultComparator = Comparator.comparing(Student::getIdString);
+            resultComparator = Comparator.comparing(Student::getIdString, String::compareToIgnoreCase);
             break;
 
         case GIT:
-            resultComparator = Comparator.comparing(Student::getGitString);
+            resultComparator = Comparator.comparing(Student::getGitString, String::compareToIgnoreCase);
             break;
 
         case HANDLE:
-            resultComparator = Comparator.comparing(Student::getHandleString);
+            resultComparator = Comparator.comparing(Student::getHandleString, String::compareToIgnoreCase);
             break;
 
         case EMAIL:
-            resultComparator = Comparator.comparing(Student::getEmailString);
+            resultComparator = Comparator.comparing(Student::getEmailString, String::compareToIgnoreCase);
             break;
 
         case ATTENDANCE:
             resultComparator = Comparator.comparing(Student::getAttendancePercentage);
+            break;
+
+        case ASSIGNMENT:
+            resultComparator = Comparator.comparing(Student::getAssignmentMarkedCount);
+            break;
+
+        case PARTICIPATION:
+            resultComparator = Comparator.comparing(Student::getParticipationPercentage);
             break;
 
         default:

@@ -22,7 +22,7 @@ public class SortCommand extends Command {
             + "[" + PREFIX_ATTRIBUTE + "ATTRIBUTE]\n "
             + "Example: " + COMMAND_WORD + " asc "
             + PREFIX_ATTRIBUTE + "name\n"
-            + "Supported attributes: name, phone, email, attendance";
+            + "Supported attributes: name, module, phone, id, git, handle, email, attendance";
 
     public static final String MESSAGE_SORT_SUCCESS = "StudMap has been sorted by %1$s in %2$s order!";
 

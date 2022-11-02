@@ -199,12 +199,14 @@ Format: `sort ORDER a/ATTRIBUTE`
   - `HANDLE`
   - `EMAIL`
   - `ATTENDANCE`
+  - `ASSIGNMENT`
+  - `PARTICIPATION`
 
 Examples:
 
-* `sort asc a/name`
-* `sort dsc a/phone`
-* `sort asc a/attendance`
+* `sort asc a/name` sorts list by `NAME` in ascending order
+* `sort dsc a/phone` sorts list by `PHONE` in descending order
+* `sort asc a/attendance` sorts list by `ATTENDANCE` in ascending order
 
 ### Filtering the students: `filter`
 
