@@ -47,15 +47,6 @@ public class InterviewTimeTest {
     }
 
     @Test
-    public void isWithin() {
-        assertFalse(new InterviewTime("1100").isWithin(new InterviewTime("0900")));
-        assertFalse(new InterviewTime("2359").isWithin(new InterviewTime("2259")));
-
-        assertTrue(new InterviewTime("0500").isWithin(new InterviewTime("0559")));
-        assertTrue(new InterviewTime("1756").isWithin(new InterviewTime("1700")));
-
-    }
-    @Test
     public void interviewTime() {
         assertEquals(new InterviewTime("2359").toString(), "23:59");
         assertEquals(new InterviewTime("0900").toString(), "09:00");
