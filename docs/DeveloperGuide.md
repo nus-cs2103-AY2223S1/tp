@@ -86,6 +86,7 @@ in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`,
+
 `QuestionListPanel`, `TutorialListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the
 abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -123,6 +124,7 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletestu 1")`
 API call.
 
+
 ![Interactions Inside the Logic Component for the `deletestu 1` Command](images/DeleteStuSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -138,6 +140,7 @@ How the parsing works:
   placeholder for the specific command name e.g., `AddStuCommandParser`) which uses the other classes shown above to
   parse the user command and create a `XYZCommand` object (e.g., `AddStuCommand`) which the `AddressBookParser` returns
   back as a `Command` object.
+
 * All `XYZCommandParser` classes (e.g., `AddStuCommandParser`, `DeleteStuCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
@@ -227,6 +230,7 @@ methods are called.
 call `Model#addStudent(Student student)`, so the student will not be added into the student list as student already
 exist in the list.
 
+
 Step 5. After successfully adding student to the student list, a `CommandResult` object will be created to tell the user
 that the student has been successfully added.
 
@@ -309,6 +313,7 @@ The proposed add question mechanism is facilitated by `AddressBook`. It implemen
 
 * `AddressBook#hasQuestion(Question question)` - Returns true if a question with the same identity as Question question
   exists in the address book.
+
 * `AddressBook#addQuestion(Question question)` - Adds a question to the question list in the address book.
 
 These operations are exposed in the Model interface as `Model#hasQuestion(Question question)`
@@ -325,14 +330,16 @@ after the `addq Why?` command executes to be saved in the `addressBook`.
 
 **Note:**
 
-1. If a command fails its execution due to incorrect command format, it will not
-   call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, so the address book state will not be saved
-   into `addressBook`. User will retype their command.
+1. If a command fails its execution
+   due to incorrect command format, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`,
+   so the address book state will not be saved into `addressBook`. User will retype their command.
 2. If upon invoking `AddressBook#hasQuestion`
-   method and return value is `true`, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, so '
-   UniqueQuestionList' and `addressBook` will not be updated.
-3. Questions added not case-sensitive. For example, if a question in the `question list` is "why?", another question
-   called "WHY?" can be added. Duplicates are not allowed. E.g. adding another question called "why?".
+   method and return value is `true`, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`,
+   so 'UniqueQuestionList' and `addressBook` will not be updated.
+3. Questions added not case-sensitive. For
+   example, if a question in the `question list` is "why?", another question called "WHY?" can be added. Duplicates are
+   not allowed. E.g. adding another question called "why?".
+
 
 The following sequence diagram shows how the add question operation works:
 ![AddQSequenceDiagram](images/AddQSequenceDiagram.png)
@@ -818,6 +825,7 @@ exploratory* testing.
     1. Download the jar file and copy into an empty folder
 
     2. Double-click the jar file Expected: Shows the GUI. The window size will take up the full screen.
+
 
 2. Saving window preferences
 
