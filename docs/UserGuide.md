@@ -114,7 +114,7 @@ Format: `n/NAME`
 Sets the phone number of a person in uNivUSal.
 
 Format : `p/PHONE`
-* `PHONE` must only contain digits and not alphabets.
+* `PHONE` must only contain digits and not alphabets, and it should be at least 3 digits long.
 
 Example : `p/97865486`
 
