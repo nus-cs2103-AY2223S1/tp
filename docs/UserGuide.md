@@ -27,8 +27,12 @@ Linus, Cheng Yi, Yi Hong, Huzaifa, Hong Jin
 3. Copy the file to the folder you want to use as the _home folder_ for your `CLIMods`.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few
-   seconds.<br>
+   seconds.<br> 
    ![Ui](images/Ui.png)
+   If double-clicking fails to start the app try these steps instead:
+   - Launch a terminal or command prompt on your system
+   - Change the current working directory to the _home folder_ 
+   - Run the following command: `java -jar climods.jar`
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
    pressing Enter will open the help window.
