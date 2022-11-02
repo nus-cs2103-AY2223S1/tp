@@ -12,6 +12,8 @@ public class Title {
     public static final String MESSAGE_CONSTRAINTS =
             "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
 
+    public static final String TITLE_EMPTY_MESSAGE =
+            "Titles should not be blank/empty, it should contain at least 1 alphanumeric character.";
     /*
      * The first character of the trip must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -27,6 +29,7 @@ public class Title {
      */
     public Title(String title) {
         requireNonNull(title);
+        checkArgument(titleIsNotEmpty(title), TITLE_EMPTY_MESSAGE);
         checkArgument(isValidTitle(title), MESSAGE_CONSTRAINTS);
         fullTitle = title;
     }
@@ -38,7 +41,14 @@ public class Title {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if a given string is not just
+     * @return
+     */
+    public static boolean titleIsNotEmpty(String test) {
 
+        return !test.equals("");
+    }
     @Override
     public String toString() {
         return fullTitle;
