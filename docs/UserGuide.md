@@ -290,7 +290,7 @@ This section guides you on how to use features available in *MyInsuRec*. We will
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 * Extraneous or incorrect parameters for commands that take in parameters (such as `editClient` and `editMeeting`) will be considered as part of the preceding valid parameter in the command.<br>
-  e.g. if the command is used as `editClient i/1 n/Smith et/1230` where `et/` is the only invalid parameter, the input by preceding valid parameter `n/` will be read as `Smith et/1230`.
+  e.g. if the command is used as `editClient i/1 n/Smith et/1230` where `et/` is the only invalid parameter, the input by preceding valid parameter `n/` will be read as `Smith et/1230`. The input is invalid because it is not alphanumeric.
 
 </div>
 
