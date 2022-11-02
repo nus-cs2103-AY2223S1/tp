@@ -29,7 +29,7 @@ public class EditClientCommand extends ClientCommand {
     public static final String MESSAGE_DUPLICATE_CLIENT_NAME = "A client with this name already "
             + "exists in the project book";
 
-    public static final String MESSAGE_CLIENT_NOT_FOUND = "Client with id is not found";
+    public static final String MESSAGE_CLIENT_NOT_FOUND = "Client id %1$d is not found";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
@@ -67,7 +67,7 @@ public class EditClientCommand extends ClientCommand {
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
         if (!HasIntegerIdentifier.containsId(model.getFilteredClientList(), clientId.getIdInt())) {
-            throw new CommandException(MESSAGE_CLIENT_NOT_FOUND);
+            throw new CommandException(String.format(MESSAGE_CLIENT_NOT_FOUND, clientId.getIdInt()));
         }
 
         Client toEditClient = model.getClientById(clientId.getIdInt());
