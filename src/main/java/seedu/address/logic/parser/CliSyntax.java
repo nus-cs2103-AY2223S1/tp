@@ -18,12 +18,8 @@ public class CliSyntax {
     public static final String FLAG_DEADLINE_STR_LONG = "--deadline";
     public static final String FLAG_EMAIL_STR = "-e";
     public static final String FLAG_EMAIL_STR_LONG = "--email";
-    public static final String FLAG_FILTER_STR = "-f";
-    public static final String FLAG_FILTER_STR_LONG = "--filter";
     public static final String FLAG_HELP_STR = "-h";
     public static final String FLAG_HELP_STR_LONG = "--help";
-    public static final String FLAG_INDEX_STR = "-i";
-    public static final String FLAG_INDEX_STR_LONG = "--index";
     public static final String FLAG_INCOMPLETE_TASKS_STR = "-i";
     public static final String FLAG_INCOMPLETE_TASKS_STR_LONG = "--incomplete";
     public static final String FLAG_URL_STR = "-l";

@@ -60,7 +60,7 @@ public class UnmarkCommand extends Command {
         model.getTeam().setTask(originalTask, unmarkedTask);
 
         return new CommandResult(String.format(MESSAGE_MARK_SUCCESS,
-                taskList.get(taskIndex.getZeroBased()).getName()));
+                unmarkedTask.getName()));
     }
 
     @Override
