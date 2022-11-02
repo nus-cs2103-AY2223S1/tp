@@ -21,12 +21,12 @@ public class UnparticipateCommand extends EditStudentCommand<UnparticipateComman
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Remove the participation component for student identified by the index number used in the displayed "
-            + "student list."
-            + "\n Removes participation record for the participation component specified in the parameter.\n"
+            + "student list.\n"
+            + "Removes participation record for the participation component specified in the parameter.\n"
             + "Parameters: INDEX (must be positive integer) "
-            + PREFIX_PARTICIPATION + " [PARTICIPATION COMPONENT]\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PARTICIPATION + "P01"
-            + "\nExample: " + COMMAND_WORD + " all " + PREFIX_PARTICIPATION + "P02";
+            + PREFIX_PARTICIPATION + "PARTICIPATION_COMPONENT\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PARTICIPATION + "P01\n"
+            + "Example: " + COMMAND_WORD + " all " + PREFIX_PARTICIPATION + "P02";
 
     public static final String MESSAGE_UNMARK_SINGLE_PARTICIPATION_SUCCESS = "Removed Participation component %1$s "
             + "from Student: %2$s";

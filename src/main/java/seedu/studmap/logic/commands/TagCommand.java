@@ -29,13 +29,13 @@ public class TagCommand extends EditStudentCommand<TagCommand.TagCommandStudentE
     public static final String MESSAGE_ARGUMENTS = "Index: %1$s, new tag: %2$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add tags for a student in the student map.\n"
-            + "Parameters:\n"
-            + "  INDEX (must be a positive integer or use \"all\" to add tags for everyone in the list) \n"
-            + "  [" + PREFIX_TAG + "TAG]...\n"
-            + "Example:\n" + COMMAND_WORD + " 1 "
+            + "Parameters: "
+            + "INDEX (must be a positive integer or use \"all\" to add tags for everyone in the list)"
+            + " [" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "lab "
-            + PREFIX_TAG + "goodProgress"
-            + "\nor\n" + COMMAND_WORD + " all "
+            + PREFIX_TAG + "goodProgress\n"
+            + "Example: " + COMMAND_WORD + " all "
             + PREFIX_TAG + "tutorial "
             + PREFIX_TAG + "needRemedial";
 
