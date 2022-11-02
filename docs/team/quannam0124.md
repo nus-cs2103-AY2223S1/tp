@@ -38,7 +38,7 @@ Given below are my contributions to the project.
     * Added activity diagram for EditClientCommand
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): 
+  * PRs reviewed (with non-trivial review comments):
     * [Teammate's PR](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/184)
     * [Teammate's PR](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/205)
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2223S1/forum/issues/115), [2](), [3](), [4]())
