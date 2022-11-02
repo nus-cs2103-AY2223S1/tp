@@ -487,17 +487,17 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public int generateClientId() {
-        return HasIntegerIdentifier.generateNextID(clients);
+        return HasIntegerIdentifier.generateNextId(clients);
     }
 
     @Override
     public int generateIssueId() {
-        return HasIntegerIdentifier.generateNextID(issues);
+        return HasIntegerIdentifier.generateNextId(issues);
     }
 
     @Override
     public int generateProjectId() {
-        return HasIntegerIdentifier.generateNextID(projects);
+        return HasIntegerIdentifier.generateNextId(projects);
     }
 
 

@@ -35,7 +35,7 @@ public class UniqueEntityList<T extends ComparableByName<T> & HasIntegerIdentifi
      * Returns true if the list contains the given ID.
      */
     public boolean containsId(int id) {
-        return internalList.stream().anyMatch((item) -> id == item.getID());
+        return internalList.stream().anyMatch((item) -> id == item.getId());
     }
 
     /**
@@ -154,7 +154,7 @@ public class UniqueEntityList<T extends ComparableByName<T> & HasIntegerIdentifi
      */
     public T getElementById(int id) {
         for (T t: this) {
-            if (t.getID() == id) {
+            if (t.getId() == id) {
                 return t;
             }
         }
@@ -162,6 +162,6 @@ public class UniqueEntityList<T extends ComparableByName<T> & HasIntegerIdentifi
     }
 
     public void sortById() {
-        internalList.sort(Comparator.comparingInt(HasIntegerIdentifier::getID));
+        internalList.sort(Comparator.comparingInt(HasIntegerIdentifier::getId));
     }
 }

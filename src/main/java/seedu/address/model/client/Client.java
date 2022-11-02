@@ -113,7 +113,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     }
 
     @Override
-    public int getID() {
+    public int getId() {
         return this.getClientId().getIdInt();
     }
 
@@ -260,6 +260,19 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns true if all other attributes besides project list are the same.
+     * @param otherClient
+     * @return Boolean value representing whether the basic client details are equal.
+     */
+    public boolean hasSameDetails(Client otherClient) {
+        return this.getClientId().equals(otherClient.getClientId())
+                && this.getClientName().equals(otherClient.getClientName())
+                && this.getClientEmail().equals(otherClient.getClientEmail())
+                && this.getClientMobile().equals(otherClient.getClientMobile())
+                && this.getPin().equals(otherClient.getPin());
     }
 
     @Override
