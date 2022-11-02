@@ -42,13 +42,15 @@ If you are looking to help develop this project, take a look at our [Developer G
   * [Getting help](#getting-help-help)
   * [Clearing data in TrackO](#clearing-all-data-in-tracko-clear)
   * [Exiting TrackO](#exiting-tracko--exit)
+* [Command Summary](#command-summary)
+* [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 **TrackO** is a desktop application built for small home-based business owners (just like you!) to manage their orders 
 and inventory items. It is an **integrated solution** that merges the process of tracking orders and inventory in one
-place, optimized for use via a Command Line Interface (CLI), while still having the benefits of a Graphical User Interface
-(GUI).
+place, optimized for use via a Command Line Interface ([CLI](#cli)), while still having the benefits of a Graphical User Interface
+([GUI](#gui)).
 
 If you prefer and are fast at typing, **TrackO** can get your order and inventory management tasks done faster than
 the traditional solution of pen and paper, and even popular GUI applications such as spreadsheets
