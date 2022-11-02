@@ -37,7 +37,7 @@ public class VenueViewCommand extends VenueCommand implements ModelCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
-            model.setObservableBookings(venueName);
+            model.setCurrentlyDisplayedVenue(venueName);
             return new CommandResult(String.format(MESSAGE_SUCCESS, venueName));
         } catch (VenueNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_VENUE_NOT_FOUND, venueName));

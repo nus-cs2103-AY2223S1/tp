@@ -141,8 +141,7 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getHiddenFields());
         residentTableViewPlaceholder.getChildren().add(residentTableView.getRoot());
 
-        venueTabView = new VenueTabView(logic.getObservableVenues(), logic.getObservableBookings(),
-                logic.getCurrentlyDisplayedVenueName());
+        venueTabView = new VenueTabView(logic.getObservableVenues(), logic.getCurrentlyDisplayedVenue());
         venueTabViewPlaceholder.getChildren().add(venueTabView.getRoot());
 
         residentTab.setContent(residentTableViewPlaceholder);

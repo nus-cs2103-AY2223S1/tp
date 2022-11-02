@@ -1,0 +1,12 @@
+{
+  "venues" : [ {
+    "bookings" : [ ],
+    "venueName" : "Meeting Room"
+  }, {
+    "bookings" : [ ],
+    "venueName" : "Hall"
+  }, {
+    "bookings" : [ ],
+    "venueName" : "Discussion Room"
+  } ]
+}
