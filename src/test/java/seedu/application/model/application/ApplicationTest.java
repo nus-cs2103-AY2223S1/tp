@@ -47,15 +47,15 @@ public class ApplicationTest {
         editedGoogle = new ApplicationBuilder(GOOGLE).withPosition(VALID_POSITION_FACEBOOK).build();
         assertFalse(GOOGLE.isSameApplication(editedGoogle));
 
-        // company differs in case, all other attributes same -> returns false
+        // company differs in case, all other attributes same -> returns true
         Application editedFacebook = new ApplicationBuilder(FACEBOOK)
                 .withCompany(VALID_COMPANY_FACEBOOK.toLowerCase()).build();
-        assertFalse(FACEBOOK.isSameApplication(editedFacebook));
+        assertTrue(FACEBOOK.isSameApplication(editedFacebook));
 
-        // position differs in case, all other attributes same -> returns false
+        // position differs in case, all other attributes same -> returns true
         editedFacebook = new ApplicationBuilder(FACEBOOK)
                 .withPosition(VALID_POSITION_FACEBOOK.toLowerCase()).build();
-        assertFalse(FACEBOOK.isSameApplication(editedFacebook));
+        assertTrue(FACEBOOK.isSameApplication(editedFacebook));
 
         // company has trailing spaces, all other attributes same -> returns false
         String companyWithTrailingSpaces = VALID_COMPANY_FACEBOOK + " ";
