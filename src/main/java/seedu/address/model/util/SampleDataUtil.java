@@ -218,11 +218,15 @@ public class SampleDataUtil {
             buyers[i].addOrders(tmp);
         }
 
-        for (int i = 0; i < suppliers.length; i++) {
+        for (int i = 0; i < suppliers.length - 2; i++) {
             List<UniqueId> tmp = new ArrayList<>();
             tmp.add(pets[i].getId());
             suppliers[i].addPets(tmp);
         }
+        List<UniqueId> tmp = new ArrayList<>();
+        tmp.add(pets[4].getId());
+        tmp.add(pets[5].getId());
+        suppliers[2].addPets(tmp);
 
         for (Buyer sampleBuyer :buyers) {
             sampleAb.addBuyer(sampleBuyer);
