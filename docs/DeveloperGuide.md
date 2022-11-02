@@ -590,6 +590,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by rerunning the command `java -jar Friendnancial.jar`.<br>
       Expected: The most recent window size and location is retained.
 
+
 ### Adding a person
 
 1. Adding a person successfully
@@ -612,7 +613,36 @@ testers are expected to do more *exploratory* testing.
    1. Test Case: `add n/Daniel s/o Danny p/98765431 e/daniel@failingtest.come a/Daniel Street, Block 132, #04-23 b/18-01-2000`<br>
       Expected: No contact named Daniel s/o Danny is added to Friendnancial. Error details are shown in the status message in the application. Only alphenumeric values are allowed for names.
 
+
 ### Editing a person
+
+1. Editing a person while persons are being shown successfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `edit 1 p/12345678`<br>
+      Expected: First contact has their phone field updated and the display has been updated to reflect this change. Details of the edit are shown in the status message. Single edit changes are allowed.
+
+   1. Test Case: `edit 1 p/123456789 e/newemail@email.com`<br>
+      Expected: First contact has their phone and email field updated and the display has been updated to reflect change. Details of the edit are shown in the status message. Multiple fields can be updated at once.
+
+1. Editing a person while persons are being shown unsuccessfully
+
+    1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+    1. Test Case: `edit 1`<br>
+       Expected: First contact has no fields updated. Error details are shown in the status message. Must specify fields to edit.
+
+    1. Test Case: `edit 0`<br>
+       Expected: No fields are updated at all across all contacts. Error details are shown in the status message. Index must be positive integer.
+
+1. Editing a person while no persons are being shown.
+
+    1. Prerequisites: List of contacts contains no persons.
+
+    1. Test Case: `edit 1 p/98765432`<br>
+       Expected: No fields are updated. Error details are shown in the status message. There must be persons in the list of contacts to edit.
+
 
 ### Deleting a person
 
