@@ -3,8 +3,10 @@ package seedu.address.logic.commands;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -27,6 +29,7 @@ public class MatchCommand extends Command {
             + "match " + " 1\n";
     public static final String MESSAGE_SUCCESS = "Matched pets given the order. ";
 
+    private static final Logger LOGGER = LogsCenter.getLogger(MatchCommand.class);
     private final Index index;
 
     /**
@@ -57,8 +60,17 @@ public class MatchCommand extends Command {
         PetGrader grader = new PetGrader(order);
         Map<Pet, Double> petScoreMap = new HashMap<>();
         petList.forEach(x -> petScoreMap.put(x, grader.evaluate(x)));
-        Comparator<Pet> comparator = (x, y) -> Double.compare(petScoreMap.getOrDefault(y, 0.0),
-                        petScoreMap.getOrDefault(x, 0.0));
+        Comparator<Pet> comparator = (x, y) -> {
+            if (!petScoreMap.containsKey(y)) {
+                LOGGER.warning(y.getName() + "'s score is not in the map.");
+            }
+            if (!petScoreMap.containsKey(x)) {
+                LOGGER.warning(x.getName() + "'s score is not in the map.");
+            }
+            return Double.compare(petScoreMap.getOrDefault(y, 0.0),
+                    petScoreMap.getOrDefault(x, 0.0));
+        };
+
         model.sortPet(comparator);
 
         return new CommandResult(MESSAGE_SUCCESS,
