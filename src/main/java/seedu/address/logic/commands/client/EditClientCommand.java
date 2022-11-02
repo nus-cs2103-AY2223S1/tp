@@ -26,6 +26,9 @@ public class EditClientCommand extends ClientCommand {
 
     public static final String MESSAGE_SUCCESS = "Client %1$s has been edited";
 
+    public static final String MESSAGE_DUPLICATE_CLIENT_NAME = "A client with this name already "
+            + "exists in the project book";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
             + ": Edits a client in the project book. \n"
@@ -67,6 +70,11 @@ public class EditClientCommand extends ClientCommand {
         Client toEditClient = model.getClientById(clientId.getIdInt());
 
         if (newName != null) {
+            for (Client c : model.getFilteredClientList()) {
+                if (c.getClientName().equals(newName)) {
+                    throw new CommandException(MESSAGE_DUPLICATE_CLIENT_NAME);
+                }
+            }
             toEditClient.setName(newName);
         }
 

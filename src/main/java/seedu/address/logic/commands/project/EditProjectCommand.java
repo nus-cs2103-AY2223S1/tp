@@ -47,7 +47,9 @@ public class EditProjectCommand extends ProjectCommand {
             + PREFIX_DEADLINE + "2022-03-05 ";
 
     public static final String MESSAGE_SUCCESS = "Project %1$s has been edited";
-    public static final String MESSAGE_INVALID_CLIENT = "This client id does not exist in the project book.";
+    public static final String MESSAGE_INVALID_CLIENT = "This client id does not exist in the project book";
+    public static final String MESSAGE_DUPLICATE_PROJECT_NAME = "A project with this name already "
+            + "exists in the project book";
 
     private final ProjectId projectToEditId;
     private final Name newName;
@@ -81,6 +83,11 @@ public class EditProjectCommand extends ProjectCommand {
         Project toEditProject = model.getProjectById(projectToEditId.getIdInt());
 
         if (newName != null) {
+            for (Project p : model.getFilteredProjectList()) {
+                if (p.getProjectName().equals(newName)) {
+                    throw new CommandException(MESSAGE_DUPLICATE_PROJECT_NAME);
+                }
+            }
             toEditProject.setName(newName);
         }
 
