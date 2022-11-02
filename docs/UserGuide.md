@@ -91,8 +91,8 @@ section of this user guide or to an external website.
    * If you are using Mac, open the `Terminal` and enter `java --version`.
      * To open the `Terminal`, press `command` and `space bar` together to launch Spotlight.
      * Following, enter `terminal` in the search bar.
-   * If you are using Windows, open the `Command Window` and enter `java -version`. 
-     * To open the `Command Window`, press `Windows` and `R` together to launch the "Run" box.
+   * If you are using Windows, open the `Command Prompt` and enter `java -version`. 
+     * To open the `Command Prompt`, press `Windows` and `R` together to launch the "Run" box.
      * Following, enter `cmd` and click `OK`. 
    * If java is installed, you would get a similar output as shown below. You can continue to step 2.
    (Do not worry about what the message says, it is not crucial to learn how to use GuestBook.)
