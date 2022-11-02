@@ -114,15 +114,15 @@ public class SampleDataUtil {
         return new Consultation[] {
             new Consultation(new ConsultationName("Review past year paper"), new ModuleCode("CS2103T"),
                     new Venue("COM1-0203"),
-                    DatetimeRange.fromFormattedString("2022-01-01", "16:00", "18:00"),
+                    DatetimeRange.fromFormattedString("2022-11-11", "16:00", "18:00"),
                     new ConsultationDescription("AY2021 Sem 1 Question 1,5,10 & AY2019 Sem 2 Question 2,8,9.")),
             new Consultation(new ConsultationName("Review UML diagram with Tom"), new ModuleCode("CS2103T"),
                     new Venue("COM1-0201"),
-                    DatetimeRange.fromFormattedString("2022-01-01", "15:00", "17:00"),
+                    DatetimeRange.fromFormattedString("2022-12-01", "15:00", "17:00"),
                     new ConsultationDescription("Review tutorial week 7 question 4-10.")),
             new Consultation(new ConsultationName("Clear doubts about lecture with John"), new ModuleCode("CS2103T"),
                     new Venue("COM1-0202"),
-                    DatetimeRange.fromFormattedString("2022-01-01", "10:00", "11:00"),
+                    DatetimeRange.fromFormattedString("2022-12-12", "10:00", "11:00"),
                     new ConsultationDescription("What's the difference between class diagram and object diagram?")),
         };
     }
