@@ -12,7 +12,7 @@ class Property {
 }
 
 class Price {
--String value
++String value
 -Double numericalValue
 
 + boolean isGreaterThanOrEqual(Price p)
