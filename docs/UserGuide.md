@@ -149,7 +149,11 @@ How *tags (t/TAG)* are sorted:
 * Contacts with the *TAG* you specified will come before contacts without the *TAG*.
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** When sorting by tags, unlike other parameters, you have to specify a value (an existing `TAG`) to sort by.
+
+**:information_source: Note:**<br>
+* When sorting by tags, unlike other parameters, you have to specify a value (an existing `TAG`) to sort by.
+* For other parameters (i.e. `n/ e/ a/ p/`), values provided are ignored. (e.g. sorting by `n/Alfred` is a valid command, the list will be sorted by name and the given value `Alfred` is ignored)
+
 </div>
 
 Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
