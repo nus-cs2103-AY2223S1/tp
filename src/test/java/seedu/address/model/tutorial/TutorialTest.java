@@ -32,7 +32,7 @@ public class TutorialTest {
     public void equals() {
         // same values -> returns true
         Tutorial tutorial1Copy = new TutorialBuilder(TUTORIAL1).build();
-        
+
         assertTrue(TUTORIAL1.equals(tutorial1Copy));
 
         // same object -> returns true
