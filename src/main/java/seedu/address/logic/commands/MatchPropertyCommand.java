@@ -26,12 +26,12 @@ public class MatchPropertyCommand extends Command {
     public static final String COMMAND_WORD = "matchprop";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            // TODO: Change description?
-            + ": Matches a property with all buyers who are most suitable to purchase the property.\n"
-            + "Pass in " + PREFIX_STRICT + " after the index for a stricter but possibly less matches."
+            + ": Matches a property to all buyers that satisfy the property's price"
+            + " and at least one of the property's characteristics.\n"
+            + "Pass in " + PREFIX_STRICT + " to reduce the matches to only buyers that satisfy all of the"
+            + " property's characteristics.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_STRICT;
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_STRICT;
 
     public static final String MESSAGE_MATCHED_PROPERTY_SUCCESS = "%s matched buyers for the property:\n%s";
 

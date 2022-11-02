@@ -26,12 +26,12 @@ public class MatchBuyerCommand extends Command {
     public static final String COMMAND_WORD = "matchbuyer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            // TODO: Change description?
-            + ": Intelligently matches a buyer with all properties who are most suitable.\n"
-            + "Pass in " + PREFIX_STRICT + " after the index for a stricter but possibly less matches."
+            + ": Matches a buyer with all properties that satisfy the buyer's budget"
+            + " and at least one of the buyer's desired characteristics.\n"
+            + "Pass in " + PREFIX_STRICT + " to reduce the matches to only properties that satisfy all of the"
+            + " buyer's desired characteristics.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_STRICT;
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_STRICT;
 
     public static final String MESSAGE_MATCHED_BUYER_SUCCESS = "%s matched properties for the buyer:\n%s";
 
