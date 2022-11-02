@@ -31,6 +31,14 @@ public class TypicalInternships {
             .withPosition("Software Engineer").withStatus("Progress").withEmail("careers@google.com")
             .withWebsite("https://careers.google.com/").withTasks("Application submitted /at 19-10-2022 11:38")
             .withSalary("100000").withTags("Urgent").build();
+    public static final Internship GOOG2 = new InternshipBuilder().withName("Google")
+            .withPosition("Software Engineer").withStatus("Progress").withEmail("careers@google.com")
+            .withWebsite("https://careers.google.com/").withTasks("Application submitted /at 19-10-2022 11:38")
+            .withSalary("100000").withTags().build();
+    public static final Internship GOOG3 = new InternshipBuilder().withName("Google")
+            .withPosition("Software Engineer").withStatus("Progress").withEmail("careers@google.com")
+            .withWebsite("https://careers.google.com/").withTasks("Application submitted /at 19-10-2022 11:38")
+            .withSalary("100000").withTags("Urgent", "Remote").build();
     public static final Internship META = new InternshipBuilder().withName("Meta")
             .withPosition("Data Analyst").withStatus("Progress").withEmail("careers@meta.com")
             .withWebsite("https://www.metacareers.com/").withTasks("Application submitted /at 20-10-2022 12:00")
@@ -96,8 +104,38 @@ public class TypicalInternships {
         return it;
     }
 
+    /**
+     * Returns an {@code InTrack} with all the typical internships.
+     */
+    public static InTrack getTypicalInTrackStub() {
+        InTrack it = new InTrack();
+        for (Internship internship : getTypicalInternshipsStub()) {
+            it.addInternship(internship);
+        }
+        return it;
+    }
+
+    /**
+     * Returns an {@code InTrack} with all the typical internships.
+     */
+    public static InTrack getTypicalInTrackStub2() {
+        InTrack it = new InTrack();
+        for (Internship internship : getTypicalInternshipsStub2()) {
+            it.addInternship(internship);
+        }
+        return it;
+    }
+
     public static List<Internship> getTypicalInternships() {
         return new ArrayList<>(Arrays.asList(GOOG, META, BABA, PYPL, SSNLF, TCEHY, NFLX));
+    }
+
+    public static List<Internship> getTypicalInternshipsStub() {
+        return new ArrayList<>(Arrays.asList(GOOG2, META, BABA, PYPL, SSNLF, TCEHY, NFLX));
+    }
+
+    public static List<Internship> getTypicalInternshipsStub2() {
+        return new ArrayList<>(Arrays.asList(GOOG3, META, BABA, PYPL, SSNLF, TCEHY, NFLX));
     }
 
     public static List<Internship> getUnsortedInternships() {

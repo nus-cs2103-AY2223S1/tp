@@ -3,10 +3,11 @@ package seedu.intrack.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.intrack.logic.commands.CommandTestUtil.showInternshipAtIndex;
 import static seedu.intrack.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 import static seedu.intrack.testutil.TypicalIndexes.INDEX_SECOND_INTERNSHIP;
-import static seedu.intrack.testutil.TypicalInternships.getTypicalInTrack;
+import static seedu.intrack.testutil.TypicalInternships.getTypicalInTrackStub2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,17 +22,19 @@ import seedu.intrack.commons.core.index.Index;
 import seedu.intrack.model.Model;
 import seedu.intrack.model.ModelManager;
 import seedu.intrack.model.UserPrefs;
+import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.tag.Tag;
+import seedu.intrack.testutil.InternshipBuilder;
 
 class DeleteTagCommandTest {
 
-    private Model model = new ModelManager(getTypicalInTrack(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalInTrackStub2(), new UserPrefs());
 
     private Tag urgent = new Tag("Urgent");
     private Tag remote = new Tag("Remote");
     private Tag help = new Tag("Help");
 
-    private List<Tag> taglistStub = new ArrayList<Tag>(Arrays.asList(urgent));
+    private List<Tag> taglistStub = new ArrayList<Tag>(Arrays.asList(remote));
 
     private List<Tag> taglistStub0 = new ArrayList<Tag>(Arrays.asList(remote, urgent));
 
@@ -42,6 +45,24 @@ class DeleteTagCommandTest {
     private Set<Tag> taglistStub2 = new HashSet<>(Arrays.asList(remote));
 
 
+    @Test
+    public void execute_validTagDeletedList_success() {
+        //deletes the remote tag from an internship
+        Internship selectedInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
+        DeleteTagCommand delTagCommand = new DeleteTagCommand(INDEX_FIRST_INTERNSHIP,
+                taglistStub);
+
+        ModelManager expectedModel = new ModelManager(model.getInTrack(), new UserPrefs());
+
+        Internship expectedInternship = new InternshipBuilder(selectedInternship)
+                .withTags("Urgent").build();
+
+        expectedModel.setInternship(selectedInternship, expectedInternship);
+
+        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_DELETE_TAG_SUCCESS, expectedInternship);
+
+        assertCommandSuccess(delTagCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_invalidInternshipIndexFilteredList_failure() {
