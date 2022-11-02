@@ -10,7 +10,7 @@ Duke The Market is a desktop contact management system application used for mana
 Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=Benjamin-Sim&tabRepo=AY2223S1-CS2103-F09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-
+<br><br>
 
 * **Enhancements implemented**:
 
@@ -36,8 +36,7 @@ Given below are my contributions to the project.
   * **Refactoring**: Refactored the original `list` command to `listPersons` to distinguish it from the `listEvents` command.
 
   * **Misc**: Updated the help URL in the application to the product's user guide URL. (Pull request [#75](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/75))
-<br>
-<br>
+<br><br>
 
 * **Documentation**:
   * User Guide:
@@ -46,16 +45,14 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of the `listPersons` feature. [Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#sort-persons)
     * Added use cases UC02, UC03, UC04, UC05 [Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#use-cases)
-<br>
-<br>
+<br><br>
 
 * **Team-Based Tasks**:
   * Updated product name on product website. (Pull request [#14](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/14))
   * Managed milestones v1.1, v1.2, v1.3, v1.4 (Created and closed milestones, created issue tracker labels, etc.)
   * Handled product releases for v1.2 and v1.3 (including uploading and testing of JAR files) ([Link](https://github.com/AY2223S1-CS2103-F09-2/tp/releases))
   * Perfomed various miscellaneous team tasks such as updating the JAR filename, enabling assertions, updating team's GitHub repo URL on the product website. (Pull request [#75](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/75))
-<br>
-<br>
+<br><br>
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments):
