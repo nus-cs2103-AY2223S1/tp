@@ -28,9 +28,9 @@ public class RetrieveCommand extends Command {
 
     public static final String MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX_RETRIEVE = "The application index "
             + "provided is invalid!\n"
-            + "Please note that the index is always referring to the last shown list below\n"
+            + "Please note that the index refers to the last shown list below\n"
             + "To ensure the retrieve function works, please use <list-archive> command to show the current"
-            + " archived application list\n"
+            + " archived application list.\n"
             + "Example: 1) " + ListArchiveCommand.COMMAND_WORD + "\n"
             + "               2) " + COMMAND_WORD + " 1";
 

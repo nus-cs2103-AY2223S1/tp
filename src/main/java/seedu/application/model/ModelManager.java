@@ -352,9 +352,7 @@ public class ModelManager implements Model {
         applicationsWithInterview.addAll(filteredApplications);
         applicationsWithInterview.removeIf(application -> application.getInterview().isEmpty());
         for (Application app : applicationsWithInterview) {
-            if (!app.hasInterview()) {
-                assert false;
-            }
+            assert app.hasInterview();
         }
         applicationsWithInterview.sort(new InterviewComparator());
     }

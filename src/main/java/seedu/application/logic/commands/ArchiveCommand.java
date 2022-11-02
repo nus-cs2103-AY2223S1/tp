@@ -23,12 +23,12 @@ public class ArchiveCommand extends Command {
     public static final String MESSAGE_ARCHIVE_APPLICATION_SUCCESS = "Archived Application: %1$s";
 
     public static final String MESSAGE_APPLICATION_EXIST_IN_ARCHIVE = "Application is already archived.\n"
-            + "Please use <list> command to show the current application list\n"
+            + "Please use <list> command to show the current application list.\n"
             + "Example: 1) " + ListCommand.COMMAND_WORD + "\n"
             + "               2) " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_INVALID_INDEX_ARCHIVE = "The application index provided is invalid!\n"
-            + "Please note that the index is always referring to the last shown list below\n"
+            + "Please note that the index refers to the last shown list below\n"
             + "To ensure the archive function works, please use <list> command to show the current"
             + " unarchived application list\n"
             + "Example: 1) " + ListCommand.COMMAND_WORD + "\n"
