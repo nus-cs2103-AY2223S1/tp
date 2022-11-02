@@ -10,8 +10,11 @@ import hobbylist.commons.util.AppUtil;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric with underscores";
+    // Limit the length of the tags names to 15 to prevent text overrun in UI
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric with underscores "
+            + "and must not be more than 15 characters.";
     public static final String VALIDATION_REGEX = "[A-Za-z0-9_]+";
+    public static final String TAG_NAME_TOO_LONG = "Tags names must not be more than 15 characters.";
 
     public final String tagName;
 
