@@ -60,11 +60,10 @@ a graphical user interface.
 
 ## Understanding the GUI
 
-We would first like to give a walk-around of the UI to allow you, the user to have a smoother experience as you will 
+We would first like to give a walk-around of the User Interface (UI) to allow you, the user to have a smoother experience as you will 
 be able to use the app to its full potential.
 
 Here is an image of the UI of the app.
-
 
 ![GUIwalkaround](images/user-guide/GUIwalkaround.png)
 
@@ -78,7 +77,7 @@ From top to bottom:
     * This displays any filters applied on the list using commands such as `ls` or `find`, for more information
       please refer to **Feature** section below.
 
-3. Main tasklist:
+3. Main task list:
     * This displays all your *current* tasks.
 
 4. Result display:
@@ -89,8 +88,8 @@ From top to bottom:
 
 ### Autocomplete
 
-When the user starts to type in the start of a command, a popup menu will appear with options to complete your input.
-Use the `up` and `down` arrow keys to navigate through the options and `Enter` to fill the command box with the command
+When the user starts to type in the start of a command in the _Command Box_, a pop-up menu will appear with options to complete your input.
+Use the `up` and `down` arrow keys on your keyboard to navigate through the options and press the `Enter` key to fill the command box with the command
 of your choice.
 
 Here is an example of autocomplete in action:
@@ -99,9 +98,9 @@ Here is an example of autocomplete in action:
 
 However, it is recommended to read through the features section to understand the syntax for commands that require additional input.
 
-### Returning to a previous command : `up`/`down` keys
+### Command history : `Up`/`Down` keys
 Loads previous command into the _Command Box_.
-While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys to navigate through the command history that is automatically loaded in.
+While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys on your keyboard to navigate through the command history that is automatically loaded in.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -109,7 +108,7 @@ While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys to navig
 
 Before proceeding, do make sure that you can understand our notation for command formats:
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" >
 
 **:information_source: Notes about the command format:**<br>
 
@@ -304,7 +303,7 @@ Examples:
 
 <div markdown="span" class="alert alert-warning">
 
-:warning: **Warning:**:
+:warning: **Warning:**
 
 This command is irreversible!
 
@@ -376,8 +375,12 @@ NotionUS data are saved in the hard disk automatically after any command that ch
 ### Editing the data file
 NotionUS data are saved as a JSON file `[JAR file location]/data/notionusdata.json`. Advanced users are welcome to update data directly by editing that data file.
 
-**Caution:**
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**<br>
 If your changes to the data file makes its format invalid, NotionUS will discard all data and start with an empty data file at the next run.
+
+</div>
 
 ### Autocomplete
 
