@@ -33,7 +33,7 @@ public class SortIssueCommand extends IssueCommand {
             + PREFIX_DEADLINE + "1 (reverse chronological). "
             + "Sort by urgency: "
             + PREFIX_URGENCY + "0 (ascending) or "
-            + PREFIX_URGENCY + "1 (descending). \n"
+            + PREFIX_URGENCY + "1 (descending). "
             + "Example: "
             + COMMAND_WORD + " "
             + COMMAND_FLAG + " "

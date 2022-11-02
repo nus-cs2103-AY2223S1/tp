@@ -31,7 +31,7 @@ public class FindIssueCommand extends IssueCommand {
             + PREFIX_URGENCY + "URGENCY "
             + PREFIX_PROJECT_NAME + "PROJECT NAME "
             + PREFIX_PROJECT_ID + "PROJECT ID "
-            + PREFIX_ISSUE_ID + "ISSUE ID \n"
+            + PREFIX_ISSUE_ID + "ISSUE ID "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_TITLE + "This is an issue "
