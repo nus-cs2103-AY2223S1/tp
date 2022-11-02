@@ -1,11 +1,14 @@
 package coydir.ui;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.Comparator;
 
 import coydir.model.person.Leave;
 import coydir.model.person.Person;
+import javafx.beans.binding.ObjectExpression;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -17,8 +20,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 
 /**
  * An UI component that displays detailed information of a {@code Person}.
@@ -81,6 +86,20 @@ public class PersonInfo extends UiPart<Region> {
         leaveTable.addEventFilter(MouseEvent.ANY, MouseEvent::consume);
     }
 
+    private static Node createDataNode(ObjectExpression<Number> value) {
+        System.out.println(value);
+        var label = new Label();
+        label.textProperty().bind(value.asString());
+
+        var pane = new Pane(label);
+        pane.setShape(new Circle(6.0));
+        pane.setScaleShape(false);
+
+        label.translateYProperty().bind(label.heightProperty().divide(-1.5));
+
+        return pane;
+    }
+
     /**
      * Update the person particulars in the {@code PersonInfo} panel.
      * @param person the person to be displayed
@@ -136,6 +155,8 @@ public class PersonInfo extends UiPart<Region> {
         leaveTable.getColumns().clear();
         leaveTable.getColumns().addAll(index, startDate, endDate, durations);
 
+        Collections.sort(person.getRatingHistory(), (a, b)->a.getTime().compareTo(b.getTime()));
+
         lineChart.setAnimated(false);
         lineChart.setTitle("Performance History");
         yAxis.setLowerBound(0);
@@ -149,8 +170,11 @@ public class PersonInfo extends UiPart<Region> {
         for (int i = 0; i < person.getRatingHistory().size(); i++) {
             String timestamp = person.getRatingHistory().get(i).timestamp
                 .format(DateTimeFormatter.ofPattern("dd-MMM-yy"));
-            int value = Integer.parseInt(person.getRatingHistory().get(i).value);
-            series.getData().add(new XYChart.Data<String, Number>(timestamp, value));
+            Number value = Integer.parseInt(person.getRatingHistory().get(i).value);
+            var data = new XYChart.Data<String, Number>(timestamp, value);
+            System.out.println(data.YValueProperty());
+            data.setNode(createDataNode(data.YValueProperty()));
+            series.getData().add(data);
         }
 
         lineChart.getData().clear();

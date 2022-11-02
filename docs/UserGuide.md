@@ -625,6 +625,8 @@ In each employee profile below their current performance rating field, there is 
 
 The individual rating values will be displayed beside each node in the performance rating graph. This makes it clearer for users to visualize an employee's overall performance at a glance.
 
+![Performance History Graph](./images/ui-screenshots/performance-history-graph.jpg)
+
 <div markdown="span" class="alert alert-info">
 
 **:information_source: Note:** You can only rate the performance of an employee once per day.<br><br>
