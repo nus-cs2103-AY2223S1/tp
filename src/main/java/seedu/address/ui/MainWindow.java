@@ -328,17 +328,19 @@ public class MainWindow extends UiPart<Stage> {
             break;
         case CheckCommand.CHECK_ORDER:
             Order order = logic.getFilteredOrderList().get(index);
-            ObservableList<Order> orders = FXCollections.singletonObservableList(order);
-            OrderListPanel tempOrderPanel = new OrderListPanel(orders);
+            Buyer buyerOfOrder = order.getBuyer();
+            ObservableList<Buyer> buyerAsList = FXCollections.singletonObservableList(buyerOfOrder);
+            BuyerListPanel tempBuyerPanel = new BuyerListPanel(buyerAsList, logic);
             personListPanelPlaceholder.getChildren().clear();
-            personListPanelPlaceholder.getChildren().add(tempOrderPanel.getRoot());
+            personListPanelPlaceholder.getChildren().add(tempBuyerPanel.getRoot());
             break;
         case CheckCommand.CHECK_PET:
             Pet pet = logic.getFilteredPetList().get(index);
-            ObservableList<Pet> pets = FXCollections.singletonObservableList(pet);
-            PetListPanel tempPetPanel = new PetListPanel(pets);
+            Supplier supplierOfPet = pet.getSupplier();
+            ObservableList<Supplier> supplierAsList = FXCollections.singletonObservableList(supplierOfPet);
+            SupplierListPanel tempSupplierPanel = new SupplierListPanel(supplierAsList, logic);
             personListPanelPlaceholder.getChildren().clear();
-            personListPanelPlaceholder.getChildren().add(tempPetPanel.getRoot());
+            personListPanelPlaceholder.getChildren().add(tempSupplierPanel.getRoot());
             break;
         default:
             //Do nothing
