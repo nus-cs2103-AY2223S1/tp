@@ -131,9 +131,9 @@ facing, you can refer to this guide.
 * [Utility Features](#utility-features)
   - [Sorting Students](#sorting-students)
   - [Finding a Student](#finding-a-student)
-  - Viewing all Students
-  - Clearing the list of Students
-  - Getting help
+  - [Viewing all Students](#viewing-all-students)
+  - [Clearing the list of Students](#clearing-the-list-of-students)
+  - [Getting help](#getting-help)
 * Advanced Features
 * Frequently Asked Questions
 * [Glossary](#glossary)
@@ -758,7 +758,7 @@ ALL students with the name `Alex Yeoh` AND the class `4A` will be displayed.
 
 `find n/Alex s/ENGLISH`
 
-## Step-By-Step Example
+### Step-By-Step Example
 
 We will use the command `find n/Alex c/2.1` to search for students.
 
@@ -781,8 +781,44 @@ cause Watson to show an error.
 
 ---
 
+## Viewing all Students
 
+You can easily navigate back to the full student list with the `list` command.
 
+<strong class="red-text">Command Word:</strong> `list`
+
+### Examples
+
+`list`
+
+---
+
+## Clearing the list of Students
+
+You can clear the list of students with the `clear` command.
+Note that this is irreversible!
+
+<strong class="red-text">Command Word:</strong> `clear`
+
+### Examples
+
+`clear`
+
+---
+
+## Getting Help
+
+If you need help, you can type `help` in the command box, then press `Enter`.
+A pop-up window will appear with a link that you can copy and paste into your browser.
+The link will bring you to this guide!
+
+<strong class="red-text">Command Word:</strong> `help`
+
+### Examples
+
+`help`
+
+---
 
 ## Glossary
 
