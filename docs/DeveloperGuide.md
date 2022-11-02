@@ -200,10 +200,17 @@ Each `Person` in the AddressBook is implemented in the following way:
 
 ![Person Class Diagram](images/PersonClassDiagram.png)
 
-All `Person`s have a `Name`, `Email`, `Address` and `Phone` and a set of `CurrentModule`, `PreviousModule`, and `PlannedModule`.
-`Person`s can have a `Github` URL to their profile added, and as many `Modules` as desired.
+All `Person` have a `Name`, `Email`, `Address` and `Phone` and a set of `Tag`, `CurrentModule`, `PreviousModule`, `PlannedModule` and `Lesson`.
+`Person`s can have a `Github` URL to their profile added, and as many `Tags`, `Modules` and `Lessons` as desired.
+
+#### User Class
 
 `User` Class is implemented the same way.
+
+![User Class Diagram](images/UserClassDiagram.png)
+
+`User` has a `Name`, `Email`, `Address` and `Phone` and a set of `CurrentModule`, `PreviousModule`, `PlannedModule`, and `Lesson`.
+`User` can have a `Github` URL to their profile added, and as many `Modules` and `Lessons` as desired.
 
 #### Module class
 `CurrentModule`, `PlannedModule`, and `PreviousModule` implement the `Module` interface.

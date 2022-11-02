@@ -13,11 +13,13 @@ Person *--> "1" Email
 Person *--> "0..1" Github
 Person *--> "1" Phone
 Person *--> "1" Address
+Person *--> "1" TagSet
 Person *--> "1" CurrentModulesSet
 Person *--> "1" PreviousModulesSet
 Person *--> "1" PlannedModulesSet
 Person *--> "1" LessonsSet
 
+TagSet *--> "*" Tag
 CurrentModulesSet *--> "*" CurrentModule
 PreviousModulesSet *--> "*" PreviousModule
 PlannedModulesSet *--> "*" PlannedModule
