@@ -60,12 +60,12 @@ public class SampleDataUtil {
     public static final Buyer IRFAN = new Buyer(new Name("Irfan Ibrahim"), new Phone("92492021"),
             new Email("irfan1989@firefox.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
             new Location("Singapore"), new ArrayList<>());
-    public static final Buyer ROY = new Buyer(new Name("Roy Balakrishnan"), new Phone("92624417"),
+    public static final Buyer ROY = new Buyer(new Name("Roy Balakrishman"), new Phone("92624417"),
             new Email("royb@yahoo.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
             new Location("Singapore"), new ArrayList<>());
 
     //Suppliers
-    public static final Supplier SHIN_CHAN = new Supplier(new Name("ShinChan"),
+    public static final Supplier SHIN_CHAN = new Supplier(new Name("Shin Chan"),
             new Phone("09594177555"), new Email("Shin-chan@crayon.com"),
             new Address("The Nohara family household, Kasukabe"),
             new Location("Singapore"), new ArrayList<>());

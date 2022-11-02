@@ -60,7 +60,11 @@ Given below are my contributions to the project.
     * Highlights: This implementation solves the storage problem, making it for objects to mutually reference each
       other.
 
-* **Functionality**: Discovered a variety of bugs and fixed them.
+* **Functionality**: Discovered a variety of bugs and fixed them. For
+  examples, [\#308](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/308)
+  , [\#304](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/304)
+  , [\#299](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/299)
+  , [\#296](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/296)
 * **Code
   contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=zoom&zA=Hongyi6328&zR=AY2223S1-CS2103T-T09-2%2Ftp%5Bmaster%5D&zACS=215.92310030395137&zS=2022-09-16&zFS=&zU=2022-11-01&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
