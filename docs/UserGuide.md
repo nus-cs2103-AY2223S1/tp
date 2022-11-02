@@ -248,6 +248,11 @@ Examples:
 * `delete nm/Jonathan Tan` deletes student record with student name as 'Jonathan Tan'.
 * `delete id/123A` deletes student record with student ID as '123A'.
 
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** All fields are capitalised when saved into the application. Therefore, parameters like `nm/john` and `nm/JoHn`
+are treated as _JOHN_ by default.
+</div>
+
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:** This command will delete a student record and this action is irreversible. Make sure you are 
 deleting the correct student record!
