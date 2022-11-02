@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.index.Index.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_REQUESTS;
+import static seedu.address.model.ModelManager.PREFERRED_DATE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
@@ -24,6 +25,14 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.pet.Age;
+import seedu.address.model.pet.Color;
+import seedu.address.model.pet.DateOfBirth;
+import seedu.address.model.pet.Height;
+import seedu.address.model.pet.PetCertificate;
+import seedu.address.model.pet.Species;
+import seedu.address.model.pet.VaccinationStatus;
+import seedu.address.model.pet.Weight;
 import seedu.address.testutil.OrderUtil;
 import seedu.address.testutil.TypicalOrders;
 
@@ -301,4 +310,103 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, expected, ()
                 -> ParserUtil.parseAdditionalRequests(additionalRequestsString));
     }
+
+    @Test
+    public void parseDate_invalidArgs_throwsParseException() {
+        String expected = "The date should be in this format: " + PREFERRED_DATE_FORMAT;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parseDate("10-02-2002"));
+    }
+
+    @Test
+    public void parseAge_invalidArgs_throwsParseException() {
+        String expected = Age.MESSAGE_USAGE;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parseAge("hello world"));
+    }
+
+    @Test
+    public void parseAge_negativeAge_throwsParseException() {
+        String expected = Age.MESSAGE_USAGE;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parseAge("-1"));
+    }
+
+    @Test
+    public void parseColor_nonAlphanumeric_throwsParseException() {
+        String expected = Color.MESSAGE_CONSTRAINTS;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parseColor("@qu&m&r1ne"));
+    }
+
+    @Test
+    public void parseSpecies_nonAlphanumeric_throwsParseException() {
+        String expected = Species.MESSAGE_CONSTRAINTS;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parseSpecies("c@t"));
+    }
+
+    @Test
+    public void parseDateOfBirth_invalidFormat_throwsParseException() {
+        String expected = DateOfBirth.MESSAGE_USAGE;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parseDateOfBirth("10-03-2009"));
+    }
+
+    @Test
+    public void parseHeight_invalidNumber_throwsParseException() {
+        String expected = Height.MESSAGE_USAGE;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parseHeight("hello world"));
+    }
+
+    @Test
+    public void parseHeight_negativeNumber_throwsParseException() {
+        String expected = Height.MESSAGE_USAGE;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parseHeight("-1"));
+    }
+
+    @Test
+    public void parsePetCertificate_nonAlphanumeric_throwsParseException() {
+        String expected = PetCertificate.MESSAGE_CONSTRAINTS;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parsePetCertificate("&v&"));
+    }
+
+    @Test
+    public void parsePetCertificate_validArgs_success() {
+        try {
+            PetCertificate expected = new PetCertificate("AVA");
+            PetCertificate certificate = ParserUtil.parsePetCertificate("AVA");
+            assertEquals(certificate, expected);
+        } catch (ParseException e) {
+            assert false;
+        }
+    }
+
+    @Test
+    public void parseVaccinationStatus_boolean_success() {
+        try {
+            VaccinationStatus expected = new VaccinationStatus(true);
+            VaccinationStatus vaccinationStatus = ParserUtil.parseVaccinationStatus("true");
+            assertEquals(vaccinationStatus, expected);
+
+            expected = new VaccinationStatus(false);
+            vaccinationStatus = ParserUtil.parseVaccinationStatus("false");
+            assertEquals(vaccinationStatus, expected);
+        } catch (ParseException e) {
+            assert false;
+        }
+    }
+
+    @Test
+    public void parseVaccinationStatus_nonBooleanInput_throwsParseException() {
+        String expected = VaccinationStatus.MESSAGE_USAGE;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parseVaccinationStatus("6"));
+    }
+
+    @Test
+    public void parseWeight_invalidNumber_throwsParseException() {
+        String expected = Weight.MESSAGE_USAGE;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parseWeight("invalid"));
+    }
+
+    @Test
+    public void parseWeight_negativeWeight_throwsParseException() {
+        String expected = Weight.MESSAGE_USAGE;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parseWeight("-1"));
+    }
+
 }
