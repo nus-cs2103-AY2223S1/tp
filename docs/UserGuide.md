@@ -85,7 +85,7 @@ However, you may also choose to head over to the relevant sections as described 
 
 </div>
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :bulb: A Note on Indexes
 
@@ -116,7 +116,7 @@ Examples:
 * `add finish problem set 5 by/tomorrow 5pm m/CS2040S`
 * `add finish SEP application by/2022-12-25 23:59`
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :bulb: Deadline Formats
 
@@ -133,7 +133,7 @@ Due to the library's limitations, "6/4/2022" will format it to 4 June.
 
 </div>
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :bulb: Flexible Module Format
 
@@ -143,7 +143,7 @@ However, only alphanumeric characters are allowed! (i.e. no spaces, special char
 
 </div>
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :bulb: Adding past deadlines
 
@@ -162,7 +162,7 @@ Examples:
 * `edit 2 n/Rewatch lecture 6` - Renames task at index 2 to "Rewatch lecture 6"
 * `edit 3 m/CS2040S by/2022-12-12 23:59` - Changes the module and deadline of the task at index 3
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :question: Field Prefixes
 
@@ -256,7 +256,7 @@ Examples:
 * `addc n/Bob Martin p/98765432 e/bobbymartini@gmail.com m/CS1101S CS1231S gh/bobby tele/bmartin`
 * `addc n/Betsy Crowe p/89985432 tele/croweybetty`
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :bulb: Tags and Modules
 
@@ -292,7 +292,7 @@ Examples:
 
 ![editContact](images/editContact.png)
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :question: Field Prefixes
 
@@ -323,7 +323,7 @@ Example:
 1. The task at **index 1** belongs to the `CS1101S` module.
 2. Entering `saveme` will display all contacts that take the `CS1101S` module.
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :question: What if I need help with a task that isn't index 1?
 
