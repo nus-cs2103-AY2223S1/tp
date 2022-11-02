@@ -155,14 +155,13 @@ For example, you can check out the third guest by executing the command below.
 
 12. To clear your GuestBook of all entries, you can use the **`clear`** command.<br>
     * **`clear`** : Deletes all guests.
-    <div markdown="span" class="alert alert-danger">
+    <div markdown="block" class="alert alert-danger">
     
     :bangbang: **Warning:**<br>
-
-* Do note that this command is **irreversible**. Once cleared, all the
-  guest data cannot be retrieved. Please use this command
-  with utmost caution.
-  </div>
+    * Do note that this command is **irreversible**. Once cleared, all the
+      guest data cannot be retrieved. Please use this command
+      with utmost caution.
+    </div>
     
 13. Finally, to quit GuestBook, you can run the **`exit`** command.
     * **`exit`** : Exits the app.
@@ -233,9 +232,9 @@ This command is typically used to **check a guest in** to your hotel with their 
 
 **Format**: `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
-**:information_source: Additional information:**<br>
+**:information_source: Additional information:**
 
 * Refer to the [Constraints of fields](#constraints-of-fields) for more information about the limitations
   of each field.
@@ -263,7 +262,7 @@ you provide. The values that you **did not specify** to edit will remain **uncha
 
 **Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Additional information:**<br>
 
@@ -298,7 +297,7 @@ or **decreased** respectively by the value you provide.
 
 **Format**: `bill INDEX b/BILL`
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Additional information:**<br>
 
@@ -310,7 +309,7 @@ or **decreased** respectively by the value you provide.
 * `bill 1 b/+99.99` or `bill 1 b/99.99` Adds _99.99_ to the `bill` of the first guest.
 * `bill 2 b/-10` Subtracts _10_ from the `bill` of the second guest.
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="block" class="alert alert-warning">
 
 :triangular_flag_on_post: **Common mistakes:**<br>
 
@@ -352,7 +351,7 @@ will display all rooms that have been cleaned.
 
   ![result for 'find alex 99272758 03-68'](images/findAlex9927275803-68.png)
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="block" class="alert alert-warning">
 
 :triangular_flag_on_post: **Common mistake:**<br>
 * Searching for guests using incomplete keywords e.g. `170` will **not match** `170.00`.
@@ -366,7 +365,7 @@ will display all rooms that have been cleaned.
 
 This command displays a list of all guests in GuestBook.
 
-<div markdown="span" class="alert alert-success">
+<div markdown="block" class="alert alert-success">
 
 :bulb: **Tip:**<br>
 
@@ -388,7 +387,7 @@ The guest specified at the `INDEX` is the guest you wish to delete.
 
 This command is typically used when a guest has checked out of the hotel. 
 
-<div markdown="span" class="alert alert-danger">
+<div markdown="block" class="alert alert-danger">
 
 :bangbang: **Warning:**<br>
 
@@ -418,7 +417,7 @@ managers to keep track of the rooms that are cleaned or uncleaned for the day.
 
 **Format**: `markroomsunclean`
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="block" class="alert alert-warning">
 
 :triangular_flag_on_post: **Common mistakes:**<br>
 
@@ -437,7 +436,7 @@ This command clears **all entries** from GuestBook.
 This command is typically used as a **hard reset** of all guest data in GuestBook. You should not be using
 this command unless you want to star the GuestBook on a clean slate.
 
-<div markdown="span" class="alert alert-danger">
+<div markdown="block" class="alert alert-danger">
 
 :bangbang: **Warning:**<br>
 
@@ -493,7 +492,7 @@ GuestBook data is saved in the hard disk **automatically** after any command tha
 GuestBook data is saved as a _JSON file_ `[JAR file location]/data/guestbook.json`.<br>
 Advanced users may change data directly by editing this data file.
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="block" class="alert alert-warning">
 
 :exclamation: **Caution:**<br>
 
