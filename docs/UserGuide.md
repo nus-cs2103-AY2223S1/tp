@@ -1,6 +1,6 @@
 ---
 layout: page
-title: I Am Watson
+title: User Guide
 ---
 <style>
 h1, h2, h3, h4, h5, h6 {
@@ -90,7 +90,7 @@ watson{
 
 </style>
 
-# Hello!
+# Hello! I Am <watson>Watson!</watson>
 <div class="infobox">
 Welcome to the <watson>Watson</watson> user guide!
 Watson is a helpful **desktop application** that helps school teachers
@@ -108,7 +108,6 @@ facing, you can refer to this guide.
 
 ---
 # Table of Contents
-<div class="special-box">
 
 * [Quick Start](#quick-start)
 * [How to navigate Watson](#watson-the-basics)
@@ -137,19 +136,26 @@ facing, you can refer to this guide.
 * Advanced Features
 * Frequently Asked Questions
 * [Glossary](#glossary)
-</div>
 
 ---
 # Quick Start
 
-1) Ensure you have Java `11` or above installed in your Computer
+1. Ensure you have Java `11` or above installed in your Computer
    (Not sure how? Check out [this](https://www.java.com/en/download/help/version_manual.html) guide).
-2) Download the latest version of Watson from [here](https://github.com/AY2223S1-CS2103T-T08-1/tp/releases).
-The file you want is called `Watson.jar`.
-3) Locate the downloaded file. Often, this would be your computer's `Downloads` folder.
-4) On your computer's Desktop, create a new folder called `Watson`, then drag and drop `Watson.jar`
+
+
+2. Download the latest version of Watson from [here](https://github.com/AY2223S1-CS2103T-T08-1/tp/releases).
+The file you want is called `Watson.jar`. 
+
+
+3. Locate the downloaded file. Often, this would be your computer's `Downloads` folder.
+
+
+4. On your computer's Desktop, create a new folder called `Watson`, then drag and drop `Watson.jar`
 from your `Downloads` folder into the `Watson` folder.
-5) Double-click on `Watson.jar` to start the application.
+
+
+5. Double-click on `Watson.jar` to start the application.
 
 # Watson: The Basics
 
@@ -161,8 +167,12 @@ When you open Watson, you will be greeted with the login page, which looks like 
 
 <img src="images/Login.png" alt="login screen" class="special-img">
 
+<br>
+
 The login page is where you can log into Watson. To log in, type your login details into their respective boxes,
 then click the "Login" button below.
+
+<br>
 
 <div class="warning-box">
 :exclamation: Notice that for testing purposes, the login details are written in red below the Login button.
@@ -188,7 +198,6 @@ You can use the following table to navigate through the components in the main p
 * [The Student card](#the-student-card)
 
 ---
-
 ### The Menu Bar
 
 <img src="images/MenuBar.png" alt="menu bar" class="special-img">
@@ -220,7 +229,6 @@ browser to open the online user guide.
 </div>
 
 ---
-
 ### The Command Box
 
 <img src="images/CommandBox.png" alt="command box" class="special-img">
@@ -235,7 +243,6 @@ They are used to perform actions with Watson.
 </div>
 
 ---
-
 ### The Student card
 
 <img src="images/Student.png" alt="student" class="special-img">
@@ -402,13 +409,15 @@ You can add a student to Watson by using the `add` command.
 <div class="info-box">
 <div class="big-font">Troubleshooting</div>
 
-Problem: I typed in the command, but Watson says that the command is invalid!
+<strong>Problem:</strong> I typed in the command, but Watson says that the command is invalid!
 
-Solution: Check your command format! You can refer to the [command structure](#the-command-structure) for more information.
+<strong>Solution:</strong> Check your command format! You can refer to the [command structure](#the-command-structure) for more information.
 
-Problem: I typed in the command, but Watson says that the student already exists?
+<br>
 
-Solution: Ensure that the student that you want to add does not share the same _name_,
+<strong>Problem:</strong> I typed in the command, but Watson says that the student already exists?
+
+<strong>Solution:</strong> Ensure that the student that you want to add does not share the same _name_,
 _phone number_ or _email address_ as another student in the application.
 
 </div>
@@ -465,9 +474,9 @@ other remarks and/or tags that the student has!
 <div class="info-box">
 <div class="big-font">Troubleshooting</div>
 
-Problem: I typed in the command, but Watson says that the student index provided is invalid!
+<strong>Problem:</strong> I typed in the command, but Watson says that the student index provided is invalid!
 
-Solution: The number specified by the `INDEX` parameter does not have a corresponding student!
+<strong>Solution:</strong> The number specified by the `INDEX` parameter does not have a corresponding student!
 Ensure that you have typed in the correct number of the student that you want to edit.
 </div>
 
@@ -497,9 +506,9 @@ This number is shown next to the student's name.
 <div class="info-box">
 <div class="big-font">Troubleshooting</div>
 
-Problem: I typed in the command, but Watson says that the student index provided is invalid!
+<strong>Problem:</strong> I typed in the command, but Watson says that the student index provided is invalid!
 
-Solution: The number specified by the `INDEX` parameter does not have a corresponding student!
+<strong>Solution:</strong> The number specified by the `INDEX` parameter does not have a corresponding student!
 Ensure that you have typed in the correct number of the student that you want to edit.
 </div>
 
@@ -533,9 +542,9 @@ This number is shown next to the student's name.
 <div class="info-box">
 <div class="big-font">Troubleshooting</div>
 
-Problem: I typed in the command, but Watson says that the student index provided is invalid!
+<strong>Problem:</strong> I typed in the command, but Watson says that the student index provided is invalid!
 
-Solution: The number specified by the `INDEX` parameter does not have a corresponding student!
+<strong>Solution:</strong> The number specified by the `INDEX` parameter does not have a corresponding student!
 Ensure that you have typed in the correct number of the student that you want to edit.
 </div>
 
@@ -613,9 +622,9 @@ will be updated.
 <div class="info-box">
 <div class="big-font">Troubleshooting</div>
 
-Problem: I typed in the command, but Watson says that the student index provided is invalid!
+<strong>Problem:</strong> I typed in the command, but Watson says that the student index provided is invalid!
 
-Solution: The number specified by the `INDEX` parameter does not have a corresponding student!
+<strong>Solution:</strong> The number specified by the `INDEX` parameter does not have a corresponding student!
 Ensure that you have typed in the correct number of the student that you want to edit.
 </div>
 
@@ -676,9 +685,9 @@ This prediction means that Alex is likely to get about 62 percent for their next
 <div class="info-box">
 <div class="big-font">Troubleshooting</div>
 
-Problem: I typed in the command, but Watson says that the student can't be found!
+<strong>Problem:</strong> I typed in the command, but Watson says that the student can't be found!
 
-Solution: Make sure that you've typed in the student's name correctly. The name is case-sensitive!
+<strong>Solution:</strong> Make sure that you've typed in the student's name correctly. The name is case-sensitive!
 </div>
 
 ---
@@ -729,9 +738,9 @@ not need to be capitalized.
 <div class="info-box">
 <div class="big-font">Troubleshooting</div>
 
-Problem: I typed in the command, but Watson says that the student can't be found!
+<strong>Problem:</strong> I typed in the command, but Watson says that the student can't be found!
 
-Solution: Make sure that you've typed in the student's name correctly. The name is case-sensitive!
+<strong>Solution:</strong> Make sure that you've typed in the student's name correctly. The name is case-sensitive!
 </div>
 
 ---
@@ -772,9 +781,9 @@ and Bernice Yu (who is in class 2.1).
 <div class="info-box">
 <div class="big-font">Troubleshooting</div>
 
-Problem: I typed in the command, but Watson says that the command has an invalid format!
+<strong>Problem:</strong> I typed in the command, but Watson says that the command has an invalid format!
 
-Solution: Make sure that you've not left any parameters blank! Blank parameters will
+<strong>Solution:</strong> Make sure that you've not left any parameters blank! Blank parameters will
 cause Watson to show an error.
 
 </div>
