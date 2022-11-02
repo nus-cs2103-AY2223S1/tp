@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import seedu.address.model.person.Person;
 import seedu.address.model.social.Social;
 import seedu.address.model.social.exceptions.SocialException;
-
+import seedu.address.storage.PictureStorageLoader;
 
 
 /**
@@ -110,8 +110,8 @@ public class PersonCard extends UiPart<Region> {
         }
 
         cir2.setStroke(Color.AQUAMARINE);
-        String imageUrl = social.getImageUrl();
-        Image im = new Image(String.valueOf(this.getClass().getResource("/images/profile_pic.png")));
+        String imageUrl = new PictureStorageLoader(person.getOccupation().getString()).getImageUrl();
+        Image im = new Image(String.valueOf(this.getClass().getResource(imageUrl)));
         cir2.setFill(new ImagePattern(im));
         cir2.setEffect(new DropShadow(+25d, 0d, +2d, Color.AQUAMARINE));
 
