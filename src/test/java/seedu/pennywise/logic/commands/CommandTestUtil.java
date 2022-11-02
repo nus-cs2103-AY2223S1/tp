@@ -18,6 +18,7 @@ import seedu.pennywise.commons.core.index.Index;
 import seedu.pennywise.logic.commands.exceptions.CommandException;
 import seedu.pennywise.model.Model;
 import seedu.pennywise.model.PennyWise;
+import seedu.pennywise.model.entry.DescriptionContainsKeywordsPredicate;
 import seedu.pennywise.model.entry.Entry;
 import seedu.pennywise.testutil.EditEntryDescriptorBuilder;
 import seedu.pennywise.testutil.ViewEntriesDescriptorBuilder;
@@ -205,7 +206,7 @@ public class CommandTestUtil {
         Entry entry = model.getFilteredExpenditureList().get(targetIndex.getZeroBased());
         final String[] splitName = entry.toString().split("\\s+");
         model.updateFilteredEntryList(
-                new seedu.pennywise.model.entry.DescriptionContainsKeywordsPredicate(Arrays.asList(splitName[0].replace(";", ""))));
+                new DescriptionContainsKeywordsPredicate(Arrays.asList(splitName[0].replace(";", ""))));
         assertEquals(1, model.getFilteredExpenditureList().size());
     }
 
@@ -218,7 +219,7 @@ public class CommandTestUtil {
 
         Entry entry = model.getFilteredIncomeList().get(targetIndex.getZeroBased());
         final String[] splitName = entry.toString().split("; ");
-        model.updateFilteredIncomeList(new seedu.pennywise.model.entry.DescriptionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredIncomeList(new DescriptionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredIncomeList().size());
     }
 

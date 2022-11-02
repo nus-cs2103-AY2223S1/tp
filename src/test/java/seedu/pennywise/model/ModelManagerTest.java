@@ -22,6 +22,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import seedu.pennywise.commons.core.GuiSettings;
+import seedu.pennywise.model.entry.DescriptionContainsKeywordsPredicate;
 import seedu.pennywise.testutil.PennyWiseBuilder;
 import seedu.pennywise.testutil.TypicalLineChartData;
 
@@ -231,7 +232,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = LUNCH.getDescription().fullDescription.split("\\s+");
-        modelManager.updateFilteredExpenditureList(new seedu.pennywise.model.entry.DescriptionContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredExpenditureList(new DescriptionContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(pennyWise, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
