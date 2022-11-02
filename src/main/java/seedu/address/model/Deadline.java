@@ -46,7 +46,7 @@ public class Deadline {
     /*
      * The date must be entered in yyyy-mm-dd or yyyy-m-d
      */
-    public static final String VALIDATION_REGEX = "^([0-9]{3}[1-9])\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
+    public static final String VALIDATION_REGEX = "^(\\d{4})-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$";
 
     private LocalDate deadline;
 
@@ -69,7 +69,7 @@ public class Deadline {
      * Returns true if a given string is a valid deadline.
      */
     public static boolean isValidDeadline(String deadline) {
-        return deadline.matches(VALIDATION_REGEX);
+        return !deadline.startsWith("0000") && deadline.matches(VALIDATION_REGEX);
     }
 
     public String getFormattedDeadline() {
