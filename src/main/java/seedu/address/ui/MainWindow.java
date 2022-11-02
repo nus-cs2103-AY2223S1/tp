@@ -289,8 +289,9 @@ public class MainWindow extends UiPart<Stage> {
             break;
         case ListCommand.LIST_EMPTY:
             show();
+            break;
         default:
-            show();
+            //Do nothing.
         }
     }
 
