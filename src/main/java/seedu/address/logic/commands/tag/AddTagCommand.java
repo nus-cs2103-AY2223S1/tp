@@ -42,15 +42,15 @@ public class AddTagCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "LABEL]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "CS2103T";
 
-    public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag: %1$s";
-    public static final String MESSAGE_TAG_NOT_ADDED = "At least 1 tag to add must be provided.";
+    public static final String MESSAGE_ADD_TAG_SUCCESS = "New label added: %1$s";
+    public static final String MESSAGE_TAG_NOT_ADDED = "At least 1 label to add must be provided.";
     public static final String MESSAGE_DUPLICATE_TAG_ON_PERSON = "This person already has the "
-        + "tag you are trying to add";
-    public static final String MESSAGE_DUPLICATE_TAG_ON_TASK = "This task already has the tag you are trying to add";
+        + "label you are trying to add";
+    public static final String MESSAGE_DUPLICATE_TAG_ON_TASK = "This task already has the label you are trying to add";
     public static final String MESSAGE_MISSING_INDEX = "At least 1 contact or task index must be provided.";
 
     private final Index contactIndex;
