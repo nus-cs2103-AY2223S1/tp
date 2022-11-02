@@ -14,8 +14,6 @@ Given below are my contributions to the project.
     * find stall by name ([#156] (https://github.com/AY2223S1-CS2103-W14-2/tp/pull/156))
     * find review by name ([#174] (https://github.com/AY2223S1-CS2103-W14-2/tp/pull/174))
     * find stall and review by tag ([#213] (https://github.com/AY2223S1-CS2103-W14-2/tp/pull/213))
-  * 
-
 * **Enhancements to logic component**
   * Implemented parser and command classes to parse FoodWhere commands
     * Modified AddCommandParser to SAddCommandParser to parse add stall commands ([#100] (https://github.com/AY2223S1-CS2103-W14-2/tp/pull/100))
@@ -26,8 +24,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to new features**
   * Added error messages for any missing mandatory fields in RDeleteCommand and SDeleteCommand ([#220] (https://github.com/AY2223S1-CS2103-W14-2/tp/pull/220))
-  * Handled bug caused by case insensitivity and additional user inputs by modifying all relevant classes such as `Address`, `Name`, `Tag` to handle different user inputs 
-  
+  * Handled bug caused by case insensitivity and additional user inputs by modifying all relevant classes such as `Address`, `Name`, `Tag` to handle different user inputs
 * **Code Contributions**
 *[Link to RepoSense] (https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jamietan&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16)
 
@@ -43,4 +40,3 @@ Given below are my contributions to the project.
     * Wrote on implementation of Logic component ([#176] (https://github.com/AY2223S1-CS2103-W14-2/tp/pull/176))
     * Added use cases for sfind and rfind commands ([#261] (https://github.com/AY2223S1-CS2103-W14-2/tp/pull/261)
     * Wrote on implementation of find functions for stall and review ([#315] (https://github.com/AY2223S1-CS2103-W14-2/tp/pull/315))
-    

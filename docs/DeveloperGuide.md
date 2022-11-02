@@ -477,7 +477,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ****
 
 **Use case 4: Delete a food review**
-
 **MSS**
 
 1. User starts FoodWhere.
