@@ -1,8 +1,8 @@
 package foodwhere.model.review;
 
 import static foodwhere.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -57,5 +57,19 @@ public class RatingTest {
         assertTrue(Rating.isValidRating("04"));
         assertTrue(Rating.isValidRating("004"));
         assertTrue(Rating.isValidRating("00004"));
+    }
+
+    @Test
+    public void getTagString_generalTesting_success() {
+        String testString = "test";
+        Review testReviewNoTag = new ReviewBuilder().withName(testString).withAddress(testString).build();
+        assertEquals("", testReviewNoTag.getTagString());
+
+        Review testReviewWOneTag = new ReviewBuilder(testReviewNoTag).withTags("tag").build();
+        assertEquals("tag", testReviewWOneTag.getTagString());
+
+        String[] tags = new String[] {"tag", "tag2", "tag3"};
+        Review testReviewWManyTag = new ReviewBuilder(testReviewWOneTag).withTags(tags).build();
+        assertEquals("tag, tag2, tag3", testReviewWManyTag.getTagString());
     }
 }
