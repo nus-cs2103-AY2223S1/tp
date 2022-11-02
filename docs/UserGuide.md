@@ -132,9 +132,9 @@ Format: `add c/COMPANY p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]…`
 |------------|----------------------------------------------|-------------------------------------------------------------------------------|
 | `COMPANY`  | Company that is offering the internship      | Must contain only alphanumeric characters and spaces, and should not be blank |
 | `POSITION` | Position of the internship                   | Must not be blank                                                             |
-| `SALARY `  | Salary of the position                       | Must contain only numbers                                                     |
 | `EMAIL`    | Email of the hiring team                     | Must be of the format local-part@domain                                       |
 | `WEBSITE`  | Website containing details of the internship | Must be a valid URL                                                           |
+| `SALARY `  | Salary of the position                       | Must contain only numbers                                                     |
 | `TAG`      | Tag(s) of the internship application         | Must be one word and contain only alphanumeric characters                     |
 
 <div markdown="span" class="alert alert-primary">
@@ -626,30 +626,36 @@ with the internship with the lowest salary at the top.
 
 ## General Features
 
+| Action              | Format  |
+|---------------------|---------|
+| **View help**       | `help`  |
+| **View statistics** | `stats` |
+| **Exit InTrack**    | `exit`  |
+
 ## Internship Application Management
+
+| Action                                      | Format, Examples                                                                                                                                                                                |
+|---------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add internship application**              | `add c/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… ` <br/> e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent`        |
+| **Delete internship application**           | `delete INDEX` <br/> e.g. `delete 1`                                                                                                                                                            |
+| **Update status of internship application** | `status INDEX STATUS`<br/> e.g. `status 1 o`                                                                                                                                                    |
+| **Add tag to internship application**       | `addtag INDEX TAG [MORE_TAGS]...`<br/> e.g. `addtag 1 Urgent`                                                                                                                                   |                                                                                                                              |
+| **Delete tag from internship application**  | `deltag INDEX TAG [MORE_TAGS]...`<br/> e.g. `deltag 1 Urgent`                                                                                                                                   |
+| **Select internship application**           | `select INDEX` <br/> e.g. `select 1`                                                                                                                                                            |
+| **Edit internship application**             | `edit [c/NEW_COMPANY] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE] [s/NEW_SALARY] [t/NEW_TAGS]...` <br/> Note: At least one of the optional fields must be provided. <br/> e.g. `edit s/1200` |
+| **Add task to internship application**      | `addtask TASK_NAME /at TASK_TIME ` <br/> Note: An internship application must be selected first. <br/> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                  |
+| **Delete task from internship application** | `deltask TASK_INDEX` <br/> Note: An internship application must be selected first. <br/> e.g. `deltask 1`                                                                                       |
+| **Add remark to internship application**    | `remark r/[REMARK]` <br/> Note: An internship application must be selected first. <br/> e.g. `remark r/Revise graphs`                                                                           |
+| **Send email to internship application**    | `mail` <br/> Note: An internship application must be selected first.                                                                                                                            |
 
 ## List Management
 
-| Action               | Format, Examples                                                                                                                                                                         |
-|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**             | `help`                                                                                                                                                                                   |
-| **List**             | `list`                                                                                                                                                                                   |
-| **Clear**            | `clear`                                                                                                                                                                                  |
-| **Exit**             | `exit`                                                                                                                                                                                   |
-| **Add**              | `add c/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… ` <br/> e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent` |
-| **Delete**           | `delete INDEX` <br/> e.g. `delete 1`                                                                                                                                                     |
-| **Edit**             | `edit c/NEW_NAME p/NEW_POSITION e/NEW_EMAIL w/NEW_WEBSITE t/NEW_TAGS s/NEW_SALARY` <br/> e.g. `edit s/1200`                                                                              |
-| **Status**           | `status INDEX STATUS`<br/> e.g. `status 1 o`                                                                                                                                             |
-| **Remark**           | `remark r/[REMARK]`<br/> e.g. `remark r/Revise graphs`                                                                                                                                   |
-| **Find by Company**  | `findc KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findc Google`                                                                                                                                 |
-| **Find by Position** | `findp KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findp Frontend`                                                                                                                               |
-| **Find by Tag**      | `findt KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findt Urgent`                                                                                                                                 |
-| **Filter**           | `filter STATUS` <br/> e.g. `filter o`                                                                                                                                                    |
-| **Sort**             | `sort SORT_TYPE SORT_ORDER`<br/> e.g. `sort time a`                                                                                                                                      |
-| **Stats**            | `stats`                                                                                                                                                                                  |
-| **Select**           | `select INDEX` <br/> e.g. `select 1`                                                                                                                                                     |
-| **Add Task**         | `addtask TASK_NAME /at TASK_TIME `<br/> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                                                                          |
-| **Delete Task**      | `deltask INDEX` <br/> e.g. `deltask `                                                                                                                                                    |
-| **Add Tag**          | `addtag INDEX TAG [MORE_TAGS]`<br/> e.g. `addtag 1 Urgent`                                                                                                                               |
-| **Delete Tag**       | `deltag INDEX TAG [MORE_TAGS]`<br/> e.g. `deltag 1 Urgent`                                                                                                                               |
-| **Mail**             | `mail`                                                                                                                                                                                   |
+| Action                               | Format, Examples                                              |
+|--------------------------------------|---------------------------------------------------------------|
+| **List all internship applications** | `list`                                                        |
+| **Clear all entries**                | `clear`                                                       |
+| **Find by company**                  | `findc KEYWORD [MORE_KEYWORDS]...`<br/> e.g. `findc Google`   |
+| **Find by position**                 | `findp KEYWORD [MORE_KEYWORDS]...`<br/> e.g. `findp Frontend` |
+| **Find by tag**                      | `findt KEYWORD [MORE_KEYWORDS]...`<br/> e.g. `findt Urgent`   |
+| **Filter by status**                 | `filter STATUS` <br/> e.g. `filter o`                         |
+| **Sort by time or salary**           | `sort SORT_TYPE SORT_ORDER`<br/> e.g. `sort time a`           |
