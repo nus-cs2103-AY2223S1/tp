@@ -57,8 +57,12 @@ To navigate to see a particular command, you can click on the link in blue.
 2. Download the latest `minefriends.jar` [here](https://github.com/AY2223S1-CS2103T-T10-4/tp/releases/tag/v1.3).
 3. Create a folder called `Minefriends`.
 4. Put the `minefriends.jar` file inside the folder.
-5. Double-click the file to start the app. A window similar to the one below should appear in a few seconds. The window is empty because no Minecraft friends have been added yet. <br>
+5. Double-click the file to start the app. A window similar to the one below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
+<div markdown="block" class="alert alert-info">
+The window is empty because no friends have been added yet. Adding more friends will change the look of the window.
+</div>
+
 6. Type the command in the [command box](#user-interface-breakdown) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
 Some sample commands you can try out:
@@ -90,13 +94,14 @@ Refer to the [Managing your Minecraft friends](#managing-your-minecraft-friends)
 
 **Command format legend:**<br>
 
-* You need to type in the words in `UPPER_CASE`.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Amy Bee`.
+* You need to replace the `UPPER_CASE` fields with your desired words.<br>
+  e.g. in `add n/NAME m/MINECRAFT_NAME`, you can replace `NAME` and `MINECRAFT_NAME` with names of your choice. <br>
+  `add n/Amy Bee m/amybee123` is an example of a valid command.
 
-* Items in square brackets are optional.<br>
+* Items in square brackets are optional and can be left out.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/Amy Bee t/friend` or as `n/Amy Bee`.
 
-* For items with a `*`, you provide more than one of such item.<br>
+* For items with a `*`, you can provide more than one of such item.<br>
   e.g. `n/NAME [t/TAG]*` can be used as `n/Amy Bee`, `n/Amy Bee t/friend` or `n/Amy Bee t/friend t/bestie`.
 
 * The words you give can be in any order.<br>
@@ -140,6 +145,14 @@ In-game username of your friend. Minecraft usernames cannot contain spaces.
 Minecraft usernames are used to identify your friends uniquely in Minefriends 
 (and Minecraft too), so they must be unique.
 
+<div markdown="block" class="alert alert-info">
+
+If you type in `add n/John Doe` without the friend's Minecraft name,
+there will be an error thrown. Similarly, if you type in `add m/johndoe123`
+without the friend's name, there will be an error thrown.
+
+</div>
+
 **Phone Number** (`[p/PHONE_NUMBER]`) **[Optional]** <br>
 Contact number of your friend.
 
@@ -151,6 +164,7 @@ Physical address of your friend.
 
 **Country** (`[c/COUNTRY]`) **[Optional]** <br>
 The country in which your friend currently resides in.
+There should not be any numbers in the country.
 
 <div markdown="block" class="alert alert-info">
 
@@ -187,7 +201,7 @@ the second date-time being the end of their availability period. `day` can be
 
 <div markdown="block" class="alert alert-info">
 
-If the start and end time for a friend are the same, it is treated as one point in time
+If the start and end time interval for a friend are the same, it is treated as one point in time
 at that exact moment.
 
 To indicate availability across the whole week, use `mon@0000-sun@2359`.
@@ -229,14 +243,15 @@ e/johnisgood@gmail.com c/China t/hot t/nice t/smart s/insta@HotJohn s/fb@JohnIsH
 Format: `edit INDEX [n/NAME] [m/MINECRAFT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
 [c/COUNTRY] [ms/MINECRAFT_SERVER]* [s/SOCIAL_HANDLES]* [t/TAG]* [gt/GAME_TYPE]* [ti/TIME_INTERVAL]*` <br>
 
-Edits information about an existing friend in your friend list.
-You can use this command to change an existing attribute of a friend, or fill in optional
-attributes that were not provided during the `add`.
+If you want to change an existing attribute of a friend, or fill in optional attributes that were not provided during the `add` process, 
+you can use the `edit` command to easily change that. 
 
+The following explains what you should do to edit a particular person.
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in your displayed friend list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one field must be provided for editing.
 * Existing values will be updated to the input values.
-
+* You should not write an **invalid** index.                                           
+  * If you have three friends in your friend list, `edit 4 ...` will result in an error. 
 <div markdown="block" class="alert alert-info">
 
 **Important Note:**
@@ -282,10 +297,12 @@ After editing
 ### Deleting a friend: `delete`
 Format: `delete INDEX`<br>
 
-Removes the specified friend from your friend list.
+You can remove a specified friend from your friend list.
 
 * Deletes the friend at the specified `INDEX` of your friend list.
 * The index **must be a positive integer** 1, 2, 3, …
+* You should not write an **invalid** index.
+  * If you have three friends in your friend list, `delete 4` will result in an error.
 
 Example:
 * `list` followed by `delete 2` deletes the 2nd friend in your friend list.<br>
@@ -310,7 +327,7 @@ Example: <br>
 ![FindAmy](images/FindAmy.png)
 
 * The order of the keywords does not matter. e.g. `Amy Bee` will match `Bee Amy`.
-* Only the name is searched.
+* You can only search for someone's **name**.
 * Only **full words** will be matched. (e.g. `Am` will not match `Amy`)
 
 * Persons matching at least one keyword will be returned
@@ -330,10 +347,19 @@ Format: `suggest [dt/DAY_TIME_IN_WEEK]* [k/KEYWORD]*`
 
 * At least one instance of either `DAY_TIME_IN_WEEK` or `KEYWORD` must be provided
 * The search is case-insensitive (e.g. `amy` will match `Amy`)
+* Keywords do not need to be in full (e.g. `just` will match `Justin`)
 * The order of the keywords does not matter
 * The `Keyword` will be matched against **all** attributes of a friend (eg. Name, Minecraft Name, Address etc.)
 * As long as some attribute of a friend contains the `Keyword`, the `Keyword` is considered to have a valid match
 * All `Keyword` must be matched, but only 1 `DayTimeInWeek` needs to be matched
+* If you wish to find a friend playing at the same time as you, you can type in `suggest dt/now`
+
+<div markdown="block" class="alert alert-info"> 
+
+When you type in `suggest dt/now`, Minefriends uses the current time shown on your computer/device
+to search for friends playing at that current time.
+
+</div>
 
 Examples:
 
@@ -356,6 +382,9 @@ will return friends subjected to the only condition:
 `suggest dt/tue@2125`
 will return friends subjected to the only condition:
 1. Is available at Tuesday 9:25pm
+
+If you type `suggest dt/now` on Sunday 8:00pm, you will return friends subjected to the only condition:
+1. Is available at Sunday 8:00pm
 
 ### Listing all friends: `list`
 Format: `list`<br>
