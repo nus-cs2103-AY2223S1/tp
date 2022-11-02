@@ -280,17 +280,6 @@ the team list.
 
   The above command deletes team number 1 in the list of teams.
 
-### Removing contacts from group: `team remove`
-
-Removes the contact from the current group by their currently specified `INDEX` as shown in
-the application window.
-
-**Format:** `team remove <INDEX>`
-
-**Example:**
-
-- `team remove 3`
-
 ### Navigate to a Team
 
 To perform commands specific to a team, you will have to navigate first to that specific team. You can use the `cg`
