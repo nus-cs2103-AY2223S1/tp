@@ -357,9 +357,19 @@ The next sequence diagram shows the execution of the created SortCommand, again 
 
 When `LogicManager` `executes` the `SortCommand` created, the `SortCommand` will call one of the `sortApplicationList` methods provided by the `Model` interface for sorting the application list. Internally, the `Model` wraps its `ObservableList` of `Applications` inside a `SortedList`, so all it has to do is set an appropriate comparator on the `SortedList` to attain the desired sort order.
 
+A user may have a sort order that works best for them that they would consistently want to use over the others. To make the experience more convenient for the user, CinternS stores the last used sort order on the hard disk so that it can sort the applications list in that order the next time the app is closed and reopened. This way the user does not need to re-enter the same sort command every session.
+
+The current sort order is represented using a `SortSetting` enum, which can be one of the 4x2 possible sort orders. This `SortSetting` is stored in the `UserPrefs` object together with the other user preferences like screen size. The sort order is then stored inside the `preferences.json` file to be read the next time the app is opened.
+
+The following sequence diagram shows the process of initialising the sort order of a `ModelManager` as it is being instantiated:
+
+![Sort Initialisation Sequence Diagram](images/SortInitialisationSequenceDiagram.png)
+
+The `MainApp` passes the application book data and the `userPrefs` retrieved from storage to the constructor for `ModelManager`. The `ModelManager` creates a copy of the `userPrefs` object. Then, the `sortSetting` is retrieved and used to decide how the ModelManager should sort the applications. The diagram above shows just two of the possible sort orders and the resulting method calls.
+
 #### Constraints of Sort Feature
 
-The user can only sort based on one field at a time. The sort also only persists for the current session, meaning the order of applications will be reset if the app is closed and reopened.
+The user can only sort based on one field at a time.
 
 #### Design Considerations
 
