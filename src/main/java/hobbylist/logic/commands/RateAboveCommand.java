@@ -18,7 +18,7 @@ public class RateAboveCommand extends Command {
 
     public static final String MESSAGE_USAGE = commandWord
             + ": List all activities whose rate is higher or equal to the input value.\n"
-            + "Parameters: VALUE (must be an integer)\n"
+            + "Parameters: VALUE (must be an integer from 1 to 5 inclusive)\n"
             + "Example: " + commandWord + " 3";
     private final RatePredicate predicate;
     private int bound;
