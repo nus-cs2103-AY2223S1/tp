@@ -16,7 +16,7 @@ title: User Guide (v1.3)
 TrackAScholar (TAS) is the **only** desktop app any university administrative staff needs for managing scholarship applications.
 TAS helps administrative staff manage scholarship applications by storing the applicant's contact details, scholarship applied and majors taken all in one place.
 
-TAS  presenting the administrative staff with the option to pin important applicants, edit their details easily,
+TAS presents the administrative staff with the option to pin important applicants, edit their details easily,
  find or filter for applicants with ease and otherwise speeds up the application process.
 
 TAS is **optimised for use via a Command Line Interface (CLI)** while simultaneously having the benefits of a **Graphical User Interface
@@ -130,7 +130,7 @@ Adds an applicant with the following details to the TrackAScholar:
 * `NAME`: Name of applicant.
 * `PHONE_NUMBER`: Phone number of Applicant.
 * `EMAIL`: Email of Applicant.
-* `SSCHOLARSHIP`: Scholarship that applicant has applied for.
+* `SCHOLARSHIP`: Scholarship that applicant has applied for.
 * `APPLICATION_STATUS`: Status of scholarship application for the applicant, can only be either `PENDING`, `ACCEPTED` or `REJECTED`.
 * `MAJOR`: A Major taken up by the applicant.
 
@@ -184,7 +184,7 @@ Edits an existing applicant stored in TrackAScholar.
 
 Format: 
 ```
-edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MAJOR]…​
+edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MAJOR] [as/APPLICATION_STATUS]…​
 ```
 
 * Edits the applicant at the specified `INDEX`. 
@@ -461,11 +461,11 @@ exit
 
 ### Saving the data
 
-TrackAScholar data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+TrackAScholar data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-TrackAScholar data are saved as a JSON file `[JAR file location]/data/trackAScholar.json`. Advanced users are welcome to update data directly by editing that data file.
+TrackAScholar data is saved as a JSON file `[JAR file location]/data/trackAScholar.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TrackAScholar will discard all data and start with an empty data file at the next run.
