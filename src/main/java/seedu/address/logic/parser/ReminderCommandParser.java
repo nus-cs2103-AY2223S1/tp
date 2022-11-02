@@ -44,6 +44,11 @@ public class ReminderCommandParser {
         String task = argMultimap.getValue(PREFIX_REMINDER).orElse("");
         String date = argMultimap.getValue(PREFIX_DATE).orElse("");
 
+        if (task.isBlank()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ReminderCommand.MESSAGE_EMPTY_REMINDER));
+        }
+
         try {
             LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)
                     .withResolverStyle(ResolverStyle.STRICT));
