@@ -14,7 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR_LONG;
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.LinkName;
 import seedu.address.model.team.Url;

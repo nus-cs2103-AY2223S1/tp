@@ -21,7 +21,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.LinkName;
 import seedu.address.model.team.Url;

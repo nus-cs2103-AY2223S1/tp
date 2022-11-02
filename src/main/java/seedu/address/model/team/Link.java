@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.person.Name;
-
 /**
  * Represents a link that is tracked in each team.
  */

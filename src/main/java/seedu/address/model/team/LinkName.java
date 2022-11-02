@@ -3,8 +3,6 @@ package seedu.address.model.team;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.person.Name;
-
 /**
  * Represents a Link's name in the TruthTable.
  * Guarantees: immutable; is valid as declared in {@link #isValidLinkName(String)}

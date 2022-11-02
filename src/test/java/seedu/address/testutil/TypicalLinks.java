@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import seedu.address.model.person.Name;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.LinkName;
 import seedu.address.model.team.Url;
