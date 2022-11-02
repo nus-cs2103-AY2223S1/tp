@@ -22,7 +22,7 @@ public class Reminder {
      */
     public Reminder(String reminder, String date) {
 
-        assert Birthday.isValidDate(date) : "date should be in format of 'D-MM-YYYY'";
+        assert Birthday.isValidDate(date) : "date should be in format of 'DD-MM-YYYY'";
 
         this.task = reminder;
         this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)
