@@ -63,7 +63,8 @@ help page).
 
 * **Project management**:
   * Managed release `v1.2`, `v1.3trials` ([2 releases](https://github.com/AY2223S1-CS2103T-W08-2/tp/releases)) with 
-    ChangeLog 
+    ChangeLog.
+  * Created and assigned GitHub issues to team members.
 
 * **Enhancements to existing features**:
   * Updated the GUI 
