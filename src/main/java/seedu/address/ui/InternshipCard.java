@@ -128,15 +128,15 @@ public class InternshipCard extends UiPart<Region> {
         StringBuilder tooltipText = new StringBuilder();
 
         while (tags.getChildren().size() > MAX_TAGS) {
-            int lastChildIndex = tags.getChildren().size() - 1;
+            int firstExtraIndex = MAX_TAGS;
 
             // ok to cast since all children of tags are Labels
-            Label lastTag = (Label) tags.getChildren().get(lastChildIndex);
+            Label tag = (Label) tags.getChildren().get(firstExtraIndex);
 
-            tags.getChildren().remove(lastChildIndex);
+            tags.getChildren().remove(firstExtraIndex);
             count++;
 
-            tooltipText.append("[").append(lastTag.getText()).append("]");
+            tooltipText.append("[").append(tag.getText()).append("]");
         }
 
         Tooltip moreTagsTooltip = new Tooltip(tooltipText.toString());
