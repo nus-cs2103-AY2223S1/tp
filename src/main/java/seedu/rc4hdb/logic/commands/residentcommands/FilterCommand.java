@@ -48,16 +48,16 @@ public class FilterCommand implements ModelCommand {
     public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
 
     /** description to filter the resident with */
-    private final ResidentStringDescriptor filterPersonDescriptor;
+    private final ResidentStringDescriptor filterResidentDescriptor;
 
     private final Specifier specifier;
 
     /**
-     * @param filterPersonDescriptor description object to filter the resident with
+     * @param filterResidentDescriptor description object to filter the resident with
      */
-    public FilterCommand(ResidentStringDescriptor filterPersonDescriptor, Specifier specifier) {
-        assert filterPersonDescriptor != null : "Descriptor object is null";
-        this.filterPersonDescriptor = new ResidentStringDescriptor(filterPersonDescriptor);
+    public FilterCommand(ResidentStringDescriptor filterResidentDescriptor, Specifier specifier) {
+        assert filterResidentDescriptor != null : "Descriptor object is null";
+        this.filterResidentDescriptor = new ResidentStringDescriptor(filterResidentDescriptor);
         this.specifier = specifier;
     }
 
@@ -66,9 +66,9 @@ public class FilterCommand implements ModelCommand {
         assert model != null : "Model object is null";
         Predicate<Resident> predicate;
         if (specifier.getSpecifier().equals("any")) {
-            predicate = new AttributesMatchAnyKeywordPredicate(filterPersonDescriptor);
+            predicate = new AttributesMatchAnyKeywordPredicate(filterResidentDescriptor);
         } else {
-            predicate = new AttributesMatchAllKeywordsPredicate(filterPersonDescriptor);
+            predicate = new AttributesMatchAllKeywordsPredicate(filterResidentDescriptor);
         }
         model.updateFilteredResidentList(predicate);
         return new CommandResult(
@@ -90,6 +90,6 @@ public class FilterCommand implements ModelCommand {
 
         // state check
         FilterCommand f = (FilterCommand) other;
-        return filterPersonDescriptor.equals(f.filterPersonDescriptor);
+        return filterResidentDescriptor.equals(f.filterResidentDescriptor);
     }
 }

@@ -13,7 +13,8 @@ public class Room extends StringField implements ResidentField {
     public static final String IDENTIFIER = "Room";
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Room Number should be in the format FLOOR-UNIT, where FLOOR and UNIT are both non-negative integers";
+            "Room Number should be in the format FLOOR-UNIT, where FLOOR and UNIT are both positive integers written " +
+                    "in a two digit format e.g. 01-01";
 
     /**
      * The characters before and after the '-' must be a positive integer.
