@@ -132,8 +132,8 @@ Edits an existing contact in the application.
 
 Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`
 
-- Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
-  The index must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index.
+- Edits the person at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed contact list.
+  The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index. This command is invalid if `INDEX` is a non-positive integer.
 - Existing values will be updated to the input values.
 - At least one of the optional fields must be provided.
 - Date format accepted is: dd/mm/yyyy.
@@ -183,8 +183,8 @@ Deletes the specified person from the application.
 Format: `deletePerson INDEX`
 
 * Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index must be **a positive integer** 1, 2, 3, …​
+* The `INDEX` refers to the index number shown in the displayed contact list.
+* The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index. This command is invalid if `INDEX` is a non-positive integer.
 
 Examples:
 * `listPersons` followed by `deletePerson 2` deletes the 2nd person in the application.
@@ -209,8 +209,8 @@ Edits an existing event in the application.
 
 Format: `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`
 
-- Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list.
-  The index must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the event list index.
+- Edits the event at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed event list.
+  The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 
@@ -247,12 +247,11 @@ Deletes an existing event in the application.
 Format: `deleteEvent INDEX`
 
 * Removes the event at the specified `INDEX`.
-* The index refers to the index number shown in the displayed event list
-* The index must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
+* The `INDEX` refers to the index number shown in the displayed event list.
+* The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
 
 Examples:
 * `deleteEvent 2` after listing all events with `listEvents` deletes the event at index 2
-* `deleteEvent 7` after listing all events with `listEvents` deletes the event at index 7
 
 
 ### Listing all events: `listEvents`
@@ -289,9 +288,9 @@ Examples:
 Format: `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
-* The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index.
-* The `PERSON_INDEX` refers to the index number shown in the displayed person list.
-* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the person list index.
+* The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
+* The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
+* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the contact list index.
 * The `PERSON_INDEX` must refer to a person that is not currently tagged to the event.
 * Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
 
@@ -304,9 +303,9 @@ Example:
 Format: `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
-* The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index.
-* The `PERSON_INDEX` refers to the index number shown in the displayed person list.
-* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the person list index.
+* The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
+* The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
+* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the contact list index.
 * The `PERSON_INDEX` must refer to a person that is currently tagged to the event.
 * Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
 
@@ -324,7 +323,7 @@ Format: `mailEvent INDEX`
   `Name` and `Email`, representing the name and email for every person in the event.
 
 Example:
-* `mailEvent 2` creates mailing list as a CSV file, the name of the csv file is the same as the title of 2nd event 
+* `mailEvent 2` creates mailing list as a CSV file, the name of the csv file is the same as the title of 2nd event
 in the event list.
 
 ### Generating pie charts of statistics of the people tagged to an event in the event list : `makeStats`
@@ -332,7 +331,7 @@ in the event list.
 Format: `makeStats EVENT_INDEX t/STATISTIC_TYPE`
 
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
-* The `EVENT_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
+* The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
 * The `STATISTIC_TYPE` refers to the type of statistical data being generated.
 * The `STATISTIC_TYPE` must be either `a` or `g`, where `a` stands for age and is specified to generate a pie chart showcasing
 the distribution of ages across age groups, while `g` stands for gender and is specified to generate a pie chart showcasing
