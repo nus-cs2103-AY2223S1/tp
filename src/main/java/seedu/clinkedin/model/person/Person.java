@@ -105,6 +105,14 @@ public class Person {
         return tagTypeMap.asUnmodifiableObservableMap();
     }
 
+    /**
+     * Returns an immutable unique tag type map
+     * @return an immutable unique tag type map
+     */
+    public UniqueTagTypeMap getTagTypeMap() {
+        return tagTypeMap;
+    }
+
     public Status getStatus() {
         return status;
     }

@@ -12,15 +12,15 @@
     "rating": "6",
     "links" : [ ]
   }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tags" : [ ["Skills", "owesMoney", "friends"] ],
-    "status" : "Rejected",
-    "note" : "He has a good sense of humour.",
-    "rating": "1",
-    "links" : [ ]
+    "name": "Benson Meier",
+    "phone": "98765432",
+    "email": "johnd@example.com",
+    "address": "311, Clementi Ave 2, #02-25",
+    "tags": [["Skills", "owesMoney", "friends"]],
+    "status": "Rejected",
+    "note": "He has a good sense of humour.",
+    "rating": "0",
+    "links": []
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
