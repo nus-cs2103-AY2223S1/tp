@@ -27,7 +27,7 @@ public class AddPropertyCommand extends Command {
             + PREFIX_ADDRESS + " ADDRESS "
             + PREFIX_DESCRIPTION + " DESCRIPTION "
             + PREFIX_OWNER_NAME + " OWNER NAME "
-            + PREFIX_PHONE + " PHONE "
+            + PREFIX_PHONE + " OWNER PHONE "
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " Clementi Flat "
