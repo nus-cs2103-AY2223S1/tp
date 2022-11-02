@@ -8,12 +8,10 @@ title: RC4HDB
 
 ![Ui](images/Ui.png)
 
-This project is named `RC4 Housing Database` (`RC4HDB` for short). RC4HDB is designed to aid **NUS RC4 housing management staff** in their day-to-day workflow
-by providing a means to store and manipulate **RC4** resident information.
+This project is named **Residential College 4 Housing Database** (RC4HDB for short). RC4HDB is a desktop application which streamlines the daily workflow of **RC4 housing management staff**, by providing specialised features which solve their resident and venue management needs.
 
-* If you are interested in using RC4HDB, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing RC4HDB, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
-
+* If you are interested in using RC4HDB, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.md#quick-start).
+* If you are interested about developing RC4HDB, the [**Developer Guide**](DeveloperGuide.md) is a good place to start.
 
 **Acknowledgements**
 
