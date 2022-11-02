@@ -134,6 +134,9 @@ The examples in this guide are formatted with the following conventions:
 * Flags consisting of a character and `/` specify the type of parameter to be supplied.
   e.g. in `n/NAME`, `n/` is the flag for the `NAME` parameter.
 
+* The `NAME` parameter for all commands must be the **full name** of the contact 
+  e.g. if the contact is named `Alex Yeoh`, a command must use `n/Alex Yeoh` and not `n/Alex` or `n/Alex Y` etc.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `n/NAME`, `NAME` is a parameter which can be used as `n/John Doe`.
 
@@ -225,8 +228,8 @@ Adds a task of type todo into your task list.
 * Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 Examples:
-* `task todo m/John d/Finish user guide` adds a todo called “Finish user guide” assigned by John to you.
-* `task todo o/Sam d/Finish the assignment #/cs2103` adds a todo called “Finish the assignment” tagged as "cs2103" and assigned to Sam.
+* `task todo m/Alex Yeoh d/Finish user guide` adds a todo called “Finish user guide” assigned by Alex Yeoh to you.
+* `task todo o/Bernice Yu d/Finish the assignment #/cs2103` adds a todo called “Finish the assignment” tagged as "cs2103" and assigned to Bernice Yu.
 * `task todo o/Myself d/Upload slides` adds a todo called “Upload slides” which is self-assigned by you.
 * `task todo d/Finish essay` adds a todo called "Finish essay" which you assign to yourself.
 
@@ -236,7 +239,7 @@ Adds a task of type deadline into the task list.
 
 **Assigned by** Format: `task deadline m/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
-**Assigned to** Format: `task deadline o/Name d/DESCRIPTION t/DATE [#/TAG]…`
+**Assigned to** Format: `task deadline o/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
 **Self-assigned** Format: `task deadline d/DESCRIPTION t/DATE`
 
@@ -247,8 +250,8 @@ Adds a task of type deadline into the task list.
 * Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 Examples:
-* `task deadline m/John d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by John to you.
-* `task deadline o/Sam d/Finish the assignment t/Jan 31 2022 #/cs2103` adds a deadline called “Finish the assignment” and tagged as "cs2103" which is assigned to Sam.
+* `task deadline m/Alex Yeoh d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by Alex Yeoh to you.
+* `task deadline o/Bernice Yu d/Finish the assignment t/Jan 31 2022 #/cs2103` adds a deadline called “Finish the assignment” and tagged as "cs2103" which is assigned to Bernice Yu.
 * `task deadline o/Myself d/Upload slides t/2022-12-31` adds a deadline called “Upload Slides” which self-assigned by you.
 * `task deadline d/Finish essay t/Jan 31 2022` adds a deadline called “Finish essay” which you assign to yourself.
 
@@ -268,8 +271,8 @@ Adds a task of type event into your task list.
 * Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
 Examples:
-* `task event m/John d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by John to you.
-* `task event o/Sam d/Finish the assignment t/Jan 31 2022 #/cs2103` adds an event called “Finish the assignment” tagged as "cs2103" which is assigned to Sam.
+* `task event m/Alex Yeoh d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by Alex Yeoh to you.
+* `task event o/Bernice Yu d/Finish the assignment t/Jan 31 2022 #/cs2103` adds an event called “Finish the assignment” tagged as "cs2103" which is assigned to Bernice Yu.
 * `task event o/Myself d/Upload Slides t/Jan 31 2022` adds an event called “Upload Slides” which is self-assigned by you.
 * `task event d/Finish essay t/Jan 31 2022` adds an event called “Finish essay” which you assigned to yourself.
 
