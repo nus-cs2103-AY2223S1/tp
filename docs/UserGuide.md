@@ -38,26 +38,6 @@ a graphical user interface.
 
     ![Ui](images/user-guide/Ui.png)
 
-
-5. Try typing some of the following commands in the “Enter command here...” box and press “ENTER” to execute the command
-
-   Some example commands you can try:
-
-   - `add -n Tutorial 3 -m CS2103T -d 2022-09-16` :
-     Adds a task called `Tutorial 3` for the module `CS2103T` with the deadline `2022-09-16` into the task list.
-   - `mark 1` :
-     Marks the first task in the list as complete.
-   - `ls --module CS2103T` :
-     Lists all tasks associated with the module `CS2103T`.
-   - `delete 2` : 
-     Deletes the second task in the list.
-   - `edit 3 -n Assignment 2` : 
-     Changes the name of the third task in the list to `Assignment 2`.
-   - `find tutorial` :
-     Finds anything with the keyword 'tutorial' (not case-sensitive or strictly matched words)
-
-   You can also continue reading below to read more about how to use each command!
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Understanding the GUI
@@ -77,7 +57,7 @@ From top to bottom:
 
 2. Filter status display:
     * This displays any filters applied on the list using commands such as `ls` or `find`, for more information
-      please refer to **Feature** section below.
+      please refer to [**Feature**](#Features) section below.
 
 3. Main task list:
     * This displays all your *current* tasks.
@@ -87,6 +67,23 @@ From top to bottom:
 
 5. Command box:
     * This is where you enter commands to control the app.
+    
+Feel free to play around with the UI by typing some of the following commands in the _Command box_ and press `ENTER` key on your keyboard the execute the command!
+
+    - `add -n Tutorial 3 -m CS2103T -d 2022-09-16` :
+      Adds a task called `Tutorial 3` for the module `CS2103T` with the deadline `2022-09-16` into the task list.
+    - `mark 1` :
+      Marks the first task in the list as complete.
+    - `ls --module CS2103T` :
+      Lists all tasks associated with the module `CS2103T`.
+    - `delete 2` :
+      Deletes the second task in the list.
+    - `edit 3 -n Assignment 2` :
+      Changes the name of the third task in the list to `Assignment 2`.
+    - `find tutorial` :
+      Finds anything with the keyword 'tutorial' (not case-sensitive or strictly matched words)
+
+More details on the commands will be touched on in the [Features](#Features) section below! 
 
 ### Autocomplete
 
@@ -268,13 +265,10 @@ listing all tasks, unmarked tasks, all tasks under a module name, etc. You may a
 command to filter a list down to the results you are looking for. To reset the list, use the command `ls -a`.
 
 <div markdown="span" class="alert alert-warning">
-
 **:exclamation: Caution:**
-
 * Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match.
 * It is also case-insensitive.
 * Any command that searches for tags finds all tags that exactly match, but is also case-insensitive.
-
 </div>
 
 Current filters applied will be shown in the UI at the top bar.
@@ -411,21 +405,6 @@ Examples:
 * `edit 1 -t revision -n Recitation` Edits the tag to "revision" and taskName to "Recitation".
 
 ![Example image of Edot Command](images/user-guide/EditCommandDemo.png)
-
-### Deleting a task : `delete`
-
-Allows user to delete a task from task list. 
-
-Format: `delete TASK_NUMBER`
-* `TASK_NUMBER`: This is the number of the task currently displayed.
-
-Examples: 
-* `delete 3`
-  * Deletes third task in the task list.
-  * Remaining tasks’ `TASK_NUMBER` will be automatically updated.
-
-![Before image of Delete Command](images/user-guide/DeleteCommandBefore.png)
-![After image of Delete Command](images/user-guide/DeleteCommandAfter.png)
   
 ### Clearing all entries : `clear`
 
