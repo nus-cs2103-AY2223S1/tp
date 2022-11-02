@@ -30,7 +30,6 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
-    private final AddressBookParser addressBookParser;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Person> filteredPersons;
@@ -47,7 +46,6 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.addressBookParser = AddressBookParser.get();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTeams = new FilteredList<>(this.addressBook.getTeamsList());
         filteredTasks = new FilteredList<>(this.addressBook.getTasksList());
