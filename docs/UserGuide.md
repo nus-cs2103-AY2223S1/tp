@@ -15,13 +15,19 @@ should be used. Start by looking at the [quick start](#quick-start) guide to get
 
 
 ## Quick Start
-1. Ensure you have **Java `11`** or above installed in your Computer.
+1. Ensure you have **Java `11`** or above installed in your computer.
 2. Download the latest `taassist.jar` from [here](https://github.com/AY2223S1-CS2103T-T12-1/tp/releases/tag/v1.3).
 3. **Copy** the file to the folder you want to use as the _home folder_ for your TA-Assist.
 4. **Double-click** the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the
    app contains sample data.
 
 ![sample gui](images/sampleGui.png)
+
+{% include important.html content="
+
+If you encounter any issues in launching and using the app, feel free refer to the [FAQ section](#frequently-asked-questions-faq)!
+
+" %}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -144,11 +150,18 @@ Format: `find KEYWORD...
 * To clear the current search, use the `list` command.
 
 Examples:
-* `find John` will find students with **John** in their name (case-insensitive), i.e. **John Doe**, **John Brown**, **harry jOHn**, etc.
-* `find ben chris` will find students with either **ben** or a **chris** in their name, i.e. **chris ben**, **ChRIs wonders**, **bEn ten**, etc.
+* `find bert` finds students with **bert** in their name (case-insensitive), i.e. **Edbert Geraldy**, **Bert Hendrick**, **Gerard Albert**, etc.
+* `find ben chris` finds students with either **ben** or a **chris** in their name, i.e. **chris ben**, **wonders ChRIs**, **bEn ten**, etc.
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+{% include tip.html content="
+
+The `find` command performs its search over the currently displayed student list and replaces the displayed list with
+its search result.  If you need to revert to the original list of all students, you may use the [`list` command](#list-all-students-list).
+
+" %}
 
 ### List all students: `list`
 
@@ -448,7 +461,16 @@ Exits focus mode.
 Format: `unfocus`
 * Alternatively, you can exit focus mode by clicking on the button shown [here](#enter-focus-mode-focus).
 
-## FAQ
+## Frequently Asked Questions (FAQ)
+
+**Q**: How do I install Java?
+
+**A**: You may refer to [Oracle's JDK Installation Guide](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A).
+
+**Q**: I double-clicked the JAR file but was unable to start the app. What do I do?
+
+**A**: Open your preferred terminal and navigate to the directory the JAR file is located in. Then type in `java -jar TaAssist.jar` to run the application.
+
 **Q**: How do I transfer my data to another Computer?
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TA-Assist home folder.

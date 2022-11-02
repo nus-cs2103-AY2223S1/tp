@@ -2,90 +2,61 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":TaAssistParser" as TaAssistParser LOGIC_COLOR
-participant ":SessionCommandParser" as SessionCommandParser LOGIC_COLOR
-participant "c:SessionCommand" as SessionCommand LOGIC_COLOR
+participant "s:AddsCommand" as AddsCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant "s:Session" as Session MODEL_COLOR
-participant "newClass:ModuleClass" as ModuleClass MODEL_COLOR
+participant ":TaAssist" as TaAssist MODEL_COLOR
+participant "oldClass:ModuleClass" as ModuleClass MODEL_COLOR
+participant "newClass:ModuleClass" as NewModuleClass MODEL_COLOR
 end box
 
-[-> LogicManager : execute("adds s/Lab1")
-activate LogicManager
+[-> AddsCommand : execute(model)
+activate AddsCommand
 
-LogicManager -> TaAssistParser : parseCommand("adds s/Lab1")
-activate TaAssistParser
-
-create SessionCommandParser
-TaAssistParser -> SessionCommandParser
-activate SessionCommandParser
-
-SessionCommandParser --> TaAssistParser
-deactivate SessionCommandParser
-
-TaAssistParser -> SessionCommandParser: parse("s/Lab1")
-activate SessionCommandParser
-
-
-create Session
-SessionCommandParser -> Session: Session("Lab1", currentDate)
-activate Session
-
-Session --> SessionCommandParser: s
-deactivate Session
-
-create SessionCommand
-SessionCommandParser -> SessionCommand: s
-activate SessionCommand
-
-SessionCommand --> SessionCommandParser: c
-deactivate SessionCommand
-
-SessionCommandParser --> TaAssistParser: c
-deactivate SessionCommandParser
-
-SessionCommandParser -[hidden]-> TaAssistParser
-destroy SessionCommandParser
-
-TaAssistParser --> LogicManager: c
-deactivate TaAssistParser
-
-LogicManager -> SessionCommand: execute(model)
-activate SessionCommand
-
-SessionCommand -> Model: getFocusedClass()
+AddsCommand -> Model: getFocusedClass()
 activate Model
-Model --> SessionCommand: oldClass
+Model --> AddsCommand: oldClass
 deactivate Model
 
-create ModuleClass
-SessionCommand -> ModuleClass: ModuleClass(oldClassName, modifiedSessionList)
-activate ModuleClass
-ModuleClass --> SessionCommand: newClass
-deactivate ModuleClass
-
-SessionCommand -> Model: setModuleClass(oldClass, newClass)
+AddsCommand -> Model: addSessions(oldClass, newSessions)
 activate Model
-Model --> SessionCommand
+
+Model -> TaAssist: addSessions(oldClass, newSessions)
+activate TaAssist
+
+loop for each session in newSessions
+    TaAssist -> ModuleClass: addSession(session)
+    activate ModuleClass
+
+    create NewModuleClass
+    ModuleClass -> NewModuleClass
+    activate NewModuleClass
+
+    NewModuleClass --> ModuleClass
+    deactivate NewModuleClass
+
+    ModuleClass --> TaAssist
+    deactivate ModuleClass
+end
+
+TaAssist --> Model
+deactivate TaAssist
+
+Model --> AddsCommand
 deactivate Model
 
 create CommandResult
-SessionCommand -> CommandResult
+AddsCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> SessionCommand: result
+CommandResult --> AddsCommand: result
 deactivate CommandResult
 
-SessionCommand --> LogicManager: result
-deactivate SessionCommand
-
-LogicManager -->[
-deactivate LogicManager
+AddsCommand -->[: result
+deactivate AddsCommand
 
 @enduml

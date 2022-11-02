@@ -181,7 +181,7 @@ public class TaAssist implements ReadOnlyTaAssist {
         requireAllNonNull(moduleClass, sessions);
         ModuleClass oldModuleClass = moduleClass;
         for (Session session: sessions) {
-            moduleClass = moduleClass.addSession(session);;
+            moduleClass = moduleClass.addSession(session);
         }
         setModuleClass(oldModuleClass, moduleClass);
         return moduleClass;
