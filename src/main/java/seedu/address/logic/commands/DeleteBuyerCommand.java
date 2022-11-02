@@ -22,7 +22,7 @@ public class DeleteBuyerCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_BUYER_SUCCESS = "Deleted Buyer: %1$s";
+    public static final String MESSAGE_DELETE_BUYER_SUCCESS = "Deleted Buyer!\n%1$s";
 
     private final Index targetIndex;
 
