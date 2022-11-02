@@ -60,7 +60,6 @@ public class DeleteAttributeCommand extends Command {
 
         // Update the Person with the Deletion
         Person personAfterDeletion = createPersonAfterDeletion(toDelete);
-        assert !personAfterDeletion.isSamePerson(toDelete) : "Cannot have same Person after Deletion";
 
         // Check for Duplicates
         model.setPerson(toDelete, personAfterDeletion);
@@ -69,7 +68,6 @@ public class DeleteAttributeCommand extends Command {
 
     /**
      * Returns if DeleteAttributeCommand can execute at given Panel name.
-     *
      * @return true if Detail Page, false otherwise.
      */
     public static boolean canExecuteAt(MainPanelName name) {
