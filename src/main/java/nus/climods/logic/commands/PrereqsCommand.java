@@ -24,9 +24,11 @@ public class PrereqsCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + "CS2103";
     public static final String MESSAGE_MODULE_NOT_FOUND = "Module '%s' not in current NUS curriculum";
     public static final String MESSAGE_MODULE_LOAD_ERROR = "Error loading prerequisites for %s";
-    public static final String MESSAGE_MODULE_NO_PREREQUISITES = "Module %s has no prerequisites in current NUS "
+    public static final String MESSAGE_MODULE_NULL_PREREQUISITES = "Module %s has no prerequisites in current NUS "
             + "curriculum";
-    public static final String MESSAGE_SUCCESS = "Showing available prerequisites for %s";
+    public static final String MESSAGE_SUCCESS = "Prerequisite description: %s\nShowing available prerequisites for %s";
+    public static final String MESSAGE_MODULE_NO_PREREQUISITES = "Prerequisite description: %s\nUnable to show "
+            + "prerequisites for this module.";
     /**
      * Pattern to extract module codes from a string
      */
@@ -57,21 +59,19 @@ public class PrereqsCommand extends Command {
             throw new CommandException(String.format(MESSAGE_MODULE_LOAD_ERROR, moduleCode));
         }
 
-        CommandResult noPrereqsResult = new CommandResult(String.format(MESSAGE_MODULE_NO_PREREQUISITES, moduleCode),
-                false, false);
-
         String prereqString = module.getPrerequisite();
         if (prereqString == null) {
-            return noPrereqsResult;
+            return new CommandResult(String.format(MESSAGE_MODULE_NULL_PREREQUISITES, moduleCode),
+                    false, false);
         }
         Matcher matcher = MODULE_CODE_EXTRACT_PATTERN.matcher(prereqString);
         List<String> prereqs = matcher.results().map(MatchResult::group).collect(Collectors.toList());
 
         // returns false for classes where no prereq in current NUS curriculum
         if (!model.showModules(prereqs)) {
-            return noPrereqsResult;
+            return new CommandResult(String.format(MESSAGE_MODULE_NO_PREREQUISITES, prereqString), false, false);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode), false, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, prereqString, moduleCode), false, false);
     }
 }
