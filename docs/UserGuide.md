@@ -497,18 +497,18 @@ You can simply install the app in the other computer and overwrite the data file
 
 ## Command summary
 
-| Action                             | Format, Examples                                                                |
-|------------------------------------|---------------------------------------------------------------------------------|
-| **Add Profile**                    | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [tg/TELEGRAM_USERNAME] [t/TAG]…`      |
-| **Delete Profile**                 | `profile -d INDEX`                                                              |
-| **Edit Profile**                   | `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…` |
-| **View Profiles**                  | `profile -v`                                                                    |
-| **Find Profile**                   | `profile -f KEYWORD [MORE_KEYWORDS]…`                                           |
-| **Add Event**                      | `event -a n/TITLE s/START e/END [t/TAG]…`                                       |
-| **Add Profiles to an Event**       | `event -ap EVENT_INDEX pr/PROFILE_INDEX…`                                       |
-| **Delete Attendees from an Event** | `event -dp EVENT_INDEX pr/ATTENDEE_INDEX…`                                      |
-| **Delete Event**                   | `event -d INDEX`                                                                |
-| **Edit Event**                     | `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`                           |
-| **View Events**                    | `event -v`                                                                      |
-| **View Upcoming Event(s)**         | `event -u DAYS`                                                                 |
-| **Find Event**                     | `event -f KEYWORD_OR_DATE [MORE]…`                                              |
+| Action                             | Format, Examples                                                                       |
+|------------------------------------|----------------------------------------------------------------------------------------|
+| **Add Profile**                    | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [tg/TELEGRAM_USERNAME] [t/TAG]…`             |
+| **Delete Profile**                 | `profile -d INDEX`                                                                     |
+| **Edit Profile**                   | `profile -e INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…` |
+| **View Profiles**                  | `profile -v`                                                                           |
+| **Find Profile**                   | `profile -f KEYWORD [MORE_KEYWORDS]…`                                                  |
+| **Add Event**                      | `event -a n/TITLE s/START e/END [t/TAG]…`                                              |
+| **Add Profiles to an Event**       | `event -ap EVENT_INDEX pr/PROFILE_INDEX…`                                              |
+| **Delete Attendees from an Event** | `event -dp EVENT_INDEX pr/ATTENDEE_INDEX…`                                             |
+| **Delete Event**                   | `event -d INDEX`                                                                       |
+| **Edit Event**                     | `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`                                  |
+| **View Events**                    | `event -v`                                                                             |
+| **View Upcoming Event(s)**         | `event -u DAYS`                                                                        |
+| **Find Event**                     | `event -f KEYWORD_OR_DATE [MORE]…`                                                     |
