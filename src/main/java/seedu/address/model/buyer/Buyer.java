@@ -140,7 +140,7 @@ public class Buyer {
                 .append("\nAddress: ")
                 .append(getAddress())
                 .append("\nBudget: ")
-                .append(getPriceRange().map(PriceRange::toString).orElse("Budget: Not Specified"))
+                .append(getPriceRange().map(PriceRange::toString).orElse("Not Specified"))
                 .append("\nDesired Characteristics: ")
                 .append(getDesiredCharacteristics()
                         .map(Characteristics::toString)
