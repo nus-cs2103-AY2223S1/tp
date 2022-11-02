@@ -31,7 +31,6 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandSession = commandSession;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextField.requestFocus();
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         commandTextField.setOnKeyPressed(event -> {
             if (event.getCode().equals(KeyCode.TAB)) {

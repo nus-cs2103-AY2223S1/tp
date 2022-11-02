@@ -61,7 +61,8 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private FlowPane moduleInfo;
     @FXML
-    private VBox expandedModuleInfo;
+    private VBox
+            expandedModuleInfo;
     @FXML
     private Label moduleDescription;
     @FXML
@@ -93,6 +94,8 @@ public class ModuleCard extends UiPart<Region> {
         expandedModuleInfo.managedProperty().bind(expandedModuleInfo.visibleProperty());
         // by default expanded is not visible
         expandedModuleInfo.setVisible(false);
+        // do not request focus
+        expandedModuleInfo.setFocusTraversable(false);
         // add lesson info in a similar way as expanded module info
         lessonInfo.managedProperty().bind(lessonInfo.visibleProperty());
         lessonInfo.setVisible(false);
@@ -114,6 +117,7 @@ public class ModuleCard extends UiPart<Region> {
     }
 
     private void showLessonInformation() {
+        lessonInfo.setFocusTraversable(false);
         lessonInfo.setVisible(true);
         for (SemestersEnum sem : SemestersEnum.values()) {
             HashMap<LessonTypeEnum, Module.ModuleLessonIdMap> lessons = module.getLessons(sem);

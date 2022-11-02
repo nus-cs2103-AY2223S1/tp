@@ -2,6 +2,7 @@ package nus.climods.ui.module.components;
 
 import org.openapitools.client.model.SemestersEnum;
 
+import javafx.scene.input.KeyCode;
 import nus.climods.ui.common.Pill;
 
 /**
@@ -20,6 +21,7 @@ public class SemesterPill extends Pill {
      */
     public SemesterPill(SemestersEnum semester) {
         super(semester.toString(), DEFAULT_SEMESTER_BG_COLOR, DEFAULT_SEMESTER_TEXT_COLOR, DEFAULT_SEMESTER_FONT_SIZE);
+        disableFocus();
     }
 
     /**
@@ -31,7 +33,7 @@ public class SemesterPill extends Pill {
      */
     public SemesterPill(SemestersEnum semester, String bgColor, String textColor) {
         super(semester.toString(), bgColor, textColor, DEFAULT_SEMESTER_FONT_SIZE);
-        setUI();
+        disableFocus();
     }
 
     /**
@@ -44,9 +46,10 @@ public class SemesterPill extends Pill {
      */
     public SemesterPill(SemestersEnum semester, String bgColor, String textColor, int fontSize) {
         super(semester.toString(), bgColor, textColor, fontSize);
-        setUI();
+        disableFocus();
     }
-    private void setUI() {
-        super.setFocusTraversable(false);
+
+    private void disableFocus() {
+        super.setDisable(true);
     }
 }
