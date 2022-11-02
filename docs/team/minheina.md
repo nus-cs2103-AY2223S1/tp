@@ -7,6 +7,8 @@ title: Min Hein Aung's Project Portfolio Page
 
 **FoodWhere is a desktop application for managing your food stall addresses and reviews.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
+FoodWhere is written in Java, with about 10 kLoC.
+
 Given below are my contributions to the project.
 
 * **New Feature:** Added the ability to edit stall and review entries 
