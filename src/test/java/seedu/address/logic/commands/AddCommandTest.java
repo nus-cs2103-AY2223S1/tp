@@ -225,6 +225,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean teamNameExists(seedu.address.model.team.Name name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public seedu.address.model.team.Name getTeamName(Index teamIndex) {
             throw new AssertionError("This method should not be called.");
         }
