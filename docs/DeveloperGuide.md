@@ -313,6 +313,70 @@ The following sequence diagram shows how the `addtask` command works:
 The following activity diagram shows what happens when a user executes a `addtask` command:
 ![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
 
+### Add internship remark feature
+
+#### About this feature
+The add internship remark feature allows users to add a remark to his/her internship interview information via the command
+`remark` `INDEX` `r/`.
+
+### How it is implemented
+The implemented `remark` command is facilitated by `RemarkCommand` and `RemarkCommandParser`. It enables users to add a Remark to their internship information.
+It uses the `get(int INDEX)` on the list of internships received from `getFilteredInternshipList()` which is exposed to the `Model` interface as `Model#getFilteredInternshipList()` to
+get an Internship Object. A new Internship object is then created with the new remark. Then the`InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the Model interface as
+`Model#setInternship(Internship target, Internship editedInternship)`, is used to replace the old Internship panel with the new one.
+
+
+Given below is how the remark mechanism behaves at each step.
+
+#### Parsing User input
+Step 1. The user inputs the `remark` command  and provide the `INDEX` of the internship the user wants to add the remark to, the `r/` prefix and finally the `REMARK_CONTENT`
+that he/she wants to add.
+
+Step 2. The 'InTrackParser' then parses the user input and checks if the command word and arguments are correct before creating a new
+`RemarkCommandParser`.
+
+Step 3. The `RemarkCommandParser` then parses the user input and checks if the input variables are correct by checking for the presence of
+the prefixes. It also checks whether the command is in the correct format. The correct format of the input is `r/REMARK_CONTENT`.
+
+A `ParseException` will be thrown if the format is incorrect.
+
+Step 4. If the format is correct, `RemarkCommandParser` will create a `RemarkCommand` based on the given inputs.
+
+#### Command execution
+
+Step 5. The `LogicManager` executes the `RemarkCommand`.
+
+Step 6. The `RemarkCommand` obtains a list of `Internship`s via the `getFilteredInternshipList()` method
+which is exposed to the `Model` interface as `Model#getFilteredInternshipList()`
+
+Step 7. The `RemarkCommand` obtains the `Internship` object that the user wants to add the remark to via the
+`get(int INDEX)` method from list of `Internship`s.
+
+Step 8. The `RemarkCommand` then creates a new `Internship` object with the same variables as the old `Internship` except for the
+`REMARK_CONTENT` that the user has input.
+
+Step 9. `RemarkCommand` then call the `Model#setInternship(internshipToEdit, editedInternship)` to replace the old `Internship` with the new `Internship` with the new `Remark`
+
+#### Displaying of result
+
+Step 10. Finally, the `RemarkCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager` to complete the command execution. The
+GUI would also be updated on this change in the internship list and update the display of the `Internship` respectively.
+
+The following sequence diagram shows how the `remark` command works:
+
+![RemarkSequenceDiagram](images/RemarkSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes the `remark` command:
+
+![RemarkActivityDiagram](images/RemarkActivityDiagram.png)
+
+#### Design considerations
+
+**Aspect: Command to add remark to an internship application**
+When a user has just added an internship application, he probably has not been to the internship interview yet,
+so he would not have any remarks or notes to take about the interview process yet. Thus, the default `remark` field will
+be empty for each new `Internship` instead of requiring the user to provide one initially, saving time.
+
 ### Find internship application by company name feature
 
 #### About this feature
@@ -437,73 +501,6 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-
-
-
-
-### Add internship remark feature
-
-#### About Add internship remark feature
-The add internship remark feature allows users to add a remark to his/her internship interview information via the command
-`remark` `INDEX` `r/`.
-
-### How it is implemented
-The implemented `remark` command is facilitated by `RemarkCommand` and `RemarkCommandParser`. It enables users to add a Remark to their internship information.
-It uses the `get(int INDEX)` on the list of internships received from `getFilteredInternshipList()` which is exposed to the `Model` interface as `Model#getFilteredInternshipList()` to
-get an Internship Object. A new Internship object is then created with the new remark. Then the`InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the Model interface as
-`Model#setInternship(Internship target, Internship editedInternship)`, is used to replace the old Internship panel with the new one.
-
-
-Given below is how the remark mechanism behaves at each step.
-
-#### Parsing User input
-Step 1. The user inputs the `remark` command  and provide the `INDEX` of the internship the user wants to add the remark to, the `r/` prefix and finally the `REMARK_CONTENT`
-that he/she wants to add.
-
-Step 2. The 'InTrackParser' then parses the user input and checks if the command word and arguments are correct before creating a new
-`RemarkCommandParser`.
-
-Step 3. The `RemarkCommandParser` then parses the user input and checks if the input variables are correct by checking for the presence of
-the prefixes. It also checks whether the command is in the correct format. The correct format of the input is `r/REMARK_CONTENT`.
-
-A `ParseException` will be thrown if the format is incorrect.
-
-Step 4. If the format is correct, `RemarkCommandParser` will create a `RemarkCommand` based on the given inputs.
-
-#### Command execution
-
-Step 5. The `LogicManager` executes the `RemarkCommand`.
-
-Step 6. The `RemarkCommand` obtains a list of `Internship`s via the `getFilteredInternshipList()` method
-which is exposed to the `Model` interface as `Model#getFilteredInternshipList()`
-
-Step 7. The `RemarkCommand` obtains the `Internship` object that the user wants to add the remark to via the
-`get(int INDEX)` method from list of `Internship`s.
-
-Step 8. The `RemarkCommand` then creates a new `Internship` object with the same variables as the old `Internship` except for the
-`REMARK_CONTENT` that the user has input.
-
-Step 9. `RemarkCommand` then call the `Model#setInternship(internshipToEdit, editedInternship)` to replace the old `Internship` with the new `Internship` with the new `Remark`
-
-#### Displaying of result
-
-Step 10. Finally, the `RemarkCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager` to complete the command execution. The
-GUI would also be updated on this change in the internship list and update the display of the `Internship` respectively.
-
-The following sequence diagram shows how the `remark` command works:
-
-![RemarkSequenceDiagram](images/RemarkSequenceDiagram.png)
-
-The following activity diagram summarises what happens when a user executes the `remark` command:
-
-![RemarkActivityDiagram](images/RemarkActivityDiagram.png)
-
-#### Design considerations
-
-**Aspect: Command to add remark to an internship application**
-When a user has just added an internship application, he probably has not been to the internship interview yet,
-so he would not have any remarks or notes to take about the interview process yet. Thus, the default `remark` field will
-be empty for each new `Internship` instead of requiring the user to provide one initially, saving time.
 --------------------------------------------------------------------------------------------------------------------
 
 
@@ -535,8 +532,6 @@ be empty for each new `Internship` instead of requiring the user to provide one 
 * Manage multiple internships and provide comparisons between them for better decision-making
 * Easily customizable and personalizable to manage internships applications
 * Frequent reminders for deadlines
-
-
 
 ### User stories
 
