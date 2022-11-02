@@ -8,10 +8,7 @@ title: Conrad's Project Portfolio Page
 DevEnable is a product for developers who have to manage different projects spread
 across multiple GitHub repositories. It helps developers organize information about
 different projects they are working on in one place so that they may prioritize and
-have an overview. It removes the hassle of having to navigate to our/organization’s
-GitHub repo every time and manually check different pages to see which tasks require
-immediate attention. The user interacts with it using a CLI, and it has a GUI created
-with JavaFX. It is written in Java, and has about 10 kLoC.
+have a convenient overview of what needs to be done.
 
 Given below are my contributions to the project.
 
