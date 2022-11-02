@@ -29,7 +29,7 @@ public class EditClientCommand extends ClientCommand {
     public static final String MESSAGE_DUPLICATE_CLIENT_NAME = "A client with this name already "
             + "exists in the project book";
 
-    public static final String MESSAGE_CLIENT_NOT_FOUND = "Client id %1$d is not found";
+    public static final String MESSAGE_CLIENT_NOT_FOUND = "Client id %1$d does not exist in the project book";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG

@@ -39,7 +39,7 @@ public class EditIssueCommand extends IssueCommand {
             + PREFIX_DEADLINE + "2022-03-05 "
             + PREFIX_URGENCY + "1 ";
 
-    public static final String MESSAGE_ISSUE_NOT_FOUND = "Issue id %1$d is not found";
+    public static final String MESSAGE_ISSUE_NOT_FOUND = "Issue id %1$d does not exist in the project book";
 
     public static final String MESSAGE_SUCCESS = "Issue %1$s has been edited";
     private final Title newTitle;
