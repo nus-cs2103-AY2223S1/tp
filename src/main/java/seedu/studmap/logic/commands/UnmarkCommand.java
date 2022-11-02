@@ -24,7 +24,7 @@ public class UnmarkCommand extends EditStudentCommand<UnmarkCommand.UnmarkComman
             + "\n Removes attendance record for the class or tutorial specified in the parameter.\n"
             + "Parameters: INDEX (must be positive integer) "
             + PREFIX_CLASS + " [CLASS]\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CLASS + " T01"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CLASS + " T01\n"
             + "Example: " + COMMAND_WORD + " all " + PREFIX_CLASS + " T02";
 
     public static final String MESSAGE_UNMARK_SINGLE_ATTENDANCE_SUCCESS = "Removed Class %1$s from Student: %2$s";
