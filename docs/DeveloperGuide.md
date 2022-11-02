@@ -17,6 +17,8 @@ title: Developer Guide
         - [Add Module](#add-module)
         - [Remove Module](#remove-module)
         - [Navigation](#navigation)
+        - [Marking Modules as Done](#marking-modules-as-done)
+        - [Module Listing](#module-listing)
     - [Task/Deadline Features](#taskdeadline-features)
         - [Add Task](#add-task)
         - [Remove Task](#remove-task)
@@ -472,7 +474,7 @@ The following diagram shows the execution and control flow of the `done` command
 
 The diagram below shows how the `done` command work with input `done module CS1101S`
 
-<img src="images/ModulePUMLs/DoneModule/ModuleDoneSequenceDiagram.png" width="1200" />
+<img src="images/ModulePUMLs/DoneModule/ModuleDoneSequenceDiagram.png" width="1000" />
 
 Notice how we explicitly prevent a done module from being marked as done again. Even though marking a done module as
 done again is inconsequential from a data perspective (nothing in a `Module` changes other than the creation of a new
@@ -508,12 +510,12 @@ We check for the presence of the `-a` flag to decide whether to display done tas
 
 The following diagram shows the execution and control flow of the `list module` command.
 
-<img src="images/modulePUMLs/ListModule/ListingModulePathExecution.png" width="1000" />
+<img src="images/ModulePUMLs/ListModule/ListingModulePathExecution.png" width="1000" />
 
 The sequence diagram below details the interactions between the command and the model
 for the `ls mod` and `ls mod -a` commands:
 
-<img src="images/modulePUMLs/ListModule/ListingModuleSequenceDiagram.png" width="1000" />
+<img src="images/ModulePUMLs/ListModule/ListingModuleSequenceDiagram.png" width="1000" />
 
 The predicates defined by `Model.PREDICATE_SHOW_ALL_MODULES` and `PREDICATE_HIDE_DONE_MODULES` are used to filter
 the tasks displayed in the UI via the `updateFilteredModuleList` method in the `Model` interface.
