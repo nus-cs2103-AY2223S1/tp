@@ -1,8 +1,7 @@
 package seedu.masslinkers.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_MISSING_ARGUMENTS;
-import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 
 import java.util.regex.Pattern;
 
@@ -29,14 +28,14 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_MISSING_ARGUMENTS, DeleteInterestCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MISSING_ARGUMENTS, DeleteInterestCommand.MESSAGE_USAGE));
         }
 
         try {
             index = ParserUtil.parseIndex(args);
             return new DeleteCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            throw new ParseException(pe.getMessage());
         }
     }
 

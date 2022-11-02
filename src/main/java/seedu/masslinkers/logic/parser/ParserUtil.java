@@ -27,7 +27,12 @@ import seedu.masslinkers.model.student.Telegram;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is missing or not a non-zero unsigned integer.";
+    public static final String MESSAGE_UNEXPECTED_CHARACTERS = "There appears to be extraneous characters "
+            + "being supplied to the command.\nRefer to help for the command format.";
+    public static final String MESSAGE_UNEXPECTED_PREFIX = "The prefix %1$s is not recognised "
+            + "by Mass Linkers.\nRefer to help for the command format.";
+    public static final String PREFIX_REGEX = "(?i)[a-z]/.*";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -36,6 +41,14 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        checkForPrefix(trimmedIndex);
+
+        // checks if index has extraneous characters
+        String[] splittedArgs = trimmedIndex.split("\\s+");
+        if (splittedArgs.length > 1) {
+            throw new ParseException(MESSAGE_UNEXPECTED_CHARACTERS);
+        }
+
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
@@ -51,6 +64,7 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
+        checkForPrefix(trimmedName);
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -80,6 +94,7 @@ public class ParserUtil {
     public static Telegram parseTelegram(String handle) throws ParseException {
         requireNonNull(handle);
         String trimmedHandle = handle.trim();
+        checkForPrefix(trimmedHandle);
         if (!Telegram.isValidTelegram(trimmedHandle)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
@@ -94,6 +109,7 @@ public class ParserUtil {
      */
     public static GitHub parseGitHub(String username) throws ParseException {
         String trimmedUsername = username.trim();
+        checkForPrefix(trimmedUsername);
         if (!GitHub.isValidGitHub(trimmedUsername)) {
             throw new ParseException(GitHub.MESSAGE_CONSTRAINTS);
         }
@@ -108,6 +124,7 @@ public class ParserUtil {
      */
     public static Email parseEmail(String email) throws ParseException {
         String trimmedEmail = email.trim();
+        checkForPrefix(trimmedEmail);
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -122,6 +139,7 @@ public class ParserUtil {
      */
     public static Interest parseInterest(String interest) throws ParseException {
         String trimmedInterest = interest.trim();
+        checkForPrefix(trimmedInterest);
         if (!Interest.isValidInterest(trimmedInterest)) {
             throw new ParseException(Interest.MESSAGE_CONSTRAINTS);
         }
@@ -147,6 +165,7 @@ public class ParserUtil {
      */
     public static Mod parseMod(String mod) throws ParseException {
         String trimmedUpperCasedMod = mod.trim().toUpperCase();
+        checkForPrefix(trimmedUpperCasedMod);
         if (!Mod.isValidModName(trimmedUpperCasedMod)) {
             throw new ParseException(Mod.MESSAGE_CONSTRAINTS);
         }
@@ -194,6 +213,18 @@ public class ParserUtil {
             return ModCategory.GE;
         default:
             return ModCategory.UE;
+        }
+    }
+
+    /**
+     * Checks for extraneous characters that are prefixes.
+     * @param args The string to check.
+     * @throws ParseException When an invalid prefix is found.
+     */
+    private static void checkForPrefix(String args) throws ParseException {
+        String[] splittedArgs = args.split("\\s+");
+        if (splittedArgs.length > 1 && splittedArgs[1].matches(PREFIX_REGEX)) {
+            throw new ParseException(String.format(MESSAGE_UNEXPECTED_PREFIX, splittedArgs[1].substring(0, 2)));
         }
     }
 }
