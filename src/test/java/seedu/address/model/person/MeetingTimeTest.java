@@ -57,6 +57,13 @@ public class MeetingTimeTest {
         assertFalse(MeetingTime.isValidMeetingTime("30-11-2022-19:00-")); //extra hyphen after time
         assertFalse(MeetingTime.isValidMeetingTime("30/11/2022/19:00")); //wrong symbols
         assertFalse(MeetingTime.isValidMeetingTime("30-11-2022-19:00:29")); //wrong time format
+        assertFalse(MeetingTime.isValidDayMonth("29-02-2022-16:00")); //2022 is not a leap year
+        assertFalse(MeetingTime.isValidDayMonth("30-02-2022-16:00")); //February does not have 30 days
+        assertFalse(MeetingTime.isValidDayMonth("31-02-2022-16:00")); //February does not have 31 days
+        assertFalse(MeetingTime.isValidDayMonth("31-04-2022-16:00")); //April does not have 31 days
+        assertFalse(MeetingTime.isValidDayMonth("31-06-2022-16:00")); //June does not have 31 days
+        assertFalse(MeetingTime.isValidDayMonth("31-09-2022-16:00")); //September does not have 31 days
+        assertFalse(MeetingTime.isValidDayMonth("31-11-2022-16:00")); //April does not have 31 days
 
         //valid parts
         assertTrue(MeetingTime.isValidMeetingTime("01-06-2022-19:00")); //minimal day
