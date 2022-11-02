@@ -2,7 +2,6 @@ package nus.climods.ui.module.components;
 
 import org.openapitools.client.model.SemestersEnum;
 
-import javafx.scene.input.KeyCode;
 import nus.climods.ui.common.Pill;
 
 /**

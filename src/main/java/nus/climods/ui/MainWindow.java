@@ -39,7 +39,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
-    private static final double SCALE = 0.75;
+    private static final double SCALE = 0.7;
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
