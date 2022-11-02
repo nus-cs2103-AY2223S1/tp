@@ -3,6 +3,7 @@ package modtrekt.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
@@ -108,6 +109,11 @@ public class AddModuleCommand extends Command {
             model.addModule(module);
             return new CommandResult(String.format(MESSAGE_SUCCESS, module));
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(modCode);
     }
 
     @Override

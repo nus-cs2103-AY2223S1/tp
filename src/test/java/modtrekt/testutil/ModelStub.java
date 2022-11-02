@@ -1,6 +1,7 @@
 package modtrekt.testutil;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -18,6 +19,8 @@ import modtrekt.model.task.Task;
  */
 public class ModelStub implements Model {
     private ModCode currentModule = null;
+    private ArrayList<Module> moduleList = new ArrayList<>();
+    private ArrayList<Task> taskBook = new ArrayList<>();
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -86,11 +89,16 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasModule(Module module) {
-        return false;
+        return moduleList.contains(module);
     }
 
     @Override
     public boolean hasModuleWithModCode(ModCode code) {
+        for (Module m : moduleList) {
+            if (m.getCode().equals(code)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -111,11 +119,19 @@ public class ModelStub implements Model {
 
     @Override
     public void deleteModule(Module target) {
-
+        moduleList.remove(target);
     }
 
     @Override
     public Module parseModuleFromCode(ModCode code) {
+        if (code.equals(new ModCode("CS1231S"))) {
+            return new ModuleBuilder().build();
+        }
+
+        if (code.equals(new ModCode("CS2109S"))) {
+            return new Module("CS2109S", "Introduction to AI and Machine Learning", "4", "0");
+        }
+
         return null;
     }
 
@@ -156,7 +172,7 @@ public class ModelStub implements Model {
 
     @Override
     public void addModule(Module module) {
-
+        moduleList.add(module);
     }
 
     @Override
