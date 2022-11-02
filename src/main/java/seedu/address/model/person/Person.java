@@ -167,7 +167,7 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Tutorial")
+                .append("; Tutorial: ")
                 .append(getTutorial())
                 .append("; Address: ")
                 .append(getAddress())
