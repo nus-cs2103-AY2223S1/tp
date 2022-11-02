@@ -216,31 +216,6 @@ The diagrams below should sufficiently explain the main cases for the command.
 ![FilterMeetingsSequenceDiagram](images/CreateMeetingActivityDiagram.png)
 #### Activity Diagram for Creating New Meetings
 
-### [Implemented] Storage for meetings
-#### Implementation
-<img src="images/ModifiedStorageClassDiagram.png" width="550" />
-The implementation of the storage for meetings closely follows the way address book was implemented. There were many classes 
-that had to be copied, and they included
-- `MeetingList`
-- `ReadOnlyMeetingList`
-- `JsonMeetingListStorage`
-- `JsonAdaptedMeeting`
-- `JsonSerializableMeetingList`
-- `MeetingListStorage`
-
-The following classes had to be extended in order to support meeting list
-- `MainApp`
-- `UserPrefs`
-- `ReadOnlyUserPrefs`
-- `SampleDataUtil`
-- `Storage`
-- `StorageManager`
-- `Model`
-- `ModelManager`
-- `Logic`
-- `LogicManager`
-- `AddressBookParser`
-
 
 ### [Implemented] Storage for meetings
 #### Implementation
@@ -281,13 +256,16 @@ The filter meetings between dates command consists of these various classes:
 - `FilterMeetingCommandParser` which extends `Parser<FilterMeetingCommand>`
 - `MeetingFilterPredicate` which extends `Predicate<Meeting>`
 
-As with all other commands in Yellow Pages, filter meetings has a `Parser` subclass that goes through the 
-`AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object.
+As with all other commands in Yellow Pages, find meetings has a `Parser` subclass, namely `FilterMeetingCommandParser`
+which parses the user input and returns a `FilterMeetingCommand` object with a `new MeetingFilterPredicate` that contains the 
+"verified" user inputs. Utilizing the `Predicate` system allows the 
+command to simply offer up a new `Predicate` object. In this case, it is simply a predicate checking if each Meeting 
+Object's date is between two given dates. This `MeetingFilterDatePredicate` is then used to update the
+`filteredMeetings` list in the `ModelManager`, allowing it to temporarily store and display the meetings matching the `MeetingFilterDatePredicate`.
 
-Utilizing the `Predicate` system allows the command to simply offer up a new `Predicate` object. In this case, it
-utilizes the `MeetingFilterDatePredicate` class which extends `Predicate<Meeting>`. It is simply a predicate checking 
-if each Meeting Object's date is between two given dates. The `MeetingFilterDatePredicate` then updates the 
-`FilteredMeetingList` allowing it to temporarily store and display the meetings matching the `Predicate`.
+The `FilterMeetingCommandParser` class utilizes a utility class called `DateTimeConverter`. The `FilterMeetingCommandParser` class converts the 
+DateTime values from the Meeting which is stored as a `String` in the `EEEE, d MMMM uuuu hh:mm a` format into a `LocalDateTime` 
+object for comparison with other dates.
 
 Command: `filtermeetingsbetween Date A ;;; Date B`, both Date A and B must be real dates that follow the 
 dd-MM-yyyy HHmm format.
@@ -299,17 +277,94 @@ are within the range of Date A and Date B.
   date = Date A = Date B.
 - `Date A > Date B` - will throw an error as this is an invalid syntax.
 
-The diagram below should sufficiently explain the main cases for the command.
-
-![FilterMeetingsActivityDiagram](images/FilterMeetingsActivityDiagram.png)
 
 #### Sequence Diagram for Filter Meetings between Dates
 ![FilterMeetingsSequenceDiagram](images/FilterMeetingsSequenceDiagram.png)
 
+### [Implemented] Find Meetings
+#### Implementation
+The find meetings command consists of these various classes:
+- `FindMeetingCommand` which extends `Command`
+- `FindMeetingCommandParser` which extends `Parser<FilterMeetingCommand>`
+- `MeetingContainsKeywordsPredicate` which extends `Predicate<Meeting>`
+- `FindMeetingFunctionalInterface`which acts as a Functional Interface to pass functions as parameters.
+
+
+As with all other commands in Yellow Pages, find meetings has a `Parser` subclass, namely `FindMeetingCommandParser`
+which parses the user input and returns a `FindMeetingCommand` object with a `new MeetingContainsKeywordsPredicate` that 
+contains the following parameters: 
+- Array of Keywords entered by the user
+- One of three `static` Functional Interfaces which are:
+  - `Meeting::getDescription`
+  - `Meeting::getLocation`
+  - `Meeting::getPeopleToMeetAsString`
+
+Utilizing the `Predicate` system allows the command to simply offer up a new `Predicate` object. 
+In this case, it is a predicate checking if one of a Meeting Object's fields (corresponding to the Functional Interfaces) matches a keyword. 
+This `MeetingContainsKeywordsPredicate` is then used to update the `filteredMeetings` list in the `ModelManager`, 
+allowing it to temporarily store and display the meetings matching the `MeetingContainsKeywordsPredicate`.
+
+The aforementioned `static` Functional Interfaces exist within the `FindMeetingCommand` class, 
+these interfaces are used to indicate which Meeting field (description, location and people) to search the keywords provided in.
+This implementation raises two important questions:
+#### 1. Why are they static?
+   
+`static` values were used instead of creating new Functional Interface Objects each time primarily because of limitations in Java. 
+Namely, Java is unable to compare two Functional Interface Objects unless they are the same Object. This affected Unit Testing
+as without comparison, we would never be able to test if two `MeetingContainsKeywordsPredicate` were the same. Utilizing static
+Functional Interfaces allowed us to compare these two of them together and provide higher quality tests.
+
+#### 2. Why use functional interfaces?
+
+Functional Interfaces were used as a means to parameterize various getter functions from the Meeting Class.
+This allows the `MeetingContainsKeywordsPredicate` to directly use the function instead of relying on identities and conditional 
+statements to locate the correct Meeting field. In way this can be seen as an application of _defensive programming_, whereby the use 
+of Functional Interfaces limit the chances of things going wrong. Using Functional Interfaces implies that any errors/bugs that happen 
+in regard to the wrong Meeting field to select lay solely in the `FindMeetingCommandParser` passing the wrong parameters. Furthermore, this 
+implementation aids in scalability of the Meeting Object, adding more fields to a Meeting just requires us to declare a new 
+`static` Functional Interface with the appropriate field and to update the `verifyParameters` function.
+
+#### Sequence Diagram for Find Meeting
+**Note**: `lambda` refers to a Functional Interface.
+
+
+![FilterMeetingsSequenceDiagram](images/FindMeetingSequenceDiagram.png)
+
+### [Implemented] Sort Meetings
+
+The sort meetings command consists of these various classes:
+- `SortMeetingCommand` which extends `Command`
+- `SortMeetingCommandParser` which extends `Parser<FilterMeetingCommand>`
+
+Like all other commands in Yellow Pages, sort meetings has a `Parser` subclass, namely `SortMeetingCommandParser`
+which parses the user input and returns a `SortMeetingCommand` with a boolean parameter `isInAscending` that indicates
+whether to sort the meeting list in Ascending or Descending order.
+
+Sort Meetings primarily uses Java's `List::sort` that `SortMeetingCommand` 
+accesses through the `ObservableList<Meeting>` in the `Model`. 
+It utilizes the `compareTo` method found in Meetings to compare two Meeting Objects by date. 
+The comparator function used in the Sort is as follows:
+```
+public void sortByDate(boolean isInAscending) {
+    //Ternary operator checks if isInAscending is true and negates the results if it is false
+    internalList.sort((Meeting m1, Meeting m2) -> isInAscending
+            ? m1.compareTo(m2)
+            : -m1.compareTo(m2));
+}
+```
+
+Note that the `isInAscending` value decides whether the `compareTo` result is negated. This implementation allowed
+for the option of sorting Ascending (non-negated) and Descending (negated). Furthermore, calling the `sort` function 
+in this manner allows us to make changes to the list **permanently** which is intended.
+
+#### Sequence Diagram for Sort Meeting
+
+![SortMeetingsSequenceDiagram](images/SortMeetingSequenceDiagram.png)
+
 ### [Implemented] Edit Meeting Details
 #### Implementation
 
-The filter meetings between dates command consists of these various classes:
+The edit meeting details command consists of these various classes:
 - `EditMeetingCommand` which extends `Command`
 - `EditMeetingCommandParser` which extends `Parser<FilterMeetingCommand>`
 

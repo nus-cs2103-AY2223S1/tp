@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SortMeetingCommandParser" as SortMeetingCommandParser LOGIC_COLOR
+participant "fm:SortMeetingCommand" as SortMeetingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+participant "meetingList:MeetingList" as MeetingList MODEL_COLOR
+participant "meetings:UniqueMeetingList" as UniqueMeetingList MODEL_COLOR
+participant "internalList:ObservableList" as ObservableList MODEL_COLOR
+
+end box
+
+[-> LogicManager : execute\n(userInput)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand\n(userInput)
+activate AddressBookParser
+
+create SortMeetingCommandParser
+AddressBookParser -> SortMeetingCommandParser
+activate SortMeetingCommandParser
+SortMeetingCommandParser --> AddressBookParser
+deactivate SortMeetingCommandParser
+
+
+AddressBookParser -> SortMeetingCommandParser : parse(args)
+activate SortMeetingCommandParser
+
+create SortMeetingCommand
+SortMeetingCommandParser -> SortMeetingCommand : SortMeetingCommand\n(isInAscending)
+deactivate SortMeetingCommandParser
+
+activate SortMeetingCommand
+destroy SortMeetingCommandParser
+SortMeetingCommand --> LogicManager : fm
+SortMeetingCommand <- LogicManager : execute(model)
+SortMeetingCommand -> Model : sortMeetingListByDate\n(isInAscending)
+activate Model
+
+activate MeetingList
+Model -> MeetingList : sortMeetingListByDate\n(isInAscending)
+MeetingList -> UniqueMeetingList : sortByDate\n(isInAscending)
+activate UniqueMeetingList
+
+UniqueMeetingList -> ObservableList : sortByDate\n(isInAscending)
+activate ObservableList
+ObservableList -> ObservableList : sort(comparator)
+
+deactivate UniqueMeetingList
+deactivate MeetingList
+deactivate Model
+create CommandResult
+SortMeetingCommand -> CommandResult
+deactivate ObservableList
+
+activate CommandResult
+CommandResult --> SortMeetingCommand
+deactivate CommandResult
+SortMeetingCommand --> LogicManager : result
+deactivate SortMeetingCommand
+
+[<--LogicManager
+
+@enduml
