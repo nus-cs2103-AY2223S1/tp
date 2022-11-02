@@ -342,7 +342,7 @@ To support retrieving the `Owner` of a `Property`, we added the following method
 - `Property#getOwnerPhone()` - Retrieves the phone number of the owner of the property.
 
 This is the class diagram showing the full `Property` class diagram, with the `Owner` class included:
-![FullPropertyClassDiagram](images/FullPropertyClassDiagram.png)
+![FullPropertyClassDiagram](images/OwnerClassDiagram.png)
 
 The `Owner` class enacts the Composition relationship, as the `Property` class contains the `Owner` object. Hence, if the property is deleted, it's associated owner will also be deleted.
 The tradeoffs for this approach is examined below:
