@@ -28,7 +28,7 @@ public class FindStaffCommand extends Command {
 
     /**
      * Creates a FindStaffCommand with the specified {@code predicate}
-     * to find the all staffs within the currently active {@code project}.
+     * to find the all staff within the currently active {@code project}.
      */
     public FindStaffCommand(StaffNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;

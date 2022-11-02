@@ -43,6 +43,10 @@ public class EditStaffCommandTest {
     public void execute_invalidProjectName_failure() {
         cleanUpModel();
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Project project = model.getFilteredProjectList().get(0);
+        Staff staff = new StaffBuilder().withStaffName(VALID_NAME_AMY).build();
+        project.getStaffList().add(staff);
+        model.setFilteredStaffList(project);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         Project emptyProject = new ProjectBuilder().withName("DoesNotExist").build();
         EditStaffDescriptor editStaffDescriptor = new EditStaffDescriptorBuilder().build();
@@ -50,23 +54,31 @@ public class EditStaffCommandTest {
                 editStaffDescriptor);
         assertCommandFailure(editStaffCommand, expectedModel, String.format(Messages.MESSAGE_INVALID_PROJECT,
                 emptyProject.getProjectName()));
+
+        model.getFilteredProjectList().get(0).getStaffList().remove(staff);
     }
 
     @Test
     public void execute_invalidStaffIndex_failure() {
         cleanUpModel();
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().get(0)
-                .getStaffList().size() + 1);
+        Project project = model.getFilteredProjectList().get(0);
+        Staff staff = new StaffBuilder().withStaffName(VALID_NAME_AMY).build();
+        project.getStaffList().add(staff);
+        model.setFilteredStaffList(project);
+        Index outOfBoundIndex = Index.fromOneBased(project.getStaffList().size() + 1);
         ProjectName invalidProjectName = model.getFilteredProjectList().get(0).getProjectName();
         EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder().withName(invalidProjectName.fullName)
                 .build();
         EditStaffCommand command = new EditStaffCommand(invalidProjectName, outOfBoundIndex, descriptor);
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX);
+
+        model.getFilteredProjectList().get(0).getStaffList().remove(staff);
     }
+
     @Test
-    public void execute_duplicateProject_failure() {
+    public void execute_duplicateStaff_failure() {
         cleanUpModel();
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Staff dummyStaff = new StaffBuilder().withStaffName(VALID_STAFFNAME_ANDY).build();

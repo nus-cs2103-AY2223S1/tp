@@ -14,8 +14,9 @@ public class Messages {
             "The project %s either does not currently exist in HR Pro Max++ or is not displayed!";
 
     public static final String MESSAGE_INVALID_STAFF_DISPLAYED_INDEX = "The staff index provided is invalid!";
-    public static final String MESSAGE_STAFFS_LISTED_OVERVIEW = "%1$d staffs listed!";
+    public static final String MESSAGE_STAFFS_LISTED_OVERVIEW = "%1$d staff listed!";
     public static final String MESSAGE_INVALID_STAFF = "Staff %s not found in specified project!";
+    public static final String MESSAGE_NO_STAFF_DISPLAYED = "There is no Staff currently displayed for %1$s to work!";
 
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The task index provided is invalid!";
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";

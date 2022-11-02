@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_STAFF_DISPLAYED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_DEPARTMENT;
@@ -85,15 +86,29 @@ public class EditStaffCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         List<Project> lastShownList = model.getFilteredProjectList();
         List<Staff> lastShownStaffList = model.getFilteredStaffList();
-        int projectIndex = 0;
+        checkForEmptyList(lastShownList, lastShownStaffList);
 
-        if (lastShownList.size() == 0) {
-            throw new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName.fullName));
+        Project toFindIn = getProjectFrom(lastShownList);
+        ProjectName foundProjectName = toFindIn.getProjectName();
+
+        if (staffIndex.getZeroBased() >= lastShownStaffList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX);
         }
 
+        Staff toEdit = lastShownStaffList.get(staffIndex.getZeroBased());
+        Staff editedStaff = createEditedStaff(toEdit, editStaffDescriptor);
+        checkForDuplicateStaff(toEdit, editedStaff, toFindIn);
+
+        toFindIn.getStaffList().setStaff(toEdit, editedStaff);
+        model.setFilteredStaffList(toFindIn);
+        model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
+        return new CommandResult(String.format(MESSAGE_EDIT_STAFF_SUCCESS, editedStaff, foundProjectName));
+    }
+
+    private Project getProjectFrom(List<Project> lastShownList) throws CommandException {
+        int projectIndex = 0;
         for (int i = 0; i < lastShownList.size(); ++i) {
             if (lastShownList.get(i).getProjectName().equals(projectName)) {
                 projectIndex = i;
@@ -106,31 +121,46 @@ public class EditStaffCommand extends Command {
         if (!projectName.equals(foundProjectName)) {
             throw new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName.fullName));
         }
+        return lastShownList.get(index.getZeroBased());
+    }
 
-        Project toFindIn = lastShownList.get(index.getZeroBased());
-
-        if (staffIndex.getZeroBased() >= lastShownStaffList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX);
+    /**
+     * Checks if there are Projects and Staff displayed on their respectively list.
+     * @param projectList The displayed Project list
+     * @param staffList The displayed Staff list
+     * @throws CommandException Exception thrown if either list do not have anything displayed
+     */
+    private void checkForEmptyList(List<Project> projectList, List<Staff> staffList)
+            throws CommandException {
+        if (projectList.size() == 0) {
+            throw new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName.fullName));
         }
 
-        Staff toEdit = lastShownStaffList.get(staffIndex.getZeroBased());
-        Staff editedStaff = createEditedStaff(toEdit, editStaffDescriptor);
+        if (staffList.size() == 0) {
+            throw new CommandException(String.format(MESSAGE_NO_STAFF_DISPLAYED, "editstaff command"));
+        }
+    }
 
+    /**
+     * Checks that the Staff to edit exist within the project and if the Staff
+     * new details will not result in a duplicate Staff in the project.
+     * @param toEdit The staff to be edited
+     * @param editedStaff New Staff with new details to replace to original Staff
+     * @param toFindIn The project where the Staff is to be found in
+     * @throws CommandException Duplicate staff exception thrown or if the staff is not in project
+     */
+    private void checkForDuplicateStaff(Staff toEdit, Staff editedStaff, Project toFindIn)
+            throws CommandException {
         if (!toEdit.isSameStaff(editedStaff) && toFindIn.getStaffList().contains(editedStaff)) {
             throw new CommandException(MESSAGE_DUPLICATE_STAFF);
         }
+
+        ProjectName foundProjectName = toFindIn.getProjectName();
 
         if (!toFindIn.getStaffList().contains(toEdit)) {
             throw new CommandException(String.format("Staff %1$s not found in specified project: %2$s!",
                     toEdit.getStaffName(), foundProjectName));
         }
-
-        toFindIn.getStaffList().setStaff(toEdit, editedStaff);
-
-        model.setFilteredStaffList(lastShownList.get(projectIndex));
-        model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
-
-        return new CommandResult(String.format(MESSAGE_EDIT_STAFF_SUCCESS, editedStaff, foundProjectName));
     }
 
     /**
