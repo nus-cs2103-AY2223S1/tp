@@ -53,7 +53,6 @@ html {
   }
 }
 
-
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd
 kbd {
   background-color: #eee;
@@ -148,7 +147,7 @@ h6:before {
   counter-increment: item;
 }
 
-.no-num:before {
+.no-num:before, .no-num *:before {
   content : "";
   counter-increment : none;
 }
@@ -157,4 +156,8 @@ h6:before {
   .hidden-print {
     display: none !important;
   }
+}
+
+.meaning-icons-container > ul li > img {
+  vertical-align: text-top;
 }

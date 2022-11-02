@@ -3,6 +3,8 @@ layout: page
 title: Kee Seow Han's Project Portfolio Page
 ---
 
+<div markdown="block" class="no-num">
+
 ### Project: NUScheduler
 
 NUScheduler is a desktop app for managing contacts, optimised for use via a Command Line Interface (CLI) while
@@ -37,3 +39,5 @@ Given below are my contributions to the project.
 
 * **Tools**:
   * To be added soon
+
+</div>

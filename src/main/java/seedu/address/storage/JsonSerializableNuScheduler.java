@@ -9,16 +9,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.NuScheduler;
+import seedu.address.model.ReadOnlyNuScheduler;
 import seedu.address.model.event.Event;
 import seedu.address.model.profile.Profile;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable NuScheduler that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "nuscheduler")
+class JsonSerializableNuScheduler {
 
     public static final String MESSAGE_SIMILAR_EMAIL = "Profiles list contains similar email(s).";
     public static final String MESSAGE_SIMILAR_PHONE = "Profiles list contains similar phone(s).";
@@ -29,54 +29,54 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given profiles and events.
+     * Constructs a {@code JsonSerializableNuScheduler} with the given profiles and events.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("profiles") List<JsonAdaptedProfile> profiles,
+    public JsonSerializableNuScheduler(@JsonProperty("profiles") List<JsonAdaptedProfile> profiles,
                                        @JsonProperty("events") List<JsonAdaptedEvent> events) {
         this.profiles.addAll(profiles);
         this.events.addAll(events);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyNuScheduler} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableNuScheduler}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableNuScheduler(ReadOnlyNuScheduler source) {
         profiles.addAll(source.getProfileList().stream().map(JsonAdaptedProfile::new).collect(Collectors.toList()));
         events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this NUScheduler into the model's {@code NuScheduler} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public NuScheduler toModelType() throws IllegalValueException {
+        NuScheduler nuScheduler = new NuScheduler();
         for (JsonAdaptedProfile jsonAdaptedProfile : profiles) {
             Profile profile = jsonAdaptedProfile.toModelType();
-            if (addressBook.hasEmail(profile)) {
+            if (nuScheduler.hasEmail(profile)) {
                 throw new IllegalValueException(MESSAGE_SIMILAR_EMAIL);
             }
-            if (addressBook.hasPhone(profile)) {
+            if (nuScheduler.hasPhone(profile)) {
                 throw new IllegalValueException(MESSAGE_SIMILAR_PHONE);
             }
-            if (addressBook.hasTelegram(profile)) {
+            if (nuScheduler.hasTelegram(profile)) {
                 throw new IllegalValueException(MESSAGE_SIMILAR_TELEGRAM);
             }
-            addressBook.addProfile(profile);
+            nuScheduler.addProfile(profile);
         }
         for (JsonAdaptedEvent jsonAdaptedEvent : events) {
-            Event event = jsonAdaptedEvent.toModelType(addressBook);
-            if (addressBook.hasEvent(event)) {
+            Event event = jsonAdaptedEvent.toModelType(nuScheduler);
+            if (nuScheduler.hasEvent(event)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
             }
             event.addToAllAttendees();
-            addressBook.addEvent(event);
+            nuScheduler.addEvent(event);
         }
-        return addressBook;
+        return nuScheduler;
     }
 
 }

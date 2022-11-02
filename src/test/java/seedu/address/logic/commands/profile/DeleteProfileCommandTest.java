@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showProfileAtIndex;
-import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROFILE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROFILE;
+import static seedu.address.testutil.TypicalNuScheduler.getTypicalNuScheduler;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.address.model.profile.Profile;
  */
 public class DeleteProfileCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalNuScheduler(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +33,7 @@ public class DeleteProfileCommandTest {
 
         String expectedMessage = String.format(DeleteProfileCommand.MESSAGE_DELETE_PROFILE_SUCCESS, profileToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getNuScheduler(), new UserPrefs());
         expectedModel.deleteProfile(profileToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +56,7 @@ public class DeleteProfileCommandTest {
 
         String expectedMessage = String.format(DeleteProfileCommand.MESSAGE_DELETE_PROFILE_SUCCESS, profileToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getNuScheduler(), new UserPrefs());
         expectedModel.deleteProfile(profileToDelete);
         showNoProfile(expectedModel);
 
@@ -68,8 +68,8 @@ public class DeleteProfileCommandTest {
         showProfileAtIndex(model, INDEX_FIRST_PROFILE);
 
         Index outOfBoundIndex = INDEX_SECOND_PROFILE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getProfileList().size());
+        // ensures that outOfBoundIndex is still in bounds of NUScheduler list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getNuScheduler().getProfileList().size());
 
         DeleteProfileCommand deleteCommand = new DeleteProfileCommand(outOfBoundIndex);
 

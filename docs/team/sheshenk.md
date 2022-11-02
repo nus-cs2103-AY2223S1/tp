@@ -3,6 +3,8 @@ layout: page
 title: Shashank Acharya's Project Portfolio Page
 ---
 
+<div markdown="block" class="no-num">
+
 ### Project: NUScheduler
 
 NUScheduler is a desktop app for managing contacts, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUScheduler can get your contact management tasks done faster than traditional GUI apps.
@@ -50,4 +52,6 @@ Given below are my contributions to the project.
 
 * **Community**:
   * Pull Requests reviewed: 11
-  * Found 8 bugs in team [CS2103-W14-1](https://github.com/lesterong/ped)'s product during PE-D.
+  * Found 8 bugs in team [CS2103T-T14-1](https://github.com/sheshenk/ped)'s product during PE-D.
+
+</div>

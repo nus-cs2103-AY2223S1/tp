@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.NuSchedulerBuilder;
 
 public class ModelManagerTest {
 
@@ -27,7 +27,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new NuScheduler(), new NuScheduler(modelManager.getNuScheduler()));
     }
 
     @Test
@@ -38,14 +38,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setNuSchedulerFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setNuSchedulerFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -62,15 +62,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setNuSchedulerFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setNuSchedulerFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setNuSchedulerFilePath_validPath_setsNuSchedulerFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setNuSchedulerFilePath(path);
+        assertEquals(path, modelManager.getNuSchedulerFilePath());
     }
 
     @Test
@@ -79,12 +79,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasEmail_emailNotInAddressBook_returnsFalse() {
+    public void hasEmail_emailNotInNuScheduler_returnsFalse() {
         assertFalse(modelManager.hasEmail(ALICE));
     }
 
     @Test
-    public void hasEmail_emailInAddressBook_returnsTrue() {
+    public void hasEmail_emailInNuScheduler_returnsTrue() {
         modelManager.addProfile(ALICE);
         assertTrue(modelManager.hasEmail(ALICE));
     }
@@ -95,12 +95,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPhone_phoneNotInAddressBook_returnsFalse() {
+    public void hasPhone_phoneNotInNuScheduler_returnsFalse() {
         assertFalse(modelManager.hasPhone(ALICE));
     }
 
     @Test
-    public void hasPhone_phoneInAddressBook_returnsTrue() {
+    public void hasPhone_phoneInNuScheduler_returnsTrue() {
         modelManager.addProfile(ALICE);
         assertTrue(modelManager.hasPhone(ALICE));
     }
@@ -111,12 +111,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasTelegram_telegramNotInAddressBook_returnsFalse() {
+    public void hasTelegram_telegramNotInNuScheduler_returnsFalse() {
         assertFalse(modelManager.hasTelegram(ALICE));
     }
 
     @Test
-    public void hasTelegram_telegramInAddressBook_returnsTrue() {
+    public void hasTelegram_telegramInNuScheduler_returnsTrue() {
         modelManager.addProfile(ALICE);
         assertTrue(modelManager.hasTelegram(ALICE));
     }
@@ -127,12 +127,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasEvent_eventNotInAddressBook_returnsFalse() {
+    public void hasEvent_eventNotInNuScheduler_returnsFalse() {
         assertFalse(modelManager.hasEvent(PRESENTATION));
     }
 
     @Test
-    public void hasEvent_eventInAddressBook_returnsTrue() {
+    public void hasEvent_eventInNuScheduler_returnsTrue() {
         modelManager.addEvent(PRESENTATION);
         assertTrue(modelManager.hasEvent(PRESENTATION));
     }
@@ -149,13 +149,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withProfile(ALICE).withProfile(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        NuScheduler nuScheduler = new NuSchedulerBuilder().withProfile(ALICE).withProfile(BENSON).build();
+        NuScheduler differentNuScheduler = new NuScheduler();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(nuScheduler, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(nuScheduler, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -167,20 +167,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different nuScheduler -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentNuScheduler, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredProfileList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(nuScheduler, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredProfileList(PREDICATE_SHOW_ALL_PROFILES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setNuSchedulerFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(nuScheduler, differentUserPrefs)));
     }
 }

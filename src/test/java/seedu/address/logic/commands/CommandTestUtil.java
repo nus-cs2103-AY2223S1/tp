@@ -20,8 +20,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.event.EditEventCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.profile.EditProfileCommand;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.NuScheduler;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.TitleContainsKeywordsPredicate;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
@@ -160,22 +160,22 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered profile list and selected profile in {@code actualModel} remain unchanged
+     * - the NUScheduler, filtered profile list and selected profile in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        NuScheduler expectedNuScheduler = new NuScheduler(actualModel.getNuScheduler());
         List<Profile> expectedFilteredList = new ArrayList<>(actualModel.getFilteredProfileList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedNuScheduler, actualModel.getNuScheduler());
         assertEquals(expectedFilteredList, actualModel.getFilteredProfileList());
     }
 
     /**
      * Updates {@code model}'s filtered list to show only the profile at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s NUScheduler.
      */
     public static void showProfileAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredProfileList().size());
@@ -189,7 +189,7 @@ public class CommandTestUtil {
 
     /**
      * Updates {@code model}'s filtered list to show only the event at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s NUScheduler.
      */
     public static void showEventAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredEventList().size());
