@@ -45,12 +45,13 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the TruthTable.
  */
-@CommandLine.Command(name = "person", aliases = {"p"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = EditPersonCommand.COMMAND_WORD, aliases = {"p"}, mixinStandardHelpOptions = true)
 public class EditPersonCommand extends Command {
+    public static final String COMMAND_WORD = "person";
 
-    public static final String COMMAND_WORD = "edit person";
+    public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+    public static final String MESSAGE_USAGE = FULL_COMMAND + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: PERSON_INDEX (must be a valid positive integer) "
@@ -59,7 +60,7 @@ public class EditPersonCommand extends Command {
             + "[" + FLAG_EMAIL_STR + " EMAIL] "
             + "[" + FLAG_ADDRESS_STR + " ADDRESS] "
             + "[" + FLAG_TAG_STR + " TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + FULL_COMMAND + " 1 "
             + FLAG_PHONE_STR + " 91234567 "
             + FLAG_EMAIL_STR + " johndoe@example.com";
 

@@ -12,11 +12,14 @@ import seedu.address.model.Model;
 /**
  * Command that contains all subcommands starting with set.
  */
-@CommandLine.Command(name = "set", aliases = {"s"}, mixinStandardHelpOptions = true, subcommands = {
+@CommandLine.Command(name = SetCommand.COMMAND_WORD, aliases = {"s"}, mixinStandardHelpOptions = true, subcommands = {
     SetDeadlineCommand.class,
     SetTeamCommand.class,
 })
 public class SetCommand extends Command {
+    public static final String COMMAND_WORD = "set";
+
+    public static final String FULL_COMMAND = COMMAND_WORD;
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
 

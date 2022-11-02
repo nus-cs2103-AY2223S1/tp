@@ -20,14 +20,15 @@ import seedu.address.model.team.Task;
 /**
  * Assigns a task to a random member in the team.
  */
-@CommandLine.Command(name = "random", aliases = {"r"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = AssignTaskRandomlyCommand.COMMAND_WORD, aliases = {"r"}, mixinStandardHelpOptions = true)
 public class AssignTaskRandomlyCommand extends Command {
-    public static final String COMMAND_WORD = "assign random";
+    public static final String COMMAND_WORD = "random";
+    public static final String FULL_COMMAND = AssignCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Assigns a task to the random member in the team.\n"
             + "Parameters: TASK_INDEX (must be a valid positive integer) \n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + FULL_COMMAND + " 1";
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Randomly Assigned Task: %1$s randomly assigned to %2$s";
     public static final String MESSAGE_ALL_MEMBERS_ASSIGNED = "There are no team members left to assign this task to";

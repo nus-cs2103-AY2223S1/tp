@@ -11,13 +11,15 @@ import seedu.address.model.Model;
 /**
  * Format full help instructions for every command for display.
  */
-@CommandLine.Command(name = "help", aliases = {"h"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = HelpCommand.COMMAND_WORD, aliases = {"h"}, mixinStandardHelpOptions = true)
 public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
-            + "Example: " + COMMAND_WORD;
+    public static final String FULL_COMMAND = COMMAND_WORD;
+
+    public static final String MESSAGE_USAGE = FULL_COMMAND + ": Shows program usage instructions.\n"
+            + "Example: " + FULL_COMMAND;
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 

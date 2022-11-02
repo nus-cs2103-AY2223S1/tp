@@ -29,20 +29,22 @@ import seedu.address.model.team.TeamName;
 /**
  * Edits the currently set team.
  */
-@CommandLine.Command(name = "team", aliases = {"te"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = EditTeamCommand.COMMAND_WORD, aliases = {"te"}, mixinStandardHelpOptions = true)
 public class EditTeamCommand extends Command {
-    public static final String COMMAND_WORD = "edit team";
+    public static final String COMMAND_WORD = "team";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
+
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Edits the current team \n"
             + "Parameters: "
             + "[" + FLAG_NAME_STR + " TEAM_NAME] "
             + "[" + FLAG_DESCRIPTION_STR + " TEAM_DESCRIPTION] \n"
             + "Example:\n"
-            + "1. " + COMMAND_WORD + " "
+            + "1. " + FULL_COMMAND + " "
             + FLAG_NAME_STR + " CS2103T "
             + FLAG_DESCRIPTION_STR + " \"A team to manage CS2103T\"\n"
-            + "2. " + COMMAND_WORD + " "
+            + "2. " + FULL_COMMAND + " "
             + FLAG_NAME_STR + " CS2102 ";
 
     public static final String MESSAGE_EDIT_TEAM_SUCCESS = "Edited team: %1$s";

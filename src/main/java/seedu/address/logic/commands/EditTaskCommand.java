@@ -33,18 +33,20 @@ import seedu.address.model.team.Task;
 /**
  * Edits the details of an existing task in TruthTable.
  */
-@CommandLine.Command(name = "task", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = EditTaskCommand.COMMAND_WORD, mixinStandardHelpOptions = true)
 public class EditTaskCommand extends Command {
-    public static final String COMMAND_WORD = "edit task";
+    public static final String COMMAND_WORD = "task";
+
+    public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Edits a current task identified by the index number used in the displayed task list. \n"
+            FULL_COMMAND + ": Edits a current task identified by the index number used in the displayed task list. \n"
                     + "Existing values will be overwritten by the input values. \n"
                     + "Parameters: INDEX (must be a positive integer) "
                     + FLAG_NAME_STR + " NAME "
                     + FLAG_DEADLINE_STR + " DEADLINE \n"
                     + FLAG_ASSIGNEE_STR + "MEMBER_INDEX \n"
-                    + "Example: " + COMMAND_WORD + " 1 "
+                    + "Example: " + FULL_COMMAND + " 1 "
                     + FLAG_NAME_STR + " \"Review PR\" "
                     + FLAG_DEADLINE_STR + " \"02-Dec-2022 23:59\" "
                     + FLAG_ASSIGNEE_STR + "1";

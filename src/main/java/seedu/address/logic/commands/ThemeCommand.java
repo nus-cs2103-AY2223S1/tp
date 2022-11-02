@@ -10,11 +10,11 @@ import seedu.address.model.Model;
 /**
  * Switches the theme of the program.
  */
-@CommandLine.Command(name = "theme", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = ThemeCommand.COMMAND_WORD, mixinStandardHelpOptions = true)
 public class ThemeCommand extends Command {
 
     public static final String COMMAND_WORD = "theme";
-
+    public static final String FULL_COMMAND = COMMAND_WORD;
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Switched themes!";
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,

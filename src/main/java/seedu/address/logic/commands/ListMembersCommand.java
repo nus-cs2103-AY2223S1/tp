@@ -15,13 +15,15 @@ import seedu.address.model.Model;
 /**
  * Lists all members of the current team.
  */
-@CommandLine.Command(name = "members", aliases = {"m"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = ListMembersCommand.COMMAND_WORD, aliases = {"m"}, mixinStandardHelpOptions = true)
 public class ListMembersCommand extends Command {
-    public static final String COMMAND_WORD = "list members";
+    public static final String COMMAND_WORD = "members";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String FULL_COMMAND = ListCommand.COMMAND_WORD + " " + COMMAND_WORD;
+
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Lists all the members of the current team.\n"
-            + "Example: " + COMMAND_WORD;
+            + "Example: " + FULL_COMMAND;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)

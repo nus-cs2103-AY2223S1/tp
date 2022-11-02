@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 /**
  * Command that contains all subcommands starting with {@code delete}.
  */
-@CommandLine.Command(name = "delete", aliases = {"d"}, mixinStandardHelpOptions = true, subcommands = {
+@CommandLine.Command(name = DeleteCommand.COMMAND_WORD, aliases = {"d"}, mixinStandardHelpOptions = true, subcommands = {
     DeleteLinkCommand.class,
     DeleteMemberCommand.class,
     DeletePersonCommand.class,
@@ -20,6 +20,9 @@ import seedu.address.model.Model;
     DeleteTeamCommand.class,
 })
 public class DeleteCommand extends Command {
+    public static final String COMMAND_WORD = "delete";
+
+    public static final String FULL_COMMAND = COMMAND_WORD;
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
 

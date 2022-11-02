@@ -12,13 +12,16 @@ import seedu.address.model.Model;
 /**
  * Command that contains all subcommands starting with {@code edit}.
  */
-@CommandLine.Command(name = "edit", mixinStandardHelpOptions = true, aliases = {"e"}, subcommands = {
+@CommandLine.Command(name = EditCommand.COMMAND_WORD, mixinStandardHelpOptions = true, aliases = {"e"}, subcommands = {
     EditTeamCommand.class,
     EditLinkCommand.class,
     EditPersonCommand.class,
     EditTaskCommand.class,
 })
 public class EditCommand extends Command {
+    public static final String COMMAND_WORD = "edit";
+
+    public static final String FULL_COMMAND = COMMAND_WORD;
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
 

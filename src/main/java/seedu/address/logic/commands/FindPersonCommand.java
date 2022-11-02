@@ -16,15 +16,16 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Finds and lists all persons in TruthTable whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-@CommandLine.Command(name = "person", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = FindPersonCommand.COMMAND_WORD, mixinStandardHelpOptions = true)
 public class FindPersonCommand extends Command {
+    public static final String COMMAND_WORD = "person";
 
-    public static final String COMMAND_WORD = "find person";
+    public static final String FULL_COMMAND = FindCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = FULL_COMMAND + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + FULL_COMMAND + " alice bob charlie";
 
     @CommandLine.Parameters(arity = "1", paramLabel = "keywords",
             parameterConsumer = NameContainsKeywordsPredicateConverter.class,

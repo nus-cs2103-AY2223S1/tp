@@ -18,14 +18,16 @@ import seedu.address.model.team.TeamName;
 /**
  * Deletes a team from the addressbook.
  */
-@CommandLine.Command(name = "team", aliases = {"te"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = DeleteTeamCommand.COMMAND_WORD, aliases = {"te"}, mixinStandardHelpOptions = true)
 public class DeleteTeamCommand extends Command {
-    public static final String COMMAND_WORD = "delete team";
+    public static final String COMMAND_WORD = "team";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
+
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Delete an existing team \n"
             + "Parameters: TEAM_NAME\n"
-            + "Example: " + COMMAND_WORD + " project";
+            + "Example: " + FULL_COMMAND + " project";
 
     public static final String MESSAGE_DELETE_TEAM_SUCCESS = "Deleted team: %1$s";
     public static final String MESSAGE_AT_LEAST_ONE_TEAM = "You must have at least one team!";

@@ -23,10 +23,12 @@ import seedu.address.model.team.Task;
 public class TasksOfCommand extends Command {
     public static final String COMMAND_WORD = "tasksof";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String FULL_COMMAND = COMMAND_WORD;
+
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Displays all tasks of a particular team member.\n"
             + "Parameters: MEMBER_INDEX (must be a valid positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + FULL_COMMAND + " 1";
 
     public static final String MESSAGE_SUCCESS = "Showing all %1$d task(s) assigned to %2$s. \n"
             + "Type `list tasks` to show all tasks again.";

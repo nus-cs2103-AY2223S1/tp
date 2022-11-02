@@ -23,15 +23,16 @@ import seedu.address.model.team.Task;
 /**
  * Assigns a task to a specific member in the team.
  */
-@CommandLine.Command(name = "task", aliases = {"ta"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = AssignTaskCommand.COMMAND_WORD, aliases = {"ta"}, mixinStandardHelpOptions = true)
 public class AssignTaskCommand extends Command {
-    public static final String COMMAND_WORD = "assign task";
+    public static final String COMMAND_WORD = "task";
+    public static final String FULL_COMMAND = AssignCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Assigns a task to the specified member in the team.\n"
             + "Parameters: TASK_INDEX (must be a valid positive integer) "
             + "MEMBER_INDEX (must be a valid positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1 2";
+            + "Example: " + FULL_COMMAND + " 1 2";
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigned task successfully. %1$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This task has already been assigned to %1$s";

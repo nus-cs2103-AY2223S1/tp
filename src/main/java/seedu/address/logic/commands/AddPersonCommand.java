@@ -37,17 +37,19 @@ import seedu.address.model.tag.Tag;
 /**
  * Adds a person to the TruthTable.
  */
-@CommandLine.Command(name = "person", aliases = {"p"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = AddPersonCommand.COMMAND_WORD, aliases = {"p"}, mixinStandardHelpOptions = true)
 public class AddPersonCommand extends Command {
-    public static final String COMMAND_WORD = "add person";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the TruthTable. "
+    public static final String COMMAND_WORD = "person";
+    public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
+
+    public static final String MESSAGE_USAGE = FULL_COMMAND + ": Adds a person to the TruthTable. "
             + "Parameters: "
             + FLAG_NAME_STR + " NAME "
             + FLAG_PHONE_STR + " PHONE "
             + FLAG_EMAIL_STR + " EMAIL "
             + FLAG_ADDRESS_STR + " ADDRESS "
             + "[" + FLAG_TAG_STR + " TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + FULL_COMMAND + " "
             + FLAG_NAME_STR + " \"John Doe\" "
             + FLAG_PHONE_STR + " 98765432 "
             + FLAG_EMAIL_STR + " johnd@example.com "
