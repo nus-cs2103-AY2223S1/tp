@@ -88,20 +88,23 @@ To check that your system has the correct Java version (Java 11 and above) to ru
 
 Open your terminal.
 * Windows
-   ** Use Win + S to open search.
-** Type in 'Terminal' to search for it and click on it to launch.
-macOS
-Use Cmd + Space to open Spotlight search.
-Type in 'Terminal' to search for it and click on it to launch.
-Linux
-Use Ctrl + Alt + T to open the Terminal.
-In your terminal, type in java --version and click enter.
+   * Use Win + S to open search.
+  * Type in 'Terminal' to search for it and click on it to launch.
+
+* macOS
+  * Use Cmd + Space to open Spotlight search.
+  * Type in 'Terminal' to search for it and click on it to launch.
+* Linux
+  * Use Ctrl + Alt + T to open the Terminal.
+  * In your terminal, type in java --version and click enter.
 The following image shows an example what will show up in macOS, but you can expect a similar result in Windows.
-JavaVersionTroubleShoot
 
-The number in the red highlight rectangle tells you the Java version installed. For example, the Java version installed on the example system is Java 11.0.16, which is sufficient to run MyInsuRec as it is greater than Java 11.
 
-If you do not see a similar result in the terminal after Step 3, or have an earlier version of Java, head over to Oracle's Java download page to install Java.
+The number in the red highlight rectangle tells you the Java version installed. 
+For example, the Java version installed on the example system is Java 11.0.16, which is sufficient to run checkUp as it is greater than Java 11.
+
+If you do not see a similar result in the terminal after Step 3, or have an earlier version of Java, 
+head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/) to install Java.
 
 ## Glossary
 
