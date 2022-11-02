@@ -193,8 +193,13 @@ Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* `find` across different parameters is a `AND` search.
+e.g. `find n/John m/CS2105` will return students matching `John` who are also in `CS2105`, if the students exist in ModQuik.
+* `find` works on the entire list of students and successive find commands are independent of each other.
+e.g. `find n/John` followed by find `find m/CS2103` will not find students matching `John` in `CS2103`.
+It will first display all students matching `John`, then display all students in `CS2103`.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
