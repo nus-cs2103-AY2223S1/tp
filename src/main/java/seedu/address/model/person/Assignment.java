@@ -14,11 +14,11 @@ public class Assignment {
     public static final String WEIGHTAGE_VALIDATION_REGEX = "^(100|[1-9]?[0-9])$";
 
     public static final String GRADE_CONSTRAINTS =
-            "Grade should be in the format [integer (0-100)]/[integer (1-100)], where the first number is smaller than "
+            "Grade should be in the format [integer (0-100)]/[integer (0-100)], where the first number is smaller than "
                     + "or equal to the second number.";
 
     public static final String WEIGHTAGE_CONSTRAINTS =
-            "Weightage should be in terms of percentages, i.e. 1 - 100";
+            "Weightage should be in terms of percentages, i.e. 0 - 100";
 
     private final String name;
     private String grade;
@@ -70,7 +70,7 @@ public class Assignment {
             String[] split = test.split("/");
             Integer firstNumber = Integer.parseInt(split[0]);
             Integer secondNumber = Integer.parseInt(split[1]);
-            return firstNumber <= secondNumber && secondNumber <= 100 && secondNumber != 0;
+            return firstNumber <= secondNumber && secondNumber <= 100;
         }
     }
 
@@ -107,6 +107,9 @@ public class Assignment {
     public float getGradePercentage() {
         float gradeAchieved = (float) Integer.parseInt(grade.split("/")[0]);
         float fullMark = (float) Integer.parseInt(grade.split("/")[1]);
+        if (fullMark == 0.0) {
+            return 0;
+        }
         float gradePercentage = gradeAchieved / fullMark;
         return gradePercentage;
     }

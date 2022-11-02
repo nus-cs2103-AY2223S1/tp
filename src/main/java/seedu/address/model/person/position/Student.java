@@ -29,7 +29,7 @@ import seedu.address.model.tag.Tag;
 public class Student extends Position {
 
     public static final String ATTENDANCE_CONSTRAINTS =
-            "Attendance should be in the format [integer (0-100)]/[integer (1-100)], where the first number is "
+            "Attendance should be in the format [integer (0-100)]/[integer (0-100)], where the first number is "
                     + "smaller than or equal to the second number.";
     public static final String ATTENDANCE_VALIDATION_REGEX = "\\d{1,3}" + "/" + "\\d{1,3}";
     public static final String MESSAGE_ASSIGNMENT_INVALID = "The index of the assignment is invalid.";
@@ -92,7 +92,10 @@ public class Student extends Position {
         requireNonNull(overallGrade);
         requireNonNull(assignmentsList);
         requireNonNull(filePath);
-        this.attendance = attendance;
+        String[] array = attendance.split("/");
+        array[0] = array[0].replaceFirst("^0+(?!$)", "");
+        array[1] = array[1].replaceFirst("^0+(?!$)", "");
+        this.attendance = array[0] + "/" + array[1];
         this.overallGrade = overallGrade;
         this.assignmentsList = assignmentsList;
         this.filePath = filePath;
