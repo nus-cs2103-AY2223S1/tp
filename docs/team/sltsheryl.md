@@ -79,6 +79,7 @@ Given below are my contributions to the project.
 #### Community:
 * Reviewed other teammate's PRs.
 * Contributed in weekly team meeting.
+* Submitted [bugs and feedback](https://github.com/sltsheryl/ped/issues) for team Salesy, another team in the module.
 
 #### Tools:
 * JavaFX: Platform which Mass Linkers' UI uses
