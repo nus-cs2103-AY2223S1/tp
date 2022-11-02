@@ -105,7 +105,7 @@ public class GuestBook implements ReadOnlyGuestBook {
 
     @Override
     public String toString() {
-        return guests.asUnmodifiableObservableList().size() + " guests";
+        return guests.asUnmodifiableObservableList().size() + " guest(s)";
         // TODO: refine later
     }
 
