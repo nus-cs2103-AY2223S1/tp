@@ -18,6 +18,8 @@ public class TripBuilder {
 
     public static final String DEFAULT_TITLE = "Singapore Trip";
     public static final String DEFAULT_DESCRIPTION = "See the Merlion.";
+    public static final String DEFAULT_LOCATION = "Singapore";
+    public static final String DEFAULT_DATE = "01-01-2000";
 
     private Title title;
     private Description description;
@@ -32,6 +34,8 @@ public class TripBuilder {
         title = new Title(DEFAULT_TITLE);
         description = new Description(DEFAULT_DESCRIPTION);
         events = new HashSet<>();
+        location = new Location(DEFAULT_LOCATION);
+        dateField = new DateField(DEFAULT_DATE);
     }
 
     /**
@@ -74,8 +78,7 @@ public class TripBuilder {
      * @return
      */
     public Trip build() {
-        Trip newTrip = new Trip(title, description, events);
-        return newTrip;
+        return new Trip(title, description, events, location, dateField);
     }
 
 }

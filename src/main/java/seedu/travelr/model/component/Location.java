@@ -18,8 +18,6 @@ public class Location {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    private static final String DEFAULT_LOCATION_NAME = "No location set";
-
     public final String locationName;
 
     /**
@@ -38,18 +36,6 @@ public class Location {
      */
     public static boolean isValidLocation(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    public static String getDefaultValue() {
-        return DEFAULT_LOCATION_NAME;
-    }
-
-    public static Location getDefaultLocation() {
-        return new Location(DEFAULT_LOCATION_NAME);
-    }
-
-    public boolean isDefaultValue() {
-        return this.equals(getDefaultLocation());
     }
 
     @Override

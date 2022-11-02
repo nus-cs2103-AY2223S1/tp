@@ -221,15 +221,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    // TODO: Refactor once UI done
-    public TripListPanel getPersonListPanel() {
-        return tripListPanel;
-    }
-
-    public EventListPanel getEventListPanel() {
-        return eventListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *

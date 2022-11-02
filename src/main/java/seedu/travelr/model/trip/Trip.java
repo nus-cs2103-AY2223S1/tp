@@ -30,19 +30,6 @@ public class Trip {
     private final Itineraries events = new Itineraries();
 
     /**
-     * Every field must be present and not null.
-     */
-    public Trip(Title title, Description description, Set<Event> events) {
-        requireAllNonNull(title, description, events);
-        this.title = title;
-        this.description = description;
-        this.events.setInternalList(events);
-        this.location = Location.getDefaultLocation();
-        this.done = false;
-        this.dateField = DateField.getDefaultDateField();
-    }
-
-    /**
      * Used in JsonAdaptedTrips
      * Every field must be present and not null.
      */
@@ -172,8 +159,6 @@ public class Trip {
 
         Trip otherTrip = (Trip) other;
         return otherTrip.getTitle().equals(getTitle());
-        //        && otherTrip.getDescription().equals(getDescription())
-        //        && otherTrip.getEvents().equals(getEvents());
     }
 
     @Override
@@ -188,17 +173,11 @@ public class Trip {
         builder.append("Title: ")
                 .append(getTitle())
                 .append("; Description: ")
-                .append(getDescription());
-
-        if (!getLocation().isDefaultValue()) {
-            builder.append("; Location: ");
-            builder.append(getLocation());
-        }
-
-        if (!getDateField().isDefaultValue()) {
-            builder.append("; Date: ");
-            builder.append(getDateField());
-        }
+                .append(getDescription())
+                .append("; Location: ")
+                .append(getLocation())
+                .append("; Date: ")
+                .append(getDateField());
 
         return builder.toString();
     }
