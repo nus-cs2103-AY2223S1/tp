@@ -22,6 +22,8 @@ import longtimenosee.model.AddressBook;
 import longtimenosee.model.Model;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
+import longtimenosee.model.policy.Policy;
+import longtimenosee.model.policy.predicate.TitleContainsKeywordsPredicate;
 import longtimenosee.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -45,6 +47,23 @@ public class CommandTestUtil {
     public static final String VALID_RISK_APPETITE_BOB = "M";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    public static final String VALID_TITLE_MANUEXTRA = "ManuExtra II";
+    public static final String VALID_TITLE_PRULIFE = "PruLife";
+    public static final String VALID_COMPANY_MANUEXTRA = "MNF";
+    public static final String VALID_COMPANY_PRULIFE = "PRU";
+    public static final String VALID_COMMISSION_MANUEXTRA = "15% 10% 1%";
+    public static final String VALID_COMMISSION_PRULIFE = "10% 3% 2%";
+    public static final String VALID_COVERAGE_MANUEXTRA = "MOTOR";
+    public static final String VALID_COVERAGE_PRULIFE = "LIFE";
+
+    public static final String VALID_PREMIUM_PRUSHIELD = "200";
+    public static final String VALID_PREMIUM_FLEXI = "300";
+    public static final String VALID_START_DATE_PRUSHIELD = "2010-10-10";
+    public static final String VALID_END_DATE_PRUSHIELD = "2021-12-12";
+    public static final String VALID_START_DATE_FLEXI = "2011-01-01";
+    public static final String VALID_END_DATE_FLEXI = "2019-01-01";
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -144,6 +163,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showPolicyAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPolicyList().size());
+
+        Policy policy = model.getFilteredPolicyList().get(targetIndex.getZeroBased());
+        final String[] splitName = policy.getTitle().fullTitle.split("\\s+");
+        model.updateFilteredPolicyList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredPolicyList().size());
     }
 
 }

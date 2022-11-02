@@ -9,14 +9,15 @@ import static longtimenosee.commons.util.AppUtil.checkArgument;
  */
 public class Premium {
 
-    public static final String MESSAGE_CONSTRAINTS = "Premium should be any positive numeric value,"
+    public static final String MESSAGE_CONSTRAINTS = "Premium should be any positive numeric value below "
+            + "`1000000000` with or without 2 decimal places,"
             + " and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the premium must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "([1-9]\\d*)?\\d(\\.\\d\\d)?";
+    public static final String VALIDATION_REGEX = "([1-9]\\d{1,9})?\\d(\\.\\d\\d)?";
 
     public final String value;
     public final float numericValue;

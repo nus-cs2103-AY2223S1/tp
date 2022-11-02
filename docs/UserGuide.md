@@ -32,7 +32,7 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
       1. [Adding a Policy](#adding-a-policy--addpolicy)
       2. [Switching to Policy View](#switching-to-the-view-of-currently-listed-policies--policies)
       3. [Listing all Policies](#viewing-all-policies-in-the-address-book--allpolicies)
-      4. [Deleting a Policy](#deleting-a-policy)
+      4. [Deleting a Policy](#deleting-a-policy--deletepolicy)
       5. [Searching for a Policy](#searching-for-a-policy--findpolicy)
       6. [Assigning a Policy to a Client](#assigning-a-policy-to-a-client--assign)
       7. [Listing all Assigned Policies](#listing-out-policies-assigned-to-a-client--listassigned)
@@ -169,7 +169,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ## Client Features
 
-### Adding a client: `addClient`
+### Adding a client : `addClient`
 
 Adds a client to the address book.
 
@@ -448,6 +448,10 @@ Format: `assign CLIENT_INDEX POLICY_INDEX pr/PREMIUM sd/STARTDATE ed/ENDDATE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Premium should be any positive numeric value below `1000000000` with or without 2 decimal places.
 </div>
 
 Example Usage:

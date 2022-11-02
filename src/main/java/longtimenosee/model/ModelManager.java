@@ -15,7 +15,7 @@ import longtimenosee.commons.core.GuiSettings;
 import longtimenosee.commons.core.LogsCenter;
 import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
-import longtimenosee.model.person.exceptions.PersonNotFoundException;
+import longtimenosee.model.person.exceptions.PolicyNotFoundException;
 import longtimenosee.model.policy.FinancialAdvisorIncome;
 import longtimenosee.model.policy.Policy;
 
@@ -208,9 +208,9 @@ public class ModelManager implements Model {
     }
     //=========== Event stuff =============================================================
     @Override
-    public void addEvent(Event e, String personName) throws PersonNotFoundException {
+    public void addEvent(Event e, String personName) throws PolicyNotFoundException {
         if (!addressBook.hasPersonByName(personName)) {
-            throw new PersonNotFoundException();
+            throw new PolicyNotFoundException();
         }
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         addressBook.addEvent(e);

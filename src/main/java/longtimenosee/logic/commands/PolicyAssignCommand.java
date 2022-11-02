@@ -89,4 +89,14 @@ public class PolicyAssignCommand extends Command {
                 false, false, false, true, false, false);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PolicyAssignCommand // instanceof handles nulls
+                && targetPersonIndex.equals(((PolicyAssignCommand) other).targetPersonIndex) // state check
+                && targetPolicyIndex.equals(((PolicyAssignCommand) other).targetPersonIndex) // state check
+                && premium.equals(((PolicyAssignCommand) other).premium) // state check
+                && startDate.equals(((PolicyAssignCommand) other).startDate) // state check
+                && endDate.equals(((PolicyAssignCommand) other).endDate)); // state check
+    }
 }
