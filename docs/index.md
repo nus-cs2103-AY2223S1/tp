@@ -7,7 +7,7 @@ layout: page title: ModtRekt
 
 ![Ui](images/Ui.png)
 
-**What is it?**
+**What is ModtRekt?**
 
 ModtRekt is a desktop app created for NUS students to have a faster and more organised way to **manage their modules and
 tasks**. It ensures that you would **never forget another task or miss another deadline**. This way you can focus on
@@ -19,8 +19,8 @@ Interface (CLI) for **faster navigation** and input whilst still having the bene
 
 * If you are interested in using ModtRekt, head over to the [_Quick Start_ section of the **User
   Guide**](UserGuide.html#quick-start).
-* If you are interested about developing ModtRekt, the [**Developer Guide**](DeveloperGuide.html) is a good place to
-  start.
+* If you are interested in contributing to the development of ModtRekt, the [**Developer Guide**](DeveloperGuide.html) 
+is a good place to start.
 
 **Acknowledgements**
 

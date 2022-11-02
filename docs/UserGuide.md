@@ -48,7 +48,7 @@ the benefits of a Graphical User Interface (GUI).
 
 
 This User Guide contains in-depth information which can help new users learn all the functionalities of Modtrekt. If you
-are an experienced user, there exist a command summary at the bottom which can bring you up to speed.
+are an experienced user, there exists a command summary at the bottom which can bring you up to speed.
 
 # Quick Start
 
@@ -81,11 +81,11 @@ are an experienced user, there exist a command summary at the bottom which can b
 
 9. Refer to the Features below for details of each command.
 
-#About the user guide
+# About the user guide
 
 ## Layout of window
 
-The image below shows what each window, of the application, represents.
+The image below shows what each window of the application represents.
 
 ![Ui-label](images/Ui-window-labels.png)
 
@@ -183,7 +183,7 @@ Exits the application.
 
 Adds a module to the application.
 
-To allow our users to easily add modules via their module code, our module information is fetched from
+To allow you to easily add modules via their module code, our module information is fetched from
 [NUSMods](https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4),
 hence the module code you specify must be a valid NUS module code.
 If the module code is invalid, the module will not be added. Additionally, since an integration with NUSMods
@@ -205,7 +205,7 @@ Sample execution of command `add mod CS2100`:
 ![add-mod-sample](images/UserGuidePictures/add-mod-sample.png)
 
 The app also supports the addition of customised modules, which may or may not be in NUSMods.
-This is useful for users with other commitments, such as internships, that they would like to track in the app.
+This is useful if you have other commitments, such as internships, that they would like to track in the app.
 Note that if your customised module is not in NUSMods, you would still need to specify the module credits, for example, 0.
 
 Format: `add module <module code> -n <custom module name> -cr <module credits>`
@@ -223,7 +223,7 @@ Sample execution of command `add mod CCA -n Volleyball -cr 0`:
 
 ### Removing a module: `remove module`
 
-Deletes a module from the program. Users specify a module code to delete.
+Deletes a module from the program. You have to specify a module code to delete.
 
 Format: `remove module <module code>`
 
@@ -248,8 +248,8 @@ Sets the current module page to the specified module.
 
 Format: `cd <module code>`
 
-Allows user to view information relating to the specified module.
-- Scopes the user’s actions to the specified module.
+Allows you to view information relating to the specified module.
+- Scopes your actions to the specified module.
 - Module code must match an existing module.
 
 Format: `cd <module code>`
@@ -266,7 +266,7 @@ Exits the current module page to revert to showing all modules.
 
 Format: `cd ..`
 
-Allows user to view all active tasks from all modules instead of only those belonging to a specific module.
+Allows you to view all active tasks from all modules instead of only those belonging to a specific module.
 
 Examples:
 - `cd ..`
@@ -443,7 +443,7 @@ Changes current parameters of selected task
 - Task count in module would change accordingly after editing a task to be associated with another module
 
 
-- Users can add priorities into their tasks which will be ordered by decreasing priority in the task list
+- You can add priorities into their tasks which will be ordered by decreasing priority in the task list
 - 4 Levels of priority: `NONE`, `LOW`, `MEDIUM`, `HIGH`
 - can be set by adding: `-p none`, `-p low`, `-p medium`, `-p high` tags
 
