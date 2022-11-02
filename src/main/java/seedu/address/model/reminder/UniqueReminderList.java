@@ -62,7 +62,7 @@ public class UniqueReminderList implements Iterable<Reminder> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ReminderNotFoundException();
         }
 
         if (!target.isSameReminder(editedReminder) && contains(editedReminder)) {

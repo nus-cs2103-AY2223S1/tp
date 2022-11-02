@@ -327,7 +327,7 @@ Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 
 * `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
 * `DATE` must be after the time
-* Duplicated reminders are allowed.
+* You cannot add 2 reminders of the same name, date, time and description as they are considered duplicate.
 
 
 Examples:

@@ -16,7 +16,7 @@ public class Reminder {
     // Identity fields
     private final ReminderName name;
 
-    //Data fields
+    // Data fields
     private final Datetime deadline;
     private final ReminderPriority priority;
     private final ReminderDescription description;
@@ -85,7 +85,7 @@ public class Reminder {
     }
 
     /**
-     * Returns true if both reminders have the same name.
+     * Returns true if both reminders have the same name, deadline and description.
      * This defines a weaker notion of equality between two reminders.
      */
     public boolean isSameReminder(Reminder otherReminder) {
@@ -94,7 +94,9 @@ public class Reminder {
         }
 
         return otherReminder != null
-                && otherReminder.getName().equals(getName());
+                && otherReminder.getName().equals(getName())
+                && otherReminder.getDeadline().equals(getDeadline())
+                && otherReminder.getDescription().equals(getDescription());
     }
 
     /**
