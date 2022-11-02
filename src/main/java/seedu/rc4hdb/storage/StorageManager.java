@@ -185,7 +185,7 @@ public class StorageManager implements Storage {
     @Override
     public void deleteVenueBookFile(Path folderPath) throws IOException {
         requireNonNull(folderPath);
-        dataStorage.createResidentBookFile(folderPath);
+        dataStorage.deleteVenueBookFile(folderPath);
     }
 
     /**

@@ -25,6 +25,10 @@ public class TypicalVenues {
     public static final VenueName DISCUSSION_ROOM_NAME = new VenueName(DISCUSSION_ROOM_STRING);
     public static final Venue DISCUSSION_ROOM = new Venue(DISCUSSION_ROOM_NAME);
 
+    public static final String FUNCTION_ROOM_STRING = "Function Room";
+    public static final VenueName FUNCTION_ROOM_NAME = new VenueName(FUNCTION_ROOM_STRING);
+    public static final Venue FUNCTION_ROOM = new Venue(FUNCTION_ROOM_NAME);
+
     public static VenueBook getTypicalVenueBook() {
         VenueBook venueBook = new VenueBook();
         for (Venue venue : getTypicalVenues()) {

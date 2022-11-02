@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox minHeight="500.0" minWidth="500.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <HBox fx:id="venueListTableContainer" VBox.vgrow="ALWAYS">
+      <children>
+         <StackPane fx:id="bookingTableViewPlaceholder" HBox.hgrow="NEVER">
+            <HBox.margin>
+               <Insets right="10.0" />
+            </HBox.margin></StackPane>
+         <StackPane fx:id="venueListViewPlaceholder" HBox.hgrow="ALWAYS" />
+      </children>
+      <VBox.margin>
+         <Insets />
+      </VBox.margin>
+   </HBox>
+</VBox>

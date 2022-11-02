@@ -7,7 +7,7 @@ import static seedu.rc4hdb.logic.parser.commandparsers.ColumnManipulatorCommandP
 import static seedu.rc4hdb.logic.parser.commandparsers.ColumnManipulatorCommandParser.WHITESPACE;
 import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseFailure;
 import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseSuccess;
-import static seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser.INTENDED_SPECIFIER_USAGE_MESSAGE;
+import static seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser.SPECIFIER_USAGE;
 import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.ALL_VALID_LETTERS;
 import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.DUPLICATE_LETTERS;
 import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.EMPTY_STRING;
@@ -108,13 +108,13 @@ public class ListCommandParserTest {
     // Include empty argument string throws exception
     @Test
     public void parse_includeEmptyArgumentString_throwsParseException() {
-        assertParseFailure(parser, INCLUDE_SPECIFIER_PREFIX + EMPTY_STRING, INTENDED_SPECIFIER_USAGE_MESSAGE);
+        assertParseFailure(parser, INCLUDE_SPECIFIER_PREFIX + EMPTY_STRING, SPECIFIER_USAGE);
     }
 
     // Exclude empty argument string throws exception
     @Test
     public void parse_excludeEmptyArgumentString_throwsParseException() {
-        assertParseFailure(parser, EXCLUDE_SPECIFIER_PREFIX + EMPTY_STRING, INTENDED_SPECIFIER_USAGE_MESSAGE);
+        assertParseFailure(parser, EXCLUDE_SPECIFIER_PREFIX + EMPTY_STRING, SPECIFIER_USAGE);
     }
 
     // Include verbose column names in argument string throws exception

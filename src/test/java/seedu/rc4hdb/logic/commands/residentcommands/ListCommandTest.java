@@ -5,9 +5,8 @@ import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.assertCommandSucc
 import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.showResidentAtIndex;
 import static seedu.rc4hdb.logic.commands.residentcommands.ColumnManipulatorCommand.AT_LEAST_ONE_VISIBLE_COLUMN;
 import static seedu.rc4hdb.logic.commands.residentcommands.ColumnManipulatorCommand.INVALID_FIELDS_ENTERED;
-import static seedu.rc4hdb.logic.commands.residentcommands.ColumnManipulatorCommand.MESSAGE_SUCCESS_FORMAT;
-import static seedu.rc4hdb.logic.commands.residentcommands.ColumnManipulatorCommand.MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW;
-import static seedu.rc4hdb.logic.commands.residentcommands.ListCommand.COMMAND_PAST_TENSE;
+import static seedu.rc4hdb.logic.commands.residentcommands.ListCommand.LIST_MESSAGE_SUCCESS;
+import static seedu.rc4hdb.logic.commands.residentcommands.ListCommand.LIST_MESSAGE_SUCCESS_ONLY_SPECIFIED_COLUMNS_SHOWN;
 import static seedu.rc4hdb.testutil.TypicalFieldLists.ALL_VALID_FIELDS;
 import static seedu.rc4hdb.testutil.TypicalFieldLists.ALSO_VALID_FIELDS;
 import static seedu.rc4hdb.testutil.TypicalFieldLists.DUPLICATE_FIELDS;
@@ -44,15 +43,13 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model,
-                String.format(MESSAGE_SUCCESS_FORMAT, COMMAND_PAST_TENSE), expectedModel);
+        assertCommandSuccess(new ListCommand(), model, LIST_MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showResidentAtIndex(model, INDEX_FIRST_RESIDENT);
-        assertCommandSuccess(new ListCommand(), model,
-                String.format(MESSAGE_SUCCESS_FORMAT, COMMAND_PAST_TENSE), expectedModel);
+        assertCommandSuccess(new ListCommand(), model, LIST_MESSAGE_SUCCESS, expectedModel);
     }
 
     // Default list with no specifier returns expected model
@@ -62,8 +59,7 @@ public class ListCommandTest {
         System.out.println(fieldsToHide);
         expectedModel.setVisibleFields(ALL_VALID_FIELDS);
         expectedModel.setHiddenFields(fieldsToHide);
-        assertCommandSuccess(new ListCommand(), model,
-                String.format(MESSAGE_SUCCESS_FORMAT, COMMAND_PAST_TENSE), expectedModel);
+        assertCommandSuccess(new ListCommand(), model, LIST_MESSAGE_SUCCESS, expectedModel);
     }
 
     // List command with specifier (that invokes separate constructor) returns expected model
@@ -73,7 +69,7 @@ public class ListCommandTest {
         expectedModel.setVisibleFields(VALID_FIELDS);
         expectedModel.setHiddenFields(fieldsToHide);
         assertCommandSuccess(new ListCommand(VALID_FIELDS, fieldsToHide), model,
-                String.format(MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW, COMMAND_PAST_TENSE), expectedModel);
+                LIST_MESSAGE_SUCCESS_ONLY_SPECIFIED_COLUMNS_SHOWN, expectedModel);
     }
 
     // Duplicate field names/letters returns expected model
@@ -83,7 +79,7 @@ public class ListCommandTest {
         expectedModel.setVisibleFields(DUPLICATE_FIELDS);
         expectedModel.setHiddenFields(fieldsToHide);
         assertCommandSuccess(new ListCommand(DUPLICATE_FIELDS, fieldsToHide), model,
-                String.format(MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW, COMMAND_PAST_TENSE), expectedModel);
+                LIST_MESSAGE_SUCCESS_ONLY_SPECIFIED_COLUMNS_SHOWN, expectedModel);
     }
 
     // Case-insensitive field names/letters return expected model
@@ -93,7 +89,7 @@ public class ListCommandTest {
         expectedModel.setVisibleFields(VALID_FIELDS);
         expectedModel.setHiddenFields(fieldsToHide);
         assertCommandSuccess(new ListCommand(MIXED_CASE_FIELDS, fieldsToHide), model,
-                String.format(MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW, COMMAND_PAST_TENSE), expectedModel);
+                LIST_MESSAGE_SUCCESS_ONLY_SPECIFIED_COLUMNS_SHOWN, expectedModel);
     }
 
     // Negative test case (invalid field name/letter) throws exception
@@ -125,7 +121,7 @@ public class ListCommandTest {
         model.setHiddenFields(fieldsToHide);
 
         assertCommandSuccess(new ListCommand(VALID_FIELDS, alreadyHiddenFields), model,
-                String.format(MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW, COMMAND_PAST_TENSE), expectedModel);
+                LIST_MESSAGE_SUCCESS_ONLY_SPECIFIED_COLUMNS_SHOWN, expectedModel);
 
         // Simulate HideOnlyCommand being invoked
         List<String> fieldsToShow = ColumnManipulatorCommand.generateComplementListFrom(
@@ -134,6 +130,6 @@ public class ListCommandTest {
         model.setHiddenFields(HIDDEN_FIELDS_AFTER_VALID_SUBSEQUENT_HIDEONLY_COMMAND);
 
         assertCommandSuccess(new ListCommand(VALID_FIELDS, alreadyHiddenFields), model,
-                String.format(MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW, COMMAND_PAST_TENSE), expectedModel);
+                LIST_MESSAGE_SUCCESS_ONLY_SPECIFIED_COLUMNS_SHOWN, expectedModel);
     }
 }

@@ -32,6 +32,9 @@ public class ResidentTableView extends UiPart<Region> {
 
     private static final String FXML = "ResidentTableView.fxml";
 
+    @FXML
+    private TableView<Resident> residentTableView;
+
     private final TableColumn<Resident, ResidentField> emailColumn = new TableColumn<>(Email.IDENTIFIER);
     private final TableColumn<Resident, ResidentField> genderColumn = new TableColumn<>(Gender.IDENTIFIER);
     private final TableColumn<Resident, ResidentField> houseColumn = new TableColumn<>(House.IDENTIFIER);
@@ -42,8 +45,6 @@ public class ResidentTableView extends UiPart<Region> {
     private final TableColumn<Resident, ResidentField> roomColumn = new TableColumn<>(Room.IDENTIFIER);
     private final TableColumn<Resident, Set<Tag>> tagColumn = new TableColumn<>(Tag.IDENTIFIER);
 
-    @FXML
-    private TableView<Resident> residentTableView;
     private final ObservableList<String> visibleFields = FXCollections.observableArrayList(
             ResidentField.LOWERCASE_FIELDS);
     private final ObservableList<String> hiddenFields = FXCollections.observableArrayList();
@@ -56,6 +57,8 @@ public class ResidentTableView extends UiPart<Region> {
                              ObservableList<String> hiddenFields) {
         super(FXML);
         requireAllNonNull(residentList, visibleFields, hiddenFields);
+
+        assert(residentTableView != null);
 
         this.residentTableView.setItems(residentList);
         addColumns();
@@ -183,6 +186,7 @@ public class ResidentTableView extends UiPart<Region> {
                     .filter(column -> this.visibleFields.contains(column.getText().toLowerCase()))
                     .forEach(column -> column.setVisible(true));
 
+            // Ensure that index column is properly rendered
             indexColumn.setCellFactory(this::populateIndexColumn);
         };
     }
@@ -203,6 +207,7 @@ public class ResidentTableView extends UiPart<Region> {
                     .filter(column -> this.hiddenFields.contains(column.getText().toLowerCase()))
                     .forEach(column -> column.setVisible(false));
 
+            // Ensure that index column is properly rendered
             indexColumn.setCellFactory(this::populateIndexColumn);
         };
     }

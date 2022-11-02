@@ -11,7 +11,9 @@ import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.ui.ObservableItem;
 
 /**
  * API of the Logic component
@@ -71,4 +73,5 @@ public interface Logic {
      */
     ObservableList<String> getHiddenFields();
 
+    ObservableItem<VenueName> getCurrentlyDisplayedVenueName();
 }

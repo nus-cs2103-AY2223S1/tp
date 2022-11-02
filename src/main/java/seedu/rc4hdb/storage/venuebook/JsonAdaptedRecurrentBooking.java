@@ -89,4 +89,6 @@ public class JsonAdaptedRecurrentBooking implements JsonAdaptedBooking {
         }
     }
 
+
+
 }

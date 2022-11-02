@@ -4,23 +4,34 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
-package Storage{
+package Storage {
 
-package "UserPrefs Storage" #F4F6F6{
+package "UserPrefs Storage" #F4F6F6 {
 Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
 
-Class "<<interface>>\nStorage" as Storage
-Class StorageManager
-
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
+package "ResidentBook Storage" #F4F6F6{
+Class "<<interface>>\nResidentBookStorage" as ResidentBookStorage
+Class JsonResidentBookStorage
+Class JsonSerializableResidentBook
+Class JsonAdaptedResident
 Class JsonAdaptedTag
 }
+
+package "VenueBook Storage" #F4F6F6{
+Class "<<interface>>\nVenueBookStorage" as VenueBookStorage
+Class JsonAdaptedRecurrentBooking
+Class JsonSerializableVenueBook
+Class JsonAdaptedVenue
+Class JsonVenueBookStorage
+}
+
+Class "<<interface>>\nStorage" as Storage
+Class "<<interface>>\nDataStorage" as DataStorage
+Class StorageManager
+Class CsvFileManager
+Class DataStorageManager
 
 }
 
@@ -29,15 +40,29 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -->  "1" DataStorage
+StorageManager --> "1"CsvFileManager
+
+DataStorageManager .up.|> DataStorage
+DataStorageManager --> "1" ResidentBookStorage
+DataStorageManager --> "1" VenueBookStorage
+
+
+Storage -up-|> "1" VenueBookStorage
+Storage -up-|> "1"ResidentBookStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonResidentBookStorage .up.|> ResidentBookStorage
+JsonResidentBookStorage ..> JsonSerializableResidentBook
+JsonSerializableResidentBook --> "*" JsonAdaptedResident
+JsonAdaptedResident --> "*" JsonAdaptedTag
+
+JsonVenueBookStorage .up.|> VenueBookStorage
+JsonVenueBookStorage ..> JsonSerializableVenueBook
+JsonSerializableVenueBook --> "*" JsonAdaptedVenue
+JsonAdaptedVenue --> "*" JsonAdaptedRecurrentBooking
+JsonAdaptedRecurrentBooking --> "1" JsonAdaptedResident
 
 @enduml

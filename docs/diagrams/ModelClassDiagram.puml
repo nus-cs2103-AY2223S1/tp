@@ -3,48 +3,53 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyResidentBook" as ReadOnlyResidentBook
+Class "<<interface>>\nReadOnlyVenueBook" as ReadOnlyVenueBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
-Class ModelManager
+Class ResidentBook
+Class ModelManager {
+- visibleFields: ObservableList<String>
+- hiddenFields: ObservableList<String>
+}
 Class UserPrefs
-
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
-
+Class UniqueResidentList
+Class VenueBook
+Class Booking
+Class Venue
+Class Resident
+Class UniqueVenueList
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
-
+VenueBook .up.|> ReadOnlyVenueBook
+ResidentBook .up.|> ReadOnlyResidentBook
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Model .left.> ReadOnlyUserPrefs
+Model .right.> ReadOnlyResidentBook
+Model .left.> ReadOnlyVenueBook
+ModelManager -right-> "1" ResidentBook
+ModelManager -left-> "1" UserPrefs
+ModelManager --> "~*" Venue
+ModelManager --> "~*" Booking
+ModelManager --> " 1" VenueBook
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ResidentBook *--> "1" UniqueResidentList
+UniqueResidentList --> "~* all" Resident
+ModelManager --> "~* filtered" Resident
+VenueBook *--> "1" UniqueVenueList
+UniqueVenueList --> "~*" Venue
+Venue --> "~*" Booking
 
-ModelManager -->"~* filtered" Person
+VenueBook -[hidden]right-> UserPrefs
+VenueBook -[hidden]right-> ModelManager
+Venue -[hidden]right-> Booking
+
 @enduml

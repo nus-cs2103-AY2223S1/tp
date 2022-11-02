@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Command {
+
+Class "<<interface>>\nModelCommand" as ModelCommand
+Class "<<interface>>\nStorageCommand" as StorageCommand
+Class "<<interface>>\nStorageModelCommand" as StorageModelCommand
+Class "<<interface>>\nMiscCommand" as MiscCommand
+Class "<<interface>>\nCommand" as Command
+}
+
+ModelCommand .up.|> Command
+StorageModelCommand .up.|> Command
+MiscCommand .up.|> Command
+StorageCommand .up.|> Command
+
+@enduml
+

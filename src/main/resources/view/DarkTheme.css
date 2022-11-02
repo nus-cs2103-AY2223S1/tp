@@ -157,6 +157,18 @@
      -fx-border-top-width: 1px;
 }
 
+.venue-label {
+    -fx-background-color: derive(#1d1d1d,30%);
+    -fx-alignment: center;
+}
+
+.venue-label-text {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 18pt;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
 }

@@ -6,19 +6,19 @@ skinparam classBackgroundColor UI_COLOR
 
 package UI <<Rectangle>>{
 Class "<<interface>>\nUi" as Ui
-Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
-Class StatusBarFooter
+Class ResidentTabView
+Class VenueTabView
+Class ResidentTableView
+Class BookingTableView
+Class CurrentWorkingFileFooter
 Class CommandBox
-}
-
-package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
+Class VenueListView
+Class VenueListCard
+note top of MainWindow : MainWindow and all of its components \ninherits from UiPart. UiPart has been \nremoved from the diagram from brevity.
 }
 
 package Logic <<Rectangle>> {
@@ -28,33 +28,27 @@ Class HiddenLogic #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
-UiManager .left.|> Ui
+UiManager .up.|> Ui
 UiManager -down-> "1" MainWindow
+
+MainWindow *-down-> "1" ResidentTabView
+MainWindow *-down-> "1" VenueTabView
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
+MainWindow *-down-> "1" CurrentWorkingFileFooter
+MainWindow *--> "0..1" HelpWindow
 
-PersonListPanel -down-> "*" PersonCard
+ResidentTabView *-down-> "1" ResidentTableView
+VenueTabView *-down-> "1" BookingTableView
+VenueTabView *-down-> "1" VenueListView
+VenueListView *-down-> "0..*" VenueListCard
 
-MainWindow -left-|> UiPart
-
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow --|> UiPart
-
-PersonCard ..> Model
 UiManager -right-> Logic
-MainWindow -left-> Logic
+MainWindow -right-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+ResultDisplay -[hidden]left- CurrentWorkingFileFooter
 
-MainWindow -[hidden]-|> UiPart
+
 @enduml

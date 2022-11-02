@@ -26,6 +26,58 @@ I made the following enhancements to our product:
 2. *Enter contributions here*
 3. *Enter contributions here*
 
+### Graphical User Interface (GUI)
+
+In `AB3` the GUI was implemented using `PersonListPanel` and `PersonCard`. Each `Person` is graphically represented as
+a `PersonCard` which contains all fields of a `Person` i.e. `Name`,`Phone`, `Email`, `Address`, `Tags`
+
+Results from a command would be displayed in the `PersonListPanel`, which graphically is a single column list,
+with each row corresponding to a `PersonCard`.
+
+Insert Old Ui Image Here
+
+At any given time in RC4, there are approximately 300 individuals staying in RC4. With our goal of providing an
+efficient and productive means of handling administrative tasks, we thought that the current interface was unsuitable
+for visualizing large numbers of entries.
+
+As a consequence, we adapted the `PersonListPanel` and converted it to `ResidentTableView`. A `Resident` entry will no
+longer be represented graphically as a `PersonCard`, but as a row in our table. The fields for each respective
+`Resident` i.e. `Name`, `Phone Number`, `Email`, `Gender`, `House`, `Matric Number`, and `Tags`are now represented as
+columns in each row.
+
+Insert New Ui Image here
+
+Users will now be able to see more entries on the window as compared to before. Fields of a `Resident` are also
+structured and more easily identifiable. These two together can potentially increase productivity of our user.
+
+The implementation of the `ResidentTableView` is relatively simple and done so using `JavaFx TableView`. For our usage,
+there are no performance issues, but it is well known that `JavaFX TableView` is known to be memory hungry, and
+potentially laggy when the number of columns exceed 50. To see a discussion on this click
+[here](https://github.com/javafxports/openjdk-jfx/issues/409).
+
+
+Other minor updates I made to the GUI include:
+* Updating the application icon to a suitable image for our use
+* Updating the application name from `AddressBook` to `RC4HDB`
+* Removed the File Tab in the status bar header
+* Rearranged the layout of the interface. `CommandBox` is now at the bottom of the window as opposed to the top.
+
+
+### Keyboard Shortcut
+
+As `RC4HDB` is designed to be optimized for use via a Command Line Interface (CLI). We have introduced several
+keyboard shortcut commands to improve the quality-of-life of our users such that there is little need for them to lift
+their hands to grab the mouse.
+
+Below is a table that lists all of our keyboard shortcuts:
+
+INSERT TABLE HERE FROM UPDATED UG
+
+The implementation of the `F3` keyboard shortcut was relatively simple. It involved adding a listener to scene, which
+would refocus on the `TextField` within the `CommandBox` class during the event that the key
+is pressed.
+
+
 ### Contributions to the UG:
 
 I contributed to the following sections of the user guide:
@@ -72,9 +124,9 @@ I also gave guidance to my team on the following matters:
 Beyond the project team, I also participated actively in the forum.
 
 These are some threads in which I offered help to my classmates:
-1. []()
-2. []()
-3. []()
+1. [Discussion on association, composition, aggregation](https://github.com/nus-cs2103-AY2223S1/forum/issues/86#issuecomment-1229400456)
+2. [Failing codecov/patch check](https://github.com/nus-cs2103-AY2223S1/forum/issues/330)
+3. [Bug: Wrong activity diagram](https://github.com/nus-cs2103-AY2223S1/forum/issues/338)
 
 <!-- Provide links to the threads here -->
 

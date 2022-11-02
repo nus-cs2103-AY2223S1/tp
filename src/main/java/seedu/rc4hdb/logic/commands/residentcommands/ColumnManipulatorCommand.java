@@ -68,6 +68,7 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
      * @throws CommandException if there are invalid fields
      */
     public static void requireAllFieldsValid(List<String> fieldList) throws CommandException {
+        requireNonNull(fieldList);
         for (String field : fieldList) {
             if (!ALL_FIELDS.contains(field.toLowerCase())) {
                 throw new CommandException(INVALID_FIELDS_ENTERED);
@@ -76,6 +77,7 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
     }
 
     private static List<String> generateLowerCaseListFrom(List<String> inputList) {
+        requireNonNull(inputList);
         return inputList.stream()
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
@@ -89,7 +91,7 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
         if (other instanceof ColumnManipulatorCommand) {
             ColumnManipulatorCommand otherCommand = (ColumnManipulatorCommand) other;
 
-            // Bi-directional subset implies equality
+            // Bi-directional subset relationship implies equality
             boolean hasEqualFieldsToShow = this.fieldsToShow.containsAll(otherCommand.fieldsToShow)
                     && otherCommand.fieldsToShow.containsAll(this.fieldsToShow);
             boolean hasEqualFieldsToHide = this.fieldsToHide.containsAll(otherCommand.fieldsToHide)
@@ -101,14 +103,17 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
     }
 
     private static List<String> getAlreadyVisibleFields(Model model) {
+        requireNonNull(model);
         return model.getVisibleFields();
     }
 
     private static List<String> getAlreadyHiddenFields(Model model) {
+        requireNonNull(model);
         return model.getHiddenFields();
     }
 
     private static boolean isValidSubsetOfAlreadyVisibleFields(Model model, List<String> inputList) {
+        requireAllNonNull(model, inputList);
         List<String> alreadyVisibleFields = getAlreadyVisibleFields(model);
         return alreadyVisibleFields.containsAll(inputList);
     }
@@ -119,6 +124,7 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
      * @throws CommandException if there are no fields in the field list
      */
     public static void requireAtLeastOneVisibleColumn(List<String> fieldsToShow) throws CommandException {
+        requireNonNull(fieldsToShow);
         if (fieldsToShow.isEmpty()) {
             throw new CommandException(AT_LEAST_ONE_VISIBLE_COLUMN);
         }
@@ -135,6 +141,7 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
      */
     public static void requireValidSubsetOfAlreadyVisibleFields(Model model,
                                                                 List<String> inputList) throws CommandException {
+        requireAllNonNull(model, inputList);
         if (!isValidSubsetOfAlreadyVisibleFields(model, inputList)) {
             throw new CommandException(INVALID_SUBSET);
         }
@@ -148,6 +155,7 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
      * @return A list of fields representing the larger list of fields to be hidden
      */
     public static List<String> getUnionOfFieldsToHideAndAlreadyHiddenFields(Model model, List<String> inputList) {
+        requireAllNonNull(model, inputList);
         List<String> unionList = new ArrayList<>(getAlreadyHiddenFields(model));
         unionList.addAll(inputList);
         return unionList;

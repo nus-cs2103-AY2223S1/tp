@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
@@ -13,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.DailySchedule;
 import seedu.rc4hdb.model.venues.booking.Booking;
@@ -35,11 +37,14 @@ public class BookingTableView extends UiPart<Region> {
 
     @FXML
     private TableView<DailySchedule> bookingTableView;
+    @FXML
+    private VBox bookingTableContainer;
+
     private ObservableList<DailySchedule> weeklySchedule = FXCollections.observableArrayList();
 
     /**
-     * Constructor for a VenueTableView instance. The venue list is processed to remove expired bookings.
-     * @param bookingList The list of venues
+     * Constructor for a BookingTableView
+     * @param bookingList The list of bookings to be displayed.
      */
     public BookingTableView(ObservableList<Booking> bookingList) {
         super(FXML);
@@ -54,6 +59,7 @@ public class BookingTableView extends UiPart<Region> {
         configureTableProperties();
 
         updateTable(bookingList);
+        bookingList.addListener((ListChangeListener<? super Booking>) c -> updateTable(c.getList()));
     }
 
     private void addColumns() {
@@ -89,6 +95,10 @@ public class BookingTableView extends UiPart<Region> {
         };
     }
 
+    /**
+     * Code referenced from:
+     * https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items
+     */
     private TableCell<DailySchedule, Resident[]> populateNthColumn(TableColumn<DailySchedule,
             Resident[]> column, int n) {
         return new TableCell<>() {
@@ -105,10 +115,18 @@ public class BookingTableView extends UiPart<Region> {
     }
 
     private void configureTableProperties() {
-        this.bookingTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        dayColumn.setResizable(false);
+        dayColumn.setSortable(false);
+        dayColumn.setReorderable(false);
+
+        for (TableColumn<DailySchedule, Resident[]> column : hourColumn) {
+            column.setResizable(false);
+            column.setSortable(false);
+            column.setReorderable(false);
+        }
     }
 
-    public void updateTable(List<Booking> bookings) {
+    public void updateTable(List<? extends Booking> bookings) {
         this.weeklySchedule.setAll(DailySchedule.generateWeeklySchedule(bookings));
     }
 
