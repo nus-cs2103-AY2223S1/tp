@@ -118,7 +118,8 @@ public class PersonCard extends UiPart<Region> {
         }
 
         cir2.setStroke(Color.AQUAMARINE);
-        Image im = new Image(social.getImageUrl(), false);
+        String imageUrl = social.getImageUrl();
+        Image im = new Image(String.valueOf(this.getClass().getResource("/images/profile_pic.png")));
         cir2.setFill(new ImagePattern(im));
         cir2.setEffect(new DropShadow(+25d, 0d, +2d, Color.AQUAMARINE));
 

@@ -38,14 +38,14 @@ public class PictureStorage {
      * @throws ParseException
      */
     public void saveStorage() throws IOException, ParseException {
-        Reader reader = new FileReader("data/addressbook.json");
+        Reader reader = new FileReader("data/univusal.json");
         JSONParser parser = new JSONParser();
         JSONObject data = (JSONObject) parser.parse(reader);
         JSONArray data2 = (JSONArray) data.get("persons");
         JSONObject data3 = (JSONObject) data2.get(displayedIndex - 1);
         data3.put("social", social.toString());
         @SuppressWarnings("resource")
-        FileWriter file2 = new FileWriter("data/addressbook.json");
+        FileWriter file2 = new FileWriter("data/univusal.json");
         file2.write(data.toJSONString());
         file2.flush();
     }
