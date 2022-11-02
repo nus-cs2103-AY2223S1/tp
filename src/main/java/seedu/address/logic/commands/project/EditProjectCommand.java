@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.project;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_PROJECT_NOT_FOUND;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
@@ -72,6 +73,10 @@ public class EditProjectCommand extends ProjectCommand {
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         ui.showProjects();
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+
+        if (!model.hasProjectId(this.projectToEditId.getIdInt())) {
+            throw new CommandException(MESSAGE_PROJECT_NOT_FOUND);
+        }
 
         Project toEditProject = model.getProjectById(projectToEditId.getIdInt());
 

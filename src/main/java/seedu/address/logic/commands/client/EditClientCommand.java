@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.client;
 
+import static seedu.address.commons.core.Messages.MESSAGE_CLIENT_NOT_FOUND;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_MOBILE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
@@ -58,6 +59,9 @@ public class EditClientCommand extends ClientCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         ui.showClients();
+        if (!model.hasClientId(this.clientId.getIdInt())) {
+            throw new CommandException(MESSAGE_CLIENT_NOT_FOUND);
+        }
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
         Client toEditClient = model.getClientById(clientId.getIdInt());
