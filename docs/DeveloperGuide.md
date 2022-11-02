@@ -441,13 +441,14 @@ Given below is an example usage scenario and how the find order mechanism behave
 Step 1. The user launches the application for the first time. `TrackO` will be initialised with the initial TrackO
 state, and the `OrderList` will contain sample data.
 
-Step 2. The user executes `findo keychain apple` command to find the orders containing items with the keywords
-keychain or apple. The `findo` command calls `FindOrderCommandParser` which checks for the correct command
-syntax and separates the keywords, utilising each space as a delimiter. The keywords are then passed as a `List`
-into a constructor for `OrderContainsKeywordsPredicate`, which extends `Predicate<Order>`, to construct a predicate
+Step 2. The user executes `findo -D -p n/Alex a/Serangoon` command to find the orders which are paid but not 
+delivered made by customer with the `Name` `Alex` and `Address` containing the word `Serangoon`. The `findo` 
+command calls `FindOrderCommandParser` which checks for the correct command syntax and separates the keywords, 
+utilising each space as a delimiter. The keywords are then passed as a `List` into a constructor for 
+`OrderMatchesFlagsAndPrefixPredicate`, which extends `Predicate<Order>`, to construct a predicate
 that will filter the items according to the keywords. The predicate is passed into a new instance of
-`FindOrderCommand`. `FindOrderCommand` then calls `Model#updateFilteredOrderList()` to filter `Model#filteredOrders`
-according to the previously constructed `OrderContainsKeywordsPredicate`.
+`FindOrderCommand`. `FindOrderCommand` then calls `Model#updateFilteredOrderList()` to filter 
+`Model#filteredOrders` according to the predicate.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect,
 `FindOrderCommandParser` will throw a `ParseException`.
@@ -455,9 +456,6 @@ according to the previously constructed `OrderContainsKeywordsPredicate`.
 
 The following sequence diagram shows how the find order operation works:
 ![FindOrderSequenceDiagram](images/FindOrderSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-_{insert activity diagram}_
 
 #### Design considerations:
 

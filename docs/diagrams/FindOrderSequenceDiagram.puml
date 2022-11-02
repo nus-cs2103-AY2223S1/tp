@@ -16,10 +16,10 @@ participant "model:Model" as Model MODEL_COLOR
 
 end box
 
-[-> LogicManager : execute("findo -D -p n/Alex a/Serangoon i/Pillow")
+[-> LogicManager : execute("findo -D -p n/Alex a/Serangoon")
 activate LogicManager
 
-LogicManager -> TrackOParser : parseCommand("findo -D -p n/Alex a/Serangoon i/Pillow")
+LogicManager -> TrackOParser : parseCommand("findo -D -p n/Alex a/Serangoon")
 activate TrackOParser
 
 create FindOrderCommandParser
@@ -29,7 +29,7 @@ activate FindOrderCommandParser
 FindOrderCommandParser --> TrackOParser : parser
 deactivate FindOrderCommandParser
 
-TrackOParser -> FindOrderCommandParser : parse("-D -p n/Alex a/Serangoon i/Pillow")
+TrackOParser -> FindOrderCommandParser : parse("-D -p n/Alex a/Serangoon")
 activate FindOrderCommandParser
 
 note right
@@ -42,7 +42,7 @@ encapsulated in relevant data classes (Name, Phone, etc)
 end note
 
 create OrderMatchesFlagsAndPrefixPredicate
-FindOrderCommandParser -> OrderMatchesFlagsAndPrefixPredicate: OrderMatchesFlagsAndPrefixPredicate(["Alex"], \n["Serangoon"], ["Pillow"], true, true, true, false)
+FindOrderCommandParser -> OrderMatchesFlagsAndPrefixPredicate: OrderMatchesFlagsAndPrefixPredicate(["Alex"], \n["Serangoon"], [], true, true, true, false)
 activate OrderMatchesFlagsAndPrefixPredicate
 
 OrderMatchesFlagsAndPrefixPredicate --> FindOrderCommandParser : predicate
