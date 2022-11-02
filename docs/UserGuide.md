@@ -92,6 +92,14 @@ Examples:
 - `add-e n/Skydiving d/Skydiving with crew`
 - `add-e n/Sailing d/Sail in the Danube River`
 
+The following is an example of how the add-e command can be run in the GUI. 
+
+![AddEvent](images/AddEvent.png)
+
+After the event has been successfully added, a confirmation message will be shown in the output box. You will also be able to see your new event in the event list display as seen below.
+![AddEventDone](images/AddEventDone.png)
+
+
 #### Viewing bucket list: `list-e`
 Shows a list of all events present in the bucket list.
 
@@ -127,6 +135,13 @@ Format: `add n/TITLE d/DESCRIPTION l/LOCATION D/DATE`
 Examples:
 - `add n/Trip to Iceland d/Skiing in Iceland l/Iceland D/26-12-2023`
 
+The following is an example of how the add command can be run in the GUI.
+
+![AddTrip](images/AddTrip.png)
+
+After the trip has been successfully added, a confirmation message will be shown in the output box. You will also be able to see your new trip in the trip list display as seen below.
+![AddTripDone](images/AddTripDone.png)
+
 #### Viewing trips list: `list`
 Shows a list of all trips added.
 
@@ -159,10 +174,15 @@ Format: `add-et n/EVENT NAME t/TRIP NAME`
 - The TRIP NAME must exist in the trips list.
 - The EVENT NAME must exist in the events list.
 
+<div class="alert alert-block alert-success"><b>Use case: </b> <code>add-et</code> can be used to help you to plan your trip's itinerary. You can pick and choose any event that exists in your bucket list and add them into a specified trip's itinerary, which you can then view via the `select` command. </div>
+
 Examples:
 - `add-et n/Visit the Swiss Alps t/Trip to Switzerland` adds the event titled `Visit the Swiss Alps` in the bucket list to the itinerary of the trip with the title `Trip to Switzerland`.
 
-<div class="alert alert-block alert-success"><b>Use case: </b> <code>add-et</code> can be used to help you to plan your trip's itinerary. You can pick and choose any event that exists in your bucket list and add them into a specified trip's itinerary, which you can then view via the `select` command. </div>
+The following is an example of how the add-et command can be run in the GUI.
+
+![AddEventToTrip](images/AddEventToTrip.png)
+
 
 #### Removing event from a trip's itinerary: `delete-et`
 Remove the specified event from the specified trip. The event will then be returned to the bucket list.
@@ -181,6 +201,7 @@ Examples:
 
 #### Selecting a trip to view its itinerary `select`
 Selects the trip in the specified INDEX and displays all events added to that trip in the events list panel.
+
 Format: `select INDEX`
 - Selects the trip at the specified INDEX.
 - The index refers to the index number shown in the current displayed trip list.
@@ -188,22 +209,36 @@ Format: `select INDEX`
 
 <div class="alert alert-block alert-success"><b>Use case: </b> Now that you have added events into a trip's itinerary, you may want to take a look at how that trip's itinerary looks like. You can run the <code>select</code> command to select a trip and view all the events that have been added its itinerary. </div>
 
+The following is an example of how the `select` command can be run in the GUI.
+
+![SelectTrip](images/SelectTrip.png)
+
+After the trip has been successfully selected, a confirmation message will be shown in the output box. You will also be able to see your selected trip in the selected trip box, along with the list of events in its itinerary.
+
+![SelectTripDone](images/SelectTripDone.png)
+
 ### Managing a Trip's Completion Status
 
 #### Marking trips as done: `mark`
 Mark the trip in the specified INDEX as done. After the specified trip has been marked as completed, it will be moved downwards to the set of completed trips in the trip list. 
-
-![MarkCompletedUi](images/MarkCompletedUi.png)
 
 Format: `mark INDEX`
 - Marks the trip at the specified INDEX as done.
 - The index refers to the index number shown in the trip list.
 - The index must be a positive integer 1, 2, 3, …
 
+<div class="alert alert-block alert-success"><b>Use case: </b> Congratulations, you have just completed a trip! You can now mark it as completed using the <code>mark</code> command. </div>
+
 Examples:
 - `mark 1` marks the first trip in the trip list as done.
 
-<div class="alert alert-block alert-success"><b>Use case: </b> Congratulations, you have just completed a trip! You can now mark it as completed using the <code>mark</code> command. </div>
+The following is an example of how the `mark` command can be run in the GUI.
+
+![MarkTrip](images/MarkTrip.png)
+
+After the trip has been successfully marked, a confirmation message will be shown in the output box. A completed icon will now be displayed beside the title of your completed trip as seen below.
+![MarkTripDone](images/MarkTripDone.png)
+
 
 #### Marking trips as not done: `unmark`
 Mark the trip in the specified INDEX as not done. After the specified trip has been marked as incomplete, it will be moved upwards to the set of incomplete trips in the trip list. 
