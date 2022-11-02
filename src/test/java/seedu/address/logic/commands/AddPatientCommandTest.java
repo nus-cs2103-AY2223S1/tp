@@ -288,6 +288,16 @@ public class AddPatientCommandTest {
         public History getHistory() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasPatientWithExactlySameName(Patient patient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPatientWithExactlySameName(Name name) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
