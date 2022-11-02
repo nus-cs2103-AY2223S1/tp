@@ -427,8 +427,7 @@ Step 4. The `FindCommand#execute()` then calls the following methods from `Model
 * `Model#getFoodCalorieList()`
 * `Model#getUnFilteredFoodList()`
 
-Step 5. The `FindCommand#execute()` returns a `CommandResult` that displays the calorie content of the food item 
-specified by the user which in this case is Banana.
+Step 5. The `FindCommand#execute()` returns a `CommandResult` that displays the calorie content of the food item specified by the user which in this case is Banana.
 
 ### Locate gym feature
 
