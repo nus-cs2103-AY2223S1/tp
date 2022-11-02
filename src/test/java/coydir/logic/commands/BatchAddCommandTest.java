@@ -86,7 +86,6 @@ class BatchAddCommandTest {
         BatchAddCommand batchAddCommand = new BatchAddCommand("BatchAddInvalidPhone.csv");
         Path testData = Paths.get("src", "test", "data", "BatchAddTest", "BatchAddInvalidPhone.csv");
         batchAddCommand.setFilePath(testData);
-        System.out.println(model.getFilteredPersonList());
         assertCommandFailure(batchAddCommand, model, Phone.MESSAGE_CONSTRAINTS);
     }
 
