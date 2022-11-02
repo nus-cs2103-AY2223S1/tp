@@ -326,7 +326,7 @@ Adds a reminder to ModQuik. Users can add reminders such as "Mark Assignment 1" 
 Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 
 * `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
-* `DATE` must be after the time
+* `DATE` and `TIME` inputted must be after the current date and time as shown in your local PC.
 * You cannot add 2 reminders of the same name, date, time and description as they are considered duplicate.
 
 
@@ -343,8 +343,9 @@ Format: `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPT
 * Edits the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing the time or the date, both fields must be given.
 * `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
+* `DATE` and `TIME` inputted must be after the current date and time as shown in your local PC.
+* When editing the `DATE` or `TIME`, both fields must be given.
 
 
 Examples:
