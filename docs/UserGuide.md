@@ -68,11 +68,11 @@ through which users interact with electronic devices via visual indicator repres
 2. Download the latest `arrow.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Arrow.
-4. Double-click the file to start the app. The _GUI_ or _main window_ should appear in a few seconds. 
+4. Double-click the file to start the app. The _GUI_ or _main window_ should appear in a few seconds.
 Note how the app contains some sample data. If the app does not start and an `error` appears on your screen, do refer to the [FAQ](#faq).<br>
 
 5. The picture below shows the _main window_ of **Arrow**.
-* The command box is boxed in <span style="color:red">*red*</span>, where you enter commands. 
+* The command box is boxed in <span style="color:red">*red*</span>, where you enter commands.
 * The task panel list is boxed in <span style="color:blue">*blue*</span>, where you can see the current task list.
 * The address book is boxed in <span style="color:green">*green*</span>, where you can see the contact information of your team members.
 ![Ui](images/Ui.png)
@@ -239,8 +239,8 @@ Examples:
 Lists all the task(s) that have been assigned to the specified person.
 
 Format: `task list @PERSON_INDEX`
-* Shows the tasks of the specified `PERSON_INDEX`. 
-* The contact refers to the index number shown in the displayed person list. 
+* Shows the tasks of the specified `PERSON_INDEX`.
+* The contact refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -430,7 +430,7 @@ For Windows user, check this [tutorial](https://www.happycoders.eu/java/how-to-s
 **A**: Follow the steps listed to open the app.
 1. Ensure that you have done Step 1 to 3 in the Quick Start.
 2. Open Terminal app if you are on a Mac or the Command Prompt if you are on Windows.
-3. Type "java -jar " into Terminal or Command Prompt (do not do anything else). 
+3. Type "java -jar " into Terminal or Command Prompt (do not do anything else).
 4. Go to the folder where you just copied `arrow.jar` to.
 5. Drag `arrow.jar` and drop anywhere into Terminal or Command Prompt.
 6. Press Enter and the command will run, the GUI will pop up.
@@ -460,7 +460,6 @@ This summary provides a list of useful and straightforward instructions on how t
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
 | **List**        | `list`                                                                                                                                                                |
 | **Help**        | `help`                                                                                                                                                                |
-
 
 --------------------------------------------------------------------------------------------------------------------
 
