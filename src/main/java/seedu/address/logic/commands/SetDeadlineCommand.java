@@ -20,15 +20,17 @@ import seedu.address.model.team.Task;
 /**
  * Sets a deadline for a specified task.
  */
-@CommandLine.Command(name = "deadline", aliases = {"d"})
+@CommandLine.Command(name = SetDeadlineCommand.COMMAND_WORD, aliases = {SetDeadlineCommand.ALIAS})
 public class SetDeadlineCommand extends Command {
-    public static final String COMMAND_WORD = "set deadline";
+    public static final String COMMAND_WORD = "deadline";
+    public static final String ALIAS = "d";
+    public static final String FULL_COMMAND = SetCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Sets a deadline to the specified existing task.\n"
             + "Parameters: TASK_INDEX (must be a positive integer) \n"
             + "Parameters: DEADLINE (format: YYYY-MM-DD HH:mm) \n"
-            + "Example: " + COMMAND_WORD + " 1" + " 2023-02-25 23:59";
+            + "Example: " + FULL_COMMAND + " 1" + " 2023-02-25 23:59";
 
     public static final String MESSAGE_SET_DEADLINE_SUCCESS = "Set Deadline: %1$s %2$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "

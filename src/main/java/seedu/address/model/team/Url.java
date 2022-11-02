@@ -10,12 +10,12 @@ public class Url {
 
     public static final String MESSAGE_CONSTRAINTS = "The URL must start with either http or https and\n"
             + "then followed by :// and\n"
-            + "then it must contain www. and\n"
+            + "then it may optionally be followed by www. and\n"
             + "then followed by subdomain of length (2, 256) and\n"
             + "last part contains top level domain like .com, .org etc.";
 
     public static final String VALIDATION_REGEX = "((http|https)://)(www.)?"
-            + "[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]"
+            + "[a-zA-Z0-9@:%._\\+~#?&//=-]{2,256}\\.[a-z]"
             + "{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)";
 
     public final String value;

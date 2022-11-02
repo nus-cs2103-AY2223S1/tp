@@ -17,14 +17,16 @@ import seedu.address.model.team.Task;
 /**
  * Marks a specified task as incomplete.
  */
-@CommandLine.Command(name = "unmark", aliases = {"u"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = UnmarkCommand.COMMAND_WORD,
+        aliases = {UnmarkCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String ALIAS = "u";
+    public static final String FULL_COMMAND = COMMAND_WORD;
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Marks the specified existing task as incomplete.\n"
             + "Parameters: TASK_INDEX (must be a valid positive integer) \n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + FULL_COMMAND + " 1";
 
     public static final String MESSAGE_MARK_SUCCESS = "Marked as incomplete: [ ] %1$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "

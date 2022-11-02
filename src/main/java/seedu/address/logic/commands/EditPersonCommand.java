@@ -45,12 +45,14 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the TruthTable.
  */
-@CommandLine.Command(name = "person", aliases = {"p"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = EditPersonCommand.COMMAND_WORD,
+        aliases = {EditPersonCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class EditPersonCommand extends Command {
+    public static final String COMMAND_WORD = "person";
+    public static final String ALIAS = "p";
+    public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String COMMAND_WORD = "edit person";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+    public static final String MESSAGE_USAGE = FULL_COMMAND + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: PERSON_INDEX (must be a valid positive integer) "
@@ -59,7 +61,7 @@ public class EditPersonCommand extends Command {
             + "[" + FLAG_EMAIL_STR + " EMAIL] "
             + "[" + FLAG_ADDRESS_STR + " ADDRESS] "
             + "[" + FLAG_TAG_STR + " TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + FULL_COMMAND + " 1 "
             + FLAG_PHONE_STR + " 91234567 "
             + FLAG_EMAIL_STR + " johndoe@example.com";
 
@@ -155,7 +157,7 @@ public class EditPersonCommand extends Command {
         // state check
         EditPersonCommand e = (EditPersonCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && arguments.equals(e.arguments);
     }
 
     private static class Arguments {
@@ -175,6 +177,22 @@ public class EditPersonCommand extends Command {
         @CommandLine.Option(names = {FLAG_TAG_STR, FLAG_TAG_STR_LONG}, description = FLAG_PERSON_TAGS_DESCRIPTION,
                 parameterConsumer = TagsConverter.class, arity = "*")
         private Set<Tag> tags;
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            } else if (other instanceof Arguments) {
+                Arguments target = (Arguments) other;
+                return this.name == null ? false : this.name.equals(target.name)
+                        && this.phone == null ? false : this.phone.equals(target.phone)
+                        && this.email == null ? false : this.email.equals(target.email)
+                        && this.address == null ? false : this.address.equals(target.address)
+                        && this.tags == null ? false : this.tags.equals(target.tags);
+            } else {
+                return false;
+            }
+        }
     }
 
     /**

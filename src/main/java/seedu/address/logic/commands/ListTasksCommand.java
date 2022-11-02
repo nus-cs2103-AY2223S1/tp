@@ -22,16 +22,19 @@ import seedu.address.model.team.Task;
 /**
  * Lists all tasks of the current team.
  */
-@CommandLine.Command(name = "tasks", aliases = {"t"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = ListTasksCommand.COMMAND_WORD,
+        aliases = {ListTasksCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class ListTasksCommand extends Command {
-    public static final String COMMAND_WORD = "list tasks";
+    public static final String COMMAND_WORD = "tasks";
+    public static final String ALIAS = "ta";
+    public static final String FULL_COMMAND = ListCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Lists all the tasks of the current team.\n"
             + "To view only incomplete or completed tasks, add "
             + FLAG_INCOMPLETE_TASKS_STR + "(for incomplete tasks) or "
             + FLAG_COMPLETE_TASKS_STR + " (for completed tasks) \n"
-            + "Example: " + COMMAND_WORD;
+            + "Example: " + FULL_COMMAND;
 
     public static final String MESSAGE_LIST_COMPLETE_TASKS_SUCCESS = "Showing all %1$d completed task(s).\n"
             + "Type `list tasks` to show all tasks again.";
