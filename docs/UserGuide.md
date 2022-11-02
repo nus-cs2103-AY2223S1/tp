@@ -31,7 +31,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
