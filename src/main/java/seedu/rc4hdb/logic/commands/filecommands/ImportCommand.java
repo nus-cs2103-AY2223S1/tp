@@ -13,6 +13,7 @@ import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.StorageCommand;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
+import seedu.rc4hdb.model.resident.exceptions.DuplicateResidentException;
 import seedu.rc4hdb.storage.Storage;
 
 /**
@@ -62,6 +63,8 @@ public class ImportCommand extends FileCommand implements StorageCommand {
             throw new CommandException(String.format(MESSAGE_INVALID_FILE_DATA, csvFileName, e.getMessage()), e);
         } catch (IOException e) {
             throw new CommandException(String.format(MESSAGE_FAILED, "importing"), e);
+        } catch (DuplicateResidentException e) {
+            throw new CommandException(e.getMessage());
         }
     }
 
