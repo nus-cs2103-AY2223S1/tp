@@ -446,7 +446,7 @@ The `clear` command is final and cannot be undone. To prevent regrets, you might
 
 :bulb: **Tip:**<br>
 
-You might want to [rename](#5-14-renaming-the-commands) the `clear` command into something long so that you will not enter it accidentally and lose all your data.
+You might want to [rename](#514-renaming-the-commands) the `clear` command into something long so that you will not enter it accidentally and lose all your data.
 
 </div>
 
