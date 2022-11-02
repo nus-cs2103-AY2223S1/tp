@@ -64,7 +64,7 @@ public class MarkCommand extends Command {
         model.getTeam().setTask(originalTask, markedTask);
 
         return new CommandResult(String.format(MESSAGE_MARK_SUCCESS,
-                taskList.get(taskIndex.getZeroBased()).getName()));
+                markedTask.getName()));
     }
 
     @Override
