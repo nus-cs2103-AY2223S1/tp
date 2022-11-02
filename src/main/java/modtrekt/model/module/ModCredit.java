@@ -11,8 +11,8 @@ public class ModCredit {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Credit should contain only numeric characters and cannot be negative.";
-    public static final String VALIDATION_REGEX = "\\d{1,}";
+            "Credit should contain only numeric characters up till 2 digits and cannot be negative.";
+    public static final String VALIDATION_REGEX = "\\d{1,2}";
     public final String value;
 
     /**
