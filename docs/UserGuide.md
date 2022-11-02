@@ -61,6 +61,9 @@ Boxes such as this one with a light bulb :bulb: are used to provide some tips wh
 
 </div>
 
+#### Hyperlinks
+Throughout the user guide, there are hyperlinks which you can click on to get more information about something. To go back to where you were, you can use the `back` button on your browser.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Quick start
@@ -139,7 +142,7 @@ to be added
 
 ### 5.1 Adding a hobby activity : `add`
 
-This command allows you to add an activity to HobbyList
+You can add an activity to HobbyList using this command.
 
 > Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE] [s/STATUS]`
 
@@ -179,7 +182,7 @@ Every entry in HobbyList is an activity. Each activity contains the fields below
 
 ### 5.2 Editing an activity : `edit`
 
-This command allows you to edit an activity already in HobbyList.
+You can edit an activity already in HobbyList using this command.
 
 > Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE] [s/STATUS]`
 
@@ -212,7 +215,7 @@ Examples:
 
 ### 5.3 Deleting an activity : `delete`
 
-This command allows you to delete an activity from HobbyList.
+You can delete an activity from HobbyList using this command.
 
 > Format: `delete INDEX`
 
@@ -226,7 +229,10 @@ This command allows you to delete an activity from HobbyList.
 
 </div>
 
-Example: `delete 1`
+Example: 
+
+* `delete 1`
+  *Deletes the first activity currently displayed in HobbyList.*
 
 <div markdown="span" class="alert alert-warning">
 
@@ -238,39 +244,62 @@ The `delete` command is final and cannot be undone. To prevent regrets, you migh
 
 ### 5.4 Listing all hobby activities : `list`
 
-This command allows you to view all the activi
+You can view all the activities you have in HobbyList using this command.
 
-Format: `list`
+> Format: `list`
 
-Example: `list`
+Example:
+
+* `list`
+
+  *Shows all the activities in HobbyList.*
 
 
 ### 5.5 Rating an activity: `rate`
 
-Adds rating and/or writes review for an activity in the HobbyList.
+You can add a rating and optionally write a review for an activity in the HobbyList using this command.
 
-Format: `rate INDEX r/RATING [re/REVIEW]`
+> Format: `rate INDEX r/RATING [re/REVIEW]`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Additional information for rate:**<br>
 
 * The `INDEX` refers to the index number shown in the displayed activity list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `RATING` only accepts integer numbers from 1 to 5 (inclusive).
 * `REVIEW` accepts both alphanumeric and special symbols.
 
-Example:
+</div>
+
+Examples:
 * `rate 1 r/2`
+
+  *Rates the first activity to be 2 out of 5 stars.*
+
 * `rate 2 r/4 re/Interesting movie`
+
+  *Rates the second activity to be 4 out of 5 stars and gives it a review of `Interesting movie`.*
 
 
 ### 5.6 Selecting an activity: `select`
 
-Displays all details of the selected activity from HobbyList on the panel to the right of the list panel.
+You can display all details of the selected activity from HobbyList on the selected activity panel. This allows you to read the descriptions or reviews that are too long to display in the list.
 
-Format: `select INDEX`
+> Format: `select INDEX`
 
-* Displays all the details of the selected activity.
-* Constraints for `INDEX` is similar to those above in **Rating an activity**
+<div markdown="block" class="alert alert-info">
 
-Example: `select 1`
+:information_source: **Additional information for rate:**<br>
+
+* The `INDEX` refers to the index number shown in the displayed activity list.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+
+</div>
+
+Example: 
+* `select 1`
+  *Displays the first activity in the selected activity panel.*
 
 ### 5.7 Finding activities: `find`
 
