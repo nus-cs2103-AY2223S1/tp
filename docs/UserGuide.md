@@ -136,15 +136,24 @@ Example:
 
 ### Sorting contacts : `sort`
 
-Sort the list of contacts displayed by certain parameter(s).
+Sort the list of contacts displayed by 1 or more parameter(s) chosen by you.
 
-Default sorting orders:
-* Alphabetical order for *names* (n/), *emails* (e/), *addresses* (a/).
-* Increasing order for *phone numbers* (p/).
-* Contacts that have a specified *tag* (t/TAG) appear before those without the *tag* (t/TAG).
+How *names (n/)*, *emails (e/)*, *addresses (a/ )* are sorted:
+* In alphabetical order. (e.g. `Al` comes before `Alfred` which comes before `Brad`)
+* Case differences are ignored. (e.g. `Al`, `al`, `AL`, and `aL` are identical when it comes to sorting)
+
+How *phone numbers (p/)* are sorted: 
+* In increasing numerical order. (e.g. `123` comes before `125` which comes before `1234`)
+
+How *tags (t/TAG)* are sorted:
+* Contacts with the *TAG* you specified will come before contacts without the *TAG*.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** When sorting by tags, unlike other parameters, you have to specify a value (an existing `TAG`) to sort by.
+</div>
 
 Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
-* To sort in reverse order, use these modified parameters: `[n/!] [p/!] [e/!] [a/!] [t/!TAG]`.
+* To sort in reverse order from the orders given above, use these modified parameters: `[n/!] [p/!] [e/!] [a/!] [t/!TAG]`.
 * To sort with multiple parameters, arrange the parameters in order of decreasing priority.
   * The list will be sorted by the first parameter.
   * If ties occur (e.g. both contacts have the exact same name), the second parameter will be used to sort the tied contacts.
@@ -152,9 +161,9 @@ Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
   * Repeat until the tie is resolved or there are no more parameters.
 
 Example:
-* `sort n/` sorts by names. (E.g. `David` appears before `Mike`)
-* `sort t/!friend` sorts by the `friend` tag in reverse. (E.g. `Mike` appears before `David` who has the `friend` tag)
-* `sort t/friend n/` sorts by the `friend` tag first, followed by names. (E.g. `David` and `Fred` who have the `friend` tag appear before `Mike`, `David` appears before `Fred`)
+* `sort n/` sorts by names. (e.g. `David` appears before `Mike`)
+* `sort t/!friend` sorts by the `friend` tag in reverse. (e.g. `Mike` appears before `David` who has the `friend` tag)
+* `sort t/friend n/` sorts by the `friend` tag first, followed by names. (e.g. `David` and `Fred` who have the `friend` tag appear before `Mike`, `David` appears before `Fred`)
 
 ### Deleting a contact : `delete`
 
