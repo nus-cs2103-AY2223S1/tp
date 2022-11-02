@@ -39,6 +39,8 @@ This guide will help you to get started quickly, learn our commands and
 
 4. Double-click the file to start the app. As seen below, some sample data has been pre-loaded for you to experiment with.
 
+   ![Ui](images/user-guide/Ui.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Understanding the GUI
@@ -58,7 +60,7 @@ From top to bottom:
 
 2. Filter status display:
     * This displays any filters applied on the list using commands such as `ls` or `find`, for more information
-      please refer to [**Feature**](#Features) section below.
+      please refer to [**Feature**](#features) section below.
 
 3. Main task list:
     * This displays all your *current* tasks.
@@ -83,8 +85,6 @@ Feel free to play around with the UI by typing some of the following commands in
 - `find tutorial` :
   Finds anything with the keyword 'tutorial' (not case-sensitive or strictly matched words)
 
-More details on the commands will be touched on in the [Features](#Features) section below! 
-
 ### Autocomplete
 
 When the user starts to type in the start of a command in the _Command Box_, a pop-up menu will appear with options to complete your input.
@@ -95,7 +95,7 @@ Here is an example of autocomplete in action:
 
 ![Autocomplete](images/user-guide/Autocomplete.png)
 
-However, it is recommended to read through the features section to understand the syntax for commands that require additional input.
+However, it is recommended to read through the [Features](#features) section to understand the syntax for commands that require additional input.
 
 ### Command history : `Up`/`Down` keys
 Loads previous command into the _Command Box_.
@@ -158,12 +158,12 @@ Shortcut key: <kbd>F1</kbd>
 
 Adds a task to the task list.
 
-Format: `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME]*`
+Format: `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME*]`
 
 **Reminder**: Params in `[]` are **optional**, and `-t TAG_NAME` can be used multiple times.
 
 <div markdown="block" class="alert alert-info">
-**:information_source:Notes about usage of the add command:**
+**:information_source: Notes about usage of the add command:**
 * **Duplicate detection** - If you try to add in a task with the same name and module as an existing task,
   we will inform you that such a task already exists within the task list and reject your command
 * **Optional deadlines** - Tasks with no deadlines are treated as being due "far in the future", meaning they
@@ -265,7 +265,8 @@ listing all tasks, unmarked tasks, all tasks under a module name, etc. You may a
 command to filter a list down to the results you are looking for. To reset the list, use the command `ls -a`.
 
 <div markdown="span" class="alert alert-warning">
-**:exclamation: Caution:**
+**:exclamation: Caution:** <br>
+
 * Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match.
 * It is also case-insensitive.
 * Any command that searches for tags finds all tags that exactly match, but is also case-insensitive.
