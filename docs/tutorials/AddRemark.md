@@ -295,7 +295,7 @@ While the changes to code may be minimal, the test data will have to be updated 
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
+:exclamation: You must delete FAP’s storage file located at `/data/FAP.json` before running it! Not doing so will cause FAP to default to an empty address book!
 
 </div>
 

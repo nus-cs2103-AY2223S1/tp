@@ -9,7 +9,7 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Introduction
-Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) to manage their clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAP can get your client management tasks done faster than traditional GUI apps.
+Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) to manage their clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAP can get your client management tasks done faster than traditional GUI apps. With FAP, you can now 
 
 ## 2. About
 
@@ -34,23 +34,13 @@ Symbol/Syntax        | Meaning
 :exclamation:        | indicates that the enclosed text is a warning and usually gives details about potential errors.
 :information_source: | indicates that the enclosed text are extra notes and information regarding the topic.
 
-#### 2.2.2 Graphical User Interface overview
-
-The following figures show the overall GUI of **Financial Advisor Planner**
-
-![ContactsTabGraphic](images/ContactsTabGraphic.png)
-<br>
-<br>
-<br>
-![CalendarTabGraphic](images/CalendarTabGraphic.png)
-
 ## 3. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `financialadvisorplanner.jar` from [here](https://github.com/AY2223S1-CS2103T-W09-2/tp/releases).
+2. Download the latest `FAP.jar` from [here](https://github.com/AY2223S1-CS2103T-W09-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your FinancialAdvisorPlanner.
+3. Copy the file to the folder you want to use as the _home folder_ for your FAP.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -60,7 +50,7 @@ The following figures show the overall GUI of **Financial Advisor Planner**
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/60000 r/Low m/1000 c/POTENTIAL` : Adds a contact named `John Doe` to the list of clients.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/60000 r/LOW m/1000 c/POTENTIAL` : Adds a contact named `John Doe` to the list of clients.
 
    * **`aa`** `1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks` : Adds an appointment to the client in index 1 of the contact book with the date, time and location of the appointment.
 
@@ -70,11 +60,21 @@ The following figures show the overall GUI of **Financial Advisor Planner**
 
    * **`sort KEYWORD`** : Sorts the contacts based on the `KEYWORD`.
 
-   * **`find`** `John`: looks for contact that matches keyword ‘John’
+   * **`find`** `n/John`: looks for contact that matches keyword ‘John’
 
    * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#5-features) below for details of each command.
+
+#### 3.1 Graphical User Interface overview
+
+The following figures show the overall GUI of **FAP**
+
+![ContactsTabGraphic](images/ContactsTabGraphic.png)
+<br>
+<br>
+<br>
+![CalendarTabGraphic](images/CalendarTabGraphic.png)
 
 <br>
 <div markdown="span" class="alert alert-primary">
@@ -84,6 +84,9 @@ The following figures show the overall GUI of **Financial Advisor Planner**
 --------------------------------------------------------------------------------------------------------------------
 ## 4. Prefixes
 
+Prefixes are an indicator for a specific type of parameter to be input during any command. The following section shows the type of prefixes that are used in the app.
+
+Format: `Prefix/Parameter`
 1. n/NAME
 2. p/PHONE
 3. e/EMAIL
@@ -94,12 +97,17 @@ The following figures show the overall GUI of **Financial Advisor Planner**
 8. r/RISK_APPETITE
 9. ip/INVESTMENT_PLAN
 10. t/TAG
+11. l/Location 
+12. d/DATE_AND_TIME
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Prefix l/Location is a lower case L, and not an I. </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Features
 
-This section contains all the information pertaining to the features of **Financial Advisor Planner**
+This section contains all the information pertaining to the features of **FAP**
 
 <div markdown="block" class="alert alert-info">
 
@@ -130,10 +138,12 @@ This section contains all the information pertaining to the features of **Financ
 
 **:warning: Warning regarding the use of the application:**<br>
 
-Other crucial files will be created and stored in the same folder that contains **FinancialAdvisorPlanner.jar**. These files are responsible for storing your data, hence it is advised to not delete or modify these files.
+Other crucial files will be created and stored in the same folder that contains **FAP.jar**. These files are responsible for storing your data, hence it is advised to not delete or modify these files.
 </div>
 
 ### 5.1 General command features
+
+For more information on the command features, take a look at [Section 6, FAQ](#6-faq).
 
 #### 5.1.1 Viewing help : `help`
 
@@ -146,21 +156,24 @@ Format: `help`
 
 #### 5.1.2 Adding a client: `add`
 
-Adds a client to the list of clients.
+Adds a client to the list of clients. 
 
-Do note that t/TAG is an optional field, the rest are compulsory.
+This command is case-sensitive for the parameter NAME.
 
-Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS i/YEARLY_INCOME m/MONTHLY_CONTRIBUTIONS r/RISK_APPETITE c/CLIENT_TYPE ip/INVESTMENT PLAN [t/TAG]…​`
+Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS i/YEARLY_INCOME m/MONTHLY_CONTRIBUTIONS r/RISK_APPETITE ip/INVESTMENT_PLAN c/CLIENT_TYPE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** 
 <br>
 RISK_APPETITE can only have the values ‘HIGH’, ‘MEDIUM’ or ‘LOW’
 <br>
 <br>
+INVESTMENT_PLAN must end with the word Plan
+<br>
+<br>
 CLIENT_TYPE can only have the values ‘POTENTIAL’ or ‘CURRENT’
 <br>
 <br>
-A client can have any number of tags (including 0)
+Do note that t/TAG is an OPTIONAL TAG, the rest are compulsory. That is to say that a client can have any number of tags, including 0.
 </div>
 
 Examples:
@@ -176,7 +189,7 @@ Format: `list`
 
 Edits an existing client in the list of clients.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [m/MONTHLY_CONTRIBUTIONS] [r/RISK_APPETITE] [c/CLIENT_TYPE] [ip/INVESTMENT PLAN] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [m/MONTHLY_CONTRIBUTIONS] [r/RISK_APPETITE] [ip/INVESTMENT PLAN] [c/CLIENT_TYPE] [t/TAG]…​`
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3,…​
 * At least one of the fields must be provided.
@@ -193,7 +206,9 @@ Examples:
 
 Finds clients whose names contain any of the given keywords.
 
-Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]`
+Format: `find [PREFIX] KEYWORD [MORE_KEYWORDS]`
+
+Refer to [Prefixes](#4-prefixes) for the types of prefixes.
 
 * The search is case-insensitive. e.g hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
@@ -201,9 +216,9 @@ Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]`
 * Clients matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
 * The search also applies to other information available such as mobile number or policy numbers.
   E.g John Doe has the mobile number 87438807
-    * find 87438807 will return John Doe
+    * find p/87438807 will return John Doe
 * The search can be limited to certain categories by using find [CATEGORY] KEYWORD instead.
-  * E.g find [Mobile] 87438807 will return John Doe
+  * E.g find p/87438807 will return John Doe
 
 Examples:
 
@@ -225,11 +240,11 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the list of clients.
-* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+* `find n/Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 #### 5.1.7 Sorting: `sort KEYWORD`/  `sort KEYWORD desc`
 
-Sorts the contacts shown in the list of clients by alphabetical order. It is ascending by default.
+Sorts the contacts shown in the list of clients by the KEYWORD. It is ascending by default.
 You can sort the contacts in descending order by adding `desc` behind the `KEYWORD`.
 
 Format: sort `KEYWORD` / sort `KEYWORD desc`
@@ -269,11 +284,15 @@ Also, the appointment details will be added to the calendar.
 ![Add Appointment Contacts Change](images/AddAppointmentCalendarChange.png)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-DATE_AND_TIME has the format `d-MMM-yyyy hh:mm a` </div>
+<br>
+* DATE_AND_TIME has the format `d-MMM-yyyy hh:mm a` 
+* The PM/AM in TIME is case-sensitive, and whitespace sensitive as well.
+</div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Input DATE_AND_TIME must be valid in order for the command to be executed.
 <br>
-<br>Each client can have a maximum of 3 appointments, and there cannot be appointments with the same DATE_AND_TIME in the overall list of appointments.
+* Each client can have a maximum of 3 appointments, and there cannot be appointments with the same DATE_AND_TIME in the overall list of appointments.
+* We allow the adding of appointments that are in the past, this is similar to any calendar apps where you can add events to dates that are in the past.
 </div>
 
 Examples:
@@ -377,14 +396,14 @@ Use the up and down keys to navigate through previously typed commands. Users ca
 
 #### 5.5.1 Saving the data
 
-FinancialAdvisorPlanner data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FAP data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 #### 5.5.2 Editing the data file
 
-FinancialAdvisorPlanner data are saved as a JSON file `[JAR file location]/data/FinancialAdvisorPlanner.json`. Advanced users are welcome to update data directly by editing that data file.
+FAP data are saved as a JSON file `[JAR file location]/data/FAP.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, FinancialAdvisorPlanner will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, FAP will discard all data and start with an empty data file at the next run.
 </div>
 
 ### 5.6 Future features
@@ -398,7 +417,11 @@ _Details coming soon ..._
 ## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FinancialAdvisorPlanner home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FAP home folder.<br>
+**Q**: Why do you allow duplicate email and phone number in your add command, given that there won't be two people with the same email or number?<br>
+**A**: Currently we only have duplicate checks for name. We will implement duplicate checks for email and phone number in the future.<br>
+**Q**: Why can't I add appointments even though I typed the date_time correctly?<br>
+**A**: Check that you have typed the date_time in the correct case with the correct spacing. We apologise for the strict requirement and we promise we are working on relaxing the requirements!<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
