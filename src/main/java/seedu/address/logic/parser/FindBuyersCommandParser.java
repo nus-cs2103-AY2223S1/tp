@@ -2,11 +2,16 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FindBuyersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.NameContainsKeywordsPredicate;
+import seedu.address.model.buyer.NameContainsSubstringPredicate;
 
 /**
  * Parses input arguments and creates a new FindBuyersCommand object
@@ -25,8 +30,18 @@ public class FindBuyersCommandParser extends Parser<FindBuyersCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindBuyersCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        List<Predicate<Buyer>> predicatesList = new ArrayList<>();
 
-        return new FindBuyersCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        String[] nameKeywords = trimmedArgs.split("\\s+");
+        Predicate<Buyer> wordPredicate = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+
+        Predicate<Buyer> substringPredicate = new NameContainsSubstringPredicate(trimmedArgs);
+
+        predicatesList.add(wordPredicate);
+        predicatesList.add(substringPredicate);
+
+        Predicate<Buyer> combinedPredicate = predicatesList.stream().reduce(Predicate::or).get();
+
+        return new FindBuyersCommand(combinedPredicate);
     }
 }
