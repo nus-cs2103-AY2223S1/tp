@@ -8,6 +8,7 @@ import seedu.trackascholar.model.applicant.ApplicationStatus;
 import seedu.trackascholar.model.applicant.Email;
 import seedu.trackascholar.model.applicant.Name;
 import seedu.trackascholar.model.applicant.Phone;
+import seedu.trackascholar.model.applicant.Pin;
 import seedu.trackascholar.model.applicant.Scholarship;
 import seedu.trackascholar.model.major.Major;
 import seedu.trackascholar.model.util.SampleDataUtil;
@@ -106,6 +107,11 @@ public class ApplicantBuilder {
 
     public Applicant build() {
         return new Applicant(name, phone, email, scholarship, applicationStatus, majors);
+    }
+
+    public Applicant build_pinned() {
+        Pin pin = new Pin(true);
+        return new Applicant(name, phone, email, scholarship, applicationStatus, majors, pin);
     }
 
 }
