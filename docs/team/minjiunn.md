@@ -40,7 +40,7 @@ Given below are my contributions to the project:
   
 
 * [ViewStatsCommand](https://ay2223s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#428-viewstats-command)
-  * Added implementation details for `ViewStatsCommand
+  * Added implementation details for `ViewStatsCommand`
   * Added a UML Diagram.` 
   * See PR [#177](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/177)
   
