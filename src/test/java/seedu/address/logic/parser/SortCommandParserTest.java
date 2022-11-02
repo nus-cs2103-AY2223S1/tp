@@ -11,7 +11,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.SortCommand.Order;
 import seedu.address.logic.commands.SortCommand.Type;
@@ -37,8 +36,9 @@ public class SortCommandParserTest {
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, " UNKNOWN UNKNOWN# UNKNOWN#",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE),
-                () -> parser.parse(SortCommand.COMMAND_WORD + " UNKNOWN UNKNOWN# UNKNOWN#"));
+        assertThrows(ParseException.class, String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), () -> parser.parse(
+                        SortCommand.COMMAND_WORD + " UNKNOWN UNKNOWN# UNKNOWN#"));
         assertParseFailure(parser, " UNKNOWN ASC",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_UNKNOWN_TYPE_KEYWORD));
         assertParseFailure(parser, " NAME UNKNOWN",

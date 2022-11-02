@@ -325,14 +325,12 @@ public class ParserUtilTest {
 
     @Test
     public void parseDate_invalidString_throwsParseException() {
-        assertThrows(ParseException.class, Class.INVALID_DATE_ERROR_MESSAGE,
-                () -> ParserUtil.parseDate("2022-02-31"));
+        assertThrows(ParseException.class, Class.INVALID_DATE_ERROR_MESSAGE, () -> ParserUtil.parseDate("2022-02-31"));
     }
 
     @Test
     public void parseTime_invalidString_throwsParseException() {
-        assertThrows(ParseException.class, Class.INVALID_TIME_ERROR_MESSAGE,
-                () -> ParserUtil.parseTime("0980"));
+        assertThrows(ParseException.class, Class.INVALID_TIME_ERROR_MESSAGE, () -> ParserUtil.parseTime("0980"));
     }
 
     @Test
