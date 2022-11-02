@@ -172,7 +172,6 @@ public class PersonInfo extends UiPart<Region> {
                 .format(DateTimeFormatter.ofPattern("dd-MMM-yy"));
             Number value = Integer.parseInt(person.getRatingHistory().get(i).value);
             var data = new XYChart.Data<String, Number>(timestamp, value);
-            System.out.println(data.YValueProperty());
             data.setNode(createDataNode(data.YValueProperty()));
             series.getData().add(data);
         }
