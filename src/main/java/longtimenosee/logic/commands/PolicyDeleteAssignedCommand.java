@@ -63,7 +63,8 @@ public class PolicyDeleteAssignedCommand extends Command {
         AssignedPolicy assignedPolicy = assignedPolicyArray[targetPolicyIndex.getZeroBased()];
         boolean success = personToDeleteFrom.removePolicy(assignedPolicy);
         return new CommandResult(String.format(success
-                ? MESSAGE_ASSIGN_POLICY_SUCCESS : MESSAGE_ASSIGN_POLICY_FAIL, assignedPolicy, personToDeleteFrom),
+                ? MESSAGE_ASSIGN_POLICY_SUCCESS : MESSAGE_ASSIGN_POLICY_FAIL, assignedPolicy.getPolicy().getTitle(),
+                personToDeleteFrom.getName()),
                 false, false, false, true, false, false);
     }
 

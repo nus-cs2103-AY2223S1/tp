@@ -21,7 +21,8 @@ public class PolicyAssignedListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all assigned policies for %1$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of assigned policies for a given person "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Shows a list of assigned policies for a given person.\n"
             + "Parameters: CLIENT_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
