@@ -22,7 +22,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + " NAME "
             + PREFIX_MODULE + " MODULE "
             + PREFIX_DEADLINE + " YYYY-MM-DD "
-            + "[" + PREFIX_TAG + " TAG]...\n"
+            + "[" + PREFIX_TAG + " TAG]*\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " Project "
             + PREFIX_MODULE + " CS2103T "
