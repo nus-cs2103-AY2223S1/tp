@@ -55,7 +55,7 @@ Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 RecordList --> "~* all" Record
-Record *--> Medication
+Record *--> "*" Medication
 
 ModelManager -->"~* filtered" Person
 ModelManager -->"~* filtered" Record
