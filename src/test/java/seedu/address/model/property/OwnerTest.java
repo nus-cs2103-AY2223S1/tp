@@ -56,7 +56,7 @@ public class OwnerTest {
 
         assertEquals(owner1, owner1); // same object
         assertEquals(owner1, owner2); // different object, same parameters
-        assertNotEquals(owner1, owner3); // different name, same phone
+        assertEquals(owner1, owner3); // different name, same phone
         assertNotEquals(owner1, owner4); // same name, different phone
         assertNotEquals(owner1, null); // cannot compare to null owner
 
