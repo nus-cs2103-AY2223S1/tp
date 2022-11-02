@@ -7,10 +7,11 @@ import hobbylist.logic.parser.exceptions.ParseException;
  * Parse the input arg.
  */
 public class RateAboveCommandParser implements Parser<RateAboveCommand> {
-    public static final String INPUT_EMPTY = "Input value cannot be empty!";
-    public static final String INPUT_FORMAT_WRONG = "Input format should be r/above value!\n"
-                    + "The input value should be an integer between 1-5 (both inclusive).";
-    public static final String INPUT_OUT_OF_BOUND = "Input value out of bound!\n"
+    public static final String INPUT_EMPTY = "Input value cannot be empty!\n"
+            + RateAboveCommand.MESSAGE_USAGE;
+    public static final String INPUT_FORMAT_WRONG = "Invalid value. "
+            + "The input value should be an integer between 1-5 (both inclusive).";
+    public static final String INPUT_OUT_OF_BOUND = "Input value out of bound! "
             + "The input value should be an integer between 1-5 (both inclusive).";
 
     /**

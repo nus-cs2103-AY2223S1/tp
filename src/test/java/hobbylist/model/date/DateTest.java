@@ -77,7 +77,7 @@ public class DateTest {
     }
 
     @Test
-    public void isValidDateString_date0000_returnsFalse() {
+    public void isValidDateString_year0000_returnsFalse() {
         assertFalse(Date.isValidDateString("0000-10-12"));
     }
 

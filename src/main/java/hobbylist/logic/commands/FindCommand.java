@@ -21,18 +21,19 @@ public class FindCommand extends Command {
     public static final String DATE_KEYWORD_PREFIX = "date/";
     public static final String RATING_KEYWORD_PREFIX = "rate/";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all activities whose names or descriptions "
-            + "contain any of the given keywords (case-insensitive)"
-            + "or whose dates match the given date/month/year"
-            + "or whose ratings match the given rating.\n"
-            + "Parameters: [key/KEYWORDS]... [date/TIME] [rate/VALUE] (At least search field must exist).\n"
-            + "Example: " + COMMAND_WORD + " sleep code date/2022-10 rate/4";
     public static final String MESSAGE_INVALID_DATE_VALUE = "Invalid time to search! \n"
             + "Time value should be a year, a month, or a date.";
     public static final String MESSAGE_INVALID_RATING_VALUE = "Invalid rating value to search! \n"
             + "Rating value should be an integer value between 1 and 5 (inclusive).";
 
     private static String commandWord = "find";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all activities whose names or descriptions "
+            + "contain any of the given keywords (case-insensitive)"
+            + "or whose dates match the given date/month/year"
+            + "or whose ratings match the given rating.\n"
+            + "Parameters: [key/KEYWORDS]... [date/TIME] [rate/VALUE] (At least search field must exist).\n"
+            + "Example: " + commandWord + " sleep code date/2022-10 rate/4";
 
     private final Predicate<Activity> namePredicate;
     private final Predicate<Activity> datePredicate;

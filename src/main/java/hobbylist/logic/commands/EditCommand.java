@@ -26,6 +26,7 @@ import hobbylist.model.tag.Tag;
  */
 public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_ACTIVITY_SUCCESS = "Edited Activity: %1$s";
+    public static final String MESSAGE_EDIT_ACTIVITY_NO_CHANGE = "No change to Activity: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ACTIVITY = "This activity already exists in the HobbyList.";
 
@@ -89,9 +90,14 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ACTIVITY);
         }
 
-        model.setActivity(activityToEdit, editedActivity);
-        model.updateFilteredActivityList(Model.PREDICATE_SHOW_ALL_ACTIVITIES);
-        return new CommandResult(String.format(MESSAGE_EDIT_ACTIVITY_SUCCESS, editedActivity));
+        if (!activityToEdit.equals(editedActivity)) {
+            model.setActivity(activityToEdit, editedActivity);
+            model.updateFilteredActivityList(Model.PREDICATE_SHOW_ALL_ACTIVITIES);
+            return new CommandResult(String.format(MESSAGE_EDIT_ACTIVITY_SUCCESS, editedActivity));
+        } else {
+            model.updateFilteredActivityList(Model.PREDICATE_SHOW_ALL_ACTIVITIES);
+            return new CommandResult(String.format(MESSAGE_EDIT_ACTIVITY_NO_CHANGE, editedActivity));
+        }
     }
 
     /**

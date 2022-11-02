@@ -3,6 +3,7 @@ package hobbylist.logic.commands;
 import static hobbylist.commons.core.Messages.MESSAGE_ACTIVITIES_LISTED_OVERVIEW;
 import static hobbylist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.Arrays;
@@ -55,7 +56,7 @@ public class FindCommandTest {
         assertEquals(findFirstCommand, findFirstCommandCopy);
 
         // different types -> returns false
-        assertNotEquals(1, findFirstCommand);
+        assertFalse(findFirstCommand.equals(1));
 
         // null -> returns false
         assertNotEquals(null, findFirstCommand);
