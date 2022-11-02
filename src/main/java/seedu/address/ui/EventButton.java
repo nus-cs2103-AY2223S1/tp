@@ -58,7 +58,6 @@ public class EventButton extends CalendarButton {
 
     @FXML @Override
     protected void handleFocusedEvent(Observable observable) {
-        System.out.println(calendarEvent.getDate());
         if (!calendarPopup.getRoot().isShowing() && eventButton.isFocused()) {
             eventButton.setStyle(EVENT_BUTTON_STYLE + ORANGE_BORDER);
             displayPopup();
