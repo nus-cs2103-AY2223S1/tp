@@ -56,7 +56,7 @@ Friendnancial is a **desktop application, optimized for use by financial advisor
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -129,23 +129,27 @@ Examples:
 
 Finds persons by the given keywords.
 
-Format: `find [n/KEYWORD] [t/TAG] [b/BIRTHDAY]`
+Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [b/BIRTHDAY]`
 
-* Entering `find` with no keywords after will simply return the list of all contacts.
-* Users can filter persons by any field by using `[letter]/[KEYWORD]`. e.g.
-`find n/john` returns persons whose name fields contain the keyword, while `find t/TAG`
-returns persons whose tag fields contain the specified tag.
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Entering `find` without any prefixes will display all contacts.
+* Users can only find contacts by one field at each time. <br>e.g. `find n/Alex a/Geylang` will result in an error. 
+* The keywords are case-insensitive. <br>e.g. `hans` will match `Hans`
+* The order of the keywords does not matter. <br>e.g. `Hans Bo` will match `Bo Hans`
+* Only full words will be matched <br>e.g. `Han` will not match `Hans`
+<br>e.g. `alex` will not match `alexyeoh@example.com`
+* Any contact matching at least one keyword will be returned.
+  e.g. `find n/Hans Bo` will display contacts named `Hans Gruber` and `Bo Yang`
+
+<div markdown="span" class="alert alert-warning">:warning: **Note:**
+When finding a contact based off address, all non-alphanumeric characters (excluding # and -) will be ignored
+</div>
 
 Examples:
-* `find n/John` returns `john` and `John Doe`
-* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResultUpdated.png)
+* `find n/John` displays contacts named `john` and `John Doe`
+* `find n/alex david` returns `Alex Yeoh`, `David Li`
+* `find a/gardens` will display a contact with the address `Serangoon Gardens, #06-40`
+* `find a/#06-40` will display a contact with the address `Serangoon Gardens, #06-40`
+* `find a/06` or `find a/06-40` will not display a contact with the address `Serangoon Gardens, #06-40`
 
 ### Deleting a person : `delete`
 
@@ -174,19 +178,18 @@ Format: `clear`
 
 ### Adding a reminder : `remind`
 
-Adds a reminder which is tied to a specified contact.
+Adds a reminder for a specified contact.
 
 Format: `remind INDEX r/REMINDER d/DATE`
 
-* Adds a reminder to the person at the specified `INDEX` with the `REMINDER` and `DATE`.
+* Adds a reminder for the contact at the specified `INDEX` with the `REMINDER` and `DATE`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, ...
 * The date **must be in the format of** `DD-MM-YYYY`.
 
 
 Examples:
-* `remind 2 r/update client information d/20-10-2022` adds a reminder to the 2nd person in the address book.
-* `find Betsy` followed by `remind 1 r/buy gift d/25-10-2022` adds a reminder linked to the 1st person in the result of the `find` command, which would be `Betsy`.
+* `remind 2 r/update client information d/20-10-2022` adds a reminder to the 2nd contact in the currently displayed list.
 
 ### Deleting a reminder : `deleteR`
 
