@@ -1,9 +1,7 @@
 package seedu.rc4hdb.ui;
 
-import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,25 +43,22 @@ public class MainWindow extends UiPart<Stage> {
     private CurrentWorkingFileFooter fileFooter;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
-
-    @FXML
-    private MenuItem helpMenuItem;
-
-    @FXML
-    private MenuItem commandBoxRedirect;
-
-    @FXML
     private TabPane tabViewPane;
-
     @FXML
     private Tab residentTab;
-
     @FXML
     private Tab venueTab;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane commandBoxPlaceholder;
+    @FXML
+    private MenuItem commandBoxRedirect;
 
     @FXML
     private StackPane fileFooterPlaceholder;
