@@ -10,12 +10,7 @@ title: Chao Yung's Project Portfolio Page
 Given below are my contributions to the project.
 
 ## Contributions
-
-### Summary of Contributions
-
 ---
-
-#### Code Contributed
 
 #### Enhancements Implemented
 * **New Features**
@@ -31,7 +26,6 @@ Given below are my contributions to the project.
     * Use Case: User can delete leave periods for employees.
     * Justification: With this command, users of Coydir will be able to make changes easily when employees change their leave periods.
     * Highlights: Smoother to implement, though just like `add-leave`, there were many dependencies and many files to be edited.
-
 
 * **Existing Features**
   * Made improvements to the `Leave` class by storing `Leave` objects in a priority queue, and add methods to check for overlapping or equal leaves.
