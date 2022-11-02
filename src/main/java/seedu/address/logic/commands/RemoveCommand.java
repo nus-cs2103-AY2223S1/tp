@@ -40,7 +40,7 @@ public class RemoveCommand extends Command {
     public static final String COMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes the details of the person identified "
-            + "by the index number used in the displayed person list. "
+            + "by the index number used in the displayed person list. \n"
             + "Parameters: "
             + "[" + PREFIX_HOMEWORK + "INDEX HOMEWORK]"
             + "[" + PREFIX_ATTENDANCE + "INDEX ATTENDANCE]"
@@ -97,10 +97,10 @@ public class RemoveCommand extends Command {
         AttendanceList updatedAttendanceList = getUpdatedAttendanceList(personToEdit, removePersonDescriptor);
         GradeProgressList updatedGradeProgressList = getUpdatedGradeProgressList(personToEdit, removePersonDescriptor);
         SessionList updatedSessionList = getUpdatedSessionList(personToEdit, removePersonDescriptor);
-        Set<Tag> updatedTags = removePersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Tag> tags = personToEdit.getTags();
 
         return new Person(name, phone, lessonPlan, updatedHomeworkList,
-                updatedAttendanceList, updatedSessionList, updatedGradeProgressList, updatedTags);
+                updatedAttendanceList, updatedSessionList, updatedGradeProgressList, tags);
     }
 
     public static HomeworkList getUpdatedHomeworkList(Person personToEdit,
@@ -338,9 +338,13 @@ public class RemoveCommand extends Command {
             RemovePersonDescriptor r = (RemovePersonDescriptor) other;
 
             return getHomework().equals(r.getHomework())
+                    && getHomeworkIndex().equals(r.getHomeworkIndex())
                     && getAttendance().equals(r.getAttendance())
+                    && getAttendanceIndex().equals(r.getAttendanceIndex())
                     && getSession().equals(r.getSession())
-                    && getGradeProgress().equals(r.getGradeProgress());
+                    && getSessionIndex().equals(r.getSessionIndex())
+                    && getGradeProgress().equals(r.getGradeProgress())
+                    && getGradeProgressIndex().equals(r.getGradeProgressIndex());
         }
     }
 }
