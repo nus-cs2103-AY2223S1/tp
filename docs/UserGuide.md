@@ -143,6 +143,14 @@ However, only alphanumeric characters are allowed! (i.e. no spaces, special char
 
 </div>
 
+<div markdown="block" class="alert alert-primary">
+
+:bulb: Adding past deadlines
+
+CodeConnect will happily accept deadlines that are in the past, in case you want to use it to track start dates or track an assignment due a few hours ago you just found out about!
+
+</div>
+
 #### Editing a task: `edit`
 
 Edits the specified task.
