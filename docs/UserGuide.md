@@ -148,7 +148,7 @@ Format: `addresponse INDEX m/MESSAGE_COUNT`
   * If `addresponse 1 m/7` is keyed in after `addresponse 1 m/2`, the response count for the first
     student in the student list will be 7 instead of 2.
 * The `INDEX` refers to the index number shown in the displayed student list.
-* The `INDEX` must be a positive integer 1, 2, 3, ... 
+* The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `MESSAGE_COUNT` must be a positive integer 1, 2, 3, ...
 * If `m\0000000000` is given as an input, 0s will not be truncated and response will be displayed as
 `response: 000000000`
@@ -370,8 +370,8 @@ the data of your previous SETA home folder.
 | **Attendance** | `attendance`, `addresponse`                |
 | **Delete**     | `deletestu`, `deleteq`, `deletetut`        |
 | **Edit**       | `editstu`                                  |
-| **Find**       | `findstu`                                  |  
-| **List**       | `liststu`                                  |  
+| **Find**       | `findstu`                                  |
+| **List**       | `liststu`                                  |
 | **Mark**       | `markq`, `unmarkq`, `marktut`, `unmarktut` |
 | **Tag**        | `helpstu`                                  |
 | **Exit**       | `exit`                                     |
