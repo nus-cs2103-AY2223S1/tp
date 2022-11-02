@@ -6,8 +6,7 @@ title: User Guide
 ## Table of Contents
 
 <div class="toc-no-bullet-points">
-<a name="toc"></a>
-  * Table of Contents
+  * <a name="toc">Table of Contents</a>
   {:toc}
 </div>
 
@@ -165,7 +164,7 @@ Examples:
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **What is an activity?:**<br>
+:information_source: **What is an activity?**<br>
 
 Every entry in HobbyList is an activity. Each activity contains the fields below.
 * *Name*: What the activity is called. Not optional.
@@ -193,7 +192,7 @@ Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE] [s/STATUS]`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the activity will be removed i.e. adding of tags is not cumulative.
 * You can remove all the activity's tags by typing `t/` without specifying any tags after it.
-* `[s/STATUS]` only accepts **UPCOMING**, **ONGOING** or **COMPLETED** (case-insensitive) as STATUS. e.g. `s/ongoing`.
+* `[s/STATUS]` only accepts `UPCOMING`, `ONGOING` or `COMPLETED` (case-insensitive) as `STATUS`. e.g. `s/ongoing`.
 
 </div>
 
