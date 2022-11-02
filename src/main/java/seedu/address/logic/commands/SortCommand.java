@@ -22,6 +22,8 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Sorted all persons by %1$s";
 
+    public static final String MESSAGE_INCORRECT_KEYWORD = " Incorrect keyword! \n%1$s";
+
     private final Comparator<Person> comparator;
     private final String keyword;
 

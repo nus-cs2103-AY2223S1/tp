@@ -131,7 +131,6 @@ public class ModelManager implements Model {
     @Override
     public void sortPerson(Comparator<Person> comparator) {
         addressBook.sortPersons(comparator);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
     //=========== Filtered Person List Accessors =============================================================
 
