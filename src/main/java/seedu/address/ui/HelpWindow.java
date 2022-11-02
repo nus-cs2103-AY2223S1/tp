@@ -46,6 +46,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Shows the help window.
+     *
      * @throws IllegalStateException
      *     <ul>
      *         <li>

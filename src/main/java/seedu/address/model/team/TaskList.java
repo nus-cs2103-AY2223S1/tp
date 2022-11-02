@@ -20,8 +20,6 @@ import seedu.address.model.person.exceptions.TaskNotFoundException;
  * Supports a minimal set of list operations.
  */
 public class TaskList implements Iterable<Task> {
-    public static final String NO_TASKS = "No Tasks Available";
-
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);

@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all persons in TruthTable whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 @CommandLine.Command(name = "person", mixinStandardHelpOptions = true)

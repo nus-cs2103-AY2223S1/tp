@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR_LONG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LINKS;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +40,7 @@ public class EditLinkCommand extends Command {
                     + " \"Google\" " + FLAG_URL_STR + " https://google.com ";
     public static final String MESSAGE_EDIT_LINK_SUCCESS = "Edited link: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the team.";
 
     @CommandLine.Parameters(arity = "1", index = "0", description = FLAG_LINK_INDEX_DESCRIPTION)
     private Index index;
@@ -81,9 +80,9 @@ public class EditLinkCommand extends Command {
             return new CommandResult(commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        List<Link> lastShownList = model.getFilteredLinkList();
+        List<Link> lastShownList = model.getLinkList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getOneBased() > lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_LINK_DISPLAYED_INDEX);
         }
 
@@ -103,7 +102,6 @@ public class EditLinkCommand extends Command {
         }
 
         model.setLink(linkToEdit, editedLink);
-        model.updateFilteredLinkList(PREDICATE_SHOW_ALL_LINKS);
         return new CommandResult(String.format(MESSAGE_EDIT_LINK_SUCCESS, editedLink));
     }
 

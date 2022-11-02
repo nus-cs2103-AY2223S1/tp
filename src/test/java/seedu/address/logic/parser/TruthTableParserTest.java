@@ -4,16 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import picocli.CommandLine;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddLinkCommand;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+public class TruthTableParserTest {
 
-public class AddressBookParserTest {
-
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TruthTableParser parser = new TruthTableParser();
 
     @Test
     public void parseCommand_add() throws Exception {

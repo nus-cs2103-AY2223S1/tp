@@ -1,6 +1,7 @@
 package seedu.address.model.team.exceptions;
 
 /**
- * Signals that the the team does not exist in the address book.
+ * Signals that the the team does not exist in the TruthTable.
  */
-public class TeamNotFoundException extends RuntimeException {}
+public class TeamNotFoundException extends RuntimeException {
+}

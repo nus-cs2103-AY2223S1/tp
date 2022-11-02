@@ -16,7 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using its displayed index from the address book.
+ * Deletes a person identified using its displayed index from the TruthTable.
  */
 @CommandLine.Command(name = "person", aliases = {"p"}, mixinStandardHelpOptions = true)
 public class DeletePersonCommand extends Command {

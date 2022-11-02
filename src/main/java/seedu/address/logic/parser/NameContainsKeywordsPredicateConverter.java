@@ -15,6 +15,7 @@ public class NameContainsKeywordsPredicateConverter implements
         CommandLine.IParameterConsumer {
 
     public static final String VALIDATION_REGEX = Name.VALIDATION_REGEX;
+
     @Override
     public void consumeParameters(Stack<String> args, CommandLine.Model.ArgSpec argSpec,
                                   CommandLine.Model.CommandSpec commandSpec) {

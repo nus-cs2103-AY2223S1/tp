@@ -4,15 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Link's url in the address book.
+ * Represents a Link's url in the TruthTable.
  */
 public class Url {
 
     public static final String MESSAGE_CONSTRAINTS = "The URL must start with either http or https and\n"
-        + "then followed by :// and\n"
-        + "then it must contain www. and\n"
-        + "then followed by subdomain of length (2, 256) and\n"
-        + "last part contains top level domain like .com, .org etc.";
+            + "then followed by :// and\n"
+            + "then it must contain www. and\n"
+            + "then followed by subdomain of length (2, 256) and\n"
+            + "last part contains top level domain like .com, .org etc.";
 
     public static final String VALIDATION_REGEX = "((http|https)://)(www.)?"
             + "[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]"
@@ -54,8 +54,6 @@ public class Url {
     public int hashCode() {
         return value.hashCode();
     }
-
-
 
 
 }

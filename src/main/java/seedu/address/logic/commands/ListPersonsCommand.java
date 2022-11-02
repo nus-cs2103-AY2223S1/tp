@@ -10,7 +10,7 @@ import picocli.CommandLine;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in the TruthTable to the user.
  */
 @CommandLine.Command(name = "persons", aliases = {"p"}, mixinStandardHelpOptions = true)
 public class ListPersonsCommand extends Command {
