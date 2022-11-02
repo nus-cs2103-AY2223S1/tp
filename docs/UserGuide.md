@@ -55,7 +55,7 @@ switching.
 If you are a software engineering team leader looking to get started with TruthTable, make sure that you have the 
 [pre-requisites installed](#getting-started).
 
-[//]: # (TODO: link to team migration/onboarding section and features)
+[//]: # (TODO: link to team migration/onboarding section)
 This document will also guide you on how to migrate your existing project information onto TruthTable, and 
 familiarise you with all of TruthTable's [features](#key-features-of-truthtable). 
 
