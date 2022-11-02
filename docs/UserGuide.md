@@ -49,7 +49,7 @@ TrackO is a **desktop app built for small business owners to help them manage or
   e.g. in `findo KEYWORD [MORE_KEYWORDS]`, only the first `KEYWORD` is compulsory. The rest are optional. 
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `i/ITEM_NAME q/QUANTITY`, `q/QUANTITY i/ITEM_NAME` is also acceptable.
 
 * All command keywords (e.g. `addo`, `marko`, `editi`, etc.), prefixes (e.g.`p/`, `i/`, etc.) 
 and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**. 
@@ -66,7 +66,7 @@ and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**.
 
 Adds an item to the list of tracked inventory.
 
-Format: `addi n/ITEM_NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE`
+Format: `addi i/ITEM_NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An inventory item's name must be more than 1 character long.
@@ -77,8 +77,8 @@ An inventory item can have any number of tags (including 0). A tag should only c
 </div>
 
 Examples:
-* `addi n/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1`
-* `addi n/Chair q/10 d/This is a wooden dining chair t/Furniture sp/50 cp/20`
+* `addi i/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1`
+* `addi i/Chair q/10 d/This is a wooden dining chair t/Furniture sp/50 cp/20`
 
 ### Listing all inventory items: `listi`
 
