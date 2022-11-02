@@ -31,7 +31,7 @@ Given below are my contributions to the project.
                 they needed to add.
   * Credits: The `SetPersonDescriptor` nested class was inspired by the `EditPersonDescriptor` from AB3. This provided
              the necessary abstraction to facilitate the easy addition of new attributes.
-  
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=wrewsama&breakdown=true)
 
 * **Documentation**:
@@ -49,7 +49,7 @@ Given below are my contributions to the project.
     * Wrote the implementation for the `set` command.
     * Added sequence diagram for `set` command.
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [#139](https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/139), 
+  * PRs reviewed (with non-trivial review comments): [#139](https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/139),
                                                      [#79](https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/79)
   * Reported bugs during PED: [link](https://github.com/wrewsama/ped/issues)
-  
+
