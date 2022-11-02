@@ -153,7 +153,21 @@ public class Meeting implements Comparable<Meeting> {
      */
     public void deletePersons(ArrayList<Person> people) {
         for (Person person : people) {
-            this.peopleToMeetList.remove(person);
+            if (peopleToMeetList.contains(person)) {
+                this.peopleToMeetList.remove(person);
+            }
+        }
+    }
+
+    /**
+     * updates a found person in the meeting list
+     * @param originalPerson original person to find
+     * @param editedPerson edited person to replace with
+     */
+    public void updatePerson(Person originalPerson, Person editedPerson) {
+        // defensive coding clause to check if person is in the list
+        if (peopleToMeetList.contains(originalPerson)) {
+            peopleToMeetList.setPerson(originalPerson, editedPerson);
         }
     }
 
@@ -208,6 +222,15 @@ public class Meeting implements Comparable<Meeting> {
         return otherMeeting != null
             && (otherMeeting.getPersonToMeet().equals(getPersonToMeet()))
             && (otherMeeting.getDateAndTime().equals(getDateAndTime()));
+    }
+
+    /**
+     * returns true if person is in the meeting object
+     * @param p person to check
+     * @return true or false depending on if a person is in the meeting or not
+     */
+    public boolean containsPerson(Person p) {
+        return peopleToMeetArray.contains(p);
     }
 
     /**
