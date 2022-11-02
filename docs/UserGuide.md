@@ -5,6 +5,8 @@ title: User Guide
 
 Welcome to the NotionUS user guide! 
 
+![NotionUS](images/NotionUS_FullLogo.png)
+
 **NotionUS** is a lightweight but powerful application that can help you to manage your assignments and tasks. It sports 
 a sleek and minimalist design which allows you to clearly see your outstanding tasks at a glance. It provides a command
 line user interface which aids fast typists in managing their assignments quickly, while still providing the benefits of
@@ -89,7 +91,7 @@ From top to bottom:
 ### Autocomplete
 
 When the user starts to type in the start of a command in the _Command Box_, a pop-up menu will appear with options to complete your input.
-Use the `up` and `down` arrow keys on your keyboard to navigate through the options and press the `Enter` key to fill the command box with the command
+Use the `Up` and `Down` arrow keys on your keyboard to navigate through the options and press the `Enter` key to fill the command box with the command
 of your choice.
 
 Here is an example of autocomplete in action:
@@ -164,7 +166,7 @@ Format: `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME]*`
 **Reminder**: Params in `[]` are **optional**, and `-t TAG_NAME` can be used multiple times.
 
 <div markdown="block" class="alert alert-info">
-Notes about usage of the add command:
+**:information_source:Notes about usage of the add command:**
 * **Duplicate detection** - If you try to add in a task with the same name and module as an existing task,
   we will inform you that such a task already exists within the task list and reject your command
 * **Optional deadlines** - Tasks with no deadlines are treated as being due "far in the future", meaning they
@@ -191,7 +193,7 @@ Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME]*`
 **Reminder**: Params in `[]` are **optional**, and `-t TAG_NAME` can be used multiple times.
 
 <div markdown="block" class="alert alert-info">
-Notes about usage of the edit command:
+**:information_source: Notes about usage of the edit command:**
 * **Duplicate detection** - If you try to edit the task such that it will have the same name and module as another task,
   we will inform you that such a task already exists within the task list and reject your command
 * **Deadline removal** - Run the edit command with `-d` without specifying a date, eg `edit 1 -d`.
@@ -267,7 +269,7 @@ command to filter a list down to the results you are looking for. To reset the l
 
 <div markdown="span" class="alert alert-warning">
 
-**:exclamation: Caution:**<br>
+**:exclamation: Caution:**
 * Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match.
 * It is also case-insensitive. 
 * Any command that searches for tags finds all tags that exactly match, but is also case-insensitive.
@@ -430,7 +432,6 @@ Clears all entries of tasks in the task list.
 
 Format: `clear`
 
-=======
 ### Exiting the program : `exit`
 
 Terminates and exits the program.  
@@ -447,8 +448,6 @@ NotionUS data are saved as a JSON file `[JAR file location]/data/notionusdata.js
 
 **:exclamation: Caution:**<br>
 If your changes to the data file makes its format invalid, NotionUS will discard all data and start with an empty data file at the next run.
-
-</div>
 
 </div>
 --------------------------------------------------------------------------------------------------------------------
