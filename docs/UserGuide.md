@@ -92,11 +92,12 @@ Examples:
 - `add-e n/Skydiving d/Skydiving with crew`
 - `add-e n/Sailing d/Sail in the Danube River`
 
-The following is an example of how the add-e command can be run in the GUI. 
+The following is an example of how the `add-e` command can be run in the GUI. 
 
 ![AddEvent](images/AddEvent.png)
 
 After the event has been successfully added, a confirmation message will be shown in the output box. You will also be able to see your new event in the event list display as seen below.
+
 ![AddEventDone](images/AddEventDone.png)
 
 
@@ -123,6 +124,14 @@ Format: `display-e INDEX`
 
 <div class="alert alert-block alert-success"><b>Use case: </b> Occasionally, you may add events with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display-e</code> command to look at a specified event's full title and description. </div>
 
+The following is an example of how the `display-e` command can be run in the GUI.
+
+![DisplayEvent](images/DisplayEvent.png)
+
+After the command has been successfully executed, a full description of the specified event will be shown in the output box as seen below.
+
+![DisplayEventDone](images/DisplayEventDone.png)
+
 ### Managing Trips
 
 #### Adding trips: `add`
@@ -135,7 +144,7 @@ Format: `add n/TITLE d/DESCRIPTION l/LOCATION D/DATE`
 Examples:
 - `add n/Trip to Iceland d/Skiing in Iceland l/Iceland D/26-12-2023`
 
-The following is an example of how the add command can be run in the GUI.
+The following is an example of how the `add` command can be run in the GUI.
 
 ![AddTrip](images/AddTrip.png)
 
@@ -156,12 +165,21 @@ Examples:
 - `delete 1`
 
 #### Displaying specified trip details: `display`
-Displays the full title, description, location (if a location has been defined for the trip),
-date (if a date has been defined for the trip) of the trip at the specified INDEX of the displayed trip list in the command box.
+
+Displays the full title, description, location,
+and date of the trip at the specified INDEX of the displayed trip list in the command box.
 
 Format: `display INDEX`
 
 <div class="alert alert-block alert-success"><b>Use case: </b> Occasionally, you may add trips with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display</code> command to look at a specified trip's full title and description. </div>
+
+The following is an example of how the `display` command can be run in the GUI.
+
+![DisplayTrip](images/DisplayTrip.png)
+
+After the command has been successfully executed, a full description of the specified trip will be shown in the output box as seen below.
+
+![DisplayTripDone](images/DisplayTripDone.png)
 
 ### Managing a Trip's Itinerary
 
@@ -179,7 +197,7 @@ Format: `add-et n/EVENT NAME t/TRIP NAME`
 Examples:
 - `add-et n/Visit the Swiss Alps t/Trip to Switzerland` adds the event titled `Visit the Swiss Alps` in the bucket list to the itinerary of the trip with the title `Trip to Switzerland`.
 
-The following is an example of how the add-et command can be run in the GUI.
+The following is an example of how the `add-et` command can be run in the GUI.
 
 ![AddEventToTrip](images/AddEventToTrip.png)
 
@@ -237,6 +255,7 @@ The following is an example of how the `mark` command can be run in the GUI.
 ![MarkTrip](images/MarkTrip.png)
 
 After the trip has been successfully marked, a confirmation message will be shown in the output box. A completed icon will now be displayed beside the title of your completed trip as seen below.
+
 ![MarkTripDone](images/MarkTripDone.png)
 
 
@@ -288,7 +307,7 @@ Format: `sort-e [r/]`
 - Extraneous parameters for `r/` prefix will be ignored.
 
 
-### Display Commands
+### Overview Display Commands
 
 #### View all completed trips and events: `completed`
 Displays all completed trips and events.
@@ -305,8 +324,6 @@ Format: `view`
 #### Viewing lifetime summary: `summary`
 Displays a summary window of your lifetime travels.
 
-![Summary_Window](images/SummaryScreenshot.png)
-
 Format: `summary`
 
 - Calculates the number of unique locations you visited.
@@ -314,6 +331,11 @@ Format: `summary`
 - Total number of completed trips and events.
 - Progress indicator for trips and events.
 - Command must be used again to view updates to the summary.
+
+After the command has been successfully executed, a new window will pop up, with information summarising your lifetime travels.
+
+[Summary_Window](images/SummaryScreenshot.png)
+
 
 <div class="alert alert-block alert-success"><b>Use case: </b> How much of your bucket list has been completed? How many countries have you visited thus far? All of your answers can be found via the <code>summary</code> command. </div>
 
