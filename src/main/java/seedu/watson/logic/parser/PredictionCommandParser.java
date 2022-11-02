@@ -6,8 +6,6 @@ import static seedu.watson.logic.parser.CliSyntax.PREFIX_FUTURE_ASSESSMENT_DIFFI
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
-import java.util.stream.Stream;
-
 import seedu.watson.logic.commands.PredictionCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
 import seedu.watson.model.student.Name;
