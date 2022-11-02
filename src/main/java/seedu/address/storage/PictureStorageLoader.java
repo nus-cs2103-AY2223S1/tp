@@ -17,18 +17,18 @@ public class PictureStorageLoader {
 
     public String getImageUrl() {
         switch (occupation) {
-            case "STUDENT": {
-                return "/images/student_pic.png";
-            }
-            case "PROFESSOR": {
-                return "/images/professor_pic.png";
-            }
-            case "TA": {
-                return "/images/ta_pic.png";
-            }
-            case "NONE": {
-                return "/images/default_pic.png";
-            }
+        case "STUDENT": {
+            return "/images/student_pic.png";
+        }
+        case "PROFESSOR": {
+            return "/images/professor_pic.png";
+        }
+        case "TA": {
+            return "/images/ta_pic.png";
+        }
+        case "NONE": {
+            return "/images/default_pic.png";
+        }
         }
         return null;
     }
