@@ -690,3 +690,5 @@ HealthContact data are saved as a JSON file `[JAR file location]/data/healthcont
 1. Q: How do I find out which appointment a bill is for?
 - Use the FindAppointmentCommand to find all appointments for a patient using the patient name on the bill. Then, use the SelectAppointmentCommand to see which appointment is the bill for.
 
+2. Q: What do I do if I cannot open the application by double-clicking on it?
+- Try opening the application by running the command `java -jar HealthContact.jar` in the command prompt.

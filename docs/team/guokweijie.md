@@ -35,8 +35,11 @@ Given below are my contributions to the project.
   * FindAppointmentCommand
   * SetPaidCommand
   * SetUnPaidCommand
-* Quickstart guide
-* Target user group and value proposition
+  * Saving the data
+  * Editing the data file
+* Added the Quickstart guide
+* Added the target user group and value proposition
+* Added the FAQ section
 
 ### Contributions to the Developer Guide:
 to be added soon
@@ -46,11 +49,14 @@ to be added soon
 * README.md
 
 ### Contributions to the team-based tasks:
-* Created milestones
-* Closed milestones
+* Created milestones v1.2, v1.2b, v1.3, v1.3b, v1.4
+* Closed milestones 
 * Maintained the issue tracker
 * Released JAR files
 * Updated user docs not specific to feature
+* Debugged and fixed most bugs from PE Dry Run
+* Triaged and assigned all 58 PE Dry Run issues and bugs for the team
+* Managed, resolved and closed most issues from PE Dry Run
 
 ### Review/mentoring contributions:
 * Reviewed PRs
