@@ -61,6 +61,10 @@ public class AddMeetingCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
+        if (MeetingDate.isBeforeToday(meetingDate)) {
+            throw new CommandException(MeetingDate.MESSAGE_INVALID_DATE);
+        }
+
         Client clientToUpdate = clientList.get(linkedClientIndex.getZeroBased());
         Meeting meetingToAdd = new Meeting(clientToUpdate, description, meetingDate, meetingStartTime, meetingEndTime);
 

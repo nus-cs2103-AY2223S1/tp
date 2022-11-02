@@ -131,6 +131,10 @@ public class Client {
         return birthday.get().isBirthdayInPeriod(dateKeyword);
     }
 
+    public boolean isBirthdayValid() {
+        return birthday.isEmpty() ? true : Birthday.isDateInValidPeriod(birthday.get());
+    }
+
     /**
      * Returns true if both clients have the same name.
      * This defines a weaker notion of equality between two clients.

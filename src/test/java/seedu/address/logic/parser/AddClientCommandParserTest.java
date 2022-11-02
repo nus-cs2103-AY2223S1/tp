@@ -143,13 +143,13 @@ public class AddClientCommandParserTest {
         // ep: [1jan, 31jan, 1feb, 28feb, ... (basically all valid dates)][invalid dates]
         // 30 feb, not exist
         assertParseFailure(parser,
-                NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_BIRTHDAY_1_DESC, Birthday.MESSAGE_CONSTRAINTS);
+                NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_BIRTHDAY_1_DESC, Birthday.MESSAGE_FORMAT_CONSTRAINTS);
         // 29 feb 2001, non leap year
         assertParseFailure(parser,
-                NAME_DESC_AMY + PHONE_DESC_AMY + INVALID_BIRTHDAY_2_DESC, Birthday.MESSAGE_CONSTRAINTS);
+                NAME_DESC_AMY + PHONE_DESC_AMY + INVALID_BIRTHDAY_2_DESC, Birthday.MESSAGE_FORMAT_CONSTRAINTS);
         // 31 nov, not exist
         assertParseFailure(parser,
-                NAME_DESC_AMY + PHONE_DESC_AMY + INVALID_BIRTHDAY_3_DESC, Birthday.MESSAGE_CONSTRAINTS);
+                NAME_DESC_AMY + PHONE_DESC_AMY + INVALID_BIRTHDAY_3_DESC, Birthday.MESSAGE_FORMAT_CONSTRAINTS);
     }
 
     @Test
