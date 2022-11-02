@@ -12,7 +12,7 @@ import seedu.masslinkers.commons.exceptions.IllegalValueException;
 import seedu.masslinkers.model.MassLinkers;
 import seedu.masslinkers.model.ReadOnlyMassLinkers;
 import seedu.masslinkers.model.student.Student;
-
+//@@author
 /**
  * An Immutable MassLinkers that is serializable to JSON format.
  */

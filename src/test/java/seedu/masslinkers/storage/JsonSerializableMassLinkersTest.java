@@ -1,5 +1,5 @@
 package seedu.masslinkers.storage;
-//@@author jonasgwt
+//@@author
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.masslinkers.testutil.Assert.assertThrows;
 

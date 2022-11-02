@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import javafx.scene.image.Image;
 import seedu.masslinkers.MainApp;
 
+//@@author
 /**
  * A container for App specific utility functions
  */

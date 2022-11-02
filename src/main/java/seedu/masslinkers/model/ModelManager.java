@@ -17,7 +17,7 @@ import seedu.masslinkers.model.student.Phone;
 import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.model.student.Telegram;
 
-
+//@@author
 /**
  * Represents the in-memory model of the mass linkers data.
  */

@@ -3,6 +3,7 @@ package seedu.masslinkers.model;
 import javafx.collections.ObservableList;
 import seedu.masslinkers.model.student.Student;
 
+//@@author
 /**
  * Unmodifiable view of an mass linkers
  */

@@ -33,7 +33,7 @@ import seedu.masslinkers.storage.JsonMassLinkersStorage;
 import seedu.masslinkers.storage.JsonUserPrefsStorage;
 import seedu.masslinkers.storage.StorageManager;
 import seedu.masslinkers.testutil.StudentBuilder;
-
+//@@author
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 
