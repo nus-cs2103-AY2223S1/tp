@@ -240,6 +240,10 @@
     -fx-vgap: 10;
 }
 
+.personAttribute {
+    -fx-end-margin: 500;
+}
+
 #attributeB {
     -fx-hgap: 10;
     -fx-vgap: 10;

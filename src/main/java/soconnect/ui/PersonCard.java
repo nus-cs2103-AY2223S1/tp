@@ -75,12 +75,12 @@ public class PersonCard extends UiPart<Region> {
         if (flowpanes[0] != null) {
             flowpanes[0].getChildren().add(new Label(person.getAddress().value));
             flowpanes[0].getChildren().forEach(label -> label.setStyle(
-                    "-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA;"));
+                    "-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA; -fx-wrap-text: true;"));
         }
         if (flowpanes[1] != null) {
             flowpanes[1].getChildren().add(new Label(person.getEmail().value));
             flowpanes[1].getChildren().forEach(label -> label.setStyle(
-                    "-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA;"));
+                    "-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA; -fx-wrap-text: true;"));
         }
         if (flowpanes[2] != null) {
             flowpanes[2].getChildren().add(new Label(person.getPhone().value));
