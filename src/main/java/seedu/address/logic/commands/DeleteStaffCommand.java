@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STAFF;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_STAFF_DISPLAYED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 
 import java.util.List;
@@ -58,6 +59,7 @@ public class DeleteStaffCommand extends Command {
         List<Project> projectList = model.getFilteredProjectList();
         List<Staff> lastShownStaffList = model.getFilteredStaffList();
 
+        checkForEmptyList(projectList, lastShownStaffList);
         if (index.getZeroBased() >= lastShownStaffList.size()) {
             throw new CommandException(String.format(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX));
         }
@@ -65,21 +67,51 @@ public class DeleteStaffCommand extends Command {
         Staff staffToDelete = lastShownStaffList.get(index.getZeroBased());
         StaffName staffName = staffToDelete.getStaffName();
 
-        int len = projectList.size();
-        Project project = null;
-        for (int x = 0; x < len; x++) {
+        Project project = getProjectFrom(projectList);
+
+        UniqueStaffList staffList = project.getStaffList();
+        Staff staff = getStaffFrom(staffList, staffName);
+
+        staffList.remove(staff);
+        model.setFilteredStaffList(project);
+        model.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
+        return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffName, project.getProjectName()));
+    }
+
+    /**
+     * Checks if there are Projects and Staff displayed on their respectively list.
+     * @param projectList The displayed Project list
+     * @param staffList The displayed Staff list
+     * @throws CommandException Exception thrown if either list do not have anything displayed
+     */
+    private void checkForEmptyList(List<Project> projectList, List<Staff> staffList)
+            throws CommandException {
+        if (projectList.size() == 0) {
+            throw new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName));
+        }
+
+        if (staffList.size() == 0) {
+            throw new CommandException(String.format(MESSAGE_NO_STAFF_DISPLAYED, "delstaff command"));
+        }
+    }
+
+    private Project getProjectFrom(List<Project> projectList) throws CommandException {
+        Project tempProject = null;
+        for (int x = 0; x < projectList.size(); x++) {
             String nameToCheck = projectList.get(x).getProjectName().toString();
             if (nameToCheck.equalsIgnoreCase(projectName)) {
-                project = projectList.get(x);
+                tempProject = projectList.get(x);
                 break;
             }
         }
 
-        if (project == null) {
+        if (tempProject == null) {
             throw new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName));
         }
+        return tempProject;
+    }
 
-        UniqueStaffList staffList = project.getStaffList();
+    private Staff getStaffFrom(UniqueStaffList staffList, StaffName staffName) throws CommandException {
         Staff staff = null;
         for (Staff tempStaff : staffList) {
             if (tempStaff.getStaffName().staffName.equalsIgnoreCase(staffName.toString())) {
@@ -90,10 +122,7 @@ public class DeleteStaffCommand extends Command {
         if (staff == null) {
             throw new CommandException(String.format(MESSAGE_INVALID_STAFF, staffName));
         }
-        staffList.remove(staff);
-        model.setFilteredStaffList(project);
-        model.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
-        return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffName, projectName));
+        return staff;
     }
 
     @Override

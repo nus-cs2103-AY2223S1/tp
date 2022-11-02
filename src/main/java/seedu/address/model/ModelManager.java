@@ -200,8 +200,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void filterTask() {
-        addressBook.filterTask();
+    public void sortComplete() {
+        addressBook.sortComplete();
     }
 
     @Override

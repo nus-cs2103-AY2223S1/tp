@@ -31,7 +31,6 @@ import seedu.address.logic.commands.EditStaffCommand.EditStaffDescriptor;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FilterTaskCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindStaffCommand;
 import seedu.address.logic.commands.FindTaskCommand;
@@ -39,6 +38,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.SortCompleteCommand;
 import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.logic.commands.UnmarkTaskCommand;
 import seedu.address.logic.commands.ViewCommand;
@@ -170,10 +170,10 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_filterTask() throws Exception {
-        assertTrue(parser.parseCommand(FilterTaskCommand.COMMAND_WORD) instanceof FilterTaskCommand);
+    public void parseCommand_sortComplete() throws Exception {
+        assertTrue(parser.parseCommand(SortCompleteCommand.COMMAND_WORD) instanceof SortCompleteCommand);
         assertTrue(parser.parseCommand(
-                FilterTaskCommand.COMMAND_WORD + " RANDOM INPUT 123!!") instanceof FilterTaskCommand);
+                SortCompleteCommand.COMMAND_WORD + " RANDOM INPUT 123!!") instanceof SortCompleteCommand);
     }
 
     @Test

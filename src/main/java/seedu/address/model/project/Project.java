@@ -116,7 +116,7 @@ public class Project implements Comparable<Project> {
         ObservableList<Staff> staffList = getStaffList().asUnmodifiableObservableList();
 
         if (!staffList.isEmpty()) {
-            builder.append("; Staffs: ");
+            builder.append("; Staff: ");
             staffList.forEach(builder::append);
         }
 

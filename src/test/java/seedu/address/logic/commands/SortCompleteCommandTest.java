@@ -9,23 +9,23 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-public class FilterTaskCommandTest {
+public class SortCompleteCommandTest {
     @Test
     public void execute_emptyAddressBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new FilterTaskCommand(), model,
-                FilterTaskCommand.MESSAGE_FILTER_TASK_SUCCESS, expectedModel);
+        assertCommandSuccess(new SortCompleteCommand(), model,
+                SortCompleteCommand.MESSAGE_FILTER_TASK_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.filterTask();
+        expectedModel.sortComplete();
 
-        assertCommandSuccess(new FilterTaskCommand(), model,
-                FilterTaskCommand.MESSAGE_FILTER_TASK_SUCCESS, expectedModel);
+        assertCommandSuccess(new SortCompleteCommand(), model,
+                SortCompleteCommand.MESSAGE_FILTER_TASK_SUCCESS, expectedModel);
     }
 }

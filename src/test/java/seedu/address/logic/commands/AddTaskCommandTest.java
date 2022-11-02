@@ -239,7 +239,7 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void filterTask() {
+        public void sortComplete() {
             throw new AssertionError("This method should not be called.");
         }
 

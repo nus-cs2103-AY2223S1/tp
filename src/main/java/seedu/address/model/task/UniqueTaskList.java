@@ -106,10 +106,10 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Filters the tasks so that uncompleted tasks are at the start of the list
+     * Sorts the tasks so that uncompleted tasks are at the start of the list
      * and completed tasks are at the end.
      */
-    public void filterTask() {
+    public void sortComplete() {
         ArrayList<Task> completedTask = new ArrayList<>();
         ArrayList<Task> uncompletedTask = new ArrayList<>();
         int len = internalList.size();

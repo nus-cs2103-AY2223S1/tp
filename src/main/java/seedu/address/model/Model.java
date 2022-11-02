@@ -203,7 +203,7 @@ public interface Model {
     /**
      * Updates the tasks to show the uncompleted tasks at the top and the rest at the bottom.
      */
-    void filterTask();
+    void sortComplete();
 
     /**
      * Update the task of the filtered task list to set it to be a completed task.

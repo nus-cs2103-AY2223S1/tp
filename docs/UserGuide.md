@@ -129,7 +129,7 @@ This segment contains information regarding all the commands that can be used to
 | **PROJECT_NAME**     | _Name of Project_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> - No character limit. <br> - Project names must be unique. <br> - If you want to enter two Projects of the same name, you can add a number behind to uniquely identify the Projects e.g. Artemis2. |
 | **PROJECT_BUDGET**   | _Budget allocated to the Project_ <br> - Only numbers are allowed. <br> - Budget is in SGD.                                                                                                                                                                                                                                                       |
 | **PROJECT_DEADLINE** | _Deadline of the Project_ <br> - PROJECT_DEADLINE should be entered in the YYYY-MM-DD format.                                                                                                                                                                                                                                                     |
-| **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional and can only contain one word each. Spaces are not allowed.                                                                                                                                                                          |
+| **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional, allow multiple words and have a limit of 50 characters. Spaces are allowed but not a empty tag.                                                                                                                                     |
 
 [Back to top](#table-of-contents)
 
@@ -261,7 +261,7 @@ you should first use the [view command](#view-the-staff-list-within-a-project--v
 | **STAFF_TITLE**      | _Work title of Staff_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> If `-` should be used, replace it with a space instead.                                                                                                                              |
 | **STAFF_DEPARTMENT** | _Department of Staff_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> If `-` should be used, replace it with a space instead.                                                                                                                              |
 | **LEAVE_STATUS**     | _Staff member's leave status_ <br> - Should be specified as a boolean value. Input `true` for a staff member that is on leave, and `false` for one that is present.                                                                                                                                                                     |
-| **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional and can only contain one word each. Spaces are not allowed.                                                                                                                                                                |
+| **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional, allow multiple words and have a limit of 50 characters. Spaces are allowed but not a empty tag.                                                                                                                           |
 
 [Back to top](#table-of-contents)
 
@@ -393,8 +393,7 @@ This segment contains information on all the commands related to Tasks.
 | Parameter            | Description, Constraints                                                                                                                                                                                                                                                                                                                |
 |----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **TASK_DESCRIPTION** | _Description of Task_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> - No character limit. <br> - Task names must be unique. <br> - If you want to enter two Tasks of the same name, you can add a number behind to uniquely identify them e.g. Meeting2. |
-| **TASK_DEADLINE**    | _Deadline of Task_ <br> - TASK_DEADLINE should be entered in the YYYY-MM-DD format.                                                                                                                                                                                                                                                     |
-| **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional and can only contain one word each. Spaces are not allowed.                                                                                                                                                                |
+| **TASK_DEADLINE**    | _Deadline of Task_ <br> - TASK_DEADLINE should be entered in the YYYY-MM-DD format.                                                                                                                                                                                                                                                     |                                                                                                                                                              |
 
 [Back to top](#table-of-contents)
 
@@ -457,7 +456,7 @@ Examples:
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Sorting the Task list :** `sorttask`
+### **Sorting the Task list by deadline :** `sorttask`
 
 Sorts all Tasks in displayed Task list by deadline. Earlier deadlines will be placed first.
 
@@ -471,11 +470,11 @@ Format: `sorttask`
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Filtering the Task list :** `filtertask`
+### **Sorting the Task list by whether its complete :** `sortcomplete`
 
 Show Tasks in Task List that are not done at the top of the Task list and the rest at bottom.
 
-Format: `filtertask`
+Format: `sortcomplete`
 
 [Back to top](#table-of-contents)
 
@@ -591,16 +590,16 @@ This segment contains summary tables of all the commands you can use in HR Pro M
 
 ### **Task Commands Summary**
 
-| Action           | Format, Examples                                                                                                              |
-|------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| **Add Task**     | `addtask tdesc/TASK_DESCRIPTION td/TASK_DEADLINE` <br> e.g., `addtask tdesc/Edit user guide td/2022-10-28`                    |
-| **Delete Task**  | `deltask INDEX` <br> e.g., `deltask 1`                                                                                        |
-| **Edit Task**    | `edittask INDEX [tdesc/TASK_DESCRIPTION] [td/TASK_DEADLINE]` <br> e.g., `edittask 1 tdesc/Edit Developer guide td/2022-10-25` |
-| **Find Tasks**   | `findtask KEYWORDS`<br> e.g., `findtask GAME Try`                                                                             |
-| **Sort Tasks**   | `sorttask`                                                                                                                    |
-| **Filter Tasks** | `filtertask`                                                                                                                  |
-| **Mark Tasks**   | `marktask INDEX` <br> e.g., `marktask 1`                                                                                      |
-| **Unmark Tasks** | `unmarktask INDEX`<br> e.g., `unmarktask 1`                                                                                   |
+| Action                         | Format, Examples                                                                                                              |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| **Add Task**                   | `addtask tdesc/TASK_DESCRIPTION td/TASK_DEADLINE` <br> e.g., `addtask tdesc/Edit user guide td/2022-10-28`                    |
+| **Delete Task**                | `deltask INDEX` <br> e.g., `deltask 1`                                                                                        |
+| **Edit Task**                  | `edittask INDEX [tdesc/TASK_DESCRIPTION] [td/TASK_DEADLINE]` <br> e.g., `edittask 1 tdesc/Edit Developer guide td/2022-10-25` |
+| **Find Tasks**                 | `findtask KEYWORDS`<br> e.g., `findtask GAME Try`                                                                             |
+| **Sort Tasks by deadline**     | `sorttask`                                                                                                                    |
+| **Sort Tasks by completeness** | `sortcomplete`                                                                                                                |
+| **Mark Tasks**                 | `marktask INDEX` <br> e.g., `marktask 1`                                                                                      |
+| **Unmark Tasks**               | `unmarktask INDEX`<br> e.g., `unmarktask 1`                                                                                   |
 
 
 ### **General Commands Summary**
