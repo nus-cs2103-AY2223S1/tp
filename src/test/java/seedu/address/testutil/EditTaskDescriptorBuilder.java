@@ -1,12 +1,8 @@
 package seedu.address.testutil;
-//
-//import java.util.Set;
-//import java.util.stream.Collectors;
-//import java.util.stream.Stream;
 
 import seedu.address.logic.commands.task.EditTaskCommand.EditTaskDescriptor;
-import seedu.address.logic.parser.exceptions.ParseException;
-// import seedu.address.model.task.Contact;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Project;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 
@@ -32,7 +28,7 @@ public class EditTaskDescriptorBuilder {
         descriptor = new EditTaskDescriptor();
         descriptor.setTitle(task.getTitle());
         descriptor.setDeadline(task.getDeadline());
-        // descriptor.setAssignedContactIndexes(task.getAssignedContacts());
+        descriptor.setProject(task.getProject());
     }
 
     /**
@@ -46,20 +42,18 @@ public class EditTaskDescriptorBuilder {
     /**
      * Sets the {@code Deadline} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withDeadline(String deadline) throws ParseException {
-        // descriptor.setDeadline(new Deadline(deadline));
+    public EditTaskDescriptorBuilder withDeadline(String deadline) {
+        descriptor.setDeadline(new Deadline(deadline));
         return this;
     }
 
-    //    /**
-    //     * Parses the {@code contacts} into a {@code Set<Contact>} and set it to the {@code EditTaskDescriptor}
-    //     * that we are building.
-    //     */
-    //    public EditTaskDescriptorBuilder withAssignedContacts(String... assignedContacts) {
-    //        Set<Contact> contactSet = Stream.of(assignedContacts).map(Contact::new).collect(Collectors.toSet());
-    //        descriptor.setAssignedContactIndexes(contactSet);
-    //        return this;
-    //    }
+    /**
+     * Sets the {@code Project} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withProject(String project) {
+        descriptor.setProject(new Project(project));
+        return this;
+    }
 
     public EditTaskDescriptor build() {
         return descriptor;

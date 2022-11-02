@@ -2,17 +2,13 @@ package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -22,7 +18,6 @@ import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Contact;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Project;
 import seedu.address.model.task.Task;
@@ -41,14 +36,10 @@ public class EditTaskCommand extends TaskCommand {
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_PROJECT + "PROJECT NAME] "
-            + "[" + PREFIX_ADD_CONTACT + "PERSON_INDEX] "
-            + "[" + PREFIX_DELETE_CONTACT + "PERSON_INDEX]\n"
             + "Example: " + COMMAND_WORD_FULL + " 1 "
             + PREFIX_TITLE + "Add tasks functionality "
             + PREFIX_DEADLINE + "next Friday"
             + PREFIX_PROJECT + "CS2103T tp "
-            + PREFIX_ADD_CONTACT + "1 "
-            + PREFIX_ADD_CONTACT + "3 "
             + PREFIX_DELETE_CONTACT + "2 ";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
@@ -105,11 +96,9 @@ public class EditTaskCommand extends TaskCommand {
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Project updatedProject = editTaskDescriptor.getProject().orElse(taskToEdit.getProject());
-        Set<Contact> updatedAssignedContacts =
-            editTaskDescriptor.buildNewContacts(taskToEdit, personList).orElse(taskToEdit.getAssignedContacts());
 
         return new Task(updatedTitle, taskToEdit.getCompleted(), updatedDeadline, updatedProject,
-                updatedAssignedContacts);
+                taskToEdit.getAssignedContacts());
     }
 
     @Override
@@ -137,11 +126,8 @@ public class EditTaskCommand extends TaskCommand {
     public static class EditTaskDescriptor {
 
         private Title title;
-        private boolean isCompleted;
         private Deadline deadline;
         private Project project;
-        private Set<Index> assignedContactIndexes;
-        private Set<Index> unassignedContactIndexes;
 
         public EditTaskDescriptor() {}
 
@@ -153,98 +139,37 @@ public class EditTaskCommand extends TaskCommand {
             setTitle(toCopy.title);
             setDeadline(toCopy.deadline);
             setProject(toCopy.project);
-            setAssignedContactIndexes(toCopy.assignedContactIndexes);
-            setUnassignedContactsIndexes(toCopy.unassignedContactIndexes);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, deadline, project,
-                    assignedContactIndexes, unassignedContactIndexes);
-        }
-
-        public void setTitle(Title title) {
-            this.title = title;
-        }
-
-        public void setProject(Project project) {
-            this.project = project;
+            return CollectionUtil.isAnyNonNull(title, deadline, project);
         }
 
         public Optional<Title> getTitle() {
             return Optional.ofNullable(title);
         }
 
-        public Optional<Project> getProject() {
-            return Optional.ofNullable(project);
-        }
-
-        public void setDeadline(Deadline deadline) {
-            this.deadline = deadline;
+        public void setTitle(Title title) {
+            this.title = title;
         }
 
         public Optional<Deadline> getDeadline() {
             return Optional.ofNullable(deadline);
         }
 
-        public void setAssignedContactIndexes(Set<Index> assignedContactIndexes) {
-            this.assignedContactIndexes = (assignedContactIndexes != null)
-                    ? new HashSet<>(assignedContactIndexes) : null;
+        public void setDeadline(Deadline deadline) {
+            this.deadline = deadline;
         }
 
-        public void setUnassignedContactsIndexes(Set<Index> unassignedContactIndexes) {
-            this.unassignedContactIndexes = (unassignedContactIndexes != null)
-                    ? new HashSet<>(unassignedContactIndexes) : null;
+        public Optional<Project> getProject() {
+            return Optional.ofNullable(project);
         }
 
-        public Optional<Set<Index>> getAssignedContactIndexes() {
-            return (assignedContactIndexes != null)
-                    ? Optional.of(Collections.unmodifiableSet(assignedContactIndexes))
-                    : Optional.empty();
-        }
-
-        public Optional<Set<Index>> getUnassignedContactIndexes() {
-            return (unassignedContactIndexes != null)
-                    ? Optional.of(Collections.unmodifiableSet(unassignedContactIndexes))
-                    : Optional.empty();
-        }
-
-
-        /**
-         * Returns an unmodifiable contact set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code contact} is null.
-         */
-        public Optional<Set<Contact>> buildNewContacts(Task task, List<Person> personList) throws CommandException {
-            if (!CollectionUtil.isAnyNonNull(assignedContactIndexes, unassignedContactIndexes)) {
-                return Optional.empty();
-            }
-            Set<Contact> assignedContacts = personIndexesToContacts(assignedContactIndexes, personList);
-            Set<Contact> unassignedContacts = personIndexesToContacts(unassignedContactIndexes, personList);
-            Set<Contact> contacts = new HashSet<>(task.getAssignedContacts());
-            contacts.addAll(assignedContacts);
-            contacts.removeAll(unassignedContacts);
-            return Optional.of(Collections.unmodifiableSet(contacts));
-        }
-
-        private Set<Contact> personIndexesToContacts(Set<Index> personIndexes, List<Person> personList)
-                throws CommandException {
-            if (personIndexes == null) {
-                return new HashSet<>();
-            }
-            Set<Contact> assignedContacts = new HashSet<>();
-            for (Index personIndex : personIndexes) {
-                if (personIndex.getZeroBased() >= personList.size()) {
-                    throw new CommandException(String.format(Messages.MESSAGE_INVALID_PERSON_INDEX_CUSTOM,
-                            personIndex.getOneBased()));
-                }
-                Contact contactToAssign =
-                        new Contact(personList.get(personIndex.getZeroBased()).getName().fullName);
-                assignedContacts.add(contactToAssign);
-            }
-            return assignedContacts;
+        public void setProject(Project project) {
+            this.project = project;
         }
 
         @Override
@@ -264,9 +189,7 @@ public class EditTaskCommand extends TaskCommand {
 
             return getTitle().equals(e.getTitle())
                     && getDeadline() == e.getDeadline()
-                    && getProject() == e.getProject()
-                    && getAssignedContactIndexes().equals(e.getAssignedContactIndexes())
-                    && getUnassignedContactIndexes().equals(e.getUnassignedContactIndexes());
+                    && getProject() == e.getProject();
         }
     }
 }

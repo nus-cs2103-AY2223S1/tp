@@ -8,11 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.task.EditTaskCommand;
 import seedu.address.logic.commands.task.EditTaskCommand.EditTaskDescriptor;
@@ -21,7 +16,6 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.TaskParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.Contact;
 import seedu.address.model.task.Project;
 
 /**
@@ -66,38 +60,11 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
                         .parseProject(argMultimap.getValue(PREFIX_PROJECT).get()));
             }
         }
-        if (argMultimap.getValue(PREFIX_ADD_CONTACT).isPresent()) {
-            editTaskDescriptor.setAssignedContactIndexes(TaskParserUtil
-                    .parseIndexes(argMultimap.getAllValues(PREFIX_ADD_CONTACT)));
-        }
-        if (argMultimap.getValue(PREFIX_DELETE_CONTACT).isPresent()) {
-            editTaskDescriptor.setUnassignedContactsIndexes(TaskParserUtil
-                    .parseIndexes(argMultimap.getAllValues(PREFIX_DELETE_CONTACT)));
-        }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditTaskCommand(targetIndex, editTaskDescriptor);
-    }
-
-    /**
-     * Parses {@code Collection<String> contacts} into a {@code Set<Contact>} if {@code contacts} is non-empty.
-     * If {@code contacts} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Contact>} containing zero contacts.
-     */
-    private Optional<Set<Contact>> parseContactsForEdit(Collection<String> contacts) throws ParseException {
-        assert contacts != null;
-
-        if (contacts.isEmpty()) {
-            return Optional.empty();
-        }
-
-        Collection<String> contactSet = contacts.size() == 1 && contacts.contains("")
-            ? Collections.emptySet()
-            : contacts;
-
-        return Optional.of(TaskParserUtil.parseContacts(contactSet));
     }
 }
