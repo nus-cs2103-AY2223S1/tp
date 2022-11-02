@@ -44,7 +44,7 @@ public class Deadline {
             + "Month (mm): Month in the range of 1 to 12 \n"
             + "Day (dd): Day in the range of 1 to 31";
     /*
-     * The date must be entered in yyyy-mm-dd or yyyy-m-d
+     * The date must be entered in yyyy-mm-dd format
      */
     public static final String VALIDATION_REGEX = "^(\\d{4})-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$";
 
