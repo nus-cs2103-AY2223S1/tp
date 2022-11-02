@@ -301,31 +301,6 @@ The following sequence diagram shows how the `import` command works:
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
 
-
-### 4.4 Export Feature
-
-The `export` feature allows the user to export the displayed list in InternConnect to a JSON file.
-
-#### Implementation
-
-`exportCommand` class is used in the execution of `export` command. 
-`Storage#exportDisplayedList(displayedList, filePath)` is called to save the JSON file in `data/export/` folder.
-
-Given below is an example success scenario and how the `export` mechanism behaves at each step.
-
-1. The user executes `export`.
-2. `LogicManager` calls `AddressBookParser#parseCommand(userInput)`.
-3. `LogicManager` calls `ExportCommand#execute(model, storage)`.
-4. `ExportCommand` gets current DateTime and use it for the output JSON file path.
-5. `ExportCommand` retrieves the `displayedList` from `model` by calling `Model#getFilteredPersonList()`.
-6. `ExportCommand` calls `Storage#exportDisplayedList()`
-7. The displayedList is stored as a JSON file in `data/export/<currentDateTime>.json`.
-8. A `CommandResult` object indicating that the `export` command is successful will be created.
-
-The following sequence diagram shows how the `import` command works:
-
-![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
-   
 #### Design Considerations
 
 **Aspect: What format should the imported file be**
@@ -342,6 +317,60 @@ The following sequence diagram shows how the `import` command works:
     * Cons:
         * We need to implement new methods to read the txt file.
         * The format is not consistent with the rest of the app's files.
+
+
+### 4.4 Export Feature
+
+The `export` feature allows the user to export the displayed list in InternConnect to a JSON file.
+
+#### Implementation
+
+`exportCommand` class is used in the execution of `export` command.
+`Storage#exportDisplayedList(displayedList, filePath)` is called to save the JSON file in `data/export/` folder.
+
+Given below is an example success scenario and how the `export` mechanism behaves at each step.
+
+1. The user executes `export`.
+2. `LogicManager` calls `AddressBookParser#parseCommand(userInput)`.
+3. `LogicManager` calls `ExportCommand#execute(model, storage)`.
+4. `ExportCommand` gets current DateTime and use it for the output JSON file path.
+5. `ExportCommand` retrieves the `displayedList` from `model` by calling `Model#getFilteredPersonList()`.
+6. `ExportCommand` calls `Storage#exportDisplayedList()`
+7. The displayedList is stored as a JSON file in `data/export/<currentDateTime>.json`.
+8. A `CommandResult` object indicating that the `export` command is successful will be created.
+
+The following sequence diagram shows how the `export` command works:
+
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+
+#### Design Considerations
+
+**Aspect: Where to save the exported JSON file**
+* **Alternative 1 (current implementation)**: We save the files in the `data/export/` folder and
+  use `<currentDateTime>.json` as the file name.
+    * Pros:
+        * Location for all exported JSON files is in a single folder.
+        * Naming format for all exported JSON files is fixed.
+    * Cons:
+        * Users will not be able to save the files where they like.
+        * Users will be able to name the JSON file as they wish.
+* **Alternative 2**: User specifies where to save the JSON file and what to name the file.
+    * Pros:
+        * Users will be able to save the JSON file where they like.
+        * Users will be able to name the JSON file as they wish.
+    * Cons:
+        * Harder to implement since there will be a lot of cases to cover, e.g. if the specified path is not
+          in JSON format or not a valid file path or file already exists etc.
+        * Quite messy since the users can specify a completely different file path/directory everytime they
+          execute `export` command.
+* **Alternative 3**: We save the files in the `data/export/` folder and user specifies only the file name.
+    * Pros:
+        * Location for all exported JSON files is in a single folder.
+        * Users will be able to name the JSON file as they wish.
+    * Cons:
+        * Harder to implement since there will be a lot of cases to cover, e.g. if the specified file name is not
+          in JSON format or file already exists etc.
+        * Users will not be able to save the files where they like.
 
 
 ### 4.5 Find Feature Improvements
