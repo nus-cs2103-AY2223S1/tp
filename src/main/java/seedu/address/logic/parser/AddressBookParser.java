@@ -76,6 +76,17 @@ public class AddressBookParser {
         final String commandWords = matcher.group("commandWords").trim().replaceAll(" +", " ");
         // Workaround: ArgumentTokenizer must have an additional space in front as preamble
         final String arguments = " " + matcher.group("arguments").trim();
+
+        if (commandWords.startsWith(ListCommand.COMMAND_WORD + " ")) {
+            return new ListCommand();
+        } else if (commandWords.startsWith(ExitCommand.COMMAND_WORD + " ")) {
+            return new ExitCommand();
+        } else if (commandWords.startsWith(HelpCommand.COMMAND_WORD + " ")) {
+            return new HelpCommand();
+        } else if (commandWords.startsWith(ExtractEmailsCommand.COMMAND_WORD + " ")) {
+            return new ExtractEmailsCommand();
+        }
+
         switch (commandWords) {
         case AddStudentCommand.COMMAND_WORD:
             return new AddStudentCommandParser().parse(arguments);
@@ -91,15 +102,6 @@ public class AddressBookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
 
         case AddReminderCommand.COMMAND_WORD:
             return new AddReminderCommandParser().parse(arguments);
@@ -137,11 +139,20 @@ public class AddressBookParser {
         case EditConsultationCommand.COMMAND_WORD:
             return new EditConsultationCommandParser().parse(arguments);
 
-        case ExtractEmailsCommand.COMMAND_WORD:
-            return new ExtractEmailsCommand();
-
         case SwitchCommand.COMMAND_WORD:
             return new SwitchCommandParser().parse(arguments);
+
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
+        case ExtractEmailsCommand.COMMAND_WORD:
+            return new ExtractEmailsCommand();
 
         default:
             throw new UnknownPreambleException(commandWords);
