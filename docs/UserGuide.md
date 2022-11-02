@@ -34,7 +34,7 @@ If you want to find out more about GREWZ features and commands, jump over to [Fe
 
 If you want the quick overview of GREWZ commands, jump over to [Command Summary](#command-summary)
 
-If you want you have a question, jump over to [FAQs](#faq)
+If you have a question, jump over to [FAQs](#faq)
 
 Take note of the following symbols and formatting used in this document:
 
@@ -423,7 +423,7 @@ Format: `exit`
 ```
 java -version
 ```
-This will show you the exact verison of Java installed on you computer, if any.
+This will show you the exact version of Java installed on your computer, if any.
 If you do not have Java `11` installed, you can download it [here](https://www.oracle.com/java/technologies/downloads/#java11).
 
 **Q:** Do I have to retype the command every single time even if they are similar?
@@ -484,7 +484,7 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 |--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Command Line Interface (CLI)**           | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer. |
 | **Graphical user interface (GUI)**         | Graphical user interface (GUI) is a form of user interface that allows users to interact with electronic devices through graphical icons.      |
-| **Home Folder**                            | A folder on you computer that stores all data related to this application.                                                                     |
+| **Home Folder**                            | A folder on your computer that stores all data related to this application.                                                                    |
 | **Parameter**                              | Parameter is the user's input for particular field.                                                                                            |
 | **Prefix**                                 | A group of characters placed before the input value. GREWZ uses prefixes like `n/`, `t/` and `p/`.                                             |
 | **Teaching assistant**                     | Teaching assistant is an individual who assists a professor with instructional responsibilities.                                               |
