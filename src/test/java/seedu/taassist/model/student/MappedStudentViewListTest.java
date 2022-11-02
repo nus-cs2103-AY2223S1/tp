@@ -31,9 +31,8 @@ public class MappedStudentViewListTest {
         assertTrue(triggeredChange.size() == 1);
 
         ListChangeListener.Change<? extends StudentView> change = triggeredChange.get(0);
-        assertTrue(change.wasUpdated()
-                && change.getFrom() == 0
-                && change.getTo() == internalStudentList.size());
+        assertTrue(!change.wasAdded() && !change.wasRemoved() && !change.wasReplaced() && change.wasUpdated()
+                && !change.wasPermutated() && change.getFrom() == 0 && change.getTo() == internalStudentList.size());
 
     }
 
@@ -50,6 +49,10 @@ public class MappedStudentViewListTest {
         otherInternalList.add(BOB);
 
         assertTrue(triggeredChange.size() == 1);
+
+        ListChangeListener.Change<? extends StudentView> change = triggeredChange.get(0);
+        assertTrue(change.next() && change.wasAdded() && !change.wasRemoved() && !change.wasRemoved()
+                && !change.wasUpdated() && !change.wasPermutated());
     }
 
     @Test

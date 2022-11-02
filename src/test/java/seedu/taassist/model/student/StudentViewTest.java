@@ -49,7 +49,7 @@ public class StudentViewTest {
     public void withSession_isImmutable_success() {
         StudentView oriStudentView = new StudentView(ALICE);
         StudentView studentView = new StudentView(ALICE);
-        StudentView modifiedStudentView = new StudentView(ALICE).withSession(CS1231S, LAB_1);
+        studentView.withSession(CS1231S, LAB_1);
         assertEquals(studentView, oriStudentView);
     }
 
