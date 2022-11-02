@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 ---
 layout: page
 title: User Guide
 ---
 
-=======
-Summary](#command-summary)
-=======
->>>>>>> 8c7e3b52f000b2efc61627eb29fb98afac11e554
 # Welcome to SoCompiler's User Guide
 
 > The sole app that university students will need to streamline their everyday routines.
@@ -180,6 +175,7 @@ Alternatively, you can click the File button on the top left of the app, followe
 </div>
 
 ### Saving the data
+
 SoCompiler data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -512,8 +508,9 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**:
+
 1. Install the app in the other computer.
-2. Go to the location where your current app is in, there should be a file called `data` in the same location. 
+2. Go to the location where your current app is in, there should be a file called `data` in the same location.
 3. Copy the entire file and either email yourself the file or use a thumb-drive to transfer it to the other computer.
 4. Move the copied file to the same location you placed the jar file in the new computer.
 
