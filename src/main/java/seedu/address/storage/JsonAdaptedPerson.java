@@ -154,7 +154,10 @@ class JsonAdaptedPerson {
         }
         final IncomeLevel modelIncome = new IncomeLevel(income);
 
-
+        if (monthly == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Monthly.class.getSimpleName()));
+        }
         if (!Monthly.isValidMonthly(monthly)) {
             throw new IllegalValueException(Monthly.MESSAGE_CONSTRAINTS);
         }
