@@ -29,8 +29,10 @@ public class PictureStorageLoader {
         case "NONE": {
             return "/images/default_pic.png";
         }
+        default: {
+            return null;
         }
-        return null;
+        }
     }
 }
 
