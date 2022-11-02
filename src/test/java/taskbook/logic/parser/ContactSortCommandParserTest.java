@@ -10,8 +10,6 @@ import taskbook.logic.commands.contacts.ContactSortAddedChronologicalCommand;
 import taskbook.logic.commands.contacts.ContactSortCommand;
 import taskbook.logic.commands.contacts.ContactSortNameAlphabeticalCommand;
 import taskbook.logic.commands.contacts.ContactSortNameReverseAlphabeticalCommand;
-import taskbook.logic.commands.contacts.ContactSortPhoneAscendingCommand;
-import taskbook.logic.commands.contacts.ContactSortPhoneDescendingCommand;
 import taskbook.logic.parser.contacts.ContactSortCommandParser;
 
 public class ContactSortCommandParserTest {

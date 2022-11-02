@@ -13,13 +13,11 @@ public abstract class ContactSortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
     public static final String MESSAGE_USAGE =
             ContactCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
-                    + " s/SORT_TYPE: Sorts list of persons in some order.\n"
-                    + "Available SORT_TYPEs:\n"
-                    + "a: sorts names of persons in alphabetical order.\n"
-                    + "ra: sorts names of persons in reverse alphabetical order.\n"
-                    + "ca: sorts persons chronologically by the time they were added into Task Book.\n"
-                    + "p: sorts phone numbers of persons in ascending order.\n"
-                    + "rp: sorts phone numbers of persons in descending order.\n";
+                    + " s/SORT_TYPE: Sorts persons in some order.\n"
+                    + "Available SORT_TYPE parameters:\n"
+                    + "a: sorts persons by name in alphabetical order.\n"
+                    + "ra: sorts persons by name in reverse alphabetical order.\n"
+                    + "ca: sorts persons chronologically by the time they were added into Task Book.\n";
     public static final String MESSAGE_SORT_TASK_SUCCESS = "Contacts sorted";
     public final String messageSortType;
     private final Comparator<Person> comparator;

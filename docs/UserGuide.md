@@ -414,14 +414,12 @@ Examples:
 
 Sorts your contact list based on the input parameter.
 
-Format: `contact sort s/SORT`
+Format: `contact sort s/SORT_TYPE`
 
-SORT parameters:
+SORT_TYPE parameters:
 * ca: Chronologically sort tasks by date and time added.
 * a: Alphabetically sort contact names.
 * ra: Alphabetically sort contact names in reverse order.
-* p: Numerically sort contact phone numbers in ascending order.
-* rp: Numerically sort contact phone numbers in descending order.
 
 Example:
 * `contact sort s/a` will change the displayed contact list to show a contact list where names are sorted by alphabetical order.
@@ -430,9 +428,9 @@ Example:
 
 Sorts your task list based on the input parameter.
 
-Format: `task sort s/SORT`
+Format: `task sort s/SORT_TYPE`
 
-SORT parameters:
+SORT_TYPE parameters:
 * ca: Chronologically sort tasks by date and time added.
 * a: Alphabetically sort task descriptions.
 * ra: Alphabetically sort task descriptions in reverse order.
@@ -589,8 +587,8 @@ This prevents ambiguity in naming so that you can specify the exact contact wher
 | **Edit Task**                 | `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE] [#/TAG]…`         | `task edit i/2 o/James Lee #/classmate`                                          |
 | **Delete Contact**            | `contact delete i/INDEX`                                                        | `contact delete i/3`                                                             |
 | **Delete Task**               | `task delete i/INDEX`                                                           | `task delete i/3`                                                                |
-| **Sort Contacts**             | `contact sort s/SORT`                                                           | `contact sort s/a`                                                               |
-| **Sort Tasks**                | `task sort s/SORT`                                                              | `task sort s/a`                                                                  |
+| **Sort Contacts**             | `contact sort s/SORT_TYPE`                                                      | `contact sort s/a`                                                               |
+| **Sort Tasks**                | `task sort s/SORT_TYPE`                                                         | `task sort s/a`                                                                  |
 | **Find Contacts**             | `contact find q/QUERY`                                                          | `contact find q/ea`                                                              |
 | **Find Tasks**                | `task find <q/QUERY a/ASSIGNMENT x/DONE>`                                       | `task find a/FROM q/ea`                                                          |
 | **Mark Task**                 | `task mark i/INDEX`                                                             | `task mark i/3`                                                                  |

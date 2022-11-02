@@ -8,8 +8,6 @@ import taskbook.logic.commands.contacts.ContactSortAddedChronologicalCommand;
 import taskbook.logic.commands.contacts.ContactSortCommand;
 import taskbook.logic.commands.contacts.ContactSortNameAlphabeticalCommand;
 import taskbook.logic.commands.contacts.ContactSortNameReverseAlphabeticalCommand;
-import taskbook.logic.commands.contacts.ContactSortPhoneAscendingCommand;
-import taskbook.logic.commands.contacts.ContactSortPhoneDescendingCommand;
 import taskbook.logic.commands.tasks.TaskSortCommand;
 import taskbook.logic.parser.ArgumentMultimap;
 import taskbook.logic.parser.ArgumentTokenizer;
@@ -63,10 +61,6 @@ public class ContactSortCommandParser implements Parser<ContactSortCommand> {
             return new ContactSortNameReverseAlphabeticalCommand();
         case CHRONOLOGICAL_ADDED:
             return new ContactSortAddedChronologicalCommand();
-        case PHONE_ASCENDING:
-            return new ContactSortPhoneAscendingCommand();
-        case PHONE_DESCENDING:
-            return new ContactSortPhoneDescendingCommand();
         default:
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     ContactSortCommand.MESSAGE_USAGE));

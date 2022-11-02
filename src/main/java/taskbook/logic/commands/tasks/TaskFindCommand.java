@@ -23,6 +23,7 @@ public class TaskFindCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Displaying matching tasks.";
     public static final String MESSAGE_USAGE =
             TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
+            + " <" + PREFIX_QUERY + "QUERY " + PREFIX_ASSIGNMENT + "ASSIGNMENT " + PREFIX_DONE + "DONE>: "
             + ": Searches all task descriptions and names that contain the given query.\n"
             + "Parameters:\n"
             + PREFIX_QUERY + "QUERY\n"
@@ -31,7 +32,7 @@ public class TaskFindCommand extends Command {
             + "Only tasks with exact matches with QUERY will be displayed. Can be multiple words. Case insensitive.\n"
             + "ASSIGNMENT is either FROM or TO for Assigned by or Assigned to respectively.\n"
             + "DONE is either X or O for done or not done respectively.\n"
-            + "Parameters can be in any ordering, and only one must be present.";
+            + "Parameters can be in any ordering, but at least one must be present.";
     private Predicate<Task> predicate;
     private String query;
     private String assignment;
