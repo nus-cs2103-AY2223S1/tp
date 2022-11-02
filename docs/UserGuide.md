@@ -136,14 +136,14 @@ will delete all data stored locally and this action is irreversible. You will lo
 * **Command Words**
   * Command words and prefixes are case-sensitive.<br/>
   e.g. `eXit` will not be accepted as the `exit` command.
-  * Only the last occurrence of a repeated prefix input will be taken.
+  * Only the last occurrence of a repeated prefix input will be taken.<br/>
   e.g. `edit 1 nm/Jonathan nm/Ethan nm/Alice` is the same as `edit 1 nm/Alice`.
 
 * **Parameters**
   * Words in `UPPER_CASE` refers to input from the user.<br/>
   e.g. For the `viewClass` command, the command format is `viewClass CLASS`.<br/>
   `CLASS` refers to the user input which can be `viewClass 17S68`.
-  * Parameters can be written in any order.<br/>
+  * Parameters with a prefix can be written in any order.<br/>
   e.g. `edit 1 nm/Jack id/111A` is the same as `edit 1 id/111A nm/Jack`.
   * Additional parameters for commands that do not require parameters will be ignored.<br/>
   e.g. `exit hello123` will be accepted as the `exit` command.
@@ -248,6 +248,11 @@ Examples:
 * `delete nm/Jonathan Tan` deletes student record with student name as 'Jonathan Tan'.
 * `delete id/123A` deletes student record with student ID as '123A'.
 
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** All fields are capitalised when saved into the application. Therefore, parameters like `nm/john` and `nm/JoHn`
+are treated as _JOHN_ by default.
+</div>
+
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:** This command will delete a student record and this action is irreversible. Make sure you are 
 deleting the correct student record!
@@ -314,9 +319,15 @@ Format: `viewClass CLASS`
 * Class name can only contain alphanumeric characters.
 * Class name is case-insensitive.
 
-Examples:
-* `viewClass 2A` Displays the list of students with the class `2A`.
-* `viewClass Loyalty1` Displays the list of students with the class `LOYALTY1`.
+Example:
+* `viewClass 1A` displays the list of students in class 1A
+  ![viewClass](images/viewClass.png)
+
+<div markdown="span" class="alert alert-info">:information_source:
+   **Note:**
+   The default display, when starting the application, shows all student records in Classify.
+   Commands related to managing display are not saved upon exiting the application.
+</div>
 
 #### 4.3.3 Finding a student record : `find`
 
@@ -502,6 +513,8 @@ interact with the application by typing in text commands.
 * **GUI**: Graphical User Interface (GUI) is an interface that allows the user to interact with through various visual
 graphics.
 * **Home folder**: The home folder refers to the folder on your device that stores the Class-ify application.
+* **Prefix**: Refers to the representative input to indicate a specific type of information in Class-ify.
+* **Parameter**: Refers to additional input that is provided along with the command word.
 * **Alphanumeric characters**: Refers to characters made up of a combination of letters and/or numbers.
 * **Local storage**: Local storage refers to the data that is stored on your physical device.
 
