@@ -172,8 +172,12 @@ public class TaskList implements Iterable<Task> {
      * @param person assignee to be removed.
      */
     public void removeAssigneeIfExists(Person person) {
-        for (Task task : internalList) {
-            task.removeAssigneeIfExists(person);
+        for (int i = 0; i < internalList.size(); i++) {
+            Task task = internalList.get(i);
+            if (task.checkAssignee(person)) {
+                Task newTask = task.removeAssignee(person);
+                internalList.set(i, newTask);
+            }
         }
     }
 }
