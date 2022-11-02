@@ -83,7 +83,7 @@ title: User Guide
   e.g `c/COMPANY [t/TAG]` can be used as `c/Google t/preferred` or as `c/Google`.
 
 * Items with `...` after them can be used multiple times including zero times.
-  e.g. `[t/TAG]...` can be used as `  ` (i.e. 0 times), `t/preferred`, `t/preferred t/techCompany`, etc.
+  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/preferred`, `t/preferred t/techCompany`, etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `d/DATE_APPLIED p/POSITION`, `p/POSITION d/DATE_APPLIED` is also acceptable.
@@ -116,8 +116,9 @@ Format: `add c/COMPANY ct/CONTACT e/EMAIL p/POSITION d/DATE_APPLIED s/STATUS [t/
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 <br>
 1. <code>DATE_APPLIED</code> must be specified in the format <em>yyyy-MM-dd</em>.<br>
-2. <code>STATUS</code> must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.<br>
-3. Tags must be alphanumeric and cannot contain spaces.
+2. <code>CONTACT</code> must be 5-15 digits long.<br>
+3. <code>STATUS</code> must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.<br>
+4. Tags must be alphanumeric and cannot contain spaces.
 </div>
 
 Examples:
@@ -178,6 +179,7 @@ Format: `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPL
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index cannot be greater than the number of applications in the displayed list.
 * At least one of the optional fields must be provided.
+* Provided fields must follow the same formats as specified in `add` command.
 * Existing values will be updated to the input values.
 * Changes to the company name and the position will also be reflected in the interview list.
 * When editing tags, the existing tags of the application will be removed i.e adding of tags is not cumulative.
