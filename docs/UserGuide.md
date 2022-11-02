@@ -76,10 +76,10 @@ title: User Guide
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add c/COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add c/Google`.
+  e.g. in `add c/COMPANY`, `COMPANY` is a parameter which can be used as `add c/Google`.
 
 * Items in square brackets are optional.
-  e.g `c/COMPANY_NAME [t/TAG]` can be used as `c/Google t/preferred` or as `c/Google`.
+  e.g `c/COMPANY [t/TAG]` can be used as `c/Google t/preferred` or as `c/Google`.
 
 * Items with `...` after them can be used multiple times including zero times.
   e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/preferred`, `t/preferred t/techCompany` etc.
@@ -110,7 +110,7 @@ Format: `help`
 
 Adds an internship application to the list.
 
-Format: `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION s/STATUS [t/TAG]...`
+Format: `add c/COMPANY ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION s/STATUS [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 <br>
@@ -153,7 +153,7 @@ Example:
 
 Finds applications whose companies or positions contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 * The search is case-insensitive. e.g `google` will match `Google`.
 * The order of the keywords does not matter. e.g. `Tech Micron` will match `Micron Tech`.
@@ -219,6 +219,7 @@ Format: `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATIO
 * The index cannot be greater than the number of applications in the displayed list.
 * All fields must be provided.
 * Supports edit of the existing interview by overwriting the old interview.
+* Currently, we only support **ONE** interview in each of the application. _[COMING SOON: Multiple interviews in one application.]_
 
 Examples:
 * `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546` adds an interview to the application with displayed index `5`.
@@ -345,25 +346,25 @@ We will assist you as soon as possible.
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                                                                                               |
-|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**        | `help`                                                                                                                                                                                                         |
-| **Add**         | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION s/STATUS [t/TAG]...` <br> e.g., `add c/Google ct/60221023 d/2022-01-01 e/google@example.com p/Software Engineer s/pending t/preferred` |
-| **List**        | `list`                                                                                                                                                                                                         |
-| **ListArchive** | `list-archive`                                                                                                                                                                                                 |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                                            |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                                                       |
-| **Edit**        | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [s/STATUS] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                                     |
-| **Sort**        | `sort [o/ORDER] [r/]`<br> e.g., `sort o/date r/`                                                                                                                                                               |
-| **Interview**   | `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`<br> e.g., `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546`                           |
-| **Remove-i**    | `remove-i INDEX`<br/> e.g., `remove-i 3`                                                                                                                                                                       |
-| **Archive**     | `archive INDEX`<br> e.g., `archive 2`                                                                                                                                                                          |
-| **Retrieve**    | `retrieve INDEX`<br> e.g., `retrieve 2`                                                                                                                                                                        |
-| **Undo**        | `undo`                                                                                                                                                                                                         |
-| **Redo**        | `redo`                                                                                                                                                                                                         |
-| **Remind**      | `remind`                                                                                                                                                                                                       |
-| **Statistics**  | `stats`                                                                                                                                                                                                        |
-| **Clear**       | `clear`                                                                                                                                                                                                        |
-| **Exit**        | `exit`                                                                                                                                                                                                         |
+| Action          | Format, Examples                                                                                                                                                                                          |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**        | `help`                                                                                                                                                                                                    |
+| **Add**         | `add c/COMPANY ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION s/STATUS [t/TAG]...` <br> e.g., `add c/Google ct/60221023 d/2022-01-01 e/google@example.com p/Software Engineer s/pending t/preferred` |
+| **List**        | `list`                                                                                                                                                                                                    |
+| **ListArchive** | `list-archive`                                                                                                                                                                                            |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                                       |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                                                  |
+| **Edit**        | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [s/STATUS] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                                |
+| **Sort**        | `sort [o/ORDER] [r/]`<br> e.g., `sort o/date r/`                                                                                                                                                          |
+| **Interview**   | `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`<br> e.g., `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546`                      |
+| **Remove-i**    | `remove-i INDEX`<br/> e.g., `remove-i 3`                                                                                                                                                                  |
+| **Archive**     | `archive INDEX`<br> e.g., `archive 2`                                                                                                                                                                     |
+| **Retrieve**    | `retrieve INDEX`<br> e.g., `retrieve 2`                                                                                                                                                                   |
+| **Undo**        | `undo`                                                                                                                                                                                                    |
+| **Redo**        | `redo`                                                                                                                                                                                                    |
+| **Remind**      | `remind`                                                                                                                                                                                                  |
+| **Statistics**  | `stats`                                                                                                                                                                                                   |
+| **Clear**       | `clear`                                                                                                                                                                                                   |
+| **Exit**        | `exit`                                                                                                                                                                                                    |
 
 --------------------------------------------------------------------------------------------------------------------

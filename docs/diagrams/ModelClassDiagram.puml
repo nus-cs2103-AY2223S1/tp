@@ -20,6 +20,7 @@ Class Email
 Class Date
 Class Contact
 Class Tag
+Class Interview
 
 }
 
@@ -41,7 +42,9 @@ Application *--> Company
 Application *--> Contact
 Application *--> Email
 Application *--> Position
+Application *--> Date
 Application *--> "*" Tag
+Application *-right-> "0..1" Interview
 
 Company -[hidden]right-> Contact
 Contact -[hidden]right-> Position

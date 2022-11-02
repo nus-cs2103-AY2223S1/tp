@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103-F14-3/tp/blob/master/src/main/java/seedu/application/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103-F14-3/tp/blob/master/src/main/java/seedu/application/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -94,9 +94,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -116,19 +116,22 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103-F14-3/tp/blob/bb7ac45ed934914d1814ef862edaddf4ccfff320/src/main/java/seedu/application/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="500" />
 
 
 The `Model` component,
 
 * stores the application book data i.e., all `Application` objects (which are contained in a `UniqueApplicationList` object).
 * stores the currently 'selected' `Application` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Application>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the `Application` objects which have existing `Interview` present in them. It is an `ObservableList<Application>` which is used to create the interview list in the UI.
+* stores the `Application` objects which have the `Interview` within one week from the time the user is using the application as another _filtered_ list.
+* stores the `Application` objects sorted by different possible orders as a _sorted_ list. It acts as an important list for the user to select the index for `EditCommand`, `DeleteCommand`, etc.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ApplicationBook`, which `Application` references. This allows `ApplicationBook` to only require one `Tag` object per unique tag, instead of each `Application` needing their own `Tag` objects. In addition, `Interview` is optional in each `Application`, thus, it is wrapped around `Optional` class to avoid the usage of `null`.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/ApplicationClassDiagram.png" width="600">
 
 </div>
 
@@ -417,6 +420,19 @@ Aspect: How should the remind command filter out upcoming interviews?
 * Alternative 2: By maintaining a list of upcoming interviews in the ModelManager.
     * Pros: Reduced coupling between different classes.
     * Cons: Each time an action is performed on an application or interview (such as archiving, adding or editing), the list of upcoming interviews has to be informed and updated as well. 
+
+### [Proposed] Find Interview Feature
+
+#### Implementation
+1. The user enters `find-i technical interview` to filter the existing interviews with keyword `technical interview` in one of the interview fields, e.g. `Round`. The execution prompts the `LogicManager` to call the `ApplicationBookParser#parseCommand(String)` method.
+2. The ApplicationBookParser then identifies the corresponding `FindInterviewCommandParser` to create. Then, the keywords entered are used to instantiate new `Predicates` which in turns to be used to construct new `FindInterviewCommand`.
+3. The LogicManager executes the returned `FindInterviewCommand` object. In here, the `FindInterviewCommand` calls the `updateFilteredApplicationList()` to set the predicates to the `FilteredList<Application>`.
+4. Now, the `FilteredList<Application>` is ready to be observed by the observers to display the filtered interviews onto the UI.
+
+The sequence diagram below shows the crucial components involved in the find interview feature.
+![FindInterviewSequenceDiagram](images/FindInterviewSequenceDiagram.png)
+
+#### Design Considerations
 
 --------------------------------------------------------------------------------------------------------------------
 
