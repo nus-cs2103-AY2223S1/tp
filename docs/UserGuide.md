@@ -582,11 +582,11 @@ Example of usage:
 Expected outcome:
 * All internship applications that have status "Offered" will be filtered and displayed.
 
-Before sorting by upcoming task time in ascending order:
+Before filtering by "Offered" status:
 
 ![FilterFeatureBefore](images/FilterFeatureBefore.png)
 
-After sorting by upcoming task time in ascending order:
+After filtering by "Offered" status:
 
 ![FilterFeatureAfter](images/FilterFeatureAfter.png)
 
