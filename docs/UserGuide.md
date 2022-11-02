@@ -158,6 +158,53 @@ Tutors are regarded as the same if they have the **same email or student ID**!
 
 <div markdown="block" class="alert alert-info">
 
+:information_source: **About Name:**
+- Names must contain at least 1 word, and allow for the following symbols: `/`,`'`,`-`.
+- At most 1 space is allowed between 2 words.
+- Symbols cannot be surrounded by spaces. e.g. `Smith - Jones` is invalid, but `Smith- Jones` is valid.
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **About Phone Number:**
+- Phone numbers can only contain digits, i.e.`0-9` and must be at least 3 digits long.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **About Email:**
+- Emails must be the tutor's NUSNet ID, e.g. `E1234567` or `E1234567@u.nus.edu`
+- The `E` in front is case-insensitive.
+- If `@u.nus.edu` is not provided, Tuthub will automatically append it for you.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **About Module:**
+- Modules are limited to the following in order: 2 compulsory letters, 2 optional letters, 
+4 compulsory digits, 2 optional letters.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **About Year:**
+- Year takes in 1 integer from 0 to 6.
+- Years 1-4 correspond to the respective undergraduate years, while 5 represents a Masters tutor and 6 represents a PhD tutor.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **About Student ID:**
+- Student IDs must consist of the following: `A` followed by 7 digits and any capital letter behind.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
 :information_source: **About Teaching Nomination:**
 - Teaching nominations take in positive integers including 0.
 - Leading zeros in the teaching nominations will not be allowed. e.g. `0`, `1` is valid but `00001` is invalid.
