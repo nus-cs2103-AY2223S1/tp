@@ -451,22 +451,24 @@ according to the previously constructed `OrderContainsKeywordsPredicate`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect,
 `FindOrderCommandParser` will throw a `ParseException`.
-
 </div>
 
 The following sequence diagram shows how the find order operation works:
-_{insert sequence diagram}_
+![FindOrderSequenceDiagram](images/FindOrderSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 _{insert activity diagram}_
 
 #### Design considerations:
 
-**Aspect: How find order executes:**
-
-_{add design considerations}_
-
-_{more aspects and alternatives to be added}_
+**Aspect: What fields the find order command should search by:**
+- Alternative 1: The command finds orders based on the order's `ItemName`
+  - Pros: Easier to implement, and users do not have to use prefixes to find items
+  - Cons: Cannot search based on other fields, such as the customer's details (eg. name, address) and order's delivery or payment status
+- Alternative 2 (current choice): The command finds orders based on `ItemName`, `Name`, `Address`, delivery status and payment status
+  - Pros: More robust searching functionality, allowing users to search by more fields at once. This benefits users with a large customer base. 
+  The ability to search by delivery and payment status also allows users to keep track of the orders which have yet to be paid/delivered. 
+  - Cons: Harder to implement.
 
 ### Edit Order Feature
 
