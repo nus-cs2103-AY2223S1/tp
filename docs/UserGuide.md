@@ -13,7 +13,7 @@ Introducing PleaseHireUs (PHU), the internship tracking application made just fo
 
 Now you will never miss any application deadlines or internship interviews again.
 PleaseHireUs has been optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PleaseHireUs can get your internship management tasks done faster than traditional GUI apps.
-We hope you find PleaseHireUs to be very useful in your internship hunt.
+We hope you find PleaseHireUs to be useful in your internship hunt.
 
 <div style="page-break-after: always;"></div>
 
@@ -27,8 +27,8 @@ We hope you find PleaseHireUs to be very useful in your internship hunt.
 This guides aims to: <br>
 
 1. Teach first-time users how to start using PleaseHireUs
-2. Show and explain to users how to use the features available
-3. Provide users with a summary of the features available
+2. Show and explain to users how to use the available features
+3. Provide users with a summary of the available features
 4. Provide advanced users with tips to improve their experience
 
 ## Navigating the User Guide 
@@ -44,32 +44,37 @@ This guides aims to: <br>
 
 **Warning Box**
 <div markdown="block" class="alert alert-danger">
-**:exclamation: Warning: Important messages**
+**:exclamation: Warning:** Important messages to take note to avoid any unintended effects
 </div>
 
 **Highlights** <br>
-[`commands`](#glossary) or [`PARAMETERS`](#glossary) are inputs by users
+Highlighted text refers to commands, parameters, field values or any user inputs <br>
+e.g. [`commands`](#glossary) [`PARAMETERS`](#glossary)
 
 **Keyboard Inputs**<br>
-
-<button>enter</button>   <button>&uarr;</button>   <button>&darr;</button>
+Boxed texts refers to keyboard inputs <br>
+e.g. <button>enter</button>   <button>&uarr;</button>   <button>&darr;</button>
 
 <div style="page-break-after: always;"></div>
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer. You can refer to [this](#appendix-installing-java-11)
+1. Ensure you have **Java 11** or above installed in your Computer. You can refer to [this](#appendix-installing-java-11)
 
 2. Download the latest `PleaseHireUs.jar` [here](https://github.com/AY2223S1-CS2103T-W17-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your application.
 
-4. Double-click the file to start the app. A [GUI](#glossary) similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The following help window will appear the first time you open the application.
+   ![helpMessage](images/helpMessage.png)
+
+5. Close the help window, you will see a [GUI](#glossary) similar to the one below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type a [command](#glossary) in the [command box](#navigating-the-gui) and press <button>enter</button> to execute it. e.g. typing **`help`** and pressing <button>enter</button> will open the help window.<br>
+6. Type a [command](#glossary) in the [command box](#navigating-the-gui) and press <button>enter</button> to execute it.<br>
+e.g. typing **`help`** and pressing <button>enter</button> will open the help window.<br>
 
-6. Some example commands you can try. You may refer to [this](#features) for more commands.
+7. Below are some example commands you can try. You may refer to [this](#features) for all the available commands.
 
 * **`list`** : Lists all internships.
 
@@ -107,17 +112,16 @@ Displays the list of internships.
 
 <h3 style="color:#C400FF;"> VIEW PANEL </h3>
 
-The panel displays the internship being viewed in greater detail.
+Displays the internship being viewed in greater detail.
 
 <h3 style="color:#7ED957;"> STATISTIC PANEL </h3>
 
 ![Bar Chart](images/BarChart.png)
 
 The Bar Chart (located in the bottom right corner of the application) displays the number of
-applications on every stage of the possible application process **which are currently listed by
-the application**.
+applications on every stage of the possible application process **which are currently listed**.
 
-For example, If you do `find c/n Shopee` the bar chart will reflect
+For example, after carrying out the command, `find c/n Shopee` ,the bar chart will reflect
 the data for all internships whose company name contains the word `Shopee`.
 
 <div markdown="block" class="alert alert-success">
@@ -128,32 +132,32 @@ the data for all internships whose company name contains the word `Shopee`.
 
 <h3 style="color:#FF1616;"> REMINDER FOOTER </h3>
 
-The reminder footer displays the number of interviews, assessments or pending offers due in the next 7 days.
+Displays the number of interviews, assessments or pending offers due in the next 7 days.
 
 <div style="page-break-after: always;"></div>
 
 ## Command Format
+
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the [parameters](#glossary) to be supplied by the user.<br>
-  e.g. in `add n/COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add n/Grab`.
+  e.g. In `add n/COMPANY_NAME`, you may input `add n/Grab` or any other company name.
 
 * Items in square brackets are optional.<br>
-  e.g `n/COMPANY_NAME [t/TAG]` can be used as `n/Jane Street t/highSalary` or as `n/Jane Street`.
+  e.g In `n/COMPANY_NAME [t/TAG]` both `n/Grab t/highSalary` or `n/Grab` are accepted.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/highSalary`, `t/freeLunch t/transport` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/highSalary`, `t/highSalary t/Java` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/COMPANY_NAME pr/APPLICATION_PROCESS`, `pr/APPLICATION_PROCESS n/COMPANY_NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `n/Bytedance n/Tiktok`, only `n/Tiktok` will be taken.
+  e.g. if you specify `n/Grab n/Gojek`, only `n/Gojek` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
+* Additional inputs for commands that do not require them (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
 
 </div>
 
@@ -162,19 +166,19 @@ The reminder footer displays the number of interviews, assessments or pending of
 ## Parameters Requirement
 Here are the [parameter](#glossary) requirements of commonly used parameters by [commands](#glossary) in the [**Features**](#features) section below.
 
-| Parameter                 | Description                                                                            | Requirement / Remarks                                                                                                                                                                                                                           |
-|---------------------------|----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`COMPANY_NAME`**        | Name of company you are applying to                                                    | [Alphanumeric](#glossary) and may contain spaces                                                                                                                                                                                                |
-| **`POSITION`**            | Position of the internship you are applying for                                        | [Alphanumeric](#glossary) and may contain spaces                                                                                                                                                                                                |
-| **`APPLICATION_PROCESS`** | Current process of the internship you are applying for                                 | Can only be: `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED`                                                                                                                                                              |
-| **`DATE`**                | Date of upcoming application task                                                      | In **dd-mm-yyyy** format                                                                                                                                                                                                                        |
-| **`PHONE`**               | Contact number of HR                                                                   | In **[+COUNTRY_CODE] PHONE_NUMBER** format <br><br> - COUNTRY_CODE is optional <br> - COUNTRY_CODE must be 1 to 3 digits long <br> - PHONE_NUMBER must be 3 to 15 digits long <br> - Space in between COUNTRY_CODE and PHONE_NUMBER is optional |
-| **`EMAIL`**               | Email address of HR                                                                    | Contains a `@` and `.com` symbol <br> Example: `example@example.com`                                                                                                                                                                            |
-| **`WEBSITE`**             | Website of company                                                                     | Start with `http://` or `https://`                                                                                                                                                                                                              |
-| **`REMARK`**              | Additional remarks to take note of                                                     |                                                                                                                                                                                                                                                 |
-| **`TAG`**                 | Additional tags to identify applications                                               | Must be [alphanumeric](#glossary) and may **not** contain spaces <br> Maximum length of 20 characters                                                                                                                                           |
-| **`CATEGORY`**            | Refers to the parameters above                                                         | Used in [`list`](#listing-all-internships--list) [`find`](#locating-internships-by-find) command. <br>Refer to respective commands for individual requirements.                                                                                 |
-| **`INDEX`**               | The index number of internship shown in displayed internship list under the Main Panel | Must be a **positive integer** eg.(1,2,3,...) <br>Used in [`delete`](#deleting-internships--delete) [`edit`](#listing-all-internships--list) [`view`](#view-details-of-an-internship-view) [`copy`](#copy-details-of-internship--copy)          |
+| Parameter                 | Description                                                                              | Requirement / Remarks                                                                                                                                                                                                                             |
+|---------------------------|------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`COMPANY_NAME`**        | Name of company you are applying to                                                      | [Alphanumeric](#glossary) and may contain spaces                                                                                                                                                                                                  |
+| **`POSITION`**            | Position of the internship you are applying for                                          | [Alphanumeric](#glossary) and may contain spaces                                                                                                                                                                                                  |
+| **`APPLICATION_PROCESS`** | Current stage of the internship application                                              | Can only be: `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED`                                                                                                                                                                |
+| **`DATE`**                | Date of the upcoming application task                                                    | In **dd-mm-yyyy** format                                                                                                                                                                                                                          |
+| **`PHONE`**               | Contact number of HR                                                                     | In **[+COUNTRY_CODE] PHONE_NUMBER** format <br><br> - COUNTRY_CODE is optional <br> - COUNTRY_CODE must be 1 to 3 digits long <br> - PHONE_NUMBER must be 3 to 15 digits long <br> - Space in between COUNTRY_CODE and PHONE_NUMBER if applicable |
+| **`EMAIL`**               | Email address of HR                                                                      | Contains a `@` symbol <br> Example: `example@example.com`                                                                                                                                                                                         |
+| **`WEBSITE`**             | Website of the company                                                                   | Start with `http://` or `https://`                                                                                                                                                                                                                |
+| **`REMARK`**              | Additional remarks                                                                       | Can be left empty                                                                                                                                                                                                                                 |
+| **`TAG`**                 | Additional tags to identify applications                                                 | - [Alphanumeric](#glossary) and must **not** contain spaces <br> - Maximum length of 20 characters                                                                                                                                                |
+| **`CATEGORY`**            | Refers to the parameters above                                                           | Used in [`list`](#listing-all-internships--list) [`find`](#locating-internships-by-find) command. <br>Refer to respective commands for individual requirements.                                                                                   |
+| **`INDEX`**               | The index number of the internship shown in current internship list under the Main Panel | Used in [`delete`](#deleting-internships--delete) [`edit`](#listing-all-internships--list) [`view`](#view-details-of-an-internship-view) [`copy`](#copy-details-of-internship--copy) <br> Must be a **positive integer** eg.(1,2,3,...) <br>      |
 
 <div style="page-break-after: always;"></div>
 
@@ -183,17 +187,16 @@ This section shows all features and commands which are supported by PleaseHireUs
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Info** <br>
-Internships are uniquely identified by `COMPANY_NAME` and `POSITION`. You cannot have two entries with the same `COMPANY_NAME` and `POSITION`.
+Internships are uniquely identified by `COMPANY_NAME` and `POSITION` (case-insensitive). You cannot have two entries with the same `COMPANY_NAME` and `POSITION`.
 </div>
 
 
 ### Adding an internship: `add`
 
-Applied for an internship role at your dream company? Add your internship application into the list.
+Applied for an internship role at your dream company? Track your internship application by adding it into the list.
 
 Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​`
 
-* Case-insensitive: `Applied`, `APPLIED`, and `applied` are all acceptable inputs.
 * `APPLICATION_PROCESS` will be set to `APPLIED` by default.
 * `DATE` will be set to today’s date by default.
 * `PHONE` will be set to "NA" by default.
@@ -202,47 +205,51 @@ Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHO
 * `REMARK` will be empty by default.
 * `TAG` will be empty by default.
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Info:** `APPLICATION_PROCESS` is case-insensitive <br>
+`Applied`, `APPLIED`, and `applied` are all acceptable inputs
+</div>
+
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** A person can have any number of tags (including 0)
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `add n/Google ph/98765432 e/johnd@example.com r/Y2 summer break p/Backend Intern pr/APPLIED d/11-12-2022 web/https://careers.google.com/jobs t/high t/java`
 * `add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`
-* `add n/Tiktok p/backend engineer`
+* `add n/Gojek p/Mobile Intern`
 
-![help message](images/BeforeAddCommand.png)
+![BeforeAddCommand](images/BeforeAddCommand.png)
 _Before executing command:  `add n/Gojek p/Mobile Intern`_
 
-![help message](images/AfterAddCommand.png)
+![AfterAddCommand](images/AfterAddCommand.png)
 _After executing command: `add n/Gojek p/Mobile Intern`_
 
 <div style="page-break-after: always;"></div>
 
 ### Listing all internships : `list`
 
-Want to see all the internships you have applied to? List of all internship applications. <br>
-You may view your list of internships sorted by category in ascending or descending order.
+See all the internships you have applied to.
 
 Format: `list [c/CATEGORY [DESCENDING]]`
 
-* List the internships 
-* Internships can be sorted by category and in ascending or descending order
-* The `CATEGORY` is optional. By default, without stating the category, `list` will display all internships in no particular order
-  * Possible options for `CATEGORY` : `company_name`, `position`, `application_process`, `date` (case-insensitive)
-  * Case-insensitive: `company_name`, `Company_Name` are all acceptable inputs.
-* The `DESCENDING` parameter is optional. It can take on the value `true` or `false` (case-insensitive).
+* Internships can be sorted by category in ascending or descending order
+* The `CATEGORY` is optional.
+  * Without stating the category, `list` will display all internships in no particular order
+  * Possible options for `CATEGORY` : `COMPANY_NAME`, `POSITION`, `APPLICATION_PROCESS`, `DATE` (case-insensitive)
+* The `DESCENDING` parameter is optional. 
   * The `DESCENDING` parameter can only be declared if the `CATEGORY` is stated
-  * If `DESCENDING` is set to `true`. List of internships will be displayed in descending order
-
+  * Possible options for `DESCENDING`:`TRUE` or `FALSE` (case-insensitive).
+  * If `DESCENDING` is set to `TRUE`. List of internships will be displayed in descending order
+  
 Examples:
-* `list c/date true`
-* `list c/position false`
-
-<div style="page-break-after: always;"></div>
+* `list c/DATE TRUE`
+* `list c/position`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Info:** If the `DESCENDING` parameter is empty or is spelt incorrectly, it will be set to `false`
+**:information_source: Info:** If the `DESCENDING` parameter is empty or is spelt incorrectly, it will be set to `FALSE`
 </div>
 
 <div markdown="block" class="alert alert-success">
@@ -250,52 +257,89 @@ Examples:
 
 | Category                  | Short-form |
 |---------------------------|------------|
-| **`company_name`**        | `n`        |
-| **`position`**            | `p`        |
-| **`application_process`** | `pr`       |
-| **`date`**                | `d`        |
+| **`COMPANY_NAME`**        | `n`        |
+| **`POSITION`**            | `p`        |
+| **`APPLICATION_PROCESS`** | `pr`       |
+| **`DATE`**                | `d`        |
 
 `list c/company_name` is equivalent to `list c/n`
 </div>
 
 <div style="page-break-after: always;"></div>
 
+![BeforeListCommand](images/BeforeListCommand.png)
+_Before executing command:  `list c/position`_
+
+![AfterListCommand](images/AfterListCommand.png)
+_After executing command: `list c/position`_
+
+<div style="page-break-after: always;"></div>
+
 ### Locating internships by: `find`
 
-Looking for some internship applications? Find internships whose data in the target category matches the given keyword/s.
+Looking for specific internship applications? Find internships whose details in the target category matches the keyword/s you entered.
 
 Format: `find [c/CATEGORY] KEYWORDS…`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Possible options for `CATEGORY` : `company_name`, `position`, `application_process`, `date`, `tag` (case-insensitive)
-* If not specified, the `CATEGORY` parameter will be set to `company_name` as the default category.
 * Only the target category is searched.
-* A `KEYWORD` will match any word if the `KEYWORD` is contained in that word e.g. `Han` will match both `Reyhan` and `Handy`
-* Internships whose target category matches at least one keyword will be returned (i.e. OR search). e.g. `c/company_name Hans Bo` can return internships with company name of `Hans Gruber` or `Bo Yang`
-* To find an internship using the date category, all `KEYWORD` must be a valid date in `dd-mm-yyyy` format
-* To find an internship using the application process category, all `KEYWORD` must be a valid application process
-  (i.e. Can only be: `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED`)
+* The `CATEGORY` is optional.
+  * Without stating the category, the search will take `COMPANY_NAME` as the target category.
+  * Possible options for `CATEGORY` : `COMPANY_NAME`, `POSITION`, `APPLICATION_PROCESS`, `DATE`, `TAG` (case-insensitive)
+* `KEYWORD` must be provided.
+  * The `KEYWORD` will match any word if the `KEYWORD` is contained in that word e.g. `Han` will match both `Reyhan` and `Handy`
+  * Internships whose target category matches at least one keyword will be returned (i.e. OR search). e.g. `c/company_name Hans Bo` can return internships with company name of `Hans Gruber` or `Bo Yang`
+  * To find an internship using the date category, all `KEYWORD` must be a valid date in `dd-mm-yyyy` format
+  * To find an internship using the application process category, all `KEYWORD` must be a valid application process (case-insensitive)
+    (i.e. Can only be: `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED`)
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `find c/position engineer` returns a list of internships with a position of Algorithm Engineer and Software Engineer
 * `find sea shop` returns a list of internships with company name of Sea Labs, Shopee, and Shopback
-
-<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** 
 
 | Category                  | Short-form |
 |---------------------------|------------|
-| **`company_name`**        | `n`        |
-| **`position`**            | `p`        |
-| **`application_process`** | `pr`       |
-| **`date`**                | `d`        |
-| **`tag`**                 | `t`        |
+| **`COMPANY_NAME`**        | `n`        |
+| **`POSITION`**            | `p`        |
+| **`APPLICATION_PROCESS`** | `pr`       |
+| **`DATE`**                | `d`        |
+| **`TAG`**                 | `t`        |
 
 `find c/position engineer` is equivalent to `find c/p engineer`
 </div>
+
+<div style="page-break-after: always;"></div>
+
+![BeforeFindCommand](images/BeforeFindCommand.png)
+_Before executing command:  `find sea shop`_
+
+![AfterFindCommand](images/AfterFindCommand.png)
+_After executing command: `find sea shop`_
+
+<div style="page-break-after: always;"></div>
+
+### View details of an internship: `view`
+
+Need to contact HR? View more details about your internship application.
+
+Format: `view INDEX`
+
+* Only the index is searched.
+
+Examples:
+* `find sea shop` followed by `view 1` displays more details of the 1st internship in list.
+
+![BeforeViewCommand](images/BeforeViewCommand.png)
+_Before executing command:  `view 1`_
+
+![AfterViewCommand](images/AfterViewCommand.png)
+_After executing command: `view 1`_
 
 <div style="page-break-after: always;"></div>
 
@@ -309,27 +353,13 @@ Format: `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/DA
 
 Examples:
 * `list` followed by `edit 2 p/quant researcher d/01-01-2023` will edit the position and assignment date of the 1st internship in the list to quant researcher and 1 January 2023 respectively.
-* `find google` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
+* `find sea shop` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
 
-<div style="page-break-after: always;"></div>
+![BeforeEditCommand](images/BeforeEditCommand.png)
+_Before executing command:  `edit 1 pr/REJECTED`_
 
-### View details of an internship: `view`
-
-Need to contact HR? View more details of internship application.
-
-Format: `view INDEX`
-
-* Only the index is searched.
-* More details about the company at the index will be displayed.
-
-Examples:
-* `list` followed by `view 1` displays more details of the 1st internship in list.
-
-![before_view](images/BeforeViewCommand.png)
-_Before executing command:  `view 1`_
-
-![after_view](images/AfterViewCommand.png)
-_After executing command: `view 1`_
+![AfterEditCommand](images/AfterEditCommand.png)
+_After executing command: `edit 1 pr/REJECTED`_
 
 <div style="page-break-after: always;"></div>
 
@@ -354,13 +384,27 @@ Format: `delete INDEX…​`
 
 Examples:
 * `list` followed by `delete 1 3` deletes the 1st and 3rd internship from the list.
-* `find TikTok` followed by `delete 1` deletes the 1st internship in the results of the `find` command.
+* `find sea shop` followed by `delete 1` deletes the 1st internship in the results of the `find` command.
+
+![BeforeDeleteCommand](images/BeforeDeleteCommand.png)
+_Before executing command:  `delete 1`_
+
+![AfterDeleteCommand](images/AfterDeleteCommand.png)
+_After executing command: `delete 1`_
+
+<div style="page-break-after: always;"></div>
 
 ### Clearing all entries : `clear`
 
 Starting a new internship season? Clear all entries from the internship tracker.
 
 Format: `clear`
+
+![BeforeClearCommand](images/BeforeClearCommand.png)
+_Before executing command:  `clear`_
+
+![AfterClearCommand](images/AfterClearCommand.png)
+_After executing command: `clear`_
 
 <div style="page-break-after: always;"></div>
 
@@ -373,8 +417,15 @@ Format: `undo`
 <div markdown="block" class="alert alert-info">
 **:information_source: Info:** <br>
 You can only undo `add`,`clear`,`delete`,`edit`,`redo` commands
-
 </div>
+
+![BeforeUndoCommand](images/BeforeUndoCommand.png)
+_Before executing command:  `undo`_
+
+![AfterUndoCommand](images/AfterUndoCommand.png)
+_After executing command: `undo`_
+
+
 
 ### Redo previous undone command : `redo`
 
@@ -435,8 +486,8 @@ _Details coming soon …​_
 | [**Add**](#adding-an-internship-add)            | :heavy_check_mark: | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`                                      |
 | [**List**](#listing-all-internships--list)      | :x:                | `list [c/CATEGORY [DESCENDING]]` <br> e.g,  `list c/d true`, `list c/date`                                                                                                                                   |
 | [**Find**](#locating-internships-by-find)       | :x:                | `find [c/CATEGORY] KEYWORDS…​`<br> e.g., `find c/p engineer`                                                                                                                                                 |
-| [**Edit**](#editing-internship--edit)           | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]…​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
 | [**View**](#view-details-of-an-internship-view) | :x:                | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                              |
+| [**Edit**](#editing-internship--edit)           | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]…​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
 | [**Copy**](#copy-details-of-internship--copy)   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                             |
 | [**Delete**](#deleting-internships--delete)     | :heavy_check_mark: | `delete INDEX…​`<br> e.g., `delete 1 3`                                                                                                                                                                      |
 | [**Clear**](#clearing-all-entries--clear)       | :heavy_check_mark: | `clear`                                                                                                                                                                                                      |
@@ -502,61 +553,14 @@ _Details coming soon …​_
 ## Appendix: Installing Java 11
 1. Check if you have installed the correct version of java by running `java -version` in your terminal.
 2. If Java is not installed in your computer or the Java version is different,
-   1. For Windows users, you may download Java 11 from [here](https://www.oracle.com/java/technologies/downloads/#java11-windows)
-   2. For Mac users, you may download Java 11 from [here](https://www.oracle.com/java/technologies/downloads/#java11-mac)
+   1. For Windows users, you may download Java 11 [here](https://www.oracle.com/java/technologies/downloads/#java11-windows)
+   2. For Mac users, you may download Java 11 [here](https://www.oracle.com/java/technologies/downloads/#java11-mac)
 3. After installing, you may verify that the correct version of Java is installed by repeating step 1.
 
 <div style="page-break-after: always;"></div>
 
 ## Appendix: Manually Editing the Save File
 The save file contains a **single object** with a **single field** named `"internships"`. 
-
-The `"internships"` field is an array of objects which must contains all the following fields:
-1. `name`: Represents the company name. <br/>
-A **non-empty** string which fulfills the `COMPANY_NAME` parameter constraints.
-
-
-2. `phone`: Represents the phone number. <br/>
-**EITHER** The string `"NA"` which represents no phone number provided
-**OR** a string which fulfills the `PHONE` parameter constraints.
-
-
-3. `email`: Represents the email. <br />
-**EITHER** the string `"NA"` which represents no email provided
-**OR** a string which must fulfills the `EMAIL` parameter constraints.
-
-
-5. `remark`: Represents the remark. <br/>
-A (possibly empty) string which fulfills the `REMARK` parameter constraints.
-
-
-6. `position`: Represents the position of the internship. <br/>
-A **non-empty** string which fulfills the `POSITION` parameter constraints.
-
-
-7. `applicationProcess`: Represents the application process of the corresponding internship.<br/>
-A string which fulfills the `APPLICATION_PROCESS` parameter constraints.
-Note that the string is case-insensitive.
-
-8. `date`: Represents the internship application date <br />
-A string which fulfills the `DATE` parameter constraints.
-
-
-9. `website`: Represents the company's website <br />
-**EITHER** The string `"NA"` which represents no website provided 
-**OR** a string which fulfills the `WEBSITE` parameter constraints.
-
-
-10. `tagged`: Represents a collection of tags for the corresponding internship<br />
-An (possibly empty) array of strings with each string 
-being non-empty and fulfilling the `TAG` parameter constraints.
-
-For reference for the parameter constrains, refer to [here](#parameters-requirement)  
-
-<div markdown="block" class="alert alert-danger">
-**:exclamation: Warning:** Though some parameters might work with leading / trailing whitespaces, 
-it is recommended to avoid it completely as it might make the format invalid
-</div>
 
 Below is an example of a valid save file format:
 ```
@@ -587,3 +591,45 @@ Below is an example of a valid save file format:
   ]
 }
 ```
+<div style="page-break-after: always;"></div>
+
+The `"internships"` field is a collection of objects which must contains all the following fields:
+1. `name`: Represents the company name. <br/>
+A **non-empty** word(s) which fulfills the `COMPANY_NAME` parameter constraints.
+
+2. `phone`: Represents the phone number. <br/>
+**EITHER** `"NA"` which represents no phone number provided
+**OR** a phone number which fulfills the `PHONE` parameter constraints.
+
+3. `email`: Represents the email. <br />
+**EITHER** `"NA"` which represents no email provided
+**OR** an email address which fulfills the `EMAIL` parameter constraints.
+
+5. `remark`: Represents the remark. <br/>
+A (possibly empty) description which fulfills the `REMARK` parameter constraints.
+
+6. `position`: Represents the position of the internship. <br/>
+A **non-empty** word which fulfills the `POSITION` parameter constraints.
+
+7. `applicationProcess`: Represents the application process of the corresponding internship.<br/>
+A word which fulfills the `APPLICATION_PROCESS` parameter constraints.
+Note that the word is case-insensitive.
+
+8. `date`: Represents the internship application date <br />
+A date which fulfills the `DATE` parameter constraints.
+
+9. `website`: Represents the company's website <br />
+**EITHER** `"NA"` which represents no website provided 
+**OR** a web address which fulfills the `WEBSITE` parameter constraints.
+
+10. `tagged`: Represents a collection of tags for the corresponding internship<br />
+An (possibly empty) collection of words with each word 
+being non-empty and fulfilling the `TAG` parameter constraints.
+
+Refer to [this](#parameters-requirement) for the parameter requirements.  
+
+<div markdown="block" class="alert alert-danger">
+**:exclamation: Warning:** Though some parameters might work with leading / trailing whitespaces, 
+it is recommended to avoid it completely as it might make the format invalid
+</div>
+
