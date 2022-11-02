@@ -10,14 +10,27 @@ Our simple and intuitive commands will help you quickly learn how to use HR Pro 
 If you can type fast, there is an added benefit which is that HR Pro Max++ can get your Project management Tasks done faster than traditional GUI apps.
 
 Here are some shortcuts to get help:
-* To set up HR Pro Max++, go to our Quick start section.
-* To see how all our commands work, head to our Features section.
+* To set up HR Pro Max++, go to our [Quick start section](#quick-start).
+* Unsure of some terms, go to our [Glossary section](#glossary).
+* To see how all our commands work, head to our [Features section](#features).
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Table of Contents**
 
 * Table of Contents 
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+## **Glossary**
+In this User Guide, there might some terms unknown to you. We have provided elaboration on some
+of these terms in the hopes that it will clear your doubts.
+
+| Terms         | Description                                                                                                                        |
+|---------------|------------------------------------------------------------------------------------------------------------------------------------|
+| **GUI**       | GUI stands for Graphical User Interface and it refers to the [window opened](#user-interface) when HR Pro Max++ application is ran |
+| **CLI**       | CLI refers to Command Line Interface and it refers to the [area](#command-box) where users can input commands in the form of text. |
+| **Prefix**    | Prefix is the placeholder to indicate the type of information inputted. Here is a [list of all the prefixes](#prefix-summary)      |
+| **Parameter** | Parameters are the information that are needed to be passed togther with the command such that it can be executed.                 |
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Quick start**
@@ -55,7 +68,7 @@ Some example commands you can try:
 
 * **`list`** : Lists all Projects and Tasks.
 
-* **`addproj pn/Duke pb/ 20 pd/ 2022-09-27`** : Adds a Project named Duke to HR Pro Max++.
+* **`addproj pn/Duke pb/ 20 pd/ 2022-09-27`** : Adds a Project named Duke, with Project Budget of 20 and Project Deadline of 2022-09-27 to HR Pro Max++.
 
 * **`delproj 3`** : Deletes the 3rd Project shown in the current Project Panel.
 
@@ -123,12 +136,16 @@ For information on all commands that can be used to manipulate the Staff Panel, 
 
 </div>
 
+**
+
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Project Commands**
 This segment contains information regarding all the commands that can be used to manage Projects.
+
 ### Project Glossary
+
 | Parameter            | Description, Constraints                                                                                                                                                                                                                                                                                                                          |
 |----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **PROJECT_NAME**     | _Name of Project_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> - No character limit. <br> - Project names must be unique. <br> - If you want to enter two Projects of the same name, you can add a number behind to uniquely identify the Projects e.g. Artemis2. |
@@ -157,7 +174,8 @@ Examples:
 * `addproj pn/2103T TP pb/100000 pd/2022-01-01`
 * `addproj pn/CS2100 t/Tiring pb/1000 pd/2022-01-01 t/Funtime`
 
-[Back to top](#table-of-contents)
+[Back to top](#table-of-contents)<br>
+[Back to Project Glossary](#project-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Deleting a Project :** `delproj`
@@ -177,7 +195,8 @@ Examples:
 * `list` followed by `delproj 2` deletes the 2nd Project in Project list.
 * `findproj 2103T TP` followed by `delproj 1` deletes the 1st Project in the results of the `findproj` command.
 
-[Back to top](#table-of-contents)
+[Back to top](#table-of-contents)<br>
+[Back to Project Glossary](#project-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Listing all Projects and Tasks :** `list`
@@ -210,7 +229,8 @@ Examples:
 * `findproj CS2103` returns `CS2103` and `CS2103 TP`.
 * `findproj merge develop` returns `Merger with ABC` and `Develop software`.
 
-[Back to top](#table-of-contents)
+[Back to top](#table-of-contents)<br>
+[Back to Project Glossary](#project-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Sorting the Project list :** `sortproj`
@@ -224,7 +244,8 @@ Warning !!!:
 
 Format: `sortproj`
 
-[Back to top](#table-of-contents)
+[Back to top](#table-of-contents)<br>
+[Back to Project Glossary](#project-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Editing a Project :** `editproj`
@@ -250,7 +271,8 @@ Examples:
 * `editproj 1 pb/5000` Edits the Project budget of the 1st Project to be `5000`.
 * `editproj 2 pn/CS2103 t/` Edits the name of the 2nd Project to be `CS2103` and clears all existing tags.
 
-[Back to top](#table-of-contents)
+[Back to top](#table-of-contents)<br>
+[Back to Project Glossary](#project-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Staff Commands**
@@ -259,6 +281,7 @@ Since each Project contains a list of Staff, we recommend that before using Staf
 you should first use the [view command](#view-the-staff-list-within-a-project--view) to display the Project's attached Staff list.
 
 ### Staff Glossary
+
 | Parameter            | Description, Constraints                                                                                                                                                                                                                                                                                                                |
 |----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **STAFF_NAME**       | _Name of Staff_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> - No character limit. <br> - Staff names must be unique. <br> - If you want to enter two Staff members of the same name, you can add a number behind to uniquely identify them e.g. John2. |
@@ -293,7 +316,8 @@ Examples:
 * `addstaff 1 sn/John Doe sp/98765432 sl/true sd/Accounting st/Accountant` Adds Staff member named `John Doe` to the first Project in the Project list.
 * `addstaff 3 sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin sl/false` Adds Staff member named `Betsy Crown` to the third Project in the Project list.
 
-[Back to top](#table-of-contents)
+[Back to top](#table-of-contents)<br>
+[Back to Staff Glossary](#staff-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Deleting a Staff member from Project :** `delstaff`
@@ -321,7 +345,8 @@ Examples:
 * `delstaff 1 pn/2103` Delete the 1st Staff within the displayed Staff list from Project `2103`.
 * `delstaff 7 pn/Duke` Delete 7th Staff within the displayed Staff list from Project `Duke`.
 
-[Back to top](#table-of-contents)
+[Back to top](#table-of-contents)<br>
+[Back to Staff Glossary](#staff-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **View the Staff list within a Project :** `view`
@@ -365,7 +390,8 @@ Note:
 Examples:
 * `editstaff 1 pn/CS2103T sn/John Doe` edits the Staff name of the first Staff of the displayed Staff list of `CS2103T` to `John Doe` 
 
-[Back to top](#table-of-contents)
+[Back to top](#table-of-contents)<br>
+[Back to Staff Glossary](#staff-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Finding a Staff member within a Project :** `findstaff`
@@ -388,13 +414,15 @@ Examples:
 Staff whose name contains `Adrian` or `Lam` are also listed. 
 * You can use the view command to list all the Staff in a Project if you wish to display the full Staff List again.
 
-[Back to top](#table-of-contents)
+[Back to top](#table-of-contents)<br>
+[Back to Staff Glossary](#staff-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Task Commands**
 This segment contains information on all the commands related to Tasks.
 
 ### Task Glossary
+
 | Parameter            | Description, Constraints                                                                                                                                                                                                                                                                                                                |
 |----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **TASK_DESCRIPTION** | _Description of Task_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> - No character limit. <br> - Task names must be unique. <br> - If you want to enter two Tasks of the same name, you can add a number behind to uniquely identify them e.g. Meeting2. |
@@ -419,7 +447,8 @@ Examples:
 * `addtask tdesc/Finish Homework td/2022-10-27` creates a Task with the description `Finish Homework` and deadline set to
 `2022-10-27`
 
-[Back to top](#table-of-contents)
+[Back to top](#table-of-contents)<br>
+[Back to Task Glossary](#task-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Deleting a Task :** `deltask`
@@ -438,7 +467,8 @@ Examples:
 * If the Task list has only 4 elements, `deltask 5` would return an error message of
 `The task index provided is invalid`.
 
-[Back to top](#table-of-contents)
+[Back to top](#table-of-contents)<br>
+[Back to Task Glossary](#task-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Finding a Task :** `findtask`
@@ -458,7 +488,8 @@ Examples:
 * `findtask meeting` returns `Meeting` and `Setup Meeting`.
 * `findtask submit app` returns `Submit application` and `Submit paperwork`.
 
-[Back to top](#table-of-contents)
+[Back to top](#table-of-contents)<br>
+[Back to Task Glossary](#task-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Sorting the Task list by deadline :** `sorttask`
@@ -554,7 +585,7 @@ Warning !!!:
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Saving the data**
+## **Saving the data**
 Project data is saved in the hard disk automatically after any command that changes the data. 
 There is no need to save manually.
 
