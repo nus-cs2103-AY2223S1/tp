@@ -769,7 +769,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
    2. Test case: `delete 1`<br>
-      Expected: First contact is applicant from the list. Details of the deleted applicant shown in the status message.
+      Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
       Success message shown in the status message.
 
 2. Deleting an out-of-bounds index
