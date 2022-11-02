@@ -3,24 +3,44 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.COUNTRY_DESC_CANADA;
+import static seedu.address.logic.commands.CommandTestUtil.COUNTRY_DESC_UK;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.GAME_TYPE_DESC_MINEPLEX;
+import static seedu.address.logic.commands.CommandTestUtil.GAME_TYPE_DESC_SURVIVAL;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MINECRAFT_SERVER_DESC_111_222;
+import static seedu.address.logic.commands.CommandTestUtil.MINECRAFT_SERVER_DESC_123_456;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.SOCIAL_DESC_INSTAGRAM;
+import static seedu.address.logic.commands.CommandTestUtil.SOCIAL_DESC_TWITTER;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TI_DESC_SUN_TO_MON;
+import static seedu.address.logic.commands.CommandTestUtil.TI_DESC_TUES;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COUNTRY_CANADA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COUNTRY_UK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GAME_TYPE_MINEPLEX;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GAME_TYPE_SURVIVAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SERVER_111_222;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SERVER_123_456;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SOCIAL_INSTAGRAM;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SOCIAL_TWITTER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_INTERVAL_SUNDAY_NIGHT_TO_MONDAY_MORNING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_INTERVAL_TUES_AFTERNOON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -142,9 +162,75 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // country 1
+        userInput = targetIndex.getOneBased() + COUNTRY_DESC_CANADA;
+        descriptor = new EditPersonDescriptorBuilder().withCountry(VALID_COUNTRY_CANADA).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // country 2
+        userInput = targetIndex.getOneBased() + COUNTRY_DESC_UK;
+        descriptor = new EditPersonDescriptorBuilder().withCountry(VALID_COUNTRY_UK).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
         descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+    @Test
+    public void parse_additionalFieldsSpecified_success() {
+        Index targetIndex = INDEX_THIRD_PERSON;
+        // game type 1
+        String userInput = targetIndex.getOneBased() + GAME_TYPE_DESC_MINEPLEX;
+        EditPersonDescriptor descriptor =
+                new EditPersonDescriptorBuilder().withGameTypes(VALID_GAME_TYPE_MINEPLEX).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+
+        // game type 2
+        userInput = targetIndex.getOneBased() + GAME_TYPE_DESC_SURVIVAL;
+        descriptor = new EditPersonDescriptorBuilder().withGameTypes(VALID_GAME_TYPE_SURVIVAL).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // server 1
+        userInput = targetIndex.getOneBased() + MINECRAFT_SERVER_DESC_111_222;
+        descriptor = new EditPersonDescriptorBuilder().withServer(VALID_SERVER_111_222).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // server 2
+        userInput = targetIndex.getOneBased() + MINECRAFT_SERVER_DESC_123_456;
+        descriptor = new EditPersonDescriptorBuilder().withServer(VALID_SERVER_123_456).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // social 1
+        userInput = targetIndex.getOneBased() + SOCIAL_DESC_INSTAGRAM;
+        descriptor = new EditPersonDescriptorBuilder().withSocial(VALID_SOCIAL_INSTAGRAM).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // social 2
+        userInput = targetIndex.getOneBased() + SOCIAL_DESC_TWITTER;
+        descriptor = new EditPersonDescriptorBuilder().withSocial(VALID_SOCIAL_TWITTER).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // time interval 1
+        userInput = targetIndex.getOneBased() + TI_DESC_SUN_TO_MON;
+        descriptor = new EditPersonDescriptorBuilder()
+                .withTimeInterval(VALID_TIME_INTERVAL_SUNDAY_NIGHT_TO_MONDAY_MORNING).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // time interval 2
+        userInput = targetIndex.getOneBased() + TI_DESC_TUES;
+        descriptor = new EditPersonDescriptorBuilder().withTimeInterval(VALID_TIME_INTERVAL_TUES_AFTERNOON).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -160,7 +246,6 @@ public class EditCommandParserTest {
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

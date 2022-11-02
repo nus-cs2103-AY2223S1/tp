@@ -64,14 +64,12 @@ public class TimeInterval implements ITimesAvailable {
     public static String getStartingDayTimeInWeek(String test) {
         assert isValidTimeInterval(test);
         String[] tokens = test.split("-");
-        System.out.println(tokens[0].trim());
         return tokens[0].trim();
     }
 
     public static String getEndingDayTimeInWeek(String test) {
         assert isValidTimeInterval(test);
         String[] tokens = test.split("-");
-        System.out.println(tokens[1].trim());
         return tokens[1].trim();
     }
 
@@ -89,6 +87,14 @@ public class TimeInterval implements ITimesAvailable {
             return dayTimeInWeek.minutesSinceMondayMidnight >= startTime.minutesSinceMondayMidnight
                     && dayTimeInWeek.minutesSinceMondayMidnight <= endTime.minutesSinceMondayMidnight;
         }
+    }
+
+    /**
+     * Returns hashcode for purpose of the equals method.
+     */
+    @Override
+    public int hashCode() {
+        return this.toString().hashCode();
     }
 
     @Override

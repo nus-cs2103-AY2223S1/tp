@@ -38,7 +38,6 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
-
     @Test
     public void parse_allFieldsPresent_success() {
         Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
@@ -73,6 +72,23 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + MINECRAFT_NAME_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 new AddCommand(expectedPersonMultipleTags));
+    }
+
+    @Test
+    public void parse_mixedUpOrder_success() {
+        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+
+        // mix up order of compulsory fields with preamble
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + MINECRAFT_NAME_DESC_BOB + NAME_DESC_BOB
+                + EMAIL_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+
+        // mix up order of compulsory and optional fields with preamble
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + MINECRAFT_NAME_DESC_BOB + NAME_DESC_BOB
+                + EMAIL_DESC_BOB + TAG_DESC_FRIEND + PHONE_DESC_BOB + ADDRESS_DESC_BOB, new AddCommand(expectedPerson));
+
+        // mix up order of compulsory and optional fields without preamble
+        assertParseSuccess(parser, MINECRAFT_NAME_DESC_BOB + NAME_DESC_BOB
+                + EMAIL_DESC_BOB + TAG_DESC_FRIEND + PHONE_DESC_BOB + ADDRESS_DESC_BOB, new AddCommand(expectedPerson));
     }
 
     @Test

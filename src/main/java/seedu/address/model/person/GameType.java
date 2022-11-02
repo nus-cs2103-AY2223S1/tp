@@ -50,6 +50,14 @@ public class GameType {
         return MESSAGE_CONSTRAINTS;
     }
 
+    /**
+     * Returns hashcode for purpose of the equals method.
+     */
+    @Override
+    public int hashCode() {
+        return this.getGameTypeName().hashCode();
+    }
+
     @Override
     public boolean equals(Object other) {
 

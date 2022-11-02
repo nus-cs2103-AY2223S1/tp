@@ -38,6 +38,13 @@ public class Server {
         return SERVER_CONSTRAINTS;
     }
 
+    /**
+     * Returns hashcode for purpose of the equals method.
+     */
+    @Override
+    public int hashCode() {
+        return this.getServerName().hashCode();
+    }
 
     @Override
     public boolean equals(Object other) {
