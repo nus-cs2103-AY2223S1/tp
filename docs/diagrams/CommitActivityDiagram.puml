@@ -5,9 +5,9 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([command commits AddressBook])
+if () then ([command commits Friday])
     :Purge redundant states;
-    :Save AddressBook to
+    :Save Friday to
     addressBookStateList;
 else ([else])
 endif
