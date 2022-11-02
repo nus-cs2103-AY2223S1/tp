@@ -40,7 +40,7 @@
     "address" : "10th street",
     "riskTag": "LOW",
     "planTag": "Savings Plan",
-    "clientTag": "POTENTIAL",
+    "clientTag": "CURRENT",
     "income": "$1000",
     "monthly": "$300",
     "tagged" : [ "friends" ]
@@ -51,7 +51,7 @@
     "address" : "michegan ave",
     "riskTag": "MEDIUM",
     "planTag": "Savings Plan",
-    "clientTag": "CURRENT",
+    "clientTag": "POTENTIAL",
     "income": "$6000",
     "monthly": "$250",
     "tagged" : [ ],
