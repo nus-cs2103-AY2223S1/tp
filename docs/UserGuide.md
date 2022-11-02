@@ -300,7 +300,7 @@ Expected outcome:
 
 ### Filtering internship applications by status : `filter`
 
-Filters the list of internship applications based on their status, using `p` for "Progress", `r` for "Rejected" and
+Filters all internship applications based on their status, using `p` for "Progress", `r` for "Rejected" and
 `o` for "Offered". 
 
 Format: `filter STATUS`, where `STATUS` must be either `p`, `o` or `r`

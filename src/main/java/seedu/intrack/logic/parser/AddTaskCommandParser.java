@@ -3,6 +3,9 @@ package seedu.intrack.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +31,11 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         + " ([01]?[0-9]|2[0-3]):[0-5][0-9]";
 
     /**
+     * Format to parse date time string, this ensures that the date parsed is not unnecessarily rounded
+     */
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
+    /**
      * Parses the given {@code String} of arguments in the context of the {@code AddTaskCommand}
      * and returns a {@code AddTaskCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
@@ -50,6 +58,12 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
 
         if (!dateTimeString.matches(DATETIME_FORMAT)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
+        }
+
+        String dateTimeParsed = LocalDateTime.parse(dateTimeString, FORMATTER).truncatedTo(ChronoUnit.MINUTES)
+                .format(FORMATTER);
+        if (!dateTimeParsed.equals(dateTimeString)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 

@@ -55,10 +55,6 @@ public class TagsContainKeywordsPredicateTest {
         // Only one matching keyword
         predicate = new TagsContainKeywordsPredicate(Arrays.asList("Urgent", "Remote"));
         assertTrue(predicate.test(new InternshipBuilder().withTags("Urgent").build()));
-
-        // Mixed-case keywords
-        predicate = new TagsContainKeywordsPredicate(Arrays.asList("uRgEnT", "rEmOtE"));
-        assertTrue(predicate.test(new InternshipBuilder().withTags("Urgent", "Remote").build()));
     }
 
     @Test
@@ -76,5 +72,9 @@ public class TagsContainKeywordsPredicateTest {
                 Arrays.asList("careers@airbnb.com", "Software", "Engineer", "12345"));
         assertFalse(predicate.test(new InternshipBuilder().withPosition("Software Engineer").withSalary("12345")
                 .withEmail("careers@airbnb.com").build()));
+
+        // Mixed-case keywords
+        predicate = new TagsContainKeywordsPredicate(Arrays.asList("uRgEnT", "rEmOtE"));
+        assertFalse(predicate.test(new InternshipBuilder().withTags("Urgent", "Remote").build()));
     }
 }
