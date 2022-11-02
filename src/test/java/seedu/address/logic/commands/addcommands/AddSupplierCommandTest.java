@@ -43,8 +43,7 @@ public class AddSupplierCommandTest {
 
         CommandResult commandResult = new AddSupplierCommand(validSupplier, new ArrayList<>()).execute(modelStub);
 
-        String expected = "\n" + "0 pets added\n"
-                + String.format(AddSupplierCommand.MESSAGE_SUCCESS, validSupplier);
+        String expected = String.format(AddSupplierCommand.MESSAGE_SUCCESS, validSupplier) + "\n0 pets added\n";
         assertEquals(expected, commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validSupplier), modelStub.suppliersAdded);
     }
