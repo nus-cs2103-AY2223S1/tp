@@ -1,0 +1,100 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "parser:RemoveCommandParser" as RemoveCommandParser LOGIC_COLOR
+participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant "descriptor:RemovePersonDescriptor" as RemovePersonDescriptor LOGIC_COLOR
+participant "r:RemoveCommand" as RemoveCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("remove h/1 g/1 a/1 s/1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("remove h/1 g/1 a/1 s/1")
+activate AddressBookParser
+
+create RemoveCommandParser
+AddressBookParser -> RemoveCommandParser
+activate RemoveCommandParser
+
+RemoveCommandParser --> AddressBookParser
+deactivate RemoveCommandParser
+
+AddressBookParser -> RemoveCommandParser : parse("h/1 g/1 a/1 s/1")
+activate RemoveCommandParser
+
+RemoveCommandParser --> ArgumentTokenizer: tokenize("h/1 g/1 a/1 s/1", "h/", "g/", "a/", "s/")
+activate ArgumentTokenizer
+
+ArgumentTokenizer --> RemoveCommandParser : args
+deactivate ArgumentTokenizer
+
+create RemovePersonDescriptor
+RemoveCommandParser -> RemovePersonDescriptor
+activate RemovePersonDescriptor
+
+RemovePersonDescriptor --> RemoveCommandParser : descriptor
+deactivate RemovePersonDescriptor
+
+create RemoveCommand
+RemoveCommandParser -> RemoveCommand : RemoveCommand(descriptor)
+activate RemoveCommand
+
+RemoveCommand --> RemoveCommandParser : command
+deactivate RemoveCommand
+
+
+RemoveCommandParser --> AddressBookParser : command
+deactivate RemoveCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RemoveCommandParser -[hidden]-> AddressBookParser
+destroy RemoveCommandParser
+
+AddressBookParser --> LogicManager : command
+deactivate AddressBookParser
+
+LogicManager -> RemoveCommand : execute(model)
+activate RemoveCommand
+
+RemoveCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model -> RemoveCommand
+deactivate Model
+
+RemoveCommand -> RemoveCommand: createRemovedPerson(personToEdit, removePersonDescriptor)
+activate RemoveCommand
+
+RemoveCommand --> RemoveCommand: editedPerson
+deactivate RemoveCommand
+
+RemoveCommand -> Model : setPerson(personToEdit,editedPerson)
+activate Model
+
+
+Model --> RemoveCommand
+deactivate Model
+
+create CommandResult
+RemoveCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RemoveCommand
+deactivate CommandResult
+
+RemoveCommand --> LogicManager : result
+deactivate RemoveCommand
+RemoveCommand -[hidden]-> LogicManager : result
+destroy RemoveCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

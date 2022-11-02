@@ -349,20 +349,29 @@ Step 6. The user executes a `remove s/3` command which removes the instance of `
 
 The remove feature allows the user to remove a specified detail from the homework, session, attendance, or grade progress lists. It can only be used when the user is in the 'view' state of the student.
 
-Remove is facilitated by the `RemoveCommand` in the Logic component.
+Remove is facilitated by the `RemoveCommand` in the Logic component. It extends `command`.
 
 Given below is an example usage scenario and how the Remove mechanism behaves at each step.
 
-**Assumption: There are `Person` instances of the name Benson Meier and Alice Pauline `Person` list.**
+**Assumption: There are `Person` instances of the name Benson Meier in the `Person` list.**
 
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the sample data and
 each person in the `AddressBook` contains details for each `GradeProgress`, `Session`, `Attendance` or `Homework` object.
 Step 2. The user executes `view Benson Meier`,bringing the user to the `view state` of Benson Meier
-Step 3. The user executes a `remove a/3` command which removes the instance of `attendance` in index 3 of the `attendanceList` of the `Person` displayed in the view state.
+Step 3. The user executes a `remove a/3` command. The following methods are called in the given order:
+1. `LogicManager#Execute`, which then calls
+2. `AddressBookParser#parseCommand`. It will parse the input as a `RemoveCommand` and call the constructor of `RemoveCommandParser`.
+3. `RemoveCommandParser#parse` will parse the user command based on the prefixes given by the user, and returns a `RemoveCommand` with `RemovePersonDescriptor` as input.
+4. `RemoveCommand#execute` is called, and it will check if the user is in `view state`. If not, it will throw a `CommandException` with `MESSAGE_NOT_VIEW_MODE`. Otherwise, the method continues to run.
+5. The `RemoveCommand#createRemovedPerson` creates a person using the information in the `RemovePersonDescriptor`.
+6. The `Person` is replaced by the newly created `Person` using `Model#setPerson`. `RemoveCommand#execute` returns a `CommandResult` to the `LogicManager`.
 
 The following activity diagram summarises what happens when a user executes the Remove command:
 
-(insert activity diagram here)
+![RemoveSequenceDiagram](images/RemoveSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">
+:information_source: **Note** The lifeline for `RemoveCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design Consideration
 
@@ -375,6 +384,10 @@ The following activity diagram summarises what happens when a user executes the 
 * **Alternative 2:** Integrate remove function into edit function.
   * Pros: More intuitive as removing a feature is also instinctively understood as editing details. 
   * Cons: Harder to implement, can lead to potential errors if user means to edit as opposed to remove 
+
+* **Alternative 3:** No Remove command. Users are unable to remove fields added to student's lists, and have to edit the existing fields instead.
+  * Pros: Less bug-prone, more convenient for developers
+  * Cons: Not user-friendly and makes things difficult for users.
   
 
 ### Schedule feature
