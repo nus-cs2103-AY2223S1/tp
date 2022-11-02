@@ -175,10 +175,6 @@ It is recommended to only have 1 `TAG` per client.
 
 </div>
 
-* If you have multiple meeting times with your client, simply repeat the field `mt/TIME`.
-* Does not allow you to create a person with the same name and phone number as a current person in the FABook.
-* Allows you to create a person with same name but different phone number or same number and different name as a current person in the FABook.
-
 Other examples:
 * `create n/John Doe p/98765432 a/John street, block 123, #01-01`
 * `create n/Betsy Crowe a/Bugis MRT p/1234567 mt/10-11-2022-18:00 mt/01-02-2022-16:00`
