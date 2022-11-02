@@ -6,8 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditPropertyCommand;
@@ -27,8 +28,8 @@ public class EditPropertyCommandParser extends Parser<EditPropertyCommand> {
     public EditPropertyCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer
-                .tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
-                        PREFIX_CHARACTERISTICS);
+                .tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS, PREFIX_DESCRIPTION, PREFIX_OWNER_NAME,
+                        PREFIX_PHONE, PREFIX_CHARACTERISTICS);
 
         if (argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPropertyCommand.MESSAGE_USAGE));
@@ -56,7 +57,14 @@ public class EditPropertyCommandParser extends Parser<EditPropertyCommand> {
             editPropertyDescriptor.setDescription(ParserUtil
                     .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
-
+        if (argMultimap.getValue(PREFIX_OWNER_NAME).isPresent()) {
+            editPropertyDescriptor.setOwnerName(ParserUtil
+                    .parseName(argMultimap.getValue(PREFIX_OWNER_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            editPropertyDescriptor.setOwnerPhone(ParserUtil
+                    .parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        }
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
             editPropertyDescriptor.setCharacteristics(ParserUtil
                     .parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get()));

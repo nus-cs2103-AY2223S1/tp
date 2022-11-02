@@ -21,6 +21,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.address.Address;
+import seedu.address.model.buyer.Name;
+import seedu.address.model.buyer.Phone;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Owner;
@@ -43,19 +45,15 @@ public class EditPropertyCommand extends Command {
             + "[" + PREFIX_PRICE + " PRICE] "
             + "[" + PREFIX_ADDRESS + " ADDRESS] "
             + "[" + PREFIX_DESCRIPTION + " DESC] "
-            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]"
             + "[" + PREFIX_OWNER_NAME + " OWNER NAME] "
             + "[" + PREFIX_PHONE + " OWNER PHONE]\n"
+            + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS]"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + " 4 Room Heng Mui Keng Condo "
             + PREFIX_PRICE + " 500000 "
             + PREFIX_ADDRESS + " Heng Mui Keng Terrace 22 "
-            + PREFIX_DESCRIPTION + " 4 Room Condo with 2 bathrooms "
-            + PREFIX_CHARACTERISTICS + " 5-Room; Near School "
-            + PREFIX_OWNER_NAME + " John Doe "
-            + PREFIX_PHONE + " 8000 1000\n";
+            + PREFIX_CHARACTERISTICS + " 5-Room; Secluded ";
 
-    public static final String MESSAGE_EDIT_PROPERTY_SUCCESS = "Edited Property: %1$s";
+    public static final String MESSAGE_EDIT_PROPERTY_SUCCESS = "Edited Property!\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in Cobb.";
 
@@ -108,7 +106,9 @@ public class EditPropertyCommand extends Command {
         Characteristics updatedCharacteristics = descriptor
                 .getCharacteristics()
                 .orElse(propertyToEdit.getCharacteristics().orElse(null));
-        Owner updatedOwner = descriptor.getOwner().orElse(propertyToEdit.getOwner());
+        Name updatedOwnerName = descriptor.getOwnerName().orElse(propertyToEdit.getOwnerName());
+        Phone updatedOwnerPhone = descriptor.getOwnerPhone().orElse(propertyToEdit.getOwnerPhone());
+        Owner updatedOwner = new Owner(updatedOwnerName, updatedOwnerPhone);
 
         // Should this be updated
         LocalDateTime entryTime = propertyToEdit.getPropertyEntryTime();
@@ -145,7 +145,8 @@ public class EditPropertyCommand extends Command {
         private Address address;
         private Description description;
         private Characteristics characteristics;
-        private Owner owner;
+        private Name ownerName;
+        private Phone ownerPhone;
 
         public EditPropertyDescriptor() {}
 
@@ -159,14 +160,16 @@ public class EditPropertyCommand extends Command {
             setDescription(toCopy.description);
             setAddress(toCopy.address);
             setCharacteristics(toCopy.characteristics);
-            setOwner(toCopy.owner);
+            setOwnerName(toCopy.ownerName);
+            setOwnerPhone(toCopy.ownerPhone);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, price, address, description, address, characteristics, owner);
+            return CollectionUtil.isAnyNonNull(name, price, address, description, address, characteristics, ownerName,
+                    ownerPhone);
         }
 
         public void setName(PropertyName propertyName) {
@@ -201,11 +204,20 @@ public class EditPropertyCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setOwner(Owner owner) {
-            this.owner = owner;
+        public void setOwnerName(Name name) {
+            this.ownerName = name;
         }
-        public Optional<Owner> getOwner() {
-            return Optional.ofNullable(owner);
+
+        public Optional<Name> getOwnerName() {
+            return Optional.ofNullable(ownerName);
+        }
+
+        public void setOwnerPhone(Phone phone) {
+            this.ownerPhone = phone;
+        }
+
+        public Optional<Phone> getOwnerPhone() {
+            return Optional.ofNullable(ownerPhone);
         }
 
         public void setCharacteristics(Characteristics characteristics) {
@@ -236,7 +248,8 @@ public class EditPropertyCommand extends Command {
                     && getDescription().equals(e.getDescription())
                     && getAddress().equals(e.getAddress())
                     && getCharacteristics().equals(e.getCharacteristics())
-                    && getOwner().equals(e.getOwner());
+                    && getOwnerName().equals(e.getOwnerName())
+                    && getOwnerPhone().equals(e.getOwnerPhone());
         }
     }
 }
