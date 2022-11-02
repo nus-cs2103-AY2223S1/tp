@@ -714,33 +714,94 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a reminder to a person while persons are being shown successfully
 
-    1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
 
-    1. Test Case: `remind 1 r/Test Task d/18-09-2025`<br>
-       Expected: Add a reminder tied to person at index 1 with specified details. Details of the reminder are shown in the status message.
+   1. Test Case: `remind 1 r/Test Task d/18-09-2025`<br>
+      Expected: Add a reminder tied to person at index 1 with specified details. Details of the reminder are shown in the status message.
 
 1. Adding a reminder to a person while persons are being shown unsuccessfully
 
-    1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
 
-    1. Test Case: `remind 0 r/Test Task d/18-09-2026`<br>
-       Expected: No new reminder is added. Error details are shown in the status message. Incorrect index to add a reminder to.
+   1. Test Case: `remind 0 r/Test Task d/18-09-2026`<br>
+      Expected: No new reminder is added. Error details are shown in the status message. Incorrect index to add a reminder to.
 
-    1. Test Case: `remind 1 r/Testing Task d/1926-07-22`<br>
-       Expected: No new reminder is added. Error details are shown in the status message. Wrong date format.
+   1. Test Case: `remind 1 r/Testing Task d/1926-07-22`<br>
+      Expected: No new reminder is added. Error details are shown in the status message. Wrong date format.
 
 1. Add a reminder to a person while no persons are being shown.
 
-    1. Prerequisites: List of contacts contains no persons.
+   1. Prerequisites: List of contacts contains no persons.
 
-    1. Test Case: `remind 1 r/Testing Testing 1, 2, 3 d/18-09-2024`<br>
-       Expected: No reminders are added. Error details are shown in the status message. There must be persons in the list of contacts to add reminder.
+   1. Test Case: `remind 1 r/Testing Testing 1, 2, 3 d/18-09-2024`<br>
+      Expected: No reminders are added. Error details are shown in the status message. There must be persons in the list of contacts to add reminder.
+
 
 ### Deleting a reminder
 
+1. Deleting a reminder successfully
+
+   1. Prerequisites: At least one reminder in the list of reminders.
+
+   1. Test Case: `deleteR 1`<br>
+      Expected: Deletes the reminder at index 1. Details of the deleted reminder are shown in the status message.
+
+1. Deleting a reminder unsuccessfully
+
+   1. Prerequisites: At least one reminder in the list of reminders.
+
+   1. Test Case: `deleteR 0`<br>
+      Expected: No reminder is deleted from the list of remindres. Error details are shown in the status message. Incorrect reminder index.
+
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+
 ### Listing all contacts
 
+1. Listing all contacts
+
+   1. Run the `list` command.
+      Expected: All the contacts in Friendnancial are displayed to the user.
+
+   1. Users can then view all contacts as desired.
+
+
 ### Finding specific contacts
+
+1. Finding contacts while persons are being shown successfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `find n/[VALID NAME]`<br>
+      Expected: Finds contact that have matching valid names. Details of the find command are shown in the status message. Single field search.
+
+   1. Test Case: `find t/[VALID TAG]`<br>
+      Expected: Finds contact that have matching valid tags. Details of the find command are shown in the status message.
+
+   1. Test Case: `find b/[VALID BIRTHDAY]`<br>
+      Expected: Finds contact that have matching valid birthdays. Details of the find command are shown in the status message.
+
+   1. Test Case: `find`<br>
+      Expected: Finds all contacts. Details of the find command are shown in the status message.
+
+   1. Test Case: `find n/[VALID NAME] t/[VALID TAG]`<br>
+      Expected: Finds contacts that match all the details giving. Details of the find command are shown in the status message. Multiple field search.
+
+1. Find contacts while persons are being shown unsuccessfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `find x/`<br>
+      Expected: Find command fails. Error details are shown in the status message.
+
+1. Find contacts while no persons are being shown.
+
+   1. Prerequisites: List of contacts contains no persons.
+
+   1. Test Case: `find`<br>
+      Expected: Finds no contacts. Find details are shown in the status message. No persons are found.
+
 
 ### Viewing help
 
@@ -751,6 +812,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Users can copy the link and visit the User Guide for more information.
 
+
 ### Clearing all entries
 
 1. Clearing all entries
@@ -759,6 +821,7 @@ testers are expected to do more *exploratory* testing.
       Expected: All contacts and reminders are cleared from the display of the application.
 
    1. You may then add new contacts to the application as desired.
+
 
 ### Exiting the Application
 
@@ -769,6 +832,7 @@ testers are expected to do more *exploratory* testing.
 
     1. You may then reopen the application and continue using it.
 
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -777,6 +841,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test Case: Navigate to the `/data` folder that is in the same folder containing the `Friendnancial.jar` file and delete the `addressbook.json` file. Then reopen the application. <br>
       Expected: The application will be repopulated with the initial starting data and no changes saved.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
