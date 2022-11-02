@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+This project is based on the Friday-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -179,19 +179,19 @@ This section describes some noteworthy details on how certain features are imple
 
 [comment]: <> (![UndoRedoState1]&#40;images/UndoRedoState1.png&#41;)
 
-[comment]: <> (Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook&#40;&#41;`, causing another modified FRIDAY state to be saved into the `addressBookStateList`.)
+[comment]: <> (Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitFriday&#40;&#41;`, causing another modified FRIDAY state to be saved into the `addressBookStateList`.)
 
 [comment]: <> (![UndoRedoState2]&#40;images/UndoRedoState2.png&#41;)
 
-[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook&#40;&#41;`, so the FRIDAY state will not be saved into the `addressBookStateList`.)
+[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitFriday&#40;&#41;`, so the FRIDAY state will not be saved into the `addressBookStateList`.)
 
 [comment]: <> (</div>)
 
-[comment]: <> (Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook&#40;&#41;`, which will shift the `currentStatePointer` once to the left, pointing it to the previous FRIDAY state, and restores the FRIDAY to that state.)
+[comment]: <> (Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoFriday&#40;&#41;`, which will shift the `currentStatePointer` once to the left, pointing it to the previous FRIDAY state, and restores the FRIDAY to that state.)
 
 [comment]: <> (![UndoRedoState3]&#40;images/UndoRedoState3.png&#41;)
 
-[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather)
+[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Friday state, then there are no previous Friday states to restore. The `undo` command uses `Model#canUndoFriday&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather)
 
 [comment]: <> (than attempting to perform the undo.)
 
@@ -205,7 +205,7 @@ This section describes some noteworthy details on how certain features are imple
 
 [comment]: <> (</div>)
 
-[comment]: <> (The `redo` command does the opposite — it calls `Model#redoAddressBook&#40;&#41;`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the FRIDAY to that state.)
+[comment]: <> (The `redo` command does the opposite — it calls `Model#redoFriday&#40;&#41;`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the FRIDAY to that state.)
 
 [comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size&#40;&#41; - 1`, pointing to the latest FRIDAY state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.)
 
