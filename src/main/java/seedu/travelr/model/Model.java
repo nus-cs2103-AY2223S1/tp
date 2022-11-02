@@ -71,6 +71,11 @@ public interface Model {
     boolean hasTrip(Trip trip);
 
     /**
+     * Returns true if a person with the same identity as {@code person} exists in the Travelr.
+     */
+    boolean tripHasEvent(Trip trip, Event event);
+
+    /**
      * Returns true if the event already exists in Travelr.
      */
     boolean hasEvent(Event event);

@@ -120,6 +120,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean tripHasEvent(Trip trip, Event event) {
+        requireNonNull(event);
+        requireNonNull(trip);
+        return trip.containsEvent(event);
+    }
+
+    @Override
     public boolean hasEvent(Event event) {
         requireNonNull(event);
         return travelr.hasEvent(event);

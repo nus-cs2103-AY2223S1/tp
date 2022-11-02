@@ -141,6 +141,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean tripHasEvent(Trip trip, Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
