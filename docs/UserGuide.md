@@ -62,7 +62,7 @@ Boxes such as this one with a light bulb :bulb: are used to provide some tips wh
 </div>
 
 #### Hyperlinks
-Throughout the user guide, there are hyperlinks which you can click on to get more information about something. To go back to where you were, you can use the `back` button on your browser.
+Throughout this user guide, there are hyperlinks which you can click on to get more information about something. To go back to where you were, you can use the `back` button on your browser.
 
 --------------------------------------------------------------------------------------------------------------------
 
