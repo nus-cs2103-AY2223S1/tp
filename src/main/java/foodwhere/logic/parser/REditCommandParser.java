@@ -1,6 +1,6 @@
 package foodwhere.logic.parser;
 
-import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static foodwhere.logic.commands.REditCommand.MESSAGE_INVALID_INDEX_ERROR;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -38,7 +38,7 @@ public class REditCommandParser implements Parser<REditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, REditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_INDEX_ERROR);
         }
 
         EditReviewDescriptor editReviewDescriptor = new EditReviewDescriptor();
@@ -55,10 +55,6 @@ public class REditCommandParser implements Parser<REditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG))
                 .ifPresent(editReviewDescriptor::setTags);
-
-        if (!editReviewDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(REditCommand.MESSAGE_NOT_EDITED);
-        }
 
         return new REditCommand(index, editReviewDescriptor);
     }

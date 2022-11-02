@@ -1,12 +1,13 @@
 package foodwhere.logic.commands;
 
 import static foodwhere.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static foodwhere.logic.commands.SEditCommand.MESSAGE_INVALID_INDEX_ERROR;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import foodwhere.commons.core.Messages;
 import foodwhere.commons.core.index.Index;
 import foodwhere.model.AddressBook;
 import foodwhere.model.Model;
@@ -62,6 +63,7 @@ public class SEditCommandTest {
         assertCommandSuccess(sEditCommand, model, expectedMessage, expectedModel);
     }
 
+    @Disabled("Moved checking of any editable fields into SEditCommand")
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         SEditCommand sEditCommand =
@@ -122,7 +124,7 @@ public class SEditCommandTest {
                 new EditStallDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build();
         SEditCommand sEditCommand = new SEditCommand(outOfBoundIndex, descriptor);
 
-        CommandTestUtil.assertCommandFailure(sEditCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(sEditCommand, model, MESSAGE_INVALID_INDEX_ERROR);
     }
 
     /**
@@ -139,7 +141,7 @@ public class SEditCommandTest {
         SEditCommand sEditCommand = new SEditCommand(outOfBoundIndex,
                 new EditStallDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
 
-        CommandTestUtil.assertCommandFailure(sEditCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(sEditCommand, model, MESSAGE_INVALID_INDEX_ERROR);
     }
 
     @Test

@@ -1,6 +1,6 @@
 package foodwhere.logic.parser;
 
-import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static foodwhere.logic.commands.SEditCommand.MESSAGE_INVALID_INDEX_ERROR;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -37,7 +37,7 @@ public class SEditCommandParser implements Parser<SEditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SEditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_INDEX_ERROR);
         }
 
         EditStallDescriptor editStallDescriptor = new EditStallDescriptor();
@@ -50,10 +50,6 @@ public class SEditCommandParser implements Parser<SEditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG))
                 .ifPresent(editStallDescriptor::setTags);
-
-        if (!editStallDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(SEditCommand.MESSAGE_NOT_EDITED);
-        }
 
         return new SEditCommand(index, editStallDescriptor);
     }
