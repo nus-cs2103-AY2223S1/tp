@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import seedu.uninurse.model.GenericList;
@@ -19,14 +18,12 @@ import seedu.uninurse.model.ModificationType;
  */
 public class TaskList implements GenericList<Task> {
     private List<Task> internalTaskList;
-    private List<Task> filteredTaskLists;
 
     /**
      * Constructs an empty {@code TaskList}.
      */
     public TaskList() {
         internalTaskList = new ArrayList<>();
-        filteredTaskLists = new ArrayList<>();
     }
 
     /**
@@ -36,8 +33,6 @@ public class TaskList implements GenericList<Task> {
         requireNonNull(tasks);
         internalTaskList = tasks;
         internalTaskList.sort(Comparator.comparing(Task::getDateTime));
-        filteredTaskLists = new ArrayList<>(tasks);
-        filteredTaskLists.sort(Comparator.comparing(Task::getDateTime));
     }
 
     /**
@@ -108,13 +103,6 @@ public class TaskList implements GenericList<Task> {
         return this.internalTaskList.isEmpty();
     }
 
-    /**
-     * Returns the internal task list.
-     */
-    public List<Task> getTasks() {
-        return filteredTaskLists;
-    }
-
     @Override
     public List<Task> getInternalList() {
         return Collections.unmodifiableList(internalTaskList);
@@ -180,18 +168,6 @@ public class TaskList implements GenericList<Task> {
     }
 
     /**
-     * Sets the filteredTaskList to contain the tasks that passes the filter.
-     */
-    public void filterTasks(Predicate<Task> filter) {
-        filteredTaskLists = (ArrayList<Task>) internalTaskList.stream().filter(filter).collect(Collectors.toList());
-        filteredTaskLists.sort(Comparator.comparing(Task::getDateTime));
-    }
-
-    public void showAllTasks() {
-        filterTasks(t -> true);
-    }
-
-    /**
      * Updates this TaskList with all the new tasks generated because of RecurringTasks
      * and their next RecurringTask once past the task date.
      */
@@ -209,8 +185,8 @@ public class TaskList implements GenericList<Task> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        for (int index = 0; index < filteredTaskLists.size(); index++) {
-            Task t = filteredTaskLists.get(index);
+        for (int index = 0; index < internalTaskList.size(); index++) {
+            Task t = internalTaskList.get(index);
             if (index == 0) {
                 builder.append(index + 1)
                         .append(". ")
