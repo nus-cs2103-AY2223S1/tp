@@ -558,7 +558,7 @@ covered in greater detail in the earlier diagrams.
 
 <img src="images/ModulePUMLs/EditModule/ModuleEditSequenceDiagram.png" width="1200" />
 
-The arguments are first parsed through `ModtrektParser` to identify the command word. Using the `Jcommander` library, we
+The arguments are first parsed through `ModtrektParser` to identify the command word. Using the `JCommander` library, we
 are then able to parse through the commands and automatically generate the corresponding command. In this case an
 `EditModuleCommand`. When the `EditTaskCommand` is executed, it would first obtain the `Module` using the `Module Code`.
 Then it would create a new module replacing with the appropriate new/old inputs. It would then delete the old module and
