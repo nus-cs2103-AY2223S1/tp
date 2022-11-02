@@ -4,19 +4,37 @@ title: User Guide
 ---
 <h1 align="center">:book: Welcome to CLInkedIn User Guide!</h1>
 
-Welcome to the CLInkedIn User Guide! If you are a recruiter who is using CLInkedIn, or someone who is curious to find out more about CLInkedIn and its features, look no further!
+Welcome to the CLInkedIn User Guide! 
+
+CLInkedIn is a **desktop address book application made for Recruiting and Hiring Managers to keep track of candidates and their job applications.**
+
+The application is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
+
+If you can type fast, CLInkedIn can get your recruitment tasks done faster than traditional GUI apps.
+
+If you are a recruiter who is using CLInkedIn, or someone who is curious to find out more about CLInkedIn and its features, here is a table summarising what we offer!
+
+|                Features                 | 
+|:---------------------------------------:|
+|            Adding candidates            | 
+|      Editing candidate information      | 
+|     Use tags to organise candidates     | 
+|        Searching for candidates         | 
+|      Comparing between candidates       |
+|      Get statistics of candidates       |
+| Sharing candidates' data between devices | 
+
+![Ui](images/Ui.png)
+The photo above is a screenshot of what you will see when you launch CLInkedIn. 
 
 In this user guide, you will find instructions on how to install CLInkedIn and a guide on how to use CLInkedIn's numerous features.
-
-💻 Are you a Developer? Do check out the [CLInkedIn Developer Guide](https://ay2223s1-cs2103t-t13-3.github.io/tp/DeveloperGuide.html) for more technical information!
 
 ## Table of Contents
 
 1. [Using this Guide](#using-this-guide)
-2. [Introduction to CLInkedIn](#introduction)
-3. [Useful Notation](#useful-notations)
-4. [Quick start](#quick-start)
-5. [Features](#features)
+2. [Useful Notation](#useful-notations)
+3. [Quick start](#quick-start)
+4. [Features](#features)
    1. [Viewing help `help`](#viewing-help--help)
    2. [Adding/Deleting contacts in CLInkedIn](#addingdeleting-contacts-in-clinkedin)
       1. [Adding a person `add`](#adding-a-person-add)
@@ -32,25 +50,25 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
       4. [Adding optional information `addNote`](#adding-optional-information-addnote)
       5. [Deleting optional information `deleteNote`](#deleting-optional-information-deletenote)
       6. [Adding optional rating `addRate`](#adding-optional-rating-addrate)
-      7. [Sorting candidates based on rating `sort`](#sorting-candidates-based-on-rating-sort)
-      8. [Adding optional links `addLink`](#adding-optional-links-addlink)
-      9. [Deleting links `deleteLink`](#deleting-links-deletelink)
+      7. [Adding optional links `addLink`](#adding-optional-links-addlink)
+      8. [Deleting links `deleteLink`](#deleting-links-deletelink)
    5. [Modifying contacts view in CLInkedIn](#modifying-contacts-view-in-clinkedin)
       1. [Viewing the details of a person `view`](#viewing-the-details-of-a-person--view)
       2. [Listing all persons `list`](#listing-all-persons--list)
-      3. [Finding personal information and tags `find`](#finding-personal-information-and-tags-find)
-      4. [Clearing all contacts `clear`](#clearing-all-contacts--clear)
-      5. [Undoing previous command `undo`](#undoing-previous-command-undo)
-      2. [Redoing previous command `redo`](#redoing-previous-command-redo)
-      6. [Viewing statistics `stats`](#viewing-statistics-based-on-ratings-of-candidates-stats)
-      7. [Importing contacts `import`](#importing-an-addressbook-import)
-      8. [Exporting contacts `export`](#importing-an-addressbook-import)
-      9. [Exiting CLInkedIn `exit`](#exiting-clinkedin--exit)
+      3. [Sorting candidates based on rating `sort`](#sorting-candidates-based-on-rating-sort)
+      4. [Finding personal information and tags `find`](#finding-personal-information-and-tags-find)
+      5. [Clearing all contacts `clear`](#clearing-all-contacts--clear)
+      6. [Undoing previous command `undo`](#undoing-previous-command-undo)
+      7. [Redoing previous command `redo`](#redoing-previous-command-redo)
+      8. [Viewing statistics `stats`](#viewing-statistics-based-on-ratings-of-candidates-stats)
+      9. [Importing contacts `import`](#importing-an-addressbook-import)
+      10. [Exporting contacts `export`](#importing-an-addressbook-import)
+      11. [Exiting CLInkedIn `exit`](#exiting-clinkedin--exit)
    6. [Miscellaneous Features/Commands](#miscellaneous-featurescommands)
-      5. [Saving the data](#saving-the-data)
-      6. [Editing the data file](#editing-the-data-file)
-6. [FAQ](#faq)
-7. [Command Summary](#command-summary)
+      1. [Saving the data](#saving-the-data)
+      2. [Editing the data file](#editing-the-data-file)
+5. [FAQ](#faq)
+6. [Command Summary](#command-summary)
 
 ## Using this guide
 
@@ -59,13 +77,6 @@ If this is the first time you are viewing this user guide, do read the section o
 - If you are unsure of how to use CLInkedIn, the [Command Summary](#command-summary) table is a good place to start. 
 - If you are a developer and want to help out, please take a look at the [CLInkedIn Developer Guide](https://ay2223s1-cs2103t-t13-3.github.io/tp/DeveloperGuide.html).
  
-
-## Introduction
-![Ui](images/Ui.png)
-
-CLInkedIn is a **desktop address book application made for Recruiting and Hiring Managers to keep track of candidates and their job applications.** The application is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
-
-If you can type fast, CLInkedIn can get your recruitment tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Useful Notations
@@ -345,20 +356,6 @@ Examples:
 
 - `addRate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
 
-### Sorting candidates based on Rating: `sort`
-
-Sorts candidates in CLInkedIn according to their rating given. Candidates will be sorted according to their ratings in descending order (highest rating to lowest).
-
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
-Recall that rating is an optional field for a candidate. Thus, candidates with no ratings given will be displayed at the bottom, after candidates with a rating.
-</div>
-
-Format: `sort`
-
-Example:
-
-- `sort` will return a list of the candidates, sorted in order of descending rating.
-
 ### Adding optional links: `addLink`
 
 Add links to candidate's online profiles/websites. Once added you can simply click on the icon and you will be redirected to the webpage.
@@ -415,6 +412,20 @@ Examples:
 Shows a list of all persons in CLInkedIn.
 
 Format: `list`
+
+### Sorting candidates based on Rating: `sort`
+
+Sorts candidates in CLInkedIn according to their rating given. Candidates will be sorted according to their ratings in descending order (highest rating to lowest).
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+Recall that rating is an optional field for a candidate. Thus, candidates with no ratings given will be displayed at the bottom, after candidates with a rating.
+</div>
+
+Format: `sort`
+
+Example:
+
+- `sort` will return a list of the candidates, sorted in order of descending rating.
 
 ### Finding personal information and tags: `find`
 
