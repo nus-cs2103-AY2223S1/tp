@@ -28,6 +28,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleDescription;
 import seedu.address.model.module.ModuleName;
+import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
@@ -96,7 +97,8 @@ public class EditModuleCommand extends Command {
 
         Index targetIndex = Index.fromZeroBased(positionInList);
         Module moduleToEdit = lastShownList.get(targetIndex.getZeroBased());
-        Module editedModule = createEditedModule(moduleToEdit, editModuleDescriptor);
+        List<Schedule> originalSchedules = moduleToEdit.getSchedules();
+        Module editedModule = createEditedModule(moduleToEdit, editModuleDescriptor, originalSchedules);
 
         if (!moduleToEdit.isSameModule(editedModule) && model.hasModule(editedModule)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
@@ -119,7 +121,8 @@ public class EditModuleCommand extends Command {
      */
     private static Module createEditedModule(Module moduleToEdit,
                                              EditModuleCommand
-                                                     .EditModuleDescriptor editModuleDescriptor) {
+                                                     .EditModuleDescriptor editModuleDescriptor,
+                                             List<Schedule> originalSchedules) {
         assert moduleToEdit != null;
 
         ModuleName updatedName = editModuleDescriptor.getName().orElse(moduleToEdit.getName());
@@ -128,7 +131,7 @@ public class EditModuleCommand extends Command {
                 .getDescription().orElse(moduleToEdit.getDescription());
         Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(moduleToEdit.getTags());
 
-        return new Module(updatedName, updatedCode, updatedDescription, updatedTags);
+        return new Module(updatedName, updatedCode, updatedDescription, updatedTags, originalSchedules);
     }
 
     /**
