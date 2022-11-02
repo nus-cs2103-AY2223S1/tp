@@ -100,9 +100,9 @@ public class StringUtil {
         if (wordsInPreppedSentence.containsAll(preppedKeywords)) {
             return true;
         }
-        if (isMatchAccuracyReduced) {
-            double reductionMultiplier = 0.75;
-            int reducedKeywordsLength = (int) (preppedKeywords.size() * reductionMultiplier);
+        double reductionMultiplier = 0.75;
+        int reducedKeywordsLength = (int) (preppedKeywords.size() * reductionMultiplier);
+        if (isMatchAccuracyReduced && reducedKeywordsLength > 0) {
             return wordsInPreppedSentence.containsAll(preppedKeywords.subList(0, reducedKeywordsLength));
         }
         return false;
