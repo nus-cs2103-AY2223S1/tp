@@ -380,5 +380,4 @@ public class AddStudentCommandTest {
             return new AddressBook();
         }
     }
-
 }
