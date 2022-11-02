@@ -30,6 +30,10 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_SPACING_NAME = "There can be at most 1 space between parts of patient "
+            + "name\n(eg. n/FIRST_NAME MIDDLE_NAME LAST_NAME)";
+    public static final String MESSAGE_INVALID_SPACING_ADDRESS = "There can be at most 1 space between parts of patient "
+            + "address\n(eg. a/STREET_NAME BUILDING_NAME UNIT_NUMBER)";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -53,9 +57,15 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
+
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
+
+        if (containsIllegalSpacing(trimmedName)) {
+            throw new ParseException(MESSAGE_INVALID_SPACING_NAME);
+        }
+
         return new Name(trimmedName);
     }
 
@@ -68,12 +78,15 @@ public class ParserUtil {
     public static Birthdate parseBirthdate(String birthdate) throws ParseException {
         requireNonNull(birthdate);
         String trimmedBirthdate = birthdate.trim();
+
         if (!Birthdate.isValidDateFormat(trimmedBirthdate)) {
             throw new ParseException(Birthdate.MESSAGE_INVALID_DATE_FORMAT);
         }
+
         if (Birthdate.isFutureDate(trimmedBirthdate)) {
             throw new ParseException(Birthdate.MESSAGE_FUTURE_DATE);
         }
+
         return new Birthdate(trimmedBirthdate);
     }
 
@@ -101,9 +114,15 @@ public class ParserUtil {
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
+
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
+
+        if (containsIllegalSpacing(trimmedAddress)) {
+            throw new ParseException(MESSAGE_INVALID_SPACING_ADDRESS);
+        }
+
         return new Address(trimmedAddress);
     }
 
@@ -173,12 +192,15 @@ public class ParserUtil {
     public static LocalDateTime parseRecordDate(String recordDate) throws ParseException {
         requireNonNull(recordDate);
         String trimmedDate = recordDate.trim();
+
         if (!Record.isValidDateFormat(trimmedDate)) {
             throw new ParseException(Record.MESSAGE_INVALID_DATE_FORMAT);
         }
+
         if (Record.isFutureDate(trimmedDate)) {
             throw new ParseException(Record.MESSAGE_FUTURE_DATE);
         }
+
         return LocalDateTime.parse(trimmedDate, Record.DATE_FORMAT);
     }
 
@@ -252,5 +274,25 @@ public class ParserUtil {
         } else {
             throw new ParseException(FindRecordCommand.MESSAGE_INVALID_FIND_DATE_FORMAT);
         }
+    }
+
+    /**
+     * Checks input string for illegal spacing. Spacing is considered illegal if there are
+     * more than 1 consecutive spaces between substrings.
+     *
+     * @param in String to be checked.
+     * @return True if string contains additional (illegal) spaces. False otherwise.
+     */
+    private static boolean containsIllegalSpacing(String in) {
+        String trimmedArgs = in.trim();
+        String[] strArr = trimmedArgs.split(" ");
+
+        for (String str : strArr) {
+            // Consecutive spaces are split to ""
+            if (str.equals("")) {
+                return true;
+            }
+        }
+        return false;
     }
 }
