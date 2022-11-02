@@ -100,11 +100,8 @@ public class JsonAdaptedOrderTest {
                 VALID_ADDITIONAL_REQUEST, VALID_BY_DATE, INVALID_SETTLED_PRICE, VALID_ORDER_STATUS, VALID_UNIQUE_ID);
         JsonAdaptedOrder expected = new JsonAdaptedOrder(VALID_BUYER, VALID_PRICE_RANGE, VALID_REQUEST,
                 VALID_ADDITIONAL_REQUEST, VALID_BY_DATE, DEFAULT_SETTLED_PRICE, VALID_ORDER_STATUS, VALID_UNIQUE_ID);
-        try {
-            assertEquals(order.toModelType(), expected.toModelType());
-        } catch (IllegalValueException e) {
-            assert false;
-        }
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
     @Test

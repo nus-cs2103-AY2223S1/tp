@@ -118,7 +118,8 @@ class JsonAdaptedOrder {
                     LocalDate.class.getSimpleName()));
         }
 
-        if (settledPrice == null) {
+        if (settledPrice == null || (!Price.isNotApplicablePrice(new Price(settledPrice))
+                && settledPrice < 0)) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Price.class.getSimpleName()));
         }

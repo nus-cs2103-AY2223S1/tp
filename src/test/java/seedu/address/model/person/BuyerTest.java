@@ -10,15 +10,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.TypicalBuyers.ALICE;
 import static seedu.address.testutil.TypicalBuyers.BOB;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TypicalPersons;
-
-//import java.time.LocalDate;
-//import java.util.Arrays;
-
-/*
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.model.order.AdditionalRequests;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Price;
@@ -28,21 +27,22 @@ import seedu.address.model.pet.Age;
 import seedu.address.model.pet.Color;
 import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.Species;
- */
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalPersons;
 
 public class BuyerTest {
 
-    //    @Test
-    //    public void addOrder() {
-    //        Buyer buyer = new PersonBuilder().buildBuyer();
-    //        Order order = new Order(buyer, new PriceRange(new Price(50), new Price(100)),
-    //                new Request(new Age(1), new Color("brown"), new ColorPattern("brown and white"),
-    //                        new Species("cat")), new AdditionalRequests("cute"), LocalDate.now(),
-    //                new Price(100));
-    //        buyer.addOrder(order);
-    //        assertTrue(buyer.getOrderIds().size() == 1);
-    //        assertEquals(buyer.getOrderIds(), Arrays.asList(order));
-    //    }
+    @Test
+    public void addOrder() {
+        Buyer buyer = new PersonBuilder().buildBuyer();
+        Order order = new Order(buyer, new PriceRange(new Price(50), new Price(100)), new Request(new Age(1),
+                new Color("brown"), new ColorPattern("brown and white"), new Species("cat")),
+                new AdditionalRequests("cute"), LocalDate.now(), new Price(100));
+        List<UniqueId> expectedList = Arrays.asList(order).stream().map(x -> x.getId()).collect(Collectors.toList());
+        buyer.addOrders(Arrays.asList(order).stream().map(x -> x.getId()).collect(Collectors.toList()));
+        assertTrue(buyer.getOrderIds().size() == 1);
+        assertEquals(buyer.getOrderIds(), expectedList);
+    }
 
     @Test
     public void isSameBuyer() {
@@ -53,8 +53,8 @@ public class BuyerTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Buyer editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).buildBuyer();
+        Buyer editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
+                .buildBuyer();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false

@@ -28,6 +28,7 @@ import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PetBuilder;
 
 public class AddSupplierCommandTest {
     @Test
@@ -37,14 +38,24 @@ public class AddSupplierCommandTest {
 
     @Test
     public void execute_supplierAcceptedByModel_addSuccessful() throws Exception {
-        AddSupplierCommandTest.ModelStubAcceptingSupplierAdded modelStub =
-                new AddSupplierCommandTest.ModelStubAcceptingSupplierAdded();
+        //No orders
+        ModelStubAcceptingSupplierAdded modelStub = new ModelStubAcceptingSupplierAdded();
         Supplier validSupplier = new PersonBuilder().buildSupplier();
 
         CommandResult commandResult = new AddSupplierCommand(validSupplier, new ArrayList<>()).execute(modelStub);
 
-        String expected = "\n" + "0 pets added\n"
-                + String.format(AddSupplierCommand.MESSAGE_SUCCESS, validSupplier);
+        String expected = String.format(AddSupplierCommand.MESSAGE_SUCCESS, validSupplier) + "\n0 pets added\n";
+        assertEquals(expected, commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validSupplier), modelStub.suppliersAdded);
+
+        //Some orders
+        modelStub = new ModelStubAcceptingSupplierAdded();
+        validSupplier = new PersonBuilder().buildSupplier();
+        Pet firstPet = new PetBuilder().build();
+        Pet secondPet = new PetBuilder().build();
+        commandResult = new AddSupplierCommand(validSupplier, Arrays.asList(firstPet, secondPet)).execute(modelStub);
+        expected = String.format(AddSupplierCommand.MESSAGE_SUCCESS, validSupplier) + "\n2 pets added\n";
+
         assertEquals(expected, commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validSupplier), modelStub.suppliersAdded);
     }
@@ -58,6 +69,18 @@ public class AddSupplierCommandTest {
 
         assertThrows(CommandException.class, AddSupplierCommand.MESSAGE_DUPLICATE_SUPPLIER, ()
                 -> addSupplierCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicatePet_throwsCommandException() {
+        Supplier validSupplier = new PersonBuilder().buildSupplier();
+        Pet pet = new PetBuilder().build();
+        AddSupplierCommand addSupplierCommand = new AddSupplierCommand(validSupplier, Arrays.asList(pet));
+        ModelStub modelStub = new ModelStubAcceptingSupplierAdded();
+        modelStub.addPet(pet);
+
+        assertThrows(CommandException.class, AddPetCommand.MESSAGE_DUPLICATE_PET, () -> addSupplierCommand
+                .execute(modelStub));
     }
 
     @Test
@@ -334,6 +357,7 @@ public class AddSupplierCommandTest {
      */
     private class ModelStubAcceptingSupplierAdded extends ModelStub {
         final ArrayList<Supplier> suppliersAdded = new ArrayList<>();
+        final ArrayList<Pet> petsAdded = new ArrayList<>();
 
         @Override
         public boolean hasSupplier(Supplier supplier) {
@@ -345,6 +369,16 @@ public class AddSupplierCommandTest {
         public void addSupplier(Supplier supplier) {
             requireNonNull(supplier);
             suppliersAdded.add(supplier);
+        }
+
+        @Override
+        public void addPet(Pet pet) {
+            petsAdded.add(pet);
+        }
+
+        @Override
+        public boolean hasPet(Pet pet) {
+            return petsAdded.contains(pet);
         }
 
         @Override

@@ -28,6 +28,7 @@ import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
+import seedu.address.testutil.OrderBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddBuyerCommandTest {
@@ -39,12 +40,25 @@ public class AddBuyerCommandTest {
 
     @Test
     public void execute_buyerAcceptedByModel_addSuccessful() throws Exception {
+        //without any orders
         ModelStubAcceptingBuyerAdded modelStub = new ModelStubAcceptingBuyerAdded();
         Buyer validBuyer = new PersonBuilder().buildBuyer();
         CommandResult commandResult = new AddBuyerCommand(validBuyer, new ArrayList<>()).execute(modelStub);
 
         String expectedResult = String.format(AddBuyerCommand.MESSAGE_SUCCESS, validBuyer)
-                + "\n" + "0 orders added.\n";
+                + "\n" + "0 orders added\n";
+
+        assertEquals(expectedResult, commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validBuyer), modelStub.buyersAdded);
+
+        //with some orders
+        modelStub = new ModelStubAcceptingBuyerAdded();
+        validBuyer = new PersonBuilder().withName("Cynthia").withEmail("theboss@gmail.com").buildBuyer();
+        Order firstOrder = new OrderBuilder().build();
+        Order secondOrder = new OrderBuilder().build();
+
+        commandResult = new AddBuyerCommand(validBuyer, Arrays.asList(firstOrder, secondOrder)).execute(modelStub);
+        expectedResult = String.format(AddBuyerCommand.MESSAGE_SUCCESS, validBuyer) + "\n" + "2 orders added\n";
 
         assertEquals(expectedResult, commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validBuyer), modelStub.buyersAdded);
@@ -58,6 +72,19 @@ public class AddBuyerCommandTest {
 
         assertThrows(CommandException.class,
                 AddBuyerCommand.MESSAGE_DUPLICATE_BUYER, () -> addBuyerCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicateOrder_throwsCommandException() {
+        Buyer validBuyer = new PersonBuilder().buildBuyer();
+        ModelStub modelStub = new ModelStubAcceptingBuyerAdded();
+        Order order = new OrderBuilder().build();
+        modelStub.addOrder(order);
+
+        AddBuyerCommand addBuyerCommand = new AddBuyerCommand(validBuyer, Arrays.asList(order));
+
+        assertThrows(CommandException.class,
+                AddOrderCommand.MESSAGE_DUPLICATE_ORDER, () -> addBuyerCommand.execute(modelStub));
     }
 
     @Test
@@ -352,6 +379,7 @@ public class AddBuyerCommandTest {
      */
     private class ModelStubAcceptingBuyerAdded extends ModelStub {
         final ArrayList<Buyer> buyersAdded = new ArrayList<>();
+        final ArrayList<Order> ordersAdded = new ArrayList<>();
 
         @Override
         public boolean hasBuyer(Buyer buyer) {
@@ -363,6 +391,16 @@ public class AddBuyerCommandTest {
         public void addBuyer(Buyer buyer) {
             requireNonNull(buyer);
             buyersAdded.add(buyer);
+        }
+
+        @Override
+        public void addOrder(Order order) {
+            ordersAdded.add(order);
+        }
+
+        @Override
+        public boolean hasOrder(Order order) {
+            return ordersAdded.contains(order);
         }
 
         @Override

@@ -1,7 +1,5 @@
 package seedu.address.model.pet;
 
-import java.util.Objects;
-
 /**
  * Abstracts the color of a pet.
  */
@@ -17,7 +15,7 @@ public class Color implements Comparable<Color> {
      * @param value The string representation of a color.
      */
     public Color(String value) {
-        this.value = Objects.requireNonNullElse(value, "");
+        this.value = (value == null) || !value.matches("^[a-zA-Z0-9 ]*$*") ? "" : value;
     }
 
     @Override
