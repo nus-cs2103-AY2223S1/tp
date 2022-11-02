@@ -40,8 +40,8 @@ Given below are my contributions to the project.
     * Handled bold and boxing after bill in UG
     * Updated UG command summary to allow quick start
   * Developer Guide:
-    * Added Logic appendix part(Content and PUML graph)
-    * Add proposed implementation in Developer Guide
+    * Refactored Logic appendix part(Content and PUML graph)
+    * Added proposed implementation in Developer Guide
 
 * **Contributions to team-based tasks**:
   * Facilitated and tidied up contents of postmortem v1.2
