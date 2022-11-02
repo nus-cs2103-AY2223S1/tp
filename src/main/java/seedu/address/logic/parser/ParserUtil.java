@@ -265,8 +265,8 @@ public class ParserUtil {
         Price price = parsePrice(argMultimap.getValue(PREFIX_ORDER_PRICE).orElse(""));
         OrderStatus orderStatus = parseOrderStatus(argMultimap.getValue(PREFIX_ORDER_STATUS).orElse(""));
 
-        if (priceRange.comparePrice(price) != 0) {
-
+        if (priceRange.comparePrice(price) != PriceRange.WITHIN_RANGE) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PriceRange.MESSAGE_CONSTRAINT));
         }
 
         return new Order(null, priceRange, request, additionalRequests, byDate, price, orderStatus);

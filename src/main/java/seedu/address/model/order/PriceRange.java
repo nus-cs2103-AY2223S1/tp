@@ -14,6 +14,9 @@ public class PriceRange implements Comparable<PriceRange> {
             + "If you have not decided one bound, you can enter " + Price.NOT_APPLICABLE_PRICE
             + " to indicate non-applicable price. "
             + "For example, 0.7,-1 means the price is at least 0.7 but not bounded above. ";
+    public static final String MESSAGE_CONSTRAINT =
+            "The settled price must be within the range! For example, -1 is within any range; 5 is within (-1, 6);"
+                    + "7 is within (2, -1)";
     public static final int LOWER_THAN_RANGE = -1;
     public static final int WITHIN_RANGE = 0;
     public static final int HIGHER_THAN_RANGE = 1;
