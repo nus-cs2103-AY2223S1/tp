@@ -20,7 +20,7 @@ import seedu.masslinkers.model.UserPrefs;
 import seedu.masslinkers.model.student.Mod;
 import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.testutil.StudentBuilder;
-
+//@author jonasgwt
 public class ModAddCommandTest {
 
     private static final Mod VALID_MOD_CS2100 = new Mod("CS2100", false);

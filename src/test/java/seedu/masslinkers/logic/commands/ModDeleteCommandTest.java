@@ -21,7 +21,7 @@ import seedu.masslinkers.model.UserPrefs;
 import seedu.masslinkers.model.student.Mod;
 import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.testutil.StudentBuilder;
-
+//@author ElijahS67
 /**
  * Test class for ModDeleteCommand.
  */

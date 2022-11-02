@@ -13,6 +13,7 @@ import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.interest.Interest;
 import seedu.masslinkers.model.student.Student;
 
+//@author sltsheryl
 /**
  * Adds a list of interests to the specified student.
  */

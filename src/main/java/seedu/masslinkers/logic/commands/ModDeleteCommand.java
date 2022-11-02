@@ -12,6 +12,7 @@ import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.student.Mod;
 import seedu.masslinkers.model.student.Student;
 
+//@author ElijahS67
 /**
  * Deletes mods from the batchmate specified.
  */

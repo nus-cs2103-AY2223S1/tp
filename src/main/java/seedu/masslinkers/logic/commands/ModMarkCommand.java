@@ -12,6 +12,7 @@ import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.student.Mod;
 import seedu.masslinkers.model.student.Student;
 
+//@author carriezhengjr
 /**
  * Marks mods of the batchmate specified as taken.
  */

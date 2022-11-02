@@ -6,6 +6,7 @@ import seedu.masslinkers.commons.core.Messages;
 import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.student.StudentContainsInterestPredicate;
 
+//@author ELijahS67
 /**
  * Lists batchmates that match all interests specified by the user.
  * Keyword matching is case-insensitive.

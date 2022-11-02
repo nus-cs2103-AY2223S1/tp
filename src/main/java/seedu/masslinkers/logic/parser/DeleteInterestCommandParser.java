@@ -17,7 +17,7 @@ import seedu.masslinkers.commons.core.index.Index;
 import seedu.masslinkers.logic.commands.DeleteInterestCommand;
 import seedu.masslinkers.logic.parser.exceptions.ParseException;
 import seedu.masslinkers.model.interest.Interest;
-
+//@author ElijahS67
 /**
  * Parses input arguments and creates a new DeleteInterestCommand object
  */
