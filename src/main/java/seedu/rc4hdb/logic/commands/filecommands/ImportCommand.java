@@ -64,7 +64,7 @@ public class ImportCommand extends FileCommand implements StorageCommand {
         } catch (IOException e) {
             throw new CommandException(String.format(MESSAGE_FAILED, "importing"), e);
         } catch (DuplicateResidentException e) {
-            throw new CommandException(e.getMessage());
+            throw new CommandException(e.getMessage(), e);
         }
     }
 
