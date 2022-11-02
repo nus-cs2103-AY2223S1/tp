@@ -288,7 +288,7 @@ Information regarding module, for verbose inputs, can be recognised in the CLI u
     * Cons: More complicated, may require much more parsing.
 
 We decided to go with the alternative 1 to keep the logic simple and easier to work with. To tackle the cons we tried to
-reduce the compulsory AddModuleCommand parameters and created simplified commands such as `add mod`
+reduce the compulsory AddModuleCommand parameters and created simplified commands such as `add mod`.
 
 **Aspect 2: What parameters do we need:**
 
