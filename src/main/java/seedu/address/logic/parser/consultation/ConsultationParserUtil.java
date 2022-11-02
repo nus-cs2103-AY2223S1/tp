@@ -3,9 +3,9 @@ package seedu.address.logic.parser.consultation;
 import java.util.Objects;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commons.ModuleCode;
 import seedu.address.model.commons.Venue;
 import seedu.address.model.consultation.ConsultationDescription;
-import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
 
 
@@ -29,18 +29,18 @@ public class ConsultationParserUtil {
     }
 
     /**
-     * Parses a {@code String moduleName} into a {@code ConsultationModule}.
+     * Parses a {@code String moduleName} into a {@code ModuleCode}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code moduleName} is invalid.
      */
-    public static ConsultationModule parseConsultationModule(String moduleName) throws ParseException {
+    public static ModuleCode parseConsultationModule(String moduleName) throws ParseException {
         Objects.requireNonNull(moduleName);
         String trimmedName = moduleName.trim();
-        if (!ConsultationModule.isValidModule(trimmedName)) {
-            throw new ParseException(ConsultationModule.MESSAGE_CONSTRAINTS);
+        if (!ModuleCode.isValidModule(trimmedName)) {
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
-        return new ConsultationModule(trimmedName);
+        return new ModuleCode(trimmedName);
     }
 
     /**

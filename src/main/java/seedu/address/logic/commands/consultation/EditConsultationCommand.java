@@ -19,10 +19,10 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.commons.ModuleCode;
 import seedu.address.model.commons.Venue;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.ConsultationDescription;
-import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
 import seedu.address.model.datetime.DatetimeRange;
 
@@ -97,7 +97,7 @@ public class EditConsultationCommand extends Command {
         assert consultToEdit != null;
 
         ConsultationName updatedName = editConsultDescriptor.getName().orElse(consultToEdit.getName());
-        ConsultationModule updatedModule = editConsultDescriptor.getModule().orElse(consultToEdit.getModule());
+        ModuleCode updatedModule = editConsultDescriptor.getModule().orElse(consultToEdit.getModule());
         Venue updatedVenue = editConsultDescriptor.getVenue().orElse(consultToEdit.getVenue());
         DatetimeRange updatedTimeSlot = editConsultDescriptor.getTimeslot().orElse(consultToEdit.getTimeslot());
         ConsultationDescription updatedDescription = editConsultDescriptor.getDescription()
@@ -136,7 +136,7 @@ public class EditConsultationCommand extends Command {
      */
     public static class EditConsultDescriptor {
         private ConsultationName name;
-        private ConsultationModule module;
+        private ModuleCode module;
         private Venue venue;
         private DatetimeRange timeslot;
         private ConsultationDescription description;
@@ -170,11 +170,11 @@ public class EditConsultationCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setModule(ConsultationModule module) {
+        public void setModule(ModuleCode module) {
             this.module = module;
         }
 
-        public Optional<ConsultationModule> getModule() {
+        public Optional<ModuleCode> getModule() {
             return Optional.ofNullable(module);
         }
 
