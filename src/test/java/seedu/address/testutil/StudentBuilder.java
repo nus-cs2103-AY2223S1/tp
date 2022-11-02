@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.ModuleCode;
@@ -25,7 +26,7 @@ public class StudentBuilder extends PersonBuilder {
      */
     public StudentBuilder() {
         super();
-        this.moduleCodesSet = new HashSet<>();
+        this.moduleCodesSet = new HashSet<>(List.of(new ModuleCode(DEFAULT_MODULE_CODE)));
         this.year = new Year(DEFAULT_YEAR, false);
     }
 
