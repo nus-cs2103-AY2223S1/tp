@@ -77,7 +77,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     }
 
     @Override
-    public int getID() {
+    public int getId() {
         return this.projectId.getIdInt();
     }
 
