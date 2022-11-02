@@ -42,35 +42,30 @@ public class SampleDataUtil {
         p2.addAttribute(new Email("berniceyu@example.com"));
         p2.addAttribute(new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"));
         p2.addTags("colleagues", "friends");
-        p2.setParent(p1);
 
         Person p3 = new Person("Charlotte Oliveiro");
         p3.addAttribute(new Phone("93210283"));
         p3.addAttribute(new Email("charlotte@example.com"));
         p3.addAttribute(new Address("Blk 11 Ang Mo Kio Street 74, #11-04"));
         p3.addTags("family");
-        p3.setParent(p1);
 
         Person p4 = new Person("David Li");
         p4.addAttribute(new Phone("91031282"));
         p4.addAttribute(new Email("lidavid@example.com"));
         p4.addAttribute(new Address("Blk 436 Serangoon Gardens Street 26, #16-43"));
         p4.addTags("family");
-        p4.setParent(p1);
 
         Person p5 = new Person("Irfan Ibrahim");
         p5.addAttribute(new Phone("92492021"));
         p5.addAttribute(new Email("irfan@example.com"));
         p5.addAttribute(new Address("Blk 47 Tampines Street 20, #17-35"));
-        p5.addTags("Husband");
-        p5.setParent(p1);
+        p5.addTags("husband");
 
         Person p6 = new Person("Roy Balakrishnan");
         p6.addAttribute(new Phone("92624417"));
         p6.addAttribute(new Email("royb@example.com"));
         p6.addAttribute(new Address("Blk 45 Aljunied Street 85, #11-31"));
         p6.addTags("colleagues");
-        p6.setParent(p1);
 
         return new Person[] {
             p1, p2, p3, p4, p5, p6
@@ -86,12 +81,12 @@ public class SampleDataUtil {
         Group g1 = new Group("ABC Company");
         g1.addAttribute(new Address("ABC building #06-06"));
         g1.addAttribute(new Email("companyEmail@email.com"));
-        g1.addTags("Job", "Software Engineering");
+        g1.addTags("Job", "Architecture");
 
         Group g2 = new Group("Project Alpha");
         g2.addAttribute(new Address("BCD building #07-07"));
         g2.addAttribute(new Email("companyEmail2@gmail.com"));
-        g2.addTags("Project Alpha");
+        g2.addTags("ProjectAlpha");
         g2.setParent(g1);
 
         Group g3 = new Group("Home contacts");
