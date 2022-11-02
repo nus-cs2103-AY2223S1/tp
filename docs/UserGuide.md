@@ -337,7 +337,7 @@ Clears all todos from your SoConnect.
 
 Format: `todo clear`
 
-### Filter todos shown : `todo show`
+### Filtering todos shown : `todo show`
 
 Shows a filtered list of todos in your SoConnect.
 
