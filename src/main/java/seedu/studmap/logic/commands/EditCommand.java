@@ -8,7 +8,6 @@ import static seedu.studmap.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.studmap.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.Collections;
 import java.util.HashSet;

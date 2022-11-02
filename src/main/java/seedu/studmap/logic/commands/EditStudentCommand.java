@@ -2,7 +2,6 @@ package seedu.studmap.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.studmap.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
-import static seedu.studmap.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.ArrayList;
 import java.util.List;

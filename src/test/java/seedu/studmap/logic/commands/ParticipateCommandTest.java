@@ -59,6 +59,7 @@ class ParticipateCommandTest {
                 participation.getParticipationString(), markedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
+        showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);
         expectedModel.setStudent(model.getFilteredStudentList().get(0), markedStudent);
         assertCommandSuccess(participateCommand, model, expectedMessage, expectedModel);
     }

@@ -68,6 +68,7 @@ class UnmarkCommandTest {
                 attendance.className, unmarkedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
+        showStudentAtIndex(expectedModel, INDEX_SECOND_STUDENT);
         expectedModel.setStudent(model.getFilteredStudentList().get(0), unmarkedStudent);
         assertCommandSuccess(unmarkCommand, model, expectedMessage, expectedModel);
     }
