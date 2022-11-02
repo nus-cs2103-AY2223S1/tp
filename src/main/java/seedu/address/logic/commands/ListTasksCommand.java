@@ -22,7 +22,7 @@ import seedu.address.model.team.Task;
 /**
  * Lists all tasks of the current team.
  */
-@CommandLine.Command(name = "tasks", aliases = { "t" }, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = "tasks", aliases = {"t"}, mixinStandardHelpOptions = true)
 public class ListTasksCommand extends Command {
     public static final String COMMAND_WORD = "list tasks";
 
@@ -39,11 +39,11 @@ public class ListTasksCommand extends Command {
             + "Type `list tasks` to show all tasks again.";
 
 
-    @CommandLine.Option(names = { FLAG_COMPLETE_TASKS_STR, FLAG_COMPLETE_TASKS_STR_LONG },
+    @CommandLine.Option(names = {FLAG_COMPLETE_TASKS_STR, FLAG_COMPLETE_TASKS_STR_LONG},
             description = FLAG_COMPLETE_TASK_DESCRIPTION)
     private boolean hasCompleteFlag;
 
-    @CommandLine.Option(names = { FLAG_INCOMPLETE_TASKS_STR, FLAG_INCOMPLETE_TASKS_STR_LONG }, description =
+    @CommandLine.Option(names = {FLAG_INCOMPLETE_TASKS_STR, FLAG_INCOMPLETE_TASKS_STR_LONG}, description =
             FLAG_INCOMPLETE_TASK_DESCRIPTION)
     private boolean hasIncompleteFlag;
 
