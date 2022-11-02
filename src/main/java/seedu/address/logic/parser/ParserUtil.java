@@ -52,10 +52,16 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+    /**
+     *
+     * @param info
+     * @return trimmed info
+     * @throws ParseException if the given string only contains white spaces
+     */
     public static String parseMeetingDetails(String info) throws ParseException {
         requireNonNull(info);
         String trimmedInfo = info.trim();
-        if(info.equals("")) {
+        if (info.equals("")) {
             throw new ParseException(MESSAGE_INVALID_NON_EMPTY);
         }
         return trimmedInfo;
