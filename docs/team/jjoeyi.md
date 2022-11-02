@@ -1,82 +1,100 @@
 ---
-layout: page
-title: Low Joe Yi's Project Portfolio Page
+layout: page title: Low Joe Yi's Project Portfolio Page
 ---
 
 ### Project: SoConnect
 
-SoConnect is a desktop address book application designed for National University of Singapore (NUS) Computer Science Undergraduates. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+SoConnect is a desktop address book application designed for National University of Singapore (NUS) Computer Science
+Undergraduates to keep track of their University social circle which includes peers, Teaching Assistants and Professors.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10
+kLoC.
 
-#### Overview : to be added soon
+Given below are my contributions to the project.
 
-#### Summary of contributions :
-- Code Contributed: To be added soon
-- Enhancements implemented: To be added soon
-- Contributions to the UG: To be added soon
-- Contributions to the DG: To be added soon
-- Contributions to team-based tasks: To be added soon
-- Review/Mentoring Contributions: To be added soon
-- Contributions beyond the team project: To be added soon
+* **Fast Template Feature**: Added the ability to get a template command to add a professor / teaching assistant /
+  student into the address book.
+
+    * What it does: allows the user to get a correct template command with all the fields provided for a given person.
+
+    * Justification: This feature improves the product significantly because a new user can quickly use our product
+      without having to remember all the fields for each person, easily add a new Person and make less errors. For
+      experienced users, they may use this feature as a shortcut to access all the fields of a Person quickly without
+      having to type them out, so that they can add a Person quicker.
+
+    * How to use: Simply use the command word `tt` and then the command for the person you wish to add. I.e. all valid
+      commands are: `tt prof`, `tt ta`, `tt student`, for getting a template for adding a professor, teaching assistant
+      and student respectively
+
+    * Highlights: The templates provided can be easily updated for any potential new fields added in the future, so it
+      is future proof.
 
 
-[//]: # (* **New Feature**: Added the ability to undo/redo previous commands.)
+* **New Field**: Added a `Location` field to all persons.
 
-[//]: # (  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.)
+    * What it does: allows the user to add a location to a person to add into the address book. This field is optional,
+      and its default value is `NUS` since SoConnect is meant for NUS students.
 
-[//]: # (  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.)
+    * Justification: This feature improves the product because a user can add useful information about their contacts'
+      location. E.g. A common meeting place, a classroom, lecture hall etc.
 
-[//]: # (  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.)
+    * How to use it: Simply use the field `l/` (lowercase L) when adding a person.
 
-[//]: # (  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*)
+    * Highlights: The location provided is shown on our GUI.
 
-[//]: # ()
-[//]: # (* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.)
 
-[//]: # ()
-[//]: # (* **Code contributed**: [RepoSense link]&#40;&#41;)
+* **Code
+  contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=%20AY2223S1-CS2103T-W08-3&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=JJoeYi&tabRepo=AY2223S1-CS2103T-W08-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-[//]: # ()
-[//]: # (* **Project management**:)
 
-[//]: # (  * Managed releases `v1.3` - `v1.5rc` &#40;3 releases&#41; on GitHub)
+* **Project management**:
 
-[//]: # ()
-[//]: # (* **Enhancements to existing features**:)
+    * Set up the project repository
+    * Set up the project website
+    * Managed releases `v1.3` - `v1.4` on GitHub
 
-[//]: # (  * Updated the GUI color scheme &#40;Pull requests [\#33]&#40;&#41;, [\#34]&#40;&#41;&#41;)
 
-[//]: # (  * Wrote additional tests for existing features to increase coverage from 88% to 92% &#40;Pull requests [\#36]&#40;&#41;, [\#38]&#40;&#41;&#41;)
+* **Enhancements to existing features**:
 
-[//]: # ()
-[//]: # (* **Documentation**:)
+    * Updated the GUI to fit Location information (Pull
+      request [\#37](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/37))
 
-[//]: # (  * User Guide:)
+    * Wrote additional tests for existing features to increase coverage (Pull
+      request [\#102](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/102))
 
-[//]: # (    * Added documentation for the features `delete` and `find` [\#72]&#40;&#41;)
 
-[//]: # (    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]&#40;&#41;)
+* **Documentation**:
 
-[//]: # (  * Developer Guide:)
+    * User Guide:
 
-[//]: # (    * Added implementation details of the `delete` feature.)
+        * Added documentation for the feature `Fast Template`
 
-[//]: # ()
-[//]: # (* **Community**:)
+        * Added the `Command Summary` Section and `FAQ` Section and filled them with appropriate
+          information. [\#103](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/103)
 
-[//]: # (  * PRs reviewed &#40;with non-trivial review comments&#41;: [\#12]&#40;&#41;, [\#32]&#40;&#41;, [\#19]&#40;&#41;, [\#42]&#40;&#41;)
+    * Developer Guide:
 
-[//]: # (  * Contributed to forum discussions &#40;examples: [1]&#40;&#41;, [2]&#40;&#41;, [3]&#40;&#41;, [4]&#40;&#41;&#41;)
+        * Added implementation details of the `Fast Template` feature, including a detailed sequence diagram.
+        * Added Use cases and User Stories for `location` field and `Fast Template`
+          feature [\#103](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/103)
 
-[//]: # (  * Reported bugs and suggestions for other teams in the class &#40;examples: [1]&#40;&#41;, [2]&#40;&#41;, [3]&#40;&#41;&#41;)
 
-[//]: # (  * Some parts of the history feature I added was adopted by several other class mates &#40;[1]&#40;&#41;, [2]&#40;&#41;&#41;)
+* **Community**:
 
-[//]: # ()
-[//]: # (* **Tools**:)
+    * Reviewed over 19 PRs
 
-[//]: # (  * Integrated a third party library &#40;Natty&#41; to the project &#40;[\#42]&#40;&#41;&#41;)
+    * PRs reviewed (with non-trivial review comments): [\#111](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/111)
+      , [\#106](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/106)
+      , [\#54](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/54)
+      , [\#48](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/48)
+      , [\#39](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/39)
 
-[//]: # (  * Integrated a new Github plugin &#40;CircleCI&#41; to the team repo)
+    * Contributed to discussions (
+      examples: [1](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/37#discussion_r986722158)
+      , [2](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/106#discussion_r1005330464)
+      , [3](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/39#discussion_r986739463)
+      , [4](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/37#discussion_r986723329))
 
-[//]: # ()
-[//]: # (* _{you can add/remove categories in the list above}_)
+    * Reported bugs and suggestions (
+      examples: [1](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/111)
+      , [2](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/54#discussion_r996404612)
+      , [3](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/39#discussion_r986739463))

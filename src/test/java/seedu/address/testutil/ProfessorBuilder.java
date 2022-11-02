@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Professor;
@@ -40,6 +41,15 @@ public class ProfessorBuilder extends PersonBuilder {
         super(personToCopy);
         moduleCode = personToCopy.getModuleCode();
         this.officeHour = personToCopy.getOfficeHour();
+    }
+
+
+    /**
+     * Sets the {@code OfficeHour} of the {@code Professor} that we are building.
+     */
+    public ProfessorBuilder withOfficeHours(String officeHour) {
+        this.officeHour = new OfficeHour(officeHour, false);
+        return this;
     }
 
     @Override

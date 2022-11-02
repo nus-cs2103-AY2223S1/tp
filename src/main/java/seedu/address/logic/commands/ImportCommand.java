@@ -38,6 +38,7 @@ public class ImportCommand extends Command {
             }
         }
         );
+        model.updatePieChart();
         return new CommandResult(MESSAGE_IMPORT_SUCCESS);
     }
     @Override
