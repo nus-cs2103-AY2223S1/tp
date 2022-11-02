@@ -120,7 +120,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
         CommandResult commandResult;
         //Parse user input from String to a Command
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = fridayParser.parseCommand(commandText);
         //Executes the Command and stores the result
         commandResult = command.execute(model);
 

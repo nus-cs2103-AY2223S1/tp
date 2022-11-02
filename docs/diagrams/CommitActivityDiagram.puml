@@ -8,7 +8,7 @@ start
 if () then ([command commits Friday])
     :Purge redundant states;
     :Save Friday to
-    addressBookStateList;
+    fridayStateList;
 else ([else])
 endif
 stop
