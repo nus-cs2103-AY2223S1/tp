@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Professor/Teaching Assistant's module code in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidModuleCode(String)}
  */
-public class ModuleCode {
+public class ModuleCode implements Comparable<ModuleCode> {
 
     public static final String MESSAGE_CONSTRAINTS = "Module code must fulfill the following requirements:\n"
             + "- length between 5 and 7 characters\n"
@@ -63,17 +63,21 @@ public class ModuleCode {
     public int getLevel() {
         return Integer.parseInt(value.replaceAll("\\D", ""));
     }
-
+    public String getPrefix() {
+        return value.replaceAll("\\d", "").toUpperCase();
+    }
     /**
-     * Used as a comparator between two modules. The module code with a higher level higher precedence.
+     * Used as a comparator between two modules. The module code with a higher level higher precedence, tie
+     * breaker is implemented by comparing the prefix of moduleCode
      * @param moduleCode target of comparison
      * @return int
      */
+    @Override
     public int compareTo(ModuleCode moduleCode) {
         return this.getLevel() - moduleCode.getLevel() > 0
                 ? 1
                 : this.getLevel() == moduleCode.getLevel()
-                ? 0
+                ? getPrefix().compareTo(moduleCode.getPrefix())
                 : -1;
     }
     @Override
