@@ -1,10 +1,11 @@
 package foodwhere.logic.commands;
 
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import foodwhere.commons.core.Messages;
 import foodwhere.commons.core.index.Index;
 import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.model.Model;
@@ -24,6 +25,10 @@ public class RDeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_REVIEW_SUCCESS = "Deleted review: %1$s";
 
+    public static final String MESSAGE_INVALID_INDEX_ERROR =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INDEX)
+                    + RDeleteCommand.MESSAGE_USAGE;
+
     private final Index targetIndex;
 
     public RDeleteCommand(Index targetIndex) {
@@ -36,7 +41,7 @@ public class RDeleteCommand extends Command {
         List<Review> lastShownList = model.getFilteredReviewList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_REVIEW_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_INDEX_ERROR);
         }
 
         Review reviewToDelete = lastShownList.get(targetIndex.getZeroBased());

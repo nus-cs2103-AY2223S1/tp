@@ -1,5 +1,7 @@
 package foodwhere.logic.commands;
 
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static foodwhere.model.Model.PREDICATE_SHOW_ALL_STALLS;
 import static java.util.Objects.requireNonNull;
 
@@ -10,7 +12,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import foodwhere.commons.core.Messages;
 import foodwhere.commons.core.index.Index;
 import foodwhere.commons.util.CollectionUtil;
 import foodwhere.logic.commands.exceptions.CommandException;
@@ -43,6 +44,10 @@ public class SEditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STALL = "This stall already exists in FoodWhere.";
 
+    public static final String MESSAGE_INVALID_INDEX_ERROR =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INDEX)
+                    + SEditCommand.MESSAGE_USAGE;
+
     private final Index index;
     private final EditStallDescriptor editStallDescriptor;
 
@@ -64,7 +69,11 @@ public class SEditCommand extends Command {
         List<Stall> lastShownList = model.getFilteredStallList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_INDEX_ERROR);
+        }
+
+        if (!editStallDescriptor.isAnyFieldEdited()) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
         }
 
         Stall stallToEdit = lastShownList.get(index.getZeroBased());
