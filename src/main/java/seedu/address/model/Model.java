@@ -206,9 +206,6 @@ public interface Model {
     void updateFilteredExamList(Predicate<Exam>predicate);
 
 
-
-    boolean equals(Object obj);
-
     /**
      * Updates the exam field in task by replacing the previous exam with the new exam.
      * @param previousExam The exam in the task's exam field.
