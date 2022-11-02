@@ -108,7 +108,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `NuSchedulerParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddProfileCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a profile).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("profile -d 1")` API call.
 
@@ -119,9 +119,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `NuSchedulerParser` class creates an `XCommandParser` (`X` is a placeholder for the command type e.g., `ProfileCommandParser`, `EventCommandParser`) for `Profile` and `Event` commands. A `YCommand` (`Y` is a placeholder for the command name e.g., `FindCommand`. `ClearCommand`) is created instead for other commands.
+* When called upon to parse a user command, the `NuSchedulerParser` class creates an `XCommandParser` (`X` is a placeholder for the command type e.g., `ProfileCommandParser`, `EventCommandParser`) for `Profile` and `Event` commands.
+* A `YCommandParser` (`Y` is a placeholder for general command names e.g., `ClearCommandParser`, `ExitCommandParser`) is created instead for other commands.
 * For `Event` and `Profile` commands,  `ProfileCommandParser` and `EventCommandParser` will create the respective `ZXCommandParser` (`Z` is a placeholder for the command name of command type `X` e.g., `AddProfileCommandParser`) to parse the user command. After parsing the user command, a `ZXCommand` (e.g., `AddProfileCommand`) object is created which is then returned by `NuSchedulerParser` as a `Command` object.
-* All `XCommandParser` and `ZXCommandParser` classes (e.g., `ProfileCommandParser`, `FindEventCommandParser`) implements the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* For other general commands, `YCommandParser` creates `YCommand` (e.g., `ClearCommand`, `ExitCommand`) which is returned by `NuSchedulerParser` as a `Command` object.
+* All `XCommandParser`, `YCommandParser` and `ZXCommandParser` classes implements the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -288,6 +290,31 @@ The following activity diagram summarizes what happens when a user executes a vi
 
 ![ViewProfileCommandActivityDiagram](images/commands/ViewProfileCommandActivityDiagram.png)
 
+### View Upcoming Events Command
+
+#### Description
+
+In this section, we will describe how view upcoming events command is implemented.
+
+The `ViewUpcomingEventsCommand` class extends the `EventCommand` abstract class. `EventCommand` extends the abstract `Command` class. `ViewUpcomingEventsCommand` overrides the `Command#execute` method, to display upcoming event commands when called.
+
+#### Implementation
+
+1. When the user inputs a command to view upcoming events, `LogicManager` will call `NuSchedulerParser#parseCommand`, which will create a new `ViewUpcomingEventsCommandParser`.
+2. The method `ViewUpcomingEventsCommandParser#parse` is then called. It calls `ParserUtil#parseDays`which returns the days input as an integer.
+3. Days input will be used to create a new `StartDateWithinTimeFramePredicate`.
+4. Using the days integer and the predicate, `ViewUpcomingEventsCommandParser` creates `ViewUpcomingEventsCommand` which gets returned to `LogicManager`.
+5. The `LogicManager` will call `Command#execute` method of the `ViewUpcomingEventsCommand`, which will then call `Model#updateFilteredEventList` to display the desired events.
+6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
+
+The following sequence diagram shows what happens when `ViewUpcomingEventsCommand` gets executed.
+
+![ViewUpcomingEventsCommandSequenceDiagram](images/commands/ViewUpcomingEventsCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a view upcoming events command.
+
+![ViewUpcomingEventsCommandActivityDiagram](images/commands/ViewUpcomingEventsCommandActivityDiagram.png)
+
 ### AddProfilesToEventCommand
 
 #### Description
@@ -433,15 +460,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The Name, starting date or the ending date is not provided.
+* 1a. The Title, starting date or the ending date is not provided.
 
     * 1a1. NUScheduler reminds user of the correct format to add an event.
-
-      Use case ends.
-
-* 1b. An invalid profile is provided.
-
-    * 1b1. NUScheduler shows an error message.
 
       Use case ends.
 
@@ -463,6 +484,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. There are no events in the next specified days.
 
   Use case ends.
+
+**Use case: UC05 - Add attendees to event**
+
+**MSS**
+
+1. User requests to add a profile to the event.
+2. NUScheduler adds the profile to the event and displays the updated event attendees.
+
+**Extensions**
+
+* 1a. The given event to add profile to is invalid.
+
+    * 1a1. NUScheduler shows an error message.
+
+      Use case ends.
+
+* 1b. The given profile to add is invalid
+
+    * 1b1. NUScheduler shows an error message.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
@@ -503,7 +545,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample profiles and events.
 
 1. Saving window preferences
 
@@ -512,29 +554,28 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a Profile
 
 1. Deleting a Profile while all Profiles are being shown
 
-   1. Prerequisites: List all Profiles using the `list` command. Multiple Profiles in the list.
+   1. Prerequisites: List all Profiles using the `profile -v` command. Multiple Profiles in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `profile -d 1`<br>
+      Expected: First profile is deleted from the list. Details of the deleted profile shown in the status message. If first profile is attending any events, the profile will be removed from the event as well.
 
-   1. Test case: `delete 0`<br>
+   4. Test case: `profile - d 0`<br>
       Expected: No Profile is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   5. Other incorrect delete commands to try: `profile -d`, `profile -d x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Open `data/nuscheduler.json` in the directory where NUScheduler is downloaded.
+   2. Edit any email to a non-NUS email.
+   3. Relaunch `NUScheduler.jar`.
+   4. Expected: Data is invalid thus NUScheduler starts with an empty data file.
