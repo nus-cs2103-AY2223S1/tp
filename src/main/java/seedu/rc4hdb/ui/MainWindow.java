@@ -2,7 +2,6 @@ package seedu.rc4hdb.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -79,7 +78,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        setUpListeners();
     }
 
     public Stage getPrimaryStage() {
@@ -220,33 +218,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /**
-     * Returns a listener which propagates the changes in the visibleFields list in Model
-     * (and hence Logic) to the corresponding observable list in ResidentTableView.
-     */
-    private ListChangeListener<String> updateVisibleFieldsOnChange() {
-        return c -> residentTableView.setVisibleFields(logic.getVisibleFields());
-    }
-
-    /**
-     * Returns a listener which propagates the changes in the hiddenFields list in Model
-     * (and hence Logic) to the corresponding observable list in ResidentTableView.
-     */
-    private ListChangeListener<String> updateHiddenFieldsOnChange() {
-        return c -> residentTableView.setHiddenFields(logic.getHiddenFields());
-    }
-
     private void setTabLabels() {
         this.residentTab.setText("Residents");
         this.venueTab.setText("Bookings");
-    }
-
-    /**
-     * Add listeners to fields to be listened to.
-     */
-    private void setUpListeners() {
-        this.logic.getVisibleFields().addListener(updateVisibleFieldsOnChange());
-        this.logic.getHiddenFields().addListener(updateHiddenFieldsOnChange());
     }
 
 }
