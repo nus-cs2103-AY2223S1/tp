@@ -193,8 +193,13 @@ Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* `find` across different parameters is a `AND` search.
+e.g. `find n/John m/CS2105` will return students matching `John` who are also in `CS2105`, if the students exist in ModQuik.
+* `find` works on the entire list of students and successive find commands are independent of each other.
+e.g. `find n/John` followed by find `find m/CS2103` will not find students matching `John` in `CS2103`.
+It will first display all students matching `John`, then display all students in `CS2103`.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
@@ -287,7 +292,7 @@ Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTIO
 * `TIMESLOT` should take in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
 
 Examples:
-* `add consultation n/JakeKim m/CS2103T D/2022-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
+* `add consultation n/JakeKim m/CS2103T D/2023-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
 
 <a name="edit-consultation"></a>
 #### 4.4.2 Editing a consultation: `edit consultation`
@@ -303,7 +308,7 @@ Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/D
 
 Examples:
 * `edit consultation 1 n/G08 m/CS1101S` Edits the tutorial name and module of the 1st tutorial to be `G08` and `CS1101S` respectively.
-* `edit consultation 2 T/14:00-16:00 D/2022-10-10` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2022 Oct 10`.
+* `edit consultation 2 T/14:00-16:00 D/2023-10-10` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2023 Oct 10`.
 
 <a name="delete-consultation"></a>
 #### 4.4.3 Deleting a consultation: `delete consultation`
@@ -334,8 +339,8 @@ Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 
 
 Examples:
-* `add reminder n/Mark Midterms D/2022-01-01 T/15:00 d/300 papers to mark p/HIGH`
-* `add reminder n/Mark Midterms T/15:00 D/2022-01-01 d/300 papers to mark p/HIGH`
+* `add reminder n/Mark Midterms D/2023-01-01 T/15:00 d/300 papers to mark p/HIGH`
+* `add reminder n/update grades T/16:00 D/2023-01-01 d/20 students to update p/MEDIUM`
 
 <a name="edit-reminder"></a>
 #### 4.4.2 Editing a reminder: `edit reminder`
@@ -354,7 +359,7 @@ Format: `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPT
 
 Examples:
 * `edit reminder 1 p/LOW` Edits the priority of the 1st reminder to be `LOW`.
-* `edit reminder 2 T/14:00 D/2022-10-10` Edits the deadline time of the 2nd reminder to be `14:00` and sets deadline date to `2022 Oct 10`.
+* `edit reminder 2 T/14:00 D/2023-10-10` Edits the deadline time of the 2nd reminder to be `14:00` and sets deadline date to `2023 Oct 10`.
 
 <a name="mark-reminder"></a>
 #### 4.4.3 Mark a reminder: `mark reminder`
@@ -504,11 +509,11 @@ _Details coming soon..._
 | [**Add Tutorial**][`add tutorial`]               | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`<br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`                                                                                                                               |
 | [**Edit Tutorial**][`edit tutorial`]             | `edit tutorial INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DAY]`<br> e.g., `edit tutorial 1 n/W17 m/CS2103T`                                                                                                                                       |
 | [**Delete Tutorial**][`delete tutorial`]         | `delete tutorial INDEX`<br> e.g., `delete tutorial 3`                                                                                                                                                                                                      |
-| [**Add Consultation**][`add consultation`]       | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`<br> e.g., `add consultation D/2022-10-24 T/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`                                                                      |
+| [**Add Consultation**][`add consultation`]       | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`<br> e.g., `add consultation D/2023-10-24 T/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`                                                                      |
 | [**Edit Consultation**][`edit consultation`]     | `edit consultation INDEX`<br> e.g., `edit consultation 3 d/Review past year paper`                                                                                                                                                                         |
 | [**Delete Consultation**][`delete consultation`] | `delete consultation INDEX`<br> e.g., `delete consultation 3`                                                                                                                                                                                              |
-| [**Add Reminder**][`add reminder`]               | `add reminder n/NAME D/DATE T/TIME p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark papers D/2022-03-21 T/13:00 p/HIGH d/300 papers to mark`                                                                                                       |
-| [**Edit Reminder**][`edit reminder`]             | `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPTION]`<br> e.g., `delete reminder 1 D/2022-01-01 T/14:00`                                                                                                                           |
+| [**Add Reminder**][`add reminder`]               | `add reminder n/NAME D/DATE T/TIME p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark papers D/2023-03-21 T/13:00 p/HIGH d/300 papers to mark`                                                                                                       |
+| [**Edit Reminder**][`edit reminder`]             | `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPTION]`<br> e.g., `delete reminder 1 D/2023-01-01 T/14:00`                                                                                                                           |
 | [**Mark Reminder**][`mark reminder`]             | `mark reminder INDEX`<br> e.g., `mark reminder 3`                                                                                                                                                                                                          |
 | [**Unmark Reminder**][`unmark reminder`]         | `unmark reminder INDEX`<br> e.g., `unmark reminder 3`                                                                                                                                                                                                      |
 | [**Delete Reminder**][`delete reminder`]         | `delete reminder INDEX`<br> e.g., `delete reminder 3`                                                                                                                                                                                                      |
