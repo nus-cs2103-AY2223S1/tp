@@ -12,7 +12,7 @@ import seedu.address.model.calendar.CalendarEvent;
  * The content that is displayed within the {@code CalendarPopup}
  */
 public class CalendarPopupContent extends UiPart<Region> {
-    private static final String FXML = "CalendarPopupContent2.fxml";
+    private static final String FXML = "CalendarPopupContent.fxml";
     @FXML
     private ScrollPane popupContent;
     @FXML

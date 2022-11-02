@@ -6,9 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import seedu.address.model.calendar.CalendarEvent;
 
@@ -19,7 +16,7 @@ public class EventButton extends CalendarButton {
     private static final String FXML = "EventButton.fxml";
     private static final String EVENT_BUTTON_STYLE = "-fx-font-size: 8pt; -fx-border-radius: 5; -fx-min-width: 100;";
     private static final double ORIGIN = 0.0;
-    private static final int TOOLTIP_OFFSET = 15;
+    private static final int HALF_CONTENT_WIDTH = 150;
     private Stage primaryStage;
     private CalendarEvent calendarEvent;
     @FXML
@@ -61,6 +58,7 @@ public class EventButton extends CalendarButton {
 
     @FXML @Override
     protected void handleFocusedEvent(Observable observable) {
+        System.out.println(calendarEvent.getDate());
         if (!calendarPopup.getRoot().isShowing() && eventButton.isFocused()) {
             eventButton.setStyle(EVENT_BUTTON_STYLE + ORANGE_BORDER);
             displayToolTip();
@@ -73,18 +71,9 @@ public class EventButton extends CalendarButton {
 
     private void displayToolTip() {
         Point2D p = eventButton.localToScene(ORIGIN, ORIGIN);
-//        calendarPopup.getRoot().show(eventButton, p.getX(), p.getY());
-        calendarPopup.getRoot().show(eventButton, p.getX()
-                + eventButton.getScene().getX() + eventButton.getScene().getWindow().getX(), p.getY()
-                + eventButton.getScene().getY() + eventButton.getScene().getWindow().getY() + TOOLTIP_OFFSET);
-//        Popup a = new Popup();
-//        VBox b = new VBox(new Label("Hello"));
-//        b.setMinWidth(400);
-//        b.setMinHeight(200);
-//        //b.setStyle("-fx-background-color: white; -fx-shape: \" M24 1h-24v16.981h13l7+5.019v-5.019h4z \";");
-//        a.getContent().add(b);
-//        a.show(this.getRoot().getScene().getWindow(), p.getX()
-//                + eventButton.getScene().getX() + eventButton.getScene().getWindow().getX() - b.getWidth()/2,  p.getY()
-//                + eventButton.getScene().getY() + eventButton.getScene().getWindow().getY() + TOOLTIP_OFFSET - 200);
+        calendarPopup.getRoot().show(eventButton,
+                eventButton.getScene().getWindow().getWidth() / 2 - HALF_CONTENT_WIDTH
+                        + eventButton.getScene().getWindow().getX(), p.getY()
+                        + eventButton.getScene().getY() + eventButton.getScene().getWindow().getY());
     }
 }
