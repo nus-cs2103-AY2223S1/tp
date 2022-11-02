@@ -219,18 +219,18 @@ The above explanation is also applicable to adding consultation and studio lesso
 They are similar apart from:
 1. the different naming(`AddConsultCommandParser`, `AddStudioCommandParser` etc instead of `AddMasteryCheckParser`)
 2. for `Studio`, all `Student` currently in the `StudentBook` instead of `FilteredStudentList` will be used to create `LessonAttendance` and `LessonNotes`
-   1. Studio are tutorials and all students are expected to attend. 
+   1. Studio are tutorials and all students are expected to attend.
    2. As a result, adding a Studio command does not require user to input student indexes.
 
 ### Adding notes for a lesson
 
 In adding notes for an existing `Lesson` in JARVIS, the user has the option to:
 1. add overall notes for a `Lesson`
-2. add `Student` specific notes for a `Lesson` 
+2. add `Student` specific notes for a `Lesson`
 
 The rationale behind this design is that these are the two main types of notes that a tutor might make during a lesson. This design will help the tutor organise and view his/her notes more easily.
 
-To add an overall note for an existing `Lesson` in JARVIS, the user keys in a valid add note command (e.g addnote n/get back to the class on streams li/1). 
+To add an overall note for an existing `Lesson` in JARVIS, the user keys in a valid add note command (e.g addnote n/get back to the class on streams li/1).
 
 To add a `Student` specific note to an existing `Lesson` in JARVIS, the user similarly keys in a valid add note command, but additionally specifying the student index (e.g addnote n/get back to jeff on streams li/1 si/2).
 
@@ -293,7 +293,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
  | `* * *`  | user                              | add my lessons                                                  | can keep track of lessons I have scheduled with which students                  |
 | `* * *`  | user                              | mark tasks as done                                              | can focus on the remaining tasks                                                |
 | `* * *`  | user                              | mark tasks as not done                                          | can go back and redo tasks that are incomplete                                  |
-| `* * *`  | user                              | mark lessons as completed                                       | can focus on upcoming lessons                                                   | 
+| `* * *`  | user                              | mark lessons as completed                                       | can focus on upcoming lessons                                                   |
 | `* * *`  | clumsy user                       | delete tasks                                                    | can remove tasks I have wrongfully added                                        |
 | `* * *`  | clumsy user                       | delete students                                                 | can remove students I have wrongfully added                                     |
 | `* * *`  | clumsy user                       | delete lessons                                                  | can remove lessons I have wrongfully added                                      |
@@ -307,8 +307,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user ready to start using the app | clear all current data                                          | can get rid of the sample data used for exploring the app and input my own data |
 | `* *`    | user                              | add attendance for a lesson                                      | can keep track of who attended the lesson                                       |
 | `* *`    | user                              | keep track of my students' level of participation               | can prompt students who are less active in class                        |
-| `* *`    | user                              | keep track of my students' grades                               | can help and pay more attention to the weaker students                             |  
-| `* *`    | user                              | take down notes related to a lesson                             | can refer back and remember important things that happened during the lesson      |      
+| `* *`    | user                              | keep track of my students' grades                               | can help and pay more attention to the weaker students                             | 
+| `* *`    | user                              | take down notes related to a lesson                             | can refer back and remember important things that happened during the lesson      |     
 | `* *`    | user                              | detect if there are any lesson schedule conflicts                      | will not wrongly schedule lessons at the same time                               |
 | `*`      | user                              | assign different priorities to my tasks                         | can focus on the more important tasks                                           |
 | `*`      | user ready to start using the app | import my timetable for the semester	                           | can plan my TA duties in sync with tasks from other modules                     |
@@ -392,14 +392,14 @@ Use case ends.
 **Extensions**
 - 1a. JARVIS fails to understand request.
   - 1a1. JARVIS tells Avenger to make a request again.
-  
+
     Use case resumes from step 1.
 
 - 1b. Specified student not found in JARVIS.
   - 1b1. JARVIS informs Avenger that the student does not exist.
   - 1b2. JARVIS displays the list of students.
   - 1b3. JARVIS tells Avenger to make a request again.
-  
+
     Use case resumes from step 1.
 
 **Use case: UC9 - Find student**
@@ -428,7 +428,7 @@ Preconditions: There are existing students in JARVIS.
 
 Preconditions: There are existing students in JARVIS.
 
-**MSS** 
+**MSS**
 
 1. Avenger requests to input grade for a student.
 2. JARVIS successfully adds the grade for the student.
@@ -522,21 +522,21 @@ Use case ends.
 
 - 2a. JARVIS fails to understand request.
   - 2a1. JARVIS tells Avenger to make a request again.
-  - 
+
     Use case resumes from step 2.
-  
+
 - 2b. Specified lesson not found in JARVIS.
   - 2b1. JARVIS informs Avenger that the lesson does not exist.
   - 2b2. JARVIS tells Avenger to make a request again.
-  
+
     Use case resumes from step 2.
-  
+
 - 2c. Specified student not found in JARVIS.
   - 2c1. JARVIS informs Avenger that the student does not exist in the lesson.
   - 2c2. JARVIS tells Avenger to make a request again.
-  
+
     Use case resumes from step 2.
-  
+
 **Use case: UC17 - Mark a student as absent for a lesson**
 
 Refer to <ins>UC16 - Mark a student as present for a lesson</ins> with the only difference being mark a student as absent instead of present.
@@ -544,6 +544,8 @@ Refer to <ins>UC16 - Mark a student as present for a lesson</ins> with the only 
 **Use case: UC18 - Add note for a student in a lesson**
 
 Preconditions: There are existing students and lessons in JARVIS.
+
+**MSS**
 
 1. Avenger performs <ins>view lessons(UC3)</ins>.
 2. Avenger requests to add a note for a student in a lesson.
@@ -554,13 +556,13 @@ Use case ends.
 **Extensions:**
 - 2a. JARVIS fails to understand request.
     - 2a1. JARVIS tells Avenger to make a request again.
-  
+
       Use case resumes from step 2.
-  
+
 - 2b. Specified lesson not found in JARVIS.
     - 2b1. JARVIS informs Avenger that the lesson does not exist.
     - 2b2. JARVIS tells Avenger to make a request again.
-  
+
       Use case resumes from step 2.
 
 - 2c. Specified student not found in JARVIS.
@@ -568,11 +570,12 @@ Use case ends.
     - 2c2. JARVIS tells Avenger to make a request again.
 
       Use case resumes from step 2.
-
-
+    
 **Use case: UC19 - Delete note from a student in a lesson**
 
 Preconditions: There are existing students, lessons and notes for a student in JARVIS.
+
+**MSS**
 
 1. Avenger performs <ins>view lessons(UC3)</ins>.
 2. Avenger requests to delete a note from a student in a lesson.
@@ -603,7 +606,7 @@ Use case ends.
   - 2d2. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 2.
-  
+
 **Use case: UC20 - Set participation for a student in a lesson**
 
 Refer to <ins>UC18 - Add note for a student in a lesson</ins> with the only difference being setting participation instead of adding note.  
@@ -626,13 +629,13 @@ Use case ends.
   - 2a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 2.
-  
+
 - 2b. Specified student not found in JARVIS.
   - 2b1. JARVIS informs Avenger that the student does not exist.
   - 2b2. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 2.
-  
+
 **Use case: UC22 - Delete a task**
 
 Refer to <ins>UC21 - Delete a student</ins> with the only difference being task instead of student.
@@ -656,8 +659,8 @@ Use case ends.
   - 1a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 1.
-  
-    
+
+
 ### Non-Functional Requirements
 
 1.  Should work on Windows, Linux, and OS-X platforms that has version 11 of Java (i.e. no other Java versions) installed.
@@ -697,7 +700,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file 
+   1. Double-click the jar file
        Expected: Shows the GUI with a set of sample students, tasks and lists. The window size may not be optimum.
 
 1. Saving window preferences

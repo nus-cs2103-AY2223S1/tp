@@ -208,7 +208,7 @@ Format: `grade INDEX [ra1/MARKS] [ra2/MARKS] [mt/MARKS] [pa/MARKS] [fn/MARKS]`
 * At least one of the optional fields must be provided.
 
 Examples:
-* `grade 1 ra1/17 mt/55` add to the grades for the 1st student: 17 marks for RA1, 55 marks for midterms. 
+* `grade 1 ra1/17 mt/55` add to the grades for the 1st student: 17 marks for RA1, 55 marks for midterms.
 
 ### Setting mastery check result for a student : `mc`
 
@@ -305,7 +305,7 @@ Examples:
 Adds a consult lesson to JARVIS.
 
 Format: `addconsult [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...`
-  
+
 * `l/LESSON_DESC` is optional
 * `sd/START_DATE` and `ed/END_DATE` should be in the format `yyyy-MM-dd`.
 * `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.

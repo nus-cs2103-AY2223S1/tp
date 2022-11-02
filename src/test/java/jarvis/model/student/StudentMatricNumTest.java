@@ -38,7 +38,7 @@ public class StudentMatricNumTest {
 
         // valid matric number
         assertTrue(MatricNum.isValidMatricNum("A1234567U"));
-        assertTrue(MatricNum.isValidMatricNum("A1234567A")); 
+        assertTrue(MatricNum.isValidMatricNum("A1234567A"));
     }
 
     @Test
