@@ -3,10 +3,12 @@ package seedu.masslinkers.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -223,8 +225,13 @@ public class ParserUtil {
      */
     private static void checkForPrefix(String args) throws ParseException {
         String[] splittedArgs = args.split("\\s+");
-        if (splittedArgs.length > 1 && splittedArgs[1].matches(PREFIX_REGEX)) {
-            throw new ParseException(String.format(MESSAGE_UNEXPECTED_PREFIX, splittedArgs[1].substring(0, 2)));
+        if (splittedArgs.length > 1) {
+            Set<String> stringsWithInvalidPrefix = Arrays.stream(splittedArgs)
+                    .filter(x -> x.matches(PREFIX_REGEX)).collect(Collectors.toSet());
+            if (!stringsWithInvalidPrefix.isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_UNEXPECTED_PREFIX,
+                        stringsWithInvalidPrefix.iterator().next().substring(0, 2)));
+            }
         }
     }
 }
