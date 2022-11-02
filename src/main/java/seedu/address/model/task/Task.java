@@ -56,9 +56,9 @@ public class Task {
         this.module = module;
         this.description = description;
         this.status = status;
-        priorityTag = null;
-        deadlineTag = null;
-        linkedExam = null;
+        this.priorityTag = null;
+        this.deadlineTag = null;
+        this.linkedExam = null;
     }
 
     /**
@@ -79,7 +79,7 @@ public class Task {
         this.status = status;
         this.priorityTag = priorityTag;
         this.deadlineTag = deadlineTag;
-        linkedExam = null;
+        this.linkedExam = null;
     }
 
     /**
@@ -285,6 +285,25 @@ public class Task {
 
     public Task unlinkTask() {
         return new Task(module, description, status, priorityTag, deadlineTag, null);
+    }
+
+    /**
+     * Checks whether the two tasks have the exact same fields.
+     *
+     * @param otherTask The other task being compared against.
+     * @return true if the two Task objects have the same module, description, status, priority tag, deadline tag and
+     *         linked exam, else return false.
+     */
+    public boolean hasAllSameFields(Task otherTask) {
+        return this.module.equals(otherTask.module)
+            && this.description.equals(otherTask.description)
+            && this.status.equals(otherTask.status)
+            && (!hasPriorityTag() && !otherTask.hasPriorityTag()
+                || this.priorityTag.equals(otherTask.priorityTag))
+            && (!hasDeadlineTag() && !otherTask.hasDeadlineTag()
+                || this.deadlineTag.equals(otherTask.deadlineTag))
+            && (!isLinked() && !otherTask.isLinked()
+                || this.linkedExam.equals(otherTask.linkedExam));
     }
 
     @Override

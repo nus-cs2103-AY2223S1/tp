@@ -3,6 +3,8 @@ package seedu.address.testutil;
 import static seedu.address.testutil.TypicalExams.getTypicalExams;
 import static seedu.address.testutil.TypicalModules.getTypicalModules;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
+import seedu.address.model.tag.DeadlineTag;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.task.Task;
 
 /**
@@ -38,6 +42,8 @@ public class TypicalTasks {
         .withTaskDescription("Task D")
         .withStatus("complete")
         .withExam(getTypicalExams().get(0))
+        .withPriorityTag(new PriorityTag("high"))
+        .withDeadlineTag(new DeadlineTag(LocalDate.parse("29-12-2022", DateTimeFormatter.ofPattern("dd-MM-yyyy"))))
         .build();
     public static final Task TASK_E = new TaskBuilder().withModule("cs2100")
         .withTaskDescription("Task E")
@@ -46,6 +52,11 @@ public class TypicalTasks {
     public static final Task TASK_F = new TaskBuilder().withModule("cs2100")
         .withTaskDescription("Task F")
         .withStatus("complete")
+        .build();
+    public static final Task TASK_G = new TaskBuilder().withModule("cs2040")
+        .withTaskDescription("Task G")
+        .withStatus("incomplete")
+        .withExam(getTypicalExams().get(0))
         .build();
 
     private TypicalTasks() {
@@ -69,6 +80,6 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(TASK_A, TASK_B, TASK_C, TASK_D, TASK_E, TASK_F));
+        return new ArrayList<>(Arrays.asList(TASK_A, TASK_B, TASK_C, TASK_D, TASK_E, TASK_F, TASK_G));
     }
 }

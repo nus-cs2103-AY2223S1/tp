@@ -73,6 +73,22 @@ public class TaskBuilder {
     }
 
     /**
+     * Sets the {@code PriorityTag} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withPriorityTag(PriorityTag priorityTag) {
+        this.priorityTag = priorityTag;
+        return this;
+    }
+
+    /**
+     * Sets the {@code DeadlineTag} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withDeadlineTag(DeadlineTag deadlineTag) {
+        this.deadlineTag = deadlineTag;
+        return this;
+    }
+
+    /**
      * Sets the {@code Exam} of the {@code Task} that we are building.
      */
     public TaskBuilder withExam(Exam exam) {
