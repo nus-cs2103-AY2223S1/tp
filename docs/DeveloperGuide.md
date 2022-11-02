@@ -260,7 +260,7 @@ Given below is an example usage scenario of how the setup mechanism behaves at e
 
 Step 1. The user launches the application.
 
-Step 2. The user executes `setup h/170 w/65 i/60 g/m`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` 
+Step 2. The user executes `setup h/170 w/65 i/60 g/m a/20`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` 
 is called subsequently, which then creates an `SetupCommand` object.
 
 Step 3. The `SetupCommand` created is executed by `SetupCommand#execute()`.
