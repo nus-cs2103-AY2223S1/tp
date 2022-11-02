@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+
+skinparam ClassFontColor #FFFFFF
+skinparam ClassBorderColor #FFFFFF
+
+
+package UI {
+    class CommandBox as "CommandBox" UI_COLOR_T3
+}
+
+class Forward as "ForwardHistory" #FDD400
+class Backward as "BackwardHistory" #FDD400
+class Parent as "CommandHistory" #FDD400
+
+CommandBox -down-> "1" Parent
+Parent <|-- "1" Forward
+Parent <|-- "1" Backward
+
+@end
