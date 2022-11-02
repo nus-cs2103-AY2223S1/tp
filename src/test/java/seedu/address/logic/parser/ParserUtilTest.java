@@ -3,17 +3,20 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.index.Index.MESSAGE_USAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_REQUESTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.OrderStatus;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.Request;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.testutil.OrderUtil;
 import seedu.address.testutil.TypicalOrders;
 
 public class ParserUtilTest {
@@ -31,9 +34,6 @@ public class ParserUtilTest {
     //For orders
     private static final String INVALID_ORDER_STATUS = "Sleeping";
     private static final String INVALID_REQUEST = "p_s/139746 p_a/";
-
-    private static final String VALID_ORDER_STATUS = OrderStatus.PENDING.getStatus();
-    private static final String VALID_REQUEST = TypicalOrders.ORDER_3.getRequest().toString();
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -150,9 +150,29 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseOrder_null_throws() throws Exception {
+    public void parseOrder_null_throws() {
         assertThrows(NullPointerException.class, null, ()
                 -> ParserUtil.parseOrder(null, true));
+    }
+
+    @Test
+    public void parseOrder_validArgs_success() {
+        String input = OrderUtil.getOrderBody(TypicalOrders.ORDER_1);
+
+        try {
+            Order result = ParserUtil.parseOrder(input, false);
+
+            //Conpare attributes because each order is unique and calling
+            // equals() on two separate orders always returns false
+            assertEquals(result.getOrderStatus(), TypicalOrders.ORDER_1.getOrderStatus());
+            assertEquals(result.getSettledPrice(), TypicalOrders.ORDER_1.getSettledPrice());
+            assertEquals(result.getByDate(), TypicalOrders.ORDER_1.getByDate());
+            assertEquals(result.getRequestedPriceRange(), TypicalOrders.ORDER_1.getRequestedPriceRange());
+            assertEquals(result.getSettledPrice(), TypicalOrders.ORDER_1.getSettledPrice());
+            assertEquals(result.getAdditionalRequests(), TypicalOrders.ORDER_1.getAdditionalRequests());
+        } catch (ParseException e) {
+            assert false;
+        }
     }
 
     @Test
@@ -163,5 +183,36 @@ public class ParserUtilTest {
     @Test
     public void parseOrderStatus_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseOrderStatus(INVALID_ORDER_STATUS));
+    }
+
+    @Test
+    public void parseRequest_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRequest(null));
+    }
+
+    @Test
+    public void parseRequest_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRequest("nrijfg"));
+    }
+
+    @Test
+    public void parseRequest_validArgs_success() {
+        String input = OrderUtil.getRequestBody(TypicalOrders.ORDER_1.getRequest());
+
+        try {
+            Request result = ParserUtil.parseRequest(PREFIX_ORDER_REQUESTS + " add-r " + input);
+            Request expected = TypicalOrders.ORDER_1.getRequest();
+
+            //Conpare attributes because each order is unique and calling
+            // equals() on two separate orders always returns false
+
+            assertEquals(result.getRequestedSpecies(), expected.getRequestedSpecies());
+            assertEquals(result.getRequestedAge(), expected.getRequestedAge());
+            assertEquals(result.getRequestedColor(), expected.getRequestedColor());
+            assertEquals(result.getRequestedColorPattern(), expected.getRequestedColorPattern());
+
+        } catch (ParseException e) {
+            assert false;
+        }
     }
 }
