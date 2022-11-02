@@ -29,6 +29,8 @@ public class DeletePersonFromMeetingCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 ; Alex Yeoh, Anna Lim";
 
     public static final String MESSAGE_DELETE_PEOPLE_TO_MEETING_SUCCESS = "Deleted the list of persons";
+    public static final String MESSAGE_DELETE_PEOPLE_NOT_FOUND = "Oops! The person you are meeting with doesn't exist "
+            + "in the address book or in the selected meeting. Do check if you have entered their name correctly.";
 
     private final String info;
 
@@ -44,7 +46,7 @@ public class DeletePersonFromMeetingCommand extends Command {
         String[] newPeopleInformation = this.info.split(";");
 
         if (newPeopleInformation.length != 2) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
         String[] newPeople = newPeopleInformation[1].strip().split(",");
@@ -64,7 +66,7 @@ public class DeletePersonFromMeetingCommand extends Command {
             model.deleteMeeting(meetingToUpdate);
             model.addMeeting(meetingToUpdate, meetingIndex.getZeroBased());
         } catch (PersonNotFoundException e) {
-            throw new CommandException(CreateMeetingCommand.PERSON_NOT_FOUND);
+            throw new CommandException(e.getMessage() + "\n" + MESSAGE_DELETE_PEOPLE_NOT_FOUND);
         } catch (DuplicatePersonException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_DUPLICATE_NAMES);
         } catch (ImpreciseMatchException e) {

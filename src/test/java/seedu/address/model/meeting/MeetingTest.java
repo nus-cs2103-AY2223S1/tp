@@ -33,7 +33,7 @@ public class MeetingTest {
         tempPeople.add(defaultAmy);
 
         if (Objects.equals(peopleToMeet[0], "")) {
-            throw new PersonNotFoundException();
+            throw new PersonNotFoundException(PersonNotFoundException.NO_PERSON_DETECTED);
         }
 
         ArrayList<Person> output = new ArrayList<>();

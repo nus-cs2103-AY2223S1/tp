@@ -18,6 +18,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 public class DeletePersonFromMeetingCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingList(), new UserPrefs());
@@ -62,7 +63,8 @@ public class DeletePersonFromMeetingCommandTest {
 
     @Test
     public void execute_delete_nonExistentPerson() {
-        String expectedMessage = CreateMeetingCommand.PERSON_NOT_FOUND;
+        String expectedMessage = String.format(PersonNotFoundException.PERSON_NOT_FOUND, "test") + "\n"
+            + DeletePersonFromMeetingCommand.MESSAGE_DELETE_PEOPLE_NOT_FOUND;
         DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("1; test");
         assertCommandFailure(command, model, expectedMessage);
     }
