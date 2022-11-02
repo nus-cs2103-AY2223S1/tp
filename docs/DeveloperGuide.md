@@ -260,8 +260,8 @@ Given below is an example usage scenario of how the setup mechanism behaves at e
 
 Step 1. The user launches the application.
 
-Step 2. The user executes `Setup`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is called
-subsequently, which then creates an `SetupCommand` object.
+Step 2. The user executes `setup h/170 w/65 i/60 g/m a/20`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` 
+is called subsequently, which then creates an `SetupCommand` object.
 
 Step 3. The `SetupCommand` created is executed by `SetupCommand#execute()`.
 
@@ -271,6 +271,9 @@ Step 4. `SetupCommand#execute()` calls the following methods from `Model`:
 * `Model#getUserDetails()`
 
 Step 5. `SetupCommand#execute()` returns a `CommandResult` which displays the user's information.
+
+The following diagram illustrates how the setup operation works.
+![SetupSequenceDiagram](./images/SetupSequenceDiagram.png)
 
 ### Profile feature
 
@@ -390,7 +393,7 @@ Step 1. The user launches the application today.
 
 Step 2. The user executes `suggest` command, which creates a `SuggestCommand` object.
 
-Step 3. The `SuggestCommand` created is executed by `SuggestCommand#execute()`
+Step 3. The `SuggestCommand` created is executed by `SuggestCommand#execute()`.
 
 Step 4. `SuggestCommand#execute()` then calls the following methods from `Model`:
 
@@ -403,6 +406,28 @@ The following activity diagram outlines what happens when a user executes the `s
 
 ![SuggestActivityDiagram](images/SuggestActivityDiagram.png)
 
+### Find feature
+
+#### Implementation
+
+The find mechanism is facilitated by `FindCommand`, which extends `Command`. It overrides the following operations
+
+* `FindCommand#execute()`: Looks through all previously consumed food items and searches for those whose name matches the predicate. Returns the average calorie content for that particular food item if it is inside the list. If it is not in the list, checks if the food item is in the default list provided, and returns the suggested calorie content from the default list.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application
+
+Step 2. The user executes `find Banana` command, which creates a `FindCommand` object.
+
+Step 3. The `FindCommmand` object created is executed by `FindCommand#execute()`.
+
+Step 4. The `FindCommand#execute()` then calls the following methods from `Model`
+
+* `Model#getFoodCalorieList()`
+* `Model#getUnFilteredFoodList()`
+
+Step 5. The `FindCommand#execute()` returns a `CommandResult` that displays the calorie content of the food item specified by the user which in this case is Banana.
 
 ### Locate gym feature
 
