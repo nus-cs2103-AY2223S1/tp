@@ -45,7 +45,7 @@ public class GradeCommandParser extends EditStudentCommandParser<GradeCommand.Gr
 
         Assignment.Status markingStatus = parseStatus(preamble[1]);
 
-        if(argMultimap.getValue(PREFIX_ASSIGNMENT).isEmpty()) {
+        if (argMultimap.getValue(PREFIX_ASSIGNMENT).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, getUsageMessage()));
         }
 
