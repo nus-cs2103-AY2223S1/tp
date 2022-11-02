@@ -48,3 +48,4 @@ Given below are my contributions to the project.
     * Reviewed some team pull requests
     * Offered ideas for how commands may be structured to integrate
     * Fixed bugs arising from integration of project client and issue classes
+  
