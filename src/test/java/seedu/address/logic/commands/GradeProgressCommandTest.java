@@ -87,7 +87,7 @@ class GradeProgressCommandTest {
     public void equals_test() {
         GradeProgressCommand command = new GradeProgressCommand(INDEX_FIRST_PERSON,
                 new GradeProgress(GRADE_PROGRESS_STUB));
-        GradeProgressCommand sameCommand =  new GradeProgressCommand(INDEX_FIRST_PERSON,
+        GradeProgressCommand sameCommand = new GradeProgressCommand(INDEX_FIRST_PERSON,
                 new GradeProgress(GRADE_PROGRESS_STUB));
 
         GradeProgressCommand diffIndexCommand = new GradeProgressCommand(INDEX_SECOND_PERSON,
@@ -99,7 +99,7 @@ class GradeProgressCommandTest {
         assertEquals(command, command);
 
         // For commands with same inputs
-        assertEquals(command,sameCommand);
+        assertEquals(command, sameCommand);
 
         // For different commands
         assertNotEquals(command, new ListCommand());
