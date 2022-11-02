@@ -64,7 +64,7 @@ public class DeletePersonFromMeetingCommandTest {
     @Test
     public void execute_delete_nonExistentPerson() {
         String expectedMessage = String.format(PersonNotFoundException.PERSON_NOT_FOUND, "test") + "\n"
-            + CreateMeetingCommand.PERSON_NOT_FOUND;
+            + DeletePersonFromMeetingCommand.MESSAGE_DELETE_PEOPLE_NOT_FOUND;
         DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("1; test");
         assertCommandFailure(command, model, expectedMessage);
     }
