@@ -13,8 +13,8 @@ engineering teams** in one application.
 TruthTable is **optimised for use via a Command Line Interface (CLI)** while still having the benefits of a
 Graphical User Interface (GUI). 
 
-<div markdown="block" class="alert alert-info">
-**Unsure what CLI means?** Head over [to this section](#understanding-truthtables-cli) to learn more
+<div markdown="block" class="alert alert-info">**Unsure what CLI means?**
+Head over [to this section](#understanding-truthtables-cli) to learn more
 </div>
 
 If you can type fast, TruthTable can get your task management done _blazingly fast_, faster than traditional GUI
@@ -79,16 +79,16 @@ Here are the symbols and text styles to look out for while using this guide:
 
 Throughout the guide, there will also be alerts that look the following.
 
-<div markdown="block" class="alert alert-dark">
-**Miscellaneous alert**: This alert contains miscellaneous information
+<div markdown="block" class="alert alert-dark">**Miscellaneous alert**:
+This alert contains miscellaneous information
 </div>
 
-<div markdown="block" class="alert alert-info">
-**Helpful alert**: This alert contains helpful information
+<div markdown="block" class="alert alert-info">**Helpful alert**:
+This alert contains helpful information
 </div>
 
-<div markdown="block" class="alert alert-warning">
-**Warning alert**: This alert contains important information to be wary of.
+<div markdown="block" class="alert alert-warning">**Warning alert**:
+This alert contains important information to be wary of.
 </div>
 
 
@@ -280,18 +280,19 @@ Here's a summary of what each highlighted section represents.
 | 7      | Flag/Parameter Description      | -                    | Brief description of flag/parameter                                            |
 
 <div markdown="block" class="alert alert-info">
-**:star: POSIX clustered short options**: TruthTable supports clustered options as specified 
-[here](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02)
-</div>
-
-<div markdown="block" class="alert alert-info">
 **:bulb: Flags with multiple parameters**
 
 If a flag is displayed with `...` behind it, this means that the flag takes in an unlimited amount of parameters.
 
-For instance, in the `assign task` command, we can specify an unlimited number of assignees (provided they are valid). 
+For instance, in the `assign task` command, we can specify an unlimited number of assignees (provided they are valid).
 A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognised as the assignees to the task with index `1`.
 </div>
+
+<div markdown="block" class="alert alert-info">
+**:star: POSIX clustered short options**: TruthTable supports clustered options as specified 
+[here](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02)
+</div>
+
 
 [Back to Table of Contents](#table-of-contents)
 
