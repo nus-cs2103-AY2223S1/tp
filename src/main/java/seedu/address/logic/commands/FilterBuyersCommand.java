@@ -24,16 +24,15 @@ public class FilterBuyersCommand extends Command {
 
     public static final String COMMAND_WORD = "filterbuyers";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all buyers in the database who"
-            + " either has a price range that accepts the given price, contains all characteristics in the given"
-            + " characteristics list, or has the given priority. You can pass in more than one criteria at a time.\n"
-            + " Pass in " + PREFIX_FUZZY + " for fuzzy filtering, i.e. filtered buyers will only need to satisfy"
-            + " at least one of the conditions specified. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all buyers in Cobb that satisfy the"
+            + " given price AND contain all the given characteristics AND has the given priority.\n"
+            + "Pass in " + PREFIX_FUZZY + " to loosen the filtering criteria, meaning filtered buyers will only need"
+            + " to satisfy the given price OR contain at least one given characteristic OR have the given priority.\n"
             + "Parameters: [" + PREFIX_PRICE + " PRICE] "
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
-            + "[" + PREFIX_PRIORITY + " <HIGH/LOW>]"
+            + "[" + PREFIX_PRIORITY + " PRIORITY <HIGH/NORMAL/LOW>]"
             + "[" + PREFIX_FUZZY + "]\n"
-            + "Example: " + COMMAND_WORD + " -c bright; sunny";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_PRIORITY + " NORMAL";
 
     private final Predicate<Buyer> predicate;
 
