@@ -34,4 +34,10 @@ public class RootCommand implements Runnable {
     public void run() {
         throw new CommandLine.ParameterException(commandSpec.commandLine(), MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof RootCommand); // instanceof handles nulls
+    }
 }

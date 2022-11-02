@@ -11,7 +11,7 @@ public class TeamName {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Team description should only contain alphanumeric characters, cannot contain spaces "
-            + "and it should not be blank";
+                    + "and it should not be blank";
 
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 

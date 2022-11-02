@@ -48,7 +48,7 @@ public class TaskListPanel extends UiPart<Region> {
             taskCompletion.setText(
                     String.format("%d of %d (%,.1f%%) completed", numCompletedTasks, numTasks, completionPercentage));
         } else {
-            taskCompletion.setText("No tasks added yet!");
+            taskCompletion.setText("No tasks found");
         }
     }
 

@@ -20,14 +20,18 @@ import seedu.address.model.team.TeamName;
 /**
  * Sets the current team to an existing team.
  */
-@CommandLine.Command(name = "team", aliases = {"te"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = SetTeamCommand.COMMAND_WORD,
+        aliases = {SetTeamCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class SetTeamCommand extends Command {
-    public static final String COMMAND_WORD = "set team";
+    public static final String COMMAND_WORD = "team";
+    public static final String ALIAS = "te";
+    public static final String FULL_COMMAND = SetCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Sets the current team to an existing team. \n"
             + "Parameters: TEAM_NAME\n"
-            + "Example: " + COMMAND_WORD + " project";
+            + "Example: " + FULL_COMMAND + " project";
 
     public static final String MESSAGE_SET_TEAM_SUCCESS = "Set current team: %1$s";
 

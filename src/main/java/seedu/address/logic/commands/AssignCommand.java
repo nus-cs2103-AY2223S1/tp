@@ -12,11 +12,15 @@ import seedu.address.model.Model;
 /**
  * Command that contains all subcommands starting with {@code assign}.
  */
-@CommandLine.Command(name = "assign", aliases = {"as"}, mixinStandardHelpOptions = true, subcommands = {
-    AssignTaskCommand.class,
-    AssignTaskRandomlyCommand.class,
-})
+@CommandLine.Command(name = AssignCommand.COMMAND_WORD,
+        aliases = {AssignCommand.ALIAS}, mixinStandardHelpOptions = true, subcommands = {
+            AssignTaskCommand.class,
+            AssignTaskRandomlyCommand.class,
+        })
 public class AssignCommand extends Command {
+    public static final String COMMAND_WORD = "assign";
+    public static final String ALIAS = "as";
+    public static final String FULL_COMMAND = COMMAND_WORD;
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
 
@@ -31,5 +35,10 @@ public class AssignCommand extends Command {
         }
         throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT,
                 commandSpec.qualifiedName().trim()));
+    }
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AssignCommand); // instanceof handles nulls
     }
 }

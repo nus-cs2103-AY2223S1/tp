@@ -21,7 +21,7 @@ import seedu.address.model.team.Url;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class TruthTableParser {
     private final CommandLine commandLine = new CommandLine(new RootCommand())
             .registerConverter(Name.class, new NameConverter())
             .registerConverter(Email.class, new EmailConverter())

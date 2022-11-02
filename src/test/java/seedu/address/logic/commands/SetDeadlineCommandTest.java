@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
 import java.time.LocalDateTime;
 
@@ -21,7 +21,7 @@ class SetDeadlineCommandTest {
     private static final LocalDateTime FIRST_DEADLINE = LocalDateTime.of(2023, 1, 8, 23, 59);
     private static final LocalDateTime SECOND_DEADLINE = LocalDateTime.of(2023, 2, 9, 23, 59);
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
     @Test
     public void execute_invalidTaskIndexUnfilteredList_throwsCommandException() {

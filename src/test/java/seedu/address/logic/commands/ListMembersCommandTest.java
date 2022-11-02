@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,8 +20,8 @@ public class ListMembersCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+        expectedModel = new ModelManager(model.getTruthTable(), new UserPrefs());
     }
 
     @Test

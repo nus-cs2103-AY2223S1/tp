@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR_LONG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LINKS;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,19 +28,22 @@ import seedu.address.model.team.Url;
 /**
  * Edits the details of an existing link in TruthTable.
  */
-@CommandLine.Command(name = "link", aliases = {"l"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = EditLinkCommand.COMMAND_WORD,
+        aliases = {EditLinkCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class EditLinkCommand extends Command {
-    public static final String COMMAND_WORD = "edit link";
+    public static final String COMMAND_WORD = "link";
+    public static final String ALIAS = "l";
+    public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Edits a current link identified by the index number used in the displayed link list. \n"
+            FULL_COMMAND + ": Edits a current link identified by the index number used in the displayed link list. \n"
                     + "Existing values will be overwritten by the input values. \n"
                     + "Parameters: INDEX (must be a positive integer) " + FLAG_NAME_STR + " NAME "
-                    + FLAG_URL_STR + " PHONE \n" + "Example: " + COMMAND_WORD + " 1 " + FLAG_NAME_STR
+                    + FLAG_URL_STR + " PHONE \n" + "Example: " + FULL_COMMAND + " 1 " + FLAG_NAME_STR
                     + " \"Google\" " + FLAG_URL_STR + " https://google.com ";
     public static final String MESSAGE_EDIT_LINK_SUCCESS = "Edited link: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the team.";
 
     @CommandLine.Parameters(arity = "1", index = "0", description = FLAG_LINK_INDEX_DESCRIPTION)
     private Index index;
@@ -81,9 +83,9 @@ public class EditLinkCommand extends Command {
             return new CommandResult(commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        List<Link> lastShownList = model.getFilteredLinkList();
+        List<Link> lastShownList = model.getLinkList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getOneBased() > lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_LINK_DISPLAYED_INDEX);
         }
 
@@ -103,7 +105,6 @@ public class EditLinkCommand extends Command {
         }
 
         model.setLink(linkToEdit, editedLink);
-        model.updateFilteredLinkList(PREDICATE_SHOW_ALL_LINKS);
         return new CommandResult(String.format(MESSAGE_EDIT_LINK_SUCCESS, editedLink));
     }
 
@@ -121,7 +122,8 @@ public class EditLinkCommand extends Command {
 
         // state check
         EditLinkCommand e = (EditLinkCommand) other;
-        return index.equals(e.index) && editLinkDescriptor.equals(e.editLinkDescriptor);
+        return index.equals(e.index)
+                && arguments.equals(e.arguments);
     }
 
     private static class Arguments {
@@ -130,6 +132,19 @@ public class EditLinkCommand extends Command {
 
         @CommandLine.Option(names = {FLAG_URL_STR, FLAG_URL_STR_LONG}, description = FLAG_LINK_URL_DESCRIPTION)
         private Url url;
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            } else if (other instanceof Arguments) {
+                Arguments target = (Arguments) other;
+                return this.name == null ? false : this.name.equals(target.name)
+                        && this.url == null ? false : this.url.equals(target.url);
+            } else {
+                return false;
+            }
+        }
     }
 
     /**

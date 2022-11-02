@@ -18,16 +18,18 @@ import seedu.address.model.person.Person;
 /**
  * Deletes a member identified using it's displayed index from the member list.
  */
-@CommandLine.Command(name = "member", aliases = {"m"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = DeleteMemberCommand.COMMAND_WORD,
+        aliases = {DeleteMemberCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class DeleteMemberCommand extends Command {
+    public static final String COMMAND_WORD = "member";
+    public static final String ALIAS = "m";
+    public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String COMMAND_WORD = "delete member";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Deletes the person identified by the index number used in the members list.\n"
             + ": Run `list_members` to see members in your current team.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + FULL_COMMAND + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Member: %1$s";
 

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
-
+<?import javafx.scene.layout.VBox?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <StackPane fx:id="teamDetailsView" VBox.vgrow="ALWAYS" />
+    <StackPane fx:id="teamDetailsView" VBox.vgrow="ALWAYS"/>
 </VBox>
