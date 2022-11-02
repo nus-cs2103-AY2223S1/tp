@@ -54,7 +54,7 @@ public class ImportCommand extends FileCommand implements StorageCommand {
             storage.saveResidentBook(residentBook, folderPath);
             return new CommandResult(String.format(MESSAGE_SUCCESS, csvFileName));
         } catch (FileAlreadyExistsException e) {
-            throw new CommandException(String.format(MESSAGE_FILE_ALREADY_EXISTS, folderName), e);
+            throw new CommandException(e.getMessage(), e);
         } catch (NoSuchElementException e) {
             throw new CommandException(String.format(MESSAGE_FILE_DOES_NOT_EXIST, csvFileName), e);
         } catch (DataConversionException e) {

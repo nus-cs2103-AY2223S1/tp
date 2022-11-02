@@ -3,10 +3,10 @@ package seedu.rc4hdb.logic.commands.filecommands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.rc4hdb.commons.core.FilePostfixes.CSV_POSTFIX;
 import static seedu.rc4hdb.logic.commands.filecommands.FileCommand.MESSAGE_FAILED;
-import static seedu.rc4hdb.logic.commands.filecommands.FileCommand.MESSAGE_FILE_ALREADY_EXISTS;
 import static seedu.rc4hdb.logic.commands.filecommands.ImportCommand.MESSAGE_FILE_DOES_NOT_EXIST;
 import static seedu.rc4hdb.logic.commands.filecommands.ImportCommand.MESSAGE_INVALID_FILE_DATA;
 import static seedu.rc4hdb.logic.commands.filecommands.ImportCommand.MESSAGE_SUCCESS;
+import static seedu.rc4hdb.storage.DataStorageManager.MESSAGE_FOLDER_ALREADY_EXIST;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -62,7 +62,7 @@ public class ImportCommandTest {
     @Test
     public void execute_folderAlreadyExists_throwCommandException() {
         assertCommandFailure(importCommand, new StorageStubCreateFileThrowFileAlreadyExistsException(),
-                String.format(MESSAGE_FILE_ALREADY_EXISTS, DUMMY_PATH_STRING));
+                String.format(MESSAGE_FOLDER_ALREADY_EXIST, DUMMY_PATH_STRING));
     }
 
     //===================== Start of helper functions =============================
@@ -130,7 +130,7 @@ public class ImportCommandTest {
     private static class StorageStubCreateFileThrowFileAlreadyExistsException extends StorageStubForImportCommand {
         @Override
         public void createDataFolder(Path filePath) throws FileAlreadyExistsException {
-            throw new FileAlreadyExistsException(filePath.toString());
+            throw new FileAlreadyExistsException(String.format(MESSAGE_FOLDER_ALREADY_EXIST, filePath.getFileName()));
         }
     }
 

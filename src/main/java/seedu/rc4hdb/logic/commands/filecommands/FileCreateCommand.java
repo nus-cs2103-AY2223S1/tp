@@ -31,7 +31,7 @@ public class FileCreateCommand extends FileCommand implements StorageCommand {
             storage.createDataFolder(folderPath);
             return new CommandResult(String.format(MESSAGE_SUCCESS, folderName));
         } catch (FileAlreadyExistsException e) {
-            throw new CommandException(String.format(MESSAGE_FILE_ALREADY_EXISTS, folderName), e);
+            throw new CommandException(e.getMessage(), e);
         } catch (IOException e) {
             throw new CommandException(String.format(MESSAGE_FAILED, "creating"), e);
         }

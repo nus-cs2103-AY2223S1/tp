@@ -21,9 +21,6 @@ public abstract class FileCommand implements Command {
     public static final String MESSAGE_TRYING_TO_EXECUTE_ON_CURRENT_FILE = "%s is the current working data file. "
             + "Try another file.";
 
-    public static final String MESSAGE_FILE_ALREADY_EXISTS = "%s sub data folder already exists. "
-            + "Delete it before trying again.";
-
     /**
      * Stores the set of restricted characters. Add to the set to add restricted characters.
      */
