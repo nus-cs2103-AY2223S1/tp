@@ -11,6 +11,7 @@ import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Review;
 import foodwhere.model.review.ReviewBuilder;
+import foodwhere.model.review.exceptions.DuplicateReviewException;
 import foodwhere.model.review.exceptions.ReviewNotFoundException;
 import foodwhere.model.util.SampleDataUtil;
 
@@ -88,6 +89,9 @@ public class StallBuilder {
      */
     public StallBuilder addReview(Review review) {
         requireNonNull(review);
+        if (this.reviews.contains(review)) {
+            throw new DuplicateReviewException();
+        }
         this.reviews.add(review);
         return this;
     }

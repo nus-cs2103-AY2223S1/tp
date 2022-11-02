@@ -652,7 +652,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ****
 
-**Use case 9: Exiting the program**
+**Use case 9: Sort food stalls**
+
+**MSS**
+
+1. User starts FoodWhere.
+2. User enters the command to sort food stalls by specified criterion.
+3. FoodWhere displays all food stalls, sorted by the specified criterion.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. FoodWhere detects an error in the entered data. (Invalid criterion)
+    * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
+
+      Use case ends.
+
+****
+
+**Use case 10: Sort food reviews**
+
+**MSS**
+
+1. User starts FoodWhere.
+2. User enters the command to sort food reviews by specified criterion.
+3. FoodWhere displays all food reviews, sorted by the specified criterion.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. FoodWhere detects an error in the entered data. (Invalid criterion)
+    * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
+
+      Use case ends.
+
+****
+
+**Use case 11: Exiting the program**
 
 **Preconditions**
 - User is currently using FoodWhere.
@@ -666,7 +704,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ****
 
-**Use case 10: Clearing data**
+**Use case 9: Find food stalls**
+
+**MSS**
+
+1. User starts FoodWhere.
+2. User enters the command to find food stalls.
+3. FoodWhere displays the food stalls that matches the search keywords.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User chooses to search from at least one of the following fields:
+    * Name
+    * Tag
+
+      Use case resumes from step 3.
+* 2b. User uses find food stalls command with the wrong syntax.
+    * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
+
+      Use case ends.
+****
+**Use case 10: Find food reviews**
+
+**MSS**
+
+1. User starts FoodWhere.
+2. User enters the command to find food reviews.
+3. FoodWhere displays the food reviews that matches the search keywords.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User chooses to search from at least one of the following fields:
+    * Name
+    * Tag
+
+      Use case resumes from step 3.
+* 2b. User uses find food reviews command with the wrong syntax.
+    * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
+
+      Use case ends.
+
+**Use case 8: Clearing data**
+
+**Use case 12: Clearing data**
+
 
 **Preconditions**
 - User is currently using FoodWhere.
@@ -677,6 +762,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FoodWhere sends a confirmation message that all data is cleared and saves all changes to disk.
 
    Use case ends.
+
 
 ****
 
