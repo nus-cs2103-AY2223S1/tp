@@ -119,6 +119,7 @@ public class ModelManager implements Model {
         return travelr.hasTrip(trip);
     }
 
+    @Override
     public boolean tripHasEvent(Trip trip, Event event) {
         requireNonNull(event);
         requireNonNull(trip);
