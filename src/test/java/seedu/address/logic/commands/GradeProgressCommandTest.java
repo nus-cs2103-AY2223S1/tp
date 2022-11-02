@@ -1,15 +1,19 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_LARGE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -21,6 +25,8 @@ import seedu.address.testutil.PersonBuilder;
 class GradeProgressCommandTest {
 
     private static final String GRADE_PROGRESS_STUB = "MATH: A";
+
+    private static final String GRADE_PROGRESS_STUB_2 = "SCI: B";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -68,5 +74,38 @@ class GradeProgressCommandTest {
                 new GradeProgress(GRADE_PROGRESS_STUB));
 
         assertCommandFailure(gradeProgressCommand, model, GradeProgressCommand.MESSAGE_IN_DAY_MODE);
+    }
+
+    @Test
+    public void execute_index_failure() {
+        GradeProgressCommand gradeProgressCommand = new GradeProgressCommand(INDEX_LARGE,
+                new GradeProgress(GRADE_PROGRESS_STUB));
+        assertCommandFailure(gradeProgressCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void equals_test() {
+        GradeProgressCommand command = new GradeProgressCommand(INDEX_FIRST_PERSON,
+                new GradeProgress(GRADE_PROGRESS_STUB));
+        GradeProgressCommand sameCommand = new GradeProgressCommand(INDEX_FIRST_PERSON,
+                new GradeProgress(GRADE_PROGRESS_STUB));
+
+        GradeProgressCommand diffIndexCommand = new GradeProgressCommand(INDEX_SECOND_PERSON,
+                new GradeProgress(GRADE_PROGRESS_STUB));
+
+        GradeProgressCommand diffGradeCommand = new GradeProgressCommand(INDEX_FIRST_PERSON,
+                new GradeProgress(GRADE_PROGRESS_STUB_2));
+        // For same commands
+        assertEquals(command, command);
+
+        // For commands with same inputs
+        assertEquals(command, sameCommand);
+
+        // For different commands
+        assertNotEquals(command, new ListCommand());
+
+        // For command of diff Index and grade
+        assertNotEquals(command, diffGradeCommand);
+        assertNotEquals(command, diffIndexCommand);
     }
 }

@@ -58,4 +58,13 @@ public class HomeworkTest {
         testHw.markAsUndone();
         assertEquals(testHw.toString(), "test [ ]");
     }
+
+    @Test
+    public void test_setIsCompleted() {
+        Homework testHw = new Homework("test");
+        testHw.setIsCompleted(true);
+        assertTrue(testHw.getIsCompleted());
+        testHw.setIsCompleted(false);
+        assertFalse(testHw.getIsCompleted());
+    }
 }
