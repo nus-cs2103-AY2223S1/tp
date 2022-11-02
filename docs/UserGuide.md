@@ -10,20 +10,55 @@ This document contains everything you need to know about TruthTable.
 TruthTable is a **desktop application** that enables team leaders to **manage their software
 engineering teams** in one application.
 
-TruthTable is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a
-Graphical User Interface (GUI).
+TruthTable is **optimised for use via a Command Line Interface (CLI)** while still having the benefits of a
+Graphical User Interface (GUI). 
+
+<div markdown="block" class="alert alert-info">
+**Unsure what CLI means?** Head over to 
+</div>
+
 
 If you can type fast, TruthTable can get your task management done _blazingly fast_, faster than traditional GUI
 applications.
 
+Click [here](#getting-started) to get started with TruthTable.
+
+## Key Features of TruthTable
+
+### Too many cooks spoil the Truth
+
+Managing project documents and information has always been an annoying task to do. Besides the multitude of
+links and slides created by the team, you may be using task management applications to track your team's
+progress as well. This is where TruthTable comes in.
+
+TruthTable allows you to **collate and organise all your tasks**, links, and member information all in one spot.
+
+### Seeing is believing
+
+It is often difficult to visualise and communicate your team's progress to stakeholders. TruthTable solves this
+through its ergonomic user interface.
+
+At a glance, you can see the number of tasks completed by your team, and **determine the team's overall progress**.
+
+TruthTable allows you to see which members are assigned to the tasks, enabling you to **delegate work in a fair and
+equitable manner**.
+
+### Built for convenience and speed
+
+Context switching is a productivity killer. Having to switch from project management to product development usually
+means switching from GUI-based applications to CLI code editors.
+
+Hence, TruthTable allows you to use a **CLI for all your project management needs**, reducing the impact of context
+switching.
+
 ## Using This Guide
 
-If you are a software engineering team leader looking to get started with TruthTable, make sure the [pre-requisites 
-are installed](#getting-started).
+If you are a software engineering team leader looking to get started with TruthTable, make sure that you have the 
+[pre-requisites installed](#getting-started).
 
 [//]: # (TODO: link to team migration/onboarding section and features)
-This document can also guide you on how to migrate your existing project information onto TruthTable, and 
-familiarise you with all of TruthTable's features. 
+This document will also guide you on how to migrate your existing project information onto TruthTable, and 
+familiarise you with all of TruthTable's [features](#key-features-of-truthtable). 
 
 If you are an experienced user of TruthTable, this guide also contains valuable tips on how you can maximise your 
 productivity while using TruthTable.
@@ -43,6 +78,21 @@ Here are the symbols and text styles to look out for while using this guide:
 | `text with background`     | Text relevant to the commands or name of a file      |
 | <kbd>Esc</kbd>             | Keyboard button                                      |
 
+Throughout the guide, there will also be alerts that look the following.
+
+<div markdown="block" class="alert alert-dark">
+**Miscellaneous alert**: This alert contains miscellaneous information
+</div>
+
+<div markdown="block" class="alert alert-info">
+**Helpful alert**: This alert contains helpful information
+</div>
+
+<div markdown="block" class="alert alert-warning">
+**Warning alert**: This alert contains important information to be wary of.
+</div>
+
+
 
 ## Table of Contents
 
@@ -50,38 +100,6 @@ Here are the symbols and text styles to look out for while using this guide:
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Key Features of TruthTable
-
-### Too many cooks spoil the Truth
-
-Managing project documents and information has always been an annoying task to do. Besides the multitude of 
-links and slides created by the team, you may be using task management applications to track your team's 
-progress as well. This is where TruthTable comes in. 
-
-TruthTable allows you to **collate and organise all your tasks**, links, and member information all in one spot.
-
-### Seeing is believing
-
-It is often difficult to visualise and communicate your team's progress to stakeholders. TruthTable solves this 
-through its ergonomic user interface. 
-
-At a glance, you can see the number of tasks completed by your team, and **determine the team's overall progress**. 
-
-TruthTable allows you to see which members are assigned to the tasks, enabling you to **delegate work in a fair and 
-equitable manner**. 
-
-### Built for convenience and speed
-
-Context switching is a productivity killer. Having to switch from project management to product development usually 
-means switching from GUI-based applications to CLI code editors. 
-
-Hence, TruthTable allows you to use a **CLI for all your project management needs**, reducing the impact of context 
-switching.
-
-[Back to Table of Contents](#table-of-contents)
-
----
 
 ## Getting Started
 
@@ -96,7 +114,7 @@ The file can be located under the "Assets" section of the page as seen in the im
 3. Double-click on `truthtable.jar` to start the application. A window which looks similar to the screenshot below 
    should 
 appear in a few seconds. We have also added some sample data for you to play around and familiarise yourself with 
-   TruthTable's [features](#features)! ![Ui](images/Ui.png)
+   TruthTable's [features](#commands)! ![Ui](images/Ui.png)
 
 4. Before we dive into TruthTable's features, make sure you understand how to [navigate the application](#navigating-truthtables-application-interface) first.
 
@@ -180,7 +198,92 @@ typing `help` in the input box and press <kbd>Enter</kbd> to see what happens!
 
 ---
 
-## Features
+## Understanding TruthTable's CLI
+
+CLI applications like TruthTable requires you to execute instructions by typing specific words to make use of the 
+application's features. However, if you are not an experienced user, terms like "commands", "flags", and "parameters" 
+may appear daunting.
+
+But fret not! This section will cover what all these terms actually mean. 
+
+Nevertheless, don't worry too much about memorising the specifics for every command, as there are convenient ways 
+available that will guide you along the way for each "command". Furthermore, the "commands" in TruthTable are designed 
+to be **easy to remember** and **natural**, so you will get up to speed in no time! 
+
+### Commands, flags, and parameters
+
+All instructions are executed through **commands**. Each command can have **flags specified after the command**, 
+which modifies how the instruction should be carried out.
+
+For each of these flags, there may be **parameters** specified after it. But, not all commands
+require flags to **appear before parameters**.
+
+Note that flags and parameters always **come after the command**.
+
+Let's use an example to break down what each term means.
+
+#### Example Command - `add person`
+
+![CLI Syntax](images/CliSyntax.png)
+
+Here's a summary of what each highlighted section represents.
+
+| Number | Name               | Meaning                                                                                 |
+|--------|--------------------|:----------------------------------------------------------------------------------------|
+| 1      | Command            | The name of an instruction                                                              |
+| 2      | Flag/Option        | Text that is used to modify the operation of a command, often starting with `-` or `--` |
+| 3      | Parameter/Argument | Information specified for a command to operate, often used after flags                  |
+
+
+<div markdown="block" class="alert alert-info">
+**:information_source Important note for flags
+
+Specifying an "equal" sign (`=`) after the flag is optional, and it has no effect on the command.
+</div>
+
+<div markdown="block" class="alert alert-info">
+**:information_source Important note for parameters
+
+Use of quotation marks around parameters (`""`) is optional. 
+
+**However**, if you are specifying a parameter
+with multiple words, you will need to wrap the words in a quotes. Otherwise, TruthTable will not carry out the
+command properly.
+
+For instance, 
+- `add person -n "full name" ...` will recognise "full name" as the name being specified for the new person
+- `add person -n full name ...` will recognise "full" as the name being specified for the new person, however, this 
+  command will not execute successfully as `name` will be treated as a **flag** (and this flag does not exist for 
+  this command)
+</div>
+
+### Understanding the help message
+
+Every command in TruthTable has their own flags and parameters, but it is not feasible for you to remember them all. 
+
+To address this, each command allows you to specify the `-h` and `--help` flag, which brings up the available flags 
+and parameters for the command. Alternatively, you can also refer to this user guide to find out the specifications for 
+any command.
+
+#### Example Command Help Message - `add person --help`
+
+![Command Help Message](images/CommandHelpMessage.png)
+
+Here's a summary of what each highlighted section represents.
+
+| Number | Name                       | Meaning |
+|--------|----------------------------|---------|
+| 1      | Command                    |         |
+| 2      | Optional Flag              |         |
+| 3      | Required Flag              |         |
+| 4      | Flag Alias                 |         |
+| 5      | Flag/Parameter Description |         |
+
+
+[Back to Table of Contents](#table-of-contents)
+
+---
+## Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -652,12 +755,13 @@ the data of your previous TruthTable home folder.
 
 ## Glossary
 
-| Term      | Meaning |
-|-----------|---------|
-| Command   |         |
-| Parameter |         |
-| Index     |         |
-|           |         |
+| Term                     | Meaning |
+|--------------------------|---------|
+| Command                  |         |
+| Parameter                |         |
+| Index                    |         |
+| Command Line Interface   |         |
+| Graphical User Interface |         |
 
 [Back to Table of Contents](#table-of-contents)
 

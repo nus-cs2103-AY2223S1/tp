@@ -43,7 +43,7 @@ public class CliSyntax {
     public static final String FLAG_PERSON_ADDRESS_DESCRIPTION = "Address of person (e.g. \"311, Clementi Ave 2, "
             + "#02-25\")";
     public static final String FLAG_PERSON_INDEX_DESCRIPTION = "Index of person (must be a positive integer)";
-    public static final String FLAG_PERSON_TAGS_DESCRIPTION = "Tags of person (e.g. \"Frontend\" \"Backend\"";
+    public static final String FLAG_PERSON_TAGS_DESCRIPTION = "Tags of person (e.g. \"Frontend\" \"Backend\")";
     public static final String FLAG_LINK_NAME_DESCRIPTION = "Name of link (e.g. \"Meeting #1\")";
     public static final String FLAG_LINK_URL_DESCRIPTION = "URL of link (e.g. https://google.com)";
     public static final String FLAG_LINK_INDEX_DESCRIPTION = "Index of link (must be a positive integer)";
