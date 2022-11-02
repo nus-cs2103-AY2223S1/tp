@@ -26,12 +26,8 @@ public class ObservableTrip {
 
     public void setTrip(Trip trip) {
         tripIsDone.set(trip.isDone());
-        tripLocation.set(trip.getLocation().isDefaultValue()
-                ? "No location set"
-                : "" + trip.getLocation());
-        tripDate.set(trip.getDateField().isDefaultValue()
-                ? "No date set"
-                : "" + trip.getDateField());
+        tripLocation.set(trip.getLocation().locationName);
+        tripDate.set(trip.getDateField().toString());
         tripTitle.set(trip.getTitle().fullTitle);
         tripDescription.set(trip.getDescription().value);
     }

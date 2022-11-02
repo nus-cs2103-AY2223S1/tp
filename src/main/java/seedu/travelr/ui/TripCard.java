@@ -62,9 +62,7 @@ public class TripCard extends UiPart<Region> {
         ImageView locationIcon = new ImageView("/images/location.png");
         setIconDimensions(locationIcon, 15);
         tripLocation.setGraphic(locationIcon);
-        tripDate.setText(trip.getDateField().isDefaultValue()
-                ? "No date set"
-                : trip.getDateField().toString());
+        tripDate.setText(trip.getDateField().toString());
         ImageView date = new ImageView(new Image("/images/calendar.png"));
         setIconDimensions(date, 15);
         tripDate.setGraphic(date);

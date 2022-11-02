@@ -18,6 +18,7 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setTravelr(new Travelr());
+        model.resetSelectedTrip();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

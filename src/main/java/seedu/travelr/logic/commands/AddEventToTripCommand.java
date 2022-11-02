@@ -9,7 +9,9 @@ import java.util.HashSet;
 
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
+import seedu.travelr.model.component.DateField;
 import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Location;
 import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
@@ -56,7 +58,12 @@ public class AddEventToTripCommand extends Command {
             throw new CommandException("Please enter a valid event");
         }
 
-        if (!model.hasTrip(new Trip(tripToAddInto, new Description("random"), new HashSet<>()))) {
+        if (!model.hasTrip(
+                new Trip(tripToAddInto,
+                        new Description("random"),
+                        new HashSet<>(),
+                        new Location("random"),
+                        new DateField("01-01-2000")))) {
             throw new CommandException("Please enter a valid Trip");
         }
 
@@ -65,7 +72,12 @@ public class AddEventToTripCommand extends Command {
         }
 
         Event event = model.getEvent(new Event(eventToAdd));
-        Trip toAddInto = model.getTrip(new Trip(tripToAddInto, new Description("random"), new HashSet<>()));
+        Trip toAddInto = model.getTrip(
+                new Trip(tripToAddInto,
+                        new Description("random"),
+                        new HashSet<>(),
+                        new Location("random"),
+                        new DateField("01-01-2000")));
 
         if (toAddInto.containsEvent(event)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT_IN_TRIP);
