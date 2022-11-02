@@ -37,4 +37,24 @@ public class PhoneTest {
         assertTrue(Phone.isValidPhone("93121534"));
         assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
     }
+
+    @Test
+    public void equals() {
+        Phone firstPhone = new Phone("93121534");
+        Phone secondPhone = new Phone("37284");
+
+        //same object -> return true
+        assertTrue(firstPhone.equals(firstPhone));
+
+        //same fields -> return true
+        Phone firstPhoneCopy = new Phone("93121534");
+        assertTrue(firstPhone.equals(firstPhoneCopy));
+
+        //different types -> return false
+        assertFalse(firstPhone.equals(1));
+        assertFalse(firstPhone.equals(null));
+
+        //different fields -> return false
+        assertFalse(firstPhone.equals(secondPhone));
+    }
 }
