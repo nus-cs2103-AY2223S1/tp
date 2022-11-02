@@ -30,8 +30,4 @@ public class CalendarPopup extends UiPart<Popup> {
         popup.getContent().add(new CalendarPopupContent(calendarEvent).getRoot());
         popup.setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_BOTTOM_LEFT);
     }
-
-    public void displayToolTip() {
-
-    }
 }

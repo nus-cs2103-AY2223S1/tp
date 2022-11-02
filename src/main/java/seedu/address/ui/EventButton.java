@@ -52,7 +52,7 @@ public class EventButton extends CalendarButton {
     @FXML @Override
     protected void handleOnAction(ActionEvent event) {
         if (!calendarPopup.getRoot().isShowing()) {
-            displayToolTip();
+            displayPopup();
         }
     }
 
@@ -61,7 +61,7 @@ public class EventButton extends CalendarButton {
         System.out.println(calendarEvent.getDate());
         if (!calendarPopup.getRoot().isShowing() && eventButton.isFocused()) {
             eventButton.setStyle(EVENT_BUTTON_STYLE + ORANGE_BORDER);
-            displayToolTip();
+            displayPopup();
         }
         if (!eventButton.isFocused()) {
             eventButton.setStyle(EVENT_BUTTON_STYLE + GREY_BORDER);
@@ -69,7 +69,7 @@ public class EventButton extends CalendarButton {
         }
     }
 
-    private void displayToolTip() {
+    private void displayPopup() {
         Point2D p = eventButton.localToScene(ORIGIN, ORIGIN);
         calendarPopup.getRoot().show(eventButton,
                 eventButton.getScene().getWindow().getWidth() / 2 - HALF_CONTENT_WIDTH
