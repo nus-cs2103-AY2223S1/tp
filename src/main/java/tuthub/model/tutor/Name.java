@@ -19,7 +19,7 @@ public class Name {
      * Regex: 1 compulsory word, optional space, optional ' or -, optional words, no trailing spaces
      * or spaces in front
      */
-    public static final String VALIDATION_REGEX = "^(?! )[A-Za-z]+((\\s)?((['|-])?([A-Za-z])+))*(?<! )$";
+    public static final String VALIDATION_REGEX = "^(?! )[A-Za-z]+((\\s)?((['-/])?([A-Za-z])+))*(?<! )$";
 
     public final String fullName;
 

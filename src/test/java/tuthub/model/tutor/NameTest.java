@@ -32,9 +32,10 @@ public class NameTest {
         assertFalse(Name.isValidName("peter12")); // contains numbers
         assertFalse(Name.isValidName("jones@smith")); // contains symbols that are not allowed
         assertFalse(Name.isValidName("jones smith@henry")); // contains symbols that are not allowed
+        assertFalse(Name.isValidName("jones'/smith")); // contains 2 symbols together
         assertFalse(Name.isValidName(" henry")); // spaces in front
         assertFalse(Name.isValidName("henry ")); // spaces behind
-
+        assertFalse(Name.isValidName("Smith - Jones")); // space between symbols and letters
 
 
         // valid name
@@ -45,6 +46,7 @@ public class NameTest {
         assertTrue(Name.isValidName("Smith-Jones")); // hyphens
         assertTrue(Name.isValidName("Smith-Jones Henry")); // hyphens with more words
         assertTrue(Name.isValidName("O'Neil Peter")); // apostrophes with more words
+        assertTrue(Name.isValidName("Rohan s/o Samar")); // slashes with more words
 
     }
 }
