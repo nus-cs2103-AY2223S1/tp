@@ -209,6 +209,18 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // social 1
+        userInput = targetIndex.getOneBased() + SOCIAL_DESC_INSTAGRAM;
+        descriptor = new EditPersonDescriptorBuilder().withSocial(VALID_SOCIAL_INSTAGRAM).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // social 2
+        userInput = targetIndex.getOneBased() + SOCIAL_DESC_TWITTER;
+        descriptor = new EditPersonDescriptorBuilder().withSocial(VALID_SOCIAL_TWITTER).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // time interval 1
         userInput = targetIndex.getOneBased() + TI_DESC_SUN_TO_MON;
         descriptor = new EditPersonDescriptorBuilder()
@@ -219,18 +231,6 @@ public class EditCommandParserTest {
         // time interval 2
         userInput = targetIndex.getOneBased() + TI_DESC_TUES;
         descriptor = new EditPersonDescriptorBuilder().withTimeInterval(VALID_TIME_INTERVAL_TUES_AFTERNOON).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // social 1
-        userInput = targetIndex.getOneBased() + SOCIAL_DESC_INSTAGRAM;
-        descriptor = new EditPersonDescriptorBuilder().withSocial(VALID_SOCIAL_INSTAGRAM).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // social 2
-        userInput = targetIndex.getOneBased() + SOCIAL_DESC_TWITTER;
-        descriptor = new EditPersonDescriptorBuilder().withSocial(VALID_SOCIAL_TWITTER).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

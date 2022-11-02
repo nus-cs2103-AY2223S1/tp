@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -16,9 +17,9 @@ public class Social {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = ".*@.*";
-
-    private final String handle;
     private final String platform;
+    private final String handle;
+
 
     /**
      * Constructs a {@code Social}.
@@ -30,8 +31,8 @@ public class Social {
         requireNonNull(fullString);
         checkArgument(isValidSocial(fullString), MESSAGE_CONSTRAINTS);
         String[] fullStringArray = fullString.split("@");
-        this.handle = fullStringArray[0];
-        this.platform = fullStringArray[1];
+        this.platform = fullStringArray[0];
+        this.handle = fullStringArray[1];
     }
 
     /**
@@ -44,9 +45,9 @@ public class Social {
     public Social(String handle, String platform) {
         requireNonNull(handle);
         requireNonNull(platform);
-        checkArgument(isValidSocial(handle + "@" + platform), MESSAGE_CONSTRAINTS);
-        this.handle = handle;
+        checkArgument(isValidSocial(platform + "@" + handle), MESSAGE_CONSTRAINTS);
         this.platform = platform;
+        this.handle = handle;
     }
 
     /**
@@ -58,26 +59,29 @@ public class Social {
                 && test.matches(VALIDATION_REGEX);
     }
 
-
+    /**
+     * Returns hashcode for purpose of the equals method.
+     */
+    @Override
+    public int hashCode() {
+        return this.toString().hashCode();
+    }
 
     @Override
     public String toString() {
         return this.platform + "@" + this.handle;
     }
 
+    /**
+     * Checks if string representation is the same as other's
+     * string representation.
+     * @param other
+     * @return True if string representation is the same as other's
+     *      string representation.
+     */
     @Override
     public boolean equals(Object other) {
-
-        if (this == other) {
-            return true;
-        } else if (!(other instanceof Social)) {
-            return false;
-        }
-
-        Social s = (Social) other;
-
-        return this.platform.equals(s.platform) && this.handle.equals(s.handle);
-
+        return this.toString().equals(other.toString());
     }
 
 }
