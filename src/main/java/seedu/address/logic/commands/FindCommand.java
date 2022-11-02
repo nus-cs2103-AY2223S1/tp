@@ -31,8 +31,11 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredProjectList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW, model.getFilteredProjectList().size()));
+        return (model.getFilteredProjectList().size() == 1)
+                ? new CommandResult(String.format(Messages.MESSAGE_PROJECTS_LISTED_SINGULAR_OVERVIEW,
+                        model.getFilteredProjectList().size()))
+                : new CommandResult(String.format(Messages.MESSAGE_PROJECTS_LISTED_PLURAL_OVERVIEW,
+                        model.getFilteredProjectList().size()));
     }
 
     @Override

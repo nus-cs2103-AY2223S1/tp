@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_TASKS_LISTED_PLURAL_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalTasks.TASK_1;
@@ -56,7 +56,7 @@ public class FindTaskCommandTest {
 
     @Test
     public void execute_zeroKeywords_noTaskFound() {
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_PLURAL_OVERVIEW, 0);
         TaskDescriptionContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindTaskCommand command = new FindTaskCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
@@ -66,7 +66,7 @@ public class FindTaskCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleTasksFound() {
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_PLURAL_OVERVIEW, 3);
         TaskDescriptionContainsKeywordsPredicate predicate = preparePredicate("assign 2102 2103");
         FindTaskCommand command = new FindTaskCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);

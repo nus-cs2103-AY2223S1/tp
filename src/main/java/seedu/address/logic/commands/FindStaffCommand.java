@@ -38,9 +38,11 @@ public class FindStaffCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredStaffList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_STAFFS_LISTED_OVERVIEW,
-                        model.getFilteredStaffList().size()));
+        return (model.getFilteredStaffList().size() == 1)
+                ? new CommandResult(String.format(Messages.MESSAGE_STAFFS_LISTED_SINGULAR_OVERVIEW,
+                    model.getFilteredStaffList().size()))
+                : new CommandResult(String.format(Messages.MESSAGE_STAFFS_LISTED_PLURAL_OVERVIEW,
+                    model.getFilteredStaffList().size()));
     }
 
     @Override
