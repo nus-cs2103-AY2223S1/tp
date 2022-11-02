@@ -40,6 +40,8 @@ public class AddConsultationCommand extends Command {
     public static final String MESSAGE_DUPLICATE_CONSULTATION = "This consultation already exists in ModQuik";
     public static final String MESSAGE_CLASH_CONSULTATION =
             "There exists a consultation with overlapping timeslot in ModQuik";
+    public static final String MESSAGE_NON_EXISTING_MODULE =
+            "The module does not exist in Modquik";
 
     private final Consultation toAdd;
 
@@ -61,6 +63,11 @@ public class AddConsultationCommand extends Command {
         if (model.hasClashingConsultation(toAdd)) {
             throw new CommandException(MESSAGE_CLASH_CONSULTATION);
         }
+
+        if (!model.hasModuleCode(toAdd.getModule())) {
+            throw new CommandException(MESSAGE_NON_EXISTING_MODULE);
+        }
+
         model.addConsultation(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ModelType.CONSULTATION);
     }

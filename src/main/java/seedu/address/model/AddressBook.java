@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.commons.ModuleCode;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.UniqueConsultationList;
 import seedu.address.model.reminder.Reminder;
