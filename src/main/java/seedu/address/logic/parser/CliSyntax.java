@@ -5,6 +5,9 @@ package seedu.address.logic.parser;
  */
 public class CliSyntax {
 
+    // Default start of prefix
+    public static final Prefix DEFAULT_PREFIX_DELIMITER = new Prefix("-");
+
     /* Prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix("-n");
     public static final Prefix PREFIX_MODULE = new Prefix("-m");
