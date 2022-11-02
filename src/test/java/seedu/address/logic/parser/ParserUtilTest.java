@@ -8,12 +8,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.student.StuEmail;
 import seedu.address.model.student.Telegram;
-import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -53,6 +49,50 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_STUDENT, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseStuName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStuName(INVALID_NAME));
+    }
+
+    @Test
+    public void parseTelegram_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTelegram((String) null));
+    }
+
+    @Test
+    public void parseTelegram_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTelegram(INVALID_TELEGRAM));
+    }
+
+    @Test
+    public void parseTelegram_validValueWithoutWhitespace_returnsTelegram() throws Exception {
+        Telegram expectedTelegram = new Telegram(VALID_TELEGRAM);
+        assertEquals(expectedTelegram, ParserUtil.parseTelegram(VALID_TELEGRAM));
+    }
+
+    @Test
+    public void parseEmail_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStuEmail((String) null));
+    }
+
+    @Test
+    public void parseEmail_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStuEmail(INVALID_EMAIL));
+    }
+
+    @Test
+    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
+        StuEmail expectedEmail = new StuEmail(VALID_EMAIL);
+        assertEquals(expectedEmail, ParserUtil.parseStuEmail(VALID_EMAIL));
+    }
+
+    @Test
+    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
+        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
+        StuEmail expectedEmail = new StuEmail(VALID_EMAIL);
+        assertEquals(expectedEmail, ParserUtil.parseStuEmail(emailWithWhitespace));
     }
 
     // to replace with student class tests
@@ -157,7 +197,7 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
-    }*/
+    }
 
     @Test
     public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
@@ -187,7 +227,7 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
-    }
+    }*/
 
     @Test
     public void parseResponse_null_throwsNullPointerException() {
