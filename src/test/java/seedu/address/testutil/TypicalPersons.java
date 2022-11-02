@@ -53,6 +53,11 @@ public class TypicalPersons {
             .withEmail("anna@example.com").withAddress("4th street")
             .withDetails("Available").withTags("CS2103-T01").withPosition("TA").withDetails("Unavailable").build();
 
+    public static final Person JASON = new PersonBuilder().withName("Jason Hawkins").withPhone("96758347")
+            .withEmail("kelly@example.com").withAddress("5th avenue")
+            .withDetails("attendance - 0/0, grade - 0/0 Assignments: []")
+            .withTags("CS2103T-T01").withPosition("Student").build();
+
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").withPosition("Professor").build();
@@ -83,6 +88,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, JASON));
     }
 }

@@ -44,7 +44,7 @@ public class GradeCommandParser implements Parser<GradeCommand> {
         }
 
         String grade = argMultimap.getValue(PREFIX_GRADE).orElse("");
-        if (!Assignment.isValidGrade(grade)) {
+        if (!Assignment.isValidInputGrade(grade)) {
             throw new ParseException(Assignment.GRADE_CONSTRAINTS);
         }
 
