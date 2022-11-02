@@ -26,6 +26,7 @@ import seedu.address.model.consultation.Consultation;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialName;
 import seedu.address.testutil.ConsultationBuilder;
 
 public class AddConsultationCommandTest {
@@ -321,6 +322,11 @@ public class AddConsultationCommandTest {
         public boolean hasModuleCode(ModuleCode moduleCode) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasTutorialName(TutorialName tutorialName) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -363,6 +369,12 @@ public class AddConsultationCommandTest {
         public void addConsultation(Consultation consultation) {
             requireNonNull(consultation);
             consultationsAdded.add(consultation);
+        }
+
+        @Override
+        public boolean hasModuleCode(ModuleCode moduleCode) {
+            requireNonNull(moduleCode);
+            return true;
         }
 
         @Override

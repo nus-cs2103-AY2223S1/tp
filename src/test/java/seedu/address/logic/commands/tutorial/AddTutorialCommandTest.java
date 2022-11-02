@@ -22,10 +22,12 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.commons.ModuleCode;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialName;
 import seedu.address.testutil.TutorialBuilder;
 
 public class AddTutorialCommandTest {
@@ -313,6 +315,16 @@ public class AddTutorialCommandTest {
 
         @Override
         public void unmarkReminder(Reminder reminderToUnmark) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasModuleCode(ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTutorialName(TutorialName tutorialName) {
             throw new AssertionError("This method should not be called.");
         }
     }

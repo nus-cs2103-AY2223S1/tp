@@ -40,8 +40,7 @@ public class AddConsultationCommand extends Command {
     public static final String MESSAGE_DUPLICATE_CONSULTATION = "This consultation already exists in ModQuik";
     public static final String MESSAGE_CLASH_CONSULTATION =
             "There exists a consultation with overlapping timeslot in ModQuik";
-    public static final String MESSAGE_NON_EXISTING_MODULE =
-            "The module does not exist in Modquik";
+    public static final String MESSAGE_NON_EXISTING_MODULE = "The module does not exist in Modquik";
 
     private final Consultation toAdd;
 

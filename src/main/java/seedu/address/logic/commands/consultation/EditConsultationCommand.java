@@ -52,6 +52,7 @@ public class EditConsultationCommand extends Command {
     public static final String MESSAGE_DATETIME_CONSULTATION = "Both new day and new timeslot must be inputted.";
     public static final String MESSAGE_CLASH_CONSULTATION =
             "There exists a consultation with overlapping timeslot in the ModQuik";
+    public static final String MESSAGE_NON_EXISTING_MODULE = "The module does not exist in Modquik";
 
     private final Index index;
     private final EditConsultDescriptor editConsultDescriptor;
@@ -86,6 +87,10 @@ public class EditConsultationCommand extends Command {
 
         if (model.hasClashingConsultationExcept(editedConsult, consultToEdit)) {
             throw new CommandException(MESSAGE_CLASH_CONSULTATION);
+        }
+
+        if (!model.hasModuleCode(editedConsult.getModule())) {
+            throw new CommandException(MESSAGE_NON_EXISTING_MODULE);
         }
 
         model.setConsultation(consultToEdit, editedConsult);
