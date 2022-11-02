@@ -12,7 +12,7 @@ import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.interest.Interest;
 import seedu.masslinkers.model.student.Student;
 
-//@@author ELijahS67
+//@@author ElijahS67
 /**
  * Deletes interests from the specified batchmate.
  */
