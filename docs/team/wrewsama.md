@@ -41,6 +41,7 @@ Given below are my contributions to the project.
                    attributes on the main page. This means that our users can quickly and easily identify the person
                    they are looking for, and then, if needed, expand their Detail Page to see all the information
                    relevant to that person.
+  * Credits: [Tex](https://github.com/Tex-Tang) improved the UI and integrated it with the rest of the codebase.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=wrewsama&breakdown=true)
 
