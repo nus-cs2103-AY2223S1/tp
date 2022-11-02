@@ -236,13 +236,13 @@ Here's a summary of what each highlighted section represents.
 
 
 <div markdown="block" class="alert alert-info">
-**:information_source Important note for flags**
+**:information_source: Important note for flags**
 
 Specifying an "equal" sign (`=`) after the flag is optional, and it has no effect on the command.
 </div>
 
 <div markdown="block" class="alert alert-info">
-**:information_source Important note for parameters**
+**:information_source: Important note for parameters**
 
 Use of quotation marks around parameters (`""`) is optional. 
 
