@@ -361,17 +361,23 @@ public class ModelManager implements Model {
             } else {
                 try {
                     history.deleteHealthContactHistory(history.getHealthContactHistorySize() - 1);
-                    history.updateRedoHealthContactHistory();
-                    history.updateRedoPatientsHistory();
-                    history.updateRedoAppointmentsHistory();
-                    history.updateRedoBillsHistory();
+                    try {
+                        history.getHealthContactHistory(history.getHealthContactHistorySize() - 2);
+                        history.updateRedoHealthContactHistory();
+                        history.updateRedoPatientsHistory();
+                        history.updateRedoAppointmentsHistory();
+                        history.updateRedoBillsHistory();
+                    } catch (IndexOutOfBoundsException e) {
+                        throw new CommandException("Undo cannot be done as there was no previous action");
+                    }
                     int pointer = 2;
                     while (history.getHealthContactHistory(history.getHealthContactHistorySize() - 1)
                             .equals(history.getHealthContactHistory(history.getHealthContactHistorySize() - pointer))) {
                         pointer = pointer + 1;
                     }
                     setHealthContact(history.getHealthContactHistory(history.getHealthContactHistorySize() - pointer));
-                    filteredPatients.setPredicate(history.getPatientsPredicate(history.getPatientsHistorySize() - pointer));
+                    filteredPatients.setPredicate(history.getPatientsPredicate(
+                            history.getPatientsHistorySize() - pointer));
                     filteredAppointments.setPredicate(history
                             .getAppointmentsPredicate(history.getAppointmentsHistorySize() - pointer));
                     filteredBills.setPredicate(history.getBillsPredicate(history.getBillsHistorySize() - pointer));
