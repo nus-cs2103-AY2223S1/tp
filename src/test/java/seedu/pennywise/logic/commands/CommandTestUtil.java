@@ -55,7 +55,7 @@ public class CommandTestUtil {
     public static final String VALID_DESC_TUITION = "Tuition";
     public static final String VALID_AMT_TUITION = "40.00";
     public static final String VALID_DATE_TUITION = "18-08-2022";
-    public static final String VALID_TAG_TUITION = "Education";
+    public static final String VALID_TAG_TUITION = "Salary";
 
     public static final String VALID_DESC_ALLOWANCE = "Allowance";
     public static final String VALID_AMT_ALLOWANCE = "300";

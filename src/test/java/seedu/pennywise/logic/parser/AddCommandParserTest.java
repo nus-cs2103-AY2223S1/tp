@@ -3,24 +3,29 @@ package seedu.pennywise.logic.parser;
 import static seedu.pennywise.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pennywise.logic.commands.CommandTestUtil.AMT_ALLOWANCE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.AMT_DINNER;
+import static seedu.pennywise.logic.commands.CommandTestUtil.AMT_INVESTMENT;
 import static seedu.pennywise.logic.commands.CommandTestUtil.AMT_LUNCH;
 import static seedu.pennywise.logic.commands.CommandTestUtil.AMT_MOVIE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DATE_ALLOWANCE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DATE_DINNER;
+import static seedu.pennywise.logic.commands.CommandTestUtil.DATE_INVESTMENT;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DATE_LUNCH;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DATE_MOVIE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DESC_ALLOWANCE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DESC_DINNER;
+import static seedu.pennywise.logic.commands.CommandTestUtil.DESC_INVESTMENT;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DESC_LUNCH;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DESC_MOVIE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.INVALID_AMT;
 import static seedu.pennywise.logic.commands.CommandTestUtil.INVALID_DATE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.INVALID_DESC;
+import static seedu.pennywise.logic.commands.CommandTestUtil.INVALID_TAG;
 import static seedu.pennywise.logic.commands.CommandTestUtil.INVALID_TYPE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.pennywise.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.TAG_ALLOWANCE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.TAG_DINNER;
+import static seedu.pennywise.logic.commands.CommandTestUtil.TAG_INVESTMENT;
 import static seedu.pennywise.logic.commands.CommandTestUtil.TAG_LUNCH;
 import static seedu.pennywise.logic.commands.CommandTestUtil.TAG_MOVIE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.TYPE_EXPENDITURE;
@@ -34,6 +39,7 @@ import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_TYPE_INCOME;
 import static seedu.pennywise.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pennywise.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.pennywise.testutil.TypicalEntry.ALLOWANCE;
+import static seedu.pennywise.testutil.TypicalEntry.INVESTMENT;
 import static seedu.pennywise.testutil.TypicalEntry.LUNCH;
 import static seedu.pennywise.testutil.TypicalEntry.MOVIE;
 
@@ -45,7 +51,9 @@ import seedu.pennywise.model.entry.Date;
 import seedu.pennywise.model.entry.Description;
 import seedu.pennywise.model.entry.Entry;
 import seedu.pennywise.model.entry.EntryType;
+import seedu.pennywise.model.entry.Tag;
 import seedu.pennywise.testutil.ExpenditureBuilder;
+import seedu.pennywise.testutil.IncomeBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
@@ -121,12 +129,16 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tag
+        // add expenditure parsing
         Entry expectedExpenditure = new ExpenditureBuilder(MOVIE).build();
         assertParseSuccess(parser, TYPE_EXPENDITURE + DESC_MOVIE + AMT_MOVIE + DATE_MOVIE + TAG_MOVIE,
                 new AddCommand(expectedExpenditure, expenditureType));
 
-        // to add income
+        // add income parsing
+        Entry expectedIncome = new IncomeBuilder(INVESTMENT).build();
+        assertParseSuccess(parser, TYPE_INCOME + DESC_INVESTMENT + AMT_INVESTMENT
+                        + DATE_INVESTMENT + TAG_INVESTMENT,
+                new AddCommand(expectedIncome, incomeType));
     }
 
     @Test
@@ -197,7 +209,7 @@ public class AddCommandParserTest {
                 parser, TYPE_EXPENDITURE + INVALID_DESC + AMT_DINNER + DATE_DINNER + TAG_DINNER,
                 Description.MESSAGE_CONSTRAINTS);
         assertParseFailure(
-                parser, TYPE_INCOME + INVALID_DESC + AMT_DINNER + DATE_DINNER + TAG_DINNER,
+                parser, TYPE_INCOME + INVALID_DESC + AMT_INVESTMENT + DATE_INVESTMENT + TAG_INVESTMENT,
                 Description.MESSAGE_CONSTRAINTS);
 
         // invalid amount
@@ -205,7 +217,7 @@ public class AddCommandParserTest {
                 parser, TYPE_EXPENDITURE + DESC_DINNER + INVALID_AMT + DATE_DINNER + TAG_DINNER,
                 Amount.MESSAGE_CONSTRAINTS);
         assertParseFailure(
-                parser, TYPE_INCOME + DESC_DINNER + INVALID_AMT + DATE_DINNER + TAG_DINNER,
+                parser, TYPE_INCOME + DESC_INVESTMENT + INVALID_AMT + DATE_INVESTMENT + TAG_INVESTMENT,
                 Amount.MESSAGE_CONSTRAINTS);
 
         // invalid date
@@ -213,11 +225,16 @@ public class AddCommandParserTest {
                 parser, TYPE_EXPENDITURE + DESC_DINNER + AMT_DINNER + INVALID_DATE + TAG_DINNER,
                 Date.MESSAGE_CONSTRAINTS);
         assertParseFailure(
-                parser, TYPE_INCOME + DESC_DINNER + AMT_DINNER + INVALID_DATE + TAG_DINNER,
+                parser, TYPE_INCOME + DESC_INVESTMENT + AMT_INVESTMENT + INVALID_DATE + TAG_INVESTMENT,
                 Date.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-
+        assertParseFailure(
+                parser, TYPE_EXPENDITURE + DESC_DINNER + AMT_DINNER + DATE_DINNER + INVALID_TAG,
+                Tag.EXPENDITURE_CONSTRAINTS);
+        assertParseFailure(
+                parser, TYPE_INCOME + DESC_INVESTMENT + AMT_INVESTMENT + DATE_INVESTMENT + INVALID_TAG,
+                Tag.INCOME_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(
