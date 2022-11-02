@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import seedu.application.commons.core.index.Index;
 import seedu.application.logic.commands.AddInterviewCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
+import seedu.application.logic.parser.exceptions.ParseIntegerOverflowException;
 import seedu.application.model.application.interview.Interview;
 import seedu.application.model.application.interview.InterviewDate;
 import seedu.application.model.application.interview.InterviewTime;
@@ -34,6 +35,9 @@ public class AddInterviewCommandParser implements Parser<AddInterviewCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseIntegerOverflowException e) {
+            // Rethrow exception if index formatted correctly but too large to store in an int
+            throw e;
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddInterviewCommand.MESSAGE_USAGE),
                     pe);

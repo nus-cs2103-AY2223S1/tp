@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.application.commons.core.index.Index;
 import seedu.application.commons.util.StringUtil;
 import seedu.application.logic.parser.exceptions.ParseException;
+import seedu.application.logic.parser.exceptions.ParseIntegerOverflowException;
 import seedu.application.model.application.Company;
 import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
@@ -27,15 +28,21 @@ import seedu.application.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INDEX_OVERFLOW = "The index provided is too big to process.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     * @throws ParseIntegerOverflowException if the specified index is valid but does not fit in an int.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            if (StringUtil.isNonZeroUnsignedBigInteger(trimmedIndex)) {
+                // Index is formatted correctly but too big to store in an int
+                throw new ParseIntegerOverflowException(MESSAGE_INDEX_OVERFLOW);
+            }
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));

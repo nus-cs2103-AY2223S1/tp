@@ -5,6 +5,7 @@ import static seedu.application.commons.core.Messages.MESSAGE_INVALID_COMMAND_FO
 import seedu.application.commons.core.index.Index;
 import seedu.application.logic.commands.ArchiveCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
+import seedu.application.logic.parser.exceptions.ParseIntegerOverflowException;
 
 /**
  * Parses input arguments and creates a new ArchiveCommand object.
@@ -20,6 +21,9 @@ public class ArchiveCommandParser implements Parser<ArchiveCommand> {
         try {
             Index index = ParserUtil.parseIndex(args);
             return new ArchiveCommand(index);
+        } catch (ParseIntegerOverflowException e) {
+            // Rethrow exception if index formatted correctly but too large to store in an int
+            throw e;
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ArchiveCommand.MESSAGE_USAGE), pe);

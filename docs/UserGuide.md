@@ -39,7 +39,8 @@ title: User Guide
 
 3. Copy the file to the folder you want to use as the _home folder_ for your **CinternS** app.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. When the app is started for the first time, sample data is included to help you get started.<br>
+4. Double-click the file to start the app. If this does not launch the app, open a command window in the directory containing the `CinternS.jar` file and launch it with the command `java -jar CinternS.jar` instead. <br><br>
+    The GUI similar to the below should appear in a few seconds. When the app is started for the first time, sample data is included to help you get started.<br>
    ![Ui](images/Ui.png)
 
 5. Type commands into the command box and press Enter to execute them.<br>
@@ -169,7 +170,7 @@ Example:
 
 Edits an existing application in CinternS.
 
-Format: `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [s/STATUS] [t/TAG]...`
+Format: `edit INDEX [c/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [s/STATUS] [t/TAG]...`
 
 * Edits the application at the specified `INDEX`. 
 * The index refers to the index number shown in the displayed application list. 

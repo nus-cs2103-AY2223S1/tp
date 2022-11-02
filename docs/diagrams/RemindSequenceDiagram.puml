@@ -11,7 +11,7 @@ participant "r:RemindCommand" as RemindCommand LOGIC_COLOR
 participant "c:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-[-> MainWindow : executeCommand()
+[-> MainWindow : fillInnerParts()
 activate MainWindow
 
 MainWindow -> LogicManager : execute()

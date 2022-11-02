@@ -37,6 +37,7 @@ import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_TECH_CO
 import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.application.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.application.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.application.logic.parser.ParserUtil.MESSAGE_INDEX_OVERFLOW;
 import static seedu.application.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.application.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION;
 import static seedu.application.testutil.TypicalIndexes.INDEX_THIRD_APPLICATION;
@@ -83,6 +84,9 @@ public class EditCommandParserTest {
 
         // zero index
         assertParseFailure(parser, "0" + COMPANY_DESC_FACEBOOK, MESSAGE_INVALID_FORMAT);
+
+        // index greater than Integer.MAX_VALUE
+        assertParseFailure(parser, ((long) Integer.MAX_VALUE + 1) + COMPANY_DESC_FACEBOOK, MESSAGE_INDEX_OVERFLOW);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
