@@ -23,6 +23,7 @@ import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
+    private static final String DUPLICATE_NAME = "Rachel     Walker";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
@@ -79,6 +80,22 @@ public class ParserUtilTest {
         Name expectedName = new Name(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
+
+    @Test
+    public void parseName_duplicateNameWithoutWhiteSpace_returnsDuplicateName() throws Exception {
+        String nameWithWhitespace = DUPLICATE_NAME;
+        Name expectedName = new Name(VALID_NAME);
+        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseName_duplicateNameWithWhiteSpace_returnsTrimmedDuplicateName() throws Exception {
+        String nameWithWhitespace = WHITESPACE + DUPLICATE_NAME + WHITESPACE;
+        Name expectedName = new Name(VALID_NAME);
+        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    }
+
+
 
     @Test
     public void parsePhone_null_throwsNullPointerException() {
