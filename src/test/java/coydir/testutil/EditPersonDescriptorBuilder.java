@@ -40,6 +40,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPosition(person.getPosition());
         descriptor.setDepartment(person.getDepartment());
         descriptor.setAddress(person.getAddress());
+        descriptor.setLeaves(person.getTotalNumberOfLeaves());
         descriptor.setTags(person.getTags());
     }
 
@@ -88,6 +89,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Leave} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withLeave(int leaves) {
+        descriptor.setLeaves(leaves);
         return this;
     }
 
