@@ -324,9 +324,12 @@ Examples:
 
 ### Check for similar persons : `checkSimilar`
 
-Checks and returns a list of similar persons so that the user can check if any errors has been made in entries
+Checks and returns a list of similar persons so that the user can check if any errors has been made in entries 
 
 Format: `checkSimilar`
+
+> Tip: `checkSimilar` checks for `name`, `phone`, `email`, `gender`, `tags`, `address` and return both person if 
+> they match 5 out of 6 conditions.
 
 ![checksimilar](images/checkSimilar.png)
 
@@ -399,8 +402,8 @@ _Details coming soon ..._
 
 | Action            | Format, Examples                                                                                                                                                                                                               |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
-| **Add**           | `add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ [ud/UNAVAILABLE_DATE]…​ ` <br> e.g., `add c/N n/Jason p/98723432 e/jason@example.com g/M t/asthma a/Yishun Street 211, block 230, #03-03 ud/2022-11-11`    |
-| **Add**           | `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [ds/DATE_AND_SLOT]…​ [t/TAG]…​` <br> e.g., `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma ds/2022-12-12,2`            |
+| **Add (Nurse)**   | `add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ [ud/UNAVAILABLE_DATE]…​ ` <br> e.g., `add c/N n/Jason p/98723432 e/jason@example.com g/M t/asthma a/Yishun Street 211, block 230, #03-03 ud/2022-11-11`    |
+| **Add (Patient)** | `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [ds/DATE_AND_SLOT]…​ [t/TAG]…​` <br> e.g., `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma ds/2022-12-12,2`            |
 | **Assign**        | `assign id/PATIENT_ID id/NURSE_ID [dsi/DATE_SLOT_INDEX]…​` <br> e.g., `assign id/1 id/2 dsi/2`                                                                                                                                 |
 | **Clear**         | `clear`                                                                                                                                                                                                                        |
 | **Deassign**      | `deassign id/ID [dsi/DATE_SLOT_INDEX]…​` <br> e.g., `deassign id/1 dsi/2`                                                                                                                                                      |
@@ -411,5 +414,5 @@ _Details coming soon ..._
 | **List**          | `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS] [as/ASSIGNED] [v/VISITSTATUS]`<br> e.g., `list c/NURSE`                                                                                                                      |     |
 | **Unmark**        | `unmark id/PATIENT_ID dsi/DATE_SLOT_INDEX` <br> e.g., `unmark id/1 dsi/1`                                                                                                                                                      |
 | **UndoUnmark**    | `undounmark id/PATIENT_ID dsi/DATE_SLOT_INDEX` <br> e.g., `undounmark id/1 dsi/1`                                                                                                                                              |
-| **checkSimilar**  | `checkSimilar`                                                                                                                                                                                                                 |
+| **CheckSimilar**  | `checkSimilar`                                                                                                                                                                                                                 |
 | **UpdateContact** | `updatecontact id/PATIENT_ID c/CATEGORY n/CONTACT_NAME p/CONTACT_PHONE e/CONTACT_EMAIL` <br> e.g., `updatecontact id/3 c/D n/Farihah p/2901939 e/hah@gmail.com`                                                                |
