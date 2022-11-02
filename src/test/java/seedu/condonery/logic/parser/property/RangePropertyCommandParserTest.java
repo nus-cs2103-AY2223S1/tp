@@ -57,4 +57,10 @@ public class RangePropertyCommandParserTest {
                 RangePropertyCommand.MESSAGE_USAGE));
     }
 
+    @Test
+    public void parse_upperGivenSymbolsInsteadOfNumber() {
+        assertParseFailure(parser, " l/90000 u/-,,,,,", String.format(MESSAGE_NUMBER_INVALID,
+                RangePropertyCommand.MESSAGE_USAGE));
+    }
+
 }
