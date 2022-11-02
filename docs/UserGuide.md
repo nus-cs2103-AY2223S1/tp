@@ -61,6 +61,8 @@ SoConnect is a **desktop app for managing contacts and tasks**. It aims to help 
 
 * Tasks will be referred to as Todos
 
+* `INDEX` is used in commands to refer to a specific contact or todo by their index number on the currently displayed contact list and todo list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​
+
 </div>
 
 ## Contact Management Features
@@ -81,7 +83,7 @@ Edits an existing contact in your SoConnect.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
-* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed list of contacts. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the contact at the specified `INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -176,8 +178,6 @@ Deletes the specified contact from your SoConnect.
 Format: `delete INDEX`
 
 * Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed list of contacts.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in your SoConnect.
@@ -239,7 +239,7 @@ A contact can have any number of tags. Add as many as you want.
 **:information_source: Note:** The tag has to be made first before you can add it into a contact.
 </div>
 
-* Adds a `TAG` to the contact at the specified `INDEX`. The index refers to the index number shown in the displayed list of contacts. The index **must be a positive integer** 1, 2, 3, …​
+* Adds a `TAG` to the contact at the specified `INDEX`.
 
 Example:
 * `tag add 1 t/friend` adds the friend tag to the first contact shown in the list.
@@ -247,10 +247,11 @@ Example:
 ### Removing a Tag from a Contact: `tag remove`
 
 Removes an existing tag from an existing contact.
+* `Coming soon in v1.5`, we will upgrade `tag remove` to remove tags from todos.
 
 Format: `tag remove INDEX t/TAG`
 
-* Removes a `TAG` from the contact at the specified `INDEX`. The index refers to the index number shown in the displayed list of contacts. The index **must be a positive integer** 1, 2, 3, …​
+* Removes a `TAG` from the contact at the specified `INDEX`.
 
 Example:
 * `tag remove 1 t/friend` removes the friend tag from the first contact shown in the list.
@@ -323,11 +324,11 @@ Edits an existing todo in your SoConnect.
 
 Format: `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​`
 
-* Edits the todo at the specified `INDEX`. The index refers to the index number shown in the displayed todo list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the todo at the specified `INDEX`.
 * At least one of the optional fields must be provided.
 * Parameters given will overwrite the existing values completely.
   * For example, giving 1 or more tag(s) in the edit command will erase all existing tags except the ones given in the edit command.
-  * `Coming soon in v1.5`, you can use `tag add` to add tags to todos instead of only using `todo edit`.
+  * `Coming soon in v1.5`, you can use `tag add` and `tag remove` to modify tags in a todo instead of only using `todo edit`.
 
 Examples:
 *  `todo edit 1 d/Read notes for ST2334` Edits the description of the 1st todo to be `Read notes for ST2334`.
@@ -340,8 +341,6 @@ Deletes the specified todo from your SoConnect.
 Format: `delete INDEX`
 
 * Deletes the todo at the specified `INDEX`.
-* The index refers to the index number shown in the displayed todo list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `todo show` followed by `todo delete 2` deletes the 2nd todo shown in your SoConnect.
