@@ -1,14 +1,5 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMEZONE;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -26,6 +17,8 @@ import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.person.github.User;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.MainPanelName;
+
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Deletes the specified contact of a given Person.
@@ -82,7 +75,7 @@ public class DeleteAttributeCommand extends Command {
      */
     private Person createPersonAfterDeletion(Person toDelete) {
         Name name = toDelete.getName();
-        Set<Tag> tags = toDelete.getTags();
+        Set<Tag> tags = prefixToDelete.equals(PREFIX_TAG) ? null : toDelete.getTags();
         Role role = prefixToDelete.equals(PREFIX_ROLE) ? null : toDelete.getRole().orElse(null);
         Address address = prefixToDelete.equals(PREFIX_ADDRESS) ? null
                 : toDelete.getAddress().orElse(null);
