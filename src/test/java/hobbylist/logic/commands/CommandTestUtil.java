@@ -42,6 +42,7 @@ public class CommandTestUtil {
     public static final String INVALID_DESCRIPTION_DESC = " " + CliSyntax.PREFIX_DESCRIPTION;
     // '*' not allowed in tags
     public static final String INVALID_TAG_DESC = " " + CliSyntax.PREFIX_TAG + "hubby*";
+    public static final String TOO_LONG_TAG_DESC = " " + CliSyntax.PREFIX_TAG + "a_long_tag_to_test";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
