@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.buyer.NameContainsSubstringPredicate;
+import seedu.address.model.buyer.BuyerNameContainsSubstringPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -21,10 +21,10 @@ public class FindBuyersCommandTest {
 
     @Test
     public void equals() {
-        NameContainsSubstringPredicate firstPredicate =
-                new NameContainsSubstringPredicate("first");
-        NameContainsSubstringPredicate secondPredicate =
-                new NameContainsSubstringPredicate("second");
+        BuyerNameContainsSubstringPredicate firstPredicate =
+                new BuyerNameContainsSubstringPredicate("first");
+        BuyerNameContainsSubstringPredicate secondPredicate =
+                new BuyerNameContainsSubstringPredicate("second");
 
         FindBuyersCommand findFirstCommand = new FindBuyersCommand(firstPredicate);
         FindBuyersCommand findSecondCommand = new FindBuyersCommand(secondPredicate);

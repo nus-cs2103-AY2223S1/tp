@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindBuyersCommand;
-import seedu.address.model.buyer.NameContainsSubstringPredicate;
+import seedu.address.model.buyer.BuyerNameContainsSubstringPredicate;
 
 public class FindBuyersCommandParserTest {
 
@@ -23,7 +23,7 @@ public class FindBuyersCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindBuyersCommand expectedFindBuyersCommand =
-                new FindBuyersCommand(new NameContainsSubstringPredicate("Alice Bob"));
+                new FindBuyersCommand(new BuyerNameContainsSubstringPredicate("Alice Bob"));
         assertParseSuccess(parser, "Alice Bob", expectedFindBuyersCommand);
     }
 }

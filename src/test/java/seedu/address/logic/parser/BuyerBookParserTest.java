@@ -21,7 +21,7 @@ import seedu.address.logic.commands.ListBuyersCommand;
 import seedu.address.logic.commands.ListPropertiesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.model.buyer.NameContainsSubstringPredicate;
+import seedu.address.model.buyer.BuyerNameContainsSubstringPredicate;
 import seedu.address.testutil.BuyerBuilder;
 import seedu.address.testutil.BuyerUtil;
 import seedu.address.testutil.EditBuyerDescriptorBuilder;
@@ -77,7 +77,7 @@ public class BuyerBookParserTest {
         String fullString = "foo bar baz";
         FindBuyersCommand command = (FindBuyersCommand) parser.parseCommand(
                 FindBuyersCommand.COMMAND_WORD + " " + fullString);
-        assertEquals(new FindBuyersCommand(new NameContainsSubstringPredicate(fullString)), command);
+        assertEquals(new FindBuyersCommand(new BuyerNameContainsSubstringPredicate(fullString)), command);
     }
 
     @Test

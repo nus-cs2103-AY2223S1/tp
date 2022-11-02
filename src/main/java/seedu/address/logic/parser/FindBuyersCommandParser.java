@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.FindBuyersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.buyer.NameContainsSubstringPredicate;
+import seedu.address.model.buyer.BuyerNameContainsSubstringPredicate;
 
 /**
  * Parses input arguments and creates a new FindBuyersCommand object
@@ -23,6 +23,6 @@ public class FindBuyersCommandParser extends Parser<FindBuyersCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindBuyersCommand.MESSAGE_USAGE));
         }
 
-        return new FindBuyersCommand(new NameContainsSubstringPredicate(trimmedArgs));
+        return new FindBuyersCommand(new BuyerNameContainsSubstringPredicate(trimmedArgs));
     }
 }

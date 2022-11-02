@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyNameContainsSubstringPredicate;
 
 /**
  * Finds and lists all properties in property book whose name contains any of the argument keywords.
@@ -20,9 +20,9 @@ public class FindPropertiesCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " Heng Mui Keng";
 
-    private final PropertyNameContainsKeywordsPredicate predicate;
+    private final PropertyNameContainsSubstringPredicate predicate;
 
-    public FindPropertiesCommand(PropertyNameContainsKeywordsPredicate predicate) {
+    public FindPropertiesCommand(PropertyNameContainsSubstringPredicate predicate) {
         this.predicate = predicate;
     }
 

@@ -5,10 +5,10 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Buyer}'s {@code Name} contains the given string.
  */
-public class NameContainsSubstringPredicate implements Predicate<Buyer> {
+public class BuyerNameContainsSubstringPredicate implements Predicate<Buyer> {
     private final String string;
 
-    public NameContainsSubstringPredicate(String string) {
+    public BuyerNameContainsSubstringPredicate(String string) {
         this.string = string.toLowerCase();
     }
 
@@ -21,8 +21,8 @@ public class NameContainsSubstringPredicate implements Predicate<Buyer> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsSubstringPredicate // instanceof handles nulls
-                && string.equals(((NameContainsSubstringPredicate) other).string)); // state check
+                || (other instanceof BuyerNameContainsSubstringPredicate // instanceof handles nulls
+                && string.equals(((BuyerNameContainsSubstringPredicate) other).string)); // state check
     }
 }
 
