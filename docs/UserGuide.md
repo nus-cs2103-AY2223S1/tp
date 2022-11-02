@@ -92,7 +92,7 @@ of the terms commonly used in PetCode.
 | **CLI**          | Command-Line Interface (CLI) receives commands from a user in the form of lines of text. It refers to the input textbox in this context.                                                                                                                                                                                               |
 | **Parameter**    | A parameter refers to the information you need to give to your command such that it can execute an action based on that information. <br/> <br/> For example, in the [`list` command](#listing-contacts-or-items--list) requires a KEY parameter to know what kind of list to display, i.e, `list buyer` displays your list of buyers. |
 | **Prefix**       | A prefix indicates the kind of information you are keying in. You can view the list of prefixes available [here](#list-of-prefixes).                                                                                                                                                                                                   |
-| **Item**         | An item refers to an Order or a Pet. An Order refers to the order placed by a buyer. A Pet refers to the pet available for sale.                                                                                                                                                                                                       |
+| **Item**         | An item refers to an `Order` or a `Pet`. An Order refers to the order placed by a buyer. A Pet refers to the pet available for sale.                                                                                                                                                                                                   |
 | **Integer**      | Whole number                                                                                                                                                                                                                                                                                                                           |
 | **Alphanumeric** | Digits and letters only. For example, `AB3`, `PetCode`, `coco123`, and `2103` are alphanumeric. `#01-04`, `email@domain.com`, and `white    spaces` are not.                                                                                                                                                                           |
 | **Whitespace**   | An empty character, or a placeholder character ` `.                                                                                                                                                                                                                                                                                    |
@@ -201,11 +201,11 @@ Adds a contact or item to the address book.
 * A contact can be of three categories: Buyer, Deliverer, and Supplier.
 * An item can be either an Order or Pet.
 
-General Format for add command: `add-KEY prefix/PARAMETERS...`, where:
+General Format for add command: `add-KEY prefix/PARAMETERS…​`, where:
 
 * `KEY` specifies what type of contact or item you want to add.
 * `prefix` indicates the kind of information you are adding.
-* `PARAMETER` is the information you are adding.
+* `PARAMETER` is the content of the information you are adding.
 
 Kindly refer to the [Summaries](#summaries) section for more information on the available prefixes and a summarised list
 of add commands.
@@ -213,7 +213,7 @@ of add commands.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** If you are a beginner, we highly recommend you to use
-the [Add Command using the popup window](#adding-a-person-with-a-popup-window--add)
+the [Add Command using the popup window](#adding-a-contact-with-a-popup-window--add)
 instead of the usual CLI interface.
 
 </div>
@@ -223,10 +223,15 @@ instead of the usual CLI interface.
 
 #### Adding a BUYER: `add-b`
 
-Adds a buyer to the contacts. A buyer is a person who would like to buy a pet and places an order describing what kind
-of pet he/she would like.
+Adds a buyer to the contacts. A buyer is a person who would like to buy pet(s) and places one or more orders describing what kind
+of pet(s) he/she would like.
+
+You can add a buyer without orders as shown below.
 
 Format: `add-b n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION`
+
+Example:
+* To add a single buyer: `add-b n/Hongyi ph/11223344 e/email@u.nus.edu a/UTR 138600 l/Singapore`
 
 <div markdown="span" class="alert alert-info">
 
@@ -237,18 +242,15 @@ to filter persons by their locations for some reason.
 
 </div>
 
-Example:
-* To add a single buyer: `add-b n/Hongyi ph/11223344 e/email@u.nus.edu a/UTR 138600 l/Singapore`
-
-:exclamation: After meeting a new customer with an order and would like to add her/him to your list of contacts, we have a
-nice feature for you to add a buyer and his/her orders in one shot! Check it out below :point_down: <br><br>
+What if the buyer already has some orders?
+You can add a buyer and his/her orders in one shot! Check it out below :point_down: <br><br>
 Format: `add-b n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION o/add-o(order1 prefixes and fields) o/add-o(order2 prefixes and fields)…​`
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** Note that you can input as many `o/add-o` prefixes as you need, this allows you to create many new orders for one buyer.
-After each `add-o`, simply enter the details for the order, and you don't have to specify the index of the associated buyer this time. For more
-information, you can refer to the [Add Order](#adding-an-order-to-a-buyer-add-o) section.
+:bulb: **Tip:** You can input as many `o/add-o` prefixes as you need. Each `o/add-o` creates an order under the buyer.
+After each `o/add-o`, simply enter the details of the order without specifying the index of the associated buyer.
+Don't know how to add an order properly? Refer to [Add Order](#adding-an-order-to-a-buyer-add-o) for more information.
 
 </div>
 
@@ -264,6 +266,14 @@ Examples:
 * To add a buyer with two
   orders: `add-b n/Hongyi ph/11223344 e/hhygg@u.nus.edu a/UTR 138600 l/Singapore o/add-o o_st/Pending o_r/add-r o_a/1 o_sp/Siamese cat o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery o/add-o  o_st/Negotiating o_r/add-r o_a/3 o_sp/Shih Tzu o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty`
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** **Overwhelmed by the prefixes** when adding multiple orders?
+You can add a single buyer first and then [add orders to that buyer one by one](#adding-an-order-to-a-buyer-add-o).
+Alternatively, check out [Add Command using the popup window](#adding-a-contact-with-a-popup-window--add) to add multiple orders to a buyer **without prefixes**.
+
+</div>
+
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
@@ -277,12 +287,6 @@ Examples:
 
 * To add a single deliverer: `add-d n/Lezheng ph/19657471 e/lez998@u.nus.edu a/PGP Residences 118429 l/Singapore`
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** For more details on what each prefix represents, kindly refer to [List of Prefixes](#list-of-prefixes).
-
-</div>
-
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
@@ -290,20 +294,23 @@ Examples:
 
 Adds a supplier to address book. A supplier feeds, trains, and takes care of pets for sale.
 
+You can add a supplier without pets as shown below.
+
 Format: `add-s n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION`
 
-Similar to the [Add Buyer](#adding-a-buyer-add-b) command, you may feel that adding a supplier followed by adding
-her/his pets for sale is too troublesome. For your convenience, we have added a feature where you can add a pet to the
-supplier in one shot! Check it out below :point_down:
+Example:
+* To add a single supplier: `add-s n/Carol Pet House ph/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/USA`
+
+Similar to the [Add Buyer](#adding-a-buyer-add-b) command, you may feel the need to add a supplier together with all the pets he/she sells in one shot!
+Check it out below :point_down:
 
 Format: `add-s n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION p/add-p(pet1 prefixeds and fields) p/add-p(pet2 prefixeds and fields)…​`
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** Note that you can input as many `p/add-p` prefixes as you need. After each `add-p`, simply enter the
-details
-for the pet, and you don't have to specify the index of the associated supplier this time. For more information,
-you can refer to the [Add Pet](#adding-a-pet-to-a-supplier--add-p) section.
+:bulb: **Tip:** Note that you can input as many `p/add-p` prefixes as you need. Each `p/add-p` creates an order under the buyer.
+After each `p/add-p`, simply enter the details for the pet without specifying the index of the associated supplier.
+Don't know how to add a pet properly? Refer to [Add Pet](#adding-a-pet-to-a-supplier--add-p) for more information.
 
 </div>
 
@@ -314,7 +321,6 @@ you can refer to the [Add Pet](#adding-a-pet-to-a-supplier--add-p) section.
 </div>
 
 Examples:
-
 * To add a single
   supplier: `add-s n/Carol Pet House ph/17238965 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/Singapore`
 * To add a supplier with one pet for
@@ -322,24 +328,39 @@ Examples:
 * To add a supplier with two pets for
   sale: `add-s n/Carol Pet House ph/17238965 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/Singapore p/add-p p_n/Luck p_d/2022-01-01 p_c/pink p_cp/pure pink p_h/41.2 p_s/Yorkshire pig p_cert/US certified p_v/true p_w/102.5 p_p/270.3 p/add-p p_n/Snupy p_d/2021-05-31 p_c/white p_cp/dotted p_h/89.3 p_cert/US certified p_s/Californian rabbit p_v/false p_w/32.8 p_p/330.3`
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Overwhelmed by the prefixes when adding multiple pets?
+You can add a single supplier first and then [add pets to that supplier one by one](#adding-a-pet-to-a-supplier--add-p).
+Alternatively, check out [Add Command using the popup window](#adding-a-contact-with-a-popup-window--add) to add multiple pets to a supplier **without prefixes**.
+
+</div>
+
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Adding an ORDER TO A BUYER: `add-o`
+#### Adding an ORDER to a BUYER: `add-o`
 
-Adds an order to a buyer contact. This is especially useful for adding an order to customer placed it.
+Adds an order to a buyer contact. This is especially useful when an existing buyer has a new order, or when the buyer confirms the order some time after being added to the contacts.
 
 Format: `add-o INDEX_OF_BUYER o_st/STATUS o_r/add-r o_a/AGE o_sp/SPECIES o_c/COLOR o_cp/COLOR_PATTERN [o_p/PRICE] o_pr/PRICE_RANGE o_d/DATE [o_ar/ADDITIONAL_REQUEST]…​`
 
-`INDEX_OF_BUYER` should be immediately after `add-o` and is the one-based index of the buyer you would like to add this order to. You can find out the index
-in the displayed buyer list. You may want to use the [List Command](#listing-contacts-or-items--list) to find the buyer,
-if you have filtered the list.
+`INDEX_OF_BUYER` should be immediately after `add-o` and is the one-based index of the buyer you would like to add this order to.
+You are recommended to **list the buyers first** using the [List Command](#listing-contacts-or-items--list) to find out the index of the target buyer.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **What is a request in an order?** The prefix `o_r/` specifies a request, which contains the **characteristics of a pet** that the buyer wants the pet to have,
+including age, color, color pattern and species.
+Other information in the order that is **not directly related to a pet**, such as the order status and the prince range the buyer is willing to accept, **does not fall under request**.
+
+</div>
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution**: Please ensure that `o_r/` is followed by `add-r` immediately and that there are no other prefixes
+:exclamation: **Caution**: Please ensure that `o_r/` is followed by `add-r` immediately and there are no other prefixes
 between `o_r/`, `o_a/`, `o_c/`, `o_cp/`, and `o_sp/`. This is because they as a whole specify how the requested pet
-should be like. In the future, you may be able to define your own requests as templates for generating orders.
+should be like. In future versions of PetCode, you may be able to create a request separately (i.e. a request template), and apply this request template to multiple orders.
 
 </div>
 
@@ -357,15 +378,14 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Adding a PET TO A SUPPLIER : `add-p`
+#### Adding a PET to a SUPPLIER : `add-p`
 
-Adds a pet to a supplier contact. This is especially useful for adding a new available pet to its supplier.
+Adds a pet to a supplier contact. This is especially useful when an existing supplier has a new pet for sale or when the supplier tells you what are the pets he/she owns some time after being added to the contacts.
 
 Format: `add-p INDEX_OF_SUPPLIER p_n/PET_NAME p_d/DATE_OF_BIRTH p_c/COLOR p_cp/COLOR_PATTERN p_h/HEIGHT p_w/WEIGHT p_s/SPECIES p_v/VACCINATION_STATUS p_p/PRICE [p_cert/CERTIFICATE]…​`
 
-`INDEX_OF_SUPPLIER` should be immediately after `add-p` and is the one-based index of the supplier you would like to add this pet to. You can find out the
-index just in the display list. You may want to use the [List Command](#listing-contacts-or-items--list) to find the
-supplier, if you have filtered the list.
+`INDEX_OF_SUPPLIER` should be immediately after `add-p` and is the one-based index of the supplier you would like to add this pet to.
+You are recommended to **list the suppliers first** by using the [List Command](#listing-contacts-or-items--list) to find out the index of the target supplier.
 
 Examples:
 
@@ -380,7 +400,7 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Adding a contact WITH A POPUP WINDOW : `add`
+#### Adding a contact with a POPUP WINDOW : `add`
 
 Adds a contact with a pop-up window that has prompt texts for what to input without the need to enter any
 prefixes. This reduces the need to memorise prefixes.
@@ -410,11 +430,15 @@ The followings are two ways to use this command:
 |     CTRL + D      | Deletes the last order/pet under the buyer/supplier in the pop-up window               |
 |     CTRL + S      | Saves the inputs, adds the buyer/supplier to the contacts, and closes the pop-p window |
 
+Note that some shortcuts are only **effective when a text field is in focus**.
+When no text fields are highlighted (i.e. not in focus), **press TAB once (still no focus, press TAB again and again until the highlight appears)** to focus the cursor to a text field.
+This ensures that you can use all the available shortcuts.
+
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
-**:bulb: Tip:** If a compulsory text field is ***empty*** during saving, the cursor will be brought to that text field,
+**:bulb: Tip:** If a compulsory text field is ***empty*** or a text field **starts with whitespace** during saving, the cursor will be brought to that text field,
 which will be highlighted in red.
 
 </div>
@@ -430,6 +454,8 @@ The error message and the correct format of the input will be shown in the **mai
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: This command is only available for **adding a buyer or supplier** for the current version.
+Note that the three buttons for adding pets to a supplier, which are `Upload photo`, `Upload pet certificate`, `Upload vaccination proof` (you can refer to the picture above),
+only **open the file explorer** and **do nothing more**. You may be able to upload files from your local disk to the storage of PetCode in future versions.
 
 </div>
 

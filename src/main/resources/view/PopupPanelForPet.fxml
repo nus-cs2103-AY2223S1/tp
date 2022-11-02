@@ -86,13 +86,13 @@
       </HBox>
       <VBox>
          <children>
-            <Button mnemonicParsing="false" text="Upload photo" />
-            <Button mnemonicParsing="false" text="Upload pet certificates">
+            <Button mnemonicParsing="false" onAction="#openFileExplorer" text="Upload photo" />
+            <Button mnemonicParsing="false" onAction="#openFileExplorer" text="Upload pet certificates">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Upload vaccination proof">
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#openFileExplorer" text="Upload vaccination proof">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>

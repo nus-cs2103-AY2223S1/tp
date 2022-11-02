@@ -783,7 +783,7 @@ Use case ends.
 
 ### Glossary
 
-* **Buyer/Client**: A customer of the pet sale coordinator interested in purchasing a pet.
+* **Buyer**: A customer of the pet sale coordinator interested in purchasing a pet.
 * **Deliverer**: A person that is able to provide delivery services from the supplier to buyer/client.
 * **Supplier**: A person that has pets on sale.
 * **Item**: An order or a pet.
@@ -819,20 +819,19 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a buyer
 
-1. Deleting a person while all persons are being shown
+1. Deleting a buyer while all buyers are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all buyers using the `list buyer` command. Multiple buyers in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
+    1. Test case: `delete-b 1`<br>
+       Expected: First buyer is deleted from the list. Details of the deleted contact shown in the message in the result display box.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete-b 0`<br>
+       Expected: No person is deleted. Error details shown in the message in the result display box.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `delete`, `delete-b x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

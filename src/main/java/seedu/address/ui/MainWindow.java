@@ -302,6 +302,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleAddByPopup(String addType) {
         addCommandPopupWindow = new AddCommandPopupWindow(logic, addType, resultDisplay);
         addCommandPopupWindow.show();
+        addCommandPopupWindow.fillContentPlaceholder(addType);
     }
 
     /**
