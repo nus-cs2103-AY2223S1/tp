@@ -20,7 +20,7 @@ In this *User Guide*, we will take you through the many useful features and func
 
 Feeling lost as a first-time user? We advise you to follow the User Guide sequentially, starting from [Getting started](#getting-started), as it provides a natural flow of how the commands should be executed.
 
-If you are more familiar with CLI or Mass Linkers, head over to the [Command Summary](#command-summary) to start using the app.
+If you are more familiar with CLI or Mass Linkers, head over to the [Command summary](#command-summary) to start using the app.
 
 The following icons are used in the _User Guide_ to denote special information to look out for.
 #### Meaning of icons
@@ -103,10 +103,9 @@ The following notes outline several noteworthy format which the [Feature](#featu
 
 </div>
 
-<div markdown="block" class="alert alert-info">
-
 Parameters are the input words that come after a command word to specify how the command should be executed. Click [here](#parameter-requirements) to view the list of parameter requirements.
 
+<div markdown="block" class="alert alert-info">
 **:information_source: Regarding parameters:**<br>
 
 * For all commands involving `INDEX`, `INDEX` refers to the index number shown in the currently displayed list.<br>
@@ -419,7 +418,7 @@ _Module prefix refers to the first two characters of every module name._
 --------------------------------------------------------------------------------------------------------------------
 
 ## **FAQ**
-Facing an issue? Below are the commonly asked questions, which address technical and privacy concerns.
+Facing an issue? Below are several commonly asked questions, which address technical and privacy concerns.
 
 #### Technical Support
 **Q**: How do I transfer my data to another Computer?<br>
