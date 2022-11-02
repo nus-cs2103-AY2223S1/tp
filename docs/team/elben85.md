@@ -18,12 +18,20 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Enable find command to filter by several categories (company name, position, tags, date, and application process)
+    * Fixed bugs from Practical Examination Dry Run: (Pull requests: [\#213](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/213), [\#223](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/223))
 
 * **Documentation**:
     * User Guide:
         * Added documentations for the features `find`
+        * Added prefix summary
+        * Added the statistic panel section in "Navigating the GUI"
+        * Added guide to editing the save file manually (i.e. `Appendix: Manually Editing the Save File` section)
     * Developer Guide:
-        * Added documentations for the features `find`
-
+        * Added `find` implementation section
+        * Added use case for `find`
+        * Added instructions for manual testing for `find`
+        * Added documentation for the Bar Chart
+        
 * **Community**:
-    * To be added soon
+    * Reported an above-average number of bugs in the PE-D (Examples: Bug [\#2](https://github.com/Elben85/ped/issues/2), Bug [\#4](https://github.com/Elben85/ped/issues/4))
+    * PRs reviewed (with non-trivial review comments): [\#25](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/25), [\#93](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/93)
