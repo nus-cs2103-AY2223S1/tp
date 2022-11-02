@@ -634,7 +634,7 @@ Format: `clear`
 
 ### Undo the last command: `undo`
 
-Undoes the last command executed by restoring any recent change in data within the Teacher's Pet.
+Undoes the last command executed by reverting any recent change in data within the Teacher's Pet.
 
 Format: `undo`
 
