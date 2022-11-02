@@ -16,6 +16,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Professor;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
+import seedu.address.testutil.ProfessorBuilder;
+import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.TeachingAssistantBuilder;
 
 /**
  * Test the import and export functions found in CsvUtil
@@ -32,6 +35,8 @@ class CsvUtilTest {
             TEST_DATA_FOLDER.resolve("ValidProfessorOfficeHour.csv");
     private static final Path VALID_STUDENT_IMPORT_FILE = TEST_DATA_FOLDER.resolve("ValidStudent.csv");
     private static final Path VALID_TA_IMPORT_FILE = TEST_DATA_FOLDER.resolve("ValidTa.csv");
+    private static final Path VALID_STUDENT_NO_TAGS_IMPORT_FILE = TEST_DATA_FOLDER.resolve("ValidStudentNoTags.csv");
+    private static final Path VALID_PROF_NO_TAGS_IMPORT_FILE = TEST_DATA_FOLDER.resolve("ValidProfNoTags.csv");
 
     @Test
     public void importCsv_validProfessorDetailsNoOfficeHour_returnsProfessor() {
@@ -67,6 +72,28 @@ class CsvUtilTest {
         try {
             TeachingAssistant ta = (TeachingAssistant) CsvUtil.importCsv(VALID_TA_IMPORT_FILE.toFile()).get(0);
             assertEquals(CABE, ta);
+        } catch (CommandException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Test
+    public void importCsv_validStudentDetailsOptionalTag_returnsStudent() {
+        StudentBuilder studentBuilder = new StudentBuilder();
+        Student expected = studentBuilder.build();
+        try {
+            Student actual = (Student) CsvUtil.importCsv(VALID_STUDENT_NO_TAGS_IMPORT_FILE.toFile()).get(0);
+            assertEquals(expected, actual);
+        } catch (CommandException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Test
+    public void importCsv_validProfessorDetailsOptionalTag_returnsProfessor() {
+        //ProfessorBuilder professorBuilder = new ProfessorBuilder().;
+        Professor expected = professorBuilder.build();
+        try {
+            Professor actual = (Professor) CsvUtil.importCsv(VALID_PROF_NO_TAGS_IMPORT_FILE.toFile()).get(0);
+            assertEquals(expected, actual);
         } catch (CommandException e) {
             throw new RuntimeException(e);
         }
