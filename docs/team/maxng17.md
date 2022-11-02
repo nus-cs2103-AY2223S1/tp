@@ -39,7 +39,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Set up issues for Issue Tracker
-  * Manage the Jar file release for V1.2, V1.2.1 and V1.3.1
+  * Manage the Jar file release for V1.2
   * Project demo for tutorial for V1.2 and V1.3
   * Review PR (e.g. Pull Request [#71](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/71), [#124](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/124))
   * Increase code coverage for test case (e.g. Pull Request [#84](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/84))
