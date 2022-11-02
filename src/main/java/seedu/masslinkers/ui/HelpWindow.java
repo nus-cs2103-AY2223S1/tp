@@ -114,6 +114,7 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
+    //@@author carriezhengjr
     /**
      * Opens the user guide in the browser.
      */

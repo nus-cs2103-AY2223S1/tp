@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.ModelManager;
 
+//@@author
 public class HelpCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
