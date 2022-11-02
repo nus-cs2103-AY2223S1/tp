@@ -1,127 +1,52 @@
 ---
 layout: page
-title: Project Portfolio Page for Neale Tham
+title: Project Portfolio Page for Neale
 ---
 
-## Overview
+### RC4HDB
 
-**RC4 Housing Database** offers a convenient and intuitive interface for RC4 housing management staff to streamline their daily operations.
-## Summary of Contributions
+RC4HDB is a desktop application which streamlines the daily workflow of RC4 housing management staff, by providing specialised features which solve their resident & venue management needs.
 
-### Code contributed:
+Given below is a summary of my notable contributions to the project. You can find my full contribution [here](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nealetham&breakdown=true).
 
-I contributed code to the following modules/classes:
-1. Ui components (MainWindow, CommandBox, ResidentTableView, HelpWindow)
-2. Quality-of-life components (CommandHistory, ForwardHistory, BackwardHistory)
-3. Substring search (NameContainsKeywordsPredicate, FindCommandTest)
-4. Storage unit tests (DataStorageManager, StorageManager, JsonAdaptedVenue etc.)
-5. Sample residents, venues and bookings (SampleData)
+### Project management
+* Setting up the GitHub team organization, repository, Codecov & Gradle.
+* Renaming the product & changing product icon.
+* Administrative tasks such as meeting minutes & work delegation in the weekly scrum meeting.
 
-You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nealetham&breakdown=true).
+### Code contribution
+* Enhancements to new & existing features
+  * Reworked the Ui to comply with our specifications & user's needs. ([#65](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/65), [#66](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/66), [#86](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/86), [#101](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/104), [#141](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/144), [#192](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/192))
+  * Reworked `find` to perform substring search ([#31](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/31)).
+  * Implemented all [quality-of-life](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#quality-of-life) functionalities. ([#104](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/104)).
+* Miscellaneous contributions
+  * Storage unit tests ([#201](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/201), [#276](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/276)).
+  * Sample residents, venues & bookings ([#182](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/182)).
 
-### Enhancements implemented:
+### Documentation
+* User Guide
+  * Ported from `AB3` to `RC4HDB` to meet our specifications, as well as crafting the introduction.
+  * Re-organized UG into distinct sections i.e. file management, venue management etc.
+  * Added/Modified the [quality-of-life](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#quality-of-life) & find command sections.
+* Developer Guide
+  * Ported the DG from `AB3` to `RC4HDB`. Contributions to the Non-functional requirements section.
+  * Added section on the implementation of our GUI, & quality-of-life functionalities.
+  * Added section on manual testing for quality-of-life functionalities, & `help`, `exit` commands.
+  * Updated/Added the [Ui Component Diagram](../images/UiClassDiagram.png), [Command History Class Diagram](../images/CommandHistoryClassDiagram.png), & [Command History Activity Diagram](../images/CommandHistoryActivityDiagram.png)
 
-I made the following enhancements to our product:
-1. Reworked the layout of the Ui
-2. Reworked the Ui to display results in a Table
-3. Reworked `find` to perform substring search
-5. Implemented all quality-of-life functionalities. These include:
-   6. Keyboard shortcuts `Esc`, `F1`, `F3`.
-   7. Command history  `↑ Up` and `↓ Down`.
-
-### Contributions to the UG:
-
-I contributed to the following sections of the user guide:
-1. Ported the UG from `AB3` to `RC4HDB`. These include modifying the:
-    - Description and formatting of all features to include `RC4HDB` specifications.
-2. Re-organized UG into their respective sections i.e. file management, venue management etc.
-3. Re-organized the command summary table, updated the table-of-contents.
-4. Included all [Quality-of-life](../ug-pages/quality-of-life.md) functionalities.
-5. Updated `find` command section to comply with our new implementation.
-
-Other contributions include, adding a back-to-top hyperlink following each section.
-
-### Contributions to the DG:
-
-I contributed to the following sections of the developer guide:
-1. Ported the DG from `AB3` to `RC4HDB`. Primarily in the `Appendix: Requirements` section.
-2. Added more elaboration on our non-functional-requirements.
-2. Added section on the implementation of our GUI.
-3. Added section on the implementation of our command history functionality.
-4. Added section on manual testing for:
-   * `Quality-of-life` functionalities
-   * `help`, `exit` commands
-
-In particular, I added/updated the following UML diagrams:
-1. [Ui Component Diagram](../images/UiClassDiagram.png)
-2. [Command History Class Diagram](../images/CommandHistoryClassDiagram.png)
-3. [Command History Activity Diagram](../images/CommandHistoryActivityDiagram.png)
-
-<!-- Provide links to the diagrams in the appendix at the bottom of the page -->
-
-### Contributions to team-based tasks:
-
-I contributed to the following team-based tasks:
-1. Setting up the GitHub team organization and repository
-2. Necessary general code enhancements e.g.,
-   3. Renaming product to RC4HDB
-   4. Changing the product icon
-2. Setting up Codecov and Gradle
-1. Meeting minutes in the weekly scrum meeting
-2. Work delegation during scrum meeting
-
-### Review/mentoring contributions:
-
-I reviewed the following pull requests:
-1. [Groundwork for Venue feature](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/110)
-2. [Update List command](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/76)
-3. [Venue booking feature](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/114)
-
-To view all of my reviews, refer to [here](https://github.com/AY2223S1-CS2103T-W12-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
-
-I also gave guidance to my team on the following matters:
-1. *NIL*
-
-### Contributions beyond the project team:
-
-Beyond the project team, I also participated actively in the forum.
-
-These are some threads in which I offered help to my classmates:
-1. [Discussion on association, composition, aggregation](https://github.com/nus-cs2103-AY2223S1/forum/issues/86#issuecomment-1229400456)
-2. [Failing codecov/patch check](https://github.com/nus-cs2103-AY2223S1/forum/issues/330)
-3. [Bug: Wrong activity diagram](https://github.com/nus-cs2103-AY2223S1/forum/issues/338)
-
-
-For the practical examination, I also surfaced critical bugs in the other team's product.
-
-Some examples of these are:
-1. [Functionality Bugs](https://github.com/nealetham/ped/issues?q=is%3Aopen+is%3Aissue+label%3Atype.FunctionalityBug)
-2. [Feature Flaws](https://github.com/nealetham/ped/issues?q=is%3Aopen+is%3Aissue+label%3Atype.FeatureFlaw)
-3. [Documentation Bugs](https://github.com/nealetham/ped/issues?q=is%3Aopen+is%3Aissue+label%3Atype.DocumentationBug)
+### Community
+* Reviewed [***27*** pull requests](https://github.com/AY2223S1-CS2103T-W12-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me). Many had non-trivial review comments, such as [#110](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/110), [#257](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/257) & [#76](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/110). Discussions also took place offline.
+* Contributed to forum discussions, such as [differences between association, composition, aggregation](https://github.com/nus-cs2103-AY2223S1/forum/issues/86#issuecomment-1229400456) & [failing Codecov/patch check](https://github.com/nus-cs2103-AY2223S1/forum/issues/330).
+* Surface [***12*** potential bugs & suggestions](https://github.com/nealetham/ped/issues?q=is%3Aopen+is%3Aissue) for other teams during PE-D. These include [non-functioning theme switcher](https://github.com/nealetham/ped/issues/4) & [missing target-user & value proposition](https://github.com/nealetham/ped/issues/10).
 
 ## Appendix
 
 ### Contributions to the Developer Guide:
 
-Updated the Ui class diagram to include `ResidentTabView`, `ResidentTableView`, `VenueTabView`, `BookingTableView`, `VenueListView`, `VenueCard`.
-Removed Ui classes such as `PersonListCard`, and `PersonCard` that were existent in AB3.
+These are the UML diagrams I have updated/added to the DG.
 
-![Ui Class Diagram](../images/UiClassDiagram.png)
+![](../images/UiClassDiagram.png)
 
-<br>
+![](../images/CommandHistoryClassDiagram.png)
 
-Designed the command history class diagram, and command history activity diagram.
-
-![Command History Class Diagram](../images/CommandHistoryClassDiagram.png)
-
-![Command History Activity Diagram](../images/CommandHistoryActivityDiagram.png)
-
-<!-- Embed the diagrams here -->
-
-### Contributions to the User Guide:
-
-1. ![]()
-2. ![]()
-3. ![]()
-
-<!-- Embed the diagrams here -->
+![](../images/CommandHistoryActivityDiagram.png)
