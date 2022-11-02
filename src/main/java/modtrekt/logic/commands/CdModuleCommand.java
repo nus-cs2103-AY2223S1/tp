@@ -27,7 +27,9 @@ public class CdModuleCommand extends Command {
     /**
      * Creates an instance of CdModuleCommand with the specified {@code argument}, for testing.
      */
-    public CdModuleCommand(String argument) { this.argument = argument; }
+    public CdModuleCommand(String argument) {
+        this.argument = argument;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
