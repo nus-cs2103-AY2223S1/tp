@@ -22,7 +22,6 @@ public class PersonTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Person person = new PersonBuilder().build();
-        System.out.println(person.getEmployeeId());
         assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
     }
 

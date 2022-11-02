@@ -53,7 +53,6 @@ public class PersonBuilder {
         rating = Rating.getNullRating();
         totalLeave = DEFAULT_LEAVE;
         tags = new HashSet<>();
-        System.out.println(employeeId);
     }
 
     /**
