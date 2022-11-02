@@ -10,6 +10,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
+import seedu.address.model.SortCategory;
+import seedu.address.model.issue.Issue;
 import seedu.address.ui.Ui;
 
 /**
@@ -55,19 +57,23 @@ public class SortIssueCommand extends IssueCommand {
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
         String sortKeyString = "";
+        Issue.setSortOrder(this.sortOrder);
 
         if (sortKey.equals(PREFIX_ISSUE_ID)) {
             model.sortIssuesById(sortOrder);
+            Issue.setSortCategory(SortCategory.ID);
             sortKeyString = "issue id.";
         }
 
         if (sortKey.equals(PREFIX_DEADLINE)) {
             model.sortIssuesByDeadline(sortOrder);
+            Issue.setSortCategory(SortCategory.DEADLINE);
             sortKeyString = "deadline.";
         }
 
         if (sortKey.equals(PREFIX_URGENCY)) {
             model.sortIssuesByUrgency(sortOrder);
+            Issue.setSortCategory(SortCategory.URGENCY);
             sortKeyString = "urgency.";
         }
 

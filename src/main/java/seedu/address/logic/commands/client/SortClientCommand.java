@@ -9,6 +9,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
+import seedu.address.model.SortCategory;
+import seedu.address.model.client.Client;
 import seedu.address.ui.Ui;
 
 /**
@@ -50,14 +52,17 @@ public class SortClientCommand extends ClientCommand {
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
         String sortKeyString = "";
+        Client.setSortOrder(this.sortOrder);
 
         if (sortKey.equals(PREFIX_CLIENT_ID)) {
             model.sortClientsById(sortOrder);
+            Client.setSortCategory(SortCategory.ID);
             sortKeyString = "client id";
         }
 
         if (sortKey.equals(PREFIX_NAME)) {
             model.sortClientsByName(sortOrder);
+            Client.setSortCategory(SortCategory.NAME);
             sortKeyString = "name.";
         }
         model.sortClientsByPin();

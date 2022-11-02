@@ -157,4 +157,10 @@ public interface Model {
     void sortProjectsByPin();
 
     void sortIssuesByPin();
+
+    void sortProjectsByCurrentCategory();
+
+    void sortClientsByCurrentCategory();
+
+    void sortIssuesByCurrentCategory();
 }

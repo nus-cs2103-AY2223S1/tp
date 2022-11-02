@@ -7,6 +7,7 @@ import java.util.List;
 
 import seedu.address.model.Name;
 import seedu.address.model.Pin;
+import seedu.address.model.SortCategory;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
@@ -21,6 +22,9 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
 
     public static final String MESSAGE_INVALID_CLIENT_ID_SORT_KEY =
             "Enter either a 0 to sort in ascending order or a 1 to sort in descending order";
+
+    private static SortCategory sortCategory = SortCategory.ID;
+    private static int sortOrder = 0;
 
     //Represents the Client's name
     private Name name;
@@ -235,6 +239,22 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
 
     public boolean isPinned() {
         return this.pin.isPinned();
+    }
+
+    public static SortCategory getSortCategory() {
+        return sortCategory;
+    }
+
+    public static int getSortOrder() {
+        return sortOrder;
+    }
+
+    public static void setSortCategory(SortCategory newSortCategory) {
+        sortCategory = newSortCategory;
+    }
+
+    public static void setSortOrder(int newSortOrder) {
+        sortOrder = newSortOrder;
     }
 
 

@@ -515,7 +515,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Default sorting method to sort all entity lists by id in ascending order, and by pin.
+     * Sorts all entity lists according to the default order - by id in ascending order, and by pin.
      */
     public void sortAllLists() {
         sortClientsById(0);
@@ -524,5 +524,65 @@ public class AddressBook implements ReadOnlyAddressBook {
         sortClientsByPin();
         sortProjectsByPin();
         sortIssuesByPin();
+    }
+
+    /**
+     * Sorts project list by the last known sort category and order.
+     */
+    public void sortProjectsByCurrentCategory() {
+        switch(Project.getSortCategory()) {
+        case ID:
+            sortProjectsById(Project.getSortOrder());
+            break;
+        case NAME:
+            sortProjectsByName(Project.getSortOrder());
+            break;
+        case DEADLINE:
+            sortProjectsByDeadline(Project.getSortOrder());
+            break;
+        case ISSUE_COUNT:
+            sortProjectsByIssueCount(Project.getSortOrder());
+            break;
+        default:
+            assert false : "Invalid sort category for projects";
+            break;
+        }
+    }
+
+    /**
+     * Sorts client list by the last known sort category and order.
+     */
+    public void sortClientsByCurrentCategory() {
+        switch(Client.getSortCategory()) {
+        case ID:
+            sortClientsById(Client.getSortOrder());
+            break;
+        case NAME:
+            sortClientsByName(Client.getSortOrder());
+            break;
+        default:
+            assert false : "Invalid sort category for clients";
+            break;
+        }
+    }
+
+    /**
+     * Sorts issue list by the last known sort category and order.
+     */
+    public void sortIssuesByCurrentCategory() {
+        switch(Issue.getSortCategory()) {
+        case ID:
+            sortIssuesById(Issue.getSortOrder());
+            break;
+        case DEADLINE:
+            sortIssuesByDeadline(Issue.getSortOrder());
+            break;
+        case URGENCY:
+            sortIssuesByUrgency(Issue.getSortOrder());
+            break;
+        default:
+            assert false : "Invalid sort category for issues";
+            break;
+        }
     }
 }
