@@ -114,6 +114,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        classTitle.setVisible(false);
+        classTitle.textProperty().bind(logic.getFocusLabelProperty());
     }
 
     /**
@@ -172,7 +175,6 @@ public class MainWindow extends UiPart<Stage> {
         classLabel.setText("Sessions");
         unfocusButton.setVisible(true);
         classTitle.setVisible(true);
-        classTitle.textProperty().bind(logic.getFocusLabelProperty());
         helpButton.setId("helpFocusButton");
         classLabelContainer.setStyle("-fx-background-color:#f5d58b");
         buttonBar.setStyle("-fx-background-color: derive(#a5dff0, 20%);");
