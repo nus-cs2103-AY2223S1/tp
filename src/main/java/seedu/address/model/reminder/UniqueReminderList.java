@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 import seedu.address.model.reminder.exceptions.ReminderNotFoundException;
-import seedu.address.model.student.exceptions.PersonNotFoundException;
 
 /**
  * A list of reminders that enforces uniqueness between its elements and does not allow nulls.
