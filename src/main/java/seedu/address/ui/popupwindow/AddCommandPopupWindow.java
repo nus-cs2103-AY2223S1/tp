@@ -61,7 +61,6 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
         this.logic = logic;
         this.typeToBeAdded.setText(typeToBeAdded);
         this.resultDisplay = resultDisplay;
-        fillContentPlaceholder(typeToBeAdded);
         setCloseWindowKey(KeyCode.ESCAPE);
         setSaveButtonShortcut(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN));
     }
