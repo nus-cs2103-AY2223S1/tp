@@ -16,12 +16,6 @@ import seedu.address.model.task.Task;
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
 public class TypicalTasks {
-
-    public static final Task TASK1 = new TaskBuilder().withModule("cs2001")
-        .withTaskDescription("description 1")
-        .withStatus("incomplete")
-        .build();
-
     public static final Task TASK_A = new TaskBuilder().withModule("cs2030")
         .withTaskDescription("Task A")
         .withStatus("incomplete")

@@ -19,6 +19,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.exam.Exam;
+import seedu.address.model.exam.ExamDescriptionContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
@@ -30,21 +32,6 @@ import seedu.address.testutil.EditTaskDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
-    public static final String VALID_MODULE_1 = "CS2001";
-    public static final String VALID_MODULE_2 = "CS2002";
-
-    public static final String VALID_TASK_DESCRIPTION_1 = "description 1";
-    public static final String VALID_TASK_DESCRIPTION_2 = "description 2";
-
-    public static final String MODULE_1 = " " + PREFIX_MODULE + VALID_MODULE_1;
-    public static final String MODULE_2 = " " + PREFIX_MODULE + VALID_MODULE_2;
-    public static final String TASK_DESCRIPTION_1 = " " + PREFIX_DESCRIPTION + VALID_TASK_DESCRIPTION_1;
-    public static final String TASK_DESCRIPTION_2 = " " + PREFIX_DESCRIPTION + VALID_TASK_DESCRIPTION_2;
-
-    public static final String INVALID_MODULE = " " + PREFIX_MODULE + "2001";
-    public static final String INVALID_TASK_DESCRIPTION = " " + PREFIX_DESCRIPTION + " ";
-
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -98,6 +85,7 @@ public class CommandTestUtil {
     public static final String MODULE_DESC_CS2040 = " " + PREFIX_MODULE + "cs2040";
     public static final String DESCRIPTION_DESC_DO_TUTORIAL = " " + PREFIX_DESCRIPTION + "do tutorial";
     public static final String DESCRIPTION_DESC_WATCH_LECTURE = " " + PREFIX_DESCRIPTION + "watch lecture";
+    public static final String DESCRIPTION_DESC_TASK_A = " " + PREFIX_DESCRIPTION + "Task A";
 
     // module codes should be at least 6 characters long
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "cs";
@@ -182,5 +170,19 @@ public class CommandTestUtil {
         model.updateFilteredTaskList(new DescriptionContainsKeywordsPredicate(Arrays.asList(description)));
 
         assertEquals(1, model.getFilteredTaskList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the exam at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showExamAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredExamList().size());
+
+        Exam exam = model.getFilteredExamList().get(targetIndex.getZeroBased());
+        final String[] description = {exam.getDescription().description.toLowerCase()};
+        model.updateFilteredExamList(new ExamDescriptionContainsKeywordsPredicate(Arrays.asList(description)));
+
+        assertEquals(1, model.getFilteredExamList().size());
     }
 }
