@@ -40,6 +40,6 @@ public class MeetingTime {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof MeetingTime
-                && time.equals(((MeetingTime) other).time));
+                && this.toString().equals(((MeetingTime) other).toString()));
     }
 }
