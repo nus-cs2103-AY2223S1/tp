@@ -2,6 +2,7 @@ package seedu.application.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.application.logic.parser.ParserUtil.MESSAGE_INDEX_OVERFLOW;
 import static seedu.application.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.application.testutil.Assert.assertThrows;
 import static seedu.application.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
@@ -14,6 +15,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.application.logic.parser.exceptions.ParseException;
+import seedu.application.logic.parser.exceptions.ParseIntegerOverflowException;
 import seedu.application.model.application.Company;
 import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
@@ -41,13 +43,13 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () -> ParserUtil.parseIndex("10 a"));
     }
 
     @Test
-    public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+    public void parseIndex_outOfRangeInput_throwsParseIntegerOverflowException() {
+        assertThrows(ParseIntegerOverflowException.class, MESSAGE_INDEX_OVERFLOW, ()
+            -> ParserUtil.parseIndex(Long.toString((long) Integer.MAX_VALUE + 1)));
     }
 
     @Test
