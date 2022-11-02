@@ -772,7 +772,7 @@ testers are expected to do more *exploratory* testing.
       Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
       Success message shown in the status message.
 
-2. Deleting an out-of-bounds index
+2. Deleting an non-positive index
    
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
       
@@ -806,7 +806,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Importing an external JSON file with invalid format, duplicate applicant, or invalid data values
 
-   1. Prerequisites: There exists a file named `format.json` with the incorrect formatting, `duplicate.json` with 
+   1. Prerequisites: There exists a file named `format.json` with incorrect formatting, `duplicate.json` with 
       duplicate applicants, and `invalid.json` with invalid data values.
 
    2. Test case: `import format.json`<br>
