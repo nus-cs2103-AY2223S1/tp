@@ -56,7 +56,7 @@ Given below are my contributions to the project.
 
 #### Contributions to the team-based tasks
 * Helped to create and distribute issues 
-* Contributed to manual testing of application to find for bugs
+* Contributed to manual testing of application to find bugs
 * Oversaw documentation work
 
 #### Reviewing Contributions
