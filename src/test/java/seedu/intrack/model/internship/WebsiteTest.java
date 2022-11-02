@@ -31,7 +31,7 @@ public class WebsiteTest {
         // valid websites
         assertTrue(Website.isValidWebsite("https://www.apple.com")); // url with https
         assertTrue(Website.isValidWebsite("http://www.apple.com/careers")); // url with https and directory
-        assertTrue(Website.isValidWebsite("https://www.apple.com/careers/#/sg")); // standard url with multiple directory
+        assertTrue(Website.isValidWebsite("https://www.apple.com/careers/#/sg")); // url with multiple directory
         assertTrue(Website.isValidWebsite("https://apple.com")); // url without www
         assertTrue(Website.isValidWebsite("http://microsoft.com")); // url with http
         assertTrue(Website.isValidWebsite("http://google.com"));
