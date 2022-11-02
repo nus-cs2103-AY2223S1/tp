@@ -34,6 +34,6 @@ public class ContentTest {
         assertTrue(Content.isValidContent("12345")); // numbers only
         assertTrue(Content.isValidContent("uml the 2nd")); // alphanumeric characters
         assertTrue(Content.isValidContent("UML Diagram")); // with capital letters
-        assertTrue(Content.isValidContent("Unified Modeling Language Diagram")); // long names
+        assertTrue(Content.isValidContent("Unified Modeling Language Diagram")); // long content
     }
 }
