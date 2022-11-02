@@ -156,9 +156,12 @@ Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE] [s/STATUS]`
 
 Examples:
 * `add n/42km run d/NUS Run event t/sport`
+
   *Adds an activity with the name "42km run" with a description "NUS Run event" and with a tag "sport".*
+  
 * `add n/Badminton d/play badminton t/sport t/entertainment date/2022-10-19 s/completed`
-  *Adds an activity with the name "Badminton", description "play badminton", tags "sport" and "entertainment", date "2022-10-19" and status "COMPLETED".
+
+  *Adds an activity with the name "Badminton", description "play badminton", tags "sport" and "entertainment", date "2022-10-19" and status "COMPLETED".*
 
 <div markdown="block" class="alert alert-info">
 
@@ -200,10 +203,13 @@ Examples:
 
   *Edits the name and description of the 1st activity to be `A Clash of Kings` and `Epic fantasy novel by George R. R. Martin.` respectively.*
 
-
 * `edit 2 date/2022-10-21 t/`
 
   *Removes the tags of the second activity and sets the date to `2022-10-21`.*
+
+* `edit 3 s/completed`
+
+  *Sets the status of the third activity to `COMPLETED`.*
 
 ### 5.3 Deleting an activity : `delete`
 
@@ -357,11 +363,13 @@ If you do not like the names of the command, you can select `preferences` in the
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** 
+
 If you do not want to use your mouse, you can press the `F2` key to open the window, and switch fields to edit by pressing the `tab` key. Pressing `enter` while any field is in focus will save and close your settings.
 
 If you really want to, you can shorten the commands to a single character to speed up typing commands, like the example below:
 
 ![Example alias settings](images/ExampleAliases.png)
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
