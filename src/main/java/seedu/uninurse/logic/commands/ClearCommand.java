@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -21,7 +22,7 @@ public class ClearCommand extends UndoableCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         List<Patient> lastShownList = new ArrayList<Patient>(model.getFilteredPersonList());
-        model.clearPersons(lastShownList);
-        return new CommandResult(MESSAGE_SUCCESS, CLEAR_COMMAND_TYPE);
+        PatientListTracker patientListTracker = model.clearPersons(lastShownList);
+        return new CommandResult(MESSAGE_SUCCESS, CLEAR_COMMAND_TYPE, patientListTracker);
     }
 }
