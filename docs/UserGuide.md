@@ -107,9 +107,8 @@ The UI component description:
 
 ### 4.1.1 Adding a person: `add -p`
 
-Adds a person to InterNUS. This person refers to the contact person you want to save. 
-During internship application this person could be the hiring manager. 
-After the application, this person could be the senior engineer who you want to keep contact at work.
+Saves a contact person into InterNUS, from the hiring manager you liase with 
+during the application process to the senior engineer you work with during the internship.
 
 Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c/[COMPANY]`
 * The link index (in add -p) refers to the index number shown in the internship list.
@@ -117,10 +116,11 @@ Format: `add -p n/NAME [e/EMAIL] [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX] c
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0). 
-New added person will be added in current sorted order.
-Only one contact person can be in-charge of one internship position.
-Phone number allows more than 2 digits without the need of any specific pattern.
-A person is only considered duplicated if the name is exactly the same including casing. 
+Adding persons maintains the current sorted order of the display list (as opposed to adding to the back of the list).
+A person is assumed to be in charge of at most one internship position.
+A phone number is considered valid if it consists of at least 3 numbers (spaces, special characters, and letters are not allowed).
+Duplicate persons are not allowed.
+A person is considered to be duplicate if there already exists a person in the list with the exact same name (case-sensitive).
 </div>
 
 Examples:
@@ -129,12 +129,13 @@ Examples:
 
 ### 4.1.2 Adding an internship: `add -i`
 
-Adds an Internship to InterNUS.
+Saves an internship into InterNUS. InterNUS will keep track of important details such as
+the internship's contact person, application status and interview date (if any).
 
 Format: `add -i c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]`
 
 * The link index (in add -i) refers to the index number shown in the person list.
-* Valid statuses are `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED` or `REJECTED` (case insensitive).
+* Valid statuses are `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED` or `REJECTED` (case-insensitive).
 * Date of interview is optional as interviews might not be scheduled yet.
 * `LINK_INDEX` refers to the index number shown in the person list and is optional. Specifying this parameter will define the current person at the specified index in the person list as the contact person of the newly added internship. 
 
@@ -185,7 +186,7 @@ Format: `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`
 - Edits the internship at the specified `INDEX`. The index refers to the index number shown in the displayed internship list. The index must be a positive integer 1, 2, 3, …
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
-- Valid statuses are `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED` or `REJECTED` (case insensitive). Similar to the `add  -i` command, the shortcuts can be used here.
+- Valid statuses are `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED` or `REJECTED` (case-insensitive). Similar to the `add  -i` command, the shortcuts can be used here.
 
 Examples:
 - `list -i` followed by `edit -i 1 s/ACCEPTED` Edits the status of the 1st internship to be `ACCEPTED`.
@@ -226,11 +227,12 @@ Examples:
 
 Finds persons whose fields contain any of the given keywords.
 
-Format: `find -p [n/ NAME_KEYWORD [MORE_KEYWORDS]...] [p/ PHONE_KEYWORD [MORE_KEYWORDS]...] [e/ EMAIL_KEYWORD [MORE_KEYWORDS]...] [t/ TAG_KEYWORD [MORE_KEYWORDS]...] [c/ COMPANY_KEYWORD [MORE_KEYWORDS]...]`
+Format: `find -p [n/ NAME_KEYWORDS...] [p/ PHONE_KEYWORDS...] [e/ EMAIL_KEYWORDS...] [t/ TAG_KEYWORDS...] [c/ COMPANY_KEYWORDS...]`
 - The search is case-insensitive. e.g **hans** will match **Hans**
 - The order of the keywords does not matter. e.g. **Hans Bo** will match **Bo Hans**
 - Only the fields corresponding to the specified prefixes will be searched,
   and all the specified fields must contain at least one of the specified keywords to be considered in the search result.
+- Absent fields will not be searched. e.g. **No company** will not find persons with blank company field.
 - Partial words will be matched. e.g. **Han** will match **Hans**
 
 Examples:
@@ -241,11 +243,12 @@ Examples:
 
 Finds internships whose fields contain any of the given keywords.
 
-Format: `find -i [c/ COMPANY_NAME_KEYWORD [MORE_KEYWORDS]...] [r/ INTERNSHIP_ROLE_KEYWORD [MORE_KEYWORDS]...] [s/ INTERNSHIP_STATUS_KEYWORD [MORE_KEYWORDS]...] [d/ INTERVIEW_DATE_KEYWORD [MORE_KEYWORDS]...]`
+Format: `find -i [c/ COMPANY_NAME_KEYWORDS...] [r/ INTERNSHIP_ROLE_KEYWORDS...] [s/ INTERNSHIP_STATUS_KEYWORDS...] [d/ INTERVIEW_DATE_KEYWORDS...]`
 - The search is case-insensitive. e.g **abc pte ltd** will match **ABC Pte Ltd**.
 - The order of the keywords does not matter. e.g. **Ltd ABC Pte Constructions** will match **ABC Constructions Pte Ltd**.
 - Only the fields corresponding to the specified prefixes will be searched,
   and all the specified fields must contain at least one of the specified keywords to be considered in the search result.
+- Absent fields will not be searched. e.g. **No interviews scheduled** will not find internships with blank interview date.
 - Partial words will be matched e.g. **app** will match **Apple** and **applications**.
 
 Example of usage:
@@ -263,7 +266,8 @@ Then,
 - `find -i c/g` returns **Google Inc** and **Garena**
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** The shortcuts for internship statuses don't work here.
+**:information_source: Note:** The shortcuts for internship statuses don't work here 
+since partial words will be matched. e.g. `e` will match with `ACCEPTED`,`REJECTED`, `PENDING`, `COMPLETED` and `BOOKMARKED` since they all contain the letter `e`.
 </div>
 
 ## 4.6 Delete Command

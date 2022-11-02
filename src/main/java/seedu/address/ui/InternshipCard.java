@@ -13,7 +13,7 @@ import seedu.address.model.person.PersonId;
  */
 public class InternshipCard extends UiPart<Region> {
 
-    static final String NO_CONTACT_PERSON = "No contact person.";
+    static final String NO_CONTACT_PERSON = "No contact person";
     private static final String FXML = "InternshipListCard.fxml";
 
     /**

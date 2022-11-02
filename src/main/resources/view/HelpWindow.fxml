@@ -19,7 +19,9 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@HelpWindow.css" />
+        <URL fx:id="lightTheme" value="@LightTheme.css" />
+        <URL fx:id="darkTheme" value="@DarkTheme.css" />
+        <URL fx:id="extensions" value="@Extensions.css" />
       </stylesheets>
 
       <VBox alignment="CENTER" fx:id="helpContainer">
@@ -44,7 +46,7 @@
         </padding>
       </HBox>
       <StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-        <TextArea fx:id="commandSummaryDisplay" editable="false" wrapText="true" />
+        <TextArea fx:id="resultDisplay" styleClass="result-display" editable="false" wrapText="true" />
       </StackPane>
       </VBox>
     </Scene>

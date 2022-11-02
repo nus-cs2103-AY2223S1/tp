@@ -12,10 +12,10 @@ public class SortInternshipCommand extends Command {
 
     public static final String COMMAND_WORD = "sort -i";
 
-    public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Sorts internships by company, interview date, or internship status. "
-                    + "Parameters: [c/] [d/] [s/] (Only 1 criterion can be specified)\n"
-                    + "Example: " + COMMAND_WORD + " c/";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Sorts internships by company, interview date, or internship status.\n"
+            + "Parameters: [c/] [d/] [s/] (Only 1 criterion can be specified)\n"
+            + "Example: " + COMMAND_WORD + " c/";
 
     public static final String MESSAGE_SUCCESS = "Sorted internships by %1$s";
 
