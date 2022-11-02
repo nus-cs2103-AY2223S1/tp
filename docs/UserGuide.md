@@ -8,9 +8,11 @@ Welcome to **Arrow** User Guide! This user guide will give a descriptive instruc
 The _words_ _in_ _italic_ are terms you may be unfamiliar with. And if that is the case, 
 do not hesitate checking them out in [Glossary](#glossary).
 
-**Arrow** is a **desktop app** that **help software project managers keep track of their members’ tasks and deliverables**.
-By associating tasks to specific team members, users can **keep track of what needs to be done and have quick access to
-contact information should they wish to reach out to the member**.
+**Arrow** is a **desktop app** that **help software project managers keep track of their members’ tasks and deliverables**. 
+By associating tasks to specific team members, users can **keep track of what needs to be done and have quick access to 
+contact information should they wish to reach out to the member**. More specifically, apart from the _command box_, 
+there are two main lists which store the tasks list and the contact list. In this way, our target users (software project manager)
+can use two lists to organize the team project easily.
 
 **Arrow** uses a _Command Line Interface_ (CLI)at the same time possessing convenience of a _Graphical User Interface_ (GUI). The main target audiences are software
 project managers, which assumptively equipped with _Command Line Interface_ (CLI) skills. And if you can type fast,
@@ -22,6 +24,9 @@ project managers, which assumptively equipped with _Command Line Interface_ (CLI
 
 **:information_source: If you are unfamiliar with Command Line Interface (CLI):**<br>
 
+**Arrow** has the target audiences of software project team leads. 
+In this circumstance, we assume users having some experience of using command line tools.<br>
+However, it's perfectly fine if you do not know how to use CLI.<br>
 Click [here](#tutorial-for-cli) to learn more about what is CLI.
 
 </div>
@@ -34,7 +39,7 @@ Click [here](#tutorial-for-cli) to learn more about what is CLI.
 [**Quick Start**](#quick-start)<br>
 [**Address Book**](#address-book-commands)<br>
 [**Task Management**](#task-management-commands)<br>
-[**Notes**](#notes)<br>
+[**Notes for Commands**](#notes-for-commands)<br>
 [**FAQ**](#faq)<br>
 [**Command Summary**](#command-summary)<br>
 [**Tutorial for CLI**](#tutorial-for-cli)
@@ -43,9 +48,12 @@ Click [here](#tutorial-for-cli) to learn more about what is CLI.
 
 ## Glossary
 
-* **CLI** : [Command Line Interface](https://en.wikipedia.org/wiki/Command-line_interface)<br>
-click [here](#tutorial-for-cli) if you are not familiar with CLI.
-* **GUI** : [Graphical User Interface](https://en.wikipedia.org/wiki/Graphical_user_interface)
+* **CLI** : [Command Line Interface](https://en.wikipedia.org/wiki/Command-line_interface) is a text-based _user interface_ (UI) used to run programs, 
+manage computer files and interact with the computer.<br> 
+Click [here](#tutorial-for-cli) if you are not familiar with CLI.
+* **User Interface** : The point at which human users interact with a computer, website or application.
+* **GUI** : [Graphical User Interface](https://en.wikipedia.org/wiki/Graphical_user_interface) is a type of user interface
+through which users interact with electronic devices via visual indicator representations.
 * **Home Folder** : The folder/directory where Arrow stores all information.
 * **Main Window** : The main window of the application that shows the list of students.
 * **Command Box** : The text box where you can enter commands.
@@ -69,7 +77,7 @@ Note how the app contains some sample data. If the app does not start and an `er
 * The address book is boxed in <span style="color:green">*green*</span>, where you can see the contact information of your team members.
 ![Ui](images/Ui.png)
 
-6. Type the command in the _command box_ and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. To start using **Arrow**, type the command in the _command box_ and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -84,13 +92,13 @@ Note how the app contains some sample data. If the app does not start and an `er
 
    * **`exit`** : Exits the app.
 
-7. Read the [Notes](#notes) to know more about the formats of commands.
-8. Refer to [Address Book](#address-book-commands) for details of AddressBook commands.
-9. Refer to [Task Management](#task-management-commands) for details of Task commands.
+7. Read the [Notes](#notes) to know more about the formats of commands, so that you can enter `commands` more easily.
+8. Refer to [Address Book](#address-book-commands) for details of AddressBook commands and contact lists. 
+9. Refer to [Task Management](#task-management-commands) for details of Task commands to arrange tasks quickly.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Notes
+## Notes for Commands
 
 If you are new to **Arrow**, here provides some tips for you to enter commands efficiently.
 
@@ -434,25 +442,54 @@ For Windows user, check this [tutorial](https://www.happycoders.eu/java/how-to-s
 
 ## Command Summary
 
-| Action           | Format, Examples                                                                                                                                                                  |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`             |
-| **Task add**     | ``task add TITLE by/DEADLINE [#PROJECT] [@PERSON_INDEX]...``<br> e.g., `task add Task 1 by/next friday #CS2103T @1`                                                               |
-| **Tasks**        | `tasks INDEX`<br> e.g., `tasks 2`                                                                                                                                                 |
-| **Task mark**    | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                                    |
-| **Task unmark**  | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                                |
-| **Task clear**   | `task clear`<br> e.g., `task clear`                                                                                                                                               |
-| **Task delete**  | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                                |
-| **Task assign**  | `task assign TASK_INDEX [+@/PERSON_INDEX]…​ [+@/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [-@/PERSON_NAME]…​`<br> e.g., `task assign 3 +@/1 +@/Alex Yeoh @-/2`                           |
-| **Task project** | `task project` <br> e.g., `task project` |
-| **Clear**        | `clear`                                                                                                                                                                           |
-| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                               |
-| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                       |
-| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                        |
-| **List**         | `list`                                                                                                                                                                            |
-| **Help**         | `help`                                                                                                                                                                            |
+This summary provides a list of useful and straightforward instructions on how to use the command lines more efficiently.
 
+| Action          | Format, Examples                                                                                                                                                      |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Task add**    | ``task add TITLE by/DEADLINE [#PROJECT] [@PERSON_INDEX]...``<br> e.g., `task add Task 1 by/next friday #CS2103T @1`                                                   |
+| **Tasks**       | `tasks INDEX`<br> e.g., `tasks 2`                                                                                                                                     |
+| **Task mark**   | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                        |
+| **Task unmark** | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                    |
+| **Task clear**  | `task clear`<br> e.g., `task clear`                                                                                                                                   |
+| **Task delete** | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                    |
+| **Task assign** | `task assign TASK_INDEX [+@/PERSON_INDEX]…​ [+@/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [-@/PERSON_NAME]…​`<br> e.g., `task assign 3 +@/1 +@/Alex Yeoh @-/2`               |
+| **Clear**       | `clear`                                                                                                                                                               |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**        | `list`                                                                                                                                                                |
+| **Help**        | `help`                                                                                                                                                                |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Tutorial for CLI
+
+A command-line interface (CLI) is a text-based user interface (UI) used to run programs, 
+manage computer files and interact with the computer.
+
+[This article](https://www.freecodecamp.org/news/command-line-commands-cli-tutorial/) showed you several “unknown-to-many” commands 
+you can use to get access to hidden functionalities on your personal computer.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Behind Everything
+
+### Why we are using two different lists?
+
+* **Task Panel List**
+
+    As software project team leaders, it is important to have a clear vision of tasks to be implemented,
+since there could be many projects and each project may have so many items to keep in track.
+Thus, **Arrow** has a task panel list to keep every task organized. 
+Details of each task can be added, which helps the team managers no fear of leaving out any progress.
+
+
+* **Contact List**
+
+    The most important part of a software project is the team members serving at different positions,
+**Arrow** helps tracking details of every team member and links them to their tasks to be finished.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### This is the end of Arrow user guide, if you reach this far, thank you for your reading and hope you enjoying using our app :)
