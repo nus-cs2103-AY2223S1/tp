@@ -143,12 +143,65 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String LIST_USAGE_HELP = "List all that meets the critiera:\n"
             + "list [c/Category] [g/Gender] [a/Address] [t/Tag]\n"
             + "*[] is optional";
-
+    private static final String UPCOMING_FEATURE = "This is a upcoming feature "
+            + "and have not been implemented";
+    private static final String LIST_ASSIGN_SEARCH_TEXT = "List (Assign)";
+    private static final String LIST_ASSIGN_DEMO_INPUT = "list c/P as/true";
+    private static final String LIST_ASSIGN_DEMO_OUTPUT = UPCOMING_FEATURE;
+    private static final String LIST_VISIT_STATUS_SEARCH_TEXT = "List (Visit Status)";
+    private static final String LIST_VISIT_STATUS_DEMO_INPUT = "list c/P v/true";
+    private static final String LIST_VISIT_STATUS_DEMO_OUTPUT = UPCOMING_FEATURE;
+    private static final String ASSIGN_SEARCH_TEXT = "Assign date";
+    private static final String ASSIGN_DEMO_INPUT = "assign id/2 id/3 dsi/2";
+    private static final String ASSIGN_DEMO_OUTPUT = "3's dateslot/dateslots assigned to 2.";
+    private static final String ASSIGN_USAGE_HELP = "Assigns dateslots of the patient with the specified "
+            + "‘PATIENT_ID’ to the nurse with the specified ‘NURSE_ID’.\n"
+            + "assign id/NURSE_ID id/PATIENT_ID [dsi/DATE_AND_SLOT_INDEX]\n"
+            + "*[] is optional";
+    private static final String DEASSIGN_SEARCH_TEXT = "Deassign date";
+    private static final String DEASSIGN_DEMO_INPUT = "deassign id/3 dsi/1";
+    private static final String DEASSIGN_DEMO_OUTPUT = "3 's dateslot/homevisit has been deassigned.";
+    private static final String DEASSIGN_USAGE_HELP = "Deassign a specific patient’s date slot from a nurse.\n"
+            + "deassign id/ID [dsi/DATE_AND_SLOT_INDEX]\n"
+            + "*[] is optional";
+    private static final String UNMARK_USAGE_HELP = "Unmarks the patient with the specified ‘ID’ as having been failed"
+            + " visited.\n"
+            + "unmark id/PATIENT_ID dsi/DATE_AND_SLOT_INDEX";
+    private static final String UNMARK_SEARCH_TEXT = "Unmarks a target";
+    private static final String UNMARK_DEMO_INPUT = "unmark id/7 dsi/1";
+    private static final String UNMARK_DEMO_OUTPUT = "Unmarked Patient as fail to visit: Category: P; Uid: 7;"
+            + " Name: Irfan Ibrahim; Phone: 92492021; Email: irfan@example.com; Gender: M; "
+            + "Address: Blk 47 Tampines Street 20, #17-35;; Tags: [classmates] "
+            + "Home Visits Date and Time: [ ] [FV] 24/09/2022 10:00,[ ] [V] 10/10/2022 10:00,[ ] [ ] 13/01/2023 14:00;";
+    private static final String UNDO_UNMARK_SEARCH_TEXT = "Undo Unmark";
+    private static final String UNDO_UNMARK_DEMO_INPUT = "undounmark id/7 dsi/1";
+    private static final String UNDO_UNMARK_DEMO_OUTPUT = "Undo Unmarked Patient as success visit: Category: P; Uid: 7;"
+            + " Name: Irfan Ibrahim; Phone: 92492021; Email: irfan@example.com; Gender: M; "
+            + "Address: Blk 47 Tampines Street 20, #17-35;; Tags: [classmates] "
+            + "Home Visits Date and Time: [ ] [V] 24/09/2022 10:00,[ ] [V] 10/10/2022 10:00,[ ] [ ] 13/01/2023 14:00;";
+    private static final String UNDO_UNMARK_USAGE_HELP = "Undo Unmarks a specific patient’s specific dateslot in the "
+            + "records system as having been visited.\n"
+            + "undounmark id/ID dsi/DATE_SLOT_INDEX";
+    private static final String CHECK_SIMILAR_SEARCH_TEXT = "Check Similar";
+    private static final String CHECK_SIMILAR_DEMO_INPUT = "checkSimilar";
+    private static final String CHECK_SIMILAR_DEMO_OUTPUT = "*List of similar people*";
+    private static final String CHECK_SIMILAR_USAGE_HELP = "checkSimilar checks Name, Category, Phone number, Email,"
+            +" Gender, Tags, Address and returns both person if they match 5 of these.";
+    private static final String UPDATE_CONTACT_SEARCH_TEXT = "Update Contact";
+    private static final String UPDATE_CONTACT_DEMO_INPUT = "updatecontact id/3 c/K n/John Doe p/81234567 "
+            + "e/johndoe@example.com";
+    private static final String UPDATE_CONTACT_DEMO_OUTPUT = "Added contact details to patient with UID: 3, "
+            + "Physician Name: John Doe, Phone: 81234567, Email: johndoe@example.com, Category: K";
+    private static final String UPDATE_CONTACT_USAGE_HELP = "Updates a patient’s contact information for next-of-kin "
+            + "or attending physician.\n"
+            + "Format: updatecontact id/PATIENT_ID c/CATEGORY n/CONTACT_NAME p/CONTACT_PHONE e/CONTACT_EMAIL";
     private final List<String> commandList = Arrays.asList(PATIENT_SEARCH_TEXT, NURSE_SEARCH_TEXT, CLEAR_SEARCH_TEXT,
             DELETE_SEARCH_TEXT, EDIT_NAME_SEARCH_TEXT, EDIT_GENDER_SEARCH_TEXT, EDIT_PHONE_SEARCH_TEXT,
             EDIT_EMAIL_SEARCH_TEXT, EDIT_TAG_SEARCH_TEXT, EDIT_MIX_SEARCH_TEXT, EXIT_SEARCH_TEXT,
             FIND_SEARCH_TEXT, HELP_SEARCH_TEXT, LIST_NTH_SEARCH_TEXT, LIST_ADDRESS_SEARCH_TEXT,
-            LIST_CATEGORY_SEARCH_TEXT, LIST_GENDER_SEARCH_TEXT, LIST_TAG_SEARCH_TEXT, LIST_MIX_SEARCH_TEXT);
+            LIST_CATEGORY_SEARCH_TEXT, LIST_GENDER_SEARCH_TEXT, LIST_TAG_SEARCH_TEXT, LIST_MIX_SEARCH_TEXT,
+            LIST_VISIT_STATUS_SEARCH_TEXT, LIST_ASSIGN_SEARCH_TEXT, ASSIGN_SEARCH_TEXT, DEASSIGN_SEARCH_TEXT,
+            UNMARK_SEARCH_TEXT, CHECK_SIMILAR_SEARCH_TEXT, UPDATE_CONTACT_SEARCH_TEXT);
     private final HashMap<String, String[]> dictionary = new HashMap<String, String[]>();
     private final HashMap<String, String> dictionaryForUsageHelp = new HashMap<String, String>();
 
@@ -222,7 +275,17 @@ public class HelpWindow extends UiPart<Stage> {
         dictionary.put(LIST_CATEGORY_SEARCH_TEXT, new String[] { LIST_CATEGORY_DEMO_INPUT, LIST_CATEGORY_DEMO_OUTPUT });
         dictionary.put(LIST_GENDER_SEARCH_TEXT, new String[] { LIST_GENDER_DEMO_INPUT, LIST_GENDER_DEMO_OUTPUT });
         dictionary.put(LIST_TAG_SEARCH_TEXT, new String[] { LIST_TAG_DEMO_INPUT, LIST_TAG_DEMO_OUTPUT });
+        dictionary.put(LIST_ASSIGN_SEARCH_TEXT, new String[] { LIST_ASSIGN_DEMO_INPUT, LIST_ASSIGN_DEMO_OUTPUT });
+        dictionary.put(LIST_VISIT_STATUS_SEARCH_TEXT,
+                new String[] { LIST_VISIT_STATUS_DEMO_INPUT, LIST_VISIT_STATUS_DEMO_OUTPUT });
         dictionary.put(LIST_MIX_SEARCH_TEXT, new String[] { LIST_MIX_DEMO_INPUT, LIST_MIX_DEMO_OUTPUT });
+        dictionary.put(ASSIGN_SEARCH_TEXT, new String[] { ASSIGN_DEMO_INPUT, ASSIGN_DEMO_OUTPUT });
+        dictionary.put(DEASSIGN_SEARCH_TEXT, new String[] { DEASSIGN_DEMO_INPUT, DEASSIGN_DEMO_OUTPUT });
+        dictionary.put(UNMARK_SEARCH_TEXT, new String[] { UNMARK_DEMO_INPUT, UNMARK_DEMO_OUTPUT });
+        dictionary.put(UNDO_UNMARK_SEARCH_TEXT, new String[] { UNDO_UNMARK_DEMO_INPUT, UNDO_UNMARK_DEMO_OUTPUT });
+        dictionary.put(CHECK_SIMILAR_SEARCH_TEXT, new String[] { CHECK_SIMILAR_DEMO_INPUT, CHECK_SIMILAR_DEMO_OUTPUT });
+        dictionary.put(UPDATE_CONTACT_SEARCH_TEXT,
+                new String[] { UPDATE_CONTACT_DEMO_INPUT, UPDATE_CONTACT_DEMO_OUTPUT });
     }
 
     /**
@@ -249,6 +312,14 @@ public class HelpWindow extends UiPart<Stage> {
         dictionaryForUsageHelp.put(LIST_GENDER_SEARCH_TEXT, LIST_USAGE_HELP);
         dictionaryForUsageHelp.put(LIST_TAG_SEARCH_TEXT, LIST_USAGE_HELP);
         dictionaryForUsageHelp.put(LIST_MIX_SEARCH_TEXT, LIST_USAGE_HELP);
+        dictionaryForUsageHelp.put(LIST_VISIT_STATUS_SEARCH_TEXT, UPCOMING_FEATURE);
+        dictionaryForUsageHelp.put(LIST_ASSIGN_SEARCH_TEXT, UPCOMING_FEATURE);
+        dictionaryForUsageHelp.put(ASSIGN_SEARCH_TEXT, ASSIGN_USAGE_HELP);
+        dictionaryForUsageHelp.put(DEASSIGN_SEARCH_TEXT, DEASSIGN_USAGE_HELP);
+        dictionaryForUsageHelp.put(UNMARK_SEARCH_TEXT, UNMARK_USAGE_HELP);
+        dictionaryForUsageHelp.put(UNDO_UNMARK_SEARCH_TEXT, UNDO_UNMARK_USAGE_HELP);
+        dictionaryForUsageHelp.put(CHECK_SIMILAR_SEARCH_TEXT, CHECK_SIMILAR_USAGE_HELP);
+        dictionaryForUsageHelp.put(UPDATE_CONTACT_SEARCH_TEXT, UPDATE_CONTACT_USAGE_HELP);
     }
 
     /**
