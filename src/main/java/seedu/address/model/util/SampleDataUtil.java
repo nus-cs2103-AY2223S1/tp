@@ -20,6 +20,11 @@ import seedu.address.model.task.Task;
  */
 public class SampleDataUtil {
 
+    // Hard coded for sample purposes. Checks greater than or equal to account for additional samples.
+    private static final int MAX_PERSON_ONE_INDEX = 6;
+    private static final int MAX_GROUP_ONE_INDEX = 4;
+    private static final int MAX_TASK_ONE_INDEX = 2;
+
     /**
      * Creates {@code Person} data samples for sample use.
      *
@@ -68,7 +73,7 @@ public class SampleDataUtil {
         p6.setParent(p1);
 
         return new Person[] {
-                p1, p2, p3, p4, p5, p6
+            p1, p2, p3, p4, p5, p6
         };
     }
 
@@ -99,7 +104,7 @@ public class SampleDataUtil {
         g4.setParent(g3);
 
         return new Group[] {
-                g1, g2, g3, g4
+            g1, g2, g3, g4
         };
     }
 
@@ -119,7 +124,7 @@ public class SampleDataUtil {
         t2.addAttribute(new Address("Maryland Rd 59, #01-02"));
 
         return new Task[] {
-                t1, t2
+            t1, t2
         };
     }
 
@@ -169,12 +174,8 @@ public class SampleDataUtil {
      */
     private static void addParenting(Person[] persons, Group[] groups, Task[] tasks) {
 
-        // Hard coded for sample purposes. Checks greater than or equal to account for additional samples.
-        final int MAX_PERSON_ONE_INDEX = 6;
-        final int MAX_GROUP_ONE_INDEX = 4;
-        final int MAX_TASK_ONE_INDEX = 2;
         assert persons.length >= MAX_PERSON_ONE_INDEX && groups.length >= MAX_GROUP_ONE_INDEX
-            && tasks.length >= MAX_TASK_ONE_INDEX;
+                && tasks.length >= MAX_TASK_ONE_INDEX;
 
         persons[5].setParent(groups[1]);
         persons[2].setParent(groups[3]);
