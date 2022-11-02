@@ -115,19 +115,7 @@ public class Class {
      * Returns a formatted date and time for avail command.
      */
     public String toAvailCommandString() {
-        if (date == null) {
-            return "";
-        }
-        return date + " " + this.toAvailCommandTimeString(startTime) + "-" + this.toAvailCommandTimeString(endTime);
-    }
-
-    /**
-     * Returns a formatted time for avail command.
-     * Note {@code time} should never be null.
-     */
-    private String toAvailCommandTimeString(LocalTime time) {
-        assert time != null;
-        return time.toString().replace(":", "");
+        return this.classDateTime;
     }
 
     /**
