@@ -2,70 +2,158 @@
 layout: page
 title: User Guide
 ---
+## About OmniHealth
 
-OmniHealth is a **desktop app for private clinic practitioners to quickly store, edit and search for patients and their records**. It is optimised for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+OmniHealth is a **Patient Management System** tailored to private clinicians to manage patients' details, records and upcoming appointments.
+As a private clinician, you can manage and monitor your patient database all in one location. 
+Utilise OmniHealth's **sorting and filtering system** to help you easily manage and find your patients' details and records of past visits.
+Also, OmniHealth's **appointment tracker** allows you to tag upcoming appointments for each patient.
 
-If you can type fast, OmniHealth can get your patient management tasks done faster than traditional GUI apps! 💊✨
-* Table of Contents
-{:toc}
+Get rid of your cabinets of patient files today, and leverage upon OmniHealth's **Patient Management System** 
+to help you organise your patient database more efficiently! Just a few strokes on your keyboard,
+you'll be able to interact with OmniHealth and enter a world of effective patient management! 💊✨
+
+This User Guide aims to help your business integrate smoothly with OmniHealth, guiding you along with in-depth documentation.
+It shows you how to start using OmniHealth, essential OmniHealth features, Frequently Asked Questions (FAQ) and a neat command summary
+for easy reference. So, let's [get started](#installation)!
+
+## Table of Contents
+
+- [Installation](#installation)
+- [How to Use OmniHealth](#how-to-use-omnihealth)
+  - [Layout](#layout)
+  - [Navigation](#navigation)
+    - [Patient/Record List](#patient-list)
+    - [Filtered/Unfiltered List](#filteredunfiltered-list)
+  - [Command Format](#command-format)
+  - [Key Definitions](#key-definitions)
+- [Features](#features)
+  - [Patient Commands](#patient-commands)
+    - [Listing all patients](#listing-all-patients-list): `list`
+    - [Adding a patient](#adding-a-patient-add): `add`
+    - [Deleting a patient](#deleting-a-patient-delete): `delete`
+    - [Editing a patient](#editing-a-patient-edit): `edit`
+    - [Finding patients by name](#finding-patients-by-name-find): `find`
+    - [Clearing all patient entries](#clearing-all-patient-entries--clear): `clear`
+  - [Appointment Commands](#appointment-commands)
+    - [Adding an appointment](#adding-an-appointment--appt): `appt`
+    - [Clearing an appointment](#clearing-an-appointment-apptcl): `apptcl`
+  - [Record Commands](#record-commands)
+    - [Listing all records of a patient](#listing-all-records-of-a-patient-rlist): `rlist`
+    - [Adding a record](#adding-a-record-radd): `radd`
+    - [Deleting a record](#deleting-a-record-rdelete): `rdelete`
+    - [Editing a record](#editing-a-record-redit): `redit`
+    - [Finding records by keyword](#finding-records-by-keyword-rfind): `rfind`
+    - [Clearing all patient records](#clearing-all-patient-records--rclear): `rclear`
+  - [General Commands](#general-commands)
+    - [Viewing help](#viewing-help-help): `help`
+    - [Displaying the full list](#displaying-the-full-list-showall): `showall`
+    - [Exiting the program](#exiting-the-program-exit): `exit`
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-## Quick start
+## Installation
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `OmniHealth.jar` from [here](https://github.com/AY2223S1-CS2103T-T14-3/tp/releases).
+2. Download the latest `OmniHealth.jar` from [our GitHub page](https://github.com/AY2223S1-CS2103T-T14-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for OmniHealth.
+3. Copy the file to an empty folder you want to use as the _home folder_ for OmniHealth.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-![Ui](images/Ui.png)
+4. Double-click the file to start the app.
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+5. Congratulations, you now have OmniHealth installed!
 
-   * **`list`** : Lists all patients.
-
-   * **`add`**`n/John Doe b/14-11-2000 p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient named `John Doe` with the specified information to OmniHealth.
-
-   * **`delete`**`3` : Deletes the 3rd patient shown in the current list.
-
-   * **`clear`** : Deletes all patients.
-
-   * **`rlist 1`** : Lists all the records of the 1st patient shown in the current list.
-
-   * **`exit`** : Exits the app.
-
-7. Refer to the [Features](#features) below for details of each command.
+6. Head over to the next section to learn [how to use OmniHealth](#how-to-use-omnihealth).
 
 --------------------------------------------------------------------------------------------------------------------
-## Features
+## How to Use OmniHealth
+This section covers all you need to know to start using OmniHealth. 
+We will go through the essentials to better understand OmniHealth's [layout](#layout), [navigation](#navigation) and [command format](#command-format).
 
+### Layout
+When you launch OmniHealth, you will see OmniHealth's Graphical User Interface (GUI) on your screen. 
+Don't be overwhelmed, here's a rundown of the different sections of OmniHealth:
+
+**OmniHealth's GUI:**
+
+![ui-annotated](images/UiAnnotated.png){: .shadow}
+
+### Navigation
+Managing your patient database is made easy with OmniHealth and navigating it is easier!
+This section covers the 2 viewing modes: **Patient list view** and **record list view** as well as how to **exit a search**.
+
+#### Patient/Record List
+Navigating in between patients and their records is done easily with 2 commands:
+[`rlist`](#listing-all-records-of-a-patient-rlist) and [`list`](#listing-all-patients-list)
+
+**Patient List View (Default):**
+
+![ui-patient-list](images/UiPatients.png){: .shadow}
+
+Navigating into each patient's records is done through the [`rlist`](#listing-all-records-of-a-patient-rlist) command.
+
+Example: `rlist 1` will enter the **record list view** of `Alex Yeoh`
+
+**Record List View:**
+
+![ui-record-list](images/UiRecords.png){: .shadow}
+
+To return to the patient list view, simply type [`list`](#listing-all-patients-list).
+
+
+#### Filtered/Unfiltered List
+OmniHealth's sorting and filtering system allows you to search for specific patients and records in each respective list views.
+Navigating in between the filtered and unfiltered view is done easily with 1 command: [`showall`](#displaying-the-full-list-showall)
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: [`showall`](#displaying-the-full-list-showall) command is applicable to both patient list view and record list view**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+</div>
+<div markdown="block" class="alert alert-info">
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/DustAllergy` or as `n/John Doe`.
+**:information_source: More information:**<br>
+* To find patients by name: [`find`](#finding-patients-by-name-find)
+* To find records by keyword: [`keyword`](#finding-records-by-keyword-rfind)
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/GlutenAllergy`, `t/DustAllergy t/PollenAllergy` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
 
-## General Commands
-### Viewing help : `help`
+### Command Format
+Before we introduce more of OmniHealth's commands throughout this User Guide, let's first
+go through the general command format.
+
+Here is an example command [`radd`](#adding-a-record-radd):
+
+![command-format](images/CommandFormat.png){: .shadow}
+
+1. **Command Word**: Determines what action you want OmniHealth to execute.
+2. **User Input Fields**: Parameters which you input **valid data** with.
+3. **Flags**: Allows OmniHealth to know which user field you wish to input.
+
+Here are some general guidelines for you to better understand the command format for all our [features](#features).
+
+| User Input Rules    | Description                                                                                   | Example                                                                     |
+|---------------------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| `UPPER_CASE`        | Input fields to be supplied by you.                                                           | `n/NAME` requires an input.                                                 |
+| `[SQUARE_BRACKETS]` | Optional input fields that can be omitted.                                                    | `[t/TAG]` can be left blank.                                                |
+| `...`               | Input fields that can be used multiple times including zero times.                            | `[t/TAG]...` can be `t/GlutenAllergy`, `t/DustAllergy t/PollenAllergy` etc. |
+| Any Order           | Input fields can be in any order.                                                             | `n/NAME p/PHONE_NUMBER` and `p/PHONE_NUMBER n/NAME` are acceptable.         |
+| Last Input          | If an input field is only expected once, only the last of multiple inputs will be considered. | `p/12341234 p/56785678` will be interpreted as `p/56785678`.                |                  
+| Extraneous Fields   | For commands that do not take in input fields, unnecessary input will be ignored.             | `help 123` will be interpreted as `help`.                                   |
+
+### Key Definitions
+#### Patient
+| Input Fields | Flag | Description |
+|--------------|------|-------------|
+
+#### Record
+| Input Fields | Flag | Description |
+|--------------|------|-------------|
+
+## Features
+### General Commands
+#### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -73,7 +161,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Displaying the full list : `showall`
+#### Displaying the full list: `showall`
 
 Clears search parameters of a find or rfind command to undo the search.
 
@@ -82,15 +170,15 @@ Clears search parameters of a find or rfind command to undo the search.
 
 Format: `showall`
 
-### Exiting the program : `exit`
+#### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-## Patient Commands
+### Patient Commands
 > Commands relating to the patient list, such as adding and deleting patients
-### Listing all patients: `list`
+#### Listing all patients: `list`
 
 Returns to the patient list from the record list screen.
 
@@ -98,7 +186,7 @@ Returns to the patient list from the record list screen.
 
 Format: `list`
 
-### Adding a patient: `add`
+#### Adding a patient: `add`
 
 Adds a patient to the patient record database.
 
@@ -123,7 +211,7 @@ Examples:
 * `add n/John Doe b/08-08-1988 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe b/16-06-1996 e/betsycrowe@example.com a/Ang Mo Kio Ave 5, block 13, #02-033 p/1234567 t/PollenAllergy`
 
-### Deleting a patient: `delete`
+#### Deleting a patient: `delete`
 
 Deletes the specified patient from the patient database.
 
@@ -138,7 +226,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the find command.
 
-### Editing a patient : `edit`
+#### Editing a patient: `edit`
 
 Edits an existing patient in the address book.
 
@@ -161,7 +249,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-### Locating patients by name: `find`
+#### Finding patients by name: `find`
 
 Finds patients whose names contain any of the given keywords.
 
@@ -179,7 +267,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
-### Clearing all entries : `clear`
+#### Clearing all patient entries: `clear`
 
 Clears all patients from Omnihealth.
 
@@ -187,9 +275,9 @@ Clears all patients from Omnihealth.
 
 Format: `clear`
 
-## Appointment Commands
+### Appointment Commands
 > Commands for adding and clearing appointments
-### Adding an appointment : `appt`
+#### Adding an appointment: `appt`
 
 Adds an appointment for a specified patient. This command is only valid in the patient list view.
 
@@ -213,7 +301,7 @@ Examples:
 * `appt 1 d/11-09-2024 1200` adds an appointment for the patient with index 1, with a date and time of 11/09/2024, 1200.
 * `appt 2 d/15-11-2025 1400` adds an appointment for the patient with index 2, with a date and time of 15/11/2024, 1400.
 
-### Clearing an appointment: `apptcl`
+#### Clearing an appointment: `apptcl`
 
 Clears the appointment for a specified patient. This command is only valid in the patient list view.
 
@@ -228,9 +316,9 @@ Format: `apptcl INDEX`
 Examples:
 * `apptcl 1` clears the appointment (if any) of the patient with index 1.
 
-## Record Commands
+### Record Commands
 > Commands relating to the record list of a patient, such as adding or deleting a record
-### Adding a record: `radd`
+#### Adding a record: `radd`
 
 Adds a new record to a given patient.
 
@@ -249,7 +337,7 @@ Examples:
 * `radd d/11-09-2001 1200 r/Patient tested negative for COVID-19 m/Paracetamol 500mg m/Dextromethorphan`
 * `radd d/28-02-2020 2030 r/Patient experienced vomiting`
 
-### Deleting a record: `rdelete`
+#### Deleting a record: `rdelete`
 
 Deletes the specified record from the currently viewed patient’s records.
 
@@ -262,7 +350,7 @@ Format: `rdelete RECORD_INDEX`
 Examples:
 * `rlist 1` then `rdelete 2` deletes the 2nd record from the 1st patient’s listed records.
 
-### Listing all record(s) for the specified patient : `rlist`
+#### Listing all records of a patient: `rlist`
 
 Shows a list of all records for the specified patient.
 
@@ -277,7 +365,7 @@ Examples:
 * `rlist 1` displays all records of the 1st patient in the displayed patient list.
 * `find Betsy` followed by `rlist 1` displays all records of the 1st patient in the results of the find command.
 
-### Editing a record : `redit`
+#### Editing a record: `redit`
 
 Edits an existing record in the record list.
 
@@ -301,7 +389,7 @@ Examples:
 *  `redit 1 d/12-12-2012 1200` Edits the date of the 1st record to be `12-12-2012 1200`.
 *  `redit 2 r/Fever m/` Edits the data of the 2nd record to be `Fever` and clears all existing medication.
 
-### Locating records by keyword: `rfind`
+#### Finding records by keyword: `rfind`
 
 > Finds all records that match the search constraint provided
 
@@ -323,7 +411,7 @@ Examples:
 * `rfind r/Covid-19` returns a record with `Covid-19` and `Contracted covid-19` stored in its record data field.
 * `rfind r/cold d/10-2022` returns a record that matches both `cold` in the record data field, and has a date within Oct 2022.
 
-### Clearing all patient records : `rclear`
+#### Clearing all patient records : `rclear`
 
 Clears all records of a specific patient from Omnihealth.
 
@@ -331,13 +419,13 @@ Clears all records of a specific patient from Omnihealth.
 
 Format: `rclear`
 
-## Saving & Loading
+### Saving & Loading
 
-### Saving the data
+#### Saving the data
 
 Patient's data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 
 OmniHealth's data are saved as a JSON file `[JAR file location]/data/patientlist.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -345,7 +433,7 @@ OmniHealth's data are saved as a JSON file `[JAR file location]/data/patientlist
 If your changes to the data file makes its format invalid, OmniHealth will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+#### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
