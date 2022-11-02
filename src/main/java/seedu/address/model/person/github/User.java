@@ -137,7 +137,7 @@ public class User {
 
     @Override
     public String toString() {
-        return BASE_GITHUB_URL + username;
+        return username;
     }
 
     @Override

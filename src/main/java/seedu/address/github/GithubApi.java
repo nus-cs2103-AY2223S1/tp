@@ -15,7 +15,6 @@ import seedu.address.model.person.github.User;
  * Class representing a singleton GitHub API wrapper
  */
 public class GithubApi {
-    private static final String BASE_CHECK_USER_URL = "https://api.github.com/users/";
     private final UnirestInstance unirest;
 
     public GithubApi() {
@@ -54,15 +53,9 @@ public class GithubApi {
 
     public User getUser(String username) throws UserInvalidException, NetworkConnectionException {
         requireAllNonNull(username);
-        checkUserExists(username, unirest);
         UserInfoWrapper userInfoWrapper = new UserInfoWrapper(username, unirest);
         UserReposWrapper userReposWrapper = new UserReposWrapper(username, unirest);
 
         return new User(username, userInfoWrapper, userReposWrapper);
-    }
-
-    private void checkUserExists(String username, UnirestInstance unirest)
-            throws UserInvalidException, NetworkConnectionException {
-        unirest.get(BASE_CHECK_USER_URL + username).asEmpty();
     }
 }

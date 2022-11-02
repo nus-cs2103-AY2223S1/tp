@@ -89,8 +89,6 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             contacts.put(ContactType.EMAIL, ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        } else if (githubUser != null && githubUser.getEmail().isPresent()) {
-            contacts.put(ContactType.EMAIL, githubUser.getEmail().get());
         }
 
         if (argMultimap.getValue(PREFIX_SLACK).isPresent()) {
@@ -103,8 +101,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = null;
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        } else if (githubUser != null && githubUser.getAddress().isPresent()) {
-            address = githubUser.getAddress().get();
         }
 
         Timezone timezone = null;
