@@ -304,6 +304,20 @@ Example:
 
 ## Todo Management Features
 
+A todo is a task that needs completing. A todo consists of 
+1. a description
+2. a date for the deadline of the task
+3. the priority of the task 
+4. (optional) tags to help you categorise your todos
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+* Duplicate todos are not allowed (to help you avoid adding a todo that you forgot you already added). If you need to have todos with the same description, you are still able to do so, as long as the todos have different tags, dates, or priorities.
+* Priority of a todo can strictly only be `low`, `medium`, or `high`. `Coming soon in v1.5`, we will add smarter priorities (to accept other variations such as `Low`, `Medium`, `High`, `L`, `M`, `H`).
+
+</div>
+
 ### Adding a todo: `todo add`
 
 Adds a todo to your SoConnect.
@@ -311,7 +325,6 @@ Adds a todo to your SoConnect.
 Format: `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​`
 
 * `DATE` should be of the format dd-MM-yyyy (e.g. 24-03-2022).
-* `PRIORITY` can only be `low`, `medium`, `high`.
 * The todo list will always be sorted by date from earliest to latest (for todos with the same date, they will be sorted in decreasing priority order).
 
 Examples:
