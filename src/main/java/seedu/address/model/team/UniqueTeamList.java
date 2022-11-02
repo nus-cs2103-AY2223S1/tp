@@ -109,7 +109,7 @@ public class UniqueTeamList implements Iterable<Team> {
     }
 
     /**
-     * Replaces the contents of this list with {@code teams}.
+     * Replaces {@code target} with {@code editedPerson} in all teams if {@code target} is a member.
      */
     public void setPersonIfExists(Person target, Person editedPerson) {
         requireNonNull(target);
