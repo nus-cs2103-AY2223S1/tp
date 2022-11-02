@@ -221,7 +221,7 @@ instead of the usual CLI interface.
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Adding a BUYER: `add-b`
+#### Adding a buyer: `add-b`
 
 Adds a buyer to the contacts. A buyer is a person who would like to buy pet(s) and places one or more orders describing what kind
 of pet(s) he/she would like.
@@ -277,7 +277,7 @@ Alternatively, check out [Add Command using the popup window](#adding-a-contact-
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Adding a DELIVERER: `add-d`
+#### Adding a deliverer: `add-d`
 
 Adds a deliverer to your contact list. A deliverer delivers pets from suppliers to buyers.
 
@@ -290,7 +290,7 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Adding a SUPPLIER: `add-s`
+#### Adding a supplier: `add-s`
 
 Adds a supplier to address book. A supplier feeds, trains, and takes care of pets for sale.
 
@@ -339,7 +339,7 @@ Alternatively, check out [Add Command using the popup window](#adding-a-contact-
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Adding an ORDER to a BUYER: `add-o`
+#### Adding an order to a buyer: `add-o`
 
 Adds an order to a buyer contact. This is especially useful when an existing buyer has a new order, or when the buyer confirms the order some time after being added to the contacts.
 
@@ -352,7 +352,7 @@ You are recommended to **list the buyers first** using the [List Command](#listi
 
 :information_source: **What is a request in an order?** The prefix `o_r/` specifies a request, which contains the **characteristics of a pet** that the buyer wants the pet to have,
 including age, color, color pattern and species.
-Other information in the order that is **not directly related to a pet**, such as the order status and the prince range the buyer is willing to accept, **does not fall under request**.
+Other information in the order that is **not directly related to a pet**, such as the order status and the price range the buyer is willing to accept, **does not fall under request**.
 
 </div>
 
@@ -378,7 +378,7 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Adding a PET to a SUPPLIER : `add-p`
+#### Adding a pet to a supplier: `add-p`
 
 Adds a pet to a supplier contact. This is especially useful when an existing supplier has a new pet for sale or when the supplier tells you what are the pets he/she owns some time after being added to the contacts.
 
@@ -400,7 +400,7 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Adding a contact with a POPUP WINDOW : `add`
+#### Adding a contact with a popup window: `add`
 
 Adds a contact with a pop-up window that has prompt texts for what to input without the need to enter any
 prefixes. This reduces the need to memorise prefixes.
@@ -438,7 +438,7 @@ This ensures that you can use all the available shortcuts.
 
 <div markdown="span" class="alert alert-primary">
 
-**:bulb: Tip:** If a compulsory text field is ***empty*** or a text field **starts with whitespace** during saving, the cursor will be brought to that text field,
+**:bulb: Tip:** If a compulsory text field is ***empty*** or a text field ***starts with whitespace*** during saving, the cursor will be brought to that text field,
 which will be highlighted in red.
 
 </div>
