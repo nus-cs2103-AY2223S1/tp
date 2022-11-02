@@ -38,7 +38,7 @@ public class ModuleDetailsContainsKeywordsPredicate implements Predicate<Module>
             } else if (i == 0) {
                 result = result + assignmentDetailsSplit[i].substring(2, assignmentDetailsSplit[i].length() - 1) + " ";
                 //for last word, need trim 1 bracket from front, 2 from rear
-            } else if(i == numAssignmentDetails - 1) {
+            } else if (i == numAssignmentDetails - 1) {
                 result = result + assignmentDetailsSplit[i].substring(1, assignmentDetailsSplit[i].length() - 2);
                 //if middle, just trim 1 bracket from both front and rear
             } else {

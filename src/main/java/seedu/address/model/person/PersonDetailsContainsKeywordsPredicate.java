@@ -37,7 +37,7 @@ public class PersonDetailsContainsKeywordsPredicate implements Predicate<Person>
             } else if (i == 0) {
                 result = result + personTagsSplit[i].substring(2, personTagsSplit[i].length() - 1) + " ";
                 //for last word, need trim 1 bracket from front, 2 from rear
-            } else if(i == numTags - 1) {
+            } else if (i == numTags - 1) {
                 result = result + personTagsSplit[i].substring(1, personTagsSplit[i].length() - 2);
                 //if middle, just trim 1 bracket from both front and rear
             } else {
