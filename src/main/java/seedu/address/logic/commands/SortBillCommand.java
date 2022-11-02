@@ -75,7 +75,7 @@ public class SortBillCommand extends Command {
     public class AmountComparator implements Comparator<Bill> {
         @Override
         public int compare(Bill first, Bill second) {
-            return first.getAmount().toString().compareTo(second.getAmount().toString());
+            return first.getAmount().toString().compareToIgnoreCase(second.getAmount().toString());
         }
     }
 
