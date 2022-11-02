@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.sortcomparators.Order.OrderType.DESC;
 
 import java.util.Comparator;
 
@@ -19,18 +20,17 @@ public class SortBuyersCommand extends Command {
 
     public static final String COMMAND_WORD = "sortbuyers";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts buyers by name, budget range "
-            + "priority, or entry time"
-            + "in a specified order. You can only sort by one criteria at a time."
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Sorts buyers by name, budget, priority, or entry time in ascending or descending order."
+            + " You can only sort by one criteria at a time.\n"
             + "Parameters: "
-            + "[" + PREFIX_NAME + " ASC/DESC] "
-            + "[" + PREFIX_PRICE_RANGE + " ASC/DESC]"
-            + "[" + PREFIX_PRIORITY + " ASC/DESC]"
-            + "[" + PREFIX_TIME + " ASC/DESC]\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + " ASC";
+            + "[" + PREFIX_NAME + " NAME <ASC/DESC>] "
+            + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE <ASC/DESC>]"
+            + "[" + PREFIX_PRIORITY + " PRIORITY <ASC/DESC>]"
+            + "[" + PREFIX_TIME + " TIME <ASC/DESC>]\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " " + DESC;
 
-    public static final String MESSAGE_SUCCESS = "Buyer list: %s";
+    public static final String MESSAGE_SUCCESS = "Sorted buyers by: %s";
 
     private final Comparator<Buyer> comparator;
 

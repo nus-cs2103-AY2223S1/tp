@@ -32,6 +32,6 @@ public class PriorityComparator implements Comparator<Priority> {
 
     @Override
     public String toString() {
-        return "Sorted by priority in " + order;
+        return "Priority, " + order;
     }
 }

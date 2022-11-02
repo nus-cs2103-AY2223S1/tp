@@ -31,6 +31,6 @@ public class NameComparator implements Comparator<Name> {
 
     @Override
     public String toString() {
-        return "Sorted by name in " + order;
+        return "Name, " + order;
     }
 }

@@ -32,6 +32,6 @@ public class PropertyNameComparator implements Comparator<PropertyName> {
 
     @Override
     public String toString() {
-        return "Sorted by property name in " + order;
+        return "Property Name, " + order;
     }
 }

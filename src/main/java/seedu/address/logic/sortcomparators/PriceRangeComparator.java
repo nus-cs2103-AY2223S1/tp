@@ -1,6 +1,7 @@
 package seedu.address.logic.sortcomparators;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.sortcomparators.Order.OrderType.ASC;
 
 import java.util.Comparator;
 
@@ -33,9 +34,8 @@ public class PriceRangeComparator implements Comparator<PriceRange> {
 
     @Override
     public String toString() {
-        return "Sorted by pricerange "
-                + (order.equals(new Order("ASC")) ? "lowerbound" : "upperbound")
-                + " in "
-                + order;
+        return "Budget, " + order
+                + String.format(" (based on %s of price range)",
+                    order.equals(new Order("asc")) ? "start" : "end");
     }
 }

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.sortcomparators.Order.OrderType.ASC;
 
 import java.util.Comparator;
 
@@ -17,16 +18,16 @@ import seedu.address.model.property.Property;
 public class SortPropertiesCommand extends Command {
     public static final String COMMAND_WORD = "sortprops";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts properties by name, price "
-            + "or entry time in a specified order. You can only sort by one criteria at a time."
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Sorts properties by name, price or entry time in ascending or descending order."
+            + " You can only sort by one criteria at a time.\n"
             + "Parameters: "
-            + "[" + PREFIX_NAME + " ASC/DESC] "
-            + "[" + PREFIX_PRICE + " ASC/DESC]"
-            + "[" + PREFIX_TIME + " ASC/DESC]\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + " ASC";
+            + "[" + PREFIX_NAME + " NAME <ASC/DESC>] "
+            + "[" + PREFIX_PRICE + " PRICE <ASC/DESC>]"
+            + "[" + PREFIX_TIME + " TIME <ASC/DESC>]\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " " + ASC;
 
-    public static final String MESSAGE_SUCCESS = "Property list: %s";
+    public static final String MESSAGE_SUCCESS = "Sorted properties by: %s";
 
     private final Comparator<Property> comparator;
 

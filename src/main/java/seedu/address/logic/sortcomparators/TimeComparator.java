@@ -30,6 +30,6 @@ public class TimeComparator implements Comparator<LocalDateTime> {
 
     @Override
     public String toString() {
-        return "Sorted by entry time in " + order;
+        return "Entry Time, " + order;
     }
 }
