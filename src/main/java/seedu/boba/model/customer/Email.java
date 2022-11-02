@@ -47,7 +47,7 @@ public class Email {
         value = email;
 
         // @@author tanwencong-reused
-        // Reused from https://stackoverflow.com/questions/22872484/javafx-how-can-i-display-emoji#:~:text=Follow%20these%20steps%20to%20add%20Emoji%20as%20a%20text%3A
+        // Reused from https://stackoverflow.com/questions/22872484/javafx-how-can-i-display-emoji
         // with minor modifications
         // Generate email emoji
         byte[] emojiByteCode = new byte[] {(byte) 0xF0, (byte) 0x9F, (byte) 0x93, (byte) 0xA7};
