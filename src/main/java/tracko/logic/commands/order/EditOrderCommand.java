@@ -59,8 +59,8 @@ public class EditOrderCommand extends Command {
     public static final String MESSAGE_ORDER_ALREADY_MARKED =
             "An order marked as paid and/or delivered cannot be edited!";
 
-    public static final String QUANTITY_NOT_A_VALID_INTEGER = "QUANTITY needs to be a positive integer "
-            + "value smaller than 2 billion.";
+    public static final String MESSAGE_NO_CHANGE_IN_QUANTITY =
+            "New item quantity is the same as the old item quantity. No edits required.";
 
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;
@@ -264,6 +264,10 @@ public class EditOrderCommand extends Command {
                     orderedItems.set(i, updatedItem);
                     hasItemBeenUpdated = true;
                     break;
+                } else {
+                    // else case where edited quantity = original quantity, throw new exception to warn of
+                    // no quantity change
+                    throw new CommandException(MESSAGE_NO_CHANGE_IN_QUANTITY);
                 }
             }
 
