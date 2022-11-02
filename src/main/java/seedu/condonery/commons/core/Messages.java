@@ -13,7 +13,7 @@ public class Messages {
     public static final String MESSAGE_CLIENTS_LISTED_OVERVIEW = "%1$d clients listed!";
     public static final String MESSAGE_INVALID_STATUS =
             "Only AVAILABLE, PENDING, SOLD status is accepted (Case sensitive)";
-    public static final String MESSAGE_NUMBER_INVALID = "%1$d clients listed!";
+    public static final String MESSAGE_NUMBER_INVALID = "Invalid number! Please enter a valid positive integer value";
     public static final String MESSAGE_RANGE_INVALID =
             "Invalid range listed! Upper range must be higher than lower range";
     public static final String MESSAGE_NEGATIVE_NUMBER = "Only positive numbers are accepted!";

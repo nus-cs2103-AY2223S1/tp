@@ -2,6 +2,7 @@ package seedu.condonery.logic.parser.property;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.commons.core.Messages.MESSAGE_NEGATIVE_NUMBER;
+import static seedu.condonery.commons.core.Messages.MESSAGE_NUMBER_INVALID;
 import static seedu.condonery.commons.core.Messages.MESSAGE_RANGE_INVALID;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_LOWER;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_UPPER;
@@ -35,6 +36,13 @@ public class RangePropertyCommandParser implements Parser<Command> {
         if (!arePrefixesPresent(argMultimap, PREFIX_LOWER, PREFIX_UPPER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangePropertyCommand.MESSAGE_USAGE));
+        }
+
+        try {
+            ParserUtil.parseNumber(argMultimap.getValue(PREFIX_LOWER).get());
+            ParserUtil.parseNumber(argMultimap.getValue(PREFIX_UPPER).get());
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format(MESSAGE_NUMBER_INVALID, RangePropertyCommand.MESSAGE_USAGE));
         }
         Integer lower = ParserUtil.parseNumber(argMultimap.getValue(PREFIX_LOWER).get());
         Integer upper = ParserUtil.parseNumber(argMultimap.getValue(PREFIX_UPPER).get());
