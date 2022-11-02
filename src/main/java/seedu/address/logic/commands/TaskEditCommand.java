@@ -71,8 +71,8 @@ public class TaskEditCommand extends Command {
 
         model.editTask(teamIndex, taskIndex, newName, newDeadline);
         String deadlineString = newDeadline == null ? "" : newDeadline.toString();
-        String nameString = newName == null ? "" : newName.toString();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newName, deadlineString));
+        String nameString = newName == null ? lastShownTeamList.get(teamIndex.getZeroBased()).getTask(taskIndex.getZeroBased()).getName().toString() : newName.toString();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, nameString, deadlineString));
     }
 
     @Override
