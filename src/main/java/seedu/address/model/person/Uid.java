@@ -49,7 +49,7 @@ public class Uid implements Comparable<Uid> {
      * Constructor for Uid
      */
     public Uid() {
-        this.uid = NEXT_UID.incrementAndGet();
+        this.uid = NEXT_UID.getAndIncrement();
     }
 
     /**
