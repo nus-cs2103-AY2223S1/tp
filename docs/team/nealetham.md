@@ -22,7 +22,7 @@ Given below is a summary of my notable contributions to the project. You can fin
 * Miscellaneous contributions
   * Storage unit tests ([#201](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/201), [#276](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/276)).
   * Sample residents, venues & bookings ([#182](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/182)).
-  
+
 ### Documentation
 * User Guide
   * Ported from `AB3` to `RC4HDB` to meet our specifications, as well as crafting the introduction.
