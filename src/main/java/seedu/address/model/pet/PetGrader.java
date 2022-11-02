@@ -92,7 +92,6 @@ public class PetGrader {
         }
 
         double sum = ageScore + colorScore + colorPatternScore + speciesScore + priceScore;
-        System.out.println(pet.getName() + "'s score: " + sum);
         return sum;
     }
 
