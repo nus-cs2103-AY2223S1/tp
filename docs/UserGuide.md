@@ -571,7 +571,7 @@ Format:
 
 * The command words are `deleteappointment` or `da`.
 * The appointment to be deleted is identified by using the index in the displayed list.
-* Deleting an appointment deletes its related bills.
+* Deleting an appointment deletes its related bill.
 * If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
   shown with the correct command format.
 * If the index provided is negative or greater than the number of patients in the list, an error message will be shown
