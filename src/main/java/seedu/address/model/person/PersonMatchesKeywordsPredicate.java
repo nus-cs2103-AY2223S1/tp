@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -116,7 +115,7 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
             return findSimilarity(keywords, String.valueOf(
                     person.getAddress().get().value)) > 0.5
                     || containsIgnoreCase(
-                            person.getAddress().get().value,keywords
+                            person.getAddress().get().value, keywords
             );
         } else {
             return false;
