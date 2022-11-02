@@ -104,13 +104,17 @@ Shows a list of all persons in the application.
 Format: `listPersons [s/FIELD]`
 
 * Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one of the following values:
-  * `n` or `N` sort by name ignoring case differences
-  * `d` or `D` sort by date of birth
-  * `g` or `G` sort by gender
+  * `n` or `N` sort by name in ascending lexicographical order, ignoring case differences
+  * `d` or `D` sort by date of birth from oldest to youngest
+  * `g` or `G` sort by gender, females first followed by males
 
 * It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, no sorting is performed.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
 
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Lexicographical order is defined as the order in which letters and symbols are listed in the [American Standard Code for Information Interchange (ASCII)](https://en.wikipedia.org/wiki/ASCII).
+</div>
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The sorted result is permanent on the underlying contact list.<br><br>
@@ -258,12 +262,16 @@ Shows a list of all events in the application.
 Format: `listEvents [s/FIELD]`
 
 * Sorts the events by the specified field in **ascending** order. `FIELD` must take one of the following values:
-  * `e` or `E` sort by event title ignoring case differences
-  * `d` or `D` sort by date
+  * `e` or `E` sort by event title in ascending lexicographical order, ignoring case differences
+  * `d` or `D` sort by date from oldest to newest
 
 * It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, no sorting is performed.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
 
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Lexicographical order is defined as the order in which letters and symbols are listed in the [American Standard Code for Information Interchange (ASCII)](https://en.wikipedia.org/wiki/ASCII).
+</div>
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The sorted result is permanent on the underlying events list.<br><br>
