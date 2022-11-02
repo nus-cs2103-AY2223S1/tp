@@ -202,7 +202,7 @@ Adding a student record can be divided into 2 main steps: parsing the user input
 
 **Step 1: Parsing the command**
 
-The delete command is first parsed.
+The add student command is first parsed.
 
 1. `MainWindow` calls the `execute` method of `LogicManager` to execute the given user’s command.
 2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be an `addStudent` command and creates a new `AddStudentCommandParser` instance to parse the user’s command.
@@ -292,7 +292,31 @@ Cons:
 
 #### 4.2.3 Edit command
 
-*To be updated*
+**Description**
+
+The `EditCommand` updates the student record at a given index. Under the hood, a new `Student` object is created to replace the student to be edited.
+
+**Implementation**
+
+Editing a student record involves 2 main steps:
+
+**Step 1: Parsing the command**
+
+1. After the user inputs the `EditCommand`, the `StudentRecordParser` will identify the command and create a `EditCommandParser` instance in the `LogicManager`.
+
+2. The `EditCommandParser` parses the rest of the user's input and creates a new `EditCommand` object which will be executed by the `LogicManager`
+
+**Step 2: Executing the command**
+
+The `EditCommand` instance now communicates with the `ModelManager` to execute the command.
+
+1. The `createEditedStudent` method is called to create a new `editedStudent` that with the edited fields updated.
+
+2. The `editedStudent` replaces the  student to be edited with the `setStudent` method. 
+
+3. The `updateFilteredStudentList` method is called to show all student records.
+
+4. A new `Command Result` instance is created and returned to `LogicManager`
 
 #### 4.2.4 Find command
 
@@ -350,17 +374,17 @@ The `viewAll` command displays a list of all student records.
 
 The sequence diagram below illustrates the interaction between the `Logic` and `Model` components. 
 
-*Insert sequence diagram*
+<img src="images/ViewAllCommandSequenceDiagram.png" />
 
 Given below is an example usage scenario of how the ViewAll mechanism behaves at each step. 
 
-Step 1. The user executes `viewAll` command. 
+Step 1. The user inputs "viewAll". 
 
-Step 2. The `StudentRecordParser` will identify the command and create a `ViewAllCommand` object in the `LogicManager`
+Step 2. The `StudentRecordParser` will identify the command and create a `ViewAllCommand` object in the `LogicManager`.
 
-Step 3. `ViewAllCommand#execute` is called which updates the `FilteredStudentList` in `Model`
+Step 3. `ViewAllCommand#execute` is called which updates the `FilteredStudentList` in `Model`.
 
-Step 4. Classify updates and displays a list of all student records
+Step 4. Classify updates and displays a list of all student records.
 
 #### 4.2.6 ViewClass command
 
@@ -386,7 +410,7 @@ The user's input command is first parsed.
 2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a `ViewClassCommand` and creates a new `ViewClassCommandParser` instance to parse the user’s input.
 3. `ViewClassCommandParser` checks whether the user input is valid by parsing it into the `parseClass` method in `ParserUtil`.
 4. If the input is valid, a new `ClassPredicate` instance is created. 
-5. ViewClassCommandParser` then creates a new `ViewClassCommand` instance which will be executed by the `LogicManager`.
+5. `ViewClassCommandParser` then creates a new `ViewClassCommand` instance which will be executed by the `LogicManager`.
 
 **Step 2: Executing the command**
 
@@ -417,9 +441,9 @@ The `ToggleViewCommand` toggles the application to display or hide all students'
 
 The following activity diagram shows the events that occur when the user executes the `ToggleViewCommand`.
 
-*Insert activity diagram*
+![ToggleView Activity Diagram](images/ToggleViewCommandActivityDiagram.png)
 
-The `Model`has an association with `FilteredStudent` where `FilteredStudent` encapsulates the current toggle status and `FilteredStudentList`. Executing the command will change the toggle status. The `StudentListPanel` is dependent on the toggle status in `FilteredStudent` to display or hide the students' parent details properly in the `StudentCard`.
+The `Model`has an association with `FilteredStudent` where `FilteredStudent` encapsulates the current toggle status and `FilteredStudentList`. Executing the command will change the toggle status. The StudentListPanel is dependent on the toggle status in `FilteredStudent` to display or hide the students’ parent details properly in the `StudentCard`.
 
 The following sequence diagram shows the interaction between the `UI`, `Logic`, and `Model` components. 
 
@@ -427,13 +451,15 @@ The following sequence diagram shows the interaction between the `UI`, `Logic`, 
 
 Given below is an example usage scenario of how the ToggleView mechanism behaves at each step
 
-Step 1. The user enters the command `toggleView`
+Step 1. The user enters the command `toggleView`. 
 
-Step 2. The `StudentRecordParser` will identify the command and create a `ToggleViewCommand` object in the `LogicManager`
+Step 2. The `StudentRecordParser` will identify the command and create a `ToggleViewCommand` object in the `LogicManager`.
 
-Step 3. `ToggleViewCommand#execute` is called which changes the toggle status in `Model` 
+Step 3. `ToggleViewCommand#execute` is called which toggles `isConciseInfo` in `FilteredStudent`. 
 
-Step 4. The `MainWindow` handles the updating of UI by requesting `StudentListPanel` to rerender the `StudentCard` to display or hide the student's parent details
+Step 4. To rerender the update, `ToggleViewCommand` calls `updateFilteredStudentList` with the previously stored predicate. This triggers the listener in `StudentListPanel` to update the `StudentListViewCell`.
+
+Step 5. With the new `isConciseInfo` status, `StudentListViewCell` creates the new `StudentCard` that shows/hides parent details accordingly.  
 
 With the above sequence, the UI is successfully updated to display the relevant student details according to the toggle status. 
 
@@ -441,16 +467,15 @@ With the above sequence, the UI is successfully updated to display the relevant 
 
 - Option 1: Each `Student` has a `isShowingParentDetails` `boolean` attribute
   - Pros:
-    - The `StudentListPanel` will automatically update the `StudentCard` as it listens for changes in `FilteredStudentList`, thus reduces coupling (see Option 2 cons)   
+    - Does not introduce coupling between UI and Model.
   - Cons: 
-    - Each execution of the command edits and replaces all the students in the `FilteredStudentList` with new `Student` objects with the updated attribute which can be costly when there are many student objects 
-    - Needs a global variable to track the current toggle as new `Student` objects added need to know the current state of the toggle
-- Option 2 (current choice): The UI keeps track of the toggle
+    - Each execution of the command edits and replaces all the students in the `FilteredStudentList` with new `Student` objects with the updated attribute which can be costly when there are many student objects.
+- Option 2 (current choice): updates `FilteredStudentList` such that it triggers the listener in `StudentListPanel` to update the `StudentListViewCell`. 
   - Pros:
-    - No need to edit every student in the `FilteredStudentList`
-    - Able to retain the previously filtered list after toggling
+    - No need to edit every student in the `FilteredStudentList`.
+    - Attribute is associated with the list and not each student. Only need to maintain 1 attribute.
   - Cons: 
-    - Increase in coupling as `StudentListPanel` is dependent on `FilteredStudent` for toggling information
+    - Increase coupling between UI and Model.
 
 #### 4.2.8 ViewStats command
 
