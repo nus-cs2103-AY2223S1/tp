@@ -89,9 +89,6 @@ public class JsonAdaptedConsultation {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ConsultationDescription.class.getSimpleName()));
         }
-        if (!ConsultationDescription.isValidDescription(description)) {
-            throw new IllegalValueException(ConsultationName.MESSAGE_CONSTRAINTS);
-        }
 
         final ConsultationDescription modelDescription = new ConsultationDescription(description);
 

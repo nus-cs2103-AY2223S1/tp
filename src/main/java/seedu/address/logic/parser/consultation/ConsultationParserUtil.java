@@ -67,9 +67,6 @@ public class ConsultationParserUtil {
     public static ConsultationDescription parseConsultationDescription(String name) throws ParseException {
         Objects.requireNonNull(name);
         String trimmedName = name.trim();
-        if (!ConsultationDescription.isValidDescription(trimmedName)) {
-            throw new ParseException(ConsultationDescription.MESSAGE_CONSTRAINTS);
-        }
         return new ConsultationDescription(trimmedName);
     }
 }
