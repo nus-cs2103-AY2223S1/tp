@@ -96,14 +96,14 @@ For new users you can proceed to our [Quick start](#3-quick-start) while returni
 
 The UI component description:
 
-| Components             | Purpose                                |
-|------------------------|----------------------------------------|
-| Menu Bar               | Consists of File, Help and Color Theme |
-| Color Theme Button     | To switch between Light/Dark mode      | 
-| Command Input          | To enter commands to be executed       |
-| System Message Display | Displays results of executed command   |
-| Person List            | Displays contact information of person |
-| Internship List        | Displays information of internship     |
+| Components             | Purpose                                                  |
+|------------------------|----------------------------------------------------------|
+| Menu Bar               | Consists of File, Help and Color Theme                   |
+| Color Theme Button     | To switch between light mode and dark mode               | 
+| Command Input          | To enter commands to be executed                         |
+| System Message Display | Displays results of executed commands and error messages |
+| Person List            | Displays contact information of persons                  |
+| Internship List        | Displays information of internships                      |
 
 ## 2.3. Command format
 
