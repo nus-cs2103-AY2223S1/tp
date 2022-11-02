@@ -25,7 +25,7 @@ to use and what it does for all the features available in myStudent.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Notes about the command format:
+:information_source: Notes about the command format in this user guide:
 
 * Prefixes are user inputs that consist of a character followed by a slash  
   e.g. `n/` or `p/`
@@ -41,11 +41,11 @@ to use and what it does for all the features available in myStudent.
 
 * Users can input parameters of prefixes in any order.  
   e.g. `nok <index> n/<name> p/<phone>`, users can either input `nok 2 n/John Doe p/91234567` or `nok 2 n/John Doe p/91234567`.  
-  However, `nok n/John Doe p/91234567 2` where <index> is at the end of the input, is not a valid.
+  However, `nok n/John Doe p/91234567 2` where the `<index>` is at the end of the input, is not a valid command.
 
 
 * Extra input from the user for commands that do not take in parameters will be ignored.  
-  e.g. the clear command does not have any other parameters, thus the user input clear asdfghjkl is logically the same as if the user typed in clear.
+  e.g. the `clear` command does not have any other parameters, thus the user input `clear asdfghjkl` is logically the same as if the user typed in `clear`.
 
 </div>
 
