@@ -9,7 +9,10 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* [Creating a pop-up menu in JavaFX](https://stackoverflow.com/questions/20635192/how-to-create-popup-menu)
+* [Removing a JavaFX row in run-time](https://stackoverflow.com/a/70961583)
+* [Getting the row index constraint for given node](https://stackoverflow.com/a/70961583)
+* [Using new DateTimeFormatter to do strict date parsing](https://stackoverflow.com/a/30478777)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -564,9 +567,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. User issues the correct command with the wrong syntax
-
     * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
-
+  
       Use case ends.
 
 ****
@@ -643,7 +645,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. User uses list food reviews command with the wrong syntax.
-
     * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
@@ -730,21 +731,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ****
 
-**Use case 11: Exiting the program**
-
-**Preconditions**
-- User is currently using FoodWhere.
-
-**MSS**
-
-1. User enters a command to exit FoodWhere.
-2. FoodWhere saves all changes to disk and closes.
-
-   Use case ends.
-
-****
-
-**Use case 9: Find food stalls**
+**Use case 11: Find food stalls**
 
 **MSS**
 
@@ -761,12 +748,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Tag
 
       Use case resumes from step 3.
-* 2b. User uses find food stalls command with the wrong syntax.
+* 2b. User uses the find food stalls command with the wrong syntax.
     * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
 ****
-**Use case 10: Find food reviews**
+    
+**Use case 12: Find food reviews**
 
 **MSS**
 
@@ -784,14 +772,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 3.
 * 2b. User uses find food reviews command with the wrong syntax.
-    * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
+    * 2b1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
 
-**Use case 8: Clearing data**
-
-**Use case 12: Clearing data**
-
+**Use case 13: Clearing data**
 
 **Preconditions**
 - User is currently using FoodWhere.
@@ -803,6 +788,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+****
+
+**Use case 14: Exiting the program**
+
+**Preconditions**
+- User is currently using FoodWhere.
+
+**MSS**
+
+1. User enters a command to exit FoodWhere.
+2. FoodWhere saves all changes to disk and closes.
+
+   Use case ends.
 
 ****
 
