@@ -30,7 +30,7 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "List sorted %s";
 
-    public static final String DEFAULT_SORT_SUCCESS = "from oldest to newest entry";
+    public static final String DEFAULT_SORT_SUCCESS = "from oldest to newest updated entry";
 
     public static final String ALPHA_SORT_SUCCESS = "alphabetically";
 
