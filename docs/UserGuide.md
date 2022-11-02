@@ -141,7 +141,7 @@ to be added
 
 This command allows you to add an activity to HobbyList
 
-Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE] [s/STATUS]`
+> Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE] [s/STATUS]`
 
 <div markdown="block" class="alert alert-info">
 
@@ -181,7 +181,7 @@ Every entry in HobbyList is an activity. Each activity contains the fields below
 
 This command allows you to edit an activity already in HobbyList.
 
-Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE] [s/STATUS]`
+> Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE] [s/STATUS]`
 
 <div markdown="block" class="alert alert-info">
 
@@ -214,7 +214,7 @@ Examples:
 
 This command allows you to delete an activity from HobbyList.
 
-Format: `delete INDEX`
+> Format: `delete INDEX`
 
 <div markdown="block" class="alert alert-info">
 
@@ -238,7 +238,7 @@ The `delete` command is final and cannot be undone. To prevent regrets, you migh
 
 ### 5.4 Listing all hobby activities : `list`
 
-Shows a list of all hobby activities in HobbyList.
+This command allows you to view all the activi
 
 Format: `list`
 
