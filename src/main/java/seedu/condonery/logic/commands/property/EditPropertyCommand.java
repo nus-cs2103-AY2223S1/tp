@@ -105,6 +105,7 @@ public class EditPropertyCommand extends Command {
         Property editedProperty = createEditedProperty(propertyToEdit, editPropertyDescriptor, imageDirectoryPath);
         // Parsed interested clients
         Property newEditedProperty = new ParsePropertyInterestedClients(editedProperty, model).getNewProperty();
+        newEditedProperty.setImageDirectoryPath(imageDirectoryPath);
 
         if (!propertyToEdit.isSameProperty(newEditedProperty) && model.hasProperty(newEditedProperty)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
