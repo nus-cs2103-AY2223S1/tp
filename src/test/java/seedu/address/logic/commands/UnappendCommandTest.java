@@ -50,7 +50,7 @@ public class UnappendCommandTest {
         Person unappendedPerson = new PersonBuilder().withName("Alice Pauline")
                 .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
                 .withPhone("94351253").withGender("female").withBirthdate("1998-12-28")
-                .withRace("White American").withSurvey("Environment Survey")
+                .withRace("White American").withSurvey("Environment Survey", false)
                 .withTags(Collections.emptySet()).withReligion("Christian").build();
         Set<Survey> surveysToRemove = Collections.emptySet();
         Set<Tag> tagsToRemove = new HashSet<Tag>();
