@@ -48,45 +48,8 @@ public class AddsCommandTest {
                 commandResult.getFeedbackToUser());
     }
 
-    @Test
-    public void execute_validSessionsWithDuplicates_success() throws CommandException {
-        ModelStubWithFocusedClass modelStub = new ModelStubWithFocusedClass();
-        Session validSession = new SessionBuilder().withName(VALID_SESSION_TUT3).build();
-        Session duplicatedSession = new SessionBuilder().withName(VALID_SESSION_LAB1).build();
-
-        Set<Session> allSessions = new HashSet<>(List.of(validSession, duplicatedSession));
-        Set<Session> validSessions = new HashSet<>(List.of(validSession));
-        Set<Session> duplicatedSessions = new HashSet<>(List.of(duplicatedSession));
-
-        AddsCommand command = new AddsCommand(allSessions);
-        CommandResult commandResult = command.execute(modelStub);
-
-        assertEquals(AddsCommand.getCommandMessage(validSessions, duplicatedSessions),
-                commandResult.getFeedbackToUser());
-    }
-
     private static class ModelStubAcceptingSessions extends ModelStub {
         private final ModuleClass focusedClass = new ModuleClassBuilder().build();
-
-        @Override
-        public void addSessions(ModuleClass moduleClass, Set<Session> sessions) {
-        }
-
-        @Override
-        public boolean isInFocusMode() {
-            return true;
-        }
-
-        @Override
-        public ModuleClass getFocusedClass() {
-            return focusedClass;
-        }
-    }
-
-    private static class ModelStubWithFocusedClass extends ModelStub {
-        private final ModuleClass focusedClass = new ModuleClassBuilder()
-                .withName(VALID_CLASS_CS1101S)
-                .withSessions(new Session(VALID_SESSION_LAB1)).build();
 
         @Override
         public void addSessions(ModuleClass moduleClass, Set<Session> sessions) {
