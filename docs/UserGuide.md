@@ -638,7 +638,7 @@ Undoes the last command executed by reverting any recent change in data within t
 
 Format: `undo`
 
-<div markdown="span" class="alert alert-success">💡 **Tip:** Undo command will not change any visual display
+<div markdown="span" class="alert alert-info">ℹ **Note:** Undo command will not change any visual display
 with the latest commands being display-related like
 <a href="#finding-a-student-find">find</a> command. If you wish to remove the filter, the best way is to use
 <a href="#viewing-all-students-list">list</a> command.
