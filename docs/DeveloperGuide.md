@@ -397,20 +397,22 @@ Therefore, **alternative 1** is chosen as the design as the user would only have
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                          | I want to …​                                               | So that I can…​                                               |
-|----------|----------------------------------|------------------------------------------------------------|---------------------------------------------------------------|
-| `* * *`  | potential user exploring the app | see a list of features                                     | learn how to use the app                                      |
-| `* * *`  | potential user exploring the app | test out the features with the sample data provided        | familiarise with the app's features before deciding to use it |
-| `* * *`  | user ready to use the app        | reset the app's data                                       | tailor the data to my own needs and add my own data           |
-| `* * *`  | new user                         | view how to use the app at any time                        | be reminded of the commands if I forget them                  |
-| `* * *`  | user                             | add new profiles                                           |                                                               |
-| `* * *`  | user                             | remove profiles that I am no longer in contact with        | focus on the relevant profiles                                |
-| `* * *`  | user                             | view all the profiles I've added at one glance             | check the connections I have added                            |
-| `* * *`  | user                             | find individual profiles                                   | access their contact information                              |
-| `* * *`  | user                             | create an event with a name, timing, and relevant profiles |                                                               |
-| `* * *`  | user                             | remove past events                                         |                                                               |
-| `* * *`  | user                             | view individual events                                     | know its timing and who is involved                           |
-| `* *`    | user                             | view upcoming events                                       | plan my schedule for the near future                          |
+| Priority | As a …​                          | I want to …​                                             | So that I can…​                                               |
+|----------|----------------------------------|----------------------------------------------------------|---------------------------------------------------------------|
+| `* * *`  | potential user exploring the app | see a list of features                                   | learn how to use the app                                      |
+| `* * *`  | potential user exploring the app | test out the features with the sample data provided      | familiarise with the app's features before deciding to use it |
+| `* * *`  | user ready to use the app        | reset the app's data                                     | tailor the data to my own needs and add my own data           |
+| `* * *`  | new user                         | view how to use the app at any time                      | be reminded of the commands if I forget them                  |
+| `* * *`  | user                             | add new profiles                                         |                                                               |
+| `* * *`  | user                             | remove profiles that I am no longer in contact with      | focus on the relevant profiles                                |
+| `* * *`  | user                             | view all the profiles I've added at one glance           | check the connections I have added                            |
+| `* * *`  | user                             | find individual profiles                                 | access their contact information                              |
+| `* * *`  | user                             | create an event with a name, start timing and end timing |                                                               |
+| `* *`    | user                             | add attendees to an event                                | know who will be attending which event                        |
+| `* *`    | user                             | remove attendees from an event                           | keep the list of attendees updated                            |
+| `* * *`  | user                             | remove past events                                       |                                                               |
+| `* * *`  | user                             | view individual events                                   | know its timing and who is involved                           |
+| `* *`    | user                             | view upcoming events                                     | plan my schedule for the near future                          |
 
 ### Use cases
 
