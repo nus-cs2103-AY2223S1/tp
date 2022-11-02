@@ -367,7 +367,7 @@ You can use this command when:
 **Constraints**
 * This uses your device's present local time as reference.
 * As long as a client has a meeting in the next 7 days, it will be shown.
-* Upcoming Meetings does not auto refresh, so meetings that pass after you have opened 
+* Upcoming Meetings does not auto refresh, so meetings that pass after you have opened
   `Upcoming Meetings` will only be refreshed when a new window is opened.
 
 Format: Menu bar on the top of the application or press `F2`.
