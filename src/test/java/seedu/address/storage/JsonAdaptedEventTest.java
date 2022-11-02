@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedEvent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.PRESENTATION;
-import static seedu.address.testutil.TypicalProfiles.AMY;
 import static seedu.address.testutil.TypicalNuScheduler.getTypicalNuScheduler;
+import static seedu.address.testutil.TypicalProfiles.AMY;
 
 import java.util.ArrayList;
 import java.util.List;
