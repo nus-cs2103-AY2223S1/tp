@@ -431,7 +431,7 @@ The followings are two ways to use this command:
 |     CTRL + S      | Saves the inputs, adds the buyer/supplier to the contacts, and closes the pop-p window |
 
 Note that some shortcuts are only **effective when a text field is in focus**.
-When no text fields are highlighted (i.e. not in focus), **press TAB once (still no focus, press TAB one more time)** to focus the cursor to a text field.
+When no text fields are highlighted (i.e. not in focus), **press TAB once (still no focus, press TAB again and again until the highlight appears)** to focus the cursor to a text field.
 This ensures that you can use all the available shortcuts.
 
 </div>
