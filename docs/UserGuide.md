@@ -172,13 +172,13 @@ Finds batchmates whose details contain __any__ of the given keywords.
 __Format:__ `find KEYWORD [MORE_KEYWORDS]...`
 
 * `NAME`, `TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL` are searched simultaneously.
-* The search is case-insensitive. e.g `Hans` will return `hans`, `liON` will return `Lion`.
+* The search is case-insensitive. e.g `jOnAs` will return `Jonas`, `ivAn` will return `Ivan`.
 * Finding by `NAME`:
-  * The order of the keywords does not matter. e.g. `Hans Bo` will return both `Hans Bo` and `Bo Hans`.
-  * Batchmates matching at least one keyword will be returned. e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
-  * only __full words__ will be matched. e.g. `Ha` will _not_ return a batchmate with the name `Hans`. You need to write `Hans`.
+  * The order of the keywords does not matter. e.g. `Ming Qing` will return both `Ming Qing` and `Qing Ming`.
+  * Batchmates matching at least one keyword will be returned. e.g. `Ming Xuan` will return `Ming Qing`, `Yu Xuan`.
+  * Only __full words__ will be matched. e.g. `Qin` will _not_ return a batchmate with the name `Qing`. You need to write `Qing`.
 * Finding by `TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL`:
-  * Partial words are accepted. E.g. `boh` will return `bohans`.
+  * Partial words are accepted. E.g. `uxu` will return `yuxuan`.
   * Unlike `NAME`, these items (`TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL`) are not separated by spaces. If full words are needed for matching, you will have to type the full item out each time you search.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
@@ -193,10 +193,10 @@ __Format:__ `find KEYWORD [MORE_KEYWORDS]...`
 
 __Examples:__
 * When you want to search by `NAME`:
-  * `find john` returns `John`, `John Green` and `John Doe`.
-  * `find alex david` returns `Alex Tan`, `David Chua`.
+  * `find ming` returns `Ming`, `Ming Qing` and `Hong Ming`.
+  * `find byron henry` returns `Byron Huang`, `Henry Chuah`.
 * When you want to search by `TELEGRAM`, `GITHUB` or `EMAIL`:
-  * `find boh` returns the batchmates with Telegram handle, GitHub username or email address containing `boh`, e.g. batchmate with telegram handle `bohans`, batchmate with GitHub username `laoboh`.
+  * `find ion` returns the batchmates with Telegram handle, GitHub username or email address containing `ion`, e.g. batchmate with telegram handle `liona`, batchmate with GitHub username `thecation47`.
 * When you want to search by `PHONE`:
   * `find 999` returns the batchmates with phone number `69998888`, `89991234` or `99912345`.
 
