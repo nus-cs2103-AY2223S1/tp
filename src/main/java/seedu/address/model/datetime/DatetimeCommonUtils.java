@@ -68,7 +68,7 @@ public class DatetimeCommonUtils {
             DATETIME_MESSAGE_CONSTRAINTS_BASE + ", and it must be valid!";
 
     public static final String DATETIME_MESSAGE_CONSTRAINTS_DATETIMEPASSED = "Please input a date and time that is "
-            + "after the current time. The current date and time as of now is ";
+            + "after the current date and time. The date and time as of now is ";
 
     /**
      * Converts a DayOfWeek to a readable form, e.g. Mon, Tue
