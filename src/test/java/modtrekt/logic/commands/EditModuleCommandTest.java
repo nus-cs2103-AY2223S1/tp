@@ -5,17 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import modtrekt.logic.commands.exceptions.CommandException;
-import modtrekt.model.module.Module;
-import modtrekt.testutil.ModelStub;
-import modtrekt.testutil.ModuleBuilder;
 import org.junit.jupiter.api.Test;
 
+import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.ModtrektParser;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.module.ModCredit;
 import modtrekt.model.module.ModName;
+import modtrekt.model.module.Module;
+import modtrekt.testutil.ModelStub;
+import modtrekt.testutil.ModuleBuilder;
 
 class EditModuleCommandTest {
 
