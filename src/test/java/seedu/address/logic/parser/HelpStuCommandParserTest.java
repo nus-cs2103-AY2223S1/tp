@@ -1,24 +1,23 @@
 package seedu.address.logic.parser;
 
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.AttendanceCommand;
+import seedu.address.logic.commands.HelpStuCommand;
 
-public class AttendanceCommandParserTest {
+public class HelpStuCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AttendanceCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpStuCommand.MESSAGE_USAGE);
 
-    private AttendanceCommandParser parser = new AttendanceCommandParser();
+    private HelpStuCommandParser parser = new HelpStuCommandParser();
 
     @Test
     public void parse_validIndex_returnsAttendanceCommand() {
-        assertParseSuccess(parser, "1", new AttendanceCommand(INDEX_FIRST_STUDENT));
+        assertParseSuccess(parser, "1", new HelpStuCommand(INDEX_FIRST_STUDENT));
     }
 
     @Test
