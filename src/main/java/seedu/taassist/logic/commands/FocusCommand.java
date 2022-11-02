@@ -1,6 +1,7 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import seedu.taassist.commons.core.Messages;
 import seedu.taassist.logic.commands.exceptions.CommandException;
@@ -16,8 +17,10 @@ public class FocusCommand extends Command {
     public static final String COMMAND_WORD = "focus";
 
     public static final String MESSAGE_USAGE = "> Enters focus mode for the specified class.\n"
-            + "Parameters: c/CLASS_NAME\n"
-            + "Example: " + COMMAND_WORD + " c/CS1101S";
+            + "Parameters: "
+            + PREFIX_MODULE_CLASS + "CLASS_NAME\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_MODULE_CLASS + " CS1101S";
     public static final String MESSAGE_ENTERED_FOCUS_MODE = "Entered focus mode for [ %s ].";
 
     private final ModuleClass targetClass;

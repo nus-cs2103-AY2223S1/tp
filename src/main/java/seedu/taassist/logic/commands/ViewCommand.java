@@ -23,7 +23,7 @@ public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
-    public static final String MESSAGE_USAGE = "> Displays grades of a student for the current module class.\n"
+    public static final String MESSAGE_USAGE = "> Displays the grades of a student for the current module class.\n"
             + "Parameters: INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 
