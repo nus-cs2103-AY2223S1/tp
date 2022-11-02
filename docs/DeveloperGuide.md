@@ -382,7 +382,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                             | find individual profiles                                 | access their contact information                              |
 | `* * *`  | user                             | create an event with a name, start timing and end timing |                                                               |
 | `* *`    | user                             | add attendees to an event                                | know who will be attending which event                        |
-| `* *`     | user                             | remove attendees from an event                           | keep the list of attendees updated                            |
+| `* *`    | user                             | remove attendees from an event                           | keep the list of attendees updated                            |
 | `* * *`  | user                             | remove past events                                       |                                                               |
 | `* * *`  | user                             | view individual events                                   | know its timing and who is involved                           |
 | `* *`    | user                             | view upcoming events                                     | plan my schedule for the near future                          |
