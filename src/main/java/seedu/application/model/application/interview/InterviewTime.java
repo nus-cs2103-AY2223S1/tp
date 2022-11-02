@@ -14,10 +14,11 @@ import java.time.format.DateTimeParseException;
 public class InterviewTime {
 
 
-    public static final String MESSAGE_CONSTRAINTS = "Time should be in the format of HHMM";
+    public static final String MESSAGE_CONSTRAINTS = "Time should be in the format of HHMM, ranging from 0000 to 2359.";
     public static final DateTimeFormatter COMMAND_TIME_FORMATTER = DateTimeFormatter.ofPattern("HHmm");
     public static final DateTimeFormatter DISPLAY_TIME_FORMATTER = DateTimeFormatter.ISO_LOCAL_TIME;
     private static final long DURATION = 1;
+    private static final String INVALID_MIDNIGHT = "^2400$";
     public final LocalTime value;
 
     /**
@@ -37,10 +38,10 @@ public class InterviewTime {
     public static boolean isValidTime(String test) {
         try {
             COMMAND_TIME_FORMATTER.parse(test);
-            return true;
         } catch (DateTimeParseException e) {
             return false;
         }
+        return !test.matches(INVALID_MIDNIGHT);
     }
 
     private LocalTime parseLocalTime(String timeString) {

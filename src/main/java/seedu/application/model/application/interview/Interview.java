@@ -3,6 +3,7 @@ package seedu.application.model.application.interview;
 import static seedu.application.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 
 /**
@@ -16,6 +17,7 @@ public class Interview {
     private final InterviewDate interviewDate;
     private final InterviewTime interviewTime;
     private final Location location;
+    private static final long DURATION = 1;
 
 
     /**
@@ -57,10 +59,24 @@ public class Interview {
         if (otherInterview == this) {
             return true;
         }
+        if (otherInterview == null) {
+            return false;
+        }
 
+        /*
         return otherInterview != null
                 && otherInterview.getInterviewDate().equals(getInterviewDate())
                 && otherInterview.getInterviewTime().isWithin(getInterviewTime());
+                getInterviewDateTime(otherInterview)
+                getInterviewDateTime(this)
+
+         */
+        LocalDateTime otherInterviewDateTime = getInterviewDateTime(otherInterview);
+        LocalDateTime thisInterviewDateTime = getInterviewDateTime(this);
+        return ((otherInterviewDateTime.isAfter(thisInterviewDateTime)
+                && otherInterviewDateTime.isBefore(thisInterviewDateTime.plusHours(DURATION)))
+                || (thisInterviewDateTime.isAfter(otherInterviewDateTime)
+                && thisInterviewDateTime.isBefore(otherInterviewDateTime.plusHours(DURATION))));
     }
 
     /**
