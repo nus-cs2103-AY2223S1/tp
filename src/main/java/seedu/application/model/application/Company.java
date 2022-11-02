@@ -48,7 +48,7 @@ public class Company implements Comparable<Company> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Company // instanceof handles nulls
-                && company.equals(((Company) other).company)); // state check
+                && company.toLowerCase().equals(((Company) other).company.toLowerCase())); // state check
     }
 
     @Override
