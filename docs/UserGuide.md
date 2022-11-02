@@ -4,7 +4,7 @@ title: User Guide
 ---
 SOConnect is a **desktop application for NUS SOC students to keep track of their University social circle** which includes peers, Teaching Assistants and Professors.
 Since it is designed for people with some computing background, it is **optimized for use via a Command Line Interface (CLI)**
-but it also has a Graphical User Interface for simpler and quicker task.
+but it also has a Graphical User Interface (GUI) for simpler and quicker task.
 
 * Table of Contents
 {:toc}
@@ -177,7 +177,7 @@ Format: `edit INDEX [n/NAME] [m/MODULE_CODE] [s/SPECIALISATION] [p/PHONE] [e/EMA
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * When editing a Student's module codes, the existing module codes of the student will be removed i.e adding of module codes is not cumulative.
 * You can remove all the person’s tags by typing t/ without specifying any tags after it.
-* You can remove Person's GitHub Username, Teaching Assistant's and Professor's Rating, Professor's Office Hour, Professor's Specialisation by typing `git/`, `r/`, `o/` or `s/` respectively.
+* Similar to tags you can remove Person's GitHub Username, Teaching Assistant's and Professor's Rating, Professor's Office Hour, Professor's Specialisation by typing `git/`, `r/`, `o/` or `s/` without any inputs respectively.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 An error will be thrown if you attempt to edit a field that does not exist for the contact. E.g editing year field of a professor contact will throw an error as professor does not have a year field.

@@ -19,7 +19,7 @@ public class OfficeHour {
             "Office hour must consist of:\n"
             + "- integer representation of weekday (from monday[1]- friday[5])\n"
             + "- time in HH:mm military time format (16:00 represents 4 pm)\n"
-            + "- duration specified in integer (1 - 9)\n";
+            + "- duration specified in integer (1 - 9)";
 
     public static final String EMPTY_OFFICE_HOUR = "";
 

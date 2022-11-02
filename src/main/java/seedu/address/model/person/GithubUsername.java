@@ -11,8 +11,6 @@ public class GithubUsername {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Github username must follow the following rules: \n"
-            + " - When adding Github username, it cannot be blank, but when editing Github Username of an existing "
-            + "contact it can be blank.\n"
             + " - Github username cannot have symbols other than hyphens.\n"
             + " - Github username cannot have multiple consecutive hyphens.\n"
             + " - Github username cannot begin or end with a hyphen.\n"
