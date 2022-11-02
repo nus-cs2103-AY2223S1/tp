@@ -24,7 +24,7 @@ a master at using GuestBook in no time!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Table of Contents**
+## Table of Contents
 * Table of Contents
 {:toc}
 
@@ -86,8 +86,7 @@ section of this user guide or to an external website.
 
 ## Quick start
 
-1. Ensure you have `Java 11` or above installed in your Computer. <br><br>
-
+1. Ensure you have `Java 11` or above installed in your Computer.
    * If you are using Mac, open the `Terminal` and enter `java --version`.
      * To open the `Terminal`, press `command` and `space bar` together to launch Spotlight.
      * Following, enter `terminal` in the search bar.
@@ -157,13 +156,13 @@ For example, you can check out the third guest by executing the command below.
 12. To clear your GuestBook of all entries, you can use the **`clear`** command.<br>
     * **`clear`** : Deletes all guests.
     <div markdown="span" class="alert alert-danger">
-
+    
     :bangbang: **Warning:**<br>
-    * Do note that this command is **irreversible**. Once cleared, all the
-      guest data cannot be retrieved. Please use this command
-      with utmost caution.
-    </div>
-      <br><br>
+
+* Do note that this command is **irreversible**. Once cleared, all the
+  guest data cannot be retrieved. Please use this command
+  with utmost caution.
+  </div>
     
 13. Finally, to quit GuestBook, you can run the **`exit`** command.
     * **`exit`** : Exits the app.
@@ -237,6 +236,7 @@ This command is typically used to **check a guest in** to your hotel with their 
 <div markdown="span" class="alert alert-info">
 
 **:information_source: Additional information:**<br>
+
 * Refer to the [Constraints of fields](#constraints-of-fields) for more information about the limitations
   of each field.
 </div>
@@ -245,6 +245,9 @@ This command is typically used to **check a guest in** to your hotel with their 
 * `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/22 - 24/05/22 ng/3` Adds the guest _John Doe_, with his details, to GuestBook.
 * `add n/Betsy Crowe p/82297553 e/betsycrowe@example.com rm/Aloha5 dr/10/01/12 - 11/01/12 ng/1 rq/Extra towels` 
 Adds the guest _Betsy Crowe_ to GuestBook, with the `request` to have _extra towels in her room_.
+
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -263,6 +266,7 @@ you provide. The values that you **did not specify** to edit will remain **uncha
 <div markdown="span" class="alert alert-info">
 
 **:information_source: Additional information:**<br>
+
 * Refer to the [Constraints of fields](#constraints-of-fields) for more information about the limitations
   of each field.
 </div>
@@ -274,9 +278,12 @@ you provide. The values that you **did not specify** to edit will remain **uncha
 <div markdown="block" class="alert alert-success">
 
 **:bulb: Tip:**<br>
+
 * You can more accurately edit your guests by first searching for them 
 using the [find command](#locating-guests) and then editing them accordingly!
 </div>
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -294,6 +301,7 @@ or **decreased** respectively by the value you provide.
 <div markdown="span" class="alert alert-info">
 
 **:information_source: Additional information:**<br>
+
 * Refer to the [Constraints of fields](#constraints-of-fields) for more information about the limitations
   of each field.
 </div>
@@ -305,9 +313,12 @@ or **decreased** respectively by the value you provide.
 <div markdown="span" class="alert alert-warning">
 
 :triangular_flag_on_post: **Common mistakes:**<br>
+
 * Missing out the `b/` prefix in the bill command.
 * Editing the bill using the `edit` command instead of the `bill` command.
 </div>
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -347,6 +358,8 @@ will display all rooms that have been cleaned.
 * Searching for guests using incomplete keywords e.g. `170` will **not match** `170.00`.
 </div>
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Listing all guests: `list`
@@ -356,11 +369,14 @@ This command displays a list of all guests in GuestBook.
 <div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:**<br>
+
 * This command is especially useful if you would like to view the original guest list after
 using the `find` command as a filter.
 </div>
 
 **Format**: `list`
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -375,6 +391,7 @@ This command is typically used when a guest has checked out of the hotel.
 <div markdown="span" class="alert alert-danger">
 
 :bangbang: **Warning:**<br>
+
 * Do note that the `delete` command is **irreversible**. Once deleted, the specific 
 guest's data cannot be retrieved. Please use this
 command with caution.
@@ -386,6 +403,8 @@ command with caution.
 * `list` followed by `delete 2` deletes the second guest in GuestBook.
 
 * `find Betsy` followed by `delete 1` deletes the first guest in the results of the `find` command.
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -402,9 +421,12 @@ managers to keep track of the rooms that are cleaned or uncleaned for the day.
 <div markdown="span" class="alert alert-warning">
 
 :triangular_flag_on_post: **Common mistakes:**<br>
+
 * Missing out the `s`: `markroomunclean`.
 * Capitalising the `R` or `U`: `markRoomsUnclean`.
 </div>
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -418,12 +440,15 @@ this command unless you want to star the GuestBook on a clean slate.
 <div markdown="span" class="alert alert-danger">
 
 :bangbang: **Warning:**<br>
+
 * Do note that this command is **irreversible**. Once cleared, all the 
 guest data cannot be retrieved. Please use this command
 with utmost caution.
 </div>
 
 **Format**: `clear`
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -438,6 +463,8 @@ save time, we have provided quick access to this user guide by entering the `hel
 
 **Format**: `help`
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Exiting the program: `exit`
@@ -449,11 +476,15 @@ all the data have already been saved by GuestBook and there is no further action
 
 **Format**: `exit`
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Saving the data
 
 GuestBook data is saved in the hard disk **automatically** after any command that changes the data. There is no need to save manually.
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -465,6 +496,7 @@ Advanced users may change data directly by editing this data file.
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Caution:**<br>
+
 * If your changes to the data file makes its format invalid, GuestBook will discard all data and start with an empty data file at the next run.
 </div>
 
@@ -490,6 +522,7 @@ for you.
 | **`IS_ROOM_CLEAN`**     | `rc/`                | Should contain only `yes`, `no`, `y` or `n` (case-insensitive).                                                                                                                                                                                                                                                                                                                        |
 | **`BILL`**              | `b/`                 | Should contain only **numbers**, and can have up to 2 decimal places.                                                                                                                                                                                                                                                                                                                  |
 
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
