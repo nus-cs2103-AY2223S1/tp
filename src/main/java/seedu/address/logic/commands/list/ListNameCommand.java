@@ -14,7 +14,8 @@ public class ListNameCommand extends ListCommand {
 
     public static final String COMMAND_WORD = "-n";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all tasks whose task names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Lists all tasks whose task names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers. Note"
             + " that it will find tasks with task names that contain any of the keywords\n"
             + "Parameters: KEYWORD ...\n"
