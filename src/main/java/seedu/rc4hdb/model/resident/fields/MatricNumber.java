@@ -2,8 +2,6 @@ package seedu.rc4hdb.model.resident.fields;
 
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
-import java.util.Locale;
-
 import seedu.rc4hdb.model.StringField;
 
 /**

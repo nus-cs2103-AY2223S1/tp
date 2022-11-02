@@ -28,9 +28,9 @@ public class JsonAdaptedResidentTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_ROOM = "03_08";
-    private static final String INVALID_GENDER = "m";
-    private static final String INVALID_HOUSE = "d";
-    private static final String INVALID_MATRIC_NUMBER = "a0123456a";
+    private static final String INVALID_GENDER = "k";
+    private static final String INVALID_HOUSE = "q";
+    private static final String INVALID_MATRIC_NUMBER = "a012343356a";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
