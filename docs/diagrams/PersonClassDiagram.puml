@@ -4,6 +4,10 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Person
+
+Package Person <<Rectangle>>{
 Person *--> "1" Name
 Person *--> "1" Email
 Person *--> "0..1" Github
@@ -23,4 +27,6 @@ Github -down[hidden]-> CurrentModulesSet
 Github -down[hidden]-> PreviousModulesSet
 Github -down[hidden]-> PlannedModulesSet
 Github -down[hidden]-> LessonsSet
+}
+
 @enduml

@@ -2,14 +2,21 @@
 !include style.puml
 skinparam classBackgroundColor LOGIC_COLOR
 
-abstract class Lesson
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Lesson
+
+package Lesson <<Rectangle>> {
+Class "{abstract}\nLesson" as Lesson
 Class Lab
 Class Lecture
 Class Recitation
 Class Tutorial
+
 Lesson <|-- Lab
 Lesson <|-- Lecture
 Lesson <|-- Recitation
 Lesson <|-- Tutorial
+}
 
 @enduml

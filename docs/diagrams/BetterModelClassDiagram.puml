@@ -4,11 +4,27 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-
+Package AddressBook <<Rectangle>>{
 Class "CurrentModule" as PersonCurrentModule
 Class "PreviousModule" as PersonPreviousModule
 Class "PlannedModule" as PersonPlannedModule
 
+Class AddressBook
+
+Class User
+Class Person
+
+Class UniquePersonList
+Class UniqueTagList
+Class UniqueCurrentModuleList
+Class UniquePreviousModuleList
+Class UniquePlannedModuleList
+
+Class Tag
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> AddressBook
 
 AddressBook *--> "1" UniquePersonList
 AddressBook *--> "1" UniqueTagList
