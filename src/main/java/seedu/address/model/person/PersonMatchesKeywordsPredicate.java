@@ -16,6 +16,10 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
+    private boolean containsIgnoreCase(String str1, String str2) {
+        return str1.toLowerCase().contains(str2.toLowerCase());
+    }
+
     /**
      * Computes the Levenshtein distance, which tells how different two
      * strings are from one another by counting the minimum
@@ -101,8 +105,9 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
 
     private boolean matchesName(Person person) {
         return findSimilarity(keywords, person.getName().fullName) > 0.5
-                || StringUtil.containsWordIgnoreCase(
-                        person.getName().fullName, keywords);
+                || containsIgnoreCase(
+                        person.getName().fullName, keywords
+        );
     }
 
     private boolean matchesAddress(Person person) {
@@ -110,8 +115,9 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
             assert person.getAddress().get() != null : "Error with matchesAddress method";
             return findSimilarity(keywords, String.valueOf(
                     person.getAddress().get().value)) > 0.5
-                    || StringUtil.containsWordIgnoreCase(
-                            String.valueOf(person.getAddress().get().value), keywords);
+                    || containsIgnoreCase(
+                            person.getAddress().get().value,keywords
+            );
         } else {
             return false;
         }
@@ -120,8 +126,9 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
     private boolean matchesRole(Person person) {
         if (person.getRole().isPresent()) {
             return findSimilarity(keywords, String.valueOf(person.getRole().get().role)) > 0.5
-                    || StringUtil.containsWordIgnoreCase(
-                            String.valueOf(person.getRole().get().role), keywords);
+                    || containsIgnoreCase(
+                            person.getRole().get().role, keywords
+            );
         } else {
             return false;
         }
@@ -129,8 +136,9 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
 
     private boolean matchesGitHubUser(Person person) {
         return findSimilarity(keywords, person.getGithubUser().toString()) > 0.5
-                || StringUtil.containsWordIgnoreCase(
-                        person.getGithubUser().toString(), keywords);
+                || containsIgnoreCase(
+                        person.getGithubUser().toString(), keywords
+        );
     }
 
     private boolean matchesTags(Person person) {
@@ -138,7 +146,7 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
         for (int i = 0; i < tags.length; i++) {
             assert tags[i] instanceof Tag : "Error with tags list of Person";
             if (findSimilarity(keywords, tags[i].toString()) > 0.5
-                    || StringUtil.containsWordIgnoreCase(tags[i].toString(), keywords)) {
+                    || containsIgnoreCase(tags[i].toString(), keywords)) {
                 return true;
             }
         }
