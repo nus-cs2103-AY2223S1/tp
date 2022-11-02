@@ -21,22 +21,22 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
       4. [Saving Data](#saving-the-data)
       5. [Manually Editing Data File](#editing-the-data-file)
    2. [Client Features](#client-features)<br>
-      1. [Adding a Client](#adding-a-client-addclient)
+      1. [Adding a Client](#adding-a-client--addclient)
       2. [Listing all Clients](#listing-all-clients--allclients)
       3. [Editing a Client](#editing-a-client--editclient)
-      4. [Searching for a Client](#searching-for-clients-findclient)
+      4. [Searching for a Client](#searching-for-clients--findclient)
       5. [Deleting a Client](#deleting-a-client--deleteclient)
       6. [Sorting all Clients](#sorting-all-clients--sort)
-      7. [Pin a Client](#pin-a-client-pin)
+      7. [Pin a Client](#pin-a-client--pin)
    3. [Policy Features](#policy-features)<br>
-      1. [Adding a Policy](#adding-a-policy-addpolicy)
-      2. [Switching to Policy View](#switching-to-the-view-of-currently-listed-policies-policies)
-      3. [Listing all Policies](#viewing-all-policies-in-the-address-book-allpolicies)
+      1. [Adding a Policy](#adding-a-policy--addpolicy)
+      2. [Switching to Policy View](#switching-to-the-view-of-currently-listed-policies--policies)
+      3. [Listing all Policies](#viewing-all-policies-in-the-address-book--allpolicies)
       4. [Deleting a Policy](#deleting-a-policy)
-      5. [Searching for a Policy](#searching-for-a-policy-findpolicy)
-      6. [Assigning a Policy to a Client](#assigning-a-policy-to-a-client-assign)
-      7. [Listing all Assigned Policies](#listing-out-policies-assigned-to-a-clientlistassigned)
-      8. [Deleting Assigned Policies from a Client](#deleting-assigned-policies-from-a-client-deleteassigned)
+      5. [Searching for a Policy](#searching-for-a-policy--findpolicy)
+      6. [Assigning a Policy to a Client](#assigning-a-policy-to-a-client--assign)
+      7. [Listing all Assigned Policies](#listing-out-policies-assigned-to-a-client--listassigned)
+      8. [Deleting Assigned Policies from a Client](#deleting-assigned-policies-from-a-client--deleteassigned)
       9. [Tracking your Income](#tracking-your-income---viewincome)
    4. [Event Features](#event-features)
       1. [Adding an Event](#adding-an-event--addevent)
@@ -237,7 +237,7 @@ Examples:
 *  `editClient 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 *  `editClient 3 b/2000-01-01` Edits the birthday of the 3rd client to be the 1st January 2000.
 
-### Searching for Clients: `findClient`
+### Searching for Clients : `findClient`
 
 Search for clients based on certain [metrics](#metric)
 
@@ -316,7 +316,7 @@ Below is an example of what you will expect to see when you call `sort email`:
 
 
 
-### Pin a Client: `pin`
+### Pin a Client : `pin`
 * Format: `pin [CLIENT_INDEX]`
 * Description: Allows pinning of important clients to be viewed separately with command `viewPin`
 * Example Usage: `pin 1` pins the first client on list
@@ -328,7 +328,7 @@ To find out how to do so, you can refer to the [Adding an Event](#adding-an-even
 ## Policy Features
 Store policies from a large assortment of companies, with different coverages and customisable yearly commissions! Assign them to a client when you secure a deal with ease.
 
-### Adding a policy: `addPolicy`
+### Adding a policy : `addPolicy`
 
 Adds a policy to the address book.
 
@@ -379,14 +379,14 @@ Examples:
 * `addPolicy ti/ManuInvest Duo cmp/MNF cms/6% 3% 1.5% cov/INVESTMENT cov/LIFE`
 
 
-### Switching to the view of currently listed policies: `policies`
+### Switching to the view of currently listed policies : `policies`
 Switches the display to show the current list of policies.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If you previously filtered the policy list and switched to view events/contacts/income, this command will allow you to return to the filtered list of policies. 
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you wish to view the **full** list of policies, you may do so with the command `allPolicies` . 
+If you wish to view the **full** list of policies, you may do so with the command `allPolicies`. 
 </div>
 
 Format: `policies`
@@ -394,17 +394,18 @@ Format: `policies`
 Example Usage: `policies`
 
 Example Result: Shows the currently listed policies on the screen.
+![Policies](./images/policies.png)
 
 
 
-### Viewing all policies in the address book: `allPolicies`
+### Viewing all policies in the address book : `allPolicies`
 Switches the display to show **all** the policies stored in the address book.
 
 Format: `allPolicies`
 Example Usage: `allPolicies`
 Example Result: Shows all policies stored in the address book, on the screen.
 
-### Deleting a policy
+### Deleting a policy : `deletePolicy`
 * Format: `deletePolicy POLICY_INDEX`
 
 * Deletes the policy at the specified `INDEX`.
@@ -416,7 +417,7 @@ Examples:
 * `findPolicy PruShield` followed by `delete 1` deletes the 1st policy in the results of the `findPolicy` command.
 
 
-### Searching for a Policy: `findPolicy`
+### Searching for a Policy : `findPolicy`
 
 Search for policies based on certain metrics
 
@@ -437,7 +438,7 @@ Examples:
 * `findPolicy cmp/PRU` returns policies that belong to Prudential Assurance Company
 * `findPolicy ti/Shield cov/LIFE` returns polices with Shield in its title and covers the LIFE coverage type
 
-### Assigning a Policy to a Client: `assign` 
+### Assigning a Policy to a Client : `assign` 
 
 If you have successfully sealed a deal with a client, you can keep track of this by assigning the policy to your client! 
 
@@ -459,7 +460,7 @@ first client in the list from Step 2, with the following details:
   2. Start date of 10th October 2010
   3. End date of 12th October 2021
 
-### Listing out policies assigned to a client:`listAssigned`
+### Listing out policies assigned to a client : `listAssigned`
 
 If you'd like to recall which policies a client has taken up this command lists out, in the command box, the policies 
 that have been assigned to a specific client.
@@ -471,7 +472,7 @@ Example Usage:
 1. `findClient n/John Doe` to filter the list of clients to find `John Doe`.
 2. `listAssigned CLIENT_INDEX` to list out the policies assigned to the first client in the list from Step 1.
 
-### Deleting assigned policies from a client: `deleteAssigned`
+### Deleting assigned policies from a client : `deleteAssigned`
 
 Unfortunate, but it happens. If a client cancels their policy prematurely, reflect the deletion of their assigned policy
 in the address book using this command.
