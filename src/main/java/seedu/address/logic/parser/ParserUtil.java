@@ -32,8 +32,8 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_SPACING_NAME = "There can be at most 1 space between parts of patient "
             + "name\n(eg. n/FIRST_NAME MIDDLE_NAME LAST_NAME)";
-    public static final String MESSAGE_INVALID_SPACING_ADDRESS = "There can be at most 1 space between parts of patient "
-            + "address\n(eg. a/STREET_NAME BUILDING_NAME UNIT_NUMBER)";
+    public static final String MESSAGE_INVALID_SPACING_ADDRESS = "There can be at most 1 space between parts of patient"
+            + " address\n(eg. a/STREET_NAME BUILDING_NAME UNIT_NUMBER)";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
