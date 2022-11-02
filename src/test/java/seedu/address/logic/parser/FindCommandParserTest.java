@@ -45,7 +45,8 @@ public class FindCommandParserTest {
         assertParseFailure(parser, "a/Main Street c/3.5 e/", FindCommandParser.MESSAGE_EMPTY_FIELD);
         assertParseFailure(parser, "a/Main Street c/3.5 e/gmail g/", FindCommandParser.MESSAGE_EMPTY_FIELD);
         assertParseFailure(parser, "a/Main Street c/3.5 e/gmail g/Female gd/", FindCommandParser.MESSAGE_EMPTY_FIELD);
-        assertParseFailure(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 ji/", FindCommandParser.MESSAGE_EMPTY_FIELD);
+        assertParseFailure(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 "
+                + "ji/", FindCommandParser.MESSAGE_EMPTY_FIELD);
         assertParseFailure(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 "
                 + "ji/JID1234 jt/", FindCommandParser.MESSAGE_EMPTY_FIELD);
         assertParseFailure(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 "
@@ -53,9 +54,11 @@ public class FindCommandParserTest {
         assertParseFailure(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 "
                 + "ji/JID1234 jt/Software Engineer m/Computer Science n/", FindCommandParser.MESSAGE_EMPTY_FIELD);
         assertParseFailure(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 "
-                + "ji/JID1234 jt/Software Engineer m/Computer Science n/Alice Bob t/", FindCommandParser.MESSAGE_EMPTY_FIELD);
+                + "ji/JID1234 jt/Software Engineer m/Computer Science "
+                + "n/Alice Bob t/", FindCommandParser.MESSAGE_EMPTY_FIELD);
         assertParseFailure(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 "
-                + "ji/JID1234 jt/Software Engineer m/Computer Science n/Alice Bob t/offered KIV u/", FindCommandParser.MESSAGE_EMPTY_FIELD);
+                + "ji/JID1234 jt/Software Engineer m/Computer Science "
+                + "n/Alice Bob t/offered KIV u/", FindCommandParser.MESSAGE_EMPTY_FIELD);
     }
 
     @Test
