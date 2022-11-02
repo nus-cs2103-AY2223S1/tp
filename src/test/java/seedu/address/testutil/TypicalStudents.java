@@ -36,8 +36,11 @@ public class TypicalStudents {
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withTelegram("@bensonM")
-            .withEmail("johnd@example.com").withResponse("1")
-            .withAttendance("2").build();
+            .withEmail("johnd@example.com")
+            .withResponse("1")
+            .withAttendance("2")
+            .withHelpTag(true)
+            .build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withTelegram("@Carl")
             .withEmail("heinz@example.com").withResponse("4").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withTelegram("@daniell")
