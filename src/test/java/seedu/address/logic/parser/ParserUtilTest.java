@@ -14,6 +14,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.schedule.ClassType;
+import seedu.address.model.module.schedule.Weekdays;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -192,5 +194,86 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseModule_validModule_success() throws ParseException {
+        String expectedModule = "CS2103T";
+        String actualModule = ParserUtil.parseModule("CS2103T");
+        assertEquals(expectedModule.toLowerCase(), actualModule);
+    }
+
+    @Test
+    public void parserModule_invalidPrefix_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseModule("CSSS2103T"));
+    }
+
+    @Test
+    public void parseModule_notFourDigits_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseModule("CS21103T"));
+    }
+
+    @Test
+    public void parseModule_invalidPostfix_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseModule("CS2103TTT"));
+    }
+
+    @Test
+    public void parseModule_validWeekday_success() throws ParseException {
+        Weekdays expectedWeekday = Weekdays.Friday;
+        Weekdays actualWeekday = ParserUtil.parseWeekday("Friday");
+        assertEquals(expectedWeekday, actualWeekday);
+    }
+
+    @Test
+    public void parseModule_weekdayNotExist_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseWeekday("frday"));
+    }
+
+    @Test
+    public void parseClassStartTime_validTimeFormat_success() throws ParseException {
+        String expectedStartTime = "08:00";
+        String actualStartTime = ParserUtil.parseClassStartTime("08:00-10:00");
+        assertEquals(expectedStartTime, actualStartTime);
+    }
+
+    @Test
+    public void parseClassStartTime_invalidTimeFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseClassStartTime("8:00-10:00"));
+    }
+
+    @Test
+    public void parseClassEndTime_validTimeFormat_success() throws ParseException {
+        String expectedEndTime = "10:00";
+        String actualEndTime = ParserUtil.parseClassEndTime("08:00-10:00");
+        assertEquals(expectedEndTime, actualEndTime);
+    }
+
+    @Test
+    public void parseClassEndTime_invalidTimeFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseClassEndTime("08:00-10"));
+    }
+
+    @Test
+    public void parseClassType_validClassType_success() throws ParseException {
+        ClassType expectedClassType = ClassType.Lecture;
+        ClassType actualClassType = ParserUtil.parseClassType("lec");
+        assertEquals(expectedClassType, actualClassType);
+    }
+
+    @Test
+    public void parseClassType_invalidClassType_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseClassType("llec"));
+    }
+
+    @Test
+    public void isValidTimeSlotTest() throws ParseException {
+        assertTrue(ParserUtil.isValidTimeSlot("08:00", "10:00"));
+        assertTrue(ParserUtil.isValidTimeSlot("12:00", "13:00"));
+        assertTrue(ParserUtil.isValidTimeSlot("20:00", "22:00"));
+
+        assertThrows(ParseException.class, () -> ParserUtil.isValidTimeSlot("05:00", "07:00"));
+        assertThrows(ParseException.class, () -> ParserUtil.isValidTimeSlot("22:00", "23:00"));
+        assertThrows(ParseException.class, () -> ParserUtil.isValidTimeSlot("25:00", "26:00"));
     }
 }

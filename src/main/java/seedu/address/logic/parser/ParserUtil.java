@@ -271,12 +271,23 @@ public class ParserUtil {
     public static String parseModule(String moduleCode) throws ParseException {
         requireNonNull(moduleCode);
         moduleCode = moduleCode.toLowerCase();
-        Pattern pattern = Pattern.compile("[a-z]{2,3}[0-9]{4}[a-z]?");
+        Pattern pattern = Pattern.compile("(?<prefix>[a-z]+)(?<digit>[0-9]+)(?<postfix>[a-z]*)");
         Matcher matcher = pattern.matcher(moduleCode);
-        if (!matcher.find()) {
+        if (matcher.find()) {
+            if (matcher.group("prefix").length() > 3 || matcher.group(1).length() < 2) {
+                System.out.println(matcher.group(0));
+                throw new ParseException(Module.MESSAGE_MODULE_CODE_CONSTRAINT);
+            }
+            if (matcher.group("digit").length() != 4) {
+                throw new ParseException(Module.MESSAGE_MODULE_CODE_CONSTRAINT);
+            }
+            if (matcher.group("postfix").length() > 1) {
+                throw new ParseException(Module.MESSAGE_MODULE_CODE_CONSTRAINT);
+            }
+            return moduleCode;
+        } else {
             throw new ParseException(Module.MESSAGE_MODULE_CODE_CONSTRAINT);
         }
-        return matcher.group();
     }
 
     /**
@@ -389,6 +400,7 @@ public class ParserUtil {
      * Parses class group
      */
     public static String parseClassGroup(String classGroup) {
+        requireNonNull(classGroup);
         return classGroup.trim().toUpperCase();
     }
 
@@ -424,7 +436,7 @@ public class ParserUtil {
             if (startHour < 7) {
                 throw new ParseException(Schedule.MESSAGE_CLASS_STARTINGTIME_CONSTRAINT);
             }
-            if (endHour >= 22 && endMin > 0) {
+            if (endHour > 22) {
                 throw new ParseException(Schedule.MESSAGE_CLASS_ENDINGTIME_CONSTRAINT);
             }
             if ((startHour > endHour) || ((startHour == endHour) && (startMin >= endMin))) {
