@@ -71,7 +71,7 @@ These are some icons you may see throughout our user guide.
 ### Information Box
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-This provides some additional information that users are recommended to know.
+This provides some additional information that you are recommended to know.
 </div>
 
 ### Tip Box
@@ -97,7 +97,7 @@ Danger zone! Do pay attention to the information here carefully.
 ## Quick start
 
 If you are unfamiliar with using command prompt, head to
-this [link](https://www.freecodecamp.org/news/command-line-for-beginners/).
+this [link](https://www.freecodecamp.org/news/command-line-for-beginners/) to learn more.
 
 1. Ensure you have Java 11 or above installed in your Computer. You can check whether Java 11 is installed by following
    the instructions below:
@@ -131,7 +131,7 @@ this [link](https://www.freecodecamp.org/news/command-line-for-beginners/).
 
     - **`exit`** : Exits the app.
 
-6. Congrats! You are now ready to get started on your first steps in supercharging your financial management flow!
+6. Congrats! You are now ready to get started on supercharging your financial management flow!
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 Curious about the various commands? Refer to the [Features](#features) below to find out more about each command.
@@ -164,19 +164,19 @@ Box**  |                                       where you enter your commands to 
 Box** |                                  where you see the output of your commands from PennyWise                                  |
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
-If the application is resized to a smaller screen, certain graphical components will no longer be visible. This is to ensure that
-that you are still able to get an overview of your finances. If these details are important, use PennyWise in fullscreen!
+If the application is resized to a smaller screen, certain graphical components will be hidden. This is to ensure that
+you still see the most important information about your budgeting. If details of your budgeting are important, use PennyWise in fullscreen instead!
 
 1. Pie Chart Legend <br/>
 
-- The Pie Chart Legend would not be visible should the application be of a smaller size. This ensures your categorical
+- The Pie Chart Legend will be hidden should the application be of a smaller size. This ensures your categorical
   overview can still be seen at a glance!
   ![ChartLegend](images/ug/ChartLegend.png)
 
 2. Line Graph Dates
 
-- Certain Line Graph dates would not be visible should the application be of a smaller size. This ensures you are still
-  able to view the linear trend of your entries can still be seen.
+- Certain Line Graph dates will be hidden should the application be of a smaller size. This ensures you can still view
+  the trend of your entries easily.
   ![LineGraphDates](images/ug/LineGraphDates.png)
 
 </div>
@@ -200,7 +200,7 @@ step-by-step!
 |  Optional Input  |                  NIL                   |
 
 - Letters followed by a forward slash is called a prefix and will be used to specify a specific parameter<br>
-  e.g `t/ ` refers to the entry type parameter.
+  e.g. `t/ ` refers to the entry type parameter.
 
 - Words in `UPPER_CASE` are the parameters that you must supply<br>
   e.g. In `delete INDEX_OF_ENTRY t/ENTRY_TYPE`, `INDEX_OF_ENTRY` is a parameter which can be used as `delete 10 t/e`.
@@ -208,14 +208,14 @@ step-by-step!
 - Items in square brackets are optional.<br>
   e.g. `view t/ENTRY_TYPE [MONTH]` can be used as `view t/e mo/2022-05` or as `view t/e`.
 
-- **ALL** identifiers are <ins>case-sensitive</ins>. e.g `d/Lunch` as a descriptor for "Lunch" is accepted by PennyWise,
-  however `D/Lunch` would not be accepted.
+- **ALL** identifiers are <ins>case-sensitive</ins>. e.g. `d/Lunch` as a descriptor for "Lunch" is accepted by
+  PennyWise, however `D/Lunch` would not be accepted.
 
 ### Categorising your expenses and income
 
 For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category. The
-following table shows the`Expenditure` and `Income` entries categories. The category names are <ins>
-case-insensitive</ins>.
+following table lists the`Expenditure` and `Income` entries categories. The category names are <ins>
+case-insensitive</ins>. E.g. `Food` is same as `food`.
 
 |   `Expenditure`   |    `Income`     |
 |:-----------------:|:---------------:|
@@ -231,11 +231,15 @@ For example, an expense entry can be tagged with `Food`, but not `Salary`.
 ### Guidelines on organising your expenses and income
 
 For **ALL** entries, 2 entries are considered duplicates <ins>IF</ins> both entries have exactly the same:
-`description`, `date` `amount` and `category`. We do not want PennyWise to be managing entries which are a repeat, of
-one another, as it would be easier to simply use the [edit](#editing-entries)
-command to alter the original entry's specifications.
+`description`, `date` `amount` and `category`.
 
-In addition `description` and  `food` are case-insensitive, this means that `FOOD` will be equivalent to `food`
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+Having multiple duplicate entries will make it difficult for you to track your expenses later on, and could clutter the list.
+Having them differentiated will make it easier for you to recall what you spent your money on!
+</div>
+
+If you have multiple similar entries, you can simply use the [edit](#editing-entries)
+command to alter the original entry's specifications.
 
 For example, when executing the following [add commands](#adding-entries) one after another, PennyWise will recognise (
 2), which is the second `Teh Beng` added as a duplicate entry.
@@ -264,12 +268,6 @@ OR we could even [edit](#editing-entries) the original entry directly to reflect
     </code>
 </pre>
 
-
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
-Having multiple duplicate entries will make it difficult for you to track your expenses later on, and could clutter the list.
-Having them differentiated will make it easier for you to recall what you spent your money on!
-</div>
-
 <p align="right">
     <a href="#top">Back to Top </a>
 </p>
@@ -277,6 +275,8 @@ Having them differentiated will make it easier for you to recall what you spent 
 ## Features
 
 ### Adding entries
+
+Perhaps you just bought a cup of coffee, or a paycheck comes in. Add these entries to PennyWise to keep track of them.
 
 Format: `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY` <br/>
 Adds an entry to the specified list.
@@ -307,6 +307,8 @@ Adds an entry to the specified list.
 
 ### Editing entries
 
+Whoops! You made an error in your previous entry. Fret not, you can easily edit it.
+
 Format: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]` <br/>
 Edits an entry, where at least **1** of the optional fields description/amount/date/category must be present.
 
@@ -336,6 +338,9 @@ Edits an entry, where at least **1** of the optional fields description/amount/d
 
 ### Deleting entries
 
+You were going to watch the latest Kungfu Panda movie, but your friend bailed on you :(. You already logged the entry so
+now you need to delete it.
+
 Format:  `delete INDEX_OF_ENTRY t/ENTRY_TYPE` <br/>
 Deletes an entry from the specified list.
 
@@ -362,6 +367,9 @@ Deletes an entry from the specified list.
 ![DeleteCommandIncome](images/ug/DeleteCommandIncome.png)
 
 ### Summary of entries
+
+It's been a long month with its ups and down. You wonder how your finances did this month. Use the summary command to
+find out!
 
 Format: `summary [mo/MONTH]` <br/>
 To summarise the entries in PennyWise, we compute 3 simple statistic to let you have a quick overview of your
@@ -410,6 +418,9 @@ The command format is provided below:
 
 ### View entries by category
 
+You've always been a foodie, but how much of your total expenditure is spent on food? You have multiple income streams,
+but which helped you earn the most money? View your entries in a pie chart to find out.
+
 Format: `view t/ENTRY_TYPE`
 
 | Input              | Explanation                                                              |
@@ -427,6 +438,8 @@ Format: `view t/ENTRY_TYPE`
     - Expected: `Show graphically all income by category` and a Pie Chart on the right of the application
 
 ### View entries by month
+
+You went on a shopping spree today. Find out how today's expenditure compared to the rest of the month.
 
 Format: `view t/ENTRY_TYPE mo/MONTH`
 
@@ -451,6 +464,9 @@ Format: `view t/ENTRY_TYPE mo/MONTH`
 
 ### Clearing all entries
 
+You're giving your laptop to your younger brother and already backed up your PennyWise data. Clear all your entries so
+your brother doesn't see what you spent on.
+
 Format: `clear` <br/>
 Clears all entries in PennyWise.
 
@@ -459,6 +475,8 @@ Danger zone! This command is irreversible- it is not possible to retrieve entrie
 </div>
 
 ### Exiting the program
+
+You're done logging your expenses for the day. Let's exit the application.
 
 Format: `exit` <br/>
 Exits the program.
@@ -486,19 +504,19 @@ If your changes to the data file makes its format invalid, PennyWise will discar
 ## FAQ
 
 **Q**: Can I use PennyWise without internet? <br>
-**A**: Absolutely! In fact, PennyWise is meant to be used as a offline application. This means that your personal data
+**A**: Absolutely! In fact, PennyWise is meant to be used as an offline application. This means that your personal data
 will be even more secure as well!
 
 **Q**: How do I transfer my data to another Computer? <br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous PennyWise home folder.
 
-**Q**: Why is my edit and delete command invalid? I am sure i included all the required parameters. <br>
-**A**: Make sure that your `INDEX_OF_ENTRY` is the first parameter after the command word
+**Q**: Why is my edit and delete command invalid? I am sure I included all the required parameters. <br>
+**A**: Make sure that your `INDEX_OF_ENTRY` is the first parameter after the command word.
 
 **Q**: I want to have a `Medical` category to log my expenses. Is there anyway I can do it? <br>
-**A**: The categories for income and expenses entries are fixed. However we are exploring the possibilities of user
-added categories so do look out for our software updates!
+**A**: The categories for income and expenses entries are fixed. However, we are exploring the possibilities of user
+added categories so do look out for our software updates! For now, kindly categorise them under `Others`.
 
 **Q**: Why are there missing dates on my Line Graph? <br>
 **A**: PennyWise automatically removes certain elements to ensure you can still get an overview of your finances!
@@ -508,8 +526,6 @@ If you want to view all the dates enlarge your application!
 **A**: Unfortunately PennyWise current only accepts one type of format which is `04-04-2022`. However, we are exploring
 the possibilities of allowing more types of date formats without compromising on quality and user experience so do look
 out for our future software updates!
-
-
 
 <p align="right">
     <a href="#top">Back to Top </a>
