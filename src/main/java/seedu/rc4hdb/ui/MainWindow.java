@@ -42,7 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CommandBox commandBoxRegion;
-    private CurrentWorkingFileFooter statusBarFooter;
+    private CurrentWorkingFileFooter fileFooter;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -54,7 +54,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem commandBoxRedirect;
 
     @FXML
-    private TabPane tableViewPane;
+    private TabPane tabViewPane;
 
     @FXML
     private Tab residentTab;
@@ -63,16 +63,10 @@ public class MainWindow extends UiPart<Stage> {
     private Tab venueTab;
 
     @FXML
-    private StackPane residentTableViewPlaceholder;
-
-    @FXML
-    private StackPane venueTabViewPlaceholder;
-
-    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane fileFooterPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -139,21 +133,18 @@ public class MainWindow extends UiPart<Stage> {
         residentTableView = new ResidentTableView(logic.getFilteredResidentList(),
                 logic.getVisibleFields(),
                 logic.getHiddenFields());
-        residentTableViewPlaceholder.getChildren().add(residentTableView.getRoot());
+        residentTab.setContent(residentTableView.getRoot());
 
         venueTabView = new VenueTabView(logic.getObservableVenues(), logic.getCurrentlyDisplayedVenue());
-        venueTabViewPlaceholder.getChildren().add(venueTabView.getRoot());
+        venueTab.setContent(venueTabView.getRoot());
 
-        residentTab.setContent(residentTableViewPlaceholder);
-        venueTab.setContent(venueTabViewPlaceholder);
-
-        tableViewPane.getTabs().addAll(residentTab, venueTab);
+        tabViewPane.getTabs().addAll(residentTab, venueTab);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        statusBarFooter = new CurrentWorkingFileFooter(logic.getObservableFolderPath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        fileFooter = new CurrentWorkingFileFooter(logic.getObservableFolderPath());
+        fileFooterPlaceholder.getChildren().add(fileFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxRegion = commandBox;
@@ -250,11 +241,6 @@ public class MainWindow extends UiPart<Stage> {
         return c -> residentTableView.setHiddenFields(logic.getHiddenFields());
     }
 
-    private ChangeListener<Path> getFileChangeListener() {
-        return (observableValue, oldValue, newValue) ->
-                statusBarFooter.updateFilePath(newValue);
-    }
-
     private void setTabLabels() {
         this.residentTab.setText("Residents");
         this.venueTab.setText("Bookings");
@@ -264,7 +250,6 @@ public class MainWindow extends UiPart<Stage> {
      * Add listeners to fields to be listened to.
      */
     private void setUpListeners() {
-        this.logic.getObservableFolderPath().addListener(getFileChangeListener());
         this.logic.getVisibleFields().addListener(updateVisibleFieldsOnChange());
         this.logic.getHiddenFields().addListener(updateHiddenFieldsOnChange());
     }
