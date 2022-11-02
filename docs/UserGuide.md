@@ -11,19 +11,22 @@ title: User Guide
 ### About GREWZ
 Tired of opening multiple applications for your teaching needs? Look no further!
 
-GREWZ helps **university teaching assistants** to maintain the information of the students in their classes by collating a list of students' personal details, as well as keeping a task book to help them keep track of their personal work.
+GREWZ helps **university teaching assistants** to maintain the information of the students in their classes by collating 
+a list of students' personal details, as well as keeping a task book to help them keep track of their personal work.
 
 As a teaching assistant, you can use GREWZ as an all-in-one platform to carry out your teaching duties such as: 
 * Marking attendance
 * Updating student details
 * Managing personal homework
 
-GREWZ boasts a timeless, compartmentalised Graphical User Interface (GUI) while utilising a clean Command Line Interface (CLI) - this means that the faster you can type, the faster you can get your work done.
+GREWZ boasts a timeless, compartmentalised [Graphical User Interface (GUI)](#glossary) while utilising a clean 
+[Command Line Interface (CLI)](#glossary) - this means that the faster you can type, the faster you can get your work done.
 
 Hopefully our application has grown on you! 
 
 ### Navigation
-The aim of this User Guide is to provide you with all the information needed to fully utilise GREWZ. We understand the steep difficulty curve when learning Command Line Interface (CLI) programs and have tried our best to ease you in. 
+The aim of this User Guide is to provide you with all the information needed to fully utilise GREWZ. We understand the 
+steep difficulty curve when learning Command Line Interface (CLI) programs and have tried our best to ease you in. 
 
 If you need help setting up GREWZ, jump over to [Quick start](#quick-start) to continue.
 
@@ -31,34 +34,36 @@ If you want to find out more about GREWZ features and commands, jump over to [Fe
 
 If you want the quick overview of GREWZ commands, jump over to [Command Summary](#command-summary)
 
+If you have a question, jump over to [FAQs](#faq)
+
 Take note of the following symbols and formatting used in this document:
 
 
-| Symbol      | Meaning                                                        |
-|-------------|----------------------------------------------------------------|
-|:information_source:| Provides notes for the user                             |
-|:exclamation:| Possible errors that might come from user interaction          |
-|:bulb:        | Provides additional information about the feature              |
+| Symbol               | Meaning                                               |
+|----------------------|-------------------------------------------------------|
+| :information_source: | Provides notes for the user                           |
+| :exclamation:        | Possible errors that might come from user interaction |
+| :bulb:               | Provides additional information about the feature     |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. For more details, check out the [FAQs](#faq).
 
 2. Download the latest `GREWZ.jar` from [here](https://github.com/AY2223S1-CS2103T-W12-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your GREWZ.
+3. Copy the file to the folder you want to use as the [_home folder_](#glossary) for your GREWZ.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui with annotations](images/Ui_annotated.png "GREWZ UI")
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all students.
 
-   * **`add`**`n/John Doe i/e0778123 [e/student@example.com] [p/91251211]` : Adds a student named `John Doe` to the student list.
+   * **`add`**`n/John Doe i/e0778123` : Adds a student named `John Doe` with student ID `e0778123` to the student list.
 
    * **`delete`**`3` : Deletes the 3rd student shown in the current list.
 
@@ -76,7 +81,7 @@ Take note of the following symbols and formatting used in this document:
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the [parameters](#glossary) to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -98,6 +103,7 @@ Take note of the following symbols and formatting used in this document:
 
 Student Contact Commands
 ---
+[Back to Top ↑](#introduction)
 
 ### Adding a student: `add`
 
@@ -106,7 +112,7 @@ Adds a student to the class list.
 Format: `add n/NAME i/STUDENT_ID [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS_GROUP] [t/TAG]…​`
 
 
-* Fields in Square Bracket are Optional.
+* Fields in square bracket`[]` are optional.
 * The fields can be written in any order.
 * ***Only*** Name and Student ID are a must.
 * Name must only consist of alphanumeric characters and spaces, as well as special characters such as `, ' .`
@@ -175,16 +181,18 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [i/STUDENT_ID] [t/TAG
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* You can clear the value in a field by typing its [prefix](#glossary) without specifying any value after it.
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
 * You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
 * This command does not offer editing a student's profile picture. To do this, refer to [upload](#uploading-changing-student-profile-picture-upload-pic)
 
 Examples:
-*  `edit 1 p/91234567 e/studentEmail@example.com` Edits the phone number and email of the 1st student in the list to be `91234567` and `studentEmail@example.com` respectively.
-*  `edit 2 n/Jackie Chan t/` Edits the name of the 2nd student to be `Jackie Chan` and clears all existing tags.
+* `edit 1 p/91234567 e/studentEmail@example.com` Edits the phone number and email of the 1st student in the list to be `91234567` and `studentEmail@example.com` respectively.
+* `edit 2 n/Jackie Chan t/` Edits the name of the 2nd student to be `Jackie Chan` and clears all existing tags.
+* `edit 3 p/ e/ c/` Clears the stored phone number, email and class of the 3rd student in the list.
 
-### Locating students by name: `find`
+### Locating students: `find`
 
 Finds students whose student details contain any of the given keywords.
 
@@ -223,6 +231,8 @@ Clears all entries from the student list.
 Format: `clear`
 
 ## Attendance commands
+[Back to Top ↑](#introduction)
+
 We developed a feature to add an attendance list of a maximum of 12 lessons to help you record attendance for your students. 
 You can mark/unmark attendance of your students. 
 Currently, we only support one attendance list per student.
@@ -285,6 +295,7 @@ After using ```attendance delete``` command
 
 Task Commands
 ---
+[Back to Top ↑](#introduction)
 
 ### Adding a Task : `task`
 
@@ -294,39 +305,6 @@ There is three different types of Task - ***ToDo***, ***Deadline*** and ***Assig
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
 You can have multiple same tasks as tasks can be duplicated.
 </div>
-
-### Editing Tasks : `edit-task`
-
-Edits an existing tasks in the task list.
-
-Format: `edit-task [t/TITLE] [d/DESCRIPTION] [deleteStu/STUDENT_1, STUDENT_2]`
-
-* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* For task specific fields `by/`, `addStu/`, and `deleteStu/`, can only be edited if the task is of the correct type.
-    * `by/` is only accepted while editing a Deadline Task. The date follows the same format as [deadline tasks](#adding-a-deadline).
-    * `addStu/` and `deleteStu/` are only accepted while editing an Assignment Task.
-    * `addStu/` adds the student names to the assignment while `deleteStu/` deletes students names if the exact name is already in the assignment task's student list.
-* Existing values will be updated to the input values.
-
-Examples:
-* `edit-task 1 t/Assignment 1 d/Topics: Recursion addStu/Adam Lee, Ben Tang deleteStu/Zack Yu, Xenia Ng`
-  Edits the title, description and student list of the 1st task in the task list, provided that it is an assignment task, to be `Assignment 1`, `Topics: Recursion` and `Adam Lee, Ben Tang` respectively.
-* `edit-task 2 deleteStu/Jackie Chan` Edits the student list of the 2nd task in the task list to delete the name `Jackie Chan`. All other students in the student list of the task are not affected.
-
-### Removing a Task : `remove-task`
-
-Removes a specified task from the Task List (Can be a ToDo, Deadline or Assignment).
-
-Format: `remove-task INDEX`
-
-* Deletes the task at the specified `INDEX`.
-* The index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `remove-task 2` deletes the 2nd student in the task list.
-
 
 #### Adding a ToDo
 
@@ -355,7 +333,7 @@ Examples:
 * `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12`
 * `task t/Collect robot d/At MakersLab by/2019-09-10`
 
-#### Adding a Assignment
+#### Adding an Assignment
 
 Adds an ***Assignment*** (A type of Task) to the Task List.
 
@@ -370,11 +348,40 @@ Examples:
 * `task t/Assignment 1 d/Description here addStu/Adam Tan, Wong Zhu Yi, Robin Hood`
 * `task t/Midterm Assignment d/This is a challenging assignment addStu/Alvin, Simon, Theodore`
 
+### Editing Tasks : `edit-task`
+
+Edits an existing tasks in the task list.
+
+Format: `edit-task [t/TITLE] [d/DESCRIPTION] [deleteStu/STUDENT_1, STUDENT_2]`
+
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* For task specific fields `by/`, `addStu/`, and `deleteStu/`, can only be edited if the task is of the correct type.
+    * `by/` is only accepted while editing a Deadline Task. A date should strictly follow the format of YYYY-MM-DD.
+    * `addStu/` and `deleteStu/` are only accepted while editing an Assignment Task.
+    * `addStu/` adds the student names to the assignment while `deleteStu/` deletes students names if the exact name is already in the assignment task's student list.
+* Existing values will be updated to the input values.
+
+Examples:
+* `edit-task 1 t/Assignment 1 d/Topics: Recursion addStu/Adam Lee, Ben Tang deleteStu/Zack Yu, Xenia Ng`
+  Edits the title, description and student list of the 1st task in the task list, provided that it is an assignment task, to be `Assignment 1`, `Topics: Recursion` and `Adam Lee, Ben Tang` respectively.
+* `edit-task 2 deleteStu/Jackie Chan` Edits the student list of the 2nd task in the task list to delete the name `Jackie Chan`. All other students in the student list of the task are not affected.
+
+### Removing a Task : `remove-task`
+
+Removes a specified task from the Task List (Can be a ToDo, Deadline or Assignment).
+
+Format: `remove-task INDEX`
+
+* Deletes the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `remove-task 2` deletes the 2nd student in the task list.
 ---
 
 ### Navigating User Input History: `↑`, `↓`
-
-Adapted from [senior](https://github.com/AY2122S2-CS2103T-W13-3/tp)
 
 Allows user to quickly retrieve their previous inputs from current session by using the up and down arrow keys.
 
@@ -409,6 +416,15 @@ Format: `exit`
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+
+**Q:** I don't know if I have Java `11` installed in my computer. What do I do?
+<br />
+**A:** To check your Java version, open a Command Prompt or Terminal window on your computer and type:
+```
+java -version
+```
+This will show you the exact version of Java installed on your computer, if any.
+If you do not have Java `11` installed, you can download it [here](https://www.oracle.com/java/technologies/downloads/#java11).
 
 **Q:** Do I have to retype the command every single time even if they are similar?
 <br />
@@ -468,14 +484,17 @@ Format: `exit`
 |--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Command Line Interface (CLI)**           | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer. |
 | **Graphical user interface (GUI)**         | Graphical user interface (GUI) is a form of user interface that allows users to interact with electronic devices through graphical icons.      |
+| **Home Folder**                            | A folder on your computer that stores all data related to this application.                                                                    |
+| **Parameter**                              | Parameter is the user's input for particular field.                                                                                            |
+| **Prefix**                                 | A group of characters placed before the input value. GREWZ uses prefixes like `n/`, `t/` and `p/`.                                             |
 | **Teaching assistant**                     | Teaching assistant is an individual who assists a professor with instructional responsibilities.                                               |
-| **JavaScript Object Notation (JSON)**      | JavaScript Object Notation (JSON) is used for storing and transfering data.                                                                    |
+| **JavaScript Object Notation (JSON)**      | JavaScript Object Notation (JSON) is used for storing and transferring data.                                                                   |
 | **Joint Photographic Experts Group (JPG)** | Joint Photographic Experts Group (JPG) is an image file type and used for compression of digital images.                                       |
 | **User input history**                     | User input history is the previous inputs the user has keyed in.                                                                               |
 | **Task**                                   | Task is a piece of work to be done and the category Todo, Deadline and Assignment is under.                                                    |
-| **Todo**                                   | Todo is a task with a description and title.                                                                                                   |
-| **Deadline**                               | Deadline is a task with a due date.                                                                                                            |
-| **Assignment**                             | Assignment is a task with a list of students that needs to finish the task.                                                                    |
+| **Todo**                                   | Todo is a task with a title and description.                                                                                                   |
+| **Deadline**                               | Deadline is a task with a title, description and due date.                                                                                     |
+| **Assignment**                             | Assignment is a task with title, description and a list of students that needs to finish the task.                                             |
 | **Attendance List**                        | Attendance list is a record of the student's attendance for his class.                                                                         |
 
-[back to top](#introduction)
+[Back to Top ↑](#introduction)
