@@ -10,23 +10,27 @@ if () then ([index is valid])
     specified index;
     :Update UI to display
     updated contact list;
-elseif () then ([name prefix is present])
-        if () then ([name occurs once])
-            :Delete person with
-            specified name;
-            :Update UI to display
-            updated contact list;
-        elseif () then ([name occurs more than once])
-            :Show error message
-            saying name occurs
-            more than once;
-        else ([name does not occur])
-            :Show error message
-            saying name is invalid;
-        endif;
+else ([else])
+    if () then ([name prefix is present])
+            if () then ([name occurs once])
+                :Delete person with
+                specified name;
+                :Update UI to display
+                updated contact list;
+            else ([else])
+                if () then ([name occurs more than once])
+                    :Show error message
+                    saying name occurs
+                    more than once;
+                else ([name does not occur])
+                    :Show error message
+                    saying name is invalid;
+                endif
+            endif
     else ([else])
         :Show error message
         saying index is invalid;
     endif
+endif
 stop
 @enduml

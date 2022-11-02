@@ -149,9 +149,37 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add feature
+
+#### Implementation
+
+The Add mechanism is facilitated by `AddCommand` and `AddCommandParser`. It allows users to add a contact into their contact list and specify the contacts'
+`Name`, `Phone`, `Email`, `Birthday`, `Address`, and `Tags` to be stored and associated with the `Person` contact created.
+
+#### Example Usage
+
+Step 1: The user inputs `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/18-08-2000 t/friend`. This adds a person with `Name`
+John Doe with the specified details into the contact list.
+
+Step 2: `LogicManager` calls `AddressBookParser#parseCommand` with the user input.
+
+Step 3: `AddressBookParser` will parse the command word and create a new `AddCommandParser` and call its function `parse` with the index as the arguments.
+
+Step 4: The `AddCommandParser#parse` will then parse the arguments and create a new `AddCommand` object.
+
+Step 5: The `LogicManager` then calls `AddCommand#execute`.
+
+Step 6: The `AddCommand` communicates with the `Model` to add the person by calling `Model#addPerson`.
+
+Step 7: `AddCommand` then returns a new `CommandResult` with the result of the execution.
+
+![Sequence diagram for the Add Command](images/AddSequenceDiagram.png)
+
+
 ### Insurance feature
 
 #### Implementation
+
 The Insurance mechanism is facilitated by `InsuranceCommand` and `InsuranceCommandParser`. It allows users to store whether a contact in their contact list has the four main types of insurance.
 The four main types of insurances are modelled by the classes `LifeInsurance`, `DisabilityInsurance`, `CriticalIllnessInsurance` and `HealthInsurance` which inherit from the abstract `Insurance` class.
 
@@ -162,6 +190,8 @@ The types of insurances are specified by prefixes inputted by the user:
 * hi/ - Health Insurance
 
 `Insurance` fields are stored in the `Person` class, and consist of the boolean `hasInsurance` which is set to true if `Person` object has the type of insurance.
+
+For prefixes not included in the command, the `Person` object is taken to not have the corresponding types of insurance.
 
 Below is an example usage scenario.
 
@@ -340,44 +370,115 @@ FAs have to deal with on a day-to-day basis
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                           | So that I can…​                                                               |
-|----------|--------------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions                                                 | refer to instructions when I forget how to use the App                        |
-| `* * *`  | user                                       | add my friends/clients/potential clients contact information           | easily contact them and store their information                               |
-| `* * *`  | user                                       | view all of my contacts and the details about my contacts              | get can overview of all of my contacts' information                           |
-| `* * *`  | user                                       | delete specific contacts                                               | remove entries that I no longer need                                          |
-| `* * *`  | user                                       | find a person by name                                                  | locate details of persons without having to go through the entire list        |
-| `* * *`  | user                                       | save important information related to my contacts                      | easily keep track of my contacts' important details                           |
-| `* * *`  | user                                       | be able to label my contacts into different categories                 | organize my contacts better                                                   |
-| `* * *`  | user                                       | be able to filter my contacts by tag/category/etc.                     | more easily navigate through my contacts and find contacts I am interested in |
-| `* * *`  | user                                       | be sure that my data is safe and backed up                             | I do not lose important contact information                                   |
-| `* *`    | user                                       | search from my contacts                                                | I can look up information stored about my contacts easily                     |
-| `* *`    | user                                       | import my contacts                                                     | I do not have to manually add my contacts individually                        |
-| `* *`    | user                                       | copy and paste information to my clipboard                             | I can paste prepared messages in whatever messaging application I like        |
-| `* *`    | user                                       | set preset messages beforehand for my contacts                         | I can easily copy the message and send it out                                 |
-| `* *`    | user                                       | be able to set reminders for myself                                    | I can be reminded of important dates for my contacts                          |
-| `* *`    | user                                       | delete all the current contacts                                        | start afresh after testing out the commands                                   |
-| `* *`    | user                                       | edit information related to my contacts                                | make changes if I make a mistake or their information changes                 |
-| `* *`    | intermediate user                          | learn more about how to use the application and more advanced features | I can increase my productivity                                                |
-| `* *`    | intermediate user                          | automatically hide old contacts that were last contacted some time ago | I can declutter the application of old contacts                               |
-| `* *`    | long-time user                             | customize some of my commands                                          | group common commands together to automate common tasks and save time         |
-| `*`      | long-time user                             | have a fast way to show off how fast working with Friendnancial is     | I can introduce the product to my friends and convince them to use it         |
-| `*`      | user with many persons in the address book | sort persons by name                                                   | locate a person easily                                                        |
+| Priority | As a …​                                    | I want to …​                                                           | So that I can…​                                                                              |
+|----------|--------------------------------------------|------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| `* * *`  | Brand New User                             | see usage instructions                                                 | refer to instructions when I forget how to use the App                                       |
+| `* * *`  | User                                       | store my friends, clients and potential clients contact information    | easily contact my friends, clients and potential clients                                     |
+| `* * *`  | User                                       | view all of my contacts                                                | get an overview of all of my contacts                                                        |
+| `* * *`  | User                                       | view my contacts' information                                          | easily access my contacts' information                                                       |
+| `* * *`  | User                                       | delete specific contacts                                               | remove contacts that I no longer need and declutter the application                          |
+| `* * *`  | User                                       | search for a contact                                                   | locate the information of my desired contact without having to check through all my contacts |
+| `* * *`  | User                                       | save my contacts birthdays                                             | keep track of my contacts' birthdays and know when to wish them happy birthday               |
+| `* * *`  | User                                       | save my contacts insurance information                                 | keep track of my contacts' insurance information to know when to follow up with them         |
+| `* * *`  | User                                       | be able to label my contacts into different categories                 | organize my contacts better                                                                  |
+| `* * *`  | User                                       | filter my contacts                                                     | more easily navigate through my contacts and find contacts I am interested in                |
+| `* * *`  | User                                       | be sure that my data is safe and backed up                             | not lose important contact information                                                       |
+| `* * *`  | User                                       | be reminded of my clients birthdays automatically                      | only have to input my clients information once                                               |
+| `* * *`  | User                                       | set reminders for myself                                               | keep track of important tasks to carry out                                                   |
+| `* *`    | User                                       | search through my contacts                                             | look up information stored about my contacts easily                                          |
+| `* *`    | User                                       | import my contacts                                                     | not have to manually add my contacts individually                                            |
+| `* *`    | User                                       | copy and paste information to my clipboard                             | paste prepared messages in whatever messaging application I like                             |
+| `* *`    | User                                       | set preset messages beforehand for my contacts                         | easily copy the message and send it out                                                      |
+| `* *`    | User                                       | delete all the current contacts                                        | start afresh after testing out the commands                                                  |
+| `* *`    | User                                       | edit information related to my contacts                                | make changes if I make a mistake or their information changes                                |
+| `* *`    | Intermediate User                          | learn more about how to use the application and more advanced features | increase my productivity                                                                     |
+| `* *`    | Intermediate User                          | automatically hide old contacts that were last contacted some time ago | declutter the application of old contacts                                                    |
+| `* *`    | Long-Time User                             | customize some of my commands                                          | group common commands together to automate common tasks and save time                        |
+| `*`      | Long-Time User                             | have a fast way to show off how fast working with Friendnancial is     | introduce the product to my friends and convince them to use it                              |
+| `*`      | User with many persons in the address book | sort persons by name                                                   | locate a person easily                                                                       |
 
-*{More to be added}*
+
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Friendnancial` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Friendnancial` and the **Actor** is the `User`, unless specified otherwise)
 
-**Use case 1: Delete a person**
+**Use Case 1: Add a person**
 
 **MSS**
 
 1.  User requests to list persons
 2.  Friendnancial shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  Friendnancial deletes the person
+3.  User requests to add a specific person in the list and types their information
+4.  Friendnancial adds the person and the user sees the new person in the list of persons
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The input information does follow the correct format.
+  
+    * 3a1. Friendnancial displays an error message indicating the correct format for the user to follow.
+
+      Use case resumes at step 2.
+
+
+**Use Case 2: Delete a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  Friendnancial shows a list of persons
+3.  User requests to delete a specific person in the list either by their index or by their name
+4.  Friendnancial deletes the person and the user sees the person deleted
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index or name is invalid.
+
+    * 3a1. Friendnancial shows an error message indicating that the user has input incorrect information.
+
+      Use case resumes at step 2.
+
+
+**Use Case 3: Edit a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  Friendnancial shows a list of persons
+3.  User requests to edit a specific person in the list by specifying what to update
+4.  Friendnancial edits the information of the person and the user sees the changes
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index to edit is invalid.
+
+    * 3a1. Friendnancial shows an error message indicating that the user has input incorrect information.
+
+      Use case resumes at step 2.
+
+
+**Use Case 4: Add a reminder for a specific person**
+
+**MSS**
+
+1. User requests to list persons
+2. Friendnancial shows a list of persons
+3. User requests to add a reminder for a specific person by inputting the information
+4. User sees the newly added reminder in the list of reminders
 
     Use case ends.
 
@@ -389,20 +490,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. Friendnancial shows an error message.
+    * 3a1. Friendnancial shows an error message indicating that the user has input incorrect information.
 
       Use case resumes at step 2.
 
-**Use case 2: Edit a person**
+
+**Use Case 5: Remove a reminder from the list of reminders**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Friendnancial shows a list of persons
-3.  User requests to edit a specific person in the list
-4.  Friendnancial edits the information of the person
+1. User requests to list persons
+2. Friendnancial shows a list of persons
+3. User requests to remove a reminder by inputting the information
+4. User sees the reminder removed from the list of reminders
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -410,51 +512,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. Friendnancial detects an error in the request.
-    * 3a1. Friendnancial shows an error message.
+* 3a. The given reminder index is invalid.
+
+    * 3a1. Friendnancial shows an error message indicating that the user has input incorrect information.
 
       Use case resumes at step 2.
 
-**Use case 3: Set a reminder for a contact**
+
+**Use Case 6: Filtering contacts**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Friendnancial shows a list of persons
-3.  User requests to set a reminder for a specific person in the list
-4.  User can view all reminders in the reminder list, sorted by date (from earliest to latest)
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Friendnancial shows an error message
-
-      Use case resumes at step 2.
-* 3b. The user requests to remove the reminder
-  * 3b1 Friendnancial removes the reminder
-
-    Use case ends.
-
-
-**Use case 4: Filter contacts**
-
-**MSS**
-
-1. User requests to filter contacts based off a given field
+1. User requests to filter contacts based on a given field
 2. Friendnancial shows the list of people that match the criteria
 
     Use case ends.
 
 **Extensions**
 * 1a. The given prefix is invalid.
-  * 1a1. Friendnancial shows an error message
+
+  * 1a1. Friendnancial shows an error message.
+
+    Use case ends.
+
+* 1b. The user does not indicate any prefix.
+
+  * 1b1. Friendnancial shows all the people in the list of people.
+
+    Use case ends.
 
 
 ### Non-Functional Requirements
@@ -542,6 +627,7 @@ the GUI. Below are common issues when trying to carry out GUI tests.
 * Reason: From macOS Mojave onwards, applications that do not have `Accessibility` permissions cannot simulate
 such keyboard and mouse movements. Therefore, the GUI tests that require simulation of keyboard and mouse movements
 to test the GUI cannot function properly and fail.
+
 * Solution: Open `System Preferences`, click `Security and Privacy`, then `Privacy`, and then `Accessibility`.
 Then check the box beside `IntelliJ IDEA`. The figure below shows `Accessibility` permission being granted to
 `IntelliJ IDEA`.
@@ -554,6 +640,7 @@ Then check the box beside `IntelliJ IDEA`. The figure below shows `Accessibility
 display a GUI. The environment that GitHub Actions provides does not have these. Therefore, the GUI tests are
 getting stuck and taking very long to build with no success and this is causing Continuous Integration checks to
 fail.
+
 * Solution: Update the [`gradle.yml`](../.github/workflows/gradle.yml) file to make use of an additional [action](https://github.com/marketplace/actions/gabrielbb-xvfb-action)
 on GitHub actions that installs [XVFB](http://elementalselenium.com/tips/38-headless) and runs headless tests with
 it. The figure below shows the new actions used to enable the CI environment to run the GUI tests properly.
