@@ -85,6 +85,8 @@ Format: `clear`
 
 Adds a project to the AddressBook. A unique project ID will be automatically generated.
 
+![add project command](images/AddProjectCommand.png)
+
 Format: `project -a n/PROJECT_NAME [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
 
 * Adds the project to the list of projects.
@@ -109,6 +111,8 @@ to the project.
 
 Edits a specified existing project.
 
+![edit_project_command](images/EditProjectCommand.png)
+
 Format: `project -e p/PROJECT_ID [n/PROJECT_NAME] [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
 
 * Edits the project with the specified `PROJECT_ID`. The ID refers to the unique ID generated upon adding a project.
@@ -130,6 +134,7 @@ client with `CLIENT_ID` 2.
 
 Removes the specified existing project.
 
+![delete_project_command](images/DeleteProjectCommand.png)
 Format: `project -d PROJECT_ID`
 
 * Deletes the project with the specified `PROJECT_ID`.
@@ -172,6 +177,8 @@ Examples:
 
 Pins a project to the top of the project list.
 
+![pin_project_command](images/PinProjectCommand.png)
+
 Format: `project -p PROJECT_ID`
 
 * Pins the project with the specified `PROJECT_ID`.
@@ -184,6 +191,8 @@ Examples:
 ### Sorting all projects: `project -s`
 
 Sorts all projects based on a specified key.
+
+![sort_project_command](images/SortProjectCommand.png)
 
 Format: `project -s [p/PROJECT_ID] [d/DEADLINE] [i/ISSUE_COUNT] [n/PROJECT_NAME]`
 
@@ -307,6 +316,8 @@ Examples:
 
 Pins a client to the top of the client list.
 
+![pin_client_command](images/PinClientCommand.png)
+
 Format: `client -p CLIENT_ID`
 
 * Pins the client with the specified `CLIENT_ID`.
@@ -319,6 +330,8 @@ Examples:
 ### Sorting all clients: `client -s`
 
 Sorts all clients based on a specified key.
+
+![sort_client_command](images/SortClientCommand.png)
 
 Format: `client -s [c/CLIENT_ID] [n/CLIENT_NAME]`
 
@@ -344,6 +357,8 @@ Format: `client -v`
 
 Adds an issue to the AddressBook. A unique issue ID will be automatically generated. 
 
+![add_issue_command](images/AddIssueCommand.png)
+
 Format: `issue -a p/PROJECT_ID t/TITLE [d/DEADLINE] [u/URGENCY]`
 
 * Adds the issue to the overall list of issues and to the list of issues of the project with the specified `PROJECT_ID`.
@@ -363,6 +378,8 @@ and to the `IssueList` of the project with `PROJECT_ID` 2.
 ### Editing an issue : `issue -e`
 
 Edits the specified existing issue. 
+
+![edit_issue_command](images/EditIssueCommand.png)
 
 Format: `issue -e i/ISSUE_ID [t/TITLE] [d/DEADLINE] [u/URGENCY]`
 
@@ -384,6 +401,8 @@ LOW(1).
 ### Deleting an issue : `issue -d`
 
 Removes the specified existing issue.
+
+![delete_issue_command](images/DeleteIssueCommand.png)
 
 Format: `issue -d ISSUE_ID`
 
@@ -429,6 +448,8 @@ Examples:
 
 Pins an issue to the top of the issue list.
 
+![pin_issue_command](images/PinIssueCommand.png)
+
 Format: `issue -p ISSUE_ID`
 
 * Pins the issue with the specified `ISSUE_ID`.
@@ -441,6 +462,8 @@ Examples:
 ### Sorting all issues: `issue -s`
 
 Sorts all issues based on a specified key.
+
+![sort_issue_command](images/SortIssueCommand.png)
 
 Format: `issue -s [i/ISSUE_ID] [d/DEADLINE] [u/URGENCY]`
 
@@ -460,6 +483,8 @@ Examples:
  
 Marks specified existing issue as completed.
 
+![mark_issue_command](images/MarkIssueCommand.png)
+
 Format: `issue -m ISSUE_ID`
 
 * Marks the issue with the specified `ISSUE_ID`, changing its `STATUS` to completed.
@@ -471,6 +496,8 @@ Examples:
 * `issue -m 8` Changes the `STATUS` of the issue with `ISSUE_ID` 8 to completed.
 
 ### Unmarking an issue: `issue -u`
+
+![unmark_issue_command](images/UnmarkIssueCommand.png)
 
 Marks specified existing issue as incomplete.
 
