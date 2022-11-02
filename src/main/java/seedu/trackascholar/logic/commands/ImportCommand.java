@@ -36,6 +36,12 @@ public class ImportCommand extends Command {
     private final Path importedFilePath;
     private final String str;
 
+    /**
+     * Create a new instance of ImportCommand which will either replace or keep duplicate applicants
+     * in the current model
+     *
+     * @param str to input 'k' or 'r'
+     */
     public ImportCommand(String str) {
         this.str = str;
         importedFilePath = Paths.get("data", "trackAScholarImport.json");
