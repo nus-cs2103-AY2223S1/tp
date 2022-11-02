@@ -51,15 +51,18 @@ deactivate ArgumentMultimap
 XYZCommandParser -> ParserUtil: parseXYZ("1", "2")
 activate ParserUtil
 
+'Adding additional space
+ParserUtil -[hidden]> ParserUtil
+
+ParserUtil --> XYZCommandParser:
+deactivate ParserUtil
+
 create XYZCommand
-ParserUtil -> XYZCommand
+XYZCommandParser -> XYZCommand
 activate XYZCommand
 
-XYZCommand --> ParserUtil: xyz
+XYZCommand --> XYZCommandParser: xyz
 deactivate XYZCommand
-
-ParserUtil --> XYZCommandParser: xyz
-deactivate ParserUtil
 
 XYZCommandParser --> TaAssistParser: xyz
 deactivate XYZCommandParser

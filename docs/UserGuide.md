@@ -149,8 +149,8 @@ Format: `find KEYWORD...
 * To clear the current search, use the `list` command.
 
 Examples:
-* `find bert` will find students with **bert** in their name (case-insensitive), i.e. **Edbert Geraldy**, **Bert Hendrick**, **Gerard Albert**, etc.
-* `find ben chris` will find students with either **ben** or a **chris** in their name, i.e. **chris ben**, **wonders ChRIs**, **bEn ten**, etc.
+* `find bert` finds students with **bert** in their name (case-insensitive), i.e. **Edbert Geraldy**, **Bert Hendrick**, **Gerard Albert**, etc.
+* `find ben chris` finds students with either **ben** or a **chris** in their name, i.e. **chris ben**, **wonders ChRIs**, **bEn ten**, etc.
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)

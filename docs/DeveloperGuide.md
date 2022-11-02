@@ -298,7 +298,7 @@ The `Logic` component calls these methods in `Model` to execute commands that re
 
 For example, the following sequence diagram shows how the `focus` command activates focus mode:
 
-<img src="images/FocusCommandSequenceDiagram.png" width="850" />
+<img src="images/FocusCommandSequenceDiagram.png" width="400" />
 
 On the other hand, the `unfocus` command deactivates focus mode by setting `focusedClass` to `null`.
 
