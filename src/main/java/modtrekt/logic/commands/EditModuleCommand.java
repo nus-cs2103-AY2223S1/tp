@@ -98,7 +98,7 @@ public class EditModuleCommand extends Command {
         Module newModule = new Module(newCode, newName, newCredit, newCount, isDone);
 
         boolean isCurrentModule = false;
-        if (model.getCurrentModule().equals(targetModCode)) {
+        if (model.getCurrentModule() != null && model.getCurrentModule().equals(targetModCode)) {
             isCurrentModule = true;
         }
 
