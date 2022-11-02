@@ -49,7 +49,7 @@ public class TruthTable implements ReadOnlyTruthTable {
     }
 
     /**
-     * Initialises a new Addressbook with a default team.
+     * Initialises a new TruthTable with a default team.
      */
     public static TruthTable createNewTruthTable() {
         Team defaultTeam = Team.createDefaultTeam();

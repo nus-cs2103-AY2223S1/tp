@@ -17,7 +17,7 @@ import seedu.address.model.team.Team;
 /**
  * An Immutable TruthTable that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "truthtable")
 class JsonSerializableTruthTable {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
