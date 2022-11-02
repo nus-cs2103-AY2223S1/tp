@@ -15,7 +15,8 @@ public class SortCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sorts the student list based on grades of a certain subject in ascending or descending. "
             + "Not Case Sensitive.\n"
-            + "Parameters: asc (for ascending), desc (for descending), PREFIX_SUBJECT + [SUBJECT]\n"
+            + "Parameters: asc (for ascending) OR desc (for descending) "
+            + PREFIX_SUBJECT + "[SUBJECT]\n"
             + "Example: " + COMMAND_WORD + " asc " + PREFIX_SUBJECT + "english";
     public static final String MESSAGE_SUCCESS = "Sorted students by grades";
     private final boolean isInAscending;

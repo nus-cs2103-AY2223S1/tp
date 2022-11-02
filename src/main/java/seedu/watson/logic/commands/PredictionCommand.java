@@ -59,7 +59,7 @@ public class PredictionCommand extends Command {
         Attendance attendance = target.getAttendance();
         Subject targetSubject = null;
         for (Subject subj : target.getSubjectsTaken()) {
-            if (subj.getSubjectName().equals(subjectName)) {
+            if (subj.getSubjectName().equalsIgnoreCase(subjectName)) {
                 targetSubject = target.getSubjectHandler().getSubject(subjectName);
             }
         }
