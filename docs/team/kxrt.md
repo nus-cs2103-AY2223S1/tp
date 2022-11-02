@@ -27,12 +27,16 @@ RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxr
 - Creating upcoming appointments for patients: `edit ua/`
   - What it does: Schedules a future appointment for a patient.
   - Justification: Allows medical staff to keep track of when a patient is next due for a visit.
+
+#### Other code contributions
+
 - UI changes to PersonViewPanel to beautify it from a rudimentary text layout.
+- Added unit tests for Appointment-based classes, increasing coverage by 3% across over 600 lines of test code.
 
 #### Contributions to the UG
 
 - Documented `count`, `appt`, `view`, `delappt` commands.
-- Updated documentation for `edit`, `add` and `find` commands to reflect changes made to them.
+- Updated documentation for `edit` and `add` commands to reflect changes made to them.
 - Updated command summary.
 - Rewrote introduction and added a section on the purpose of the application. 
 - Created UG [banner image](../images/ug-images/editCommand/checkUp_banner.png).

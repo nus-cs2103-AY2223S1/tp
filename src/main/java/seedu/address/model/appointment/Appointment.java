@@ -8,7 +8,7 @@ import java.time.format.DateTimeParseException;
  * Represents an appointment for a patient.
  */
 public abstract class Appointment {
-    private static final String DATE_FORMAT = "dd-MM-yyyy";
+    public static final String DATE_FORMAT = "dd-MM-yyyy";
     public static final String MESSAGE_CONSTRAINTS = "Date string should be of the format " + DATE_FORMAT + ". "
             + "An upcoming appointment can only be on or after the current date "
             + "and a past appointment can only be on or before the current date.";
