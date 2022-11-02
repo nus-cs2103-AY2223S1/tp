@@ -29,12 +29,16 @@ public class HelpWindow extends UiPart<Stage> {
             + "|-----------------------------------------------|";
     public static final String TABLE_HEADERS = " |  Command  |                     Format                      "
             + "|                    Example                    | ";
-    public static final String ADD_EXAMPLE = " |   help    | add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]       "
+    public static final String ADD_EXAMPLE = " |   add     | add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]       "
             + "| add n/John Doe p/98765432 e/johnd@example.com |";
+    public static final String ADD_EXAMPLE_EXTRA = " |           | [o/OCCUPATION] [tut/TUTORIAL]                   "
+            + "|                                               |";
     public static final String LIST_EXAMPLE = " |   list    | list                                            "
             + "| list                                          | ";
     public static final String EDIT_EXAMPLE = " |   edit    | edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG] "
             + "| edit 1 p/91234567 e/janedoe@example.com       |";
+    public static final String EDIT_EXAMPLE_EXTRA = " |           | [o/OCCUPATION] [tut/TUTORIAL]                   "
+            + "|                                               |";
     public static final String DELETE_EXAMPLE = " |   delete  | delete INDEX                                    "
             + "| find Betsy -> delete 1                        | ";
     public static final String CLEAR_EXAMPLE = " |   clear   | clear                                           "
@@ -69,7 +73,9 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String HELP_MESSAGE_BODY = TABLE_HEADERS + "\n"
             + DIVIDER + "\n"
             + ADD_EXAMPLE + "\n"
+            + ADD_EXAMPLE_EXTRA + "\n"
             + EDIT_EXAMPLE + "\n"
+            + EDIT_EXAMPLE_EXTRA + "\n"
             + LIST_EXAMPLE + "\n"
             + HISTORY_EXAMPLE + "\n"
             + DELETE_EXAMPLE + "\n"
