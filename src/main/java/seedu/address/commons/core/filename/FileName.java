@@ -7,12 +7,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents the file name to be created
  */
 public class FileName {
-    public static final String MESSAGE_CONSTRAINTS = "FileName can only contain the following symbols:\n"
-            + "A-Z\n"
-            + "a-z\n"
-            + "-_.\n"
-            + "0-9";
-    private static final String VALIDATION_REGEX = "^[^*&%\\s]+$";
+    public static final String MESSAGE_CONSTRAINTS = "FileName must follow the following criteria:\n"
+            + "- Can only contain alphanumeric characters, whitespaces, hyphen(-), underscore(_) and full stop(.)\n"
+            + "- Name must be at least 3 characters long and a maximum of 30 characters";
+    private static final String VALIDATION_REGEX = "^[\\w\\-\\s.]{3,30}$";
     private String fileName;
 
     /**
