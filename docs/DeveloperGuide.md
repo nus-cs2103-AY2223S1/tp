@@ -682,6 +682,34 @@ testers are expected to do more *exploratory* testing.
 
 ### Updating insurance
 
+1. Updating a person's insurance while persons are being shown successfully
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `insurance 1 hi/`<br>
+      Expected: First contact is shown to have health insurance. Details of the updated insurance policy are shown in the status message. Updating single insurance.
+
+   1. Test Case: `insurance 1`<br>
+      Expected: First contact is shown to have no insurance. Details of the removed insurance policies are shown in the status message. Removing insurance.
+
+   1. Test Case: `insurance 1 hi/ di/ ci/ li/`<br>
+      Expected: First contact is shown to have all types of insurance. Details of the updated insurance policies are shown in the status message. Updating all insurance.
+
+1. Updating a person's insurance while persons are being shown unsuccessfully.
+
+   1. Prerequisites: At least one person in the list of contacts. Either from running `list` command or previous `find` command.
+
+   1. Test Case: `insurance 0 hi/`<br>
+      Expected: No insurance policies are updated. Error details shown in the status message. Updating insurance with wrong index.
+
+1. Updating a person's insurance while persons are being shown unsuccessfully.
+
+   1. Prerequisites: List of contacts contains no persons.
+
+   1. Test Case: `insurance 1`<br>
+      Expected: No insurance policies are updated. Error details are shown in the status message. Updating insurance when no contacts are shown.
+
+
 ### Adding a reminder
 
 ### Deleting a reminder
