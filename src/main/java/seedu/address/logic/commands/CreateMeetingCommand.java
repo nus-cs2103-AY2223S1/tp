@@ -44,7 +44,7 @@ public class CreateMeetingCommand extends Command {
 
     public static final String IMPRECISE_NAME_PREDICATE = "Oops! The name of one of the persons you are meeting "
         + "matches more than one person in the address book! \n"
-        + "Please include a more precise name, or check if every word is separated by single spacing.";
+        + "Please use their exact name, or check if every word is separated by single spacing.";
 
     public static final String INVALID_DATE_AND_TIME_FORMAT = "%1$s\nOops! Make sure the date and time of the meeting "
         + "are in the correct format! \n"

@@ -11,6 +11,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.exceptions.ImpreciseMatchException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -27,7 +28,7 @@ public class AddPersonToMeetingCommand extends Command {
             + "Parameters: Meeting index ; NAMES OF PEOPLE (from address book) YOU ARE MEETING, (split names by , )\n"
             + "Example: " + COMMAND_WORD + " 1 ; Alex Yeoh, Anna Lim";
 
-    public static final String MESSAGE_ADD_PEOPLE_TO_MEETING_SUCCESS = "Added the list of persons";
+    public static final String MESSAGE_ADD_PEOPLE_TO_MEETING_SUCCESS = "Added person(s) to the meeting!";
 
     private final String info;
 
@@ -63,6 +64,8 @@ public class AddPersonToMeetingCommand extends Command {
             throw new CommandException(e.getMessage() + "\n" + CreateMeetingCommand.PERSON_NOT_FOUND);
         } catch (DuplicatePersonException e) {
             throw new CommandException(CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET);
+        } catch (ImpreciseMatchException e) {
+            throw new CommandException(CreateMeetingCommand.IMPRECISE_NAME_PREDICATE);
         }
 
         return new CommandResult(MESSAGE_ADD_PEOPLE_TO_MEETING_SUCCESS);

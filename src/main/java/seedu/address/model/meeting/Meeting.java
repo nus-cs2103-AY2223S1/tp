@@ -46,6 +46,7 @@ public class Meeting implements Comparable<Meeting> {
         this.peopleToMeetList.setPersons(peopleToMeetArray);
         this.meetingDescription = meetingTitle;
         this.processedMeetingDateAndTime = processedMeetingDateAndTime;
+
         this.meetingLocation = meetingLocation;
     }
 
@@ -78,27 +79,16 @@ public class Meeting implements Comparable<Meeting> {
             model.updateFilteredPersonList(personNamePredicate);
             ObservableList<Person> listOfPeople = model.getFilteredPersonList();
 
+            //predicate returns empty list, name does not match anyone
             if (listOfPeople.isEmpty()) {
                 model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
                 throw new PersonNotFoundException(String.format(PersonNotFoundException.PERSON_NOT_FOUND,
-                    strippedPersonName));
-
-            } else if (listOfPeople.size() == 1) {
-                output.add(listOfPeople.get(0));
-
-            } else {
-                Person personToMeet = getExactMatchingPerson(listOfPeople, strippedPersonName);
-                if (personToMeet == null) {
-                    model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-                    throw new ImpreciseMatchException(strippedPersonName);
-                } else { // get the first person in the address book whose name matches
-                    output.add(personToMeet);
-                }
+                strippedPersonName));
             }
-
-            // resets the list of persons after every search
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            output.add(findExactMatch(listOfPeople, personName));
         }
+        // resets the list of persons after every search
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return output;
     }
 
@@ -113,6 +103,26 @@ public class Meeting implements Comparable<Meeting> {
         return null;
     }
 
+    /**
+     * helper function for the convertNameToPerson function
+     * essentially iterates through a list of people and return the correct person
+     * @param listOfPeople list of Persons to iterate through
+     * @param personName person to find
+     * @return returns the correct Person object
+     */
+    private static Person findExactMatch(ObservableList<Person> listOfPeople, String personName) {
+        // guard clause
+        if (listOfPeople.size() == 1) {
+            return listOfPeople.get(0);
+        }
+        // if guard fails, then iterate through whole list to find and return p
+        for (Person p : listOfPeople) {
+            if (p.getName().fullName.equalsIgnoreCase(personName)) {
+                return p;
+            }
+        }
+        throw new ImpreciseMatchException(personName);
+    }
     /**
      * checks for duplicate names in array
      *

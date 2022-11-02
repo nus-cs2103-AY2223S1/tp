@@ -11,6 +11,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.exceptions.ImpreciseMatchException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -66,6 +67,8 @@ public class DeletePersonFromMeetingCommand extends Command {
             throw new CommandException(e.getMessage() + "\n" + CreateMeetingCommand.PERSON_NOT_FOUND);
         } catch (DuplicatePersonException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_DUPLICATE_NAMES);
+        } catch (ImpreciseMatchException e) {
+            throw new CommandException(CreateMeetingCommand.IMPRECISE_NAME_PREDICATE);
         }
 
         return new CommandResult(String.format(MESSAGE_DELETE_PEOPLE_TO_MEETING_SUCCESS));

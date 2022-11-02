@@ -41,16 +41,16 @@ public class TypicalMeetings {
 
     private static Meeting createMeeting1() {
         return new MeetingBuilder().withPersons(ALICE, CARL).withDescription("CS1101S")
-                .withDateAndTime("Wednesday, 12 January 2022 11:59 pm").withLocation("DECK").build();
+                .withDateAndTime("Wednesday, 12 January 2022 11:59 PM").withLocation("DECK").build();
     }
 
     private static Meeting createMeeting2() {
         return new MeetingBuilder().withPersons(ALICE, ELLE, FIONA).withDescription("CS2040S")
-                .withDateAndTime("Monday, 05 December 2022 11:49 pm").withLocation("UTOWN").build();
+                .withDateAndTime("Monday, 5 December 2022 11:49 PM").withLocation("UTOWN").build();
     }
 
     private static Meeting createMeeting3() {
         return new MeetingBuilder().withPersons(BENSON, DANIEL, GEORGE).withDescription("CS2103")
-                .withDateAndTime("Sunday, 06 February 2022 09:00 pm").withLocation("COM1").build();
+                .withDateAndTime("Sunday, 6 February 2022 09:00 PM").withLocation("COM1").build();
     }
 }

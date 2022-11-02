@@ -90,11 +90,11 @@ public class SampleDataUtil {
         p5.add(charlotte);
 
         return new Meeting[] {
-            new Meeting(p1, "CS2103", "Saturday, 02 April 2022 03:00 pm", "COM3"),
-            new Meeting(p2, "GEA1000", "Friday, 10 December 2021 08:00 am", "UTOWN"),
-            new Meeting(p3, "Lunch", "Wednesday, 02 February 2022 05:00 pm", "KR MRT"),
-            new Meeting(p4, "Dinner", "Wednesday, 30 November 2022 05:00 pm", "Fine Food"),
-            new Meeting(p5, "Supper", "Saturday, 01 October 2022 00:00 am", "Mcdonalds")
+            new Meeting(p1, "CS2103", "Saturday, 2 April 2022 03:00 PM", "COM3"),
+            new Meeting(p2, "GEA1000", "Friday, 10 December 2021 08:00 AM", "UTOWN"),
+            new Meeting(p3, "Lunch", "Wednesday, 2 February 2022 05:00 PM", "KR MRT"),
+            new Meeting(p4, "Dinner", "Wednesday, 30 November 2022 05:00 PM", "Fine Food"),
+            new Meeting(p5, "Supper", "Saturday, 1 October 2022 12:00 AM", "Mcdonalds")
         };
     }
 
