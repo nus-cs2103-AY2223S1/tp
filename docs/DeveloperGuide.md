@@ -540,7 +540,7 @@ specified otherwise)
 
     * 1b1. NutriGoals shows an error message.
   
-    Use case ends.
+      Use case ends.
 
 **Use case: UC-2 Add a meal**
 

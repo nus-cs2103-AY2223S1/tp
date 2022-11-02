@@ -57,9 +57,9 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the `list`, `review` and `find` features.
     * Updated documentation for the `Quick start` and `FAQ` sections.
-    * Added the `Screen layout` section.
+    * Added the `About the user guide` and `Screen layout` sections.
   * Developer Guide:
-    * Added implementation details of the `list` and `review` features with sequence and activity diagrams.
+    * Added implementation details of `list`, `review` and `find` features with sequence, activity and object diagrams.
     * Added user stories and use cases.
 
 * **Community**:
