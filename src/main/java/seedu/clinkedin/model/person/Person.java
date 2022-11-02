@@ -11,11 +11,11 @@ import java.util.Set;
 
 import javafx.collections.ObservableMap;
 import seedu.clinkedin.model.link.Link;
-import seedu.clinkedin.model.person.exceptions.DuplicateLinkException;
+import seedu.clinkedin.model.link.exceptions.DuplicateLinkException;
 import seedu.clinkedin.model.person.exceptions.DuplicateNoteException;
-import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
+import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 
 
 /**
@@ -103,6 +103,14 @@ public class Person {
      */
     public ObservableMap<TagType, UniqueTagList> getTags() {
         return tagTypeMap.asUnmodifiableObservableMap();
+    }
+
+    /**
+     * Returns an immutable unique tag type map
+     * @return an immutable unique tag type map
+     */
+    public UniqueTagTypeMap getTagTypeMap() {
+        return tagTypeMap;
     }
 
     public Status getStatus() {
@@ -230,8 +238,8 @@ public class Person {
 
         Set<Link> links = getLinks();
         if (!links.isEmpty()) {
-            builder.append("\nLinks: ");
-            links.forEach(builder::append);
+            builder.append("\nLinks:\n");
+            links.forEach(link -> builder.append(String.format("- %s\n", link.toString())));
         }
 
         builder.append("\n\nStatus: ")

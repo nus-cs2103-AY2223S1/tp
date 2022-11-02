@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
@@ -79,7 +80,22 @@ public class ResultDisplay extends UiPart<Region> {
             pieChart.setLabelsVisible(true);
             pieChart.setStartAngle(180);
 
+            placeHolder.alignmentProperty().setValue(javafx.geometry.Pos.BOTTOM_CENTER);
             placeHolder.getChildren().add(pieChart);
+
+            // Event Listener for PieChart alignment
+            // Automatically aligns the pie chart to the center of the screen when the
+            // window height is resized to a size of greater than 550 pixels
+            ChangeListener<Number> windowResizeListener = (observable, oldHeight, newHeight) -> {
+                if (newHeight.doubleValue() > 550) {
+                    placeHolder.alignmentProperty().setValue(javafx.geometry.Pos.CENTER);
+                } else {
+                    placeHolder.alignmentProperty().setValue(javafx.geometry.Pos.BOTTOM_CENTER);
+                }
+            };
+
+            // Bind the event listener to the height of the window
+            placeHolder.heightProperty().addListener(windowResizeListener);
 
             VBox spacing = new VBox(500);
             spacing.setSpacing(150);
