@@ -13,14 +13,19 @@ title: User Guide
 ## 1. Introduction
 
 ### 1.1 What is HobbyList?
-HobbyList is a **desktop app for managing hobby activities, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HobbyList can get your activity management tasks done faster than traditional GUI apps.
+HobbyList is a **desktop app for managing hobby activities, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HobbyList can get your activity management tasks done faster than traditional GUI apps. If you prefer typing only and want to record your experiences with your hobby activities such as reading books or watching movies, HobbyList is the perfect app for you.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. About this User Guide
 
 ### 2.1 How to use this user guide?
-to be added
+
+#### Table of contents
+The table of contents is at the top of the page. From there, you can click on any of the sections to jump to it.
+
+#### Quick start
+If you want to **quick**ly get **start**ed with using HobbyList, you can read and follow the instructions in the [Quick start](#3-quick-start) section
 
 --------------------------------------------------------------------------------------------------------------------
 
