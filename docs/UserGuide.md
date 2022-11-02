@@ -15,7 +15,7 @@ Interface (GUI). If you're a Computer Science student who can type fast, InTrack
 internship applications more efficiently and effectively than traditional GUI apps.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
