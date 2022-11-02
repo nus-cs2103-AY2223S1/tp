@@ -1,0 +1,60 @@
+{
+  "_comment": "TrackAScholar save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "applicants" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "10101010",
+    "email" : "duplicateImported@example.com",
+    "scholarship" : "Duplicate Imported",
+    "applicationStatus": "pending",
+    "majors" : [ "Duplicate" ],
+    "hasPinned" : false
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "10101010",
+    "email" : "duplicateImported@example.com",
+    "scholarship" : "Duplicate Imported",
+    "applicationStatus": "pending",
+    "majors" : [ "Duplicate" ],
+    "hasPinned" : false
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "10101010",
+    "email" : "duplicateImported@example.com",
+    "scholarship" : "Duplicate Imported",
+    "applicationStatus": "pending",
+    "majors" : [ "Duplicate" ],
+    "hasPinned" : false
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "10101010",
+    "email" : "duplicateImported@example.com",
+    "scholarship" : "Duplicate Imported",
+    "applicationStatus": "pending",
+    "majors" : [ "Duplicate" ],
+    "hasPinned" : false
+  }, {
+    "name" : "Elle Meyer",
+    "phone" : "10101010",
+    "email" : "duplicateImported@example.com",
+    "scholarship" : "Duplicate Imported",
+    "applicationStatus": "pending",
+    "majors" : [ "Duplicate" ],
+    "hasPinned" : false
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "10101010",
+    "email" : "duplicateImported@example.com",
+    "scholarship" : "Duplicate Imported",
+    "applicationStatus": "pending",
+    "majors" : [ "Duplicate" ],
+    "hasPinned" : false
+  }, {
+    "name" : "George Best",
+    "phone" : "10101010",
+    "email" : "duplicateImported@example.com",
+    "scholarship" : "Duplicate Imported",
+    "applicationStatus": "pending",
+    "majors" : [ "Duplicate" ],
+    "hasPinned" : false
+  } ]
+}

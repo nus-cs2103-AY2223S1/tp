@@ -39,15 +39,8 @@ EditCommandParser -> EditCommandParser : arePrefixesPresent()
 activate EditCommandParser
 
 
-'create Applicant
-'EditCommandParser -> Applicant : Applicant()
-'activate Applicant
-'
-'Applicant --> EditCommandParser
-'deactivate Applicant
-
 create EditCommand
-EditCommandParser -> EditCommand : EditCommand(applicant)
+EditCommandParser -> EditCommand : EditCommand(index, EditApplicantDescriptor)
 activate EditCommand
 
 create EditApplicantDescriptor
@@ -56,7 +49,7 @@ activate EditApplicantDescriptor
 
 EditApplicantDescriptor -> EditApplicantDescriptor : setName(args)
 
-EditApplicantDescriptor -> EditApplicantDescriptor : setNumber(args)
+EditApplicantDescriptor -> EditApplicantDescriptor : setPhone(args)
 
 EditApplicantDescriptor --> EditCommand :ead
 deactivate EditApplicantDescriptor
