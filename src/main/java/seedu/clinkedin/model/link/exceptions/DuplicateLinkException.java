@@ -1,4 +1,4 @@
-package seedu.clinkedin.model.person.exceptions;
+package seedu.clinkedin.model.link.exceptions;
 
 /**
  * Signals that the operation will result in duplicate links for a person.

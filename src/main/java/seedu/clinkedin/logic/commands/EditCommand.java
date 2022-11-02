@@ -2,13 +2,16 @@ package seedu.clinkedin.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_DEGREETAG;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_JOBTYPETAG;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_SKILLTAG;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.clinkedin.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -31,11 +34,11 @@ import seedu.clinkedin.model.person.Phone;
 import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
 import seedu.clinkedin.model.tag.exceptions.DuplicateTagException;
 import seedu.clinkedin.model.tag.exceptions.TagNotFoundException;
+import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -44,28 +47,33 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified by the "
+            + "index number used in the displayed person list (atleast 1 detail to be edited must be provided).\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG] "
-            + PREFIX_STATUS + "STATUS"
-            + "[" + PREFIX_NOTE + "NOTE]"
-            + "[" + PREFIX_RATING + "RATING]...\n"
+            + "[" + PREFIX_NAME + "NEW_NAME] "
+            + "[" + PREFIX_PHONE + "NEW_PHONE] "
+            + "[" + PREFIX_EMAIL + "NEW_EMAIL] "
+            + "[" + PREFIX_ADDRESS + "NEW_ADDRESS] "
+            + "[" + PREFIX_STATUS + "NEW_STATUS] "
+            + "[" + PREFIX_SKILLTAG + "OLD_SKILL_TAG-NEW_SKILL_TAG] (if tag type not deleted) "
+            + "[" + PREFIX_DEGREETAG + "OLD_DEGREE_TAG-NEW_DEGREE_TAG] (if tag type not deleted) "
+            + "[" + PREFIX_JOBTYPETAG + "OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] (if tag type not deleted) "
+            + "[<custom_tag_prefix>/OLD_TAG-NEW_TAG] "
+            + "[" + PREFIX_NOTE + "NEW_NOTE] "
+            + "[" + PREFIX_RATING + "NEW_RATING] "
+            + "[" + PREFIX_LINK + "NEW_LINK]...\n"
             + "Example: " + COMMAND_WORD + "1 "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney "
             + PREFIX_STATUS + "Application Pending "
-            + PREFIX_NOTE + "Has a dog."
-            + PREFIX_RATING + "4";
+            + PREFIX_SKILLTAG + "Java "
+            + PREFIX_DEGREETAG + "Bachelors "
+            + PREFIX_JOBTYPETAG + "Internship "
+            + PREFIX_NOTE + "Experienced in DevOps. "
+            + PREFIX_RATING + "6 "
+            + PREFIX_LINK + "https://github.com/JohnDoe";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

@@ -246,29 +246,25 @@ The following functions deal with modifying the information about the contacts s
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/STATUS] [note/NOTE] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​ [rate/RATING] [l/LINK]…​`
+Format: `edit INDEX [n/NEW_NAME] [p/NEW_PHONE] [e/NEW_EMAIL] [a/NEW_ADDRESS] [s/NEW_STATUS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jtt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<custom_tag_prefix>/OLD_TAG-NEW_TAG] [note/NEW_NOTE] [rate/NEW_RATING] [l/NEW_LINK]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* While editing **Skill** tags, the existing `OLD_SKILL` of the person will be renamed to `NEW_SKILL`(Same for **Degree**, **JobType** and **Custom** tags).
-
-- While editing **Notes** of a person, their existing notes will be overwritten by the new input. Therefore, it is not possible to edit individual notes (i.e. if you input `edit 1 note/Hello` and the person already has a note `Hi`, the person's note will be changed to `Hello`).
-
-* You can remove **all** the person’s tags by typing `t/` without specifying any tags after it.
-* You can remove **all** the person’s **Skill** tags by typing `st/` without specifying any tags after it (Same for **Degree**, **JobType** and **Custom** tags).
-*
+* While editing the **Skill** tags, the existing `OLD_SKILL` of the person will be renamed to `NEW_SKILL` provided the Skill Tag Type has not been deleted (Same for **Degree**, **JobType** and **Custom** tags).
+* While editing the **Notes** of a person, their existing notes will be overwritten by the new input. Therefore, it is not possible to edit individual notes (i.e. if you input `edit 1 note/Good at Java` and the person already has a note `Good at Python`, the person's note(s) will be changed to `Good at Java`).
+* While editing the **Links** of a person, their existing links will be overwritten by the new input. Therefore, it is not possible to edit individual links (i.e. if you input `edit 1 l/https://github.com/JohnDoe` and the person already has a link `https://instagram.com/JohnDoe`, the person's link(s) will be changed to `https://github.com/JohnDoe`). The `l/` prefix can be used multiple times in the command to add multiple links.
 
 Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 * `edit 2 dt/Bachelors-Masters` Edits the Degree tag `Bachelors` of the 2nd person to be `Masters`.
-* `edit 2 l/https://github.com/AY2223S1-CS2103T-T13-3/tp/pulls` Edits by replacing all existing links with the provided link.
+* `edit 3 n/PersonA n/PersonB` Edits the name of the 3rd person first to `PersonA` and then to `PersonB`. Hence the final name of 3rd person is set to `PersonB`.
+* `edit 2 l/https://github.com/JohnDoe l/https://instagram.com/JohnDoe` Edits by replacing all existing links with the provided links.
 
 ### Adding a tag to an existing person : `addTag`
 
 Adds a tag to an existing person in the address book.
 
-Format: `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`
+Format: `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>/TAG]…​`
 
 * Adds a tag to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -281,7 +277,7 @@ Examples:
 
 Deletes a tag of an existing person in the address book.
 
-Format: `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`
+Format: `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>/TAG]…​`
 
 * Deletes an existing tag of the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
