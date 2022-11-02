@@ -79,6 +79,12 @@ public class SelectedActivityPanel extends UiPart<Region> {
      */
     public void setNoActivityDetails() {
         name.setText("NO ACTIVITY SELECTED");
+        description.setText("");
+        tags.getChildren().clear();
+        date.setText("");
+        status.setText("");
+        rating.setText("");
+        review.setText("");
     }
 
     /**

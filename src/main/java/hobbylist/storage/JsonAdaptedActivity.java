@@ -1,6 +1,7 @@
 package hobbylist.storage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import hobbylist.commons.core.Messages;
 import hobbylist.commons.exceptions.IllegalValueException;
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
@@ -113,11 +115,17 @@ class JsonAdaptedActivity {
 
         final Set<Tag> modelTags = new HashSet<>(activityTags);
 
+        if (rating > 5 || rating < 0) {
+            throw new IllegalValueException(Messages.MESSAGE_INVALID_RATING);
+        }
+
         // Solution adapted from https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files
         if (status == null || status.equals("")) {
             modelStatus = new Status();
-        } else {
+        } else if (Arrays.asList(Status.VALID_STATUSES).contains(status)) {
             modelStatus = new Status(status);
+        } else {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINT);
         }
 
         final Optional<Review> modelReview;
