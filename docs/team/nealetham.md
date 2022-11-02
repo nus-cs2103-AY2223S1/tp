@@ -37,7 +37,7 @@ Given below is a summary of my notable contributions to the project. You can fin
 * Administrative tasks such as meeting minutes and work delegation in the weekly scrum meeting.
 
 ### Community
-* Reviewed [***27*** pull requests](https://github.com/AY2223S1-CS2103T-W12-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me). Many had non-trivial review comments, such as [#110](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/110), [#257](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/257) & [#76](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/110). Discussions also took place offline. 
+* Reviewed [***27*** pull requests](https://github.com/AY2223S1-CS2103T-W12-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me). Many had non-trivial review comments, such as [#110](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/110), [#257](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/257) & [#76](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/110). Discussions also took place offline.
 * Contributed to forum discussions, such as [differences between association, composition, aggregation](https://github.com/nus-cs2103-AY2223S1/forum/issues/86#issuecomment-1229400456) & [failing Codecov/patch check](https://github.com/nus-cs2103-AY2223S1/forum/issues/330).
 * Surface [***12*** potential bugs and suggestions](https://github.com/nealetham/ped/issues?q=is%3Aopen+is%3Aissue) for other teams during PE-D. These include [non-functioning theme switcher](https://github.com/nealetham/ped/issues/4) & [missing target-user and value proposition](https://github.com/nealetham/ped/issues/10).
 
