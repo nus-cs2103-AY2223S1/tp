@@ -299,8 +299,6 @@ Format: `remind`
 
 * Archived interviews will not be displayed even if they fall within the next week.
 * If there are no upcoming interviews, a blank window will be displayed.
-* `remind` can only be used on the main application list page (i.e. not to be used on the list-archive page).
-* To refresh the list of upcoming interviews, close the reminder window (if it is currently opened) and input the `remind` command again.
 
 ### Showing the statistics of applications: `stats`
 

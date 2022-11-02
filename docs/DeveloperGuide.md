@@ -393,9 +393,6 @@ The rationale for this enhancement is that the interview list on the main GUI wi
 The sequence diagram below shows the crucial components involved in executing the `remind` command:
 ![Remind Sequence Diagram](images/RemindSequenceDiagram.png)
 
-#### Constraints of Remind Feature
-The remind feature can only be used on the main application list page and not on the list-archive page.
-
 #### Design Considerations
 
 Aspect: How should the remind feature be presented? 
