@@ -20,9 +20,9 @@ public class CdModuleCommandTest {
     }
 
     @Test
-    public void cd_doneModule_throws() {
+    public void cd_doneModule_returnsTrue() throws CommandException {
         CdModuleCommand command = CdModuleCommandBuilder.build("CS2103");
-        assertThrows(CommandException.class, () -> command.execute(new ModelHasModuleAndModuleIsDone()));
+        command.execute(new ModelHasModuleAndModuleIsDone());
     }
 
     @Test
