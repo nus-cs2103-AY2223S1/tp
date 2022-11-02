@@ -28,8 +28,10 @@ public class SortCommandParserTest {
     // Invalid arguments
     @Test
     public void parse_invalidArg_throwsParseException() {
-        assertParseFailure(parser, "na", String.format(SortCommand.MESSAGE_INCORRECT_KEYWORD, SortCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "app", String.format(SortCommand.MESSAGE_INCORRECT_KEYWORD, SortCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "na", String.format(SortCommand.MESSAGE_INCORRECT_KEYWORD,
+                SortCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "app", String.format(SortCommand.MESSAGE_INCORRECT_KEYWORD,
+                SortCommand.MESSAGE_USAGE));
     }
 
     @Test
