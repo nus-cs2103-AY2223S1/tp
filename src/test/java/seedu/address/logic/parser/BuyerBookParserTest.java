@@ -78,6 +78,7 @@ public class BuyerBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
+    // removed as the predicate in FindBuyersCommand cannot be compared using equals
 //    @Test
 //    public void parseCommand_find() throws Exception {
 //        List<String> keywords = Arrays.asList("foo", "bar", "baz");
