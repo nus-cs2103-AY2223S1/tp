@@ -28,23 +28,23 @@ This guide smooths the learning curve and helps you learn how to use _MyInsuRec_
 
 Before we go on further, look out for these symbols in the User Guide as they provide some important messages you might want to know!
 
-| Symbol               | Meaning                                                                                                                                      |
-|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| `command`            | Indicates some command or parameter that can be entered into MyInsuRec.                                                                      |
-| :information_source: | Additional information. This symbol is followed by a label 'Note', and the background is blue in color.                                      |
-| :exclamation:        | Crucial information needed for proper use of MyInsuRec. This symbol is followed by a label 'Caution', and the background is yellow in color. |
-| :bulb:               | Tips and tricks. This symbol is followed by a label 'Tips and tricks', and the background is green in color.                                 |
+| Symbol               | Background color | Meaning                                                                                               |
+|----------------------|------------------|-------------------------------------------------------------------------------------------------------|
+| `command`            | -                | Indicates some command or parameter that can be entered into MyInsuRec.                               |
+| :information_source: | Blue             | Additional information. This symbol is followed by a label 'Note'.                                    |
+| :exclamation:        | Yellow           | Crucial information needed for proper use of MyInsuRec. This symbol is followed by a label 'Caution'. |
+| :bulb:               | Green            | Tips and tricks. This symbol is followed by a label 'Tips and tricks'.                                |
 
 <div markdown="span" class="alert alert-info">**:information_source: Note:**
 If you have **not installed** _MyInsuRec_, you can follow the [installation guide](#5-installation-guide) here!
 </div>
 
 After you have installed _MyInsuRec_, you can
-1. Familiarize yourself with _MyInsuRec_ through the [product overview](#3-product-overview), which introduces terminologies and ideas that are used throughout this User Guide.
+1. Familiarize yourself with _MyInsuRec_ through the [overview](#3-overview), which introduces terminologies and ideas that are used throughout this User Guide.
 2. Get to know the [layout of the interface](#4-user-interface) you will be interacting with.
 3. Follow this [step-by-step tutorial](#6-tutorial) to learn the basic features of _MyInsuRec_.
 4. Check out other advanced features under [features](#7-features) once you got the hang of the basic features.
-5. Refer to our [glossary](#11-glossary) when you come across a unfamiliar term used.
+5. Refer to our [glossary](#11-glossary) when you come across an unfamiliar term used.
 
 <div markdown="span" class="alert alert-info">**:information_source: Note:**
 For **experienced users**, you can look at the [Command Summary](#9-command-summary) for a summarized table of all the commands available.
@@ -58,7 +58,7 @@ We hope that this guide is helpful in smoothing out the learning curve for you!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Product Overview
+## 3. Overview
 
 The following subsections explains some terminology and main features of *MyInsuRec*:
 
@@ -126,7 +126,7 @@ After executing a command specific to a list, the UI will automatically switch t
 
 ### 4.1 Client List
 
-This is the view after executing the `listClient` command. By default, this view is shown right after launching _MyInsuRec_.
+This is the view after executing the `listClient` command. **By default, this view is shown right after launching _MyInsuRec_.**
 
 ![listClientWithDescription](images/ui-description/listClientWithDescription.png)
 
@@ -498,7 +498,7 @@ Format: `viewMeeting i/INDEX`
 * The `INDEX` **must be a positive integer** 1, 2, 3, …
 
 Use Case:
-1. Get an overview of the meeting and the client you are meeting with. This helps you become more prepared for the meeting and you will not have to remember every single small detail of the meeting!
+1. Get an overview of the meeting and the client you are meeting with. This helps you become more prepared for the meeting, and you will not have to remember every single small detail of the meeting!
 
 Examples:
 * View meeting with an `INDEX` of 1
