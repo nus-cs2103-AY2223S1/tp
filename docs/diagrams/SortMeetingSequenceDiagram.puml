@@ -44,8 +44,9 @@ SortMeetingCommand <- LogicManager : execute(model)
 SortMeetingCommand -> Model : sortMeetingListByDate\n(isInAscending)
 activate Model
 
-activate MeetingList
+
 Model -> MeetingList : sortMeetingListByDate\n(isInAscending)
+activate MeetingList
 MeetingList -> UniqueMeetingList : sortByDate\n(isInAscending)
 activate UniqueMeetingList
 
@@ -53,12 +54,13 @@ UniqueMeetingList -> ObservableList : sortByDate\n(isInAscending)
 activate ObservableList
 ObservableList -> ObservableList : sort(comparator)
 
-deactivate UniqueMeetingList
-deactivate MeetingList
-deactivate Model
+
 create CommandResult
 SortMeetingCommand -> CommandResult
 deactivate ObservableList
+deactivate UniqueMeetingList
+deactivate MeetingList
+deactivate Model
 
 activate CommandResult
 CommandResult --> SortMeetingCommand
