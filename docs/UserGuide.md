@@ -200,7 +200,7 @@ Expected outcome:
 ### Adding a tag to an internship application : `addtag`
 
 Adds one or more `Tag`s to the internship application at the specified `INDEX` from InTrack.
-`INDEX` refers to the index number of the desired entry as shown in the displayed internship list and **must be a
+`INDEX` refers to the index number of the desired entry as shown in the displayed internship list and **must be a 
 positive unsigned integer**.
 
 Format: `addtag INDEX TAG [MORE_TAGS]`
@@ -209,7 +209,7 @@ Format: `addtag INDEX TAG [MORE_TAGS]`
 
 **:information_source: Note about `addtag`:**<br>
 
-`TAG` is case sensitive, for example `urgent` and `Urgent` are considered as separate tags. Duplicate tags however will not be added to the internship.
+`TAG` is case-sensitive, for example `urgent` and `Urgent` are considered as separate tags. Duplicate tags however will not be added to the internship.
 
 If a user inputs multiple `TAG`s in a `addtag` command, the duplicate `TAG`s will not be added while the new ones will.
 
@@ -235,10 +235,10 @@ Deletes one or more existing `Tag`s from the internship application at the speci
 
 Format: `deltag INDEX TAG [MORE_TAGS]`
 
-| Parameter | Representation                        | Constraints                                                |
-|-----------|---------------------------------------|------------------------------------------------------------|
-| `INDEX`   | The index of the internship           | Must be a positive unsigned integer                        |
-| `TAG`     | The tag to be added to the internship | Must not be blank and must be a singular alphanumeric word |
+| Parameter | Representation                            | Constraints                                                |
+|-----------|-------------------------------------------|------------------------------------------------------------|
+| `INDEX`   | The index of the desired internship       | Must be a positive unsigned integer                        |
+| `TAG`     | The tag to be deleted from the internship | Must not be blank and must be a singular alphanumeric word |
 
 Example of usage:
 
@@ -280,7 +280,7 @@ Edits the details of the currently selected internship application.
 
 **:information_source: Note about `edit`:**<br>
 
-Before the application can be edited, it must first be selected via the [`select` command](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/docs/UserGuide.md#selecting-an-internship-application--select).
+Before the application can be edited, it must first be selected via the [`select` command](#selecting-an-internship-application--select).
 
 </div>
 
@@ -325,7 +325,7 @@ Before a task can be added to an application, the internship must first be selec
 
 </div>
 
-| Parameter   | Significance                              | Constraints                                  |
+| Parameter   | Representation                            | Constraints                                  |
 |-------------|-------------------------------------------|----------------------------------------------|
 | `TASK_NAME` | Name of the task to be added              | Can take any values, but should not be blank |
 | `TASK_TIME` | The time that the added task is due or at | Must be in the format `dd-MM-yyyy HH:mm`     |
@@ -376,7 +376,6 @@ Format: `remark r/ [REMARK]`
 | Parameter | Representation                       | Constraints                                                                                                                                  |
 |-----------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
 | `REMARK`  | The remark given for the application | No constraints, anything can be a remark, if the `REMARK` field in the command is empty, the remark field of the application will be deleted |       |
-
 
 Example of usage:
 
@@ -498,6 +497,7 @@ Expected outcome:
 
 Sorts the current list of internship applications on the left panel via their `SORT_TYPE` which is either `time` or `salary`, 
 in either ascending or descending `SORT_ORDER`.
+
 Format: `sort SORT_TYPE SORT_ORDER`
 
 <div markdown="block" class="alert alert-info">
