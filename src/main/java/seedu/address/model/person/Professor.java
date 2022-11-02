@@ -130,14 +130,18 @@ public class Professor extends Person {
     @Override
     public int compareModuleCode(Person person) {
         if (person instanceof Professor) {
-            return this.moduleCode.toString()
-                    .compareTo(((Professor) person).moduleCode.toString());
+            return this.moduleCode.toString().toUpperCase()
+                    .compareTo(((Professor) person).getModuleCode().toString().toUpperCase());
         }
         if (person instanceof TeachingAssistant) {
-            return this.moduleCode.toString()
-                    .compareTo(((TeachingAssistant) person).getModuleCode().toString());
+            return this.moduleCode.toString().toUpperCase()
+                    .compareTo(((TeachingAssistant) person).getModuleCode().toString().toUpperCase());
         }
-        return 1;
+        if (person instanceof Student) {
+            return this.moduleCode
+                    .compareTo(((Student) person).getHighestModuleCode());
+        }
+        return this.compareModuleCode(person);
     }
 
     @Override
