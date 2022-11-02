@@ -17,11 +17,12 @@ import seedu.address.model.person.Person;
 /**
  * Command that sorts the current member list.
  */
-@CommandLine.Command(name = SortMemberCommand.COMMAND_WORD, aliases = {"m"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = SortMemberCommand.COMMAND_WORD,
+        aliases = {SortMemberCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class SortMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "members";
-
+    public static final String ALIAS = "m";
     public static final String FULL_COMMAND = SortCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
 

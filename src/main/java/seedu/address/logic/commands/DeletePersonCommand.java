@@ -18,11 +18,12 @@ import seedu.address.model.person.Person;
 /**
  * Deletes a person identified using its displayed index from the TruthTable.
  */
-@CommandLine.Command(name = DeletePersonCommand.COMMAND_WORD, aliases = {"p"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = DeletePersonCommand.COMMAND_WORD,
+        aliases = {DeletePersonCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class DeletePersonCommand extends Command {
 
     public static final String COMMAND_WORD = "person";
-
+    public static final String ALIAS = "p";
     public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE =

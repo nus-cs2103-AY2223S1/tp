@@ -26,10 +26,11 @@ import seedu.address.model.person.Person;
 /**
  * Finds and lists all members on the current team based on argument keywords.
  */
-@CommandLine.Command(name = FindMemberCommand.COMMAND_WORD, aliases = {"m"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = FindMemberCommand.COMMAND_WORD,
+        aliases = {FindMemberCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class FindMemberCommand extends Command {
     public static final String COMMAND_WORD = "member";
-
+    public static final String ALIAS = "m";
     public static final String FULL_COMMAND = FindCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE = FULL_COMMAND + ": Finds all team members whose details contain any of "

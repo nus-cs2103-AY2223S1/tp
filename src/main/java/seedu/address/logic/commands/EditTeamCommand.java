@@ -29,10 +29,11 @@ import seedu.address.model.team.TeamName;
 /**
  * Edits the currently set team.
  */
-@CommandLine.Command(name = EditTeamCommand.COMMAND_WORD, aliases = {"te"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = EditTeamCommand.COMMAND_WORD,
+        aliases = {EditTeamCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class EditTeamCommand extends Command {
     public static final String COMMAND_WORD = "team";
-
+    public static final String ALIAS = "te";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE = FULL_COMMAND

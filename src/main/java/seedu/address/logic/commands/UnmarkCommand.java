@@ -17,9 +17,11 @@ import seedu.address.model.team.Task;
 /**
  * Marks a specified task as incomplete.
  */
-@CommandLine.Command(name = UnmarkCommand.COMMAND_WORD, aliases = {"u"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = UnmarkCommand.COMMAND_WORD,
+        aliases = {UnmarkCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
+    public static final String ALIAS = "u";
     public static final String FULL_COMMAND = COMMAND_WORD;
     public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Marks the specified existing task as incomplete.\n"

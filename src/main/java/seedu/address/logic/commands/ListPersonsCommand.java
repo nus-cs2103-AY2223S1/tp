@@ -12,10 +12,11 @@ import seedu.address.model.Model;
 /**
  * Lists all persons in the TruthTable to the user.
  */
-@CommandLine.Command(name = ListPersonsCommand.COMMAND_WORD, aliases = {"p"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = ListPersonsCommand.COMMAND_WORD,
+        aliases = {ListPersonsCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class ListPersonsCommand extends Command {
     public static final String COMMAND_WORD = "persons";
-
+    public static final String ALIAS = "p";
     public static final String FULL_COMMAND = ListCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";

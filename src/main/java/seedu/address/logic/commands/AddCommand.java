@@ -12,15 +12,17 @@ import seedu.address.model.Model;
 /**
  * Command that contains all subcommands starting with {@code add}.
  */
-@CommandLine.Command(name = AddCommand.COMMAND_WORD, aliases = {"a"}, mixinStandardHelpOptions = true, subcommands = {
-    AddPersonCommand.class,
-    AddMemberCommand.class,
-    AddTaskCommand.class,
-    AddTeamCommand.class,
-    AddLinkCommand.class
-})
+@CommandLine.Command(name = AddCommand.COMMAND_WORD, aliases = {AddCommand.ALIAS},
+        mixinStandardHelpOptions = true, subcommands = {
+            AddPersonCommand.class,
+            AddMemberCommand.class,
+            AddTaskCommand.class,
+            AddTeamCommand.class,
+            AddLinkCommand.class
+        })
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
+    public static final String ALIAS = "a";
     public static final String FULL_COMMAND = COMMAND_WORD;
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;

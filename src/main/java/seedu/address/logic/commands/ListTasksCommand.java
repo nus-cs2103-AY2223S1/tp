@@ -22,10 +22,11 @@ import seedu.address.model.team.Task;
 /**
  * Lists all tasks of the current team.
  */
-@CommandLine.Command(name = ListTasksCommand.COMMAND_WORD, aliases = {"t"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = ListTasksCommand.COMMAND_WORD,
+        aliases = {ListTasksCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class ListTasksCommand extends Command {
     public static final String COMMAND_WORD = "tasks";
-
+    public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = ListCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE = FULL_COMMAND

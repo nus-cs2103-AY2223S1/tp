@@ -26,9 +26,11 @@ import seedu.address.model.team.Task;
 /**
  * Adds a task to the current team.
  */
-@CommandLine.Command(name = AddTaskCommand.COMMAND_WORD, aliases = {"ta"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = AddTaskCommand.COMMAND_WORD,
+        aliases = {AddTaskCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "task";
+    public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE = FULL_COMMAND

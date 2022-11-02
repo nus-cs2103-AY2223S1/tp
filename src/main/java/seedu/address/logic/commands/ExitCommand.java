@@ -11,11 +11,15 @@ import seedu.address.ui.MainWindow;
 /**
  * Terminates the program.
  */
-@CommandLine.Command(name = ExitCommand.COMMAND_WORD, aliases = {"ex", "bye", "quit"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = ExitCommand.COMMAND_WORD,
+        aliases = {ExitCommand.ALIAS_EX, ExitCommand.ALIAS_BYE, ExitCommand.ALIAS_QUIT},
+        mixinStandardHelpOptions = true)
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
-
+    public static final String ALIAS_EX = "ex";
+    public static final String ALIAS_BYE = "bye";
+    public static final String ALIAS_QUIT = "quit";
     public static final String FULL_COMMAND = COMMAND_WORD;
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT =

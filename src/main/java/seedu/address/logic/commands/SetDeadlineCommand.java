@@ -20,10 +20,10 @@ import seedu.address.model.team.Task;
 /**
  * Sets a deadline for a specified task.
  */
-@CommandLine.Command(name = SetDeadlineCommand.COMMAND_WORD, aliases = {"d"})
+@CommandLine.Command(name = SetDeadlineCommand.COMMAND_WORD, aliases = {SetDeadlineCommand.ALIAS})
 public class SetDeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
-
+    public static final String ALIAS = "d";
     public static final String FULL_COMMAND = SetCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE = FULL_COMMAND

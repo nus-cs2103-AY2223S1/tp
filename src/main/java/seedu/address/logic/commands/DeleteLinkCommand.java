@@ -18,10 +18,11 @@ import seedu.address.model.team.Link;
 /**
  * Deletes an existing link from TruthTable.
  */
-@CommandLine.Command(name = DeleteLinkCommand.COMMAND_WORD, aliases = {"l"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = DeleteLinkCommand.COMMAND_WORD,
+        aliases = {DeleteLinkCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class DeleteLinkCommand extends Command {
     public static final String COMMAND_WORD = "link";
-
+    public static final String ALIAS = "l";
     public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE = FULL_COMMAND

@@ -18,9 +18,11 @@ import seedu.address.model.team.Team;
 /**
  * Adds the person with the specified name to the current team.
  */
-@CommandLine.Command(name = AddMemberCommand.COMMAND_WORD, aliases = {"m"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = AddMemberCommand.COMMAND_WORD,
+        aliases = {AddMemberCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class AddMemberCommand extends Command {
     public static final String COMMAND_WORD = "member";
+    public static final String ALIAS = "m";
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE = FULL_COMMAND

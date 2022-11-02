@@ -18,10 +18,11 @@ import seedu.address.model.team.TeamName;
 /**
  * Deletes a team from the addressbook.
  */
-@CommandLine.Command(name = DeleteTeamCommand.COMMAND_WORD, aliases = {"te"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = DeleteTeamCommand.COMMAND_WORD,
+        aliases = {DeleteTeamCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class DeleteTeamCommand extends Command {
     public static final String COMMAND_WORD = "team";
-
+    public static final String ALIAS = "te";
     public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE = FULL_COMMAND

@@ -17,10 +17,11 @@ import seedu.address.model.team.Task;
 /**
  * Command that sorts the current task list
  */
-@CommandLine.Command(name = SortTaskCommand.COMMAND_WORD, aliases = {"ta"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = SortTaskCommand.COMMAND_WORD,
+        aliases = {SortTaskCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class SortTaskCommand extends Command {
     public static final String COMMAND_WORD = "tasks";
-
+    public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = SortCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Sorted tasks successfully";

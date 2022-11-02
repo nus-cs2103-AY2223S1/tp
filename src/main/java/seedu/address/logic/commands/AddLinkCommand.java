@@ -21,9 +21,11 @@ import seedu.address.model.team.Url;
 /**
  * Adds a new link to TruthTable.
  */
-@CommandLine.Command(name = AddLinkCommand.COMMAND_WORD, aliases = {"l"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = AddLinkCommand.COMMAND_WORD,
+        aliases = {AddLinkCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class AddLinkCommand extends Command {
     public static final String COMMAND_WORD = "link";
+    public static final String ALIAS = "l";
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE = FULL_COMMAND

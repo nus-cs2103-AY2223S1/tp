@@ -23,10 +23,11 @@ import seedu.address.model.team.TaskNameContainsKeywordsPredicate;
  * Finds and lists all tasks in the current team whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-@CommandLine.Command(name = FindTaskCommand.COMMAND_WORD, aliases = {"ta"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = FindTaskCommand.COMMAND_WORD,
+        aliases = {FindTaskCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class FindTaskCommand extends Command {
     public static final String COMMAND_WORD = "task";
-
+    public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = FindCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE = FULL_COMMAND + ": Finds all tasks whose names contain any of "

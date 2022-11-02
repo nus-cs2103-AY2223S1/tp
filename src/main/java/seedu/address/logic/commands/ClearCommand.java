@@ -12,10 +12,11 @@ import seedu.address.model.TruthTable;
 /**
  * Clears the TruthTable.
  */
-@CommandLine.Command(name = ClearCommand.COMMAND_WORD, aliases = {"c"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = ClearCommand.COMMAND_WORD,
+        aliases = {ClearCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
-
+    public static final String ALIAS = "c";
     public static final String FULL_COMMAND = COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";

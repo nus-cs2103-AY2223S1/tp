@@ -28,10 +28,11 @@ import seedu.address.model.team.Url;
 /**
  * Edits the details of an existing link in TruthTable.
  */
-@CommandLine.Command(name = EditLinkCommand.COMMAND_WORD, aliases = {"l"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = EditLinkCommand.COMMAND_WORD,
+        aliases = {EditLinkCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class EditLinkCommand extends Command {
     public static final String COMMAND_WORD = "link";
-
+    public static final String ALIAS = "l";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE =

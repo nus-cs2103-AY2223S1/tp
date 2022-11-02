@@ -45,10 +45,11 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the TruthTable.
  */
-@CommandLine.Command(name = EditPersonCommand.COMMAND_WORD, aliases = {"p"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = EditPersonCommand.COMMAND_WORD,
+        aliases = {EditPersonCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class EditPersonCommand extends Command {
     public static final String COMMAND_WORD = "person";
-
+    public static final String ALIAS = "p";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE = FULL_COMMAND + ": Edits the details of the person identified "

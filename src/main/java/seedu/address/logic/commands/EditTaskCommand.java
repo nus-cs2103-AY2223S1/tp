@@ -33,10 +33,11 @@ import seedu.address.model.team.Task;
 /**
  * Edits the details of an existing task in TruthTable.
  */
-@CommandLine.Command(name = EditTaskCommand.COMMAND_WORD, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = EditTaskCommand.COMMAND_WORD,
+        aliases = {EditTaskCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "task";
-
+    public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE =

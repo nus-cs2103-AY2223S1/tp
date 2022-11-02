@@ -12,13 +12,14 @@ import seedu.address.model.Model;
 /**
  * Command that contains all subcommands starting with {@code sort}.
  */
-@CommandLine.Command(name = SortCommand.COMMAND_WORD, aliases = {"so"}, mixinStandardHelpOptions = true, subcommands = {
-    SortMemberCommand.class,
-    SortTaskCommand.class
-})
+@CommandLine.Command(name = SortCommand.COMMAND_WORD,
+        aliases = {SortCommand.ALIAS}, mixinStandardHelpOptions = true, subcommands = {
+            SortMemberCommand.class,
+            SortTaskCommand.class
+        })
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
-
+    public static final String ALIAS = "so";
     public static final String FULL_COMMAND = COMMAND_WORD;
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;

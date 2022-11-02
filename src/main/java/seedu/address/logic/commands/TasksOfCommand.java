@@ -19,10 +19,10 @@ import seedu.address.model.team.Task;
 /**
  * Displays a summary of how tasks have been assigned in the current team.
  */
-@CommandLine.Command(name = TasksOfCommand.COMMAND_WORD)
+@CommandLine.Command(name = TasksOfCommand.COMMAND_WORD, aliases = {TasksOfCommand.ALIAS})
 public class TasksOfCommand extends Command {
     public static final String COMMAND_WORD = "tasksof";
-
+    public static final String ALIAS = "to";
     public static final String FULL_COMMAND = COMMAND_WORD;
 
     public static final String MESSAGE_USAGE = FULL_COMMAND

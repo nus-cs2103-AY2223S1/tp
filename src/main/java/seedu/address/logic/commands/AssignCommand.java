@@ -13,13 +13,13 @@ import seedu.address.model.Model;
  * Command that contains all subcommands starting with {@code assign}.
  */
 @CommandLine.Command(name = AssignCommand.COMMAND_WORD,
-        aliases = {"as"}, mixinStandardHelpOptions = true, subcommands = {
+        aliases = {AssignCommand.ALIAS}, mixinStandardHelpOptions = true, subcommands = {
             AssignTaskCommand.class,
             AssignTaskRandomlyCommand.class,
         })
 public class AssignCommand extends Command {
     public static final String COMMAND_WORD = "assign";
-
+    public static final String ALIAS = "as";
     public static final String FULL_COMMAND = COMMAND_WORD;
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;

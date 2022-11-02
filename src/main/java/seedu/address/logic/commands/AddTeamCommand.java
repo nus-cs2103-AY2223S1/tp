@@ -22,9 +22,11 @@ import seedu.address.model.team.TeamName;
 /**
  * Adds a new team to the TruthTable.
  */
-@CommandLine.Command(name = AddTeamCommand.COMMAND_WORD, aliases = {"te"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = AddTeamCommand.COMMAND_WORD,
+        aliases = {AddTeamCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class AddTeamCommand extends Command {
     public static final String COMMAND_WORD = "team";
+    public static final String ALIAS = "te";
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE = FULL_COMMAND

@@ -18,11 +18,12 @@ import seedu.address.model.team.Task;
 /**
  * Deletes a task identified using its displayed index from the task list.
  */
-@CommandLine.Command(name = DeleteTaskCommand.COMMAND_WORD, aliases = {"ta"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = DeleteTaskCommand.COMMAND_WORD,
+        aliases = {DeleteTaskCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class DeleteTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "task";
-
+    public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
     public static final String MESSAGE_USAGE = FULL_COMMAND
