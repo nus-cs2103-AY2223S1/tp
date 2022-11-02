@@ -45,12 +45,12 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_INCOME + person.getIncome().value + " ");
-        sb.append(PREFIX_MEETING_DATE + person.getMeeting().getMeetingDate().value + " ");
+        sb.append(PREFIX_MEETING_DATE + person.getMeeting().getMeetingDate().get() + " ");
         sb.append(PREFIX_MEETING_LOCATION + person.getMeeting().getMeetingLocation().get() + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
-        sb.append(PREFIX_RISK + portfolio.getRisk().value + " ");
+        sb.append(PREFIX_RISK + portfolio.getRisk().get() + " ");
         portfolio.getPlans().stream().forEach(
             s -> sb.append(PREFIX_PLAN + s.value + " ")
         );
@@ -71,7 +71,7 @@ public class PersonUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getIncome().ifPresent(income -> sb.append(PREFIX_INCOME).append(income.value).append(" "));
         descriptor.getMeetingDate().ifPresent(meetingDate -> sb.append(PREFIX_MEETING_DATE)
-            .append(meetingDate.value).append(" "));
+            .append(meetingDate.get()).append(" "));
         descriptor.getMeetingLocation().ifPresent(meetingLocation -> sb.append(PREFIX_MEETING_LOCATION)
             .append(meetingLocation.value).append(" "));
         if (descriptor.getTags().isPresent()) {
@@ -83,7 +83,7 @@ public class PersonUtil {
             }
         }
 
-        descriptor.getRisk().ifPresent(risk -> sb.append(PREFIX_RISK).append(risk.value).append(" "));
+        descriptor.getRisk().ifPresent(risk -> sb.append(PREFIX_RISK).append(risk.get()).append(" "));
 
         if (descriptor.getPlans().isPresent()) {
             Set<Plan> plans = descriptor.getPlans().get();

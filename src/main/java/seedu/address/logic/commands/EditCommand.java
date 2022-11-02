@@ -336,4 +336,29 @@ public class EditCommand extends Command {
                 && getNotes().equals(e.getNotes());
         }
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        EditPersonDescriptor e = editPersonDescriptor;
+        builder.append(e.getName())
+            .append("; Phone: ")
+            .append(e.getPhone())
+            .append("; Email: ")
+            .append(e.getEmail())
+            .append("; Address: ")
+            .append(e.getAddress())
+            .append("; Income: ")
+            .append(e.getIncome())
+            .append("; Meeting Date: ")
+            .append(e.getMeetingDate())
+            .append("; Meeting Location: ")
+            .append(e.getMeetingLocation());
+        
+        builder.append("; Risk: ")
+            .append(e.getRisk());
+
+
+        return builder.toString();
+    }
 }

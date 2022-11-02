@@ -3,6 +3,7 @@ package seedu.address.model.portfolio;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * Represents a portfolio of a client in the FinBook.
@@ -44,5 +45,24 @@ public class Portfolio {
     public String display() {
         String str = "\nRisk Level: " + this.getRisk().toString() + "\nPlans: " + this.getPlans().toString();
         return str;
+    }
+
+    /**
+     * Returns true if both meetings have the same time and location fields.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Portfolio)) {
+            return false;
+        }
+
+        Portfolio otherPortfolio = (Portfolio) other;
+        return otherPortfolio.getRisk().equals(getRisk())
+            && otherPortfolio.getPlans().equals(getPlans())
+            && otherPortfolio.getNotes().equals(getNotes());
     }
 }

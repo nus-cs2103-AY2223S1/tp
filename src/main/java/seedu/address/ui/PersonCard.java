@@ -62,11 +62,7 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         income.setText(person.getIncome().value);
-        if (meeting.getMeetingDate().value != null && !Objects.equals(meeting.getMeetingDate().value, "")) {
-            meetingDate.setText(meeting.getMeetingDate().value);
-        } else {
-            meetingDate.setText("TBC");
-        }
+        meetingDate.setText(meeting.getMeetingDate().get());
         meetingLocation.setText(meeting.getMeetingLocation().getVirtualStatus());
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -86,11 +82,7 @@ public class PersonCard extends UiPart<Region> {
         address.setText(mask(person.getAddress().value));
         email.setText(mask(person.getEmail().value));
         income.setText(mask(person.getIncome().value));
-        if (meeting.getMeetingDate().value != null && !Objects.equals(meeting.getMeetingDate().value, "")) {
-            meetingDate.setText(meeting.getMeetingDate().value);
-        } else {
-            meetingDate.setText("TBC");
-        }
+        meetingDate.setText(meeting.getMeetingDate().get());
         meetingLocation.setText(meeting.getMeetingLocation().getVirtualStatus());
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))

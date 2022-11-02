@@ -62,7 +62,7 @@ public class UniquePersonList implements Iterable<Person> {
             internalList.sort(Comparator.comparing(person -> person.getIncome().toInt()));
             break;
         case "m/":
-            internalList.sort(Comparator.comparing(person -> person.getMeeting().getMeetingDate().value));
+            internalList.sort(Comparator.comparing(person -> person.getMeeting().getMeetingDate().get()));
             break;
         default:
             break;
