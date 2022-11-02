@@ -247,6 +247,8 @@ The `-i` flag allows the user to upload images of the property. A file chooser d
 command.
 
 
+The `s/PROPERTY_STATUS` is optional, if not specified, will default to `AVAILABLE` status.
+
 ![file_chooser](images/fileChooser.png)
 
 ### Listing all properties : `list -p`
