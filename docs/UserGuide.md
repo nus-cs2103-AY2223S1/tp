@@ -5,16 +5,16 @@ title: User Guide
 
 Welcome to InTrack!
 
-InTrack is a desktop application for Computer Science students to manage their different internship applications. 
+InTrack is a desktop application for Computer Science students to manage their different internship applications.
 
-InTrack allows users to 
+InTrack allows users to
 
-* seamlessly search for and update their various applications, as well as 
+* seamlessly search for and update their various applications, as well as
 * keep track of the relevant timings and deadlines
 
 all through a simple and easy-to-use platform!
 
-InTrack is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User 
+InTrack is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User
 Interface (GUI). If you're a Computer Science student who can type fast, InTrack can help you manage your
 internship applications more efficiently and effectively than traditional GUI apps.
 
@@ -25,7 +25,7 @@ internship applications more efficiently and effectively than traditional GUI ap
 First time using InTrack? We highly recommend reading this user guide in order. If you come across unfamiliar terms used
 in this user guide, their definitions may be found in the [Glossary](#glossary).
 
-Searching for information about specific features? You might find it helpful to navigate to the relevant sections via 
+Searching for information about specific features? You might find it helpful to navigate to the relevant sections via
 the Table of Contents below for more detailed explanations of individual features.
 
 Alternatively, consider looking at the [Command Summary](#command-summary) for a brief outline of all the commands.
@@ -43,17 +43,17 @@ Alternatively, consider looking at the [Command Summary](#command-summary) for a
 
 3. Copy the file to the folder you want to use as the _home folder_ for InTrack.
 
-4. Launch the app by double-clicking the file or by using the command `java -jar InTrack.jar` in your terminal. The GUI 
+4. Launch the app by double-clicking the file or by using the command `java -jar InTrack.jar` in your terminal. The GUI
    similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
 
-   * **`help`** : Opens the Help window, which contains a link to this User Guide, as well as a summary of all the 
+   * **`help`** : Opens the Help window, which contains a link to this User Guide, as well as a summary of all the
    commands InTrack provides.
-   
+
    * **`list`** : Lists all internship applications.
 
    * **`add`**`c/Microsoft p/Software Engineer s/5000 e/hr@microsoft.com w/careers.microsoft.com t/Urgent` :
@@ -62,7 +62,7 @@ Alternatively, consider looking at the [Command Summary](#command-summary) for a
    * **`delete`**`1` : Deletes the first internship application displayed in InTrack.
 
    * **`exit`** : Exits InTrack.
-   
+
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -82,7 +82,7 @@ Alternatively, consider looking at the [Command Summary](#command-summary) for a
 * Items with `…` after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Urgent`, `t/Urgent t/Remote` etc.
 
-* If a parameter is expected only once in the command, but is specified multiple times, only the last occurrence of 
+* If a parameter is expected only once in the command, but is specified multiple times, only the last occurrence of
   the parameter will be taken.<br>
   e.g. if the command specifies `c/Microsoft c/Apple`, it will be interpreted as `c/Apple`.
 
@@ -95,7 +95,7 @@ Alternatively, consider looking at the [Command Summary](#command-summary) for a
 
 ### Viewing help: `help`
 
-If you're a little stuck, entering this command opens a Help window with a link to this User Guide, as well as a summary 
+If you're a little stuck, entering this command opens a Help window with a link to this User Guide, as well as a summary
 of all the commands InTrack provides.
 
 ![help message](images/helpMessage.png)
@@ -217,7 +217,7 @@ Example of usage:
 Expected outcome:
 
 * The status of the first internship application in InTrack is updated to `Offered`.
-  
+
 Before updating the status of the internship application at `INDEX` 1 to `Offered`:
 
 ![Ui](images/Ui.png)
@@ -319,7 +319,7 @@ Edits the details of the currently selected internship application.
 
 **:information_source: Before using `edit`:**<br>
 
-Before an internship application can be edited, it must first be selected via the 
+Before an internship application can be edited, it must first be selected via the
 [`select` command](#selecting-an-internship-application--select).
 
 </div>
@@ -436,7 +436,7 @@ Adds a `remark` to the selected internship application.
 
 **:information_source: Note about `remark`:**<br>
 
-Before a remark can be added to an application or edited, the internship must first be selected via the 
+Before a remark can be added to an application or edited, the internship must first be selected via the
 [`select` command](#selecting-an-internship-application--select).
 
 </div>
@@ -465,7 +465,7 @@ Expected outcome:
 
 ### Sending an email to a company : `mail`
 
-Launches the default mail app with the and prepares to send an email with the recipient set to the email address 
+Launches the default mail app with the and prepares to send an email with the recipient set to the email address
 registered to the selected internship.
 
 <div markdown="block" class="alert alert-info">
@@ -495,7 +495,7 @@ Format: `list`
 `clear` deletes all internship applications in InTrack. You may wish to use this to remove all the sample data in InTrack.
 
 <div markdown="block" class="alert alert-warning">
-:warning:`clear` CANNOT BE REVERSED OR UNDONE! Be sure that you wish to remove all existing data before entering the 
+:warning:`clear` CANNOT BE REVERSED OR UNDONE! Be sure that you wish to remove all existing data before entering the
 command.
 :warning:
 </div>
@@ -511,7 +511,7 @@ Format: `findc KEYWORD [MORE_KEYWORDS]...`
 * The search is case-insensitive. E.g. `google` will match `Google`.
 * The order of keywords does not matter. E.g. `Bytedance Tiktok` will match `Tiktok Bytedance`.
 * Only full words will be matched. E.g. `Goog` will not match `Google`.
-* Internship applications with company name matching at least one keyword will be returned. E.g. `findc google tech` 
+* Internship applications with company name matching at least one keyword will be returned. E.g. `findc google tech`
 will match `Google` and `Gov tech`.
 
 Example of usage:
@@ -529,7 +529,7 @@ Format: findp KEYWORD [MORE_KEYWORDS]
 * The search is case-insensitive. E.g. `developer` will match `Developer`.
 * The order of keywords does not matter. E.g. `Developer Frontend` will match `Frontend Developer`.
 * Only full words will be matched. E.g. `Develop` will not match `Developer`.
-* Internship applications with position name matching at least one keyword will be returned. E.g. `findp analyst 
+* Internship applications with position name matching at least one keyword will be returned. E.g. `findp analyst
 junior` will match `Data analyst` and `Junior SWE`.
 
 Example of usage:
@@ -547,10 +547,10 @@ Format: findt KEYWORD [MORE_KEYWORDS]
 * The search is case-insensitive. E.g. `urgent` will match `Urgent`.
 * The order of keywords does not matter. E.g. `Urgent Remote` will match `Remote Urgent`.
 * Only full words will be matched. E.g. `Remote` will not match `Remotely`.
-* Internship applications with tags matching at least one keyword will be returned. E.g. `findt urgent remote` will 
+* Internship applications with tags matching at least one keyword will be returned. E.g. `findt urgent remote` will
 match tags `urgent` and `remote`.
 
-Example of usage: 
+Example of usage:
 * `findt urgent`
 
 Expected outcome:
@@ -559,7 +559,7 @@ Expected outcome:
 ### Filtering internship applications by status : `filter`
 
 Filters all internship applications based on their status, using `p` for "Progress", `r` for "Rejected" and
-`o` for "Offered". 
+`o` for "Offered".
 
 Format: `filter STATUS`, where `STATUS` must be either `p`, `o` or `r`
 
@@ -571,7 +571,7 @@ Expected outcome:
 
 ### Sorting internship applications: `sort`
 
-Sorts the current list of internship applications on the left panel via their `SORT_TYPE` which is either `time` or `salary`, 
+Sorts the current list of internship applications on the left panel via their `SORT_TYPE` which is either `time` or `salary`,
 in either ascending or descending `SORT_ORDER`.
 
 Format: `sort SORT_TYPE SORT_ORDER`
@@ -585,7 +585,7 @@ into consideration.
 Internships are sorted by their earliest **upcoming tasks**, thus dates of tasks that are before the current date is **not taken into account**
 when sorting is conducted.
 
-This means that internships without any upcoming tasks (i.e. internships without any tasks or with all tasks that are past the current date), will not 
+This means that internships without any upcoming tasks (i.e. internships without any tasks or with all tasks that are past the current date), will not
 be sorted in any particular order and will be kept at the bottom of the list of internships instead no matter what SORT_ORDER is given.
 
 </div>
@@ -639,7 +639,7 @@ with the internship with the lowest salary at the top.
 | **Add internship application**              | `add c/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… ` <br/> e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent`        |
 | **Delete internship application**           | `delete INDEX` <br/> e.g. `delete 1`                                                                                                                                                            |
 | **Update status of internship application** | `status INDEX STATUS`<br/> e.g. `status 1 o`                                                                                                                                                    |
-| **Add tag to internship application**       | `addtag INDEX TAG [MORE_TAGS]...`<br/> e.g. `addtag 1 Urgent`                                                                                                                                   |                                                                                                                              |
+| **Add tag to internship application**       | `addtag INDEX TAG [MORE_TAGS]...`<br/> e.g. `addtag 1 Urgent`                                                                                                                                   |                                                                                                                              
 | **Delete tag from internship application**  | `deltag INDEX TAG [MORE_TAGS]...`<br/> e.g. `deltag 1 Urgent`                                                                                                                                   |
 | **Select internship application**           | `select INDEX` <br/> e.g. `select 1`                                                                                                                                                            |
 | **Edit internship application**             | `edit [c/NEW_COMPANY] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE] [s/NEW_SALARY] [t/NEW_TAGS]...` <br/> Note: At least one of the optional fields must be provided. <br/> e.g. `edit s/1200` |
