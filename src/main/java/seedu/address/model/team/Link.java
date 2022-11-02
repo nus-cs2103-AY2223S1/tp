@@ -20,7 +20,7 @@ public class Link {
     /**
      * Name of the link
      */
-    private Name displayedName;
+    private LinkName displayedName;
 
     private Url url;
 
@@ -30,14 +30,14 @@ public class Link {
      * @param displayedName A valid name to display.
      * @param url           A valid URL object.
      */
-    public Link(Name displayedName, Url url) {
+    public Link(LinkName displayedName, Url url) {
         requireNonNull(displayedName);
         requireNonNull(url);
         this.displayedName = displayedName;
         this.url = url;
     }
 
-    public Name getDisplayedName() {
+    public LinkName getDisplayedName() {
         return this.displayedName;
     }
 

@@ -16,6 +16,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.team.Link;
+import seedu.address.model.team.LinkName;
 import seedu.address.model.team.Url;
 
 /**
@@ -43,7 +44,7 @@ public class AddLinkCommand extends Command {
 
     @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true,
             description = FLAG_LINK_NAME_DESCRIPTION)
-    private Name name;
+    private LinkName name;
 
     @CommandLine.Option(names = {FLAG_URL_STR, FLAG_URL_STR_LONG}, required = true,
             description = FLAG_LINK_URL_DESCRIPTION)

@@ -18,6 +18,10 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.team.Description;
+import seedu.address.model.team.Link;
+import seedu.address.model.team.LinkName;
+import seedu.address.model.team.Task;
+import seedu.address.model.team.TaskName;
 import seedu.address.model.team.TeamName;
 import seedu.address.model.team.Url;
 
@@ -132,6 +136,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String name} into a {@code LinkName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static LinkName parseLinkName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!LinkName.isValidLinkName(trimmedName)) {
+            throw new ParseException(LinkName.MESSAGE_CONSTRAINTS);
+        }
+        return new LinkName(trimmedName);
+    }
+
+    /**
      * Parses {@code String url} into a {@code Url}
      */
     public static Url parseUrl(String url) throws ParseException {
@@ -148,6 +167,21 @@ public class ParserUtil {
             throw new ParseException(Url.MESSAGE_CONSTRAINTS);
         }
         return new Url(trimmedUrlWithHttps);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code TaskName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static TaskName parseTaskName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!TaskName.isValidTaskName(trimmedName)) {
+            throw new ParseException(TaskName.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskName(trimmedName);
     }
 
     /**

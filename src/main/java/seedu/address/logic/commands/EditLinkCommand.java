@@ -23,6 +23,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.team.Link;
+import seedu.address.model.team.LinkName;
 import seedu.address.model.team.Url;
 
 /**
@@ -71,7 +72,7 @@ public class EditLinkCommand extends Command {
     private static Link createEditedLink(Link linkToEdit, EditLinkCommand.EditLinkDescriptor editLinkDescriptor) {
         assert editLinkDescriptor != null;
 
-        Name updatedName = editLinkDescriptor.getName().orElse(linkToEdit.getDisplayedName());
+        LinkName updatedName = editLinkDescriptor.getName().orElse(linkToEdit.getDisplayedName());
         Url updatedUrl = editLinkDescriptor.getUrl().orElse(linkToEdit.getUrl());
 
         return new Link(updatedName, updatedUrl);
@@ -128,7 +129,7 @@ public class EditLinkCommand extends Command {
 
     private static class Arguments {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_LINK_NAME_DESCRIPTION)
-        private Name name;
+        private LinkName name;
 
         @CommandLine.Option(names = {FLAG_URL_STR, FLAG_URL_STR_LONG}, description = FLAG_LINK_URL_DESCRIPTION)
         private Url url;
@@ -152,7 +153,7 @@ public class EditLinkCommand extends Command {
      * corresponding field value of the link.
      */
     public static class EditLinkDescriptor {
-        private Name name;
+        private LinkName name;
 
         private Url url;
 
@@ -174,11 +175,11 @@ public class EditLinkCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, url);
         }
 
-        public Optional<Name> getName() {
+        public Optional<LinkName> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setName(Name name) {
+        public void setName(LinkName name) {
             this.name = name;
         }
 

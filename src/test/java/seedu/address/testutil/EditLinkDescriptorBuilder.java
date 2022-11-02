@@ -3,6 +3,8 @@ package seedu.address.testutil;
 import seedu.address.logic.commands.EditLinkCommand.EditLinkDescriptor;
 import seedu.address.model.person.Name;
 import seedu.address.model.team.Link;
+import seedu.address.model.team.LinkName;
+import seedu.address.model.team.TaskName;
 import seedu.address.model.team.Url;
 
 /**
@@ -33,7 +35,7 @@ public class EditLinkDescriptorBuilder {
      * Sets the {@code name} of the {@code EditLinkDescriptor} that we are building.
      */
     public EditLinkDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setName(new LinkName(name));
         return this;
     }
 
