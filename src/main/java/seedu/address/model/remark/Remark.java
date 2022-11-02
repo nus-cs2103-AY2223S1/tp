@@ -2,12 +2,7 @@ package seedu.address.model.remark;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a remark for the client.
@@ -18,29 +13,17 @@ public class Remark {
     // Identity fields
     private final Text text;
 
-    // Data fields
-    private final Set<Tag> tags = new HashSet<>();
-
     /**
      * Every field must be present and not null.
      */
-    public Remark(Text text, Set<Tag> tags) {
-        requireAllNonNull(text, tags);
+    public Remark(Text text) {
+        requireAllNonNull(text);
         this.text = text;
 
-        this.tags.addAll(tags);
     }
 
     public Text getText() {
         return text;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -78,14 +61,13 @@ public class Remark {
         }
 
         Remark otherRemark = (Remark) other;
-        return otherRemark.getText().value.equals(getText().value)
-                && otherRemark.getTags().equals(getTags());
+        return otherRemark.getText().value.equals(getText().value);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(text, tags);
+        return Objects.hash(text);
     }
 
     @Override
@@ -93,11 +75,6 @@ public class Remark {
         final StringBuilder builder = new StringBuilder();
         builder.append(getText());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
         return builder.toString();
     }
 

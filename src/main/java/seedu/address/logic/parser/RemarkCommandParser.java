@@ -5,14 +5,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CLIENT_DISPLAY
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.remark.Text;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new {@code RemarkCommand} object
@@ -47,9 +44,8 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         }
 
         Text text = ParserUtil.parseText(preambles[1]);
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Remark remark = new Remark(text, tagList);
+        Remark remark = new Remark(text);
 
         return new RemarkCommand(index, remark);
     }
