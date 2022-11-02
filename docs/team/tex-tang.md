@@ -53,6 +53,7 @@ help page).
 * **New Feature**: Added Person detail page that allows user to view contact detail and GitHub repositories
   * Credits: 
     * Repositories List is adopted from Person List panel
+    * [Andrew](https://github.com/wrewsama) provided the skeleton of the page
 
 * **New Feature**: Added argument aliases that allows user to pass argument to command with different aliases (e.g. `n/`
   and `name/` will have the same effect).
