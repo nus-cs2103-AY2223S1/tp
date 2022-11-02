@@ -122,6 +122,14 @@ public class StudentTest {
     }
 
     @Test
+    public void execute_getEmptyClass() {
+        Student student = new StudentBuilder(ALICE).build();
+        student.setClass(null);
+        assertTrue(student.getAClass().equals(new Class()));
+
+    }
+
+    @Test
     public void execute_setDisplayClassSuccess() throws ParseException {
         Class validClass = new Class(LocalDate.of(2022, 10, 21),
                 LocalTime.of(13, 0), LocalTime.of(14, 0));
@@ -217,7 +225,7 @@ public class StudentTest {
     }
 
     @Test
-    public void compareToByClassAscTest() {
+    public void compareToByClassStartTimeAscTest() {
         Student alice;
         Student bob;
         Student ava;
@@ -225,6 +233,34 @@ public class StudentTest {
         try {
             alice = new StudentBuilder(ALICE).withClass("2022-10-11 0200-0400").build();
             bob = new StudentBuilder(BOB).withClass("2022-10-11 0400-0500").build();
+            ava = new StudentBuilder(AVA).build();
+            bobWithoutClass = new StudentBuilder(BOB).build();
+        } catch (ParseException e) {
+            throw new RuntimeException();
+        }
+        // both with class fields initialized
+        assertTrue(alice.compareToByClassStartTimeAsc(bob) < 0);
+        assertTrue(alice.compareToByClassStartTimeAsc(alice) == 0);
+        assertTrue(bob.compareToByClassStartTimeAsc(alice) > 0);
+
+        // one is non-initialized
+        assertTrue(alice.compareToByClassStartTimeAsc(ava) < 0);
+        assertTrue(ava.compareToByClassStartTimeAsc(bob) > 0);
+
+        // both class fields not initialized, this will never happen in the real case.
+        assertTrue(ava.compareToByClassStartTimeAsc(bobWithoutClass) == 0);
+        assertTrue(bobWithoutClass.compareToByClassStartTimeAsc(ava) == 0);
+        assertTrue(ava.compareToByClassStartTimeAsc(ava) == 0);
+    }
+    @Test
+    public void compareToByClassAscTest() {
+        Student alice;
+        Student bob;
+        Student ava;
+        Student bobWithoutClass;
+        try {
+            alice = new StudentBuilder(ALICE).withClass("2022-10-11 0200-0400").build();
+            bob = new StudentBuilder(BOB).withClass("2022-10-12 0400-0500").build();
             ava = new StudentBuilder(AVA).build();
             bobWithoutClass = new StudentBuilder(BOB).build();
         } catch (ParseException e) {
@@ -253,7 +289,7 @@ public class StudentTest {
         Student bobWithoutClass;
         try {
             alice = new StudentBuilder(ALICE).withClass("2022-10-11 0200-0400").build();
-            bob = new StudentBuilder(BOB).withClass("2022-10-11 0400-0500").build();
+            bob = new StudentBuilder(BOB).withClass("2022-10-12 0400-0500").build();
             ava = new StudentBuilder(AVA).build();
             bobWithoutClass = new StudentBuilder(BOB).build();
         } catch (ParseException e) {
