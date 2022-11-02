@@ -2,10 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -115,10 +116,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        DESC_EXAMONE = new EditExamDescriptorBuilder().withModule(VALID_MODULE_EXAMONE).
-                withDescription(VALID_DESCRIPTION_EXAMONE).withDate(VALID_DATE_EXAMONE).build();
-        DESC_EXAMTWO = new EditExamDescriptorBuilder().withModule(VALID_MODULE_EXAMTWO).
-                withDescription(VALID_DESCRIPTION_EXAMTWO).withDate(VALID_DATE_EXAMTWO).build();
+        DESC_EXAMONE = new EditExamDescriptorBuilder().withModule(VALID_MODULE_EXAMONE)
+                .withDescription(VALID_DESCRIPTION_EXAMONE).withDate(VALID_DATE_EXAMONE).build();
+        DESC_EXAMTWO = new EditExamDescriptorBuilder().withModule(VALID_MODULE_EXAMTWO)
+                .withDescription(VALID_DESCRIPTION_EXAMTWO).withDate(VALID_DATE_EXAMTWO).build();
 
     }
 
@@ -145,7 +146,6 @@ public class CommandTestUtil {
     public static final String EXAMDATEONE = " " + PREFIX_EXAM_DATE + VALID_DATE_EXAMONE;
     public static final String EXAMDATETWO = " " + PREFIX_EXAM_DATE + VALID_DATE_EXAMTWO;
 
-  //  public static final String INVALID_MODULE = " " + PREFIX_MODULE + "2001";
 
 
     public static final EditTaskCommand.EditTaskDescriptor DESC_TUTORIAL;
@@ -184,10 +184,14 @@ public class CommandTestUtil {
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
+
     //must do after model itself executes.
+    /**
+     * Returns true when the tasks in the model has the same exams as  the tasks in expected model
+     */
     public static void assertTasksHaveSameExamSuccess(Model actualModel, Model expectedModel) {
         ObservableList<Task> filteredList = expectedModel.getFilteredTaskList();
-        for(int i = 0; i<filteredList.size(); i++) {
+        for (int i = 0; i < filteredList.size(); i++) {
             Task expectedModelTask = expectedModel.getFilteredTaskList().get(i);
             Task modelTask = actualModel.getFilteredTaskList().get(i);
             assertTrue(expectedModelTask.isLinked() == modelTask.isLinked());
@@ -207,14 +211,17 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-       // List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        // List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
         List<Exam> expectedFilteredListForExams = new ArrayList<>(actualModel.getFilteredExamList());
-        List<Task> expectedFilteredListForTask = new ArrayList<>(actualModel.getFilteredTaskList());
+        List<Task> expectedFilteredListForTasks = new ArrayList<>(actualModel.getFilteredTaskList());
+        List<Module> expectedFilteredListForModules = new ArrayList<>(actualModel.getFilteredModuleList());
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-       // assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        //assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
         assertEquals(expectedFilteredListForExams, actualModel.getFilteredExamList());
-        assertEquals(expectedFilteredListForTask, actualModel.getFilteredTaskList());
+        assertEquals(expectedFilteredListForTasks, actualModel.getFilteredTaskList());
+        assertEquals(expectedFilteredListForModules, actualModel.getFilteredModuleList());
+
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the

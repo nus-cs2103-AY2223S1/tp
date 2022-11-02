@@ -12,14 +12,6 @@ import seedu.address.model.module.ModuleCode;
  */
 public class ExamBuilder {
 
-//<<<<<<< HEAD
-//    public static final String DEFAULT_EXAM_DESCRIPTION = "Final Exam";
-//    public static final String DEFAULT_MODULE = "CS2030S";
-//    public static final String DEFAULT_EXAM_DATE = "01-11-2023";
-//
-//    private ExamDescription examDescription;
-//    private Module module;
-//=======
     public static final String DEFAULT_MODULE = "CS2103T";
     public static final String DEFAULT_DESCRIPTION = "Midterms";
     public static final String DEFAULT_DATE = "29-12-2022";
@@ -33,35 +25,13 @@ public class ExamBuilder {
      */
     public ExamBuilder() {
         Module m = new Module(new ModuleCode(DEFAULT_MODULE));
-        DistinctModuleList list =  new DistinctModuleList();
+        DistinctModuleList list = new DistinctModuleList();
         list.addModule(m);
         examDescription = new ExamDescription(DEFAULT_DESCRIPTION);
         examDate = new ExamDate(DEFAULT_DATE);
         module = new Module(new ModuleCode(DEFAULT_MODULE));
     }
 
-
-//    public ExamBuilder(Exam examToCopy) {
-//        examDescription = examToCopy.getDescription();
-//        module = examToCopy.getModule();
-//        examDate = examToCopy.getExamDate();
-//    }
-
-
-//    public ExamBuilder withDescription(String examDescription) {
-//        this.examDescription = new ExamDescription(examDescription);
-//        return this;
-//    }
-
-//    public ExamBuilder withModule(String moduleCode) {
-//        this.module = new Module(new ModuleCode(moduleCode));
-//        return this;
-//    }
-//=======
-//        module = new Module(new ModuleCode(DEFAULT_MODULE));
-//        examDescription = new ExamDescription(DEFAULT_DESCRIPTION);
-//        examDate = new ExamDate(DEFAULT_DATE);
-//    }
 
     /**
      * Initializes the ExamBuilder with the data of {@code examToCopy}.
@@ -97,7 +67,7 @@ public class ExamBuilder {
     }
 
     public Exam build() {
-        return new Exam(module, examDescription,examDate);
+        return new Exam(module, examDescription, examDate);
     }
 
 }

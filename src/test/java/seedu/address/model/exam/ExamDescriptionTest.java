@@ -1,11 +1,11 @@
 package seedu.address.model.exam;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Name;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
 
 public class ExamDescriptionTest {
 
@@ -23,13 +23,10 @@ public class ExamDescriptionTest {
     @Test
     public void isValidExamDescription() {
         // null name
-        assertThrows(NullPointerException.class, () -> Name.isValidName(null));
+        assertThrows(NullPointerException.class, () -> ExamDescription.isValidDescription(null));
 
         // invalid name
-        assertFalse(ExamDescription.isValidDescription(""));// empty string
-        //assertFalse(ExamDescription.isValidDescription(" ")); // spaces only
-//        assertTrue(ExamDescription.isValidDescription("^")); // only non-alphanumeric characters
-//        assertTrue(ExamDescription.isValidDescription("peter*")); // contains non-alphanumeric characters
+        assertFalse(ExamDescription.isValidDescription("")); // empty string
 
         // valid name
         assertTrue(ExamDescription.isValidDescription("finals")); // alphabets only

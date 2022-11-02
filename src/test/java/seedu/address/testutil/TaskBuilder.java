@@ -147,8 +147,8 @@ import seedu.address.model.task.TaskStatus;
  */
 public class TaskBuilder {
 
-    public static final String DEFAULT_MODULE = "CS2103T";
     public static final String DEFAULT_TASK_DESCRIPTION = "task description";
+    public static final String DEFAULT_MODULE = "CS2103T";
 
     private Module module;
     private TaskDescription taskDescription;

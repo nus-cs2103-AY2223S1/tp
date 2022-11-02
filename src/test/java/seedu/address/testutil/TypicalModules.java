@@ -1,11 +1,10 @@
 package seedu.address.testutil;
 
-import seedu.address.model.module.Module;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.module.Module;
 
 /**
  * A utility class containing a list of {@code Module} objects to be used in tests.
@@ -43,9 +42,3 @@ public class TypicalModules {
         return new ArrayList<>(Arrays.asList(CS2030, CS2040, CS2100, CS2103T, MA1521, CS2030S, CS2040S));
     }
 }
-
-//    public static List<Module> getTypicalModules() {
-//        return new ArrayList<>(Arrays.asList(CS2030, CS2040, CS2100, CS2103T));
-//    }
-//}
-//>>>>>>> master

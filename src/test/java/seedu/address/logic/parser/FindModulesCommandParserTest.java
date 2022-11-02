@@ -1,21 +1,24 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.FindModulesCommand;
-import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
-
-import java.util.Arrays;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.FindModulesCommand;
+import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 
 public class FindModulesCommandParserTest {
 
     private FindModulesCommandParser parser = new FindModulesCommandParser();
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindModulesCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FindModulesCommand.MESSAGE_USAGE));
     }
 
     @Test

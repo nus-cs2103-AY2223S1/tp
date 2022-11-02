@@ -1,21 +1,21 @@
 package seedu.address.model.module;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
-import seedu.address.testutil.ModuleBuilder;
-import seedu.address.testutil.TaskBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.ModuleBuilder;
 
 public class ModuleCodeContainsKeywordsPredicateTest {
 
     @Test
     public void test_modCodeContainsKeywords_returnsTrue() {
-        ModuleCodeContainsKeywordsPredicate predicate = new ModuleCodeContainsKeywordsPredicate(Collections.singletonList("cs2030s"));
+        ModuleCodeContainsKeywordsPredicate predicate =
+                new ModuleCodeContainsKeywordsPredicate(Collections.singletonList("cs2030s"));
         assertTrue(predicate.test(new ModuleBuilder().withModuleCode("cs2030s").build()));
 
         predicate = new ModuleCodeContainsKeywordsPredicate(Collections.singletonList("cs2030s"));
@@ -31,7 +31,8 @@ public class ModuleCodeContainsKeywordsPredicateTest {
     @Test
     public void test_modCodeDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        ModuleCodeContainsKeywordsPredicate predicate = new ModuleCodeContainsKeywordsPredicate(Collections.emptyList());
+        ModuleCodeContainsKeywordsPredicate predicate =
+                new ModuleCodeContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new ModuleBuilder().withModuleCode("cs2030s").build()));
 
         // Non-matching keyword

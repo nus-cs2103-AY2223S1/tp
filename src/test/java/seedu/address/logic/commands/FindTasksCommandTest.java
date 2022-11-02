@@ -1,9 +1,12 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+//import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalTasks.*;
+import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+//import static seedu.address.testutil.TypicalTasks.*;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -50,18 +53,6 @@ public class FindTasksCommandTest {
         assertFalse(findTaskFirstCommand.equals(findTaskSecondCommand));
     }
 
-//
-//    @Test
-//    public void execute_zeroKeywords_noTaskFound() {
-//        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
-//        DescriptionContainsKeywordsPredicate predicate = preparePredicate(" ");
-//        FindTasksCommand command = new FindTasksCommand(predicate);
-//        expectedModel.updateFilteredTaskList(predicate);
-//        System.out.println(command.execute(model).getFeedbackToUser());
-//        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-//        assertEquals(Collections.emptyList(), model.getFilteredTaskList());
-//    }
-
 
     @Test
     public void executeFullWord_taskFound() {
@@ -77,7 +68,7 @@ public class FindTasksCommandTest {
 
     @Test
     public void executePartialStartingWord_tasksFound() {
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 11);
         DescriptionContainsKeywordsPredicate predicate = preparePredicate("Tas");
         FindTasksCommand command = new FindTasksCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
@@ -87,7 +78,7 @@ public class FindTasksCommandTest {
 
     @Test
     public void executePartialMiddleWord_tasksFound() {
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 12);
         DescriptionContainsKeywordsPredicate predicate = preparePredicate("as ");
         FindTasksCommand command = new FindTasksCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);

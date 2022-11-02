@@ -45,7 +45,8 @@
 //      //  System.out.println(new AddCommand(validPerson).execute(model).getFeedbackToUser());
 //        //System.out.println(String.format(AddCommand.MESSAGE_SUCCESS,validPerson));
 //        //System.out.println(new AddCommand(validPerson).execute(model).getFeedbackToUser());
-//         // assertTrue(new AddCommand(validPerson).execute(model).getFeedbackToUser().equals(String.format(AddCommand.MESSAGE_SUCCESS,validPerson)));
+//         // assertTrue(new AddCommand(validPerson).execute(model).
+//         getFeedbackToUser().equals(String.format(AddCommand.MESSAGE_SUCCESS,validPerson)));
 //
 //        assertCommandSuccess(new AddCommand(validPerson), model,
 //                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);

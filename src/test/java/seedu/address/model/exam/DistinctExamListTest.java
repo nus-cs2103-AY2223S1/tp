@@ -3,24 +3,17 @@ package seedu.address.model.exam;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_EXAMTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_EXAMTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_EXAMTWO;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalExams.EXAMONE;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.exam.exceptions.ExamNotFoundException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.ExamBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 public class DistinctExamListTest {
 
@@ -32,12 +25,12 @@ public class DistinctExamListTest {
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
+    public void contains_examNotInList_returnsFalse() {
         assertFalse(distinctExamList.contains(EXAMONE));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
+    public void contains_examInList_returnsTrue() {
         distinctExamList.addExam(EXAMONE);
         assertTrue(distinctExamList.contains(EXAMONE));
     }
@@ -48,12 +41,12 @@ public class DistinctExamListTest {
         Exam editedExam = new ExamBuilder(EXAMONE).withDate(VALID_DATE_EXAMTWO)
                 .withDescription(VALID_DESCRIPTION_EXAMTWO)
                 .withModule(VALID_MODULE_EXAMTWO).build();
-        distinctExamList.replaceExam(distinctExamList.examList.get(0), editedExam,false);
+        distinctExamList.replaceExam(distinctExamList.examList.get(0), editedExam, false);
         assertTrue(distinctExamList.contains(editedExam));
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
+    public void add_nullExam_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> distinctExamList.addExam(null));
     }
 
@@ -64,7 +57,7 @@ public class DistinctExamListTest {
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
+    public void remove_nullExam_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> distinctExamList.remove(null));
     }
 

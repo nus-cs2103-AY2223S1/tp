@@ -1,22 +1,37 @@
+//package seedu.address.logic.commands;
+//
+//import org.junit.jupiter.api.Test;
+//import seedu.address.model.Model;
+//import seedu.address.model.ModelManager;
+//import seedu.address.model.UserPrefs;
+//import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
+//
+//import static org.junit.jupiter.api.Assertions.assertFalse;
+//import static org.junit.jupiter.api.Assertions.assertTrue;
+//import static seedu.address.commons.core.Messages.MESSAGE_MODULES_LISTED_OVERVIEW;
+//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+//import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+//
+//import java.util.Arrays;
+//import java.util.Collections;
 package seedu.address.logic.commands;
-
-import org.junit.jupiter.api.Test;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
-import seedu.address.model.module.ModuleCodeContainsKeywordsPredicateTest;
-import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
-
-import java.util.Arrays;
-import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULES_LISTED_OVERVIEW;
-import static seedu.address.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
+
 
 public class FindModulesCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -46,19 +61,6 @@ public class FindModulesCommandTest {
 
         assertFalse(findModulesCommand.equals(findModulesSecondCommand));
     }
-
-//
-//    @Test
-//    public void execute_zeroKeywords_noTaskFound() {
-//        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
-//        DescriptionContainsKeywordsPredicate predicate = preparePredicate(" ");
-//        FindTasksCommand command = new FindTasksCommand(predicate);
-//        expectedModel.updateFilteredTaskList(predicate);
-//        System.out.println(command.execute(model).getFeedbackToUser());
-//        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-//        assertEquals(Collections.emptyList(), model.getFilteredTaskList());
-//    }
-
 
     @Test
     public void executeFullWord_moduleFound() {

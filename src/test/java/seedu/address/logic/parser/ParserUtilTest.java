@@ -2,7 +2,11 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EXAM_DATEONE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_FORMAT_EXAM_DATESEVEN;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PAST_EXAMDATEONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_EXAMONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_EXAMONE;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;

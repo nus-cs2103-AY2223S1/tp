@@ -47,8 +47,9 @@ public class AddExamCommandTest {
         Exam validExam = new ExamBuilder().build();
         AddExamCommand addExamCommand = new AddExamCommand(validExam);
         ModelStub modelStub = new ModelStubWithExam(validExam);
-        assertThrows(CommandException.class,MESSAGE_DUPLICATE_EXAM, () -> addExamCommand.execute(modelStub));
+        assertThrows(CommandException.class, MESSAGE_DUPLICATE_EXAM, () -> addExamCommand.execute(modelStub));
     }
+
     @Test
     public void execute_moduleNotFound_throwsCommandException() {
         Exam validExam = new ExamBuilder().build();
@@ -59,11 +60,16 @@ public class AddExamCommandTest {
 
     @Test
     public void equals() {
-        Exam examOne = new ExamBuilder().withModule("CS2030s").withDate("02-02-2024").withDescription("exam one").build();
-        Exam examTwo = new ExamBuilder().withModule("CS2040s").withDate("02-06-2026").withDescription("exam two").build();
-        Exam examOneWithDiffDate = new ExamBuilder().withModule("CS2030s").withDate("02-06-2026").withDescription("exam one").build();
-        Exam examOneWithDiffModule = new ExamBuilder().withModule("CS2040s").withDate("02-02-2024").withDescription("exam one").build();
-        Exam examOneWithDiffDescription = new ExamBuilder().withModule("CS2030s").withDate("02-02-2024").withDescription("exam one one").build();
+        Exam examOne = new ExamBuilder().withModule("CS2030s")
+                .withDate("02-02-2024").withDescription("exam one").build();
+        Exam examTwo = new ExamBuilder().withModule("CS2040s")
+                .withDate("02-06-2026").withDescription("exam two").build();
+        Exam examOneWithDiffDate = new ExamBuilder().withModule("CS2030s")
+                .withDate("02-06-2026").withDescription("exam one").build();
+        Exam examOneWithDiffModule = new ExamBuilder().withModule("CS2040s")
+                .withDate("02-02-2024").withDescription("exam one").build();
+        Exam examOneWithDiffDescription = new ExamBuilder().withModule("CS2030s")
+                .withDate("02-02-2024").withDescription("exam one one").build();
 
         AddExamCommand addExamOneCommand = new AddExamCommand(examOne);
         AddExamCommand addExamTwoCommand = new AddExamCommand(examTwo);
