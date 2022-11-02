@@ -15,56 +15,6 @@ html {
     width: 21px
 }
 
-.toc-button {
-  height: 16px;
-  padding: 6px 8px;
-  background-color: rgba(12, 12, 12, 0.75);
-  border-radius: 16px;
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  display: flex;
-  align-items: center;
-  transition: all 0.2s ease;
-}
-
-.toc-button:hover {
-  background-color: rgba(12, 12, 12, 0.85);
-}
-
-.toc-button svg {
-  height: 16px;
-  width: 16px;
-}
-
-.toc-button span {
-  margin-left: 4px;
-  color: white;
-  font-size: 0.875rem;
-}
-
-@media screen and (max-width: $on-palm) {
-  .toc-button span {
-    display: none;
-  }
-
-  .toc-button {
-    padding: 6px;
-  }
-}
-
-// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd
-kbd {
-  background-color: #eee;
-  border-radius: 3px;
-  border: 1px solid #e8e8e8;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
-  display: inline-block;
-  line-height: 1;
-  padding: 2px 4px;
-  white-space: nowrap;
-}
-
 // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Counter_Styles/Using_CSS_counters
 body {
   counter-reset: h2;
@@ -82,9 +32,6 @@ h4 {
   counter-reset: h5;
 }
 
-h5 {
-  counter-reset: h6;
-}
 
 h2:before {
   content: counter(h2, decimal) ". ";
@@ -106,10 +53,6 @@ h5:before {
   counter-increment: h5;
 }
 
-h6:before {
-  content: counter(h2, decimal) "." counter(h3, decimal) "." counter(h4, decimal) "." counter(h5, decimal) "." counter(h6, decimal) ". ";
-  counter-increment: h6;
-}
 
 #markdown-toc, #markdown-toc ul {
   list-style-type: none;
@@ -137,27 +80,7 @@ h6:before {
   margin-left: 34px;
 }
 
-// Fifth Level
-#markdown-toc > li > ul > li > ul > li > ul > li > ul > li {
-  margin-left: 42px;
-}
-
 #markdown-toc li:before {
   content: counters(item, ".") ". ";
   counter-increment: item;
-}
-
-.no-num:before, .no-num *:before {
-  content : "";
-  counter-increment : none;
-}
-
-@media print {
-  .hidden-print {
-    display: none !important;
-  }
-}
-
-.meaning-icons-container > ul li > img {
-  vertical-align: text-top;
 }
