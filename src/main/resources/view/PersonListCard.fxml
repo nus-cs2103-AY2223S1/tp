@@ -21,7 +21,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" styleClass="cell_title_label" text="\$first">
+        <Label fx:id="name" styleClass="cell_title_label" text="\$first" wrapText="true" >
                <font>
                   <Font name="Arial Bold" size="15.0" />
                </font>
@@ -36,57 +36,57 @@
         <padding>
           <Insets top="5" />
         </padding>
-        <Label styleClass="cell_small_label" text="Phone: " />
-        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+        <Label minWidth="20" styleClass="cell_small_label" text="Phone: " />
+        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
       </HBox>
       <HBox>
         <padding>
           <Insets top="3" />
         </padding>
-        <Label styleClass="cell_small_label" text="Next of Kin Phone: " />
-        <Label fx:id="nokPhone" styleClass="cell_small_label" text="\$nokPhone" />
+        <Label minWidth="105" styleClass="cell_small_label" text="Next of Kin Phone: " />
+        <Label fx:id="nokPhone" styleClass="cell_small_label" text="\$nokPhone" wrapText="true" />
       </HBox>
       <HBox>
         <padding>
           <Insets top="3" />
         </padding>
-        <Label styleClass="cell_small_label" text="Address: " />
-        <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+        <Label minWidth="55" styleClass="cell_small_label" text="Address: " />
+        <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
       </HBox>
       <HBox>
         <padding>
           <Insets top="3" />
         </padding>
-        <Label styleClass="cell_small_label" text="Email: " />
-        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+        <Label minWidth="40" styleClass="cell_small_label" text="Email: " />
+        <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
       </HBox>
       <HBox>
         <padding>
           <Insets top="3" />
         </padding>
-        <Label styleClass="cell_small_label" text="Class Date: " />
-        <Label fx:id="classDetails" styleClass="cell_small_label" text="\$classDetails" />
+        <Label minWidth="55" styleClass="cell_small_label" text="Class Date: " />
+        <Label fx:id="classDetails" styleClass="cell_small_label" text="\$classDetails" wrapText="true" />
       </HBox>
       <HBox>
         <padding>
           <Insets top="3" />
         </padding>
-        <Label styleClass="cell_small_label" text="Amount owed: $" />
-        <Label fx:id="moneyOwed" styleClass="cell_small_label" text="\$moneyOwed" />
+        <Label minWidth="85" styleClass="cell_small_label" text="Amount owed: $" />
+        <Label fx:id="moneyOwed" styleClass="cell_small_label" text="\$moneyOwed" wrapText="true"/>
       </HBox>
       <HBox prefWidth="210.0">
         <padding>
           <Insets top="3" />
         </padding>
-        <Label styleClass="cell_small_label" text="Amount paid: $" />
-        <Label fx:id="moneyPaid" styleClass="cell_small_label" text="\$moneyPaid" />
+        <Label minWidth="80" styleClass="cell_small_label" text="Amount paid: $" />
+        <Label fx:id="moneyPaid" styleClass="cell_small_label" text="\$moneyPaid" wrapText="true" />
       </HBox>
       <HBox>
         <padding>
           <Insets top="3" />
         </padding>
-        <Label styleClass="cell_small_label" text="Rates per Class: $" />
-        <Label fx:id="ratesPerClass" styleClass="cell_small_label" text="\$ratesPerClass" />
+        <Label minWidth="95" styleClass="cell_small_label" text="Rates per Class: $" />
+        <Label fx:id="ratesPerClass" styleClass="cell_small_label" text="\$ratesPerClass" wrapText="true" />
       </HBox>
       <HBox>
         <padding>
