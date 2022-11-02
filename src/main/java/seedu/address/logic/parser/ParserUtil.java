@@ -168,8 +168,6 @@ public class ParserUtil {
         requireNonNull(classDatetime);
         String trimmedClassDatetime = classDatetime.trim();
 
-        // todo: invalid date will result the else block in following code -- leading to wrong error message displayed.
-        // todo: to be fixed in future PR
         if (Class.isValidClassString(trimmedClassDatetime)) {
             // the format has been validated in isValidClassString method
             // ie yyyy-MM-dd 0000-2359
