@@ -1,16 +1,17 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteTagCommand;
-
-import java.util.Set;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteTagCommand;
 
 public class DeleteTagCommandParserTest {
 
@@ -56,7 +57,7 @@ public class DeleteTagCommandParserTest {
     }
 
     @Test
-    public void parse_invalidInputs_Failure() {
+    public void parse_invalidInputs_failure() {
         //Empty Keyword
         String emptyKeyword = "1 " + PREFIX_TAG;
         String emptyKeywordMessage = ParserUtil.MESSAGE_INVALID_KEYWORDS;

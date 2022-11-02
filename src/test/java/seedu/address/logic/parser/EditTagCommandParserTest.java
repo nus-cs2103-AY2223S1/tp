@@ -1,6 +1,16 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY_STATUS;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTagCommand;
@@ -9,14 +19,6 @@ import seedu.address.model.tag.PriorityTag;
 import seedu.address.testutil.DeadlineTagBuilder;
 import seedu.address.testutil.PriorityTagBuilder;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY_STATUS;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 
 public class EditTagCommandParserTest {
     private EditTagCommandParser parser = new EditTagCommandParser();
@@ -97,15 +99,15 @@ public class EditTagCommandParserTest {
 
         //Invalid status for priority tag
         assertParseFailure(parser, "1 " + PREFIX_PRIORITY_STATUS + "status",
-                PriorityTag.PRIORITY_TAG_CONSTRAINTS );
+                PriorityTag.PRIORITY_TAG_CONSTRAINTS);
 
         //Invalid date format for deadline tag
         assertParseFailure(parser, "2 " + PREFIX_DEADLINE + "17/01/2023",
                 DeadlineTag.DEADLINE_TAG_FORMAT_CONSTRAINTS);
 
         //Invalid date chosen for deadline tag
-        assertParseFailure(parser, "42 " + PREFIX_DEADLINE + "29-02-2023"
-                , DeadlineTag.DEADLINE_TAG_INVALID_DATE);
+        assertParseFailure(parser, "42 " + PREFIX_DEADLINE + "29-02-2023",
+                DeadlineTag.DEADLINE_TAG_INVALID_DATE);
 
         //Date has passed for deadline tag
         assertParseFailure(parser, "5 " + PREFIX_DEADLINE + "01-01-2000",
