@@ -82,8 +82,10 @@ public class JsonAdaptedEvent {
         if (this.startDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Start Date"));
         }
-        if (!Date.isValidDate(startDate)) {
+        if (!Date.isValidDateFormat(startDate)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+        } else if (!Date.isValidDateValue(startDate)) {
+            throw new IllegalValueException(Date.MESSAGE_VALUE_CONSTRAINTS);
         }
         final Date modelStartDate = new Date(startDate);
 
