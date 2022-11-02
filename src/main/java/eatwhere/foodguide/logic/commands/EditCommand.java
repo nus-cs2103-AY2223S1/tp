@@ -37,12 +37,12 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PRICE + "PHONE] "
-            + "[" + PREFIX_CUISINE + "EMAIL] "
-            + "[" + PREFIX_LOCATION + "ADDRESS] "
+            + "[" + PREFIX_PRICE + "PRICE] "
+            + "[" + PREFIX_CUISINE + "CUISINE] "
+            + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PRICE + "91234567 "
+            + PREFIX_PRICE + "$$ "
             + PREFIX_CUISINE + "chinese";
 
     public static final String MESSAGE_EDIT_EATERY_SUCCESS = "Edited Eatery: %1$s";
