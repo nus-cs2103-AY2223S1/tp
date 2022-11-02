@@ -184,9 +184,15 @@ public interface Model {
     boolean hasConsultation(Consultation consultation);
 
     /**
-     * Returns true if a tutorial with the same venue and timeslot as {@code tutorial} exists in ModQuik.
+     * Returns the true if there exists tutorials in ModQuik having timeslot overlapping with an {@code tutorial}.
      */
-    boolean hasConsultationClashingWith(Consultation consultation);
+    boolean hasClashingConsultation(Consultation toCheck);
+
+    /**
+     * Returns true if there exists tutorials exclude {@code exception} in ModQuik having timeslot overlapping with
+     * an {@code tutorial}
+     */
+    boolean hasClashingConsultationExcept(Consultation toCheck, Consultation exception);
 
     /**
      * Deletes the given consultation.

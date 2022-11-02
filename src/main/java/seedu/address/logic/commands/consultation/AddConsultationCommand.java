@@ -39,7 +39,7 @@ public class AddConsultationCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New consultation added: %1$s";
     public static final String MESSAGE_DUPLICATE_CONSULTATION = "This consultation already exists in ModQuik";
     public static final String MESSAGE_CLASH_CONSULTATION =
-            "There exists a consultation having same venue and timeslot in ModQuik";
+            "There exists a consultation with overlapping timeslot in ModQuik";
 
     private final Consultation toAdd;
 
@@ -58,7 +58,7 @@ public class AddConsultationCommand extends Command {
         if (model.hasConsultation(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CONSULTATION);
         }
-        if (model.hasConsultationClashingWith(toAdd)) {
+        if (model.hasClashingConsultation(toAdd)) {
             throw new CommandException(MESSAGE_CLASH_CONSULTATION);
         }
         model.addConsultation(toAdd);

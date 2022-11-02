@@ -50,6 +50,8 @@ public class EditConsultationCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_CONSULTATION = "There is already a consultation at that timing.";
     public static final String MESSAGE_DATETIME_CONSULTATION = "Both new day and new timeslot must be inputted.";
+    public static final String MESSAGE_CLASH_CONSULTATION =
+            "There exists a consultation with overlapping timeslot in the ModQuik";
 
     private final Index index;
     private final EditConsultDescriptor editConsultDescriptor;
@@ -80,6 +82,10 @@ public class EditConsultationCommand extends Command {
 
         if (!consultToEdit.isSameConsultation(editedConsult) && model.hasConsultation(editedConsult)) {
             throw new CommandException(MESSAGE_DUPLICATE_CONSULTATION);
+        }
+
+        if (model.hasClashingConsultationExcept(editedConsult, consultToEdit)) {
+            throw new CommandException(MESSAGE_CLASH_CONSULTATION);
         }
 
         model.setConsultation(consultToEdit, editedConsult);

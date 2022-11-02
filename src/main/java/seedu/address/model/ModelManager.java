@@ -318,9 +318,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasConsultationClashingWith(Consultation consultation) {
-        requireNonNull(consultation);
-        return addressBook.hasConsultationClashingWith(consultation);
+    public boolean hasClashingConsultation(Consultation toCheck) {
+        requireNonNull(toCheck);
+        return addressBook.hasClashingConsultation(toCheck);
+    }
+
+    @Override
+    public boolean hasClashingConsultationExcept(Consultation toCheck, Consultation exception) {
+        requireNonNull(toCheck);
+        requireNonNull(exception);
+        return addressBook.hasClashingConsultationExcept(toCheck, exception);
     }
 
     @Override

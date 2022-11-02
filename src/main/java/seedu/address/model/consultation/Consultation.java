@@ -62,11 +62,12 @@ public class Consultation {
         }
 
         return otherConsultation != null
-                && otherConsultation.getName().equals(getName());
+                && otherConsultation.getTimeslot().equals(getTimeslot())
+                && otherConsultation.getVenue().equals(getVenue());
     }
 
     /**
-     * Returns true if both Consultations have the same venue and timeslot.
+     * Returns true if given consultation's timeslot overlaps with other's timeslot.
      */
     public boolean isClashConsultation(Consultation otherConsultation) {
         if (otherConsultation == this) {
@@ -74,8 +75,7 @@ public class Consultation {
         }
 
         return otherConsultation != null
-                && otherConsultation.getVenue().equals(getVenue())
-                && otherConsultation.getTimeslot().equals(getTimeslot());
+                && otherConsultation.getTimeslot().isOverlapping(getTimeslot());
     }
 
     /**
@@ -96,7 +96,8 @@ public class Consultation {
         return otherConsultation.getName().equals(getName())
                 && otherConsultation.getModule().equals(getModule())
                 && otherConsultation.getVenue().equals(getVenue())
-                && otherConsultation.getTimeslot().equals(getTimeslot());
+                && otherConsultation.getTimeslot().equals(getTimeslot())
+                && otherConsultation.getDescription().equals(getDescription());
     }
 
     @Override
