@@ -27,6 +27,8 @@ for easy reference. So, let's [get started](#installation)!
     - [Filtered/Unfiltered List](#filteredunfiltered-list)
   - [Command Format](#command-format)
   - [Key Definitions](#key-definitions)
+    - [Patient](#patient)
+    - [Record](#record)
 - [Features](#features)
   - [Patient Commands](#patient-commands)
     - [Listing all patients](#listing-all-patients-list): `list`
