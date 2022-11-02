@@ -27,9 +27,9 @@ public class ListCommand extends Command {
             + "To list all marked (completed tasks): ls -m\n"
             + "To list all task with <tag>: \n"
             + "EXAMPLE: ls -t urgent \n"
-            + "To list all tasks with deadline on or after <date>: \n"
+            + "To list all tasks with deadline on or after <date>: ls -d <date> \n"
             + "EXAMPLE: ls -d 2022-10-28"
-            + "To list all tasks with matching keywords: ls -n KEYWORD [MORE_KEYWORD] \n"
+            + "To list all tasks with matching keywords: ls -n KEYWORD [MORE_KEYWORD*] \n"
             + "EXAMPLE: ls -n task task1";
 
     public final List<Predicate<Task>> predicates;
