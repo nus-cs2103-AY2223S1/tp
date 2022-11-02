@@ -110,4 +110,7 @@ public class CustomerBuilder {
         return customerBuilder.build();
     }
 
+    public Customer.CustomerBuilder toCustomerBuilder() {
+        return new Customer.CustomerBuilder(name, phone, email, tags);
+    }
 }

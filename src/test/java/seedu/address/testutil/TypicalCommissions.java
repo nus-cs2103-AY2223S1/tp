@@ -25,6 +25,19 @@ import seedu.address.model.customer.Customer;
  */
 public class TypicalCommissions {
 
+    public static final Commission.CommissionBuilder CAT_BUILDER = new CommissionBuilder()
+            .withTitle(VALID_TITLE_CAT).withDeadline(LocalDate.of(2021, 1, 1))
+            .withDescription(VALID_DESCRIPTION_CAT)
+            .withCompletionStatus(false).withFee(2.0)
+            .withTags(VALID_TAG_ANIMAL).toCommissionBuilder();
+    public static final Commission.CommissionBuilder DOG_BUILDER = new CommissionBuilder()
+            .withTitle(VALID_TITLE_DOG).withDeadline(LocalDate.of(2022, 12, 25))
+            .withDescription(VALID_DESCRIPTION_DOG).withCompletionStatus(true).withFee(1.0)
+            .withTags(VALID_TAG_ANIMAL).toCommissionBuilder();
+    public static final Commission.CommissionBuilder ELEPHANT_BUILDER = new CommissionBuilder()
+            .withTitle(VALID_TITLE_ELEPHANT).withDeadline(LocalDate.of(2022, 12, 24))
+            .withDescription(VALID_DESCRIPTION_ELEPHANT)
+            .withCompletionStatus(true).toCommissionBuilder();
     public static final Function<Customer, Commission> CAT_PRODUCER = customer -> new CommissionBuilder()
             .withTitle(VALID_TITLE_CAT).withDeadline(LocalDate.of(2021, 1, 1))
             .withDescription(VALID_DESCRIPTION_CAT)

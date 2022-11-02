@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.commission;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,9 +11,12 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.OpenCommissionCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -31,7 +34,7 @@ class OpenCommissionCommandTest {
     @Test
     public void execute_noIndex_switchesTab() {
         model.selectCustomer(model.getSortedFilteredCustomerList().get(0));
-        CommandResult result = assertDoesNotThrow(() -> new OpenCommissionCommand().execute(model));
+        CommandResult result = Assertions.assertDoesNotThrow(() -> new OpenCommissionCommand().execute(model));
         assertEquals(result.getFeedbackToUser(), Messages.MESSAGE_OPEN_COMMISSION_TAB_SUCCESS);
         assertEquals(model.getSelectedTab(), GuiTab.COMMISSION);
     }

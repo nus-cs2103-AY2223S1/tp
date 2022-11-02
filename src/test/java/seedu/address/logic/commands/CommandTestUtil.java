@@ -59,6 +59,20 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_DOG = "A black dog";
     public static final String VALID_DESCRIPTION_ELEPHANT = "A red elephant";
 
+    public static final String VALID_FEE_LITTLE = "0.341245";
+    public static final String VALID_FEE_NORMAL = "50.03";
+    public static final String VALID_FEE_LARGE = "2550.50";
+    public static final String VALID_INT_FEE = "500";
+
+    public static final String VALID_NO_STATUS = "No";
+    public static final String VALID_N_STATUS = "n";
+    public static final String VALID_FALSE_STATUS = "False";
+    public static final String VALID_F_STATUS = "f";
+    public static final String VALID_Y_STATUS = "y";
+    public static final String VALID_YES_STATUS = "YES";
+    public static final String VALID_TRUE_STATUS = "true";
+    public static final String VALID_T_STATUS = "T";
+
     public static final String VALID_DATE_FIRST_DAY_OF_YEAR = "2022-01-01";
     public static final String VALID_DATE_LAST_DAY_OF_YEAR = "2022-12-31";
     public static final String INVALID_DATE_YYYY_M_D = "2022-3-1";
