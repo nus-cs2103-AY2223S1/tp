@@ -73,7 +73,8 @@ CLI, and the application responds with its GUI, created with JavaFX.
     * Editing an item
     * Sorting orders
   * Relevant pull request(s): [#101](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/101),
-  [#108](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/108)
+  [#108](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/108),
+  [#203](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/203)
 
 * **Contributions to the DG**:
   * Design Section:
@@ -87,7 +88,8 @@ CLI, and the application responds with its GUI, created with JavaFX.
       * Edit Item Feature
       * Sort Orders Feature
   * Relevant pull request(s): [#114](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/114),
-  [#137](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/137)
+  [#137](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/137),
+  [#203](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/203)
   
 * **Contributions to team-based tasks**:
   * Facilitated team discussions on design implementations
