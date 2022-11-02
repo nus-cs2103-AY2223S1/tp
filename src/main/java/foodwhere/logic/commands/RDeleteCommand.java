@@ -39,7 +39,6 @@ public class RDeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Review> lastShownList = model.getFilteredReviewList();
-
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_INDEX_ERROR);
         }
