@@ -8,8 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
-import seedu.address.logic.commands.AddBuyerCommand;
-import seedu.address.logic.commands.EditBuyerCommand.EditBuyerDescriptor;
+import seedu.address.logic.commands.buyer.AddBuyerCommand;
+import seedu.address.logic.commands.buyer.EditBuyerCommand.EditBuyerDescriptor;
 import seedu.address.model.buyer.Buyer;
 
 /**
