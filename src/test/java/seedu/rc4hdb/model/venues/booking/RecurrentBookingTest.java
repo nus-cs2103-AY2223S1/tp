@@ -1,6 +1,7 @@
 package seedu.rc4hdb.model.venues.booking;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_5_TO_6PM;
 import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_5_TO_7PM;
@@ -14,6 +15,11 @@ import org.junit.jupiter.api.Test;
  * Unit tests for {@link RecurrentBooking}.
  */
 public class RecurrentBookingTest {
+
+    @Test
+    public void clashesWith_nullRecurrentBooking_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> MR_ALICE_MONDAY_5_TO_6PM.clashesWith(null));
+    }
 
     @Test
     public void clashesWith_overlappingRecurrentBooking_returnTrue() {
