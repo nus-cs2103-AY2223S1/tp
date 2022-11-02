@@ -212,15 +212,29 @@ Examples:
 
 ### 5.3 Deleting an activity : `delete`
 
-Deletes a specified activity from HobbyList.
+This command allows you to delete an activity from HobbyList.
 
 Format: `delete INDEX`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Additional information for delete:**<br>
 
 * Deletes the activity at the specified `INDEX`.
 * The index refers to the index number shown in the displayed activity list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+</div>
+
 Example: `delete 1`
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**<br>
+
+The `delete` command is final and cannot be undone. To prevent regrets, you might want to back up your save file which can be found in the `data` folder in the same folder as your HobbyList.jar file.
+
+</div>
 
 ### 5.4 Listing all hobby activities : `list`
 
