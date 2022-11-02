@@ -5,7 +5,14 @@ package seedu.address.model.meeting.exceptions;
  * for the name of a person to meet matches multiple contacts in the address book.
  */
 public class ImpreciseMatchException extends RuntimeException {
-    public ImpreciseMatchException() {
-        super("Name predicate in new meeting matches multiple contacts");
+
+    /**
+     * Constructor for ImpreciseMatchException
+     *
+     * @param impreciseName the name that causes ambiguity when the programme tries to find a matching contact
+     */
+    public ImpreciseMatchException(String impreciseName) {
+        super(String.format("Name of person to meet: %1$s matches multiple contacts", impreciseName));
     }
+
 }

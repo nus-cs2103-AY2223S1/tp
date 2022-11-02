@@ -40,11 +40,15 @@ public class CreateMeetingCommand extends Command {
         + "the same person(s) at the same time";
 
     public static final String DUPLICATE_PERSON_TO_MEET = "It looks like you are adding the same "
-        + "person to a meeting twice!";
+        + "person to a meeting more than once!";
 
     public static final String IMPRECISE_NAME_PREDICATE = "Oops! The name of one of the persons you are meeting "
         + "matches more than one person in the address book! \n"
-        + "Please use their exact name.";
+        + "Please use their exact name, or check if every word is separated by single spacing.";
+
+    public static final String INVALID_DATE_AND_TIME_FORMAT = "%1$s\nOops! Make sure the date and time of the meeting "
+        + "are in the correct format! \n"
+        + "(note: use 0000 instead of 2400 to represent 12am)";
 
     private final String[] peopleToMeet;
     private final String meetingTitle;
@@ -101,16 +105,16 @@ public class CreateMeetingCommand extends Command {
             );
 
         } catch (PersonNotFoundException e) {
-            return new CommandResult(CreateMeetingCommand.PERSON_NOT_FOUND);
+            throw new CommandException(e.getMessage() + "\n" + CreateMeetingCommand.PERSON_NOT_FOUND);
 
         } catch (DuplicateMeetingException e) {
-            return new CommandResult(CreateMeetingCommand.DUPLICATE_MEETINGS);
+            throw new CommandException(CreateMeetingCommand.DUPLICATE_MEETINGS);
 
         } catch (DuplicatePersonException e) {
-            return new CommandResult(CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET);
+            throw new CommandException(CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET);
 
         } catch (ImpreciseMatchException e) {
-            return new CommandResult(CreateMeetingCommand.IMPRECISE_NAME_PREDICATE);
+            throw new CommandException(CreateMeetingCommand.IMPRECISE_NAME_PREDICATE + "\n" + e.getMessage());
         }
 
     }

@@ -60,7 +60,7 @@ public class Meeting implements Comparable<Meeting> {
             throws PersonNotFoundException, DuplicatePersonException {
 
         if (Objects.equals(peopleToMeet[0], "")) {
-            throw new PersonNotFoundException();
+            throw new PersonNotFoundException(PersonNotFoundException.NO_PERSON_DETECTED);
         }
 
         if (checkDuplicates(peopleToMeet)) {
@@ -70,7 +70,8 @@ public class Meeting implements Comparable<Meeting> {
         ArrayList<Person> output = new ArrayList<>();
         // Takes in the name of the address book contact, split by words in the name
         for (String personName: peopleToMeet) {
-            String[] nameKeywords = personName.strip().split("\\s+");
+            String strippedPersonName = personName.strip();
+            String[] nameKeywords = strippedPersonName.split("\\s+");
             NameContainsKeywordsPredicate personNamePredicate =
                 new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
 
@@ -81,14 +82,25 @@ public class Meeting implements Comparable<Meeting> {
             //predicate returns empty list, name does not match anyone
             if (listOfPeople.isEmpty()) {
                 model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-                throw new PersonNotFoundException();
+                throw new PersonNotFoundException(String.format(PersonNotFoundException.PERSON_NOT_FOUND,
+                strippedPersonName));
             }
-
             output.add(findExactMatch(listOfPeople, personName));
         }
         // resets the list of persons after every search
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return output;
+    }
+
+    private static Person getExactMatchingPerson(ObservableList<Person> filteredList, String namePredicate) {
+        for (Person person : filteredList) {
+            String lowerCasePersonName = person.getName().toString().strip().toLowerCase();
+            String lowerCaseInputName = namePredicate.toLowerCase();
+            if (lowerCasePersonName.equals(lowerCaseInputName)) {
+                return person;
+            }
+        }
+        return null;
     }
 
     /**
@@ -109,7 +121,7 @@ public class Meeting implements Comparable<Meeting> {
                 return p;
             }
         }
-        throw new ImpreciseMatchException();
+        throw new ImpreciseMatchException(personName);
     }
     /**
      * checks for duplicate names in array
@@ -141,18 +153,18 @@ public class Meeting implements Comparable<Meeting> {
      * @param people the array list of people to be added to the meeting
      */
     public void addPersons(ArrayList<Person> people) {
-        for (int i = 0; i < people.size(); i++) {
-            this.peopleToMeetList.add(people.get(i));
+        for (Person person : people) {
+            this.peopleToMeetList.add(person);
         }
     }
 
     /**
      * Deletes the array of persons from the unique persons list
-     * @param people
+     * @param people the people to remove from the meeting
      */
     public void deletePersons(ArrayList<Person> people) {
-        for (int i = 0; i < people.size(); i++) {
-            this.peopleToMeetList.remove(people.get(i));
+        for (Person person : people) {
+            this.peopleToMeetList.remove(person);
         }
     }
 
