@@ -772,7 +772,7 @@ testers are expected to do more *exploratory* testing.
       Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
       Success message shown in the status message.
 
-2. Deleting an non-positive index
+2. Deleting a non-positive index
    
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
       
