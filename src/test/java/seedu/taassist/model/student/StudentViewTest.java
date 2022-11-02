@@ -17,8 +17,8 @@ import seedu.taassist.model.session.SessionData;
 
 public class StudentViewTest {
 
-    public static final Student ALICE_WITH_SESSIONDATA = ALICE.
-            updateGrade(CS1231S, LAB_1, 100.0);
+    public static final Student ALICE_WITH_SESSIONDATA = ALICE
+            .updateGrade(CS1231S, LAB_1, 100.0);
 
     @Test
     public void constructor_nullStudent_throwsNullPointerException() {

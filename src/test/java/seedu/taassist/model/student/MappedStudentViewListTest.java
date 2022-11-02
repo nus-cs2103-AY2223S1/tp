@@ -1,7 +1,6 @@
 package seedu.taassist.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1231S;
 import static seedu.taassist.testutil.TypicalSessions.LAB_1;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
