@@ -34,7 +34,6 @@ public class AddCommand extends Command {
      */
     public AddCommand(String toAdd, SemestersEnum semester) {
         requireNonNull(toAdd);
-        //this.toAdd = toAdd.toUpperCase();
         this.toAdd = toAdd.trim();
         this.semester = semester;
     }
