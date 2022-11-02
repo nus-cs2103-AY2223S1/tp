@@ -223,6 +223,7 @@ Format: `delete INDEX`
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient records list.
 * The index must be a positive integer 1, 2, 3, …​
+* The index must be within the [system limit](#faq).
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
@@ -235,7 +236,7 @@ Edits an existing patient in the address book.
 Format: `edit INDEX [n/NAME] [b/BIRTHDATE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * The command can only be called when the patient addressbook is displayed (after using `list`).
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​ The index must be within the [system limit](#faq).
 * At least one of the optional fields must be provided
     * if the same field is specified more than once, only the latest instance of the field is used.
     * eg. edit 1 n/Johnny n/Becky -> Person's name is edited to Becky.
@@ -289,6 +290,7 @@ Format: `appt INDEX d/APPOINTMENT_DATE_TIME`
 * Adds a new appointment for the patient under the specified `INDEX`, with the given date.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The index must be within the [system limit](#faq).
 * The appointment date **cannot be before the current date**.
 * If a pre-existing appointment is present, it will be overridden by the new appointment.
 * Appointments that have passed will not be removed automatically, and require either a new appointment to override 
@@ -313,6 +315,7 @@ Format: `apptcl INDEX`
 * Clears any appointment under the patient with the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The index must be within the [system limit](#faq).
 * The command will return the patient list to its original state, before any filters were applied to the list.
 
 Examples:
@@ -348,6 +351,7 @@ Format: `rdelete RECORD_INDEX`
 * The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
 * Deletes the record of the currently viewed patient at the specified `RECORD_INDEX`.
 * The record index must be a positive integer 1, 2, 3, …​
+* The record index must be within the [system limit](#faq).
 
 Examples:
 * `rlist 1` then `rdelete 2` deletes the 2nd record from the 1st patient’s listed records.
@@ -362,6 +366,7 @@ Format: `rlist PATIENT_INDEX`
 * Lists all records of the patient at the specified `PATIENT_INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The index must be within the [system limit](#faq).
 
 Examples:
 * `rlist 1` displays all records of the 1st patient in the displayed patient list.
@@ -374,7 +379,7 @@ Edits an existing record in the record list.
 Format: `redit INDEX [d/RECORD_DATE_TIME] [r/RECORD_DETAILS] [m/MEDICATION]…​`
 
 * The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
-* Edits the record at the specified `INDEX`. The index refers to the index number shown in the displayed record list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the record at the specified `INDEX`. The index refers to the index number shown in the displayed record list. The index **must be a positive integer** 1, 2, 3, …​ The index must be within the [system limit](#faq).
 * At least one of the optional fields must be provided.
   * if the same field is specified more than once, only the latest instance of the field is used.
   * eg. redit 1 r/Cold r/Flu -> Record's data is edited to Flu.
@@ -445,6 +450,9 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous OmniHealth home folder.
+
+**Q**: Is there a limit to the number of patients/records that I can add?<br>
+**A**: Yes, and the maximum number of patients/records that can be added is 2147483647.
 
 --------------------------------------------------------------------------------------------------------------------
 
