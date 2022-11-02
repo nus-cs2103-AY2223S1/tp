@@ -40,7 +40,7 @@ Given below are my contributions to the project.
 * **Community**
     * Set up tags in GitHub.
     * Reviewed PRs and provide non-trivial comments. ([#136](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/136), [#324](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/324))
-    * Ensured README is updated with the latest feature additions to application .([#24](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/24), [#242](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/242))
+    * Ensured README is updated with the latest feature additions to application .([#24](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/24), [#242](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/242), [#333](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/333))
     * Carried out UAT and took project demo screenshots for `v1.2`
     * Wrote and coordinated [UAT Plan](https://docs.google.com/document/d/1-yDp0FqUvktWX_HFn6x3ivM5DEfRS7Kja2buOSjwsJ0/edit?usp=sharing) for `v1.3`.
     
