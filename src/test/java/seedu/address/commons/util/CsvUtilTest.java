@@ -18,7 +18,6 @@ import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
 import seedu.address.testutil.ProfessorBuilder;
 import seedu.address.testutil.StudentBuilder;
-import seedu.address.testutil.TeachingAssistantBuilder;
 
 /**
  * Test the import and export functions found in CsvUtil
