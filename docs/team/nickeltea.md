@@ -25,11 +25,11 @@ Given below are my contributions to the project.
   * Highlights: Tasks past their deadline are still shown by remindT as users may still need to complete them.
 
 * **New Feature**: Added command to show users their task completion progress for tasks with any of the specified tags.
-  * What it does:
-  * Justification:
-  * Highlights:
+  * What it does: Shows the percentage of tasks whose label(s) contain any of the given keywords that are complete to one decimal place of accuracy.
+  * Justification: Users keeping track of many tasks for different projects may need to see how close they are to completing their tasks for certain projects, so they can better manage their time and effort.
+  * Highlights: Executing the `progressT` command will also filter the task list by the given tags so users can see which tasks are being counted for completion progress.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nickeltea&breakdown=true)
 
 * **Project management**:
   * Created issues.
@@ -39,6 +39,9 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Improved the Deadline class, so that it strictly parses for valid dates.
+    [#248](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/248)
+  * Implemented the Description class for tasks.
+    [#109](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/109)
 
 * **Documentation**:
   * User Guide:
@@ -48,6 +51,7 @@ Given below are my contributions to the project.
       [#136](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/136)
     * Updated documentation for `addT` and `deleteT`. Added documentation for `remindT` and `progressT`.
       [#188](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/188)
+    * Updated command table with `remindT` and `progressT`.
   * Developer Guide:
     * Added use case for add task.
       [#73](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/73)

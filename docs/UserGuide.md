@@ -381,13 +381,16 @@ Example:
 
 List tasks in YellowBook with deadlines up to and including the specified date.
 
-Both completed and incomplete tasks are listed.
-Task with deadline that are already past are also listed.
+Format: `remindT DEADLINE`
+
+* Both completed and incomplete tasks are listed.
+
+* Task with deadlines that are already past are also listed.
+
+* Tasks that are complete are also listed so users are reminded to delete them.
 
 The following scenarios should not happen for your command to run successfully:
 - The deadline of the task is not in dd-mm-yyyy format.
-
-Format: `remindT DEADLINE`
 
 Example:
 
