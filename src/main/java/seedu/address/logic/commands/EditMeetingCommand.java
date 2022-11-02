@@ -21,6 +21,7 @@ import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingTime;
+import seedu.address.model.meeting.exceptions.ConflictingMeetingException;
 
 
 /**
@@ -31,9 +32,9 @@ public class EditMeetingCommand extends Command {
     public static final String COMMAND_WORD = "editMeeting";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the meeting identified "
-            + "by the index number used in the displayed meeting list. \n"
+            + "by their index number. \n"
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) \n"
+            + "Parameters: " + PREFIX_INDEX + "INDEX "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_START_TIME + "START TIME] "
             + "[" + PREFIX_END_TIME + "END TIME] "
@@ -44,7 +45,8 @@ public class EditMeetingCommand extends Command {
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in MyInsuRec.";
+    public static final String MESSAGE_DUPLICATE_MEETING =
+            "This meeting conflicts with another that exists in MyInsuRec";
 
     private final Index index;
     private final EditMeetingDescriptor editMeetingDescriptor;
@@ -73,12 +75,12 @@ public class EditMeetingCommand extends Command {
         Meeting meetingToEdit = lastShownList.get(index.getZeroBased());
         Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor);
 
-        if (model.hasMeeting(editedMeeting)) {
+        // update meeting list
+        try {
+            model.setMeeting(meetingToEdit, editedMeeting);
+        } catch (ConflictingMeetingException e) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
-
-        // update meeting list
-        model.setMeeting(meetingToEdit, editedMeeting);
 
         // update meeting in client
         Client client = meetingToEdit.getClient();
@@ -100,6 +102,9 @@ public class EditMeetingCommand extends Command {
         Description updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
         MeetingTime updatedEndTime = editMeetingDescriptor.getEndTime().orElse(meetingToEdit.getMeetingEndTime());
         MeetingTime updatedStartTime = editMeetingDescriptor.getStartTime().orElse(meetingToEdit.getMeetingStartTime());
+        if (MeetingDate.isBeforeToday(updatedDate)) {
+            throw new CommandException(MeetingDate.MESSAGE_INVALID_DATE);
+        }
         if (updatedEndTime.isBefore(updatedStartTime)) {
             throw new CommandException(MESSAGE_END_TIME_BEFORE_START_TIME);
         }

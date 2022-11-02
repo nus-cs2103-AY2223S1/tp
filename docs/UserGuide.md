@@ -333,7 +333,7 @@ Format: `listClient [pd/PRODUCT || b/BIRTHDAY]`
 * `BIRTHDAY` is specified by keywords. The possible keywords are:
   * `tomorrow` for a list of clients whose birthday is tomorrow;
   * `week` for a list of clients whose birthday is in the next week;
-  * `month` for a list of clients whose birthday is in the next month.
+  * `month` for a list of clients whose birthday from the start of the respective month to the end of the respective month..
 
 Use case:
 1. You want to find out all your clients with upcoming birthdays so that you can prepare ahead and ensure that every client gets some birthday well wishes!
@@ -454,7 +454,7 @@ Format: `listMeeting [d/DATE]`
 * `DATE` is specified by keywords. The possible keywords are:
   * `tomorrow` for a list of meetings happening tomorrow;
   * `week` for a list of meetings happening in the next week;
-  * `month` for a list of meetings happening in the next month.
+  * `month` for a list of meetings happening from the start of the respective month to the end of the respective month.
 
 Use case:
 1. Get an overview of all your upcoming meetings. This is especially useful for if you have a busy and packed schedule, and want to ease your mental load of having to recall all of your upcoming meetings!
@@ -467,8 +467,8 @@ This command is used to get the index of a meeting. In order to perform commands
 Examples:
 * List all meetings
     * `listMeeting`
-* List meetings happening in the next month
-    * `listMeeting d/month`
+* List meetings happening in the next week
+    * `listMeeting d/week`
 
 #### 7.2.3 View meeting: `viewMeeting`
 

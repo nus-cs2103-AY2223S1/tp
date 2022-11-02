@@ -10,8 +10,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class MeetingDate implements Comparable<MeetingDate> {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Meeting dates should be in the format DDMMYYYY";
+    public static final String MESSAGE_FORMAT_CONSTRAINTS =
+            "Meeting dates should be in the format DDMMYYYY and should be a valid day of the year";
+
+    public static final String MESSAGE_INVALID_DATE = "Date should not be in the past!";
     private final LocalDate date;
 
     /**
@@ -38,5 +40,9 @@ public class MeetingDate implements Comparable<MeetingDate> {
     @Override
     public int compareTo(MeetingDate other) {
         return date.compareTo(other.date);
+    }
+
+    public static boolean isBeforeToday(MeetingDate meetingDate) {
+        return meetingDate.date.isBefore(LocalDate.now());
     }
 }

@@ -159,7 +159,7 @@ class JsonAdaptedClient {
                     Birthday.class.getSimpleName()));
         }
         if (!Birthday.isValidBirthday(birthday)) {
-            throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Birthday.MESSAGE_FORMAT_CONSTRAINTS);
         }
         final Optional<Birthday> modelBirthday = birthday.equals("")
                 ? Optional.empty()

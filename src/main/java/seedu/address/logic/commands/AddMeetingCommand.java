@@ -25,7 +25,8 @@ public class AddMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "addMeeting";
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to MyInsuRec.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to a client identified "
+            + "by their index number.\n"
             + "Parameters: "
             + PREFIX_INDEX + "INDEX "
             + PREFIX_DATE + "DATE "
@@ -76,6 +77,10 @@ public class AddMeetingCommand extends Command {
         ObservableList<Client> clientList = model.getFilteredClientList();
         if (linkedClientIndex.getZeroBased() > clientList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        }
+
+        if (MeetingDate.isBeforeToday(meetingDate)) {
+            throw new CommandException(MeetingDate.MESSAGE_INVALID_DATE);
         }
 
         Client clientToUpdate = clientList.get(linkedClientIndex.getZeroBased());

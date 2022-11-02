@@ -39,9 +39,9 @@ public class EditClientCommand extends Command {
     public static final String COMMAND_WORD = "editClient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
-            + "by the index number used in the displayed client list. "
+            + "by their index number. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: " + PREFIX_INDEX + "INDEX "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -101,7 +101,8 @@ public class EditClientCommand extends Command {
      * Creates and returns a {@code Client} with the details of {@code clientToEdit}
      * edited with {@code EditClientDescriptor}.
      */
-    private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
+    private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor)
+            throws CommandException {
         assert clientToEdit != null;
 
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
@@ -119,6 +120,10 @@ public class EditClientCommand extends Command {
 
         Client client = new Client(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedBirthday, updatedProducts);
+
+        if (!client.isBirthdayValid()) {
+            throw new CommandException(Birthday.MESSAGE_DATE_CONSTRAINTS);
+        }
 
         // update client in each meeting this client has
         List<Meeting> meetings = clientToEdit.getMeetings();
