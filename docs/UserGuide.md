@@ -143,10 +143,8 @@ The examples in this guide are formatted with the following conventions:
 * Diamond brackets mean that at least 1 item inside them must be supplied by the user. <br>
   e.g. `task find <q/QUERY a/ASSIGNMENT x/DONE>` can be used as `task find q/John` or as `task find a/FROM x/X`, but not just `task find`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br> 
-  Otherwise, they can only be used once by default.<br>
-  e.g. `[#/TAG]…​` can be used as ` ` (i.e. 0 times), `#/friend`, `#/friend #/family` etc, while
-  `n/NAME` (which does not have the square brackets and `…`​) must be used exactly once.
+* Items with `…`​ after them can be used multiple times including zero times. Otherwise, they can only be used once by default.<br>
+  e.g. `[#/TAG]…​` can be used as ` ` (i.e. 0 times), `#/friend`, `#/friend #/family` etc, while `n/NAME` (which does not have the square brackets and `…`​) must be used exactly once.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
