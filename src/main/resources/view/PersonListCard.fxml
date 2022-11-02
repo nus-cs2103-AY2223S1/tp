@@ -25,7 +25,6 @@
                   <VBox prefHeight="100.0" prefWidth="50.0" translateX="5.0" translateY="10.0">
                      <children>
                         <Circle fx:id="cir2" fill="DODGERBLUE" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Button fx:id="browse" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" stylesheets="@button.css" text="Button" textOverrun="CLIP" />
                      </children>
                   </VBox>
                 <VBox alignment="CENTER_LEFT" minHeight="105">
