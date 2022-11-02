@@ -14,8 +14,9 @@ public class Request {
     // length constraints
     private static final int MAX_LENGTH_REQUEST = 500;
 
-    public static final String MESSAGE_CONSTRAINTS = "Requests must be at most "
-            + MAX_LENGTH_REQUEST + " characters long";
+    public static final String MESSAGE_CONSTRAINTS = "Requests must be at most " + MAX_LENGTH_REQUEST
+            + " characters long.\n They should not contain any field prefixes after whitespace in its content (e.g., "
+            + "\"rq/Extra bed & p/c\").";
     public final String value;
 
     /**
