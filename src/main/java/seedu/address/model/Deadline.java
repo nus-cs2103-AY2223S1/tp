@@ -39,14 +39,14 @@ public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Deadlines should be entered in yyyy-mm-dd date format \n"
-            + "Year (yyyy): A year from 1900 to 2XXX \n"
+            + "Year (yyyy): A year from 0001 onwards \n"
             + "Month (mm): A month in the range of 1 to 12 \n"
             + "Day (dd): A day in the range of 1 to 31";
 
     /*
-     * The date must be entered in yyyy-mm-dd
+     * The date must be entered in yyyy-mm-dd or yyyy-m-d
      */
-    public static final String VALIDATION_REGEX = "^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$";
+    public static final String VALIDATION_REGEX = "^([0-9]{3}[1-9])\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
 
     private LocalDate deadline;
 
