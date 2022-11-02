@@ -7,7 +7,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.travelr.model.component.Location;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.event.EventCompletedPredicate;
 import seedu.travelr.model.trip.Trip;
@@ -53,12 +52,14 @@ public class SummaryVariables {
 
         int totalTripsCompleted = completedTripsList.size();
         int totalEventsCompleted = completedEventsList.size();
-        double tripProgressPercent = (double) totalTripsCompleted / allTripList.size();
-        double eventProgressPercent = (double) totalEventsCompleted / allEventList.size();
+        int totalTrips = allTripList.size();
+        int totalEvents = allEventList.size();
+        double tripProgressPercent = totalTrips == 0 ? 0 : (double) totalTripsCompleted / totalTrips;
+        double eventProgressPercent = totalEvents == 0 ? 0 : (double) totalEventsCompleted / totalEvents;
 
-        HashSet<Location> uniqueLocations = new HashSet<>();
+        HashSet<String> uniqueLocations = new HashSet<>();
         for (Trip trip : completedTripsList) {
-            uniqueLocations.add(trip.getLocation());
+            uniqueLocations.add(trip.getLocation().locationName.toUpperCase());
         }
 
         this.totalUniqueLocations.set(uniqueLocations.size());

@@ -5,13 +5,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.image.ImageView?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -22,7 +20,7 @@
       </padding>
          <Label fx:id="selectedTripLabel" styleClass="cell_big_label" text="Selected Trip">
             <font>
-               <Font name="System Bold" size="14.0"/>
+               <Font name="System Bold" size="14.0" />
             </font>
          </Label>
       <HBox alignment="CENTER_LEFT" spacing="5">
@@ -32,9 +30,9 @@
         <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
                 <Label fx:id="tripLocation" styleClass="cell_small_label" text="\$tripLocation" />
-                <Label fx:id="tripDate" layoutX="15.0" layoutY="10.0" styleClass="cell_small_label" text="\$tripDate" />
             </children>
         </HBox>
+          <Label fx:id="tripDate" prefHeight="17.0" prefWidth="101.0" styleClass="cell_small_label" text="\$tripDate" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

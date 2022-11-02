@@ -140,6 +140,8 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        resultDisplay.setFeedbackToUser("Currently displaying all trips, as well as events in the bucketlist.");
+
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTravelrFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
