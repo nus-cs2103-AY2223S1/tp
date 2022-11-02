@@ -26,8 +26,7 @@ Given below are my contributions to the project.
         * Nice-to-have relaxation of uniqueness: [#221](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/221)
 * **Documentation:**
   * Wrote on non-functional requirements in the Developer Guide
-  * Fixed bugs in User Guide for 1.4
+  * Improved User Guide for 1.4
 * **Code contributed:** [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=clarence-chew&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-
-* Community
+* **Community**
   * Found unexpected behaviour related to uniqueness invariance violation in PE-D: [#204](https://github.com/AY2223S1-CS2103-F13-1/tp/issues/204), [#205](https://github.com/AY2223S1-CS2103-F13-1/tp/issues/205)
