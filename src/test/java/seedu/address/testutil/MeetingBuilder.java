@@ -17,7 +17,7 @@ import seedu.address.model.meeting.MeetingTime;
  */
 public class MeetingBuilder {
     public static final String DEFAULT_DESCRIPTION = "meeting";
-    public static final LocalDate DEFAULT_MEETING_DATE = LocalDate.of(2020, 1, 8);
+    public static final LocalDate DEFAULT_MEETING_DATE = LocalDate.of(2023, 1, 8);
     public static final LocalTime DEFAULT_MEETING_START_TIME = LocalTime.of(7, 20, 45, 342123342);
     public static final LocalTime DEFAULT_MEETING_END_TIME = LocalTime.of(8, 20, 45, 342123342);
     public static final Client DEFAULT_CLIENT = ALICE;

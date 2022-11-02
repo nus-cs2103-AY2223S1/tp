@@ -52,7 +52,7 @@ public class CommandTestUtil {
     public static final String VALID_START_TIME_MEETING2 = "0720";
     public static final String VALID_END_TIME_MEETING1 = "0820";
     public static final String VALID_END_TIME_MEETING2 = "0820";
-    public static final String VALID_DATE_MEETING1 = "08012020";
+    public static final String VALID_DATE_MEETING1 = "08012023";
     public static final String VALID_DATE_MEETING2 = "05052020";
     public static final String INVALID_PRODUCT_1 = "Unadded Product";
 
