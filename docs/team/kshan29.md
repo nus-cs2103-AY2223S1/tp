@@ -11,21 +11,21 @@ NUScheduler is a desktop app for managing contacts, optimised for use via a Comm
 
 Given below are my contributions to the project.
 
-* **New Feature**: `profile -d` (Pull Request [#66](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/66))
+* **New Feature**: Added the ability to delete `Profile`s. (Pull Request [#66](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/66))
   * What it does:
     Allow users to delete a profile from NUScheduler by specifying the index of profile to delete from the displayed list
   * Justification:
     This is needed for users who wish to delete profiles that are no longer relevant so that the displayed profile list is free from clutter.
   * Credits: This feature is adapted from code in [AddressBook Level-3](https://github.com/se-edu/addressbook-level3)
 
-* **New Feature**: `event -v` (Pull Request [#90](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/90))
+* **New Feature**: Added the ability to view all `Event`s. (Pull Request [#90](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/90))
   * What it does:
     Allow users to view all events in NUScheduler. 
   * Justification:
     This brings convenience to users who wish to have an overview of all events they have added.
   * Credits: This feature is adapted from code in [AddressBook Level-3](https://github.com/se-edu/addressbook-level3)
 
-* **New Feature**: `event -u`(Pull Request [#93](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/93))
+* **New Feature**: Added the ability to view all upcoming `Event`s, i.e. events that are starting in the next specified number of days. (Pull Request [#93](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/93))
   * What it does:
     Allows users to view all upcoming events which are events that starts on the next specified number of days.
   * Justification:
@@ -48,7 +48,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Updated NFR and Glossary to cater to our project (Pull Request [#56](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/56))
     * Updated architecture diagrams to reflect our project design (Pull Request [#99](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/99), [#188](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/188))
-    * Added implementation details for delete commands. (Pull Request [#95](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/95))
+    * Added implementation details for delete and view upcoming events commands. (Pull Request [#95](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/95), [#188](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/188))
 
 * **Community**:
   * Pull Requests reviewed: 11 ([GitHub](https://github.com/AY2223S1-CS2103T-T17-3/tp/pulls?q=is%3Apr+commenter%3AKSHan29+is%3Aclosed+-author%3AKSHan29))
