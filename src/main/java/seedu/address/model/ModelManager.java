@@ -28,8 +28,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
-    private final FilteredList<Link> filteredLinks;
-
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -41,7 +39,6 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredLinks = new FilteredList<>(this.addressBook.getLinkList());
     }
 
     public ModelManager() {
@@ -182,14 +179,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Link> getFilteredLinkList() {
-        return filteredLinks;
-    }
-
-    @Override
-    public void updateFilteredLinkList(Predicate<Link> predicate) {
-        requireNonNull(predicate);
-        filteredLinks.setPredicate(predicate);
+    public ObservableList<Link> getLinkList() {
+        return addressBook.getTeam().getLinkList();
     }
 
     //=========== Filtered Person List Accessors =============================================================
