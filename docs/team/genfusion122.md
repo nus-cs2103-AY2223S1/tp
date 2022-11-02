@@ -40,6 +40,7 @@ Contributions:
   [\#73](https://github.com/AY2223S1-CS2103-F13-3/tp/issues/73), 
   [\#45](https://github.com/AY2223S1-CS2103-F13-3/tp/issues/45),
   [\#40](https://github.com/AY2223S1-CS2103-F13-3/tp/issues/40))
+  - Provided screenshots for v1.2 and v1.3 demo.
 
 - **Enhancements to existing features**: 
   - Implemented the updates of Person Objects belonging to Meeting Objects when those Person Objects are edited/deleted.
