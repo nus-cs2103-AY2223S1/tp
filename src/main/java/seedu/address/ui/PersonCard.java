@@ -3,11 +3,12 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Appointment;
@@ -35,6 +36,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private GridPane gridpane;
+    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -54,13 +57,17 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private ListView<Appointment> appointments;
+    private int displayedIndex;
+    private PersonListPanel.PersonListViewCell owner;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, PersonListPanel.PersonListViewCell owner) {
         super(FXML);
         this.person = person;
+        this.displayedIndex = displayedIndex;
+        this.owner = owner;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
@@ -69,18 +76,23 @@ public class PersonCard extends UiPart<Region> {
         addTagLabels(person);
         appointments.setStyle(TRANSPARENT_BACKGROUND);
         appointments.setItems(person.getAppointments().getObservableList());
-        appointments.setCellFactory(listView -> new AppointmentListViewCell(this.getRoot()));
+        appointments.setCellFactory(listView -> new AppointmentListViewCell());
+        gridpane.getChildren().forEach(child -> child.setOnMousePressed(event -> handleOnMousePressed(event)));
+    }
+
+    public void select() {
+        owner.select(displayedIndex - 1);
+    }
+
+    @FXML
+    void handleOnMousePressed(MouseEvent event) {
+        select();
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class AppointmentListViewCell extends ListCell<Appointment> {
-        private Node owner;
-        protected AppointmentListViewCell(Node owner) {
-           this.owner = owner;
-        }
-
         protected void updateItem(Appointment appointment, boolean empty) {
             super.updateItem(appointment, empty);
 
@@ -89,7 +101,7 @@ public class PersonCard extends UiPart<Region> {
                 setText(null);
                 setStyle(TRANSPARENT_BACKGROUND);
             } else {
-                setGraphic(new AppointmentHBox(getIndex() + 1, appointment, owner).getRoot());
+                setGraphic(new AppointmentHBox(getIndex() + 1, appointment).getRoot());
                 setStyle(TRANSPARENT_BACKGROUND);
             }
         }
