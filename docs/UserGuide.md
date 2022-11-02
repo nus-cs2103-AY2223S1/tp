@@ -289,6 +289,9 @@ This section guides you on how to use features available in *MyInsuRec*. We will
 * Extraneous parameters for commands that do not take in parameters (such as `exit` and `help`) will be ignored.<br>
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
+* Extraneous or incorrect parameters for commands that take in parameters (such as `editClient` and `editMeeting`) will be considered as part of the preceding valid parameter in the command.<br>
+  e.g. if the command is used as `editClient i/1 n/Smith et/1230` where `et/` is the only invalid parameter, the input by preceding valid parameter `n/` will be read as `Smith et/1230`.
+
 </div>
 
 ### 7.1 Client commands
