@@ -6,7 +6,7 @@ import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an project book
  */
 public interface ReadOnlyAddressBook {
 

@@ -15,7 +15,7 @@ import seedu.address.model.issue.Issue;
 import seedu.address.ui.Ui;
 
 /**
- * Sort issues in address book.
+ * Sort issues in project book.
  */
 public class SortIssueCommand extends IssueCommand {
 
@@ -24,7 +24,7 @@ public class SortIssueCommand extends IssueCommand {
     public static final String MESSAGE_SUCCESS = "Sorted issues";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_FLAG
-            + ": Sort issues in address book. \n"
+            + ": Sort issues in project book. \n"
             + "Sort by issue id: "
             + PREFIX_ISSUE_ID + "0 (ascending) or "
             + PREFIX_ISSUE_ID + "1 (descending). "

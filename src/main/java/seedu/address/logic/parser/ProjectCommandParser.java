@@ -132,7 +132,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         Deadline deadline;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_ID)) {
-            clientId = new ClientId.EmptyClientId();
+            clientId = ClientId.EmptyClientId.EMPTY_CLIENT_ID;
         } else {
             clientId = ParserUtil.parseClientId(argMultimap.getValue(PREFIX_CLIENT_ID).get());
         }

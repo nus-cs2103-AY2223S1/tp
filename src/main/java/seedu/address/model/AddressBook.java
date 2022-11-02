@@ -91,7 +91,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a project with the same identity as {@code project} exists in the address book.
+     * Returns true if a project with the same identity as {@code project} exists in the project book.
      */
     public boolean hasProject(Project project) {
         requireNonNull(project);
@@ -99,7 +99,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if an issue with the same identity as {@code issue} exists in the address book.
+     * Returns true if an issue with the same identity as {@code issue} exists in the project book.
      */
     public boolean hasIssue(Issue issue) {
         requireNonNull(issue);
@@ -107,7 +107,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in the project book.
      */
     public boolean hasClient(Client client) {
         requireNonNull(client);
@@ -115,45 +115,45 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a project with the same identity as {@code project} exists in the address book.
+     * Returns true if a project with the same identity as {@code project} exists in the project book.
      */
     public boolean hasProjectId(int id) {
         return projects.containsId(id);
     }
 
     /**
-     * Returns true if an issue with the same identity as {@code issue} exists in the address book.
+     * Returns true if an issue with the same identity as {@code issue} exists in the project book.
      */
     public boolean hasIssueId(int id) {
         return issues.containsId(id);
     }
 
     /**
-     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in the project book.
      */
     public boolean hasClientId(int id) {
         return clients.containsId(id);
     }
 
     /**
-     * Adds a project to the address book.
-     * The project must not already exist in the address book.
+     * Adds a project to the project book.
+     * The project must not already exist in the project book.
      */
     public void addProject(Project p) {
         projects.add(p);
     }
 
     /**
-     * Adds an issue to the address book.
-     * The issue must not already exist in the address book.
+     * Adds an issue to the project book.
+     * The issue must not already exist in the project book.
      */
     public void addIssue(Issue i) {
         issues.add(i);
     }
 
     /**
-     * Adds a client to the address book.
-     * The client must not already exist in the address book.
+     * Adds a client to the project book.
+     * The client must not already exist in the project book.
      */
     public void addClient(Client c) {
         clients.add(c);
@@ -161,9 +161,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given project {@code target} in the list with {@code editedProject}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the project book.
      * The project identity of {@code editedProject} must not be the same as another
-     * existing project in the address book.
+     * existing project in the project book.
      */
     public void setProject(Project target, Project editedProject) {
         requireNonNull(editedProject);
@@ -173,9 +173,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given issue {@code target} in the list with {@code editedIssue}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the project book.
      * The issue identity of {@code editedIssue} must not be the same as another
-     * existing issue in the address book.
+     * existing issue in the project book.
      */
     public void setIssue(Issue target, Issue editedIssue) {
         requireNonNull(editedIssue);
@@ -185,9 +185,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given issue {@code target} in the list with {@code editedClient}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the project book.
      * The issue identity of {@code editedClient} must not be the same as another
-     * existing client in the address book.
+     * existing client in the project book.
      */
     public void setClient(Client target, Client editedClient) {
         requireNonNull(editedClient);
@@ -197,7 +197,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the project book.
      */
     public void removeProject(Project key) {
         projects.remove(key);
@@ -205,7 +205,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the project book.
      */
     public void removeIssue(Issue key) {
         issues.remove(key);
@@ -213,7 +213,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the project book.
      */
     public void removeClient(Client key) {
         clients.remove(key);

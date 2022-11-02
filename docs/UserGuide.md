@@ -56,6 +56,11 @@ DevEnable is a **desktop app for managing developer projects, optimized for use 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Trailing extraneous input for commands that take in parameters will be considered a part of the last valid 
+  parameter, if any.
+  e.g. if the command specifies `project -e n/New Project p/2 x/this is extra`, `2 x/this is extra` will be taken as 
+  the argument for `p/`.
+
 </div>
 
 ## General Commands
@@ -143,6 +148,8 @@ Format: `project -l`
 
 Finds and lists all the projects matching the search criteria.
 
+![find project command](images/FindProjectCommand.png)
+
 Format: `project -f [n/PROJECT_NAME] [r/REPOSITORY] [p/PROJECT_ID] [c/CLIENT_ID] [l/CLIENT_LABEL]`
 
 * Finds all the projects with the specified `PROJECT_NAME`, `REPOSITORY`, `PROJECT_ID`, `CLIENT_ID` and `CLIENT_LABEL`.
@@ -206,12 +213,15 @@ Format: `project -v`
 
 Adds a client to the AddressBook. A unique client ID will be automatically generated. 
 
+![add client command](images/AddClientCommand.png)
+
 Format: `client -a n/CLIENT_NAME p/PROJECT_ID [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`
 
 * Adds the client to the list of clients and to the project with the specified `PROJECT_ID`.
 * `CLIENT_NAME` must only contain alphanumeric characters (cannot be empty or start with a space).
 * `PROJECT_ID` must exist and be a positive integer (1, 2, 3 ...​).
-* `CLIENT_MOBILE` must only contain numbers and must be more than 3 digits long.
+* `CLIENT_MOBILE` must only contain numbers and must be more than 3 digits long such that any number with a country 
+  code can be added without any prefix or connecting symbol.
 * `CLIENT_EMAIL` must be in the format LOCAL_NAME@DOMAIN_NAME.com (local name must be longer than 3 characters).
 
 Examples:
@@ -227,6 +237,8 @@ Examples:
 ### Editing a client : `client -e`
 
 Edits the specified existing client.
+
+![edit client command](images/EditClientCommand.png)
 
 Format: `client -e c/CLIENT_ID [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`
 
@@ -248,6 +260,8 @@ Examples:
 
 Removes the specified existing client.
 
+![delete client command](images/DeleteClientCommand.png)
+
 Format: `client -d CLIENT_ID`
 
 * Deletes the client with the specified `CLIENT_ID`.
@@ -266,6 +280,8 @@ Format: `client -l`
 ### Finding a client : `client -f`
 
 Finds and lists all the clients matching the search criteria.
+
+![find client command](images/FindClientCommand.png)
 
 Format: `client -f [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL] [c/CLIENT_ID]`
 
@@ -380,6 +396,8 @@ Examples:
 ### Finding an issue : `issue -f`
 
 Finds and lists all the issues matching the search criteria.
+
+![find issue command](images/FindIssueCommand.png)
 
 Format: `issue -f [t/TITLE] [n/PROJECT_NAME] [p/PROJECT_ID] [u/URGENCY] [s/STATUS] [i/ISSUE_ID]`
 

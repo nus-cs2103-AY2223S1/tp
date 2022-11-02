@@ -8,13 +8,13 @@ import seedu.address.model.Model;
 import seedu.address.ui.Ui;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in the project book to the user.
  */
 public class ListClientCommand extends ClientCommand {
 
     public static final String COMMAND_FLAG = "-l";
 
-    public static final String MESSAGE_SUCCESS = "Listed all clients";
+    public static final String MESSAGE_SUCCESS = "Listed all clients in the project book";
 
     @Override
     public CommandResult execute(Model model, Ui ui) {

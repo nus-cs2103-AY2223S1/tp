@@ -14,7 +14,7 @@ import seedu.address.model.client.Client;
 import seedu.address.ui.Ui;
 
 /**
- * Sort clients in address book.
+ * Sort clients in project book.
  */
 public class SortClientCommand extends ClientCommand {
 
@@ -22,9 +22,9 @@ public class SortClientCommand extends ClientCommand {
 
     public static final String MESSAGE_SUCCESS = "Sorted clients";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort clients in address book. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort clients in project book. \n"
             + "Sort by client id: "
-            + PREFIX_CLIENT_ID + "0 (ascending) or"
+            + PREFIX_CLIENT_ID + "0 (ascending) or "
             + PREFIX_CLIENT_ID + "1 (descending)."
             + "Sort by name: "
             + PREFIX_NAME + "0 (alphabetical) or "

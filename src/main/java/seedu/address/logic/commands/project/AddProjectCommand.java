@@ -16,7 +16,7 @@ import seedu.address.model.project.ProjectWithoutModel;
 import seedu.address.ui.Ui;
 
 /**
- * Adds a project to the address book.
+ * Adds a project to the project book.
  */
 public class AddProjectCommand extends ProjectCommand {
 
@@ -24,7 +24,7 @@ public class AddProjectCommand extends ProjectCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-            + ": Adds a project to the address book. \n"
+            + ": Adds a project to the project book. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_CLIENT_ID + "CLIENT_ID "
@@ -37,8 +37,9 @@ public class AddProjectCommand extends ProjectCommand {
             + PREFIX_REPOSITORY + "JohnDoe/tp "
             + PREFIX_DEADLINE + "2022-03-05 ";
 
-    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book";
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the project book";
+    public static final String MESSAGE_CLIENT_NOT_FOUND = "This client id does not exist in the project book";
 
     private final ProjectWithoutModel toAddProjectWithoutModel;
 
@@ -55,13 +56,18 @@ public class AddProjectCommand extends ProjectCommand {
         requireNonNull(model);
 
         Project toAddProject = toAddProjectWithoutModel.apply(model);
-        Client projectClient = toAddProject.getClient();
 
         if (model.hasProject(toAddProject)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
 
-        if (!toAddProject.getClient().isEmpty()) {
+        Client projectClient = toAddProject.getClient();
+
+        if (projectClient == null) {
+            throw new CommandException(MESSAGE_CLIENT_NOT_FOUND);
+        }
+
+        if (!projectClient.isEmpty()) {
             projectClient.addProjects(toAddProject);
             model.setClient(projectClient, projectClient);
         }
