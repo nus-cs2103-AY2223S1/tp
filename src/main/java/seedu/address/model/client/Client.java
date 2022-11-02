@@ -262,6 +262,19 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
         return true;
     }
 
+    /**
+     * Returns true if all other attributes besides project list are the same.
+     * @param otherClient
+     * @return Boolean value representing whether the basic client details are equal.
+     */
+    public boolean hasSameDetails(Client otherClient) {
+        return this.getClientId().equals(otherClient.getClientId())
+                && this.getClientName().equals(otherClient.getClientName())
+                && this.getClientEmail().equals(otherClient.getClientEmail())
+                && this.getClientMobile().equals(otherClient.getClientMobile())
+                && this.getPin().equals(otherClient.getPin());
+    }
+
     @Override
     public String toString() {
         return this.name.getFullNameRepresentation();
@@ -283,7 +296,8 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
             boolean hasSameEmail = this.getClientEmail().equals(otherClient.getClientEmail());
             boolean hasSameMobile = this.getClientMobile().equals(otherClient.getClientMobile());
             boolean hasSamePin = this.getPin().equals(otherClient.getPin());
-            return hasSameId && hasSameEmail && hasSameMobile && hasSameName && hasSamePin;
+            boolean hasSameProjects = this.getProjects().equals(otherClient.getProjects());
+            return hasSameId && hasSameEmail && hasSameMobile && hasSameName && hasSamePin && hasSameProjects;
         } else {
             return false;
         }
