@@ -60,7 +60,7 @@ Symbol/Syntax        | Meaning
 
    * **`sort KEYWORD`** : Sorts the contacts based on the `KEYWORD`.
 
-   * **`find`** `John`: looks for contact that matches keyword ‘John’
+   * **`find`** `n/John`: looks for contact that matches keyword ‘John’
 
    * **`exit`** : Exits the app.
 
@@ -207,6 +207,8 @@ Examples:
 Finds clients whose names contain any of the given keywords.
 
 Format: `find [PREFIX] KEYWORD [MORE_KEYWORDS]`
+
+Refer to [Prefixes](#4-prefixes) for the types of prefixes.
 
 * The search is case-insensitive. e.g hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
