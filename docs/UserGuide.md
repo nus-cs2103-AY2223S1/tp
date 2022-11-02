@@ -120,6 +120,10 @@ The following subsections introduces the layout of _MyInsuRec_'s user interface.
 This section is placed earlier to give you a first look at our product. As such, some details of the interface will likely make more sense after you get more familiarized with _MyInsuRec_! You can refer back to this section once you have visited some of _MyInsuRec_'s features to gain a deeper understanding of the layout.
 </div>
 
+<div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
+After executing a command specific to a list, the UI will automatically switch to that view. For example, executing `addProduct` will cause the UI to switch to Product's view. Executing `viewClient` will cause the UI to switch to Detailed Client's view.
+</div>
+
 ### 4.1 Client List
 
 This is the view after executing the `listClient` command. By default, this view is shown right after launching _MyInsuRec_.
