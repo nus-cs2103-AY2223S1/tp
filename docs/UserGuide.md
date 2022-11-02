@@ -86,8 +86,13 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 | **Job ID**  | `ji`      | 10           | Can only contain upper case alphanumeric characters and spaces |
 
 * `LOCAL_PART` can only contain alphanumeric characters and any of `+` `_` `.` `-`, but must not start or end with these special characters
-* `DOMAIN` can be made up of numerous `DOMAIN_LABEL` separated by `.`, with the last `DOMAIN_LABEL` being at least 2 characters long
-* `DOMAIN_LABEL` can only contain alphanumeric characters separated by `-`, but must start and end with alphanumeric characters
+* `DOMAIN` refers to the email domain that can be made of numerous `DOMAIN_LABEL`
+    * `DOMAIN_LABEL` can be separated by `.`
+    * `DOMAIN_LABEL` can only contain alphanumeric characters separated by `-`
+    * `DOMAIN_LABEL` must start and end with alphanumeric characters
+    * The last `DOMAIN_LABEL` should be at least 2 characters long
+* For example, in `john_doe@u.nus.edu`, `john_doe` is the `LOCAL_PART` and `u.nus.edu` is the `DOMAIN`
+which contains `u`, `nus`, and `edu` as `DOMAIN_LABEL` separated by `.`
 
 
 ### 2.2 Data Fields
