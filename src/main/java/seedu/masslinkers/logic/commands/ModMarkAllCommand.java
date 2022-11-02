@@ -8,6 +8,7 @@ import seedu.masslinkers.logic.commands.exceptions.CommandException;
 import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.student.Student;
 
+//@@author carriezhengjr
 /**
  * Marks all mods of every batchmate as taken.
  */

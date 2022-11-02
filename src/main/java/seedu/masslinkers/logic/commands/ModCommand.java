@@ -1,5 +1,6 @@
 package seedu.masslinkers.logic.commands;
 
+//@@author jonasgwt
 /**
  * Represents a command that modifies the mod attribute of the
  * batchmate identified.

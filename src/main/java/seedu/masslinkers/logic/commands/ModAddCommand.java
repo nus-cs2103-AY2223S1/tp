@@ -13,6 +13,7 @@ import seedu.masslinkers.model.student.Mod;
 import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.ui.MainWindow;
 
+//@@author jonasgwt
 /**
  * Appends new mods to the batchmate.
  */

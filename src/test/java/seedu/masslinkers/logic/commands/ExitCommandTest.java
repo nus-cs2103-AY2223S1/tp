@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.ModelManager;
-
+//@@author
 public class ExitCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();

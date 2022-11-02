@@ -3,7 +3,7 @@ package seedu.masslinkers.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
-
+//@@author
 /**
  * Represents the result of a command execution.
  */

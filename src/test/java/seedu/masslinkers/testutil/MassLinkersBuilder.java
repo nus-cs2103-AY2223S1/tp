@@ -2,7 +2,7 @@ package seedu.masslinkers.testutil;
 
 import seedu.masslinkers.model.MassLinkers;
 import seedu.masslinkers.model.student.Student;
-
+//@@author
 /**
  * A utility class to help with building massLinkers objects.
  * Example usage: <br>

@@ -44,7 +44,10 @@ import seedu.masslinkers.model.student.Name;
 import seedu.masslinkers.model.student.Phone;
 import seedu.masslinkers.model.student.Telegram;
 import seedu.masslinkers.testutil.EditStudentDescriptorBuilder;
-
+//@@author jonasgwt
+//@@author sltsheryl
+//@@author ElijahS67
+//@@author chm252
 public class EditCommandParserTest {
 
     private static final String INTEREST_EMPTY = " " + PREFIX_INTEREST;

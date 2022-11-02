@@ -8,7 +8,7 @@ import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.masslinkers.logic.commands.DeleteCommand;
-
+//@@author
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
  * outside of the DeleteCommand code. For example, inputs "1" and "1 abc" take the

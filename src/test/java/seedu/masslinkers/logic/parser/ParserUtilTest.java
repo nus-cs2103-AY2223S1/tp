@@ -24,6 +24,7 @@ import seedu.masslinkers.model.student.Name;
 import seedu.masslinkers.model.student.Phone;
 import seedu.masslinkers.model.student.Telegram;
 
+//@@author
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "   ";

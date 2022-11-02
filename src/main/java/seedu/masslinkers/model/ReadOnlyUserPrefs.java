@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import seedu.masslinkers.commons.core.GuiSettings;
 
+//@@author
 /**
  * Unmodifiable view of user prefs.
  */

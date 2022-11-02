@@ -19,7 +19,7 @@ import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.ModelManager;
 import seedu.masslinkers.model.UserPrefs;
 import seedu.masslinkers.model.student.DetailsContainsKeywordsPredicate;
-
+//@@author chm252
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */

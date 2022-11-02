@@ -8,7 +8,7 @@ import seedu.masslinkers.commons.exceptions.DataConversionException;
 import seedu.masslinkers.commons.util.JsonUtil;
 import seedu.masslinkers.model.ReadOnlyUserPrefs;
 import seedu.masslinkers.model.UserPrefs;
-
+//@@author
 /**
  * A class to access UserPrefs stored in the hard disk as a json file
  */

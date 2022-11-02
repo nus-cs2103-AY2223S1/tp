@@ -2,7 +2,7 @@ package seedu.masslinkers.logic.commands;
 
 import seedu.masslinkers.logic.commands.exceptions.CommandException;
 import seedu.masslinkers.model.Model;
-
+//@@author
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
  */

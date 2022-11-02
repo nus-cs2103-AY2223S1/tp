@@ -30,7 +30,7 @@ import seedu.masslinkers.storage.StorageManager;
 import seedu.masslinkers.storage.UserPrefsStorage;
 import seedu.masslinkers.ui.Ui;
 import seedu.masslinkers.ui.UiManager;
-
+//@@author
 /**
  * Runs the application.
  */

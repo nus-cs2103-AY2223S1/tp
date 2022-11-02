@@ -33,7 +33,7 @@ public class ModCommandParserTest {
     private static final String VALID_MOD_STRING_CS2100 = "CS2100";
     private static final String WHITESPACE = " ";
     private final ModCommandParser parser = new ModCommandParser();
-
+    //@@author jonasgwt
     /**
      * Tests the behaviour of mod commands when there is an empty command input by user.
      */
@@ -171,7 +171,7 @@ public class ModCommandParserTest {
 
 
     //// ------------------------------------ MOD DELETE COMMAND -----------------------------------------------////
-
+    //@@author ElijahS67
     /**
      * Tests the behaviour of mod delete when index is absent.
      */
@@ -357,7 +357,7 @@ public class ModCommandParserTest {
     }
 
     //// ------------------------------------ MOD MARK COMMAND -----------------------------------------------////
-
+    //@@author carriezhengjr
     /**
      * Tests the behaviour of mod mark when index is absent.
      */
