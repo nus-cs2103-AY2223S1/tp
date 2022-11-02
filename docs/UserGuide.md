@@ -403,8 +403,7 @@ Examples:
 
 ### Refreshing to Next Semester
 
-Shifts all the current modules in both the user and all persons in the contact list into their previous modules during a new semester,
-allowing you to quickly refresh ConnectNUS for all persons and user for the next semester of modules.
+Moves all the current modules in the current module lists of both the user and all persons in the user's contact list into their previous modules list when a next semester command is given. This enables user's to update their ConnectNUS app at the start of the new semester by clearing all modules from the current module lists of the user and their contacts, such that they are able to add new current modules that they and their contacts will be taking in the upcoming semester to their app.
 
 Format: `nextsem`
 
@@ -543,7 +542,7 @@ Examples:
 
 ### Filtering Current Modules
 
-Filters the current modules of contacts to return a list of persons with any of the current modules specified by you,
+Filters the current modules lists of all contacts to return a list of persons with any of the current modules specified by you,
 so you can easily find groupmates or people to collaborate with.
 
 Format: `filtercurrmod CURRENT_MODULE [CURRENT_MODULE]…`
@@ -561,7 +560,7 @@ Examples:
 
 ### Filtering Previous Modules
 
-Filters the previous modules of contacts to return a list of persons with any of the previous modules specified,
+Filters the previous modules lists of contacts to return a list of persons with any of the previous modules specified,
 so you can easily find and consult people who have finish the module.
 
 Format: `filterprevmod PREVIOUS_MODULE [PREVIOUS_MODULE]…`
@@ -579,7 +578,7 @@ Examples:
 
 ### Filtering Planned Modules
 
-Filters the planned modules of contacts to return a list of persons with any of the planned modules specified, so you can
+Filters the planned modules lists of contacts to return a list of persons with any of the planned modules specified, so you can
 arrange to take lessons together during module bidding.
 
 Format: `filterplanmod PLANNED_MODULE [PLANNED_MODULE]…`
