@@ -148,6 +148,14 @@ public class AddressBookParser {
         }
     }
 
+    public Map<String, String> getAliasMapper() {
+        return aliasMapper;
+    }
+
+    public Map<String, CustomCommandBuilder> getBonusMapper() {
+        return bonusMapper;
+    }
+
     /**
      * Deletes the repr command from parser of it exist.
      */
