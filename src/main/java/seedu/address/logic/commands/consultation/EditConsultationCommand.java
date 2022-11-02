@@ -19,11 +19,11 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.ConsultationDescription;
 import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
-import seedu.address.model.consultation.ConsultationVenue;
 import seedu.address.model.datetime.DatetimeRange;
 
 /**
@@ -98,7 +98,7 @@ public class EditConsultationCommand extends Command {
 
         ConsultationName updatedName = editConsultDescriptor.getName().orElse(consultToEdit.getName());
         ConsultationModule updatedModule = editConsultDescriptor.getModule().orElse(consultToEdit.getModule());
-        ConsultationVenue updatedVenue = editConsultDescriptor.getVenue().orElse(consultToEdit.getVenue());
+        Venue updatedVenue = editConsultDescriptor.getVenue().orElse(consultToEdit.getVenue());
         DatetimeRange updatedTimeSlot = editConsultDescriptor.getTimeslot().orElse(consultToEdit.getTimeslot());
         ConsultationDescription updatedDescription = editConsultDescriptor.getDescription()
                 .orElse(consultToEdit.getDescription());
@@ -137,7 +137,7 @@ public class EditConsultationCommand extends Command {
     public static class EditConsultDescriptor {
         private ConsultationName name;
         private ConsultationModule module;
-        private ConsultationVenue venue;
+        private Venue venue;
         private DatetimeRange timeslot;
         private ConsultationDescription description;
 
@@ -178,11 +178,11 @@ public class EditConsultationCommand extends Command {
             return Optional.ofNullable(module);
         }
 
-        public void setVenue(ConsultationVenue venue) {
+        public void setVenue(Venue venue) {
             this.venue = venue;
         }
 
-        public Optional<ConsultationVenue> getVenue() {
+        public Optional<Venue> getVenue() {
             return Optional.ofNullable(venue);
         }
 

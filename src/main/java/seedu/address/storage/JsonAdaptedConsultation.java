@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.ConsultationDescription;
 import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
-import seedu.address.model.consultation.ConsultationVenue;
 import seedu.address.model.datetime.DatetimeRange;
 import seedu.address.storage.datetime.JsonAdaptedDatetimeRange;
 
@@ -78,12 +78,12 @@ public class JsonAdaptedConsultation {
 
         if (venue == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ConsultationVenue.class.getSimpleName()));
+                    Venue.class.getSimpleName()));
         }
-        if (!ConsultationVenue.isValidVenue(venue)) {
-            throw new IllegalValueException(ConsultationVenue.MESSAGE_CONSTRAINTS);
+        if (!Venue.isValidVenue(venue)) {
+            throw new IllegalValueException(Venue.MESSAGE_CONSTRAINTS);
         }
-        final ConsultationVenue modelVenue = new ConsultationVenue(venue);
+        final Venue modelVenue = new Venue(venue);
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

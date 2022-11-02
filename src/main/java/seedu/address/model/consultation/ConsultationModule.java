@@ -20,7 +20,7 @@ public class ConsultationModule {
     public final String moduleName;
 
     /**
-     * Constructs a {@code ConsultationVenue}.
+     * Constructs a {@code Module}.
      *
      * @param moduleName A valid venue.
      */

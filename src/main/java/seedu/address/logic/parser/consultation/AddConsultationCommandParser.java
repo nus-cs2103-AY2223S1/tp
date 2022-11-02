@@ -14,11 +14,11 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.ConsultationDescription;
 import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
-import seedu.address.model.consultation.ConsultationVenue;
 import seedu.address.model.datetime.DatetimeCommonUtils;
 import seedu.address.model.datetime.DatetimeRange;
 
@@ -48,7 +48,7 @@ public class AddConsultationCommandParser implements Parser<AddConsultationComma
                 argMultimap.getValue(PREFIX_NAME).get());
         ConsultationModule module = ConsultationParserUtil.parseConsultationModule(
                 argMultimap.getValue(PREFIX_MODULE).get());
-        ConsultationVenue venue = ConsultationParserUtil.parseConsultationVenue(
+        Venue venue = ConsultationParserUtil.parseConsultationVenue(
                 argMultimap.getValue(PREFIX_VENUE).get());
         ConsultationDescription description = ConsultationParserUtil.parseConsultationDescription(
                 argMultimap.getValue(PREFIX_DESCRIPTION).get());
