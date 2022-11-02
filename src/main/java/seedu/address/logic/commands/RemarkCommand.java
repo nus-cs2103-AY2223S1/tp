@@ -14,7 +14,7 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Remark;
 
 /**
- * Changes the remark of an existing patient in the address book.
+ * Changes the remark of an existing patient in the HealthContact.
  */
 public class RemarkCommand extends Command {
     public static final CommandWord COMMAND_WORD = new CommandWord("remark", "r");

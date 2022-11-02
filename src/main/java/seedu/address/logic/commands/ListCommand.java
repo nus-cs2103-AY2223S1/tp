@@ -8,7 +8,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 import seedu.address.model.Model;
 
 /**
- * Lists all patients in the address book to the user.
+ * Lists all patients in the HealthContact to the user.
  */
 public class ListCommand extends Command {
 

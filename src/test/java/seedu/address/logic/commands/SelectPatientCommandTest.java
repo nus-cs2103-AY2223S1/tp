@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPatientAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
-import static seedu.address.testutil.TypicalPatients.getTypicalPatientsAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientsHealthContact;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.address.model.patient.Patient;
  */
 public class SelectPatientCommandTest {
 
-    private Model model = new ModelManager(getTypicalPatientsAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPatientsHealthContact(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +33,7 @@ public class SelectPatientCommandTest {
 
         String expectedMessage = String.format(SelectPatientCommand.MESSAGE_SUCCESS, patientToSelect);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getHealthContact(), new UserPrefs());
         expectedModel.selectPatient(patientToSelect);
 
         assertCommandSuccess(selectPatientCommand, model, expectedMessage, expectedModel);
@@ -55,7 +55,7 @@ public class SelectPatientCommandTest {
 
         String expectedMessage = String.format(SelectPatientCommand.MESSAGE_SUCCESS, patientToSelect);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getHealthContact(), new UserPrefs());
         expectedModel.selectPatient(patientToSelect);
         showNoAppointment(expectedModel);
 
@@ -66,8 +66,8 @@ public class SelectPatientCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
         Index outOfBoundIndex = INDEX_SECOND_PATIENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPatientList().size());
+        // ensures that outOfBoundIndex is still in bounds of HealthContact list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getHealthContact().getPatientList().size());
 
         SelectPatientCommand selectPatientCommand = new SelectPatientCommand(outOfBoundIndex);
 

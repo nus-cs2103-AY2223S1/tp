@@ -27,8 +27,8 @@ import seedu.address.model.patient.Remark;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.PatientUtil;
-public class AddressBookParserTest {
-    private final AddressBookParser parser = new AddressBookParser();
+public class HealthContactParserTest {
+    private final HealthContactParser parser = new HealthContactParser();
     @Test
     public void parseCommand_addPatient() throws Exception {
         Patient patient = new PatientBuilder().build();

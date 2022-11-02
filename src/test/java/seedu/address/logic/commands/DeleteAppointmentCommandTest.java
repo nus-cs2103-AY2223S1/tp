@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
-import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentsAddressBook;
+import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentsHealthContact;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 
@@ -24,7 +24,7 @@ import seedu.address.model.appointment.Appointment;
  */
 public class DeleteAppointmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalAppointmentsAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAppointmentsHealthContact(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -35,7 +35,7 @@ public class DeleteAppointmentCommandTest {
         String expectedMessage = String.format(DeleteAppointmentCommand
                 .MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getHealthContact(), new UserPrefs());
         expectedModel.deleteAppointment(appointmentToDelete);
 
         assertCommandSuccess(deleteAppointmentCommand, model, expectedMessage, expectedModel);
@@ -60,7 +60,7 @@ public class DeleteAppointmentCommandTest {
         String expectedMessage = String.format(DeleteAppointmentCommand
                 .MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getHealthContact(), new UserPrefs());
         expectedModel.deleteAppointment(appointmentToDelete);
         showNoAppointment(expectedModel);
 
@@ -72,8 +72,8 @@ public class DeleteAppointmentCommandTest {
         showAppointmentAtIndex(model, INDEX_FIRST_APPOINTMENT);
 
         Index outOfBoundIndex = INDEX_SECOND_APPOINTMENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getAppointmentList().size());
+        // ensures that outOfBoundIndex is still in bounds of HealthContact list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getHealthContact().getAppointmentList().size());
 
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(outOfBoundIndex);
 

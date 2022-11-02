@@ -15,10 +15,10 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the HealthContact level
  * Duplicates are not allowed (by .isSamePatient comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class HealthContact implements ReadOnlyHealthContact {
 
     private final UniquePatientList patients;
     private final UniqueAppointmentList appointments;
@@ -37,12 +37,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         bills = new UniqueBillList();
     }
 
-    public AddressBook() {}
+    public HealthContact() {}
 
     /**
-     * Creates an AddressBook using the Patients in the {@code toBeCopied}
+     * Creates a HealthContact using the Patients in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public HealthContact(ReadOnlyHealthContact toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -74,9 +74,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code HealthContact} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyHealthContact newData) {
         requireNonNull(newData);
 
         setPatients(newData.getPatientList());
@@ -87,7 +87,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// patient-level operations
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     * Returns true if a patient with the same identity as {@code patient} exists in the HealthContact.
      */
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
@@ -95,7 +95,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a patient with the same identity as {@code name} exists in the address book.
+     * Returns true if a patient with the same identity as {@code name} exists in the HealthContact.
      */
     public boolean hasPatient(Name name) {
         requireNonNull(name);
@@ -103,8 +103,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a patient to the address book.
-     * The patient must not already exist in the address book.
+     * Adds a patient to the HealthContact.
+     * The patient must not already exist in the HealthContact.
      */
     public void addPatient(Patient p) {
         patients.add(p);
@@ -112,9 +112,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given patient {@code target} in the list with {@code editedPatient}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the HealthContact.
      * The patient identity of {@code editedPatient} must not be the same as another
-     * existing patient in the address book.
+     * existing patient in the HealthContact.
      */
     public void setPatient(Patient target, Patient editedPatient) {
         requireNonNull(editedPatient);
@@ -123,8 +123,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code HealthContact}.
+     * {@code key} must exist in the HealthContact.
      */
     public void removePatient(Patient key) {
         patients.remove(key);
@@ -133,7 +133,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// appointment-level operations
 
     /**
-     * Returns true if an appointment with the same identity as {@code appointment} exists in the address book.
+     * Returns true if an appointment with the same identity as {@code appointment} exists in the HealthContact.
      */
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
@@ -141,8 +141,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds an appointment to the address book.
-     * The appointment must not already exist in the address book.
+     * Adds an appointment to the HealthContact.
+     * The appointment must not already exist in the HealthContact.
      */
     public void addAppointment(Appointment a) {
         appointments.add(a);
@@ -150,9 +150,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the HealthContact.
      * The appointment identity of {@code editedAppointment} must not be the same as
-     * another existing appointment in the address book.
+     * another existing appointment in the HealthContact.
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireNonNull(editedAppointment);
@@ -161,8 +161,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code HealthContact}.
+     * {@code key} must exist in the HealthContact.
      */
     public void removeAppointment(Appointment key) {
         appointments.remove(key);
@@ -171,7 +171,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// bill-level operations
 
     /**
-     * Returns true if an bill with the same identity as {@code bill} exists in the address book.
+     * Returns true if an bill with the same identity as {@code bill} exists in the HealthContact.
      */
     public boolean hasBill(Bill bill) {
         requireNonNull(bill);
@@ -179,8 +179,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds an bill to the address book.
-     * The bill must not already exist in the address book.
+     * Adds an bill to the HealthContact.
+     * The bill must not already exist in the HealthContact.
      */
     public void addBill(Bill bill) {
         bills.add(bill);
@@ -188,9 +188,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given bill {@code target} in the list with {@code editedBill}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the HealthContact.
      * The bill identity of {@code editedBill} must not be the same as
-     * another existing bill in the address book.
+     * another existing bill in the HealthContact.
      */
     public void setBill(Bill target, Bill editedBill) {
         requireNonNull(editedBill);
@@ -199,8 +199,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code HealthContact}.
+     * {@code key} must exist in the HealthContact.
      */
     public void removeBill(Bill key) {
         bills.remove(key);
@@ -234,10 +234,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && patients.equals(((AddressBook) other).patients))
-                && appointments.equals(((AddressBook) other).appointments)
-                && bills.equals(((AddressBook) other).bills);
+                || (other instanceof HealthContact // instanceof handles nulls
+                && patients.equals(((HealthContact) other).patients))
+                && appointments.equals(((HealthContact) other).appointments)
+                && bills.equals(((HealthContact) other).bills);
     }
 
     @Override

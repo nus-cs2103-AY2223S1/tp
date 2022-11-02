@@ -96,7 +96,7 @@ At this point, your application is working as intended and all your tests are pa
 
 In `src/test/data/`, data meant for testing purposes are stored. While keeping the `address` field in the json files does not cause the tests to fail, it is not good practice to let cruft from old features accumulate.
 
-**`invalidPatientAddressBook.json`:**
+**`invalidPatientHealthContact.json`:**
 
 ```json
 {

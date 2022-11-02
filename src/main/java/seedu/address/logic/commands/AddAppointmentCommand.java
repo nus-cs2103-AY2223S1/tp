@@ -11,27 +11,27 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Adds an appointment to the address book.
+ * Adds an appointment to the HealthContact.
  */
 public class AddAppointmentCommand extends Command {
 
     public static final CommandWord COMMAND_WORD = new CommandWord("addappointment", "aa");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds an appointment to the address book. "
+            + ": Adds an appointment to HealthContact.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_MEDICAL_TEST + "MEDICAL TEST"
+            + PREFIX_MEDICAL_TEST + "MEDICAL TEST "
             + PREFIX_SLOT + "SLOT<yyyy-MM-dd HH:mm> "
-            + PREFIX_DOCTOR + "DOCTOR "
+            + PREFIX_DOCTOR + "DOCTOR\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_MEDICAL_TEST + "Computed Tomography "
             + PREFIX_SLOT + "2022-11-12 12:34 "
-            + PREFIX_DOCTOR + "Muhammad Wong";;
+            + PREFIX_DOCTOR + "Muhammad Wong";
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the address book";
-    public static final String MESSAGE_PATIENT_NOT_EXIST = "This patient does not exist in the address book";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the HealthContact";
+    public static final String MESSAGE_PATIENT_NOT_EXIST = "This patient does not exist in the HealthContact";
 
     private final Appointment toAdd;
 

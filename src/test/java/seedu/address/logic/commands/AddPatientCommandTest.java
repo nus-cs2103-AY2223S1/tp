@@ -17,10 +17,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.HealthContact;
 import seedu.address.model.History;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyHealthContact;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.bill.Bill;
@@ -105,12 +105,12 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getHealthContactFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setHealthContactFilePath(Path healthContactFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -130,12 +130,12 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setHealthContact(ReadOnlyHealthContact newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyHealthContact getHealthContact() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -265,12 +265,12 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void updateAddressBookHistory() {
+        public void updateHealthContactHistory() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateRedoAddressBookHistory() {
+        public void updateRedoHealthContactHistory() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -327,8 +327,8 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyHealthContact getHealthContact() {
+            return new HealthContact();
         }
     }
 

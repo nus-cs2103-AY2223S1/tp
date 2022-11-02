@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Deletes an appointment identified using it's displayed index from the address book.
+ * Deletes an appointment identified using it's displayed index from the HealthContact.
  */
 public class DeleteAppointmentCommand extends Command {
 

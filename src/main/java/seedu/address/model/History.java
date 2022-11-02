@@ -12,8 +12,8 @@ import seedu.address.model.patient.Patient;
  * The API of the History component.
  */
 public class History {
-    private final ArrayList<ReadOnlyAddressBook> addressBookHistory;
-    private final ArrayList<ReadOnlyAddressBook> redoAddressBookHistory;
+    private final ArrayList<ReadOnlyHealthContact> healthContactHistory;
+    private final ArrayList<ReadOnlyHealthContact> redoHealthContactHistory;
     private final ArrayList<FilteredList<Patient>> filteredPatientsHistory;
     private final ArrayList<FilteredList<Appointment>> filteredAppointmentsHistory;
     private final ArrayList<FilteredList<Bill>> filteredBillsHistory;
@@ -26,8 +26,8 @@ public class History {
      * Creates a new History object.
      */
     public History(Model model) {
-        addressBookHistory = new ArrayList<>();
-        redoAddressBookHistory = new ArrayList<>();
+        healthContactHistory = new ArrayList<>();
+        redoHealthContactHistory = new ArrayList<>();
         filteredPatientsHistory = new ArrayList<>();
         filteredAppointmentsHistory = new ArrayList<>();
         filteredBillsHistory = new ArrayList<>();
@@ -40,55 +40,55 @@ public class History {
     /**
      * Adds a new state to the history.
      */
-    public void updateAddressBookHistory() {
-        this.addressBookHistory.add(new AddressBook(model.getAddressBook()));
+    public void updateHealthContactHistory() {
+        this.healthContactHistory.add(new HealthContact(model.getHealthContact()));
         this.filteredAppointmentsHistory.add((FilteredList<Appointment>) model.getFilteredAppointmentList());
         this.filteredPatientsHistory.add((FilteredList<Patient>) model.getFilteredPatientList());
         this.filteredBillsHistory.add((FilteredList<Bill>) model.getFilteredBillList());
     }
 
-    public void updateRedoAddressBookHistory() {
-        this.redoAddressBookHistory.add(new AddressBook(model.getAddressBook()));
+    public void updateRedoHealthContactHistory() {
+        this.redoHealthContactHistory.add(new HealthContact(model.getHealthContact()));
     }
 
-    public void clearRedoAddressBookHistory() {
-        this.redoAddressBookHistory.clear();
+    public void clearRedoHealthContactHistory() {
+        this.redoHealthContactHistory.clear();
     }
 
-    public void deleteAddressBookHistory(int index) {
-        this.addressBookHistory.remove(index);
+    public void deleteHealthContactHistory(int index) {
+        this.healthContactHistory.remove(index);
     }
 
-    public ReadOnlyAddressBook getAddressBookHistory(int index) {
-        return addressBookHistory.get(index);
+    public ReadOnlyHealthContact getHealthContactHistory(int index) {
+        return healthContactHistory.get(index);
     }
 
-    public ReadOnlyAddressBook getRedoAddressBookHistory(int index) {
-        return redoAddressBookHistory.get(index);
+    public ReadOnlyHealthContact getRedoHealthContactHistory(int index) {
+        return redoHealthContactHistory.get(index);
     }
 
-    public void deleteRedoAddressBookHistory(int index) {
-        this.redoAddressBookHistory.remove(index);
+    public void deleteRedoHealthContactHistory(int index) {
+        this.redoHealthContactHistory.remove(index);
     }
 
-    public int getAddressBookHistorySize() {
-        return this.addressBookHistory.size();
+    public int getHealthContactHistorySize() {
+        return this.healthContactHistory.size();
     }
 
-    public int getRedoAddressBookHistorySize() {
-        return this.redoAddressBookHistory.size();
+    public int getRedoHealthContactHistorySize() {
+        return this.redoHealthContactHistory.size();
     }
 
-    public void addAddressBookHistory(ReadOnlyAddressBook addressBook) {
-        this.addressBookHistory.add(addressBook);
+    public void addHealthContactHistory(ReadOnlyHealthContact healthContact) {
+        this.healthContactHistory.add(healthContact);
     }
 
-    public void addRedoAddressBookHistory(ReadOnlyAddressBook addressBook) {
-        this.redoAddressBookHistory.add(addressBook);
+    public void addRedoHealthContactHistory(ReadOnlyHealthContact healthContact) {
+        this.redoHealthContactHistory.add(healthContact);
     }
 
-    public boolean compareAddressBookHistory(ReadOnlyAddressBook addressBook) {
-        return this.addressBookHistory.get(this.addressBookHistory.size() - 2).equals(addressBook);
+    public boolean compareHealthContactHistory(ReadOnlyHealthContact healthContact) {
+        return this.healthContactHistory.get(this.healthContactHistory.size() - 2).equals(healthContact);
     }
 
     public void clearRedoPatientsHistory() {
@@ -128,15 +128,15 @@ public class History {
     }
 
     public void updateRedoPatientsHistory() {
-        this.redoFilteredPatientsHistory.add(new FilteredList<Patient>(model.getFilteredPatientList()));
+        this.redoFilteredPatientsHistory.add((FilteredList<Patient>) model.getFilteredPatientList());
     }
 
     public void updateRedoAppointmentsHistory() {
-        this.redoFilteredAppointmentsHistory.add(new FilteredList<Appointment>(model.getFilteredAppointmentList()));
+        this.redoFilteredAppointmentsHistory.add((FilteredList<Appointment>) model.getFilteredAppointmentList());
     }
 
     public void updateRedoBillsHistory() {
-        this.redoFilteredBillsHistory.add(new FilteredList<Bill>(model.getFilteredBillList()));
+        this.redoFilteredBillsHistory.add((FilteredList<Bill>) model.getFilteredBillList());
     }
 
     public Predicate<? super Patient> getPatientsPredicate(int index) {

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CRITERIA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 
-import seedu.address.logic.commands.SortAppointmentCommand;
 import seedu.address.logic.commands.SortBillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -25,7 +24,7 @@ public class SortBillCommandParser {
         String bool = argMultimap.getValue(PREFIX_ORDER).orElse("");
 
         if (!bool.toLowerCase().equals("asc") && !bool.toLowerCase().equals("desc")) {
-            throw new ParseException(SortAppointmentCommand.MESSAGE_USAGE);
+            throw new ParseException(SortBillCommand.MESSAGE_USAGE);
         }
 
         Boolean boolValue = bool.toLowerCase().equals("asc") ? true : false;

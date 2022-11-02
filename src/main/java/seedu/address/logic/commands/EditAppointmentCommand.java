@@ -22,7 +22,7 @@ import seedu.address.model.appointment.Slot;
 import seedu.address.model.patient.Name;
 
 /**
- * Edits the details of an existing appointment in the address book.
+ * Edits the details of an existing appointment in the HealthContact.
  */
 public class EditAppointmentCommand extends Command {
 
@@ -30,12 +30,12 @@ public class EditAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the appointment identified "
             + "by the index number used in the displayed appointment list. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "Existing values will be overwritten by the input values. At least one field must be provided.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_MEDICAL_TEST + "MEDICAL_TEST] "
             + "[" + PREFIX_SLOT + "SLOT<yyyy-MM-dd HH:mm>] "
-            + "[" + PREFIX_DOCTOR + "DOCTOR] "
+            + "[" + PREFIX_DOCTOR + "DOCTOR]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "John Doe"
             + PREFIX_MEDICAL_TEST + "Computed Tomography"
@@ -44,8 +44,8 @@ public class EditAppointmentCommand extends Command {
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the address book.";
-    public static final String MESSAGE_PATIENT_NOT_EXIST = "This patient does not exist in the address book";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the HealthContact.";
+    public static final String MESSAGE_PATIENT_NOT_EXIST = "This patient does not exist in the HealthContact";
 
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;

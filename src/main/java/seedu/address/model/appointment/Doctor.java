@@ -3,7 +3,7 @@ package seedu.address.model.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
- * Represents an Appointment's doctor in the address book.
+ * Represents an Appointment's doctor in the HealthContact.
  * Guarantees: immutable; is valid as declared in {@link #isValidDoctorName (String)}
  */
 public class Doctor {

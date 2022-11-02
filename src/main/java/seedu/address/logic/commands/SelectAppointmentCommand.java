@@ -17,13 +17,12 @@ public class SelectAppointmentCommand extends Command {
     public static final CommandWord COMMAND_WORD =
             new CommandWord("selectappointment", "sla");
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Selects the indicated appointment and filter "
-            + "the appointments list only containing selected appointment\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Selects the indicated appointment and shows the "
+            + "bill for that appointment, if any.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_SUCCESS = "Selected Appointment: %1$s";
-    public static final String MESSAGE_NOT_SELECTED = "Index of appointment to select must be provided.";
 
     private final Index index;
 

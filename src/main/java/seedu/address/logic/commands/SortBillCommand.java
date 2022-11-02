@@ -12,14 +12,14 @@ import seedu.address.model.Model;
 import seedu.address.model.bill.Bill;
 
 /**
- * Sorts Bill data in Address Book.
+ * Sorts Bill data in HealthContact.
  */
 public class SortBillCommand extends Command {
     public static final CommandWord COMMAND_WORD = new CommandWord("sortbill", "sob");
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Sorts the list of appointments according to the specified field"
+            COMMAND_WORD + ": Sorts the list of bills according to the specified field"
                     + "by alphabetical order.\n"
-                    + "Parameters: c/CRITERIA (name, amount, date, status) o/ORDER (asc, desc) "
+                    + "Parameters: c/CRITERIA (name, amount, date, status) o/ORDER (asc, desc)\n"
                     + "Example: " + COMMAND_WORD + " " + "c/name o/asc";
 
     public static final String MESSAGE_SORT_SUCCESS = "Sorted according to %1$s";
@@ -75,7 +75,7 @@ public class SortBillCommand extends Command {
     public class AmountComparator implements Comparator<Bill> {
         @Override
         public int compare(Bill first, Bill second) {
-            return first.getAmount().toString().compareTo(second.getAmount().toString());
+            return first.getAmount().toString().compareToIgnoreCase(second.getAmount().toString());
         }
     }
 

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents bill's payment state in the address book.
+ * Represents bill's payment state in the HealthContact.
  * Guarantees: immutable; is valid as declared in {@link #isValidPaymentStatus  (String)}
  */
 public class PaymentStatus {

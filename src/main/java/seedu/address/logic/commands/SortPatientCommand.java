@@ -11,14 +11,14 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
 
 /**
- * Sorts Patient data in Address Book.
+ * Sorts Patient data in HealthContact.
  */
 public class SortPatientCommand extends Command {
     public static final CommandWord COMMAND_WORD = new CommandWord("sortpatient", "sop");
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Sorts the list of appointments according to the specified field"
+            COMMAND_WORD + ": Sorts the list of patients according to the specified field"
                     + "by alphabetical order.\n"
-                    + "Parameters: c/CRITERIA (name, phone, email, address) o/ORDER (asc, desc) "
+                    + "Parameters: c/CRITERIA (name, phone, email, address) o/ORDER (asc, desc)\n"
                     + "Example: " + COMMAND_WORD + " " + "c/name o/asc";
 
     public static final String MESSAGE_SORT_SUCCESS = "Sorted according to %1$s";
@@ -64,7 +64,7 @@ public class SortPatientCommand extends Command {
     public class NameComparator implements Comparator<Patient> {
         @Override
         public int compare(Patient first, Patient second) {
-            return first.getName().toString().compareTo(second.getName().toString());
+            return first.getName().toString().compareToIgnoreCase(second.getName().toString());
         }
     }
 
@@ -84,7 +84,7 @@ public class SortPatientCommand extends Command {
     public class EmailComparator implements Comparator<Patient> {
         @Override
         public int compare(Patient first, Patient second) {
-            return first.getEmail().toString().compareTo(second.getEmail().toString());
+            return first.getEmail().toString().compareToIgnoreCase(second.getEmail().toString());
         }
     }
 
@@ -94,7 +94,7 @@ public class SortPatientCommand extends Command {
     public class AddressComparator implements Comparator<Patient> {
         @Override
         public int compare(Patient first, Patient second) {
-            return first.getAddress().toString().compareTo(second.getAddress().toString());
+            return first.getAddress().toString().compareToIgnoreCase(second.getAddress().toString());
         }
     }
 }

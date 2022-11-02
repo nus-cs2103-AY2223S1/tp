@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents Bill's date in the address book.
+ * Represents Bill's date in the HealthContact.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate  (String)}
  */
 public class BillDate {

@@ -17,13 +17,12 @@ public class SelectPatientCommand extends Command {
     public static final CommandWord COMMAND_WORD =
             new CommandWord("selectpatient", "slp");
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Selects the indicated patient and filter "
-            + "the appointments list only containing selected patient\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Selects the indicated patient and shows the patient's"
+            + "appointments and bills.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_SUCCESS = "Selected Patient: %1$s";
-    public static final String MESSAGE_NOT_SELECTED = "Index of patient to select must be provided.";
 
     private final Index index;
 
