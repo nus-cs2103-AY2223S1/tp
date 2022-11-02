@@ -36,7 +36,7 @@ Given below are my contributions to the project.
 * **Existing Features**
   * Improved on the `Leave` class, by storing `Leave` objects in a priority queue, and adding methods to check for overlapping or equal leaves.
   * Refactor `Delete` command.
-  * Fixed multiple bugs (Refer to #109, #130, #140, #235)
+  * Fixed multiple bugs (Refer to #109, #130, #140, #235).
 
 #### Contributions to the UG 
 * Added documentation for following parts:
@@ -50,14 +50,14 @@ Given below are my contributions to the project.
 
 #### Contributions to the DG
 * Edited implementation details for:
-  * Delete
+  * `delete`
 * Added implementation details for:
   * [To Be Updated]
 
 #### Contributions to the team-based tasks
-* Helped to create and distribute issues 
-* Contributed to manual testing of application to find bugs
-* Oversaw documentation work
+* Helped to create and distribute issues. 
+* Contributed to manual testing of application to find bugs.
+* Oversaw documentation work.
 
 #### Reviewing Contributions
 * Pull Requests reviewed:
