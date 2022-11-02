@@ -37,7 +37,6 @@ class RepositoryTest {
         //valid repository
         assertTrue(Repository.isValidRepository("peterjack/tp")); // alphabets only
         assertTrue(Repository.isValidRepository("12345/cs2103tp")); // alphanumeric characters
-        assertTrue(Repository.isValidRepository("user-x/project_y-two.alpha")); // allow dashes, underscores, periods
     }
 
     @Test
