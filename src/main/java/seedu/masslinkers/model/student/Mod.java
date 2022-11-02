@@ -5,6 +5,7 @@ import static seedu.masslinkers.commons.util.AppUtil.checkArgument;
 
 import seedu.masslinkers.logic.parser.ParserUtil;
 
+//@author jonasgwt
 /**
  * Represents a mod in Mass Linkers.
  * Guarantees: immutable; name is valid as declared in {@link #isValidModName(String)}
