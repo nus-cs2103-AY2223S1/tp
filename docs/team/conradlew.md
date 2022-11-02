@@ -35,9 +35,14 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `list`, `default view` and `pin` [\#141](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/141)
+        * Added documentation for the features `list`, `default view` and `pin` [\#141](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/141).
     * Developer Guide:
         * Added implementation details of the `list`, `default view` and `pin` features [\#106](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/106).
+
+* **Contributions to team-based tasks**:
+  * Set up team repository
+  * Managed issue tracker
+  * Created demo video for v1.2
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#30](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/30), [\#80](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/80), [\#62](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/62)
