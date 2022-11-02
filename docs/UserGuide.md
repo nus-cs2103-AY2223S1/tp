@@ -244,7 +244,7 @@ Each student is represented by a card that looks like the image above.
 From top to bottom, the card contains the following details:
 
 #### Name (Alex Yeoh)
-  
+
 The name of the student. Notice that there is a "1." before the name;
 this represents the student's _index_. You will use this number in certain commands
 such as [`edit`]() and [`delete`]().
@@ -309,7 +309,7 @@ The command word is the first word you type into the command box, and it tells W
 For example, if you type `add` into the command box, Watson will know that you want to add a student.
 
 The arguments are the rest of the words you type into the command box, and are usually made up of
-different _parameters_. 
+different _parameters_.
 
 Think of the command structure as ordering a sandwich.
 The command word is the type of bread you want, while the parameters are the ingredients you want.
@@ -599,7 +599,7 @@ The window will now show the details of the next student to be marked.
 Continue typing in marks until the window closes.
 
 3) Once the window closes, you will observe that the grades of the students marked
-will be updated. 
+will be updated.
 
 <div class="flex-box">
 <img src="images/PreGrade.png" alt="menu bar" class="special-img">
