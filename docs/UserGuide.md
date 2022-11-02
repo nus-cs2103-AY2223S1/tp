@@ -213,7 +213,7 @@ Before proceeding to learn more about resident commands it would be good to have
 be used in the commands.
 </div>
 
-The resident fields can be found [here](#format-for-resident-fields).
+The resident [fields](#glossary-of-terms) can be found [here](#format-for-resident-fields).
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -578,7 +578,7 @@ To provide a streamlined way of managing **RC4** related data, **RC4HDB** provid
 
 **RC4HDB** stores your data in a **main** data folder named `data`, which can be found in the same folder where you placed the `rc4hdb.jar` file. Within the **main** data folder, resident and venue data is stored in **sub** data folder(s). The default data folder that all copies of **RC4HDB** start out with is the `rc4hdb` folder.
 
-Inside your data folder, there should be two [JSON](#g) files, `resident_data.json` and `venue_data.json`, which store your **resident** and **venue** data respectively.
+Inside your data folder, there should be two [JSON](#glossary-of-terms) files, `resident_data.json` and `venue_data.json`, which store your **resident** and **venue** data respectively.
 
 To find out which **sub** data folder is currently open, look at the **footer**, that can be found at the bottom of the application interface as shown in the image below, where the current **sub** data folder that is open is `rc4hdb`.
 
@@ -959,29 +959,16 @@ screen when typing these commands.
 
 ## **Glossary of terms**
 
-### Idempotent
+### Field
 
-This term describes an operation which can be applied multiple times without changing the result beyond the initial
-application.
-
-For example:
-
-- multiplying a number by 0 is *idempotent* as the first application sets the number to 0, and repeated applications
-  do not change this value
-- activating a crosswalk button is also *idempotent* as the initial activation causes the system to move into a
-  requesting state, until the request is satisfied. Subsequent activations of the button have no further effect.
-  (adapted from [Wikipedia](https://en.wikipedia.org/wiki/Idempotence#Applied_examples))
-
-### State-independent
-
-This term describes an operation whose result is not affected by current conditions.
+This term refers to information that represents some (common) property in a dataset.
 
 For example:
 
-- disconnecting a power plug from the wall can be considered *state-independent*, as it will force the appliance to be
-  inactive regardless of whether it was active in the first place
-- filling a (hole-free) bucket with a hose over a long period of time can also be considered *state-independent*,
-  as the bucket will be ultimately filled regardless of the initial water level in the bucket
+1. In a rental bicycle sharing dataset, one possible field is the type of each rental bicycle, 
+   i.e. mountain vs road vs city bicycle.   
+
+2. In a population demographic dataset, one possible field is the age of each individual.
 
 ### CSV
 
