@@ -1,6 +1,5 @@
 ---
-layout: page
-title: Dilys' Project Portfolio Page
+layout: page title: Dilys' Project Portfolio Page
 ---
 
 ### Project: SETA
@@ -48,16 +47,13 @@ Given below are my contributions to the project.
 * **Code
   contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=T08&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=zoom&zA=Dilysss&zR=AY2223S1-CS2103T-T08-4%2Ftp%5Bmaster%5D&zACS=181.21900826446281&zS=2022-09-16&zFS=T08&zU=2022-10-31&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
-
 * **Project management**:
     * Managed releases v1.2 - v1.4 on Github
-
-
+    
 * **Enhancements to existing features**:
     * Updated the GUI
         * Changed the layout of the application
         * Changed the GUI colour scheme
-
 
 * **Documentation**:
     * User Guide:
