@@ -180,7 +180,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Link> getLinkList() {
-        return addressBook.getTeam().getLinkList();
+        return truthTable.getTeam().getLinkList();
     }
 
     //=========== Filtered Person List Accessors =============================================================
