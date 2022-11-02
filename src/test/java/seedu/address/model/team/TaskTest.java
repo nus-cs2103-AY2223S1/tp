@@ -19,20 +19,6 @@ public class TaskTest {
     }
 
     @Test
-    public void invalidName_constructor_throwsInvalidArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Task(" ", List.of(), false, null));
-    }
-
-    @Test
-    public void isValidName() {
-        assertTrue(Task.isValidName("task"));
-        assertTrue(Task.isValidName("123"));
-        assertTrue(Task.isValidName("task 123"));
-        assertFalse(Task.isValidName(" "));
-        assertFalse(Task.isValidName(" task"));
-    }
-
-    @Test
     public void equals() {
         assertTrue(TASK_1.equals(TASK_1_DUPLICATED));
     }

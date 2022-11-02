@@ -16,19 +16,10 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class Task {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Task names should not be blank and cannot begin with a whitespace";
-
-    /*
-     * The first character of the task name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
     /**
      * Name of the task.
      */
-    private final String name;
+    private final TaskName name;
 
     /**
      * Team member(s) assigned to be in charge of this task.
@@ -50,20 +41,12 @@ public class Task {
      *
      * @param name A valid task name.
      */
-    public Task(String name, List<Person> assignees, boolean completionStatus, LocalDateTime deadline) {
+    public Task(TaskName name, List<Person> assignees, boolean completionStatus, LocalDateTime deadline) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.assignees.setPersons(assignees);
         this.completionStatus = completionStatus;
         this.deadline = deadline;
-    }
-
-    /**
-     * Returns true if a given string is a valid name for a task.
-     */
-    public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     public boolean isValidIndex(int test) {
@@ -75,7 +58,7 @@ public class Task {
         return getCompletionStatus() + name + " " + getAssigneesAsString() + " " + getDeadlineAsString();
     }
 
-    public String getName() {
+    public TaskName getName() {
         return name;
     }
 
@@ -145,7 +128,7 @@ public class Task {
      * Assigns a Task to a person and returns a new Task
      */
     public Task assignTo(Person assignee) {
-        String name = getName();
+        TaskName name = getName();
         assignees.add(assignee);
         List<Person> newAssignees = getAssigneesList();
         boolean completionStatus = isComplete();
@@ -167,7 +150,7 @@ public class Task {
      * Set a new deadline and returns a new Task with that deadline
      */
     public Task setDeadline(LocalDateTime date) {
-        String name = getName();
+        TaskName name = getName();
         List<Person> assignees = getAssigneesList();
         boolean completionStatus = isComplete();
         LocalDateTime newDate = date;
@@ -178,7 +161,7 @@ public class Task {
      * Marks a Task and returns a new Task
      */
     public Task mark(boolean completionStatus) {
-        String name = getName();
+        TaskName name = getName();
         List<Person> assignees = getAssigneesList();
         boolean newCompletionStatus = completionStatus;
         LocalDateTime date = this.deadline;

@@ -22,6 +22,7 @@ import seedu.address.logic.parser.LocalDateTimeConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
+import seedu.address.model.team.TaskName;
 
 /**
  * Adds a task to the current team.
@@ -52,7 +53,7 @@ public class AddTaskCommand extends Command {
 
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TASK_NAME_DESCRIPTION)
-    private String taskName;
+    private TaskName taskName;
 
     @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "",
             description = FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")

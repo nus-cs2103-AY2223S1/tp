@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
+import seedu.address.model.team.TaskName;
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -43,7 +44,7 @@ class JsonAdaptedTask {
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
-        taskName = source.getName();
+        taskName = source.getName().toString();
         assignees.addAll(source.getAssigneesList().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
@@ -61,9 +62,10 @@ class JsonAdaptedTask {
         for (JsonAdaptedPerson assignee : assignees) {
             assigneeList.add(assignee.toModelType());
         }
-        if (!Task.isValidName(taskName)) {
-            throw new IllegalValueException(Task.MESSAGE_CONSTRAINTS);
+        if (!TaskName.isValidTaskName(taskName)) {
+            throw new IllegalValueException(TaskName.MESSAGE_CONSTRAINTS);
         }
+        TaskName newTaskName = new TaskName(taskName);
         LocalDateTime deadline = null;
         if (!this.deadline.equals("")) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -73,7 +75,7 @@ class JsonAdaptedTask {
         if (this.isComplete.equals("true")) {
             isComplete = true;
         }
-        return new Task(taskName, assigneeList, isComplete, deadline);
+        return new Task(newTaskName, assigneeList, isComplete, deadline);
     }
 
 }
