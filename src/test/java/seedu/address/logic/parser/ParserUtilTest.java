@@ -106,6 +106,12 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseIndexes_duplicateAndOutOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_DUPLICATE_INDEXES, ()
+                -> ParserUtil.parseIndexes(Long.toString(Integer.MAX_VALUE + 1) + " 1 1"));
+    }
+
+    @Test
     public void parseName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
     }
