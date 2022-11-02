@@ -224,7 +224,7 @@ Examples:
 * `insurance 2` sets the 2nd person to not have any of the insurances.
 * `insurance 3 hi/ ci/ di/ li/` sets the 3rd person to have all the insurances.
 
-![result for 'insurance hi/ di/ ci/ li/'](images/insuranceUpdate.png)
+![result for 'insurance hi/ di/ ci/ li/'](images/insuranceUpdateNew.png)
 
 ### Exiting the program : `exit`
 
