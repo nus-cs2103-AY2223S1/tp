@@ -37,4 +37,10 @@ public class EditCommand extends Command {
         throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT,
                 commandSpec.qualifiedName().trim()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EditCommand); // instanceof handles nulls
+    }
 }

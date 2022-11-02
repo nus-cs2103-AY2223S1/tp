@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_SEARCH_KEYWORDS_DES
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -96,6 +97,19 @@ public class FindMemberCommand extends Command {
             return nameKeywords == null
                     ? Stream.of(emailKeywords).reduce("", (a, b) -> a + " " + b)
                     : Stream.of(nameKeywords).reduce("", (a, b) -> a + " " + b);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            } else if (other instanceof Exclusive) {
+                Exclusive target = (Exclusive) other;
+                return Arrays.equals(nameKeywords, target.nameKeywords)
+                        && Arrays.equals(emailKeywords, target.emailKeywords);
+            } else {
+                return false;
+            }
         }
     }
 }

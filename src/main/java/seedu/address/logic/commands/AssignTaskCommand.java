@@ -104,6 +104,7 @@ public class AssignTaskCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AssignTaskCommand // instanceof handles nulls
-                && taskIndex.equals(((AssignTaskCommand) other).taskIndex)); // state check
+                && taskIndex.equals(((AssignTaskCommand) other).taskIndex)) // state check
+                && Arrays.equals(assignees, ((AssignTaskCommand) other).assignees);
     }
 }

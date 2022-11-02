@@ -165,7 +165,7 @@ public class EditTaskCommand extends Command {
 
         // state check
         EditTaskCommand e = (EditTaskCommand) other;
-        return index.equals(e.index) && editTaskDescriptor.equals(e.editTaskDescriptor);
+        return index.equals(e.index) && arguments.equals(e.arguments);
     }
 
     private static class Arguments {
@@ -179,6 +179,20 @@ public class EditTaskCommand extends Command {
         @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "", description =
                 FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
         private String[] assignees;
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            } else if (other instanceof Arguments) {
+                Arguments target = (Arguments) other;
+                return this.name == null? false: this.name.equals(target.name)
+                        && this.deadline == null? false: this.deadline.equals(target.deadline)
+                        && Arrays.equals(assignees, target.assignees);
+            } else {
+                return false;
+            }
+        }
     }
 
     /**

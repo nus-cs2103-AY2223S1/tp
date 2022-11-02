@@ -80,7 +80,8 @@ public class AddTeamCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddTeamCommand // instanceof handles nulls
-                && teamName.equals(((AddTeamCommand) other).teamName)); // state check
+                && teamName.equals(((AddTeamCommand) other).teamName)) // state check
+                && description == null? false :  description.equals(((AddTeamCommand) other).description);
     }
 
 }

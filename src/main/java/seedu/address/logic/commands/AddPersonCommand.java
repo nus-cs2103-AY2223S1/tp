@@ -124,7 +124,7 @@ public class AddPersonCommand extends Command {
                 && phone.equals(o.phone)
                 && email.equals(o.email)
                 && address.equals(o.address)
-                && tags.equals(o.tags);
+                && tags == null? false: tags.equals(o.tags);
     }
 
 }

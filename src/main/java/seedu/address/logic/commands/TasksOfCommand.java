@@ -73,6 +73,7 @@ public class TasksOfCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other instanceof TasksOfCommand;
+        return other instanceof TasksOfCommand
+                && memberIndex.equals(((TasksOfCommand) other).memberIndex);
     }
 }

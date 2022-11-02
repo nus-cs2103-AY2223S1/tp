@@ -112,6 +112,8 @@ public class AddTaskCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddTaskCommand // instanceof handles nulls
-                && taskName.equals(((AddTaskCommand) other).taskName)); // state check
+                && taskName.equals(((AddTaskCommand) other).taskName)) // state check
+                && Arrays.equals(assignees, ((AddTaskCommand) other).assignees)
+                && deadline == null? false : deadline.equals(((AddTaskCommand) other).deadline);
     }
 }

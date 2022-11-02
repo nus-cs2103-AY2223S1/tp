@@ -130,7 +130,7 @@ public class EditTeamCommand extends Command {
 
         // state check
         EditTeamCommand e = (EditTeamCommand) other;
-        return editTeamDescriptor.equals(e.editTeamDescriptor);
+        return arguments.equals(e.arguments);
     }
 
     private static class Arguments {
@@ -140,6 +140,19 @@ public class EditTeamCommand extends Command {
         @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG},
                 description = FLAG_TEAM_DESCRIPTION_DESCRIPTION)
         private Description description;
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            } else if (other instanceof Arguments) {
+                Arguments target = (Arguments) other;
+                return this.name == null? false: this.name.equals(target.name)
+                        && this.description == null? false: this.description.equals(target.description);
+            } else {
+                return false;
+            }
+        }
     }
 
     /**

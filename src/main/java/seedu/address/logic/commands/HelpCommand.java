@@ -39,4 +39,9 @@ public class HelpCommand extends Command {
         return new CommandResult(parent.getUsageMessage() + "\nAccess our user guide here: " + USERGUIDE_URL);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof HelpCommand); // instanceof handles nulls
+    }
 }

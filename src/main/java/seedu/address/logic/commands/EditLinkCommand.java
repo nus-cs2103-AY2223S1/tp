@@ -121,7 +121,8 @@ public class EditLinkCommand extends Command {
 
         // state check
         EditLinkCommand e = (EditLinkCommand) other;
-        return index.equals(e.index) && editLinkDescriptor.equals(e.editLinkDescriptor);
+        return index.equals(e.index)
+                && arguments.equals(e.arguments);
     }
 
     private static class Arguments {
@@ -130,6 +131,19 @@ public class EditLinkCommand extends Command {
 
         @CommandLine.Option(names = {FLAG_URL_STR, FLAG_URL_STR_LONG}, description = FLAG_LINK_URL_DESCRIPTION)
         private Url url;
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            } else if (other instanceof Arguments) {
+                Arguments target = (Arguments) other;
+                return this.name == null? false: this.name.equals(target.name)
+                        && this.url == null? false: this.url.equals(target.url);
+            } else {
+                return false;
+            }
+        }
     }
 
     /**

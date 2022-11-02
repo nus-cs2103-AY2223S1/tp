@@ -156,7 +156,7 @@ public class EditPersonCommand extends Command {
         // state check
         EditPersonCommand e = (EditPersonCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && arguments.equals(e.arguments);
     }
 
     private static class Arguments {
@@ -176,6 +176,22 @@ public class EditPersonCommand extends Command {
         @CommandLine.Option(names = {FLAG_TAG_STR, FLAG_TAG_STR_LONG}, description = FLAG_PERSON_TAGS_DESCRIPTION,
                 parameterConsumer = TagsConverter.class, arity = "*")
         private Set<Tag> tags;
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            } else if (other instanceof Arguments) {
+                Arguments target = (Arguments) other;
+                return this.name == null? false: this.name.equals(target.name)
+                        && this.phone == null? false: this.phone.equals(target.phone)
+                        && this.email == null? false: this.email.equals(target.email)
+                        && this.address == null? false: this.address.equals(target.address)
+                        && this.tags == null? false: this.tags.equals(target.tags);
+            } else {
+                return false;
+            }
+        }
     }
 
     /**
