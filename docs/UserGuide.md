@@ -75,10 +75,13 @@ The `Result Display Window` displays feedback after executing a command. This in
 The `Recognised Exercise Name List Window` provides you a list of all unique exercise names that are currently registered in the system. 
 <br><br>This list updates in real time and allows you to keep track of the exercises you have input in the past. As such, you are able to keep track of what you named your exercises; you would also be able to quickly identify any misspellings in the name of your inputted exercises.
 
+Notice there are two counts under the list. 
+
+* The first count counts the number of exercise names in the list above it. There are 5 exercises in the list circled in green, hence, the count is 5. 
+* The second count is for the total number of exercise entries in the system, inclusive of duplicates.
+
 ![RecognisedList](images/RecognisedExercisesOrientation.png)
 
-* The `Recognised Exercises Count` displays the number of unique exercises registered in the system. 
-* The `System Exercise Entries Count` displays the total number of exercise entries in the system. 
 <br>
 
 **Adding and Deleting from the Exercise Name List**
