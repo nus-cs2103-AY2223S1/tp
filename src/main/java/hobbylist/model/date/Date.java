@@ -14,7 +14,9 @@ public class Date {
     public static final String MESSAGE_EXCEPTION =
             "Invalid date! The input format should be like yyyy-mm-dd, eg 1921-04-12\n"
             + "The value of year should be greater or equal than 1000!\n";
-    public static final String VALIDATION_REGEX =
+    public static final String VALIDATION_YEAR_REGEX = "[0-9][0-9][0-9][0-9]";
+    public static final String VALIDATION_MONTH_REGEX = "[0-9][0-9][0-9][0-9]-[0-9][0-9]";
+    public static final String VALIDATION_DATE_REGEX =
             "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]";
     private java.time.LocalDate date;
     private String originalString;
@@ -46,16 +48,37 @@ public class Date {
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Check if the given string is a valid year.
+     * @param testString String input from the user.
+     * @return true if the given string is a valid year.
+     */
+    public static boolean isValidYearString(String testString) {
+        if (!testString.matches(VALIDATION_YEAR_REGEX)) {
+            return false;
+        }
+        return Integer.parseInt(testString) != 0;
+    }
+
+    /**
+     * Check if the given string is a valid month.
+     * @param testString String input from the user.
+     * @return true if the given string is a valid year.
+     */
+    public static boolean isValidMonthString(String testString) {
+        if (!testString.matches(VALIDATION_MONTH_REGEX)) {
+            return false;
+        }
+        return Integer.parseInt(testString.substring(5, 7)) >= 1 && Integer.parseInt(testString.substring(5, 7)) <= 12;
+    }
+
+    /**
+     * Check if the given string is a valid date.
      */
     public static boolean isValidDateString(String test) {
-        if (!test.matches(VALIDATION_REGEX)) {
+        if (!test.matches(VALIDATION_DATE_REGEX)) {
             return false;
         }
-        if (Integer.valueOf(test.split("-")[0]) < 1000) {
-            return false;
-        }
-        return true;
+        return Integer.parseInt(test.split("-")[0]) != 0;
     }
 
     @Override
