@@ -27,19 +27,17 @@ It is written in Java and the GUI is built using JavaFX.
 #### Contributions to the UG
 - [Application layout](https://ay2223s1-cs2103t-t15-2.github.io/tp/UserGuide.html#2-class-ifys-application-window)
   - Introduced the components of the UI and their functionalities
-  - See PR [#243](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/243)
-- 
+- [Toggling view](https://ay2223s1-cs2103t-t15-2.github.io/tp/UserGuide.html#434-toggling-view--toggleview)
+  - Explained the functionality and usage of the command
 
 #### Contributions to the DG
+- [Toggle View Command](https://ay2223s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#427-toggleview-command)
+  - Added implementation details and design considerations
+  - Added activity diagram to help readers understand the process flow
+- [View All Command](https://ay2223s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#425-viewall-command)
+  - Added implementation details
+  - Added sequence diagram to explain the internal interactions of the system
 
-- **Documentation**:
-  - User Guide:
-    - Added documentations for the feature `view all`
-  - Developer guide:
-    - Added implementation details of the `view all` feature
-- **Community**:
-  - PRs review: <insert PRs here>
-- **Tools**:
-  - Tools 1
-  - Tools 2
-  - 
+#### Review/mentoring contributions
+- [#91](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/91): Suggested to use Optional class instead of assigning null to a variable
+- [#99](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/99): Suggested a more appropriate method name
