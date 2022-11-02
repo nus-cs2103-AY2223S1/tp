@@ -23,7 +23,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all eateries whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Optionally, you can randomly choose a given number of the found eateries.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]... -r [NUMTOSHOW]\n"
+            + "Parameters: KEYWORD [MORE_KEYWORDS]... [-r NUMTOSHOW]\n"
             + "Example: " + COMMAND_WORD + " Chicken Rice -r 1";
 
     private final Predicate<Eatery> predicate;

@@ -21,17 +21,17 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an eatery to the food guide. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PRICE + "PRICE "
-            + PREFIX_CUISINE + "CUISINE "
-            + PREFIX_LOCATION + "LOCATION "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_NAME + " NAME "
+            + "[" + PREFIX_PRICE + " PRICE] "
+            + PREFIX_CUISINE + " CUISINE "
+            + PREFIX_LOCATION + " LOCATION "
+            + "[" + PREFIX_TAG + " TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Starbucks "
-            + PREFIX_PRICE + "$$$ "
-            + PREFIX_CUISINE + "cafe "
-            + PREFIX_LOCATION + "Science Block S9 "
-            + PREFIX_TAG + "coffee ";
+            + PREFIX_NAME + " Starbucks "
+            + PREFIX_PRICE + " $$$ "
+            + PREFIX_CUISINE + " cafe "
+            + PREFIX_LOCATION + " Science Block S9 "
+            + PREFIX_TAG + " coffee ";
 
     public static final String MESSAGE_SUCCESS = "New eatery added: %1$s";
     public static final String MESSAGE_DUPLICATE_EATERY = "This eatery already exists in the food guide";
