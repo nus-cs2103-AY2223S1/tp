@@ -250,11 +250,11 @@ public class Person {
 
         if (getPatientType().isInpatient()) {
             builder.append("; ")
-                    .append(getHospitalWing().get())
+                    .append(getHospitalWing().orElse(new HospitalWing("south")))
                     .append("; ")
-                    .append(getFloorNumber().get())
+                    .append(getFloorNumber().orElse(new FloorNumber(10)))
                     .append("; ")
-                    .append(getWardNumber().get());
+                    .append(getWardNumber().orElse(new WardNumber("D312")));
         }
 
 
@@ -264,7 +264,7 @@ public class Person {
             tags.forEach(tag -> builder.append(tag.medicationName).append(", "));
         }
         builder.append("; Past Appointments: ").append(getPastAppointmentCount());
-        builder.append("; ").append(getUpcomingAppointment().get());
+        builder.append("; ").append(getUpcomingAppointment().orElse(new UpcomingAppointment("")));
         return builder.toString();
     }
 
