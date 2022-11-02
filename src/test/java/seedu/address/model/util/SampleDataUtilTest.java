@@ -21,8 +21,8 @@ public class SampleDataUtilTest {
         String first = "Remark 1";
         String second = "Remark 2";
 
-        list.add(new Remark(new Text(first), new HashSet<>()));
-        list.add(new Remark(new Text(second), new HashSet<>()));
+        list.add(new Remark(new Text(first)));
+        list.add(new Remark(new Text(second)));
 
         assertEquals(list, getSampleUniqueRemarkList(first, second));
     }

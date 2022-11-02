@@ -3,7 +3,6 @@ package seedu.address.model.remark;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRemark.BAD_BUYER;
 import static seedu.address.testutil.TypicalRemark.GOOD_BUYER;
@@ -41,8 +40,7 @@ public class UniqueRemarkListTest {
     @Test
     public void contains_remarkWithSameIdentityFieldsInList_returnsTrue() {
         uniqueRemarkList.add(GOOD_BUYER);
-        Remark editedRemark = new RemarkBuilder(GOOD_BUYER).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Remark editedRemark = new RemarkBuilder(GOOD_BUYER).build();
         assertTrue(uniqueRemarkList.contains(editedRemark));
     }
 
@@ -84,8 +82,7 @@ public class UniqueRemarkListTest {
     @Test
     public void setRemark_editedRemarkHasSameIdentity_success() {
         uniqueRemarkList.add(GOOD_BUYER);
-        Remark editedRemark = new RemarkBuilder(GOOD_BUYER).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Remark editedRemark = new RemarkBuilder(GOOD_BUYER).build();
         uniqueRemarkList.replaceRemark(GOOD_BUYER, editedRemark);
         UniqueRemarkList expectedUniqueRemarkList = new UniqueRemarkList();
         expectedUniqueRemarkList.add(editedRemark);

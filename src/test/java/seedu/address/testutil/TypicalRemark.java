@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TEXT_BAD_BUYER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TEXT_GOOD_BUYER;
 
@@ -12,9 +10,8 @@ import seedu.address.model.remark.Remark;
  */
 public class TypicalRemark {
 
-    public static final Remark GOOD_SELLER = new RemarkBuilder().withText("Good Seller").withTags("positive").build();
-    public static final Remark BAD_SELLER = new RemarkBuilder().withText("Bad Seller")
-            .withTags("late", "negative").build();
+    public static final Remark GOOD_SELLER = new RemarkBuilder().withText("Good Seller").build();
+    public static final Remark BAD_SELLER = new RemarkBuilder().withText("Bad Seller").build();
     public static final Remark FAST_DEAL = new RemarkBuilder().withText("Fast Deal").build();
     public static final Remark LONG_REMARK = new RemarkBuilder()
             .withText("Seller was very knowledgeable, friendly and easygoing. He was willing "
@@ -23,10 +20,8 @@ public class TypicalRemark {
     public static final Remark MEETING_LOCATION = new RemarkBuilder().withText("Bedok MRT").build();
 
     // Manually added - Remark's details found in {@code CommandTestUtil}
-    public static final Remark GOOD_BUYER = new RemarkBuilder().withText(VALID_TEXT_GOOD_BUYER)
-            .withTags(VALID_TAG_FRIEND).build();
-    public static final Remark BAD_BUYER = new RemarkBuilder().withText(VALID_TEXT_BAD_BUYER)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    public static final Remark GOOD_BUYER = new RemarkBuilder().withText(VALID_TEXT_GOOD_BUYER).build();
+    public static final Remark BAD_BUYER = new RemarkBuilder().withText(VALID_TEXT_BAD_BUYER).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

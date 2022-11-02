@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.model.remark.Remark;
@@ -24,9 +22,6 @@ public class RemarkUtil {
     public static String getRemarkDetails(Remark remark) {
         StringBuilder sb = new StringBuilder();
         sb.append(remark.getText() + " ");
-        remark.getTags().stream().forEach(
-                s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
         return sb.toString();
     }
 
