@@ -483,12 +483,14 @@ The following activity diagram outlines what happens when a user executes the `l
 **Target user profile**:
 
 * NUS students
-* wishes to get healthier
+* wishes to get healthier or fitter
 * wishes to track their daily calorie intake
+* wants to know how many calories they should consume daily
 * wants to know how many calories are in their food
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage and calculate calorie intake quickly
+**Value proposition**: help users manage and calculate their calorie intake quickly, get recommendations on their daily calorie intake, 
+learn about the calorie content of food items and find the nearest gyms in NUS in order to meet their health and fitness goals
 
 ### User stories
 
