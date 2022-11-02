@@ -12,11 +12,15 @@ import seedu.address.model.Model;
 /**
  * Command that contains all subcommands starting with {@code sort}.
  */
-@CommandLine.Command(name = "sort", aliases = {"so"}, mixinStandardHelpOptions = true, subcommands = {
-    SortMemberCommand.class,
-    SortTaskCommand.class
-})
+@CommandLine.Command(name = SortCommand.COMMAND_WORD,
+        aliases = {SortCommand.ALIAS}, mixinStandardHelpOptions = true, subcommands = {
+            SortMemberCommand.class,
+            SortTaskCommand.class
+        })
 public class SortCommand extends Command {
+    public static final String COMMAND_WORD = "sort";
+    public static final String ALIAS = "so";
+    public static final String FULL_COMMAND = COMMAND_WORD;
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
 
@@ -32,5 +36,9 @@ public class SortCommand extends Command {
         throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT,
                 commandSpec.qualifiedName().trim()));
     }
-
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortCommand); // instanceof handles nulls
+    }
 }

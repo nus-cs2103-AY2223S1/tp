@@ -17,13 +17,17 @@ import seedu.address.model.person.Person;
 /**
  * Displays a summary of how tasks have been assigned in the current team.
  */
-@CommandLine.Command(name = "summary", aliases = {"su", "sum"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = TasksSummaryCommand.COMMAND_WORD,
+        aliases = {TasksSummaryCommand.ALIAS_SU, TasksSummaryCommand.ALIAS_SUM}, mixinStandardHelpOptions = true)
 public class TasksSummaryCommand extends Command {
     public static final String COMMAND_WORD = "summary";
+    public static final String ALIAS_SU = "su";
+    public static final String ALIAS_SUM = "sum";
+    public static final String FULL_COMMAND = COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Displays a summary of how tasks have been assigned in the current team.\n"
-            + "Example: " + COMMAND_WORD;
+            + "Example: " + FULL_COMMAND;
 
     public static final String MESSAGE_TASK_SUMMARY = "Task Summary: \n%1$s";
 

@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
 /**
- * Represents a Team in the address book.
+ * Represents a Team in the TruthTable.
  */
 public class Team {
 

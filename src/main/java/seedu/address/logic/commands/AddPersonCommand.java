@@ -35,19 +35,23 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the TruthTable.
  */
-@CommandLine.Command(name = "person", aliases = {"p"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = AddPersonCommand.COMMAND_WORD,
+        aliases = {AddPersonCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class AddPersonCommand extends Command {
-    public static final String COMMAND_WORD = "add person";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String COMMAND_WORD = "person";
+    public static final String ALIAS = "p";
+    public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
+
+    public static final String MESSAGE_USAGE = FULL_COMMAND + ": Adds a person to the TruthTable. "
             + "Parameters: "
             + FLAG_NAME_STR + " NAME "
             + FLAG_PHONE_STR + " PHONE "
             + FLAG_EMAIL_STR + " EMAIL "
             + FLAG_ADDRESS_STR + " ADDRESS "
             + "[" + FLAG_TAG_STR + " TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + FULL_COMMAND + " "
             + FLAG_NAME_STR + " \"John Doe\" "
             + FLAG_PHONE_STR + " 98765432 "
             + FLAG_EMAIL_STR + " johnd@example.com "
@@ -122,7 +126,7 @@ public class AddPersonCommand extends Command {
                 && phone.equals(o.phone)
                 && email.equals(o.email)
                 && address.equals(o.address)
-                && tags.equals(o.tags);
+                && tags == null ? false : tags.equals(o.tags);
     }
 
 }

@@ -48,10 +48,10 @@ public class Task {
     /**
      * Constructs a {@code Task}.
      *
-     * @param name A valid task name.
-     * @param assignees A list of persons this task is assigned to
+     * @param name             A valid task name.
+     * @param assignees        A list of persons this task is assigned to
      * @param completionStatus Boolean representing whether the task is completed
-     * @param deadline Datetime representing deadline of the task
+     * @param deadline         Datetime representing deadline of the task
      */
     public Task(String name, List<Person> assignees, boolean completionStatus, LocalDateTime deadline) {
         requireNonNull(name);
@@ -64,14 +64,15 @@ public class Task {
     }
 
     /**
-     * Constructs a {@code Task}.
+     * Constructs a {@code Task} without creating a copy of the UniquePersonList.
+     * Used in this file to create copies of an existing Task object with some fields changed .
      *
-     * @param name A valid task name.
-     * @param assignees A UniquePersonList of persons this task is assigned to
+     * @param name             A valid task name.
+     * @param assignees        A UniquePersonList of persons this task is assigned to
      * @param completionStatus Boolean representing whether the task is completed
-     * @param deadline Datetime representing deadline of the task
+     * @param deadline         Datetime representing deadline of the task
      */
-    public Task(String name, UniquePersonList assignees, boolean completionStatus, LocalDateTime deadline) {
+    private Task(String name, UniquePersonList assignees, boolean completionStatus, LocalDateTime deadline) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.name = name;

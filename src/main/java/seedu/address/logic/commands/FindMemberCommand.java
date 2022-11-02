@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_SEARCH_KEYWORDS_DES
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -25,19 +26,21 @@ import seedu.address.model.person.Person;
 /**
  * Finds and lists all members on the current team based on argument keywords.
  */
-@CommandLine.Command(name = "member", aliases = {"m"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = FindMemberCommand.COMMAND_WORD,
+        aliases = {FindMemberCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class FindMemberCommand extends Command {
+    public static final String COMMAND_WORD = "member";
+    public static final String ALIAS = "m";
+    public static final String FULL_COMMAND = FindCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String COMMAND_WORD = "find member";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all team members whose details contain any of "
+    public static final String MESSAGE_USAGE = FULL_COMMAND + ": Finds all team members whose details contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "If names is used, returns all members with names that contain these keywords\n"
             + "If email is used, return all members with emails that contain a substring of these keywords\n"
             + "Parameters: "
             + "[" + FLAG_NAME_STR + " NAME] "
             + "[" + FLAG_EMAIL_STR + " EMAIL] \n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + FULL_COMMAND + " "
             + FLAG_NAME_STR + " Alex ";
 
     public static final String MESSAGE_SUCCESS = "Showing all %1$d member(s) containing search string(s)%2$s. \n"
@@ -95,6 +98,19 @@ public class FindMemberCommand extends Command {
             return nameKeywords == null
                     ? Stream.of(emailKeywords).reduce("", (a, b) -> a + " " + b)
                     : Stream.of(nameKeywords).reduce("", (a, b) -> a + " " + b);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            } else if (other instanceof Exclusive) {
+                Exclusive target = (Exclusive) other;
+                return Arrays.equals(nameKeywords, target.nameKeywords)
+                        && Arrays.equals(emailKeywords, target.emailKeywords);
+            } else {
+                return false;
+            }
         }
     }
 }

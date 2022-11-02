@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.TruthTable;
 import seedu.address.model.person.Person;
 
 /**
@@ -57,13 +57,14 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalPersons() {
+    } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code TruthTable} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = AddressBook.createNewAddressBook();
+    public static TruthTable getTypicalTruthTable() {
+        TruthTable ab = TruthTable.createNewTruthTable();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }

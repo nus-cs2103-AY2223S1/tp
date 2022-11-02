@@ -26,17 +26,20 @@ import seedu.address.model.team.Task;
 /**
  * Adds a task to the current team.
  */
-@CommandLine.Command(name = "task", aliases = {"ta"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = AddTaskCommand.COMMAND_WORD,
+        aliases = {AddTaskCommand.ALIAS}, mixinStandardHelpOptions = true)
 public class AddTaskCommand extends Command {
-    public static final String COMMAND_WORD = "add task";
+    public static final String COMMAND_WORD = "task";
+    public static final String ALIAS = "ta";
+    public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = FULL_COMMAND
             + ": Adds a task to the current team.\n"
             + "Parameters:"
             + " NAME "
             + FLAG_DEADLINE_STR + " DEADLINE "
             + FLAG_ASSIGNEE_STR + " ASSIGNEE "
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + FULL_COMMAND + " "
             + " \"Review PR\" "
             + FLAG_DEADLINE_STR + " \"02-Dec-2022 23:59\" "
             + FLAG_ASSIGNEE_STR + " 1 "
@@ -111,6 +114,8 @@ public class AddTaskCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddTaskCommand // instanceof handles nulls
-                && taskName.equals(((AddTaskCommand) other).taskName)); // state check
+                && taskName.equals(((AddTaskCommand) other).taskName)) // state check
+                && Arrays.equals(assignees, ((AddTaskCommand) other).assignees)
+                && deadline == null ? false : deadline.equals(((AddTaskCommand) other).deadline);
     }
 }
