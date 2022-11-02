@@ -1,11 +1,11 @@
 package foodwhere.logic.parser;
 
 import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static foodwhere.commons.core.Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX;
 import static foodwhere.commons.core.Messages.MESSAGE_MISSING_CONTENT;
 import static foodwhere.commons.core.Messages.MESSAGE_MISSING_DATE;
 import static foodwhere.commons.core.Messages.MESSAGE_MISSING_INDEX;
 import static foodwhere.commons.core.Messages.MESSAGE_MISSING_RATING;
+import static foodwhere.logic.commands.RAddCommand.MESSAGE_INVALID_INDEX_ERROR;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -17,7 +17,6 @@ import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Rating;
-
 
 /**
  * Parses input arguments and creates a new RAddCommand object
@@ -62,8 +61,7 @@ public class RAddCommandParser implements Parser<RAddCommand> {
         try {
             stallIndex = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_STALL_INDEX).get());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_STALL_DISPLAYED_INDEX,
-                    RAddCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_INDEX_ERROR);
         }
 
         Date date = ParserUtil.parseDate(argMultimap.getValue(CliSyntax.PREFIX_DATE).get());

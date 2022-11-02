@@ -1,12 +1,12 @@
 package foodwhere.logic.commands;
 
 import static foodwhere.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static foodwhere.logic.commands.RAddCommand.MESSAGE_INVALID_INDEX_ERROR;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import foodwhere.commons.core.Messages;
 import foodwhere.commons.core.index.Index;
 import foodwhere.model.AddressBook;
 import foodwhere.model.Model;
@@ -102,7 +102,7 @@ public class RAddCommandTest {
         RAddCommand rAddCommand = new RAddCommand(outOfBoundIndex, review.getDate(),
                 review.getContent(), review.getRating(), review.getTags());
 
-        CommandTestUtil.assertCommandFailure(rAddCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(rAddCommand, model, MESSAGE_INVALID_INDEX_ERROR);
     }
 
 

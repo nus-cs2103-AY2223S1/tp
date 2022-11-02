@@ -1,6 +1,6 @@
 package foodwhere.logic.parser;
 
-import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static foodwhere.logic.commands.RDeleteCommand.MESSAGE_INVALID_INDEX_ERROR;
 
 import foodwhere.commons.core.index.Index;
 import foodwhere.logic.commands.RDeleteCommand;
@@ -21,9 +21,7 @@ public class RDeleteCommandParser implements Parser<RDeleteCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new RDeleteCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage())
-                            + RDeleteCommand.MESSAGE_USAGE);
+            throw new ParseException(MESSAGE_INVALID_INDEX_ERROR);
         }
     }
 

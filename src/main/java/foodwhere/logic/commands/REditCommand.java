@@ -1,5 +1,7 @@
 package foodwhere.logic.commands;
 
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static foodwhere.model.Model.PREDICATE_SHOW_ALL_REVIEWS;
 import static java.util.Objects.requireNonNull;
 
@@ -9,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import foodwhere.commons.core.Messages;
 import foodwhere.commons.core.index.Index;
 import foodwhere.commons.util.CollectionUtil;
 import foodwhere.logic.commands.exceptions.CommandException;
@@ -44,6 +45,10 @@ public class REditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_REVIEW = "This review already exists in FoodWhere.";
 
+    public static final String MESSAGE_INVALID_INDEX_ERROR =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INDEX)
+                    + REditCommand.MESSAGE_USAGE;
+
     private final Index index;
     private final EditReviewDescriptor editReviewDescriptor;
 
@@ -65,7 +70,11 @@ public class REditCommand extends Command {
         List<Review> lastShownList = model.getFilteredReviewList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_REVIEW_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_INDEX_ERROR);
+        }
+
+        if (!editReviewDescriptor.isAnyFieldEdited()) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
         }
 
         Review reviewToEdit = lastShownList.get(index.getZeroBased());
