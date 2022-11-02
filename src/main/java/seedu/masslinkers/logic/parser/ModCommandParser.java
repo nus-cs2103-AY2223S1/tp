@@ -30,7 +30,6 @@ import seedu.masslinkers.model.student.ModContainsKeywordsPredicate;
 import seedu.masslinkers.model.student.ModTakenContainsKeywordsPredicate;
 import seedu.masslinkers.model.student.ModTakingContainsKeywordsPredicate;
 
-//@@author jonasgwt
 /**
  * Parses input arguments and creates a new ModCommand object.
  */
@@ -64,7 +63,6 @@ public class ModCommandParser implements Parser<ModCommand> {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        // TODO: Add cases for other mod commands
         switch (commandWord) {
         case ModAddCommand.COMMAND_WORD:
             return parseAddCommand(arguments);
@@ -81,6 +79,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         }
     }
 
+    //@@author jonasgwt
     /**
      * Parses a mod add command from user to construct a ModAddCommand for execution.
      *
@@ -169,6 +168,7 @@ public class ModCommandParser implements Parser<ModCommand> {
 
     }
 
+    //@@author carriezhengjr
     /**
      * Parses a mod unmark command from user to construct a ModUnmarkCommand for execution.
      *
@@ -213,6 +213,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         return Optional.of(ParserUtil.parseMods(modSet));
     }
 
+    //@@author jonasgwt
     /**
      * Extracts out the index of the student specified in the user command.
      *
@@ -229,6 +230,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         return index;
     }
 
+    //@@author carriezhengjr
     /**
      * Extracts out the word after mod mark, which could be the index of the student or "all".
      *
@@ -285,6 +287,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         }
     }
 
+    //@@author jonasgwt
     /**
      * Extracts out the mods specified in the user command.
      *

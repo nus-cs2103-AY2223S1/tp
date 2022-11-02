@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.masslinkers.logic.commands.FindCommand;
 import seedu.masslinkers.model.student.DetailsContainsKeywordsPredicate;
+
 //@@author chm252
 public class FindCommandParserTest {
 

@@ -5,7 +5,6 @@ import static seedu.masslinkers.commons.util.AppUtil.checkArgument;
 
 import seedu.masslinkers.logic.parser.ParserUtil;
 
-//@@author jonasgwt
 /**
  * Represents a mod in Mass Linkers.
  * Guarantees: immutable; name is valid as declared in {@link #isValidModName(String)}
@@ -13,6 +12,8 @@ import seedu.masslinkers.logic.parser.ParserUtil;
 public class Mod {
     public static final String MESSAGE_CONSTRAINTS =
             "Mod names should be numbers prefixed with alphabet(s) and less than 10 characters.";
+
+    //@@author jonasgwt
     /** Categories for mods */
     public enum ModCategory {
         COMP("Computer Science"), MATH("Mathematics"), SCI("Science"), COMMS("Communication"),
@@ -72,6 +73,7 @@ public class Mod {
         return test.length() < 10 && test.matches(VALIDATION_REGEX);
     }
 
+    //@@author jonasgwt
     /**
      * Returns true if both mods have the same name.
      * This defines a weaker notion of equality between two mods.
