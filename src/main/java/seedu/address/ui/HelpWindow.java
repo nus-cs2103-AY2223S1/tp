@@ -186,7 +186,7 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String CHECK_SIMILAR_DEMO_INPUT = "checkSimilar";
     private static final String CHECK_SIMILAR_DEMO_OUTPUT = "*List of similar people*";
     private static final String CHECK_SIMILAR_USAGE_HELP = "checkSimilar checks Name, Category, Phone number, Email,"
-            +" Gender, Tags, Address and returns both person if they match 5 of these.";
+            + " Gender, Tags, Address and returns both person if they match 5 of these.";
     private static final String UPDATE_CONTACT_SEARCH_TEXT = "Update Contact";
     private static final String UPDATE_CONTACT_DEMO_INPUT = "updatecontact id/3 c/K n/John Doe p/81234567 "
             + "e/johndoe@example.com";
