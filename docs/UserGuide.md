@@ -17,7 +17,6 @@ Graphical User Interface (GUI).
 **Unsure what CLI means?** Head over [to this section](#understanding-truthtables-cli) to learn more
 </div>
 
-
 If you can type fast, TruthTable can get your task management done _blazingly fast_, faster than traditional GUI
 applications.
 
@@ -65,12 +64,12 @@ productivity while using TruthTable.
 
 Here are the symbols and text styles to look out for while using this guide:
 
-| Symbol               | Meaning                            |
-|----------------------|------------------------------------|
-| :information_source: | Important information to take note |
-| :bulb:               | Tips for all users                 |
-| :star:               | Tips for advanced users            |
-| :exclamation:        | Critical information to be wary of |
+| Symbol               | Meaning                                          |
+|----------------------|--------------------------------------------------|
+| :information_source: | Important information for all users to take note |
+| :bulb:               | Tip for all users                                |
+| :star:               | Tip for advanced users                           |
+| :exclamation:        | Critical information to be wary of               |
 
 | Text Style                 | Meaning                                              |
 |----------------------------|------------------------------------------------------|
@@ -91,7 +90,6 @@ Throughout the guide, there will also be alerts that look the following.
 <div markdown="block" class="alert alert-warning">
 **Warning alert**: This alert contains important information to be wary of.
 </div>
-
 
 
 ## Table of Contents
@@ -234,7 +232,6 @@ Here's a summary of what each highlighted section represents.
 | 2      | Flag/Option        | Text that is used to modify the operation of a command, often starting with `-` or `--` |
 | 3      | Parameter/Argument | Information specified for a command to operate, often used after flags                  |
 
-
 <div markdown="block" class="alert alert-info">
 **:information_source: Important note for flags**
 
@@ -254,7 +251,7 @@ For instance,
 - `add person -n "full name" ...` will recognise "full name" as the name being specified for the new person
 - `add person -n full name ...` will recognise "full" as the name being specified for the new person, however, this 
   command will not execute successfully as `name` will be treated as a **flag** (and this flag does not exist for 
-  this command)
+  the `add person` command)
 </div>
 
 ### Understanding the help message
@@ -271,14 +268,29 @@ any command.
 
 Here's a summary of what each highlighted section represents.
 
-| Number | Name                       | Meaning |
-|--------|----------------------------|---------|
-| 1      | Command                    |         |
-| 2      | Optional Flag              |         |
-| 3      | Required Flag              |         |
-| 4      | Flag Alias                 |         |
-| 5      | Flag/Parameter Description |         |
+| Number | Name                            | Special Syntax       | Remarks                                                                        |
+|--------|---------------------------------|----------------------|:-------------------------------------------------------------------------------|
+| 1      | Command                         | -                    | Strictly alphabets only (all commands can be found [here](#command-summary))   |
+| 2      | Optional Flag with no Parameter | `[-flag]`            | -                                                                              |
+| 3      | Optional Flag with Parameters   | `[-flag=parameters]` | An ellipsis `...` is present only if more than 1 parameter is **allowed**      |
+| 4      | Required Flag with Parameters   | `flag=parameters`    | An ellipsis `...` is present only if more than 1 parameter is **required**     |
+| 5      | Required Parameter              | `<parameter>`        | All parameters are required by default                                         |
+| 6      | Flag/Parameter Name and Alias   | -                    | All aliases of a flag/parameter will be listed and separated with commas (`,`) |
+| 7      | Flag/Parameter Description      | -                    | Brief description of flag/parameter                                            |
 
+<div markdown="block" class="alert alert-info">
+**:star: POSIX clustered short options**: TruthTable supports clustered options as specified 
+[here](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02)
+</div>
+
+<div markdown="block" class="alert alert-info">
+**:bulb: Flags with multiple parameters**
+
+If a flag is displayed with `...` behind it, this means that the flag takes in an unlimited amount of parameters.
+
+For instance, in the `assign task` command, we can specify an unlimited number of assignees (provided they are valid)
+. A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognised as the assignees to the task with index `1`.
+</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -760,6 +772,7 @@ the data of your previous TruthTable home folder.
 | Command                  |         |
 | Parameter                |         |
 | Index                    |         |
+| Alias                    |         | 
 | Command Line Interface   |         |
 | Graphical User Interface |         |
 
