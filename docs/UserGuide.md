@@ -11,6 +11,7 @@ This user guide will help you get started and understand how FABook can **seamle
 
 # Table of Contents
 
+* TOC 
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -149,7 +150,7 @@ Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw
 
 ##### Common Data Field Formats
 
-| Data Field           | Format, Example                 | Remarks                                                                                         |
+| Data Field           | Format                          | Remarks                                                                                         |
 |----------------------|---------------------------------|-------------------------------------------------------------------------------------------------|
 | **`n/NAME`**         | `n/[name]`                      | Name should only contain alphanumeric characters and spaces, and it should not be blank         |
 | **`p/PHONE_NUMBER`** | `p/[phone_number]`              | Phone Number should only contain numbers and should be at least 3 digits long                   |
