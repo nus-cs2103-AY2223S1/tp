@@ -13,16 +13,16 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteBuyerCommand;
-import seedu.address.logic.commands.DeletePropertyCommand;
-import seedu.address.logic.commands.EditBuyerCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindBuyersCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListBuyersCommand;
-import seedu.address.logic.commands.ListPropertiesCommand;
+import seedu.address.logic.commands.buyer.AddBuyerCommand;
+import seedu.address.logic.commands.buyer.DeleteBuyerCommand;
+import seedu.address.logic.commands.buyer.EditBuyerCommand;
+import seedu.address.logic.commands.buyer.FindBuyersCommand;
+import seedu.address.logic.commands.buyer.ListBuyersCommand;
+import seedu.address.logic.commands.property.DeletePropertyCommand;
+import seedu.address.logic.commands.property.ListPropertiesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.NameContainsKeywordsPredicate;
