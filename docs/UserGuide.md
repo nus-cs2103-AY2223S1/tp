@@ -93,7 +93,11 @@ Required Arguments:
 Show the list of modules that are the given module's prerequisites.
 
 **Note**: `preq` is not always able to show prerequisites for all modules due to limitations of the NUSMods API.
-Some modules have a prerequisite description but the NUSMods API is unable to provide prerequisite module codes.
+- Some modules may list a prerequisite module code that is no longer offered in the current academic year. Such 
+modules will not be shown in the list of prerequisites after running `preq`.
+- Some modules have a prerequisite description but the NUSMods API is unable to provide prerequisite module codes 
+(e.g `LLJ5479`). 
+- The `preq` command does not show and/or relationships between prerequisite modules.
 
 ### Add modules to user list: `add`
 
