@@ -30,6 +30,33 @@ If you want to **quick**ly get **start**ed with using HobbyList, you can read an
 #### Features
 The [features](#5-features) section contains a list of all the features that HobbyList currently has. Within each feature, you can read up on how each feature is used and look at some examples.
 
+#### Special boxes
+Throughout the entire user guide, there are special boxes like the ones below which gives you additional information.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Additional information:**<br>
+
+Boxes such as this one with an information symbol :information_source: are used to provide additional information which you should read if you want to use the related features or understand the user guide properly.
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**<br>
+
+Boxes such as this one with an exclamation mark :exclamation: are used to warn you about things that you should take note of, as certain actions may cause intended drastic consequences.
+
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**<br>
+
+Boxes such as this one with a light bulb :bulb: are used to provide some tips which you can make use of to improve your experience with HobbyList.
+
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Quick start
@@ -40,7 +67,7 @@ The [features](#5-features) section contains a list of all the features that Hob
 
 3. Copy the file to the folder you want to use as the _home folder_ for your HobbyList.
 
-4. Double-click the file to start the app. The default GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The default GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/default_gui.png)
 
 5. Type the command in the command box and press Enter to execute it.<br>
@@ -59,8 +86,11 @@ The [features](#5-features) section contains a list of all the features that Hob
 6. Click the button located in the top left corner to execute certain task.<br>
    Some example buttons you can try:
     * **`File`** : To find the exit button.
+
     * **`Preference`** : To set command words according to user's preference.
+    
     * **`Help`** : To open a pop-up window containing more helping information.
+
     * **`Theme`** : To change different appearance of the app.
 
 7. Refer to the [Features](#5-features) below for details of each command.
