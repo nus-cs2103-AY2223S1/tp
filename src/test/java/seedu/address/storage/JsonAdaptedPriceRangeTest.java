@@ -19,7 +19,7 @@ public class JsonAdaptedPriceRangeTest {
     @Test
     public void toModelType_validLowerBound_returnsPriceRange() throws Exception {
         Double lowerBound = 40.988;
-        PriceRange expected = new PriceRange(new Price(VALID_UPPER_BOUND), new Price(lowerBound));
+        PriceRange expected = new PriceRange(new Price(lowerBound), new Price(VALID_UPPER_BOUND));
 
         JsonAdaptedPriceRange priceRange = new JsonAdaptedPriceRange(VALID_UPPER_BOUND, lowerBound);
         assertEquals(priceRange.toModelType(), expected);
@@ -42,7 +42,7 @@ public class JsonAdaptedPriceRangeTest {
     @Test
     public void toModelType_validUpperBound_returnsPriceRange() throws Exception {
         Double upperBound = 108.89;
-        PriceRange expected = new PriceRange(new Price(upperBound), new Price(VALID_LOWER_BOUND));
+        PriceRange expected = new PriceRange(new Price(VALID_LOWER_BOUND), new Price(upperBound));
 
         JsonAdaptedPriceRange priceRange = new JsonAdaptedPriceRange(upperBound, VALID_LOWER_BOUND);
         assertEquals(priceRange.toModelType(), expected);
