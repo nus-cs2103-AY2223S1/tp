@@ -23,7 +23,7 @@ import seedu.taassist.model.student.StudentView;
  */
 public class StudentCard extends UiPart<Region> {
 
-    private static final String FXML = "StudentListCard.fxml";
+    private static final String FXML = "StudentCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
