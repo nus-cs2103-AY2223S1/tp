@@ -183,10 +183,12 @@ These are the steps that will be taken when parsing a range command:
 2. The `RangePropertyCommandParser` which implements the `Parser` interface, parses the command via `Parser#parse`.
 3. If the user command is valid, the parser creates the corresponding `Command` object for execution.
 
-Given below is a sequence diagram for interactions inside the Logic component for the `execute(range -p l/100 u/200` 
+Given below is a sequence diagram for interactions inside the Logic component for the `execute(range -p l/<LOWER> u/<UPPER>` 
 API call.
+- Note that the command is truncated for brevity and <LOWER> and <UPPER> are used as placeholders to encapsulate the remaining arguments supplied by the user.
+- For example, if the full command was `range -p l/100,000 u/500,000`, then `l/<LOWER> u/<UPPER>` is equivalent to `l/100,000 u/500,000`.
 
-[Diagram to be added]
+![RangeSequenceDiagram](images/RangeSequenceDiagram.png)
 
 **Execution of command within the `Logic` component**
 
@@ -197,7 +199,7 @@ Firstly, the `updateFilteredPropertyList` is called to get the list of propertie
 
 Next, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
 
-[Diagram to be added]
+![RangeExecuteSequenceDiagram](images/RangeExecuteSequenceDiagram.png)
 
 **Error handling within the `Logic` component**
 
@@ -205,10 +207,10 @@ The below activity diagram shows the overall process of execution of `execute(ra
 
 In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
 
-- Incorrect command format is used (i.e. missing price as argument)
-- Missing prefixes
+- Incorrect command format is used (e.g. missing price as argument, missing prefixes)
+- Arguments are invalid (e.g. negative prices)
 
-[Diagram to be added]
+![RangeActivityDiagram](images/RangeActivityDiagram.png)
 
 **Design consideration**
 
@@ -232,7 +234,6 @@ Alternative 1 was chosen to enable more efficient parsing of commands.
 
 `PropertyPriceWithinRangePredicate` 
 
-Firstly, 
 ### Commands
 
 #### \[Proposed\] Search Command
