@@ -14,8 +14,8 @@ import java.time.LocalTime;
  */
 public class StartTime implements Comparable<StartTime> {
 
-    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Start time must be in format: hh:mm\n"
-            + "hh and mm must be zero padded number of length 2, eg. 02:30";
+    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Start time must be in format: hh:mm,"
+            + " hh and mm must be zero padded number of length 2, eg. 02:30";
     public static final String MESSAGE_VALUE_CONSTRAINTS = "%s exceeds the range of valid time value.";
     private static final DecimalFormat TIME_FORMATTER = new DecimalFormat("00");
     private static final String VALIDATION_REGEX = "\\d{2}:\\d{2}";
