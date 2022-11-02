@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.clinkedin.testutil.Assert.assertThrows;
+import static seedu.clinkedin.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.clinkedin.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -17,15 +19,20 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.clinkedin.commons.core.GuiSettings;
 import seedu.clinkedin.commons.core.index.Index;
+import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.model.AddressBook;
 import seedu.clinkedin.model.Model;
+import seedu.clinkedin.model.ModelManager;
 import seedu.clinkedin.model.ReadOnlyAddressBook;
 import seedu.clinkedin.model.ReadOnlyUserPrefs;
+import seedu.clinkedin.model.UserPrefs;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.tag.TagType;
 
 public class AddTagCommandTest {
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void constructor_nullIndexNullTag_throwsNullPointerException() {
@@ -41,6 +48,66 @@ public class AddTagCommandTest {
     public void constructor_nullTag_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddTagCommand(Index.fromZeroBased(0), null));
     }
+
+    @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        AddTagCommand addTagCommand = new AddTagCommand(Index.fromZeroBased(0), new UniqueTagTypeMap());
+        assertThrows(NullPointerException.class, () -> addTagCommand.execute(null));
+    }
+
+    @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        AddTagCommand addTagCommand = new AddTagCommand(Index.fromZeroBased(100), new UniqueTagTypeMap());
+        assertThrows(CommandException.class, () -> addTagCommand.execute(model));
+    }
+
+    @Test
+    public void execute_emptyTag_noChangeSuccess() {
+        Person personToEdit = model.getFilteredPersonList().get(0);
+        AddTagCommand addTagCommand = new AddTagCommand(Index.fromZeroBased(0), new UniqueTagTypeMap());
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, personToEdit.toString());
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTagTypeMap(), personToEdit.getStatus(),
+                personToEdit.getNote(),
+                personToEdit.getRating(), personToEdit.getLinks());
+        expectedModel.setPerson(personToEdit, editedPerson);
+        assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_duplicateTag_duplicateTagExceptionThrown() {
+        Person personToEdit = model.getFilteredPersonList().get(0);
+        UniqueTagTypeMap toAdd = new UniqueTagTypeMap();
+        toAdd.setTagTypeMap(personToEdit.getTagTypeMap());
+        AddTagCommand addTagCommand = new AddTagCommand(Index.fromZeroBased(0), toAdd);
+        assertThrows(CommandException.class, () -> addTagCommand.execute(model));
+    }
+
+    // TODO: Fix valid tag test case
+    // @Test
+    // public void execute_validTag_success() {
+    // Person personToEdit = model.getFilteredPersonList().get(0);
+    // UniqueTagTypeMap toAdd = new UniqueTagTypeMap();
+    // toAdd.mergeTag(new TagType("Skills"), new Tag("Test Tag"));
+    // AddTagCommand addTagCommand = new AddTagCommand(Index.fromZeroBased(0),
+    // toAdd);
+    // String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS,
+    // personToEdit.toString());
+
+    // UniqueTagTypeMap editedTagTypeMap = new UniqueTagTypeMap();
+    // Map<TagType, UniqueTagList> tagTypeMap = new HashMap<>();
+    // tagTypeMap.putAll(personToEdit.getTagTypeMap().asUnmodifiableObservableMap());
+    // editedTagTypeMap.setTagTypeMap(toAdd);
+    // editedTagTypeMap.mergeTagTypeMap(personToEdit.getTagTypeMap());
+
+    // Person editedPerson = new Person(personToEdit.getName(),
+    // personToEdit.getPhone(), personToEdit.getEmail(),
+    // personToEdit.getAddress(), editedTagTypeMap, personToEdit.getStatus(),
+    // personToEdit.getNote(),
+    // personToEdit.getRating(), personToEdit.getLinks());
+    // expectedModel.setPerson(personToEdit, editedPerson);
+    // assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
+    // }
 
     @Test
     public void equals() {
