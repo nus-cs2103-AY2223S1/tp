@@ -19,6 +19,10 @@ public class ToggleViewCommand extends Command {
     public CommandResult execute(Model model) {
         model.toggleStudentListInfoConcise();
         model.updateFilteredStudentList(x -> false);
+
+        // FilteredStudyList should be empty
+        assert model.getFilteredStudentList().size() == 0;
+
         Predicate<Student> prevPredicate = model.getPrevPredicate();
         model.updateFilteredStudentList(prevPredicate);
 
