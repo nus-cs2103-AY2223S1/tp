@@ -30,6 +30,8 @@ public class RateCommand extends Command {
             + PREFIX_RATE + "3 ";
 
     public static final String MESSAGE_RATE_SUCCESS = "Performance successfully rated for %1$s";
+    public static final String MESSAGE_EMPLOYEE_RATING_COMPLETED =
+        "This employee's performance for the day has been rated.";
 
     private EmployeeId targetId;
     private Rating rating;
@@ -57,6 +59,12 @@ public class RateCommand extends Command {
         }
         if (targetPerson == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        for (Rating ratinglist : targetPerson.getRatingHistory()) {
+            if (ratinglist.getTime().equals(rating.getTime())) {
+                throw new CommandException(MESSAGE_EMPLOYEE_RATING_COMPLETED);
+            }
         }
 
         targetPerson.setRating(rating);
