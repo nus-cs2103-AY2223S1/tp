@@ -44,6 +44,11 @@ public class ParticipateCommandParser extends EditStudentCommandParser
         ParticipateCommand.ParticipateCommandStudentEditor editor = null;
 
         boolean participated = parseOption(preamble[1]);
+
+        if(argMultimap.getValue(PREFIX_PARTICIPATION).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, getUsageMessage()));
+        }
+
         String participationComponent = ParserUtil
                 .parseParticipationComponent(argMultimap.getValue(PREFIX_PARTICIPATION).orElse(""));
         Participation participation = new Participation(participationComponent, participated);
