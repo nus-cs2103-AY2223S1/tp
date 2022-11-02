@@ -54,7 +54,7 @@ public class Social {
      */
     public Social() {
         this.links = new String[5];
-        links[4] = "file:src/main/resources/images/profile_pic.png";
+        links[4] = "file:src/main/resources/images/default_pic.png";
     }
 
     /**
