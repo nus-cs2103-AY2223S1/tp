@@ -158,7 +158,7 @@ Shortcut key: <kbd>F1</kbd>
 
 Adds a task to the task list.
 
-Format: `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME*]`
+Format: `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME]*`
 
 **Reminder**: Params in `[]` are **optional**, and `-t TAG_NAME` can be used multiple times.
 
@@ -264,13 +264,10 @@ Format: `clear`
 listing all tasks, unmarked tasks, all tasks under a module name, etc. You may apply multiple list flags in one
 command to filter a list down to the results you are looking for. To reset the list, use the command `ls -a`.
 
-<div markdown="span" class="alert alert-warning">
 **:exclamation: Caution:** <br>
 
 * Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match. It is also case-insensitive. 
 * Any command that searches for tags finds all tags that exactly match, but is also case-insensitive.
-
-</div>
 
 Current filters applied will be shown in the UI at the top bar.
 
@@ -470,7 +467,7 @@ Format meanings:
 | **Exit** NotionUS           | `exit`                                                                                                                                                                                                                                                                                                                                                                                                                                 |                                              |
 | **Find** task/tag with name | `find KEYWORD/TAG_NAME*`                                                                                                                                                                                                                                                                                                                                                                                                               | `find Tutorial Lab`                          |
 | **Help**                    | `help`                                                                                                                                                                                                                                                                                                                                                                                                                                 |                                              |
-| **List** specific tasks     | `ls [-a] [-u] [-m] [--module MODULE] [-t TAG_NAME] [-d YYYY-MM-DD] [-n KEYWORD*]`<br/>`ls -a` View all tasks<br/>`ls -u` View all incomplete tasks<br/> `ls -m` View all marked tasks<br/> `ls --module MODULE` View tasks under the specific module<br/> `ls -t TAG_NAME` View tasks with a specific tag<br/> `ls -d YYYY-MM-DD` View tasks on or after a specific date <br/> `ls -n KEYWORD*` View task names with matching keywords | `ls -n task test --module CS2103T `          |
+| **List** specific tasks     | `ls [-a] [-u] [-m] [--module MODULE] [-t TAG_NAME] [-d YYYY-MM-DD] [-n KEYWORD]*`<br/>`ls -a` View all tasks<br/>`ls -u` View all incomplete tasks<br/> `ls -m` View all marked tasks<br/> `ls --module MODULE` View tasks under the specific module<br/> `ls -t TAG_NAME` View tasks with a specific tag<br/> `ls -d YYYY-MM-DD` View tasks on or after a specific date <br/> `ls -n KEYWORD*` View task names with matching keywords | `ls -n task test --module CS2103T `          |
 | **Mark** tasks              | `mark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                                     | `mark 2`                                     |
 | **Show Archived** tasks     | `showarchive`                                                                                                                                                                                                                                                                                                                                                                                                                          |                                              |
 | **Tagging** a task          | `tag TASK_NUMBER (-t TAG_NAME)*`                                                                                                                                                                                                                                                                                                                                                                                                       | `tag 1 -t highPriority -t homework`          |
