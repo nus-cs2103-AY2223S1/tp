@@ -86,9 +86,9 @@ in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`,
-`QuestionListPanel`, `TutorialListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`,
-inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the
-visible GUI.
+
+`QuestionListPanel`, `TutorialListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the
+abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
@@ -117,14 +117,13 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddStuCommand`) which
-   is
-   executed by the `LogicManager`.
+   is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletestu 1")`
-API
-call.
+API call.
+
 
 ![Interactions Inside the Logic Component for the `deletestu 1` Command](images/DeleteStuSequenceDiagram.png)
 
@@ -139,10 +138,9 @@ How the parsing works:
 
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a
   placeholder for the specific command name e.g., `AddStuCommandParser`) which uses the other classes shown above to
-  parse
-  the user command and create a `XYZCommand` object (e.g., `AddStuCommand`) which the `AddressBookParser` returns back
-  as
-  a `Command` object.
+  parse the user command and create a `XYZCommand` object (e.g., `AddStuCommand`) which the `AddressBookParser` returns
+  back as a `Command` object.
+
 * All `XYZCommandParser` classes (e.g., `AddStuCommandParser`, `DeleteStuCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
@@ -157,14 +155,12 @@ API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/
 The `Model` component,
 
 * stores the address book data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object), all
-  `Question` objects (which are contained in a `UniqueQuestionList` object), all `Tutorial` objects (which are
-  contained
+  `Question` objects (which are contained in a `UniqueQuestionList` object), all `Tutorial` objects (which are contained
   in a `UniqueTutorialList` object)
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list
-  which
-  is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be
-  bound to
-  this list so that the UI automatically updates when the data in the list change. The same applies to `Question`
+  which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be
+  bound to this list so that the UI automatically updates when the data in the list change. The same applies
+  to `Question`
   objects with `ObservableList<Question>`, and `Tutorial` objects with `ObservableList<Tutorial>`
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
@@ -204,8 +200,7 @@ the student will be added on the Graphical User Interface.
 
 #### Implementation
 
-The Add Student mechanism is facilitated by `AddressBook`.
-It implements the following operations:
+The Add Student mechanism is facilitated by `AddressBook`. It implements the following operations:
 
 * `AddressBook#hasStudent(Student s)` - Returns true if a student with the same identity as Student s exists in the
   address book.
@@ -219,8 +214,8 @@ Given below is an example usage scenario and how the `addstu` mechanism behaves 
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialised with the initial
 json data stored.
 
-Step 2. The user execute `addstu n/John Doe...` command to add student called John Doe to the address book.
-The `addstu` command calls `AddStuCommandParser#parse()` which parses the string keyed into the command line of the GUI.
+Step 2. The user execute `addstu n/John Doe...` command to add student called John Doe to the address book. The `addstu`
+command calls `AddStuCommandParser#parse()` which parses the string keyed into the command line of the GUI.
 
 Step 3. `AddStuCommandParser#parse()` invokes the creation of an `AddStuCommand` object.
 
@@ -232,8 +227,9 @@ and `Model#addStudent(Student student)`
 methods are called.
 
 **Note:** If upon invoking `Model#hasStudent(Student s)` method and return value is `true`, it will not
-call `Model#addStudent(Student student)`,
-so the student will not be added into the student list as student already exist in the list.
+call `Model#addStudent(Student student)`, so the student will not be added into the student list as student already
+exist in the list.
+
 
 Step 5. After successfully adding student to the student list, a `CommandResult` object will be created to tell the user
 that the student has been successfully added.
@@ -259,8 +255,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Add Response feature
 
-The `AddResponse` feature allows users to edit the response count of a `Student` object. When successfully edited,
-the response count will be updated on the Graphical User Interface.
+The `AddResponse` feature allows users to edit the response count of a `Student` object. When successfully edited, the
+response count will be updated on the Graphical User Interface.
 
 #### Implementation
 
@@ -313,12 +309,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The proposed add question mechanism is facilitated by `AddressBook`.
-It implements the following operations:
+The proposed add question mechanism is facilitated by `AddressBook`. It implements the following operations:
 
 * `AddressBook#hasQuestion(Question question)` - Returns true if a question with the same identity as Question question
-  exists in the
-  address book.
+  exists in the address book.
+
 * `AddressBook#addQuestion(Question question)` - Adds a question to the question list in the address book.
 
 These operations are exposed in the Model interface as `Model#hasQuestion(Question question)`
@@ -345,6 +340,7 @@ after the `addq Why?` command executes to be saved in the `addressBook`.
    example, if a question in the `question list` is "why?", another question called "WHY?" can be added. Duplicates are
    not allowed. E.g. adding another question called "why?".
 
+
 The following sequence diagram shows how the add question operation works:
 ![AddQSequenceDiagram](images/AddQSequenceDiagram.png)
 
@@ -370,9 +366,8 @@ _{more aspects and alternatives to be added}_
 
 #### Implementation
 
-The proposed add attendance mechanism is facilitated by `UniqueStudentList`.
-It is stored internally as an `Attendance` along with other attributes of a `Student`.
-It is first initialized upon creation of a `Student` object and set as `0`.
+The proposed add attendance mechanism is facilitated by `UniqueStudentList`. It is stored internally as an `Attendance`
+along with other attributes of a `Student`. It is first initialized upon creation of a `Student` object and set as `0`.
 
 Given below is an example usage scenario and how the attendance machanism behaves at each step.
 
@@ -820,8 +815,8 @@ otherwise)
 
 Given below are instructions to test the app manually.
 
-**Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+**Note:** These instructions only provide a starting point for testers to work on; testers are expected to do more *
+exploratory* testing.
 
 ### Launch and shutdown
 
@@ -829,8 +824,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    2. Double-click the jar file Expected: Shows the GUI. The window size will take up the
-       full screen.
+    2. Double-click the jar file Expected: Shows the GUI. The window size will take up the full screen.
+
 
 2. Saving window preferences
 

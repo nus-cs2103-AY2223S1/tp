@@ -31,7 +31,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private QuestionListPanel questionListPanel;
     private TutorialListPanel tutorialListPanel;
     private StudentListPanel studentListPanel;
@@ -184,9 +183,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
 
     public QuestionListPanel getQuestionListPanel() {
         return questionListPanel;
@@ -194,6 +190,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
+    }
+
+    public TutorialListPanel getTutorialListPanel() {
+        return tutorialListPanel;
     }
 
     /**
