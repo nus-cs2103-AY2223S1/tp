@@ -45,12 +45,12 @@ public class EditBuyerCommand extends Command {
             + "[" + PREFIX_ADDRESS + " ADDRESS] "
             + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE] "
             + "[" + PREFIX_CHARACTERISTICS + " DESIRED CHARACTERISTICS] "
-            + "[" + PREFIX_PRIORITY + "high]...\n"
+            + "[" + PREFIX_PRIORITY + "high]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_BUYER_SUCCESS = "Edited Buyer: %1$s";
+    public static final String MESSAGE_EDIT_BUYER_SUCCESS = "Edited Buyer!\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_BUYER = "This buyer already exists in Cobb.";
 
