@@ -41,9 +41,13 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_TUTORIAL = "T08";
-    public static final String VALID_CONTENT = "UML";
-    public static final String VALID_TIME = "2022-10-01T08:00:00";
+
+    public static final String VALID_GROUP_TUTORIAL1 = "T08";
+    public static final String VALID_GROUP_TUTURIAL2 = "T09";
+    public static final String VALID_CONTENT_TUTORIAL1 = "UML";
+    public static final String VALID_CONTENT_TUTORIAL2 = "Developer Guide";
+    public static final String VALID_TIME_TUTORIAL1 = "2022-10-01 1400";
+    public static final String VALID_TIME_TUTORIAL2 = "2022-10-01 1600";
     public static final String VALID_TELEGRAM_AMY = "@amy";
     public static final String VALID_TELEGRAM_BOB = "@bob_choo";
     public static final String VALID_RESPONSE_AMY = "2";
