@@ -29,10 +29,11 @@ Workbook is optimized for fast typists and utilizes a **Command Line Interface (
 
 3. Copy the file to a folder of your choice to store data from your WorkBook.
 
-4. Using your command terminal, navigate to the folder where you placed your WorkBook at and fire it up by inputting: `java -jar WorkBook.jar` in your terminal. <br> The GUI with sample data similar to one of the images below should appear in a few seconds.<br>
-    ![Wide Ui](images/Ui.png)
+4. Using your command terminal, navigate to the folder where you placed your WorkBook at and fire it up by inputting: `java -jar WorkBook.jar` in your terminal. <br> The GUI with sample data should appear in a few seconds. Depending on the window width, you will see one of the two layouts shown below.<br>
 
-    ![Narrow Ui](images/UiNarrow.png)
+Narrow Layout            |  Wide Layout
+:-------------------------:|:-------------------------:
+![narrow layout](images/UiNarrow.png) |   ![wide layout](images/Ui.png)
 
 <br>
 5. You can tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application and pressing <kbd>⏎ Enter</kbd> to execute. <br>
@@ -128,9 +129,9 @@ This guide serves to:<br>
 * An example is shown below:
 ![SortExample](images/SortExample.png)
 
-#### Responsive Ui when window resizing
+#### Responsive UI when resizing window
 
-* The Ui will change dynamically when resized.
+* The UI will change dynamically depending on the window width.
 
 * If the window width is too small, WorkBook will switch to a narrow layout for a better UX.
 
@@ -215,8 +216,32 @@ Lists all of your internship applications in WorkBook in a [sorted order](#3-thi
 </div>
 
 Format: `list`
+### 6.4. Viewing tips for your applications:
 
-### 6.4. Finding your internships:
+For some application stages, we have included a list of useful tips to help you prepare for and ace the deliverables.
+
+Below are the application stages that we have included tips for.
+
+| Application Stage |
+|--------|
+| `Application Sent` |
+| `Online Assessment` |
+| `Technical Interview` |
+| `Behavioral Interview` |
+| `Phone Interview` |
+| `Rejected` |
+
+If WorkBook is in the [narrow layout](#responsive-ui-when-window-resizing), simply click on the light bulb icon to view the tips for that application. A window will appear showing all the tips for that application.
+
+Light Bulb Button            |  Tips Window
+:-------------------------:|:-------------------------:
+![light bulb button](images/ClickLightBulb.png) |   ![tips window](images/TipsWindow.png)
+
+
+To view the tips in the [wide layout](#responsive-ui-when-window-resizing), simple click and select the application you would like to view the tips for. The tips will appear in the right panel.
+
+![Tips Panel](images/TipsPanel.png)
+### 6.5. Finding your internships:
 
 If you wanted to view all your internship applications corresponding to a particular company, stage or role,
 then this command is for you! <br>
@@ -244,7 +269,7 @@ Examples:
 * `find r/Engineer` returns `Software Engineer` and `Backend Engineer`.
 * `find s/Interview` returns `Technical Interview` and `Behavioural Interview`.
 
-### 6.5. Deleting your internship application:
+### 6.6. Deleting your internship application:
 
 If you wanted to remove an internship application then this command
 deletes the specified internship application from WorkBook.
@@ -264,7 +289,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd internship application in WorkBook.
 * `find Meta` followed by `delete 1` deletes the 1st internship application within the results of the `find` command.
 
-### 6.6. Clearing your existing internship applications:
+### 6.7. Clearing your existing internship applications:
 
 It's a new cycle of summer internship applications and that means it's time for some spring-cleaning! 
 Use this command to clear all the applications you've previously saved in WorkBook!
@@ -278,7 +303,7 @@ Example:
 **:bulb: Tip:** If you cleared your internship applications by mistake, fret not as you can easily undo this!
 </div>
 
-### 6.7. Undoing your previous command:
+### 6.8. Undoing your previous command:
 
 Restores the WorkBook to the state before the previous <em>undoable</em> command was executed
 
@@ -311,7 +336,7 @@ Examples:
 
     `undo` (reverses the `delete 1` command )
 
-### 6.8. Redoing your previous command:
+### 6.9. Redoing your previous command:
 
 Reverses the most recent `undo` command.
 
@@ -344,43 +369,17 @@ Examples:
 
   `redo`(reapplies the `clear` command)
 
-### 6.9. Viewing help:
+### 6.10. Viewing help:
 
 Shows a summary of the commands as well as a link to this User Guide.
 
 Format: `help`
 
-### 6.10. Exiting the program:
+### 6.11. Exiting the program:
 
 Exits the program.
 
 Format: `exit`
-
-### 6.11. Viewing application stage tips
-
-For some specific application stages, we have included a list of useful tips to help you prepare for and ace the deliverables.
-
-Below is a list of application stages that we have tips for.
-
-| Application Stage |
-|--------|
-| `Application Sent` |
-| `Online Assessment` |
-| `Technical Interview` |
-| `Behavioral Interview` |
-| `Phone Interview` |
-| `Rejected` |
-
-If WorkBook is in the [narrow layout](#responsive-ui-when-window-resizing), simply click on the light bulb icon to view the tips for that application.
-
-![Click the Light Bulb](images/ClickLightBulb.png)
-
-![Tips Window](images/TipsWindow.png)
-
-To view the tips in the [wide layout](#responsive-ui-when-window-resizing), simple click and select the application you would like to view the tips for. The tips will appear in the right panel.
-
-![Tips Panel](images/TipsPanel.png)
-
 
 --------------------------------------------------------------------------------------------------------------------
 
