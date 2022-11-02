@@ -36,7 +36,7 @@ import seedu.address.model.task.TaskStatus;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index should be an unsigned integer that is"
-            + "greater than 0 and less than 2147483647.";
+            + "greater than 0 and less than 2147483648.";
     public static final String MESSAGE_INVALID_KEYWORDS = "The keywords for tagdel must be priority"
             + " or deadline or both.";
     public static final String MESSAGE_INVALID_NUMBER_OF_KEYWORDS = "The number of keywords used for tag"
