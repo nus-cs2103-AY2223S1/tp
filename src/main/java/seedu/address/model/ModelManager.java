@@ -365,13 +365,19 @@ public class ModelManager implements Model {
                     history.updateRedoPatientsHistory();
                     history.updateRedoAppointmentsHistory();
                     history.updateRedoBillsHistory();
-                    setHealthContact(history.getHealthContactHistory(history.getHealthContactHistorySize() - 2));
-                    filteredPatients.setPredicate(history.getPatientsPredicate(history.getPatientsHistorySize() - 2));
+                    int pointer = 2;
+                    while (history.getHealthContactHistory(history.getHealthContactHistorySize() - 1)
+                            .equals(history.getHealthContactHistory(history.getHealthContactHistorySize() - pointer))) {
+                        pointer = pointer + 1;
+                    }
+                    setHealthContact(history.getHealthContactHistory(history.getHealthContactHistorySize() - pointer));
+                    filteredPatients.setPredicate(history.getPatientsPredicate(history.getPatientsHistorySize() - pointer));
                     filteredAppointments.setPredicate(history
-                            .getAppointmentsPredicate(history.getAppointmentsHistorySize() - 2));
-                    filteredBills.setPredicate(history.getBillsPredicate(history.getBillsHistorySize() - 2));
-                    history.deleteHealthContactHistory(history.getHealthContactHistorySize() - 1);
-                    history.deleteHealthContactHistory(history.getHealthContactHistorySize() - 1);
+                            .getAppointmentsPredicate(history.getAppointmentsHistorySize() - pointer));
+                    filteredBills.setPredicate(history.getBillsPredicate(history.getBillsHistorySize() - pointer));
+                    for (int i = 0; i < pointer - 1; i++) {
+                        history.deleteHealthContactHistory(history.getHealthContactHistorySize() - 1);
+                    }
                 } catch (IndexOutOfBoundsException e) {
                     throw new CommandException("Undo cannot be done as there was no previous action");
                 }
