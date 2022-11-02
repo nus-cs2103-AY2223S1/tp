@@ -96,7 +96,8 @@ Adds a student to the student list.
 
 Format: `addstu n/NAME h/TELEGRAM_HANDLE e/EMAIL`
 
-* Telegram handle must start with a '@'.
+* Telegram handle must start with a '@', followed by an alphanumeric character.
+* After the first character, telegram handle can only contain alphanumeric character or underscore.
 * Email can only contain alphanumeric characters.
 
 Examples:
@@ -111,9 +112,10 @@ Edits an existing student in the student list.
 Format: `editstu INDEX [n/NAME] [h/TELEGRAM_HANDLE] [e/EMAIL] [a/ATTENDANCE]`
 
 * Edits the student at the specified INDEX. The index represents the index number of the student in the student list.
-  The index must be a positive integer 0, 1, 2…
+  The index must be a positive integer 1, 2…
 * At least one of the fields (E.g. [n/NAME] or [e/EMAIL]) must be provided.
 * Existing fields will be updated to the input values.
+* Input attendance value without any extra '0's before and after the intended attendance value. (E.g. '0' instead of '0000' and '3' instead of '003').
 
 Examples:
 
@@ -146,7 +148,7 @@ Format: `addresponse INDEX m/MESSAGE_COUNT`
   * If `addresponse 1 m/7` is keyed in after `addresponse 1 m/2`, the response count for the first
     student in the student list will be 7 instead of 2.
 * The `INDEX` refers to the index number shown in the displayed student list.
-* The `INDEX` must be a positive integer 1, 2, 3, ... 
+* The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `MESSAGE_COUNT` must be a positive integer 1, 2, 3, ...
 * If `m\0000000000` is given as an input, 0s will not be truncated and response will be displayed as
 `response: 000000000`
@@ -368,8 +370,8 @@ the data of your previous SETA home folder.
 | **Attendance** | `attendance`, `addresponse`                |
 | **Delete**     | `deletestu`, `deleteq`, `deletetut`        |
 | **Edit**       | `editstu`                                  |
-| **Find**       | `findstu`                                  |  
-| **List**       | `liststu`                                  |  
+| **Find**       | `findstu`                                  |
+| **List**       | `liststu`                                  |
 | **Mark**       | `markq`, `unmarkq`, `marktut`, `unmarktut` |
 | **Tag**        | `helpstu`                                  |
 | **Exit**       | `exit`                                     |

@@ -475,7 +475,7 @@ otherwise)
 **MSS**
 
 1. User requests to add a student.
-2. SETA adds the student with his or her details into the student list.  
+2. SETA adds the student with his or her details into the student list.
    Use case ends.
 
 **Extensions**
@@ -713,7 +713,7 @@ otherwise)
 **MSS**
 
 1. User requests to add a tutorial.
-2. SETA adds the tutorial with the tutorial details into the tutorial list.   
+2. SETA adds the tutorial with the tutorial details into the tutorial list.
    Use case ends.
 
 **Extensions**
@@ -895,5 +895,5 @@ exploratory* testing.
 
     4. Other incorrect marktut commands to try: `marktut`, `marktut x` (where x is larger than list size)
        , `marktut -1` <br>
-       Expected: Similar to previous 
+       Expected: Similar to previous
 
