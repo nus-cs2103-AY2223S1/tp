@@ -270,9 +270,7 @@ The `add module` features allows users to add a module that they have taken or a
 
 In order to add tasks or deadlines related to the module, a module would have to be created.
 
-Information regarding module, for verbose inputs, can be recognised in the CLI using tags
-
-These tags are:
+Information regarding module, for verbose inputs, can be recognised in the CLI using these tags:
 
 - `-n <module_name>`
 - `-cr <module_credit>`
