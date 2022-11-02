@@ -12,7 +12,11 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 ## 1 Introduction
 
+Welcome to **ProfNUS**! :blush:
 
+Are you a SoC professor who is busy with heavy research work, teaches many modules and manages hundreds of students and TAs at the same time? Do you feel dizzy changing from one platform to another such as Luminus or Canvas? Have you ever sent an email to the wrong group of students? Life is hard, but luckily, **ProfNUS** can help you out! **ProfNUS** is a comprehensive teaching management desktop application that assists SoC professor in terms of modules, students, TAs, and schedules. It is designed based on Command Line Interface (CLI), which perfectly fits SoC professors' habits and preferences. We also provide Graphic User Interface (GUI) for users to interact with our product.
+
+If you want to know more about how **ProfNUS** is able to ease your worries, go to the [Quick Start](#2-quick-start) and take your first step in **ProfNUS**!
 
 ## 2 Quick start
 
