@@ -54,7 +54,6 @@ public class Social {
      */
     public Social() {
         this.links = new String[5];
-        links[4] = "file:src/main/resources/images/default_pic.png";
     }
 
     /**
@@ -139,19 +138,6 @@ public class Social {
         } else {
             return links[0];
         }
-    }
-
-    public void addUrl(String imageUrl) {
-        links[4] = imageUrl;
-    }
-
-    /**
-     * Returns ImageURL of the person, defaults to default picture if there is none.
-     *
-     * @return ImageURL of the person.
-     */
-    public String getImageUrl() {
-        return links[4].trim();
     }
 
     /**
@@ -376,8 +362,6 @@ public class Social {
         } else {
             builder.append(preferred);
         }
-        builder.append(" ");
-        builder.append(links[4]);
         return builder.toString();
     }
 }
