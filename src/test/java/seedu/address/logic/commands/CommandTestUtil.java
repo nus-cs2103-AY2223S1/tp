@@ -187,7 +187,7 @@ public class CommandTestUtil {
 
     //must do after model itself executes.
     /**
-     * Returns true when the tasks in the model has the same exams as  the tasks in expected model
+     * Returns true when the tasks in the model has the same exams as the tasks in expected model
      */
     public static void assertTasksHaveSameExamSuccess(Model actualModel, Model expectedModel) {
         ObservableList<Task> filteredList = expectedModel.getFilteredTaskList();

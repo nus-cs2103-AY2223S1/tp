@@ -60,7 +60,7 @@ public class EditExamCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredListWithoutAnyTaskLinked2_success() {
+    public void execute_someFieldsSpecifiedUnfilteredListWithoutAnyTaskLinked_success() {
         Exam editedExam = new Exam(new Module(new ModuleCode("CS2030S")),
                 new ExamDescription("CA PAPER"), model.getFilteredExamList().get(3).getExamDate());
         EditExamCommand.EditExamDescriptor descriptor = new EditExamDescriptorBuilder(editedExam).build();
