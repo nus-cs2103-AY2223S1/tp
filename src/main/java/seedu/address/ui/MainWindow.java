@@ -290,7 +290,7 @@ public class MainWindow extends UiPart<Stage> {
         case ListCommand.LIST_EMPTY:
             show();
         default:
-            // Do nothing
+            show();
         }
     }
 
