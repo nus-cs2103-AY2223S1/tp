@@ -581,9 +581,9 @@ any data created or deleted from the application.
 * The data file can be found in `data/checkup.json` in the home folder where checkUp's `jar` file is stored.
 * Care needs to be taken to follow data storage formats properly, or else the application will **reject** the data file.
 
-### GUI Interaction
+### Mouse Interactions
 
-Although CheckUp is built as a Command Line Interface application, it also supports the following GUI interactions:
+Although CheckUp is built as a Command Line Interface application, it also supports the following mouse interactions:
 
 #### Person List Panel:
 
@@ -593,7 +593,7 @@ Example:
 
 * Clicking on the first patient `Alex Yeoh` will display his details on the Patient View Panel.
 
-![Clicking on Patient List Panel Gif](images/ug-images/patientListPanel.gif)
+![Clicking on Patient List Panel Gif](images/ug-images/Person-List-Panel-Clickability.png)
 
 #### Person Details Panel:
 
@@ -601,9 +601,9 @@ Example:
 
 Example:
 
-* If the patient is `Roy Balakrishnan`, clicking on his name will set the text in the Command Input Box to `edit 1 n/`.
+* If the patient is `Alex Yeoh`, clicking on his `email` will set the text in the Command Input Box to `edit 1 e/`.
 
-![Clicking on Patient View Panel Gif](images/ug-images/patientViewPanel.gif)
+![Clicking on Patient View Panel Gif](images/ug-images/Person-Details-Panel-Clickability.png)
 
 ### Keyboard Shortcuts
 

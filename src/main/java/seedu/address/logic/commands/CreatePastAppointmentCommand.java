@@ -30,7 +30,7 @@ public class CreatePastAppointmentCommand extends Command {
             + PREFIX_MEDICATION + "ibuprofen "
             + PREFIX_DIAGNOSIS + "headache, medicine given for 3 days ";
     public static final String MESSAGE_SUCCESS = "Past appointment created for %1$s.\n";
-    public static final String MESSAGE_NOT_CREATED = "Missing fields, please try again!";
+    public static final String DUPLICATE_APPOINTMENT_MESSAGE = "Duplicate past appointments are not allowed.";
     private final Index index;
     private final PastAppointment appt;
 
@@ -52,6 +52,10 @@ public class CreatePastAppointmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person patient = lastShownList.get(index.getZeroBased());
+        if (patient.hasPastAppointment(appt)) {
+            throw new CommandException(DUPLICATE_APPOINTMENT_MESSAGE);
+        }
+
         patient.addPastAppointment(appt);
         return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()) + appt);
     }

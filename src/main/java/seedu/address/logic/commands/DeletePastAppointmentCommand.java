@@ -20,7 +20,7 @@ public class DeletePastAppointmentCommand extends Command {
             + "Parameters: INDEX (Must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 1 ";
     public static final String MESSAGE_SUCCESS = "Past appointment deleted for %1$s.\n";
-    public static final String MESSAGE_NOT_CREATED = "Missing fields, please try again!";
+    public static final String INVALID_DELETE_MESSAGE = "No past appointments to delete.";
     private final Index index;
 
     /**
@@ -40,6 +40,9 @@ public class DeletePastAppointmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person patient = lastShownList.get(index.getZeroBased());
+        if (patient.getPastAppointmentCount() <= 0) {
+            throw new CommandException(INVALID_DELETE_MESSAGE);
+        }
         patient.deleteMostRecentPastAppointment();
         return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()));
     }

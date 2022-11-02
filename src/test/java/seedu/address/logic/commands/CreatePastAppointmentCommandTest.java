@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -17,6 +18,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.PastAppointment;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PastAppointmentBuilder;
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for CreatePastAppointmentCommand.
  */
@@ -35,7 +37,6 @@ class CreatePastAppointmentCommandTest {
                 personInFilteredList.getName()) + pastAppointment;
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.getFilteredPersonList().get(0).addPastAppointment(pastAppointment);
 
         assertCommandSuccess(createPastAppointmentCommand, model, expectedMessage, expectedModel);
 
@@ -44,10 +45,27 @@ class CreatePastAppointmentCommandTest {
     }
 
     @Test
+    public void execute_duplicatePastCommand_failure() {
+        PastAppointment pastAppointment = new PastAppointmentBuilder().build();
+        CreatePastAppointmentCommand createPastAppointmentCommand =
+                new CreatePastAppointmentCommand(INDEX_FIRST_PERSON, pastAppointment);
+
+        String expectedMessage = CreatePastAppointmentCommand.DUPLICATE_APPOINTMENT_MESSAGE;
+
+        model.getFilteredPersonList().get(0).addPastAppointment(pastAppointment);
+
+        assertCommandFailure(createPastAppointmentCommand, model, expectedMessage);
+
+        // remove the appointment from the model for tear down
+        model.getFilteredPersonList().get(0).getPastAppointments().remove(pastAppointment);
+    }
+
+    @Test
     public void execute_invalidIndex_throwsCommandException() {
         CreatePastAppointmentCommand createPastAppointmentCommand =
                 new CreatePastAppointmentCommand(Index.fromZeroBased(20), pastAppointment);
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () ->
                 createPastAppointmentCommand.execute(model));
+
     }
 }
