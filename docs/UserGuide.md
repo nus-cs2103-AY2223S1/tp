@@ -586,7 +586,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-* `find alex david` returns `Alex Yeoh`, `David Li`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
   <img src="images/findAlexDavidResult.png" width="400">
 
 
@@ -683,8 +683,8 @@ Format: `findNote KEYWORD [MORE_KEYWORDS]`
   * However, `tshirt` will not match `t–shirt` as special characters are ignored (`t-shirt` is now treated as two words, `t` and `shirt` with the special character `-` being treated as a spacing)
 
 Examples:
-* findNote `Meeting` returns `Club Meeting`, `Meeting!` and `Meeting 2`
-* findNote `Soon` returns `Payment (soon)`
+* `findNote Meeting` returns `Club Meeting`, `Meeting!` and `Meeting 2`
+* `findNote Soon` returns `Payment (soon)`
 
 [Back to Table of Contents](#table-of-contents)
 
