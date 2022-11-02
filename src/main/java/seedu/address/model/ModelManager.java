@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -18,6 +19,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.exceptions.TeamNotFoundException;
@@ -304,6 +307,19 @@ public class ModelManager implements Model {
             }
         }
         throw new TeamNotFoundException();
+    }
+
+    @Override
+    public boolean teamNameExists(seedu.address.model.team.Name name) {
+        List<Team> teams = getFilteredTeamList();
+        for (int i = 0; i < teams.size(); i++) {
+            Team team = teams.get(i);
+            seedu.address.model.team.Name teamname = team.getName();
+            if (teamname.equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
