@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<HBox fx:id="hBox" spacing="10.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="title" HBox.hgrow="ALWAYS" />
+      <HBox HBox.hgrow="ALWAYS" />
+      <Label fx:id="grade" HBox.hgrow="ALWAYS">
+         <padding>
+            <Insets right="10.0" />
+         </padding></Label>
+   </children>
+</HBox>

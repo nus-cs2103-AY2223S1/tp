@@ -5,12 +5,9 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.taassist.commons.core.LogsCenter;
@@ -53,33 +50,20 @@ public class StudentCard extends UiPart<Region> {
         this.studentView = studentView;
         this.index = index;
 
-        Student student = studentView.getStudent();
-
-        // Set title of the titled pane.
-        HBox title = getTitleHBox(index + ". " + student.getName().fullName);
-        handleGradeLabel(title);
-        title.prefWidthProperty().bind(titledPane.widthProperty());
-
-        titledPane.setGraphic(title);
-        titledPane.setExpanded(false);
-
-        // Show other fields in the titled pane content.
-        student.getModuleClasses().stream()
-            .sorted(Comparator.comparing(moduleClass -> moduleClass.getClassName()))
-            .forEach(moduleClass -> classes.getChildren().add(new Label(moduleClass.getClassName())));
-
-        addDataField(student.getPhone().value);
-        addDataField(student.getAddress().value);
-        addDataField(student.getEmail().value);
+        setTitle();
+        setContent();
     }
 
-    /**
-     * If the {@code studentView} has a session and the session has been graded,
-     * then appends a label containing the grade to {@code title}. If the session
-     * is not graded then the {@code titledPane} is given a CSS class "not-graded".
-     * If there is no session associated with the student, then nothing happens.
-     */
-    private void handleGradeLabel(HBox title) {
+    private void setTitle() {
+        Student student = studentView.getStudent();
+        StudentCardTitle title = new StudentCardTitle(index, student.getName().fullName);
+        setGradeIfPresent(title);
+        title.getRoot().prefWidthProperty().bind(titledPane.widthProperty());
+        titledPane.setGraphic(title.getRoot());
+        titledPane.setExpanded(false);
+    }
+
+    private void setGradeIfPresent(StudentCardTitle title) {
         if (!studentView.hasSession()) {
             return;
         }
@@ -88,38 +72,23 @@ public class StudentCard extends UiPart<Region> {
             titledPane.getStyleClass().add("not-graded");
         } else {
             double grade = sessionData.get().getGrade();
-            title.getChildren().addAll(
-                getSeparator(),
-                new Label(String.valueOf(grade))
-            );
+            title.setGrade(grade);
         }
     }
 
-    /**
-     * Returns a HBox containing the label.
-     */
-    private HBox getTitleHBox(String label) {
-        HBox title = new HBox();
-        title.setSpacing(10);
-        title.setPadding(new Insets(0, 10, 0, 0));
-        HBox.setHgrow(title, Priority.ALWAYS);
-
-        title.getChildren().add(new Label(label));
-        return title;
+    private void setContent() {
+        Student student = studentView.getStudent();
+        student.getModuleClasses().stream()
+            .sorted(Comparator.comparing(moduleClass -> moduleClass.getClassName()))
+            .forEach(moduleClass -> classes.getChildren().add(new Label(moduleClass.getClassName())));
+        addDataField(student.getPhone().value);
+        addDataField(student.getAddress().value);
+        addDataField(student.getEmail().value);
     }
 
     /**
-     * Returns a HBox that acts as a separator.
-     */
-    private HBox getSeparator() {
-        HBox separator = new HBox();
-        HBox.setHgrow(separator, Priority.ALWAYS);
-        return separator;
-    }
-
-    /**
-     * Adds a data fields with the given {@code text} to the {@code dataFields}.
-     * If the {@code test} is empty then nothing happens.
+     * Adds a data field with the given {@code text} to the {@code dataFields}.
+     * If the {@code text} is empty then nothing happens.
      */
     private void addDataField(String text) {
         if (text.isEmpty()) {
