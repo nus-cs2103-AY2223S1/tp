@@ -113,4 +113,33 @@ public class StringUtil {
     public static String[] splitByWhitespace(String s) {
         return s.split("\\s+");
     }
+
+    /**
+     * Splits a string by the symbol given
+     *
+     * @param value a String to be processed
+     * @param symbol symbol to split the string
+     * @Return String[]
+     */
+    public static String[] splitBySlash(String value) {
+        return value.split("/");
+    }
+
+    /**
+     * Converts a string array {@code String[]} to a double array {@code double[]},
+     * with every element having only two decimal places.
+     *
+     * @param strArr String array to be converted
+     * @Return double[]
+     */
+    public static double[] convertToDoubleArray(String[] strArr) {
+        double[] splitedDouble = new double[strArr.length];
+        int idx = 0;
+        for (String s : strArr) {
+            double convertedToDouble = Double.parseDouble(s);
+            splitedDouble[idx] = convertedToDouble;
+            ++idx;
+        }
+        return splitedDouble;
+    }
 }
