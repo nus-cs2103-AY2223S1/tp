@@ -174,6 +174,13 @@ Format: `editstudent INDEX [s/NAME] [m/MATRIC_NUM]`
 Examples:
 *  `editstudent 1 s/John Do` edits the name of the 1st student to be `John Do`
 
+<div markdown="span" class="alert alert-primary">
+
+**:bulb:Tip:** 
+If you have two or more students with the same name, you can use the `editstudent` command to change the name(s) of the students so that you can differentiate them easily. 
+
+<div/>
+
 ### Locating students by name: `findstudent`
 
 Finds students whose names contain any of the given keywords.
