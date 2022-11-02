@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -19,12 +21,29 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+
+    public static final String VALID_MODULE_1 = "CS2001";
+    public static final String VALID_MODULE_2 = "CS2002";
+
+    public static final String VALID_TASK_DESCRIPTION_1 = "description 1";
+    public static final String VALID_TASK_DESCRIPTION_2 = "description 2";
+
+    public static final String MODULE_1 = " " + PREFIX_MODULE + VALID_MODULE_1;
+    public static final String MODULE_2 = " " + PREFIX_MODULE + VALID_MODULE_2;
+    public static final String TASK_DESCRIPTION_1 = " " + PREFIX_DESCRIPTION + VALID_TASK_DESCRIPTION_1;
+    public static final String TASK_DESCRIPTION_2 = " " + PREFIX_DESCRIPTION + VALID_TASK_DESCRIPTION_2;
+
+    public static final String INVALID_MODULE = " " + PREFIX_MODULE + "2001";
+    public static final String INVALID_TASK_DESCRIPTION = " " + PREFIX_DESCRIPTION + " ";
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
@@ -62,11 +81,37 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    public static final String VALID_MODULE_CS2030 = "cs2030";
+    public static final String VALID_MODULE_CS2040 = "cs2040";
+    public static final String VALID_DESCRIPTION_DO_TUTORIAL = "do tutorial";
+    public static final String VALID_DESCRIPTION_WATCH_LECTURE = "watch lecture";
+    public static final String INVALID_MODULE_ABSENT_GEA1000 = "gea1000";
+
+    public static final String MODULE_DESC_CS2030 = " " + PREFIX_MODULE + "cs2030";
+    public static final String MODULE_DESC_CS2040 = " " + PREFIX_MODULE + "cs2040";
+    public static final String DESCRIPTION_DESC_DO_TUTORIAL = " " + PREFIX_DESCRIPTION + "do tutorial";
+    public static final String DESCRIPTION_DESC_WATCH_LECTURE = " " + PREFIX_DESCRIPTION + "watch lecture";
+
+    // module codes should be at least 6 characters long
+    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "cs";
+    // empty string not allowed for task descriptions
+    public static final String INVALID_TASK_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " ";
+
+    public static final EditTaskCommand.EditTaskDescriptor DESC_TUTORIAL;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_LECTURE;
+
+    static {
+        DESC_TUTORIAL = new EditTaskDescriptorBuilder().withModule(VALID_MODULE_CS2030)
+            .withDescription(VALID_DESCRIPTION_DO_TUTORIAL).build();
+        DESC_LECTURE = new EditTaskDescriptorBuilder().withModule(VALID_MODULE_CS2040)
+            .withDescription(VALID_DESCRIPTION_WATCH_LECTURE).build();
     }
 
     /**
@@ -125,4 +170,17 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTaskAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+
+        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+        final String[] description = {task.getDescription().description.toLowerCase()};
+        model.updateFilteredTaskList(new DescriptionContainsKeywordsPredicate(Arrays.asList(description)));
+
+        assertEquals(1, model.getFilteredTaskList().size());
+    }
 }
