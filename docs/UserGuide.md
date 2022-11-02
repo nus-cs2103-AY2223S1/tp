@@ -31,7 +31,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -98,13 +98,13 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 | **Phone**           | `p`       | 20           | Can only contain numbers, at least 3 digits long                                |
 | **Address**         | `a`       | 100          | Can take any values, but not blank                                              |
 | **CAP**             | `c`       | None         | Can only consist of 2 numeric values in the form of `CURRENT_CAP/MAX_CAP`       |
-| **Gender**          | `g`       | None         | Can only be `male` or `female` in any capitalization                            |
+| **Gender**          | `g`       | None         | Can only be `male` or `female`, will be converted to lower-case.                |
 | **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                             |
 | **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of `MM-yyyy`, starting from the year 0000 |                           
 | **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                             |
 | **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces       |
 
-* `CURRENT_CAP` must be smaller than or equal to `MAX_CAP`.
+* `CURRENT_CAP` must be smaller than or equal to `MAX_CAP`
 * Special punctuations: `-` `#` `,` `:` `&` `(` `)` `"` `'` `/` `[` `]`
 
 
