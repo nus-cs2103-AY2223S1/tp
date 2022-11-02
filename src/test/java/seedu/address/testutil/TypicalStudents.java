@@ -1,12 +1,18 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RESPONSE_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RESPONSE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RESPONSE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 
@@ -22,10 +28,12 @@ import seedu.address.model.student.Student;
  */
 public class TypicalStudents {
 
-    public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
-            .withTelegram("@AlicePauline").withEmail("alice@example.com")
-            .withResponse("2")
-            .withAttendance("1").build();
+    public static final Student ALICE = new StudentBuilder().withName(VALID_NAME_ALICE)
+            .withTelegram(VALID_TELEGRAM_ALICE).withEmail(VALID_EMAIL_ALICE)
+            .withResponse(VALID_RESPONSE_ALICE)
+            .withAttendance(VALID_ATTENDANCE_ALICE)
+            .withHelpTag(false)
+            .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withTelegram("@bensonM")
             .withEmail("johnd@example.com").withResponse("1")
@@ -49,7 +57,7 @@ public class TypicalStudents {
 
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY).withTelegram(VALID_TELEGRAM_AMY)
-            .withEmail(VALID_EMAIL_AMY).withResponse(VALID_RESPONSE_AMY).withAttendance(VALID_ATTENDANCE_BOB)
+            .withEmail(VALID_EMAIL_AMY).withResponse(VALID_RESPONSE_AMY).withAttendance(VALID_ATTENDANCE_AMY)
             .withHelpTag(false).build();
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB).withTelegram(VALID_TELEGRAM_BOB)
             .withEmail(VALID_EMAIL_BOB).withResponse(VALID_RESPONSE_BOB).withAttendance(VALID_ATTENDANCE_BOB)
@@ -74,4 +82,3 @@ public class TypicalStudents {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
-

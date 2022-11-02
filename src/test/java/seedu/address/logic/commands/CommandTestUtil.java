@@ -50,6 +50,12 @@ public class CommandTestUtil {
     public static final String VALID_RESPONSE_BOB = "0";
     public static final String VALID_ATTENDANCE_AMY = "1";
     public static final String VALID_ATTENDANCE_BOB = "0";
+    public static final String VALID_ATTENDANCE_TWO ="2";
+    public static final String VALID_NAME_ALICE = "Alice Pauline";
+    public static final String VALID_TELEGRAM_ALICE = "@AlicePauline";
+    public static final String VALID_EMAIL_ALICE = "alice@example.com";
+    public static final String VALID_RESPONSE_ALICE = "2";
+    public static final String VALID_ATTENDANCE_ALICE = "1";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
