@@ -12,13 +12,12 @@ import seedu.address.model.DeepCopyable;
 public class Name implements DeepCopyable {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphabetic characters and spaces, and it should not be blank";
+            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Disallows only numbers or Strings that contain numbers surrounded by whitespaces.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]*";
+    public static final String VALIDATION_REGEX = "^(?:[a-zA-Z]+|(?:\\S*[^\\d\\s]\\d+\\S*|\\S*\\d+[^\\d\\s]\\S*)| )+$";
 
     public final String fullName;
 
