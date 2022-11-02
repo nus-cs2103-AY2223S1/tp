@@ -288,9 +288,10 @@ public class MainWindow extends UiPart<Stage> {
             showAll();
             break;
         case ListCommand.LIST_EMPTY:
-            // Fall through
+            show();
+            break;
         default:
-            // Do nothing
+            //Do nothing.
         }
     }
 

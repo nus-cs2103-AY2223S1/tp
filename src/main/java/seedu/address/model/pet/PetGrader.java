@@ -3,6 +3,9 @@ package seedu.address.model.pet;
 import static seedu.address.model.order.PriceRange.LOWER_THAN_RANGE;
 import static seedu.address.model.order.PriceRange.WITHIN_RANGE;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.PriceRange;
 
@@ -17,6 +20,7 @@ public class PetGrader {
     private static final double DEFAULT_SPECIES_SCORE_WEIGHT = 500;
     private static final double DEFAULT_PRICE_SCORE_WEIGHT = 5;
 
+    private static final Logger LOGGER = LogsCenter.getLogger(PetGrader.class);
     private final Order order;
     private final double ageScoreWeight;
     private final double colorScoreWeight;
@@ -92,7 +96,7 @@ public class PetGrader {
         }
 
         double sum = ageScore + colorScore + colorPatternScore + speciesScore + priceScore;
-        System.out.println(pet.getName() + "'s score: " + sum);
+        LOGGER.fine(pet.getName() + "'s score is " + sum);
         return sum;
     }
 
