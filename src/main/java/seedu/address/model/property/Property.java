@@ -142,7 +142,7 @@ public class Property {
                         .map(Characteristics::toString)
                         .orElse("Not Specified"));
 
-        builder.append("\nOwner: ")
+        builder.append("\n")
                 .append(getOwner());
         return builder.toString();
     }
