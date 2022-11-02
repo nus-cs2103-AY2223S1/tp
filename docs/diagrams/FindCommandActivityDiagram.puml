@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+skinparam conditionStyle diamond
+
+|UI_COLOR_T1|UI|
+start
+:User executes command;
+
+|LOGIC_COLOR_T2|Logic|
+:**FindCommandParser** parses input;
+if () then ([PREFIX_STUDENT_NAME used])
+:**FindCommand** object created, containing
+a **NameContainsKeywordsPredicate** object;
+else ([PREFIX_ID used])
+:**FindCommand** object created, containing
+a **IdPredicate** object;
+endif
+
+|MODEL_COLOR_T1|Model|
+:the **ModelManager** object filters the list
+of students using the **Predicate<Student>**;
+
+|UI_COLOR_T1|UI|
+:The filtered list containing students who match
+the predicate value is returned to the user;
+stop
+@enduml

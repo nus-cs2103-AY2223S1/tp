@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StudentRecordParser" as StudentRecordParser LOGIC_COLOR
+participant ":ViewClassCommandParser" as ViewClassCommandParser LOGIC_COLOR
+participant ":ViewClassCommand" as ViewClassCommand LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":ClassPredicate" as ClassPredicate LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("viewClass 3A")
+activate LogicManager
+
+LogicManager -> StudentRecordParser : parseCommand("viewClass 3A")
+activate StudentRecordParser
+
+create ViewClassCommandParser
+StudentRecordParser -> ViewClassCommandParser
+activate ViewClassCommandParser
+
+ViewClassCommandParser --> StudentRecordParser
+deactivate ViewClassCommandParser
+
+StudentRecordParser -> ViewClassCommandParser : parse(" 3A")
+activate ViewClassCommandParser
+
+create ViewClassCommand
+ViewClassCommandParser -> ViewClassCommand
+activate ViewClassCommand
+
+ViewClassCommand --> ParserUtil : parseClass(" 3A")
+activate ParserUtil
+ParserUtil --> ViewClassCommand
+deactivate ParserUtil
+
+create ClassPredicate
+ViewClassCommand --> ClassPredicate
+activate ClassPredicate
+ClassPredicate --> ViewClassCommand
+deactivate ClassPredicate
+
+ViewClassCommand --> ViewClassCommandParser
+deactivate ViewClassCommand
+
+ViewClassCommandParser --> StudentRecordParser
+deactivate ViewClassCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewClassCommandParser -[hidden]-> StudentRecordParser
+destroy ViewClassCommandParser
+
+StudentRecordParser --> LogicManager
+deactivate StudentRecordParser
+
+LogicManager -> ViewClassCommand : execute(Model)
+activate ViewClassCommand
+
+ViewClassCommand -> Model : updateFilteredStudentList(ClassPredicate)
+activate Model
+
+Model --> ViewClassCommand
+deactivate Model
+
+create CommandResult
+ViewClassCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewClassCommand : commandResult
+deactivate CommandResult
+
+ViewClassCommand --> LogicManager : commandResult
+deactivate ViewClassCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

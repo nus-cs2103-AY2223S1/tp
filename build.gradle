@@ -6,7 +6,7 @@ plugins {
     id 'jacoco'
 }
 
-mainClassName = 'seedu.address.Main'
+mainClassName = 'seedu.classify.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
@@ -18,6 +18,10 @@ repositories {
 
 checkstyle {
     toolVersion = '10.2'
+}
+
+run {
+    enableAssertions = true
 }
 
 test {
@@ -66,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'classify.jar'
 }
 
 defaultTasks 'clean', 'test'

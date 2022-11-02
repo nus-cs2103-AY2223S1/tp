@@ -1,0 +1,19 @@
+{
+  "students": [ {
+    "studentName": "Valid Person",
+    "id": "456B",
+    "className" : "1A",
+    "parentName": "Johnny",
+    "phone": "9482424",
+    "email": "validperson@gmail.com",
+    "exams" : [ ]
+  }, {
+    "studentName": "Person With Invalid Phone Field",
+    "id": "123A",
+    "className" : "2A",
+    "parentName": "Johnny",
+    "phone": "948asdf2424",
+    "email": "example@example.com",
+    "exams" : [ ]
+  } ]
+}

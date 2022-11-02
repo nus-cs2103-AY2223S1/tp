@@ -2,31 +2,60 @@
 layout: page
 title: Developer Guide
 ---
+<div style="text-align:center;">
+<img src="images/ClassifyLogo.png">
+</div>
+
 * Table of Contents
 {:toc}
+--------------------------------------------------------------------------------------------------------------------
+
+## 1. **Introduction**
+
+### 1.1 What is Class-ify
+
+Class-ify is a **class management application** built specially for **Singapore Ministry of Education (MOE) teachers** to **monitor their student's academic progress easily**. Teachers can **generate exam statistics** for each class, and Class-ify quickly **flags out students** who require more support for contacting.
+
+### 1.2 Who is this guide for
+
+* Developers who wish to make sense of the codebase and contribute to Class-ify.
+* Advanced users who wish to better understand Class-ify's features.
+
+### 1.3 How to use this developer guide
+
+This developer guide covers the architecture, design choices and implementation details in Class-ify to give the reader a clear picture of the technical details and inner workings of Class-ify.
+
+* Refer to our <a href="#top">Table of Contents</a> to easily navigate between sections of the User Guide. There is also a link at the end of every section to bring you back to the Table of Contents.
+* Refer to our [Quick Start](#3-setting-up-getting-started) guide to set up the project in your computer.
+* Refer to our [Design and Implementation](#4-design-and-implementation) section to learn in detail how the commands in Class-ify are implemented and the design considerations that went into them.
+* Refer to our [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops) section for the various guides.
+* Refer to our [Appendix: Requirements](#6-appendix-requirements) section for Class-ify's requirements.
+* Refer to our [Appendix: Instructions for manual testing](#7-appendix-instructions-for-manual-testing) section to learn how to test Class-ify manually.
+
+Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## 2. **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Class-ify is adapted from the [AddressBook-Level3](https://se-education.org/addressbook-level3/) project created by the SE-EDU initiative.
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+
+Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## 3. **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 4. **Design and Implementation**
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
-
-### Architecture
+### 4.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -36,30 +65,29 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/MainApp.java). It is responsible for:
+* application launch: Initialises the components in the correct sequence, and connects them up with each other.
+* application shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#415-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
+* [**`UI`**](#411-ui-component): The UI of the App.
+* [**`Logic`**](#412-logic-component): The command executor.
+* [**`Model`**](#413-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#414-storage-component): Reads data from, and writes data to the hard disk.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete id/123A`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -67,15 +95,15 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+#### 4.1.1 UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -84,25 +112,26 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic component
+#### 4.1.2 Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `StudentRecordParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete id/123A")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -110,138 +139,375 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `StudentRecordParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `StudentRecordParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+#### 4.1.3 Model component
+
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
+The `Model` component:
 
-The `Model` component,
-
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the student record data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+#### 4.1.4 Storage component
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
-
-### Storage component
-
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both student record data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `StudentRecordStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+#### 4.1.5 Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.classify.commons` package.
+
+Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+### 4.2 Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+#### 4.2.1 AddStudent command
 
-#### Proposed Implementation
+**Description**
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+Adding new students is first basic step of using Class-ify. This is primarily done via the `AddStudentCommand` and `AddStudentCommandParser` classes.
+Before going into the sequence of executing a `addStudent` command, let us take a quick look at the `Student` class.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+<img src="images/StudentClassDiagram.png" width="550" />
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The `Student` class contains a total of 6 fields:
+* 2 `Name` fields for the student and parent names 
+* 1 `Id` field 
+* 1 `Phone` number field 
+* 1 `Email` address field 
+* 1 set of `Exam`(s)
+    * The type of exams are currently limited to _CA1_, _CA2_, _SA1_ and _SA2_.
+    * Future implementations may allow teachers to create their own examinable items.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+**Implementation**
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Adding a student record can be divided into 2 main steps: parsing the user input and executing it.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+**Step 1: Parsing the command**
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+The delete command is first parsed.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+1. `MainWindow` calls the `execute` method of `LogicManager` to execute the given user’s command.
+2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be an `addStudent` command and creates a new `AddStudentCommandParser` instance to parse the user’s command.
+3. Once the command is successfully parsed, `AddStudentCommandParser` creates a new `AddStudentCommand` instance which will be executed by the `LogicManager`.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+**Step 2: Executing the command**
 
-![UndoRedoState2](images/UndoRedoState2.png)
+The `AddStudentCommand` instance now interacts with the `ModelManager` to execute the command.
+1. The `hasStudent` method is called to check if the `Model` contains the student to be added.
+2. Assuming there are no duplicates, the `addStudent` method is then called to add the student into the student record.
+3. The `updateFilteredStudentList` method is called to show the updated list of students in the student record.
+4. A new `CommandResult` instance is created and returned to `LogicManager`.
+5. The control is then passed back to `MainWindow` where the `CommandResult` is displayed to the UI as feedback to the user.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+The following activity diagram below summarizes what happens when a user executes an `addStudent` command.
 
+<img src="images/AddStudentCommandActivityDiagram.png" width="550" />
+
+**Design Considerations**
+
+The current approach creates multiple `Class` objects per student. It serves as a more straightforward implementation. However, it is not a very OOP solution for the following reasons:
+
+1. Multiple `Class` objects for the same class.
+2. Classes do not have students.
+   * A `Class` object has no reference to the students in that class. 
+
+An alternative and perhaps more OOP approach is given below. It has a `Class` list in the `StudentRecord`, which references to `Student`.
+
+<img src="images/BetterModelClassDiagram.png" width="550" />
+
+* `StudentRecord` only requires one `Class` object per unique class the teacher teaches, instead of each `Student` needing their own `Class` objects.
+* `Class` has reference to `Student`, modelling the relationship in which a teacher teaches a class with some students.
+* Every `Class` has a set of `Exam`(s) which a `Student` takes and scores a certain grade.
+
+#### 4.2.2 Delete command
+
+**Description**
+
+The delete command allows users to delete a student record by targeting either the student’s name or ID.
+
+**Implementation**
+
+Deleting a student record can be divided into 2 main steps: parsing the command and executing it.
+
+The sequence diagram below illustrates the interactions within the `Logic` component when the user calls a delete command, for example, `delete id/123A`.
+
+<img src="images/DeleteCommandSequenceDiagram.png" />
+
+<div class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+**Step 1: Parsing the command**
 
-![UndoRedoState3](images/UndoRedoState3.png)
+The delete command is first parsed.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+1. The `execute` method of `LogicManager` is called to execute the user’s command, `delete id/123A`.
+2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a delete command and creates a new `DeleteCommandParser` instance to parse the user’s command.
+3. Once the command is successfully parsed, `DeleteCommandParser` creates a new `DeleteCommand` instance which will be executed by the `LogicManager`.
 
-</div>
+**Step 2: Executing the command**
 
-The following sequence diagram shows how the undo operation works:
+The `DeleteCommand` instance now communicates with the `ModelManager` to execute the command.
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+1. The `updateFilteredStudentList` method is called to isolate the student record to be deleted.
+2. The `deleteStudent` method is called to delete the student record.
+3. The `updateFilteredStudentList` method is called again to show all student records.
+4. A new `CommandResult` instance is created and returned to `LogicManager`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+**Design Considerations**
 
-</div>
+Current Design: We chose to keep a single class `DeleteCommand`, which the user can use to delete student records either by targeting the student’s name or student ID. Note that we chose not to delete student records by their index in the list since deletion is irreversible, and we wanted users to be aware of the exact student name when they are executing a `DeleteCommand`.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+Pros:
+- The user does not have to remember different types of delete commands such as `DeleteStudentByNameCommand` or `DeleteStudentByIDCommand`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+Cons:
+- The parser would have to identify whether the user targeted the student’s name or student ID to delete the student record.
 
-</div>
+Alternative Design: Split `DeleteCommand` into two different commands, `DeleteStudentByNameCommand` and `DeleteStudentByIDCommand`.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Pros:
+- There is no requirement for prefixes such as `nm/` or `id/` to identify whether the user is targeting the student’s name or student ID.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+Cons:
+- Additional classes need to be implemented.
+- The command name is long.
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+#### 4.2.3 Edit command
 
-![UndoRedoState5](images/UndoRedoState5.png)
+*To be updated*
 
-The following activity diagram summarizes what happens when a user executes a new command:
+#### 4.2.4 Find command
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+**Description**
 
-#### Design considerations:
+`FindCommand`, which extends `Command`, simulates searching through the `StudentRecord` for particular students. This is implemented through filtering the current list of students according to the user input, and displaying the filtered results to the user.
 
-**Aspect: How undo & redo executes:**
+**Implementation**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+`FindCommand` is executed through 2 steps:
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+**Step 1: Parsing the command**
 
-_{more aspects and alternatives to be added}_
+The user input is first parsed by `StudentRecordParser`, in the same way as other commands. After the input is identified to be a `find`command, a `FindCommandParser` instance will be created to further parse the command arguments.
 
-### \[Proposed\] Data archiving
+The `FindCommandParser` searches the input for either `PREFIX_STUDENT_NAME` or `PREFIX_ID` (but not both), and depending on which `Prefix` is present, instantiates a `NameContainsKeywordsPredicate` object or `IdPredicate` object respectively. Both inherit from `Predicate<Student>`.
 
-_{Explain here how the data archiving feature will be implemented}_
+This `Predicate<Student>` will then be used to create a `FindCommand` object.
 
+**Step 2: Executing the command**
+
+The `FindCommand` object created will then interact with the `ModelManager` to execute the command.
+
+1. Using the `Preicate<Student>` created when parsing the command, `Model#updateFilteredStudentList(Predicate<Student>)`
+   is called, to filter the list of students.
+2. The filtered list is returned to the user, and they will be able to view the list of students whose name contains the
+   specified keyword(s), or whose Id matches the specified Id.
+
+Given below is an example usage scenario of `FindCommand`.
+
+Step 1. The user launches the application and sees a list of students.
+
+Step 2. The user executes `find nm/Alex` to locate students with "Alex" in their name.
+This command performs a search using the names of the students. Since the prefix `nm/` was used, a `NameContainsKeywordsPredicate` object, which extends `Predicate<Student>` will be created.
+
+:information_source: **Note:** Find command is case-insensitive, and the command `find nm/alex` will return the same results.
+
+Step 3. Classify returns a filtered list of students whose names contain `Alex`. All the details recorded will also be shown.
+
+The following activity diagram summarizes what happens when a user executes the find command.
+
+<img src="images/FindCommandActivityDiagram.png" />
+
+**Design Considerations**
+
+1. `ArgumentTokenizer#tokenize()` used to identify the prefix, to generate the corresponding `Predicate<Student>`.
+
+#### 4.2.5 ViewAll command
+
+**Description**
+
+The `viewAll` command displays a list of all student records.
+
+**Implementation**
+
+The sequence diagram below illustrates the interaction between the `Logic` and `Model` components. 
+
+*Insert sequence diagram*
+
+Given below is an example usage scenario of how the ViewAll mechanism behaves at each step. 
+
+Step 1. The user executes `viewAll` command. 
+
+Step 2. The `StudentRecordParser` will identify the command and create a `ViewAllCommand` object in the `LogicManager`
+
+Step 3. `ViewAllCommand#execute` is called which updates the `FilteredStudentList` in `Model`
+
+Step 4. Classify updates and displays a list of all student records
+
+#### 4.2.6 ViewClass command
+
+**Description**
+
+The `ViewClassCommand` displays the list of students in a particular class. This feature relies mainly on the `ViewClassCommandParser` and `ClassPredicate`, where the `ViewClassCommandParser` uses `ClassPredicate` to select students in the student record with the mentioned class.
+
+**Implementation**
+
+This command can be divided into 2 main steps: 
+1. Parsing the command
+3. Executing the command
+
+The following Sequence diagram shows how the `ViewClassCommand` works:
+
+<img src="images/ViewClassCommandSequenceDiagram.png" />
+
+**Step 1: Parsing the command**
+
+The user's input command is first parsed.
+
+1. `MainWindow` calls the `execute` method of `LogicManager` to execute the given user’s command.
+2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a `ViewClassCommand` and creates a new `ViewClassCommandParser` instance to parse the user’s input.
+3. `ViewClassCommandParser` checks whether the user input is valid by parsing it into the `parseClass` method in `ParserUtil`.
+4. If the input is valid, a new `ClassPredicate` instance is created. 
+5. ViewClassCommandParser` then creates a new `ViewClassCommand` instance which will be executed by the `LogicManager`.
+
+**Step 2: Executing the command**
+
+The `ViewClassCommand` instance now interacts with the `ModelManager` to execute the command.
+
+1. The `updateFilteredStudentList` method is called with the `ClassPredicate` to filter the list to only contain students whose `Class` matches the user input.
+
+:information_source: **Note:** A case-insensitive match is done, hence `viewClass 1a` and `viewClass 1A` will return the same results.
+
+4. A new `CommandResult` instance is created and returned to `LogicManager`.
+
+**Design Considerations**
+
+* **Alternative 1**: Integrate `ViewClassCommand` together with `FindCommand`, and users will find students in a specific class.
+  * Pros: Users will not need to learn a different command.
+  * Cons: There is still a need to differentiate the filter logic as class name requires an exact match, while name only requires it to contain the keywords.
+* **Alternative 2**: Separate `ViewClassCommand` and `FindCommand`. (Current Implementation)
+  * Pros: Distinguishing between a `View` and `Find` can make the filtering logic more obvious and apparent to users
+  * Cons: Users have an additional command to learn.
+
+#### 4.2.7 ToggleView command
+
+**Description**
+
+The `ToggleViewCommand` toggles the application to display or hide all students' parent details.
+
+**Implementation**
+
+The following activity diagram shows the events that occur when the user executes the `ToggleViewCommand`.
+
+*Insert activity diagram*
+
+The `Model`has an association with `FilteredStudent` where `FilteredStudent` encapsulates the current toggle status and `FilteredStudentList`. Executing the command will change the toggle status. The `StudentListPanel` is dependent on the toggle status in `FilteredStudent` to display or hide the students' parent details properly in the `StudentCard`.
+
+The following sequence diagram shows the interaction between the `UI`, `Logic`, and `Model` components. 
+
+*Insert sequence diagram*
+
+Given below is an example usage scenario of how the ToggleView mechanism behaves at each step
+
+Step 1. The user enters the command `toggleView`
+
+Step 2. The `StudentRecordParser` will identify the command and create a `ToggleViewCommand` object in the `LogicManager`
+
+Step 3. `ToggleViewCommand#execute` is called which changes the toggle status in `Model` 
+
+Step 4. The `MainWindow` handles the updating of UI by requesting `StudentListPanel` to rerender the `StudentCard` to display or hide the student's parent details
+
+With the above sequence, the UI is successfully updated to display the relevant student details according to the toggle status. 
+
+**Design Considerations**
+
+- Option 1: Each `Student` has a `isShowingParentDetails` `boolean` attribute
+  - Pros:
+    - The `StudentListPanel` will automatically update the `StudentCard` as it listens for changes in `FilteredStudentList`, thus reduces coupling (see Option 2 cons)   
+  - Cons: 
+    - Each execution of the command edits and replaces all the students in the `FilteredStudentList` with new `Student` objects with the updated attribute which can be costly when there are many student objects 
+    - Needs a global variable to track the current toggle as new `Student` objects added need to know the current state of the toggle
+- Option 2 (current choice): The UI keeps track of the toggle
+  - Pros:
+    - No need to edit every student in the `FilteredStudentList`
+    - Able to retain the previously filtered list after toggling
+  - Cons: 
+    - Increase in coupling as `StudentListPanel` is dependent on `FilteredStudent` for toggling information
+
+#### 4.2.8 ViewStats command
+
+**Description**
+
+`ViewStatsCommand` is a `Command` to present summary statistics for an `Exam` taken by a particular class of students. 
+In particular, the command is implemented to generate the mean score of the `Exam`. The entire process of generating summary statistics is executed in 2 steps. 
+
+**Implementation**
+
+**Step 1: Parsing the command**
+
+The user input is first parsed, in the same way as other commands. After the input is identified to be a viewStats command, a `ViewStatsCommandParser` instance will parse the inputs to retrieve the class and exam of interest.
+
+Furthermore, the command will also be parsed to retrieve an input for an additional `Prefix` "filter/", which will indicate if the list of students returned should be flagged. A flagged list contains only students whose score for that particular `Exam` falls below the mean.
+
+**Step 2: Executing the command**
+
+The `ViewStatsCommand` then interacts with the `ModelManager` to execute the command, which is again done in 2 steps.
+
+Step 1: A `ViewClassCommand` is executed, depending mainly on `Model#updateFilteredStudentList(Predicate<Student)`, in order to retrieve the class of interest.
+
+Step 2: The mean of the exam scores for that class is calculated using `Model#calculateMean(String exam)`. 
+
+Depending on the boolean value returned during the parsing of the filter prefix, the class list is further filtered using `Model#updateFilteredStudentList(Predicate<Student)` to show a flagged list. 
+
+The whole list is sorted according to the score of the particular exam, before it is returned and displayed to the user.
+
+The following sequence diagram depicts how different components such as `Logic` and `Model` interact.
+
+<img src="images/ViewStatsCommandSequenceDiagram.png" />
+
+:information_source: **Note:** The lifeline for `ViewStatsCommandParser` and `ViewClassCommand` should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+**Design Considerations**
+
+1. Sorting the list of students according to grade
+- Option 1: sort the filtered list of students after retrieving the class
+  - Pros:
+    - Will not modify the current `StudentRecord`
+    - Will not unnecessarily sort students not in the class of interest
+  - Cons:
+    - `FilteredStudents` is meant to be unmodifiable, and sorting potentially breaks this behaviour
+    - `FilteredStudents` is implemented with `FilteredList<Student>` which does not maintain sorting, so additional wrapping
+    needs to be done to sort the filtered list
+- Option 2 (current choice): sort the entire student record, then filter to retrieve class
+  - Pros:
+    - Can maintain sorting even beyond the `ViewStats` command, ie. maintaining a sorted list of students, sorted by name,
+    each time an `addStudent` command or `edit` command is run
+  - Cons:
+    - Reorders the whole `StudentRecord` each time the sorting is done
+
+Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 5. **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -249,168 +515,364 @@ _{Explain here how the data archiving feature will be implemented}_
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 6. **Appendix: Requirements**
 
-### Product scope
+### 6.1 Product scope
 
-**Target user profile**:
+**Target User Profile**
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Ministry of Education (MOE) Teachers who:
+* Teaches 3 to 5 classes a year
+* Manages about 60 to 100 students with varying needs
+* Is required to identify students who need additional academic assistance and contact their parents if necessary
+* Finds paperwork time-consuming and messy
+* Finds it tedious to manually keep track of the academic progress of each individual student
+* Finds it tedious to manually identify students who are performing poorly academically
+* Finds Excel spreadsheet complex and difficult to use
+* Prefers typing to mouse interactions
+* Types fast and is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value Proposition**
 
+Class-ify is a **class management application** built specially for **Singapore Ministry of Education (MOE) teachers** to **monitor their student's academic progress easily**. Teachers can **generate exam statistics** for each class, and Class-ify quickly **flags out students** who require more support for contacting.
 
-### User stories
+### 6.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Role (As a/ an)                                       | Goal/ Function (I want to)                                               | Benefit (So that I)                                                            | Priority |
-|-------------------------------------------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------------|----------|
-| new user                                              | purge all current data                                                   | can get rid of sample/ experimental data I used for exploring the application. | ***      |
-| new user                                              | create some student records                                              |                                                                                | ***      |
-| new user                                              | create multiple student records with a single command                    | can save time by not having to enter each student’s information individually.  | ***      |
-| new user                                              | view a list of all student records                                       |                                                                                | ***      |
-| new user                                              | search for a student by his/her student ID                               |                                                                                | ***      |
-| new user                                              | search for a student by his/her name                                     |                                                                                | ***      |
-| new user                                              | search for a student by his/her index number within a class              |                                                                                | ***      |
-| new user                                              | search for a class by the class name                                     |                                                                                | ***      |
-| new user                                              | view a condensed list of student records                                 | can view the information of students in a consised and compact manner.         | ***      |
-| new user                                              | delete a student record                                                  |                                                                                | ***      |
-| new user who is careless                              | automatically save the data without having to type in a separate command | do not need to worry about forgetting to save before I quit the application.   | ***      |
-| new user who is non-technical                         | follow a set of instructions/ guide                                      | can get a sense of how to use the application.                                 | ***      |
-| intermediate user                                     | update the details of any student record                                 | can keep my records accurate and up to date.                                   | ***      |
-| teacher with multiple classes                         | separate my different classes individually                               | can keep my records tidy and organised.                                        | ***      |
-| potential user                                        | see a summary of functionalities                                         | have an idea of what I can do with the app without accessing the user guide.   | **       |
-| potential user                                        | try the application with prepopulated sample data                        | can easily see how the application will look like when it is in use.           | **       |
-| new user                                              | do a general search                                                      | do not have to remembe the difference keywords.                                | **       |
-| intermediate user                                     | filter a list of students by grade                                       | can find students who meet a specific grade easily.                            | **       |
-| intermediate user                                     | delete all student records from a class                                  | can reuse the class for another batch.                                         | **       |
-| intermediate user                                     | view statistics for the class result                                     | can have an overview of how all my students are doing.                         | **       |
-| intermediate user                                     | view a summary of my students' performance                               | can take note of my students' academic performance.                            | **       |
-| intermediate user                                     | create additional custom fields in a student record                      | can keep track of additional information about a particular students.          | **       |
-| intermediate user                                     | sort the list of students by their grades                                | can quickly identify students who will need more help.                         | **       |
-| intermediate user                                     | copy a student's information from one class to another                   | do not need to enter the same information twice.                               | **       |
-| new user                                              | save drafts for any changes                                              | can continue from where I left off previously.                                 | *        |
-| intermediate user who is careless                     | undo my previous change                                                  | can undo any accidental changes easily.                                        | *        |
-| intermediate user who is ready to explore more        | find out more advanced commands through suggestions                      | can extend the functionality of the application and perform more tasks.        | *        |
-| expert user                                           | share student records with other teachers                                | other teachers can take over the class and view past records of the students   | *        |
-| expert user                                           | transfer/ backup data from one computer to another                       |                                                                                | *        |
-| expert user                                           | put passcode on student's data that is private                           | the data is not easily visible to other users.                                 | *        |
-| expert user                                           | show and hide certain fields with sensitive information                  |                                                                                | *        |
-| expert user                                           | archive the data                                                         | can reference to it in the future and not be cluttered by it.                  | *        |
-| teacher who made a marking mistake                    | update all my students' test score with a single command (e.g. all +2)   | do not have to individually update each record.                                | *        |
-| teacher who will be taking the same class (next year) | duplicate the class list                                                 | can save time on creating a new list.                                          | *        |
+| Role (As a/ an)                                     | Goal/ Function (I want to)                                  | Benefit (So that I)                                                           | Priority |
+|-----------------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------------------------|----------|
+| new user                                            | add new student records                                     |                                                                               | ***      |
+| new user                                            | delete student records                                      | can remove irrelevant or incorrect student records.                           | ***      |
+| new user                                            | update student records                                      | can keep my student records accurate and up to date.                          | ***      |
+| new user                                            | view all students that I am teaching                        |                                                                               | ***      |
+| new user                                            | find a particular student's record by name                  |                                                                               | ***      |
+| new user                                            | find a particular student's record by student ID            |                                                                               | ***      |
+| new user                                            | add in individual students' personal information            | can retrieve my student's information when necessary.                         | ***      |
+| new user                                            | add in individual students' academic results                | can keep track of their results over time.                                    | ***      |
+| teacher with multiple classes                       | categorise students into different classes                  | can keep my student records tidy and organised.                               | ***      |
+| new user                                            | store parent's details                                      | can contact and inform them if a student is not doing well.                   | ***      |
+| teacher with multiple classes                       | filter student records based on their class                 | can search for students in a particular class easily.                         | ***      |
+| new user                                            | get exam statistics from a class                            | can get an overview of my students' academic performance.                     | ***      |
+| new user                                            | flag out students who are under performing in class         | can quickly identify students who need more academic assistance.              | ***      |
+| new user                                            | sort the student records in terms of grades                 | can easily view the academic rankings of my student.                          | ***      |
+| teacher with many students                          | hide parent's information from view                         | can have an uncluttered view of my student's information.                     | ***      |
+| new user who is forgetful                           | automatically save the data without inputting a new command | do not need to worry about forgetting to save before I quit the application.  | ***      |
+| potential user                                      | try the application with sample data                        | can easily see how the application will look like when it is in use.          | ***      |
+| potential user                                      | see a summary of functionalities                            | have an idea of what I can do without referencing the user guide.             | **       |
+| new user                                            | purge all current data                                      | can get rid of sample/experimental data I used for exploring the application. | **       |
+| intermediate user                                   | add multiple student records with a single command          | can efficiently enter my students' information at once.                       | **       |
+| new user                                            | filter student records below a certain grade                | can identify students who scored below an acceptable grade.                   | **       |
+| teacher who might teach a different class next year | delete all student records from a particular class          | can remove the records of students that I am no longer teaching.              | **       |
+| new user                                            | undo previous commands                                      | can easily undo an accidental change.                                         | **       |
+| intermediate user                                   | create additional custom fields in student records          | can keep track of additional information of my students.                      | **       |
+| intermediate user                                   | share student details with other teachers                   | can share the data with another teacher who may take over the class.          | *        |
+| advanced user                                       | transfer and backup data from one computer to another       | will not lose my data if I switch to another computer.                        | *        |
+| advanced user                                       | update all students' exam grades with a single command      | can efficiently update my students' grades at once.                           | *        |
+| teacher who might teach the same class next year    | update the class name of all students in that class         | can save time updating each student's information individually.               | *        |
+| advanced user                                       | find out more advanced commands through suggestions         | can learn and extend the functionality of the app.                            | *        |
+| potential user                                      | follow a tutorial to introduce the basic commands           | can learn the basic functionalities step by step.                             | *        |
 
-*{More to be added}*
+### 6.3 Use cases
 
-### Use cases
+(For all use cases below, the **System** is `Class-ify` and the **Actor** is the `user`, unless specified otherwise.)
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Delete a person**
+**Use case: Add a new student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a new student to the list.
+2. User enters relevant details of the new student.
+3. Class-ify adds new student into the student record.
+4. Class-ify displays an updated list of student(s).
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. Student already exist in student record.
+   * 2a1. Class-ify displays a duplicate error message. 
 
-  Use case ends.
+     Use case resumes from step 2.
 
-* 3a. The given index is invalid.
+* 2b. User missed out a compulsory field.
+   * 2b1. Class-ify shows an invalid command error message.
 
-    * 3a1. AddressBook shows an error message.
+     Use case resumes from step 2.
 
-      Use case resumes at step 2.
+* 2c. Class-ify detects invalid format of field value.
+    * 2c1. Class-ify shows an invalid format error message.
 
-*{More to be added}*
+      Use case resumes from step 2.
 
-### Non-Functional Requirements
+**Use case: Delete a student**
+
+**MSS**
+
+1. User requests to delete a student from the list.
+2. User enters name or id of student to be deleted.
+3. Class-ify deletes student from the student record.
+4. Class-ify displays an updated list of student(s).
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Student does not exist in student record.
+    * 2a1. Class-ify displays an error message indicating the to-be-deleted student does not exist.
+
+      Use case resumes from step 2.
+
+* 2b. The student record is empty.
+    * 2b1. Class-ify displays an error message similar to 2a1.
+
+      Use case resumes from step 2.
+
+* 2c. Class-ify detects invalid format of field value.
+    * 2c1. Class-ify shows an invalid format error message.
+
+      Use case resumes from step 2.
+
+**Use case: Edit details of a student**
+
+**MSS**
+
+1. User requests to edit the details of a student from the list.
+2. User enters index of student in the list to be edited.
+3. User enters the relevant details of the student to be edited.
+4. Class-ify updates the details of the student in the student record.
+5. Class-ify displays an updated list of student(s).
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+    * 2a1. Class-ify displays an invalid command error message.
+
+      Use case resumes from step 2.
+
+* 2b. The given index is out of bounds of the list.
+    * 2b1. Class-ify displays an error message similar to 2a1.
+
+      Use case resumes from step 2.
+
+* 3a. Class-ify detects invalid format of field value.
+    * 3a1. Class-ify shows an invalid format error message.
+
+      Use case resumes from step 3.
+
+* 3b. No given fields to be edited.
+    * 3b1. Class-ify shows an error message to prompt user to enter at least one field to be edited.
+
+      Use case resumes from step 3.
+
+**Use case: Find a student**
+
+**MSS**
+
+1. User requests to find some student(s) in the list.
+2. User enters name or id of the student(s) to be found.
+3. Class-ify search for the student(s) in the student record.
+4. Class-ify displays a list of student(s) found.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No fields are given.
+    * 2a1. Class-ify displays an invalid command error message.
+
+      Use case resumes from step 2.
+
+* 2b. Class-ify detects invalid format of field value.
+    * 2b1. Class-ify shows an invalid format error message.
+
+      Use case resumes from step 2.
+
+* 4a. No students are found.
+    * 4b1. Class-ify display an empty list and a message indicating no students are found. 
+
+      Use case ends.
+
+**Use case: Calculate exam statistics**
+
+**MSS**
+
+1. User requests to calculate exam statistics for a class.
+2. User enters the class and exam that he/she wishes to calculate statistics for.
+3. Class-ify calculates the average score in the class for the exam.
+4. Class-ify displays the list of students in the class in order of ascending grades.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No fields are given.
+    * 2a1. Class-ify displays an invalid command error message.
+
+      Use case resumes from step 2.
+
+* 2b. Class-ify detects invalid format of field value.
+    * 2b1. Class-ify shows an invalid format error message.
+
+      Use case resumes from step 2.
+
+* 2c. Not all students have received grades for the exam.
+    * 2c1. Class-ify shows an error message stating mean score cannot be calculated.
+
+### 6.4 Non-Functional Requirements
+
 - **Technical Requirement**:
-  - Application should work on any device - teachers using different laptops should be able to use the application.
+  - Class-ify should work on any mainstream operating system (OS) as long as it has Java version 11 or above installed.
+  - Class-ify should work on both 32-bit and 64-bit environments.
 - **Quality Requirement**:
-  - Display of information on the application should not feel cluttered.
+  - Display of information on the application should not feel disorganised or cluttered.
+  - Colour scheme of Class-ify should be pleasant for most users and not cause a strain to the eye.
 - **Performance Requirement**:
-  - Should be able to process any command within two seconds - response of application should not feel laggy.
+  - Class-ify should be able to process any command within two seconds.
+  - Class-ify Should be able to hold up to 200 students in the student record without a noticeable lag in performance.
 - **Project Scope**:
-  - Application does not offer student or parent accounts, and hence no communication with students or their guardians via the product.
-  - Application does not allow synchronisation of class lists with other teachers, but allows for sharing of data between teachers.
+  - Class-ify does not offer student or parent accounts, and hence no communication with students or their guardians via the application.
+  - Class-ify does not allow synchronisation of class lists with other teachers, but allows for sharing of data between teachers.
+- **Others**:
+  - A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
-
-### Glossary
+### 6.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: Command Line Interface (CLI) is a text-based User Interface (UI) used to run programs.
 Through the CLI, users interact with the application by typing in text commands
-* **Use case**: A description of a set of sequences of actions, including variants, 
-that a system performs to yield an observable result of value to an actor
+* **GUI**: Graphical User Interface (GUI) is an interface that allows the user to interact with through various visual graphics.
 * **MSS**: Main Success Scenario (MSS) describes the most straightforward interaction for a given use case, 
 which assumes that nothing goes wrong
-* **Non-Functional Requirements**: The constraints under which the system is developed and operated
+* **32-bit/64-bit environment**: Refers to systems that use a 32-bit/64-bit processor respectively.
+
+Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 7. **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
+<div class="alert alert-info">
+:information_source: **Note:** These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 </div>
 
-### Launch and shutdown
+### 7.1 Launch and shutdown
 
 1. Initial launch
-
    1. Download the jar file and copy into an empty folder
+   2. Double-click the jar file
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
-
+2. Saving window preferences
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   2. Re-launch the app by double-clicking the jar file.<br>
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### 7.2 Adding a new student record
 
-### Deleting a person
+Prerequisites: Existing student records do not have the names or IDs that will be added.
+1. Test case: `addStudent nm/Peter Tan id/452B class/1F`
+   
+Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since no exam grades have been provided, the student card UI does not show anything below the grades section.
 
-1. Deleting a person while all persons are being shown
+2. Test case: `addStudent nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since exam grades have been provided, the student card UI shows the exam scores for each exam that has been provided.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+3. Test case: `addStudent nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. This test case includes parents' details as well.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+4. Test case: `addStudent nm/Jonathan Lim id/abc2 class/2A`
 
-1. _{ more test cases …​ }_
+Expected: The command entered by the user is highlighted red. The status message shows an error: "Id should only contain 3 digits and 1 character". "abc2" is an invalid value for the ID as Class-ify only accepts the last 3 numbers and last letter of a student's ID.
 
-### Saving data
+### 7.3 Editing a student record
+
+1. Test case: `edit 1 exam/CA2 70 exam/SA1 60`
+
+Expected: Adds or updates the CA2 and SA1 exam grades of the 1st student in the list to be `70` and `60` respectively.
+
+2. Test case `edit 2 nm/Jacob Teo`
+
+Expected: Edits the name of the 2nd student in the list to `Jacob Teo`.
+
+### 7.4 Deleting a student record
+
+Prerequisites: List all persons using the `list` command. Multiple students in the list.
+
+1. Test case: `delete 1`
+
+Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+2. Test case: `delete 0`
+
+Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+3. Other incorrect delete commands to try: `delete`, `delete x`
+
+Expected: Similar to previous.
+
+### 7.5 Finding a student record
+
+Prerequisites: Students with "Alex" in their name exist in the list.
+
+1. Test case: `find nm/Alex`
+
+Expected: Students with "Alex" in their name appears in the list.
+
+Prerequisites: Student with "123A" as their ID exists in the list.
+
+1. Test case: `find id/123A`
+
+Expected: Student with "123A" as their ID appears in the list.
+
+### 7.6 Viewing all student records
+
+Prerequisites: There are existing student records.
+
+1. Test case: `viewAll`
+
+Expected: All student records will appear in the list.
+
+### 7.7 Viewing student records from a class
+
+Prerequisites: Class provided must exist within the student records.
+
+1. Test case: `viewClass 1A`
+
+Expected: Student records from class 1A will appear in the list.
+
+### 7.8 Toggling view
+
+1. Test case: `toggleView`
+
+Expected: Shows/hides parent details in each student card UI.
+
+### 7.9 Calculating exam statistics
+
+Prerequisites: Student records with class "4a" and exam results for "sa1" exists.
+
+1. Test case: `viewStats class/4a exam/sa1 filter/off`
+
+Expected: Displays the mean obtained by class "4A" for "SA1", as well as the list of all the students in the class '4A', arranged in ascending grades for "SA1".
+
+### 7.10 Saving data
+
+Prerequisites: Missing `data/classify.json` file
 
 1. Dealing with missing/corrupted data files
+      1. Test case: Delete `data/classify.json` file and relaunch the application.
+         Expected: Application will be populated with sample data.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+Click <a href="#top">here</a> to return to the top.
