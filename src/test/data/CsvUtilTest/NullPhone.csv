@@ -1,0 +1,2 @@
+type,moduleCodes,moduleCode,name,phone,email,gender,tagged,location,username,rating,year,specialisation,officeHour
+p,,CS1000,"TEST NAME",,test@test.com,M,,COM3,,5,,"Computer Networks","WEDNESDAY, 12:00 PM - 08:00 PM"

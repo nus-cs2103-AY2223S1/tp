@@ -5,10 +5,14 @@ title: Koh Wei Quan Norman's Project Portfolio Page
 
 ### Project: SoConnect
 
+<<<<<<< HEAD
+#### Overview : to be added soon
+=======
 #### Overview : 
 
 SoConnect is a desktop address book application designed for National University of Singapore (NUS) Computer Science Undergraduates to keep track of their University Social Circle. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
+>>>>>>> dfc46836bc054cea3f9264f49a7bd58252aa9ad7
 #### Summary of contributions :
 
 Given below are my contributions to the project.
