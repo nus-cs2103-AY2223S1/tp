@@ -73,7 +73,7 @@ Throughout this user guide, there are hyperlinks which you can click on to get m
 
 3. Copy the file to the folder you want to use as the _home folder_ for your HobbyList.
 
-4. Double-click the file to start the app. The default GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The default GUI similar to the one below should appear in a few seconds. You can see that the app contains some sample data.<br>
    ![Ui](images/default_gui.png)
 
 5. Type the command in the command box and press Enter to execute it.<br>
