@@ -143,16 +143,32 @@ Examples:
 * `mdel c/CS2103T`
 
 
-### 2.3 Students
+### 2.3 Students / Teaching Assistants
 
-#### 2.3.1 Adding a student/teaching assistant: `add`
+In ProfNUS, you are able to add students / teaching assistants in to our contact list.
+We are able to save the individual's name, unique student id, phone number, email, telegram handle,
+address and other school related information such as modules the student is taking, modules which 
+the student is a teaching assistant for and the class groups that the student is in.
+Teaching assistants in ProfNUS are considered students as well and as such, an individual 
+can be both a student and a teaching assistant at the same time.
 
-Adds a student/teaching assistant to the module.
+![studentandta.png](./images/userguide/studentandta.png)
+
+As we can see, the person `Bernice Yu` is a student of the module `CS2040S` as seen by the red label and a 
+teaching assistant of the module `CS2030S` as seen by the green label. If you edit or delete `Bernice Yu`, the changes will 
+be saved on both sides.
+
+
+#### 2.3.1 Adding a student / teaching assistant: `add`
+
+Adds a student / teaching assistant.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/STUDENT_ID h/TELEGRAM [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
 
 <div markdown="span" class="alert alert-primary">
+
 :bulb: **Tip:** A student can have any number of tags, modules, ta modules and class groups (including 0).
+
 :bulb: **Tip:** A student should not be a teaching assistant and a student of the same module!
 
 </div>
@@ -164,7 +180,7 @@ Examples:
 
 #### 2.3.2 Editing a student : `editstu`
 
-Edits an existing student in the ProfNUS application.
+Edits an existing student.
 
 Format: `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
 
@@ -182,7 +198,7 @@ Examples:
 
 #### 2.3.3 Editing a teaching assistant : `editta`
 
-Edits an existing teaching assistant in the ProfNUS application.
+Edits an existing teaching assistant.
 
 Format: `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
 
