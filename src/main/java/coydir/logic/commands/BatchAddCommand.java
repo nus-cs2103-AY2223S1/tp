@@ -1,5 +1,6 @@
 package coydir.logic.commands;
 
+import static coydir.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static coydir.commons.util.CollectionUtil.requireAllNonNull;
 import static coydir.logic.parser.CliSyntax.PREFIX_LIST;
 
@@ -84,7 +85,11 @@ public class BatchAddCommand extends Command {
         } catch (IOException e) {
             throw new CommandException(e.getMessage());
         } catch (ParseException e) {
-            throw new CommandException(e.getMessage());
+            if (e.getMessage().equals(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE))) {
+                throw new CommandException("Name, Position or Department is missing for one person!");
+            } else {
+                throw new CommandException(e.getMessage());
+            }
         }
         return addCommandList;
     }
