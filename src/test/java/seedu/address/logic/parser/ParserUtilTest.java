@@ -14,8 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.addcommands.AddOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Order;
-import seedu.address.model.order.Request;
+import seedu.address.model.order.*;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Location;
@@ -236,6 +235,29 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parsePrice_invalidArgs_throwParseException() {
+        String expected = Price.MESSAGE_USAGE;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parsePrice("^4v"));
+    }
+
+    @Test
+    public void parsePrice_negativePrice_throwParseException() {
+        String expected = Price.MESSAGE_USAGE;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parsePrice("-267832"));
+    }
+
+    @Test
+    public void parsePriceRange_noUpperBound_throwParseException() {
+        String expected = PriceRange.MESSAGE_USAGE;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parsePriceRange("6,"));
+    }
+
+    @Test
+    public void parsePriceRange_negativeUpperBound_throwParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePriceRange("-45,-10"));
+    }
+
+    @Test
     public void parseRequest_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseRequest(null));
     }
@@ -264,5 +286,15 @@ public class ParserUtilTest {
         } catch (ParseException e) {
             assert false;
         }
+    }
+
+    @Test
+    public void parseAdditionalRequests_invalidAdditionalRequest_throwsParseException() {
+        AdditionalRequests additionalRequests = new AdditionalRequests("HGBJBV^^^&&&#");
+        List<String> additionalRequestsString = additionalRequests.getAdditionalRequestsToString();
+
+        String expected = AdditionalRequests.MESSAGE_CONSTRAINTS;
+        assertThrows(ParseException.class, expected, ()
+                -> ParserUtil.parseAdditionalRequests(additionalRequestsString));
     }
 }
