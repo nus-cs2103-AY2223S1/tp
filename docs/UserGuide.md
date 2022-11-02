@@ -596,6 +596,7 @@ Examples:
 
 </p>
 
+
 <p align="center">
 
 <img src="images/unassignCommand_after.png"/>
@@ -712,18 +713,29 @@ This deltes the next of kin of John Doe.
 
 ### Exporting address books to csv
 
-Export Students, Tutors, and TuitionClasses address books into their own .csv files to be used in other programs.
-
-Format: Click on the "*File*" tab at the top left hand corner of `myStudent` and click on "*Export*" in the dropdown menu.
-
-* The csv files will be saved in the same location as the .json files as specified in `preferences.json`.
-* The default location is in a folder named `data` in the same location where you downloaded the myStudent.jar file.
+Export Students, Tutors, and TuitionClasses address books into their own .csv files to be used in other programs.  
+They are named `students.csv`, `tutors.csv`, and `tuitionClasses.csv` respectively.
 
 <p align="center">
 
 <img src="images/exportButton.png"/>
 
 </p>
+
+Format: Click on the "*File*" tab at the top left hand corner of `myStudent` and click on "*Export*" in the dropdown menu, as shown in the image above.
+
+* The csv files will be saved in the same location as the .json files as specified in `preferences.json`.
+* The default location is in a folder named `data` in the same location where you downloaded the myStudent.jar file.
+* Exporting will replace any csv files that were exported previously, if they exist.
+
+<div style="background-color:#FFC5B4">
+
+:warning: **Warning**  
+The export function will **NOT** work if any of the .csv files in the save folder is opened during the exporting.  
+Please close any .csv files that are currently open before clicking on the "*Export*" button.
+
+</div>
+
 
 ---
 
