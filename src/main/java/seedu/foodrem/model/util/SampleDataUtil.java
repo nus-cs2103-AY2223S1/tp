@@ -40,8 +40,8 @@ public class SampleDataUtil {
             new Item(new ItemName("Eggs"),
                      new ItemQuantity("10"),
                      new ItemUnit("trays"),
-                     ItemBoughtDate.of("28-10-2022"),
-                     ItemExpiryDate.of("25-01-2022"),
+                     ItemBoughtDate.of("28-01-2022"),
+                     ItemExpiryDate.of("25-02-2022"),
                      new ItemPrice("3.30"),
                      new ItemRemark("For seasonal meal"),
                      new HashSet<>()),
@@ -57,7 +57,7 @@ public class SampleDataUtil {
                      new ItemQuantity("10"),
                      new ItemUnit("litres"),
                      ItemBoughtDate.of("13-05-2022"),
-                     ItemExpiryDate.of("13-01-2022"),
+                     ItemExpiryDate.of("13-06-2022"),
                      new ItemPrice("1.40"),
                      new ItemRemark(""),
                      new HashSet<>(List.of(new Tag("Drinks"), new Tag("Fridge")))),
@@ -65,7 +65,7 @@ public class SampleDataUtil {
                      new ItemQuantity("2"),
                      new ItemUnit("bottles"),
                      ItemBoughtDate.of("21-06-2022"),
-                     ItemExpiryDate.of("21-04-2022"),
+                     ItemExpiryDate.of("21-12-2022"),
                      new ItemPrice("30"),
                      new ItemRemark(""),
                      new HashSet<>(List.of(new Tag("Drinks"), new Tag("Fridge")))),
@@ -88,8 +88,8 @@ public class SampleDataUtil {
             new Item(new ItemName("Chicken breasts"),
                      new ItemQuantity("10.8"),
                      new ItemUnit("Kg"),
-                     ItemBoughtDate.of("24-08-2022"),
-                     ItemExpiryDate.of("16-04-2022"),
+                     ItemBoughtDate.of("24-03-2022"),
+                     ItemExpiryDate.of("16-12-2022"),
                      new ItemPrice("11"),
                      new ItemRemark("Try new recipe"),
                      new HashSet<>(List.of(new Tag("Meat"), new Tag("Freezer")))),
@@ -104,7 +104,7 @@ public class SampleDataUtil {
             new Item(new ItemName("Oranges"),
                      new ItemQuantity("2.8"),
                      new ItemUnit("Kg"),
-                     ItemBoughtDate.of("18-09-2022"),
+                     ItemBoughtDate.of("18-03-2022"),
                      ItemExpiryDate.of("10-04-2022"),
                      new ItemPrice("4.40"),
                      new ItemRemark("For seasonal meal"),
@@ -113,7 +113,7 @@ public class SampleDataUtil {
                      new ItemQuantity("9.3"),
                      new ItemUnit("Kg"),
                      ItemBoughtDate.of("14-11-2022"),
-                     ItemExpiryDate.of("24-10-2022"),
+                     ItemExpiryDate.of("24-12-2022"),
                      new ItemPrice("2.80"),
                      new ItemRemark("For seasonal meal"),
                      new HashSet<>(List.of(new Tag("Vegetables")))),
@@ -160,7 +160,7 @@ public class SampleDataUtil {
             new Item(new ItemName("Beef Round"),
                      new ItemQuantity("10"),
                      new ItemUnit("Kg"),
-                     ItemBoughtDate.of("22-12-2022"),
+                     ItemBoughtDate.of("22-06-2022"),
                      ItemExpiryDate.of("19-07-2022"),
                      new ItemPrice("28"),
                      new ItemRemark("Try new recipe"),
@@ -177,7 +177,7 @@ public class SampleDataUtil {
                      new ItemQuantity("4"),
                      new ItemUnit("Kg"),
                      ItemBoughtDate.of("21-07-2022"),
-                     ItemExpiryDate.of("19-04-2022"),
+                     ItemExpiryDate.of("19-08-2022"),
                      new ItemPrice("2.00"),
                      new ItemRemark(""),
                      new HashSet<>(List.of(new Tag("Vegetables")))),
@@ -208,7 +208,7 @@ public class SampleDataUtil {
             new Item(new ItemName("Whisky"),
                      new ItemQuantity("10"),
                      new ItemUnit("litres"),
-                     ItemBoughtDate.of("15-12-2022"),
+                     ItemBoughtDate.of("15-10-2022"),
                      ItemExpiryDate.of("14-11-2022"),
                      new ItemPrice("58"),
                      new ItemRemark("For party"),
@@ -224,7 +224,7 @@ public class SampleDataUtil {
             new Item(new ItemName("Vodka"),
                      new ItemQuantity("4.8"),
                      new ItemUnit("litres"),
-                     ItemBoughtDate.of("18-10-2022"),
+                     ItemBoughtDate.of("18-03-2022"),
                      ItemExpiryDate.of("11-04-2022"),
                      new ItemPrice("58"),
                      new ItemRemark("For party"),
@@ -233,25 +233,12 @@ public class SampleDataUtil {
                      new ItemQuantity("3"),
                      new ItemUnit("litres"),
                      ItemBoughtDate.of("28-06-2022"),
-                     ItemExpiryDate.of("26-01-2022"),
+                     ItemExpiryDate.of("26-07-2022"),
                      new ItemPrice("58"),
                      new ItemRemark("For party"),
                      new HashSet<>(List.of(new Tag("Drinks"), new Tag("Fridge")))),
         };
     }
-
-    public static Tag[] getSampleTags() {
-        return new Tag[]{
-            new Tag("Vegetables"),
-            new Tag("Aromatics"),
-            new Tag("Herbs"),
-            new Tag("Meats"),
-            new Tag("Spices"),
-            new Tag("Cutlery"),
-            new Tag("Kitchenware"),
-        };
-    }
-
 
     public static ReadOnlyFoodRem getSampleFoodRem() {
         FoodRem sampleFoodRem = new FoodRem();
@@ -265,14 +252,4 @@ public class SampleDataUtil {
         }
         return sampleFoodRem;
     }
-
-    // TODO: Check if we can delete this. Implement with tags
-    ///**
-    // * Returns a tag set containing the list of strings given.
-    // */
-    //public static Set<Tag> getTagSet(String... strings) {
-    //    return Arrays.stream(strings)
-    //            .map(Tag::new)
-    //            .collect(Collectors.toSet());
-    //}
 }
