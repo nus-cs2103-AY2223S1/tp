@@ -27,8 +27,6 @@ Searching for information about specific features? You might find it helpful to 
 the Table of Contents below for more detailed explanations of individual features.
 Alternatively, consider looking at the [Command Summary](#command-summary) for a brief outline of all the commands.
 
---------------------------------------------------------------------------------------------------------------------
-
 * Table of Contents
   {:toc}
 
