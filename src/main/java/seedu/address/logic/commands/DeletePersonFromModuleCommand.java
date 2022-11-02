@@ -31,7 +31,7 @@ public class DeletePersonFromModuleCommand extends Command {
     public static final String COMMAND_WORD = "delete-person-from-module";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a person (identified by name)"
-            + "belonging in a module (identified by module code).\n"
+            + " belonging in a module (identified by module code).\n"
             + "Parameters: "
             + PREFIX_MODULE_CODE + "MODULE_CODE "
             + PREFIX_NAME + "NAME \n"
