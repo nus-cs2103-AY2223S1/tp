@@ -30,9 +30,11 @@ If you want to **quick**ly get **start**ed with using HobbyList, you can read an
 
 #### Features
 The [features](#5-features) section contains a list of all the features that HobbyList currently has. Within each feature, you can read up on how each feature is used and look at some examples.
+The features are laid out with a short description, followed by the format of the command, then finally some examples with explanation on what they do.
+This [information box](#command-info) provides information on understanding the command format.
 
 #### Special boxes
-Throughout the entire user guide, there are special boxes like the ones below which gives you additional information.
+Throughout the entire user guide, there are special boxes like the ones below which give you additional information.
 
 <div markdown="block" class="alert alert-info">
 
@@ -104,7 +106,7 @@ to be added
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Features
-
+<a name="command-info"></a>
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -117,6 +119,8 @@ to be added
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/sport`, `t/sport t/cardio` etc.
+
+* A parameter is something you add after the command name to provide more information to the command.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME d/DESCRIPTION`, `d/DESCRIPTION n/NAME` is also acceptable.
@@ -134,23 +138,50 @@ to be added
 
 ### 5.1 Adding a hobby activity : `add`
 
-Adds a hobby activity to HobbyList.
+This command allows you to add an activity to HobbyList
 
 Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE] [s/STATUS]`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Additional information for add:**<br>
 
 * `[t/TAG]...` only accepts alphanumeric with underscores.
 * `[s/STATUS]` only accepts **UPCOMING**, **ONGOING** or **COMPLETED** as STATUS. e.g. `s/ongoing`(case-insensitive).
 * If `STATUS` is not specified, it will be displayed as **Status: NONE** by default.
 
+</div>
+
 Examples:
 * `add n/42km run d/NUS Run event t/sport`
-* `add n/Badminton d/play badminton t/sport entertainment_2 date/2022-10-19 s/completed`
+  *Adds an activity with the name "42km run" with a description "NUS Run event" and with a tag "sport".*
+* `add n/Badminton d/play badminton t/sport t/entertainment date/2022-10-19 s/completed`
+  *Adds an activity with the name "Badminton", description "play badminton", tags "sport" and "entertainment", date "2022-10-19" and status "COMPLETED".
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **What is an activity?:**<br>
+
+Every entry in HobbyList is an activity. Each activity contains the fields below.
+* *Name*: What the activity is called. Not optional.
+* *Description*: What the activity is about. Not optional.
+* *Tags*: What type of activity it is. Helps you to organise your activities. For example, you can have different activities tagged "book", "movie" or "recipe". Each activity can have multiple tags. Optional.
+* *Date*: When the activity was/will be done. Currently, each activity can only have one date, which you can set it to be the starting date, the ending date, or anything you like. Optional.
+* *Status*: Whether the activity is upcoming, ongoing or completed. Optional.
+* *Rating*: How good the activity is to you, on a scale of 1 to 5. Optional.
+* *Review*: Your feelings about the activity after completing it. Optional.
+
+</div>
 
 ### 5.2 Editing an activity : `edit`
 
-Edits a specified activity from HobbyList.
+This command allows you to edit an activity already in HobbyList.
 
 Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE] [s/STATUS]`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Additional information for edit:**<br>
 
 * Edits the activity at the specified `INDEX`. The index refers to the index number shown in the displayed activity list. The `INDEX` **must be a positive integer** 1, 2, 3, …
 * At least **one** of the optional fields must be provided.
@@ -158,6 +189,8 @@ Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE] [s/STATUS]`
 * When editing tags, the existing tags of the activity will be removed i.e. adding of tags is not cumulative.
 * You can remove all the activity's tags by typing `t/` without specifying any tags after it.
 * `[s/STATUS]` only accepts **UPCOMING**, **ONGOING** or **COMPLETED** (case-insensitive) as STATUS. e.g. `s/ongoing`.
+
+</div>
 
 Examples:
 
