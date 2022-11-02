@@ -117,15 +117,20 @@ Format: `add d/DESCRIPTION sd/START DATE du/DURATION [c/COUNTRY] [p/NUMBER OF WA
 * `BUDGET` is the budget for the itinerary and must be between $0 and $1,000,000. Please provide the budget in dollars ($), you may include cents too!
   - e.g. `b/1000` is $1,000.
   - e.g. `b/1000.50` is $1,000.50.
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** 
-* You cannot add an itinerary with the same description as an existing itinerary.
-* Waddle only accepts english letters and spaces for `DESCRIPTION` and `COUNTRY`, special characters like `'`, `&`, `!` are not allowed.
-    * Example of invalid input: `d/My Trip!!`, `c/Côte d'Ivoire`, `c/中国`
-* The budget input should only contain numbers and one decimal point.
-    * Example of invalid input: `b/1,000,000`
-* If more than 2 decimal places are provided for the budget, Waddle rounds it up to 2 decimal places.
-    * e.g. `b/1000.505` will be reflected as $1,000.51.
+  
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+* You cannot add an itinerary with the same description as an existing itinerary.<br>
+
+* Waddle only accepts english letters and spaces for `DESCRIPTION` and `COUNTRY`, special characters like `'`, `&`, `!` are not allowed.<br>
+  - Example of invalid input: `d/My Trip!!`, `c/Côte d'Ivoire`, `c/中国`
+* The budget input should only contain numbers and one decimal point.<br>
+  - Example of invalid input: `b/1,000,000`
+* If more than 2 decimal places are provided for the budget, Waddle rounds it up to 2 decimal places.<br>
+  - e.g. `b/1000.505` will be reflected as $1,000.51.
+
 </div>
 
 Examples:
@@ -148,9 +153,12 @@ Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START DATE] [du/DURATION] [p
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** 
-* If you are editing the budget, please ensure that it is sufficient to cover the cost of all the planned items. An error would be shown otherwise.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:** <br>
+
+* If you are editing the budget, please ensure that it is sufficient to cover the cost of all the planned items. An error would be shown otherwise.<br>
+
 </div>
 
 Examples:
@@ -227,10 +235,14 @@ Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
   - e.g. `b/100.20` is $100.20.
 * You cannot add items with the same description as an existing item in the item list.
 * 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:**
-* The default `PRIORITY` is 1.
-* The default `COST` is $0.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* The default `PRIORITY` is 1.<br>
+
+* The default `COST` is $0.<br>
+
 </div>
 
 Examples:
@@ -247,9 +259,12 @@ Format: `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** 
-* If you are editing the cost, please ensure that the new cost stays within the budget of the itinerary. An error would be shown otherwise.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** <br>
+
+* If you are editing the cost, please ensure that the new cost stays within the budget of the itinerary. An error would be shown otherwise.<br>
+
 </div>
 
 Examples:
@@ -281,9 +296,12 @@ Format: `plan INDEX d/DAY NUMBER st/START TIME`
 * The end time of the item is calculated by adding the `DURATION` of the item to the `START TIME`.
 * You can only add an item if there is no clash in timing between the start and end time of the new item, and the start and end time of any existing scheduled item.
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** 
-* When scheduling an item, please ensure that the item stays within the budget of the itinerary. An error would be shown otherwise.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* When scheduling an item, please ensure that the item stays within the budget of the itinerary. An error would be shown otherwise.<br>
+
 </div>
 
 Examples:
@@ -326,10 +344,14 @@ Format: `copy`
 
 [//]: # (TODO: include screenshot of how the generated text looks like)
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** 
-* The generated text includes all days within the itinerary, even if there are no items planned for the day.
-* The generated text does not include the items in the wishlist. For items to be reflected in the generated text, they must be planned.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** <br>
+
+* The generated text includes all days within the itinerary, even if there are no items planned for the day.<br>
+
+* The generated text does not include the items in the wishlist. For items to be reflected in the generated text, they must be planned.<br>
+
 </div>
 
 ### Exporting to PDF file : `pdf`
@@ -396,6 +418,6 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**Unschedule Item**](#unscheduling-an-item--unplan)         | `unplan INDEX`<br> e.g., `unplan 3.2`                                                                    |
 | [**View Vacant Timeslots**](#viewing-vacant-timeslots--free) | `free`                                                                                                   |
 | [**Return to Main Page**](#returning-to-main-page--home)     | `home`                                                                                                   |
-| [**Copy to clipboard**](#copying-to-clipboard--copy)         | `copy`|
-| [**Export to PDF**](#exporting-to-pdf-file--pdf)          | `pdf`|
+| [**Copy to clipboard**](#copying-to-clipboard--copy)         | `copy`                                                                                                   |
+| [**Export to PDF**](#exporting-to-pdf-file--pdf)             | `pdf`                                                                                                    |
 | [**Exit**](#exiting-waddle--exit)                            | `exit`                                                                                                   |

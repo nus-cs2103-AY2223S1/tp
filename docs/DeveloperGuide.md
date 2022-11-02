@@ -226,7 +226,7 @@ Step 2. The multiIndex in `EditItemCommand` is checked for a presence of a dayNu
   * Step 7. Attempt to add the `editedItem` into the itemList. If a time conflict is detected, the original item is added back into the itemList and a `CommandException` is thrown.
   * Step 8. If the `editedItem` is added successfully, the itemList is re-sorted in order of startTime.
 
-### \[Proposed\] Edit an itinerary
+### Edit an itinerary
 
 An itinerary's details (description, start date, duration, and budget) can be edited by changing the fields of an Itinerary object.
 
@@ -245,7 +245,7 @@ Step 1. The `EditCommand` object's `execute()` method is called.
     * The Items that were scheduled in the deleted Days would be unscheduled.
   * Update the duration field.
 
-### \[Proposed\] Export
+### Export
 
 The Export feature is facilitated by the pdfbox library.
 
