@@ -3,7 +3,6 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;

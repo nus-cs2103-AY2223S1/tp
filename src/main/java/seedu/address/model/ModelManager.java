@@ -1,6 +1,5 @@
 package seedu.address.model;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -19,8 +18,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.UniqueTaskList;
-import seedu.address.model.task.exceptions.TaskNotFoundException;
 import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.exceptions.TeamNotFoundException;
