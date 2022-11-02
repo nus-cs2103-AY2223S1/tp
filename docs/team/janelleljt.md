@@ -7,6 +7,9 @@ title: Janelle Loh Jen Teng's Project Portfolio Page
 in the form of an integrated solution built using Java with around 15 kLOC. The user interacts with the application via a
 CLI, and the application responds with its GUI, created with JavaFX.
 
+My role in this project was to design features related to order management. The following sections will give a more in-depth 
+illustration of my contributions as well as the relevant documentation I have added to the user guide and developer guide.
+
 ### Summary of Contributions
 - **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=melissaharijanto&breakdown=true) <br/>
 

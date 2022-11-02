@@ -21,17 +21,19 @@ If you are looking to help develop this project, take a look at our [Developer G
 ## Table of Contents
 
 * [Introduction](#introduction)
-* [Layout]
-* [Using this guide]
+* [Layout](#layout)
+* [Using this guide](#using-this-guide)
+* [Command guide](#command-guide)
 * [Quick start](#quick-start)
-* [Features]
-  * Inventory management
+* [Tutorial](#tutorial)
+* [Features](#features)
+  * [Inventory management](#uinventory-managementu)
     * [Adding an inventory item: `addi`](#adding-an-inventory-item-addi)
-    * [Listing all inventory items: `list`](#listing-all-inventory-items-listi)
+    * [Listing all inventory items: `listi`](#listing-all-inventory-items-listi)
     * [Finding an inventory item: `findi`](#finding-an-inventory-item-findi)
     * [Deleting an inventory item: `deletei`](#deleting-an-inventory-item-deletei)
     * [Editing an inventory item: `editi`](#editing-an-inventory-item-editi)
-  * Order management
+  * [Order management](#uorder-managementu)
     * [Adding an order: `addo`](#adding-an-order-addo)
     * [Listing all orders: `listo`](#listing-all-orders-listo)
     * [Finding order(s): `findo`](#finding-orders-findo)
@@ -39,9 +41,10 @@ If you are looking to help develop this project, take a look at our [Developer G
     * [Deleting an order: `deleto`](#deleting-an-order-deleteo)
     * [Editing an order: `edito`](#editing-an-order-edito)
     * [Marking an order as paid/delivered: `marko`](#marking-an-order-as-paiddelivered-marko)
-  * [Getting help](#getting-help-help)
-  * [Clearing data in TrackO](#clearing-all-data-in-tracko-clear)
-  * [Exiting TrackO](#exiting-tracko--exit)
+  * [General features](#ugeneral-featuresu)
+    * [Getting help: `help`](#getting-help-help)
+    * [Clearing data in TrackO: `clear`](#clearing-all-data-in-tracko-clear)
+    * [Exiting TrackO: `exit`](#exiting-tracko--exit)
 * [Command Summary](#command-summary)
 * [Glossary](#glossary)
 
@@ -52,7 +55,7 @@ and inventory items. It is an **integrated solution** that merges the process of
 place, optimized for use via a Command Line Interface ([CLI](#cli)), while still having the benefits of a Graphical User Interface
 ([GUI](#gui)).
 
-If you prefer and are fast at typing, **TrackO** can get your order and inventory management tasks done faster than
+If you love to type, **TrackO** can get your order and inventory management tasks done faster than
 the traditional solution of pen and paper, and even popular GUI applications such as spreadsheets
 (_e.g, Microsoft Excel, Google Sheets, etc._).
 
@@ -69,7 +72,36 @@ Currently, **TrackO** only supports tracking inventory items that are countable 
 Our development team will introduce more powerful inventory tracking functionalities _(e.g. by weight, by litres, etc)_
 in future enhancements of the product (stay tuned!).
 
---------------------------------------------------------------------------------------------------------------------
+Interested? Jump straight to our [Quick Start](#quick-start) segment to get started now! 
+
+---
+## Using this guide
+Feeling overwhelmed already? Fret not because we're here to help you integrate this application seamlessly into your 
+business operations.
+
+As a first time user, we understand that it might be daunting to start up the application without sufficient instructions. So, we have prepared
+a [Quick start](#quick-start) section in this guide to equip you with the knowledge to start up TrackO for your business.
+
+Next, after starting up TrackO, you might be confused by the unfamiliar layout. As such, we have prepared a breakdown of the **layout** which
+you can find [here](#layout). This section of the guide will help you understand the different sections of the [GUI](#gui) as well as 
+their roles in this application. 
+
+After familiarising yourself with the [GUI](#gui), we have included a [tutorial section](#tutorial) where you can use some 
+example commands play around with some of our sample data and get to know TrackO's features a bit better. 
+
+Following that, as our application uses commands which require specific inputs. To help you out with learning the command formats used
+in this guide, you can head over to the [Command Guide](#command-guide) section of this guide. This will come in handy for you when 
+you're ready to get some in-depth exposure to our [features](#features). Because our applications helps your business handle 
+orders and inventory, we have segmented our commands into 2 sections. You can click [here](#uinventory-managementu) to find commands 
+related to **managing orders** and click [here](#uorder-managementu) to find commands which help with **inventory management**. For more **general features**, 
+you can go to [this section](#ugeneral-featuresu) as well!
+
+Lastly, we have included a handy [command summary](#command-summary) for when you're proficient at using TrackO and just want to take a quick look
+at any commands you need!
+
+p.s. Not too sure about some technical terms in this guide? Check out our [glossary](#glossary) to get better understand the technical jargon! 
+
+-------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -95,33 +127,35 @@ in future enhancements of the product (stay tuned!).
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Layout
 
-## Features
+--------------------------------------------------------------------------------------------------------------------
+## Tutorial
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
+---
+## Command guide
+This section of the user guide helps to break down the formatting used for commands in this user guide.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `addo n/NAME`, `NAME` is a parameter which can be used as `addo n/John Doe`.
 
 * Parameters in square brackets `[]` are optional. <br>
-  e.g. in `findo KEYWORD [MORE_KEYWORDS]`, only the first `KEYWORD` is compulsory. The rest are optional. 
+  e.g. in `findo KEYWORD [MORE_KEYWORDS]`, only the first `KEYWORD` is compulsory. The rest are optional.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* All command keywords (e.g. `addo`, `marko`, `editi`, etc.), prefixes (e.g.`p/`, `i/`, etc.) 
-and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**. 
+* All command keywords (e.g. `addo`, `marko`, `editi`, etc.), prefixes (e.g.`p/`, `i/`, etc.)
+  and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `listi`, `listo`,`clear` and `exit`) will be ignored.<br>
   e.g. if the command specifies `listi 123`, it will be interpreted as `listi`.
-
-</div>
-
+--------------------------------------------------------------------------------------------------------------------
+## Features
+### <u>**Inventory management**</u>
 ### Adding an inventory item: `addi`
 
 Adds an item to the list of tracked inventory.
@@ -197,6 +231,8 @@ Examples:
   `Table`, `200`, `Metal Table` and `Fragile` respectively.
 * `editi 3 t/` removes the tags of the item at index 3.
 
+-------------------------------------------------------------------------
+### <u>**Order management**</u>
 ### Adding an order: `addo`
 
 Creates an order to be added to the list of orders tracked by TrackO.
@@ -355,6 +391,7 @@ Examples:
 * `marko 1 -d` Marks the order at index `1` in the currently displayed list as `delivered`.
 * `marko 1 -p -d` Marks the order at index `1` in the currently displayed list as both `paid` and `delivered`.
 
+### **<u>General features</u>**
 ### Clearing all data in TrackO: `clear`
 
 Clears all data (in both `Order List` and `Inventory List`) from TrackO.
