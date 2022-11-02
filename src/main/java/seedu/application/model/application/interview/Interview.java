@@ -52,7 +52,8 @@ public class Interview {
     }
 
     /**
-     * Returns true if both interviews have the same date and time is within one hour of one another.
+     * Returns true if interview with one hour duration overlaps with one another.
+     * This supports the checking of interviews across different date.
      * This defines a weaker notion of equality between two applications.
      */
     public boolean isOnSameTime(Interview otherInterview) {
@@ -63,17 +64,10 @@ public class Interview {
             return false;
         }
 
-        /*
-        return otherInterview != null
-                && otherInterview.getInterviewDate().equals(getInterviewDate())
-                && otherInterview.getInterviewTime().isWithin(getInterviewTime());
-                getInterviewDateTime(otherInterview)
-                getInterviewDateTime(this)
-
-         */
         LocalDateTime otherInterviewDateTime = getInterviewDateTime(otherInterview);
         LocalDateTime thisInterviewDateTime = getInterviewDateTime(this);
-        return ((otherInterviewDateTime.isAfter(thisInterviewDateTime)
+        return otherInterviewDateTime.equals(thisInterviewDateTime) ||
+                ((otherInterviewDateTime.isAfter(thisInterviewDateTime)
                 && otherInterviewDateTime.isBefore(thisInterviewDateTime.plusHours(DURATION)))
                 || (thisInterviewDateTime.isAfter(otherInterviewDateTime)
                 && thisInterviewDateTime.isBefore(otherInterviewDateTime.plusHours(DURATION))));
