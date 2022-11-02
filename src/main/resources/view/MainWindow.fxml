@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="SETA" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="SETA" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -65,27 +65,27 @@
         <SplitPane dividerPositions="0.33333, 0.66666" VBox.vgrow="ALWAYS">
           <items>
 
-            <VBox fx:id="studentList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <VBox fx:id="studentList" minWidth="100.0" prefWidth="300.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
-              <TextField alignment="TOP_CENTER" style="-fx-background-color: #0085CF; -fx-border-color: #FFFFFF; -fx-font-family: Roboto; -fx-font-size: 30; -fx-font-weight: 900; -fx-text-fill: white" text="Students" editable="false"/>
+              <TextField alignment="TOP_CENTER" editable="false" style="-fx-background-color: #0085CF; -fx-border-color: #FFFFFF; -fx-font-family: Roboto; -fx-font-size: 30; -fx-font-weight: 900; -fx-text-fill: white" text="Students" />
               <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
 
-            <VBox fx:id="questionList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <VBox fx:id="questionList" minWidth="100.0" prefWidth="300.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
-              <TextField alignment="TOP_CENTER" style="-fx-background-color: #0085CF; -fx-border-color: #FFFFFF; -fx-font-family: Roboto; -fx-font-size: 30; -fx-font-weight: 900; -fx-text-fill: white" text="Questions" editable="false"/>
+              <TextField alignment="TOP_CENTER" editable="false" style="-fx-background-color: #0085CF; -fx-border-color: #FFFFFF; -fx-font-family: Roboto; -fx-font-size: 30; -fx-font-weight: 900; -fx-text-fill: white" text="Questions" />
               <StackPane fx:id="questionListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
 
-            <VBox fx:id="tutorialList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <VBox fx:id="tutorialList" minWidth="100.0" prefWidth="300.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
-              <TextField alignment="TOP_CENTER" style="-fx-background-color: #0085CF; -fx-border-color: #FFFFFF; -fx-font-family: Roboto; -fx-font-size: 30; -fx-font-weight: 900; -fx-text-fill: white" text="Tutorials" editable="false"/>
+              <TextField alignment="TOP_CENTER" editable="false" style="-fx-background-color: #0085CF; -fx-border-color: #FFFFFF; -fx-font-family: Roboto; -fx-font-size: 30; -fx-font-weight: 900; -fx-text-fill: white" text="Tutorials" />
               <StackPane fx:id="tutorialListPanelPlaceholder" minWidth="340.0" prefWidth="340.0" VBox.vgrow="ALWAYS" />
 
             </VBox>
