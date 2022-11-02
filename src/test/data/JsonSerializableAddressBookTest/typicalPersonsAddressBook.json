@@ -8,7 +8,7 @@
     "tutorial": "T08",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
-    "social" : "<none> <none> alice@example.com <none> <none> file:src/main/resources/images/profile_pic.png",
+    "social" : "<none> <none> alice@example.com <none> <none>",
     "grouped" : [ "friends" ]
   }, {
     "occupation" : "STUDENT",
@@ -18,7 +18,7 @@
     "tutorial": "T09",
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
-    "social" : "<none> <none> johnd@example.com <none> <none> file:src/main/resources/images/profile_pic.png",
+    "social" : "<none> <none> johnd@example.com <none> <none>",
     "grouped" : [ "friends" ]
   }, {
     "occupation" : "STUDENT",
@@ -28,7 +28,7 @@
     "tutorial": "T10",
     "address" : "wall street",
     "tagged" : [ ],
-    "social" : "<none> <none> heinz@example.com <none> <none> file:src/main/resources/images/profile_pic.png",
+    "social" : "<none> <none> heinz@example.com <none> <none>",
     "grouped" : [ ]
   }, {
     "occupation" : "STUDENT",
@@ -38,7 +38,7 @@
     "tutorial": "T11",
     "address" : "10th street",
     "tagged" : [ "friends" ],
-    "social" : "<none> <none> cornelia@example.com <none> <none> file:src/main/resources/images/profile_pic.png",
+    "social" : "<none> <none> cornelia@example.com <none> <none>",
     "grouped" : [ "friends" ]
   }, {
     "occupation" : "STUDENT",
@@ -48,7 +48,7 @@
     "tutorial": "T12",
     "address" : "michegan ave",
     "tagged" : [ ],
-    "social" : "<none> <none> werner@example.com <none> <none> file:src/main/resources/images/profile_pic.png",
+    "social" : "<none> <none> werner@example.com <none> <none>",
     "grouped" : [ ]
   }, {
     "occupation" : "STUDENT",
@@ -58,7 +58,7 @@
     "tutorial": "T13",
     "address" : "little tokyo",
     "tagged" : [ ],
-    "social" : "<none> <none> lydia@example.com <none> <none> file:src/main/resources/images/profile_pic.png",
+    "social" : "<none> <none> lydia@example.com <none> <none>",
     "grouped" : [ ]
   }, {
     "occupation" : "STUDENT",
@@ -68,7 +68,7 @@
     "tutorial": "F08",
     "address" : "4th street",
     "tagged" : [ ],
-    "social" : "<none> <none> anna@example.com <none> <none> file:src/main/resources/images/profile_pic.png",
+    "social" : "<none> <none> anna@example.com <none> <none>",
     "grouped" : [ ]
   } ]
 }

@@ -7,7 +7,7 @@
     "tutorial": "T08",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
-    "social" : "<none> <none> <none> <none> <none> file:src/main/resources/images/profile_pic.png"
+    "social" : "<none> <none> <none> <none> <none>"
   }, {
     "occupation" : "STUDENT",
     "name": "Alice Pauline",
@@ -16,6 +16,6 @@
     "tutorial": "T08",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
-    "social" : "<none> <none> <none> <none> <none> file:src/main/resources/images/profile_pic.png"
+    "social" : "<none> <none> <none> <none> <none>"
   } ]
 }
