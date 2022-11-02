@@ -9,7 +9,46 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
+Third-party software used in this project:
+* [JavaFx](https://openjfx.io/)
+* [JUnit](https://junit.org/)
+* [Gradle](https://gradle.org/)
+* [CheckStyle](https://checkstyle.sourceforge.io/)
+* [Codecov](https://codecov.io/)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Introduction**
+
+checkUp is a desktop application for medical practitioners to manage their patients' medical records. In this developer
+guide, we will describe the architecture and design of the application. This guide is mainly for developers who wish to
+enhance or create their own version of checkUp. You may refer to the [User Guide](UserGuide.md) for instructions on how
+to use the application. 
+
+### **Technologies**
+
+checkUp is written in Java 11 and uses JavaFX to create the GUI. Gradle is used for building and managing the project.
+Testing is done using JUnit.
+
+### **Functions**
+
+checkUp's features include creating, viewing and managing patients' medical records by storing data such as their:
+* personal information;
+* next-of-kin information;
+* past appointment and visit history;
+* upcoming appointments and visits;
+* long-term medication prescriptions; and
+* location in the hospital (for inpatients).
+
+checkUp also allows users to:
+* search for patients by:
+  * name;
+  * location in the hospital; and
+  * long-term medication.
+* view the total number of patients in the system; and
+* view the total number of patients under specific long-term medication prescriptions.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -180,108 +219,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo 
-history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the 
-following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and 
-`Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the 
-initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls 
-`Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be 
-saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls 
-`Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will 
-not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the 
-`undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once
-to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0,
-pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command 
-uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than 
-attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end 
-at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` 
-once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 
-`addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook 
-states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will 
-return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as 
-`list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus,
-the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not 
-pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be 
-purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern 
-desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
 ### Appointments feature
 
 ![AppointmentClassDiagram](images/AppointmentClassDiagram.png)
@@ -309,6 +246,9 @@ constitute of sensitive patient data. Apart from `date`, `PastAppointment`s also
   * Stored as a set of medication tags, a `PastAppointment` may contain 0 or more medicine tags. Each medicine tag is
     input separately with a `m/` prefix.
   * Exposed using the `PastApointment#getMedication()` method for use in `JsonAdaptedPastAppointment`.
+
+The following sequence diagram represents the creation of a `PastAppointment` using a `PastAppointmentCommand`:
+[![PastAppointmentCommandSequenceDiagram](images/PastAppointmentSequenceDiagram.png)](images/PastAppointmentSequenceDiagram.png)
 
 #### `UpcomingAppointment`
 
@@ -398,10 +338,6 @@ Strict restrictions are placed to prevent too many varieties of ward number inpu
 for ward numbers is simplified. Due to differing places having different ways of numbering their ward numbers, we
 have standardised it to be in the format of `Uppercase Alphabet` + `3 Numbers`. For example, `A123`, `B241`, `C005`, etc.
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 #### Patient type (`/inp` & `/outp`)
 
 Getting the list of inpatients and outpatients involves the following steps:
@@ -467,7 +403,7 @@ the next-of-kin details of the inputted patient.
 ### Get appointment by date feature (`get /appton`)
 
 When `get /appton` is inputted, the `AddressBookParser` object creates a `GetAppointmentByDateParser` that parses the
-prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get .appton 12-12-1212`), the extra
+prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get /appton 12-12-1212`), the extra
 parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed.
 
 The `GetCommandParser` object will then create the corresponding `GetAppointmentByDateCommand`  to be
@@ -475,8 +411,6 @@ returned. When executing the `Command`, the model is updated such that the *filt
 all the patients' appointment given a specific date.
 
 ![GetAppointmentByDateSequenceDiagram](images/GetAppointmentByDateSequenceDiagram.png)
-
-#### Proposed implementation
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -623,4 +557,5 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
