@@ -193,6 +193,9 @@ public class ParserUtil {
             LocalDate targetDate = getTargetClassDate(LocalDateTime.now(), startTime);
             return new Class(targetDate, startTime, endTime,
                     targetDate.toString() + trimmedClassDatetime.substring(3));
+        } else if (Class.isValidClassStringFormat(trimmedClassDatetime)) {
+            // Class is of value that cannot be parsed
+            throw new ParseException(Class.INVALID_DATETIME_ERROR_MESSAGE);
         } else {
             // unrecognized format has been input
             throw new ParseException(Class.MESSAGE_CONSTRAINTS);
@@ -254,7 +257,7 @@ public class ParserUtil {
         try {
             result = LocalDate.parse(date);
         } catch (DateTimeParseException de) {
-            throw new ParseException(Class.INVALID_DATETIME_ERROR_MESSAGE);
+            throw new ParseException(Class.INVALID_DATE_ERROR_MESSAGE);
         }
         return result;
     }
