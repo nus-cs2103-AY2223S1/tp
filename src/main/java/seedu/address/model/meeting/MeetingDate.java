@@ -57,6 +57,21 @@ public class MeetingDate {
         return true;
     }
 
+    /**
+     * Converts String value to a comparable LocalDateTime object.
+     *
+     * @return LocalDateTime object.
+     */
+    public LocalDateTime convert() {
+        String temp = value;
+        if (!value.contains(":")) {
+            temp = temp + " 00:00";
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM uuuu HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(temp, formatter);
+        return dateTime;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
