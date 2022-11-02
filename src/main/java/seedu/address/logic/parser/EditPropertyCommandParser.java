@@ -30,13 +30,16 @@ public class EditPropertyCommandParser extends Parser<EditPropertyCommand> {
                 .tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
                         PREFIX_CHARACTERISTICS);
 
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPropertyCommand.MESSAGE_USAGE));
+        }
+
         Index index;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String
-                    .format(MESSAGE_INVALID_COMMAND_FORMAT, EditPropertyCommand.MESSAGE_USAGE), pe);
+            throw pe;
         }
 
         EditPropertyDescriptor editPropertyDescriptor = new EditPropertyDescriptor();
