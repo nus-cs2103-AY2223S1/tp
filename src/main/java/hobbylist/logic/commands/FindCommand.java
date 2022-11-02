@@ -49,8 +49,14 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredActivityList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_ACTIVITIES_LISTED_OVERVIEW, model.getFilteredActivityList().size()));
+        int listSize = model.getFilteredActivityList().size();
+        String displayedMessage;
+        if (listSize == 1) {
+            displayedMessage = Messages.MESSAGE_ACTIVITY_LISTED_OVERVIEW;
+        } else {
+            displayedMessage = Messages.MESSAGE_ACTIVITIES_LISTED_OVERVIEW;
+        }
+        return new CommandResult(String.format(displayedMessage, listSize));
     }
 
     @Override

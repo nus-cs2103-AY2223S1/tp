@@ -35,7 +35,7 @@ public class EditActivityDescriptorBuilder {
         descriptor.setName(activity.getName());
         descriptor.setDescription(activity.getDescription());
         descriptor.setTags(activity.getTags());
-        if (activity.getDate().size() > 0) {
+        if (activity.getDate().isPresent()) {
             descriptor.setDate(activity.getDate());
         } else {
             descriptor.setDate(null);

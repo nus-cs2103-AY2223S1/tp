@@ -29,6 +29,8 @@
   }, {
     "name" : "Golf",
     "description" : "At Marina Bay Golf Course",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "status" : "COMPLETED",
+    "rating" : 2
   } ]
 }

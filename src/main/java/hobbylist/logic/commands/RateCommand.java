@@ -29,7 +29,7 @@ public class RateCommand extends Command {
             + "[" + CliSyntax.PREFIX_RATING + "RATING (1-5)] "
             + "[" + CliSyntax.PREFIX_REVIEW + "REVIEW]\n"
             + "Example: " + commandWord + " 1 "
-            + CliSyntax.PREFIX_RATING + " 4"
+            + CliSyntax.PREFIX_RATING + "4" + " "
             + CliSyntax.PREFIX_REVIEW + "not too bad.";
 
     private final Index index;
@@ -113,6 +113,6 @@ public class RateCommand extends Command {
         RateCommand r = (RateCommand) other;
         return index.equals(r.index)
                 && rating == r.rating
-                && review == r.review;
+                && review.equals(r.review);
     }
 }
