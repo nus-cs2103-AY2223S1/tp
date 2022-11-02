@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import org.openapitools.client.ApiException;
 
 import nus.climods.logic.commands.exceptions.CommandException;
+import nus.climods.logic.parser.parameters.ModuleCodeParameter;
 import nus.climods.model.Model;
 import nus.climods.model.module.Module;
 
@@ -22,7 +23,7 @@ public class PrereqsCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + "<Module Code>: List prerequisites for a module.\n"
             + "Example: " + COMMAND_WORD + " " + "CS2103";
-    public static final String MESSAGE_MODULE_NOT_FOUND = "Module '%s' not in current NUS curriculum";
+    public static final String MESSAGE_MODULE_NOT_FOUND = ModuleCodeParameter.PARSE_EXCEPTION_MESSAGE;
     public static final String MESSAGE_MODULE_LOAD_ERROR = "Error loading prerequisites for %s";
     public static final String MESSAGE_MODULE_NULL_PREREQUISITES = "Module %s has no prerequisites in current NUS "
             + "curriculum";
@@ -41,12 +42,13 @@ public class PrereqsCommand extends Command {
      */
     public PrereqsCommand(String moduleCode) {
         Objects.requireNonNull(moduleCode);
-        this.moduleCode = moduleCode.toUpperCase().trim();
+        this.moduleCode = moduleCode.trim();
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Optional<Module> moduleOptional = model.getListModule(moduleCode);
+        String moduleCodeUppercase = moduleCode.toUpperCase();
+        Optional<Module> moduleOptional = model.getListModule(moduleCodeUppercase);
 
         if (moduleOptional.isEmpty()) {
             throw new CommandException(String.format(MESSAGE_MODULE_NOT_FOUND, moduleCode));
@@ -56,12 +58,12 @@ public class PrereqsCommand extends Command {
         try {
             module.loadMoreData();
         } catch (ApiException e) {
-            throw new CommandException(String.format(MESSAGE_MODULE_LOAD_ERROR, moduleCode));
+            throw new CommandException(String.format(MESSAGE_MODULE_LOAD_ERROR, moduleCodeUppercase));
         }
 
         String prereqString = module.getPrerequisite();
         if (prereqString == null) {
-            return new CommandResult(String.format(MESSAGE_MODULE_NULL_PREREQUISITES, moduleCode),
+            return new CommandResult(String.format(MESSAGE_MODULE_NULL_PREREQUISITES, moduleCodeUppercase),
                     false, false);
         }
         Matcher matcher = MODULE_CODE_EXTRACT_PATTERN.matcher(prereqString);
@@ -69,10 +71,10 @@ public class PrereqsCommand extends Command {
 
         // returns false for classes where no prereq in current NUS curriculum
         if (!model.showModules(prereqs)) {
-            return new CommandResult(String.format(MESSAGE_MODULE_NO_PREREQUISITES, prereqString, moduleCode),
+            return new CommandResult(String.format(MESSAGE_MODULE_NO_PREREQUISITES, prereqString, moduleCodeUppercase),
                     false, false);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, prereqString, moduleCode), false, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, prereqString, moduleCodeUppercase), false, false);
     }
 }
