@@ -2,10 +2,12 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.logic.commands.CustomCommandBuilder;
 
-import java.util.List;
-
+/**
+ * Jackson-friendly version of {@link CustomCommandBuilder}.
+ */
 public class JsonAdaptedCustomCommandBuilder {
 
     private final String commandMacroName;
