@@ -87,11 +87,8 @@ public class CollectionUtilTest {
 
     @Test
     public void invalidCap_throwsParseException() {
-        String[] alphanumericKeywords = {"asdf", "3a", "a2"};
-        assertThrows(ParseException.class, () -> checkCapKeywords(alphanumericKeywords));
-
-        String[] symbolKeywords = {"!", "@", "#", "/", "3.0/", "/3.0"};
-        assertThrows(ParseException.class, () -> checkCapKeywords(symbolKeywords));
+        assertThrows(ParseException.class, () -> checkCapKeywords(Arrays.asList("asdf", "3a", "a2")));
+        assertThrows(ParseException.class, () -> checkCapKeywords(Arrays.asList("!", "@", "#", "/", "3.0/", "/3.0")));
     }
 
     /**

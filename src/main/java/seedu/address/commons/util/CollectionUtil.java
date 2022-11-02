@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -41,7 +42,7 @@ public class CollectionUtil {
      * Iterates through a list of keywords that will be used to search across cap values
      * @throws ParseException
      */
-    public static void checkCapKeywords(String[] keywords) throws ParseException {
+    public static void checkCapKeywords(List<String> keywords) throws ParseException {
         for (String keyword : keywords) {
             try {
                 Double.parseDouble(keyword);
