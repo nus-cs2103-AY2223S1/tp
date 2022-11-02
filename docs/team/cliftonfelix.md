@@ -57,7 +57,7 @@ Given below are my contributions to the project.
         * Added documentation for `export` command (PR [#153](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/153))
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#170](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/170), 
+    * PRs reviewed (with non-trivial review comments): [#170](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/170), 
       [#137](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/137), [#110](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/110),
       [#101](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/101), [#99](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/99)
     * Contributed to forum discussions (example: [#166](https://github.com/nus-cs2103-AY2223S1/forum/issues/166))
