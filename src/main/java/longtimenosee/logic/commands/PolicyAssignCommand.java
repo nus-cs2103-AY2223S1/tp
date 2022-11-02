@@ -32,7 +32,7 @@ public class PolicyAssignCommand extends Command {
             + PREFIX_PREMIUM + "PREMIUM "
             + PREFIX_START + "START_DATE "
             + PREFIX_END + "END_DATE\n"
-            + "Example: 1 1 "
+            + "Example: assign 1 1 "
             + PREFIX_PREMIUM + "200.00 "
             + PREFIX_START + "2020-12-10 "
             + PREFIX_END + "2021-12-15";

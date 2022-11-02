@@ -20,7 +20,7 @@ public class PolicyDeleteAssignedCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteAssigned";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes assigned policy from a person. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes assigned policy from a person.\n"
             + "Parameters: "
             + "CLIENT_INDEX "
             + "ASSIGNED_POLICY_INDEX "
