@@ -1,6 +1,7 @@
 package foodwhere.model.stall;
 
 import static foodwhere.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -93,5 +94,19 @@ public class StallTest {
         Stall alice = new StallBuilder(TypicalStalls.ALICE).withReviews(TypicalReviews.ALICE).build();
         editedAlice = new StallBuilder(TypicalStalls.ALICE).withReviews(TypicalReviews.BOB).build();
         assertFalse(alice.equals(editedAlice));
+    }
+
+    @Test
+    public void getTagString_generalTesting_success() {
+        String testString = "test";
+        Stall testStallNoTag = new StallBuilder().withName(testString).withAddress(testString).build();
+        assertEquals("", testStallNoTag.getTagString());
+
+        Stall testStallWOneTag = new StallBuilder(testStallNoTag).withTags("tag").build();
+        assertEquals("tag", testStallWOneTag.getTagString());
+
+        String[] tags = new String[] {"tag", "tag2", "tag3"};
+        Stall testStallWManyTag = new StallBuilder(testStallNoTag).withTags(tags).build();
+        assertEquals("tag, tag2, tag3", testStallWManyTag.getTagString());
     }
 }
