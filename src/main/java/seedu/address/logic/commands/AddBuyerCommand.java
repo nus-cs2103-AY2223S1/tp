@@ -28,7 +28,7 @@ public class AddBuyerCommand extends Command {
             + PREFIX_ADDRESS + " ADDRESS "
             + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE]"
             + "[" + PREFIX_CHARACTERISTICS + " DESIRED CHARACTERISTICS] "
-            + "[" + PREFIX_PRIORITY + " PRIORITY]\n"
+            + "[" + PREFIX_PRIORITY + " PRIORITY <HIGH/NORMAL/LOW>]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " John "
             + PREFIX_PHONE + " 98765432 "

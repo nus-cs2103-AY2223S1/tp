@@ -45,7 +45,7 @@ public class EditBuyerCommand extends Command {
             + "[" + PREFIX_ADDRESS + " ADDRESS] "
             + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE] "
             + "[" + PREFIX_CHARACTERISTICS + " DESIRED CHARACTERISTICS] "
-            + "[" + PREFIX_PRIORITY + "high]\n"
+            + "[" + PREFIX_PRIORITY + " PRIORITY <HIGH/NORMAL/LOW>]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
