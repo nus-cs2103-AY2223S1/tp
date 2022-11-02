@@ -343,28 +343,54 @@ Example: `find rate/3`
 
 ### 5.8 Finding activities with tags : `findTag`
 
-Shows a list of all hobby activities whose tags match the one specified in the command.
+You can show a list of all activities with tags matching the ones specified using this command.
 
-Format: `findTag KEYWORDS`
+> Format: `findTag KEYWORDS`
 
-* The `KEYWORDS` are case-sensitivity.
+<div markdown="block" class="alert alert-info">
 
-Example:
+:information_source: **Additional information for rate:**<br>
+
+* All activities with any tag matching any of the `KEYWORDS` are shown.
+* The `KEYWORDS` are case-sensitive.
+
+</div>
+
+Examples:
 * `findTag book`
-* `findTag ANIME`
+
+  *Shows all activities with a `book` tag. These activities may have other tags too.*
+
+* `findTag ANIME recipe`
+
+  *Shows all activities with a `ANIME` or `recipe` tag. These activities may have only one of the two tags, other tags, or both of the tags.*
 
 ### 5.9 Finding activities with status: `findStatus`
 
-Shows a list of all hobby activities whose status match the status specified in the command.
+You can show a list of all activities with status matching the status specified using this command.
 
-Format: `findStatus STATUS`
+> Format: `findStatus STATUS`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Additional information for rate:**<br>
 
 * The feature only works with the `STATUS` being **UPCOMING**, **ONGOING** or **COMPLETED** (case-insensitive).
-* If input `STATUS` is different from the three statuses above, it is treated as **NONE** and HobbyList finds all the activities whose status is **NONE**.
+* If input `STATUS` is different from the three statuses above, it is treated as **NONE** and HobbyList shows all the activities with a status of **NONE**.
+</div>
 
-Example:
+Examples:
 * `findStatus COMPLETED`
+
+  *Shows a list of activities with a status of `COMPLETED`.*
+
 * `findStatus ongoing`
+
+  *Shows a list of activities with a status of `ONGOING`.*
+
+* `findStatus uPComINg`
+
+  *Shows a list of activities with a status of `UPCOMING`.*
 
 ### 5.10 Finding activities with rating value above certain value : `r/above`
 
