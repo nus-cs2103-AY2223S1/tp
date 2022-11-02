@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-DevEnable is a **desktop app for managing developer projects, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, DevEnable can get your project management tasks done faster than traditional GUI apps.
+DevEnable is a **desktop app for developers to manager their projects, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, DevEnable can get your project management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -80,6 +80,7 @@ Format: `clear`
 ## Project Commands
 
 > NOTE: Clicking the Repository Link of a project will copy it to the clipboard
+
 ### Adding a project: `project -a`
 
 Adds a project to the AddressBook. A unique project ID will be automatically generated.
