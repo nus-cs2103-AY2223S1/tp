@@ -12,8 +12,8 @@ title: User Guide
 your patients details then look no further! checkUp can boost your productivity with features to quickly retrieve patients details without the 
 need of internet connection. Beyond that, checkUp also has features to help you manage your inventory so that you know when to restock certain medication!
 
-checkUp is available for the Windows, macOS and Linux operating systems. To get started, simply head over to the [Installation Guide](#Installation guide). This user guide 
-can also serve as a reference for experienced users, with a convenient [Command Summary](#Command summary).
+checkUp is available for the Windows, macOS and Linux operating systems. To get started, simply head over to the [Installation Guide](#installation-guide). This user guide 
+can also serve as a reference for experienced users, with a convenient [Command Summary](#command-summary).
 
 <div markdown="block" class="alert alert-info">
 
@@ -65,7 +65,43 @@ Here is everything you need to install and set up checkUp. For the best possible
 * macOS
 * Linux
 You will also require Java 11 or above to run checkUp. If you don't already have Java 11 or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/). 
-To tell if you already have the correct version of Java installed on your system, refer to [Checking your system's Java version](##Checking your system's Java version)
+To tell if you already have the correct version of Java installed on your system, refer to [Checking your system's Java version](##checking-your-system's-java-version)
+
+### Installation Requirements
+1. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
+
+2. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
+
+3. Double click the file to start the app.
+
+4. The GUI similar to the below will appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/ug-images/Ui-explanations.png)
+   
+## Troubleshooting   
+### Checking your system's Java version
+
+This section covers the technical issues you may run into while using checkUp.
+
+Checking your system's Java version
+
+To check that your system has the correct Java version (Java 11 and above) to run checkUp, you can follow the steps below:
+
+Open your terminal.
+* Windows
+   ** Use Win + S to open search.
+** Type in 'Terminal' to search for it and click on it to launch.
+macOS
+Use Cmd + Space to open Spotlight search.
+Type in 'Terminal' to search for it and click on it to launch.
+Linux
+Use Ctrl + Alt + T to open the Terminal.
+In your terminal, type in java --version and click enter.
+The following image shows an example what will show up in macOS, but you can expect a similar result in Windows.
+JavaVersionTroubleShoot
+
+The number in the red highlight rectangle tells you the Java version installed. For example, the Java version installed on the example system is Java 11.0.16, which is sufficient to run MyInsuRec as it is greater than Java 11.
+
+If you do not see a similar result in the terminal after Step 3, or have an earlier version of Java, head over to Oracle's Java download page to install Java.
 
 ## Glossary
 
