@@ -43,8 +43,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](http://github.com/Echomo-Xinyu)][[portfolio](team/echomo-xinyu.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer Head
+* Responsibilities: Code Review and Backend Code
 
 ### Zhang Yue
 
