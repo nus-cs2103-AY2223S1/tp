@@ -140,13 +140,12 @@ Format: `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m
 
 * `PHONE` should be 8 digits long as per standard telephone numbers in Singapore.
 * `STUDENT_ID` should follow the following format AXXXXXXXY, where X is a number, and Y is an alphabet.
+* `ATTENDANCE` and `PARTICIPATION` can only take in integers greater than 0. If a value is not given, they will automatically be set to 0.
+* `GRADE` can take in `A+`, `A`, `A-`, `B+`, `B`, `B-`, `C+`, `C`, `D+`, `D`, `F`. If a value is not given, it will automatically be set to `PENDING...`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0).
 </div>
-
-* `ATTENDANCE` and `PARTICIPATION` can only take in integers greater than 0. If a value is not given, they will automatically be set to 0.
-* `GRADE` can take in `A+`, `A`, `A-`, `B+`, `B`, `B-`, `C+`, `C`, `D+`, `D`, `F`. If a value is not given, it will automatically be set to `PENDING...`.
 
 Examples:
 * `add student n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
