@@ -1,5 +1,5 @@
 package seedu.masslinkers.storage;
-//@author jonasgwt
+//@@author jonasgwt
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.masslinkers.storage.JsonAdaptedStudent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.masslinkers.testutil.Assert.assertThrows;

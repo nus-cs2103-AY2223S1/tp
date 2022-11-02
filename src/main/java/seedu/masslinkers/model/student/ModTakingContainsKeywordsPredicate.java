@@ -5,7 +5,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.masslinkers.commons.util.StringUtil;
 
-//@author chm252
+//@@author chm252
 /**
  * Tests that a {@code Student}'s current {@code Mod} matches any of the keywords given.
  */

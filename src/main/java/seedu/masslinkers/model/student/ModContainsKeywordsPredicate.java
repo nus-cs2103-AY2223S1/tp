@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.masslinkers.commons.util.StringUtil;
 
-//@author jonasgwt
+//@@author jonasgwt
 /**
  * Tests that a {@code Student}'s {@code Mod} matches any of the keywords given.
  */

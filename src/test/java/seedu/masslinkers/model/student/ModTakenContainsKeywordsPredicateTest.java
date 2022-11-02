@@ -1,5 +1,5 @@
 package seedu.masslinkers.model.student;
-//@author chm252
+//@@author chm252
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

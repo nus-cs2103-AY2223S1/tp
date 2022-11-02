@@ -7,7 +7,7 @@ import java.util.Arrays;
 import seedu.masslinkers.logic.commands.FindInterestCommand;
 import seedu.masslinkers.logic.parser.exceptions.ParseException;
 import seedu.masslinkers.model.student.StudentContainsInterestPredicate;
-//@author ElijahS67
+//@@author ElijahS67
 /**
  * Parses input arguments and creates a new FindInterestCommandParser object
  */

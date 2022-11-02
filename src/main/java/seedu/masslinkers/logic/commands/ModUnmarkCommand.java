@@ -12,7 +12,7 @@ import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.student.Mod;
 import seedu.masslinkers.model.student.Student;
 
-//@author carriezhengjr
+//@@author carriezhengjr
 /**
  * Unmarks mods of the batchmate specified and updates the status as taking.
  */

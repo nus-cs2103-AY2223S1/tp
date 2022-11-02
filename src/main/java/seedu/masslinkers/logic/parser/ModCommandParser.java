@@ -30,7 +30,7 @@ import seedu.masslinkers.model.student.ModContainsKeywordsPredicate;
 import seedu.masslinkers.model.student.ModTakenContainsKeywordsPredicate;
 import seedu.masslinkers.model.student.ModTakingContainsKeywordsPredicate;
 
-//@author jonasgwt
+//@@author jonasgwt
 /**
  * Parses input arguments and creates a new ModCommand object.
  */
@@ -107,7 +107,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         return new ModAddCommand(index, mods.get());
     }
 
-    //@author ElijahS67
+    //@@author ElijahS67
     /**
      * Parses a mod delete command from user to construct a ModDeleteCommand for execution.
      *
@@ -135,7 +135,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         return new ModDeleteCommand(index, mods.get());
     }
 
-    //@author carriezhengjr
+    //@@author carriezhengjr
     /**
      * Parses a mod mark command from user to construct a ModMarkAllCommand or ModMarkCommand for execution.
      *
@@ -195,7 +195,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         return new ModUnmarkCommand(index, mods.get());
     }
 
-    //@author jonasgwt
+    //@@author jonasgwt
     /**
      * Converts a collection of strings representing mod names to a set of mods.
      *
@@ -252,7 +252,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         return indexOrAll;
     }
 
-    //@author chm252
+    //@@author chm252
     /**
      * Parses a mod find command from user to construct a ModFindCommand for execution.
      *

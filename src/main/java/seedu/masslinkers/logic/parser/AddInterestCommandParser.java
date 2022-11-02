@@ -17,7 +17,7 @@ import seedu.masslinkers.logic.commands.AddInterestCommand;
 import seedu.masslinkers.logic.parser.exceptions.ParseException;
 import seedu.masslinkers.model.interest.Interest;
 
-//@author sltsheryl
+//@@author sltsheryl
 /**
  * Parses input arguments and creates a new AddInterestCommand object
  */
