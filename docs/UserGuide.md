@@ -240,7 +240,10 @@ User Guide should you require assistance in the future.
 
 Format: `help`
 
-💡 **Tip:** Ensure that you have a stable Internet connection to access the User Guide online.
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Ensure that you have a stable Internet connection to access the User Guide online.
+</div>
 
 [Scroll back to top](#table-of-contents)
 
@@ -285,7 +288,10 @@ Format: `edit user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USE
 * You need to edit at least one field
 * You may edit multiple fields at once
 
-💡 **Tip:** You cannot edit modules with this command, you must do so with the module commands.
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** You cannot edit modules with this command, you must do so with the module commands.
+</div>
 
 Examples:
 
@@ -376,7 +382,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_US
 * You may edit multiple fields at once
 * You can add as many tags to a contact as you want, you may also choose to not add any tags
 
-💡 **Tip:** You cannot edit modules with this command, you must do so with the module commands.
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** You cannot edit modules with this command, you must do so with the module commands.
+</div>
 
 Examples:
 
@@ -573,8 +582,11 @@ A window similar to this will be shown:
 * Must have at least one lesson added for the week.
 * Lessons will be sorted by start timing.
 
-💡 **Tip:** If you have added a new lesson while the timetable window is open, you can run the timetable
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** If you have added a new lesson while the timetable window is open, you can run the timetable
 command again to view the updated timetable!
+</div>
 
 Examples:
 
@@ -722,7 +734,9 @@ ConnectNUS data is saved in the hard disk automatically after any command that c
 ConnectNUS data is saved as a JSON file `[JAR file location]/data/ConnectNUS.json`. Advanced users are welcome to update data directly by editing that data file,
 so you can quickly manipulate the data based on areas you wish to edit.
 
+<div markdown="span" class="alert alert-primary">
 ❗**Caution:** If your changes to the data file makes its format invalid, ConnectNUS will discard all data and start with an empty data file at the next run.
+</div>
 
 [Scroll back to top](#table-of-contents)
 
