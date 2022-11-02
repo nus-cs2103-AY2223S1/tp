@@ -44,7 +44,7 @@ public class StartTime implements Comparable<StartTime> {
 
     /**
      * Checks if a given string can be parsed to a valid StartTime value.
-     * @param test string input, it is guaranteed that the format check for test is done before this function.
+     * @param test string input, the format check for test should be done before calling this function.
      * @return boolean value.
      */
     public static boolean isValidStartTimeValue(String test) {
