@@ -53,6 +53,7 @@ public class PinProjectCommand extends ProjectCommand {
         }
         Project toPinProject = model.getProjectById(this.toPinProjectId.getIdInt());
         toPinProject.togglePin();
+        model.sortProjectsByCurrentCategory();
         model.sortProjectsByPin();
         ui.showProjects();
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);

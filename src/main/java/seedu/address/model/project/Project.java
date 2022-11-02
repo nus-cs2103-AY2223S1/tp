@@ -8,6 +8,7 @@ import java.util.List;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.Pin;
+import seedu.address.model.SortCategory;
 import seedu.address.model.client.Client;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
@@ -29,6 +30,9 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
 
     public static final String MESSAGE_INVALID_PROJECT_ID_SORT_KEY =
             "Enter either a 0 to sort in ascending order or a 1 to sort in descending order";
+
+    private static SortCategory sortCategory = SortCategory.ID;
+    private static int sortOrder = 0;
 
     // Components of a project
     private Name name;
@@ -73,7 +77,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     }
 
     @Override
-    public int getID() {
+    public int getId() {
         return this.projectId.getIdInt();
     }
 
@@ -162,6 +166,22 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
 
     public boolean isPinned() {
         return this.pin.isPinned();
+    }
+
+    public static SortCategory getSortCategory() {
+        return sortCategory;
+    }
+
+    public static int getSortOrder() {
+        return sortOrder;
+    }
+
+    public static void setSortCategory(SortCategory newSortCategory) {
+        sortCategory = newSortCategory;
+    }
+
+    public static void setSortOrder(int newSortOrder) {
+        sortOrder = newSortOrder;
     }
 
     /**

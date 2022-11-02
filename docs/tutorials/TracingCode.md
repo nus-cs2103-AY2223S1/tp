@@ -292,10 +292,10 @@ Here are some quick questions you can try to answer based on your execution path
 
     2.  Allow `delete` to remove more than one index at a time
 
-    3.  Save the address book in the CSV format instead
+    3.  Save the project book in the CSV format instead
 
     4.  Add a new command
 
     5.  Add a new field to `Person`
 
-    6.  Add a new entity to the address book
+    6.  Add a new entity to the project book

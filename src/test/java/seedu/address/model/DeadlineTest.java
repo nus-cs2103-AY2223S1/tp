@@ -29,9 +29,10 @@ class DeadlineTest {
         assertFalse(Deadline.isValidDeadline(" ")); // spaces only
         assertFalse(Deadline.isValidDeadline("Testing")); // string of text
         assertFalse(Deadline.isValidDeadline("27 October 2022")); // date in full
+        assertFalse(Deadline.isValidDeadline("0000-02-03")); // yyyy not from 0001 onwards
+        assertFalse(Deadline.isValidDeadline("2022-3-5")); // date not in yyyy-mm-dd
 
         // valid deadline
         assertTrue(Deadline.isValidDeadline("2022-11-13")); // date in yyyy-mm-dd
-        assertTrue(Deadline.isValidDeadline("2022-3-5")); // date in yyyy-m-d
     }
 }
