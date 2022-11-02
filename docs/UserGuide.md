@@ -89,6 +89,9 @@ This guide contains all you need to get started on working with GithubContact.
   e.g. instead of using `add name/John Doe address/Clementi`, `add n/John Doe a/Clementi` will fulfill the same function.
   The full list of prefix aliases can be found [here](#prefix-aliases).
 
+* **Advanced users** may manually edit the data file located in `[JAR file location]/data/addressbook.json`. Note that if
+  an invalid input is made here, the data file will be discarded and GithubContact will create a new, empty data file.
+
 </div>
 
 <div style="page-break-after: always;"></div>
