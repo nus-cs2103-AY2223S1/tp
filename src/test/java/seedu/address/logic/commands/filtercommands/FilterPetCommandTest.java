@@ -20,6 +20,7 @@ import seedu.address.model.pet.predicates.ColorContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
+import seedu.address.model.pet.predicates.VaccinationStatusPredicate;
 import seedu.address.testutil.TypicalPets;
 
 public class FilterPetCommandTest {
@@ -32,12 +33,14 @@ public class FilterPetCommandTest {
                 new ColorContainsKeywordsPredicate<>(Arrays.asList("yellow")),
                 new PetNameContainsKeywordsPredicate<>(Arrays.asList("pikachu")),
                 new PriceContainsKeywordsPredicate<>(Arrays.asList(109.54)),
-                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")));
+                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")),
+                new VaccinationStatusPredicate<>(true));
         FilterPetCommand secondCommand = new FilterPetCommand(
                 new ColorContainsKeywordsPredicate<>(Arrays.asList("red")),
                 new PetNameContainsKeywordsPredicate<>(Arrays.asList("charizard")),
                 new PriceContainsKeywordsPredicate<>(Arrays.asList(71594.4)),
-                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")));
+                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")),
+                new VaccinationStatusPredicate<>(true));
 
         assertTrue(firstCommand.equals(firstCommand));
 
@@ -45,7 +48,8 @@ public class FilterPetCommandTest {
                 new ColorContainsKeywordsPredicate<>(Arrays.asList("yellow")),
                 new PetNameContainsKeywordsPredicate<>(Arrays.asList("pikachu")),
                 new PriceContainsKeywordsPredicate<>(Arrays.asList(109.54)),
-                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")));
+                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")),
+                new VaccinationStatusPredicate<>(true));
 
         assertTrue(firstCommand.equals(firstCommandCopy));
 
@@ -61,12 +65,14 @@ public class FilterPetCommandTest {
                 new ColorContainsKeywordsPredicate<>(Arrays.asList("orange")),
                 new PetNameContainsKeywordsPredicate<>(Arrays.asList("raichu")),
                 new PriceContainsKeywordsPredicate<>(Arrays.asList(109.54)),
-                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")));
+                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")),
+                new VaccinationStatusPredicate<>(true));
         FilterPetCommand secondCommand = new FilterPetCommand(
                 new ColorContainsKeywordsPredicate<>(Arrays.asList("orange-alola")),
                 new PetNameContainsKeywordsPredicate<>(Arrays.asList("raichu")),
                 new PriceContainsKeywordsPredicate<>(Arrays.asList(109.54)),
-                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")));
+                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")),
+                new VaccinationStatusPredicate<>(true));
 
         assertFalse(firstCommand.equals(secondCommand));
     }
@@ -77,12 +83,14 @@ public class FilterPetCommandTest {
                 new ColorContainsKeywordsPredicate<>(Arrays.asList("orange")),
                 new PetNameContainsKeywordsPredicate<>(Arrays.asList("raichu")),
                 new PriceContainsKeywordsPredicate<>(Arrays.asList(109.54)),
-                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")));
+                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")),
+                new VaccinationStatusPredicate<>(true));
         FilterPetCommand secondCommand = new FilterPetCommand(
                 new ColorContainsKeywordsPredicate<>(Arrays.asList("orange")),
                 new PetNameContainsKeywordsPredicate<>(Arrays.asList("charmander")),
                 new PriceContainsKeywordsPredicate<>(Arrays.asList(109.54)),
-                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")));
+                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")),
+                new VaccinationStatusPredicate<>(true));
 
         assertFalse(firstCommand.equals(secondCommand));
     }
@@ -93,12 +101,14 @@ public class FilterPetCommandTest {
                 new ColorContainsKeywordsPredicate<>(Arrays.asList("orange")),
                 new PetNameContainsKeywordsPredicate<>(Arrays.asList("raichu")),
                 new PriceContainsKeywordsPredicate<>(Arrays.asList(109.54)),
-                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")));
+                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")),
+                new VaccinationStatusPredicate<>(true));
         FilterPetCommand secondCommand = new FilterPetCommand(
                 new ColorContainsKeywordsPredicate<>(Arrays.asList("orange")),
                 new PetNameContainsKeywordsPredicate<>(Arrays.asList("raichu")),
                 new PriceContainsKeywordsPredicate<>(Arrays.asList(16764.878)),
-                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")));
+                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")),
+                new VaccinationStatusPredicate<>(true));
 
         assertFalse(firstCommand.equals(secondCommand));
     }
@@ -109,12 +119,14 @@ public class FilterPetCommandTest {
                 new ColorContainsKeywordsPredicate<>(Arrays.asList("orange")),
                 new PetNameContainsKeywordsPredicate<>(Arrays.asList("raichu")),
                 new PriceContainsKeywordsPredicate<>(Arrays.asList(109.54)),
-                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("raichu")));
+                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("raichu")),
+                new VaccinationStatusPredicate<>(true));
         FilterPetCommand secondCommand = new FilterPetCommand(
                 new ColorContainsKeywordsPredicate<>(Arrays.asList("orange")),
                 new PetNameContainsKeywordsPredicate<>(Arrays.asList("raichu")),
                 new PriceContainsKeywordsPredicate<>(Arrays.asList(109.54)),
-                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("alolan raichu")));
+                new SpeciesContainsKeywordsPredicate<>(Arrays.asList("alolan raichu")),
+                new VaccinationStatusPredicate<>(true));
 
         assertFalse(firstCommand.equals(secondCommand));
     }
@@ -131,9 +143,11 @@ public class FilterPetCommandTest {
                 new PriceContainsKeywordsPredicate<>(Arrays.asList(1763.4));
         SpeciesContainsKeywordsPredicate<Pet> speciesContainsKeywordsPredicate =
                 new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon"));
+        VaccinationStatusPredicate<Pet> vaccinationStatusPredicate = new VaccinationStatusPredicate<>(true);
 
         FilterPetCommand command = new FilterPetCommand(colorContainsKeywordsPredicate,
-                petNameContainsKeywordsPredicate, priceContainsKeywordsPredicate, speciesContainsKeywordsPredicate);
+                petNameContainsKeywordsPredicate, priceContainsKeywordsPredicate, speciesContainsKeywordsPredicate,
+                vaccinationStatusPredicate);
         pExpectedModel.updateFilteredPetList(command.generatePredicate());
         assertCommandSuccess(command, pModel, expectedMessage, pExpectedModel);
         assertEquals(Collections.emptyList(), pModel.getFilteredPetList());
@@ -153,7 +167,7 @@ public class FilterPetCommandTest {
         };
 
         FilterPetCommand command = new FilterPetCommand(colorContainsKeywordsPredicate, defaultPredicate,
-                defaultPredicate, defaultPredicate);
+                defaultPredicate, defaultPredicate, defaultPredicate);
         command.execute(pModel);
 
         for (Pet pet : pModel.getFilteredPetList()) {
@@ -175,7 +189,7 @@ public class FilterPetCommandTest {
         };
 
         FilterPetCommand command = new FilterPetCommand(defaultPredicate, petNameContainsKeywordsPredicate,
-                defaultPredicate, defaultPredicate);
+                defaultPredicate, defaultPredicate, defaultPredicate);
         pExpectedModel.updateFilteredPetList(command.generatePredicate());
         assertCommandSuccess(command, pModel, expectedMessage, pExpectedModel);
         assertEquals(Arrays.asList(TypicalPets.DOJA), pModel.getFilteredPetList());
@@ -195,7 +209,7 @@ public class FilterPetCommandTest {
         };
 
         FilterPetCommand command = new FilterPetCommand(defaultPredicate, defaultPredicate,
-                priceContainsKeywordsPredicate, defaultPredicate);
+                priceContainsKeywordsPredicate, defaultPredicate, defaultPredicate);
         pExpectedModel.updateFilteredPetList(command.generatePredicate());
         assertCommandSuccess(command, pModel, expectedMessage, pExpectedModel);
         assertEquals(Arrays.asList(TypicalPets.PLUM), pModel.getFilteredPetList());
@@ -215,7 +229,7 @@ public class FilterPetCommandTest {
         };
 
         FilterPetCommand command = new FilterPetCommand(defaultPredicate, defaultPredicate, defaultPredicate,
-                speciesContainsKeywordsPredicate);
+                speciesContainsKeywordsPredicate, defaultPredicate);
         pExpectedModel.updateFilteredPetList(command.generatePredicate());
         assertCommandSuccess(command, pModel, expectedMessage, pExpectedModel);
         assertEquals(TypicalPets.getTypicalPets(), pModel.getFilteredPetList());

@@ -208,7 +208,7 @@ public class AddressBookParserTest {
                 colorContainsKeywordsPredicate,
                 petNameContainsKeywordsPredicate,
                 priceContainsKeywordsPredicate,
-                speciesContainsKeywordsPredicate);
+                speciesContainsKeywordsPredicate, vaccinationStatusPredicate);
         String input = FilterPetCommand.COMMAND_WORD + " " + COLOR_PREFIX + "/grey "
                 + PET_NAME_PREFIX + "/ashy "
                 + PRICE_PREFIX + "/5.5 ";
