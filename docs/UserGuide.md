@@ -227,6 +227,7 @@ Example:
 ### Adding a Tag to a Contact: `tag add`
 
 Adds an existing tag to an existing contact.
+* `Coming soon in v1.5`, we will upgrade `tag add` to add tags to todos.
 
 Format: `tag add INDEX t/TAG`
 
@@ -294,7 +295,7 @@ Format: `customise show [t/] [p/] [e/] [a/]`
 * Information that can be changed from being hidden to being shown: Tags, Phone Number, Email, Address.
 * After using the command, the information specified is shown.
 * If the information specified is already shown, it will stay shown.
-* In `v1.5`, we will include `customise show all`, a shortcut to show all information.
+* `Coming soon in v1.5`, we will include `customise show all`, a shortcut to show all information.
 
 Example:
 * `customise show a/` The application now shows addresses in the list of contacts.
@@ -325,7 +326,8 @@ Format: `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​
 * Edits the todo at the specified `INDEX`. The index refers to the index number shown in the displayed todo list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Parameters given will overwrite the existing values completely.
-  * For example, giving 1 tag in the edit command will erase all existing tags except the one given in the edit command.
+  * For example, giving 1 or more tag(s) in the edit command will erase all existing tags except the ones given in the edit command.
+  * `Coming soon in v1.5`, you can use `tag add` to add tags to todos instead of only using `todo edit`.
 
 Examples:
 *  `todo edit 1 d/Read notes for ST2334` Edits the description of the 1st todo to be `Read notes for ST2334`.
