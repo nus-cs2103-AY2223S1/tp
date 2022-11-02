@@ -18,7 +18,6 @@ public class PortfolioWindow extends UiPart<Region> {
 
     private static final String FXML = "Portfolio.fxml";
     private static final String RISK_LEVEL = "Risk Level: ";
-    private static final String NO_RISK_LEVEL = "no risk assessment yet";
     private static final String NO_NOTE = "no notes yet";
     private static final String NO_PLAN = "no plans yet";
 

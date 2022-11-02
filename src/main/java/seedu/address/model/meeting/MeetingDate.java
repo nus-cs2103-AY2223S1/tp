@@ -2,7 +2,6 @@ package seedu.address.model.meeting;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import javax.swing.text.html.Option;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

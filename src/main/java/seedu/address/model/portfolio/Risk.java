@@ -1,6 +1,7 @@
 package seedu.address.model.portfolio;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.util.Optional;
 
 /**

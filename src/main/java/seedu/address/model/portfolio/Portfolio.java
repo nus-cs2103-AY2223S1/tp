@@ -3,7 +3,6 @@ package seedu.address.model.portfolio;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import seedu.address.model.meeting.Meeting;
 
 /**
  * Represents a portfolio of a client in the FinBook.
