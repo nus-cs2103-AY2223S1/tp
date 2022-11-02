@@ -8,22 +8,12 @@ title: User Guide
 
 ![banner](images/ug-images/editCommand/checkUp_banner.png)
 
-**checkUp is a desktop app for managing patient details**, optimized for use via a Command Line Interface (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). If you can type fast, checkUp can get your patient 
-management tasks done quicker than traditional GUI apps.
+**checkUp is the perfect desktop app for healthcare establishments**. If you are a healthcare worker looking for an app to better manage 
+your patients details then look no further! checkUp can boost your productivity with features to quickly retrieve patients details without the 
+need of internet connection. Beyond that, checkUp also has features to help you manage your inventory so that you know when to restock certain medication!
 
-**checkUp** is an app made for healthcare establishments. It allows clinics to track relevant details for their patients and
-hospitals to track details related to a patient's stay at the hospital. Without an internet connection, checkUp stores
-patient details such as:
-- patient name;
-- next-of-kin details;
-- phone number;
-- email;
-- medical history;
-- upcoming appointments; and 
-- past appointments.
-
-Also, medication tags can be added to your patients to keep track of their long-term medication history.
+checkUp is available for the Windows, macOS and Linux operating systems. To get started, simply head over to the [Installation Guide](#Installation guide). This user guide 
+can also serve as a reference for experienced users, with a convenient [Command Summary](#Command summary).
 
 <div markdown="block" class="alert alert-info">
 
@@ -66,6 +56,16 @@ Also, medication tags can be added to your patients to keep track of their long-
 8. Refer to the [Features](#features) below for details of each command.
 
 ---
+## Installation Guide
+
+### System Requirements
+Here is everything you need to install and set up checkUp. For the best possible experience, we recommend that you use checkUp on the following supported operating systems:
+
+* Windows
+* macOS
+* Linux
+You will also require Java 11 or above to run checkUp. If you don't already have Java 11 or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/). 
+To tell if you already have the correct version of Java installed on your system, refer to [Checking your system's Java version](##Checking your system's Java version)
 
 ## Glossary
 
