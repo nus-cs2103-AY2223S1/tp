@@ -276,6 +276,11 @@ Examples:
 
 Marks an existing order in the order list as paid and/or delivered. 
 
+<div markdown="block" class="alert alert-info">
+:information_source: **Warning:** `marko` is irreversible. This means that you cannot unmark an order that is marked as 
+paid and/or delivered. 
+</div>
+
 Format: `marko INDEX [-p] [-d]`
 
 * Marks the order at the specified `INDEX` as paid and/or delivered. 
@@ -289,6 +294,11 @@ Format: `marko INDEX [-p] [-d]`
 * Both `-p` and `-d` may be present in your input to mark an order as both paid and delivered.
 * When an order is completed (marked as both `paid` and `delivered`), 
 the colour of the particular order's card will be in a darker shade than an uncompleted order. 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can mark an order with insufficient stock as paid (to record pre-payments) but you **cannot** 
+mark an order with **insufficient stock** as **delivered**. 
+</div>
 
 Examples:
 * `marko 1 -p` Marks the order at index `1` in the currently displayed list as `paid`. 
