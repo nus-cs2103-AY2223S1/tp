@@ -34,7 +34,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kshan29&breakdown=true)
 
 * **Enhancements to existing features**: Updated the handling of `Email` inputs to accept only NUS email domains. (Pull Request [#67](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/67))
-  * What it does: Changed the regex for email domain to accept only specific NUS emails.
+  * What it does: Restrict email inputs to emails with valid NUS email domain.
   * Justification: Our application is catered for NUS students hence only profiles with NUS emails are valid.
 
 * **Enhancements to existing features**: Changed the handling of duplicate profiles from comparing `Name` to comparing `Email`, `Phone` and `Telegram` instead. (Pull Request [#75](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/75))
@@ -44,7 +44,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for `event -v` and `event -u` (Pull Request [#54](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/54), [#55](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/55))
-    * Added use case for  `profile -d` (Pull Request [#59](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/59))
+    * Added use case for deleting a profile (Pull Request [#59](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/59))
   * Developer Guide:
     * Updated NFR and Glossary to cater to our project (Pull Request [#56](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/56))
     * Updated architecture diagrams to reflect our project design (Pull Request [#99](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/99), [#188](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/188))
