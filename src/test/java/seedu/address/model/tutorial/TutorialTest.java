@@ -2,11 +2,15 @@ package seedu.address.model.tutorial;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTENT_TUTORIAL1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_TUTORIAL1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_TUTURIAL2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_TUTORIAL2;
 import static seedu.address.testutil.TypicalTutorials.TUTORIAL1;
 import static seedu.address.testutil.TypicalTutorials.TUTORIAL2;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.TutorialBuilder;
 
 public class TutorialTest {
@@ -19,13 +23,13 @@ public class TutorialTest {
         assertFalse(TUTORIAL1.isSameTutorial(null));
 
         // same time, all other attributes different -> returns true
-        Tutorial editedTUTORIAL1 = new TutorialBuilder(TUTORIAL1).withContent(VALID_CONTENT_TUTORIAL1)
+        Tutorial editedTutorial1 = new TutorialBuilder(TUTORIAL1).withContent(VALID_CONTENT_TUTORIAL1)
                 .withGroup(VALID_GROUP_TUTORIAL1).build();
-        assertTrue(TUTORIAL1.isSameTutorial(editedTUTORIAL1));
+        assertTrue(TUTORIAL1.isSameTutorial(editedTutorial1));
 
         // different time, all other attributes same -> returns false
-        editedTUTORIAL1 = new TutorialBuilder(TUTORIAL1).withTime(VALID_TIME_TUTORIAL2).build();
-        assertFalse(TUTORIAL1.isSameTutorial(editedTUTORIAL1));
+        editedTutorial1 = new TutorialBuilder(TUTORIAL1).withTime(VALID_TIME_TUTORIAL2).build();
+        assertFalse(TUTORIAL1.isSameTutorial(editedTutorial1));
     }
 
     @Test
