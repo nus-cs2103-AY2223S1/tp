@@ -22,8 +22,7 @@ internship applications more efficiently and effectively than traditional GUI ap
 
 # How to use this guide
 
-First time using InTrack? We highly recommend reading this user guide in order. If you come across unfamiliar terms used
-in this user guide, their definitions may be found in the [Glossary](#glossary).
+First time using InTrack? We highly recommend reading this user guide in order.
 
 Searching for information about specific features? You might find it helpful to navigate to the relevant sections via
 the Table of Contents below for more detailed explanations of individual features.
@@ -108,6 +107,8 @@ Displays statistics of the current list of internship applications based on the 
 rejected applications.
 
 Format: `stats`
+
+![StatsFeature](images/StatsFeature.png)
 
 ### Exiting the program: `exit`
 
@@ -230,7 +231,7 @@ After updating the status of the internship application at `INDEX` 1 to `Offered
 
 Adds one or more `Tag`s to the internship application at the specified `INDEX` in InTrack.
 
-Format: `addtag INDEX TAG [MORE_TAGS]`
+Format: `addtag INDEX TAG [MORE_TAGS]...`
 
 | Parameter | Representation                                    | Constraints                                                                                    |
 |-----------|---------------------------------------------------|------------------------------------------------------------------------------------------------|
@@ -261,7 +262,7 @@ Expected outcome:
 
 Deletes one or more existing `Tag`s from the internship application at the specified `INDEX` in InTrack.
 
-Format: `deltag INDEX TAG [MORE_TAGS]`
+Format: `deltag INDEX TAG [MORE_TAGS]...`
 
 | Parameter | Representation                                        | Constraints                                                                                    |
 |-----------|-------------------------------------------------------|------------------------------------------------------------------------------------------------|
@@ -289,11 +290,11 @@ An internship application entry must be selected via the `select` command before
 
 </div>
 
+Format: `select INDEX`
+
 | Parameter | Representation                                        | Constraints                                                                                    |
 |-----------|-------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | `INDEX`   | The index of the target internship application        | Must be a positive unsigned integer and must not exceed the size of the current displayed list |
-
-Format: `select INDEX`
 
 Example of usage:
 
@@ -324,16 +325,16 @@ Before an internship application can be edited, it must first be selected via th
 
 </div>
 
-Format: `edit [c/NEW_COMPANY] [p/NEW_POSITION] [s/NEW_SALARY] [e/NEW_EMAIL] [w/NEW_WEBSITE] [t/NEW_TAG]...`
+Format: `edit [c/NEW_COMPANY] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE [s/NEW_SALARY] [t/NEW_TAG]...`
 
-| Parameter  | Representation                               | Constraints                                                                   |
-|------------|----------------------------------------------|-------------------------------------------------------------------------------|
-| `COMPANY`  | Company that is offering the internship      | Must contain only alphanumeric characters and spaces, and should not be blank |
-| `POSITION` | Position of the internship                   | Must not be blank                                                             |
-| `SALARY `  | Salary of the position                       | Must contain only numbers                                                     |
-| `EMAIL`    | Email of the hiring team                     | Must be of the format local-part@domain                                       |
-| `WEBSITE`  | Website containing details of the internship | Must be a valid URL                                                           |
-| `TAG`      | Tag(s) of the internship application         | Must be one word and contain only alphanumeric characters                     |
+| Parameter      | Representation                               | Constraints                                                                   |
+|----------------|----------------------------------------------|-------------------------------------------------------------------------------|
+| `NEW_COMPANY`  | Company that is offering the internship      | Must contain only alphanumeric characters and spaces, and should not be blank |
+| `NEW_POSITION` | Position of the internship                   | Must not be blank                                                             |
+| `NEW_EMAIL`    | Email of the hiring team                     | Must be of the format local-part@domain                                       |
+| `NEW_WEBSITE`  | Website containing details of the internship | Must be a valid URL                                                           |
+| `NEW_SALARY`   | Salary of the position                       | Must contain only numbers                                                     |
+| `NEW_TAG`      | Tag(s) of the internship application         | Must be one word and contain only alphanumeric characters                     |
 
 <div markdown="block" class="alert alert-info">
 
@@ -424,7 +425,7 @@ Before deleting the task at `TASK_INDEX` 1 in the selected internship applicatio
 
 ![AddTaskFeatureBefore](images/AddTaskFeatureBefore.png)
 
-Before deleting the task previously at `TASK_INDEX` 1 in the selected internship application:
+After deleting the task previously at `TASK_INDEX` 1 in the selected internship application:
 
 ![DeleteTaskFeatureAfter](images/DeleteTaskFeatureAfter.png)
 
@@ -461,7 +462,7 @@ Example of usage:
 
 Expected outcome:
 
-* The remark section at the bottom of the selected internship application panel will be cleared.
+* The remark section in the selected internship application panel will be cleared.
 
 ### Sending an email to a company : `mail`
 
@@ -486,7 +487,8 @@ Format: `mail`
 
 ### Listing all internship applications : `list`
 
-Shows a list of all internship applications in InTrack.
+Shows a list of all internship applications in InTrack. Commonly used to return to the original list after using a 
+`filter` or one of the `find` commands.
 
 Format: `list`
 
@@ -495,16 +497,15 @@ Format: `list`
 `clear` deletes all internship applications in InTrack. You may wish to use this to remove all the sample data in InTrack.
 
 <div markdown="block" class="alert alert-warning">
-:warning:`clear` CANNOT BE REVERSED OR UNDONE! Be sure that you wish to remove all existing data before entering the
+:warning: `clear` CANNOT BE REVERSED OR UNDONE! Be sure that you wish to remove all existing data before entering the
 command.
-:warning:
 </div>
 
 Format: `clear`
 
 ### Finding internship applications by company name : `findc`
 
-Finds internship applications which has company name containing any of the given keywords.
+Finds internship applications with company names containing any of the given keywords.
 
 Format: `findc KEYWORD [MORE_KEYWORDS]...`
 
@@ -520,11 +521,19 @@ Example of usage:
 Expected outcome:
 * All internships containing `Google` in the name field (case-insensitive) will be filtered and displayed.
 
+Before using `findc` with the keywords `Microsoft Alphabet`:
+
+![Ui](images/Ui.png)
+
+After using `findc` with the keywords `Microsoft Alphabet`:
+
+![FindcFeature](images/FindcFeature.png)
+
 ### Finding internship applications by position : `findp`
 
-Finds internship applications which has position name containing any of the given keywords.
+Finds internship applications with position names containing any of the given keywords.
 
-Format: findp KEYWORD [MORE_KEYWORDS]
+Format: `findp KEYWORD [MORE_KEYWORDS]...`
 
 * The search is case-insensitive. E.g. `developer` will match `Developer`.
 * The order of keywords does not matter. E.g. `Developer Frontend` will match `Frontend Developer`.
@@ -542,7 +551,7 @@ Expected outcome:
 
 Finds internship applications which has tags containing any of the given keywords.
 
-Format: findt KEYWORD [MORE_KEYWORDS]
+Format: `findt KEYWORD [MORE_KEYWORDS]...`
 
 * The search is case-insensitive. E.g. `urgent` will match `Urgent`.
 * The order of keywords does not matter. E.g. `Urgent Remote` will match `Remote Urgent`.
@@ -567,7 +576,15 @@ Example of usage:
 * `filter o`
 
 Expected outcome:
-* All internships that have status "Offered" will be filtered and displayed.
+* All internship applications that have status "Offered" will be filtered and displayed.
+
+Before sorting by upcoming task time in ascending order:
+
+![FilterFeatureBefore](images/FilterFeatureBefore.png)
+
+After sorting by upcoming task time in ascending order:
+
+![FilterFeatureAfter](images/FilterFeatureAfter.png)
 
 ### Sorting internship applications: `sort`
 
@@ -613,6 +630,14 @@ Expected outcome:
 * The list of internships are sorted in an ascending manner,
 with the internship with the lowest salary at the top.
 
+Before sorting by upcoming task time in ascending order:
+
+![Ui](images/Ui.png)
+
+After sorting by upcoming task time in ascending order:
+
+![SortFeature](images/SortFeature.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 # FAQ
@@ -634,19 +659,19 @@ with the internship with the lowest salary at the top.
 
 ## Internship Application Management
 
-| Action                                      | Format, Examples                                                                                                                                                                                |
-|---------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add internship application**              | `add c/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… ` <br/> e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent`        |
-| **Delete internship application**           | `delete INDEX` <br/> e.g. `delete 1`                                                                                                                                                            |
-| **Update status of internship application** | `status INDEX STATUS`<br/> e.g. `status 1 o`                                                                                                                                                    |
-| **Add tag to internship application**       | `addtag INDEX TAG [MORE_TAGS]...`<br/> e.g. `addtag 1 Urgent`                                                                                                                                   |
-| **Delete tag from internship application**  | `deltag INDEX TAG [MORE_TAGS]...`<br/> e.g. `deltag 1 Urgent`                                                                                                                                   |
-| **Select internship application**           | `select INDEX` <br/> e.g. `select 1`                                                                                                                                                            |
-| **Edit internship application**             | `edit [c/NEW_COMPANY] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE] [s/NEW_SALARY] [t/NEW_TAGS]...` <br/> Note: At least one of the optional fields must be provided. <br/> e.g. `edit s/1200` |
-| **Add task to internship application**      | `addtask TASK_NAME /at TASK_TIME ` <br/> Note: An internship application must be selected first. <br/> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                  |
-| **Delete task from internship application** | `deltask TASK_INDEX` <br/> Note: An internship application must be selected first. <br/> e.g. `deltask 1`                                                                                       |
-| **Add remark to internship application**    | `remark r/[REMARK]` <br/> Note: An internship application must be selected first. <br/> e.g. `remark r/Revise graphs`                                                                           |
-| **Send email to internship application**    | `mail` <br/> Note: An internship application must be selected first.                                                                                                                            |
+| Action                                      | Format, Examples                                                                                                                                                                                                                                    |
+|---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add internship application**              | `add c/COMPANY p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… ` <br/> e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent`                                                                 |
+| **Delete internship application**           | `delete INDEX` <br/> e.g. `delete 1`                                                                                                                                                                                                                |
+| **Update status of internship application** | `status INDEX STATUS`<br/> e.g. `status 1 o`                                                                                                                                                                                                        |
+| **Add tag to internship application**       | `addtag INDEX TAG [MORE_TAGS]...`<br/> e.g. `addtag 1 Urgent`                                                                                                                                                                                       |
+| **Delete tag from internship application**  | `deltag INDEX TAG [MORE_TAGS]...`<br/> e.g. `deltag 1 Urgent`                                                                                                                                                                                       |
+| **Select internship application**           | `select INDEX` <br/> e.g. `select 1`                                                                                                                                                                                                                |
+| **Edit internship application**             | `edit [c/NEW_COMPANY] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE] [s/NEW_SALARY] [t/NEW_TAG]...` <br/> Note: An internship application must be selected first and at least one of the optional fields must be provided. <br/> e.g. `edit s/1200` |
+| **Add task to internship application**      | `addtask TASK_NAME /at TASK_TIME ` <br/> Note: An internship application must be selected first. <br/> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                                                                      |
+| **Delete task from internship application** | `deltask TASK_INDEX` <br/> Note: An internship application must be selected first. <br/> e.g. `deltask 1`                                                                                                                                           |
+| **Add remark to internship application**    | `remark r/[REMARK]` <br/> Note: An internship application must be selected first. <br/> e.g. `remark r/Revise graphs`                                                                                                                               |
+| **Send email to internship application**    | `mail` <br/> Note: An internship application must be selected first.                                                                                                                                                                                |
 
 ## List Management
 
