@@ -111,7 +111,7 @@ to add such a patient because Bernice Yu already exists in HealthContact.
 Adds an appointment to HealthContact with input information including patient name, medical test,
 slot, and doctor.
 
-* Patient name input must strictly match the name of an existing patient.
+* Patient name input must strictly match the name of an existing patient, even the casing.
 
 * Slot must be in the format `yyyy-MM-dd HH:mm`, eg. `2022-11-12 13:00`.
 
