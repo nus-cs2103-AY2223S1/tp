@@ -92,17 +92,6 @@ public class Meeting implements Comparable<Meeting> {
         return output;
     }
 
-    private static Person getExactMatchingPerson(ObservableList<Person> filteredList, String namePredicate) {
-        for (Person person : filteredList) {
-            String lowerCasePersonName = person.getName().toString().strip().toLowerCase();
-            String lowerCaseInputName = namePredicate.toLowerCase();
-            if (lowerCasePersonName.equals(lowerCaseInputName)) {
-                return person;
-            }
-        }
-        return null;
-    }
-
     /**
      * helper function for the convertNameToPerson function
      * essentially iterates through a list of people and return the correct person
@@ -117,7 +106,7 @@ public class Meeting implements Comparable<Meeting> {
         }
         // if guard fails, then iterate through whole list to find and return p
         for (Person p : listOfPeople) {
-            if (p.getName().fullName.equalsIgnoreCase(personName)) {
+            if (p.getName().fullName.strip().equalsIgnoreCase(personName.strip())) {
                 return p;
             }
         }
