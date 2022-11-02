@@ -4,9 +4,9 @@ title: Yellow Pages
 ---
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/AY2223S1-CS2103-F13-3/tp/branch/master/graph/badge.svg?token=KEROWHVE8S)](https://codecov.io/gh/AY2223S1-CS2103-T05-3/tp)
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103-F13-3/tp/branch/master/graph/badge.svg?token=KEROWHVE8S)](https://codecov.io/gh/AY2223S1-CS2103-F13-3/tp)
 
-![Ui](images/UiUpdate.png)
+![Ui](images/Ui.png)
 
 **Yellow Pages is a desktop application for managing your contact and meeting details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 

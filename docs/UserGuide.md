@@ -40,7 +40,7 @@ Yellow Pages (YP) is a desktop app for managing contacts, optimised for use via 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/UiUpdate.png)
+   ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -121,6 +121,10 @@ Edits an existing person in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Editing a person also edits them in their respective meetings.
+</div>
+
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -166,9 +170,14 @@ Deletes the specified person from the address book.
 
 Format: `delete INDEX`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Deleting a person also deletes them from their respective meeting(s)
+</div>
+
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* A person cannot be deleted if they are the **last person** in a meeting, delete the corresponding meeting first.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
