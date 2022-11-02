@@ -24,25 +24,12 @@ First time using InTrack? We highly recommend reading this user guide in order. 
 in this user guide, their definitions may be found in the [Glossary](#glossary).
 
 Searching for information about specific features? You might find it helpful to navigate to the relevant sections via 
-the [Table of Contents](#table-of-contents) for more detailed explanations of individual features.
+the Table of Contents below for more detailed explanations of individual features.
 Alternatively, consider looking at the [Command Summary](#command-summary) for a brief outline of all the commands.
-
-| Syntax                                                                                                                                   | Purpose                                                                                                                                                                     |
-|------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <div markdown="block" class="alert alert-info">:information_source: Boxes with a blue background and the :information_source: icon</div> | Contain relevant tips for using InTrack                                                                                                                                     |
-| <div markdown="block" class="alert alert-warning">:warning: Boxes with a yellow background and the :warning: icon</div>                  | Contain important warnings                                                                                                                                                  |
-| `UPPER_CASE` words                                                                                                                       | `UPPER_CASE` words are the parameters to be supplied by the user. <br />e.g. in `add p/POSITION`, `POSITION` is a parameter which can be used as `add p/Software Engineer`. |
-| `[parameters in square brackets]`                                                                                                        | Items in square brackets are optional.<br />e.g `w/WEBSITE [t/TAG]` can be used as `w/careers.microsoft.com t/Urgent` or as `w/careers.microsoft.com`.                      |
-| `...`                                                                                                                                    | Items with `…` after them can be used multiple times including zero times.<br />e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Urgent`, `t/Urgent t/Remote` etc.    |
-
-<div markdown="block" class="alert alert-info">:information_source: 
-Extraneous parameters for commands that do not take in parameters (such as `help` and `list`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Table of Contents
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
