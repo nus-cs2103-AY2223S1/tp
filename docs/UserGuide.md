@@ -265,7 +265,7 @@ Displays all existing tasks in the task list. Use this after using the [`filter`
 
 Format: `listTasks`
 
-#### Filtering a Task: `filter`
+#### Filtering tasks: `filter`
 
 Filters the task list based on either CATEGORY or DEADLINE or both. Use this when you want to view only tasks in a certain category or before a certain deadline.
 
