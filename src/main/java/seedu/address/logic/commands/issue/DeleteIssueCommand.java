@@ -37,19 +37,21 @@ public class DeleteIssueCommand extends IssueCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
-        ui.showIssues();
         List<Issue> lastShownList = model.getFilteredIssueList();
 
         for (Issue i : lastShownList) {
             if (i.getIssueIdInInt() == targetIndex.getOneBased()) {
                 i.deleteProjectIssue(i);
                 model.deleteIssue(i);
+                ui.showIssues();
                 model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
                 return new CommandResult(String.format(MESSAGE_SUCCESS, i));
             }
         }
 
-        throw new CommandException(Messages.MESSAGE_ISSUE_NOT_FOUND);
+
+
+        throw new CommandException(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_ID);
 
     }
 

@@ -37,7 +37,6 @@ public class DeleteClientCommand extends ClientCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
-        ui.showClients();
         List<Client> lastShownList = model.getFilteredClientList();
 
         for (Client c : lastShownList) {
@@ -47,12 +46,13 @@ public class DeleteClientCommand extends ClientCommand {
                 for (Project p: clientToDelete.getProjects()) {
                     p.removeClient();
                 }
+                ui.showClients();
                 model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
                 return new CommandResult(String.format(MESSAGE_SUCCESS, clientToDelete));
             }
         }
 
-        throw new CommandException(Messages.MESSAGE_CLIENT_NOT_FOUND);
+        throw new CommandException(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_ID);
 
     }
 
