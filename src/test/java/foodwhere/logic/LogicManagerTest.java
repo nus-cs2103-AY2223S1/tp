@@ -1,5 +1,7 @@
 package foodwhere.logic;
 
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static foodwhere.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static foodwhere.testutil.Assert.assertThrows;
@@ -16,6 +18,7 @@ import org.junit.jupiter.api.io.TempDir;
 import foodwhere.commons.core.Messages;
 import foodwhere.logic.commands.CommandResult;
 import foodwhere.logic.commands.SAddCommand;
+import foodwhere.logic.commands.SDeleteCommand;
 import foodwhere.logic.commands.SListCommand;
 import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.logic.parser.exceptions.ParseException;
@@ -56,7 +59,9 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "sdel 9";
-        assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
+        String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INDEX)
+                + SDeleteCommand.MESSAGE_USAGE;
+        assertCommandException(deleteCommand, errorMessage);
     }
 
     @Test

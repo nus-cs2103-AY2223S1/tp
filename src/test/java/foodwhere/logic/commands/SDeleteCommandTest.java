@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import foodwhere.commons.core.Messages;
 import foodwhere.commons.core.index.Index;
 import foodwhere.model.Model;
 import foodwhere.model.ModelManager;
@@ -41,7 +40,7 @@ public class SDeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStallList().size() + 1);
         SDeleteCommand sDeleteCommand = new SDeleteCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(sDeleteCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(sDeleteCommand, model, SDeleteCommand.MESSAGE_INVALID_INDEX_ERROR);
     }
 
     @Test
@@ -70,7 +69,7 @@ public class SDeleteCommandTest {
 
         SDeleteCommand sDeleteCommand = new SDeleteCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(sDeleteCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(sDeleteCommand, model, SDeleteCommand.MESSAGE_INVALID_INDEX_ERROR);
     }
 
     @Test
