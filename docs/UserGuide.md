@@ -158,6 +158,8 @@ as well as provide you with additional information for your understanding.
 
 <div markdown="block" class="alert alert-info">
 
+**Important note:**
+
 If more than one of the non-multiple fields are provided<br>
 eg. `add m/vicky n/Victor n/Victoria`<br>
 only the last one `Victoria` will be taken.
