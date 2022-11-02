@@ -1,5 +1,6 @@
 package seedu.address.model.datetime;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,6 +28,9 @@ public class WeeklyTimeslotTest {
         assertFalse(weeklyTimeslot.isOverlapping(
                 WeeklyTimeslot.fromFormattedString("1", "17:00", "20:00")));
 
+        //same WeekLyTimeslot
+        assertTrue(weeklyTimeslot.isOverlapping(weeklyTimeslot));
+
         //same day, overlapping timeslots -> return true
         assertTrue(weeklyTimeslot.isOverlapping(
                 WeeklyTimeslot.fromFormattedString("1", "15:00", "16:00")));
@@ -40,4 +44,26 @@ public class WeeklyTimeslotTest {
         assertTrue(weeklyTimeslot.isOverlapping(
                 WeeklyTimeslot.fromFormattedString("1", "14:00", "18:00")));
     }
+
+    @Test
+    public void invalidValuesWeeklyTimeslot_failure() {
+        // invalid day -> return false
+        assertFalse(WeeklyTimeslot.isValidDay("8"));
+
+        // invalid timeslot -> return false
+        assertFalse(WeeklyTimeslot.isValidTimeRange("17:00", "13:00"));
+
+        // invalid time format -> return false
+        assertFalse(WeeklyTimeslot.isValidTimeRange("17:00:", "20:00"));
+    }
+
+    @Test
+    public void getValuesWeeklyTimeslot_success() {
+        assertEquals("1", weeklyTimeslot.getDay());
+
+        assertEquals("15:00", weeklyTimeslot.getStartTimeFormatted());
+
+        assertEquals("17:00", weeklyTimeslot.getEndTimeFormatted());
+    }
+
 }

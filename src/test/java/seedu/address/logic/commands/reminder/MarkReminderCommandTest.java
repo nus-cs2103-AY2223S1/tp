@@ -19,23 +19,6 @@ class MarkReminderCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    /*
-    @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Reminder reminderToMark = model.getFilteredReminderList().get(INDEX_FIRST_REMINDER.getZeroBased());
-        MarkReminderCommand markReminderCommand = new MarkReminderCommand(INDEX_SECOND_REMINDER);
-
-        String expectedMessage = String.format(MarkReminderCommand.MESSAGE_MARK_REMINDER_SUCCESS, reminderToMark);
-        System.out.println(markReminderCommand);
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.markReminder(reminderToMark);
-
-        assertCommandSuccess(markReminderCommand, model, expectedMessage, expectedModel);
-    }
-    */
-
-
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredReminderList().size() + 1);
