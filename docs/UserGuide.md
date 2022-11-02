@@ -183,6 +183,19 @@ Format: `task list`
 
 ### Adding
 
+<div markdown="block" class="alert alert-warning">
+
+**:bulb: Note:**<br>
+* For contacts: A contact is considered a duplicate and cannot be added to the TaskBook if they have the **same name** as an existing contact.
+* For tasks: A task is considered a duplicate and cannot be added to the TaskBook if they fulfill **all** of the following criteria with respect to an existing task:
+    * same type of task (i.e. `todo`, `event` or `deadline`)
+    * same contact name
+    * same assignment
+    * same description
+    * same date (for `event`, `deadline` tasks only)
+    
+</div>
+
 #### Adding a contact : `contact add`
 
 Adds a contact to your task book.
@@ -261,6 +274,13 @@ Examples:
 * `task event d/Finish essay t/Jan 31 2022` adds an event called “Finish essay” which you assigned to yourself.
 
 ### Editing
+
+<div markdown="block" class="alert alert-warning">
+
+**:bulb: Note:**<br>
+* [As mentioned above](#Adding), you cannot edit a contact/task into a duplicate of an existing contact/task in the TaskBook.
+
+</div>
 
 #### Editing a contact : `contact edit`
 
