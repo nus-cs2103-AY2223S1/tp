@@ -200,10 +200,17 @@ Each `Person` in the AddressBook is implemented in the following way:
 
 ![Person Class Diagram](images/PersonClassDiagram.png)
 
-All `Person`s have a `Name`, `Email`, `Address` and `Phone` and a set of `CurrentModule`, `PreviousModule`, and `PlannedModule`.
-`Person`s can have a `Github` URL to their profile added, and as many `Modules` as desired.
+All `Person` have a `Name`, `Email`, `Address` and `Phone` and a set of `Tag`, `CurrentModule`, `PreviousModule`, `PlannedModule` and `Lesson`.
+`Person`s can have a `Github` URL to their profile added, and as many `Tags`, `Modules` and `Lessons` as desired.
+
+#### User Class
 
 `User` Class is implemented the same way.
+
+![User Class Diagram](images/UserClassDiagram.png)
+
+`User` has a `Name`, `Email`, `Address` and `Phone` and a set of `CurrentModule`, `PreviousModule`, `PlannedModule`, and `Lesson`.
+`User` can have a `Github` URL to their profile added, and as many `Modules` and `Lessons` as desired.
 
 #### Module class
 `CurrentModule`, `PlannedModule`, and `PreviousModule` implement the `Module` interface.
@@ -257,7 +264,7 @@ Given below are some examples of a user command to add a `Lesson`
 - `lesson 5 l/lec m/cs2109s d/5 start/10:00 end/12:00`
 
 #### Lesson class
-In NUS School of Computing, every module generally has lab, lecture, recitation and tutorial slots. 
+In NUS School of Computing, every module generally has lab, lecture, recitation and tutorial slots.
 
 We implemented an abstract `Lesson` class and the classes `Lab`, `Lecture`, `Recitation` and `Tutorial` that inherits from it.
 Each of the class types have the class fields, `type`, `module`, `day`, `startTime`, and `endTime`.
@@ -297,7 +304,7 @@ Given below is an activity diagram to illustrate the behaviour of adding a Lesso
 
 
 * **Decision:** Alternative 1 as speed is important. There are a lot of lessons are expected to be added, since there is about 15 lessons a week per person,
-that has to be multiplied by the number of contacts in ConnectNUS. 
+that has to be multiplied by the number of contacts in ConnectNUS.
 
 **Aspect 2: How to implement the day in `Lesson` Class:**
 
@@ -311,11 +318,11 @@ that has to be multiplied by the number of contacts in ConnectNUS.
   * Cons: Difficult to sort lessons by day.
 
 * **Alternative 3:** Day as `DayOfWeek`.
-  * Pros: 
+  * Pros:
     * Quick to sort due to numeric value of each `DayOfWeek`.
     * Has function to convert to `String` value of day.
     * Safety: validates input to be only within the week.
-  * Cons: 
+  * Cons:
     * Slower sorting as `DayOfWeek` has to be converted to `int` to sort.
     * Does not address issue of unintuitive input for day in command.
 
@@ -346,8 +353,7 @@ be arranged easily.
 The command has the prefix `timetable` and has the parameters
 `user / INDEX (must be a positive integer)`
 
-When the user executes the timetable command, a window will pop up which will display the timetable of the user 
-or the specified index in the user's contacts, similar to the window shown below.
+When the user executes the timetable command, a window will pop up which will display the timetable of the user or the specified index in the user's contacts, similar to the window shown below.
 
 ![Timetable window](images/TimetableWindow.png)
 
@@ -372,7 +378,7 @@ timetable.
 ![TimetableSequenceDiagram](images/TimetableSequenceDiagram.png)
 
 `ModelManager`, which implements the `Model` class, stores an attribute `timetable`, which is a `HashSet` of `Lesson`s
-that is being shown in the Timetable Window. 
+that is being shown in the Timetable Window.
 
 Before `UI` shows the `TimetableWindow` to the user, the `timetable:HashSet` is obtained from `Logic` and `Model` and then
 sorted and converted to `String` which is displayed in the `TimetableWindow` which is now made visible.
@@ -530,7 +536,7 @@ Reason for implementation: All filter methods could have been implemented as one
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-  
+
 ### Filter contacts
 
 #### Proposed Implementation

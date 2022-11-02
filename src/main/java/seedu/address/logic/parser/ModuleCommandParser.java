@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PREVIOUSMOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVEMOD;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
@@ -28,6 +27,8 @@ import seedu.address.model.module.PreviousModule;
  */
 public class ModuleCommandParser implements Parser<ModuleCommand> {
 
+    private boolean isEdited = false;
+
     /**
      * Parses the given {@code String} of arguments in the context of the ModuleCommand
      * and returns a ModuleCommand object for execution.
@@ -40,6 +41,7 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
                         PREFIX_REMOVEMOD);
 
         String preamble = argMultimap.getPreamble();
+        isEdited = false;
 
         if (preamble.equals("user")) {
             EditModuleDescriptor editUserDescriptor = new EditModuleDescriptor();
@@ -53,7 +55,7 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
             parseRemoveModsForEdit(argMultimap.getAllValues(PREFIX_REMOVEMOD))
                     .ifPresent(editUserDescriptor::setModulesToRemove);
 
-            if (!editUserDescriptor.isAnyFieldEdited()) {
+            if (!isEdited) {
                 throw new ParseException(ModuleCommand.MESSAGE_NOT_EDITED);
             }
 
@@ -79,7 +81,7 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
         parseRemoveModsForEdit(argMultimap.getAllValues(PREFIX_REMOVEMOD))
                 .ifPresent(editPersonDescriptor::setModulesToRemove);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!isEdited) {
             throw new ParseException(ModuleCommand.MESSAGE_NOT_EDITED);
         }
 
@@ -87,70 +89,54 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> currMods} into a {@code Set<CurrentModule>} if {@code currMods} is non-empty.
-     * If {@code currMods} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<CurrentModule>} containing zero current modules.
+     * Parses {@code Collection<String> currMods} into a {@code Set<CurrentModule>}.
      */
     private Optional<Set<CurrentModule>> parseCurrentModsForEdit(Collection<String> currMods) throws ParseException {
         assert currMods != null;
 
-        if (currMods.isEmpty()) {
-            return Optional.empty();
+        if (!currMods.isEmpty()) {
+            isEdited = true;
         }
-        Collection<String> currModSet = currMods.size() == 1 && currMods.contains("")
-                ? Collections.emptySet()
-                : currMods;
+        Collection<String> currModSet = currMods;
         return Optional.of(ParserUtil.parseCurrentModules(currModSet));
     }
 
     /**
-     * Parses {@code Collection<String> prevMods} into a {@code Set<PreviousModule>} if {@code prevMods} is non-empty.
-     * If {@code prevMods} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<PreviousModule>} containing zero previous modules.
+     * Parses {@code Collection<String> prevMods} into a {@code Set<PreviousModule>}.
      */
     private Optional<Set<PreviousModule>> parsePreviousModsForEdit(Collection<String> prevMods) throws ParseException {
         assert prevMods != null;
 
-        if (prevMods.isEmpty()) {
-            return Optional.empty();
+        if (!prevMods.isEmpty()) {
+            isEdited = true;
         }
-        Collection<String> prevModSet = prevMods.size() == 1 && prevMods.contains("")
-                ? Collections.emptySet()
-                : prevMods;
+        Collection<String> prevModSet = prevMods;
         return Optional.of(ParserUtil.parsePreviousModules(prevModSet));
     }
 
     /**
-     * Parses {@code Collection<String> planMods} into a {@code Set<CurrentModule>} if {@code planMods} is non-empty.
-     * If {@code planMods} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<PlannedModule>} containing zero planned modules.
+     * Parses {@code Collection<String> planMods} into a {@code Set<CurrentModule>}.
      */
     private Optional<Set<PlannedModule>> parsePlannedModsForEdit(Collection<String> planMods) throws ParseException {
         assert planMods != null;
 
-        if (planMods.isEmpty()) {
-            return Optional.empty();
+        if (!planMods.isEmpty()) {
+            isEdited = true;
         }
-        Collection<String> planModSet = planMods.size() == 1 && planMods.contains("")
-                ? Collections.emptySet()
-                : planMods;
+        Collection<String> planModSet = planMods;
         return Optional.of(ParserUtil.parsePlannedModules(planModSet));
     }
 
     /**
-     * Parses {@code Collection<String> modsToRemove} into a {@code Set<Module>} if {@code modsToRemove} is non-empty.
-     * If {@code modsToRemove} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Module>} containing zero modules.
+     * Parses {@code Collection<String> modsToRemove} into a {@code Set<Module>}.
      */
     private Optional<Set<Module>> parseRemoveModsForEdit(Collection<String> modsToRemove) throws ParseException {
         assert modsToRemove != null;
 
-        if (modsToRemove.isEmpty()) {
-            return Optional.empty();
+        if (!modsToRemove.isEmpty()) {
+            isEdited = true;
         }
-        Collection<String> modsToRemoveSet = modsToRemove.size() == 1 && modsToRemove.contains("")
-                ? Collections.emptySet()
-                : modsToRemove;
+        Collection<String> modsToRemoveSet = modsToRemove;
         return Optional.of(ParserUtil.parseModules(modsToRemoveSet));
     }
 }

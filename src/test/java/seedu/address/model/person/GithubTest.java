@@ -1,6 +1,8 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -67,6 +69,18 @@ public class GithubTest {
 
         // different usernames -> returns false
         assertFalse(standardGithub.equals(new Github("stanLey-huds0n")));
+    }
+
+    @Test
+    public void hashcode() {
+        final Github standardGithub = new Github("ryan-howard");
+
+        // same values -> returns same hashcode
+        Github githubWithSameName = new Github("ryan-howard");
+        assertEquals(standardGithub.hashCode(), githubWithSameName.hashCode());
+
+        // different usernames -> returns different hashcode
+        assertNotEquals(standardGithub.hashCode(), (new Github("stanLey-huds0n")).hashCode());
     }
 
 }

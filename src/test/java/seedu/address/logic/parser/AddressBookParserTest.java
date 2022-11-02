@@ -39,21 +39,31 @@ import seedu.address.logic.commands.ModulesLeftCommand;
 import seedu.address.logic.commands.NextSemCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.UserCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.CurrModContainsKeywordsPredicate;
 import seedu.address.model.module.PlanModContainsKeywordsPredicate;
 import seedu.address.model.module.PrevModContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.user.User;
 import seedu.address.model.tag.TagsContainsKeywordsPredicate;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.UserBuilder;
 
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
+
+    @Test
+    public void parseCommand_user() throws Exception {
+        User user = new UserBuilder().build();
+        UserCommand command = (UserCommand) parser.parseCommand(PersonUtil.getUserCommand(user));
+        assertEquals(new UserCommand(user), command);
+    }
 
     @Test
     public void parseCommand_add() throws Exception {

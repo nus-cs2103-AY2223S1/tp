@@ -1,6 +1,8 @@
 package seedu.address.model.person.user;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -22,7 +24,7 @@ public class UserTest {
     private final EmptyUser emptyUser = new EmptyUser();
 
     @Test
-    public void existingUserEquals() {
+    public void existingUser_equals() {
         // same values -> returns true
         User zephyrCopy = new UserBuilder(ZEPHYR).build();
         assertTrue(ZEPHYR.equals(zephyrCopy));
@@ -77,7 +79,54 @@ public class UserTest {
     }
 
     @Test
-    public void emptyUserEquals() {
+    public void existingUser_hashcode() {
+        // same values -> returns same hashcode
+        User zephyrCopy = new UserBuilder(ZEPHYR).build();
+        assertEquals(ZEPHYR.hashCode(), zephyrCopy.hashCode());
+
+        // different user -> returns different hashcode
+        assertNotEquals(ZEPHYR.hashCode(), XAVIER.hashCode());
+
+        // empty user -> returns different hashcode
+        assertNotEquals(ZEPHYR.hashCode(), emptyUser.hashCode());
+
+        // different name -> returns different hashcode
+        User editedZephyr = new UserBuilder(ZEPHYR).withName(VALID_NAME_BOB).build();
+        assertNotEquals(ZEPHYR.hashCode(), editedZephyr.hashCode());
+
+        // different phone -> returns different hashcode
+        editedZephyr = new UserBuilder(ZEPHYR).withPhone(VALID_PHONE_BOB).build();
+        assertNotEquals(ZEPHYR.hashCode(), editedZephyr.hashCode());
+
+
+        // different email -> returns different hashcode
+        editedZephyr = new UserBuilder(ZEPHYR).withEmail(VALID_EMAIL_BOB).build();
+        assertNotEquals(ZEPHYR.hashCode(), editedZephyr.hashCode());
+
+        // different address -> returns different hashcode
+        editedZephyr = new UserBuilder(ZEPHYR).withAddress(VALID_ADDRESS_BOB).build();
+        assertNotEquals(ZEPHYR.hashCode(), editedZephyr.hashCode());
+
+        // different github -> returns different hashcode
+        editedZephyr = new UserBuilder(ZEPHYR).withGithub(VALID_GITHUB_BOB).build();
+        assertNotEquals(ZEPHYR.hashCode(), editedZephyr.hashCode());
+
+        // different current modules -> returns different hashcode
+        editedZephyr = new UserBuilder(ZEPHYR).withCurrentModules(VALID_MODULE_7).build();
+        assertNotEquals(ZEPHYR.hashCode(), editedZephyr.hashCode());
+
+        // different previous modules -> returns different hashcode
+        editedZephyr = new UserBuilder(ZEPHYR).withPreviousModules(VALID_MODULE_9).build();
+        assertNotEquals(ZEPHYR.hashCode(), editedZephyr.hashCode());
+
+        // different planned modules -> returns different hashcode
+        editedZephyr = new UserBuilder(ZEPHYR).withPlannedModules(VALID_MODULE_11).build();
+        assertNotEquals(ZEPHYR.hashCode(), editedZephyr.hashCode());
+
+    }
+
+    @Test
+    public void emptyUser_equals() {
         // same object -> returns true
         assertTrue(emptyUser.equals(emptyUser));
 
@@ -89,5 +138,14 @@ public class UserTest {
 
         // different type -> returns false
         assertFalse(emptyUser.equals(5));
+    }
+
+    @Test
+    public void emptyUser_toString() {
+        // correct string representation of emptyUser
+        assertEquals(emptyUser.toString(), "no user exists");
+
+        // wrong string representation of emptyUser
+        assertNotEquals(emptyUser.toString(), "something else");
     }
 }
