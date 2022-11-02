@@ -296,20 +296,21 @@ unexecuted command from Step 3.
 
 ### Creating a buyer
 
-The `Person` class represents a buyer with buyer-specific fields. `Price Range`, `Characteristics`, and `Priority`
-denote his budget, requirements for the property, and buyer priority respectively.
+The `Buyer` class represents a buyer with buyer-specific fields. `PriceRange`, `Characteristics`, and `Priority`
+denote his budget, requirements for the property, and buyer priority respectively.  
 
 These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
 When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
+When the user creates a buyer, the entry time is also automatically stored as an `LocalDateTime` object. 
 
-This is the class diagram of a `Person`.
+This is the class diagram of a `Buyer`.
 
-![PersonClassDiagram](images/PersonClassDiagram.png)
+![PersonClassDiagram](images/BuyerClassDiagram.png)
 
 The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
 
 Design considerations:
-No duplicate buyers can be added to the buyer list. This means that no two buyers with the same name can exist. We considered using not only name but also contact number to identify a buyer, so that two people with the same name but different contact numbers can be added. However, we decided against it as users likely differentiate their contacts by name and would not want to save a duplicated name contact, hence the current implementation would serve as a needed warning of a duplicated name attempt to the user.
+No duplicate buyers can be added to the buyer list. This means that no two buyers with the same phone or email can exist. We considered using only name to identify a buyer, so that two people with the same name but different contact numbers can be added. However, we decided against it as users likely differentiate their contacts by name and would not want to save a duplicated name contact, hence the current implementation would serve as a needed warning of a duplicated name attempt to the user.
 
 ### Creating a property
 

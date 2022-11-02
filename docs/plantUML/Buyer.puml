@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Buyer {
+-Name name
+-Phone phone
+-Address address
+-Email email
+-LocalDateTime entryTime
+-Priority priority
+
++ boolean isSameBuyer(Buyer otherBuyer)
+}
+
+class PriceRange {
++Price low
++Price high
+
++ boolean isValidPriceRange(String test)
++ boolean isWithinPriceRange(Price p)
+}
+
+class Characteristics {
+-String[] characteristicsArray
+
++boolean isValidCharacteristics(String test)
++boolean containsCharacteristic(String characteristic)
+}
+
+enum Priority {
+LOW
+NORMAL
+HIGH
+}
+
+Buyer --> "0..1 " Characteristics
+Buyer --> "0..1" PriceRange
+
+@enduml

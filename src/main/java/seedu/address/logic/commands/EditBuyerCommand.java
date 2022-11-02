@@ -58,7 +58,7 @@ public class EditBuyerCommand extends Command {
     private final EditBuyerDescriptor editBuyerDescriptor;
 
     /**
-     * @param index                of the buyer in the filtered buyer list to edit
+     * @param index of the buyer in the filtered buyer list to edit
      * @param editBuyerDescriptor details to edit the buyer with
      */
     public EditBuyerCommand(Index index, EditBuyerDescriptor editBuyerDescriptor) {
@@ -109,7 +109,6 @@ public class EditBuyerCommand extends Command {
                 .orElse(buyerToEdit.getDesiredCharacteristics().orElse(null));
         Priority updatedPriority = editBuyerDescriptor.getPriority().orElse(buyerToEdit.getPriority());
 
-        // Should time be updated
         LocalDateTime entryTime = buyerToEdit.getEntryTime();
 
         Buyer newBuyer = new Buyer(updatedName, updatedPhone, updatedEmail, updatedAddress,
@@ -153,7 +152,7 @@ public class EditBuyerCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code EditBuyerDescriptor} is used internally.
          */
         public EditBuyerDescriptor(EditBuyerDescriptor toCopy) {
             setName(toCopy.name);
