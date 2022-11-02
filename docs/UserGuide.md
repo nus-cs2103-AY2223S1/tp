@@ -10,7 +10,11 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1 Quick start
+## 1 Introduction
+
+
+
+## 2 Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -38,7 +42,7 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2 Features
+## 3 Features
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the command format:**<br>
@@ -63,15 +67,15 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 </div>
 
-### 2.1 UI
+### 3.1 UI
 
-#### 2.1.1 Switch to light mode : `light`
+#### 3.1.1 Switch to light mode : `light`
 
 Switch to light mode.
 
 Format: `light`
 
-#### 2.1.2 Switch to dark mode : `dark`
+#### 3.1.2 Switch to dark mode : `dark`
 
 Switch to dark mode.
 
@@ -83,9 +87,9 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### 2.2 Modules
+### 3.2 Modules
 
-#### 2.2.1 Adding a module: `madd`
+#### 3.2.1 Adding a module: `madd`
 
 Adds a module to the ProfNUS.
 
@@ -99,7 +103,7 @@ Examples:
 * `madd n/Introduction to SWE c/CS2103T d/Teach students SWE principles and practices t/ModuleCoordinator`
 * `madd n/Introduction to Cybersecurity c/CS2107 d/Cryptography practices t/NEW t/URGENT`
 
-#### 2.2.2 Viewing list of modules : `mlist`
+#### 3.2.2 Viewing list of modules : `mlist`
 
 Shows a list of all modules in the ProfNUS application.
 You can click on each module to view more details about the module.
@@ -108,7 +112,7 @@ You can click on each module to view more details about the module.
 
 Format: `mlist`
 
-#### 2.2.3 Viewing more details of a module in the list of modules : `vtarget`
+#### 3.2.3 Viewing more details of a module in the list of modules : `vtarget`
 
 You can also choose to use a CLI-command to get more information about a module in the ProfNUS application
 at your specified `INDEX`.
@@ -119,7 +123,7 @@ Format: `vtarget INDEX`
 
 Examples: `vtarget 3`
 
-#### 2.2.4 Viewing module details : `mview`
+#### 3.2.4 Viewing module details : `mview`
 
 Shows a list of students and tutors in the module.
 
@@ -132,7 +136,7 @@ Format: `mview c/MODULE_CODE`
 Examples:
 *  `mview c/CS1101S` Views the list of students and tutors in CS1101S.
 
-#### 2.2.5 Deleting a module: `mdel`
+#### 3.2.5 Deleting a module: `mdel`
 
 Deletes a module stored in the ProfNUS.
 
@@ -142,9 +146,9 @@ Examples:
 * `mdel c/CS2103T`
 
 
-### 2.3 Students
+### 3.3 Students
 
-#### 2.3.1 Adding a student/teaching assistant: `add`
+#### 3.3.1 Adding a student/teaching assistant: `add`
 
 Adds a student/teaching assistant to the module.
 
@@ -161,7 +165,7 @@ Examples:
 * `add n/Adam Doink e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 i/A0175776U h/@adam_doink c/CS1101S cg/CS1101S:Tut07`
 * `add n/David Lim e/ad4md01nk@example.com a/Tembusu College p/82738419 i/A0175079D h/@david_the_best c/CS2030S ta/CS1101S cg/CS1101S:Tut07`
 
-#### 2.3.2 Editing a student : `editstu`
+#### 3.3.2 Editing a student : `editstu`
 
 Edits an existing student in the ProfNUS application.
 
@@ -179,7 +183,7 @@ Examples:
 *  `editstu 2 n/Betsy Crower ta/` Edits the name of the 2nd student to be `Betsy Crower` and clears all ta modules.
 
 
-#### 2.3.3 Editing a teaching assistant : `editta`
+#### 3.3.3 Editing a teaching assistant : `editta`
 
 Edits an existing teaching assistant in the ProfNUS application.
 
@@ -196,7 +200,7 @@ Examples:
 *  `editta 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st teaching assistant to be `91234567` and `johndoe@example.com` respectively.
 *  `editta 2 n/Betsy Crower ta/` Edits the name of the 2nd teaching assistant to be `Betsy Crower` and clears all ta modules.
 
-#### 2.3.4 Deleting a student : `delstu`
+#### 3.3.4 Deleting a student : `delstu`
 
 Deletes the specified student from the ProfNUS application.
 
@@ -210,7 +214,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the list of students.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-#### 2.3.5 Deleting a teaching assistant : `delta`
+#### 3.3.5 Deleting a teaching assistant : `delta`
 
 Deletes the specified teaching assistant from the ProfNUS application.
 
@@ -224,7 +228,7 @@ Examples:
 * `list` followed by `delta 2` deletes the 2nd teaching assistant in the list of teaching assistants.
 * `find Betsy` followed by `delta 1` deletes the 1st teaching assistant in the results of the `find` command.
 
-#### 2.3.6 Locating students by name: `find`
+#### 3.3.6 Locating students by name: `find`
 
 Finds students/teaching assistants whose names contain any of the given keywords.
 
@@ -241,7 +245,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
-#### 2.3.7 Listing all students : `list`
+#### 3.3.7 Listing all students : `list`
 
 Shows a list of all the students and teaching assistants in ProfNUS with their contact information in the application.
 
@@ -251,11 +255,11 @@ Examples:
 
 ![list](images/userguide/list.png)
 
-### 2.4 Schedule Manager
+### 3.4 Schedule Manager
 
 As a professor in SoC, you must be busy with teaching. ProfNUS is here to help you out! The following features are designed to help you manage your schedules more efficiently.
 
-#### 2.4.1 Schedule Manager Command Parameters
+#### 3.4.1 Schedule Manager Command Parameters
 
 In this section, we list all the parameters you will encounter of following commands. Take a look before you continue.
 
@@ -269,7 +273,7 @@ In this section, we list all the parameters you will encounter of following comm
 | `VENUE`       | This parameter represents the venue of a class.              | `LT16`        |
 | `INDEX`       | This parameter represents the index of a schedule in the displayed list. Indices are **one-based**. | `1`           |
 
-#### 2.4.2 Add your schedule `sadd`
+#### 3.4.2 Add your schedule `sadd`
 
 You can add a schedule by using this command. 
 
@@ -298,16 +302,16 @@ Now, let's use `sadd` to add a schedule with following information:
 
 `m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD`
 
-**Step 1:** type command `sadd m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` in the command text box.
+**Step 1**: type command `sadd m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` in the command text box.
 
 ![sadd](images/userguide/sadd_step1.png)
 
-**Step 2:** Press enter, then you can see the new schedule has been added to the list.
+**Step 2**: Press enter, then you can see the new schedule has been added to the list.
 
 ![sadd_step2](images/userguide/sadd_step2.png)
 
 
-#### 2.4.3 Edit your schedule `sedit`
+#### 3.4.3 Edit your schedule `sedit`
 
 Edits a schedule in the ProfNUS.
 
@@ -337,16 +341,16 @@ Now, let's use `sedit` command to edit a schedule with the following information
 
 `1 w/Monday ct/09:00-10:00 cc/tut cv/COM2-0218`
 
-**Step 1:** Type the command `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103` in the command text box.
+**Step 1**: Type the command `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103` in the command text box.
 
 ![sedit](images/userguide/sedit_step1.png)
 
-**Step 2:** Press enter, then you will see the first schedule in the list has been edited.
+**Step 2**: Press enter, then you will see the first schedule in the list has been edited.
 
 ![sedit_step2](images/userguide/sedit_step2.png)
 
 
-#### 2.4.4 Delete your schedule `sdelete`
+#### 3.4.4 Delete your schedule `sdelete`
 
 Deletes a schedule from the ProfNUS.
 
@@ -368,11 +372,23 @@ Deletes a schedule from the ProfNUS.
 
 </div>
 
+**Example**: `sdelete 1`
 
-#### 2.4.5 Clear your schedule `sclear`
+Now, let's use `sdelete` command and delete the first schedule in your schedule list.
+
+**Step 1**:  Type the command `sdelete 1` in the command box.
+
+![sdelete_step1](images/userguide/sdelete_step1.png)
+
+**Step 2**: Press enter, then you will see the first schedule is deleted.
+
+![sdelete_step2](images/userguide/sdelete_step2.png)
+
+
+#### 3.4.5 Clear your schedule `sclear`
 
 This command helps you clear all schedules/all schedules of selected modules.
-**Format**: `sclear [m/MODULE_CODE] [m/MODULE_CODE] ...`
+**Format**: `sclear [m/MODULE_CODE]...`
 
 <div markdown="block" class="alert alert-info">
 
@@ -393,26 +409,34 @@ This command helps you clear all schedules/all schedules of selected modules.
 
 **Example**: `sclear m/CS2103T m/CS2103`
 
-#### 2.4.6 View your schedule `view`
+#### 3.4.6 View your schedule `view`
 
 You can use this command to view the list of selected/all schedules.
-**Format**: `view [m/MODULE_CODE] [w/WEEKDAY]`
+**Format**: `view [m/MODULE_CODE]... [w/WEEKDAY]...`
 
 <div markdown="block" class="alert alert-info">
 
  **:information_source: Note**<br>
 
 - Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
-- There can be more than one existance for both optional parameters.
-- You can view all your schedules by simply typing `view` without any parameter.
+- Schedules matching at least one keyword will be returned to you.
+- You can view all your schedules by typing `view` without any parameter.
 
 </div>
 
 **Example**: `view m/CS2030S w/Monday`
 
+Now, let's view your schedules of CS2030S and schedules on Monday.
+
+**Step 1**: Type the command `view m/CS2030S w/Monday` in the command box.
+
+![view_step1](images/userguide/view_step1.png)
+
+**Step 2**: Press enter, you will see all schedules related to CS2030S and Monday.
+
 ![view by module](images/userguide/view.png)
 
-#### 2.4.7 View your timetable `tview`
+#### 3.4.7 View your timetable `tview`
 
 Want to make your own timetable? Use `tview` command! It helps you creates your own weekly timetable.
 
@@ -421,36 +445,36 @@ Want to make your own timetable? Use `tview` command! It helps you creates your 
 
 ![tview](images/userguide/tview.png)
 
-### 2.5 Clearing all entries : `clear`
+### 3.5 Clearing all entries : `clear`
 
 Clears all entries from the ProfNUS application.
 
 Format: `clear`
 
-### 2.6 Exiting the program : `exit`
+### 3.6 Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### 2.7 Saving the data
+### 3.7 Saving the data
 
 ProfNUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### 2.8 Editing the data
+### 3.8 Editing the data
 ProfNUS data are saved as a JSON file `[JAR file location]/data/profnus.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ProfNUS will discard all data and start with an empty data file at the next run.
 </div>
 
-### 2.9 Archiving data files `[coming in v2.0]`
+### 3.9 Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3 FAQ
+## 4 FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ProfNUS home folder.
@@ -458,7 +482,7 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 
-## 4 Command summary
+## 5 Command summary
 
 | Action                                | Format                                                                                                             | Example                                                                                                                                                                     |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -480,14 +504,14 @@ _Details coming soon ..._
 | help                                  | `help`                                                                                                             | `help`                                                                                                                                                                      |
 | exit                                  | `exit`                                                                                                             | `exit`                                                                                                                                                                      |
 
-### 4.4 Schedule Manager Command Summary
+### 5.4 Schedule Manager Command Summary
 
 | Action                                                    | Format                                                       | Example                                                      |
 | --------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [Add your schedule](#242-add-your-schedule-sadd)          | `sadd m/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE` | `sadd m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` |
-| [Edit your schedule](#243-edit-your-schedule-sedit)       | `sedit INDEX [m/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE]` | `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103`        |
-| [Delete your schedule](#244-delete-your-schedule-sdelete) | `sdelete INDEX`                                              | `sdelete 1`                                                  |
-| [Clear your schedule](#245-clear-your-schedule-sclear)    | `sclear [m/MODULE_CODE]...`                                  | `sclear m/CS2103T m/CS1101S`                                 |
-| [View your schedule list](#246-view-your-schedule-view)   | `view [m/MODULE_CODE]... [w/WEEKDAY]...`                     | `view m/CS2103T w/Monday`                                    |
-| [View your timetable](#247-view-your-timetable-tview)     | `tview`                                                      | `tview`                                                      |
+| [Add your schedule](#342-add-your-schedule-sadd)          | `sadd m/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE` | `sadd m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` |
+| [Edit your schedule](#343-edit-your-schedule-sedit)       | `sedit INDEX [m/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE]` | `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103`        |
+| [Delete your schedule](#344-delete-your-schedule-sdelete) | `sdelete INDEX`                                              | `sdelete 1`                                                  |
+| [Clear your schedule](#345-clear-your-schedule-sclear)    | `sclear [m/MODULE_CODE]...`                                  | `sclear m/CS2103T m/CS1101S`                                 |
+| [View your schedule list](#346-view-your-schedule-view)   | `view [m/MODULE_CODE]... [w/WEEKDAY]...`                     | `view m/CS2103T w/Monday`                                    |
+| [View your timetable](#347-view-your-timetable-tview)     | `tview`                                                      | `tview`                                                      |
 
