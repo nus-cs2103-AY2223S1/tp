@@ -36,7 +36,7 @@ public class AddModuleCommand extends Command {
             + "-n <MODULE NAME> \n"
             + "-cr <MODULE CREDITS>";
 
-    @Parameter(description = "<alphanumeric module code>", required = true,
+    @Parameter(description = "<alphanumeric mod code of 6-9 characters>", required = true,
             converter = ModCodeConverter.class)
     private ModCode modCode;
 
@@ -99,8 +99,8 @@ public class AddModuleCommand extends Command {
                         + VERBOSE_MESSAGE_USAGE);
             }
         } else if (this.name == null || this.credit == null) {
-            throw new CommandException("Invalid command, please see below for the command usage \n"
-                    + MESSAGE_USAGE + "\n"
+            throw new CommandException("Invalid syntax, please see below for the command usage \n\n"
+                    + "Usage: " + MESSAGE_USAGE + "\n"
                     + "OR \n"
                     + VERBOSE_MESSAGE_USAGE);
         } else {

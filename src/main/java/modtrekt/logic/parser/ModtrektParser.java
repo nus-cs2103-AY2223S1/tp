@@ -121,7 +121,8 @@ public class ModtrektParser {
                     ? "Syntax error. If your command arguments contain spaces, surround them with quotes."
                     // JCommander parses multiple module codes from the input arguments, so we regard the error as
                     // invalid syntax provided by the user.
-                    : ex.getMessage().endsWith("Code should contain alphanumeric characters and no white space")
+                    : ex.getMessage().endsWith("Code should only contain alphanumeric characters, " +
+                    "should not contain white space and should be between 6 and 9 characters long")
                     ? "Syntax error. Please ensure your command follows the correct syntax."
                     : ex.getMessage();
             IUsageFormatter usageFormatter = new UnixStyleUsageFormatter(filteredJCommander);
