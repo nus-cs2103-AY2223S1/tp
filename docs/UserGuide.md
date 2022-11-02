@@ -256,6 +256,8 @@ Format: `addT d/DESCRIPTION D/DEADLINE`
 
 * The description and deadline of the task are not allowed to be empty.
 
+* The command parameters cannot be rearranged.
+
 * Newly added tasks are marked as not done by default.
 
 * Tasks have no tags when first created.
