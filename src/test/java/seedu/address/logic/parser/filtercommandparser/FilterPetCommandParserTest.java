@@ -44,7 +44,7 @@ public class FilterPetCommandParserTest {
         String input = SPECIES_PREFIX + "/pokemon";
         String inputWithSpaces = "\n" + SPECIES_PREFIX + "/pokemon \t \n";
         FilterPetCommand expectedCommand = new FilterPetCommand(defaultPredicate, defaultPredicate,
-                defaultPredicate, new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")));
+                defaultPredicate, new SpeciesContainsKeywordsPredicate<>(Arrays.asList("pokemon")), defaultPredicate);
         assertParseSuccess(parser, input, expectedCommand);
         assertParseSuccess(parser, inputWithSpaces, expectedCommand);
     }
