@@ -24,7 +24,7 @@ public class RateCommandParserTest {
 
     @Test
     public void parse_ratingOutOfBounds_throwsParseException() {
-        String expectedString = MESSAGE_INVALID_RATING + RateCommand.MESSAGE_USAGE;
+        String expectedString = MESSAGE_INVALID_RATING;
         assertParseFailure(parser, "2 r/10", expectedString);
     }
 

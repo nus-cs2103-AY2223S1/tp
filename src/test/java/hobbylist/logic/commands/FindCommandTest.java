@@ -7,12 +7,14 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import hobbylist.model.Model;
 import hobbylist.model.ModelManager;
 import hobbylist.model.UserPrefs;
+import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.DateMatchesGivenDatePredicate;
 import hobbylist.model.activity.NameOrDescContainsKeywordsPredicate;
 import hobbylist.model.activity.RatingMatchesGivenValuePredicate;
@@ -77,11 +79,12 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleActivitiesFound() {
         String expectedMessage = String.format(MESSAGE_ACTIVITIES_LISTED_OVERVIEW, 3);
-        NameOrDescContainsKeywordsPredicate keywordPredicate = preparePredicate("Charlotte Exercise Chicken");
-        DateMatchesGivenDatePredicate datePredicate = new DateMatchesGivenDatePredicate("2022");
+        NameOrDescContainsKeywordsPredicate keywordPredicate = preparePredicate("Charlotte Exercise Chicken date/2022");
+        DateMatchesGivenDatePredicate datePredicate = new DateMatchesGivenDatePredicate("2022-03");
         RatingMatchesGivenValuePredicate ratingPredicate = new RatingMatchesGivenValuePredicate(1);
         FindCommand command = new FindCommand(keywordPredicate, datePredicate, ratingPredicate);
-        expectedModel.updateFilteredActivityList(keywordPredicate.or(datePredicate).or(ratingPredicate));
+        Predicate<Activity> predicate = keywordPredicate.or(datePredicate).or(ratingPredicate);
+        expectedModel.updateFilteredActivityList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(TypicalActivities.ACTIVITY_C, TypicalActivities.ACTIVITY_E,
                 TypicalActivities.ACTIVITY_F), model.getFilteredActivityList());

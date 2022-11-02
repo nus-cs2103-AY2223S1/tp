@@ -12,15 +12,18 @@
   }, {
     "name" : "Charlotte",
     "description" : "Comedy drama anime",
+    "date": "2022-03-01",
     "tagged" : [ ],
     "review" : "decent anime with weird ending"
   }, {
     "name" : "Despicable Me 3",
     "description" : "Comedy film directed by Pierre Coffin and Kyle Balda",
+    "date": "2022-10-10",
     "tagged" : [ "movie" ]
   }, {
     "name" : "Exercise",
     "description" : "100 push-ups, 100 sit-ups, 100 squats and 10km run",
+    "date": "2021-09-03",
     "tagged" : [ ]
   }, {
     "name" : "Fried Chicken",
@@ -29,6 +32,7 @@
   }, {
     "name" : "Golf",
     "description" : "At Marina Bay Golf Course",
+    "date": "2021-09-29",
     "tagged" : [ ],
     "status" : "COMPLETED",
     "rating" : 2
