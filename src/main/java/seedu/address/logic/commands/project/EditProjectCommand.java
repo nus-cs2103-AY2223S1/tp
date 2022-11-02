@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Deadline;
