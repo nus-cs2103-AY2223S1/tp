@@ -54,6 +54,7 @@ public class PinClientCommand extends ClientCommand {
         }
         Client toPinClient = model.getClientById(this.toPinClientId.getIdInt());
         toPinClient.togglePin();
+        model.sortClientsByCurrentCategory();
         model.sortClientsByPin();
         ui.showClients();
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);

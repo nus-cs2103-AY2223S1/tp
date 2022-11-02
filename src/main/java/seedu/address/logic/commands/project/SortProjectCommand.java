@@ -11,6 +11,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
+import seedu.address.model.SortCategory;
+import seedu.address.model.project.Project;
 import seedu.address.ui.Ui;
 
 /**
@@ -59,26 +61,32 @@ public class SortProjectCommand extends ProjectCommand {
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
         String sortKeyString = "";
+        Project.setSortOrder(this.sortOrder);
 
         if (sortKey.equals(PREFIX_DEADLINE)) {
             model.sortProjectsByDeadline(sortOrder);
+            Project.setSortCategory(SortCategory.DEADLINE);
             sortKeyString = "deadline.";
         }
 
         if (sortKey.equals(PREFIX_ISSUE_COUNT)) {
             model.sortProjectsByIssueCount(sortOrder);
+            Project.setSortCategory(SortCategory.ISSUE_COUNT);
             sortKeyString = "issue count.";
         }
 
         if (sortKey.equals(PREFIX_NAME)) {
             model.sortProjectsByName(sortOrder);
+            Project.setSortCategory(SortCategory.NAME);
             sortKeyString = "names.";
         }
 
         if (sortKey.equals(PREFIX_PROJECT_ID)) {
             model.sortProjectsById(sortOrder);
+            Project.setSortCategory(SortCategory.ID);
             sortKeyString = "project id.";
         }
+        model.sortProjectsByPin();
 
         model.sortProjectsByPin();
 
