@@ -44,7 +44,7 @@ public class Grade {
     public Grade(String grade) {
         if (!Objects.equals(grade, "")) {
             checkArgument(isValidGrade(grade), MESSAGE_CONSTRAINTS);
-            value = grade.toUpperCase();
+            value = grade;
         } else {
             value = "PENDING...";
         }
