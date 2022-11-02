@@ -16,7 +16,7 @@ import coydir.logic.parser.exceptions.ParseException;
  */
 public class Rating {
     public static final String MESSAGE_CONSTRAINTS =
-            "Ratings can take any values from 1 - 5, and it should not be blank\n"
+            "Ratings can take any integer values from 1 - 5 inclusive, and it should not be blank\n"
           + "5: Outstanding | 4: Exceeds Expectations | 3: Satisfactory | 2: Needs Improvement | 1: Unsatisfactory.";
     public static final String MESSAGE_CONSTRAINTS_TIMESTAMP = "Invalid Timestamp, please follow dd-MM-yyyy";
     public static final String VALIDATION_REGEX = "[1-5]";
