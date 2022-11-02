@@ -5,9 +5,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.team.Team;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a TruthTable
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyTruthTable {
 
     /**
      * Returns an unmodifiable view of the persons list.

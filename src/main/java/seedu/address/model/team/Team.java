@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
 /**
- * Represents a Team in the address book.
+ * Represents a Team in the TruthTable.
  */
 public class Team {
 
@@ -172,7 +172,7 @@ public class Team {
 
     /**
      * Removes {@code Person} from this {@code Team}.
-     * {@code person} must exist in the address book.
+     * {@code person} must exist in the TruthTable.
      */
     public void removeMember(Person person) {
         teamMembers.remove(person);
@@ -194,7 +194,7 @@ public class Team {
 
     /**
      * Removes {@code Task} from this {@code Team}.
-     * {@code task} must exist in the address book.
+     * {@code task} must exist in the TruthTable.
      */
     public void removeTask(Task task) {
         taskList.remove(task);

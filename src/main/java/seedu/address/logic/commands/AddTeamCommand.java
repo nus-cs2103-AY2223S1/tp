@@ -20,7 +20,7 @@ import seedu.address.model.team.Team;
 import seedu.address.model.team.TeamName;
 
 /**
- * Adds a new team to the address book.
+ * Adds a new team to the TruthTable.
  */
 @CommandLine.Command(name = "team", aliases = {"te"}, mixinStandardHelpOptions = true)
 public class AddTeamCommand extends Command {

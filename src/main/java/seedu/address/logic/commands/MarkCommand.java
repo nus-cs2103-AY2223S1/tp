@@ -22,9 +22,9 @@ public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Marks the specified existing task as complete.\n"
-        + "Parameters: TASK_INDEX (must be a valid positive integer) \n"
-        + "Example: " + COMMAND_WORD + " 1";
+            + ": Marks the specified existing task as complete.\n"
+            + "Parameters: TASK_INDEX (must be a valid positive integer) \n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_SUCCESS = "Marked as complete: [x] %1$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
@@ -70,7 +70,7 @@ public class MarkCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof MarkCommand // instanceof handles nulls
-            && taskIndex.equals(((MarkCommand) other).taskIndex)); // state check
+                || (other instanceof MarkCommand // instanceof handles nulls
+                && taskIndex.equals(((MarkCommand) other).taskIndex)); // state check
     }
 }

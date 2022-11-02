@@ -6,11 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 
 import picocli.CommandLine;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.TruthTable;
 
 /**
- * Clears the address book.
+ * Clears the TruthTable.
  */
 @CommandLine.Command(name = "clear", aliases = {"c"}, mixinStandardHelpOptions = true)
 public class ClearCommand extends Command {
@@ -31,7 +31,7 @@ public class ClearCommand extends Command {
             return new CommandResult(commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        model.setAddressBook(AddressBook.createNewAddressBook());
+        model.setTruthTable(TruthTable.createNewTruthTable());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

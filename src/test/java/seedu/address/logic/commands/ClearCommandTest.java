@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyTruthTable_success() {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyTruthTable_success() {
     }
 
 }

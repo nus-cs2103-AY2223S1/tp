@@ -35,12 +35,12 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the TruthTable.
  */
 @CommandLine.Command(name = "person", aliases = {"p"}, mixinStandardHelpOptions = true)
 public class AddPersonCommand extends Command {
     public static final String COMMAND_WORD = "add person";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the TruthTable. "
             + "Parameters: "
             + FLAG_NAME_STR + " NAME "
             + FLAG_PHONE_STR + " PHONE "

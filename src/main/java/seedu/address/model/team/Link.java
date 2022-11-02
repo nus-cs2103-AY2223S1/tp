@@ -26,8 +26,9 @@ public class Link {
 
     /**
      * Constructs a {@code Link}
+     *
      * @param displayedName A valid name to display.
-     * @param url A valid URL object.
+     * @param url           A valid URL object.
      */
     public Link(Name displayedName, Url url) {
         requireNonNull(displayedName);
@@ -59,6 +60,7 @@ public class Link {
 
     /**
      * Returns true if the two links have the same name, and the same URL.
+     *
      * @param other the other link to be compared with.
      * @return true if the links are considered equal, and false otherwise.
      */
