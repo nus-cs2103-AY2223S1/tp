@@ -108,8 +108,8 @@ Format: `search [CONDITION] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * `search and n/NAME p/PHONE…` searches for contacts that match all the given information.
 * `search n/NAME p/PHONE…` and `search and n/NAME p/PHONE…` will return the same contacts that match all the given information.
 * `search or t/TAG1 t/TAG2…` searches for contacts that contain any of the given tags.
-* The search using `n/NAME` is case-insensitive. e.g `hans` will match `Hans`.
-* Displays a list of relevant contacts related to the search query if no search result available.
+* The search using `n/NAME` is case-insensitive. e.g., `hans` will match `Hans`.
+* Displays a list of relevant contacts related to the search query if no search result available. A contact is considered relevant if there are high matches of characters between the contact information and search keyword. For example, `David Li` and `Charlotte` are relevant to `search n/al` because these names contain characters `a` and `l` in it.
 
 Example:
 * `search t/family` returns all contacts tagged with family in the contact list.
