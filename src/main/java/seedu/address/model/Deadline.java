@@ -5,6 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a deadline.
@@ -38,11 +41,10 @@ public class Deadline {
     }
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadlines should be entered in yyyy-mm-dd date format \n"
-            + "Year (yyyy): A year from 0001 onwards \n"
-            + "Month (mm): A month in the range of 1 to 12 \n"
-            + "Day (dd): A day in the range of 1 to 31";
-
+            "Deadlines should be entered in yyyy-mm-dd format and must exist \n"
+            + "Year (yyyy): Year from 0001 onwards \n"
+            + "Month (mm): Month in the range of 1 to 12 \n"
+            + "Day (dd): Day in the range of 1 to 31";
     /*
      * The date must be entered in yyyy-mm-dd or yyyy-m-d
      */
@@ -69,7 +71,15 @@ public class Deadline {
      * Returns true if a given string is a valid deadline.
      */
     public static boolean isValidDeadline(String deadline) {
-        return !deadline.startsWith("0000") && deadline.matches(VALIDATION_REGEX);
+        if (deadline.startsWith("0000") || !deadline.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        try {
+            LocalDate.parse(deadline);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
     }
 
     public String getFormattedDeadline() {
