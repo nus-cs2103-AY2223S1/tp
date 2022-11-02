@@ -47,13 +47,14 @@ The following icons are used in the _User Guide_ to denote special information t
 ## **Getting started**
 
 1. Ensure you have Java `11` or above installed in your computer.
+    * To check for the Java version in your computer, you can first open the command-line or terminal window. Then, run the command `java -version`. The output will display the version of the Java package installed on your system.
 
 2. Download the latest `MassLinkers.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Mass Linkers.
 
 4. Double-click the file to start the app. If done correctly, the GUI similar to the one below should appear in a few seconds. The image below is annotated with the various sections of the UI.
-   1. Note for OS-X users: If you face difficulty running Mass Linkers, refer to [the FAQ](#faq).<br>
+   * Note for OS-X users: If you face difficulty running Mass Linkers, refer to the [FAQ](#faq) section.<br>
 ![Ui](images/UiBreakDown.png)
 
 5. The app has been populated with some sample data. If you wish to start with an empty set of data, execute the [Clear](#2-clear-all-data-clear) command.
@@ -63,7 +64,7 @@ The following icons are used in the _User Guide_ to denote special information t
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Features**
-There are four main types of commands used in Mass Linkers - Batchmate commands, Interest commands, Module commands and General commands.
+There are 4 main types of commands used in Mass Linkers - Batchmate commands, Interest commands, Module commands and General commands.
 
 By segregating the commands in this manner, this makes it easier to make modifications and conduct a search based on different fields (ie. seach by common interests, modules or personal information).
 
@@ -135,10 +136,6 @@ __Examples:__
 
 #### 2. Edit a batchmate: `edit`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-To edit a module, simply delete that module using [__mod delete__](#delete-module-from-a-batchmate-mod-delete) and add the new module using [__mod add__](#add-module-to-a-batchmate-mod-add).
-</div>
-
 Edits the information of a specified batchmate in the _Students panel_.
 
 __Format:__ `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]...`
@@ -147,10 +144,13 @@ __Format:__ `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing interests, the existing interests of the batchmate will be completely replaced by the new ones.
-* You can remove all the batchmate’s interests by typing `i/` without specifying any interests after it.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can remove all batchmates’ interests by typing `i/` without specifying any interests after it.
+</div>
 
 __Examples:__
-* `edit 1 g/johndoe p/91234567 e/johndoe@example.com` edits the github username, phone number and email address of the 1st batchmate in the currently displayed list to be `johndoe`, `91234567` and `johndoe@example.com` respectively.
+* `edit 1 g/johndoe p/91234567 e/johndoe@example.com` edits the GitHub username, phone number and email address of the 1st batchmate in the currently displayed list to be `johndoe`, `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Bob Tan i/` edits the name of the 2nd batchmate in the currently displayed list to be `Bob Tan` and clears all existing interests.
 
 #### 3. Delete a batchmate: `delete`
@@ -277,8 +277,6 @@ __Examples:__
 This is the GUI after executing `mod add 1 ma1521`. The module `MA1521` is successfully added to the 1st batchmate and automatically categorised as `Mathematics`. The expected changes is annotated with a purple rectangular box below.
 ![UgModAdd](images/UgModAdd.png)
 
-
-
 #### 3. Delete module from a batchmate: `mod delete`
 
 Deletes module(s) from a specified batchmate in the _Modules panel_.
@@ -290,6 +288,10 @@ __Format:__ `mod delete INDEX MODULE [MORE_MODULES]...`
 __Examples:__
 * `mod delete 1 cs2103t` deletes the module `CS2103T` from the 1st batchmate in the currently displayed list.
 * `mod delete 3 cs2100 cs2103t cs2101 cs2105` deletes the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` from the 3rd batchmate in the currently displayed list.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To edit a module, simply delete that module using [__mod delete__](#delete-module-from-a-batchmate-mod-delete) and add the new module using [__mod add__](#add-module-to-a-batchmate-mod-add).
+</div>
 
 #### 4. Mark module as taken: `mod mark`
 
