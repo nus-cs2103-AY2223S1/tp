@@ -14,7 +14,7 @@ bobaBot contains a database of customers’ information and supports operations 
 customers based on various inputs. Every entry in the database contains the customer's name, phone number, email
 address, birthday month, reward points and membership tags.
 
-bobaBot is written in Java and has about 7.5k LoC.
+bobaBot is written in Java and has about 13k LoC.
 
 Given below are my contributions to the project.
 
