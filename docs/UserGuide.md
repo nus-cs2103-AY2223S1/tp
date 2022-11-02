@@ -684,11 +684,12 @@ Examples:
 **RC4HDB** provides users with the ability to import data from [CSV](#glossary-of-terms) files. In order for RC4HDB to find your files, place them in the [**main**](#finding-your-data) data folder.
 
 Format: `file import FOLDER_NAME`
+* Creates a **sub** data folder with the same name as the **CSV** file.
 
 :information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
 
 Examples:
-* `file import residents` will import the data from `residents.csv` into a new **resident** data file which can be found in the `residents` folder in the **main** data folder.
+* `file import residents` will import the data from `residents.csv` into a new **resident** data file which can be found in the `residents` **sub** data folder in the **main** data folder.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
