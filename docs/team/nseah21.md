@@ -13,42 +13,21 @@ streamline their daily operations.
 
 ### Code contributed:
 
-#### Functional code:
-
 I contributed **functional** code to the following modules/classes:
 
 For refactoring `Person` into a `Resident`,
 
-1. `ResidentField.java`, and its subclasses:
+1. `ResidentField.java`, and its subclasses `Gender.java`, `House.java`, `MatricNumber.java`, `Name.java`, 
+   `Phone.java`, and `Room.java`
 
-    1a. `Gender.java`
-
-    1b. `House.java`
-
-    1c. `MatricNumber.java`
-
-    1d. `Name.java`
-
-    1e. `Phone.java`
-
-    1f. `Room.java`
-
-
+   
 For the `showonly`, `hideonly` and `reset` commands,
 
 2. `ListCommand.java`
    
-3. `ColumnManipulatorCommand.java`, and its subclasses: 
+3. `ColumnManipulatorCommand.java`, and its subclasses `ShowOnlyCommand.java` and `HideOnlyCommand.java`
    
-   3a. `ShowOnlyCommand.java`
-   
-   3b. `HideOnlyCommand.java`
-   
-4. `ColumnManipulatorCommandParser.java`, and its subclasses:
-   
-   4a. `ShowOnlyCommandParser.java`
-   
-   4b. `HideOnlyCommandParser.java`
+4. `ColumnManipulatorCommandParser.java`, and its subclasses `ShowOnlyCommandParser.java` and `HideOnlyCommandParser.java`
 
 5. `ResetCommand.java`
 
@@ -70,93 +49,30 @@ For the venue booking feature,
 
 13. `MainWindow.java`
 
-<br>
-
-#### Test code:
-
-I contributed **test** code to the following modules/classes:
-
-For testing the `showonly`, `hideonly` and `reset` components, 
-
-1. `ListCommandTest.java`
-   
-2. `ColumnManipulatorCommandTest.java`, and:
-   
-   2a. `ShowOnlyCommandTest.java`
-   
-   2b. `HideOnlyCommandTest.java`
-   
-3. `ColumnManipulatorCommandParserTest.java`, and:
-   
-   3a. `ShowOnlyCommandParserTest.java`
-   
-   3b. `HideOnlyCommandParserTest.java`
-   
-4. `ResetCommandTest.java`
-   
-5. `Rc4hdbParserTest.java`
-
-For testing the venue booking components,
-  
-6. `VenueTest.java`
-
-7. `VenueBookTest.java`   
-
-8. `UniqueVenueListTest.java`
-
-9. `RecurrentBookingTest.java`
-
-10. `DailyScheduleTest.java`
-
-For adding testing utility,
-
-11. `BookingDescriptor.java`
-
-12. `TypicalColumnManipulatorInputs.java`
-
-13. `TypicalFieldLists.java`
-
-14. `TypicalVenues.java`
-
-15. `VenueBuilder.java`
-
+[comment]: <> (<br>)
 
 
 You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nseah21&breakdown=true).
 
-<br>
+The test code written can also be found at the same link.
+
+[comment]: <> (<br>)
 
 ### Enhancements implemented:
 
 I made the following enhancements to our product:
 
-1. Reworked the UI to use `TableView` instead of `ListView`
+1. Reworked the UI to use a `TableView` instead of a `ListView`
 
-    * This improved the layout of the resident data, which was more convenient (and more condense) to view. 
-      
-    * This also allowed the hiding of fields to behave as intended (as opposed to having gaps in the `ListView`)
-
-2. Reworked the UI to wrap `ResidentTableView` and `VenueTableView` in a `Tab` 
-   
-    * This allowed users to switch between both tables easily using `CTRL-TAB`.
+2. Reworked the UI to allow for the use of `CTRL-TAB` for switching between `ResidentTableView` and `VenueTableView` 
     
-3. Added the feature for users to hide unwanted columns 
-   
-    * This helped users to de-clutter their screen, so that they could focus on only the required data in the table.
+3. Added the feature for users to hide unwanted columns to de-clutter their screen 
     
-    * This also allowed users to modify the table columns without affecting the list of residents displayed.
-    
-4. Contributed to the `Venue` and `Booking` features
-
-    * This helped users to manage RC4 venues and venue bookings by residents through our application, 
-      instead of manually updating a spreadsheet. 
+4. Contributed to the `Venue` and `Booking` features 
 
 5. Added the option for users to include or exclude table columns when listing (removed in v1.4)
 
-    * This helped users to de-clutter their screen when listing, but was ultimately only an intermediate feature 
-      that was implemented as part of iterative development.
-
-<br>
+[comment]: <> (<br>)
 
 ### Contributions to the UG:
 
@@ -172,17 +88,15 @@ I contributed to the following sections of the user guide:
    
 5. [Locating residents by name : `find`](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#locating-residents-by-name--find)
    
-6. [Filtering residents by field : `filter`](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#filtering-residents-by-field--filter)
+6. [FAQ](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#faq)
    
-7. [FAQ](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#faq)
+7. [Glossary of terms](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#glossary-of-terms)
    
-8. [Glossary of terms](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#glossary-of-terms)
+8. [Quality-of-life](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#quality-of-life)
    
-9. [Quality-of-life](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#quality-of-life)
-   
-10. [Authors](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#authors)
+9. [Authors](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#authors)
 
-<br>
+[comment]: <> (<br>)
 
 ### Contributions to the DG:
 
@@ -205,15 +119,25 @@ I contributed to the following sections of the developer guide:
 
 In particular, I added/updated the following UML diagrams:
 
-1. [Colour coding guide](../images/ColorCoding.png)
+[comment]: <> (1. [Colour coding guide]&#40;#appendix-for-uml-diagrams&#41;)
 
-2. [Class diagram for Model component](../images/LatestModelClassDiagram.png)
+[comment]: <> (2. [Class diagram for Model component]&#40;#appendix-for-uml-diagrams&#41;)
    
-3. [Class diagram for possible extension of Model component with better OOP](../images/UpdatedBetterModelClassDiagram.png)
+[comment]: <> (3. [Class diagram for possible extension of Model component with better OOP]&#40;#appendix-for-uml-diagrams&#41;)
    
-4. [Diagram illustrating the reference relationships of MainWindow and its subclasses](../images/MainWindowRelationships.png)
+[comment]: <> (4. [Diagram illustrating the reference relationships of MainWindow and its subclasses]&#40;#appendix-for-uml-diagrams&#41;)
 
-<br>
+1. Colour coding guide
+
+2. Class diagram for Model component
+
+3. Class diagram for possible extension of Model component with better OOP
+
+4. Diagram illustrating the reference relationships of MainWindow and its subclasses
+
+Please refer to the appendix for the UML diagrams mentioned in this section. 
+
+[comment]: <> (<br>)
 
 <!-- Provide links to the diagrams in the appendix at the bottom of the page -->
 
@@ -227,11 +151,11 @@ I contributed to the following team-based tasks:
    
 3. Completed the demonstrations for both v1.2 and v1.3. The demonstrations can be found [here](https://docs.google.com/presentation/d/1Rn9v81qwurx_IT_5V9oPZOge1VDZUPD1IxE3DUWkpYg/edit?usp=sharing).
 
-<br>
+[comment]: <> (<br>)
 
 ### Review/mentoring contributions:
 
-I reviewed and **commented extensively** on the following pull requests, listed in reverse-chronological order:
+I reviewed and commented on the following pull requests, listed in reverse-chronological order:
 
 1. [Add Sample Data #182](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/182)
 
@@ -254,23 +178,8 @@ I reviewed and **commented extensively** on the following pull requests, listed 
 10. [Update UG and DG #30](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/30)
 
 
-I also reviewed and left comments on the following pull requests, listed in reverse-chronological order:
 
-11. [Enable assertions in build.gradle #112](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/112)
-
-12. [Updated UG & Test for FindCommand #71](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/71)
-
-13. [UI rework #66](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/66)
-
-14. [Add user stories table to DG #41](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/41)
-
-15. [Add individual PPPs #40](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/40)
-
-16. [Add support for find command to perform substring search #31](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/31)
-
-17. [Add Neale's info #20](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/20)
-
-<br> 
+[comment]: <> (<br> )
 
 I also gave guidance to my team by:
 
@@ -284,7 +193,7 @@ I also gave guidance to my team by:
       
 3. Giving advice on how to use streams in our code (in order to make our code more declarative)
      
-<br>
+[comment]: <> (<br>)
 
 ### Contributions beyond the project team:
 
@@ -315,25 +224,25 @@ Some examples of these are:
 
 #### Colour coding guide
 
-![Colour coding guide](../images/ColorCoding.png)
+<img src="docs/images/ColourCoding.png" alt="Colour coding guide" />
 
 <br>
 
 #### Class diagram for Model component
 
-![Class diagram for Model component](../images/LatestModelClassDiagram.png)
+<img src="docs/images/LatestModelClassDiagram.png" alt="Class diagram for Model component" />
 
 <br>
 
 #### Class diagram for possible extension of Model component with better OOP
 
-![Class diagram for possible extension of Model component with better OOP](../images/UpdatedBetterModelClassDiagram.png)
+<img src="docs/images/UpdatedModelClassDiagram.png" alt="Class diagram with better OOP" />
 
 <br>
 
 #### Diagram illustrating the reference relationships of MainWindow and its subclasses
 
-![Diagram illustrating the reference relationships of MainWindow and its subclasses](../images/MainWindowRelationships.png)
+<img src="docs/images/MainWindowRelationships.png" alt="MainWindow reference relationships" />
 
 <br>
 
