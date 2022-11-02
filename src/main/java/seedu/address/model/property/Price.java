@@ -10,7 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Price {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Price should only contain numbers and an optional exponent. For example: 123.45";
+            "Price should only contain numbers and an optional exponent within the maximum range of a Double." +
+                    " For example: 123.45";
     private static final String VALIDATION_REGEX = "^[0-9]*\\.*[0-9]+$";
     private static final double EPSILON = 0.01d;
     public final String value;
@@ -32,7 +33,9 @@ public class Price {
      * Returns true if a given string is a valid price.
      */
     public static boolean isValidPrice(String test) {
-        return test.matches(VALIDATION_REGEX);
+        double value = Double.parseDouble(test);
+        return test.matches(VALIDATION_REGEX)
+                && value < Double.POSITIVE_INFINITY;
     }
 
     // TODO testing for these methods

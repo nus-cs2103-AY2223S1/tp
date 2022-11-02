@@ -42,7 +42,7 @@ public class PriceRange {
     /**
      * Returns true if a given string is a valid price range in format.
      * Left value of the price range must be smaller than the right value of the price range.
-     * Both values must be non-negative and within the maximum range of a Float.
+     * Both values must be non-negative and within the maximum range of a Double.
      */
     public static boolean isValidPriceRange(String test) {
 
