@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -51,27 +52,17 @@ public class ExportStudentCsv {
             return;
         }
 
-        ArrayList<JsonNode> list = new ArrayList<>();
-        jsonTree.elements().next().elements().forEachRemaining(list::add);
-        for (JsonNode item : list) {
+        ArrayList<JsonNode> nodesList = new ArrayList<>();
+        jsonTree.elements().next().elements().forEachRemaining(nodesList::add);
+        for (JsonNode item : nodesList) {
             ArrayList<String> arr = new ArrayList<>();
             item.fields().forEachRemaining(header -> {
                 switch (header.getKey()) {
                 case "nextOfKin":
-                    if (header.getValue().isNull()) {
-                        arr.addAll(Arrays.asList("", "", "", "", "", ""));
-                        break;
-                    }
-                    header.getValue().elements().forEachRemaining(values -> {
-                        if (values.textValue() == null) {
-                            arr.add(handleTagged(values));
-                        } else {
-                            arr.add(values.textValue());
-                        }
-                    });
+                    arr.addAll(handleNextOfKin(header.getValue()));
                     break;
                 case "tagged":
-                    arr.add((handleTagged(header.getValue())));
+                    arr.add(handleTagged(header.getValue()));
                     break;
                 case "tuitionClasses":
                     arr.add(handleTuitionClass(header.getValue()));
@@ -111,6 +102,19 @@ public class ExportStudentCsv {
         tagged.elements().forEachRemaining(values -> arr.add(values.textValue()));
         return arr.toString();
     }
+    private List<String> handleNextOfKin(JsonNode nok) {
+        if (nok.isNull()) {
+            return Arrays.asList("", "", "", "", "", "");
+        }
+
+        List<String> listOfValues = new ArrayList<>();
+        nok.elements().forEachRemaining(values -> {
+            if (values.textValue() == null) {
+                listOfValues.add(handleTagged(values));
+            } else {
+                listOfValues.add(values.textValue());
+            }
+        });
+        return listOfValues;
+    }
 }
-
-
