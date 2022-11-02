@@ -179,17 +179,26 @@ For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, l
 |  Optional Input  |                  NIL                   |
 
 - Letters followed by a forward slash is called a prefix and will be used to specify a specific parameter<br>
-  e.g `t/ ` refers to the entry type parameter.
+  e.g. `t/ ` refers to the entry type parameter.
 
 - PennyWise will always take the **LAST OCCURRENCE** of a command prefix should there be more than 1 of the same command
-  prefix in a given command. 
-  e.g In `add t/i d/Monthly Allowance a/200.00 da/01-10-2022 c/Allowance d/Oct Allowance d/October Allowance`, PennyWise
-  will add the `Income` with the description: "October Allowance". You should expect to see this output: 
-  `New entry added: October Allowance; Date: 01-10-2022; Amount: 200.00; Tag: Allowance`.
+  prefix in a given command. <br/>
+  e.g. PennyWise will add the following `Income` with the description: "October Allowance" upon running the following command. 
+  <pre>
+    <code>
+        add t/i d/Monthly Allowance a/200.00 da/01-10-2022 c/Allowance d/Oct Allowance d/October Allowance
+    </code>
+  </pre>
+  You should expect to see this output:
+    <pre>
+    <code>
+        New entry added: October Allowance; Date: 01-10-2022; Amount: 200.00; Tag: Allowance.
+    </code>
+  </pre>
 
 - PennyWise will **IGNORE** any extra words or characters present after the following commands: 
  `summary` (except [`summary [mo/MONTH]`](#summary-of-entries)) `help`, `clear` and `exit`. 
-  e.g `summary abcdefg` will be interpreted as `summary` or `help 123456` will also be interpreted as `help`.  
+  e.g. `summary abcdefg` will be interpreted as `summary` or `help 123456` will also be interpreted as `help`.  
 
 - Words in `UPPER_CASE` are the parameters that you must supply<br>
   e.g. In `delete INDEX_OF_ENTRY t/ENTRY_TYPE`, `INDEX_OF_ENTRY` is a parameter which can be used as `delete 10 t/e`.
@@ -198,7 +207,7 @@ For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, l
   e.g. `view t/ENTRY_TYPE [MONTH]` can be used as `view t/e mo/2022-05` or as `view t/e`.
 
 - **ALL** identifiers are <ins>case-sensitive</ins>.
-  e.g `d/Lunch` as a descriptor for "Lunch" is accepted by PennyWise, however `D/Lunch` would not be accepted.
+  e.g. `d/Lunch` as a descriptor for "Lunch" is accepted by PennyWise, however `D/Lunch` would not be accepted.
 
 ### Categorising your expenses and income
 
