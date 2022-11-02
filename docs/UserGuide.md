@@ -324,9 +324,12 @@ Examples:
 
 ### Check for similar persons : `checkSimilar`
 
-Checks and returns a list of similar persons so that the user can check if any errors has been made in entries
+Checks and returns a list of similar persons so that the user can check if any errors has been made in entries 
 
 Format: `checkSimilar`
+
+> Tip: `checkSimilar` checks for `name`, `phone`, `email`, `gender`, `tags`, `address` and return both person if 
+> they match 5 out of 6 conditions.
 
 ![checksimilar](images/checkSimilar.png)
 
