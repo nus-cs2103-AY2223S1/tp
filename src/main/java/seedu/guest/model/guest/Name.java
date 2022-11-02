@@ -10,14 +10,15 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, apostrophes ('), hyphens (-), periods (.), "
-                    + "and commas.\nThey must start with an alphanumeric character, and cannot be blank.";
+            "Names should only contain alphabets, spaces, apostrophes ('), hyphens (-), periods (.), commas (,), "
+                    + "and forward slashes (/).\n"
+                    + "They must start with an alphabet, and cannot be blank.";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[\\p{Alnum}]([\\p{Alnum}',. -])*$";
+    public static final String VALIDATION_REGEX = "^[A-Za-z]([A-Za-z',. /-])*$";
 
     public final String fullName;
 
