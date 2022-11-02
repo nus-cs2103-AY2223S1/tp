@@ -102,8 +102,21 @@ public class UniqueTeamList implements Iterable<Team> {
     public void removePersonIfExists(Person person) {
         requireNonNull(person);
         for (Team team : internalTeams) {
-            if (team.getTeamMembers().contains(person)) {
+            if (team.hasMember(person)) {
                 team.removeMember(person);
+            }
+        }
+    }
+
+    /**
+     * Replaces {@code target} with {@code editedPerson} in all teams if {@code target} is a member.
+     */
+    public void setPersonIfExists(Person target, Person editedPerson) {
+        requireNonNull(target);
+        requireNonNull(editedPerson);
+        for (Team team : internalTeams) {
+            if (team.hasMember(target)) {
+                team.setMember(target, editedPerson);
             }
         }
     }

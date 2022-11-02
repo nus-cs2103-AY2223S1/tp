@@ -180,5 +180,18 @@ public class TaskList implements Iterable<Task> {
             }
         }
     }
+
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson} in the assignees list for all tasks.
+     */
+    public void setAssigneeIfExists(Person target, Person editedPerson) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Task task = internalList.get(i);
+            if (task.checkAssignee(target)) {
+                Task newTask = task.setAssignee(target, editedPerson);
+                internalList.set(i, newTask);
+            }
+        }
+    }
 }
 
