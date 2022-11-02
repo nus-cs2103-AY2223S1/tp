@@ -29,13 +29,14 @@ public class StaffNameTest {
         assertFalse(StaffName.isValidStaffName(" ")); // spaces only
         assertFalse(StaffName.isValidStaffName("^")); // only non-alphanumeric characters
         assertFalse(StaffName.isValidStaffName("peter*")); // contains non-alphanumeric characters
+        assertFalse(StaffName.isValidStaffName("12345")); // numbers only
+        assertFalse(StaffName.isValidStaffName("peter the 2nd")); // alphanumeric characters
+        assertFalse(StaffName.isValidStaffName("David Roger Jackson Ray Jr 2nd")); // long names
 
         // valid staff name
         assertTrue(StaffName.isValidStaffName("peter jack")); // alphabets only
-        assertTrue(StaffName.isValidStaffName("12345")); // numbers only
-        assertTrue(StaffName.isValidStaffName("peter the 2nd")); // alphanumeric characters
         assertTrue(StaffName.isValidStaffName("Capital Tan")); // with capital letters
-        assertTrue(StaffName.isValidStaffName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(StaffName.isValidStaffName("abDUL"));
     }
 }
 

@@ -3,7 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_STAFFS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_STAFFS_LISTED_PLURAL_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_STAFFS_LISTED_SINGULAR_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -28,7 +29,7 @@ public class FindStaffCommandTest {
     public void execute_zeroKeywords_noStaffFound() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        String expectedMessage = String.format(MESSAGE_STAFFS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_STAFFS_LISTED_PLURAL_OVERVIEW, 0);
         StaffNameContainsKeywordsPredicate predicate = preparePredicate("Alice");
         FindStaffCommand findStaffCommand = new FindStaffCommand(predicate);
         expectedModel.updateFilteredStaffList(predicate);
@@ -53,7 +54,7 @@ public class FindStaffCommandTest {
                 new FindStaffCommand(predicate);
 
         expectedModel.updateFilteredStaffList(predicate);
-        String expectedMessage = String.format(MESSAGE_STAFFS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_STAFFS_LISTED_SINGULAR_OVERVIEW, 1);
         assertCommandSuccess(findStaffCommand, model, expectedMessage, expectedModel);
     }
 
@@ -76,7 +77,7 @@ public class FindStaffCommandTest {
                 new FindStaffCommand(predicate);
 
         expectedModel.updateFilteredStaffList(predicate);
-        String expectedMessage = String.format(MESSAGE_STAFFS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_STAFFS_LISTED_PLURAL_OVERVIEW, 2);
         assertCommandSuccess(findStaffCommand, model, expectedMessage, expectedModel);
 
     }
@@ -98,7 +99,7 @@ public class FindStaffCommandTest {
                 new FindStaffCommand(predicate);
 
         expectedModel.updateFilteredStaffList(predicate);
-        String expectedMessage = String.format(MESSAGE_STAFFS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_STAFFS_LISTED_SINGULAR_OVERVIEW, 1);
         assertCommandSuccess(findStaffCommand, model, expectedMessage, expectedModel);
 
     }
