@@ -15,6 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientId;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.list.NotFoundException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
@@ -47,6 +48,7 @@ public class EditProjectCommand extends ProjectCommand {
 
     public static final String MESSAGE_SUCCESS = "Project %1$s has been edited";
     public static final String MESSAGE_INVALID_CLIENT = "This client id does not exist in the project book";
+    public static final String MESSAGE_PROJECT_NOT_FOUND = "Project id %1$d does not exist in the project book";
     public static final String MESSAGE_DUPLICATE_PROJECT_NAME = "A project with this name already "
             + "exists in the project book";
 
@@ -74,6 +76,10 @@ public class EditProjectCommand extends ProjectCommand {
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         ui.showProjects();
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+
+        if (!HasIntegerIdentifier.containsId(model.getFilteredProjectList(), projectToEditId.getIdInt())) {
+            throw new CommandException(String.format(MESSAGE_PROJECT_NOT_FOUND, projectToEditId.getIdInt()));
+        }
 
         Project toEditProject = model.getProjectById(projectToEditId.getIdInt());
 
