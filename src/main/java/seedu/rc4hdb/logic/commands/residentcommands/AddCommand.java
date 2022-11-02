@@ -17,7 +17,7 @@ import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.Resident;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to RC4HDB .
  */
 public class AddCommand implements ModelCommand {
 

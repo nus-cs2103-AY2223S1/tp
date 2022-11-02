@@ -32,7 +32,7 @@ import seedu.rc4hdb.model.resident.fields.Room;
 import seedu.rc4hdb.model.resident.fields.Tag;
 
 /**
- * Edits the details of an existing resident in the address book.
+ * Edits the details of an existing resident in RC4HDB.
  */
 public class EditCommand implements ModelCommand {
 
@@ -56,7 +56,7 @@ public class EditCommand implements ModelCommand {
 
     public static final String MESSAGE_EDIT_RESIDENT_SUCCESS = "Edited Resident: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in RC4HDB.";
 
     private final Index index;
     private final ResidentDescriptor editResidentDescriptor;
@@ -79,7 +79,7 @@ public class EditCommand implements ModelCommand {
         List<Resident> lastShownList = model.getFilteredResidentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_NO_RESIDENT_WITH_INDEX);
         }
 
         Resident residentToEdit = lastShownList.get(index.getZeroBased());

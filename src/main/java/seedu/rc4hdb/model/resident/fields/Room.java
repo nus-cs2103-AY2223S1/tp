@@ -19,7 +19,7 @@ public class Room extends StringField implements ResidentField {
     /**
      * The characters before and after the '-' must be a positive integer.
      */
-    public static final String VALIDATION_REGEX = "^[0-9]*[1-9][0-9]*[-][0-9]*[1-9][0-9]*$";
+    public static final String VALIDATION_REGEX = "^[0-2][0-9][-][0-9][0-9]$";
 
     /**
      * Constructs a {@code Room}.

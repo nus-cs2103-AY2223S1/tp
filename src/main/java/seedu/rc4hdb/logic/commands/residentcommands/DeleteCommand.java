@@ -38,7 +38,7 @@ public class DeleteCommand implements ModelCommand {
         List<Resident> lastShownList = model.getFilteredResidentList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_NO_RESIDENT_WITH_INDEX);
         }
 
         Resident residentToDelete = lastShownList.get(targetIndex.getZeroBased());
