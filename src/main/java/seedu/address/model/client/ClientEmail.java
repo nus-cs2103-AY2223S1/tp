@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's email in the address book.
+ * Represents a Person's email in the project book.
  */
 public class ClientEmail {
     private static final String SPECIAL_CHARACTERS = "+_.-";

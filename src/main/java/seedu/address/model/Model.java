@@ -40,19 +40,19 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' project book file path.
      */
     Path getAddressBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' project book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
     DefaultView getDefaultView();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces project book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
@@ -66,7 +66,7 @@ public interface Model {
 
 
     /**
-     * Returns true if an entity with the given id is present in the address book.
+     * Returns true if an entity with the given id is present in the project book.
      */
     boolean hasProjectId(int id);
 
@@ -90,7 +90,7 @@ public interface Model {
 
     /**
      * Adds the given client.
-     * {@code client} must not already exist in the address book.
+     * {@code client} must not already exist in the project book.
      */
     void addProject(Project project);
     void addClient(Client client);
@@ -99,9 +99,9 @@ public interface Model {
 
     /**
      * Replaces the given project {@code target} with {@code editedProject}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the project book.
      * The client identity of {@code editedProject} must not be the same as another existing project
-     * in the address book.
+     * in the project book.
      */
     void setProject(Project target, Project editedProject);
 

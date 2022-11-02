@@ -8,13 +8,13 @@ import seedu.address.model.Model;
 import seedu.address.ui.Ui;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in the project book to the user.
  */
 public class ListIssueCommand extends IssueCommand {
 
     public static final String COMMAND_FLAG = "-l";
 
-    public static final String MESSAGE_SUCCESS = "Listed all issues";
+    public static final String MESSAGE_SUCCESS = "Listed all issues in the project book";
 
     // TODO: implement
     @Override

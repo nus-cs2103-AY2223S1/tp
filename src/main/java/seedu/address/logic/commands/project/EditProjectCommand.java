@@ -31,7 +31,7 @@ public class EditProjectCommand extends ProjectCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-            + ": Edits a project in the address book. \n"
+            + ": Edits a project in the project book. \n"
             + "Parameters: "
             + PREFIX_PROJECT_ID + "PROJECT_ID "
             + PREFIX_NAME + "NAME "
@@ -47,7 +47,7 @@ public class EditProjectCommand extends ProjectCommand {
             + PREFIX_DEADLINE + "2022-03-05 ";
 
     public static final String MESSAGE_SUCCESS = "Project %1$s has been edited";
-    public static final String MESSAGE_INVALID_CLIENT = "Client does not exist.";
+    public static final String MESSAGE_INVALID_CLIENT = "This client id does not exist in the project book.";
 
     private final ProjectId projectToEditId;
     private final Name newName;

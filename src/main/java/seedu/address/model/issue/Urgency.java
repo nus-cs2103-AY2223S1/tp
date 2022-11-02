@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public enum Urgency {
     NONE, LOW, MEDIUM, HIGH;
 
-    public static final String MESSAGE_CONSTRAINTS = "Urgency should be an integer 0(NONE), 1(LOW), 2(MEDIUM) or "
-            + "3(HIGH)";
+    public static final String MESSAGE_CONSTRAINTS = "Urgency should be an integer 0 (NONE), 1 (LOW), 2 (MEDIUM) or "
+            + "3 (HIGH)";
     public static final String MESSAGE_STRING_CONSTRAINTS = "Urgency should be High, Low, Medium or "
             + "None.";
 

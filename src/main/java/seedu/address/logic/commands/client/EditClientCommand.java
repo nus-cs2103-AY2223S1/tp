@@ -18,7 +18,7 @@ import seedu.address.model.client.ClientMobile;
 import seedu.address.ui.Ui;
 
 /**
- * Edits the details of an existing client in the address book.
+ * Edits the details of an existing client in the project book.
  */
 public class EditClientCommand extends ClientCommand {
 
@@ -28,7 +28,7 @@ public class EditClientCommand extends ClientCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-            + ": Edits a client in the address book. \n"
+            + ": Edits a client in the project book. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_EMAIL + "EMAIL "
@@ -40,8 +40,6 @@ public class EditClientCommand extends ClientCommand {
             + PREFIX_EMAIL + "john@gmail.com "
             + PREFIX_MOBILE + "12345678 "
             + PREFIX_CLIENT_ID + "1 ";
-
-    public static final String MESSAGE_INVALID_CLIENT = "Client does not exist.";
 
     private final Name newName;
     private final ClientEmail newEmail;
