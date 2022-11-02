@@ -8,8 +8,11 @@ Welcome to InTrack!
 InTrack is a desktop application for Computer Science students to manage their different internship applications. 
 
 InTrack allows users to 
+
 * seamlessly search for and update their various applications, as well as 
-* keep track of the relevant timings and deadlines, all through a simple and easy-to-use platform!
+* keep track of the relevant timings and deadlines
+
+all through a simple and easy-to-use platform!
 
 InTrack is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User 
 Interface (GUI). If you're a Computer Science student who can type fast, InTrack can help you manage your
@@ -17,13 +20,14 @@ internship applications more efficiently and effectively than traditional GUI ap
 
 --------------------------------------------------------------------------------------------------------------------
 
-## How to use this guide
+# How to use this guide
 
 First time using InTrack? We highly recommend reading this user guide in order. If you come across unfamiliar terms used
 in this user guide, their definitions may be found in the [Glossary](#glossary).
 
 Searching for information about specific features? You might find it helpful to navigate to the relevant sections via 
-the Table of Contents above for more detailed explanations of individual features.
+the Table of Contents below for more detailed explanations of individual features.
+
 Alternatively, consider looking at the [Command Summary](#command-summary) for a brief outline of all the commands.
 
 * Table of Contents
@@ -31,7 +35,7 @@ Alternatively, consider looking at the [Command Summary](#command-summary) for a
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
@@ -63,7 +67,7 @@ Alternatively, consider looking at the [Command Summary](#command-summary) for a
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -611,16 +615,20 @@ with the internship with the lowest salary at the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# FAQ
 
 **Q**: What is a positive unsigned integer?<br>
 **A**: A positive unsigned integer is a whole number that ranges from 1 to 4294967295 inclusive.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Command summary
 
-### General Features
+## General Features
+
+## Internship Application Management
+
+## List Management
 
 | Action               | Format, Examples                                                                                                                                                                         |
 |----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
