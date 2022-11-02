@@ -3,10 +3,15 @@ layout: page
 title: User Guide
 ---
 # **Introduction**
-HR Pro Max++ is a **desktop app for team leads in SMEs to manage Projects and Staff members under them. 
+HR Pro Max++ is a **desktop app for team leads in SMEs to manage Projects, Staff members under them and their Project Tasks. 
 It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-If you can type fast, HR Pro Max++ can get your Project management Tasks done faster than traditional GUI apps.
+Our simple and intuitive commands will help you quickly learn how to use HR Pro Max++ to quickly finish all your Project Management Tasks.
+If you can type fast, there is an added benefit which is that HR Pro Max++ can get your Project management Tasks done faster than traditional GUI apps.
+
+Here are some shortcuts to get help:
+* To set up HR Pro Max++, go to our Quick start section.
+* To see how all our commands work, head to our Features section.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Table of Contents**
