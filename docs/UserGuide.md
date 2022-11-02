@@ -32,7 +32,7 @@ If you are looking to expand on our project, check out our [Developer Guide](Dev
     * [Listing all residents `list`](#listing-all-residents--list)
     * [Showing resident fields `showonly`](#showing-only-some-columns--showonly)
     * [Hiding resident fields `hideonly`](#hiding-only-some-columns--hideonly)
-    * [Resetting hidden resident fields `reset`](u#resetting-hidden-columns--reset)
+    * [Resetting hidden resident fields `reset`](#resetting-hidden-columns--reset)
     * [Finding residents `find`](#locating-residents-by-name--find)
     * [Filtering residents `filter`](#filtering-residents-by-field--filter)
   * [**File management**](#file-management)
@@ -1099,7 +1099,7 @@ commands. The tables below contain the full summary of our commands and how they
 
 | Action     | Format, Examples                                                                                           |
 |------------|------------------------------------------------------------------------------------------------------------|
-| **List**   | `list`, `list /i LETTER [MORE_LETTERS]...`, or `list /e LETTER [MORE_LETTERS]...`<br/>e.g. `list /i n p e` |
+| **List**   | `list`                                                                                                    |
 | **Show**   | `showonly LETTER [MORE_LETTERS]`<br/>e.g. `showonly n p e t`                                               |
 | **Hide**   | `hideonly LETTER [MORE_LETTERS]`<br/>e.g. `hideonly i r g h m`                                             |
 | **Reset**  | `reset`                                                                                                    |
