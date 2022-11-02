@@ -142,7 +142,7 @@ If your changes to the data file makes its format invalid, HackAssist will disca
 
 #### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a new person to the address book.
 * Note: You cannot add a task if another task with the same name already exists in the task list. 
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
@@ -154,12 +154,13 @@ A person can have any number of tags (including 0)
 Refer to the [Person Parameters](#person-parameters) section for details about the format of each parameter.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 `
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal `
 
 #### Deleting a person: `delete`
 
 Deletes the specified person from the address book.
+* Note: This will delete the person permanately
 
 Format: `delete INDEX`
 
@@ -168,20 +169,22 @@ Format: `delete INDEX`
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the find command, which should be Betsy.
+* `list` followed by `delete 2 ` deletes the 2nd person in the address book.
+* `find Betsy` followed by `delete 1 ` deletes the 1st person in the results of the find command, which should be Betsy.
 
 #### Editing a person: `edit`
 
 Edits an existing person in the address book.
-
+The values inside [] indicate optional fields
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
+
 * Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+* At least one of the optional fields must be provided, otherwise you would not be updating anything.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
+* When editing tags, all existing tags of the person will be removed and completely replaced with the new tags.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* To edit what tasks a person is assigned to, instead of editing the person, edit the relvant task. The edit will be reflected in the person list after you edit the task. There is no way to edit a task using the edit person command.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -195,10 +198,10 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g. hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
-* Only the name is searched.
+* Only the names of people will be considered.
 * Only full words will be matched e.g. Han will not match Hans
-* Persons matching at least one keyword will be returned (i.e. OR search).
-  e.g. Hans Bo will return Hans Gruber, Bo Yang
+* Persons matching at least one keyword will be returned (i.e. only one keyword has to match).
+  e.g. Hans Bo will return Hans Gruber, Bo Yang, despite the fact that neither match Hans Bo (both names match at least one word)
 
 Examples:
 * `find John` returns john and John Doe
@@ -208,6 +211,7 @@ Examples:
 #### Listing all persons: `list`
 
 Shows a list of all persons in the address book.
+This command can be used to reset the displayed person list after a find command.
 
 Format: `list`
 
