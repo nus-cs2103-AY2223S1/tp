@@ -92,6 +92,9 @@ Required Arguments:
 
 Show the list of modules that are the given module's prerequisites.
 
+**Note**: `preq` is not always able to show prerequisites for all modules due to limitations of the NUSMods API.
+Some modules have a prerequisite description but the NUSMods API is unable to provide prerequisite module codes.
+
 ### Add modules to user list: `add`
 
 Format: `add MODULE-CODE SEMESTER-CODE`
