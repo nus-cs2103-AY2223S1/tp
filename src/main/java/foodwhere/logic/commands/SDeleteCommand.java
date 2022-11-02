@@ -1,10 +1,11 @@
 package foodwhere.logic.commands;
 
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import foodwhere.commons.core.Messages;
 import foodwhere.commons.core.index.Index;
 import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.model.Model;
@@ -24,6 +25,10 @@ public class SDeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_STALL_SUCCESS = "Deleted Stall: %1$s";
 
+    public static final String MESSAGE_INVALID_INDEX_ERROR =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INDEX)
+                    + SDeleteCommand.MESSAGE_USAGE;
+
     private final Index targetIndex;
 
     public SDeleteCommand(Index targetIndex) {
@@ -36,7 +41,7 @@ public class SDeleteCommand extends Command {
         List<Stall> lastShownList = model.getFilteredStallList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_INDEX_ERROR);
         }
 
         Stall stallToDelete = lastShownList.get(targetIndex.getZeroBased());

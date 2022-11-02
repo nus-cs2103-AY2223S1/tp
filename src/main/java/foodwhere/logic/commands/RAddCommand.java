@@ -1,11 +1,12 @@
 package foodwhere.logic.commands;
 
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Set;
 
-import foodwhere.commons.core.Messages;
 import foodwhere.commons.core.index.Index;
 import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.logic.parser.CliSyntax;
@@ -44,6 +45,10 @@ public class RAddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New review added: %1$s";
     public static final String MESSAGE_DUPLICATE_REVIEW = "This review already exists in the address book";
 
+    public static final String MESSAGE_INVALID_INDEX_ERROR =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INDEX)
+                    + RAddCommand.MESSAGE_USAGE;
+
     private final Index stallIndex;
     private final Date date;
     private final Content content;
@@ -67,7 +72,7 @@ public class RAddCommand extends Command {
         requireNonNull(model);
         List<Stall> lastShownList = model.getFilteredStallList();
         if (stallIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_INDEX_ERROR);
         }
         Stall stall = lastShownList.get(stallIndex.getZeroBased());
 

@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import foodwhere.commons.core.Messages;
 import foodwhere.commons.core.index.Index;
 import foodwhere.model.Model;
 import foodwhere.model.ModelManager;
@@ -41,7 +40,7 @@ public class RDeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredReviewList().size() + 1);
         RDeleteCommand rDeleteCommand = new RDeleteCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(rDeleteCommand, model, Messages.MESSAGE_INVALID_REVIEW_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(rDeleteCommand, model, RDeleteCommand.MESSAGE_INVALID_INDEX_ERROR);
     }
 
     @Test

@@ -15,6 +15,7 @@ import static foodwhere.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static foodwhere.logic.commands.SEditCommand.MESSAGE_INVALID_INDEX_ERROR;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -41,28 +42,25 @@ public class SEditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
-
-        // no field specified
-        assertParseFailure(parser, "1", SEditCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_INDEX_ERROR);
 
         // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", MESSAGE_INVALID_INDEX_ERROR);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_INDEX_ERROR);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_INDEX_ERROR);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_INDEX_ERROR);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_INDEX_ERROR);
     }
 
     @Test
