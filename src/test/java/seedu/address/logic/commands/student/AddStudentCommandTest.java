@@ -225,17 +225,22 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public boolean hasClashingConsultation(Consultation toCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasClashingConsultationExcept(Consultation toCheck, Consultation exception) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteTutorial(Tutorial target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setTutorial(Tutorial tutorialToEdit, Tutorial editedTutorial) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasConsultationClashingWith(Consultation consultation) {
             throw new AssertionError("This method should not be called.");
         }
 

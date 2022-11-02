@@ -247,10 +247,14 @@ public class AddConsultationCommandTest {
         }
 
         @Override
-        public boolean hasConsultationClashingWith(Consultation consultation) {
+        public boolean hasClashingConsultation(Consultation toCheck) {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public boolean hasClashingConsultationExcept(Consultation toCheck, Consultation exception) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void deleteConsultation(Consultation target) {
@@ -344,7 +348,7 @@ public class AddConsultationCommandTest {
         }
 
         @Override
-        public boolean hasConsultationClashingWith(Consultation consultation) {
+        public boolean hasClashingConsultation(Consultation consultation) {
             requireNonNull(consultation);
             return consultationsAdded.stream().anyMatch(consultation::isClashConsultation);
         }
@@ -360,5 +364,4 @@ public class AddConsultationCommandTest {
             return new AddressBook();
         }
     }
-
 }
