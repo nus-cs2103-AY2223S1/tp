@@ -28,14 +28,8 @@ public class ViewClientCommandParser implements Parser<ViewClientCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewClientCommand.MESSAGE_USAGE));
         }
 
-        Index index;
-        try {
-            index = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_INDEX).get());
-            return new ViewClientCommand(index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewClientCommand.MESSAGE_USAGE), pe);
-        }
+        Index index = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_INDEX).get());
+        return new ViewClientCommand(index);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
