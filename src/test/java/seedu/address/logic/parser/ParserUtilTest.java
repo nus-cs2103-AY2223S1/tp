@@ -14,7 +14,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.addcommands.AddOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.*;
+import seedu.address.model.order.AdditionalRequests;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.Price;
+import seedu.address.model.order.PriceRange;
+import seedu.address.model.order.Request;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Location;
