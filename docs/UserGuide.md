@@ -28,7 +28,7 @@ This section will explain the parameters and the format of commands.
 | t/     | TAG             | Tag person (i.e tag as friend)                                                                                 |
 | r/     | RATING          | Rate Professor/Teaching Assistant (on a scale of 0 to 5)                                                       |
 | y/     | YEAR            | Year of Undergraduate Study (from 1 - 4)                                                                       |
-| l/     | LOCATION        | Location of Professor/Teaching Assistant/Student in NUS                                                        |
+| l/     | LOCATION        | Location of Professor/Teaching Assistant/Student in NUS. If not provided, default value is `NUS`.              |
 | s/     | SPECIALISATION  | Professor's Specialisation                                                                                     |
 | o/     | OFFICE_HOURS    | Professor's office hours for consultation <br>Refer to section [3](#3-features) for the format of OFFICE_HOURS |
 | typ/   | TYPE            | Type of Contacts. (STRICTLY prof or stu or ta)                                                                 |
@@ -352,7 +352,7 @@ This pie chart shows how many of each type of contact you have, and updates itse
 
 ## 3.6 Fast Template Command
 
-Returns a template with all the fields of a Person on the CLI.
+Returns a template with all the fields of a Person on the CLI so that users do not have to remember and enter prefixes themselves, and can easily add a new Person to the address book.
 
 Format: `tt PERSON`
 * PERSON can be `prof`, `student`, or `ta`.
