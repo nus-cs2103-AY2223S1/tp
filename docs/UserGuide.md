@@ -183,7 +183,7 @@ Tutors are regarded as the same if they have the **same email or student ID**!
 <div markdown="block" class="alert alert-info">
 
 :information_source: **About Module:**
-- Modules are limited to the following in order: 2 compulsory letters, 2 optional letters, 
+- Modules consist of the following in order: 2 compulsory letters, 2 optional letters, 
 4 compulsory digits, 2 optional letters.
 
 </div>
