@@ -14,9 +14,6 @@ InTrack is optimized for use via a Command Line Interface (CLI) while still havi
 Interface (GUI). If you're a Computer Science student who can type fast, InTrack can help you manage your
 internship applications more efficiently and effectively than traditional GUI apps.
 
-* Table of Contents
-{:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## How to use this guide
@@ -27,6 +24,9 @@ in this user guide, their definitions may be found in the [Glossary](#glossary).
 Searching for information about specific features? You might find it helpful to navigate to the relevant sections via 
 the Table of Contents above for more detailed explanations of individual features.
 Alternatively, consider looking at the [Command Summary](#command-summary) for a brief outline of all the commands.
+
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
