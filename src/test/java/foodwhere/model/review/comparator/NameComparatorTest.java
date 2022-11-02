@@ -1,13 +1,13 @@
 package foodwhere.model.review.comparator;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 import foodwhere.model.review.Review;
 import foodwhere.model.review.ReviewBuilder;
-import org.junit.jupiter.api.Test;
-
 import foodwhere.testutil.TypicalReviews;
 
 public class NameComparatorTest {

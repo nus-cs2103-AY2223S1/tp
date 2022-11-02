@@ -9,11 +9,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import foodwhere.model.review.Content;
-import foodwhere.model.review.Rating;
-import foodwhere.model.review.comparator.ReviewsComparatorList;
-import foodwhere.model.stall.comparator.StallsComparatorList;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
@@ -21,6 +16,10 @@ import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.commons.Address;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
+import foodwhere.model.review.Content;
+import foodwhere.model.review.Rating;
+import foodwhere.model.review.comparator.ReviewsComparatorList;
+import foodwhere.model.stall.comparator.StallsComparatorList;
 import foodwhere.testutil.TypicalIndexes;
 
 public class ParserUtilTest {
@@ -63,10 +62,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        Assertions.assertEquals(TypicalIndexes.INDEX_FIRST_STALL, ParserUtil.parseIndex("1"));
+        assertEquals(TypicalIndexes.INDEX_FIRST_STALL, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        Assertions.assertEquals(TypicalIndexes.INDEX_FIRST_STALL, ParserUtil.parseIndex("  1  "));
+        assertEquals(TypicalIndexes.INDEX_FIRST_STALL, ParserUtil.parseIndex("  1  "));
     }
 
     @Test

@@ -1,6 +1,7 @@
 package foodwhere.logic.commands;
 
 import static foodwhere.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -42,6 +43,8 @@ public class RAddCommandTest {
         expectedModel.addReview(review);
 
         assertCommandSuccess(rAddCommand, model, expectedMessage, expectedModel);
+
+        assertEquals(review.getContent().value, rAddCommand.toString());
     }
 
     @Test
@@ -60,6 +63,8 @@ public class RAddCommandTest {
         expectedModel.addReview(review);
 
         assertCommandSuccess(rAddCommand, model, expectedMessage, expectedModel);
+
+        assertEquals(review.getContent().value, rAddCommand.toString());
     }
 
 

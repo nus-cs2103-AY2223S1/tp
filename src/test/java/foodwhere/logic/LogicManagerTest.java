@@ -4,7 +4,9 @@ import static foodwhere.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static foodwhere.testutil.Assert.assertThrows;
 import static foodwhere.testutil.TypicalStalls.AMY;
+import static foodwhere.testutil.TypicalStalls.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -13,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import foodwhere.commons.core.GuiSettings;
 import foodwhere.commons.core.Messages;
 import foodwhere.logic.commands.CommandResult;
 import foodwhere.logic.commands.SAddCommand;
@@ -87,6 +90,36 @@ public class LogicManagerTest {
     @Test
     public void getFilteredStallList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStallList().remove(0));
+    }
+
+    @Test
+    public void getFilteredReviewList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredReviewList().remove(0));
+    }
+
+    @Test
+    public void getAddressBook_generalTesting_success() {
+        model.setAddressBook(getTypicalAddressBook());
+        assertEquals(getTypicalAddressBook(), logic.getAddressBook());
+    }
+
+    @Test
+    public void getAddressBookFilePath_generalTesting_success() {
+        model.setAddressBookFilePath(temporaryFolder.resolve("test.json"));
+        assertEquals(temporaryFolder.resolve("test.json"), logic.getAddressBookFilePath());
+    }
+
+    @Test
+    public void getAndSetGuiSettings_generalTesting_success() {
+        GuiSettings defaultSettings = new GuiSettings(2, 2, 3, 2);
+        assertNotEquals(defaultSettings, logic.getGuiSettings());
+
+        model.setGuiSettings(defaultSettings);
+        assertEquals(defaultSettings, logic.getGuiSettings());
+
+        GuiSettings newSettings = new GuiSettings(4, 4, 4, 4);
+        logic.setGuiSettings(newSettings);
+        assertEquals(newSettings, logic.getGuiSettings());
     }
 
     /**
