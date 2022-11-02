@@ -44,7 +44,7 @@ public class MarkTaskCommand extends TaskCommand {
 
         Task newTask = task.mark();
         if (newTask == task) {
-            throw new CommandException(ALREADY_MARKED);
+            throw new CommandException(String.format(ALREADY_MARKED, task));
         }
         model.setTask(task, task.mark());
         model.refresh();

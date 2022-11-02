@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.logging.Filter;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -15,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.GroupOutOfBoundException;
 import seedu.address.model.item.AbstractSingleItem;
@@ -30,6 +30,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final AddressBookParser addressBookParser;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Person> filteredPersons;
@@ -46,6 +47,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.addressBookParser = AddressBookParser.get();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTeams = new FilteredList<>(this.addressBook.getTeamsList());
         filteredTasks = new FilteredList<>(this.addressBook.getTasksList());
