@@ -1,8 +1,6 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -62,12 +60,31 @@ public class AttendanceTest {
     }
 
     @Test
+    public void test_setIsPresent() {
+        Attendance testAtt = new Attendance("2022-08-12");
+        testAtt.setIsPresent(true);
+        assertTrue(testAtt.getIsPresent());
+        testAtt.setIsPresent(false);
+        assertFalse(testAtt.getIsPresent());
+    }
+
+    @Test
     public void constructor_invalidDate_throwsIllegalArgumentException() {
         String invalidDate = "2022-02-29";
         assertThrows(IllegalArgumentException.class, () -> new Attendance(invalidDate));
 
         String invalidMonth = "2022-13-12";
         assertThrows(IllegalArgumentException.class, () -> new Attendance(invalidMonth));
+    }
+
+    @Test
+    public void equals() {
+        Attendance testAtt = new Attendance("2022-02-02");
+        // to check self
+        assertEquals(testAtt, testAtt);
+        // to check with other commands
+        assertFalse(testAtt.equals(new Homework("homework")));
+
     }
 
 }
