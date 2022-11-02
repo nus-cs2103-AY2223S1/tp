@@ -92,7 +92,7 @@
         <padding>
           <Insets top="3" />
         </padding>
-        <Label minWidth="103" styleClass="cell_small_label" text="Additional Notes: " />
+        <Label minWidth="104" styleClass="cell_small_label" text="Additional Notes: " />
         <Label fx:id="additionalNotes" styleClass="cell_small_label" text="\$additionalNotes" wrapText="true" />
       </HBox>
     </VBox>
