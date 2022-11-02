@@ -122,6 +122,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The stall must not already exist in the address book.
      */
     public void addStall(Stall p) {
+        requireNonNull(p);
         stalls.add(p);
         refreshReviews();
     }
@@ -150,6 +151,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Sorts the stall list by {@code comparator}.
      */
     public void sortStalls(Comparator<Stall> comparator) {
+        requireNonNull(comparator);
         stalls.sort(comparator);
     }
 
@@ -218,6 +220,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Sorts the review list by {@code comparator}.
      */
     public void sortReviews(Comparator<Review> comparator) {
+        requireNonNull(comparator);
         reviews.sort(comparator);
     }
 

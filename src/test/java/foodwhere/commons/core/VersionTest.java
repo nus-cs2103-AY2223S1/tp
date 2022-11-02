@@ -2,6 +2,7 @@ package foodwhere.commons.core;
 
 import static foodwhere.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -139,6 +140,19 @@ public class VersionTest {
         one = new Version(100, 191, 275, true);
         another = new Version(100, 191, 275, true);
         assertTrue(one.equals(another));
+    }
+
+    @Test
+    public void equals_notEqualCases_isCorrect() {
+        Version one = new Version(0, 0, 0, false);
+        Version another = new Version(100, 191, 275, true);
+
+        // null -> not equals
+        assertFalse(one.equals(null));
+
+        // different object -> not equals
+        assertFalse(one.equals(4));
+        assertFalse(one.equals(another));
     }
 
     private void verifyVersionParsedCorrectly(String versionString,
