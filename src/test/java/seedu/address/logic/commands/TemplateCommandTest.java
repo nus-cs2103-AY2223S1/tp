@@ -53,12 +53,14 @@ class TemplateCommandTest {
     }
 
     @Test
-    void testEquals() {
+    void equalsTest() {
         TemplateCommand otherCommand = new TemplateCommand("prof");
 
+        // equals
         assertEquals(otherCommand, otherCommand);
         assertEquals(otherCommand, new TemplateCommand("prof"));
 
+        // not equals
         assertNotEquals(otherCommand, new TemplateCommand("student"));
         assertNotEquals(otherCommand, new TemplateCommand("ta"));
     }
