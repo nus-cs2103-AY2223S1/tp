@@ -63,7 +63,7 @@ Here is everything you need to install and set up checkUp. For the best possible
 
 * Windows
 * macOS
-* Linux
+* Linux <br>
 You will also require Java 11 or above to run checkUp. If you don't already have Java 11 or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/). 
 To tell if you already have the correct version of Java installed on your system, refer to [Checking your system's Java version](#checking-your-systems-java-version).
 
