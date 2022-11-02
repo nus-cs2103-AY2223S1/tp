@@ -31,7 +31,8 @@ public abstract class Appointment {
             this.date = null;
         } else {
             try {
-                this.date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+                this.date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                        .withResolverStyle(java.time.format.ResolverStyle.STRICT));
             } catch (DateTimeParseException e) {
                 throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
             }
