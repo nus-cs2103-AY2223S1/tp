@@ -371,7 +371,8 @@ public class ModelManager implements Model {
                         pointer = pointer + 1;
                     }
                     setHealthContact(history.getHealthContactHistory(history.getHealthContactHistorySize() - pointer));
-                    filteredPatients.setPredicate(history.getPatientsPredicate(history.getPatientsHistorySize() - pointer));
+                    filteredPatients.setPredicate(history.getPatientsPredicate(
+                            history.getPatientsHistorySize() - pointer));
                     filteredAppointments.setPredicate(history
                             .getAppointmentsPredicate(history.getAppointmentsHistorySize() - pointer));
                     filteredBills.setPredicate(history.getBillsPredicate(history.getBillsHistorySize() - pointer));
