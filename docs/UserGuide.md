@@ -372,12 +372,11 @@ Examples:
 
 Edits an existing task in the task list.
 
-Format: `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT] [+@PERSONS_INDEX] ... [-@PERSONS_INDEX]...`
+Format: `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT]`
 
 * Edits the person at the specified `TASK_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing contacts, adding or removing contacts is cumulative. Not specifying any contacts to add will not change the data. Specify `+@PERSON_INDEX` to add and `-@PERSON_INDEX` to delete a contact.
 
 
 ### Listing all projects : `task project`
