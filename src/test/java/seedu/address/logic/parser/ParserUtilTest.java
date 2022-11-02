@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_REQUESTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.addcommands.AddOrderCommand;
@@ -15,6 +18,7 @@ import seedu.address.model.order.Order;
 import seedu.address.model.order.Request;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.testutil.OrderUtil;
@@ -151,6 +155,12 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseLocation_invalidArgs_throwsParseException() {
+        String expected = Location.MESSAGE_CONSTRAINTS;
+        assertThrows(ParseException.class, expected, () -> ParserUtil.parseLocation("&nta@rt1c@"));
+    }
+
+    @Test
     public void parseOrder_null_throws() {
         assertThrows(NullPointerException.class, null, ()
                 -> ParserUtil.parseOrder(null, true));
@@ -180,6 +190,33 @@ public class ParserUtilTest {
     public void parseOrder_noPrefixesPresentExistingBuyer_throwsParseException() {
         String expected = AddOrderCommand.MESSAGE_USAGE_EXISTING_BUYER;
         assertThrows(ParseException.class, () -> ParserUtil.parseOrder("bv/rubf", true));
+    }
+
+    @Test
+    public void parseOrders() {
+        List<Order> orderList = TypicalOrders.getTypicalOrders();
+        List<String> inputList = orderList.stream().map(x -> OrderUtil.getOrderBody(x)).collect(Collectors.toList());
+
+        try {
+            List<Order> resultingOrderList = ParserUtil.parseOrders(inputList, false);
+
+            //Conpare attributes because each order is unique and calling
+            // equals() on two separate orders always returns false
+
+            for (int i = 0; i < resultingOrderList.size(); i++) {
+                Order result = resultingOrderList.get(i);
+                Order expected = orderList.get(i);
+
+                assertEquals(result.getOrderStatus(), expected.getOrderStatus());
+                assertEquals(result.getSettledPrice(), expected.getSettledPrice());
+                assertEquals(result.getByDate(), expected.getByDate());
+                assertEquals(result.getRequestedPriceRange(), expected.getRequestedPriceRange());
+                assertEquals(result.getSettledPrice(), expected.getSettledPrice());
+                assertEquals(result.getAdditionalRequests(), expected.getAdditionalRequests());
+            }
+        } catch (ParseException e) {
+            assert false;
+        }
     }
 
     @Test
