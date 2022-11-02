@@ -3,11 +3,12 @@ package foodwhere.commons.core;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import foodwhere.model.stall.Stall;
-import org.junit.jupiter.api.Test;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.junit.jupiter.api.Test;
+
+import foodwhere.model.stall.Stall;
 
 public class LogsCenterTest {
 
