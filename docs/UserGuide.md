@@ -13,9 +13,11 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
   * [Person Fields](#person-fields):
     1. [occupation](#a-occupation--o) : `o/`
     2. [name](#b-name--n) : `n/`
-    3. [phone](#c-phone--pphone) : `p/`
-    4. [tutorial](#d-tutorial--tuttutorial) : `tut/`
-    5. [tags](#e-tags--ttags) : `t/`
+    3. [phone](#c-phone--p) : `p/`
+    4. [email](#d-email--e) : `e/`
+    5. [tutorial](#e-tutorial--tut) : `tut/`
+    6. [address](#f-address--a) : `a/`
+    7. [tags](#g-tags--t) : `t/`
   * [Basic Features](#basic-features):
     1. [Adding a person](#a-adding-a-person-add) : `add`
     2. [Editing a person](#b-editing-a-person--edit) : `edit`
@@ -107,7 +109,7 @@ Sets the name of a person in uNivUSal.
 Format: `n/NAME`
 * `NAME` can be more than one word long but cannot be empty.
 
-### c. phone : `p/PHONE`
+### c. phone : `p/`
 
 Sets the phone number of a person in uNivUSal.
 
@@ -116,7 +118,24 @@ Format : `p/PHONE`
 
 Example : `p/97865486`
 
-### d. tutorial : `tut/TUTORIAL`
+### d. email : `e/`
+
+Sets the email of a person in uNivUSal.
+
+Format : `e/EMAIL`
+
+Emails should be of the format local-part@domain and adhere to the following constraints:
+* The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, 
+(+_.-). The local-part may not start or end with any special characters. 
+* This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+ The domain name must:
+  * end with a domain label at least 2 characters long 
+  * have each domain label start and end with alphanumeric characters 
+  * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
+Example : `e/betty@u.nus.edu`
+
+### e. tutorial : `tut/`
 
 Sets the tutorial group of a person in uNivUSal.
 
@@ -125,13 +144,21 @@ Format : `tut/TUTORIAL`
 
 Example : `tut/T08`
 
-### e. tags : `t/TAGS`
+### f. address : `a/`
+
+Sets the address of a person in uNivUSal.
+
+Format : `a/ADDRESS`
+
+Example : `a/36 College Avenue`
+
+### g. tags : `t/`
 
 Sets tag(s) of a person in uNivUSal.
 
-Format : `t/TAG`
+Format : `t/TAGS`
 
-Example : `t/ classmate`
+Example : `t/classmate friend`
 
 ## Basic Features
 
@@ -464,26 +491,26 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                | Format, Examples                                                                                                                                                                                             |
-|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**              | `help`                                                                                                                                                                                                       |
-| **History**           | `history`                                                                                                                                                                                                    |
-| **Add**               | `add o/OCCUPATION n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​` <br>e.g., `add o/STUDENT n/James Ho p/22224444 e/jamesho@example.com tut/T08 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **List**              | `list`                                                                                                                                                                                                       |
-| **Edit**              | `edit INDEX [o/OCCUPATION] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                |
-| **Delete**            | `delete INDEX [OPTIONAL PREFIX/]`<br> e.g., `delete 3`,`delete 3 p/`                                                                                                                                         |
-| **Clear**             | `clear`                                                                                                                                                                                                      |
-| **Undo**              | `undo`                                                                                                                                                                                                       |
-| **Sort**              | `sort FIELD_PREFIX/` <br> e.g., `sort n/`                                                                                                                                                                    |
-| **Find**              | `find KEYWORD` <br> e.g., `find John / find J`                                                                                                                                                               |
-| **Add To Group**      | `addtogroup INDEX GROUP`                                                                                                                                                                                     |
-| **Ungroup**           | `ungroup INDEX GROUP`                                                                                                                                                                                        |
-| **Open Group Window** | `group GROUPNAME`                                                                                                                                                                                            |
-| **Favorite**          | `fav INDEX`                                                                                                                                                                                                  |
-| **Include**           | `include INDEX s/SOCIAL #/SOCIAL_INFO` |
-| **Exclude**           | `exclude INDEX s/SOCIAL`               |
-|  **Prefer**           | `open INDEX s/SOCIAL`                 |
-| **Open**              | `open INDEX s/SOCIAL`                 |
-| **Social**            | `social SOCIAL`                        |                                                                                                                                                                      |
-| **Email All**         | `emailall GROUPNAME`                                                                                                                                                                                         |
-| **Exit**              | `exit`                                                                                                                                                                                                       |
+| Action                | Format, Examples                                                                                                                                                                                              |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**              | `help`                                                                                                                                                                                                        |
+| **History**           | `history`                                                                                                                                                                                                     |
+| **Add**               | `add o/OCCUPATION n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​` <br>e.g., `add o/STUDENT n/James Ho p/22224444 e/jamesho@example.com tut/T08 a/123, Clementi Rd, 1234665 t/friend t/colleague`  |
+| **List**              | `list`                                                                                                                                                                                                        |
+| **Edit**              | `edit INDEX [o/OCCUPATION] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                 |
+| **Delete**            | `delete INDEX [OPTIONAL PREFIX/]`<br> e.g., `delete 3`,`delete 3 p/`                                                                                                                                          |
+| **Clear**             | `clear`                                                                                                                                                                                                       |
+| **Undo**              | `undo`                                                                                                                                                                                                        |
+| **Sort**              | `sort FIELD_PREFIX/` <br> e.g., `sort n/`                                                                                                                                                                     |
+| **Find**              | `find KEYWORD` <br> e.g., `find John / find J`                                                                                                                                                                |
+| **Add To Group**      | `addtogroup INDEX GROUP`                                                                                                                                                                                      |
+| **Ungroup**           | `ungroup INDEX GROUP`                                                                                                                                                                                         |
+| **Open Group Window** | `group GROUPNAME`                                                                                                                                                                                             |
+| **Favorite**          | `fav INDEX`                                                                                                                                                                                                   |
+| **Include**           | `include INDEX s/SOCIAL #/SOCIAL_INFO`                                                                                                                                                                        |
+| **Exclude**           | `exclude INDEX s/SOCIAL`                                                                                                                                                                                      |
+|  **Prefer**           | `open INDEX s/SOCIAL`                                                                                                                                                                                         |
+| **Open**              | `open INDEX s/SOCIAL`                                                                                                                                                                                         |
+| **Social**            | `social SOCIAL`                                                                                                                                                                                               |                                                                                                                                                                      |
+| **Email All**         | `emailall GROUPNAME`                                                                                                                                                                                          |
+| **Exit**              | `exit`                                                                                                                                                                                                        |
