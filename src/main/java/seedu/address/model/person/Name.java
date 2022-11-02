@@ -2,7 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.model.util.StringUtil.toProperCase;
+import static seedu.address.commons.util.StringUtil.toProperCase;
 
 /**
  * Represents a Person's name in the address book.
