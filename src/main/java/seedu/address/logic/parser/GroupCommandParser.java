@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddToGroupCommand;
 import seedu.address.logic.commands.GroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
@@ -31,11 +30,11 @@ public class GroupCommandParser implements Parser<GroupCommand> {
 
         String[] splitArgs = args.trim().split("\\s+", 2);
         if (splitArgs.length != 1) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddToGroupCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupCommand.MESSAGE_USAGE));
         }
 
         if (!Group.isValidGroupName(splitArgs[0])) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddToGroupCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupCommand.MESSAGE_USAGE));
         }
         groupToDisplay = new Group(splitArgs[0]);
 

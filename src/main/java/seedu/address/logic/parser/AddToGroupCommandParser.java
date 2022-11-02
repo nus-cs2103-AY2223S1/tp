@@ -45,7 +45,7 @@ public class AddToGroupCommandParser implements Parser<AddToGroupCommand> {
         if (!Group.isValidGroupName(splitArgs[1])) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddToGroupCommand.MESSAGE_USAGE));
         }
-        groupToAdd = new Group(splitArgs[1]);
+        groupToAdd = new Group(splitArgs[1].toLowerCase());
 
         return new AddToGroupCommand(index, groupToAdd);
     }
