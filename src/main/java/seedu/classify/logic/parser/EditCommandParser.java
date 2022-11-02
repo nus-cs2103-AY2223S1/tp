@@ -10,7 +10,6 @@ import static seedu.classify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.classify.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -69,6 +68,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(CliSyntax.PREFIX_EMAIL).isPresent()) {
             editStudentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get()));
         }
+
         parseExamsForEdit(argMultimap.getAllValues(PREFIX_EXAM)).ifPresent(editStudentDescriptor::setExams);
 
         if (!editStudentDescriptor.isAnyFieldEdited()) {
@@ -89,8 +89,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (exams.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> examSet = exams.size() == 1 && exams.contains("") ? new HashSet<>() : exams;
-        return Optional.of(ParserUtil.parseExams(examSet));
+        return Optional.of(ParserUtil.parseExams(exams));
     }
 
 }

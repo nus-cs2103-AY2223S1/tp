@@ -3,50 +3,57 @@ layout: page
 title: Developer Guide
 ---
 <div style="text-align:center;">
-<img src="images/classifyLogo.png">
+<img src="images/ClassifyLogo.png">
 </div>
 
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
 
-## **1 Introduction**
+## 1. **Introduction**
 
-### 1.1 Purpose
+### 1.1 What is Class-ify
 
-This guide covers the architecture, design choices and implementation details in Class-ify to give the reader a clear picture of the technical details and inner workings of Class-ify.
+Class-ify is a **class management application** built specially for **Singapore Ministry of Education (MOE) teachers** to **monitor their student's academic progress easily**. Teachers can **generate exam statistics** for each class, and Class-ify quickly **flags out students** who require more support for contacting.
 
-### 1.2 Target Audience
+### 1.2 Who is this guide for
 
 * Developers who wish to make sense of the codebase and contribute to Class-ify.
 * Advanced users who wish to better understand Class-ify's features.
 
-### 1.3 About Class-ify
+### 1.3 How to use this developer guide
 
-Class-ify is a class management application built specially for Ministry of Education (MOE) teachers to easily monitor their students’ academic progress.
-Teachers can generate exam statistics for each class, and Class-ify quickly flags out students who require more support for contacting.
+This developer guide covers the architecture, design choices and implementation details in Class-ify to give the reader a clear picture of the technical details and inner workings of Class-ify.
+
+* Refer to our <a href="#top">Table of Contents</a> to easily navigate between sections of the User Guide. There is also a link at the end of every section to bring you back to the Table of Contents.
+* Refer to our [Quick Start](#3-setting-up-getting-started) guide to set up the project in your computer.
+* Refer to our [Design and Implementation](#4-design-and-implementation) section to learn in detail how the commands in Class-ify are implemented and the design considerations that went into them.
+* Refer to our [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops) section for the various guides.
+* Refer to our [Appendix: Requirements](#6-appendix-requirements) section for Class-ify's requirements.
+* Refer to our [Appendix: Instructions for manual testing](#7-appendix-instructions-for-manual-testing) section to learn how to test Class-ify manually.
+
+Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **2 Acknowledgements**
+## 2. **Acknowledgements**
 
 * Class-ify is adapted from the [AddressBook-Level3](https://se-education.org/addressbook-level3/) project created by the SE-EDU initiative.
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **3 Setting up, getting started**
+## 3. **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **4 Design and Implementation**
-
-<div markdown="span" class="alert alert-primary">:bulb:
-**Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/docs/diagrams/) folder.
-Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
+## 4. **Design and Implementation**
 
 ### 4.1 Architecture
 
@@ -163,6 +170,8 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.classify.commons` package.
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### 4.2 Implementation
@@ -171,7 +180,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### 4.2.1 AddStudent command
 
-<u>**Description**</u>
+**Description**
 
 Adding new students is first basic step of using Class-ify. This is primarily done via the `AddStudentCommand` and `AddStudentCommandParser` classes.
 Before going into the sequence of executing a `addStudent` command, let us take a quick look at the `Student` class.
@@ -187,7 +196,7 @@ The `Student` class contains a total of 6 fields:
     * The type of exams are currently limited to _CA1_, _CA2_, _SA1_ and _SA2_.
     * Future implementations may allow teachers to create their own examinable items.
 
-<u>**Implementation**</u>
+**Implementation**
 
 Adding a student record can be divided into 2 main steps: parsing the user input and executing it.
 
@@ -212,7 +221,7 @@ The following activity diagram below summarizes what happens when a user execute
 
 <img src="images/AddStudentCommandActivityDiagram.png" width="550" />
 
-<u>**Design Considerations**</u>
+**Design Considerations**
 
 The current approach creates multiple `Class` objects per student. It serves as a more straightforward implementation. However, it is not a very OOP solution for the following reasons:
 
@@ -230,11 +239,11 @@ An alternative and perhaps more OOP approach is given below. It has a `Class` li
 
 #### 4.2.2 Delete command
 
-<u>**Description**</u>
+**Description**
 
-The delete command allows users to delete a student record by targeting either the student’s name or student’s ID.
+The delete command allows users to delete a student record by targeting either the student’s name or ID.
 
-<u>**Implementation**</u>
+**Implementation**
 
 Deleting a student record can be divided into 2 main steps: parsing the command and executing it.
 
@@ -262,9 +271,9 @@ The `DeleteCommand` instance now communicates with the `ModelManager` to execute
 3. The `updateFilteredStudentList` method is called again to show all student records.
 4. A new `CommandResult` instance is created and returned to `LogicManager`.
 
-<u>**Design Considerations**</u>
+**Design Considerations**
 
-Current Design: We chose to keep a single class `DeleteCommand`, which the user can use to delete student records either by targeting the student’s name or student ID.
+Current Design: We chose to keep a single class `DeleteCommand`, which the user can use to delete student records either by targeting the student’s name or student ID. Note that we chose not to delete student records by their index in the list since deletion is irreversible, and we wanted users to be aware of the exact student name when they are executing a `DeleteCommand`.
 
 Pros:
 - The user does not have to remember different types of delete commands such as `DeleteStudentByNameCommand` or `DeleteStudentByIDCommand`.
@@ -287,24 +296,19 @@ Cons:
 
 #### 4.2.4 Find command
 
-<u>**Description**</u>
+**Description**
 
-`FindCommand`, which extends `Command`, simulates searching through the `StudentRecord` for particular students. This is
-implemented through filtering the current list of students according to the user input, and displaying the filtered results
-to the user.
+`FindCommand`, which extends `Command`, simulates searching through the `StudentRecord` for particular students. This is implemented through filtering the current list of students according to the user input, and displaying the filtered results to the user.
 
-<u>**Implementation**</u>
+**Implementation**
 
 `FindCommand` is executed through 2 steps:
 
 **Step 1: Parsing the command**
 
-The user input is first parsed by `StudentRecordParser`, in the same way as other commands. After the input is identified
-to be a `find`command, a `FindCommandParser` instance will be created to further parse the command arguments.
+The user input is first parsed by `StudentRecordParser`, in the same way as other commands. After the input is identified to be a `find`command, a `FindCommandParser` instance will be created to further parse the command arguments.
 
-The `FindCommandParser` searches the input for either `PREFIX_STUDENT_NAME` or `PREFIX_ID` (but not both), and depending
-on which `Prefix` is present, instantiates a `NameContainsKeywordsPredicate` object or `IdPredicate` object respectively.
-Both inherit from `Predicate<Student>`.
+The `FindCommandParser` searches the input for either `PREFIX_STUDENT_NAME` or `PREFIX_ID` (but not both), and depending on which `Prefix` is present, instantiates a `NameContainsKeywordsPredicate` object or `IdPredicate` object respectively. Both inherit from `Predicate<Student>`.
 
 This `Predicate<Student>` will then be used to create a `FindCommand` object.
 
@@ -322,8 +326,7 @@ Given below is an example usage scenario of `FindCommand`.
 Step 1. The user launches the application and sees a list of students.
 
 Step 2. The user executes `find nm/Alex` to locate students with "Alex" in their name.
-This command performs a search using the names of the students. Since the prefix `nm/` was used, a `NameContainsKeywordsPredicate`
-object, which extends `Predicate<Student>` will be created.
+This command performs a search using the names of the students. Since the prefix `nm/` was used, a `NameContainsKeywordsPredicate` object, which extends `Predicate<Student>` will be created.
 
 :information_source: **Note:** Find command is case-insensitive, and the command `find nm/alex` will return the same results.
 
@@ -333,17 +336,17 @@ The following activity diagram summarizes what happens when a user executes the 
 
 <img src="images/FindCommandActivityDiagram.png" />
 
-<u>**Design Considerations**</u>
+**Design Considerations**
 
 1. `ArgumentTokenizer#tokenize()` used to identify the prefix, to generate the corresponding `Predicate<Student>`.
 
 #### 4.2.5 ViewAll command
 
-<u>**Description**</u>
+**Description**
 
 The `viewAll` command displays a list of all student records.
 
-<u>**Implementation**</u>
+**Implementation**
 
 The sequence diagram below illustrates the interaction between the `Logic` and `Model` components. 
 
@@ -361,12 +364,12 @@ Step 4. Classify updates and displays a list of all student records
 
 #### 4.2.6 ViewClass command
 
-<u>**Description**</u>
-The `ViewClassCommand` displays the list of students in a particular class.
-This feature relies mainly on the `ViewClassCommandParser` and `ClassPredicate`, where the `ViewClassCommandParser` uses
-`ClassPredicate` to select students in the student record with the mentioned class.
+**Description**
 
-<u>**Implementation**</u>
+The `ViewClassCommand` displays the list of students in a particular class. This feature relies mainly on the `ViewClassCommandParser` and `ClassPredicate`, where the `ViewClassCommandParser` uses `ClassPredicate` to select students in the student record with the mentioned class.
+
+**Implementation**
+
 This command can be divided into 2 main steps: 
 1. Parsing the command
 3. Executing the command
@@ -383,18 +386,20 @@ The user's input command is first parsed.
 2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a `ViewClassCommand` and creates a new `ViewClassCommandParser` instance to parse the user’s input.
 3. `ViewClassCommandParser` checks whether the user input is valid by parsing it into the `parseClass` method in `ParserUtil`.
 4. If the input is valid, a new `ClassPredicate` instance is created. 
-6. `ViewClassCommandParser` then creates a new `ViewClassCommand` instance which will be executed by the `LogicManager`.
+5. ViewClassCommandParser` then creates a new `ViewClassCommand` instance which will be executed by the `LogicManager`.
 
 **Step 2: Executing the command**
 
 The `ViewClassCommand` instance now interacts with the `ModelManager` to execute the command.
 
 1. The `updateFilteredStudentList` method is called with the `ClassPredicate` to filter the list to only contain students whose `Class` matches the user input.
+
 :information_source: **Note:** A case-insensitive match is done, hence `viewClass 1a` and `viewClass 1A` will return the same results.
-2. A new `CommandResult` instance is created and returned to `LogicManager`.
 
+4. A new `CommandResult` instance is created and returned to `LogicManager`.
 
-<u>**Design Considerations**</u>
+**Design Considerations**
+
 * **Alternative 1**: Integrate `ViewClassCommand` together with `FindCommand`, and users will find students in a specific class.
   * Pros: Users will not need to learn a different command.
   * Cons: There is still a need to differentiate the filter logic as class name requires an exact match, while name only requires it to contain the keywords.
@@ -402,16 +407,15 @@ The `ViewClassCommand` instance now interacts with the `ModelManager` to execute
   * Pros: Distinguishing between a `View` and `Find` can make the filtering logic more obvious and apparent to users
   * Cons: Users have an additional command to learn.
 
-
 #### 4.2.7 ToggleView command
 
-<u>**Description**</u>
+**Description**
 
 The `ToggleViewCommand` toggles the application to display or hide all students' parent details.
 
-<u>**Implementation**</u>
+**Implementation**
 
- The following activity diagram shows the events that occur when the user executes the `ToggleViewCommand`.
+The following activity diagram shows the events that occur when the user executes the `ToggleViewCommand`.
 
 *Insert activity diagram*
 
@@ -433,7 +437,7 @@ Step 4. The `MainWindow` handles the updating of UI by requesting `StudentListPa
 
 With the above sequence, the UI is successfully updated to display the relevant student details according to the toggle status. 
 
-<u>**Design Considerations**</u>
+**Design Considerations**
 
 - Option 1: Each `Student` has a `isShowingParentDetails` `boolean` attribute
   - Pros:
@@ -450,43 +454,38 @@ With the above sequence, the UI is successfully updated to display the relevant 
 
 #### 4.2.8 ViewStats command
 
-<u>**Description**</u>
+**Description**
 
 `ViewStatsCommand` is a `Command` to present summary statistics for an `Exam` taken by a particular class of students. 
 In particular, the command is implemented to generate the mean score of the `Exam`. The entire process of generating summary statistics is executed in 2 steps. 
 
-<u>**Implementation**</u>
+**Implementation**
 
 **Step 1: Parsing the command**
 
-The user input is first parsed, in the same way as other commands. After the input is identified to be a viewStats 
-command, a `ViewStatsCommandParser` instance will parse the inputs to retrieve the class and exam of interest.
+The user input is first parsed, in the same way as other commands. After the input is identified to be a viewStats command, a `ViewStatsCommandParser` instance will parse the inputs to retrieve the class and exam of interest.
 
-Furthermore, the command will also be parsed to retrieve an input for an additional `Prefix` "filter/", which will indicate 
-if the list of students returned should be flagged. A flagged list contains only students whose score for that particular 
-`Exam` falls below the mean.
+Furthermore, the command will also be parsed to retrieve an input for an additional `Prefix` "filter/", which will indicate if the list of students returned should be flagged. A flagged list contains only students whose score for that particular `Exam` falls below the mean.
 
 **Step 2: Executing the command**
 
 The `ViewStatsCommand` then interacts with the `ModelManager` to execute the command, which is again done in 2 steps.
 
-Step 1: A `ViewClassCommand` is executed, depending mainly on `Model#updateFilteredStudentList(Predicate<Student)`, in 
-order to retrieve the class of interest.
+Step 1: A `ViewClassCommand` is executed, depending mainly on `Model#updateFilteredStudentList(Predicate<Student)`, in order to retrieve the class of interest.
 
 Step 2: The mean of the exam scores for that class is calculated using `Model#calculateMean(String exam)`. 
 
-Depending on the boolean value returned during the parsing of the filter prefix, the class list is further filtered using
-`Model#updateFilteredStudentList(Predicate<Student)` to show a flagged list. 
+Depending on the boolean value returned during the parsing of the filter prefix, the class list is further filtered using `Model#updateFilteredStudentList(Predicate<Student)` to show a flagged list. 
 
 The whole list is sorted according to the score of the particular exam, before it is returned and displayed to the user.
 
 The following sequence diagram depicts how different components such as `Logic` and `Model` interact.
 
 <img src="images/ViewStatsCommandSequenceDiagram.png" />
-:information_source: **Note:** The lifeline for `ViewStatsCommandParser` and `ViewClassCommand` should end at the destroy 
-marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-<u>**Design Considerations**</u>
+:information_source: **Note:** The lifeline for `ViewStatsCommandParser` and `ViewClassCommand` should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+**Design Considerations**
 
 1. Sorting the list of students according to grade
 - Option 1: sort the filtered list of students after retrieving the class
@@ -504,9 +503,11 @@ marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of
   - Cons:
     - Reorders the whole `StudentRecord` each time the sorting is done
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **5 Documentation, logging, testing, configuration, dev-ops**
+## 5. **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -514,13 +515,15 @@ marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **6 Appendix: Requirements**
+## 6. **Appendix: Requirements**
 
 ### 6.1 Product scope
 
-**Target user profile**:
+**Target User Profile**
 
 Ministry of Education (MOE) Teachers who:
 * Teaches 3 to 5 classes a year
@@ -533,11 +536,9 @@ Ministry of Education (MOE) Teachers who:
 * Prefers typing to mouse interactions
 * Types fast and is reasonably comfortable using CLI apps
 
-**Value proposition**:
-Class-ify is a class management application built specially for Ministry of Education (MOE) teachers to
-monitor their student's academic progress easily. Teachers can generate exam statistics for each class,
-and Class-ify quickly flags out students who require more support for contacting.
+**Value Proposition**
 
+Class-ify is a **class management application** built specially for **Singapore Ministry of Education (MOE) teachers** to **monitor their student's academic progress easily**. Teachers can **generate exam statistics** for each class, and Class-ify quickly **flags out students** who require more support for contacting.
 
 ### 6.2 User stories
 
@@ -580,7 +581,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `Class-ify` and the **Actor** is the `user`, unless specified otherwise.)
 
-<u>**Use case: Add a new student**</u>
+**Use case: Add a new student**
 
 **MSS**
 
@@ -601,14 +602,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. User missed out a compulsory field.
    * 2b1. Class-ify shows an invalid command error message.
 
-     Use case resumes at step 2.
+     Use case resumes from step 2.
 
 * 2c. Class-ify detects invalid format of field value.
     * 2c1. Class-ify shows an invalid format error message.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
-<u>**Use case: Delete a student**</u>
+**Use case: Delete a student**
 
 **MSS**
 
@@ -629,14 +630,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. The student record is empty.
     * 2b1. Class-ify displays an error message similar to 2a1.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
 * 2c. Class-ify detects invalid format of field value.
     * 2c1. Class-ify shows an invalid format error message.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
-<u>**Use case: Edit details of a student**</u>
+**Use case: Edit details of a student**
 
 **MSS**
 
@@ -658,19 +659,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. The given index is out of bounds of the list.
     * 2b1. Class-ify displays an error message similar to 2a1.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
 * 3a. Class-ify detects invalid format of field value.
     * 3a1. Class-ify shows an invalid format error message.
 
-      Use case resumes at step 3.
+      Use case resumes from step 3.
 
 * 3b. No given fields to be edited.
     * 3b1. Class-ify shows an error message to prompt user to enter at least one field to be edited.
 
-      Use case resumes at step 3.
+      Use case resumes from step 3.
 
-<u>**Use case: Find a student**</u>
+**Use case: Find a student**
 
 **MSS**
 
@@ -691,16 +692,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. Class-ify detects invalid format of field value.
     * 2b1. Class-ify shows an invalid format error message.
 
-      Use case resumes at step 2.
+      Use case resumes from step 2.
 
 * 4a. No students are found.
     * 4b1. Class-ify display an empty list and a message indicating no students are found. 
 
       Use case ends.
 
-*More to be added*
+**Use case: Calculate exam statistics**
+
+**MSS**
+
+1. User requests to calculate exam statistics for a class.
+2. User enters the class and exam that he/she wishes to calculate statistics for.
+3. Class-ify calculates the average score in the class for the exam.
+4. Class-ify displays the list of students in the class in order of ascending grades.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No fields are given.
+    * 2a1. Class-ify displays an invalid command error message.
+
+      Use case resumes from step 2.
+
+* 2b. Class-ify detects invalid format of field value.
+    * 2b1. Class-ify shows an invalid format error message.
+
+      Use case resumes from step 2.
+
+* 2c. Not all students have received grades for the exam.
+    * 2c1. Class-ify shows an error message stating mean score cannot be calculated.
 
 ### 6.4 Non-Functional Requirements
+
 - **Technical Requirement**:
   - Class-ify should work on any mainstream operating system (OS) as long as it has Java version 11 or above installed.
   - Class-ify should work on both 32-bit and 64-bit environments.
@@ -726,15 +752,16 @@ Through the CLI, users interact with the application by typing in text commands
 which assumes that nothing goes wrong
 * **32-bit/64-bit environment**: Refers to systems that use a 32-bit/64-bit processor respectively.
 
+Click <a href="#top">here</a> to return to the top.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **7 Appendix: Instructions for manual testing**
+## 7. **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
-<div class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
+<div class="alert alert-info">
+:information_source: **Note:** These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 </div>
 
 ### 7.1 Launch and shutdown
@@ -842,7 +869,10 @@ Expected: Displays the mean obtained by class "4A" for "SA1", as well as the lis
 
 ### 7.10 Saving data
 
+Prerequisites: Missing `data/classify.json` file
+
 1. Dealing with missing/corrupted data files
-   1. Prerequisites: Missing `data/classify.json` file
       1. Test case: Delete `data/classify.json` file and relaunch the application.
          Expected: Application will be populated with sample data.
+
+Click <a href="#top">here</a> to return to the top.

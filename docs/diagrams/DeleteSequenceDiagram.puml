@@ -16,7 +16,7 @@ end box
 [-> LogicManager : execute("delete id/123A")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete id/123A")
+LogicManager -> StudentRecordParser : parseCommand("delete id/123A")
 activate StudentRecordParser
 
 create DeleteCommandParser
