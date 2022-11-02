@@ -700,9 +700,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 ### Saving data
+Note that SoConnect's address book data is stored as a JSON file at [JAR File Location]/data/addressbook.json. Users are able and welcome to update data directly by editing that data file.
 
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+#### Dealing with missing/corrupted data files
+* If the changes to the data file makes the format of the information invalid, SoConnect will discard all data and start with an empty data file at the next run.
