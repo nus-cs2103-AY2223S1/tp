@@ -36,4 +36,23 @@ public class CommandParserTestUtil {
             assertEquals(expectedMessage, pe.getMessage());
         }
     }
+
+    /**
+     * Asserts that FindPatientCommandParser detects multiple prefixes of one type in the input to be parsed and results
+     * in an error message that is equals to {@code expectedMessage}.
+     *
+     * @param parser FindPatientCommandParser to check for multiple prefixes
+     * @param prefix Type of prefix to check for
+     * @param argMultimap ArgumentMultimap to check for multiple prefixes
+     * @param expectedMessage Expected error message
+     */
+    public static void assertParseFailureForPrefix(FindPatientCommandParser parser, Prefix prefix,
+                                                   ArgumentMultimap argMultimap, String expectedMessage) {
+        try {
+            parser.checkNumberOfPrefixes(prefix, argMultimap);
+            throw new AssertionError("The expected ParseException was not thrown.");
+        } catch (ParseException pe) {
+            assertEquals(expectedMessage, pe.getMessage());
+        }
+    }
 }
