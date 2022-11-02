@@ -35,6 +35,7 @@ Given below are my contributions to the project.
         * Added use cases writeup. ([#42](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/42), [#270](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/270))
         * Added implementation details of review add, delete, edit and list with appropriate supporting UML diagrams. ([#186](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/186), [#321](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/321), [#317](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/317), [#321](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/321))
         * Updated details of the model component and its corresponding UML diagrams to match the implementation of FoodWhere. ([#186](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/186))
+        * Added manual testing instructions in appendix 
       
 * **Community**
     * Set up tags in GitHub.
