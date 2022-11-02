@@ -23,9 +23,9 @@ public class AddConsultationCommandParserTest {
         Consultation consultation = new ConsultationBuilder()
                 .withName("Ray").withModule("CS1101").withVenue("COM1")
                 .withDescription("recursion")
-                .withTimeslot("2022-01-01 08:00", "2022-01-01 09:00")
+                .withTimeslot("2023-01-01 08:00", "2023-01-01 09:00")
                 .build();
-        String userInput = "add consultation n/Ray m/CS1101 v/COM1 d/recursion D/2022-01-01 T/08:00-09:00";
+        String userInput = "add consultation n/Ray m/CS1101 v/COM1 d/recursion D/2023-01-01 T/08:00-09:00";
         assertParseSuccess(parser, userInput, new AddConsultationCommand(consultation));
     }
 
@@ -47,7 +47,7 @@ public class AddConsultationCommandParserTest {
     @Test
     public void parse_invalidTimeStartEnd_throwsParseException() {
         String userInput;
-        userInput = "add consultation n/Ray m/CS1101 v/COM1 d/recursion D/2022-01-01 T/08:00-07:00";
+        userInput = "add consultation n/Ray m/CS1101 v/COM1 d/recursion D/2023-01-01 T/08:00-07:00";
         assertParseFailure(parser, userInput, DatetimeCommonUtils.TIMERANGE_MESSAGE_CONSTRAINTS_START_END);
     }
 }
