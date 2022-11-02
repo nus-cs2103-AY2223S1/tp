@@ -62,6 +62,14 @@ public class ItemBoughtDate extends ItemDate {
      * {@inheritDoc}
      */
     @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String toString() {
         return this == NOT_SET_BOUGHT_DATE ? "" : super.toString();
     }

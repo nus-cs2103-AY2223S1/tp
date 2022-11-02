@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  * Represents an item date in an {@link Item}.
  * Guarantees: details are present and not null, immutable.
  */
-public class ItemDate {
+public abstract class ItemDate {
     // Remember to change relevant messages displayed to users when changing the regex.
     public static final String DATE_PATTERN_REGEX = "dd-MM-uuuu";
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter

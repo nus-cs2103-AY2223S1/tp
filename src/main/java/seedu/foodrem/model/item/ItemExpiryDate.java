@@ -47,6 +47,14 @@ public class ItemExpiryDate extends ItemDate {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    /**
      * Returns {@code true} if both {@link ItemExpiryDate} have the same date by
      * {@link LocalDate#equals(Object)}.
      */
