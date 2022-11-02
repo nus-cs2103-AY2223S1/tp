@@ -197,6 +197,8 @@ public class ParserUtil {
             if (!Class.isValidDuration(startTime, endTime)) {
                 throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
             }
+            // testing not written for code below
+            // as it depends on actual day's datetime data and cannot be statically tested.
             targetDayOfWeek = Arrays.asList(DAYS_OF_WEEK).indexOf(dateStr.toUpperCase());
             LocalDate targetDate = getTargetClassDate(LocalDateTime.now(), startTime);
             return new Class(targetDate, startTime, endTime,
