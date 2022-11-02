@@ -12,6 +12,8 @@ a sleek and minimalist design which allows you to clearly see your outstanding t
 line user interface which aids fast typists in managing their assignments quickly, while still providing the benefits of
 a graphical user interface.
 
+This guide will help you to get started quickly, learn our commands and 
+
 |   If you are   |                                         You should                                         |
 |:--------------:|:------------------------------------------------------------------------------------------:|
 |   a new user   | proceed to our [quick start](#quick-start) section to set up NotionUS and try its features |
@@ -29,14 +31,13 @@ a graphical user interface.
    2. If you do not have Java 11 or above installed, please proceed to this [link](https://www.oracle.com/java/technologies/downloads/#java11)
       and download the appropriate Java for your operating system.
 
+
 2. Download the latest NotionUS.jar from [here](https://github.com/AY2223S1-CS2103T-F12-3/tp/releases/).
 
 3. Move the file to the folder you want to use as the home folder for NotionUS. Note that a new folder will be created
    in the same location as the file, which will contain the application data.
 
-4. Double-click the file to start the app. As seen below, some sample data has been pre-loaded for you to experiement with.
-
-    ![Ui](images/user-guide/Ui.png)
+4. Double-click the file to start the app. As seen below, some sample data has been pre-loaded for you to experiment with.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -70,18 +71,17 @@ From top to bottom:
     
 Feel free to play around with the UI by typing some of the following commands in the _Command box_ and press `ENTER` key on your keyboard the execute the command!
 
-    - `add -n Tutorial 3 -m CS2103T -d 2022-09-16` :
-      Adds a task called `Tutorial 3` for the module `CS2103T` with the deadline `2022-09-16` into the task list.
-    - `mark 1` :
-      Marks the first task in the list as complete.
-    - `ls --module CS2103T` :
-      Lists all tasks associated with the module `CS2103T`.
-    - `delete 2` :
-      Deletes the second task in the list.
-    - `edit 3 -n Assignment 2` :
-      Changes the name of the third task in the list to `Assignment 2`.
-    - `find tutorial` :
-      Finds anything with the keyword 'tutorial' (not case-sensitive or strictly matched words)
+- `add -n Tutorial 3 -m CS2103T -d 2022-09-16` : Adds a task called `Tutorial 3` for the module `CS2103T` with the deadline `2022-09-16` into the task list.
+- `mark 1` :
+  Marks the first task in the list as complete.
+- `ls --module CS2103T` :
+  Lists all tasks associated with the module `CS2103T`.
+- `delete 2` :
+  Deletes the second task in the list.
+- `edit 3 -n Assignment 2` :
+  Changes the name of the third task in the list to `Assignment 2`.
+- `find tutorial` :
+  Finds anything with the keyword 'tutorial' (not case-sensitive or strictly matched words)
 
 More details on the commands will be touched on in the [Features](#Features) section below! 
 
