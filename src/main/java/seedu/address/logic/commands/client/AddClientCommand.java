@@ -58,7 +58,6 @@ public class AddClientCommand extends ClientCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
-        ui.showClients();
 
         if (!model.hasProjectId(projectId.getIdInt())) {
             throw new CommandException(MESSAGE_PROJECT_NOT_FOUND);
@@ -81,6 +80,7 @@ public class AddClientCommand extends ClientCommand {
 
         toModifyProject.setClient(toAddClient);
 
+        ui.showClients();
         model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAddClient));

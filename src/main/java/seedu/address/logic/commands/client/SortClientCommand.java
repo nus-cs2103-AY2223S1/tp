@@ -51,7 +51,6 @@ public class SortClientCommand extends ClientCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
-        ui.showClients();
         String sortKeyString = "";
         Client.setSortOrder(this.sortOrder);
 
@@ -68,6 +67,7 @@ public class SortClientCommand extends ClientCommand {
         }
         model.sortClientsByPin();
 
+        ui.showClients();
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
         return new CommandResult(MESSAGE_SUCCESS + " according to " + sortKeyString);
     }

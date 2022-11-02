@@ -2,8 +2,8 @@ package seedu.address.logic.commands.issue;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_ISSUE_NOT_FOUND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.issue.PinIssueCommand.MESSAGE_ISSUE_NOT_FOUND;
 import static seedu.address.logic.commands.issue.PinIssueCommand.MESSAGE_PIN_SUCCESS;
 import static seedu.address.logic.commands.issue.PinIssueCommand.MESSAGE_UNPIN_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;

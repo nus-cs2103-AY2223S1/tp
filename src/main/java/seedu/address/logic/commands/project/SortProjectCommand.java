@@ -60,7 +60,6 @@ public class SortProjectCommand extends ProjectCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
-        ui.showProjects();
         String sortKeyString = "";
         Project.setSortOrder(this.sortOrder);
 
@@ -92,7 +91,6 @@ public class SortProjectCommand extends ProjectCommand {
         model.sortProjectsByPin();
 
         ui.showProjects();
-
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(MESSAGE_SUCCESS + " according to " + sortKeyString);
     }

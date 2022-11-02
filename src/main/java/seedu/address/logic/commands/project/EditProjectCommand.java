@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Deadline;
@@ -72,9 +71,6 @@ public class EditProjectCommand extends ProjectCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         ui.showProjects();
-        if (!model.hasProjectId(this.projectToEditId.getIdInt())) {
-            throw new CommandException(Messages.MESSAGE_PROJECT_NOT_FOUND);
-        }
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
 
         Project toEditProject = model.getProjectById(projectToEditId.getIdInt());
