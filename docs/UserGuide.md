@@ -137,14 +137,14 @@ will delete all data stored locally and this action is irreversible. You will lo
 * **Command Words**
   * Command words and prefixes are case-sensitive.<br/>
   e.g. `eXit` will not be accepted as the `exit` command.
-  * Only the last occurrence of a repeated prefix input will be taken.
+  * Only the last occurrence of a repeated prefix input will be taken.<br/>
   e.g. `edit 1 nm/Jonathan nm/Ethan nm/Alice` is the same as `edit 1 nm/Alice`.
 
 * **Parameters**
   * Words in `UPPER_CASE` refers to input from the user.<br/>
   e.g. For the `viewClass` command, the command format is `viewClass CLASS`.<br/>
   `CLASS` refers to the user input which can be `viewClass 17S68`.
-  * Parameters can be written in any order.<br/>
+  * Parameters with a prefix can be written in any order.<br/>
   e.g. `edit 1 nm/Jack id/111A` is the same as `edit 1 id/111A nm/Jack`.
   * Additional parameters for commands that do not require parameters will be ignored.<br/>
   e.g. `exit hello123` will be accepted as the `exit` command.
@@ -501,6 +501,8 @@ interact with the application by typing in text commands.
 * **GUI**: Graphical User Interface (GUI) is an interface that allows the user to interact with through various visual
 graphics.
 * **Home folder**: The home folder refers to the folder on your device that stores the Class-ify application.
+* **Prefix**: Refers to the representative input to indicate a specific type of information in Class-ify.
+* **Parameter**: Refers to additional input that is provided along with the command word.
 * **Alphanumeric characters**: Refers to characters made up of a combination of letters and/or numbers.
 * **Local storage**: Local storage refers to the data that is stored on your physical device.
 
