@@ -124,14 +124,11 @@ public class ModelStub implements Model {
 
     @Override
     public Module parseModuleFromCode(ModCode code) {
-        if (code.equals(new ModCode("CS1231S"))) {
-            return new ModuleBuilder().build();
+        for (Module m : moduleList) {
+            if (m.getCode().equals(code)) {
+                return m;
+            }
         }
-
-        if (code.equals(new ModCode("CS2109S"))) {
-            return new Module("CS2109S", "Introduction to AI and Machine Learning", "4", "0");
-        }
-
         return null;
     }
 
