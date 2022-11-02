@@ -492,8 +492,8 @@ Action | Format                                                                 
 **Delete task** | `deletetask INDEX`                                                                               | `deletetask 2`
 **Mark task** | `marktask INDEX`                                                                                 | `marktask 2`
 **Unmark task** | `unmarktask INDEX`                                                                               | `unmarktask 2`
-**Add consult** | `addconsult [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...` | `addconsult l/Consultation on recursion sd/2022-10-14 st/12:00 et/14:00 si/3 si/4`
 **Add studio** | `addstudio [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME`                | `addstudio l/Studio 3 sd/2022-10-12 st/14:00 et/16:00`
+**Add consult** | `addconsult [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...` | `addconsult l/Consultation on recursion sd/2022-10-14 st/12:00 et/14:00 si/3 si/4`
 **Add mastery check** | `addmc [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...` | `addmc l/Mastery check 1 sd/2022-10-12 st/12:00 et/14:00 si/1 si/2`
 **Delete lesson** | `deletelesson INDEX`                                                                             | `deletelesson 2`
 **Mark lesson** | `marklesson INDEX`                                                                               | `marklesson 2`
