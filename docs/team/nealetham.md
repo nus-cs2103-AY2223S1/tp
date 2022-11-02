@@ -17,8 +17,8 @@ Given below is a summary of my notable contributions to the project. You can fin
 
 ### Enhancements implemented:
 * Reworked the Ui to comply with our specifications and user's needs.
-* Reworked `find` to perform substring search.
-* Implemented all quality-of-life functionalities. You may view them [here](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#quality-of-life).
+* Reworked `find` to perform substring search [#31](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/31).
+* Implemented all [quality-of-life functionalities](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#quality-of-life).
 
 ### Documentation
 * User Guide
@@ -30,8 +30,6 @@ Given below is a summary of my notable contributions to the project. You can fin
   * Added section on the implementation of our GUI, & quality-of-life functionalities.
   * Added section on manual testing for quality-of-life functionalities, & `help`, `exit` commands.
   * Updated/Added the [Ui Component Diagram](../images/UiClassDiagram.png), [Command History Class Diagram](../images/CommandHistoryClassDiagram.png), & [Command History Activity Diagram](../images/CommandHistoryActivityDiagram.png)
-
-Other contributions include, updating the table-of-contents, command summary table, and adding a back-to-top hyperlink following each section.
 
 ### Contributions to team-based tasks:
 * Setting up the GitHub team organization, repository, Codecov and Gradle.
