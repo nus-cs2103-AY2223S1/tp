@@ -174,6 +174,7 @@ New added person will be added in current sorted order.
 Only one contact person can be in-charge of one internship position.
 Phone number allows more than 2 digits without the need of any specific pattern.
 A person is only considered duplicated if the name is exactly the same including casing. 
+Tag must be alphanumeric and can only be one word.
 </div>
 
 Examples:
