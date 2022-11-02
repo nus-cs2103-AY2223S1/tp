@@ -25,6 +25,7 @@ No other technical knowledge is required.
 * Text in blue are links. You can click on them to navigate to different parts of the guide.
 * Text in **bold** are used to place emphasis on certain things. They are noteworthy and important.
 * Text in `this` are related to commands and names of things (proper nouns) in Minefriends.
+* Tables are used to provide better organisation of command syntax for easy understanding.
 <div markdown="block" class="alert alert-info">
 * Text in a blue box is used to give important additional information about an aspect of Minefriends.
 </div>
@@ -134,37 +135,26 @@ to view the information for that command.
 Format (fields in `[ ]` are optional, `*` indicates multiple entry): `add n/NAME m/MINECRAFT_NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
 [c/COUNTRY] [ms/MINECRAFT_SERVER]* [s/SOCIAL_HANDLES]* [t/TAG]* [gt/GAME_TYPE]* [ti/TIME_INTERVAL]*`
 
-Adds a person to your friend list.
+This command allows you to add a person to your friend list.
 
 #### Details of each field:
-**Name** (`n/NAME`) **[Compulsory]** <br>
-Name of your friend.
 
-**Minecraft name** (`m/MINECRAFT_NAME`) **[Compulsory, Unique]** <br>
-In-game username of your friend. Minecraft usernames cannot contain spaces.
-Minecraft usernames are used to identify your friends uniquely in Minefriends 
-(and Minecraft too), so they must be unique.
+The following table lists all the fields that you can include when you add your friends,
+as well as provide you with additional information for your understanding. 
 
-<div markdown="block" class="alert alert-info">
-
-If you type in `add n/John Doe` without the friend's Minecraft name,
-there will be an error thrown. Similarly, if you type in `add m/johndoe123`
-without the friend's name, there will be an error thrown.
-
-</div>
-
-**Phone Number** (`[p/PHONE_NUMBER]`) **[Optional]** <br>
-Contact number of your friend.
-
-**Email** (`[e/EMAIL]`) **[Optional]** <br> 
-Email address of your friend.
-
-**Address** (`[a/ADDRESS]`) **[Optional]** <br> 
-Physical address of your friend.
-
-**Country** (`[c/COUNTRY]`) **[Optional]** <br>
-The country in which your friend currently resides in.
-There should not be any numbers in the country.
+| Field | Command | Status | Explanation                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 
+| ----- | --- | --- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name | `n/NAME` | **Compulsory** | Name of your friend                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 
+| Minecraft name | `m/MINECRAFT_NAME` | **Compulsory, Unique** | In-game username of your friend. Minecraft usernames cannot contain spaces. Minecraft usernames are used to identify your friends uniquely in Minefriends (and Minecraft too), so they must be unique. <div markdown="block" class="alert alert-info">  If you type in `add n/John Doe` without the friend's Minecraft name, there will be an error thrown. Similarly, if you type in `add m/johndoe123` without the friend's name, there will be an error thrown. </div> |
+| Phone Number | `[p/PHONE_NUMBER]` | **[Optional]** | Contact number of your friend.                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Email | `[e/EMAIL]` | **[Optional]** | Email address of your friend                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Address | `[a/ADDRESS]` | **[Optional]** | Physical address of your friend                                                                                                                                                                                                                                                                                                                                                                                                                                          |   
+| Country | `[c/COUNTRY]` | **[Optional]** | The country in which your friend resides in. There should not be any numbers in the country                                                                                                                                                                                                                                                                                                                                                                              |
+ | Minecraft server | `[ms/MINECRAFT_SERVER]*` | **[Optional, Multiple]** | The minecraft servers that your friend plays on. <br><br> Minecraft servers are in the format of `ServerName@ServerAddress`.                                                                                                                                                                                                                                                                                                                                             |
+| Social Handle | `[s/SOCIAL]*` | **[Optional, Multiple]** | The social media handles of your friend, such as their Instagram username, Telegram handle etc. <br><br> Social handles are in the format of `SocialMedia@Username`.                                                                                                                                                                                                                                                                                                     |
+| Game Type | `[gt/GAME_TYPE]*` | **[Optional, Multiple]** | Game types refer to the different ways to play multiplayer Minecraft. <br><br>  They can be anything, such as `survival games`, `skyblock` or `creative`.                                                                                                                                                                                                                                                                                                                |
+| Tag | `[t/TAG]*` | **[Optional, Multiple]** | Tags are used to provide additional information about your friend. <br><br> They can be anything, as long as there is no spaces.                                                                                                                                                                                                                                                                                                                                         |
+| Time Interval | `[ti/TIME_INTERVAL]*` | **[Optional, Multiple]** | This refers to the timings in which your friend is available. <br><br> Time interval comes in the format `day@hhmm-day@hhmm`, such as `mon@2100-mon@2300`, with the hours and minutes in 24-hour format. The first date-time being the start and the second date-time being the end of their availability period. `day` can be `mon`, `tue`, `wed`, `thu`, `fri`, `sat` or `sun` only. |
 
 <div markdown="block" class="alert alert-info">
 
@@ -174,30 +164,6 @@ only the last one `Victoria` will be taken.
 
 </div>
 
-**Minecraft Server** (`[ms/MINECRAFT_SERVER]*`) **[Optional, Multiple]** <br>
-The Minecraft servers in which your friend plays on.
-Minecraft servers are in the format of `ServerName@ServerAddress`.
-
-<!-- @@author onepersonhere -->
-**Social Handle** (`[s/SOCIAL]*`) **[Optional, Multiple]** <br>
-The social media handles of your friend, such as their Instagram username, Telegram handle etc.
-Social handles are in the format of `SocialMedia@Username`.
-
-<!-- @@author -->
-**Game Type** (`[gt/GAME_TYPE]*`) **[Optional, Multiple]** <br>
-Game types refer to the different ways to play multiplayer Minecraft.
-They can be anything, such as `survival games`, `skyblock` or `creative`.
-
-**Tag** (`[t/TAG]*`) **[Optional, Multiple]** <br>
-Tags are used to provide additional information about your friend.
-Tags can be anything, as long as there are no spaces.
-
-**Time interval** (`[ti/TIME_INTERVAL]`) **[Optional, Multiple]** <br>
-This refers to the timings in which your friend is available.<br>
-Time interval comes in the format `day@hhmm-day@hhmm`, such as `mon@2100-mon@2300`,
-with the hours and minutes in 24-hour format. The first date-time being the start and
-the second date-time being the end of their availability period. `day` can be
-`mon`, `tue`, `wed`, `thu`, `fri`, `sat` or `sun` only.
 
 <div markdown="block" class="alert alert-info">
 
