@@ -8,9 +8,9 @@ Welcome to **Arrow** User Guide! This user guide will give a descriptive instruc
 The _words_ _in_ _italic_ are terms you may be unfamiliar with. And if that is the case, 
 do not hesitate checking them out in [Glossary](#glossary).
 
-**Arrow** is a **desktop app** that **help software project managers keep track of their members’ tasks and deliverables**. 
-By associating tasks to specific team members, users can **keep track of what needs to be done and have quick access to 
-contact information should they wish to reach out to the member**. 
+**Arrow** is a **desktop app** that **help software project managers keep track of their members’ tasks and deliverables**.
+By associating tasks to specific team members, users can **keep track of what needs to be done and have quick access to
+contact information should they wish to reach out to the member**.
 
 **Arrow** uses a _Command Line Interface_ (CLI)at the same time possessing convenience of a _Graphical User Interface_ (GUI). The main target audiences are software
 project managers, which assumptively equipped with _Command Line Interface_ (CLI) skills. And if you can type fast,
@@ -60,11 +60,11 @@ click [here](#tutorial-for-cli) if you are not familiar with CLI.
 2. Download the latest `arrow.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Arrow.
-4. Double-click the file to start the app. The _GUI_ or _main window_ should appear in a few seconds. 
+4. Double-click the file to start the app. The _GUI_ or _main window_ should appear in a few seconds.
 Note how the app contains some sample data. If the app does not start and an `error` appears on your screen, do refer to the [FAQ](#faq).<br>
 
 5. The picture below shows the _main window_ of **Arrow**.
-* The command box is boxed in <span style="color:red">*red*</span>, where you enter commands. 
+* The command box is boxed in <span style="color:red">*red*</span>, where you enter commands.
 * The task panel list is boxed in <span style="color:blue">*blue*</span>, where you can see the current task list.
 * The address book is boxed in <span style="color:green">*green*</span>, where you can see the contact information of your team members.
 ![Ui](images/Ui.png)
@@ -85,7 +85,7 @@ Note how the app contains some sample data. If the app does not start and an `er
    * **`exit`** : Exits the app.
 
 7. Read the [Notes](#notes) to know more about the formats of commands.
-8. Refer to [Address Book](#address-book-commands) for details of AddressBook commands. 
+8. Refer to [Address Book](#address-book-commands) for details of AddressBook commands.
 9. Refer to [Task Management](#task-management-commands) for details of Task commands.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -231,8 +231,8 @@ Examples:
 Lists all the task(s) that have been assigned to the specified person.
 
 Format: `task list @PERSON_INDEX`
-* Shows the tasks of the specified `PERSON_INDEX`. 
-* The contact refers to the index number shown in the displayed person list. 
+* Shows the tasks of the specified `PERSON_INDEX`.
+* The contact refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -422,7 +422,7 @@ For Windows user, check this [tutorial](https://www.happycoders.eu/java/how-to-s
 **A**: Follow the steps listed to open the app.
 1. Ensure that you have done Step 1 to 3 in the Quick Start.
 2. Open Terminal app if you are on a Mac or the Command Prompt if you are on Windows.
-3. Type "java -jar " into Terminal or Command Prompt (do not do anything else). 
+3. Type "java -jar " into Terminal or Command Prompt (do not do anything else).
 4. Go to the folder where you just copied `arrow.jar` to.
 5. Drag `arrow.jar` and drop anywhere into Terminal or Command Prompt.
 6. Press Enter and the command will run, the GUI will pop up.
@@ -434,22 +434,23 @@ For Windows user, check this [tutorial](https://www.happycoders.eu/java/how-to-s
 
 ## Command Summary
 
-| Action          | Format, Examples                                                                                                                                                      |
-|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Task add**    | ``task add TITLE by/DEADLINE [#PROJECT] [@PERSON_INDEX]...``<br> e.g., `task add Task 1 by/next friday #CS2103T @1`                                                   |
-| **Tasks**       | `tasks INDEX`<br> e.g., `tasks 2`                                                                                                                                     |
-| **Task mark**   | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                        |
-| **Task unmark** | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                    |
-| **Task clear**  | `task clear`<br> e.g., `task clear`                                                                                                                                   |
-| **Task delete** | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                    |
-| **Task assign** | `task assign TASK_INDEX [+@/PERSON_INDEX]…​ [+@/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [-@/PERSON_NAME]…​`<br> e.g., `task assign 3 +@/1 +@/Alex Yeoh @-/2`               |
-| **Clear**       | `clear`                                                                                                                                                               |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**        | `list`                                                                                                                                                                |
-| **Help**        | `help`                                                                                                                                                                |
+| Action           | Format, Examples                                                                                                                                                                  |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`             |
+| **Task add**     | ``task add TITLE by/DEADLINE [#PROJECT] [@PERSON_INDEX]...``<br> e.g., `task add Task 1 by/next friday #CS2103T @1`                                                               |
+| **Tasks**        | `tasks INDEX`<br> e.g., `tasks 2`                                                                                                                                                 |
+| **Task mark**    | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                                    |
+| **Task unmark**  | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                                |
+| **Task clear**   | `task clear`<br> e.g., `task clear`                                                                                                                                               |
+| **Task delete**  | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                                |
+| **Task assign**  | `task assign TASK_INDEX [+@/PERSON_INDEX]…​ [+@/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [-@/PERSON_NAME]…​`<br> e.g., `task assign 3 +@/1 +@/Alex Yeoh @-/2`                           |
+| **Task project** | `task project` <br> e.g., `task project` |
+| **Clear**        | `clear`                                                                                                                                                                           |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                               |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                       |
+| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                        |
+| **List**         | `list`                                                                                                                                                                            |
+| **Help**         | `help`                                                                                                                                                                            |
 
 
 --------------------------------------------------------------------------------------------------------------------

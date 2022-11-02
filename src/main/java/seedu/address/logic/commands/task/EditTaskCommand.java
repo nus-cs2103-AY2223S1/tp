@@ -96,7 +96,8 @@ public class EditTaskCommand extends TaskCommand {
 
     /**
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
-     * edited with {@code editTaskDescriptor}.
+     * edited with {@code editTaskDescriptor} and {@code personList}.
+     * @throws CommandException
      */
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor,
                                          List<Person> personList) throws CommandException {
@@ -131,8 +132,8 @@ public class EditTaskCommand extends TaskCommand {
     }
 
     /**
-     * Stores the details to edit the task with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details that the task will be edited with. Each non-empty field value will replace the
+     * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
 

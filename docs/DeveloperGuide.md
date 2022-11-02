@@ -169,21 +169,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Delete Feature
-
-#### Current Implementation
-
-The `delete` feature is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index, and removing it from the list.
-
-#### Example Usage of `task delete`
-
-1. User launches Arrow and the `TaskPanel` is populated with existing `Task` entries.
-2. User types in the command `task delete 1`, where `1` is the specified index given in one-based form.
-3. The current state of the `TaskPanel` is obtained from `Model`.
-4. The `Task` to be deleted is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
-5. The `Task` is deleted from the `Model`.
-6. The `GUI` is updated to show the new `TaskPanel` with the `Task` deleted.
-
 ### Mark Feature
 
 #### Current Implementation
@@ -214,6 +199,21 @@ The `unmark` feature is implemented by acting on the current filtered`TaskPanel`
 5. The `Task` is marked as incompleted.
 6. The `GUI` is updated to show the new `TaskPanel` with the `Task` marked as incomplete.
 
+### Task Delete Feature
+
+#### Current Implementation
+
+The `task delete` feature is implemented by removing the `task` indicated by user using a one-based `Index` from the current current filtered `TaskPanel`.
+
+#### Example Usage of `task delete`
+
+1. User launches Arrow and the `TaskPanel` is filled with all the existing `Task` entries that has been added by user.
+2. User types in the command `task delete 1`, where `1` is the specified index given in one-based form.
+3. The current state of the `TaskPanel` is obtained from `Model`.
+4. The `Task` to be deleted is then fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
+5. The `Task` is deleted from the `Model`.
+6. The `GUI` is updated to show the new `TaskPanel` with the `Task` deleted.
+
 ### Clear Feature
 
 #### Current Implementation
@@ -227,6 +227,46 @@ The `clear` feature is implemented by acting on the current filtered`TaskPanel`,
 3. The current state of the `TaskPanel` is obtained from `Model`.
 4. The `TaskPanel` is resetted to be an empty one.
 5. The `GUI` is updated to show the new `TaskPanel` with zero task.
+
+### Task edit feature
+
+#### Current Implementation
+
+The task editing feature is primarily implemented within `EditTaskCommand` and the `EditTaskCommandParser` objects utilizing the help of `EditTaskDescriptor`.
+The `EditTaskDescriptor` object contains the new value(s) of the data that needs to be edited.
+
+#### Example usage of `task edit`
+
+1. The user adds a `Task` to the `TaskPanel`.
+2. The user types in the command `task edit 1 ti/TITLE`.
+The `EditTaskCommand` is created together with the `EditTaskDescriptor` object as shown below.
+
+![Sequence diagram](images/EditTaskCommandParse.png)
+
+3. The command return is executed. The copy of the `EditTaskDescriptor` object is used  during the `EditTaskCommand#createEditedTask` method, after which it is destroyed.
+The edited copy of the task then replaces the current task in the task list.
+
+![Sequence diagram](images/EditTaskCommandExecute.png)
+
+4. Finally, the GUI is updated to reflect the changes made. In this case, it will show the task at index 1 with the new title.
+
+
+#### `EditTaskDescriptor` implementation
+
+`EditTaskDescriptor` is implemented as a public nested class within `EditTaskCommand`. The class contains the edited values which are provided by the user that can be manipulated.
+`EditTaskDescriptor` has `get` and `set` methods:
+
+- `setTitle()` / `getTitle()`
+- `setProject()` / `getProject()`
+- `setDeadline()` / `getDeadline()`
+- `setAssignedContactIndexes(assignedContactIndexes)` / `getAssignedContactIndexes()`
+- `setUnassignedContactsIndexes(unassignedContactIndexes)` / `getUnassignedContactsIndexes()`
+
+where the `get` methods return `Optional<T>` objects containing the value to be edited, if any.
+
+`EditTaskDescriptor` also has:
+1. A constructor which accepts another `EditTaskDescriptor`, which creates a defensive copy of the original, which is only called in the constructor of `EditTaskCommand`.
+2. A `isAnyFieldEdited` method is implemented to check whether the user input any values to be edited.
 
 ### Assign Person(s) to Task Feature
 
@@ -248,7 +288,7 @@ The `task assign` feature assigns/unassigns contacts to the task specified by th
 8. The `Task` to be modified is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
 9. The `Person`s to be assigned are fetched from the `AddressBook` using the specified `Index`, using its zero-based 
    form, or through matching his full name.
-10. The `Person`s are assigned/unassigned to the `Task`
+10. The `Person`s are assigned/unassigned to the `Task`.
 11. The `GUI` is updated to show the new `TaskPanel` with the `Task`'s assigned contacts updated.
 
 The AssignTaskCommandParser relies on the ArgumentMultimap abstraction, which helps to tokenize the user input by 
@@ -547,44 +587,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-**Use case: UC06 - List tasks**
-
-**MSS**
-
-1.  User requests to list all tasks.
-2.  Arrow shows a list of all tasks.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The task list is empty.
-
-  Use case ends.
-
-**Use case: UC07 - Mark a task as complete**
-
-**MSS**
-
-1.  User requests to mark a task to be complete.
-2.  Arrow shows the task to be complete.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The given task index is invalid.
-
-    * 1a1. Arrow shows an error message.
-
-      Use case resumes at step 2.
-
-* 2a. The tasks list is empty.
-
-  Use case ends.
-
-**Use case: UC08 - Delete a task**
-
+**Use case: UC06 - Delete a task**
 
 **MSS**
 
@@ -607,7 +610,88 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC09 - Find a person by name**
+**Use case: UC07 - Edit a task**
+
+**MSS**
+
+1.  User requests to list tasks.
+2.  Arrow shows a list of tasks.
+3.  User requests to edit a specific task in the list and provides new information.
+4.  Arrow updates the task.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The tasks list is empty.
+
+  Use case ends.
+
+* 3a. The given task index is invalid.
+
+    * 3a1. Arrow shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC08 - Mark a task as complete**
+
+**MSS**
+
+1.  User requests to mark a task to be complete.
+2.  Arrow shows the task to be complete.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given task index is invalid.
+
+    * 1a1. Arrow shows an error message.
+
+      Use case resumes at step 2.
+
+* 2a. The tasks list is empty.
+
+  Use case ends.
+
+**Use case: UC09 - Mark a task as incomplete**
+
+**MSS**
+
+1.  User requests to mark a task to be incomplete.
+2.  Arrow shows the task to be incomplete.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given task index is invalid.
+
+    * 1a1. Arrow shows an error message.
+
+      Use case resumes at step 2.
+
+* 2a. The tasks list is empty.
+
+  Use case ends.
+
+**Use case: UC10 - List tasks**
+
+**MSS**
+
+1.  User requests to list all tasks.
+2.  Arrow shows a list of all tasks.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The task list is empty.
+
+  Use case ends.
+
+
+**Use case: UC11 - Find a person by name**
 
 **MSS**
 
@@ -622,7 +706,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC10 - Assign persons to a task**
+**Use case: UC12 - Assign persons to a task**
 
 **MSS**
 
@@ -657,28 +741,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
-**Use case: UC11 - Mark a task as incomplete**
+*Use case: UC13 - List Project**
 
 **MSS**
 
-1.  User requests to mark a task to be incomplete.
-2.  Arrow shows the task to be incomplete.
+1.  User requests to list all projects.
+2.  Arrow shows a list of all project.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given task index is invalid.
-
-    * 1a1. Arrow shows an error message.
-
-      Use case resumes at step 2.
-
-* 2a. The tasks list is empty.
+* 1a. No projects available.
 
   Use case ends.
 
-**Use case: UC12 - Clear the task panel**
+**Use case: UC14 - Clear the task panel**
 
 **MSS**
 
@@ -697,8 +775,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5.  Any changes to the data should be saved permanently and automatically.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -709,8 +785,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Task**: An item or activity that needs to be completed and contributes towards the progress of the project
 * **User**: Person in charge of a software engineering project
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
-*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
