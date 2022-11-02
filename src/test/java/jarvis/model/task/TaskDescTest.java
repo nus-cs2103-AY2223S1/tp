@@ -33,7 +33,7 @@ public class TaskDescTest {
         // valid task desc
         assertTrue(TaskDesc.isValidTaskDesc("Studio")); // alphabets only
         assertTrue(TaskDesc.isValidTaskDesc("Studio 2")); // alphanumeric characters
-        assertTrue(TaskDesc.isValidTaskDesc("Grade quest 3 !")); // symbols
+        assertTrue(TaskDesc.isValidTaskDesc("Grade quest 3!")); // symbols
     }
 
     @Test
