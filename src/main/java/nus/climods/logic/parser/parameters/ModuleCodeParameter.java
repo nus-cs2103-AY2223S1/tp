@@ -8,7 +8,7 @@ import nus.climods.logic.parser.ParserUtil;
 public class ModuleCodeParameter extends PositionalParameter<String> {
 
     public static final String INVALID_INPUT_MESSAGE = "Module code should not be empty!";
-    public static final String PARSE_EXCEPTION_MESSAGE = "Invalid module code: %s";
+    public static final String PARSE_EXCEPTION_MESSAGE = "'%s' not in current NUS curriculum";
     private static final int MODULE_CODE_INDEX = 0;
 
     /**

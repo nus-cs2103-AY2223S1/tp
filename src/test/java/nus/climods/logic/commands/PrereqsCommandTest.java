@@ -47,7 +47,7 @@ public class PrereqsCommandTest {
     public void execute_prereqNoValidModules_returnsNoPrereqMessage() {
         PrereqsCommand cmd = new PrereqsCommand("MA1301X");
         String errMsg = "Prerequisite description: Pass in GCE ‘O’ Level Additional Mathematics or GCE ‘AO’ Level or "
-                + "H1 Mathematics\n" + "Unable to show prerequisites for this module.";
+                + "H1 Mathematics\n" + "Unable to show prerequisites for MA1301X.";
         try {
             CommandResult res = cmd.execute(model);
             Assertions.assertTrue(res.getFeedbackToUser().equals(errMsg));

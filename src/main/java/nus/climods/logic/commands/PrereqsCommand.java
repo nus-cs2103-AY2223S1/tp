@@ -28,7 +28,7 @@ public class PrereqsCommand extends Command {
             + "curriculum";
     public static final String MESSAGE_SUCCESS = "Prerequisite description: %s\nShowing available prerequisites for %s";
     public static final String MESSAGE_MODULE_NO_PREREQUISITES = "Prerequisite description: %s\nUnable to show "
-            + "prerequisites for this module.";
+            + "prerequisites for %s.";
     /**
      * Pattern to extract module codes from a string
      */
@@ -69,7 +69,8 @@ public class PrereqsCommand extends Command {
 
         // returns false for classes where no prereq in current NUS curriculum
         if (!model.showModules(prereqs)) {
-            return new CommandResult(String.format(MESSAGE_MODULE_NO_PREREQUISITES, prereqString), false, false);
+            return new CommandResult(String.format(MESSAGE_MODULE_NO_PREREQUISITES, prereqString, moduleCode),
+                    false, false);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, prereqString, moduleCode), false, false);
