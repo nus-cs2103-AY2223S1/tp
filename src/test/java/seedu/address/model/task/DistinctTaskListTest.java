@@ -11,8 +11,8 @@ import static seedu.address.testutil.TypicalModules.CS2040;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalTasks.TASK_A;
 import static seedu.address.testutil.TypicalTasks.TASK_B;
+import static seedu.address.testutil.TypicalTasks.TASK_C;
 import static seedu.address.testutil.TypicalTasks.TASK_D;
-import static seedu.address.testutil.TypicalTasks.getTypicalTasks;
 
 import java.util.Collections;
 import java.util.List;
@@ -148,7 +148,9 @@ public class DistinctTaskListTest {
 
     @Test
     public void getNumOfCompletedModuleTasks() {
-        distinctTaskList.setTasks(getTypicalTasks());
+        distinctTaskList.addTask(TASK_D);
+        distinctTaskList.addTask(TASK_C);
+        distinctTaskList.addTask(TASK_B);
 
         // null module -> throws null pointer exception
         assertThrows(NullPointerException.class, () -> distinctTaskList.getNumOfCompletedModuleTasks(null));
@@ -156,21 +158,32 @@ public class DistinctTaskListTest {
         // 1 completed task with module
         assertEquals(distinctTaskList.getNumOfCompletedModuleTasks(CS2040), 1);
 
+        // adding another completed task linked to the module -> count increases by 1
+        Task anotherTask = new TaskBuilder(TASK_D).withTaskDescription("another task").build();
+        distinctTaskList.addTask(anotherTask);
+        assertEquals(distinctTaskList.getNumOfCompletedModuleTasks(CS2040), 2);
+
         // no completed task with module
         assertEquals(distinctTaskList.getNumOfCompletedModuleTasks(CS2030), 0);
 
         // no tasks with module
-        assertEquals(distinctTaskList.getNumOfCompletedModuleTasks(CS2030), 0);
+        assertEquals(distinctTaskList.getNumOfCompletedModuleTasks(CS2103T), 0);
     }
 
     @Test
     public void getTotalNumOfModuleTasks() {
-        distinctTaskList.setTasks(getTypicalTasks());
+        distinctTaskList.addTask(TASK_C);
+        distinctTaskList.addTask(TASK_D);
 
         // null module -> throws null pointer exception
         assertThrows(NullPointerException.class, () -> distinctTaskList.getTotalNumOfModuleTasks(null));
 
         // 2 tasks with module
+        assertEquals(distinctTaskList.getTotalNumOfModuleTasks(CS2040), 2);
+
+        // adding another task with the same module -> count increases by 1
+        Task anotherTask = new TaskBuilder(TASK_C).withTaskDescription("another task").build();
+        distinctTaskList.addTask(anotherTask);
         assertEquals(distinctTaskList.getTotalNumOfModuleTasks(CS2040), 3);
 
         // no tasks with module
@@ -179,18 +192,24 @@ public class DistinctTaskListTest {
 
     @Test
     public void getNumOfCompletedExamTasks() {
-        distinctTaskList.setTasks(getTypicalTasks());
 
         // null exam -> throws null pointer exception
         assertThrows(NullPointerException.class, () -> distinctTaskList.getNumOfCompletedExamTasks(null));
 
+        // no completed task with exam
+        Task incompleteTask = new TaskBuilder(TASK_D).withTaskDescription("incomplete task")
+            .withStatus("incomplete").build();
+        distinctTaskList.addTask(incompleteTask);
+        assertEquals(distinctTaskList.getNumOfCompletedExamTasks(MIDTERM_EXAM), 0);
+
         // 1 completed task with exam
+        distinctTaskList.addTask(TASK_D);
         assertEquals(distinctTaskList.getNumOfCompletedExamTasks(MIDTERM_EXAM), 1);
 
-        // no completed task with exam
-        Task editedTask = new TaskBuilder(TASK_D).withStatus("incomplete").build();
-        distinctTaskList.replaceTask(TASK_D, editedTask, true);
-        assertEquals(distinctTaskList.getNumOfCompletedExamTasks(MIDTERM_EXAM), 0);
+        // adding another completed task linked to the exam -> count increases by 1
+        Task anotherTask = new TaskBuilder(TASK_D).withTaskDescription("another task").build();
+        distinctTaskList.addTask(anotherTask);
+        assertEquals(distinctTaskList.getNumOfCompletedExamTasks(MIDTERM_EXAM), 2);
 
         // no tasks with exam
         assertEquals(distinctTaskList.getNumOfCompletedExamTasks(FINAL_EXAM), 0);
@@ -199,12 +218,17 @@ public class DistinctTaskListTest {
 
     @Test
     public void getTotalNumOfExamTasks() {
-        distinctTaskList.setTasks(getTypicalTasks());
+        distinctTaskList.addTask(TASK_D);
 
         // null exam -> throws null pointer exception
         assertThrows(NullPointerException.class, () -> distinctTaskList.getTotalNumOfExamTasks(null));
 
-        // 2 tasks with exam
+        // 1 task with exam
+        assertEquals(distinctTaskList.getTotalNumOfExamTasks(MIDTERM_EXAM), 1);
+
+        // adding another task with the same exam -> count increases by 1
+        Task anotherTask = new TaskBuilder(TASK_D).withTaskDescription("another task").build();
+        distinctTaskList.addTask(anotherTask);
         assertEquals(distinctTaskList.getTotalNumOfExamTasks(MIDTERM_EXAM), 2);
 
         // no tasks with exam

@@ -15,12 +15,17 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
 
     public static final String INVALID_INDEX_FOR_DELETE_TAG = "The index for tagdel should"
-            + "be greater than 0 and less than 2147483648.";
+            + " be an unsigned positive integer greater than 0 and less than 2147483648.";
     @Override
     public DeleteTagCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(userInput, PREFIX_TAG);
         Index index;
         if (!isTagPrefixPresent(argMultiMap)) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteTagCommand.MESSAGE_USAGE));
+        }
+        //Checking invalid prefixes to eliminate them
+        if (argMultiMap.getPreamble().isEmpty() || argMultiMap.getPreamble().contains("/")) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteTagCommand.MESSAGE_USAGE));
         }

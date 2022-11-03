@@ -14,8 +14,8 @@ import seedu.address.model.task.TaskStatus;
  */
 public class TaskBuilder {
 
-    public static final String DEFAULT_MODULE = "CS2103T";
     public static final String DEFAULT_TASK_DESCRIPTION = "task description";
+    public static final String DEFAULT_MODULE = "CS2103T";
 
     private Module module;
     private TaskDescription taskDescription;
@@ -73,7 +73,18 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code PriorityTag} of the {@code Task} that we are building.
+     * Sets the {@code Exam} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withExam(Exam exam) {
+        this.linkedExam = exam;
+        return this;
+    }
+
+    /**
+     * Sets the {@code PriorityTag} of the {@code Task} which is being built.
+     *
+     * @param priorityTag The priority tag being set.
+     * @return The task builder which now contains the priority tag.
      */
     public TaskBuilder withPriorityTag(PriorityTag priorityTag) {
         this.priorityTag = priorityTag;
@@ -81,18 +92,13 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code DeadlineTag} of the {@code Task} that we are building.
+     * Sets the {@code DeadlineTag} of the {@code Task} which is being built.
+     *
+     * @param deadlineTag The deadline tag being set.
+     * @return The task builder which now contains the deadline tag.
      */
     public TaskBuilder withDeadlineTag(DeadlineTag deadlineTag) {
         this.deadlineTag = deadlineTag;
-        return this;
-    }
-
-    /**
-     * Sets the {@code Exam} of the {@code Task} that we are building.
-     */
-    public TaskBuilder withExam(Exam exam) {
-        this.linkedExam = exam;
         return this;
     }
 
