@@ -166,9 +166,7 @@ Examples:
 
 #### Displaying specified trip details: `display`
 
-Displays the full title, description, location,
-and date of the trip at the specified INDEX of the displayed trip list in the command box.
-
+Displays the full title, description, location, and date of the trip at the specified INDEX of the displayed trip list in the command box
 Format: `display INDEX`
 
 <div class="alert alert-block alert-success"><b>Use case: </b> Occasionally, you may add trips with titles or descriptions that are too long, which leads to these information being truncated in the UI. To view the truncated information, you can use the <code>display</code> command to look at a specified trip's full title and description. </div>
