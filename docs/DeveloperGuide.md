@@ -154,9 +154,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Proposed Add feature
+### Add feature
 
-#### Proposed Implementation for adding a patient
+#### Implementation for adding a patient
 
 The add patient mechanism is facilitated by `Patient`, `AddCommandParser`,`AddCommand`, `Model`, `AddressBook` and `UniquePersonList`.
 
@@ -220,9 +220,9 @@ The following activity diagram summarizes what happens when a user executes an a
     * Pros: It is easy to determine/check time crashes when assigning a home-visit `DateTime` slot to a nurse.
     * Cons: Less flexible in the home visit date and time that a patient can choose.
 
-### \[Proposed\] Mark feature
+### Mark feature
 
-#### Proposed implementation for marking Appointments between Nurses and Patients
+#### Implementation for marking Appointments between Nurses and Patients
 
 The marking mechanism is facilitated by `Appointment`, `VisitStatus`, LogicManager`, `HealthcareXpressParser`, `MarkCommandParser`, `MarkCommand`, `Model`, `AddressBook`, and `UniquePersonList`
 
@@ -309,8 +309,41 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: If a list is returned then the user can be sure that all returned users match the given criteria exactly.
     * Cons: Possibly inefficient if exact matching is not vital.
 
-### \[Proposed\] Undo/redo feature
+### Update Emergency Contacts feature
 
+#### Implementation for updating attending physician and next of kin contact information for patients
+
+The feature is primarily facilitated by `UpdateContactCommand` and `UpdateContactCommandParser`.
+
+`UpdateContactCommandParser` takes in user input, extracts contact info and passes it to `UpdateContactCommand`.
+
+`UpdateContactCommand` creates a new `NextOfKin` or `Physician`, based on whichever one the user specified.
+
+The new `NextOfKin` or `Physician` will have the contact details as stated by the user.
+
+`UpdateContactCommand` then gets the `Patient` from the database and edits the `Patient` to include the new contact.
+
+The new `Patient`, with the contact info, is then passed to `Model`, so that the details are saved in the database.
+
+Given below is an example scenario and how the `UpdateContactCommand` behaves at each step, 
+illustrated with the following sequence diagram:
+
+![UpdateContactSequenceDiagram](images/UpdateContactSequenceDiagram.png)
+
+Step 1. The user executes `updatecontact id/3 n/ John Doe p/ 81234567 e/ johndoe@example.com c/ D`
+
+Step 2. `HealthcareXpressParser` creates an `UpdateContactCommandParser` to parse the arguments.
+
+Step 3. `UpdateContactCommandParser` checks validity of the given arguments and creates an `UpdateContactCommand`.
+
+Step 4. The `UpdateContactCommand` is executed, and a new `Physician` with the given contact info is created`.
+
+Step 5. `UpdateContactCommand` gets `Patient` with UID 3 from the database, and updates the `Patient` to contain 
+`Physician` John Doe.
+
+Step 6. `Model` updates the database, and displays the attending physician on `Patient` UID 3.
+
+### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
