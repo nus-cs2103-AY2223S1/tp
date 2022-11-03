@@ -79,6 +79,12 @@ public class RecurringTask extends Task {
         int freq = parseInt(recurAndFreq[0].trim(), 10);
         Recurrence recur = Recurrence.valueOf(recurAndFreq[1].trim().toUpperCase());
 
+        if (freq == 1) {
+            recur = getSingularRecurrence(recur);
+        } else {
+            recur = getPluralRecurrence(recur);
+        }
+
         return new RecurringTask(description, dateTime, recur, freq);
     }
 
@@ -129,6 +135,29 @@ public class RecurringTask extends Task {
         return this.getTaskDescription().equals(o.getTaskDescription())
                 && this.getDateTime().equals(o.getDateTime())
                 && this.recurrence.equals(o.recurrence)
-                && this.frequency == (o.frequency);
+                && this.frequency == o.frequency;
+    }
+
+    private static boolean isSingularRecurrence(Recurrence recurrence) {
+        for (Recurrence validRecurrence : Recurrence.values()) {
+            if ((recurrence.toString() + "S").equals(validRecurrence.toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static Recurrence getSingularRecurrence(Recurrence recurrence) {
+        if (isSingularRecurrence(recurrence)) {
+            return recurrence;
+        }
+        return Recurrence.valueOf(recurrence.toString().substring(0, recurrence.toString().length() - 1));
+    }
+
+    private static Recurrence getPluralRecurrence(Recurrence recurrence) {
+        if (!isSingularRecurrence(recurrence)) {
+            return recurrence;
+        }
+        return Recurrence.valueOf(recurrence.toString() + "S");
     }
 }

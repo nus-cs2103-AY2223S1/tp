@@ -5,7 +5,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import seedu.uninurse.model.person.Patient;
 
@@ -45,12 +44,12 @@ public class TruncatedPersonListCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
 
         if (patient.getTasks().size() > 0) {
-            StackPane taskNumberStackPane = new StackPane();
-            taskNumberStackPane.setStyle("-fx-background-color: #2154ad;"
+            VBox taskNumberBox = new VBox();
+            taskNumberBox.setStyle("-fx-background-color: #2154ad;"
                     + "-fx-padding: 3;" + "-fx-border-radius: 2;"
                     // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
                     + "-fx-background-radius: 5;");
-            taskNumberStackPane.setAlignment(Pos.CENTER);
+            taskNumberBox.setAlignment(Pos.CENTER);
 
             Label taskNumberLabel = new Label();
             if (patient.getTasks().size() == 1) {
@@ -62,8 +61,8 @@ public class TruncatedPersonListCard extends UiPart<Region> {
             taskNumberLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
                     + "-fx-font-size: 13px;"
                     + "-fx-text-fill: white;");
-            taskNumberStackPane.getChildren().add(taskNumberLabel);
-            this.taskNumberPane.getChildren().add(taskNumberStackPane);
+            taskNumberBox.getChildren().add(taskNumberLabel);
+            this.taskNumberPane.getChildren().add(taskNumberBox);
         }
     }
 
