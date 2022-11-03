@@ -132,6 +132,8 @@ public interface Model {
 
     public boolean teamHasMember(Index p, Index t);
 
+    boolean teamHasTask(Index index, Task task);
+
     void addTask(Index index, Task task);
 
     void markTask(Index teamIndex, Index taskIndex);
