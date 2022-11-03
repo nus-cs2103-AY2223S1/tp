@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Cap {
     public static final String MESSAGE_CONSTRAINTS =
             "CAPs should consist of a positive numeric value less than or equal to its maximum value, e.g. 4.0/5.0";
-    public static final String MESSAGE_MAXIMUM_CAP_REQUIRED =
+    public static final String MESSAGE_INVALID_CAP_FORMAT =
             "CAPs should consist of two values, namely the current CAP value and its maximum value, e.g. 4.0/5.0";
     public static final String MESSAGE_NUMERIC_VALUE_REQUIRED =
             "CAP values should only be numeric, they should not contain symbols and alphabetical characters!";
@@ -40,6 +40,14 @@ public class Cap {
      */
     public static boolean isValidCap(double cap, double max) {
         return cap <= max && cap >= MINIMUM;
+    }
+
+    /**
+     * Returns true if a given CAP format is valid, following the validation regex.
+     * @param capFormat CAP format given.
+     */
+    public static boolean isValidCapFormat(String capFormat) {
+        return capFormat.matches(VALIDATION_REGEX);
     }
 
     public double getValue() {
