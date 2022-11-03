@@ -17,8 +17,8 @@ Given below are my contributions to the project.
   Allows users to view all the persons associated to a module.
   * Justification: <br>
   This feature allows forgetful users to know which of their friends take a certain module so that they know who to
-  approach when they need help with the module's work.
-  ([User Story](https://github.com/AY2223S1-CS2103T-T10-1/tp/issues/80))
+  approach when they need help with the module's work
+  ([user story](https://github.com/AY2223S1-CS2103T-T10-1/tp/issues/80)).
   * Highlights: <br>
   This enhancement was not easy because it involved interactions between two
   different kinds of `Model` objects, namely `Person` and `Module`, which required intensive
@@ -35,7 +35,7 @@ Given below are my contributions to the project.
   * Justification: <br>
   This feature allows users to maintain their person-module associations to be updated with real world events. For
   example, users can delete a person from a module if the person dropped out halfway, or when a new semester
-  arrives. ([User Story](https://github.com/AY2223S1-CS2103T-T10-1/tp/issues/99))
+  arrives ([user story](https://github.com/AY2223S1-CS2103T-T10-1/tp/issues/99)).
   * Highlights: <br>
   This enhancement was not easy because it involved interactions between two
   different kinds of `Model` objects, namely `Person` and `Module`, which required intensive
@@ -49,7 +49,7 @@ Given below are my contributions to the project.
   Allows users to view modules and contacts in a sorted order.
   * Justification: <br>
   This feature allows users to easily locate modules/contacts and identify missing or wrong modules/contacts with
-  one look. ([Motivation](https://github.com/AY2223S1-CS2103T-T10-1/tp/issues/96))
+  one look ([motivation](https://github.com/AY2223S1-CS2103T-T10-1/tp/issues/96)).
   * Highlights: <br>
   This enhancement was tricky to implement due to the presence of the module-person association. This
   made it not obvious if simply sorting at one place was enough to cover for all instances whereby modules/persons
@@ -73,10 +73,11 @@ Given below are my contributions to the project.
 * **Highlights**
     * Spearheaded discussions and laid foundation down for the module-person association and all of its related commands
       ([some discussions found here](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/79)).
+    * Led discussions related to UI display issues after execution of commands and implemented the final behaviour
+      ([#157](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/157)).
     
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ekweirui&breakdown=true)
-
 
 
 * **Documentation**:
@@ -86,22 +87,32 @@ Given below are my contributions to the project.
         * `edit-person` ([#62](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/62))
         * `delete-person-from-module` ([#111](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/111))
     * Developer Guide:
-        * Added documentation for general contacts information and `delete-person` command
+        * Added documentation for the entire contacts-related section and the `delete-person` command
           ([#88](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/88)).
+          * Includes drawing of class, object, and sequence diagrams.
+        * Added documentation for the features implementation and design alternatives for the `add-person-to-module` 
+          command.
+          * Includes drawing of object diagrams.
+        * Added user stories and use cases related to contacts.
+
+
+* **Review contributions**:
+  * PRs reviewed (with non-trivial review comments):
+    [#90](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/90),
+    [#101](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/101),
+    [#151](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/151),
+    [#63](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/63)
+  * Full list of PRs reviewed 
+    [here](https://github.com/AY2223S1-CS2103T-T10-1/tp/pulls?q=is%3Apr+reviewed-by%3Aekweirui)
 
 
 * **Team based tasks**:
-    * PRs reviewed (with non-trivial review comments):
-      [#90](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/90),
-      [#101](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/101),
-      [#151](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/151),
-      [#63](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/63)
     * Necessary general code enhancements:
       * Refactoring of `contact` related commands to `person` after feedback from teammates
-        [#86](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/86)
+        ([#86](https://github.com/AY2223S1-CS2103T-T10-1/tp/pull/86))
     * Maintaining the issue tracker:
-      * Created the majority of labels and milestones 
-      * Resolves issues after a relevant PR has been merged
+      * Created and assigned the majority of labels and milestones 
+      * Resolved issues after a relevant PR has been merged
 
 
 * **Community**:
