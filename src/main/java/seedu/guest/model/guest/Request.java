@@ -33,14 +33,14 @@ public class Request {
     public Request(String request) {
         requireNonNull(request);
         checkArgument(isValidRequest(request), MESSAGE_CONSTRAINTS);
-        value = request;
+        value = request.trim();
     }
 
     /**
      * Returns true if a given string is a valid request.
      */
     public static boolean isValidRequest(String inputRequest) {
-        return (inputRequest.length() <= MAX_LENGTH_REQUEST);
+        return (inputRequest.trim().length() <= MAX_LENGTH_REQUEST);
     }
 
     /**
