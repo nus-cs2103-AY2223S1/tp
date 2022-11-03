@@ -15,7 +15,7 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 
 /**
- * Deletes Session for a class.
+ * Deletes Sessions for a class.
  */
 public class DeletesCommand extends Command {
 
@@ -27,7 +27,7 @@ public class DeletesCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SESSION + "Lab1";
 
-    public static final String MESSAGE_SUCCESS = "Sessions deleted: [ %s ]";
+    public static final String MESSAGE_SUCCESS = "Session(s) deleted: [ %s ]";
     public static final String MESSAGE_SESSION_DOES_NOT_EXIST = "Session [ %s ] does not exist!";
 
     private final Set<Session> sessions;

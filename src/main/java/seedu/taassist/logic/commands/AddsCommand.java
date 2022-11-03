@@ -23,7 +23,7 @@ public class AddsCommand extends Command {
 
     public static final String COMMAND_WORD = "adds";
 
-    public static final String MESSAGE_USAGE = "> Creates a new session for a class.\n"
+    public static final String MESSAGE_USAGE = "> Creates new sessions for a class.\n"
             + "Parameters: "
             + PREFIX_SESSION + "SESSION_NAME "
             + "[" + PREFIX_DATE + "DATE]\n"
@@ -31,13 +31,13 @@ public class AddsCommand extends Command {
             + PREFIX_SESSION + "Lab1 "
             + PREFIX_DATE + "2022-01-01";
 
-    public static final String MESSAGE_SUCCESS = "Added new sessions:\n%1$s";
+    public static final String MESSAGE_SUCCESS = "Added new session(s):\n%1$s";
     public static final String MESSAGE_DUPLICATE_SESSIONS = "Session(s) [ %s ] already exist(s)!";
 
     private final Set<Session> sessions;
 
     /**
-     * Creates a AddsCommand to create the specified {@code Session}.
+     * Creates an AddsCommand to create the specified {@code Session}.
      */
     public AddsCommand(Set<Session> sessions) {
         requireNonNull(sessions);
