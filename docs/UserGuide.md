@@ -203,13 +203,12 @@ Format: `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`
 - Existing values will be updated to the input values. 
 - Only alphanumeric characters are allowed for event title (`e`) and purpose (`p`).
 
-
 Examples:
-*  `editEvent 1 e/Toy Dinosaur Sale t/10/10/AM` Edits the event title and time of the 1st event to be
-   `Toy Dinosaur Sale` and `10:10 AM` respectively.
+*  `editEvent 1 e/Toy Dinosaur Sale t/10:10` Edits the event title and time of the 1st event to be
+   `Toy Dinosaur Sale` and `10:10` respectively.
 *  `editEvent 2 e/Pillow Sale` Edits the event title of the 2nd event to be `Pillow Sale`.
-*  `editEvent 3 d/10/10/2022 p/Give 20% off bottles` Edits the 3rd event’s date and purpose to be `10 Oct 2022` and ,
-   `Give 20% off bottles` respectively.
+*  `editEvent 3 d/10/10/2022 p/20 dollars off bottles` Edits the 3rd event’s date and purpose to be `10/10/2022` and ,
+   `20 dollars off bottles` respectively.
 
 ### Locating events by event title: `findEvents`
 
@@ -374,9 +373,9 @@ _Details coming soon ..._
 | **EditPerson**   | `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`                                              |
 | **FindPersons**  | `findPersons KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPersons James Jake`                                                                                                               |
 | **ListPersons**  | `listPersons [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                   |
-| **AddEvent**     | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
+| **AddEvent**     | `addEvent e/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent e/Shoe Sale d/30/05/2022 t/11:00 p/30 dollar discount on all shoes`                                                |
 | **DeleteEvent**  | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
-| **EditEvent**    | `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`<br> e.g., `editEvent 2 e/Chocolate Sale p/10% off all chocolates`                                                      |
+| **EditEvent**    | `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`<br> e.g., `editEvent 2 e/Chocolate Sale p/10 dollar off all chocolates`                                                |
 | **FindEvents**   | `findEvents KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvents Sale Discount`                                                                                                              |
 | **ListEvents**   | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                      |
 | **MailEvent**    | `mailEvent INDEX`<br> e.g., `mailEvent 3`                                                                                                                                              |                                                                                                                                      |
