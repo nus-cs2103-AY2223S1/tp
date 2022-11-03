@@ -2,12 +2,16 @@ package longtimenosee.logic.commands;
 
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_COMMISSION;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_COVERAGES;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_INCOME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_NAME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_PHONE;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_RISK_APPETITE;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_TAG;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_TITLE;
 import static longtimenosee.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -80,16 +84,29 @@ public class CommandTestUtil {
     public static final String BIRTHDAY_DESC_AMY = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_AMY;
     public static final String BIRTHDAY_DESC_BOB = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_BOB;
     public static final String INCOME_DESC_AMY = " " + PREFIX_INCOME + VALID_INCOME_AMY;
-
     public static final String INCOME_DESC_BOB = " " + PREFIX_INCOME + VALID_INCOME_BOB;
     public static final String RISK_APPETITE_DESC_AMY = " " + PREFIX_RISK_APPETITE + VALID_RISK_APPETITE_AMY;
-
     public static final String RISK_APPETITE_DESC_BOB = " " + PREFIX_RISK_APPETITE + VALID_RISK_APPETITE_BOB;
+
+    public static final String TITLE_DESC_MANUEXTRA = " " + PREFIX_TITLE + VALID_TITLE_MANUEXTRA;
+    public static final String TITLE_DESC_PRULIFE = " " + PREFIX_TITLE + VALID_TITLE_PRULIFE;
+    public static final String COMPANY_DESC_MANUEXTRA = " " + PREFIX_COMPANY + VALID_COMPANY_MANUEXTRA;
+    public static final String COMPANY_DESC_PRULIFE = " " + PREFIX_COMPANY + VALID_COMPANY_PRULIFE;
+    public static final String COMMISSION_DESC_MANUEXTRA = " " + PREFIX_COMMISSION + VALID_COMMISSION_MANUEXTRA;
+    public static final String COMMISSION_DESC_PRULIFE = " " + PREFIX_COMMISSION + VALID_COMMISSION_PRULIFE;
+    public static final String COVERAGE_DESC_MANUEXTRA = " " + PREFIX_COVERAGES + VALID_COVERAGE_MANUEXTRA;
+    public static final String COVERAGE_DESC_PRULIFE = " " + PREFIX_COVERAGES + VALID_COVERAGE_PRULIFE;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "Policy&"; // '&' not allowed in Title
+    public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "sds"; // 'sds' not a valid company
+    public static final String INVALID_COMMISSION_DESC = " " + PREFIX_COMMISSION + "101% 101% 101%"; // '101%' too large
+    public static final String INVALID_COVERAGE_DESC = " " + PREFIX_COVERAGES + "dsdas"; // 'dsdas' not a valid coverage
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

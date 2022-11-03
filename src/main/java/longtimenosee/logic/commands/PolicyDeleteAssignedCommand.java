@@ -73,6 +73,6 @@ public class PolicyDeleteAssignedCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof PolicyDeleteAssignedCommand // instanceof handles nulls
                 && targetPersonIndex.equals(((PolicyDeleteAssignedCommand) other).targetPersonIndex) // state check
-                && targetPolicyIndex.equals(((PolicyDeleteAssignedCommand) other).targetPersonIndex)); // state check
+                && targetPolicyIndex.equals(((PolicyDeleteAssignedCommand) other).targetPolicyIndex)); // state check
     }
 }

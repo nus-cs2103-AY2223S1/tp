@@ -87,8 +87,8 @@ public class PolicyDeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+    private void showNoPolicy(Model model) {
+        model.updateFilteredPolicyList(p -> false);
 
         assertTrue(model.getFilteredPolicyList().isEmpty());
     }

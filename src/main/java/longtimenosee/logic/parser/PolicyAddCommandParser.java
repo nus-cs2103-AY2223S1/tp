@@ -20,7 +20,7 @@ import longtimenosee.model.policy.Title;
 /**
  * Parses input arguments and creates a new PolicyAddCommand object.
  */
-public class PolicyAddCommandParser {
+public class PolicyAddCommandParser implements Parser<PolicyAddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the PolicyAddCommand

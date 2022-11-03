@@ -37,7 +37,7 @@ public class PolicyAddCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_policyAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPolicyAdded modelStub = new ModelStubAcceptingPolicyAdded();
         Policy validPolicy = new PolicyBuilder().build();
 
@@ -48,7 +48,7 @@ public class PolicyAddCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicatePolicy_throwsCommandException() {
         Policy validPolicy = new PolicyBuilder().build();
         PolicyAddCommand policyAddCommand = new PolicyAddCommand(validPolicy);
         ModelStub modelStub = new ModelStubWithPolicy(validPolicy);
