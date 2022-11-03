@@ -85,6 +85,13 @@ public class TypicalPersons {
             .withLocation("JIN")
             .build();
 
+    public static final TeachingAssistant JOHN = (TeachingAssistant) new TeachingAssistantBuilder()
+            .withName("JOHN").withPhone("12345")
+            .withEmail("john@example.com").withGender("M").withTags(VALID_TAG_FRIEND)
+            .withGithubUsername("johnny123")
+            .withLocation("BMU")
+            .build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     /* -------------------------------PROFESSOR------------------------------- */
@@ -249,6 +256,6 @@ public class TypicalPersons {
     }
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, ANDERSON,
-                BEN, COLIN, CABE));
+                BEN, COLIN, CABE, JOHN));
     }
 }

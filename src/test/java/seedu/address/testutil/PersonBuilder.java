@@ -56,7 +56,7 @@ public abstract class PersonBuilder {
         email = personToCopy.getEmail();
         gender = personToCopy.getGender();
         tags = new HashSet<>(personToCopy.getTags());
-        location = new Location(DEFAULT_LOCATION);
+        location = personToCopy.getLocation();
         githubUsername = personToCopy.getUsername();
     }
 
