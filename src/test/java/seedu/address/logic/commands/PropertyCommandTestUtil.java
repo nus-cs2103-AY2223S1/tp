@@ -12,7 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -21,7 +20,7 @@ import seedu.address.logic.commands.property.EditPropertyCommand;
 import seedu.address.model.Model;
 import seedu.address.model.PropertyBook;
 import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyNameContainsSubstringPredicate;
 import seedu.address.testutil.EditPropertyDescriptorBuilder;
 
 /**
@@ -143,7 +142,7 @@ public class PropertyCommandTestUtil {
 
         Property property = model.getFilteredPropertyList().get(targetIndex.getZeroBased());
         final String[] splitName = property.getPropertyName().fullName.split("\\s+");
-        model.updateFilteredPropertyList(new PropertyNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPropertyList(new PropertyNameContainsSubstringPredicate(splitName[0]));
 
         assertEquals(1, model.getFilteredPropertyList().size());
     }
