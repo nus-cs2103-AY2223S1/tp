@@ -65,13 +65,13 @@ by a big-picture design overview of the various components before diving into in
 * [TestFX](https://github.com/TestFX/TestFX)
 
 ### Graphics and assets
-* App Icon - Minecraft Book & Quill icon: https://minecraft.fandom.com/wiki/Book_and_Quill
-* Font - Minecraft font: https://fontmeme.com/fonts/minecraft-font/
-* Background textures - Dirt block: https://minecraft.fandom.com/wiki/Dirt
-* Background textures - Grass block: https://minecraft.fandom.com/wiki/Grass_Block
-* Background textures - Bedrock: https://minecraft.fandom.com/wiki/Bedrock
-* Creeper texture:
-* Creeper explosion texture: 
+* App Icon - [Minecraft Book & Quill icon](https://minecraft.fandom.com/wiki/Book_and_Quill)
+* Font - [Minecraft font](https://fontmeme.com/fonts/minecraft-font/)
+* Background textures - [Dirt block](https://minecraft.fandom.com/wiki/Dirt)
+* Background textures - [Grass block](https://minecraft.fandom.com/wiki/Grass_Block)
+* Background textures - [Bedrock](https://minecraft.fandom.com/wiki/Bedrock)
+* [Creeper texture](https://en.wikipedia.org/wiki/File:Creeper_(Minecraft).png)
+* [Creeper explosion texture](https://toppng.com/show_download/244692/explosion-pixel-art/large)
 * Creeper explosion audio: Self-recorded in game
 
 These assets are copyright Mojang Studios, which are available for non-commercial use.
@@ -87,7 +87,31 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Conceptualization of Minefriends**
 
+#### Target user persona
 
+A male 14 year old teenager who plays Minecraft multiplayer with his friends. 
+He is an expert Minecraft player. He has school and extracurricular commitments 
+but always finds time to play Minecraft. He plays a variety of multiplayer game modes 
+(eg. creative, survival games, skyblock, KitPvP etc.) and he has different friends who play
+Minecraft with him in different ways. He is familiar with Minecraft commands so he 
+is comfortable with the CLI.
+
+#### Target user profile
+
+* plays Minecraft multiplayer with friends regularly
+* has many Minecraft friends (online and offline) from all over the world
+* prefer desktop apps over other types
+* prefers typing to mouse interactions and types fast
+* is comfortable with using the Minecraft command line, and by hence extension, using CLI apps
+
+#### Value proposition
+
+There are many servers and multiplayer game modes in Minecraft, and players have different schedules to when they can play.
+We want to help players find the right people to play the right game mode with at the right time.
+
+#### User stories and use cases
+
+The user stories can be found in [Appendix A] and use cases in [Appendix B].
 
 --------------------------------------------------------------------------------------------------------------------
 
