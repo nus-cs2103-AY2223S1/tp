@@ -58,17 +58,23 @@ taken, currently taking or interested in taking the specified module.
 
 ConnectNUS is **optimised for use via a Command Line Interface** (CLI) while still having the benefits of a
 **Graphical User Interface** (GUI). For Computer Science students who are generally fast typers, ConnectNUS is an
-excellent platform for you to get your CS related tasks management done quickly, so you can spend less time searching 
+excellent platform for you to get your CS related tasks management done quickly, so you can spend less time searching
 through chats, and spend more time making meaningful connections and engaging in productive work.
 
-The goal of this User Guide is to empower you, as NUS Computer Science students, with the knowledge to **maximise the full 
+The goal of this User Guide is to empower you, as NUS Computer Science students, with the knowledge to **maximise the full
 potential** of ConnectNUS and capitalise on the features ConnectNUS offers for you to make your CS experience
 **better than better**.
 
 Before you start using ConnectNUS, you are recommended to read the [Navigating the User Guide](#navigating-the-user-guide),
-[Glossary](#glossary), [Quick Start](#quick-start) as well as [Notes about the command format](#notes-about-the-command-format) 
-sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this 
+[Glossary](#glossary), [Quick Start](#quick-start) as well as [Notes about the command format](#notes-about-the-command-format)
+sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
 User Guide and help you navigate it with ease.
+
+If this is your first time using the ConnectNUS application, you are advised to read through the **entire** User Guide **in the sequence
+provided**.
+
+Whenever you are in doubt, forget the command formats for any feature, need help troubleshooting
+or you simply want to maximise your use of this application, do remember to revisit this User Guide.
 
 ## Navigating the User Guide
 
@@ -76,26 +82,29 @@ For each of the [Features](#features) in this User Guide, you will be provided w
 1. An overview of the feature to introduce its purpose and function.
 2. The command format to use the particular feature.
 3. Sample commands for you to try out the feature.
-4. Explanation on valid command parameters.
-5. Screenshots of the expected behaviour of the sample command to help you understand how the command works.
+4. Explanations on valid command parameters.
+5. Some include screenshots of the expected behaviour of the sample command to help you understand how the command works.
 
-The User Guide is divided into the sections by each feature :
-- [User profile features](#user-features) 
+The Features in the User Guide are grouped according to their functions :
+- [User profile features](#user-features)
 - [Contact list features](#contact-list-features)
 - [Module features](#module-features)
 - [Timetable features](#timetable-features)
 - [Filtering features](#filtering-features)
 - [Other features](#other-features)
 
-You can jump into the various sections from the Table of Contents to learn about all related commands to the respective 
-features and click on [Scroll back to top](#table-of-contents), which can be found at the end of every section, to 
-access to the Table of Contents to quickly jump to another section without manually scrolling through the User Guide.
+You can jump to the specific section of the user guide which you require using the Table of Contents on the first page
+of the User Guide. This enables you to learn about all the related information you need to know regarding the respective
+features. You may click on [Scroll back to top](#table-of-contents), which can be found at the end of every section, to
+gain quick access to the Table of Contents, enabling you to redirect yourself to another section if necessary without
+having to manually scroll through the User Guide.
 
-If it is your first time using a Command Line Interface, you are recommended to try out the sample commands provided
-to gain a better understanding of how a Command Line Interface works.
+If this is your first time using a Command Line Interface, you are recommended to go through the entire user guide according
+to the sequence laid out in the user guide, as well as trying out the sample commands provided in each feature to gain
+a better understanding of how a Command Line Interface works.
 
-Once you are proficient with the various command types, you may refer to the section [Command Summary](#command-summary), 
-which will provide you with a summary of all the command formats of all features provided by ConnectNUS.
+Once you are proficient with the various command types, you may refer to the section [Command Summary](#command-summary),
+which will provide you with a quick glance summary of all the command formats of all features provided by ConnectNUS.
 
 As recommended in the introduction, we would like to direct you to read the [Glossary](#glossary) section next.
 
@@ -103,7 +112,7 @@ As recommended in the introduction, we would like to direct you to read the [Glo
 
 ## Glossary
 
-The glossary illustrated in the table below will help you understand the terminologies used in this 
+The glossary illustrated in the table below will help you understand the terminologies used in this
 User Guide.
 
 <table>
@@ -116,14 +125,14 @@ User Guide.
     <td>
       A text-based interface that is used to operate software (such as ConnectNUS) and operating systems. CLI
       allows a user to perform tasks by entering commands. </br>
-      Users enter the specific command, press “Enter”, and then wait for a response. 
+      Users enter the specific command, press “Enter”, and then wait for a response.
       After receiving the command, the CLI processes it accordingly and shows the output/result on the screen.
     </td>
   </tr>
   <tr>
     <td><strong>Graphical User Interface (GUI)</strong></td>
     <td>
-      A system of interactive visual components for computer software. A GUI displays objects that convey information, 
+      A system of interactive visual components for computer software. A GUI displays objects that convey information,
       and represent actions that can be taken by the user. The objects change color, size, or visibility when the user 
       interacts with them.
     </td>
@@ -131,8 +140,8 @@ User Guide.
   <tr>
     <td><strong>Index</strong></td>
     <td>
-      An identifier which is the number corresponding to order of which your contacts are listed out, and used in 
-      conjunction with the commands to specify the contact with the given index. Each contact is identified with a 
+      An identifier which is the number corresponding to order of which your contacts are listed out, and used in
+      conjunction with the commands to specify the contact with the given index. Each contact is identified with a
       unique index.
     </td>
   </tr>
@@ -146,7 +155,7 @@ User Guide.
   <tr>
     <td><strong>❗Caution</strong></td>
     <td>
-      To inform you of some unintended consequences that may occur when you use the commands, so you will be  
+      To inform you of some unintended consequences that may occur when you use the commands, so you will be
       able to use them appropriately.
     </td>
   </tr>
@@ -232,7 +241,7 @@ Each feature can be run using a command, and the commands follow the following f
 
 ## Viewing help
 
-Shows a message explaining how to access the help page. 
+Shows a message explaining how to access the help page.
 You can click on the button to copy the URL and paste it in a web browser to be directed back to this
 User Guide should you require assistance in the future.
 
@@ -514,8 +523,10 @@ Examples:
 
 ### Refreshing to Next Semester
 
-Shifts all the current modules in both the user and all persons in the contact list into their previous modules during a new semester,
-allowing you to quickly refresh ConnectNUS for all persons and user for the next semester of modules.
+Moves all the current modules in the current module lists of both the user and all persons in the user's contact list into
+their previous modules list when a next semester command is given. This enables user's to update their ConnectNUS app
+at the start of the new semester by clearing all modules from the current module lists of the user and their contacts,
+such that they are able to add new current modules that they and their contacts will be taking in the upcoming semester to their app.
 
 Format: `nextsem`
 
@@ -660,7 +671,7 @@ Examples:
 
 ### Filtering Current Modules
 
-Filters the current modules of contacts to return a list of persons with any of the current modules specified by you,
+Filters the current modules lists of all contacts to return a list of persons with any of the current modules specified by you,
 so you can easily find groupmates or people to collaborate with.
 
 Format: `filtercurrmod CURRENT_MODULE [CURRENT_MODULE]…`
@@ -678,7 +689,7 @@ Examples:
 
 ### Filtering Previous Modules
 
-Filters the previous modules of contacts to return a list of persons with any of the previous modules specified,
+Filters the previous modules lists of contacts to return a list of persons with any of the previous modules specified,
 so you can easily find and consult people who have finish the module.
 
 Format: `filterprevmod PREVIOUS_MODULE [PREVIOUS_MODULE]…`
@@ -696,7 +707,7 @@ Examples:
 
 ### Filtering Planned Modules
 
-Filters the planned modules of contacts to return a list of persons with any of the planned modules specified, so you can
+Filters the planned modules lists of contacts to return a list of persons with any of the planned modules specified, so you can
 arrange to take lessons together during module bidding.
 
 Format: `filterplanmod PLANNED_MODULE [PLANNED_MODULE]…`

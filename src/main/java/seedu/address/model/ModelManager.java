@@ -29,8 +29,6 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private Set<Lesson> timetable = new HashSet<>();
 
-    private boolean updateStatus = false;
-
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -173,10 +171,8 @@ public class ModelManager implements Model {
 
     @Override
     public void nextSem() throws CommandException {
-        updateStatus = true;
         getFilteredPersonList().forEach(person -> person.updatePrevMods());
         getUser().updatePrevMods();
-        updateStatus = false;
     }
 
     @Override
