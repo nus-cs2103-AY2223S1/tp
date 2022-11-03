@@ -49,6 +49,7 @@ If you encounter any issues in launching and using the app, feel free refer to t
   * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) are ignored by the parser.
   * e.g. if the command specifies `help 123`, the parser interprets it as `help`.
+* The constraints of each parameter has been provided in [the Appendix](#parameters-and-constraints) for your reference.
 
 ### Modes
 In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to (module) class. Therefore,
@@ -475,3 +476,39 @@ Format: `unfocus`
 **Q**: How do I transfer my data to another Computer?
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TA-Assist home folder.
+
+## Appendix
+
+### Parameters and Constraints
+
+The following is the list of all parameters used in TA-Assist along with its constraints:
+
+* `INDEX` 
+  * Indices must be a positive integer
+  * Indices must be within the indices shown in the displayed list
+* `KEYWORD` 
+  * Search keywords can not contain spaces
+* `n/NAME` 
+  * Student names must not be empty 
+  * Student names must only contain alphanumeric characters and spaces
+* `p/PHONE_NUMBER`
+  * Phone numbers must only contain numbers
+  * Phone numbers must be at least 3 digits long
+* `e/EMAIL`
+  * E-mails must be of the format `local-part@domain`, i.e. `johndoe+work@s.mail.com`
+  * `local-part` must only contain alphanumeric characters and these special characters, excluding the parentheses, (`+_.-`)
+  * `domain` is made up of domain labels, seperated by period
+    * Each `domain` must end with a domain label of at least 2 characters long
+    * Each domain label must start and end with alphanumeric characters
+    * Each domain label must consists of only alphanumeric characters, seperated only by hyphens, if any.
+* `a/ADDRESS`
+  * Addresses must not be empty
+* `c/CLASS_NAME`
+  * Class names must be alphanumeric
+  * Class names must not exceed 25 characters
+* `s/SESSION_NAME`
+  * Session names must not be empty
+  * Session names must only contain alphanumeric characters, underscores, and spaces
+* `d/DATE`
+  * Dates must be of the format `YYYY-MM-DD`, i.e. 25th May 2022 must be written as `2022-05-25`
+  * Dates must be a valid date, i.e. `2001-02-29` is not a valid date
