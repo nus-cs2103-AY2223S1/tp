@@ -47,7 +47,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage());
+            throw new ParseException(String.format(pe.getMessage(), EditCommand.MESSAGE_USAGE));
         }
 
         if (!argMultimap.getAllValues(PREFIX_MOD).isEmpty()) {

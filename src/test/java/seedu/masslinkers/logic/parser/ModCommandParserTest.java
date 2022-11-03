@@ -94,7 +94,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_invalidIndex_throwParseException() {
         assertParseFailure(parser, ModAddCommand.COMMAND_WORD + " -1 " + VALID_MOD_STRING_CS2103T,
-                String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, ModAddCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     /**

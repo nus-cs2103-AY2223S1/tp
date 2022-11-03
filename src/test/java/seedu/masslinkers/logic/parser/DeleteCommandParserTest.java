@@ -1,8 +1,8 @@
 package seedu.masslinkers.logic.parser;
 
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static seedu.masslinkers.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.masslinkers.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.masslinkers.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import org.junit.jupiter.api.Test;

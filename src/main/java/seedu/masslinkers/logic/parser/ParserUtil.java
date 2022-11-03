@@ -1,6 +1,10 @@
 package seedu.masslinkers.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_ARGUMENTS;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_INDEX;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_INPUT;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_UNEXPECTED_PREFIX;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,12 +32,6 @@ import seedu.masslinkers.model.student.Telegram;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
-    public static final String MESSAGE_INVALID_INDEX = "Index is missing or not a non-zero unsigned integer.";
-    public static final String MESSAGE_UNEXPECTED_CHARACTERS = "There appears to be extraneous characters "
-            + "being supplied to the command.\nRefer to help for the command format.";
-    public static final String MESSAGE_UNEXPECTED_PREFIX = "The prefix %1$s is not recognised "
-            + "by Mass Linkers.\nRefer to help for the command format.";
     public static final String PREFIX_REGEX = "(?i)[a-z]/.*";
 
     /**
@@ -48,7 +46,11 @@ public class ParserUtil {
         // checks if index has extraneous characters
         String[] splittedArgs = trimmedIndex.split("\\s+");
         if (splittedArgs.length > 1) {
-            throw new ParseException(MESSAGE_UNEXPECTED_CHARACTERS);
+            Set<String> illegalChars = Arrays.stream(splittedArgs)
+                    .filter(x -> !StringUtil.isNonZeroUnsignedInteger(x))
+                    .collect(Collectors.toSet());
+            // another method will have to catch this ParseException (KIV for better design)
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENTS, illegalChars.iterator().next(), "%1$s"));
         }
 
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
@@ -97,6 +99,14 @@ public class ParserUtil {
         requireNonNull(handle);
         String trimmedHandle = handle.trim();
         checkForPrefix(trimmedHandle);
+
+        // checks if there is a space in the input
+        try {
+            checkForMoreThanOneWord(trimmedHandle);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(pe.getMessage(), "Telegram handle"));
+        }
+
         if (!Telegram.isValidTelegram(trimmedHandle)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
@@ -112,6 +122,14 @@ public class ParserUtil {
     public static GitHub parseGitHub(String username) throws ParseException {
         String trimmedUsername = username.trim();
         checkForPrefix(trimmedUsername);
+
+        // checks if there is a space in the input
+        try {
+            checkForMoreThanOneWord(trimmedUsername);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(pe.getMessage(), "GitHub username"));
+        }
+
         if (!GitHub.isValidGitHub(trimmedUsername)) {
             throw new ParseException(GitHub.MESSAGE_CONSTRAINTS);
         }
@@ -127,6 +145,14 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         String trimmedEmail = email.trim();
         checkForPrefix(trimmedEmail);
+
+        // checks if there is a space in the input
+        try {
+            checkForMoreThanOneWord(trimmedEmail);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(pe.getMessage(), "Email address"));
+        }
+
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -142,6 +168,14 @@ public class ParserUtil {
     public static Interest parseInterest(String interest) throws ParseException {
         String trimmedInterest = interest.trim();
         checkForPrefix(trimmedInterest);
+
+        // checks if there is a space in the input
+        try {
+            checkForMoreThanOneWord(trimmedInterest);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(pe.getMessage(), "Interests"));
+        }
+
         if (!Interest.isValidInterest(trimmedInterest)) {
             throw new ParseException(Interest.MESSAGE_CONSTRAINTS);
         }
@@ -168,6 +202,14 @@ public class ParserUtil {
     public static Mod parseMod(String mod) throws ParseException {
         String trimmedUpperCasedMod = mod.trim().toUpperCase();
         checkForPrefix(trimmedUpperCasedMod);
+
+        // checks if there is a space in the input
+        try {
+            checkForMoreThanOneWord(trimmedUpperCasedMod);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(pe.getMessage(), "Module names"));
+        }
+
         if (!Mod.isValidModName(trimmedUpperCasedMod)) {
             throw new ParseException(Mod.MESSAGE_CONSTRAINTS);
         }
@@ -232,6 +274,18 @@ public class ParserUtil {
                 throw new ParseException(String.format(MESSAGE_UNEXPECTED_PREFIX,
                         stringsWithInvalidPrefix.iterator().next().substring(0, 2)));
             }
+        }
+    }
+
+    /**
+     * Checks if the given string is seperated by space(s).
+     * @param args The string to check.
+     * @throws ParseException When there are spaces in between the string.
+     */
+    private static void checkForMoreThanOneWord(String args) throws ParseException {
+        String[] splittedArgs = args.split("\\s+");
+        if (splittedArgs.length > 1) {
+            throw new ParseException(MESSAGE_INVALID_INPUT);
         }
     }
 }

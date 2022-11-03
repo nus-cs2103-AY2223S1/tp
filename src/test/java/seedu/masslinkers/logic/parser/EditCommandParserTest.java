@@ -1,6 +1,9 @@
 package seedu.masslinkers.logic.parser;
 
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_ARGUMENTS;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_UNEXPECTED_PREFIX;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.INTEREST_DESC_AI;
@@ -28,9 +31,6 @@ import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_INTEREST;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_MOD;
 import static seedu.masslinkers.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.masslinkers.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.masslinkers.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.masslinkers.logic.parser.ParserUtil.MESSAGE_UNEXPECTED_CHARACTERS;
-import static seedu.masslinkers.logic.parser.ParserUtil.MESSAGE_UNEXPECTED_PREFIX;
 import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_THIRD_STUDENT;
@@ -64,7 +64,8 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_UNEXPECTED_CHARACTERS);
+        assertParseFailure(parser, VALID_NAME_AMY, String.format(MESSAGE_INVALID_ARGUMENTS,
+                VALID_NAME_AMY.split("\\s+")[1], EditCommand.MESSAGE_USAGE));
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -82,7 +83,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_INDEX);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_UNEXPECTED_CHARACTERS);
+        assertParseFailure(parser, "1 some random string", String.format(MESSAGE_INVALID_ARGUMENTS,
+                "some", EditCommand.MESSAGE_USAGE));
 
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1 o/ string", String.format(MESSAGE_UNEXPECTED_PREFIX, "o/"));
