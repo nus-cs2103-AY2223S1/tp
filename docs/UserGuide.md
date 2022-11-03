@@ -388,7 +388,7 @@ and launch module-related links from Plannit in a swift manner. Additionally, th
 enables you to attach your own meanings to generically-named links, saving you the
 hassle of searching and remembering links.
 
-E.g., Using the alias `tut t10 v fun` to label the link `nus-sg.zoom.us/j/81374731875?pwd=ZE9hWFlNVGJVNENFQm1SREhVVEs5Zz09`
+E.g., Using the alias `tut t10 v fun` to label the link `nus-sg.zoom.us/j/81374731875?pwd=ZE9hWFlNVGJVNEREhVVEs5Zz09`
 allows you to join the zoom room effortlessly whenever you want to.
 
 #### 2.3.1. Add link
@@ -399,9 +399,9 @@ If there exists a link URL or alias that is detected as invalid within a command
 none of the link(s) in the command will be added. 
 Link aliases will be paired with link URLs according to their respective order of input (left-to-right).
 
-| :exclamation: **Alert:** Plannit provides no guarantee of the link URL's existence |
-|------------------------------------------------------------------------------------|
-
+<div markdown="span" class="alert alert-info"> :exclamation: **Alert:**<br/>  
+Plannit provides no guarantee of the link URL's existence.
+</div>
 
 | Field           | Flag  | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 |-----------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -474,8 +474,9 @@ Here's a screenshot of Plannit before and after executing the command:
 You may open link(s) from a specific module to your default browser using the `open-link` command.
 Links will be opened by means of their corresponding alias.
 
-| :bulb: **Tip:** Hover your cursor over aliases in Plannit to peak at their associated URL |
-|-------------------------------------------------------------------------------------------|
+<div markdown="span" class="alert alert-info"> :bulb: **Tip:**<br/>  
+Hover your cursor over aliases in Plannit to peak at their associated URL.
+</div>
 
 An alternative way to open links is by means of clicking on their aliases on the application window.
 
@@ -483,9 +484,10 @@ Multiple links can be opened at once using its corresponding alias according to 
 (left to right). If there exists a link alias that is detected as invalid within a chained command,
 the links to its left will be opened while the links to its right will not be opened.
 
-| :exclamation: **Alert:** Permissions from your operating system may be required for some users to open links from Plannit using either way<br>(They are enabled by default for most users) |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-
+<div markdown="span" class="alert alert-info"> :exclamation: **Alert:**<br/>  
+Permissions from your operating system may be required for some users to open links from Plannit using either way<br>
+(They are enabled by default for most users)
+</div>
 
 | Field           | Flag  | Constraints                                                                                                                                                                                |
 |-----------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
