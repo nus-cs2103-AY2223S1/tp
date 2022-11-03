@@ -77,7 +77,6 @@ public class PickCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_LESSON_ID);
         }
 
-        //TODO: Change this
         String lessonInfo = lessonId + "\n" + module.getLessonInfo(lessonType, curr.getSelectedSemester(), lessonId);
 
         // if everything correct then set accordingly in hashmap in UserModule

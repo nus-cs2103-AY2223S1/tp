@@ -55,7 +55,6 @@ public class UniqueUserModuleList implements Iterable<UserModule> {
      * Gets the UserModule in the list based on String to be compared with.
      */
     public Optional<UserModule> get(String moduleCodeToGet) {
-        //TODO: check this again later
         UserModule toGet = new UserModule(moduleCodeToGet, SemestersEnum.S1);
 
         return internalList.stream().filter(toGet::isSameUserModule).findFirst();

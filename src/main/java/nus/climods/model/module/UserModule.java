@@ -53,7 +53,7 @@ public class UserModule {
 
         for (LessonTypeEnum k : lessons.keySet()) {
             str.append(k.name()).append(" ")
-                    .append(lessons.get(k));
+                    .append(lessons.get(k)).append("--\n");
         }
 
         lessonsDataDisplay.set(str.toString());
