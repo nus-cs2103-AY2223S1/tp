@@ -46,6 +46,10 @@ public class TagContainsKeywordsPredicateTest {
         TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Collections.singletonList("Java"));
         assertTrue(predicate.test(new StudentBuilder().withTags("Java").build()));
 
+        // Mixed-case keyword
+        predicate = new TagContainsKeywordsPredicate(Arrays.asList("pYthOn"));
+        assertTrue(predicate.test(new StudentBuilder().withTags("Python").build()));
+
         // Zero keywords
         predicate = new TagContainsKeywordsPredicate(Collections.emptyList());
         assertTrue(predicate.test(new StudentBuilder().withTags("Java").build()));
@@ -63,10 +67,6 @@ public class TagContainsKeywordsPredicateTest {
     public void test_tagDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
         TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Arrays.asList("Java"));
-        assertFalse(predicate.test(new StudentBuilder().withTags("Python").build()));
-
-        // Mixed-case keyword
-        predicate = new TagContainsKeywordsPredicate(Arrays.asList("pYthOn"));
         assertFalse(predicate.test(new StudentBuilder().withTags("Python").build()));
     }
 }

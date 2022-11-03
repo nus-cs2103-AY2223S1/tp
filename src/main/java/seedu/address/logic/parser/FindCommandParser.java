@@ -76,9 +76,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new ClassContainsDatePredicate(dateToFind));
 
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            // There is a need to convert to lower case so that the checks will be case-insensitive
-            List<String> tags = argMultimap.getAllValues(PREFIX_TAG)
-                    .stream().map(String::toLowerCase).collect(Collectors.toList());
+            List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
             return new FindCommand(new TagContainsKeywordsPredicate(tags));
         } else {
             // Other prefixes that are not supported by the search system, or no prefix found.
