@@ -11,9 +11,7 @@ public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphabets, spaces, apostrophes ('), hyphens (-), periods (.), commas (,), "
-                    + "and forward slashes (/).\nThey must start with an alphabet, and cannot be blank.\n "
-                    + "They should not contain any field prefixes after whitespace in its content (e.g., "
-                    + "\"n/James p/Barnes\").";
+                    + "and forward slashes (/).\nThey must start with an alphabet, and cannot be blank.\n";
 
     /*
      * The first character of the address must not be a whitespace,
