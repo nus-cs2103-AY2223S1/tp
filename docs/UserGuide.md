@@ -106,6 +106,45 @@ Format: `delete p/GLOBAL-PERSON-INDEX`
 Examples:
 * `delete p/1` Deletes the first member.
 
+
+### Adding a team: `create`
+
+Adds a team with the given name to EZLead.
+
+Format: `create n/TEAM-NAME`
+
+Examples:
+* `create n/Team1` Adds a team with the name Team1.
+
+Note that names should only contain alphanumerical characters and spaces, and it should not be blank.
+
+![CreateTeamExample.png](images/CreateTeamExample.png)
+
+### Deleting a team: `delteam`
+
+Deletes the given team from EZLead.
+
+Format: `delteam TEAM-INDEX`
+
+Examples:
+* `delteam 1` Deletes the first team.
+
+### Changing a team's name: `editteam`
+
+Changes a team's name (specified by index) to the given name.
+
+Format: `editteam t/TEAM-INDEX n/NEW-TEAM-NAME`
+
+Examples:
+* `editteam t/1 n/TEAMNEW` Changes the first team's name to 'TEAMNEW'.
+
+### Viewing all members: `userlist`
+
+Shows a list of all members and their details.
+
+Format: `userlist`
+
+
 ### Assigning a member to a team: `assign`
 
 assigns a member to a team. 
@@ -141,12 +180,6 @@ MEMBER-INDEX is the index from the userlist (refer to `Viewing all members` sect
 
 Examples:
 * `unassign m/1 t/1` removes the first member in the global member list from the first team.
-
-### Viewing all members: `userlist`
-
-Shows a list of all members and their details.
-
-Format: `userlist`
 
 ### Adding a task: `taskadd`
 
@@ -204,37 +237,6 @@ Examples:
 * To add deadline to an already existing task, use the command `taskedit t/TEAM-INDEX task/TASK-INDEX d/NEW DD-MM-YYYY`
 
 </div>
-
-### Adding a team: `create`
-
-Adds a team with the given name to EZLead.
-
-Format: `create n/TEAM-NAME`
-
-Examples:
-* `create n/Team1` Adds a team with the name Team1.
-
-Note that names should only contain alphanumerical characters and spaces, and it should not be blank.
-
-![CreateTeamExample.png](images/CreateTeamExample.png)
-
-### Deleting a team: `delteam`
-
-Deletes the given team from EZLead.
-
-Format: `delteam TEAM-INDEX`
-
-Examples:
-* `delteam 1` Deletes the first team.
-
-### Changing a team's name: `editteam`
-
-Changes a team's name (specified by index) to the given name.
-
-Format: `editteam t/TEAM-INDEX n/NEW-TEAM-NAME`
-
-Examples:
-* `editteam t/1 n/TEAMNEW` Changes the first team's name to 'TEAMNEW'.
 
 --------------------------------------------------------------------------------------------------------------------
 
