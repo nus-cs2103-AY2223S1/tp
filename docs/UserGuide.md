@@ -194,6 +194,7 @@ Format: `clear`
 Creates a meeting and adds it to the meeting list.
 
 Format: `meet [NAMES_OF_PERSONS_TO_MEET (separated by }})] ;;; MEETING_DESCRIPTION ;;; MEETING_DATE_AND_TIME (in dd-MM-yyyy HHmm format) ;;; MEETING_LOCATION`
+
 Example: `meet Alex }} Bernice ;;; Project Meeting ;;; 29-01-2022 1530 ;;; UTown`
 
 * The names of the people to meet must correspond to the names of actual contacts, otherwise an error message will be displayed 
@@ -206,6 +207,10 @@ Example: `meet Alex }} Bernice ;;; Project Meeting ;;; 29-01-2022 1530 ;;; UTown
   * Both the month and day have to be in double digits, e.g. `1-1-2000`, `01-9-2000`, `9-18-2000` will not be accepted, but `01-01-2000`, `01-09-2000`, `09-18-2000` will be
   * Years smaller than 1000 or greater than 10000 will not be accepted as well
   * Time of the meeting has to be in 24h format
+  * Dates in the past are allowed, if you would like to archive/ track past meetings
+* For duplicate meetings:
+  * A meeting is considered duplicate (and an error will be thrown) when you are meeting the same people at the same time.
+  * We allow concurrent meetings with different groups of people, as some people might want to arrange both a physical and a virtual meeting at the same time (this is not a feature bug, we have encountered such people before)
 
 ### Deleting a meeting : `deletemeeting`
 
