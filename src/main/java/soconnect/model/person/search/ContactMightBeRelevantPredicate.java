@@ -20,13 +20,15 @@ public class ContactMightBeRelevantPredicate implements Predicate<Person> {
     private boolean isEmailContained = false;
     private boolean isPhoneContained = false;
     private boolean isTagContained = false;
+    private boolean isSearchAccuracyReduced = false;
 
     /**
      * Constructs the {@code ContactMightBeRelevantPredicate} object.
      * Tests the person by matching the keywords to all the information field, ignoring prefix groupings.
      */
-    public ContactMightBeRelevantPredicate(ArgumentMultimap argMultimap) {
+    public ContactMightBeRelevantPredicate(ArgumentMultimap argMultimap, boolean isSearchAccuracyReduced) {
         this.argMultimap = argMultimap;
+        this.isSearchAccuracyReduced = isSearchAccuracyReduced;
     }
 
     @Override
@@ -60,32 +62,32 @@ public class ContactMightBeRelevantPredicate implements Predicate<Person> {
     private boolean keywordsContainName(List<String> keywords, Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil
-                        .containsSomeKeywordsIgnoreCase(person.getName().fullName, keyword));
+                        .containsSomeKeywordsIgnoreCase(person.getName().fullName, keyword, isSearchAccuracyReduced));
     }
 
     private boolean keywordsContainAddress(List<String> keywords, Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil
-                        .containsSomeKeywordsIgnoreCase(person.getAddress().value, keyword));
+                        .containsSomeKeywordsIgnoreCase(person.getAddress().value, keyword, isSearchAccuracyReduced));
     }
 
     private boolean keywordsContainEmail(List<String> keywords, Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil
-                        .containsSomeKeywordsIgnoreCase(person.getEmail().value, keyword));
+                        .containsSomeKeywordsIgnoreCase(person.getEmail().value, keyword, isSearchAccuracyReduced));
     }
 
     private boolean keywordsContainPhone(List<String> keywords, Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil
-                        .containsSomeKeywordsIgnoreCase(person.getPhone().value, keyword));
+                        .containsSomeKeywordsIgnoreCase(person.getPhone().value, keyword, isSearchAccuracyReduced));
     }
 
     private boolean keywordsContainTag(List<String> keywords, Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> person.getTags().stream()
                         .anyMatch(tag -> StringUtil
-                                .containsSomeKeywordsIgnoreCase(tag.tagName, keyword)));
+                                .containsSomeKeywordsIgnoreCase(tag.tagName, keyword, isSearchAccuracyReduced)));
     }
 
     @Override
