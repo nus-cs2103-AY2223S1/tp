@@ -128,7 +128,7 @@ public class Exam {
 
     /**
      * Creates and returns a {@code Exam} with the details of {@code this}
-     * edited with {@code editExamDescriptor}.
+     * edited with {@code newModule}, {@code newDescription}, {@code newExamDate}.
      */
     public Exam edit(Module newModule, ExamDescription newDescription, ExamDate newExamDate) {
         requireAnyNonNull(newModule, newDescription, newExamDate);

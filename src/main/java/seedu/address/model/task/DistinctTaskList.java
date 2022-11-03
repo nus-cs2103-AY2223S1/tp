@@ -145,7 +145,7 @@ public class DistinctTaskList implements Iterable<Task> {
         requireAllNonNull(previousModule, newModule);
         taskList.forEach(task-> {
             if (task.getModule().equals(previousModule)) {
-                Task editedTask = task.edit(newModule, null);
+                Task editedTask = task.editWithoutUnlinkingExam(newModule, null);
                 replaceTask(task, editedTask, false);
             }
         });
