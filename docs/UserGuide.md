@@ -76,6 +76,13 @@ FYP projects in a concise manner.
 * Extraneous parameters for commands that do not take in parameters (such as `list` and `exit`) will be ignored.<br>
   e.g. if the command specifies `list 456`, it will be interpreted as `list`.
 
+* Invalid parameters for `help` command will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.<br>
+  e.g. if the command specifies `help sort -p 456`, it will be interpreted as `help sort -p'.
+
+* If flag is not specified for `help certainCommand` command, the default help message will show for `certainCommand`.<br>
+  e.g. if the command specifies `help sort`, it will be interpreted as `help sort -p`.
+
 * `STUDENT_ID` should be in the following format: **"A" + (7 digits) + (1 uppercase letter)**. <br>
   e.g. `A0123456G`.
 
@@ -219,7 +226,7 @@ Format: `help [COMMAND]`
 Examples:
 
 * `help add -s` - This shows a detailed help message on the `add -s` command.
-* `help` - This shows a message explaining how to access the help page.
+* `help` - This shows an open window revealing the URL to the user guide which could be copied to the user's clipboard.
 
 ### List of FYPs: `list`
 
