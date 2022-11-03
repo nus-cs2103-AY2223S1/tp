@@ -289,7 +289,7 @@ Format: `export`
 * Exported JSON file will be stored in `data/export/` folder
 
 Examples:
-* `find u/NUS` followed by `export` exports the result of the `find` command to a JSON file.
+* `find u/NUS` followed by `export` exports the displayed list from the `find` command to a JSON file.
 
 
 ### 3.10 Checkout a new or existing list: `checkout`
