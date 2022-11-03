@@ -11,7 +11,7 @@ import seedu.taassist.model.moduleclass.ModuleClass;
  */
 public class ModuleClassCard extends UiPart<Region> {
 
-    private static final String FXML = "ModuleClassListCard.fxml";
+    private static final String FXML = "ModuleClassCard.fxml";
 
     public final ModuleClass moduleClass;
 
