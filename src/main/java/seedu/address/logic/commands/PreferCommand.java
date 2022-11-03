@@ -92,7 +92,7 @@ public class PreferCommand extends Command {
 
         ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        System.out.println(personToEdit.getSocial().getPreferred());
+        model.setPerson(personToEdit, personToEdit);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }
