@@ -14,8 +14,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
 
-    public static final String INVALID_INDEX_FOR_DELETE_TAG = "The index for delete tag is invalid.";
-
+    public static final String INVALID_INDEX_FOR_DELETE_TAG = "The index for tagdel should"
+            + "be greater than 0 and less than 2147483648.";
     @Override
     public DeleteTagCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(userInput, PREFIX_TAG);
