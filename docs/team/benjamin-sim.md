@@ -62,3 +62,10 @@ Given below are my contributions to the project.
   [#55](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/55#pullrequestreview-1139049629),
   [#52](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/52#pullrequestreview-1136739682)
 
+  * Reported bugs and suggestions for other teams in the class:
+  [#176](https://github.com/AY2223S1-CS2103T-W12-4/tp/issues/176),
+  [#173](https://github.com/AY2223S1-CS2103T-W12-4/tp/issues/173),
+  [#149](https://github.com/AY2223S1-CS2103T-W12-4/tp/issues/149),
+  [#187](https://github.com/AY2223S1-CS2103T-W12-4/tp/issues/187),
+  [#188](https://github.com/AY2223S1-CS2103T-W12-4/tp/issues/188)
+
