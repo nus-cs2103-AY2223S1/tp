@@ -46,7 +46,7 @@ public class RemindCommandTest {
     }
 
     @Test
-    public void execute_oneUpcomingInterviews() {
+    public void execute_oneUpcomingInterview() {
         Model localModel = new ModelManager(getTypicalApplicationBookWithUpcomingInterview(), new UserPrefs());
         Model localExpectedModel = new ModelManager(getTypicalApplicationBookWithUpcomingInterview(), new UserPrefs());
 
