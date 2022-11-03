@@ -672,25 +672,24 @@ If your changes to the data file makes its format invalid, FABook will discard a
 
 ## Command summary
 
-| Action                    | Format, Examples                                                                                                                                                   | Shortcut |
-|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
-| **Help**                  | `help`                                                                                                                                                             | f1       |
-| **List**                  | `list`                                                                                                                                                             | l        |
-| **Create**                | `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567` | c        |
-| **Add a File**            | `filepath INDEX f/FILEPATH`<br/> e.g. `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                                                    |          |
-| **Add Meeting**           | `meeting INDEX mt/TIME` <br/> e.g. `meeting 5 mt/19-11-2022-19:00`                                                                                                 |          |
-| **Find**                  | `find n/NAME…` or `find p/NUMBER` or `find a/ADDRESS` <br> e.g., `find n/James Jake` or `find p/09122222` or `find a/Jurong`                                       | f        |
-| **Find**                  | `find t/TAG` <br> e.g., `find t/POTENTIAL`                                                                                                                         | f        |
-| **Open File**             | `file INDEX`<br/> e.g. `file 2`                                                                                                                                    |          |
-| **Get Upcoming Meetings** |                                                                                                                                                                    | f2       |
-| **Update**                | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`update 2 p/91234567 a/21 Lower Kent Ridge Rd`      | u        |
-| **Description**           | `description INDEX ds/DESCRIPTION` <br> e.g., `description 3 ds/Accident prone`                                                                                    | desc     |
-| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                | d        |
-| **Delete Meeting**        | `deletemeeting INDEX mt/TIME` <br/> e.g. `deletemeeting 4 mt/15-12-2022-13:00`                                                                                     |          |
-| **Remove past meetings**  | `sync`                                                                                                                                                             |          |
-| **Clear**                 | `clear`                                                                                                                                                            | cl       |
-| **Undo**                  | `undo`                                                                                                                                                             |          |
-| **Redo**                  | `redo`                                                                                                                                                             |          |
-| **Exit**                  | `exit`                                                                                                                                                             | e        |
+| Action                    | Format, Examples                                                                                                                                                            | Shortcut       |
+|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
+| **Help**                  | `help`                                                                                                                                                                      | **PRESS** `F1` |
+| **List**                  | `list`                                                                                                                                                                      | l              |
+| **Create**                | `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567`          | c              |
+| **Add a File**            | `filepath INDEX f/FILEPATH`<br/> e.g. `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                                                             |                |
+| **Add Meeting**           | `meeting INDEX mt/TIME` <br/> e.g. `meeting 5 mt/19-11-2022-19:00`                                                                                                          |                |
+| **Find**                  | `find n/NAME…` e.g. `find n/James Jake` <br/> `find p/NUMBER` e.g. `find p/09122222` <br/> `find a/ADDRESS` e.g. `find a/Jurong` <br/> `find t/TAG` e.g. `find t/POTENTIAL` | f              |
+| **Open File**             | `file INDEX`<br/> e.g. `file 2`                                                                                                                                             |                |
+| **Get Upcoming Meetings** |                                                                                                                                                                             | **PRESS** `F2` |
+| **Update**                | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`update 2 p/91234567 a/21 Lower Kent Ridge Rd`               | u              |
+| **Description**           | `description INDEX ds/DESCRIPTION` <br> e.g., `description 3 ds/Accident prone`                                                                                             | desc           |
+| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                         | d              |
+| **Delete Meeting**        | `deletemeeting INDEX mt/TIME` <br/> e.g. `deletemeeting 4 mt/15-12-2022-13:00`                                                                                              |                |
+| **Remove past meetings**  | `sync`                                                                                                                                                                      |                |
+| **Clear**                 | `clear`                                                                                                                                                                     | cl             |
+| **Undo**                  | `undo`                                                                                                                                                                      |                |
+| **Redo**                  | `redo`                                                                                                                                                                      |                |
+| **Exit**                  | `exit`                                                                                                                                                                      | e              |
 
 [Return to Table of Contents](#table-of-contents)
