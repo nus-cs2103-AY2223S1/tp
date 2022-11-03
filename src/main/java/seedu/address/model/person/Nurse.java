@@ -175,4 +175,8 @@ public class Nurse extends Person {
     public boolean hasAppointment(AppointmentDateTime appointmentDateTime) {
         return appointments.stream().anyMatch(appt -> appt.getAppointmentDateTime().equals(appointmentDateTime));
     }
+
+    public String toLiteString() {
+        return String.format("Nurse [Uid:%s]", this.getUid());
+    }
 }

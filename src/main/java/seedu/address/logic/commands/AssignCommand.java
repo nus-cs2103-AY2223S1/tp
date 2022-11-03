@@ -15,6 +15,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.index.ReverseIndexComparator;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.AppointmentManager;
 import seedu.address.model.person.Date;
 import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.HomeVisit;
@@ -55,6 +56,7 @@ public class AssignCommand extends Command {
     private final Uid uid1;
     private final Uid uid2;
     private final List<Index> dateslotIndex;
+    private final AppointmentManager appointmentManager = new AppointmentManager();
 
     /**
      * Creates an AssignCommand to assgin specific patient's date slot to a nurse.
@@ -87,7 +89,7 @@ public class AssignCommand extends Command {
         Nurse nurse = getNurse(firstPerson, secondPerson);
         markAssign(model, patient, nurse);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getUid().getUid(), nurse.getUid().getUid()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.toLiteString(), nurse.toLiteString()));
     }
 
     private Patient getPatient(Person person1, Person person2) throws CommandException {

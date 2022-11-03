@@ -130,6 +130,10 @@ public class Patient extends Person {
         return builder.toString();
     }
 
+    public String toLiteString() {
+        return String.format("Patient [Uid:%s]", this.getUid());
+    }
+
     public boolean isPatient() {
         return true;
     }
