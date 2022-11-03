@@ -121,7 +121,7 @@ Adds an item of a specified type with the given details
 
 `addTask d/TASKNAME dl/DEADLINE [t/TAG]` **(task)**
 
-`addItem <supplier index> c/CURRENTSTOCK m/MINIMUMSTOCK` (supply item)
+`addItem <supplier index> c/CURRENTSTOCK m/MINIMUMSTOCK` **(supply item)**
 
 <div markdown="span" class="alert alert-info">
 
