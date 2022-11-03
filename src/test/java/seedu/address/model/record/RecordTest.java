@@ -7,8 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_RECORD_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECORD_MEDICATION;
 import static seedu.address.model.record.Record.DATE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.RECORD1;
-import static seedu.address.testutil.TypicalPersons.RECORD2;
+import static seedu.address.testutil.TypicalRecords.RECORD1;
+import static seedu.address.testutil.TypicalRecords.RECORD2;
 
 import java.time.LocalDateTime;
 

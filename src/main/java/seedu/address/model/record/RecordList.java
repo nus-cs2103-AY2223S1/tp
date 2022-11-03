@@ -20,11 +20,14 @@ public class RecordList {
 
     /**
      * Adds a record to the RecordList.
-     *
+     * The person must not already exist in the list.
      * @param toAdd Record to add.
      */
     public void add(Record toAdd) {
         requireNonNull(toAdd);
+        if (contains(toAdd)) {
+            throw new DuplicateRecordException();
+        }
         recordList.add(toAdd);
     }
 
@@ -93,7 +96,15 @@ public class RecordList {
                 && recordList.equals(((RecordList) other).recordList)); // state check
     }
 
+    /**
+     * Removes the equivalent record from the list.
+     * The record must exist in the list.
+     */
     public void delete(Record record) {
+        requireNonNull(record);
+        if (!recordList.remove(record)) {
+            throw new RecordNotFoundException();
+        }
         recordList.remove(record);
     }
 

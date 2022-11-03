@@ -25,8 +25,6 @@ Class Tag
 Class RecordList
 Class Record
 Class Medication
-Class RecordData
-Class RecordDate
 }
 
 Class HiddenOutside #FFFFFF
@@ -54,13 +52,10 @@ Person *--> "*" Tag
 
 Name -[hidden]right-> Birthdate
 Phone -[hidden]right-> Address
-Address -[hidden]right-> RecordList
-RecordList -[hidden]right-> Email
+Address -[hidden]right-> Email
 
 RecordList --> "~* all" Record
-Record *--> Medication
-Record *--> RecordDate
-Record *--> RecordData
+Record *--> "*" Medication
 
 ModelManager -->"~* filtered" Person
 ModelManager -->"~* filtered" Record
