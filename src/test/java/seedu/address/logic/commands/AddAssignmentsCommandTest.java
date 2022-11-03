@@ -18,6 +18,10 @@ import seedu.address.model.person.position.Student;
 import seedu.address.testutil.AssignmentBuilder;
 import seedu.address.testutil.StudentBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code AddAssignmentsCommand}.
+ */
 public class AddAssignmentsCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

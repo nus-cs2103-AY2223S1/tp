@@ -127,7 +127,6 @@ public class Student extends Position {
         String str = modelTags.toString();
         String data = "./data/";
         String txt = ".txt";
-        System.out.println(str);
         String module = str.split("-")[0].replace("[", "");
         String filePath = data + module + txt;
         this.filePath = filePath;
