@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.uninurse.logic.commands.DeleteConditionCommand;
 
 /**
- * Contains unit tests for {@code DeleteConditionCommandParser}.
+ * Contains unit tests for DeleteConditionCommandParser.
  */
 public class DeleteConditionCommandParserTest {
 

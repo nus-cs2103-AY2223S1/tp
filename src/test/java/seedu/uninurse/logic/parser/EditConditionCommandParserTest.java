@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.uninurse.logic.commands.EditConditionCommand;
 
 /**
- * Contains unit tests for {@code EditConditionCommandParser}.
+ * Contains unit tests for EditConditionCommandParser.
  */
 public class EditConditionCommandParserTest {
     private final EditConditionCommandParser parser = new EditConditionCommandParser();

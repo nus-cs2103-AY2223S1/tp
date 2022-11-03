@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.uninurse.logic.commands.AddConditionCommand;
 
 /**
- * Contains unit tests for {@code AddConditionCommandParser}.
+ * Contains unit tests for AddConditionCommandParser.
  */
 public class AddConditionCommandParserTest {
 
