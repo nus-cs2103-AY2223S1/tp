@@ -96,7 +96,7 @@ public class FindContactCommandTest {
     }
 
     @Test
-    public void withoutArgs_noArgs_returnFindContactByTaskCommand() {
+    public void withoutArgs_returnCanHelpWithFirstTask() {
         FindContactCommand expectedCommand = new FindContactCommand(new CanHelpWithTaskPredicate((1)));
         assertEquals(expectedCommand, FindContactCommand.withoutArgs());
     }

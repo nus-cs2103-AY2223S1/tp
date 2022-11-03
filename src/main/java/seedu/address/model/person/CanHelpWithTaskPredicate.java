@@ -57,7 +57,7 @@ public class CanHelpWithTaskPredicate implements Predicate<Person> {
         System.out.println(other);
         return other == this // short circuit if same instance
                 || (other instanceof CanHelpWithTaskPredicate
-                && taskIndex.getZeroBased() == ((CanHelpWithTaskPredicate) other).taskIndex.getZeroBased());
+                && taskIndex.equals(((CanHelpWithTaskPredicate) other).taskIndex));
     }
 
 }

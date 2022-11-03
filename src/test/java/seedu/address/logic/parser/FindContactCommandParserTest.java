@@ -28,10 +28,10 @@ public class FindContactCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
 
         // invalid prefixes
-        assertParseFailure(parser, "s/ foo",
+        assertParseFailure(parser, "s/foo",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, "s/ foo g/ bar",
+        assertParseFailure(parser, "s/foo g/bar",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
 
         // no prefixes
