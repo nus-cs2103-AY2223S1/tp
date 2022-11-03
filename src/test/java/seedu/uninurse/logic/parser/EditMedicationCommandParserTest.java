@@ -1,9 +1,11 @@
 package seedu.uninurse.logic.parser;
 
-import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.uninurse.logic.commands.EditMedicationCommand.MESSAGE_NOT_EDITED;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.uninurse.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.uninurse.model.medication.Medication.MESSAGE_CONSTRAINTS;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -51,9 +53,7 @@ class EditMedicationCommandParserTest {
         String userInput = INDEX_FIRST_ATTRIBUTE.getOneBased() + " "
                 + PREFIX_MEDICATION + MEDICATION_TYPE_STUB + " | " + MEDICATION_DOSAGE_STUB;
 
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditMedicationCommand.MESSAGE_USAGE);
-
-        assertParseFailure(parser, userInput, expectedMessage);
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_INDEX);
     }
 
     @Test
@@ -61,9 +61,7 @@ class EditMedicationCommandParserTest {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " "
                 + PREFIX_MEDICATION + MEDICATION_TYPE_STUB + " | " + MEDICATION_DOSAGE_STUB;
 
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditMedicationCommand.MESSAGE_USAGE);
-
-        assertParseFailure(parser, userInput, expectedMessage);
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_INDEX);
     }
 
     @Test
@@ -71,18 +69,14 @@ class EditMedicationCommandParserTest {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_ATTRIBUTE.getOneBased() + " "
                 + PREFIX_MEDICATION;
 
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditMedicationCommand.MESSAGE_USAGE);
-
-        assertParseFailure(parser, userInput, expectedMessage);
+        assertParseFailure(parser, userInput, MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_medicationPrefixMissing_failure() {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_ATTRIBUTE.getOneBased() + " ";
 
-        String expectedMessage = String.format(EditMedicationCommand.MESSAGE_NOT_EDITED);
-
-        assertParseFailure(parser, userInput, expectedMessage);
+        assertParseFailure(parser, userInput, MESSAGE_NOT_EDITED);
     }
 
     @Test
