@@ -177,6 +177,7 @@ Format: `helpstu INDEX`
 * Adds a help tag to the student at the specified INDEX.
 * The index refers to the index number shown in the displayed student list.
 * The index must be a positive integer 1, 2. 3, ….
+* Adding help tag to a student who is already tagged with help tag will not change anything.
 
 Example:
 
@@ -193,6 +194,7 @@ Format: `unhelpstu INDEX`
 * Removes help tag to the student at the specified INDEX.
 * The index refers to the index number shown in the displayed student list.
 * The index must be a positive integer 1, 2. 3, ….
+* Removing help tag from a student who does not need help will not change anything.
 
 Example:
 
@@ -321,6 +323,9 @@ Format: `addtut g/GROUP_NUMBER c/CONTENT t/DATE TIME`
 
 * The format of the date must be `YYYY-MM-DD`.
 * The format of the time must be in 24h format without semicolon: `HHmm`.
+* Special cases for `DATE`:
+  * Input: `2022-02-29`, `2022-02-30` and `2022-02-31` 
+  * Shown: `28 Feb 2022`
 
 Example:
 
