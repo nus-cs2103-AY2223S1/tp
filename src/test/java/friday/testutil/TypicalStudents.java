@@ -41,21 +41,21 @@ public class TypicalStudents {
             .withMasteryCheck(LocalDate.of(2022, 4, 2)).withTags("friends").build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withTelegramHandle("e33elle33")
             .withConsultation(LocalDate.of(2022, 9, 7))
-            .withMasteryCheck(LocalDate.of(2022, 1, 1)).build();
+            .withMasteryCheck(LocalDate.of(2022, 1, 1)).withTags("friends").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withTelegramHandle("fionakunz")
             .withConsultation(LocalDate.of(2022, 2, 20))
-            .withMasteryCheck(LocalDate.of(2022, 3, 27)).build();
+            .withMasteryCheck(LocalDate.of(2022, 3, 27)).withTags("friends").build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best").withTelegramHandle("imthe_best")
             .withConsultation(LocalDate.of(2022, 12, 17))
-            .withMasteryCheck(LocalDate.of(2023, 2, 17)).build();
+            .withMasteryCheck(LocalDate.of(2023, 2, 17)).withTags("friends").build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withTelegramHandle("hoonigan1")
             .withConsultation(LocalDate.of(2022, 2, 23))
-            .withMasteryCheck(LocalDate.of(2020, 2, 17)).build();
+            .withMasteryCheck(LocalDate.of(2020, 2, 17)).withTags("friends").build();
     public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withTelegramHandle("id4mueller")
             .withConsultation(LocalDate.of(2024, 2, 17))
-            .withMasteryCheck(LocalDate.of(2024, 2, 7)).build();
+            .withMasteryCheck(LocalDate.of(2024, 2, 7)).withTags("friends").build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY)
@@ -64,8 +64,6 @@ public class TypicalStudents {
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB)
             .withTelegramHandle(VALID_TELEGRAMHANDLE_BOB).withConsultation(VALID_CONSULTATION_BOB)
             .withMasteryCheck(VALID_MASTERYCHECK_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalStudents() {} // prevents instantiation
 

@@ -51,6 +51,4 @@ public class JsonSerializableFridayTest {
 //        assertThrows(IllegalValueException.class, JsonSerializableFriday.MESSAGE_DUPLICATE_STUDENT,
 //                dataFromFile::toModelType);
 //    }
-
-
 }
