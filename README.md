@@ -15,7 +15,7 @@
     * Schedule
   * After you plan your trip, easily export your itinerary for easy reference during the trip itself.
 
-* Visit our product website for a detailed documentation, [**Waddle Product Website**]([https://github.com/AY2223S1-CS2103T-W11-4/tp/blob/master/docs/UserGuide.md](https://ay2223s1-cs2103t-w11-4.github.io/tp/UserGuide.html)).
+* Visit our product website for a detailed documentation, [**Waddle Product Website**](https://ay2223s1-cs2103t-w11-4.github.io/tp/UserGuide.html).
 
 
 ### Acknowledgements
