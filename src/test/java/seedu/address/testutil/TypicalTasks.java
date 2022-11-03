@@ -3,6 +3,8 @@ package seedu.address.testutil;
 import static seedu.address.testutil.TypicalExams.getTypicalExams;
 import static seedu.address.testutil.TypicalModules.getTypicalModules;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
+import seedu.address.model.tag.DeadlineTag;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.task.Task;
 
 /**
@@ -20,8 +24,6 @@ public class TypicalTasks {
     /**
      * Returns an {@code AddressBook} with all the typical tasks.
      */
-
-
     public static final Task TASK1 = new TaskBuilder().withModule("cs2001")
         .withTaskDescription("description 1")
         .withStatus("incomplete")
@@ -43,6 +45,8 @@ public class TypicalTasks {
         .withTaskDescription("Task D")
         .withStatus("complete")
         .withExam(getTypicalExams().get(0))
+        .withPriorityTag(new PriorityTag("high"))
+        .withDeadlineTag(new DeadlineTag(LocalDate.parse("29-12-2022", DateTimeFormatter.ofPattern("dd-MM-yyyy"))))
         .build();
     public static final Task TASK_E = new TaskBuilder().withModule("cs2100")
         .withTaskDescription("Task E")
@@ -73,7 +77,6 @@ public class TypicalTasks {
     public static final Task TASK_O = new TaskBuilder().withTaskDescription("homework").withModule("CS2030s").build();
     public static final Task TASK_P = new TaskBuilder()
             .withTaskDescription("PAST YEAR PAPER").withModule("CS2030s").build();
-
 
     private TypicalTasks() {
     } // prevents instantiation
