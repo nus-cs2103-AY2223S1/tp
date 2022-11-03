@@ -23,20 +23,21 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=berted&breakdown=true).
 
 * **Project management**:
-    * Authored 38 issues to help keep track of current issues and progress.
-    * Reviewed 26 pull requests to ensure quality and consistency across the database.
+    * Authored [45 issues](https://github.com/AY2223S1-CS2103T-T12-1/tp/issues?q=is%3Aissue+author%3ABerted) to help keep track of current issues and progress.
+    * Reviewed [45 pull requests](https://github.com/AY2223S1-CS2103T-T12-1/tp/pulls?q=is%3Apr+reviewed-by%3ABerted) to ensure quality and consistency across the database.
 
 * **Enhancements to existing features**:
     * Fields such as `Address`,  `Phone Number` and `e-mail` are made optional to better support the requirements of TA-Assist.
     * Added a date field to `Session`
+    * Fixed UI alignment issues being off-center, 1-2 pixels off, etc.
+    * Proposed using the [Lato font](https://www.latofonts.com/) as our UI's font.
 
 * **Documentation**:
+    * Added details on parameter constraints
     * Updated acknowledgements page
     * Added implementation details on immutability of certain objects
     * Added implementation details on Identity interface
     * Added implementation details on managing sessions within a class
     * Added implementation details on querying student grades within a session
-
-* **Community**: To be added soon.
-
-* **Tools**: To be added soon.
+    * Added diagrams for a generic parsing execution flow to reduce duplication
+    * Added tests to manual testing in the DG appendix
