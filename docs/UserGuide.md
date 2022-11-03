@@ -395,10 +395,27 @@ Imports student data from a CSV file stored on your computer.
 
 Format: `import`
 
+* Importing student data will add students to the existing student list, and will not clear any existing students 
 * Running the command will open a file browser for you to select the CSV file to import
 * The CSV format accepted by StudMap is strict! Please use the template provided in the link below
-* :warning: StudMap currently does not support any commas in any data field (cell) when importing a CSV file
-* [template csv](files/import_template.csv)
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: <b>Caution:</b>
+StudMap currently does not support any commas in any data field (cell) when importing a CSV file. Please avoid inputting any data
+that has commas in the CSV.
+</div>
+
+For your convenience, please download the import template here: [template csv](files/import_template.csv)
+
+Example Usage: Importing a fresh batch of students as a new StudMap user
+
+1. Remove the default list of students by typing `clear`
+2. Modify the import template using the CSV editor of your choice (e.g. Excel, Notepad)
+   ![example CSV](images/exampleCSV.png)
+   *Example of a properly edited import template*
+3. Type the `import` command and select the CSV file you have modified 
+4. If done correctly, StudMap will create the new students using the data from the CSV file uploaded
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
