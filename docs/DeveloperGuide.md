@@ -172,7 +172,7 @@ An `Exercise` contains the following attributes,
 
 ### **Sorting Exercise List**
 
-#### **Sorting Implementation**
+#### **Implementation**
 
 The sorting of exercise list is facilitated by `ModelManager` which implements `Model`. `ModelManager` contains a `filteredExercises`
 list which is the list of exercises in a `FilteredList` 'wrapper' from `javafc.collections.transformation`. `filteredExercises`
@@ -465,7 +465,7 @@ which may occur when preloading data from a hashmap in storage.
 
 ##### Subscribing to updates
 Once the `SavedExerciseListWindow` object has been added to the arraylist of `Observer` in the  `ExerciseHashMap`
-, it 'subscribes' to notifications whenever the ExerciseHashMap changes. Based on the functionality of theHashmap as 
+, it 'subscribes' to notifications whenever the ExerciseHashMap changes. Based on the functionality of the Hashmap as 
 well as the application, this can be generalised into two distinct scenarios.
 
 * **Adding an exercise** - Whenever a new exercise has been added, there is a possibility of a new key being added.
