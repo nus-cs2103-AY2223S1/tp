@@ -20,7 +20,7 @@ future tasks. With our app, teams management would be easier than ever.
 
 ## GUI
 
-<img src= "images/Ui.png">
+<img src= "images/GUIExplanation.png">
 
 ### userlist
 
@@ -61,6 +61,9 @@ future tasks. With our app, teams management would be easier than ever.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurence of the parameter will be taken.
   e.g. if the command specifies `task/1 task/2`, only `task/2` will be taken.
+
+* Commands are case-sensitive. 
+  e.g. You cannot enter HeLp instead of help
 
 </div>
 
@@ -250,5 +253,5 @@ Examples:
 | **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                    |
 | **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX n/NEW-TASK-NAME [d/NEW DD-MM-YYYY]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                    |
 | **Team Add**        | `create n/TEAM-NAME` <br> e.g. `create n/TEAM1`                                                                                                                |
-| **Team Delete**     | `delteam t/TEAM-INDEX` <br> e.g. `delteam t/1`                                                                                                                 |
+| **Team Delete**     | `delteam TEAM-INDEX` <br> e.g. `delteam 1`                                                                                                                     |
 | **Team Edit**       | `editteam t/TEAM-INDEX n/NEW-TEAM-NAME` <br> e.g. `editteam t/1 n/TEAMNEW`                                                                                     |

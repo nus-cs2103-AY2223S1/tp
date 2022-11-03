@@ -61,7 +61,7 @@ public class TaskMarkCommand extends Command {
         Task taskToMark = lastShownTeamList.get(teamIndex.getZeroBased()).getTask(taskIndex.getZeroBased());
 
         if (taskToMark.getIsDone()) {
-            return new CommandResult(String.format(MESSAGE_ALREADY_MARKED, taskToMark));
+            throw new CommandException(String.format(MESSAGE_ALREADY_MARKED, taskToMark));
         }
 
         model.markTask(teamIndex, taskIndex);
