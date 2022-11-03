@@ -277,6 +277,7 @@ public class StringUtilTest {
         assertArrayEquals(StringUtil.splitByWhitespace("   test 123   "), new String[]{"test", "123"});
         assertArrayEquals(StringUtil.splitByWhitespace(" \t \n test  \n \t  123  \t \n "),
                 new String[]{"test", "123"});
+    }
 
     //---------------- Tests for splitBySlash --------------------------------------
 
