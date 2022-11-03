@@ -55,7 +55,7 @@ public class MarkRoomsUncleanCommand extends Command {
     private static Guest createGuestWithRoomUnclean(Guest guestToEdit) {
         assert guestToEdit != null;
 
-        String roomUnclean = "no";
+        String roomCleanStatus = "no";
 
         Name updatedName = guestToEdit.getName();
         Phone updatedPhone = guestToEdit.getPhone();
@@ -63,7 +63,7 @@ public class MarkRoomsUncleanCommand extends Command {
         Room updatedRoom = guestToEdit.getRoom();
         DateRange updatedDateRange = guestToEdit.getDateRange();
         NumberOfGuests updatedNumberOfGuests = guestToEdit.getNumberOfGuests();
-        IsRoomClean updatedIsRoomClean = new IsRoomClean(roomUnclean);
+        IsRoomClean updatedIsRoomClean = new IsRoomClean(roomCleanStatus);
         Bill updatedBill = guestToEdit.getBill();
         Request updatedRequest = guestToEdit.getRequest();
         return new Guest(updatedName, updatedPhone, updatedEmail, updatedRoom, updatedDateRange,
