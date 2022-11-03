@@ -20,8 +20,8 @@ import seedu.waddle.logic.commands.DeleteItemCommand;
 import seedu.waddle.logic.commands.EditCommand;
 import seedu.waddle.logic.commands.EditItemCommand;
 import seedu.waddle.logic.commands.ExitCommand;
-import seedu.waddle.logic.commands.ExportPdfCommand;
-import seedu.waddle.logic.commands.ExportTextCommand;
+import seedu.waddle.logic.commands.PdfCommand;
+import seedu.waddle.logic.commands.CopyCommand;
 import seedu.waddle.logic.commands.FindCommand;
 import seedu.waddle.logic.commands.FreeCommand;
 import seedu.waddle.logic.commands.HelpCommand;
@@ -117,9 +117,9 @@ public class WaddleParser {
 
         case FreeCommand.COMMAND_WORD:
 
-        case ExportPdfCommand.COMMAND_WORD:
+        case PdfCommand.COMMAND_WORD:
 
-        case ExportTextCommand.COMMAND_WORD:
+        case CopyCommand.COMMAND_WORD:
             throw new ParseException(MESSAGE_UNAVAILABLE_COMMAND_HOME);
 
         default:
@@ -166,11 +166,11 @@ public class WaddleParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case ExportPdfCommand.COMMAND_WORD:
-            return new ExportPdfCommand();
+        case PdfCommand.COMMAND_WORD:
+            return new PdfCommand();
 
-        case ExportTextCommand.COMMAND_WORD:
-            return new ExportTextCommand();
+        case CopyCommand.COMMAND_WORD:
+            return new CopyCommand();
 
         case ClearCommand.COMMAND_WORD:
 
