@@ -17,6 +17,8 @@ title: Developer Guide
         - [Add Module](#add-module)
         - [Remove Module](#remove-module)
         - [Navigation](#navigation)
+        - [Marking Modules as Done](#marking-modules-as-done)
+        - [Module Listing](#module-listing)
     - [Task/Deadline Features](#taskdeadline-features)
         - [Add Task](#add-task)
         - [Remove Task](#remove-task)
@@ -260,38 +262,35 @@ Section by : [Ho Jun Hao](https://github.com/hojunhao2000)
 
 ### Add module
 
-In this section, the functionality of `add` module feature, expected execution path, and the interactions between
-`AddCommand`, `AddCommandParser`, and other objects will be discussed.
+In this section, the functionality of `add module` feature, expected execution path, and the interactions between
+`AddCommand`, `ModtrektParser`, and other objects will be discussed.
 
 #### What is the add module feature
 
-The `add` module features allows users to add a module that they have taken or are currently taking into the
+The `add module` features allows users to add a module that they have taken or are currently taking into the
 `ModuleList`.
 
 In order to add tasks or deadlines related to the module, a module would have to be created.
 
-Information regarding module can be recognised in the CLI using tags
+Information regarding module, for verbose inputs, can be recognised in the CLI using these tags:
 
-These tags are:
-
-- `-m <module_name>`
-- `-c <module_code>`
+- `-n <module_name>`
 - `-cr <module_credit>`
 
 #### Design considerations
 
 **Aspect 1: How many modules are added:**
 
-* **Alternative 1 (current choice):** Add 1 module added per AddCommand.
+* **Alternative 1 (current choice):** Add 1 module added per AddModuleCommand.
     * Pros: Easy to implement.
     * Cons: May have to type more to add multiple modules.
 
-* **Alternative 2:** Add multiple modules per AddCommand.
+* **Alternative 2:** Add multiple modules per AddModuleCommand.
     * Pros: Convenient for user.
     * Cons: More complicated, may require much more parsing.
 
 We decided to go with the alternative 1 to keep the logic simple and easier to work with. To tackle the cons we tried to
-reduce the compulsory AddCommand parameters.
+reduce the compulsory AddModuleCommand parameters and created simplified commands such as `add mod`.
 
 **Aspect 2: What parameters do we need:**
 
@@ -309,17 +308,16 @@ We decided to go implement both alternatives as we wanted to give users greater 
 
 The diagram below showcases the path execution for when adding a module
 
-<img src="images/ModulePUMLs/AddModule/ModuleAddPathExecution.png" width="800" />
+<img src="images/ModulePUMLs/AddModule/ModuleAddPathExecution.png" width="1200" />
 
-The diagram below shows how the add command work with input `add -m -c CS2103T`
+The diagram below shows how the add command work with input `add mod CS2103T`
 
 <img src="images/ModulePUMLs/AddModule/ModuleAddSequenceDiagram.png" width="1200" />
 
-The arguments are first parsed through `ModtrektParser` to identify the command word. The command word will help
-identify the type of `Parser` needed to parse the rest of the arguments. In this case it is `AddCommandParser`. After
-obtaining the module code, the argument would be passed to static method `ModuleParser:fetchModule()`. This would fetch
-the module details from NUSMods and return a `Module`. The module would be used to instantiate an `AddCommand`. When the
-`AddCommand` is executed, the `Model` would add the module to the `ModuleList`.
+The arguments are first parsed through `ModtrektParser` to identify the command word and its various parameters.
+The process is being simplified using the `JCommander` library which automatically parses the command and returns the
+appropriate command, in this case AddModuleCommand. During execution, module details would be fetched from NUSMods and 
+a `Module` would be fetched. The module then be added to the `ModuleList` through `Model`.
 
 In the event that the HTTP request made to NUSMods fails when fetching, a fallback data file is present to provide the
 module data. The fallback data file is a JSON file that contains the module data of all the modules in NUS as of AY22/23.
@@ -334,12 +332,12 @@ and credits, without any reliance on NUSMods.
 
 ### Remove Module
 
-In this section, the functionality of `remove` module feature, expected execution path, and the interactions between the
-`RemoveCommand`, `RemoveCommandParser`, and other objects will be discussed.
+In this section, the functionality of `remove module` feature, expected execution path, and the interactions between the
+`RemoveModuleCommand`, `ModtrektParser`, and other objects will be discussed.
 
 #### What is the remove module feature
 
-The `remove` module features allows users to remove a module that they have taken or mistakenly inputted into
+The `remove module` features allows users to remove a module that they have taken or mistakenly inputted into
 `ModuleList`.
 
 Removal of a `Module` would remove all `Task` and `Deadline` associated with it.
@@ -367,15 +365,14 @@ The diagram below showcases the path execution for when removing a module
 
 <img src="images/ModulePUMLs/RemoveModule/ModuleRemovePathExecution.png" width="800" />
 
-The diagram below shows how the remove command work with input `remove -m 1`
+The diagram below shows how the remove command work with input `remove module CS2103T`
 
 <img src="images/ModulePUMLs/RemoveModule/ModuleRemoveSequenceDiagram.png" width="1200" />
 
-The arguments are first parsed through `ModtrektParser` to identify the command word. The command word will help
-identify the type of `Parser` needed to parse the rest of the arguments. In this case it is `RemoveCommandParser`. After
-obtaining the index, it would be used to instantiate a `RemoveCommand`. When the `RemoveCommand` is executed, it would
-first obtain the `Module` using the index. Then it would remove the `Module` from the `ModuleList`. Using the saved
-`Module` it would then remove all `Task` in the `TaskBook` with the `Module`.
+The arguments are first parsed through `ModtrektParser` to identify the command word. The `JCommander` library would
+help us parse the command and return the appropriate command. In this case it is `RemoveModuleCommand`.When the 
+`RemoveModuleCommand` is executed, it would first remove the `Module` from the `ModuleList`. Then it would remove all 
+`Task` in the `TaskBook` with the `Module`.
 
 ### Navigation
 
@@ -472,7 +469,7 @@ The following diagram shows the execution and control flow of the `done` command
 
 The diagram below shows how the `done` command work with input `done module CS1101S`
 
-<img src="images/ModulePUMLs/DoneModule/ModuleDoneSequenceDiagram.png" width="1200" />
+<img src="images/ModulePUMLs/DoneModule/ModuleDoneSequenceDiagram.png" width="1000" />
 
 Notice how we explicitly prevent a done module from being marked as done again. Even though marking a done module as
 done again is inconsequential from a data perspective (nothing in a `Module` changes other than the creation of a new
@@ -508,17 +505,67 @@ We check for the presence of the `-a` flag to decide whether to display done tas
 
 The following diagram shows the execution and control flow of the `list module` command.
 
-<img src="images/modulePUMLs/ListModule/ListingModulePathExecution.png" width="1000" />
+<img src="images/ModulePUMLs/ListModule/ListingModulePathExecution.png" width="1000" />
 
 The sequence diagram below details the interactions between the command and the model
 for the `ls mod` and `ls mod -a` commands:
 
-<img src="images/modulePUMLs/ListModule/ListingModuleSequenceDiagram.png" width="1000" />
+<img src="images/ModulePUMLs/ListModule/ListingModuleSequenceDiagram.png" width="1000" />
 
 The predicates defined by `Model.PREDICATE_SHOW_ALL_MODULES` and `PREDICATE_HIDE_DONE_MODULES` are used to filter
 the tasks displayed in the UI via the `updateFilteredModuleList` method in the `Model` interface.
 
 _Side note: We delegate parsing to JCommander which already has the command object registered_
+
+### Edit Module
+
+Section by : [Ho Jun Hao](https://github.com/hojunhao2000)
+
+In this section, the functionality of `edit module` feature, expected execution path, and the interactions between the
+`EditModuleCommand`, `ModtrektParser`, and other objects will be discussed.
+
+#### What is the edit module feature
+
+The `edit module` features allows users to edit a module that they have erroneously added.
+This allows them to update details of the module, such as the module name, module credit and module code.
+
+Editing a module code would edit all the tasks currently associated to the module to the new module code.
+
+#### Design considerations
+
+**Aspect 1: Whether editing modules should be allowed:**
+
+* **Alternative 1 (current choice):** Allow editing of modules.
+    * Pros: Allows users to change partial details in the event of a small error.
+    * Cons: Have to parse a varying amount of optional arguments.
+
+* **Alternative 2:** No edit command, user would have to delete and re-add their module.
+    * Pros: Convenient for development, less bug-prone.
+    * Cons: Inconvenient and troublesome for the user.
+
+We decided to go with the alternative 1 to give our users the best experience possible. We concluded that editing a
+module would be faster than deleting a module and re-entering all the details, particularly if the user is using the
+verbose command inputs.
+
+#### Current implementation
+
+The diagram below showcases the path execution for when edit a module
+
+<img src="images/ModulePUMLs/EditModule/ModuleEditPathExecution.png" width="800" />
+
+The diagram below shows how the remove command work with input `edit module CS2103T -c CS2100`
+
+Note that the sequence diagram has been kept simple, as the logic flow for `addModule` and `deleteModule` have been
+covered in greater detail in the earlier diagrams.
+
+<img src="images/ModulePUMLs/EditModule/ModuleEditSequenceDiagram.png" width="1200" />
+
+The arguments are first parsed through `ModtrektParser` to identify the command word. Using the `JCommander` library, we
+are then able to parse through the commands and automatically generate the corresponding command. In this case an
+`EditModuleCommand`. When the `EditTaskCommand` is executed, it would first obtain the `Module` using the `Module Code`.
+Then it would create a new module replacing with the appropriate new/old inputs. It would then delete the old module and
+replace it with the new module. If module code is edited, it would replace all the old tasks with old module code with
+new tasks with new module code.
 
 ### Tasks
 

@@ -1,0 +1,87 @@
+@startuml
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
+participant "a:EditModuleCommand" as EditModuleCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ModuleList" as ModuleList MODEL_COLOR
+participant ":TaskBook" as TaskBook MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit module CS2103T -c CS2100")
+activate LogicManager
+
+LogicManager -> ModtrektParser : parseCommand("edit module CS2103T -c CS2100")
+activate ModtrektParser
+
+create EditModuleCommand
+ModtrektParser -> EditModuleCommand
+activate EditModuleCommand
+
+EditModuleCommand --> ModtrektParser : a
+deactivate EditModuleCommand
+
+ModtrektParser --> LogicManager : a
+deactivate ModtrektParser
+
+LogicManager -> EditModuleCommand : execute()
+activate EditModuleCommand
+
+EditModuleCommand -> Model : deleteModule(CS2103T)
+activate Model
+
+Model -> ModuleList
+activate ModuleList
+
+ModuleList --> Model
+deactivate ModuleList
+
+Model --> EditModuleCommand
+deactivate Model
+
+EditModuleCommand -> Model : addModule(CS2100)
+activate Model
+
+Model -> ModuleList
+activate ModuleList
+
+ModuleList --> Model
+deactivate ModuleList
+
+Model --> EditModuleCommand
+deactivate Model
+
+opt module code is edited
+    EditModuleCommand -> Model  : updateTaskModule(CS2103T, CS2100)
+    activate Model
+
+    Model -> TaskBook
+    activate TaskBook
+
+    TaskBook --> Model
+    deactivate TaskBook
+
+    Model --> EditModuleCommand
+    deactivate Model
+end
+
+create CommandResult
+EditModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditModuleCommand
+deactivate CommandResult
+
+EditModuleCommand --> LogicManager : result
+deactivate EditModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

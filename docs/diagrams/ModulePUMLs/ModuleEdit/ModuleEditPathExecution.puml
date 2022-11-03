@@ -1,6 +1,6 @@
 @startuml
 start
-:User executes remove module command;
+:User executes edit module command;
 :ModtRekt parse the command looking for tags;
 
 'Since the beta syntax does not support placing the condition outside the
@@ -9,9 +9,11 @@ start
 if () then ([contains all valid tags])
     :check if parameter inputs are valid;
     if () then ([valid inputs])
-        :remove module from ModuleList;
-        :remove tasks associated with removed module;
-        :display remove success message;
+        :edit module in Module List;
+        if () then ([Mod code is edited])
+            :update associated tasks to new module code;
+        endif
+        :display edit success message;
     else ([else])
         :display invalid input error message;
     endif

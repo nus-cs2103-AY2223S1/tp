@@ -4,7 +4,6 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
-participant ":RemoveCommandParser" as RemoveCommandParser LOGIC_COLOR
 participant "d:RemoveCommand" as RemoveCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -15,34 +14,18 @@ participant ":ModuleList" as ModuleList MODEL_COLOR
 participant ":TaskBook" as TaskBook MODEL_COLOR
 end box
 
-[-> LogicManager : execute("remove -m 1")
+[-> LogicManager : execute("remove module CS2103T")
 activate LogicManager
 
-LogicManager -> ModtrektParser : parseCommand("remove -m 1")
+LogicManager -> ModtrektParser : parseCommand("remove module CS2103T")
 activate ModtrektParser
 
-create RemoveCommandParser
-ModtrektParser -> RemoveCommandParser
-activate RemoveCommandParser
-
-RemoveCommandParser --> ModtrektParser
-deactivate RemoveCommandParser
-
-ModtrektParser -> RemoveCommandParser : parse("1")
-activate RemoveCommandParser
-
 create RemoveCommand
-RemoveCommandParser -> RemoveCommand
+ModtrektParser -> RemoveCommand:
 activate RemoveCommand
 
-RemoveCommand --> RemoveCommandParser : d
+RemoveCommand --> ModtrektParser
 deactivate RemoveCommand
-
-RemoveCommandParser --> ModtrektParser : d
-deactivate RemoveCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-RemoveCommandParser -[hidden]-> ModtrektParser
-destroy RemoveCommandParser
 
 ModtrektParser --> LogicManager : d
 deactivate ModtrektParser
