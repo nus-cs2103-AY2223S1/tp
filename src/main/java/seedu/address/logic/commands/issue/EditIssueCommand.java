@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.issue;
 
-import static seedu.address.commons.core.Messages.MESSAGE_ISSUE_NOT_FOUND;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_TITLE;
@@ -11,6 +10,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Deadline;
 import seedu.address.model.Model;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Title;
@@ -39,6 +39,8 @@ public class EditIssueCommand extends IssueCommand {
             + PREFIX_DEADLINE + "2022-03-05 "
             + PREFIX_URGENCY + "1 ";
 
+    public static final String MESSAGE_ISSUE_NOT_FOUND = "Issue id %1$d does not exist in the project book";
+
     public static final String MESSAGE_SUCCESS = "Issue %1$s has been edited";
     private final Title newTitle;
     private final Urgency newUrgency;
@@ -60,8 +62,8 @@ public class EditIssueCommand extends IssueCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         ui.showIssues();
-        if (!model.hasIssueId(this.issueId.getIdInt())) {
-            throw new CommandException(MESSAGE_ISSUE_NOT_FOUND);
+        if (!HasIntegerIdentifier.containsId(model.getFilteredIssueList(), issueId.getIdInt())) {
+            throw new CommandException(String.format(MESSAGE_ISSUE_NOT_FOUND, issueId.getIdInt()));
         }
         Issue toEditIssue = model.getIssueById(issueId.getIdInt());
 

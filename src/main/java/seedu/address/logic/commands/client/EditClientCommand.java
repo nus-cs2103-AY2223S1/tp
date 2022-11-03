@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.client;
 
-import static seedu.address.commons.core.Messages.MESSAGE_CLIENT_NOT_FOUND;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_MOBILE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
@@ -15,6 +14,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientMobile;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.ui.Ui;
 
 /**
@@ -28,6 +28,8 @@ public class EditClientCommand extends ClientCommand {
 
     public static final String MESSAGE_DUPLICATE_CLIENT_NAME = "A client with this name already "
             + "exists in the project book";
+
+    public static final String MESSAGE_CLIENT_NOT_FOUND = "Client id %1$d does not exist in the project book";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
@@ -62,10 +64,11 @@ public class EditClientCommand extends ClientCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         ui.showClients();
-        if (!model.hasClientId(this.clientId.getIdInt())) {
-            throw new CommandException(MESSAGE_CLIENT_NOT_FOUND);
-        }
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+
+        if (!HasIntegerIdentifier.containsId(model.getFilteredClientList(), clientId.getIdInt())) {
+            throw new CommandException(String.format(MESSAGE_CLIENT_NOT_FOUND, clientId.getIdInt()));
+        }
 
         Client toEditClient = model.getClientById(clientId.getIdInt());
 
