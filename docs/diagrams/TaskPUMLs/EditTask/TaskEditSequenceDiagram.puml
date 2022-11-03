@@ -14,32 +14,18 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("edit -t 1 -c CS2103T -ds Assignment 2")
+[-> LogicManager : execute("edit task 1 -c CS2103T -ds Assignment 2")
 activate LogicManager
 
-LogicManager -> ModtrektParser : parseCommand("edit -t 1 -c CS2103T -ds Assignment 2")
+LogicManager -> ModtrektParser : parseCommand("edit task 1 -c CS2103T -ds Assignment 2")
 activate ModtrektParser
 
-create EditTaskCommandParser
-ModtrektParser -> EditTaskCommandParser
-activate EditTaskCommandParser
-
-EditTaskCommandParser --> ModtrektParser
-
-ModtrektParser -> EditTaskCommandParser : parse("-t 1 -c CS2103T -ds Assignment 2")
-
 create EditTaskCommand
-EditTaskCommandParser -> EditTaskCommand
+ModtrektParser -> EditTaskCommand
 activate EditTaskCommand
 
-EditTaskCommand --> EditTaskCommandParser : a
+EditTaskCommand --> ModtrektParser : a
 deactivate EditTaskCommand
-
-EditTaskCommandParser --> ModtrektParser : a
-deactivate EditTaskCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-EditTaskCommandParser -[hidden]-> ModtrektParser
-destroy EditTaskCommandParser
 
 ModtrektParser --> LogicManager : a
 deactivate ModtrektParser

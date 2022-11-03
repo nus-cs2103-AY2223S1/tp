@@ -4,7 +4,6 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
-participant ":RemoveTaskCommandParser" as RemoveTaskCommandParser LOGIC_COLOR
 participant "a:RemoveTaskCommand" as RemoveTaskCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 
@@ -18,32 +17,19 @@ participant ":TaskList" as TaskList MODEL_COLOR
 participant ":ModuleList" as ModuleList MODEL_COLOR
 end box
 
-[-> LogicManager : execute("remove -t 1")
+[-> LogicManager : execute("remove task 1")
 activate LogicManager
 
-LogicManager -> ModtrektParser : parseCommand("remove -t 1")
+LogicManager -> ModtrektParser : parseCommand("remove task 1")
 activate ModtrektParser
 
-create RemoveTaskCommandParser
-ModtrektParser -> RemoveTaskCommandParser
-activate RemoveTaskCommandParser
-
-RemoveTaskCommandParser --> ModtrektParser
-
-ModtrektParser -> RemoveTaskCommandParser : parse("1")
-
 create RemoveTaskCommand
-RemoveTaskCommandParser -> RemoveTaskCommand
+ModtrektParser -> RemoveTaskCommand
 activate RemoveTaskCommand
 
-RemoveTaskCommand --> RemoveTaskCommandParser : a
+RemoveTaskCommand --> ModtrektParser : a
 deactivate RemoveTaskCommand
-
-RemoveTaskCommandParser --> ModtrektParser : a
-deactivate RemoveTaskCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-RemoveTaskCommandParser -[hidden]-> ModtrektParser
-destroy RemoveTaskCommandParser
 
 ModtrektParser --> LogicManager : a
 deactivate ModtrektParser
@@ -56,6 +42,7 @@ activate Model
 
 Model -> TaskList : removeTask(task)
 activate TaskList
+
 TaskList --> Model :
 deactivate TaskList
 
