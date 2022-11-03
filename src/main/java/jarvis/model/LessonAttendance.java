@@ -1,5 +1,7 @@
 package jarvis.model;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +48,7 @@ public class LessonAttendance {
      * @param student Student to mark as present.
      */
     public void markAsPresent(Student student) {
+        requireNonNull(student);
         if (!attendance.containsKey(student)) {
             throw new StudentNotFoundException();
         }
@@ -57,6 +60,7 @@ public class LessonAttendance {
      * @param student Student to mark as absent.
      */
     public void markAsAbsent(Student student) {
+        requireNonNull(student);
         if (!attendance.containsKey(student)) {
             throw new StudentNotFoundException();
         }
@@ -64,6 +68,7 @@ public class LessonAttendance {
     }
 
     public boolean isPresent(Student student) {
+        requireNonNull(student);
         return attendance.getOrDefault(student, false);
     }
 

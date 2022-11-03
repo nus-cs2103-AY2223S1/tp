@@ -1,5 +1,8 @@
 package jarvis.model;
 
+import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -7,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import jarvis.model.exceptions.InvalidNoteException;
 import jarvis.model.exceptions.NoteNotFoundException;
 import jarvis.model.exceptions.StudentNotFoundException;
 
@@ -14,6 +18,8 @@ import jarvis.model.exceptions.StudentNotFoundException;
  * Represents the notes for a lesson in JARVIS.
  */
 public class LessonNotes {
+    public static final String GENERAL_NOTES_HEADER = "Lesson Notes:\n";
+
     private final ArrayList<String> generalNotes;
     private final TreeMap<Student, ArrayList<String>> studentNotes;
 
@@ -52,7 +58,11 @@ public class LessonNotes {
      * @param notes Lines to append to the overall lesson notes.
      */
     public void addNote(String notes) {
-        generalNotes.add(notes);
+        requireNonNull(notes);
+        if (notes.isBlank()) {
+            throw new InvalidNoteException("Note cannot be empty");
+        }
+        generalNotes.add(notes.strip());
     }
 
     /**
@@ -61,10 +71,14 @@ public class LessonNotes {
      * @param notes Note to add for the student.
      */
     public void addNote(Student student, String notes) {
+        requireAllNonNull(student, notes);
+        if (notes.isBlank()) {
+            throw new InvalidNoteException("Note cannot be empty");
+        }
         if (!studentNotes.containsKey(student)) {
             throw new StudentNotFoundException();
         }
-        studentNotes.get(student).add(notes);
+        studentNotes.get(student).add(notes.strip());
     }
 
     /**
@@ -99,7 +113,7 @@ public class LessonNotes {
     }
 
     public String getGeneralNotesString() {
-        StringBuilder formattedGeneralNotes = new StringBuilder("Lesson Notes:\n");
+        StringBuilder formattedGeneralNotes = new StringBuilder(GENERAL_NOTES_HEADER);
         int index = 0;
         for (String generalNote: generalNotes) {
             formattedGeneralNotes.append(++index + ". ");

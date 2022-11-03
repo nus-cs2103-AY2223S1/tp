@@ -2,21 +2,52 @@ package jarvis.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
 
+import jarvis.model.exceptions.StudentNotFoundException;
 import jarvis.model.util.SampleStudentUtil;
 
 class LessonAttendanceTest {
 
-    private final Set<Student> students = Set.of(SampleStudentUtil.getSampleStudents());
-    private final Student student = SampleStudentUtil.getSampleStudents()[0];
+    private final TreeSet<Student> students = new TreeSet<>(List.of(SampleStudentUtil.getSampleStudents()));
     private final LessonAttendance lessonAttendance = new LessonAttendance(students);
 
     @Test
-    void markAsPresent() {
+    void markAsPresent_invalidStudent_exceptionThrown() {
+        assertThrows(NullPointerException.class, () -> lessonAttendance.markAsPresent(null)); // null student
+
+        Student studentToRemove = students.first();
+        students.remove(studentToRemove);
+        LessonAttendance differentStudents = new LessonAttendance(students);
+        assertThrows(StudentNotFoundException.class, () -> differentStudents.markAsPresent(studentToRemove));
+    }
+
+    @Test
+    void markAsAbsent_invalidStudent_exceptionThrown() {
+        assertThrows(NullPointerException.class, () -> lessonAttendance.markAsAbsent(null)); // null student
+
+        Student studentToRemove = students.first();
+        students.remove(studentToRemove);
+        LessonAttendance differentStudents = new LessonAttendance(students);
+        assertThrows(StudentNotFoundException.class, () -> differentStudents.markAsAbsent(studentToRemove));
+    }
+
+    @Test
+    void isPresent_invalidStudent() {
+        assertThrows(NullPointerException.class, () -> lessonAttendance.isPresent(null)); // null student
+
+        Student studentToRemove = students.first();
+        students.remove(studentToRemove);
+        LessonAttendance differentStudents = new LessonAttendance(students);
+        assertFalse(differentStudents.isPresent(studentToRemove));
+    }
+
+    @Test
+    void markAsPresent_validStudent() {
+        Student student = students.first();
         assertFalse(lessonAttendance.isPresent(student)); // Students are absent by default
         lessonAttendance.markAsPresent(student); // Mark absent student as present
         assertTrue(lessonAttendance.isPresent(student)); // Student is present
@@ -25,7 +56,8 @@ class LessonAttendanceTest {
     }
 
     @Test
-    void markAsAbsent() {
+    void markAsAbsent_validStudent() {
+        Student student = students.first();
         lessonAttendance.markAsPresent(student);
         assertTrue(lessonAttendance.isPresent(student)); // Student is present
         lessonAttendance.markAsAbsent(student); // Mark present student as absent
@@ -36,19 +68,20 @@ class LessonAttendanceTest {
 
     @Test
     void getAllStudents() {
-        assertTrue(lessonAttendance.getAllStudents().equals(students));
+        assertEquals(students, lessonAttendance.getAllStudents());
     }
 
     @Test
     void testEquals() {
         LessonAttendance sameValues = new LessonAttendance(students);
 
-        Set<Student> studentsCopy = new HashSet<>(students);
-        studentsCopy.remove(student);
-        LessonAttendance differentStudents = new LessonAttendance(studentsCopy);
+        Student studentToRemove = students.first();
+        students.remove(studentToRemove);
+        LessonAttendance differentStudents = new LessonAttendance(students);
 
         LessonAttendance differentAttendance = new LessonAttendance(students);
-        differentAttendance.markAsPresent(student);
+        Student presentStudent = students.first();
+        differentAttendance.markAsPresent(presentStudent);
 
 
         // same values -> returns true
