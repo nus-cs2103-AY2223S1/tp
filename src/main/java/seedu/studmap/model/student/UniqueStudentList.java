@@ -50,18 +50,10 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Sorts the list according to name in alphabetical order.
-     */
-    public void sort() {
-        internalList.sort(Comparator.comparing(Student::getNameString));
-    }
-
-    /**
      * Sorts the list according to specified attribute and order.
      */
     public void sort(Comparator<Student> comparator, Boolean isDescending) {
         internalList.sort(comparator.thenComparing(Student::getCmpIdString));
-//        internalList.sort(comparator);
         if (isDescending) {
             FXCollections.reverse(internalList);
         }
