@@ -116,7 +116,8 @@ public class RedoCommandTest {
     }
 
     @Test
-    public void execute_redoAfterEditCommand_throwsNextStateNotFoundException() throws CommandException, ParseException {
+    public void execute_redoAfterEditCommand_throwsNextStateNotFoundException() throws CommandException,
+            ParseException {
         EditCommand.EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withReward(VALID_REWARD_AMY)
                 .withTags(VALID_TAG_GOLD, VALID_TAG_MEMBER).build();
