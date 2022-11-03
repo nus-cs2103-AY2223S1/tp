@@ -12,8 +12,6 @@ a sleek and minimalist design which allows you to clearly see your outstanding t
 line user interface which aids fast typists in managing their assignments quickly, while still providing the benefits of
 a graphical user interface.
 
-This guide will help you to get started quickly, learn our commands and 
-
 |   If you are   |                                         You should                                         |
 |:--------------:|:------------------------------------------------------------------------------------------:|
 |   a new user   | proceed to our [quick start](#quick-start) section to set up NotionUS and try its features |
@@ -70,20 +68,6 @@ From top to bottom:
 
 5. Command box:
     * This is where you enter commands to control the app.
-    
-Feel free to play around with the UI by typing some of the following commands in the _Command box_ and press `ENTER` key on your keyboard the execute the command!
-
-- `add -n Tutorial 3 -m CS2103T -d 2022-09-16` : Adds a task called `Tutorial 3` for the module `CS2103T` with the deadline `2022-09-16` into the task list.
-- `mark 1` :
-  Marks the first task in the list as complete.
-- `ls --module CS2103T` :
-  Lists all tasks associated with the module `CS2103T`.
-- `delete 2` :
-  Deletes the second task in the list.
-- `edit 3 -n Assignment 2` :
-  Changes the name of the third task in the list to `Assignment 2`.
-- `find tutorial` :
-  Finds anything with the keyword 'tutorial' (not case-sensitive or strictly matched words)
 
 ### Autocomplete
 
@@ -437,7 +421,7 @@ If your changes to the data file makes its format invalid, NotionUS will discard
 **Q**: How do I transfer my data in NotionUS to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NotionUS home folder.
 
-**Q**: What is the date file fails to load into NotionUS?<br>
+**Q**: What if the date file fails to load into NotionUS?<br>
 **A**: It is likely that your storage data file is in the wrong format. Do check the log files to see what had happened when launching NotionUS. 
 
 **Q**: What if double-clicking fails to open the jar file?<br>
