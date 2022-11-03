@@ -25,14 +25,17 @@ public class CurrentWorkingFileFooter extends UiPart<Region> {
     public CurrentWorkingFileFooter(ObservableValue<Path> currentWorkingFilePath) {
         super(FXML);
         this.currentWorkingFilePath = currentWorkingFilePath;
-        updateFilePath(currentWorkingFilePath.getValue());
+        updateFilePath(null, null, currentWorkingFilePath.getValue());
+
+        // Set up listener
+        currentWorkingFilePath.addListener(this::updateFilePath);
     }
 
     /**
      * Updates the current working file path that is displayed by the {@code CurrentWorkingFileFooter} ui element.
      */
-    public void updateFilePath(Path newCurrentWorkingFilePath) {
-        currentWorkingFileLabel.setText(Paths.get(".").resolve(newCurrentWorkingFilePath).toString());
+    public void updateFilePath(ObservableValue<? extends Path> observable, Path oldValue, Path newValue) {
+        currentWorkingFileLabel.setText(Paths.get(".").resolve(newValue).toString());
     }
 
 }

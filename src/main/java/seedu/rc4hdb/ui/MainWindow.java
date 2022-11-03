@@ -1,10 +1,7 @@
 package seedu.rc4hdb.ui;
 
-import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import javafx.beans.value.ChangeListener;
-import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -42,37 +39,28 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CommandBox commandBoxRegion;
-    private CurrentWorkingFileFooter statusBarFooter;
+    private CurrentWorkingFileFooter fileFooter;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
-
-    @FXML
-    private MenuItem helpMenuItem;
-
-    @FXML
-    private MenuItem commandBoxRedirect;
-
-    @FXML
-    private TabPane tableViewPane;
-
+    private TabPane tabViewPane;
     @FXML
     private Tab residentTab;
-
     @FXML
     private Tab venueTab;
-
-    @FXML
-    private StackPane residentTableViewPlaceholder;
-
-    @FXML
-    private StackPane venueTabViewPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane commandBoxPlaceholder;
+    @FXML
+    private MenuItem commandBoxRedirect;
+
+    @FXML
+    private StackPane fileFooterPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -90,7 +78,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        setUpListeners();
     }
 
     public Stage getPrimaryStage() {
@@ -139,22 +126,18 @@ public class MainWindow extends UiPart<Stage> {
         residentTableView = new ResidentTableView(logic.getFilteredResidentList(),
                 logic.getVisibleFields(),
                 logic.getHiddenFields());
-        residentTableViewPlaceholder.getChildren().add(residentTableView.getRoot());
+        residentTab.setContent(residentTableView.getRoot());
 
-        venueTabView = new VenueTabView(logic.getObservableVenues(), logic.getObservableBookings(),
-                logic.getCurrentlyDisplayedVenueName());
-        venueTabViewPlaceholder.getChildren().add(venueTabView.getRoot());
+        venueTabView = new VenueTabView(logic.getObservableVenues(), logic.getCurrentlyDisplayedVenue());
+        venueTab.setContent(venueTabView.getRoot());
 
-        residentTab.setContent(residentTableViewPlaceholder);
-        venueTab.setContent(venueTabViewPlaceholder);
-
-        tableViewPane.getTabs().addAll(residentTab, venueTab);
+        tabViewPane.getTabs().addAll(residentTab, venueTab);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        statusBarFooter = new CurrentWorkingFileFooter(logic.getObservableFolderPath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        fileFooter = new CurrentWorkingFileFooter(logic.getObservableFolderPath());
+        fileFooterPlaceholder.getChildren().add(fileFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxRegion = commandBox;
@@ -235,39 +218,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /**
-     * Returns a listener which propagates the changes in the visibleFields list in Model
-     * (and hence Logic) to the corresponding observable list in ResidentTableView.
-     */
-    private ListChangeListener<String> updateVisibleFieldsOnChange() {
-        return c -> residentTableView.setVisibleFields(logic.getVisibleFields());
-    }
-
-    /**
-     * Returns a listener which propagates the changes in the hiddenFields list in Model
-     * (and hence Logic) to the corresponding observable list in ResidentTableView.
-     */
-    private ListChangeListener<String> updateHiddenFieldsOnChange() {
-        return c -> residentTableView.setHiddenFields(logic.getHiddenFields());
-    }
-
-    private ChangeListener<Path> getFileChangeListener() {
-        return (observableValue, oldValue, newValue) ->
-                statusBarFooter.updateFilePath(newValue);
-    }
-
     private void setTabLabels() {
         this.residentTab.setText("Residents");
         this.venueTab.setText("Bookings");
-    }
-
-    /**
-     * Add listeners to fields to be listened to.
-     */
-    private void setUpListeners() {
-        this.logic.getObservableFolderPath().addListener(getFileChangeListener());
-        this.logic.getVisibleFields().addListener(updateVisibleFieldsOnChange());
-        this.logic.getHiddenFields().addListener(updateHiddenFieldsOnChange());
     }
 
 }
