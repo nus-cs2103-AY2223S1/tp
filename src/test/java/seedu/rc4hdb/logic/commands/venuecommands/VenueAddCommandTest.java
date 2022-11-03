@@ -14,11 +14,12 @@ import org.junit.jupiter.api.Test;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.ModelStub;
-import seedu.rc4hdb.model.ReadOnlyResidentBook;
-import seedu.rc4hdb.model.ResidentBook;
-import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.ReadOnlyVenueBook;
+import seedu.rc4hdb.model.VenueBook;
 import seedu.rc4hdb.model.venues.Venue;
-import seedu.rc4hdb.testutil.ResidentBuilder;
+import seedu.rc4hdb.model.venues.VenueName;
+import seedu.rc4hdb.model.venues.exceptions.DuplicateVenueException;
+import seedu.rc4hdb.testutil.TypicalVenues;
 
 public class VenueAddCommandTest {
 
@@ -28,94 +29,103 @@ public class VenueAddCommandTest {
         }
 
         @Test
-        public void execute_venueNameAcceptedByModel_addSuccessful() throws Exception {
+        public void execute_venueAcceptedByModel_addSuccessful() throws Exception {
             ModelStubAcceptingVenueAdded modelStub = new ModelStubAcceptingVenueAdded();
-            Venue validVenue = new ResidentBuilder().build();
+            VenueName validVenue = new VenueName("Meeting Room");
 
-            CommandResult commandResult = new AddCommand(validResident).execute(modelStub);
+            CommandResult commandResult = new VenueAddCommand(validVenue).execute(modelStub);
 
-            assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validResident), commandResult.getFeedbackToUser());
-            assertEquals(Arrays.asList(validResident), modelStub.residentsAdded);
+            assertEquals(String.format(VenueAddCommand.MESSAGE_SUCCESS, validVenue), commandResult.getFeedbackToUser());
+            assertEquals(Arrays.asList(TypicalVenues.getTypicalVenue().get(0)), modelStub.venuesAdded);
         }
 
         @Test
-        public void execute_duplicatePerson_throwsCommandException() {
-            Resident validResident = new ResidentBuilder().build();
-            AddCommand addCommand = new AddCommand(validResident);
-            ModelStub modelStub = new ModelStubWithResident(validResident);
+        public void execute_duplicateVenue_throwsCommandException() {
+            VenueName validVenueName = new VenueName("Meeting Room");
+            Venue validVenue = new Venue(validVenueName);
+            VenueAddCommand venueAddCommand = new VenueAddCommand(validVenueName);
+            ModelStub modelStub = new ModelStubWithVenue(validVenue);
 
-            assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_RESIDENT, ()
-                    -> addCommand.execute(modelStub));
+            assertThrows(CommandException.class, String.format(VenueAddCommand.MESSAGE_DUPLICATE_VENUE, validVenueName), ()
+                    -> venueAddCommand.execute(modelStub));
         }
 
         @Test
         public void equals() {
-            Resident alice = new ResidentBuilder().withName("Alice").build();
-            Resident bob = new ResidentBuilder().withName("Bob").build();
-            AddCommand addAliceCommand = new AddCommand(alice);
-            AddCommand addBobCommand = new AddCommand(bob);
+            VenueName meetingRoomName = new VenueName("Meeting Room");
+            VenueName hallName = new VenueName("Hall");
+            VenueAddCommand addMeetingRoomCommand = new VenueAddCommand(meetingRoomName);
+            VenueAddCommand addHallCommand = new VenueAddCommand(hallName);
 
             // same object -> returns true
-            assertTrue(addAliceCommand.equals(addAliceCommand));
+            assertTrue(addMeetingRoomCommand.equals(addMeetingRoomCommand));
 
             // same values -> returns true
-            AddCommand addAliceCommandCopy = new AddCommand(alice);
-            assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+            VenueAddCommand addMeetingRoomCommandCopy = new VenueAddCommand(meetingRoomName);
+            assertTrue(addMeetingRoomCommand.equals(addMeetingRoomCommandCopy));
 
             // different types -> returns false
-            assertFalse(addAliceCommand.equals(1));
+            assertFalse(addMeetingRoomCommand.equals(1));
 
             // null -> returns false
-            assertFalse(addAliceCommand.equals(null));
+            assertFalse(addMeetingRoomCommand.equals(null));
 
             // different person -> returns false
-            assertFalse(addAliceCommand.equals(addBobCommand));
+            assertFalse(addMeetingRoomCommand.equals(addHallCommand));
         }
 
         //======================== Start of model stubs ===============================================
 
         /**
-         * A Model stub that contains a single resident.
+         * A Model stub that contains a single venue.
          */
-        public static class ModelStubWithResident extends ModelStub {
-            private final Resident resident;
+        public static class ModelStubWithVenue extends ModelStub {
+            private final Venue venue;
 
             /**
-             * Constructs a model stub with a single resident.
+             * Constructs a model stub with a single venue.
              */
-            public ModelStubWithResident(Resident resident) {
-                requireNonNull(resident);
-                this.resident = resident;
+            public ModelStubWithVenue(Venue venue) {
+                requireNonNull(venue);
+                this.venue = venue;
             }
 
             @Override
-            public boolean hasResident(Resident resident) {
-                requireNonNull(resident);
-                return this.resident.isSameResident(resident);
+            public boolean hasVenue(Venue venue) {
+                requireNonNull(venue);
+                return this.venue.isSameVenue(venue);
+            }
+
+            @Override
+            public void addVenue(Venue venue) throws DuplicateVenueException {
+                requireNonNull(venue);
+                if (this.hasVenue(venue)) {
+                    throw new DuplicateVenueException();
+                }
             }
         }
 
         /**
-         * A Model stub that always accept the resident being added.
+         * A Model stub that always accept the venue being added.
          */
-        public static class ModelStubAcceptingResidentAdded extends ModelStub {
-            public final ArrayList<Resident> residentsAdded = new ArrayList<>();
+        public static class ModelStubAcceptingVenueAdded extends ModelStub {
+            public final ArrayList<Venue> venuesAdded = new ArrayList<>();
 
             @Override
-            public boolean hasResident(Resident resident) {
-                requireNonNull(resident);
-                return residentsAdded.stream().anyMatch(resident::isSameResident);
+            public boolean hasVenue(Venue venue) {
+                requireNonNull(venue);
+                return venuesAdded.stream().anyMatch(venue::isSameVenue);
             }
 
             @Override
-            public void addResident(Resident resident) {
-                requireNonNull(resident);
-                residentsAdded.add(resident);
+            public void addVenue(Venue venue) {
+                requireNonNull(venue);
+                venuesAdded.add(venue);
             }
 
             @Override
-            public ReadOnlyResidentBook getResidentBook() {
-                return new ResidentBook();
+            public ReadOnlyVenueBook getVenueBook() {
+                return new VenueBook();
             }
         }
 }
