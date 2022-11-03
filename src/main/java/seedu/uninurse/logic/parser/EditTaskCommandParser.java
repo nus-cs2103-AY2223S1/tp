@@ -18,7 +18,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
     /**
      * Parses the given arguments in the context of the EditTaskCommand
      * and returns an EditTaskCommand object for execution.
-     * 
+     *
      * @param args the string of arguments given
      * @return EditTaskCommand
      * @throws ParseException if the user input does not conform the expected format

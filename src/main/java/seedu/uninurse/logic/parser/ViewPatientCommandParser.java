@@ -15,7 +15,7 @@ public class ViewPatientCommandParser implements Parser<ViewPatientCommand> {
     /**
      * Parses the given arguments in the context of the ViewPatientCommand
      * and returns a ViewPatientCommand object for execution.
-     * 
+     *
      * @param args the string of arguments given
      * @return ViewPatientCommand
      * @throws ParseException if the user input does not conform the expected format

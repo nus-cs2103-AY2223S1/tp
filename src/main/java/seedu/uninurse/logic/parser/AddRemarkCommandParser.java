@@ -30,7 +30,7 @@ public class AddRemarkCommandParser implements Parser<AddRemarkCommand> {
         try {
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
             Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElseThrow());
-            
+
             return new AddRemarkCommand(index, remark);
         } catch (NoSuchElementException nse) {
             // Handles missing prefix
