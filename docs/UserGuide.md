@@ -236,9 +236,9 @@ Format: `find parameter/KEYWORD [parameter/KEYWORD]...`
 * At least one of the parameter fields must be provided.
 * If a field parameter is given more than once, the command will search only for the latest specifier. E.g., `n/Bobby n/cortez` will only search and return names with `cortez` in them.
 * The search is case-insensitive. E.g., `bobby` will match `Bobby`.
-* Applicants matching at least one keyword will be returned (i.e., OR search). E.g., `n/Bobby Cortez` will return applicants with the name `Bobby Lacruz`, `Alexander Cortez`
+* Applicants matching at least one keyword will be returned (i.e., _OR_ search). E.g., `n/Bobby Cortez` will return applicants with the name `Bobby Lacruz`, `Alexander Cortez`
 * The order of the keywords does not matter. E.g., `Bobby cortez` will match `Cortez bobby`.
-* Multiple field search: Across different fields, an _AND_ search is done, while an _OR_ search is still done within each field for its keywords. E.g., `n\Bobby Cortez g/male` will return male applicants with names matching `Bobby` or `Cortez`.
+* Multiple field search: Across different fields, an _AND_ search is done, while an _OR_ search is still done within each field for its keywords. E.g., `n/Bobby Cortez g/male` will return male applicants with names matching `Bobby` or `Cortez`.
 
 Search Types:
 1. Matching word: Keywords will only match if there is a full matching word. E.g., `Bobby` will not match `Bobbys`.
