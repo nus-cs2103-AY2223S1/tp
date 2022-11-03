@@ -96,7 +96,7 @@ Format: `help`
 
 Format: `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ [ds/DATE_AND_SLOT]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tips:**<br>
 
