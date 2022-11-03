@@ -14,6 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLANTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISKTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.tag.NormalTag.MESSAGE_MAX_TAGS;
 
 import java.util.Set;
 
@@ -65,6 +66,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         PlanTag planTag = ParserUtil.parsePlanTag(argMultimap.getValue(PREFIX_PLANTAG).get());
         ClientTag clientTag = ParserUtil.parseClientTag(argMultimap.getValue(PREFIX_CLIENTTAG).get());
         Set<NormalTag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+        if (tagList.size() > 5) {
+            throw new ParseException(MESSAGE_MAX_TAGS);
+        }
         Person person = new Person(name, phone, email, address, incomeLevel, monthly,
                 riskTag, planTag, clientTag, tagList);
 

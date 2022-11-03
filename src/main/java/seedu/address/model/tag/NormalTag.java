@@ -8,8 +8,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class NormalTag extends Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and up to 50 characters";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}]{0,50}$";
+    public static final String MESSAGE_MAX_TAGS = "Max of only 5 tags can be added at any time.";
 
 
     /**

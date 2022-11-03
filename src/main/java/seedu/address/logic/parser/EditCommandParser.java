@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLANTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISKTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.tag.NormalTag.MESSAGE_MAX_TAGS;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -95,6 +96,9 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         if (tags.isEmpty()) {
             return Optional.empty();
+        }
+        if (tags.size() > 5) {
+            throw new ParseException(MESSAGE_MAX_TAGS);
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));

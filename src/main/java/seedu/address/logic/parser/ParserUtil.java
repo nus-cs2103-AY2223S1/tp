@@ -328,7 +328,7 @@ public class ParserUtil {
     public static NormalTag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!NormalTag.isValidTagName(trimmedTag)) {
+        if (!NormalTag.isValidNormalTagName(trimmedTag)) {
             throw new ParseException(NormalTag.MESSAGE_CONSTRAINTS);
         }
         return new NormalTag(trimmedTag);
