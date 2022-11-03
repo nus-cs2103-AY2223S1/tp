@@ -197,6 +197,14 @@ Examples:
 * `taskedit t/1 task/1 n/Finish assignment d/12-12-2022` Updates the first task in the first team with new description 
 'Finish assignment'. Adding a deadline to the task is optional.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: TIP:**<br>
+
+* To add deadline to an already existing task, use the command `taskedit t/TEAM-INDEX task/TASK-INDEX d/NEW DD-MM-YYYY`
+
+</div>
+
 ### Adding a team: `create`
 
 Adds a team with the given name to EZLead.
@@ -251,7 +259,7 @@ Examples:
 | **Task Delete**     | `taskdelete t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskdelete t/1 task/1`                                                                                    |
 | **Task Mark**       | `taskmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskmark t/1 task/1`                                                                                        |
 | **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                    |
-| **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX n/NEW-TASK-NAME [d/NEW DD-MM-YYYY]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                    |
+| **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX [n/NEW-TASK-NAME] [d/NEW DD-MM-YYYY]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                  |
 | **Team Add**        | `create n/TEAM-NAME` <br> e.g. `create n/TEAM1`                                                                                                                |
 | **Team Delete**     | `delteam TEAM-INDEX` <br> e.g. `delteam 1`                                                                                                                     |
 | **Team Edit**       | `editteam t/TEAM-INDEX n/NEW-TEAM-NAME` <br> e.g. `editteam t/1 n/TEAMNEW`                                                                                     |
