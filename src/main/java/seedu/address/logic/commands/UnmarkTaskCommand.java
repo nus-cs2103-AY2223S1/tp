@@ -8,7 +8,11 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.module.Module;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
 
 /**
  * Marks a task as done.
@@ -46,10 +50,25 @@ public class UnmarkTaskCommand extends Command {
             throw new CommandException(MESSAGE_TASK_ALREADY_NOT_COMPLETED);
         }
 
-        Task unmarkedTask = taskToUnmark.withStatus(false);
+        Task unmarkedTask = createUnmarkedTask(taskToUnmark);
         model.setTask(taskToUnmark, unmarkedTask);
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask), true);
     }
+
+    /**
+     * Creates and returns a {@code Task} with the status of {@code taskToUnmark} set to incomplete.
+     */
+    private static Task createUnmarkedTask(Task taskToUnmark) {
+        assert taskToUnmark != null;
+
+        TaskName name = taskToUnmark.getName();
+        Module module = taskToUnmark.getModule();
+        Deadline deadline = taskToUnmark.getDeadline();
+        Status updatedStatus = new Status(false);
+
+        return new Task(name, module, deadline, updatedStatus);
+    }
+
 
     @Override
     public boolean equals(Object other) {

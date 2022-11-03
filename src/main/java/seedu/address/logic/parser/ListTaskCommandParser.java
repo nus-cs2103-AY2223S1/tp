@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.ListTaskCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.DeadlineComparator;
 import seedu.address.model.task.DefaultComparator;
 
@@ -15,9 +14,8 @@ public class ListTaskCommandParser implements Parser<ListTaskCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ListTaskCommand
      * and returns a ListTaskCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
      */
-    public ListTaskCommand parse(String args) throws ParseException {
+    public ListTaskCommand parse(String args) {
         if (args.trim().equals(LIST_BY_DEADLINE_KEYWORD)) {
             return new ListTaskCommand(new DeadlineComparator());
         } else {

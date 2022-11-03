@@ -1,6 +1,8 @@
 package seedu.address.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalTasks.FINISH_TP;
 import static seedu.address.testutil.TypicalTasks.LAB_2;
 
@@ -11,6 +13,23 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.module.Module;
 
 public class DeadlineComparatorTest {
+
+    @Test
+    public void equals() {
+        DeadlineComparator firstDeadlineComparator = new DeadlineComparator();
+        DeadlineComparator secondDeadlineComparator = new DeadlineComparator();
+
+        // same object -> returns true
+        assertTrue(firstDeadlineComparator.equals(firstDeadlineComparator));
+        assertTrue(firstDeadlineComparator.equals(secondDeadlineComparator));
+
+        // different types -> returns false
+        assertFalse(firstDeadlineComparator.equals(1));
+
+        // null -> returns false
+        assertFalse(firstDeadlineComparator.equals(null));
+
+    }
 
     @Test
     public void compare() {
