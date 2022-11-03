@@ -7,6 +7,7 @@ import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
@@ -56,8 +57,11 @@ public class DeletesCommand extends Command {
             }
         }
 
-        model.removeSessions(focusedClass, sessions);
-        return new CommandResult(getCommandMessage(sessions));
+        // Every session exists. Gets the actual name of each session.
+        Set<Session> existingSessions = sessions.stream().map(focusedClass::getSessionWithSameName)
+                .collect(Collectors.toSet());
+        model.removeSessions(focusedClass, existingSessions);
+        return new CommandResult(getCommandMessage(existingSessions));
     }
 
     public static String getCommandMessage(Set<Session> sessions) {
