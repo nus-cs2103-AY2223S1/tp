@@ -39,4 +39,12 @@ public class AppUtil {
             throw new IllegalArgumentException(errorMessage);
         }
     }
+
+    /**
+     * Checks that {@code doubleValue} is smaller than {@code Integer.MAX_VALUE}.
+     * Used for validating input before parsing.
+     */
+    public static boolean checkDoubleLessThanMaxInt(Double doubleValue) {
+        return (doubleValue < Integer.MAX_VALUE);
+    }
 }
