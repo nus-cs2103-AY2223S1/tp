@@ -1,16 +1,17 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.EditModuleCommand.EditModuleDescriptor;
-import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.TutorialDetails;
-import seedu.address.model.module.LectureDetails;
-import seedu.address.model.module.ZoomLink;
-import seedu.address.model.assignmentdetails.AssignmentDetails;
-
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import seedu.address.logic.commands.EditModuleCommand.EditModuleDescriptor;
+import seedu.address.model.assignmentdetails.AssignmentDetails;
+import seedu.address.model.module.LectureDetails;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.TutorialDetails;
+import seedu.address.model.module.ZoomLink;
+
 
 /**
  * A utility class to help with building EditModuleDescriptor objects.
@@ -81,11 +82,13 @@ public class EditModuleDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code assignments} into a {@code Set<AssignmentDetails>} and set it to the {@code EditModuleDescriptor}
+     * Parses the {@code assignments} into a {@code Set<AssignmentDetails>}
+     * and set it to the {@code EditModuleDescriptor}
      * that we are building.
      */
     public EditModuleDescriptorBuilder withAssignmentDetails(String... assignments) {
-        Set<AssignmentDetails> assignmentSet = Stream.of(assignments).map(AssignmentDetails::new).collect(Collectors.toSet());
+        Set<AssignmentDetails> assignmentSet = Stream.of(assignments).map(AssignmentDetails::new)
+            .collect(Collectors.toSet());
         descriptor.setAssignments(assignmentSet);
         return this;
     }

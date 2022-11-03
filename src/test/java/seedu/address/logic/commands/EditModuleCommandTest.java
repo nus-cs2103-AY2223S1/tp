@@ -1,17 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditModuleCommand.EditModuleDescriptor;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.module.Module;
-import seedu.address.testutil.EditModuleDescriptorBuilder;
-import seedu.address.testutil.ModuleBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2100;
@@ -26,6 +14,20 @@ import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
 import static seedu.address.testutil.TypicalModules.getTypicalAddressBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditModuleCommand.EditModuleDescriptor;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.module.Module;
+import seedu.address.testutil.EditModuleDescriptorBuilder;
+import seedu.address.testutil.ModuleBuilder;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditModuleCommand.
@@ -53,11 +55,13 @@ public class EditModuleCommandTest {
         Module lastModule = model.getFilteredModuleList().get(indexLastModule.getZeroBased());
 
         ModuleBuilder moduleInList = new ModuleBuilder(lastModule);
-        Module editedModule = moduleInList.withModuleCode(VALID_MODULE_CODE_CS2040S).withLectureDetails(VALID_LECTURE_DETAILS_CS2100)
+        Module editedModule = moduleInList.withModuleCode(VALID_MODULE_CODE_CS2040S)
+            .withLectureDetails(VALID_LECTURE_DETAILS_CS2100)
             .withAssignmentDetails(VALID_ASSIGNMENT_DETAILS_HARD).build();
 
-        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withModuleCode(VALID_MODULE_CODE_CS2040S)
-            .withLectureDetails(VALID_LECTURE_DETAILS_CS2100).withAssignmentDetails(VALID_ASSIGNMENT_DETAILS_HARD).build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
+            .withModuleCode(VALID_MODULE_CODE_CS2040S).withLectureDetails(VALID_LECTURE_DETAILS_CS2100)
+            .withAssignmentDetails(VALID_ASSIGNMENT_DETAILS_HARD).build();
         EditModuleCommand editCommand = new EditModuleCommand(indexLastModule, descriptor);
 
         String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
@@ -121,7 +125,8 @@ public class EditModuleCommandTest {
     @Test
     public void execute_invalidModuleIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredModuleList().size() + 1);
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withModuleCode(VALID_MODULE_CODE_CS2103T).build();
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
+            .withModuleCode(VALID_MODULE_CODE_CS2103T).build();
         EditModuleCommand editModuleCommand = new EditModuleCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editModuleCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
