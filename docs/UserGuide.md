@@ -60,7 +60,7 @@ Refer to the [Features](#features) below for details of each command.
 
 5. Storage Location: This is where you can see the location of HackAssist data file.
 
-6. Tasks List Setting: This portion displays what the current sort and filter setting for Tasks List are, if any. |
+6. Tasks List Setting: This portion displays what the current sort and filter setting for Tasks List are, if any.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -329,7 +329,6 @@ Examples:
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HackAssist home folder.
 
-add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
 --------------------------------------------------------------------------------------------------------------------
 ## Member Parameters
 
