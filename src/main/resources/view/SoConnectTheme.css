@@ -233,6 +233,7 @@
     -fx-font-size: 22px;
     -fx-font-weight: 700;
     -fx-text-fill: #FFDFEA;
+    -fx-wrap-text: true;
 }
 
 #attributeA {
@@ -241,7 +242,7 @@
 }
 
 .personAttribute {
-    -fx-end-margin: 500;
+    -fx-wrap-text: true;
 }
 
 #attributeB {
