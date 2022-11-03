@@ -59,9 +59,6 @@ public class EditOrderCommand extends Command {
     public static final String MESSAGE_ORDER_ALREADY_MARKED =
             "An order marked as paid and/or delivered cannot be edited!";
 
-    public static final String QUANTITY_NOT_A_VALID_INTEGER = "QUANTITY needs to be a positive integer "
-            + "value smaller than 2 billion.";
-
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;
 
