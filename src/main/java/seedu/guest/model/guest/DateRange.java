@@ -15,8 +15,8 @@ import java.time.format.ResolverStyle;
 public class DateRange {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "DateRanges should contain only numbers, spaces, hyphens (-), and forward slashes (/).\n"
-                    + "They must follow the format \"dd/MM/yy - dd/MM/yy\", both dates must be valid, and the second "
+            "DateRanges should contain only numbers, spaces, forward slashes (/), and 1 hyphen (-) "
+                    + "in the format \"dd/MM/yy - dd/MM/yy\".\nBoth dates must be valid, and the second "
                     + "date must be later than the first date.";
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/uu")
             .withResolverStyle(ResolverStyle.STRICT);
