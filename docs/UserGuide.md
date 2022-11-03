@@ -523,7 +523,10 @@ Examples:
 
 ### Refreshing to Next Semester
 
-Moves all the current modules in the current module lists of both the user and all persons in the user's contact list into their previous modules list when a next semester command is given. This enables user's to update their ConnectNUS app at the start of the new semester by clearing all modules from the current module lists of the user and their contacts, such that they are able to add new current modules that they and their contacts will be taking in the upcoming semester to their app.
+Moves all the current modules in the current module lists of both the user and all persons in the user's contact list into 
+their previous modules list when a next semester command is given. This enables user's to update their ConnectNUS app 
+at the start of the new semester by clearing all modules from the current module lists of the user and their contacts, 
+such that they are able to add new current modules that they and their contacts will be taking in the upcoming semester to their app.
 
 Format: `nextsem`
 
