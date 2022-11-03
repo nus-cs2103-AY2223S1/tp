@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Arrays;
+
 /**
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
@@ -20,6 +22,8 @@ public class Name {
 
     public final String fullName;
 
+    private final String[] names;
+
     /**
      * Constructs a {@code Name}.
      *
@@ -29,6 +33,7 @@ public class Name {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
+        names = name.toLowerCase().split("\\s+");
     }
 
     /**
@@ -48,7 +53,8 @@ public class Name {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && fullName.equalsIgnoreCase(((Name) other).fullName)); // state check
+                //&& fullName.equalsIgnoreCase(((Name) other).fullName));
+                && Arrays.equals(names, ((Name) other).names)); // state check
     }
 
     @Override

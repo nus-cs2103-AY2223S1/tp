@@ -47,7 +47,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person currently "
             + "being viewed. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters (where INDEX is a positive integer): "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_LESSON_PLAN + "LESSON PLAN] "
@@ -56,8 +56,10 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SESSION + "INDEX SESSION]"
             + "[" + PREFIX_GRADE_PROGRESS + "INDEX GRADE PROGRESS]"
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 ";
+            + "Example 1: " + COMMAND_WORD + " "
+            + PREFIX_PHONE + "91234567 \n"
+            + "Example 2: " + COMMAND_WORD + " "
+            + PREFIX_GRADE_PROGRESS + "1 Math:A";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -386,6 +388,14 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getLessonPlan().equals(e.getLessonPlan())
+                    && getHomework().equals(e.getHomework())
+                    && getHomeworkIndex().equals(e.getHomeworkIndex())
+                    && getGradeProgress().equals(e.getGradeProgress())
+                    && getGradeProgressIndex().equals(e.getGradeProgressIndex())
+                    && getAttendance().equals(e.getAttendance())
+                    && getAttendanceIndex().equals(e.getAttendanceIndex())
+                    && getSession().equals(e.getSession())
+                    && getSessionIndex().equals(e.getSessionIndex())
                     && getTags().equals(e.getTags());
         }
     }

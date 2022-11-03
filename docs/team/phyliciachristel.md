@@ -8,7 +8,7 @@ title: Phylicia Christel's Project Portfolio Page
 #### Overview
 Pupilist is a desktop address book application used for private tutors to handle and organise a student's info, easing their workload. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
-#### Summary of Contrbutions
+#### Summary of Contributions
 
 * **Code contributed**: [tP Code Dashboard](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=phyliciachristel&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -43,7 +43,10 @@ Pupilist is a desktop address book application used for private tutors to handle
   * Enabled assertions for team code (Pull request [\#77](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/77))
 
 * **Review/mentoring contributions**:
-  * PR reviews (non-trivial comments): _{to be added}_
-  * PR reviews: _{to be added}_
+  * PR reviews (non-trivial comments): Pull requests [\#101](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/101), [\#104](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/104), [\#108](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/108), [\#186](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/186)
+  * PR reviews (trivial comments with generally little to no issue after reading the code): Pull requests [\#46](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/46), [\#49](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/49), [\#54](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/54), 
+    [\#56](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/56), [\#57](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/57), [\#68](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/68), [\#70](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/70), 
+    [\#75](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/75), [\#78](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/78), [\#87](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/87), [\#106](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/106),
+    [\#109](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/109), [\#123](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/123), [\#125](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/125), [\#181](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/181), [\#184](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/184)
 
-* **Contributions beyond the project team**: to be added soon
+* **Contributions beyond the project team**: [Bugs reported](https://github.com/phyliciachristel/ped/issues)

@@ -1,12 +1,15 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's homework in the address book.
  * Guarantees: immutable; is always valid
  */
 public class Homework {
+    public static final String MESSAGE_CONSTRAINTS = "Homework should not be blank";
+    public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
     public final String value;
     private boolean isCompleted;
 
@@ -17,9 +20,18 @@ public class Homework {
      */
     public Homework(String homework) {
         requireNonNull(homework);
+        checkArgument(isValidHomework(homework), MESSAGE_CONSTRAINTS);
         value = homework;
         isCompleted = false;
     }
+
+    /**
+     * Returns true if a given string is a valid homework.
+     */
+    public static boolean isValidHomework(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
     /**
      * Method to indicate homework as done
      *
