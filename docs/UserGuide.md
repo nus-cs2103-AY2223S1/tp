@@ -137,6 +137,7 @@ Format: `m del INDEX`
 * If `INDEX` is non-positive or more than the number of modules in the module list, an error message will be displayed.
 
 Example:
+
 `m del 1` deletes the first module in the module list.
 
 `m del 3` deletes the third module in the module list.
@@ -430,6 +431,7 @@ Format: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`
 * `EXAM_DATE` must not be earlier than today's date, otherwise an error message will be shown. For example, 20-08-2022 is an invalid input if the current date is 26-10-2022.
 
 Examples:
+
 `e add m/cs2030s ex/midterms ed/20-11-2022` adds the exam with the exam module as 'cs2030s',
 exam description as 'midterms', exam date as '20-11-2022' into the exam list. 
 
@@ -450,13 +452,13 @@ Format: `e edit INDEX (must be a positive integer) [m/MODULE]* [ex/EXAM_DESCRIPT
 * `EXAM_DESCRIPTION` should not be empty. Otherwise, an error message will be displayed to the user. 
 * `EXAM_DATE` must be in the format `DD-MM-YYYY`, otherwise an error message will be shown. For example, 2022-12-28, 20-13-2022 are not in `DD-MM-YYYY` format
 * `EXAM_DATE` must not be earlier than today's date, otherwise an error message will be shown. For example, 20-08-2022 is an invalid input if the current date is 26-10-2022.
+
 Examples:
 
 `e edit 1 ex/finals ed/20-12-2022` changes the exam description of the first exam in the exam list to ‘finals’ and the exam date to ‘20-12-2022’.
 
 `e edit 2 m/cs2030s ex/midterms ed/22-12-2022` changes the exam description of the second exam in the exam list to ‘midterms’, the exam module to ‘cs2030s’ and the exam date as ‘22-12-2022’.
 <div markdown="span" class="alert alert-info">
-
 :information_source: **Note:** If the module of the exam is edited, and the exam is linked to some tasks, the tasks would be unlinked to the exam.
 </div>
 
@@ -471,6 +473,7 @@ Format: `e del INDEX`
 * If `INDEX` is non-positive or more than the number of exams in the exam list, an error message will be displayed.
 
 Example:
+
 `e del 1` deletes the first exam in the exam list.
 <div markdown="span" class="alert alert-info">
 
@@ -507,6 +510,7 @@ Format: `e unlink INDEX`
 * If `INDEX` is non-positive or more than the number of tasks in the task list, an error message will be displayed.
 
 Example:
+
 `e unlink 1` unlinks the first task in the task list from its current exam.
 
 ### Showing the tasks of an exam
@@ -519,6 +523,7 @@ Format: `e showt INDEX`
 * If `INDEX` is non-positive or more than the number of exams in the exam list, an error message will be displayed.
 
 Example:
+
 `e showt 1` shows a list of all tasks linked to the first exam in the exam list.
 
 ## Other Features
@@ -530,6 +535,7 @@ Format: `clearall`
 * Clears all tasks, exams and modules currently in the respective lists.
 
 Example:
+
 `clearall` clears all tasks, exams and modules currently in the respective lists.
 
 ### Help
@@ -539,6 +545,7 @@ Format: `help`
 * Opens up the help window which shows the list of commands
 
 Example:
+
 `help` opens up the help window to display the list of commands
 
 ### Exiting the program
