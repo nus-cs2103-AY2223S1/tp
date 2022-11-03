@@ -31,7 +31,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -92,17 +92,17 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 ### 2.2 Data Fields
 
-| Field               | Parameter | Length Limit | Constraints                                                                   |
-|---------------------|-----------|--------------|-------------------------------------------------------------------------------|
-| **Name**            | `n`       | 50           | Can only contain alphanumeric characters and spaces                           |
-| **Phone**           | `p`       | 20           | Can only contain numbers, at least 3 digits long                              |
-| **Address**         | `a`       | 100          | Can take any values, but not blank                                            |
-| **CAP**             | `c`       | None         | Can only consist of 2 numeric values in the form of `CURRENT_CAP/MAX_CAP`     |
-| **Gender**          | `g`       | None         | Can only be `male` or `female` in any capitalization                          |
-| **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                           |
+| Field               | Parameter | Length Limit | Constraints                                                                     |
+|---------------------|-----------|--------------|---------------------------------------------------------------------------------|
+| **Name**            | `n`       | 50           | Can only contain alphanumeric characters and spaces                             |
+| **Phone**           | `p`       | 20           | Can only contain numbers, at least 3 digits long                                |
+| **Address**         | `a`       | 100          | Can take any values, but not blank                                              |
+| **CAP**             | `c`       | None         | Can only consist of 2 numeric values in the form of `CURRENT_CAP/MAX_CAP`       |
+| **Gender**          | `g`       | None         | Can only be `male` or `female`, will be converted to lower-case.                |
+| **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                             |
 | **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of `MM-yyyy`, starting from the year 0000 |                           
-| **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                           |
-| **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces     |
+| **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                             |
+| **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces       |
 
 * `CURRENT_CAP` must be smaller than or equal to `MAX_CAP`
 * Special punctuations: `-` `#` `,` `:` `&` `(` `)` `"` `'` `/` `[` `]`
@@ -148,7 +148,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 * All leading and trailing whitespaces will be trimmed, while multiple whitespaces in between words will be replaced by a single whitespace.
 
-* All duplicate checks and find command keywords are case-insensitive.
+* All find command keywords and duplicate checks for applicants are case-insensitive.
   e.g., `JACOB@example.com` will be considered equal to `jacob@EXAMPLE.COM`.
 
 </div>
@@ -260,9 +260,9 @@ Search Types:
 
 Examples:
 * `find n/Bobby` Returns applicants with names matching `bobby` and `Bobby Cortez`
-* `find g/Female c/3.5 2` returns female applicants with a CAP value of 3.5 or 2.0
-* `find g/Male t/offered KIV` returns male applicants who have an offered or KIV tag attached to them
-* `find g/Male e/gmail` returns male applicants who have a `gmail` substring in their email address
+* `find g/female c/3.5 2` returns female applicants with a CAP value of 3.5 or 2.0
+* `find g/male t/offered KIV` returns male applicants who have an offered or KIV tag attached to them
+* `find g/male e/gmail` returns male applicants who have a `gmail` substring in their email address
 
 
 ### 3.8 Importing applicants from an external JSON file: `import`
@@ -289,7 +289,7 @@ Format: `export`
 * Exported JSON file will be stored in `data/export/` folder
 
 Examples:
-* `find u/NUS` followed by `export` exports the result of the `find` command to a JSON file.
+* `find u/NUS` followed by `export` exports the displayed list from the `find` command to a JSON file.
 
 
 ### 3.10 Checkout a new or existing list: `checkout`
