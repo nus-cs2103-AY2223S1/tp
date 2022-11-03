@@ -58,9 +58,10 @@ Here are some symbols used throughout this user guide:
    1. [Viewing help: `help`](#viewing-help-help)
    2. [Modifying patient contact details](#adding-a-patient-add)
       1. [Adding a patient: `add`](#adding-a-patient-add)
-      2. [Editing a patient's contact details: `edit` `-p`](#editing-a-patients-contact-details-edit--p)
+      2. [Editing a patient's contact details: `edit` `-p`](#editing-a-patients-single-valued-attributes-edit--p)
       3. [Deleting a patient: `delete` `-p`](#deleting-a-patient-delete--p)
-   3. [Modifying tags](#adding-a-tag-add--p)
+   3. [Editing a patient's multi-valued attributes](#editing-a-patients-multi-valued-attributes)
+   4. [Modifying tags](#adding-a-tag-add--p)
       1. [Adding a tag: `add` `-p`](#adding-a-tag-add--p)
       2. [Editing a tag: `edit` `-p` `-t`](#editing-a-tag-edit--p--t)
       3. [Deleting a tag: `delete` `-p` `-t`](#deleting-a-tag-delete--p--t)
@@ -84,11 +85,11 @@ Here are some symbols used throughout this user guide:
       1. [Listing all patients: `list`](#listing-all-patients-list)
       2. [Finding patients: `find`](#finding-patients-find)
       3. [Viewing all details of a patient: `focus` `-p`](#viewing-all-details-of-a-patient-focus--p)
-      4. [Listing all patients for today: `view` `--today`](#listing-all-patients-for-today-view---today)
-   9. [Viewing tasks](#listing-all-tasks-view--p---all)
-      1. [Listing all tasks: `view` `-p` `-all`](#listing-all-tasks-view--p---all)
-      2. [Viewing all tasks of a patient: `view` `-p`](#viewing-all-tasks-of-a-patient-view--p)
+   9. [Viewing tasks](#listing-all-tasks-of-a-patient-view--p)
+      1. [Listing all tasks: `view` `-p` `-all`](#listing-all-tasks-of-a-patient-view--p)
+      2. [Listing all tasks of a patient: `view` `-p`](#listing-all-tasks-of-all-patients-view--p---all)
       3. [Listing all tasks for a particular day: `view`](#listing-all-tasks-for-a-particular-day-view)
+      4. [Listing all patients for today: `view` `--today`](#listing-all-patients-for-today-view---today)
    10. [Undoing last command: `undo`](#undo-last-command-undo)
    11. [Reversing undo command: `redo`](#reverse-undo-command-redo)
    12. [Clearing all entries: `clear`](#clearing-all-entries-clear)
@@ -139,14 +140,16 @@ java -version
 
 **Here are some of the technical terminologies used:**
 
-| Word         | Meaning                                                                                                                                                                                                    |
-|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command      | A sentence which the user inputs to.                                                                                                                                                                       |
-| Command word | The first word of every command.                                                                                                                                                                           |
-| Option       | Part of the user input specifying the options for a command, which is preceded by a flag.                                                                                                                  |
-| Flag         | Part of the user input that allows the user to specify the specific options for a command, consisting of a letter preceded by a hyphen. <br> Type of flags: `-p`, `-t`, `-d`, `-m`, `-c`, `-r`.            |
-| Parameter    | Part of the user input consisting of information supplied by the user to UniNurse, which is preceded by a prefix.                                                                                          |
-| Prefix       | Part of the user input that allows the user to specify information for a patient, consisting of a letter preceded by a hyphen. <br> Type of prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `d/`, `m/`, `c/`, `r/` |
+| Word                    | Meaning                                                                                                                                                                                                     |
+|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command                 | A sentence which the user inputs to.                                                                                                                                                                        |
+| Command word            | The first word of every command.                                                                                                                                                                            |
+| Option                  | Part of the user input specifying the options for a command, which is preceded by a flag.                                                                                                                   |
+| Flag                    | Part of the user input that allows the user to specify the specific options for a command, consisting of a letter preceded by a hyphen. <br> Type of flags: `-p`, `-t`, `-d`, `-m`, `-c`, `-r`.             |
+| Parameter               | Part of the user input consisting of information supplied by the user to UniNurse, which is preceded by a prefix.                                                                                           |
+| Prefix                  | Part of the user input that allows the user to specify information for a patient, consisting of a letter preceded by a hyphen. <br> Type of prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `d/`, `m/`, `c/`, `r/`. |
+| Single-valued attribute | A patient's detail that consist of a single value. <br> List of single-valued attributes: name, phone, email address, address.                                                                              |
+| Multi-valued attribute  | A patient's details that consist of a list of values. <br> List of multi-valued attributes: tags, tasks, medications, conditions, remarks.                                                                  |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -198,59 +201,48 @@ Things to add:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Parameter constraints
+## Patient Overview and Parameter Constraints
 
 _To be cleaned up_
 
-### `n/NAME`
+A patient's attributes can be categorized into two: single-valued attributes and multi-valued attributes. A patient's single-valued attributes consist of their name, phone, email, and address, and their multi-valued attributes consist of their tags, tasks, conditions, medications, and remarks.
+
+### Single-Valued Attributes
+
+#### `n/NAME`
 
 `NAME` should only contain alphanumeric characters and spaces.
 
 Example: `n/John Doe`
 
-### `p/PHONE`
+#### `p/PHONE`
 
 `PHONE` should only contain numbers, and it should be at least 3 digits long.
 
 Example: `p/91234567`
 
-### `e/EMAIL`
+#### `e/EMAIL`
 
 _Use the one from MESSAGE_CONSTRAINTS_
 
-### `a/ADDRESS`
+#### `a/ADDRESS`
 
 `ADDRESS` accepts any values.
 
 Example:`a/John street, block 123, #01-01`
 
-### `t/TAG`
+### Multi-Valued Attributes
+
+#### `t/TAG`
 
 `TAG` accepts any values.
 
 Example:`t/12-A nursing home`
 
-### `d/TASK_DESCRIPTION | DATE TIME | INTERVAL TIME_PERIOD`
+#### `d/TASK_DESCRIPTION | DATE TIME | INTERVAL TIME_PERIOD`
 
-_To be added_
+_To be added and cleaned up_
 
-### `c/CONDITION`
-
-`CONDITION` accepts any values.
-
-Example:`c/Parkinson's disease`
-
-### `m/MEDICATION | DOSAGE`
-
-_To be added_
-
-### `r/REMARK`
-
-_To be added_
-
-
-_Clean up Task parameters, some should be put in the feature, while things like date format maybe be put in this section_
-### Task parameters
 * A task is specified using two pieces of information: `TASK_DESCRIPTION` and `DATE TIME`.
 * `TASK_DESCRIPTION` can be any non-empty string made of alphanumeric characters.
 * `DATE TIME` must be of the form d-M-yy HHmm, but the time is optional. <br>
@@ -263,6 +255,22 @@ _Clean up Task parameters, some should be put in the feature, while things like 
 * `INTERVAL` specifies the amount of such time periods between recurring tasks, and must be a **positive integer**.
 * Examples of valid `INTERVAL TIME_PERIOD` are: `3 days`, `7 weeks`, `2 months`.
 * Note that while a task can be created without `DATE TIME`, a recurring task must have a `DATE TIME`.
+
+#### `c/CONDITION`
+
+`CONDITION` accepts any values.
+
+Example:`c/Parkinson's disease`
+
+#### `m/MEDICATION | DOSAGE`
+
+_To be added_
+
+#### `r/REMARK`
+
+_To be added_
+
+_Clean up Task parameters, some should be put in the feature, while things like date format maybe be put in this section_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -335,7 +343,7 @@ Examples:
 
 <br>
 
-### Editing a patient’s contact details: `edit` `-p`
+### Editing a patient’s single-valued attributes: `edit` `-p`
 
 You can edit the contact details of an existing patient in the patient list with the `edit` command.
 
@@ -384,6 +392,49 @@ Examples:
 </div>
 
 <br>
+
+### Editing a patient’s multi-valued attributes
+
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:** You can understand the commands about muti-valued attributes as follows.
+
+#### Adding a value to an attribute: `add` `-p`
+
+You can add a value to a patient's attribute with the `add` command.
+
+Format: **`add`**`-p PATIENT_INDEX xyz/XYZ_VALUE`
+
+Example:
+* `list` followed by `add -p 1 t/high-risk` adds the `high-risk` tag (attribute `t`) to the 1st patient in the patient list.
+
+#### Editing a value of an attribute: `edit` `-p` `-xyz`
+
+Format: **`edit`**`-p PATIENT_INDEX -xyz XYZ_INDEX xyz/XYZ_VALUE`
+
+Example:
+* `list` followed by `edit -p 2 -t 3 t/high-risk` edits the 3rd tag (attribute `t`) of the 2nd patient in the patient list to `high-risk`.
+
+
+#### Deleting a value from an attribute: `edit` `-p` `-xyz`
+
+Format: **`delete`**`-p PATIENT_INDEX -xyz XYZ_INDEX`
+
+Example:
+* `list` followed by `delete -p 2 -t 3` deletes the 3rd tag (attribute `t`) of the 2nd patient in the patient list.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes**:
+* Attribute `t` refers to a `TAG`.
+* Attribute `d` refers to a `TASK_DESCRIPTION`.
+* Attribute `c` refers to a `CONDITION`.
+* Attribute `m` refers to a `MEDICATION`.
+* Attribute `r` refers to a `REMARK`.
+
+</div>
+
+</div>
 
 ### Adding a tag: `add` `-p`
 
@@ -629,22 +680,22 @@ Format: `list`
 
 ### Finding patients: `find`
 
-You can find specific patients using the `find` command.
+Finds patients whose parameters contain the given keywords.
 
-Format: **`find`**`[KEYWORD]… [xyz/XYZ_KEYWORD]…`
+Format: `find [KEYWORD]… [xyz/XYZ_KEYWORD]…`
 * `xyz/XYZ_KEYWORD` refers to a keyword for a specific parameter.
 * There should be at least one parameter for the command.
 * The search is case-insensitive. e.g `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Partial words can be matched e.g. `Han` will match `Hans`.
 * Patients matching at least one keyword in every parameter will be returned (i.e. AND search for different parameters, OR search for same parameter). In more details,
-    * At least one of the patient's details (name, phone, email, address, tag, task description, condition, medication, or remark) must match with at least one `KEYWORD`.
-    * For every different parameter `xyz`, the patient's corresponding details must match at least one `XYZ_KEYWORD`.
+    * At least one of the patient's details (name, phone, email, address, tag, condition, task description, or medication) must match with at least one `KEYWORD`.
+    * For every different parameter `xyz`, it must match at least one `XYZ_KEYWORD`.
 
 Examples:
 * `find key n/John n/Betsy n/Charlie e/@example.com e/@u.nus.edu` returns patients who fulfill all conditions below:
     * The patient's name contains either `John` or `Betsy` or `Charlie`.
-    * The patient's email address must contain either `@example.com` or `@u.nus.edu`.
+    * The patient's email address must contains either `@example.com` or `@u.nus.edu`.
     * At least one of the patient's details must contain `key` (e.g., one of their tags contains `key`).
 * `find jo` returns patients with names `Joe` and `John`, patients with emails `jo@example.com`, and patients with tag `joints`.
 * `find alice meier` returns `Alice Tan` & `Benson Meier`.
@@ -667,36 +718,7 @@ _Add screenshot here_
 
 <br>
 
-### Listing all patients for today: `view` `--today`
-
-Shows a list of all patients with tasks due today.
-
-Format: `view --today`
-
-<br>
-
-### Listing all tasks: `view` `-p` `--all`
-
-Shows a list of all tasks to be completed.
-
-Format: `view -p --all`
-
-Examples:
-
-Suppose the following patients were added.
-
-`add n/John Doe d/Administer 3ml of example medicine`
-
-`add n/Betsy Crowe d/Change dressing on left arm`
-* `view -p --all` will display:
-    * `Administer 3ml of example medicine FOR John Doe`
-    * `Change dressing on left arm FOR Betsy Crowe`
-
-_Add screenshot here_
-
-<br>
-
-### Viewing all tasks of a patient: `view` `-p`
+### Listing all tasks of a patient: `view` `-p`
 
 Shows all the tasks that are associated with the specified patient.
 
@@ -718,6 +740,27 @@ _Add screenshot here_
 
 <br>
 
+### Listing all tasks of all patients: `view` `-p` `--all`
+
+Shows a list of all tasks to be completed.
+
+Format: `view -p --all`
+
+Examples:
+
+Suppose the following patients were added.
+
+`add n/John Doe d/Administer 3ml of example medicine`
+
+`add n/Betsy Crowe d/Change dressing on left arm`
+* `view -p --all` will display:
+    * `Administer 3ml of example medicine FOR John Doe`
+    * `Change dressing on left arm FOR Betsy Crowe`
+
+_Add screenshot here_
+
+<br>
+
 ### Listing all tasks for a particular day: `view`
 
 Shows a list of all tasks on a particular day.
@@ -730,6 +773,14 @@ Examples:
 * `view 25-12-22` lists the tasks on 25th December 2022
 
 _Add screenshot here_
+
+<br>
+
+### Listing all patients for today: `view` `--today`
+
+Shows a list of all patients with tasks due today.
+
+Format: `view --today`
 
 <br>
 
