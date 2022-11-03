@@ -234,9 +234,10 @@ find-module CS
 ```
 In either of the above examples, we find every module whose module code starts with CS in Plannit.
 
-<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>You will
-remain on the home page after executing the `find-module` command. This is different
-from the behavior of [`goto`](#252-navigate-between-modules) command.
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>
+You will remain on the home page after executing the `find-module` command. This is different
+from the behavior of [`goto`](#252-navigate-between-modules) command, where the person list will be
+updated with the persons associated with the module.
 </div>
 
 #### 2.1.5. List module
