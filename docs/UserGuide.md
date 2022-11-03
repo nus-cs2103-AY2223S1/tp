@@ -381,7 +381,7 @@ Imports student data from a CSV file stored on your computer.
 
 Format: `import`
 
-
+* Importing student data will add students to the existing student list, and will not clear any existing students 
 * Running the command will open a file browser for you to select the CSV file to import
 * The CSV format accepted by StudMap is strict! Please use the template provided in the link below
 
