@@ -65,7 +65,7 @@ A brief display of important information for **inventory** and **tasks**.
   * **(B)** `Overdue` tasks refers to tasks that are both `Not Done` and has a deadline that is
   before the current date.
     * For example: Today's date is **_11 Feb 2022_** and your task's deadline is _**10 Feb 2022**_, this will be counted as `Overdue`.
-    
+
   * **(C)** `Upcoming` tasks refers to tasks that have deadlines that are **in the future and inclusive of today**, that are yet to be completed i.e. `Not Done`.
     * For example: You have an incomplete task. Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or later**_, this will be counted as `Upcoming`.
 
@@ -427,10 +427,7 @@ re-run Salesy.
 | 🟠&nbsp;Orange | Running at a `moderate` level, can consider restocking soon. | **More than and equal to 120%** of minimum stock specified and **less than 165%** of minimum stock. |
 | 🟢&nbsp;Green  | Running at a `healthy` level, no worries about restocking.   | **More than and equal to 165%** of minimum stock specified.                                         |
 
-<details>
-  <summary style='font-size: 18px'>
-    Notes on how the colours are determined: (Click me)
-  </summary>
+### More details
 
 **What is _minimum stock_?**
 * Minimum stock refers the minimum amount of stock in which the canteen vendor feel is required for
@@ -459,8 +456,6 @@ When it shows **red** colour: Our current stock must be **Less than `120%`** of 
 
 1. For this case, `120%` of `100` eggs is `120` eggs.
 2. If our current stock is less than `120` eggs it will display red.
-
-</details>
 
 [Back to Colors](#32-colors-used-for-inventory)
 
