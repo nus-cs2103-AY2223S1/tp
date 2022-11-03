@@ -34,9 +34,11 @@ class JsonAdaptedDate {
     }
 
     /**
-     * Converts this Jackson-friendly adapted date object into the model's {@code Date} object.
+     * Converts this Jackson-friendly adapted date object into the model's
+     * {@code Date} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted date.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted date.
      */
     public Date toModelType() throws IllegalValueException {
         if (!Date.isValidDate(date)) {

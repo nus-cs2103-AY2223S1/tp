@@ -21,6 +21,9 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all persons with specifications:\n" + MESSAGE_ARGUMENTS;
 
+    public static final String MESSAGE_INVALID_PARAMETERS_IGNORED =
+            "WARNING: One or more invalid input parameters were ignored\n.";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists all enrolled users who fit the specified criteria, "
             + "or all enrolled users if no criteria were specified.\n"
@@ -36,6 +39,7 @@ public class ListCommand extends Command {
     private final Optional<Category> category;
     private final Optional<Gender> gender;
     private final Optional<Tag> tag;
+    private final boolean parametersAreValid;
 
     /**
      * @param a address to be filtered
@@ -48,6 +52,22 @@ public class ListCommand extends Command {
         category = c;
         gender = g;
         tag = t;
+        parametersAreValid = true;
+    }
+
+    /**
+     * @param a address to be filtered
+     * @param c category (nurse/patient) to be filtered
+     * @param g gender to be filtered
+     * @param t tag to be filtered
+     * @param p true if all parameters are valid, false if one or more are invalid.
+     */
+    public ListCommand(Optional<Address> a, Optional<Category> c, Optional<Gender> g, Optional<Tag> t, boolean p) {
+        address = a;
+        category = c;
+        gender = g;
+        tag = t;
+        parametersAreValid = p;
     }
 
     @Override
@@ -76,10 +96,15 @@ public class ListCommand extends Command {
         gender.ifPresentOrElse(x -> filteredGender[0] = x.gender, () -> filteredGender[0] = "NIL");
         final String[] filteredCategory = new String[1];
         category.ifPresentOrElse(x -> filteredCategory[0] = x.categoryName, () -> filteredCategory[0] = "NIL");
-        return new CommandResult(String.format(MESSAGE_SUCCESS, address.orElse(new Address("NIL")).value,
+
+        String result = String.format(MESSAGE_SUCCESS, address.orElse(new Address("NIL")).value,
                 filteredCategory[0],
                 filteredGender[0],
-                tag.orElse(new Tag("NIL")).tagName));
+                tag.orElse(new Tag("NIL")).tagName);
+        if (!parametersAreValid) {
+            result += MESSAGE_INVALID_PARAMETERS_IGNORED;
+        }
+        return new CommandResult(result);
     }
 
     @Override

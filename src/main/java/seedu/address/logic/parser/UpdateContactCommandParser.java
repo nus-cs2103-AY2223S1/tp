@@ -29,8 +29,8 @@ public class UpdateContactCommandParser implements Parser<UpdateContactCommand> 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_UID, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_CATEGORY);
 
-        Supplier<ParseException> exceptionSupplier = () ->
-                new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateContactCommand.MESSAGE_USAGE));
+        Supplier<ParseException> exceptionSupplier = () -> new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateContactCommand.MESSAGE_USAGE));
 
         Uid uid;
         Name name;

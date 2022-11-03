@@ -17,7 +17,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
 
-
 class UpdateContactCommandParserTest {
 
     @Test

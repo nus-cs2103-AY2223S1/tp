@@ -14,22 +14,21 @@ import seedu.address.logic.commands.AssignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Uid;
 
-
 /**
  * Parses input arguments and creates a new Assign object
  */
 public class AssignCommandParser implements Parser<AssignCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AssignCommand
+     * Parses the given {@code String} of arguments in the context of the
+     * AssignCommand
      * and returns an AssignCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AssignCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_DATE_AND_SLOT_INDEX);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_DATE_AND_SLOT_INDEX);
 
         List<String> uidInput = argMultimap.getAllValues(PREFIX_UID);
 
@@ -48,8 +47,4 @@ public class AssignCommandParser implements Parser<AssignCommand> {
         return new AssignCommand(uid1, uid2, indexList);
     }
 
-
 }
-
-
-

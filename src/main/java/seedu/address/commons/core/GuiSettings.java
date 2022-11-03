@@ -27,7 +27,8 @@ public class GuiSettings implements Serializable {
     }
 
     /**
-     * Constructs a {@code GuiSettings} with the specified height, width and position.
+     * Constructs a {@code GuiSettings} with the specified height, width and
+     * position.
      */
     public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition) {
         this.windowWidth = windowWidth;
@@ -52,7 +53,7 @@ public class GuiSettings implements Serializable {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof GuiSettings)) { //this handles null as well.
+        if (!(other instanceof GuiSettings)) { // this handles null as well.
             return false;
         }
 
@@ -71,9 +72,9 @@ public class GuiSettings implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Width : " + windowWidth + "\n");
-        sb.append("Height : " + windowHeight + "\n");
-        sb.append("Position : " + windowCoordinates);
+        sb.append("Width : ").append(windowWidth).append("\n");
+        sb.append("Height : ").append(windowHeight).append("\n");
+        sb.append("Position : ").append(windowCoordinates);
         return sb.toString();
     }
 }

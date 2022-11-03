@@ -28,6 +28,7 @@ public class CommandNameListPanel extends UiPart<Region> {
 
     /**
      * Gets ListView
+     *
      * @return ListView
      */
     public ListView<String> getCommandNameListView() {

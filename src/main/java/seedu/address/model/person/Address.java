@@ -5,7 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in
+ * {@link #isValidAddress(String)}
  */
 public class Address {
 
@@ -46,7 +47,7 @@ public class Address {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                        && value.equals(((Address) other).value)); // state check
     }
 
     @Override
@@ -54,4 +55,7 @@ public class Address {
         return value.hashCode();
     }
 
+    public String toFormattedString() {
+        return String.format("Address: %s;", value);
+    }
 }

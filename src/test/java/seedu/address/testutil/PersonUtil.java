@@ -37,19 +37,19 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_CATEGORY + person.getCategory().categoryName + " ");
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_GENDER + person.getGender().gender + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+        sb.append(PREFIX_CATEGORY).append(person.getCategory().categoryName).append(" ");
+        sb.append(PREFIX_NAME).append(person.getName().fullName).append(" ");
+        sb.append(PREFIX_GENDER).append(person.getGender().gender).append(" ");
+        sb.append(PREFIX_PHONE).append(person.getPhone().value).append(" ");
+        sb.append(PREFIX_EMAIL).append(person.getEmail().value).append(" ");
+        sb.append(PREFIX_ADDRESS).append(person.getAddress().value).append(" ");
         person.getTags().stream().forEach(
-                s -> sb.append(PREFIX_TAG + s.tagName + " "));
+                s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
 
         if (person instanceof Patient) {
             Patient patient = (Patient) person;
             patient.getDatesSlots().stream().forEach(
-                    s -> sb.append(PREFIX_DATE_AND_SLOT + s.getString() + " "));
+                    s -> sb.append(PREFIX_DATE_AND_SLOT).append(s.getString()).append(" "));
         }
         return sb.toString();
     }

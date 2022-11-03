@@ -93,7 +93,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `HealthcareXpressParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,7 +110,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `HealthcareXpressParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HealthcareXpressParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -154,9 +154,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Proposed Add feature
+### Add feature
 
-#### Proposed Implementation for adding a patient
+#### Implementation for adding a patient
 
 The add patient mechanism is facilitated by `Patient`, `AddCommandParser`,`AddCommand`, `Model`, `AddressBook` and `UniquePersonList`.
 
@@ -176,7 +176,7 @@ Step 1. The user executes `Add c/P n/Lily g/F p/91103813 a/ABC STREET 111 e/lily
 
 </div>
 
-Step 2. The `AddressBookParser` will parse the user command to return an `AddCommandParser` with the patient's details.
+Step 2. The `HealthcareXpressParser` will parse the user command to return an `AddCommandParser` with the patient's details.
 
 Step 3. The `AddCommandParser` will parse the respective patient's details using fixed prefixes and check their validity. The `Uid` for the patient will also be generated and used along with the parsed patient's details to create a patient if all the inputs are valid. Then, it returns an `AddCommand` with the patient created.
 
@@ -219,18 +219,18 @@ The following activity diagram summarizes what happens when a user executes an a
 * **Alternative 2:** The `DateTime` input will be in the format of `YYYY-MM-DD` and slot. The slot will have fixed starting time and fixed duration.
     * Pros: It is easy to determine/check time crashes when assigning a home-visit `DateTime` slot to a nurse.
     * Cons: Less flexible in the home visit date and time that a patient can choose.
-    
-### \[Proposed\] Mark feature
 
-#### Proposed implementation for marking Appointments between Nurses and Patients
+### Mark feature
 
-The marking mechanism is facilitated by `Appointment`, `VisitStatus`, LogicManager`, `AddressBookParser`, `MarkCommandParser`, `MarkCommand`, `Model`, `AddressBook`, and `UniquePersonList`
+#### Implementation for marking Appointments between Nurses and Patients
+
+The marking mechanism is facilitated by `Appointment`, `VisitStatus`, LogicManager`, `HealthcareXpressParser`, `MarkCommandParser`, `MarkCommand`, `Model`, `AddressBook`, and `UniquePersonList`
 
 `Appointment` is an association class between Nurse and Patient, and also keeps track of the date and time of the appointment, and if the Patient has been visited by the Nurse.
 
 ![AppointmentClassDiagram](images/AppointmentClassDiagram.png)
 
-The `AddressBookParser` will take in user input and recognise it as a `MarkCommand`, and pass on the user input to `MarkCommandParser`
+The `HealthcareXpressParser` will take in user input and recognise it as a `MarkCommand`, and pass on the user input to `MarkCommandParser`
 
 `MarkCommandParser` will then identify the appointment of interest, by parsing the index given by the user.
 
@@ -242,7 +242,7 @@ Given blow is an example usage scenario and how the mark mechanism works.
 
 Step 1. The user enters the command `mark id/1` command to mark the appointment at index 1 as visited.
 
-Step 2. The `AddressBookParser` will parse the user command and pass the input to the `MarkCommandParser`
+Step 2. The `HealthcareXpressParser` will parse the user command and pass the input to the `MarkCommandParser`
 
 Step 3. The `MarkCommandParser` will parse the index, and ensure that the index is present. It will then return a `MarkCommand` with the index.
 
@@ -285,7 +285,7 @@ Given below is an example usage scenario and how the list function behaves at ea
 
 Step 1. The user executes `list c/n g/f` to list all female nurses.
 
-Step 2. `AddressBookParser` parses the user command to return a `ListCommandParser` with the given criteria.
+Step 2. `HealthcareXpressParser` parses the user command to return a `ListCommandParser` with the given criteria.
 
 Step 3. The `ListCommandParser` parses the criteria using fixed prefixes and check their validity. Then, it returns an `ListCommand` with the criteria `category=N, gender=F`.
 
@@ -309,8 +309,41 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: If a list is returned then the user can be sure that all returned users match the given criteria exactly.
     * Cons: Possibly inefficient if exact matching is not vital.
 
-### \[Proposed\] Undo/redo feature
+### Update Emergency Contacts feature
 
+#### Implementation for updating attending physician and next of kin contact information for patients
+
+The feature is primarily facilitated by `UpdateContactCommand` and `UpdateContactCommandParser`.
+
+`UpdateContactCommandParser` takes in user input, extracts contact info and passes it to `UpdateContactCommand`.
+
+`UpdateContactCommand` creates a new `NextOfKin` or `Physician`, based on whichever one the user specified.
+
+The new `NextOfKin` or `Physician` will have the contact details as stated by the user.
+
+`UpdateContactCommand` then gets the `Patient` from the database and edits the `Patient` to include the new contact.
+
+The new `Patient`, with the contact info, is then passed to `Model`, so that the details are saved in the database.
+
+Given below is an example scenario and how the `UpdateContactCommand` behaves at each step, 
+illustrated with the following sequence diagram:
+
+![UpdateContactSequenceDiagram](images/UpdateContactSequenceDiagram.png)
+
+Step 1. The user executes `updatecontact id/3 n/ John Doe p/ 81234567 e/ johndoe@example.com c/ D`
+
+Step 2. `HealthcareXpressParser` creates an `UpdateContactCommandParser` to parse the arguments.
+
+Step 3. `UpdateContactCommandParser` checks validity of the given arguments and creates an `UpdateContactCommand`.
+
+Step 4. The `UpdateContactCommand` is executed, and a new `Physician` with the given contact info is created`.
+
+Step 5. `UpdateContactCommand` gets `Patient` with UID 3 from the database, and updates the `Patient` to contain 
+`Physician` John Doe.
+
+Step 6. `Model` updates the database, and displays the attending physician on `Patient` UID 3.
+
+### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
@@ -654,7 +687,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 2b. The given index of the tag / tags is out of bound.
+* 2b. The given index of the tag / tags is out of bounds.
 
     * 2b2. Healthcare Xpress shows an error message.
 
@@ -800,7 +833,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 2a. Any given id number is invalid.
 
-    * 2a1. Healthcare Xpress shows an error message.              
+    * 2a1. Healthcare Xpress shows an error message.
 
       Use case resumes at step 1.
 

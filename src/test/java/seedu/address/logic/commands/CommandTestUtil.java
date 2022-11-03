@@ -14,7 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -34,8 +33,8 @@ public class CommandTestUtil {
     public static final String VALID_CATEGORY_BOB = "P";
     public static final String VALID_MISSPELT_CATEGORY_BOB = "Patient";
     public static final String INVALID_MISSPELT_CATEGORY_BOB = "Nursey";
-    public static final String VALID_UID_AMY = "10";
-    public static final String VALID_UID_BOB = "11";
+    public static final String VALID_UID_AMY = "100";
+    public static final String VALID_UID_BOB = "101";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_GENDER_AMY = "F";
@@ -170,7 +169,7 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(List.of(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

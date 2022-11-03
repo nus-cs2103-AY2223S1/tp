@@ -4,7 +4,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":HealthcareXpressParser" as HealthcareXpressParser LOGIC_COLOR
 participant ":MarkCommandParser" as MarkCommandParser LOGIC_COLOR
 participant "m:MarkCommand" as MarkCommand LOGIC_COLOR
 participant ":EditCommand" as EditCommand LOGIC_COLOR
@@ -18,17 +18,17 @@ end box
 [-> LogicManager : execute("mark 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("mark 1")
-activate AddressBookParser
+LogicManager -> HealthcareXpressParser : parseCommand("mark 1")
+activate HealthcareXpressParser
 
 create MarkCommandParser
-AddressBookParser -> MarkCommandParser
+HealthcareXpressParser -> MarkCommandParser
 activate MarkCommandParser
 
-MarkCommandParser --> AddressBookParser
+MarkCommandParser --> HealthcareXpressParser
 deactivate MarkCommandParser
 
-AddressBookParser -> MarkCommandParser : parse("1")
+HealthcareXpressParser -> MarkCommandParser : parse("1")
 activate MarkCommandParser
 
 create MarkCommand
@@ -38,14 +38,14 @@ activate MarkCommand
 MarkCommand --> MarkCommandParser : m
 deactivate MarkCommand
 
-MarkCommandParser --> AddressBookParser : m
+MarkCommandParser --> HealthcareXpressParser : m
 deactivate MarkCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-MarkCommandParser -[hidden]-> AddressBookParser
+MarkCommandParser -[hidden]-> HealthcareXpressParser
 destroy MarkCommandParser
 
-AddressBookParser --> LogicManager : m
-deactivate AddressBookParser
+HealthcareXpressParser --> LogicManager : m
+deactivate HealthcareXpressParser
 
 LogicManager -> MarkCommand : execute()
 activate MarkCommand

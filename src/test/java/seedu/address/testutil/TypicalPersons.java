@@ -24,12 +24,18 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Physician;
 
 /**
- * A utility class containing a list of {@code Patients / Nurses} objects to be used in tests.
+ * A utility class containing a list of {@code Patients / Nurses} objects to be
+ * used in tests.
  */
 public class TypicalPersons {
 
@@ -114,6 +120,16 @@ public class TypicalPersons {
             .withDatesSlots("2022-11-11,3")
             .withEmail("hans@example.com")
             .withAddress("chicago ave").build();
+
+    public static final NextOfKin JADON = new NextOfKin(
+            new Name("Jadon Sacho"),
+            new Phone("81234567"),
+            new Email("jadon@example.com"));
+
+    public static final Physician HOUSE = new Physician(
+            new Name("House"),
+            new Phone("91234567"),
+            new Email("house@example.com"));
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder()

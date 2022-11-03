@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -7,8 +9,8 @@ import java.util.concurrent.atomic.AtomicLong;
  * Guarantees: immutable; is valid as declared in {@link #isValidUid(String)}
  */
 public class Uid implements Comparable<Uid> {
-    public static final String MESSAGE_CONSTRAINTS = "Ids should only contain numeric characters,"
-            + " and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Id should only contain one positive numeric character,"
+            + " and it should not be blank and below 99998!";
 
     /**
      * The first character of the id must not be a whitespace,
@@ -22,19 +24,23 @@ public class Uid implements Comparable<Uid> {
 
     /**
      * Constructor for Uid using a String as an input
+     *
      * @param uid
      */
     public Uid(String uid) {
-        Long parsedUid = Long.parseLong(uid);
+        requireNonNull(uid);
+        long parsedUid = Long.parseLong(uid);
         this.uid = parsedUid;
         NEXT_UID.set(parsedUid + 1);
     }
 
     /**
      * Constructor for Uid using a Long as an input
+     *
      * @param uid
      */
     public Uid(Long uid) {
+        requireNonNull(uid);
         this.uid = uid;
         NEXT_UID.set(uid + 1);
     }
@@ -43,7 +49,24 @@ public class Uid implements Comparable<Uid> {
      * Constructor for Uid
      */
     public Uid() {
-        this.uid = NEXT_UID.incrementAndGet();
+        this.uid = NEXT_UID.getAndIncrement();
+    }
+
+    /**
+     * Returns true if a given string is a valid id.
+     */
+    public static boolean isValidUid(String test) {
+        requireNonNull(test);
+        try {
+            Long parsedUid = Long.parseLong(test);
+            return test.matches(VALIDATION_REGEX) && parsedUid < 99998L;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static Uid generateUniversalUid() {
+        return new Uid(UNIVERSAL_UID);
     }
 
     /**
@@ -51,13 +74,6 @@ public class Uid implements Comparable<Uid> {
      */
     public Long getUid() {
         return uid;
-    }
-
-    /**
-     * Returns true if a given string is a valid id.
-     */
-    public static boolean isValidUid(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
@@ -97,7 +113,7 @@ public class Uid implements Comparable<Uid> {
         return uid.compareTo(o.getUid());
     }
 
-    public static Uid generateUniversalUid() {
-        return new Uid(UNIVERSAL_UID);
+    public String toFormattedString() {
+        return String.format("Uid: %s;", uid.toString());
     }
 }

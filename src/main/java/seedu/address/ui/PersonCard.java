@@ -26,13 +26,14 @@ public class PersonCard extends UiPart<Region> {
     private static final String MALE_GENDER_LABEL_TEXT = "Male";
     private static final String FEMALE_GENDER_LABEL_TEXT = "Female";
 
-
     /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
+     * Note: Certain keywords such as "location" and "resources" are reserved
+     * keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The
+     *      issue on AddressBook level 4</a>
      */
 
     public final Person person;
@@ -65,9 +66,12 @@ public class PersonCard extends UiPart<Region> {
     private Label unavailableDates;
     @FXML
     private Label physInfo;
+    @FXML
+    private Label nokInfo;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Person} and index to
+     * display.
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
@@ -80,18 +84,21 @@ public class PersonCard extends UiPart<Region> {
             unavailableDates.setText("Unavailable Dates: " + ((Nurse) person).getUnavailableDatesInString());
             category.getChildren().add(new Label(NURSE_LABEL_TEXT));
             physInfo.setText(NOT_APPLICABLE);
+            nokInfo.setText(NOT_APPLICABLE);
         } else if (person instanceof Patient) {
             dateSlots.setText("HomeVisits DateSlot: " + ((Patient) person).getDatesSlotsInString());
             homeVisits.setText("HomeVisits: " + NOT_APPLICABLE);
             unavailableDates.setText("Unavailable Dates: " + NOT_APPLICABLE);
             category.getChildren().add(new Label(PATIENT_LABEL_TEXT));
             physInfo.setText(((Patient) person).getPhysicianDetails());
+            nokInfo.setText(((Patient) person).getNextOfKinDetails());
         } else {
             dateSlots.setText(NOT_APPLICABLE);
             homeVisits.setText(NOT_APPLICABLE);
             unavailableDates.setText(NOT_APPLICABLE);
             category.getChildren().add(new Label(NAN_LABEL_TEXT));
             physInfo.setText(NOT_APPLICABLE);
+            nokInfo.setText(NOT_APPLICABLE);
         }
         name.setText(person.getName().fullName);
         if (person.getGender().gender.equals(MALE_SYMBOL)) {

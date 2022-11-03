@@ -39,13 +39,13 @@ public class AssignCommand extends Command {
             + PREFIX_UID + "2"
             + PREFIX_DATE_AND_SLOT_INDEX + "1";
 
-    public static final String MESSAGE_SUCCESS = "%1$s 's dateslot/dateslots assigned to %2$s.";
+    public static final String MESSAGE_SUCCESS = "%1$s's dateslot/dateslots assigned to %2$s.";
 
     public static final String MESSAGE_BOTH_NURSE = "The given uids are both nurses.";
     public static final String MESSAGE_BOTH_PATIENT = "The given uids are both patients.";
     public static final String MESSAGE_INVALID_DATESLOT = "The date slot %1$s has already passed.";
     public static final String MESSAGE_ASSIGNED_DATESLOT = "The date slot %1$s has been assigned already.";
-    public static final String MESSAGE_OUTOFBOUND_DATESLOT_INDEX = "The date slot index given is out of bound.";
+    public static final String MESSAGE_OUTOFBOUND_DATESLOT_INDEX = "The date slot index given is out of bounds.";
 
     public static final String MESSAGE_TIME_CRASHES = "There is already an exisiting homevisit in this dateslot %1$s."
             + "Please assign another nurse";
@@ -91,8 +91,8 @@ public class AssignCommand extends Command {
     }
 
     private Person getPatient(Person person1, Person person2) throws CommandException {
-        Boolean isPerson1Patient = person1.getCategory().categoryName.equals("P");
-        Boolean isPerson2Patient = person2.getCategory().categoryName.equals("P");
+        Boolean isPerson1Patient = person1.isPatient();
+        Boolean isPerson2Patient = person2.isPatient();
 
         if (isPerson1Patient && isPerson2Patient) {
             throw new CommandException(MESSAGE_BOTH_PATIENT);
@@ -106,8 +106,8 @@ public class AssignCommand extends Command {
     }
 
     private Person getNurse(Person person1, Person person2) throws CommandException {
-        Boolean isPerson1Nurse = person1.getCategory().categoryName.equals("N");
-        Boolean isPerson2Nurse = person2.getCategory().categoryName.equals("N");
+        Boolean isPerson1Nurse = person1.isNurse();
+        Boolean isPerson2Nurse = person2.isNurse();
 
         if (isPerson1Nurse && isPerson2Nurse) {
             throw new CommandException(MESSAGE_BOTH_NURSE);
@@ -123,15 +123,12 @@ public class AssignCommand extends Command {
     private void markAssign(Model model, Person patient, Person nurse) throws CommandException {
         List<DateSlot> patientDateSlotList = ((Patient) patient).getDatesSlots();
         Long nurseUidNo = nurse.getUid().getUid();
-        List<DateSlot> updatedDateSlotList = new ArrayList<>();
         List<HomeVisit> nurseHomeVisitList = ((Nurse) nurse).getHomeVisits();
-        List<HomeVisit> updatedHomeVisitList = new ArrayList<>();
         List<Date> nurseFullyScheduledList = ((Nurse) nurse).getFullyScheduledDates();
-        List<Date> updatedFullyScheduledList = new ArrayList<>();
 
-        updatedDateSlotList.addAll(patientDateSlotList);
-        updatedHomeVisitList.addAll(nurseHomeVisitList);
-        updatedFullyScheduledList.addAll(nurseFullyScheduledList);
+        List<DateSlot> updatedDateSlotList = new ArrayList<>(patientDateSlotList);
+        List<HomeVisit> updatedHomeVisitList = new ArrayList<>(nurseHomeVisitList);
+        List<Date> updatedFullyScheduledList = new ArrayList<>(nurseFullyScheduledList);
         if (dateslotIndex.isEmpty()) {
             for (DateSlot dateslot : updatedDateSlotList) {
                 executeChecksAndActions(dateslot, updatedHomeVisitList, updatedFullyScheduledList,
@@ -151,13 +148,13 @@ public class AssignCommand extends Command {
     }
 
     private void checkInvalid(DateSlot dateSlot) throws CommandException {
-        if (dateSlot.getHasVisited() == true) {
+        if (dateSlot.getHasVisited()) {
             throw new CommandException(String.format(MESSAGE_INVALID_DATESLOT, dateSlot.getDateSlotFormatted()));
         }
     }
 
     private void checkAssigned(DateSlot dateSlot) throws CommandException {
-        if (dateSlot.getHasAssigned() == true) {
+        if (dateSlot.getHasAssigned()) {
             throw new CommandException(String.format(MESSAGE_ASSIGNED_DATESLOT, dateSlot.getDateSlotFormatted()));
         }
     }
@@ -180,8 +177,8 @@ public class AssignCommand extends Command {
     }
 
     private void createHomeVisit(DateSlot date, Person patient, List<HomeVisit> homeVisitList,
-                                List<Date> updatedFullyScheduledDateList) {
-        HomeVisit homeVisit = new HomeVisit(date, ((Patient) patient).getUid().getUid());
+            List<Date> updatedFullyScheduledDateList) {
+        HomeVisit homeVisit = new HomeVisit(date, patient.getUid().getUid());
         homeVisitList.add(homeVisit);
         LocalDate localdate = date.getDate();
         int frequencyCount = 0;
@@ -196,7 +193,7 @@ public class AssignCommand extends Command {
         }
     }
 
-    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) throws CommandException {
+    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) {
 
         Uid uid = patient.getUid();
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -210,7 +207,7 @@ public class AssignCommand extends Command {
     }
 
     private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
-                          List<Date> fullyScheduledDateList) throws CommandException {
+            List<Date> fullyScheduledDateList) throws CommandException {
         Uid uid = nurse.getUid();
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
         editPersonDescriptor.setHomeVisits(homeVisitList);
@@ -230,8 +227,8 @@ public class AssignCommand extends Command {
     }
 
     private void executeChecksAndActions(DateSlot dateSlot, List<HomeVisit> homeVisitList,
-                                         List<Date> fullyScheduledDate,
-                                         Person nurse, Long nurseUidNo, Person patient) throws CommandException {
+            List<Date> fullyScheduledDate,
+            Person nurse, Long nurseUidNo, Person patient) throws CommandException {
         checkInvalid(dateSlot);
         checkAssigned(dateSlot);
         checkCrashes(dateSlot, homeVisitList);
@@ -244,9 +241,9 @@ public class AssignCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AssignCommand // instanceof handles nulls
-                && uid1.equals(((AssignCommand) other).uid1)
-                && uid2.equals(((AssignCommand) other).uid2)
-                && dateslotIndex.equals(((AssignCommand) other).dateslotIndex));
+                        && uid1.equals(((AssignCommand) other).uid1)
+                        && uid2.equals(((AssignCommand) other).uid2)
+                        && dateslotIndex.equals(((AssignCommand) other).dateslotIndex));
     }
 
 }

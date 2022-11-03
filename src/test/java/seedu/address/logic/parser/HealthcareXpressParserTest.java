@@ -32,13 +32,13 @@ import seedu.address.model.person.Uid;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class HealthcareXpressParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final HealthcareXpressParser parser = new HealthcareXpressParser();
 
     @Test
     public void parseCommand_add() throws Exception {
-        ModelManager modelManager = new ModelManager(); //to create uid for new person to be added
+        ModelManager modelManager = new ModelManager(); // to create uid for new person to be added
         Person person = new PersonBuilder().withUniversalUid().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person), modelManager);
         assertEquals(new AddCommand(person), command);
@@ -104,14 +104,15 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         ModelManager modelManager = new ModelManager();
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand("", modelManager));
+        assertThrows(ParseException.class,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), () ->
+                        parser.parseCommand("", modelManager));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         ModelManager modelManager = new ModelManager();
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand",
-                modelManager));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand("unknownCommand", modelManager));
     }
 }

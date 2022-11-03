@@ -20,7 +20,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Uid;
 
 /**
- * Unmarks a patient's dateslot using their unique id and dateslot index when fail to visit.
+ * Unmarks a patient's dateslot using their unique id and dateslot index when
+ * fail to visit.
  */
 public class UnmarkCommand extends Command {
 
@@ -35,7 +36,7 @@ public class UnmarkCommand extends Command {
     public static final String MESSAGE_UNMARK_PATIENT_SUCCESS = "Unmarked Patient as fail to visit: %1$s";
     public static final String MESSAGE_INVALID_NURSE_UID = "This uid gives a nurse." + " Please recheck the uid. "
             + "Unmark is only for patient.";
-    public static final String MESSAGE_OUT_OF_BOUND_DATE_AND_SLOT_INDEX = "The given date slot index is out of bound."
+    public static final String MESSAGE_OUT_OF_BOUND_DATE_AND_SLOT_INDEX = "The given date slot index is out of bounds."
             + "Please recheck the index.";
     public static final String MESSAGE_INVALID_DATE_AND_SLOT_INDEX = "The visit dates has not reached."
             + "Cannot unmark it as fail to visit.";
@@ -44,7 +45,8 @@ public class UnmarkCommand extends Command {
     private final Index dateSlotIndex;
 
     /**
-     * Initialises the MarkCommand with a valid and non-null {@code Uid} of the target patient.
+     * Initialises the MarkCommand with a valid and non-null {@code Uid} of the
+     * target patient.
      */
     public UnmarkCommand(Uid uid, Index dateSlotIndex) {
         requireNonNull(uid);
@@ -78,14 +80,13 @@ public class UnmarkCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UnmarkCommand// instanceof handles nulls
-                && this.uid.equals(((UnmarkCommand) other).uid) // state check
-                && this.dateSlotIndex.equals(((UnmarkCommand) other).dateSlotIndex));
+                        && this.uid.equals(((UnmarkCommand) other).uid) // state check
+                        && this.dateSlotIndex.equals(((UnmarkCommand) other).dateSlotIndex));
     }
 
     private void unmarkAction(Person personToUnmark, Model model) throws CommandException {
         List<DateSlot> dateSlotList = ((Patient) personToUnmark).getDatesSlots();
-        List<DateSlot> updatedDateSlotList = new ArrayList<>();
-        updatedDateSlotList.addAll(dateSlotList);
+        List<DateSlot> updatedDateSlotList = new ArrayList<>(dateSlotList);
 
         if (dateSlotIndex.getZeroBased() >= dateSlotList.size()) {
             throw new CommandException(MESSAGE_OUT_OF_BOUND_DATE_AND_SLOT_INDEX);
@@ -93,7 +94,7 @@ public class UnmarkCommand extends Command {
 
         DateSlot dateToBeUnmark = updatedDateSlotList.get(dateSlotIndex.getZeroBased());
 
-        if (dateToBeUnmark.getHasVisited() == false) {
+        if (!dateToBeUnmark.getHasVisited()) {
             throw new CommandException(MESSAGE_INVALID_DATE_AND_SLOT_INDEX);
         }
 
@@ -101,7 +102,7 @@ public class UnmarkCommand extends Command {
         editPatient(model, personToUnmark, updatedDateSlotList);
     }
 
-    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) throws CommandException {
+    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) {
         Uid uid = patient.getUid();
         List<Person> lastShownList = model.getFilteredPersonList();
         Optional<Person> personToEdit = lastShownList.stream().filter(p -> p.getUid().equals(uid)).findFirst();
