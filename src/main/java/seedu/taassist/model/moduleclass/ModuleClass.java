@@ -20,7 +20,7 @@ import seedu.taassist.model.uniquelist.Identity;
  */
 public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClass> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Class names should be alphanumeric and"
+    public static final String MESSAGE_CONSTRAINTS = "Class name should be alphanumeric and"
             + " doesn't exceed 25 characters.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
