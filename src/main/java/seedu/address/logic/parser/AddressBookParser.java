@@ -23,7 +23,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HideNotesPanelCommand;
 import seedu.address.logic.commands.InspectCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ListNotesCommand;
+import seedu.address.logic.commands.ListNoteCommand;
 import seedu.address.logic.commands.ShowNotesPanelCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -94,8 +94,8 @@ public class AddressBookParser {
         case AddNoteCommand.COMMAND_WORD:
             return new AddNoteCommandParser(model).parse(arguments);
 
-        case ListNotesCommand.COMMAND_WORD:
-            return new ListNotesCommand();
+        case ListNoteCommand.COMMAND_WORD:
+            return new ListNoteCommand();
 
         case DeleteNoteCommand.COMMAND_WORD:
             return new DeleteNoteCommandParser().parse(arguments);
