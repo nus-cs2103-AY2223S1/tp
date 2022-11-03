@@ -89,7 +89,7 @@ If you are already familiar with the features of HobbyList and just want a quick
 
     * **`list`** : Lists all hobby activities in HobbyList.
 
-    * **`add`**`n/42km run d/NUS Run event [t/sport] [date/2022-09-30]` : Adds a hobby activity named **42km run** to the list.
+    * **`add`**`n/42km run d/NUS Run event [t/sport] [date/2022-09-30]` : Adds a hobby activity named `42km run` to the list.
     
     * **`delete`**`3` : Deletes the 3rd hobby activity shown in the current list.
 
