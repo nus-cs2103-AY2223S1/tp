@@ -59,4 +59,16 @@ public class TestUtil {
     public static String getCurrentDate() {
         return LocalDateTime.now().format(DATE_TIME_FORMATTER);
     }
+
+    public static String getNonCurrentDate() {
+        return LocalDateTime.now().plusDays(2).format(DATE_TIME_FORMATTER);
+    }
+
+    public static String getPastDate() {
+        return LocalDateTime.now().minusDays(2).format(DATE_TIME_FORMATTER);
+    }
+
+    public static String getFutureDate() {
+        return LocalDateTime.now().plusDays(5).format(DATE_TIME_FORMATTER);
+    }
 }

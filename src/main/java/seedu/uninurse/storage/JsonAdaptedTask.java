@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.uninurse.commons.exceptions.IllegalValueException;
 import seedu.uninurse.model.task.DateTime;
+import seedu.uninurse.model.task.NonRecurringTask;
 import seedu.uninurse.model.task.Recurrence;
 import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
@@ -60,7 +61,7 @@ public class JsonAdaptedTask {
         }
 
         if (recurrence == null) {
-            return new Task(taskDescription, dateTime.toModelType());
+            return new NonRecurringTask(taskDescription, dateTime.toModelType());
         } else {
             return new RecurringTask(taskDescription, dateTime.toModelType(), recurrence, frequency);
         }

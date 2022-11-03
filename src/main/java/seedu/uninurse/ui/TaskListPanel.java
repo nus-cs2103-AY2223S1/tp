@@ -30,7 +30,7 @@ public class TaskListPanel extends UiPart<Region> {
      */
     public TaskListPanel(Patient patient) {
         super(FXML);
-        taskListView.setItems(FXCollections.observableList(patient.getTasks().getTasks()));
+        taskListView.setItems(FXCollections.observableList(patient.getTasks().getInternalList()));
         taskListView.setCellFactory(listview -> new TaskListViewCell());
 
         header.setText("Tasks:");

@@ -10,6 +10,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.person.Patient;
@@ -64,11 +65,11 @@ public class DeleteConditionCommand extends DeleteGenericCommand {
 
         Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
 
-        model.setPerson(patientToEdit, editedPatient);
+        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_DELETE_CONDITION_SUCCESS, conditionIndex.getOneBased(),
-                editedPatient.getName(), deletedCondition), DELETE_CONDITION_COMMAND_TYPE);
+                editedPatient.getName(), deletedCondition), DELETE_CONDITION_COMMAND_TYPE, patientListTracker);
     }
 
     @Override

@@ -11,6 +11,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.condition.exceptions.DuplicateConditionException;
@@ -72,11 +73,12 @@ public class EditConditionCommand extends EditGenericCommand {
 
             Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
 
-            model.setPerson(patientToEdit, editedPatient);
+            PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
             model.setPatientOfInterest(editedPatient);
 
-            return new CommandResult(String.format(MESSAGE_EDIT_CONDITION_SUCCESS, conditionIndex.getOneBased(),
-                    editedPatient.getName(), initialCondition, editedCondition), EDIT_CONDITION_COMMAND_TYPE);
+            return new CommandResult(String.format(MESSAGE_EDIT_CONDITION_SUCCESS,
+                    conditionIndex.getOneBased(), editedPatient.getName(), initialCondition, editedCondition),
+                    EDIT_CONDITION_COMMAND_TYPE, patientListTracker);
         } catch (DuplicateConditionException dce) {
             throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
         }
