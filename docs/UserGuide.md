@@ -3,12 +3,11 @@ layout: page
 title: User Guide
 ---
 
-<p align="center">
-  <img width="250" height="250" src="../src/main/resources/images/OmniHealth_logo.png">
+<p align="center" width="100%">
+    <img width="250" src="images/OmniHealth_logo.png" alt="">
 </p>
 
 ## About OmniHealth
-
 
 OmniHealth is a **Patient Management System** tailored to private clinicians to manage patients' details, records and upcoming appointments.
 As a private clinician, you can manage and monitor your patient database all in one location. 
@@ -63,7 +62,7 @@ for easy reference. So, let's [get started](#installation)!
 --------------------------------------------------------------------------------------------------------------------
 ## Installation
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. Refer to the [FAQ](#faq) for more information on installation.
 
 2. Download the latest `OmniHealth.jar` from [our GitHub page](https://github.com/AY2223S1-CS2103T-T14-3/tp/releases).
 
@@ -152,37 +151,38 @@ Here are some general guidelines for you to better understand the command format
 
 ### Key Definitions
 #### Patient
-| Input Fields | Flag | Description |
-|--------------|------|-------------|
+| Input Fields | Flag | Description                                                                       |
+|--------------|------|-----------------------------------------------------------------------------------|
+| Name         | n/   | Name of the patient, which accepts alphanumeric characters, and must not be blank |
+| Birthdate    | b/   | Birthdate of the patient, given in dd-MM-yyy                                      |
+| Phone Number | p/   | Phone number of the patient, restricted to 5-15 integers                          |
+| Email        | e/   | Email of the patient, which needs to be in the format local-part@domain           |
+| Address      | a/   | Address of the patient, taking any value but cannot be blank                      |
+
+#### Appointment
+| Input Fields | Flag  | Description                                                                                                               |
+|--------------|-------|---------------------------------------------------------------------------------------------------------------------------|
+| Index        | NIL   | Index of the patient                                                                                                      |
+| Date & Time  | d/    | Date and time of the appointment, given in the format dd-MM-yyyy HHmm <br/> Note: Appointments cannot be set in the past! |                                     |
 
 #### Record
-| Input Fields | Flag | Description |
-|--------------|------|-------------|
+| Input Fields   | Flag | Description                                                                                                 |
+|----------------|------|-------------------------------------------------------------------------------------------------------------|
+| Date & Time    | d/   | Date and time of the record, given in the format dd-MM-yyyy HHmm <br/> Note: Dates cannot be in the future! |
+| Record Details | r/   | Details of the record, taking any value but cannot be blank                                                 |
+| Medication     | m/   | Medication prescribed, if any                                                                               |                                                                          
+
+[Back to TOC](#table-of-contents)
 
 ## Features
-### General Commands
-#### Viewing help: `help`
+> This section covers each of the features in detail. Before continuing, please ensure you have read the section on [Command Formats](#Command Format)!
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-#### Displaying the full list: `showall`
-
-Clears search parameters of a find or rfind command to undo the search.
-
-* If the patient list is displayed, the unfiltered patient list will be shown instead.
-* If the record list is displayed, the unfiltered record list will be shown instead.
-
-Format: `showall`
-
-#### Exiting the program: `exit`
-
-Exits the program.
-
-Format: `exit`
+What you should expect to find:
+* A description of the feature
+* The format of the command
+* The expected behaviour of the feature
+* Example usages of the feature
+* Important points to note about the feature
 
 ### Patient Commands
 > Commands relating to the patient list, such as adding and deleting patients
@@ -193,6 +193,8 @@ Returns to the patient list from the record list screen.
 * The record list screen must be shown for this command to be valid.
 
 Format: `list`
+
+[Back to TOC](#table-of-contents)
 
 #### Adding a patient: `add`
 
@@ -219,6 +221,8 @@ Examples:
 * `add n/John Doe b/08-08-1988 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe b/16-06-1996 e/betsycrowe@example.com a/Ang Mo Kio Ave 5, block 13, #02-033 p/1234567 t/PollenAllergy`
 
+[Back to TOC](#table-of-contents)
+
 #### Deleting a patient: `delete`
 
 Deletes the specified patient from the patient database.
@@ -234,6 +238,8 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the find command.
+
+[Back to TOC](#table-of-contents)
 
 #### Editing a patient: `edit`
 
@@ -258,6 +264,8 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
+[Back to TOC](#table-of-contents)
+
 #### Finding patients by name: `find`
 
 Finds patients whose names contain any of the given keywords.
@@ -276,6 +284,8 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
+[Back to TOC](#table-of-contents)
+
 #### Clearing all patient entries: `clear`
 
 Clears all patients from Omnihealth.
@@ -284,8 +294,11 @@ Clears all patients from Omnihealth.
 
 Format: `clear`
 
+[Back to TOC](#table-of-contents)
+
 ### Appointment Commands
 > Commands for adding and clearing appointments
+
 #### Adding an appointment: `appt`
 
 Adds an appointment for a specified patient. This command is only valid in the patient list view.
@@ -311,6 +324,8 @@ Examples:
 * `appt 1 d/11-09-2024 1200` adds an appointment for the patient with index 1, with a date and time of 11/09/2024, 1200.
 * `appt 2 d/15-11-2025 1400` adds an appointment for the patient with index 2, with a date and time of 15/11/2024, 1400.
 
+[Back to TOC](#table-of-contents)
+
 #### Clearing an appointment: `apptcl`
 
 Clears the appointment for a specified patient. This command is only valid in the patient list view.
@@ -327,8 +342,11 @@ Format: `apptcl INDEX`
 Examples:
 * `apptcl 1` clears the appointment (if any) of the patient with index 1.
 
+[Back to TOC](#table-of-contents)
+
 ### Record Commands
 > Commands relating to the record list of a patient, such as adding or deleting a record
+
 #### Adding a record: `radd`
 
 Adds a new record to a given patient.
@@ -348,6 +366,8 @@ Examples:
 * `radd d/11-09-2001 1200 r/Patient tested negative for COVID-19 m/Paracetamol 500mg m/Dextromethorphan`
 * `radd d/28-02-2020 2030 r/Patient experienced vomiting`
 
+[Back to TOC](#table-of-contents)
+
 #### Deleting a record: `rdelete`
 
 Deletes the specified record from the currently viewed patient’s records.
@@ -361,6 +381,8 @@ Format: `rdelete RECORD_INDEX`
 
 Examples:
 * `rlist 1` then `rdelete 2` deletes the 2nd record from the 1st patient’s listed records.
+
+[Back to TOC](#table-of-contents)
 
 #### Listing all records of a patient: `rlist`
 
@@ -377,6 +399,8 @@ Format: `rlist PATIENT_INDEX`
 Examples:
 * `rlist 1` displays all records of the 1st patient in the displayed patient list.
 * `find Betsy` followed by `rlist 1` displays all records of the 1st patient in the results of the find command.
+
+[Back to TOC](#table-of-contents)
 
 #### Editing a record: `redit`
 
@@ -402,6 +426,8 @@ Examples:
 *  `redit 1 d/12-12-2012 1200` Edits the date of the 1st record to be `12-12-2012 1200`.
 *  `redit 2 r/Fever m/` Edits the data of the 2nd record to be `Fever` and clears all existing medication.
 
+[Back to TOC](#table-of-contents)
+
 #### Finding records by keyword: `rfind`
 
 > Finds all records that match the search constraint provided
@@ -424,6 +450,8 @@ Examples:
 * `rfind r/Covid-19` returns a record with `Covid-19` and `Contracted covid-19` stored in its record data field.
 * `rfind r/cold d/10-2022` returns a record that matches both `cold` in the record data field, and has a date within Oct 2022.
 
+[Back to TOC](#table-of-contents)
+
 #### Clearing all patient records : `rclear`
 
 Clears all records of a specific patient from Omnihealth.
@@ -432,7 +460,42 @@ Clears all records of a specific patient from Omnihealth.
 
 Format: `rclear`
 
+[Back to TOC](#table-of-contents)
+
+### General Commands
+> Some general commands for the application
+
+#### Viewing help: `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+[Back to TOC](#table-of-contents)
+
+Format: `help`
+
+#### Displaying the full list: `showall`
+
+Clears search parameters of a find or rfind command to undo the search.
+
+* If the patient list is displayed, the unfiltered patient list will be shown instead.
+* If the record list is displayed, the unfiltered record list will be shown instead.
+
+Format: `showall`
+
+[Back to TOC](#table-of-contents)
+
+#### Exiting the program: `exit`
+
+Exits the program.
+
+Format: `exit`
+
+[Back to TOC](#table-of-contents)
+
 ### Saving & Loading
+> Useful information relating to saving and loading of patient data
 
 #### Saving the data
 
@@ -446,19 +509,32 @@ OmniHealth's data are saved as a JSON file `[JAR file location]/data/patientlist
 If your changes to the data file makes its format invalid, OmniHealth will discard all data and start with an empty data file at the next run.
 </div>
 
-#### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+[Back to TOC](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+**Q**: My computer doesn't have Java 11! How can I install it? <br>
+**A**: You can find the details of this on [Oracle's website](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html), 
+where there is a comprehensive guide on how to install Java for most existing operating systems.
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous OmniHealth home folder.
+**Q**: How can I transfer my data to another Computer? <br>
+**A**: First, locate the data file as described by the section [editing the data file](#editing-the-data-file). After installing the application in 
+your new computer, transfer the old data file into the folder `[JAR file location]/data/`. If an existing `patientlist.json` already exists, 
+choose to overwrite the file. You can now open the application in the new computer and your old data will be there!
 
-**Q**: Is there a limit to the number of patients/records that I can add?<br>
-**A**: Yes, and the maximum number of patients/records that can be added is 2147483647.
+**Q**: Is there a limit to the number of patients/records that I can add? <br>
+**A**: There is a limit of patients and records of about 2 million patients/records. This limit may be expanded in the future if necessary.
+
+**Q**: Do I need an internet connection to use OmniHealth? <br>
+**A**: All of OmniHealth's functionality can be used offline! No internet connection is required.
+
+**Q**: Is my data stored on the cloud? <br>
+**A**: Unfortunately, there is no cloud saving compatibility currently supported by OmniHealth. However, you can still utilise various
+free services such as Google Drive to store your data online if you wish!
+The data file can be found in the JSON file under `[JAR file location]/data/patientlist.json`.
+
+[Back to TOC](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -483,6 +559,4 @@ _Details coming soon ..._
 | **Edit Record**          | `redit INDEX [d/RECORD_DATE_TIME] [r/RECORD_DETAILS] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever m/Paracetamol`                                                       |
 | **Find Record**          | `rfind [d/RECORD_DATE] [r/RECORD_DETAILS] [m/MEDICATION] `<br> e.g., `rfind d/10-2022 r/Covid-19 m/Panadol`                                                                             |
 | **Clear Records**        | `rclear`                                                                                                                                                                                |
-                                                                                                                                                    |
-                                                                 
-
+[Back to TOC](#table-of-contents)
