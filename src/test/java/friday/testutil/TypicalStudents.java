@@ -68,14 +68,14 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical students.
+     * Returns an {@code Friday} with all the typical students.
      */
     public static Friday getTypicalFriday() {
-        Friday ab = new Friday();
+        Friday friday = new Friday();
         for (Student student : getTypicalStudents()) {
-            ab.addStudent(student);
+            friday.addStudent(student);
         }
-        return ab;
+        return friday;
     }
 
     public static Friday getTypicalFridayForTest() {

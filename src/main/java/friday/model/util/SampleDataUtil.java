@@ -17,7 +17,7 @@ import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Friday} with sample data.
  */
 public class SampleDataUtil {
 
