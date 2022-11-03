@@ -266,6 +266,14 @@ Modules, however, may be entered as **space separated**. For example, `m/MOD1 MO
 
 </div>
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+
+Due to the limitations of the code, the adding of same names is currently not supported. To distinguish between two contacts with the same name, you may add a descriptor after the name to differentiate the contacts. 
+
+E.g. `addc n/John Lim p/80009123` will not work if there is already a contact with name `John Lim`. To add this contact, you can try adding a descriptor such as `addc n/John Lim (school) p/80009123`, or simply make the name of the contact to be added different from `John Lim`.
+
+</div>
+
 #### Listing all contacts : `listc`
 
 Shows a list of all contacts.
