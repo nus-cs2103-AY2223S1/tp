@@ -20,8 +20,12 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.Messages;
-import seedu.address.model.*;
-import seedu.address.model.person.Person;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.question.Question;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
@@ -37,17 +41,7 @@ public class MarkQCommandTest {
     }
 
     @Test
-    public void execute_questionMarkedByModel_markSuccessful() throws Exception {
-//        Question validQuestion = new QuestionBuilder().withDescription("Q1").build();
-//        ModelStubAcceptingQuestionsAdded modelStub = new ModelStubAcceptingQuestionsAdded();
-//        modelStub.addQuestion(validQuestion);
-//
-//        CommandResult commandResult = new MarkQCommand(INDEX_FIRST_QUESTION).execute(modelStub);
-//
-//        assertEquals(String.format(MESSAGE_MARK_QUESTION_SUCCESS, validQuestion),
-//        commandResult.getFeedbackToUser());
-//        assertEquals(Arrays.asList(validQuestion), modelStub.questionsAdded);
-
+    public void execute_questionMarkedByModel_markSuccessful() {
         Question questionToBeMarked = model.getFilteredQuestionList().get(INDEX_FIRST_QUESTION.getZeroBased());
         Question editedQuestion = new QuestionBuilder(questionToBeMarked)
                 .withImportantTag(true)
@@ -126,10 +120,6 @@ public class MarkQCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void addPerson(Person person) {
-
-        }
 
 
         @Override
@@ -140,31 +130,6 @@ public class MarkQCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            return false;
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            return null;
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-
         }
 
         @Override

@@ -16,16 +16,11 @@ import seedu.address.model.question.Question;
  */
 public class TypicalQuestions {
 
-
-    // public static final Index INDEX_FIRST_QUESTION = new Index(1);
-
     // Manually added - Question's details found in {@code CommandTestUtil}
     public static final Question Q1 =
             new QuestionBuilder().withDescription(VALID_DESCRIPTION_Q1).withImportantTag(false).build();
     public static final Question Q2 =
             new QuestionBuilder().withDescription(VALID_DESCRIPTION_Q2).withImportantTag(false).build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalQuestions() {} // prevents instantiation
 

@@ -5,8 +5,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.*;
-import seedu.address.model.person.Person;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.question.Question;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
@@ -119,45 +123,15 @@ public class UnmarkQCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void setAddressBook(ReadOnlyAddressBook addressBook) {
 
-        }
-
-
-        @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            return false;
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
             return null;
         }
 
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-
-        }
 
         @Override
         public boolean hasStudent(Student student) {

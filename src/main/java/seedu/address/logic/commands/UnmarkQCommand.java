@@ -28,6 +28,9 @@ public class UnmarkQCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Creates a UnmarkQCommand to mark the question at the specified {@code Index} as unimportant.
+     */
     public UnmarkQCommand(Index index) {
         requireNonNull(index);
 
