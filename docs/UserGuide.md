@@ -24,9 +24,9 @@ If you can type fast, Condonery can get your contact management tasks done faste
     - [Editing a property : edit -p](#editing-a-property--edit--p)
     - [Locating properties by name: `find -p`](#locating-properties-by-name-find--p)
     - [Deleting a property : `delete -p`](#deleting-a-property--delete--p)
-    - [Filtering properties: `filter -p`](#filtering-properties-filter--p)
+    - [Filtering properties by tags: `filter -p`](#filtering-properties-filter--p)
     - [Filtering properties within price range: range -p](#filtering-properties-within-price-range-range--p)
-    - [Filter properties by status: status -p](#filter-properties-by-status-status--p)
+    - [Filtering properties by status: status -p](#filter-properties-by-status-status--p)
     - [Filtering properties by type: type -p](#filtering-properties-by-type-type--p)
     - [Selecting a property: select -p INDEX](#selecing-a-property-select--p-index)
     - [Clearing all entries : clear](#clearing-all-entries--clear)
@@ -34,10 +34,11 @@ If you can type fast, Condonery can get your contact management tasks done faste
     - [Editing the data file](#editing-the-data-file)
 - [`Client Directory Features`](#client-directory-features)
     - [Adding a client profile: add -c](#adding-a-client-profile-add--c)
-    - [Editing a client profile: edit -c](#editing-a-client-profile-edit--c)
     - [Listing all client profiles: list -c](#listing-all-client-profiles-list--c)
-    - [Filtering client profiles: filter -c](#filtering-client-profiles-filter--c)
+    - [Editing a client profile: edit -c](#editing-a-client-profile-edit--c)
+    - [Locating client profiles by name: find -c](#locating-client-profiles--by-name-find--c)
     - [Deleting a client profile: delete -c](#deleting-a-client-profile-delete--c-index)
+    - [Filtering client profiles by tags: filter -c](#filtering-client-profiles-filter--c)
     - [Selecting a client profile: select -c](#selecting-a-client-profile-select--pc-index)
 - [`FAQ`](#faq)
 - [`Command summary`](#command-summary)
@@ -239,45 +240,41 @@ Optional parameters:
 - [Tags](#tag): `t/`
 - [Interested clients](#interested-clients): `ic/`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
 * A property can have any number of tags (including 0)
 * A property can have any number of interested clients (including 0)
-* The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the command.
 * The `h/PROPERTY_TYPE` flag specifies the type of property. It can only be either HDB, CONDO, or LANDED.
 * Succesfully adding interested clients to a property does not add the new property as an interested property for those clients. The user has to manually add the new property as an interested property of those clients.
+* The `s/PROPERTY_STATUS` is optional, if not specified, will default to `AVAILABLE` status.
+* The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the command.
+![file_chooser](images/fileChooser.png)
 </div>
 
 Examples:
 * `add n/PINNACLE@DUXTON a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450 p/1,000,000 s/AVAILABLE h/HDB t/cheap`
 * `add n/SEMAKAU LANDFILL a/Straits Boulevard p/1,000 s/AVAILABLE h/HDB t/high-end`
 
-The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the
-command.
-
-
-The `s/PROPERTY_STATUS` is optional, if not specified, will default to `AVAILABLE` status.
-
-![file_chooser](images/fileChooser.png)
 
 ### Listing all properties : `list -p`
 
-Shows a list of all properties in the address book.
+Lists all properties currently stored in the property directory.
 
 Format: `list -p`
 
 ### Editing a property : `edit -p`
 
-Edits an existing person in the address book.
+Edits an existing property in the property directory.
 
 Format: `edit -p INDEX [n/NAME] [a/ADDRESS] [p/PRICE] [s/PROPERTY_STATUS] [h/PROPERTY_TYPE] [t/TAG]…​`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
 * Edits the property at the specified `INDEX`. The index refers to the index number shown in the displayed property list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the property’s tags by typing `t/` without
-  specifying any tags after it.
+* When editing tags, the existing tags of the property will be removed i.e adding of tags is not cumulative.
+* You can remove all the property’s tags by typing `t/` without specifying any tags after it.
 * Succesfully adding interested clients to a property does not add the edited property as an interested property for those clients. The user has to manually add the edited property as an interested property of those clients, as well as possibly remove the edited property from its original interested clients.
+</div>
 
 Examples:
 *  `edit -p 1 p/1,000,000 a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` Edits the price and address of the 1st person to be `1,000,000` and `11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` respectively.
@@ -289,12 +286,13 @@ Finds properties whose names contain any of the given keywords.
 
 Format: `find -p KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `bishan` will match `Bishan`
-* The order of the keywords does not matter. e.g. `PINNACLE@DUXTON Bishan` will match `Bishan PINNACLE@DUXTON`
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
+* The search is case-insensitive. e.g `bishan` will match `Bishan`.
+* The order of the keywords does not matter. e.g. `PINNACLE@DUXTON Bishan` will match `Bishan PINNACLE@DUXTON`.
 * Only the name is searched.
-* Only full words will be matched e.g. `PINNACLE` will not match `PINNACLE@DUXTON`
-* Properties matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `PINNACLE@DUXTON Bishan` will return `PINNACLE@DUXTON`, `Bishan 8`
+* Only full words will be matched e.g. `PINNACLE` will not match `PINNACLE@DUXTON`.
+* Properties matching at least one keyword will be returned (i.e. `OR` search). e.g. `PINNACLE@DUXTON Bishan` will return `PINNACLE@DUXTON`, `Bishan 8`.
+</div>
 
 Examples:
 * `find -p Wall Street` returns `Wall Street` and `Wall Street Prime`
@@ -305,22 +303,29 @@ Examples:
 
 ### Deleting a property : `delete -p`
 
-Deletes the specified property from the address book.
+Deletes the specified property at the specified INDEX, from the property directory.
 
 Format: `delete -p INDEX`
 
-* Deletes the property at the specified `INDEX`.
-* The index refers to the index number shown in the displayed property list.
-* The index **must be a positive integer** 1, 2, 3, …​
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
+* The INDEX refers to the index number shown in the displayed property directory.
+* The INDEX **must be a positive integer** 1, 2, 3, …​
+</div>
 
 Examples:
-* `list -p` followed by `delete -p 2` deletes the 2nd property in the address book.
-* `find -p Wall Street` followed by `delete -p 1` deletes the 1st property in the results of the `find -p` command.
+* `list -p` followed by `delete -p 2` deletes the 2nd property in the property directory.
+* `find -p Wall Street` followed by `delete -p 1` deletes the first property in the results of the `find -p` command.
 
-### Filtering properties: `filter -p`
+### Filtering properties by tags: `filter -p`
 
-Returns a filtered list of properties that fulfil the filter conditions for tags only.
+Returns a filtered list of properties that fulfil the filter conditions according to specified tags.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
+* A TAG has to be **fully** and not partially typed out (i.e. 'high-end' instead of 'high').
+</div>
+
 Format: `filter -p TAG...`
+
 Examples:
 * `filter -p high-end` returns all properties with the `high-end` tag.
 * `filter -p available` returns all properties with the `available` tag.
@@ -328,15 +333,20 @@ Examples:
 ### Filtering properties within price range: `range -p`
 
 Returns a filtered list of clients that fulfil the filter conditions.
+
 Format: `range -p l/100,000 u/1,000,000`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
+* Lower and upper price boundaries only accept integer values (commas acceptable).
+</div>
+
 Examples:
 * `range -p l/100,000 u/1,000,000` returns all properties within the price range of 100,000 and 1,000,000 inclusive.
-Notes:
-* lower and upper price boundaries only accept integer values (commas acceptable).
 
-### Filter properties by status: `status -p`
+### Filtering properties by status: `status -p`
 
 Returns all the properties with the specified `PropertyStatusEnum`
+
 Format: `status -p STATUS`
 
 Examples:
@@ -347,21 +357,27 @@ Examples:
 ### Filtering properties by type: `type -p`
 
 Returns a filtered list of clients that fulfil the filter conditions.
+
 Format: `type -p TYPE`
+ 
 Examples:
-* `type -p HDB condo` returns all properties that are HDBs or Condos
+* `type -p HDB condo` returns all properties that are HDBs or Condos.
 
 ### Selecting a property: `select -p INDEX`
 
-Selects the specified property in the address book, for its details to be displayed.
+Selects the specified proprety in the property directory for its details to be displayed.
 
 Format: `select -p INDEX`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
 * Selects the property at the specified `INDEX`.
-* The index refers to the index number shown in the displayed property list.
+
+* The index refers to the index number shown in the displayed property directory.
+
 * The index **must be a positive integer** 1, 2, 3, …​
-* The GUI changes to display just the selected property in the property directory,
-while clients interested in that property are shown in the client directory.
+ 
+* The GUI changes to display just the selected property in the property directory, while clients interested in that property are shown in the client directory.
+</div>
 
 ### Clearing all entries : `clear -p`
 
@@ -404,70 +420,106 @@ Optional parameters:
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 * A client can have any number of tags (including 0)
+* A client can have any number of interested clients (including 0)
 * Succesfully adding interested properties to a client does not add the new client as an interested client for those properties. The user has to manually add the new client as an interested client of those properties.
+* The `-i` flag allows the user to upload images of the client. A file chooser dialog will appear after running the command.
+![file_chooser](images/fileChooser.png)
 </div>
-
-The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the command.
 
 Examples:
 * `add n/linda a/Pasir Ris`
 * `add n/Bob a/RC4 t/Spendthrift`
 * `add n/Samuel a/Yishun Street 2 Blk123 t/friend t/thrify -i`
 
-### Editing a client profile: `edit -c`
-
-Edits a client profile already existing in the client directory.
-Format: `edit -c INDEX [n/NAME] [a/ADDRESS] [t/TAG]...`
-Tips:
-* Edits the client profile at the specified INDEX. The index refers to the index numebr shown
-  in the displayed person list. The index must be a positive integer 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the listing will be removed i.e. adding of tags is not cumulative.
-* You can remove all the listing's tags b
-* Succesfully adding interested properties to a client does not add the edited client as an interested client for those properties. The user has to manually add the edited client as an interested client of those properties, as well as possibly remove the edited client from its original interested properties.
-  Examples:
-* `edit -c 5 n/Bob a/RC4 t/thrifty`
-
 ### Listing all client profiles: `list -c`
 
 Lists all client profiles currently stored in the client directory.
+
 Format: `list -c`
 
-### Filtering client profiles: `filter -c`
+### Editing a client profile: `edit -c`
 
-Returns a filtered list of clients according to specified tags.
+Edits an existing client profile in the client directory.
 
-TAG have to be fully specified (i.e. no partial tags like 'high' instead of 'high-end')
+Format: `edit -c INDEX [n/NAME] [a/ADDRESS] [t/TAG]...`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
+* Edits the client profile at the specified `INDEX`. The index refers to the index number shown in the displayed client profile list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the client profile will be removed i.e. adding of tags is not cumulative.
+* You can remove all the client profile's tags by typing `t/` without specifying any tags after it.
+* Succesfully adding interested properties to a client does not add the edited client as an interested client for those properties. The user has to manually add the edited client as an interested client of those properties, as well as possibly remove the edited client from its original interested properties.
+</div>
+
+Examples:
+* `edit -c 5 n/Bob a/RC4 t/thrifty`
+
+### Locating client profiles by name: `find -c`
+
+Finds clients whose names contain any of the given keywords.
+
+Format: `find -c KEYWORD [MORE_KEYWORDS]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
+* The search is case-insensitive. e.g `janice` will match `Janice`.
+* The order of the keywords does not matter. e.g. `Tan Sean` will match `Sean Tan`.
+* Only the name is searched.
+* Only full words will be matched e.g. `Sam` will not match `Samuel`.
+* Client profiles matching at least one keyword will be returned (i.e. `OR` search). e.g. `Sean Lee` will return `Sean Tan`, `Bob Lee`
+</div>
+
+Examples:
+* `find -c Janice` returns `Janice Tan` and `Janice Ong`
+* `find -c Dustin Chan` returns `Dustin Ong`, `Jane Chan`<br>
+
+[//]: # (Image to be added later)
+[//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
+
+### Deleting a client profile: `delete -c INDEX`
+
+Deletes the specified client profile at the specified INDEX, from the client directory.
+
+Format: `delete -c INDEX`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
+* The INDEX refers to the index numebr shown in the displayed client directory.
+* The INDEX must be a positive integer 1, 2, 3...
+</div>
+
+  Examples:
+* `list -c` followed by `delete 2` deletes the second client in the client directory.
+* `filter -c high-end` followed by `delete 1` deletes the first client in the results of the `filter -c` command
+
+### Filtering client profiles by tags: `filter -c`
+
+Returns a filtered list of client profiles that fulfil the filter conditions according to specified tags.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
+* A TAG has to be **fully** and not partially typed out (i.e. 'best-friends' instead of 'friend').
+</div>
 
 Format: `filter -c TAG...`
 
 Examples:
-* `filter -c high-end`
-* `filter -c thrifty`
-
-### Deleting a client profile: `delete -c INDEX`
-
-Deletes the unique client profile at the specified INDEX.
-Format: `delete -c INDEX`
-Tips:
-* The INDEX must be a positive integer 1, 2, 3...
-  Examples:
-* `list -c` followed by `delete 2` deletes the second client in the address book
-* `filter -c high-end` followed by `delete 1` deletes the first client in the results of the
-  `filter -c` command
+* `filter -c best-friend` returns all client profiles with the `best-friend` tag.
+* `filter -c thrifty` returns all client profiles with the `thrifty` tag.
 
 ### Selecting a client profile: `select -c INDEX`
 
-Selects the specified client in the address book, for its details to be displayed.
+Selects the specified client profile in the client directory for its details to be displayed.
 
 Format: `select -c INDEX`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
 * Selects the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
+
+* The index refers to the index number shown in the displayed client directory.
+
 * The index **must be a positive integer** 1, 2, 3, …​
-* The GUI changes to display just the selected client in the client directory,
-while properties the client is interested in are shown in the property directory.
+
+* The GUI changes to display just the selected client in the client directory, while properties the client is interested in are shown in the property directory.
+</div>
 
 ### Clearing all entries : `clear -c`
 
