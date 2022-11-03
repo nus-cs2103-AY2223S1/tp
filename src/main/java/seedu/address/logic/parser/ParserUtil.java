@@ -89,7 +89,7 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
+        String trimmedName = name.trim().replaceAll(" +", " ");
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -250,7 +250,7 @@ public class ParserUtil {
      */
     public static RiskTag parseRiskTag(String riskTag) throws ParseException {
         requireNonNull(riskTag);
-        String trimmedRiskTag = riskTag.trim();
+        String trimmedRiskTag = riskTag.trim().toUpperCase();
         if (!RiskTag.isValidRiskTagName(trimmedRiskTag)) {
             throw new ParseException(RiskTag.MESSAGE_CONSTRAINTS);
         }
@@ -263,7 +263,7 @@ public class ParserUtil {
      */
     public static ClientTag parseClientTag(String clientTag) throws ParseException {
         requireNonNull(clientTag);
-        String trimmedClientTag = clientTag.trim();
+        String trimmedClientTag = clientTag.trim().toUpperCase();
         if (!ClientTag.isValidClientTagName(trimmedClientTag)) {
             throw new ParseException(ClientTag.MESSAGE_CONSTRAINTS);
         }

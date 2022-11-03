@@ -66,6 +66,7 @@ public class PersonUtil {
         descriptor.getClientTag().ifPresent(
                 clientTag -> sb.append(PREFIX_CLIENTTAG).append(clientTag.tagName).append(" "));
         descriptor.getMonthly().ifPresent(monthly -> sb.append(PREFIX_MONTHLY).append(monthly.value).append(" "));
+        descriptor.getIncome().ifPresent(incomeLevel -> sb.append(PREFIX_INCOME).append(incomeLevel.value).append(" "));
         descriptor.getPlanTag().ifPresent(planTag -> sb.append(PREFIX_PLANTAG).append(planTag.tagName).append(" "));
         descriptor.getIncome().ifPresent(incomeLevel -> sb.append(PREFIX_INCOME).append(incomeLevel.value).append(" "));
 

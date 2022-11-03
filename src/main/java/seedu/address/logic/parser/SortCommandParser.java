@@ -28,7 +28,8 @@ public class SortCommandParser implements Parser<SortCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
-        switch (trimmedArgs) {
+        // Make sorting case-insensitive
+        switch (trimmedArgs.toLowerCase()) {
 
         case "name":
             return new SortCommand(new SortByName("asc"), "name");
@@ -67,7 +68,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             return new SortCommand(new SortByMonthly("desc"), "monthly in descending order");
 
         default:
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(SortCommand.MESSAGE_INCORRECT_KEYWORD, SortCommand.MESSAGE_USAGE));
         }
     }
 

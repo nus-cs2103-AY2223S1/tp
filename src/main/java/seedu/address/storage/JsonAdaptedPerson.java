@@ -178,6 +178,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(PlanTag.MESSAGE_CONSTRAINTS);
         }
         final PlanTag modelPlanTag = new PlanTag(planTag);
+
         if (clientTag == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ClientTag.class.getSimpleName()));
