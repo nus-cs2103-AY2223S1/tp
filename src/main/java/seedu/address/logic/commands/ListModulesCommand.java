@@ -14,7 +14,7 @@ public class ListModulesCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all modules";
 
-    public static final String EMPTY_LIST = "No modules in list";
+    public static final String EMPTY_LIST = "No module in list";
 
 
     @Override
