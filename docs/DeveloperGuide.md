@@ -539,12 +539,18 @@ FinBook is not required to handle interaction between client and FA.
 
 ### 6.5. Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **FA**: Financial advisor
-* **Client**: A client is a person whose financial data and details are managed by an FA
-* **Private client detail**: A client detail that is sensitive and not meant to be shared with others
-* **CSV**: A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values
-* **System**: FinBook
+| Term                         | Meaning                                                                                                                                                                                                                                       |
+|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Mainstream OS                | Windows, Linux, Unix, OS-X                                                                                                                                                                                                                    |
+| FA                           | Financial advisor                                                                                                                                                                                                                             |
+| Client                       | A client is a person whose financial data and details are managed by an FA                                                                                                                                                                    |
+| Private client detail        | A client detail that is sensitive and not meant to be shared with others                                                                                                                                                                      |
+| System                       | FinBook                                                                                                                                                                                                                                       |
+| CLI (Command-line Interface) | A application that users interact with by typing text.                                                                                                                                                                                        |
+| Command                      | A sequence specified text typed by the user to perform an action.                                                                                                                                                                             |
+| JSON                         | JSON (JavaScript Object Notation) is an open standard file format and data interchange format that uses human-readable text to store and transmit data objects consisting of attribute–value pairs and arrays (or other serializable values). |
+| CSV                          | A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values.                                                                                                                                            |
+| Path                         | A path is a string of characters used to uniquely identify a location in a directory structure.                                                                                                                                               |
 
 --------------------------------------------------------------------------------------------------------------------
 
