@@ -1,9 +1,6 @@
 package seedu.address.model.student;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.tag.Tag;
-
-import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,11 +10,6 @@ public class GradeTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Grade(null));
-    }
-
-    @Test
-    public void constructor_validGrade() {
-         // empty string can be passed into constructor
     }
 
     @Test
