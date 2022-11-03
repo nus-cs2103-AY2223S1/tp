@@ -107,7 +107,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
-
+ f
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
@@ -333,13 +333,12 @@ Step 4. `MeetingsWindow#getMeetings()` instantiates a `MeetingsListPanel` object
 
 Step 5. The `MeetingsWindow` contains a `MeetingListPanel` with `MeetingCard` and these objects are linked to `MeetingsWindow.FXML`, `MeetingListPanel.FXML` and `MeetingCard.FXML` which provides the design and UI shown to the user.
 
-#### Design
-<fxml portion>
+The following sequence diagram shows how upcoming meetings feature works.
 
-#### Styling
-<What css used>
 
-#### Alternatives
+The following activity diagram shows how upcoming meetings feature works.
+
+#### Design Considerations:
 
 #### Enhancement 2
 

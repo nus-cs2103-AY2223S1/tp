@@ -1,0 +1,67 @@
+@startuml
+!include ../style.puml
+
+box UI LOGIC_COLOR_T1
+participant ":MainWindow" as MainWindow LOGIC_COLOR
+participant ":MeetingsWindow" as MeetingsWindow LOGIC_COLOR
+participant ":ObservableList" as ObservableList LOGIC_COLOR
+participant ":MeetingsListPanel" as MeetingsListPanel LOGIC_COLOR
+participant ":MeetingCard" as MeetingCard LOGIC_COLOR
+end box
+
+[-> MainWindow : f2
+activate MainWindow
+
+MainWindow -> MainWindow : handleMeetings()
+activate MainWindow
+
+MainWindow -> MeetingsWindow : getMeetings()
+activate MeetingsWindow
+
+create ObservableList
+MeetingsWindow -> ObservableList
+activate ObservableList
+
+ObservableList --> MeetingsWindow
+deactivate ObservableList
+
+MeetingsWindow -> MeetingsWindow : isWithinOneWeek()
+activate MeetingsWindow
+
+MeetingsWindow --> MeetingsWindow
+deactivate MeetingsWindow
+
+create MeetingsListPanel
+MeetingsWindow -> MeetingsListPanel
+activate MeetingsListPanel
+
+loop
+
+MeetingsListPanel -> MeetingsListPanel : updateItem()
+activate MeetingsListPanel
+
+create MeetingCard
+MeetingsListPanel -> MeetingCard
+activate MeetingCard
+
+MeetingCard --> MeetingsListPanel
+deactivate MeetingCard
+
+end
+
+MeetingsListPanel --> MeetingsListPanel
+deactivate MeetingsListPanel
+
+MeetingsListPanel --> MeetingsWindow
+deactivate MeetingsListPanel
+
+MeetingsWindow --> MainWindow
+deactivate MeetingsWindow
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+[<-- MainWindow : 
+
+deactivate MainWindow
+@enduml
