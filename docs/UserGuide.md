@@ -436,16 +436,15 @@ This will result in the removal of the applicant from the pinned applicant list.
 
 Format: 
 ```
-unpin NAME
+unpin FULL_NAME
 ```
 
-* Unpins the scholarship applicant with the specified `NAME`.
-* `NAME` refers to the name of the scholarship applicant.
-* `NAME` **must be a full name:** `Bernice Yu` instead of `Bernice`.
-* Unpin Command is **case-insensitive**. e.g. `BernICE yU` will match the applicant with `NAME` `Bernice Yu`.
+* Unpins the scholarship applicant with the specified `FULL_NAME`.
+* `FULL_NAME` refers the full name of the pinned applicant. e.g. `Bernice Yu` instead of `Bernice`
+* Unpin Command is **case-insensitive**. e.g. `BernICE yU` will match the applicant with `FULL_NAME` `Bernice Yu`.
 
 Examples:
-* `unpin Bernice Yu` unpins the applicant with the name `Bernice Yu` in TrackAScholar.
+* `unpin Bernice Yu` unpins the applicant with the full name `Bernice Yu` in TrackAScholar.
 
 Sample output for `unpin Bernice Yu`:
 
