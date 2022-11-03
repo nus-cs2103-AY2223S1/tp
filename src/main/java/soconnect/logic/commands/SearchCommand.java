@@ -25,21 +25,24 @@ public class SearchCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Searches all people whose information contains "
             + "the specified keyword (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [CONDITION] [KEYWORD]...\n"
-            + "Example: " + COMMAND_WORD + " t/friend, "
-            + COMMAND_WORD + " " + AND_CONDITION + " n/John a/NUS"
+            + "Parameters: search [CONDITION] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...\n"
+            + "Examples: " + COMMAND_WORD + " t/friend, "
+            + COMMAND_WORD + " " + AND_CONDITION + " n/John a/NUS, "
             + COMMAND_WORD + " " + OR_CONDITION + " p/12345678 e/betsy@nus.edu";
 
     private final Predicate<Person> predicate;
     private final Predicate<Person> alternativePredicate;
+    private final Predicate<Person> leastAccuratePredicate;
 
     /**
      * Constructs a {@code SearchCommand} to search contacts in SoConnect.
      */
-    public SearchCommand(Predicate<Person> predicate, Predicate<Person> alternativePredicate) {
+    public SearchCommand(Predicate<Person> predicate, Predicate<Person> alternativePredicate,
+                         Predicate<Person> leastAccuratePredicate) {
         requireAllNonNull(predicate, alternativePredicate);
         this.predicate = predicate;
         this.alternativePredicate = alternativePredicate;
+        this.leastAccuratePredicate = leastAccuratePredicate;
     }
 
     @Override
@@ -52,6 +55,9 @@ public class SearchCommand extends Command {
         }
         if (model.isFilteredPersonListEmpty()) {
             model.updateFilteredPersonList(alternativePredicate);
+        }
+        if (model.isFilteredPersonListEmpty()) {
+            model.updateFilteredPersonList(leastAccuratePredicate);
         }
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
