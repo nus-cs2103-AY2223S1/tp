@@ -49,7 +49,7 @@ title: User Guide
    
     * **`list`** : Displays all the internship applications in the list.
    
-    * **`add`**`c/Google ct/60221023 d/2022-01-01 e/google@example.com p/Software Engineer s/pending` : Adds an internship application to **CinternS**. This application was submitted on `2022-01-01` to `Google` for the role of `Software Engineer`. The contact number is `60221023`, the email is `google@example.com` and the status is `pending`.
+    * **`add`**`c/ByteDance ct/98765432 e/johnd@example.com p/Software Engineer d/2022-10-09 s/pending t/tiktokParentCompany` : Adds an internship application to **CinternS**. This application was submitted on `2022-10-09` to `ByteDance` for the role of `Software Engineer`. The contact number is `98765432`, the email is `johnd@example.com` and the status is `pending`. An optional tag `tiktokParentCompany` is added with the application.
 
     * **`delete`**`2` : Deletes the 2nd application shown in the current list.
    
@@ -121,8 +121,8 @@ Format: `add c/COMPANY ct/CONTACT e/EMAIL p/POSITION d/DATE_APPLIED s/STATUS [t/
 </div>
 
 Examples:
-* `add c/Google ct/60221023 d/2022-01-01 e/google@example.com p/Software Engineer s/pending t/preferred`
-* `add c/Facebook ct/98765432 d/2022-01-02 e/facebook@example.com p/Backend Engineer s/interview`
+* `add c/Google ct/60221023 e/google@example.com p/Software Engineer d/2022-01-01 s/pending t/preferred`
+* `add c/Facebook ct/98765432 e/facebook@example.com p/Backend Engineer d/2022-01-02 s/interview`
 
 ### Listing all internship applications: `list`
 
@@ -362,7 +362,7 @@ We will assist you as soon as possible.
 | Action          | Format, Examples                                                                                                                                                                                               |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**        | `help`                                                                                                                                                                                                         |
-| **Add**         | `add c/COMPANY ct/CONTACT d/DATE_APPLIED e/EMAIL p/POSITION s/STATUS [t/TAG]...` <br> e.g., `add c/Google ct/60221023 d/2022-01-01 e/google@example.com p/Software Engineer s/pending t/preferred` |
+| **Add**         | `add c/COMPANY ct/CONTACT e/EMAIL p/POSITION d/DATE_APPLIED s/STATUS [t/TAG]...` <br> e.g., `add c/ByteDance ct/98765432 e/johnd@example.com p/Software Engineer d/2022-10-09 s/pending t/tiktokParentCompany` |
 | **List**        | `list`                                                                                                                                                                                                         |
 | **ListArchive** | `list-archive`                                                                                                                                                                                                 |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                                            |
