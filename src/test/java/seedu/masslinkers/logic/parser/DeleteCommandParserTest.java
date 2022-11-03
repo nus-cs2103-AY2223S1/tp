@@ -28,6 +28,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "a", MESSAGE_INVALID_INDEX
+                + "\n" + DeleteCommand.MESSAGE_USAGE);
     }
 }
