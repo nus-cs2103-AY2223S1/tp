@@ -9,7 +9,6 @@ import java.util.Objects;
  * Guarantees: immutable.
  */
 public class GuiSettings implements Serializable {
-
     private static final double DEFAULT_HEIGHT = 600;
     private static final double DEFAULT_WIDTH = 740;
 
@@ -18,21 +17,21 @@ public class GuiSettings implements Serializable {
     private final Point windowCoordinates;
 
     /**
-     * Constructs a {@code GuiSettings} with the default height, width and position.
+     * Constructs a GuiSettings with the default height, width and position.
      */
     public GuiSettings() {
-        windowWidth = DEFAULT_WIDTH;
-        windowHeight = DEFAULT_HEIGHT;
-        windowCoordinates = null; // null represent no coordinates
+        this.windowWidth = DEFAULT_WIDTH;
+        this.windowHeight = DEFAULT_HEIGHT;
+        this.windowCoordinates = new Point(); // null represent no coordinates
     }
 
     /**
-     * Constructs a {@code GuiSettings} with the specified height, width and position.
+     * Constructs a GuiSettings with the specified height, width and position.
      */
     public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
-        windowCoordinates = new Point(xPosition, yPosition);
+        this.windowCoordinates = new Point(xPosition, yPosition);
     }
 
     public double getWindowWidth() {
