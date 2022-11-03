@@ -47,6 +47,7 @@ public class TaskMarkCommandTest {
         String expectedMessage = String.format(TaskMarkCommand.MESSAGE_SUCCESS, defaultTask);
         Model expectedModel = new ModelManager(getTypicalAddressBookWithTeams2(), new UserPrefs());
         expectedModel.markTask(INDEX_FIRST_TEAM,INDEX_FIRST_TASK);
+
         assertCommandSuccess(taskMarkCommand, model, expectedMessage, expectedModel);
     }
 
