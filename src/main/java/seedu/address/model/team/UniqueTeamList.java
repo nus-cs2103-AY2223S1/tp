@@ -104,6 +104,10 @@ public class UniqueTeamList implements Iterable<Team> {
         internalList.setAll(teams);
     }
 
+    /**
+     * Returns true if the {@code team} in the specified index has the specified {@code task}.
+     *
+     */
     public boolean teamHasTask(int index, Task task) {
         requireAllNonNull(index, task);
         return internalList.get(index).containTask(task);
