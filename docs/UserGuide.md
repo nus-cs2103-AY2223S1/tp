@@ -35,12 +35,12 @@ Pupilist can get your scheduling done faster with single line CLI command inputs
 ## Glossary
 
 
-| Term       | Description                                                                                                                                                                                                                                                             |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CLI        | Command-Line Interface. Refers to programs that receive commands in the form of a single line of text.                                                                                                                                                                  |
-| GUI        | Graphical User Interface. Refers to the screen displayed.                                                                                                                                                                                                               |
-| Parameter  | Refers to any information Pupilist may require to execute a specific command.<br> For example, in the [`View`](#viewing-persons-details-view) command requires a NAME parameter for Pupilist to display information of the Student ,assuming a valid name in view mode. |
-| Prefixes   | A prefix indicates the type of field you are keying in. The list of prefixes supported by Pupilist can be found [here](#prefixes-summaries).                                                                                                                            |
+| Term       | Description                                                                                                                                                                                                                                                           |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CLI        | Command-Line Interface. Refers to programs that receive commands in the form of a single line of text.                                                                                                                                                                |
+| GUI        | Graphical User Interface. Refers to the screen displayed.                                                                                                                                                                                                             |
+| Parameter  | Refers to any information Pupilist may require to execute a specific command.<br> For example, the [`View`](#viewing-students-details-view) command requires a NAME parameter for Pupilist to display information of the Student, assuming a valid name in view mode. |
+| Prefixes   | A prefix indicates the type of field you are keying in. The list of prefixes supported by Pupilist can be found [here](#prefixes-summaries).                                                                                                                          |
 
 ## Quick start
 
@@ -89,7 +89,7 @@ Pupilist can get your scheduling done faster with single line CLI command inputs
 
 #### Adding a student: `add`
 
-Adds a student to Pupilist. A student is considered a duplicate only if the names are the same (non case-sensitive).<br>
+This command adds a student to Pupilist. A student is considered a duplicate only if the names are the same (non case-sensitive).<br>
 **Usage**: List mode only
 
 Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN [t/TAG]...`
@@ -100,13 +100,13 @@ Examples:
 
 #### Adding Homework to student: `hw`
 
-Adds a description of homework to student in Pupilist.
+This command adds a homework description to a student in Pupilist.
 Does not check for duplicate homework entries.<br>
 **Usage**: View or list mode only
 
 Format: `hw INDEX h/HOMEWORK`
 
-* Adds homework to student with the specified `INDEX`.
+* Adds homework to student with the specified `INDEX`
 * In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
@@ -115,14 +115,14 @@ Examples:
 
 #### Adding Grade Progress to student: `grade`
 
-Use `grade` command to add a description of grade progress to student in Pupilist.
-As GRADE_PROGRESS does not require any fixed format and it is up to the user to have their own formats.
-Pupilist does not check for duplicate entries of grades.<br>
+This command adds a grade progress description to a student in Pupilist.
+Pupilist does not check for duplicate grade progress entries.<br>
 **Usage**: View or list mode only
 
 Format: `grade INDEX g/GRADE_PROGRESS`
 
-* Adds grade progress to student with the specified `INDEX`.
+* Adds grade progress to student with the specified `INDEX`
+* GRADE_PROGRESS does not require any fixed format, thus there will be no format restraints
 * In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
@@ -131,55 +131,55 @@ Examples:
 
 #### Adding Attendance to student : `attendance`
 
-Adds a formatted description of dates students attended class in Pupilist.
+This command adds an attendance date to a student in Pupilist.
 Does not check for duplicate entries.<br>
 **Usage**: View or list mode only
 
 Format: `attendance INDEX a/ATTENDANCE`
 
-* Adds attendance to student with the specified `INDEX`.<br>
+* Adds attendance to student with the specified `INDEX`<br>
 * Attendance must be in `YYYY-MM-DD` format
 * In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
 
-* `attendance 1 a/2022-12-08` marks 2022-12-08 attendance for first student in Pupilist.
+* `attendance 1 a/2022-12-08` adds 2022-12-08 to the attendance list of the first student in Pupilist.
 
 #### Adding Session to student: `session`
 
-Adds a formatted session timing to student, expected to repeat weekly.
+This command adds a session day and time to a student, and is expected to repeat weekly.
 Does not check for duplicate entries.<br>
 **Usage**: View or list mode only
 
 Format: `session INDEX s/TUITION_TIME`
 
-* Adds tuition time to student with the specified `INDEX`.<br>
+* Adds tuition time to student with the specified `INDEX`<br>
 * Tuition time must be in `DDD HH:MM` format where `HH:MM` ranges from 00:00 to 23:59
 * In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
 
-* `session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in Pupilist.
+* `session 1 s/MON 12:00` adds a tuition slot at Monday 12pm to the first student in Pupilist.
 
 #### Update Lesson Plan for student: `lesson`
 
-Updates a student's lesson plan by overwriting the current one.<br>
+This command updates a student's lesson plan by overwriting the current one.<br>
 **Usage**: View or list mode only
 
 Format: `lesson INDEX lp/LESSON_PLAN`
 
-* Updates lesson plan of student with the specified `INDEX`.<br>
+* Updates lesson plan of student with the specified `INDEX`<br>
 * In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
 
-* `lesson 1 lp/science` changes lesson plan of first student to science.
+* `lesson 1 lp/science` changes lesson plan of the first student to science.
 
 ### Editing details
 
 #### Editing a student : `edit`
 
-Edits an existing student in Pupilist.
+This command edits an existing student in Pupilist.
 For fields requiring an INDEX, existing fields have to contain a value before editing is allowed, else there will be no INDEX.<br>
 **Usage**: View mode only
 
@@ -204,7 +204,7 @@ Examples:
 
 #### Marking specific field in student: `mark`
 
-Use `mark` command to mark a specific field of a student in Pupilist.<br>
+This command marks a specific field of a student in Pupilist.<br>
 **Usage**: View mode only
 
 It requires one field:
@@ -213,7 +213,7 @@ It requires one field:
 - a/: To be followed by INDEX of attendance to be marked
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Allows for marking of only one field in a single command.
+Only allows the marking of one field in a single command.
 Does not allow commands such as `mark h/2 a/1` or `mark a/2 a/3`.
 </div>
 
@@ -252,10 +252,10 @@ Examples:
 
 #### Removing specific field in student: `remove`
 
-Removes a specific field of a student in Pupilist at the specified index.<br>
+This command removes a specific field of a student in Pupilist at the specified index.<br>
 **Usage**: View mode only
 
-It requires one field:
+It requires at least one field:
 
 - h/: To be followed by INDEX of homework to be removed
 - a/: To be followed by INDEX of attendance to be removed
@@ -275,12 +275,12 @@ Examples:
 
 #### Deleting a student : `delete`
 
-Deletes the specified student from Pupilist.<br>
+This command deletes the specified student from Pupilist.<br>
 **Usage**: View or list mode only
 
 Format: `delete INDEX`
 
-* Deletes the student with the specified `INDEX`.
+* Deletes the student with the specified `INDEX`
 * In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
@@ -289,7 +289,7 @@ Examples:
 
 #### Clearing all entries : `clear`
 
-Clears all entries from Pupilist.<br>
+This command clears all entries from Pupilist.<br>
 **Usage**: All modes
 
 Format: `clear`
@@ -298,15 +298,15 @@ Format: `clear`
 
 #### Listing all students : `list`
 
-Shows a list of all students in Pupilist. Changes Pupilist to list mode.
-Next session is also shown.<br>
+This command shows a list of all students in Pupilist. It changes Pupilist to list mode and displays
+the next session in the response box.<br>
 **Usage**: All modes
 
 Format: `list`
 
 #### Locating students by name: `find`
 
-Finds students whose names contain any of the given keywords.<br>
+This command finds students whose names contain any of the given keywords.<br>
 **Usage**: All modes
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
@@ -326,13 +326,13 @@ Examples:
 
 #### Viewing students details: `view`
 
-View details of a student. Required to `edit` or `remove` student's details.
-Only view one student's details can be viewed at a time.<br>
+This command displays the full details of a student. Changest Pupilist to view mode, which is required to `edit` or `remove` a student's details.
+Only one student's details can be viewed at a time.<br>
 **Usage**: All modes
 
 Format: `view NAME`
 
-* The command requires the full `NAME` of a student.
+* The command requires the full `NAME` of a student
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 
@@ -340,7 +340,7 @@ Format: `view NAME`
 
 #### Viewing daily schedule: `show`
 
-Displays all sessions scheduled on a certain day of the week. Changes Pupilist to schedule mode.<br>
+This command displays all sessions scheduled on a certain day of the week. Changes Pupilist to schedule mode.<br>
 **Usage**: All modes
 
 Format: `show [DDD]`
@@ -353,7 +353,7 @@ Examples:
 
 #### Viewing help : `help`
 
-Shows a message explaining how to access the help page, and a list of basic commands.<br>
+This command opens a window that displays a list of basic commands and how to use them.<br>
 **Usage**: All modes
 
 ![help message](images/helpMessage.png)
@@ -362,7 +362,7 @@ Format: `help`
 
 #### Exiting the program : `exit`
 
-Exits the program.<br>
+This command exits the program.<br>
 **Usage**: All modes
 
 Format: `exit`
@@ -373,20 +373,20 @@ Pupilist helps to organise session timings automatically. No command is required
 This feature is shown on launch of the application and when the [`list`](#listing-all-persons--list) command is used.
 
 Pupilist checks for the upcoming sessions based on the current device time, then displays the name of 
-the student and the session timing.
+the student and the corresponding session.
 
 ![next session feature](images/NextSession.png)
 
 #### Saving the data
 
-Pupilist data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Pupilist data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 #### Editing the data file
 
-Pupilist data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Pupilist data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Pupilist will discard all data and start with an empty data file at the next run.
+If any changes to the data file makes its format invalid, Pupilist will discard all data and start with an empty data file at the next run.
 </div>
 
 #### Archiving data files `[coming in v2.0]`
@@ -400,7 +400,7 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Pupilist home folder.<br>
 **Q**: How do I start?<br>
-**A**: Launch the app and use the help to learn all about the commands!<br>
+**A**: Launch the app and use the help command to learn all about the other commands!<br>
 **Q**: Where do I check for updates on the app?<br>
 **A**: Check periodically on GitHub for our latest updates on the app.
 

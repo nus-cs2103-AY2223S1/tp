@@ -9,7 +9,7 @@ import seedu.address.model.person.DayIsKeywordPredicate;
 
 /**
  * Finds and lists all persons in address book whose session contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class ShowCommand extends Command {
     public static final String COMMAND_WORD = "show";
