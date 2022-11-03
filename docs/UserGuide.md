@@ -227,6 +227,15 @@ Adds a task of type todo into your task list.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
 * Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about task todo:**<br>
+
+* `NAME` must be written in full.
+* `NAME` is case-sensitive.
+
+</div>
+
 Examples:
 * `task todo m/Alex Yeoh d/Finish user guide` adds a todo called “Finish user guide” assigned by Alex Yeoh to you.
 * `task todo o/Bernice Yu d/Finish the assignment #/cs2103` adds a todo called “Finish the assignment” tagged as "cs2103" and assigned to Bernice Yu.
@@ -249,6 +258,15 @@ Adds a task of type deadline into the task list.
 * For more information on `DATE` formats, see [Accepted Date Formats](#accepted-date-formats).
 * Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about task deadline:**<br>
+
+* `NAME` must be written in full.
+* `NAME` is case-sensitive.
+
+</div>
+
 Examples:
 * `task deadline m/Alex Yeoh d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by Alex Yeoh to you.
 * `task deadline o/Bernice Yu d/Finish the assignment t/Jan 31 2022 #/cs2103` adds a deadline called “Finish the assignment” and tagged as "cs2103" which is assigned to Bernice Yu.
@@ -269,6 +287,15 @@ Adds a task of type event into your task list.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
 * For more information on `DATE` formats, see [Accepted Date Formats](#accepted-date-formats).
 * Note that adding a new task [will remove the effect of a `find` command](#finding), displaying the full list of tasks.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about task event:**<br>
+
+* `NAME` must be written in full.
+* `NAME` is case-sensitive.
+
+</div>
 
 Examples:
 * `task event m/Alex Yeoh d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by Alex Yeoh to you.
@@ -323,6 +350,15 @@ Format: `task edit i/INDEX <m/NAME o/NAME d/DESCRIPTION t/DATE #/TAG…>`
     * If neither `m/` or `o/` is specified, the current **assignor** or **assignee** will not be changed.
 * Dates `t/` can only be edited if the task is a **deadline** or **event**.
 * For more information on `DATE` formats, see [Accepted Date Formats](#accepted-date-formats).
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about task edit:**<br>
+
+* `NAME` must be written in full.
+* `NAME` is case-sensitive.
+
+</div>
 
 <div markdown="block" class="alert alert-warning">
 
