@@ -1,7 +1,57 @@
 ---
 layout: page
-title: Developer Guide
+title: 👾 Minefriends Developer Guide
 ---
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: Before we begin, it is important to note that:
+* Minefriends is not affiliated with Minecraft, Mojang Studios or Microsoft in any way.
+* Minefriends is an independently developed software. It is not a product owned by Mojang Studios or Microsoft.
+* Team Minefriends do not own Minecraft, in whole or in part.
+
+</div>
+
+### What is Minefriends
+
+Minefriends is an address book for Minecraft players to find friends to play Minecraft multiplayer with,
+at the right time, with the right game modes and on the right servers.
+
+### What is this guide about
+
+This developer guide provides readers with the understanding of the motivations for the development of
+Minefriends together with its technical design and implementation details. A broad view of the architecture of 
+Minefriends is given and selected implementation details of important features are given as well.
+
+### Who is this guide for
+
+This guide is written for
+* Maintainers who wish to extend/alter the features of Minefriends
+* Developers who wish to morph Minefriends for their own use
+* Minecraft players who wish to adapt Minefriends to better suit their own needs
+
+### How to use this guide
+
+#### Organization
+
+The guide is organized in a way that it starts with the motivations of building Minefriends, followed
+by a big-picture design overview of the various components before diving into individual feature implementations.
+* To get a good general understanding of Minefriends, it is recommended to read the guide from top to bottom.
+* However, you can also jump to a certain part using the [table of contents](#table-of-contents).
+
+#### Legend
+
+* Text in [blue](#how-to-use-this-guide) are links that you can use to navigate to another part of the document or to an external document/website.
+* Text in **bold** are used to emphasize an important point.
+* Text in `this` are used to refer to code or names related to the codebase.
+
+<div markdown="span" class="alert alert-primary">
+:bulb: Text in a blue box are tips; they provide additional information about a particular point.
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Table of contents**
 
 * Table of Contents
 {:toc}
@@ -10,8 +60,22 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* App Icon - Minecraft Book & Quill icon https://minecraft.fandom.com/wiki/Book_and_Quill
-* Font - Minecraft font https://fontmeme.com/fonts/minecraft-font/
+### External libraries
+* [ControlsFX](https://github.com/controlsfx/controlsfx)
+* [TestFX](https://github.com/TestFX/TestFX)
+
+### Graphics and assets
+* App Icon - Minecraft Book & Quill icon: https://minecraft.fandom.com/wiki/Book_and_Quill
+* Font - Minecraft font: https://fontmeme.com/fonts/minecraft-font/
+* Background textures - Dirt block: https://minecraft.fandom.com/wiki/Dirt
+* Background textures - Grass block: https://minecraft.fandom.com/wiki/Grass_Block
+* Background textures - Bedrock: https://minecraft.fandom.com/wiki/Bedrock
+* Creeper texture:
+* Creeper explosion texture: 
+* Creeper explosion audio: Self-recorded in game
+
+These assets are copyright Mojang Studios, which are available for non-commercial use.
+The terms of use can be found [here](https://www.minecraft.net/en-us/terms).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -21,7 +85,13 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **Conceptualization of Minefriends**
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Design of Minefriends**
 
 <div markdown="span" class="alert alert-primary">
 
@@ -152,7 +222,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **Selected implementation details**
 
 This section describes some noteworthy details on how certain features are implemented.
 
