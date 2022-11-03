@@ -5,9 +5,14 @@ import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.logic.parser.Prefix;
+import seedu.clinkedin.logic.parser.exceptions.DuplicatePrefixException;
+import seedu.clinkedin.logic.parser.exceptions.PrefixNotFoundException;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.tag.TagType;
+import seedu.clinkedin.model.tag.exceptions.DuplicateTagTypeException;
+import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
+import seedu.clinkedin.model.tag.exceptions.TagTypePrefixPairNotFoundException;
 
 /**
  * Edits a tag type.
@@ -43,9 +48,10 @@ public class EditTagTypeCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
-            UniqueTagTypeMap.setExistingTagType(toEditPrefix, editToPrefix, editToTagType);
+            UniqueTagTypeMap.setExistingTagType(toEditPrefix, toEditTagType, editToPrefix, editToTagType);
             model.editTagTypeForAllPerson(toEditTagType, editToTagType);
-        } catch (Exception e) {
+        } catch (PrefixNotFoundException | TagTypeNotFoundException
+                | DuplicateTagTypeException | DuplicatePrefixException | TagTypePrefixPairNotFoundException e) {
             throw new CommandException(e.getMessage());
         }
         return new CommandResult(String.format(MESSAGE_EDIT_TAG_TYPE_SUCCESS, editToTagType));
