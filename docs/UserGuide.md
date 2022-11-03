@@ -214,6 +214,18 @@ Adds an internship application to the tracker.
   <span class="badge text-bg-info">INFO</span>
 </div>
 <div markdown="span">
+**Multiple internship applications under the same company **<br>
+To add multiple internship applications under the same company, simply provide a different `TAG` to it.
+
+Two internship application are considered as duplicates if both their `COMPANY` and `TAG` are identical. 
+</div>
+</div>
+
+<div class="d-flex alert alert-info">
+<div class="me-3">
+  <span class="badge text-bg-info">INFO</span>
+</div>
+<div markdown="span">
 **Changing application status**<br>
 To change [application status](#application-status), see [`mark` command](#marking-an-internship-application-status-mark).
 </div>
@@ -259,6 +271,8 @@ Edits an existing internship application in the tracker.
 * When editing tags, the existing tags will be removed and replaced with the input tags.
 
 * Tags can be removed by typing `t/` without specifying any tags after it.
+
+* Editing an internship application is only allowed if it does not result in a duplicates. See [`add` command](#adding-an-internship-application-add) to see what are considered duplicates.
 
 * See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
