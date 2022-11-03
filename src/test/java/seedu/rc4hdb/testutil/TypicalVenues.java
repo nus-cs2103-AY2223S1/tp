@@ -29,16 +29,15 @@ public class TypicalVenues {
     public static final VenueName FUNCTION_ROOM_NAME = new VenueName(FUNCTION_ROOM_STRING);
     public static final Venue FUNCTION_ROOM = new Venue(FUNCTION_ROOM_NAME);
 
-
     public static VenueBook getTypicalVenueBook() {
-        VenueBook vb = new VenueBook();
-        for (Venue venue : getTypicalVenue()) {
-            vb.addVenue(venue);
+        VenueBook venueBook = new VenueBook();
+        for (Venue venue : getTypicalVenues()) {
+            venueBook.addVenue(venue);
         }
-        return vb;
+        return venueBook;
     }
 
-    public static List<Venue> getTypicalVenue() {
+    public static List<Venue> getTypicalVenues() {
         return new ArrayList<>(Arrays.asList(MEETING_ROOM, HALL, DISCUSSION_ROOM));
     }
 }
