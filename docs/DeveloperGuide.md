@@ -417,14 +417,15 @@ The following sequence diagram shows how changes are propagated to the `UI` thro
   * Pros: Easy to implement.
   * Cons: Hard to maintain. Each `Command` now needs to know that `CommandResult` can pass data other than for result display.
 
-### [Proposed] UI Implementation
+### UI Implementation
 **Home Screen**
 
-{Show a screenshot after completion, box the components and label class name beside it}
+<img src="images/UiMainScreen.png" width="600" />
 
-The main screen consists of components:
-* `ResultDisplay`, showing the classes the user has added; 
-* `ResultDisplay` consists of `ClassListPanel`, each row representing a class, and `StudentListPanel`, each row representing a student;
+The main screen consists of the following components:
+* `ResultDisplay` shows the results produced by the command input from the user; 
+* `ModuleClassListPanel` shows a list of module classes, each `ModuleClassCard` represents a module class, arranged in alphabetical order;
+* `StudentListPanel` shows a list of student, each `StudentCard` represents a student, arranged in alphabetical order;
 * `CommandBox`, the Command Line Interface (CLI) for user to key in command and
 * `HelpWindow` shown with a help button, redirect users to our User Guide to facilitate their usage;
 
@@ -435,22 +436,21 @@ It was designed with the following considerations:
 
 **Focus Mode**
 
-{Show a screenshot after completion, box the components and label class name beside it}
+<img src="images/UiFocusScreen.png" width="600" />
 
 The screen upon entering the focus mode consists of components:
-* `ResultDisplay`, showing the sessions and students the user has added to the class;
-* `ResultDisplay` consists of `SessionListPanel`, each row representing a session,sorted based on the time it was added with the most recently added at the top, and `StudentListPanel`, each row representing a student, with their grades related to a particular session (given by user input) shown as well;
+* `ResultDisplay`, as aforementioned, shows the results produced by the command input from the user;
+* `SessionListPanel` shows a list of sessions, with each `SessionCard` representing a session, sorted based on the most recently added date;
+* `StudentListPanel`, similar to the main screen, shows a list of student, with each `StudentCard` representing a student, arranged in alphabetical order;
 * `CommandBox`, the Command Line Interface (CLI) for user to key in command and
 * `HelpWindow` shown with a help button that redirects users to our User Guide to facilitate their usage; a back button that allow user to leave the focus mode; and a header which shows the class the user is currently focused in.
 
 Whenever users call `scores s/SESSION_NAME`, the grade pertaining to that particular session appear, with ungraded students highlighted in red to the users.
 
-{another screenshot}
+<img src="images/UiGrading.png" width="600" />
 
 It was designed with the following consideration:
 * As sessions are usually time-sensitive, with those added later often being the more relevant sessions, sorting the sessions with the newest session at the front facilitate users in finding the sessions they are concerned with recently.
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 

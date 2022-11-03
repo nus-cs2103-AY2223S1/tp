@@ -42,15 +42,15 @@ If you encounter any issues in launching and using the app, feel free refer to t
   * e.g `n/NAME [c/CLASS_NAME]` can be used as `n/John Doe c/CS1231S` or as `n/John Doe`.
 * Items with `...` after them can be used multiple times.
   * e.g. `[c/CLASS_NAME...]` can be used as ` ` (i.e. 0 times since it is also optional), `c/CS1101S`, `c/CS2030 c/ST2334` etc.
-* Parameters can be in any order.
+* Parameters, excluding index parameters, can be in any order.
   * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.
+  * e.g. while `assign INDEX c/CLASS_NAME` is acceptable, `assign c/CLASS_NAME INDEX` is not acceptable.
+* If a parameter is expected only once in a command but you specified it multiple times, the parser takes only the last occurrence of the parameter.
   * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
-  * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-</div>
-  
-## Modes
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) are ignored by the parser.
+  * e.g. if the command specifies `help 123`, the parser interprets it as `help`.
+
+### Modes
 In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to (module) class. Therefore,
 [some commands](#features-available-in-focus-mode) can only be executed when you are in focus mode. Commands that you can run in the default (unfocused) mode can also
 be run in focus mode. On the other hand, commands that are available only in focus mode cannot be executed in the default (unfocused) mode.
@@ -76,7 +76,7 @@ Let's first begin with the commands available in the default mode.
 | `focus`    | `focus c/CLASS_NAME`                                               |
 | `clear`    | `clear`                                                            |
 
-### Viewing help : `help`
+### View help : `help`
 
 {% include note.html content="
 
@@ -84,10 +84,12 @@ Redirects you to this User Guide page. If the attempt was unsuccessful, the foll
 " %}
 
 ![help message](images/helpMessage.png)
+The above message emerges when the redirection fails.
+
 
 Format: `help`
 
-### Adding a student: `add`
+### Add a student: `add`
 
 {% include note.html content="
 
@@ -112,11 +114,11 @@ Edits an existing student in TA-Assist.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
 * Edits student data at the specified `INDEX`.
-* Only fields that are specified will be modified.
+* Only specified fields are modified.
 
 Examples:
-* `edit 2 n/John Doe` will change the 2nd student’s name to **John Doe**.
-* `edit 4 e/john.doe@example.com a/38 College Avenue East, 138601` will change the 4th student’s:
+* `edit 2 n/John Doe` changes the 2nd student’s name to **John Doe**.
+* `edit 4 e/john.doe@example.com a/38 College Avenue East, 138601` changes the 4th student’s:
   * E-mail to **john.doe@example.com**
   * Address to **38 College Avenue East, 138601**
 
@@ -145,7 +147,7 @@ Finds students whose names contain any of the given keywords.
 " %}
 
 Format: `find KEYWORD...
-* The search is **case-insensitive**, i.e. `Joh` will match with `john` and `JOHN`.
+* The search is **case-insensitive**, i.e. `Joh` matches with `john` and `JOHN`.
 * The search is performed on the current displayed student list.
 * To clear the current search, use the `list` command.
 
@@ -172,7 +174,7 @@ Shows a list of all the students.
 " %}
 
 Format: `list`
-* The list of students you will see contains all the students in TA-Assist.
+* The displayed list of students contains all the students in TA-Assist.
 
 {% include important.html content="
 
@@ -191,10 +193,10 @@ Adds one or more classes to TA-Assist.
 Format: `addc c/CLASS_NAME...`
 * Add classes with specified names. 
 * The class names are **case-insensitive**.
-  * e.g. If a class with a name **CS1101S** already exists, `addc c/cs1101s` will not add a
+  * e.g. If a class with a name **CS1101S** already exists, `addc c/cs1101s` does not add a
   new class `cs1101s`.
 * If there are duplicate class names, the class name is taken to be the last valid class parameter `c/`.
-  * e.g. If a class with a name **CS1101S** does not exist, `addc c/CS1101S c/cs1101s` will add one class with the name
+  * e.g. If a class with a name **CS1101S** does not exist, `addc c/CS1101S c/cs1101s` adds one class with the name
   **cs1101s**.
 
 Examples:
@@ -254,7 +256,6 @@ Lists the classes that have been created.
 " %}
 
 Format: `listc`
-* Lists the classes that have been created.
 
 ### Exit the program: `exit`
 
@@ -277,12 +278,12 @@ Enters focus mode to manage the specified class, enabling features that are only
 Format: `focus c/CLASS_NAME`
 * Enters focus mode for the class named `CLASS_NAME`.
 * The class name is **case-insensitive**.
-* If successful, you will see that the GUI changes to one that is similar to the one below:
+* If successful, the GUI changes to one that is similar to the one below:
 
 ![Example Excel file](images/sampleFocusedGui.png)
 
 Example:
-* `focus c/CS1231S` will enter focus mode for the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
+* `focus c/CS1231S` enters focus mode for the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
 
 ### Clear all existing data: `clear`
 
@@ -345,16 +346,16 @@ overall grade for the module CS2100.
 " %}
 
 Format: `adds s/SESSION_NAME... [d/DATE]`
-* Creates new sessions with name `SESSION_NAME` on the same `DATE`. If the `DATE` field is empty, the current date will be used.
+* Creates new sessions with names `SESSION_NAME` on the same `DATE`. If the `DATE` field is empty, the current date is used instead.
 * `DATE` field should follow the format `YYYY-MM-DD`.
 * The session names are **case-insensitive**.
-  * e.g. If a session **Lab 1** already exists, `adds s/lab 1` will not create a new session **lab 1**. 
+  * e.g. If a session **Lab 1** already exists, `adds s/lab 1` does not create a new session **lab 1**. 
 * If there are session names, the session name is taken to be the last valid session parameter `s/`.
-  * e.g. If a session with a name **LAB1** does not exist, `adds s/LAB1 s/lab1` will add one session with the name
+  * e.g. If a session with a name **LAB1** does not exist, `adds s/LAB1 s/lab1` adds one session with the name
     **lab1**.
 
 Example:
-- `adds s/Lab1 s/Tutorial1 d/2022-08-11` will create sessions `Lab1` and `Tutorial1` on 11  August 2022.
+- `adds s/Lab1 s/Tutorial1 d/2022-08-11` creates sessions `Lab1` and `Tutorial1` on 11 August 2022.
 
 ### Delete sessions: `deletes`
 
@@ -385,7 +386,7 @@ Format: `grade INDEX... s/SESSION_NAME g/GRADE_VALUE`
 * The session name is **case-insensitive**.
 
 Example:
-* `grade 1 2 s/Lab 1 g/93` will give the students at index 1 and 2 a grade of **93** for the session **Lab 1**.
+* `grade 1 2 s/Lab 1 g/93` gives the students at index 1 and 2 a grade of **93** for the session **Lab 1**.
 
 ### Show students' grades for a session: `scores`
 
@@ -401,7 +402,7 @@ Format: `scores s/SESSION_NAME`
 
 Example:
 
-* `scores s/tutorial 1` will show the grades of all students for the session **tutorial 1**, as shown below.
+* `scores s/tutorial 1` shows the grades of all students for the session **tutorial 1**, as shown below.
   <br/>   
 
   <img src="images/scoresAssignment1Result.png" width="600"/>
@@ -422,7 +423,7 @@ Format: `view INDEX`
 * Views the grade of the student at index `INDEX` for the currently focused class.
 
 Example:
-* `grade 2 s/Lab 1 g/93` then `view 2` will return `1. Lab 1: 93`, which is the grade of the student at index 2 for the session **Lab 1**.
+* `grade 2 s/Lab 1 g/93` then `view 2` returns `1. Lab 1: 93`, which is the grade of the student at index 2 for the session **Lab 1**.
 
 ### Export class data: `export`
 
