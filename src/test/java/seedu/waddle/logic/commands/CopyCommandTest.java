@@ -69,7 +69,7 @@ public class CopyCommandTest {
                 + System.lineSeparator() + "Day 12" + System.lineSeparator()
                 + System.lineSeparator() + "Day 13" + System.lineSeparator()
                 + System.lineSeparator() + "Day 14" + System.lineSeparator() + System.lineSeparator();
-        //assert true;
+
         assertEquals(expectedClipboardData, actualClipboardData);
     }
 

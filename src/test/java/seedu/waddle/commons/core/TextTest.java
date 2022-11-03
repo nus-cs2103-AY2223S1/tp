@@ -21,15 +21,19 @@ public class TextTest {
 
     @Test
     public void indent_multi_line() {
-        String multiLine = "This is a test string.\nThis is a test string.";
-        String expected = "    This is a test string.\n    This is a test string.";
+        String multiLine = "This is a test string."
+                + System.lineSeparator() + "This is a test string.";
+        String expected = "    This is a test string."
+                + System.lineSeparator() + "    This is a test string.";
         assertEquals(expected, Text.indent(multiLine, Text.INDENT_FOUR));
     }
 
     @Test
     public void indent_indented_multiLine() {
-        String multiLine = "This is a test string.\n    This is a test string.";
-        String expected = "    This is a test string.\n        This is a test string.";
+        String multiLine = "This is a test string."
+                + System.lineSeparator() + "    This is a test string.";
+        String expected = "    This is a test string."
+                + System.lineSeparator() + "        This is a test string.";
         assertEquals(expected, Text.indent(multiLine, Text.INDENT_FOUR));
     }
 
