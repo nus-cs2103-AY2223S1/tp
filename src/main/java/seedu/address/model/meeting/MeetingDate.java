@@ -21,7 +21,7 @@ public class MeetingDate {
 
     public static final String PLACEHOLDER_VALUE = "TBC";
 
-    public final Optional<String> value;
+    private final Optional<String> value;
 
     /**
      * Constructs a {@code Date}. Meeting date can be null

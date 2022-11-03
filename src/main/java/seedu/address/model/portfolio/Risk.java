@@ -19,7 +19,7 @@ public class Risk {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final Optional<String> value;
+    private final Optional<String> value;
 
     /**
      * Constructs a {@code Risk}. Risk level can be null

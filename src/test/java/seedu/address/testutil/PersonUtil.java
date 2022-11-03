@@ -73,7 +73,7 @@ public class PersonUtil {
         descriptor.getMeetingDate().ifPresent(meetingDate -> sb.append(PREFIX_MEETING_DATE)
             .append(meetingDate.get()).append(" "));
         descriptor.getMeetingLocation().ifPresent(meetingLocation -> sb.append(PREFIX_MEETING_LOCATION)
-            .append(meetingLocation.value).append(" "));
+            .append(meetingLocation.get()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

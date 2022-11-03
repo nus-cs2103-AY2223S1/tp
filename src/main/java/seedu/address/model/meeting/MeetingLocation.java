@@ -23,9 +23,9 @@ public class MeetingLocation {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final Optional<String> value;
+    private final Optional<String> value;
 
-    public final Optional<Boolean> isVirtual;
+    private final Optional<Boolean> isVirtual;
 
     /**
      * Constructs a {@code Date}. Meeting location can be null
