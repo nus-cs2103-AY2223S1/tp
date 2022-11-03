@@ -305,40 +305,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Filter feature
-
-#### Proposed Implementation
-
-The proposed filter mechanism is facilitated by `FilteredAddressBook`. It extends `AddressBook` with a temporary history, stored internally as an `savedAddressBook`, with a `currentStatePointer` showing if the filtered list or the original list is shown. Additionally, it implements the following operations:
-
-* `FilteredAddressBook#filter()` — Filters and saves the filtered address book state from the current address book state.
-* `FilteredAddressBook#restore()` — Restores and shows the current address book state.
-
-These operations are exposed in the `Model` interface as `Model#filterAddressBook()` and `Model#restoreAddressBook()` respectively.
-
-Given below is an example usage scenario and how the filter mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `FilteredAddressBook` will be initialized with the current address book state.
-
-
-Step 2. The user executes `filter LOW` command to show only contacts with risk tag LOW in the address book. The `filter` command calls `Model#filterAddressBook()`, causing the modified state of the address book after the `filter LOW` command executes to be saved in the `savedAddressBook`, and the `currentStatePointer` is shifted to the filtered address book state.
-
-
-The `clear` command does the opposite — it calls `Model#restoreAddressBook()`, which shifts the `currentStatePointer` to the current address book state, and restores the address book to that state.
-
-
-
-Step 3. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#filterAddressBook()` or `Model#restoreAddressBook()`. Thus, the `savedAddressBook` remains unchanged.
-
-
-
-#### Design considerations:
-
-**Aspect: How filter executes:**
-
-
-_{more aspects and alternatives to be added}_
-
 #### Parameter hint feature
 
 The feature allows a user to view the correct prefixes and arguments of a command before entering the command.
