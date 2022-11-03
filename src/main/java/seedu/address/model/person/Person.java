@@ -22,14 +22,13 @@ import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 public class Person extends AbstractDisplayItem {
 
     private Set<AbstractSingleItem> parents = new HashSet<>();
-    private Fields fields = new Fields();
 
     /**
      * Every field must be present and not null.
      */
     public Person(String name) {
         super(name, PERSON, GROUP);
-        requireAllNonNull(name, fields);
+        requireAllNonNull(name);
     }
 
     /**

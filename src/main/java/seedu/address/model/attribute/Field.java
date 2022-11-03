@@ -4,16 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's custom field in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidField(String)}
+ * Represents a Person's custom field in the address book. Guarantees: immutable; is valid as
+ * declared in {@link #isValidField(String)}
  */
 public class Field {
 
     public static final String MESSAGE_CONSTRAINTS = "Custom fields can take in any values, and it should not be blank";
 
     /*
-     * The first character of the field must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * The first character of the field must not be a whitespace, otherwise " " (a blank string) becomes
+     * a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
@@ -35,7 +35,7 @@ public class Field {
     /**
      * Constructs a {@code Field}.
      *
-     * @param name  The name of the field.
+     * @param name The name of the field.
      * @param value The value of the field.
      */
     public Field(String name, String value) {
@@ -48,8 +48,8 @@ public class Field {
     }
 
     /**
-     * Sets the value of a custom Field by returning a new Field containing
-     * the field name and the new value to preserve immutability
+     * Sets the value of a custom Field by returning a new Field containing the field name and the new
+     * value to preserve immutability
      *
      * @param value The value to be set to the field
      * @return A new Field instance containing the name and the specified value

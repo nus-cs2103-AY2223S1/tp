@@ -3,9 +3,6 @@ package seedu.address.logic.commands.tasks;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.List;
-
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -37,22 +34,17 @@ public class MarkTaskCommand extends TaskCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Task> lastShownList = model.getFilteredTaskList();
         if (task == null && targetIndex == null) {
             throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
         if (task == null) {
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
-
-            task = lastShownList.get(targetIndex.getZeroBased());
+            task = model.getFromFilteredTasks(targetIndex);
         }
 
         Task newTask = task.mark();
         if (newTask == task) {
-            throw new CommandException(ALREADY_MARKED);
+            throw new CommandException(String.format(ALREADY_MARKED, task));
         }
         model.setTask(task, task.mark());
         model.refresh();

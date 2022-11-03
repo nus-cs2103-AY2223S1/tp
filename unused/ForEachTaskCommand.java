@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.teams;
+package seedu.address.logic.commands.tasks;
 
 import static java.util.Objects.requireNonNull;
 
@@ -12,15 +12,15 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.group.Group;
+import seedu.address.model.task.Task;
 
 /**
  * Marks a task as complete
  */
-public class ForEachTeamCommand extends TeamCommand implements PureCommandInterface {
+public class ForEachTaskCommand extends TaskCommand implements PureCommandInterface {
     public static final String SUBCOMMAND_WORD = "foreach";
 
-    public static final String MESSAGE_USAGE = TeamCommand.getFullCommand(SUBCOMMAND_WORD)
+    public static final String MESSAGE_USAGE = TaskCommand.getFullCommand(SUBCOMMAND_WORD)
         + "for each task in the current list, execute subsequent commands with that task as context\n"
         + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + "task delete";
 
@@ -29,23 +29,20 @@ public class ForEachTeamCommand extends TeamCommand implements PureCommandInterf
     private final Command nextCmd;
 
     /**
-     * Creates a ForEachTeam Command
-     *
-     * @param nextCmd next command to be executed
-     * @throws ParseException thrown when next command fails to parse properly
+     * Constructor for task foreach command
      */
-    public ForEachTeamCommand(String nextCmd) throws ParseException {
+    public ForEachTaskCommand(String nextCmd) throws ParseException {
         try {
             this.nextCmd = AddressBookParser.get().parseCommand(nextCmd);
         } catch (ParseException ps) {
-            throw new ParseException("Syntax Error");
+            throw new ParseException("Syntax Error: \n" + ps.getMessage());
         }
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Group> lastShownList = new ArrayList<>(model.getFilteredTeamList());
+        List<Task> lastShownList = new ArrayList<>(model.getFilteredTaskList());
         int[] skipped = {0, lastShownList.size()};
         lastShownList.forEach(t -> {
             try {
@@ -59,7 +56,7 @@ public class ForEachTeamCommand extends TeamCommand implements PureCommandInterf
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
-        return;
+    public Command setInput(Object additionalData) throws CommandException {
+        return this;
     }
 }

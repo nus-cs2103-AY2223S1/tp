@@ -62,8 +62,9 @@ public class IfCommand extends Command {
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         details = additionalData;
+        return this;
     }
 
     @Override

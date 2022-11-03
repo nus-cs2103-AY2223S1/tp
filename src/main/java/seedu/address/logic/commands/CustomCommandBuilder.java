@@ -6,7 +6,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
 /**
- * Class with the ability to build a custom commands
+ * Class with the ability to build a custom command.
  */
 public class CustomCommandBuilder {
     private final String repr;
@@ -24,12 +24,19 @@ public class CustomCommandBuilder {
     }
 
     /**
-     * Retrieves the macro shortcut that represent this command
+     * Retrieves the macro shortcut that represent this command.
      *
-     * @return
+     * @return the string representing the macro word.
      */
     public String getRepr() {
         return repr;
+    }
+
+    /**
+     * Retrieves the initial command that the macro represents.
+     */
+    public String getCommandData() {
+        return commandData;
     }
 
     /**
@@ -40,14 +47,15 @@ public class CustomCommandBuilder {
             private Object o = null;
 
             @Override
-            public void setInput(Object additionalData) throws CommandException {
+            public Command setInput(Object additionalData) throws CommandException {
                 o = additionalData;
+                return this;
             }
 
             @Override
             public CommandResult execute(Model model) throws CommandException {
                 try {
-                    return AddressBookParser.get().parseCommand(commandData).execute(model);
+                    return AddressBookParser.get().parseCommand(commandData).setInput(o).execute(model);
                 } catch (ParseException e) {
                     throw new CommandException(e.getMessage());
                 }

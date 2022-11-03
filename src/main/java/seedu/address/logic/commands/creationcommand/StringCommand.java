@@ -51,7 +51,6 @@ public class StringCommand extends PureCommand {
                 }
                 return new StringCommand(val, p.getSecond());
             }
-
         };
     }
 }

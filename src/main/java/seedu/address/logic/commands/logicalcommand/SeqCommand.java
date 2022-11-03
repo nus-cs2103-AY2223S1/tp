@@ -32,7 +32,7 @@ public class SeqCommand extends Command {
         Object prevResult = ctx;
         Object toApply = ctx;
         String tmp;
-        CommandResult ret = new CommandResult("inited");
+        CommandResult ret = new CommandResult("All commands failed or no commands were supplied");
         int count = 0;
         int fail = 0;
         for (int i = 0; i < replacers.size(); i++) {
@@ -77,7 +77,8 @@ public class SeqCommand extends Command {
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         this.ctx = additionalData;
+        return this;
     }
 }

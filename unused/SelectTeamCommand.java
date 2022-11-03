@@ -2,9 +2,6 @@ package seedu.address.logic.commands.teams;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -13,7 +10,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.group.Group;
 
 // @@author connlim
 
@@ -25,7 +21,7 @@ public class SelectTeamCommand extends TeamCommand implements PureCommandInterfa
 
     public static final String MESSAGE_USAGE = TeamCommand.getFullCommand(SUBCOMMAND_WORD)
         + "selects a team and execute subsequent commands with that team as context\n"
-        + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + "1 contains description";
+        + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + " 1 contains description";
 
     private final Index targetIndex;
     private final Command nextCmd;
@@ -45,20 +41,12 @@ public class SelectTeamCommand extends TeamCommand implements PureCommandInterfa
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Group> lastShownList = model.getFilteredTeamList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Group group = lastShownList.get(targetIndex.getZeroBased());
-
-        nextCmd.setInput(group);
+        nextCmd.setInput(model.getFromFilteredTeams(targetIndex));
         return nextCmd.execute(model);
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
-        return;
+    public Command setInput(Object additionalData) throws CommandException {
+        return this;
     }
 }

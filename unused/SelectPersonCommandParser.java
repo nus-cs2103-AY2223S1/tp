@@ -26,12 +26,7 @@ public class SelectPersonCommandParser implements Parser<SelectPersonCommand> {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectPersonCommand.MESSAGE_USAGE));
         }
-        try {
-            Index index = ParserUtil.parseIndex(matcher.group("index"));
-            return new SelectPersonCommand(index, matcher.group("commands"));
-        } catch (ParseException pe) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectPersonCommand.MESSAGE_USAGE), pe);
-        }
+        Index index = ParserUtil.parseIndex(matcher.group("index"));
+        return new SelectPersonCommand(index, matcher.group("commands"));
     }
 }

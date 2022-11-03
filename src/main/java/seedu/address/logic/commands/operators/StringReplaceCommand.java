@@ -17,9 +17,8 @@ public class StringReplaceCommand extends Command {
 
     public static final String COMMAND_WORD = "r";
     private static final String INVALID_INPUT = "Missing Strings";
-    private static final String USE_MESSAGE = "replace $1-txt\\\\$2-txt\\\\...$1 ... $2...\\\\";
+    private static final String USE_MESSAGE = "replace $replacement txt\\txt %s to replace";
 
-    private boolean replaceLast = false;
     private String txt = null;
     private List<String> replacers;
 
@@ -29,21 +28,20 @@ public class StringReplaceCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        int end = replacers.size();
-        if (!replaceLast) {
-            end--;
+        String target;
+        if (replacers.size() == 2) {
+            txt = replacers.get(0);
+            target = replacers.get(1);
         } else {
-            if (end == 0) {
+            if (replacers.size() != 1 || txt == null) {
+                System.out.println(replacers);
                 throw new CommandException(INVALID_INPUT);
             }
-            txt = replacers.get(end - 1);
+            target = replacers.get(0);
         }
+        target = target.replaceAll("%s", txt);
 
-        for (int i = 1; i <= end; i++) {
-            txt = txt.replaceAll(String.format("$%d", i), replacers.get(i - 1));
-        }
-
-        return new CommandResult("result is: " + txt, false, false, txt);
+        return new CommandResult("result is: " + target, false, false, target);
     }
 
     /**
@@ -57,19 +55,20 @@ public class StringReplaceCommand extends Command {
                 if (userInput.trim().length() == 0) {
                     throw new ParseException(USE_MESSAGE);
                 }
-                List<String> val = Arrays.asList(userInput.trim().split("\\\\"));
+                List<String> val = Arrays.asList(userInput.trim().split("\\\\", 2));
                 return new StringReplaceCommand(val);
             }
         };
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
+        System.out.print(additionalData);
         if (additionalData == null || additionalData.toString().trim() == "") {
             txt = null;
-            return;
+            return this;
         }
-        replaceLast = true;
         txt = additionalData.toString();
+        return this;
     }
 }

@@ -199,7 +199,7 @@ public class Task extends AbstractSingleItem {
         if (o == null) {
             return;
         }
-        if (!assignedParents.contains(o)) {
+        if (assignedParents.contains(o)) {
             throw new ItemCannotBeParentException(o);
         }
 

@@ -24,12 +24,7 @@ public class SelectTeamCommandParser implements Parser<SelectTeamCommand> {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectTeamCommand.MESSAGE_USAGE));
         }
-        try {
-            Index index = ParserUtil.parseIndex(matcher.group("index"));
-            return new SelectTeamCommand(index, matcher.group("commands"));
-        } catch (ParseException pe) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectTeamCommand.MESSAGE_USAGE), pe);
-        }
+        Index index = ParserUtil.parseIndex(matcher.group("index"));
+        return new SelectTeamCommand(index, matcher.group("commands"));
     }
 }

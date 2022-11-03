@@ -170,6 +170,61 @@ The basic features are categorised as the following:
 3. Team Commands
 4. Task Commands
 
+## Contact commands
+
+### Constraints on contact information
+
+The following contact commands comply with these placeholder constraints:
+
+- The `NAME` of the contact must be alphanumeric and can contain whitespace.
+- The `PHONE_NUMBER` of the contact must be at least 3 digits long.
+- The `EMAIL` of the contact must be in the format `local-part@domain`.
+
+  - `Local-part`: Only contain alphanumeric characters and these special characters, excluding
+    the parentheses, (+\_.-). The local-part may not start or end with any special characters.
+  - `Domain`:
+
+    - Ends with a domain label at least 2 characters long.
+    - Have each domain label start and end with alphanumeric characters.
+    - Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
+- The `ADDRESS` can take any values, but it should not be blank.
+- The `TAG` must be alphanumeric.
+- The `INDEX` must be a positive integer which cannot exceed the number of contacts currently displayed in the
+  application.
+- The `KEYWORD` and `MORE_KEYWORDS` must be alphanumeric.
+
+### Create a Contact
+
+Let us start off by adding a person to Contactmation. To add a contact, you can use the command `person new`, followed by the name of the person. You can also choose to provide the phone number, email and address to each person, or add a tag to identify each person.
+
+**Format**: `person new n/<NAME> [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+
+**Examples**:
+
+- `person new n/Spongebob`
+- `person new n/Squidward Tentacles p/01234567 e/squidward@gmail.com a/Bikini Bottom Krusty Krab t/Employee`
+
+![Add Person Screenshot](images/user-guide-img/PersonNewScreenshot.PNG)
+
+### Delete a contact
+
+You can use the `person delete` command to delete a contact from the list of persons in the current scope.
+
+**Format**: `person delete <INDEX>`
+
+**Example**:
+
+- `person delete 1`
+
+### Listing all contacts
+
+Contactmation supports the `list` command that displays all of your contacts into a list of persons.
+
+**Format**: `list`
+
+---
+
 ## General commands
 You can use these commands used on all 3 categories of commands, namely **command**, **team**, and **task** commands.
 These commands are also irrespective of the [scope](#scoping) you are in.
@@ -179,6 +234,7 @@ These commands are also irrespective of the [scope](#scoping) you are in.
 
 This command clears all group, contact and task entries from the application. You can do this to commemorate the end of 
 a project, and kickstart a new one.
+
 
 <div markdown="span" class="alert alert-primary">❗ **WARNING** <br>
 THIS ACTION IS IRREVERSIBLE! RUN THIS COMMAND AT YOUR OWN DISCRETION**
@@ -275,7 +331,6 @@ Contactmation supports the `list` command that displays all of your contacts int
 
 ## Team commands
 
-
 Contactmation allows you to group your contacts into teams, which allows you to issue and assign tasks to members of
 specific teams. Team-related commands in Contactmation begin with the `team` keyword.
 
@@ -331,8 +386,8 @@ the application window.
 ### Navigate to a Team
 
 To perform commands specific to a team, you will have to navigate first to that specific team. You can use the `cg`
-command to navigate to a specified team. This command updates the group scope that is currently being displayed in 
-the application. 
+command to navigate to a specified team. This command updates the group scope that is currently being displayed in
+the application.
 
 This command is similar to going into a folder on your desktop, or stepping
 out of it.
@@ -358,6 +413,7 @@ out of it.
 - `cg ..`
 
 <aside>
+
 💡 If you are familiar with UNIX-based operating systems such as Linux or familiar with using terminal, the navigation 
 command (`cg`) in Contactmation follows a similar syntax to the change directory command (`cd`).
 
@@ -365,7 +421,7 @@ command (`cg`) in Contactmation follows a similar syntax to the change directory
 
 ### Add New Contacts within a Team
 
-Once you have navigated to a team, you can add a new contact within that team, which is done through the same command 
+Once you have navigated to a team, you can add a new contact within that team, which is done through the same command
 as adding a contact to Contactmation.
 
 
@@ -390,7 +446,7 @@ the person by using the `team remove` command.
 
 ### Creating and Deleting a Subteam
 
-Contactmation allows the creation and deletion of a subteam within a team using the same command as 
+Contactmation allows the creation and deletion of a subteam within a team using the same command as
 [creating a team](#create-a-team) and [deleting a team](#delete-a-team).
 
 

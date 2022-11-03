@@ -81,11 +81,12 @@ public class CmpCommand extends Command {
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         if (additionalData == null) {
             throw new CommandException(MISSINGINPUT);
         }
 
         num = additionalData;
+        return this;
     }
 }

@@ -23,12 +23,13 @@ public abstract class PersonCommand extends Command {
     }
 
     @Override
-    public void setInput(Object additionalData) throws CommandException {
+    public Command setInput(Object additionalData) throws CommandException {
         if (additionalData == null || !(additionalData instanceof Person)) {
             person = null;
-            return;
+            return this;
         }
         person = (Person) additionalData;
+        return this;
     }
 
 }
