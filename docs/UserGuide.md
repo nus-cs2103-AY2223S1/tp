@@ -159,7 +159,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The keywords are only searched for inside the applications' companies and positions.
 * Only full words will be matched e.g. `ByteDance` will not match `ByteDances`.
 * Applications matching at least one keyword will be returned (i.e. `OR` search). e.g. `Google Shopee` will match `Shopee HQ` and `Google Singapore`.
-* `find` command is also able to search for archived application and use `retrieve` command on the last shown list. However, please ensure that the index provided is within the last shown list and the selected application is archived.
+* `find` command is also able to search for archived applications with matching keywords and  `retrieve` command can be used on the last shown list. However, please ensure that the index provided is within the last shown list and the selected application is archived.
 
 Example:
 * `find Software` returns the `Google` and `Wise` applications since their positions contain the keyword "software".
