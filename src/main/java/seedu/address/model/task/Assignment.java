@@ -1,8 +1,8 @@
 package seedu.address.model.task;
 
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
+
+import java.util.List;
 
 /**
  * Represents an Assignment in the task book.
@@ -16,6 +16,7 @@ public class Assignment extends Task {
      */
     public Assignment(TaskTitle title, TaskDescription desc, List<String> students) {
         super(title, desc);
+        requireNonNull(students);
         this.students = students;
     }
 

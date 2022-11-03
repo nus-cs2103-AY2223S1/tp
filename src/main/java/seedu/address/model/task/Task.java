@@ -9,6 +9,9 @@ public abstract class Task {
     private TaskTitle title;
     private TaskDescription description;
 
+    /**
+     * Every field must be present and not null.
+     */
     public Task(TaskTitle title, TaskDescription description) {
         requireAllNonNull(title, description);
         this.title = title;
@@ -29,14 +32,6 @@ public abstract class Task {
      */
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Task)) {
-            return false;
-        }
-
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
                 && otherTask.getDescription().equals(getDescription());

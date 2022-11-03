@@ -2,8 +2,6 @@ package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Objects;
-
 /**
  * Represents a Deadline in the task book.
  * Guarantees: details are present and not null, field values are validated, immutable.
