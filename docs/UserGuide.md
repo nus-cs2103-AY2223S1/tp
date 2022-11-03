@@ -36,7 +36,7 @@ If you want to **quick**ly get **start**ed with using HobbyList, you can read an
 #### Features
 The [features](#5-features) section contains a list of all the features that HobbyList currently has. Within each feature, you can read up on how each feature is used and look at some examples.
 The features are laid out with a short description, followed by the format of the command, then finally some examples with explanation on what they do.
-This [information box](#command-info) provides information on understanding the command format. This [information box](#what-is-an-activity) tells you what an activity is and what information is stored in one.
+This [information box](#command-info) provides information on understanding the command format while [this one](#what-is-an-activity) tells you what an activity is and what information is stored in one.
 
 #### Special boxes
 Throughout the entire user guide, there are special boxes like the ones below which give you additional information.
@@ -45,7 +45,7 @@ Throughout the entire user guide, there are special boxes like the ones below wh
 
 :information_source: **Additional information:**<br>
 
-Boxes such as this one with an information symbol :information_source: are used to provide additional information which you should read if you want to use the related features or understand the user guide properly.
+Boxes such as this one with an information symbol :information_source: are used to provide additional information which you should read if you want to use the related features or understand the user guide fully.
 
 </div>
 
@@ -53,7 +53,7 @@ Boxes such as this one with an information symbol :information_source: are used 
 
 :exclamation: **Caution:**<br>
 
-Boxes such as this one with an exclamation mark :exclamation: are used to warn you about things that you should take note of, as certain actions may cause intended drastic consequences.
+Boxes such as this one with an exclamation mark :exclamation: are used to warn you about things that you should take note of, as certain actions may cause drastic consequences that are not intended by you.
 
 </div>
 
