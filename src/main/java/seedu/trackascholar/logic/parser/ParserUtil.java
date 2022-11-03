@@ -150,6 +150,7 @@ public class ParserUtil {
         for (String major : majors) {
             majorSet.add(parseMajor(major));
         }
+        // Handles casing duplicates (lower/upper case) not handled by Set<Major>
         if (majorSet.size() > Major.MAXIMUM_NUMBER_OF_MAJORS || hasDuplicate(majorSet)) {
             throw new ParseException(Major.MESSAGE_CONSTRAINTS);
         }
