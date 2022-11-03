@@ -1,6 +1,8 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -108,5 +110,51 @@ public class PersonTest {
         // different planned modules -> returns false
         editedAlice = new PersonBuilder(ALICE).withPlannedModules(VALID_MODULE_11).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void hashcode() {
+        // same values -> returns same hashcode
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        assertEquals(ALICE.hashCode(), aliceCopy.hashCode());
+
+        // different person -> returns different hashcode
+        assertNotEquals(ALICE.hashCode(), BOB.hashCode());
+
+        // different name -> returns different hashcode
+        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different phone -> returns different hashcode
+        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different email -> returns different hashcode
+        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different address -> returns different hashcode
+        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different github -> returns different hashcode
+        editedAlice = new PersonBuilder(ALICE).withGithub(VALID_GITHUB_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different tags -> returns different hashcode
+        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different current modules -> returns different hashcode
+        editedAlice = new PersonBuilder(ALICE).withCurrentModules(VALID_MODULE_7).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different previous modules -> returns different hashcode
+        editedAlice = new PersonBuilder(ALICE).withPreviousModules(VALID_MODULE_9).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different planned modules -> returns different hashcode
+        editedAlice = new PersonBuilder(ALICE).withPlannedModules(VALID_MODULE_11).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
     }
 }

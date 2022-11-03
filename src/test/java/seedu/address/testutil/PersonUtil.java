@@ -16,11 +16,13 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ModuleCommand.EditModuleDescriptor;
+import seedu.address.logic.commands.UserCommand;
 import seedu.address.model.module.CurrentModule;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.user.User;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,6 +35,13 @@ public class PersonUtil {
      */
     public static String getAddCommand(Person person) {
         return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    }
+
+    /**
+     * Returns a user command string for adding the {@code user}.
+     */
+    public static String getUserCommand(User user) {
+        return UserCommand.COMMAND_WORD + " " + getUserDetails(user);
     }
 
     /**
@@ -55,6 +64,28 @@ public class PersonUtil {
                 m -> sb.append(PREFIX_PREVIOUSMOD + m.moduleName + " ")
         );
         person.getPlanModules().stream().forEach(
+                m -> sb.append(PREFIX_PLANNEDMOD + m.moduleName + " ")
+        );
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code user}'s details.
+     */
+    public static String getUserDetails(User user) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_NAME + user.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + user.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + user.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + user.getAddress().value + " ");
+        sb.append(PREFIX_GITHUB + user.getGithub().value + " ");
+        user.getCurrModules().stream().forEach(
+                m -> sb.append(PREFIX_CURRENTMOD + m.moduleName + " ")
+        );
+        user.getPrevModules().stream().forEach(
+                m -> sb.append(PREFIX_PREVIOUSMOD + m.moduleName + " ")
+        );
+        user.getPlanModules().stream().forEach(
                 m -> sb.append(PREFIX_PLANNEDMOD + m.moduleName + " ")
         );
         return sb.toString();
@@ -108,4 +139,5 @@ public class PersonUtil {
         }
         return sb.toString();
     }
+
 }

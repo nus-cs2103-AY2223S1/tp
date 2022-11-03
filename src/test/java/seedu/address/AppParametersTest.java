@@ -1,7 +1,12 @@
 package seedu.address;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.HashMap;
@@ -35,6 +40,41 @@ public class AppParametersTest {
         parametersStub.namedParameters.put("config", "a\0");
         expected.setConfigPath(null);
         assertEquals(expected, AppParameters.parse(parametersStub));
+    }
+
+    @Test
+    public void equals() {
+        // same values -> returns true
+        AppParameters appParameters = new AppParameters();
+        AppParameters appParametersCopy = new AppParameters();
+        assertTrue(appParameters.equals(appParametersCopy));
+
+        // same object -> returns true
+        assertTrue(appParameters.equals(appParameters));
+
+        // null -> returns false
+        assertFalse(appParameters.equals(null));
+
+        // different types -> returns false
+        assertFalse(appParameters.equals(5));
+
+        // different configPath -> returns false
+        appParametersCopy.setConfigPath(Path.of(""));
+        assertFalse(appParameters.equals(appParametersCopy));
+    }
+
+    @Test
+    public void hashcode() {
+        // same values -> returns same hashcode
+        AppParameters appParameters = new AppParameters();
+        appParameters.setConfigPath(Path.of("hi"));
+        AppParameters appParametersCopy = new AppParameters();
+        appParametersCopy.setConfigPath(Path.of("hi"));
+        assertEquals(appParameters.hashCode(), appParametersCopy.hashCode());
+
+        // different configPath -> returns different hashcode
+        appParametersCopy.setConfigPath(Path.of("bye"));
+        assertNotEquals(appParameters.hashCode(), appParametersCopy.hashCode());
     }
 
     private static class ParametersStub extends Application.Parameters {

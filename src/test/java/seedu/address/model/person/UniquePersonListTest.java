@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -202,4 +203,26 @@ public class UniquePersonListTest {
         differentList.add(FIONA);
         assertFalse(list.equals(differentList));
     }
+
+    @Test
+    public void hashcode() {
+        // same values -> returns true
+        UniquePersonList list = new UniquePersonList();
+        list.add(ALICE);
+        list.add(BENSON);
+        list.add(CARL);
+        UniquePersonList listCopy = new UniquePersonList();
+        listCopy.add(ALICE);
+        listCopy.add(BENSON);
+        listCopy.add(CARL);
+        assertEquals(list.hashCode(), listCopy.hashCode());
+
+        // different uniquePersonList -> returns false
+        UniquePersonList differentList = new UniquePersonList();
+        differentList.add(DANIEL);
+        differentList.add(ELLE);
+        differentList.add(FIONA);
+        assertNotEquals(list.hashCode(), differentList.hashCode());
+    }
+
 }

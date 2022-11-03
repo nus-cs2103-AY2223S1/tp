@@ -14,13 +14,14 @@ Given below are my contributions to the project.
 * **New Feature**: Add lesson
   * What it does: Adds lessons (lab, lecture, tutorial and recitation) to a person or the user.
   * Justification: To keep track of yours and your friends' lessons so that de-conflicting schedules is easier.
-  
+
 
 * **New Feature**: Timetable
   * What it does: View user's or person's timetable for the week (with the lessons added).
   * Justification: Easily arrange meetings by viewing everyone's schedule to find their free time.
   * Highlights:
-  ![Timetable Window](../images/TimetableWindow.png)
+
+  <img src="../images/TimetableWindow.png" width="300" />
 
 
 * **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=rjkoh&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
@@ -60,7 +61,7 @@ Given below are my contributions to the project.
     * Cosmetic tweaks to class diagrams for consistency: [#190](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/190)
 
 
-* **Contributions to Team-based tasks**: 
+* **Contributions to Team-based tasks**:
   * Setup GitHub Repo and Organisation
   * Rename product from addressbook to ConnectNUS: [#64](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/64), [#177](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/177)
   * Integrated a new GitHub plugin (CodeCov) to the team repo: [#25](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/25)
@@ -77,7 +78,7 @@ Given below are my contributions to the project.
 
 
 
-* **Review / mentoring contributions**: 
+* **Review / mentoring contributions**:
   * PRs reviewed with non-trivial review comments: [#42](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/42),
   [\#44](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/44),
   * PRs approved: [PRs approved by me](https://github.com/AY2223S1-CS2103T-T14-4/tp/pulls?q=is%3Apr+is%3Aclosed+review%3Aapproved)
