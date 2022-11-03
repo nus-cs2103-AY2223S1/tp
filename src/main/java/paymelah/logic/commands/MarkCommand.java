@@ -29,7 +29,9 @@ public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks a debt of a person as paid. Multiple debts may be specified.\n"
+            + ": Marks a specific debt of the person identified by the index number "
+            + "used in the displayed person list as paid. The debt is specified by the index number "
+            + "of the debt displayed in the person's debt field. Multiple debts may be specified.\n"
             + "Parameters: PERSON_INDEX (must be a positive integer) "
             + PREFIX_DEBT + "DEBT_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DEBT + "2 3";
