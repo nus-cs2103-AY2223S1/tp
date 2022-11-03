@@ -22,8 +22,16 @@ class CalorieTest {
         assertTrue(Calorie.isValidCalorie("1"));
         assertTrue(Calorie.isValidCalorie("100"));
         assertFalse(Calorie.isValidCalorie(Long.MAX_VALUE + ""));
+
+        // negative integers not allowed
         assertFalse(Calorie.isValidCalorie("-1"));
+
+        // floating point numbers not allowed
         assertFalse(Calorie.isValidCalorie("1.0"));
+
+        // leading 0s not allowed
+        assertFalse(Calorie.isValidCalorie("002000"));
+        assertFalse(Calorie.isValidCalorie("00"));
     }
 
     @Test

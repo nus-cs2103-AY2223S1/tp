@@ -6,7 +6,8 @@ import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
  * Represents a calorie object
  */
 public class Calorie {
-    public static final String VALIDATION_REGEX = "\\d+";
+    // The calorie value cannot contain leading 0s.
+    public static final String VALIDATION_REGEX = "^(0|[1-9]\\d*)$";
     public static final String MESSAGE_CONSTRAINTS =
         "Calorie must take on a non negative number that is not too large.";
     public final String value;
