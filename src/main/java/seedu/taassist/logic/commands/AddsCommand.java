@@ -59,7 +59,9 @@ public class AddsCommand extends Command {
 
         for (Session session: sessions) {
             if (focusedClass.hasSession(session)) {
-                duplicateSessions.add(session);
+                // session is guaranteed to exist. No exception will be thrown.
+                Session existingSession = focusedClass.getSessionWithSameName(session);
+                duplicateSessions.add(existingSession);
             } else {
                 newSessions.add(session);
             }

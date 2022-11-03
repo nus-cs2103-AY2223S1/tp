@@ -8,6 +8,7 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.moduleclass.exceptions.SessionNotFoundException;
 import seedu.taassist.model.session.Session;
 
 /**
@@ -46,13 +47,17 @@ public class ScoresCommand extends Command {
         }
 
         ModuleClass focusedClass = model.getFocusedClass();
-        if (!focusedClass.hasSession(session)) {
+        Session existingSession;
+
+        try {
+            existingSession = focusedClass.getSessionWithSameName(session);
+        } catch (SessionNotFoundException snfe) {
             throw new CommandException(String.format(MESSAGE_INVALID_SESSION, session.getSessionName(), focusedClass));
         }
 
-        model.querySessionData(session);
+        model.querySessionData(existingSession);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, session.getSessionName()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, existingSession.getSessionName()));
     }
 
     @Override
