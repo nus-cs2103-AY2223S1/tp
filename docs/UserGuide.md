@@ -312,8 +312,6 @@ Example:
 
 ### 5.7 Finding activities: `find`
 
-#### With keywords:
-
 You can show a list of all hobby activities which contain any of the specified keywords using this command.
 
 > Format: `find KEYWORDS`
