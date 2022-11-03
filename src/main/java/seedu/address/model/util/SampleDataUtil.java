@@ -212,21 +212,19 @@ public class SampleDataUtil {
         Order[] orders = getSampleOrders();
         Pet[] pets = getSamplePets();
 
-        for (int i = 0; i < buyers.length; i++) {
+        for (Order o : orders) {
+            Buyer buyer = o.getBuyer();
             List<UniqueId> tmp = new ArrayList<>();
-            tmp.add(orders[i].getId());
-            buyers[i].addOrders(tmp);
+            tmp.add(o.getId());
+            buyer.addOrders(tmp);
         }
 
-        for (int i = 0; i < suppliers.length - 2; i++) {
+        for (Pet p: pets) {
+            Supplier supplier = p.getSupplier();
             List<UniqueId> tmp = new ArrayList<>();
-            tmp.add(pets[i].getId());
-            suppliers[i].addPets(tmp);
+            tmp.add(p.getId());
+            supplier.addPets(tmp);
         }
-        List<UniqueId> tmp = new ArrayList<>();
-        tmp.add(pets[4].getId());
-        tmp.add(pets[5].getId());
-        suppliers[2].addPets(tmp);
 
         for (Buyer sampleBuyer :buyers) {
             sampleAb.addBuyer(sampleBuyer);
