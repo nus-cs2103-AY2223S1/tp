@@ -29,7 +29,7 @@ Given below are my contributions to the project.
     * Highlights: This feature required redesigning the `listEvents` command created by another team member.
 
 
-  * **Testing**: Added substantial unit tests and integration tests for the sort persons feature, increasing test coverage from 48% to 50% (Pull request [#192](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/192))
+  * **Testing**: Added substantial unit tests and integration tests for the sort persons feature, increasing test coverage from 48% to 50%. (Pull request [#192](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/192))
 
   * **Testing**: Added some unit tests for the sort events feature. (Pull request [#192](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/192))
 
