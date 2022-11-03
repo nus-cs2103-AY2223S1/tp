@@ -155,7 +155,7 @@ Format: `add d/DESCRIPTION sd/START DATE du/DURATION [c/COUNTRY] [p/NUMBER OF WA
 
 Examples:
 * `add d/My Japan Trip sd/2022-12-12 du/6`
-* `add d/Germanyyyy c/Germany du/14 s/05/10/22 b/1000 p/4`
+* `add d/Germanyyyy c/Germany du/14 s/05-10-22 b/1000 p/4`
 
 ### Listing all itineraries : `list`
 
