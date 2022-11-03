@@ -22,12 +22,13 @@ Given below are my contributions to the project.
     * Added alert dialog to ask confirmation from users before starting with an empty data file if data load failed.
         * Additionally, the data file is backed up everytime TA-Assist is opened.
     * Implemented collapsible student cards in the GUI to allow users to hide the student details.
+    * Added functionality to back up the data file each time TA-Assist is opened.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=RezwanArefin01&breakdown=true).
 
 * **Project management**: To be added soon.
-    * Authored 28 issues to help keep track of current issues and progress.
-    * Reviewed 34 pull requests to ensure quality and consistency across the database.
+    * Authored 29 issues to help keep track of current issues and progress.
+    * Reviewed 30 pull requests to ensure quality and consistency across the project.
 
 * **Enhancements to existing features**: 
     * Fixed the help window not being loaded in Linux environment.
