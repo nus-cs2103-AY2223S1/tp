@@ -155,7 +155,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Implemented\] List patients/appointments feature
+### List Feature
 
 #### Implementation
 The list patients/appointments mechanism is facilitated by the `UniquePersonList` and `UniqueAppointmentList`
@@ -199,7 +199,7 @@ process as well.
 
 We ultimately went with Alternative 1 since we do not expect `list` to take in many different arguments.
 
-### \[Implemented\] Cancel feature 
+### Cancel Feature 
 
 #### Implementation
 The implemented cancel feature allows users to cancel a patient's appointment based on its index in the appointment list. <br>
@@ -234,7 +234,7 @@ Our team decided to change the user input format of the cancel command from `can
 to `cancel APPOINTMENT_INDEX`, so it is faster for
 the user to key in, and also more similar to the other commands with only 1 index.
 
-### \[Implemented\] Group Patient
+### Group Patient Feature
 
 The group mechanism implements the following operations:
 
@@ -266,7 +266,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Current choice:** Use a different comparator from default so that a heavy weight can be assigned to the value of a
   tag group where a patient belongs.
 
-### \[Implemented\] Group Appointment
+### Group Appointment Feature
 
 The group mechanism implements the following operations:
 
@@ -299,7 +299,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Current choice:** Use a different comparator from default so that a heavy weight can be assigned to the value of a
   tag group where a patient belongs or the patient attached to the appointment.
 
-### \[Implemented\] Ungroup
+### Ungroup Feature
 
 The ungroup mechanism implements the following operations:
 
@@ -341,7 +341,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   as default settings. To be more specific, the patient list will be sorted by patients' names and the appointemnt 
   list will be sorted by datetime.
 
-### \[Implemented\] Book feature
+### Book Feature
 
 #### Implementation
 
@@ -405,7 +405,7 @@ These objects are stored in a list field of the `JsonAdaptedPerson` and are stor
   * Pros: Easier to maintain as there's only one appointment object.
   * Cons: Harder and more costly to track of each person's appointments, especially if the person himself is edited or deleted in the process.
 
-### Mark/Unmark feature
+### Mark/Unmark Feature
 
 The execution of the `mark`/`unmark` is quite similar to each other, with some minor differences.
 
@@ -432,7 +432,7 @@ constructor directly
     * Cons: The `CommandResult` object generated at the end of the command will not have the `Index` of the appointment
   recorded in it. This makes it harder to debug using `CommandResult` when bugs occur.
 
-### Find `execute()` implementation
+### Find Feature
 
 ![MarkSequenceDiagram](images/FindClassDiagram.png)
 
