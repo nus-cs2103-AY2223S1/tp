@@ -66,19 +66,19 @@ The `Command Box` is where you can input your commands.
 
 The `Exercise List` displays exercise entries. When the application is first launched, the `Exercise List` displays all exercise entries in the system, arranged by the order in which they were added. Whenever you issue commands that may truncate/reorder the `Exercise List`, they will **only act upon the entries that are currently displayed in the `Exercise List`**.
 
-### 4.3. Result Display 
+### 4.3. Result Display
 
 The `Result Display Window` displays feedback after executing a command. This includes feedback for both feedback for correctly and incorrectly entered commands.
 
 ### 4.4. Recognised Exercise Name List
 
-The `Recognised Exercise Name List Window` provides you a list of all unique exercise names that are currently registered in the system. 
+The `Recognised Exercise Name List Window` provides you a list of all unique exercise names that are currently registered in the system.
 <br><br>This list updates in real time and allows you to keep track of the exercises you have input in the past. As such, you are able to keep track of what you named your exercises; you would also be able to quickly identify any misspellings in the name of your inputted exercises.
 
 ![RecognisedList](images/RecognisedExercisesOrientation.png)
 
-* The `Recognised Exercises Count` displays the number of unique exercises registered in the system. 
-* The `System Exercise Entries Count` displays the total number of exercise entries in the system. 
+* The `Recognised Exercises Count` displays the number of unique exercises registered in the system.
+* The `System Exercise Entries Count` displays the total number of exercise entries in the system.
 <br>
 
 **Adding and Deleting from the Exercise Name List**
@@ -86,7 +86,7 @@ The `Recognised Exercise Name List Window` provides you a list of all unique exe
 The `Recognised Exercise Name List Window` is generated based on the exercise entries in the system. Hence, the Recognised Exercise Name List is automatically updated whenever you add or delete an entry from the system.
 
 <div id="names" markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
-Exercise names are recognised as equal if, upon removing white spaces and setting the names to lowercase, the names are the same.<br><br> 
+Exercise names are recognised as equal if, upon removing white spaces and setting the names to lowercase, the names are the same.<br><br>
 i.e. "Bench Press", "BENCH PRESS", "BenchPress" will be logged as the same exercise for your convenience in adding.<br><br>
 However, the first time you add an exercise with an unrecognised name, the Recognised Exercise Name List will save the form you have input. Choose wisely!
 </div>
@@ -125,7 +125,7 @@ However, the first time you add an exercise with an unrecognised name, the Recog
 
 ### 5.1. Adding an exercise: `:add`
 
-Adds an exercise that we have done for the day. If an exercise (identified by their names) is added for the first time, it is automatically registered as a new unique exercise. 
+Adds an exercise that we have done for the day. If an exercise (identified by their names) is added for the first time, it is automatically registered as a new unique exercise.
 
 Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 
@@ -139,17 +139,17 @@ Parameter constraints:
 * The reps **must be a positive integer, up to 3 digits, with no leading zeroes**.
   * Examples: 1, 2, 3, 10, 100...
 * The date **must be a valid date**.
-  * Accepted formats: 
-    * DAY/MONTH/YEAR 
-    * YEAR/MONTH/DAY 
-    * DAY-MONTH-YEAR 
-    * YEAR-MONTH-DAY 
-    * DAY MONTH YEAR 
+  * Accepted formats:
+    * DAY/MONTH/YEAR
+    * YEAR/MONTH/DAY
+    * DAY-MONTH-YEAR
+    * YEAR-MONTH-DAY
+    * DAY MONTH YEAR
     * YEAR MONTH DAY
-  * DAY: 1 or 2 valid digits allowed 
-  * MONTH: 1 or 2 valid digits allowed 
+  * DAY: 1 or 2 valid digits allowed
+  * MONTH: 1 or 2 valid digits allowed
   * YEAR: 4 valid digits allowed
-  * Examples: 27/10/2022, 27-10-2022, 27/10/22... 
+  * Examples: 27/10/2022, 27-10-2022, 27/10/22...
   * `d/DATE` field is left optional, will store exercise with current date if no date field is found
 
 <div style="page-break-after: always;"></div>
@@ -260,7 +260,7 @@ Format (2) : `:range last/NUMBER_OF_DAYS`
 
 Parameter constraints:
 * Number of days **can only take non-negative integer values**, up to 5 digits.
-* Start date should be before end date.
+* Start date should be before end date. Otherwise, no exercises will be displayed.
 
 Example:
 * `:range last/3` Shows the exercises done today and the last 3 days.
@@ -402,13 +402,13 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 
 ## 7. FAQ
 
-**Q**: When should I use the `:list` command? 
+**Q**: When should I use the `:list` command?
 <br>
 **A**: The `:list` command resets the display of the exercise list, displaying all the exercise entries in the system (in the order the entries were input in the system). This can be used after commands, such as `:filter` or `:range` are used to change the display list.
 
 **Q**: Can I change the name of my uniquely registered exercise?
 <br>
-**A**: To change the way it is represented, you can find the exercise with the name, delete the entries and re-enter the exercises with your new name of choice. 
+**A**: To change the way it is represented, you can find the exercise with the name, delete the entries and re-enter the exercises with your new name of choice.
 
 <div markdown="block" class="alert alert-info">
 
@@ -423,6 +423,7 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 **Q**: Why is `:filter`, `:range` or `:sort` not showing the "correct" list even though I have input valid parameters?
 <br>
 **A**: The three commands works on the exercises in the current [Exercise List](#42-exercise-list). If your current Exercise List has been altered by list-changing commands such as `:range` or `:filter`, the commands will act on the current Exercise List rather than the full list comprising all exercises in the system. 
+
 <br><br>
 If you would like to operate on the full list instead, try executing the command `:list` to display the full list before running the commands again.
 
