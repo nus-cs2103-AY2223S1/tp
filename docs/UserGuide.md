@@ -116,7 +116,7 @@ In addition, for better readability, icons in this guide have been colored black
 1. Double-click the file to start the app. A GUI<sup>[4](#glossary)</sup> similar to the one below should appear in a few seconds. Note how the app contains some sample data. (Don't worry about the layout of the GUI<sup>[4](#glossary)</sup> yet! It will be explained in the next section.)
   ![Ui](images/Ui.png)
 
-1. We **strongly recommend** you to use this app at a resolution of 1024x768 or greater to experience the greatest level of comfort. You may also click the fullscreen icon at the top right hand corner of the window next to the close icon to maximise the window.
+1. We **strongly recommend** you to use this app at a resolution of 1024x640 or greater to experience the greatest level of comfort. You may also click the fullscreen icon at the top right hand corner of the window next to the close icon to maximise the window.
 
 1. Press your spacebar (recommended), or bring your cursor to the [command box](#command-box) area and click onto it, to access the typing space. The results display will come into view below the command box.
 
