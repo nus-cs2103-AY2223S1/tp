@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IS_COMPLETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IS_LINKED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -127,12 +129,21 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_CS2040 = "cs2040";
     public static final String VALID_DESCRIPTION_DO_TUTORIAL = "do tutorial";
     public static final String VALID_DESCRIPTION_WATCH_LECTURE = "watch lecture";
+    public static final String VALID_STATUS_YES = "y";
+    public static final String VALID_STATUS_NO = "n";
+    public static final String INVALID_STATUS_TRUE = "true";
     public static final String INVALID_MODULE_ABSENT_GEA1000 = "gea1000";
 
     public static final String MODULE_DESC_CS2030 = " " + PREFIX_MODULE + "cs2030";
     public static final String MODULE_DESC_CS2040 = " " + PREFIX_MODULE + "cs2040";
     public static final String DESCRIPTION_DESC_DO_TUTORIAL = " " + PREFIX_DESCRIPTION + "do tutorial";
     public static final String DESCRIPTION_DESC_WATCH_LECTURE = " " + PREFIX_DESCRIPTION + "watch lecture";
+    public static final String COMPLETION_STATUS_DESC_YES = " " + PREFIX_IS_COMPLETE + VALID_STATUS_YES;
+    public static final String COMPLETION_STATUS_DESC_NO = " " + PREFIX_IS_COMPLETE + VALID_STATUS_NO;
+    public static final String INVALID_COMPLETION_STATUS_DESC = " " + PREFIX_IS_COMPLETE + INVALID_STATUS_TRUE;
+    public static final String LINK_STATUS_DESC_YES = " " + PREFIX_IS_LINKED + VALID_STATUS_YES;
+    public static final String LINK_STATUS_DESC_NO = " " + PREFIX_IS_LINKED + VALID_STATUS_NO;
+    public static final String INVALID_LINK_STATUS_DESC = " " + PREFIX_IS_LINKED + INVALID_STATUS_TRUE;
 
     // module codes should be at least 6 characters long
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "cs";
