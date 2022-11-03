@@ -10,7 +10,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=Meng%20Qiaoran&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=Qiaoran-M&tabRepo=AY2223S1-CS2103-F09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=qiaoran-m&breakdown=true)
 * **Enhancements implemented**:
     * **New Feature**: Added gender field to a person (Pull requests [#50](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/50), [#52](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/52))
         * What it does: 
