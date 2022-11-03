@@ -34,7 +34,7 @@ title: Developer Guide
    5. [Deleting an applicant](#75-deleting-an-applicant)
    6. [Locating applicants by field](#76-locating-applicants-by-field)
    7. [Importing applicants from an external text file](#77-importing-applicants-from-an-external-json-file)
-   8. [Exporting displayed list](#78-exporting-displayed-list)
+   8. [Exporting displayed list](#78-exporting-displayed-list-to-a-json-file)
    9. [Checkout a new or existing list](#79-checkout-a-new-or-existing-list)
    10. [Saving data](#710-saving-data)
 
@@ -232,7 +232,7 @@ and populated with sample data. `Model` and `Storage` are then loaded with the s
 
 ![CheckoutState2](images/CheckoutState2.png)
 
-The following sequence diagram shows how the branch operation works:
+The following sequence diagram shows how the checkout operation works:
 
 ![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
 
@@ -707,9 +707,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: Note: These instructions only provide a starting point for testers to work on;
-testers are expected to do more exploratory testing.
-
+<div markdown="span" class="alert alert-info">
+:information_source: Note: These instructions only provide a starting 
+point for testers to work on; testers are expected to do more exploratory testing.
 </div>
 
 ### 7.1 Launch and shutdown
@@ -764,13 +764,20 @@ testers are expected to do more exploratory testing.
 
 ### 7.4 Editing an applicant
 
-1. tc description
+1. Editing one parameter of an applicant on InternConnect
 
-   1. Prerequisites:
+   1. Prerequisites: One applicant in the application.
 
-   2. Test case:
+   2. Test case: `edit 1 u/NUS`<br>
+      Expected: The university of the applicant in the first index is changed to `NUS`
 
-2. more tc
+2. Editing multiple parameters of an applicant on InternConnect
+
+    1. Prerequisites: One applicant in the application.
+
+    2. Test case: `edit 1 u/NUS p/12345678 g/male`<br>
+       Expected: The university, phone number, and gender of the applicant in the first index is changed to 
+       `NUS`, `12345678`, and `male` respectively.
 
 
 ### 7.5 Deleting an applicant
@@ -780,6 +787,7 @@ testers are expected to do more exploratory testing.
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
    2. Test case: `delete 1`<br>
+   
       Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
       Success message shown in the status message.
 
@@ -788,6 +796,7 @@ testers are expected to do more exploratory testing.
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
       
    2. Test case: `delete 0`<br>
+   
       Expected: No applicant is deleted. Error details shown in the status message.
 
 3. Other incorrect `delete` commands to try: `delete`, `delete john`, `delete x`(where `x` is larger than the list size)<br>
@@ -867,14 +876,30 @@ testers are expected to do more exploratory testing.
 
 ### 7.9 Checkout a new or existing list
 
-1. tc description
+1. Checkout to an existing file with valid data and valid format.
 
-   1. Prerequisites:
+   1. Prerequisites: One JSON file with valid data and valid format in `data/` folder.
 
-   2. Test case:
+   2. Test case: `checkout FILE_NAME`
 
-2. more tc
+      Expected: The data in the file `FILE_NAME.json` located at `data/` folder is loaded into the application.
 
+2. Checkout to a non-existent file.
+
+    1. Prerequisites: No file with the name `FILE_NAME` in `data/` folder.
+
+    2. Test case: `checkout FILE_NAME`
+
+       Expected: The file `FILE_NAME.json` is created at `data/` folder and its sample data is loaded into the application.
+
+3. Checkout to an existing file with invalid data or invalid format.
+
+    1. Prerequisites: One JSON file with invalid data or invalid format in `data/` folder.
+
+    2. Test case: `checkout FILE_NAME`
+
+       Expected: The data in the file `FILE_NAME.json` located at `data/` folder is wiped.
+       The application will not contain any applicants.
 
 ### 7.10 Saving data
 

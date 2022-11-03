@@ -36,7 +36,8 @@ Given below are my contributions to the project.
   * Added additional parameters for existing features.
     (PR 
     [#101](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/101), 
-    [#107](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/107))
+    [#107](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/107),
+    [#248](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/248))
   * Modified the edit feature to display the edited person after editing.
     (PR
     [#175](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/175))
@@ -53,6 +54,9 @@ Given below are my contributions to the project.
     * Minor formatting issues.
       (PR
       [#188](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/188))
+    * Refine checkout feature description.
+      (PR
+      [#247](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/247))
   * Developer Guide:
     * Use case: `Modify an applicant`.
       (PR
@@ -63,6 +67,9 @@ Given below are my contributions to the project.
     * Checkout feature. (Previously called branching feature.)
       (PR
       [#181](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/181))
+    * Modify checkout feature description.
+      (PR
+      [#269](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/269))
 
 
 * **Community**:
