@@ -140,9 +140,9 @@ Examples:
 *  `editPerson 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s contact: edits name to be `Charlotte`,
 edits gender to be `Female` and edits date of birth to be `3/4/1998`.
 
-### Locating persons by name: `find`
+### Locating persons by name: `findPersons`
 
-Finds persons whose names contain any of the given keywords.
+Finds all persons whose names contain any of the given keywords.
 
 Format: `findPersons KEYWORD [MORE_KEYWORDS]`
 
