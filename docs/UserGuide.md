@@ -47,34 +47,39 @@ If you encounter any issues in launching and using the app, feel free refer to t
   * e.g. while `assign INDEX c/CLASS_NAME` is acceptable, `assign c/CLASS_NAME INDEX` is not acceptable.
 * If a parameter is expected only once in a command but you specified it multiple times, the parser takes only the last occurrence of the parameter.
   * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) are ignored by the parser.
+* Extraneous parameters for commands that do not require them are ignored by the parser.
   * e.g. if the command specifies `help 123`, the parser interprets it as `help`.
+  * e.g. the command `addc` only takes in a class parameter. If the command specifies `addc n/John Doe c/CS1231S s/Lab1`, the parser interprets it as `addc c/CS1231S`.
 
-### Modes
+## Modes
 In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to (module) class. Therefore,
 [some commands](#features-available-in-focus-mode) can only be executed when you are in focus mode. Commands that you can run in the default (unfocused) mode can also
 be run in focus mode. On the other hand, commands that are available only in focus mode cannot be executed in the default (unfocused) mode.
 
 Let's first begin with the commands available in the default mode.
 
+## Commands available in default mode
 
-
-| Command    | Format                                                             |
-| ---------- |--------------------------------------------------------------------|
-| `help`     | `help`                                                             |
+| Command    | Format                                   |
+| ---------- | ---------------------------------------- |
+| `help`     | `help`                                   |
 | `add`      | `add n/NAME [p/PHONE_NUMBER][e/EMAIL][a/ADDRESS][c/CLASS_NAME...]` |
-| `edit`     | `edit INDEX [n/NAME][p/PHONE_NUMBER][e/EMAIL][a/ADDRESS]`          |
-| `delete`   | `delete INDEX`                                                     |
-| `find`     | `find KEYWORD...`                                                  |
-| `list`     | `list`                                                             |
-| `addc`     | `addc c/CLASS_NAME...`                                             |
-| `deletec`  | `deletec c/CLASS_NAME...`                                          |
-| `assign`   | `assign INDEX... c/CLASS_NAME`                                     |
-| `unassign` | `unassign INDEX... c/CLASS_NAME`                                   |
-| `listc`    | `listc`                                                            |
-| `exit`     | `exit`                                                             |
-| `focus`    | `focus c/CLASS_NAME`                                               |
-| `clear`    | `clear`                                                            |
+| `edit`     | `edit INDEX [n/NAME][p/PHONE_NUMBER][e/EMAIL][a/ADDRESS]` |
+| `delete`   | `delete INDEX`                           |
+| `find`     | `find KEYWORD...`                        |
+| `list`     | `list`                                   |
+| `addc`     | `addc c/CLASS_NAME...`                   |
+| `deletec`  | `deletec c/CLASS_NAME...`                |
+| `assign`   | `assign INDEX... c/CLASS_NAME`           |
+| `unassign` | `unassign INDEX... c/CLASS_NAME`         |
+| `listc`    | `listc`                                  |
+| `exit`     | `exit`                                   |
+| `focus`    | `focus c/CLASS_NAME`                     |
+| `clear`    | `clear`                                  |
+
+*Click [here](# Commands Available in Focus Mode) for the commands available in the focus mode.*
+
+
 
 ### View help : `help`
 
@@ -194,10 +199,10 @@ Format: `addc c/CLASS_NAME...`
 * Add classes with specified names. 
 * The class names are **case-insensitive**.
   * e.g. If a class with a name **CS1101S** already exists, `addc c/cs1101s` does not add a
-  new class `cs1101s`.
+    new class `cs1101s`.
 * If there are duplicate class names, the class name is taken to be the last valid class parameter `c/`.
   * e.g. If a class with a name **CS1101S** does not exist, `addc c/CS1101S c/cs1101s` adds one class with the name
-  **cs1101s**.
+    **cs1101s**.
 
 Examples:
 * `addc c/CS2103T c/CS2100` adds the classes named **CS2103T** and **CS2100**.
@@ -228,6 +233,7 @@ Assigns students to a class.
 Format: `assign INDEX... c/CLASS_NAME`
 * Assigns students specified by the given indices to an existing `CLASS_NAME` class.
 * The class name is **case-insensitive**.
+* If a specified student is already assigned to the class, the assignment for that student will be skipped.
 
 Example:
 * `list` followed by `assign 1 3 5 6 c/CS1231S` assigns the **1st**, **3rd**, **5th** and **6th** student in the displayed student list to the **CS1231S** class.
@@ -243,6 +249,7 @@ Unassigns students from a class.
 Format: `unassign INDEX... c/CLASS_NAME`
 * Unassigns students specified by the given indices from an existing `CLASS_NAME` class.
 * The class name is **case-insensitive**.
+* If a specified student is not assigned to the class, the unassignment for that student will be skipped.
 
 Example:
 * `list` followed by `unassign 1 3 5 6 c/CS1231S` unassigns the **1st**, **3rd**, **5th** and **6th** student in the displayed student list from the **CS1231S** class.
@@ -294,22 +301,23 @@ Clears all existing data in TA-Assist.
 " %}
 
 Format: `clear`
-* Clears all existing data in TA-Assist.
-
-## Features Available in Focus Mode
+## Commands Available in Focus Mode
 
 The following commands are only available in [**focus mode**](#modes).
 
-| Command   | Format                                        |
-|-----------|-----------------------------------------------|
-| `list`    | `list`                                        |
-| `adds`    | `adds s/SESSION_NAME... [d/DATE]`             |
-| `deletes` | `deletes s/SESSION_NAME...`                   |
+| Command   | Format                                   |
+| --------- | ---------------------------------------- |
+| `list`    | `list`                                   |
+| `adds`    | `adds s/SESSION_NAME... [d/DATE]`        |
+| `deletes` | `deletes s/SESSION_NAME...`              |
 | `grade`   | `grade INDEX... s/SESSION_NAME g/GRADE_VALUE` |
-| `scores`  | `scores s/SESSION_NAME`                       |
-| `view`    | `view INDEX`                                  |
-| `export`  | `export`                                      |
-| `unfocus` | `unfocus`                                     |
+| `scores`  | `scores s/SESSION_NAME`                  |
+| `view`    | `view INDEX`                             |
+| `export`  | `export`                                 |
+| `unfocus` | `unfocus`                                |
+
+*Click [here](# Commands available in default mode) for commands available in default mode.*
+
 
 
 ### List all students in the class: `list`
@@ -420,7 +428,8 @@ Views all session grades of a student within the focused class.
 " %}
 
 Format: `view INDEX`
-* Views the grade of the student at index `INDEX` for the currently focused class.
+* Views the grades of the student at index `INDEX` for the currently focused class.
+* Only sessions that are graded for the student will have the grades displayed.
 
 Example:
 * `grade 2 s/Lab 1 g/93` then `view 2` returns `1. Lab 1: 93`, which is the grade of the student at index 2 for the session **Lab 1**.
@@ -447,7 +456,7 @@ Format: `export`
   * All session names of the class.
   * The grades of the students corresponding to each session.
 - An example generated csv file when opened in Microsoft Excel:
-![Example Excel file](images/exampleExcelFile.png)
+  ![Example Excel file](images/exampleExcelFile.png)
   - First column shows all the student names.
   - Subsequent columns show the grade for a student for a session (e.g. **David Li** scores **0** for **Tutorial 1**).
 
