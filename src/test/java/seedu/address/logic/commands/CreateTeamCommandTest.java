@@ -267,6 +267,17 @@ public class CreateTeamCommandTest {
                              seedu.address.model.task.Name newName, LocalDate newDeadline) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean teamNameExists(seedu.address.model.team.Name name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean teamHasTask(Index i, Task t) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     private class ModelStubWithTeam extends CreateTeamCommandTest.ModelStub {

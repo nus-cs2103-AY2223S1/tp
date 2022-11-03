@@ -42,4 +42,19 @@ Given below are my contributions to the project.
 * **Contribution to DG**
     * Edited DeveloperGuide to reflect change form AB3 to new project. (Pull Request [#\73](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/73))
     * Edited value proposition and target user in Developer Guide. (Pull Request [#\76](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/76))
-    * Add description and UML diagrams to show execution of create task and edit task commands. 
+    * Add description and UML diagrams to show execution of create task and edit task commands. (Pull Request [#\160](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/160))
+  
+* **Team-based contributions**
+    * Set up and manage tP Team Repo in GitHub.
+    * Set up tP Team Organization.
+    * Set up CodeCov, GitHub actions and CI for team repo.
+
+* **Review/mentoring contributions**
+    * Reviewed and suggested changes of other member's PR (Pull Request [#\106](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/106))
+  
+* **Contributions beyond the project team**
+    * Caught above-average number of bugs during PE-dry run  
+        * ([#\10](https://github.com/zicotjia/ped/issues/10))
+        * ([#\8](https://github.com/zicotjia/ped/issues/8))
+        * ([#\7](https://github.com/zicotjia/ped/issues/7))
+
