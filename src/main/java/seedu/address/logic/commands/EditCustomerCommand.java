@@ -109,7 +109,7 @@ public class EditCustomerCommand extends Command {
 
         model.setCustomer(customerToEdit, editedCustomer);
 
-        if (model.getSelectedCustomer().getValue().isSameCustomer(customerToEdit)) {
+        if (model.isSameCustomerAsSelectedCustomer(customerToEdit)) {
             model.selectCustomer(editedCustomer);
         }
 

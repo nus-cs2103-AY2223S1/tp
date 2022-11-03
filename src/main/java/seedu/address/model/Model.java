@@ -217,4 +217,6 @@ public interface Model {
      * Returns the selected tab.
      */
     GuiTab getSelectedTab();
+
+    boolean isSameCustomerAsSelectedCustomer(Customer customer);
 }
