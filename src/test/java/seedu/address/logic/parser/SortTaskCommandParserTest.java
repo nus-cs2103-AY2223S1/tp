@@ -1,13 +1,14 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.model.commons.Criteria;
 import seedu.address.testutil.CriteriaBuilder;
-
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class SortTaskCommandParserTest {
     private SortTaskCommandParser parser = new SortTaskCommandParser();

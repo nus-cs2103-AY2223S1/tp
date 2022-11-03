@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.LinkExamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -15,13 +14,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * LinkExamCommandParser parses the arguments provided by the user
  * and creates a new LinkExamCommand object.
  */
-public class LinkExamCommandParser implements Parser<Command> {
+public class LinkExamCommandParser implements Parser<LinkExamCommand> {
 
-    public static final String TASK_INDEX_INVALID = "The index for the task should be positive.";
-    public static final String EXAM_INDEX_INVALID = "The index for the exam should be positive";
+    public static final String TASK_INDEX_INVALID = "The index for the task should be "
+            + "an unsigned positive integer greater than 0 and lesser than 2147483648.";
+    public static final String EXAM_INDEX_INVALID = "The index for the exam should be "
+            + "an unsigned positive integer greater than 0 and lesser than 2147483648.";
 
     @Override
-    public Command parse(String userArgs) throws ParseException {
+    public LinkExamCommand parse(String userArgs) throws ParseException {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
                 PREFIX_EXAM_INDEX, PREFIX_TASK_INDEX);
         Index examIndex;
@@ -34,12 +35,12 @@ public class LinkExamCommandParser implements Parser<Command> {
         try {
             examIndex = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_EXAM_INDEX).get());
         } catch (ParseException pe) {
-            throw new ParseException(TASK_INDEX_INVALID);
+            throw new ParseException(EXAM_INDEX_INVALID);
         }
         try {
             taskIndex = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_TASK_INDEX).get());
         } catch (ParseException pe) {
-            throw new ParseException(EXAM_INDEX_INVALID);
+            throw new ParseException(TASK_INDEX_INVALID);
         }
         return new LinkExamCommand(examIndex, taskIndex);
     }

@@ -43,7 +43,7 @@ public class Criteria {
 
     @Override
     public boolean equals(Object otherCriteria) {
-        return otherCriteria instanceof Criteria &&
-                criteria.equalsIgnoreCase(((Criteria) otherCriteria).criteria);
+        return otherCriteria instanceof Criteria
+                && criteria.equalsIgnoreCase(((Criteria) otherCriteria).criteria);
     }
 }

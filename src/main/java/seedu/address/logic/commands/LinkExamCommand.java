@@ -67,4 +67,12 @@ public class LinkExamCommand extends Command {
         model.replaceTask(task, linkedTask, true);
         return new CommandResult(EXAM_LINKED_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object otherLinkExamCommand) {
+        return otherLinkExamCommand == this
+                || (otherLinkExamCommand instanceof LinkExamCommand
+                && taskIndex.equals(((LinkExamCommand) otherLinkExamCommand).taskIndex))
+                && examIndex.equals(((LinkExamCommand) otherLinkExamCommand).examIndex);
+    }
 }

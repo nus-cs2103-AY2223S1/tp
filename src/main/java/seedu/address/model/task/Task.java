@@ -120,7 +120,11 @@ public class Task {
      * Returns true if both tasks have the same data fields.
      */
     public boolean isSameTask(Task otherTask) {
-        return this.equals(otherTask);
+        if (otherTask == null) {
+            return false;
+        }
+        return otherTask == this || (this.getModule().equals(otherTask.getModule())
+                && this.getDescription().equals(otherTask.getDescription()));
     }
 
     /**
@@ -299,7 +303,10 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getDescription().equals(getDescription())
-                && otherTask.getModule().equals(getModule());
+                && otherTask.getModule().equals(getModule())
+                && otherTask.getStatus().equals(getStatus())
+                && Objects.equals(otherTask.getDeadlineTag(), getDeadlineTag())
+                && Objects.equals(otherTask.getPriorityTag(), getPriorityTag());
     }
 
     @Override
