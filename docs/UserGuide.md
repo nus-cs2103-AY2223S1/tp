@@ -58,20 +58,16 @@ A brief display of important information for **inventory** and **tasks**.
 
 ![LabelledStatsPanel](images/labelledstatspanel.png)
 
-
-  <details>
-  <summary style='font-size: 18px'>
-    More details (Click me)
-  </summary>
+**More details**
   
   * **(A)** `Incomplete` tasks refers to tasks that are shown as `Not Done`.
 
   * **(B)** `Overdue` tasks refers to tasks that are both `Not Done` and has a deadline that is
   before the current date.
     * For example: Today's date is **_11 Feb 2022_** and your task's deadline is _**10 Feb 2022**_, this will be counted as `Overdue`.
+    
   * **(C)** `Upcoming` tasks refers to tasks that have deadlines that are **in the future and inclusive of today**, that are yet to be completed i.e. `Not Done`.
     * For example: You have an incomplete task. Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or later**_, this will be counted as `Upcoming`.
-</details>
 
 ## 3.2 Colors used for Inventory
 
