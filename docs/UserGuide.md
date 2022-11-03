@@ -429,7 +429,7 @@ unpin FULL_NAME
 ```
 
 * Unpins the scholarship applicant with the specified `FULL_NAME`.
-* `FULL_NAME` **must be a full name:** `Bernice Yu` instead of `Bernice`.
+* `FULL_NAME` refers the full name of the pinned applicant. e.g. `Bernice Yu` instead of `Bernice`
 * Unpin Command is **case-insensitive**. e.g. `BernICE yU` will match the applicant with `FULL_NAME` `Bernice Yu`.
 
 Examples:
