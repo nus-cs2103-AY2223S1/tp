@@ -15,9 +15,17 @@ public class MeetingLocation {
 
     public static final String MESSAGE_CONSTRAINTS = "Locations can take any values.";
 
-    public final Optional<String> value;
+    public static final String PLACEHOLDER_VALUE = "TBC";
 
-    public final Optional<Boolean> isVirtual;
+    /*
+     * The first character of the risk must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
+    private final Optional<String> value;
+
+    private final Optional<Boolean> isVirtual;
 
     /**
      * Constructs a {@code Date}. Meeting location can be null
@@ -25,7 +33,7 @@ public class MeetingLocation {
      * @param location A valid location.
      */
     public MeetingLocation(String location) {
-        if (location != null && !location.isEmpty()) {
+        if (location != null && !location.isEmpty() && !location.equals(PLACEHOLDER_VALUE)) {
             checkArgument(isValidMeetingLocation(location), MESSAGE_CONSTRAINTS);
             isVirtual = Optional.of(checkIsVirtual(location));
             value = Optional.of(location);
@@ -63,13 +71,16 @@ public class MeetingLocation {
             && isVirtual.equals(((MeetingLocation) other).isVirtual))); // state check
     }
 
+    /**
+     * Returns the value of the meeting location.
+     */
+    public String get() {
+        return value.orElse(PLACEHOLDER_VALUE);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(value, isVirtual);
-    }
-
-    public String get() {
-        return value.orElse("TBC");
     }
 
     /**
@@ -83,7 +94,7 @@ public class MeetingLocation {
      * Format state as text for viewing.
      */
     public String toString() {
-        return value.orElse("TBC");
+        return value.orElse(PLACEHOLDER_VALUE);
     }
 
 }

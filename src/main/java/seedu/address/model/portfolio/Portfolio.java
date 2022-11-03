@@ -45,4 +45,23 @@ public class Portfolio {
         String str = "\nRisk Level: " + this.getRisk().toString() + "\nPlans: " + this.getPlans().toString();
         return str;
     }
+
+    /**
+     * Returns true if both meetings have the same time and location fields.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Portfolio)) {
+            return false;
+        }
+
+        Portfolio otherPortfolio = (Portfolio) other;
+        return otherPortfolio.getRisk().equals(getRisk())
+            && otherPortfolio.getPlans().equals(getPlans())
+            && otherPortfolio.getNotes().equals(getNotes());
+    }
 }

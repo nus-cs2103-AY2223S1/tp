@@ -11,6 +11,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -38,11 +42,15 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         Prefix prefix = argMultimap.getOnlyPrefixPresent().get();
 
+        List<String> keywords =
+            argMultimap.getAllValues(prefix).stream().flatMap(keyword -> Arrays.stream(keyword.split("\\s+")))
+                .collect(Collectors.toList());
+
         switch (prefix.toString()) {
         case "n/":
-            return new FindCommand(new NameContainsKeywordsPredicate(argMultimap.getAllValues(prefix)));
+            return new FindCommand(new NameContainsKeywordsPredicate(keywords));
         case "t/":
-            return new FindCommand(new TagsContainsKeywordsPredicate(argMultimap.getAllValues(prefix)));
+            return new FindCommand(new TagsContainsKeywordsPredicate(keywords));
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }

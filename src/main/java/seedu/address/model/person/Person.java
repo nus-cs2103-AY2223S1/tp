@@ -115,7 +115,6 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        Portfolio otherPortfolio = otherPerson.getPortfolio();
         return otherPerson.getName().equals(getName())
             && otherPerson.getPhone().equals(getPhone())
             && otherPerson.getEmail().equals(getEmail())
@@ -123,9 +122,7 @@ public class Person {
             && otherPerson.getIncome().equals(getIncome())
             && otherPerson.getMeeting().equals(getMeeting())
             && otherPerson.getTags().equals(getTags())
-            && otherPortfolio.getRisk().equals(getPortfolio().getRisk())
-            && otherPortfolio.getPlans().equals(getPortfolio().getPlans())
-            && otherPortfolio.getNotes().equals(getPortfolio().getNotes());
+            && otherPerson.getPortfolio().equals(getPortfolio());
     }
 
     @Override
