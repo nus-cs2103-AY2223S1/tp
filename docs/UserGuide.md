@@ -415,8 +415,9 @@ Format: `viewStats class/CLASS exam/EXAM-NAME filter/FILTER`
 Examples:
 * `viewStats class/4a exam/sa1 filter/off` Displays the mean obtained by class "4A" for "SA1", as well as the list of 
 all the students in the class '4A', arranged in ascending grades for "SA1".
-* `viewStats class/4A exam/sa1 filter/on` Displays the mean obtained by class "4A" for "SA1", as well as the list of 
+* `viewStats class/4A exam/ca1 filter/on` Displays the mean obtained by class "4A" for "SA1", as well as the list of 
 students in class "4A" whose grade for "SA1" falls below the mean, arranged in ascending grades for "SA1".
+![ViewStats](images/ViewStats.png)
 
 <div style="page-break-after: always;"></div>
 
