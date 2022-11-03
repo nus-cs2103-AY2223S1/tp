@@ -5,6 +5,7 @@ import static longtimenosee.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static longtimenosee.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static longtimenosee.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static longtimenosee.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static longtimenosee.testutil.TypicalPersons.EVENT_BENSON;
 import static longtimenosee.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,6 +17,7 @@ import longtimenosee.commons.core.index.Index;
 import longtimenosee.model.Model;
 import longtimenosee.model.ModelManager;
 import longtimenosee.model.UserPrefs;
+import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
 
 /**
@@ -45,6 +47,21 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    //TODO: TOFix
+    @Test
+    public void execute_validSecondIndexDelete() {
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+        //assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        Event correctDeletedEvent = EVENT_BENSON;
+        assertFalse(expectedModel.hasEvent(correctDeletedEvent));
+
     }
 
     @Test

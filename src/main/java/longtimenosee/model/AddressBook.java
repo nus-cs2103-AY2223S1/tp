@@ -109,10 +109,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
+     * Additional defensive programming check to remove events in addressBook under person.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        events.removeEventsUnderPerson(key);
+
     }
 
     /**

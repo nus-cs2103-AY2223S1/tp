@@ -20,9 +20,9 @@ import longtimenosee.model.person.Person;
 /**
  * A list of events that enforces uniqueness between its elements and does not allow nulls.
  * A Event is considered unique by comparing using {@code Event#isSameEvent(Event)}. As such, adding and updating of
- * events uses Event#isSameEvent(Event) for equality so as to ensure that the Event being added or updated is
- * unique in terms of identity in the UniqueEventList. However, the removal of a Event uses Event#equals(Object) so
- * as to ensure that the Event with exactly the same fields will be removed.
+ * events uses Event#isSameEvent(Event) for equality to ensure that the Event being added or updated is
+ * unique in terms of identity in the UniqueEventList. However, the removal of a Event uses Event#equals(Object)
+ * to ensure that the Event with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -227,15 +227,13 @@ public class UniqueEventList implements Iterable<Event> {
      */
     public void removeEventsUnderPerson(Person person) {
         List<Event> eventsAssociatedWithPerson = new ArrayList<>();
-        for (Event event: internalList) {
+        for (Event event : internalList) {
             if (event.getPersonName().fullName.equals(person.getName().fullName)) {
                 eventsAssociatedWithPerson.add(event);
             }
         }
-        for (Event event: internalList) {
-            if (eventsAssociatedWithPerson.contains(event)) {
-                remove(event);
-            }
+        for (Event event : eventsAssociatedWithPerson) {
+            remove(event);
         }
     }
 }
