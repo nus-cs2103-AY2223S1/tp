@@ -1,6 +1,6 @@
 package seedu.uninurse.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -12,16 +12,15 @@ import seedu.uninurse.model.PatientListTracker;
  */
 public class CommandResult {
     private final String feedbackToUser;
-
     private final CommandType commandType;
     private final Optional<PatientListTracker> patientListTracker;
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a CommandResult with the specified fields.
      */
     public CommandResult(String feedbackToUser, CommandType commandType) {
-        requireNonNull(feedbackToUser);
-        requireNonNull(commandType);
+        requireAllNonNull(feedbackToUser);
+        requireAllNonNull(commandType);
         this.feedbackToUser = feedbackToUser;
         this.commandType = commandType;
         this.patientListTracker = Optional.empty();
@@ -48,51 +47,51 @@ public class CommandResult {
     }
 
     public boolean isShowHelp() {
-        return this.commandType == CommandType.HELP;
+        return commandType == CommandType.HELP;
     }
 
     public boolean isExit() {
-        return this.commandType == CommandType.EXIT;
+        return commandType == CommandType.EXIT;
     }
 
     public boolean isViewPatient() {
-        return this.commandType == CommandType.VIEW_PATIENT;
+        return commandType == CommandType.VIEW_PATIENT;
     }
 
     public boolean isAddPatient() {
-        return this.commandType == CommandType.ADD_PATIENT;
+        return commandType == CommandType.ADD_PATIENT;
     }
 
     public boolean isEditPatient() {
-        return this.commandType == CommandType.EDIT_PATIENT;
+        return commandType == CommandType.EDIT_PATIENT;
     }
 
     public boolean isDeletePatient() {
-        return this.commandType == CommandType.DELETE_PATIENT;
+        return commandType == CommandType.DELETE_PATIENT;
     }
 
     public boolean isListTask() {
-        return this.commandType == CommandType.LIST_TASK;
+        return commandType == CommandType.LIST_TASK;
     }
 
     public boolean isTaskRelated() {
-        return this.commandType == CommandType.TASK;
+        return commandType == CommandType.TASK;
     }
 
     public boolean isSchedule() {
-        return this.commandType == CommandType.SCHEDULE;
+        return commandType == CommandType.SCHEDULE;
     }
 
     public boolean isUndo() {
-        return this.commandType == CommandType.UNDO;
+        return commandType == CommandType.UNDO;
     }
 
     public boolean isRedo() {
-        return this.commandType == CommandType.REDO;
+        return commandType == CommandType.REDO;
     }
 
     public boolean isFind() {
-        return this.commandType == CommandType.FIND;
+        return commandType == CommandType.FIND;
     }
 
     @Override
@@ -106,9 +105,9 @@ public class CommandResult {
             return false;
         }
 
-        CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && this.commandType == otherCommandResult.commandType;
+        CommandResult o = (CommandResult) other;
+        return feedbackToUser.equals(o.feedbackToUser)
+                && commandType.equals(o.commandType);
     }
 
     @Override
