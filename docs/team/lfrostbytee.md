@@ -5,9 +5,9 @@ title: Ong Wee Marcus's Project Portfolio Page
 
 ### Project: Duke The Market
 
-Duke The Market is a desktop system application
-used for managing customer contacts and events in department stores. The user interacts with it using a CLI,
-and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Duke The Market is a desktop application used for managing customer contacts and events in department stores. 
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. 
+It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -31,14 +31,16 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the `findEvents` command, removed documentation for the `tag` feature, and updated documentation for `findPersons` command.
+        * Added documentation for the `findEvents` command.
+        * Removed documentation for the `tag` feature.
+        * Updated documentation for `findPersons` command.
     * Developer Guide:
-        * Added documentation for V1.1 and the `listEvents` command
+        * Added documentation for V1.1 and the `listEvents` command.
 
 * **Contributions to team-based tasks**:
-    * Setting up the GitHub team org/repo
-    * Organizing and facilitating weekly team meetings
-    * Distributing workload amongst team members
+    * Setting up the GitHub team org/repo.
+    * Organizing and facilitating weekly team meetings.
+    * Distributing workload amongst team members.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#57](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/57), [\#99](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/99), [\#108](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/108), [\#133](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/133).
