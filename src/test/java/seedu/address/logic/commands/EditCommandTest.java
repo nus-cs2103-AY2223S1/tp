@@ -77,12 +77,10 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_NO_CHANGE, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                new UserPrefs(), new CommandHistory());
+        assertCommandFailure(editCommand, model, expectedMessage);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
