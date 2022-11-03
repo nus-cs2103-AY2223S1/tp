@@ -47,7 +47,8 @@ It is written in Java.
   * Updated skeletal DG to match product specifications. (Pull request [\#29](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/29))
     * Added user stories matching Pupilist project.
   * Fixed layout rendering issues of table. (Pull request [\#84](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/84), Pull request [\#100](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/100))
-  * Included Session feature along with diagrams and design considerations. (Pull request [\#95](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/95)) 
+  * Included Session feature along with diagrams and design considerations. (Pull request [\#95](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/95))
+  * Included Attendance feature along with diagrams and design considerations. (Pull request [\#206](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/206))
 
 * **Review/mentoring contributions**:
   * PR reviews (non-trivial comments): (Pull request [\#200](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/200))
