@@ -328,6 +328,12 @@ Examples:
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HackAssist home folder.
+**Q**: Do i need internet to run HackAssist?<br>
+**A**: Internet is not needed to run the application.
+**q**: Will my data be lost after closing the application?
+**A**: No, your data will be stored in the `HackAssist.json` file. Data will only be lost if `HackAssist.json` file is deleted.
+**Q**: How do i backup my data?<br>
+**A**: Create a copy of the `HackAssist.json` file in another directory.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Member Parameters
@@ -352,4 +358,8 @@ Examples:
 | dl/DEADLINE             | Should be in the format `YYYY-MM-DD` and after the current date                                                                                        |
 | pe/EMAIL_OF_PERSON_ASSIGNED | Should be the email address of an existing member (case-insensitive). For the [`editTask`](#editing-a-task-edittask) command, it can also be `none`, i.e. `pe/none`.                    |
 | do/IS_DONE               | *For [`editTask`](#editing-a-task-edittask) command only.* Should be either `true` or `false` (case-insensitive)                                                                   |
+## Glossory
 
+| Word               | Definition                                                                                                                                                 |
+|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| GUI                 | Graphical User Interface - The Visual representation of the application                                                                                            |
