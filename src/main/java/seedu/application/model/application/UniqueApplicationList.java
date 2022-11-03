@@ -44,11 +44,11 @@ public class UniqueApplicationList implements Iterable<Application> {
      */
     public boolean hasSameInterviewTime(Application toCheck) {
         requireNonNull(toCheck);
-        if (toCheck.getInterview().isEmpty()) {
+        if (!toCheck.hasInterview()) {
             return false;
         }
         for (Application application : internalList) {
-            if (application.getInterview().isEmpty() || application.isSameApplication(toCheck)) {
+            if (!application.hasInterview() || application.isSameApplication(toCheck)) {
                 continue;
             }
             if (application.getInterview().get().isOnSameTime(toCheck.getInterview().get())) {
@@ -64,7 +64,7 @@ public class UniqueApplicationList implements Iterable<Application> {
     public boolean hasSameInterviewTime(Interview toCheck) {
         requireNonNull(toCheck);
         for (Application application : internalList) {
-            if (application.getInterview().isEmpty()) {
+            if (!application.hasInterview()) {
                 continue;
             }
             if (application.getInterview().get().isOnSameTime(toCheck)) {
@@ -81,11 +81,11 @@ public class UniqueApplicationList implements Iterable<Application> {
      */
     public boolean hasSameInterviewTimeExcludeSelf(Interview interview, Application application) {
         requireAllNonNull(interview, application);
-        if (application.getInterview().isEmpty()) {
+        if (!application.hasInterview()) {
             return false;
         }
         for (Application otherApplication : internalList) {
-            if (otherApplication.getInterview().isEmpty() || otherApplication.isSameApplication(application)) {
+            if (!otherApplication.hasInterview() || otherApplication.isSameApplication(application)) {
                 continue;
             }
             if (otherApplication.getInterview().get().isOnSameTime(interview)) {
@@ -122,12 +122,11 @@ public class UniqueApplicationList implements Iterable<Application> {
             throw new ApplicationNotFoundException();
         }
         //boolean to bypass duplicate interview checking
-        boolean hasSameArchiveStatus = (target.isArchived() && editedApplication.isArchived())
-                || (!target.isArchived() && !editedApplication.isArchived());
+        boolean hasSameArchiveStatus = target.hasSameArchiveStatus(editedApplication);
         if (!target.isSameApplication(editedApplication) && contains(editedApplication)) {
             // check if applications other than target are equivalent to editedApplication
             throw new DuplicateApplicationException();
-        } else if (!target.getInterview().flatMap(x -> editedApplication.getInterview().map(y -> x.isOnSameTime(y)))
+        } else if (!target.getInterview().flatMap(x -> editedApplication.getInterview().map(x::isOnSameTime))
                 .orElse(false) && hasSameInterviewTime(editedApplication) && hasSameArchiveStatus) {
             // check if applications other than target happen at the same time as editedApplication
             throw new DuplicateInterviewException();
@@ -215,11 +214,11 @@ public class UniqueApplicationList implements Iterable<Application> {
      */
     private boolean interviewsAreUnique(List<Application> applications) {
         for (int i = 0; i < applications.size() - 1; i++) {
-            if (applications.get(i).getInterview().isEmpty()) {
+            if (!applications.get(i).hasInterview()) {
                 continue;
             }
             for (int j = i + 1; j < applications.size(); j++) {
-                if (applications.get(j).getInterview().isEmpty()) {
+                if (!applications.get(j).hasInterview()) {
                     continue;
                 }
                 if (applications.get(i).getInterview().get().isOnSameTime(applications.get(j).getInterview().get())) {

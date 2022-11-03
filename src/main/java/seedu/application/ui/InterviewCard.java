@@ -42,6 +42,7 @@ public class InterviewCard extends UiPart<Region> {
      */
     public InterviewCard(Application application, int displayedIndex) {
         super(FXML);
+        assert application.hasInterview();
         this.interview = application.getInterview().get();
         id.setText("i" + displayedIndex + ". ");
         companyAndPosition.setText(application.getCompany().company + ", " + application.getPosition().value);

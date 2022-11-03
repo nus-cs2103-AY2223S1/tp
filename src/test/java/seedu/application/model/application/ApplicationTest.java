@@ -69,6 +69,26 @@ public class ApplicationTest {
     }
 
     @Test
+    public void hasSameArchivedStatus() {
+        // same object -> returns true
+        assertTrue(GOOGLE.hasSameArchiveStatus(GOOGLE));
+
+        // null -> returns false
+        assertFalse(GOOGLE.hasSameArchiveStatus(null));
+
+        // different archived status, other attributes same -> returns false
+        Application editedGoogle = new ApplicationBuilder(GOOGLE).withArchiveStatus(true).build();
+        assertFalse(GOOGLE.hasSameArchiveStatus(editedGoogle));
+
+        // two different application, same archived status -> returns true
+        assertTrue(GOOGLE.hasSameArchiveStatus(FACEBOOK));
+
+        // two different application, different archived status -> returns false
+        Application editedFacebook = new ApplicationBuilder(FACEBOOK).withArchiveStatus(true).build();
+        assertFalse(GOOGLE.hasSameArchiveStatus(editedGoogle));
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Application googleCopy = new ApplicationBuilder(GOOGLE).build();
