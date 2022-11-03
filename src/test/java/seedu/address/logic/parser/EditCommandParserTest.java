@@ -92,9 +92,9 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_LINK_DESC, Link.MESSAGE_CONSTRAINTS); // invalid link
         assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
         // invalid description
-        assertParseFailure(parser, "1" + INVALID_APPLIED_DATE_DESC, AppliedDate.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_APPLIED_DATE_DESC, AppliedDate.FORMAT_CONSTRAINTS);
         // invalid applied date
-        assertParseFailure(parser, "1" + INVALID_INTERVIEW_DATE_TIME_DESC, InterviewDateTime.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_INTERVIEW_DATE_TIME_DESC, InterviewDateTime.FORMAT_CONSTRAINTS);
         // invalid interview date time
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 

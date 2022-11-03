@@ -126,8 +126,10 @@ class JsonAdaptedInternship {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     AppliedDate.class.getSimpleName()));
         }
-        if (!AppliedDate.isValidAppliedDate(appliedDate)) {
-            throw new IllegalValueException(AppliedDate.MESSAGE_CONSTRAINTS);
+        if (!AppliedDate.isValidFormat(appliedDate)) {
+            throw new IllegalValueException(AppliedDate.FORMAT_CONSTRAINTS);
+        } else if (!AppliedDate.isValidDate(appliedDate)) {
+            throw new IllegalValueException(AppliedDate.DATE_CONSTRAINTS);
         }
         final AppliedDate modelAppliedDate = new AppliedDate(appliedDate);
 
@@ -142,8 +144,10 @@ class JsonAdaptedInternship {
         if (interviewDateTime == "") {
             return new Internship(modelCompany, modelLink, modelDescription,
                 modelApplicationStatus, modelAppliedDate, null, modelTags);
-        } else if (!InterviewDateTime.isValidInterviewDateTime(interviewDateTime)) {
-            throw new IllegalValueException(InterviewDateTime.MESSAGE_CONSTRAINTS);
+        } else if (!InterviewDateTime.isValidFormat(interviewDateTime)) {
+            throw new IllegalValueException(InterviewDateTime.FORMAT_CONSTRAINTS);
+        } else if (!InterviewDateTime.isValidDateTime(interviewDateTime)) {
+            throw new IllegalValueException(InterviewDateTime.DATE_TIME_CONSTRAINTS);
         } else {
             final InterviewDateTime modelInterviewDateTime = new InterviewDateTime(interviewDateTime);
             return new Internship(modelCompany, modelLink, modelDescription,
