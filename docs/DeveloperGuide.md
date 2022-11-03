@@ -341,11 +341,13 @@ Step 1. The user launches the application, and already has 2 exercises, squat an
 
 Step 2: The user enters the command `:gen 1,2 l/easy` to generate an easy workout routine consisting of the exercises squat and deadlift.
 
-The following sequence diagram shows how the `GenerateCommand` works:
+The following sequence diagram shows how the `GenerateCommand` works.
+A `Name` object `exerciseName` is returned to `g:GenerateCommand` by calling a method in `:Model`. 
+For the sake of brevity, this interaction is omitted from the diagram.
 
 ![GenerateWorkoutSequenceDiagram](images/GenerateWorkoutSequenceDiagram.png)
 
-The diagram detailing the interaction between `g:GenerateCommand` and `GeneratorFactory` class is shown below.
+The diagram below illustrates the interaction between `g:GenerateCommand` and `GeneratorFactory` class.
 The static method `GeneratorFactory#getGenerator()` creates a `Generator` of the correct difficulty level, such as `EasyGenerator`.
 The number of `Generator` objects created is equal to the number of unique exercise names. They are `s:EasyGenerator` and `d:EasyGenerator` for squat and deadlift respectively.
 
@@ -363,7 +365,7 @@ The number of `Generator` objects created is equal to the number of unique exerc
 
 **Aspect: Number of `Generator` objects:**
 * **Current choice**: Pairing each unique exercise to one `Generator`.
-    * Rationale: Allow generating suggestions of different difficulty level for different exercises, possibly in the future.
+    * Rationale: The current `:gen` command specifies a single difficulty level for all exercises listed in the command. This implementation would allow a `:gen` command to generate suggestions of varying difficulty levels for different exercises in the same command, a possible extension in the future.
     
 ### \[Proposed\] Undo/redo feature
 
