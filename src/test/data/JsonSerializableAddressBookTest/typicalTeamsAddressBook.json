@@ -26,19 +26,19 @@
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
-    "phone" : "9482224",
+    "phone" : "94822224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
-    "phone" : "9482427",
+    "phone" : "94822427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
-    "phone" : "9482442",
+    "phone" : "94822442",
     "email" : "anna@example.com",
     "address" : "4th street",
     "tagged" : [ ]
@@ -75,7 +75,7 @@
       "tagged" : [ "friends" ]
     }, {
       "name" : "Elle Meyer",
-      "phone" : "9482224",
+      "phone" : "94822224",
       "email" : "werner@example.com",
       "address" : "michegan ave",
       "tagged" : [ ]

@@ -36,8 +36,8 @@ public class TaskEditCommand extends Command {
             + PREFIX_TASK_INDEX + "3 " + PREFIX_TASK_NAME + "Design UI "
             + PREFIX_TASK_DEADLINE + "12-12-2023";
     public static final String MESSAGE_SUCCESS = "Task edited: %1$s %2$s";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the team's task list.";
-
 
     private final Index taskIndex;
     private final Index teamIndex;
