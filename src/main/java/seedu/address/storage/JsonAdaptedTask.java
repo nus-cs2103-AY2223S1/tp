@@ -101,7 +101,7 @@ public class JsonAdaptedTask {
         if (!TaskStatus.isValidStatus(status)) {
             throw new IllegalValueException(TaskStatus.STATUS_CONSTRAINTS);
         }
-        if (!PriorityTag.isValidTag(priority)) {
+        if (priority != null && !PriorityTag.isValidTag(priority)) {
             throw new IllegalValueException(PriorityTag.PRIORITY_TAG_CONSTRAINTS);
         }
 
