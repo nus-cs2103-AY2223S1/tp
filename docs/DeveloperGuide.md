@@ -61,6 +61,8 @@ by a big-picture design overview of the various components before diving into in
 ## **Acknowledgements**
 
 ### External libraries
+* [ControlsFX](https://github.com/controlsfx/controlsfx)
+* [TestFX](https://github.com/TestFX/TestFX)
 
 ### Graphics and assets
 * App Icon - [Minecraft Book & Quill icon](https://minecraft.fandom.com/wiki/Book_and_Quill)
