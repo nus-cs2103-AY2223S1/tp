@@ -11,7 +11,7 @@ If you can type fast, there is an added benefit which is that HR Pro Max++ can g
 
 Here are some shortcuts to get help:
 * To set up HR Pro Max++, go to our [Quick start section](#quick-start).
-* Unsure of some terms, go to our [Glossary section](#glossary).
+* If you are unsure of some of the terms, go to our [Glossary section](#glossary).
 * To see how all our commands work, head to our [Features section](#features).
 
 --------------------------------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ of these terms in the hopes that it will clear your doubts.
 --------------------------------------------------------------------------------------------------------------------
 ## **Quick start**
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. Please kindly refer [here](https://blog.hubspot.com/website/check-java-verison) for further instructions on how to do so.
 
 2. Download the latest `HR_Pro_Max++.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-3/tp/releases).
 
