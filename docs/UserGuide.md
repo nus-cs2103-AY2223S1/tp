@@ -337,7 +337,11 @@ Searches for students whose name contains the specified name keywords, or whose 
 
 **Usage**
 
-*Describe when to use this command here*
+There are a few scenarios when you may want to use this command: 
+* When you are relatively unfamiliar with the class, and need to access certain information about a particular student.
+* When you want to edit a student's details using the
+[`edit`](https://ay2223s1-cs2103t-t15-2.github.io/tp/UserGuide.html#422-editing-a-student-record--edit) command, 
+running the find command first would simplify the process.
 
 <div markdown="span" class="alert alert-info">:information_source:
    **Note:**
