@@ -53,13 +53,15 @@ Given below are my contributions to the project.
     * Edited documentation of `modules left` command [#184](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/184)
 
   * Developer Guide:
-    * Added use cases for `user` and `module` related features [#91](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/91)
+    * Added use cases for `User` and `Module` related features [#91](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/91)
     * Renumbered use cases and updated user stories table [#91](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/91)
     * Updated ModelClassDiagram and BetterModelClassDiagram to include `github` [#91](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/91)
     * Updated StorageClassDiagram to include `JsonAdaptedUser`, `modules` and `lessons` [#91](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/91)
     * Adjusted width of images [#189](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/189)
-    * Added UserClassDiagram and edited documentation of `user` class [#192](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/192)
+    * Added UserClassDiagram and edited documentation of `User` class [#192](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/192)
     * Updated PersonClassDiagram to include `Tag` [#192](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/192)
+    * Added design considerations for `User` and `Module` class, Edit modules and Modules left features [#199](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/199)
+    * Added descriptions to edit contact's modules and edit user's modules features [#199](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/199)
 
 
 * **Contributions to Team-based tasks**:
@@ -67,4 +69,6 @@ Given below are my contributions to the project.
 
 
 * **Review / mentoring contributions**:
-  * PRs approved: [#53](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/53), [#61](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/61), [#68](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/68), [#89](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/89), [#90](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/90), [#168](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/168), [#175](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/175), [#188](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/188)
+  * PRs approved: [#53](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/53), [#61](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/61), [#68](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/68), 
+  [#89](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/89), [#90](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/90), [#168](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/168), 
+  [#175](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/175), [#188](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/188)

@@ -2,9 +2,10 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
+## Table of Contents
 - [ConnectNUS Developer Guide](#connectnus-developer-guide)
 - [Navigating the Developer Guide](#navigating-the-developer-guide)
+- [Glossary](#glossary)
 - [Acknowledgements](#acknowledgements)
 - [Setting up](#setting-up-getting-started)
 - [Design](#design)
@@ -29,26 +30,200 @@ title: Developer Guide
   - [User stories](#user-stories)
   - [Use cases](#use-cases)
   - [Non-functional requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **ConnectNUS Developer Guide**
 
-* {intro our app, value}
+ConnectNUS is **designed for NUS Computer Science students** by providing a centralised platform for them to keep track
+of their and their friends' modules and timetables. ConnectNUS is **optimised for use via a Command Line Interface** (CLI) 
+while still having the benefits of a **Graphical User Interface** (GUI).
+
+For Computer Science students who are generally fast typers, ConnectNUS is an excellent platform for you to get your CS 
+related tasks management done quickly, so you can spend less time searching through chats, and spend more time making 
+meaningful connections and engaging in productive work.
+
+The goal of this Developer Guide is to document and illustrate the underlying architecture of ConnectNUS, and provide 
+insights on how our product is designed, implemented and tested as well as the design considerations that were involved
+in the deciding the implementation of various features offered by ConnectNUS.
+
+You are recommended to read the [Navigating the Developer Guide](#navigating-the-developer-guide) and [Glossary](#glossary)
+sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
+Developer Guide and help you navigate it with ease.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Navigating the Developer Guide**
 
-* {who will read, There is an explanation on how to use the developer guide (e.g. meaning of various formatting conventions, icons, colour codes) }
+The Developer Guide is divided into the following sections :
+- [Design](#design)
+- [Implementation](#implementation)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: requirements](#appendix-requirements)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+
+The [Design](#design) section gives an overview of the architecture of ConnectNUS.
+In this section, you will be provided with:
+
+1. The API (Application Programming Interface) of the major components of ConnectNUS.
+2. A Class Diagram to illustrate the internals of each component.
+3. An explanation of how each component works.
+4. A Sequence Diagram to give an example of the flow of events within the component where applicable.
+
+The [Implementation](#implementation) section outlines how the features offered by ConnectNUS are
+implemented. In this section, you will be provided with:
+
+1. A description of the feature.
+2. Some example commands to execute to use the feature.
+3. A Class Diagram or screenshot to illustrate and explain the implementation of each feature where applicable.
+4. A Sequence Diagram to give an example of the implementation flow of the feature where applicable.
+5. An Activity Diagram to show all possible behaviours of the feature where applicable.
+6. An Object Diagram to model relationships between objects of the same components where applicable.
+7. Design considerations and alternatives taken into consideration that justifies our implementation of the feature.
+
+The [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops) section
+provides the links to the aforementioned documents. In this section, you will be provided with the links to:
+
+1. Documentation guide.
+2. Testing guide.
+3. Logging guide.
+4. Configuration guide.
+5. DevOps guide.
+
+The [Appendix: requirements](#appendix-requirements) section provides details on the motivation behind creating ConnectNUS
+and how we intend for users to use ConnectNUS.
+In this section, you will be provided with
+1. Product Scope.
+2. User Stories.
+3. Use Cases.
+4. Non-functional requirements.
+
+The [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing) section gives detailed instructions
+on how you can perform testing on the features in ConnectNUS. In this section, you will be provided with:
+1. An overview of the command to execute to test the feature.
+2. Sample test cases to be executed.
+3. The expected behaviour of the test command.
+
+You can jump into the various sections from the Table of Contents to view different sections of the Developer Guide, and
+click on [Scroll back to top](#table-of-contents), which can be found at the end of every section, to access the Table 
+of Contents to quickly jump to another section without manually scrolling through the Developer Guide.
+
+As recommended in the introduction, we would like to direct you to read the [Glossary](#glossary) section next.
+
+[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Glossary**
+
+The glossary illustrated in the table below will help you understand the terminologies used in this
+Developer Guide.
+
+<table>
+  <tr>
+    <th><strong>Terminology</strong></th>
+    <th><strong>Meaning / Purpose</strong></th>
+  </tr>
+  <tr>
+    <td><strong>Command Line Interface (CLI)</strong></td>
+    <td>
+      A text-based interface that is used to operate software (such as ConnectNUS) and operating systems. CLI
+      allows a user to perform tasks by entering commands. </br>
+      Users enter the specific command, press “Enter”, and then wait for a response. 
+      After receiving the command, the CLI processes it accordingly and shows the output/result on the screen.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Graphical User Interface (GUI)</strong></td>
+    <td>
+      A system of interactive visual components for computer software. A GUI displays objects that convey information, 
+      and represent actions that can be taken by the user. The objects change color, size, or visibility when the user 
+      interacts with them.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Application Programming Interface (API)</strong></td>
+    <td>
+      A a set of definitions and protocols for building and integrating application software and simplifies how 
+      developers integrate new application components into an existing architecture.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Mainstream OS</strong></td>
+    <td>
+      Windows, Linux, Unix, OS-X.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Private contact detail</strong></td>
+    <td>
+      A contact detail that is not meant to be shared with others.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Architecture</strong></td>
+    <td>
+      Shows the overall organization of the system and can be viewed as a very high-level design. 
+      Consists of a set of interacting components that fit together to achieve the required functionality . It is a 
+      simple and technically viable structure that is well-understood and agreed-upon by everyone in the development 
+      team, and it forms the basis for the implementation..
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Class Diagram</strong></td>
+    <td>
+      Describe the structure but not the behavior of an Object-Oriented Programming (OOP) solution.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Object-Oriented Programming (OOP)</strong></td>
+    <td>
+      A computer programming model that organizes software design around data, or objects, rather than functions and logic. 
+      An object can be defined as a data field that has unique attributes and behavior.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Sequence Diagram</strong></td>
+    <td>
+      Captures the interactions between multiple objects for a given scenario.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Activity Diagram</strong></td>
+    <td>
+      Models workflows, which define the flow in which a process or a set of tasks is executed. 
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Object Diagram</strong></td>
+    <td>
+      Used to complement class diagrams. Object diagrams can be used to model different object 
+      structures that can result from a design represented by a given class diagram.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>User Stories</strong></td>
+    <td>
+       Short, simple descriptions of a feature told from the perspective of the person who desires the new capability, 
+       usually a user or customer of the system.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Use Case</strong></td>
+    <td>
+      Describes an interaction between the user and the system for a specific functionality of the system.
+    </td>
+  </tr>
+</table>
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* The code base is adapted from [AddressBook3](https://github.com/nus-cs2103-AY2223S1/tp) (AB3).
+* We would like to give credit to all authors who have contributed to AB3.
+
+[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -56,14 +231,11 @@ title: Developer Guide
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
+[Scroll back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
 
 ### Architecture
 
@@ -193,9 +365,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Edit contact modules
-
-#### Person Class
+### Person Class
 Each `Person` in the AddressBook is implemented in the following way:
 
 ![Person Class Diagram](images/PersonClassDiagram.png)
@@ -203,15 +373,23 @@ Each `Person` in the AddressBook is implemented in the following way:
 All `Person` have a `Name`, `Email`, `Address` and `Phone` and a set of `Tag`, `CurrentModule`, `PreviousModule`, `PlannedModule` and `Lesson`.
 `Person`s can have a `Github` URL to their profile added, and as many `Tags`, `Modules` and `Lessons` as desired.
 
-#### User Class
-`User` Class is implemented the same way.
+### User Class
+
+`User` Class is implemented in a similar way.
 
 ![User Class Diagram](images/UserClassDiagram.png)
 
 `User` has a `Name`, `Email`, `Address` and `Phone` and a set of `CurrentModule`, `PreviousModule`, `PlannedModule`, and `Lesson`.
 `User` can have a `Github` URL to their profile added, and as many `Modules` and `Lessons` as desired.
 
-#### Module class
+#### Design considerations
+
+The `User` class is implemented as an abstract class with 2 inheritors, `EmptyUser` and `ExistingUser`. This is so that `User`
+can never be null thus when the user profile is deleted or has yet to be added, `EmptyUser` will act as a placeholder to indicate
+to the application that there is no user profile currently stored. Unlike `Person`, `User` does not contain `Tags` as the `Tags`
+feature should be used by the user to indicate each `Person`'s relation to the user instead.
+
+### Module class
 `CurrentModule`, `PlannedModule`, and `PreviousModule` implement the `Module` interface.
 
 ![Module Class Diagram](images/ModuleClassDiagram.png)
@@ -222,20 +400,37 @@ All implementations of `Module`s have a name.
 
 why we chose to have planned, curr and prev mods as own classes or wtv
 
+Multiple instances of the same module can be added and stored as iterating through each module list everytime a new module is added
+to check for similarity makes the program slower. Additionally, the same module may appear in different lists due to the possibility
+of repeating the module. The application does not check the modules added against a list of actual registered modules in NUS
+because NUS has over 6000 registered modules and iterating through this list to check if the module is valid would
+make the program slow.
+
+### Edit contact modules
+
+Editing contact modules is implemented such that you can directly add modules into each list of current, previous or planned modules.
+Users can also use this command to remove all instances of the same module from each list.
+
 ### Edit user modules
 
-Similar to edit contact modules blah blah... user implemented same way as person... module class same... diff command
+Editing user modules has been implemented very similarly to editing contact modules as `User` has been implemented in a
+similar way to a `Person` thus many commands that affect each individual contact are similarly designed to commands that
+affect the user. Additionally, both `Person` and `User` use the same `Module` classes to store modules hence the similarity
+in design.
 
-#### Design considerations of editing user modules
+#### Design considerations of editing module commands
 
-use same parser as contacts or wtv for space since same function
+Removal of modules has been implemented such that modules are removed from all 3 lists at once as it is simpler to have to use only one
+prefix for both the user and the program, and the user does not need to worry about mistyping multiple prefixes when keying in the command.
 
 ### Checking modules left
 
 #### Design considerations
 
-only AY2021/22 enrolment bc we selfish blah blah...
-
+Currently, we have tailored this feature towards AY21/22 enrolled Computer Science students as we have yet to implement
+features that accept and save a contact's or the user's majors and year of enrolment to check their modules left.
+Hence, we have decided that for this version we would limit the feature to only be of use to individuals from our own
+batch and major for now.
 
 ### Refreshing to next semester
 ConnectNUS has a feature that helps you to update the previous module lists and clear the current module list of your profile 
@@ -1002,16 +1197,58 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
+### Adding a lesson, Showing the timetable
+
+1. Add a lesson to user
+   1. Prerequisites: User profile has been created. Multiple persons in the list.
+   2. Test case: `timetable user` <br>
+      Expected: Status message shows "No lessons added to user!".
+   3. Test case: `lesson user l/tut m/CS2103T d/1 start/12:00 end/13:00` then run `timetable user` <br>
+      Expected: Status message shows that lesson is added to user. Timetable window opens and shows that user has a lesson "CS2103T Tutorial 12:00 to 13:00" on Monday.
+2. Add a lesson to contact
+   4. Test case: `timetable 1` <br>
+      Expected: Status message shows "No lessons added to contact!".
+   5. Test case: `lesson 1 l/lab m/cS2100 d/4 start/16:00 end/17:00` then run `timetable 1` <br>
+      Expected: Status message shows that lesson is added to contact. Timetable window opens and shows that contact has a lesson "CS2100 Lab 16:00 to 17:00" on Tuesday.
+   6. Test case: `lesson 0`<br>
+      Expected: No lesson is added. Error details shown in the status message.
+   7. Other incorrect delete commands to try: `lesson`, `lesson x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+   8. Test case: `timetable 0`<br>
+      Expected: Timetable window does not open.
+   9. Other incorrect delete commands to try: `timetable 0`, `timetable x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Removing a lesson, Showing the timetable
+
+1. Remove a lesson from user
+   1. Prerequisites: User profile has been created. Multiple persons in the list. User and contacts have existing lesson added.
+   2. Test case: `timetable user` <br>
+      Expected: Timetable window opens and shows that user has a lesson "CS2103T Tutorial 12:00 to 13:00" on Monday.
+   3. Test case: `remove user l/tut m/CS2103T d/1 start/12:00 end/13:00` then run `timetable user` <br>
+      Expected: Status message shows that lesson is removed from user. Status message shows "No lessons added to user!"
+2. Remove a lesson from contact
+   1. Test case: `timetable 1` <br>
+      Expected: Timetable window opens and shows that contact has a lesson "CS2100 Lab 16:00 to 17:00" on Tuesday.
+   2. Test case: `remove 1 l/lab m/cS2100 d/4 start/16:00 end/17:00` then run `timetable 1` <br>
+      Expected: Status message shows that lesson is removed from contact. Status message shows "No lessons added to contact!"
+   3. Test case: `remove 0`<br>
+      Expected: No lesson is added. Error details shown in the status message.
+   4. Other incorrect delete commands to try: `remove`, `remove x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+
+{ more test cases …​ }_
 
 ### Saving data
 
