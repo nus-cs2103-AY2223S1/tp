@@ -297,7 +297,7 @@ the colour of the particular order's card will be in a darker shade than an unco
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can mark an order with insufficient stock as paid (to record payments for pre-orders) but you **cannot** 
-mark an order with **insufficient stock** as **delivered**. 
+mark an order as **delivered** if there is **insufficient stock** of the item(s) involved in the order. 
 </div>
 
 Examples:
