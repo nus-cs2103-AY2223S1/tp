@@ -48,7 +48,7 @@ public class OfficeHour {
         requireNonNull(officeHour);
         if (isPresent) {
             checkArgument(isValidOfficeHour(officeHour), MESSAGE_CONSTRAINTS);
-            value = officeHour;
+            value = officeHour.toUpperCase();
         } else {
             value = EMPTY_OFFICE_HOUR;
         }
