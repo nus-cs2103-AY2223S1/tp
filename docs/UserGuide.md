@@ -442,11 +442,13 @@ Clears all entries which include `clients`, `remarks` and `transactions` from Je
 
 Format: `clear`
 
-> <div markdown="span" class="alert alert-danger">❗ Information cleared by clear command cannot be retrieved.
+> <div markdown="span" class="alert alert-danger">❗ Information cleared by clear command cannot be retrieved. Only use this if you want to clear **all** data of `clients`, `remarks` and `transactions`.
 
 Example:
 
 * `clear` clears all client's entries together with the remarks and transactions.
+
+![Ui](images/SampleClearCommand.png)
 
 [Back to Table of Contents](#table-of-contents)
 
