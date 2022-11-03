@@ -175,7 +175,7 @@ public class Application {
     }
 
     private void applicationDateIsInFuture(Date date) {
-        if (date.value.isAfter(LocalDate.now())) {
+        if (date.isAfter(LocalDate.now())) {
             throw new InvalidFutureApplicationException();
         }
     }

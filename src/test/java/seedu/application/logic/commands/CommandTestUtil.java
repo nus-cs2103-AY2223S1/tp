@@ -81,9 +81,11 @@ public class CommandTestUtil {
     public static final String LOCATION_DESC_GOOGLE = " " + PREFIX_LOCATION + VALID_LOCATION_GOOGLE;
 
     //Invalid Application fields
+    public static final String INVALID_FUTURE_DATE = "2500-02-05"; // invalid future
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "Google&"; // '&' not allowed in companies
     public static final String INVALID_CONTACT_DESC = " " + PREFIX_CONTACT + "911a"; // 'a' not allowed in contacts
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "01/09/2022"; // invalid date format
+    public static final String INVALID_FUTURE_DATE_DESC = " " + PREFIX_DATE + "2500-02-05"; // invalid future
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "facebook!yahoo"; // missing '@' symbol
     public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION; // empty string not allowed for positions
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "applied"; // not one of the allowed statuses
