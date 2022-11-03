@@ -16,7 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/Tan-Jin-Waye)]
 [[portfolio](team/tan-jin-waye.md)]
 
-* Role: TBC
+* Role: Storage
 * Responsibilities: TBC
 
 ### Lian Guo Yang
@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/Aloynz)]
 [[portfolio](team/aloynz.md)]
 
-* Role: TBC
+* Role: UI
 * Responsibilities: TBC
 
 ### Lee Zi Yang
@@ -56,5 +56,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/zylee348)]
 [[portfolio](team/zylee348.md)]
 
-* Role: TBC
+* Role: UI
 * Responsibilities: TBC
