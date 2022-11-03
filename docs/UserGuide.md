@@ -538,6 +538,12 @@ or to exit the application.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
+### Getting help: `help`
+
+Shows a window with a link to the user guide.
+
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
 ### Clearing all data in TrackO: `clear`
 
 If you want clear all sample data present, `clear` is the command for you. 
@@ -556,12 +562,6 @@ The command `clear` clears all data (in both `Order List` and `Inventory List`) 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The keywords `confirm` and `done` are case-sensitive. Thus, only the keywords in lower case are accepted.
 </div>
-
-[Back to top &#8593;](#welcome-to-trackos-user-guide)
-
-### Getting help: `help`
-
-Shows a window with a link to the user guide.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
