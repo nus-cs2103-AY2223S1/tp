@@ -332,6 +332,8 @@ Format: `view INDEX`
 
 * Only the index is searched.
 
+**:exclamation: Warning: If the website is "NA", the browser will not be opened when clicked**
+
 Examples:
 * `find sea shop` followed by `view 1` displays more details of the 1st internship in list.
 
