@@ -207,7 +207,7 @@ Examples:
 
 - `edit id/1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the nurse/patient with id 1 to be `91234567` and `johndoe@example.com` respectively.
 - `edit id/2 n/Betsy Crower t/` Edits the name of the nurse/patient with id 2 to be `Betsy Crower` and clears all existing tags.
-- `edit id/2 dti/1 dt/2022-12-11,1` Change the first date and time of the patient with id 2 to `2022-12-11,1`.
+- `edit id/2 dsi/1 ds/2022-12-11,1` Change the first date and time of the patient with id 2 to `2022-12-11,1`.
 - `edit id/1 e/bsy@gmail.com ud/2022-12-10 p/9029901` Change the email to `bsy@gmail.com` and phone to `9029901` and add unavailable date `2022-12-10` to the nurse with id 1.
 
 ![edit](images/Edit.png)
