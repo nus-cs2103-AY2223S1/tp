@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalQuestions.Q1;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.question.Description;
-import static seedu.address.testutil.TypicalQuestions.Q1;
 
 public class JsonAdaptedQuestionTest {
 
