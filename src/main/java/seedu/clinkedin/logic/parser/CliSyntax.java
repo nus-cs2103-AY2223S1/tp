@@ -12,22 +12,32 @@ import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.clinkedin.logic.commands.AddCommand;
+import seedu.clinkedin.logic.commands.AddLinkCommand;
 import seedu.clinkedin.logic.commands.AddNoteCommand;
 import seedu.clinkedin.logic.commands.AddRateCommand;
 import seedu.clinkedin.logic.commands.AddTagCommand;
+import seedu.clinkedin.logic.commands.AddToCommand;
 import seedu.clinkedin.logic.commands.ClearCommand;
 import seedu.clinkedin.logic.commands.Command;
 import seedu.clinkedin.logic.commands.CreateTagTypeCommand;
 import seedu.clinkedin.logic.commands.DeleteCommand;
+import seedu.clinkedin.logic.commands.DeleteLinkCommand;
+import seedu.clinkedin.logic.commands.DeleteNoteCommand;
+import seedu.clinkedin.logic.commands.DeleteRateCommand;
 import seedu.clinkedin.logic.commands.DeleteTagCommand;
+import seedu.clinkedin.logic.commands.DeleteTagTypeCommand;
 import seedu.clinkedin.logic.commands.EditCommand;
 import seedu.clinkedin.logic.commands.EditTagTypeCommand;
+import seedu.clinkedin.logic.commands.ExitCommand;
 import seedu.clinkedin.logic.commands.ExportCommand;
 import seedu.clinkedin.logic.commands.FindCommand;
 import seedu.clinkedin.logic.commands.HelpCommand;
 import seedu.clinkedin.logic.commands.ImportCommand;
 import seedu.clinkedin.logic.commands.ListCommand;
+import seedu.clinkedin.logic.commands.RedoCommand;
+import seedu.clinkedin.logic.commands.SortCommand;
 import seedu.clinkedin.logic.commands.StatsCommand;
+import seedu.clinkedin.logic.commands.UndoCommand;
 import seedu.clinkedin.logic.commands.ViewCommand;
 import seedu.clinkedin.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.clinkedin.logic.parser.exceptions.PrefixNotFoundException;
@@ -67,24 +77,31 @@ public class CliSyntax {
      */
     private static final List<Class<? extends Command>> ALL_COMMAND_CLASSES = Arrays.asList(
             AddCommand.class,
+            AddLinkCommand.class,
+            AddNoteCommand.class,
+            AddRateCommand.class,
             AddTagCommand.class,
+            AddToCommand.class,
             ClearCommand.class,
             CreateTagTypeCommand.class,
             DeleteCommand.class,
+            DeleteLinkCommand.class,
+            DeleteNoteCommand.class,
+            DeleteRateCommand.class,
             DeleteTagCommand.class,
+            DeleteTagTypeCommand.class,
             EditCommand.class,
             EditTagTypeCommand.class,
+            ExitCommand.class,
             ExportCommand.class,
             FindCommand.class,
             HelpCommand.class,
-            ListCommand.class,
             ImportCommand.class,
             ListCommand.class,
-            AddRateCommand.class,
-            AddNoteCommand.class,
+            RedoCommand.class,
+            SortCommand.class,
             StatsCommand.class,
-            ExportCommand.class,
-            ImportCommand.class,
+            UndoCommand.class,
             ViewCommand.class
         );
 
