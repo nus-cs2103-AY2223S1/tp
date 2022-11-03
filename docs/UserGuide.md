@@ -242,6 +242,15 @@ Format: `list`  `list time`
 * `list` - displays a list of all tasks in the order of most recent task added
 * `list time` - displays a list of all tasks in the order of the earliest deadline
 
+<div markdown="block" class="alert alert-primary">
+
+:bulb: About extraneous parameters in `list`
+
+`list time` is the only exception to the list command ignoring extraneous parameters.
+* `list abc` and `list time abc` will be both interpreted as `list`.
+
+</div>
+
 Click [here](#) to return to the top of the page.
 
 ### Managing contacts
