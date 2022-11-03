@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/jetlfj)] [[portfolio](team/jetlfj.md)]
 
 * Role: Developer
-* Responsibilities: Something
+* Responsibilities: Features, Code Quality, Documentation, Testing, UI 
 
 ### Charlton
 
