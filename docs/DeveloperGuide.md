@@ -555,9 +555,118 @@ readability of the code.
 2. The additional complexities and potential for new bugs can be mitigated 
    by robust unit and integration testing.
 
-### Goto module feature
+### Search and Navigation
 
-#### Implementation
+#### Find module feature
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+The find person feature is similar and will be omitted
+</div>
+
+##### Implementation
+
+Find module mechanism is facilitated by the `FindModuleCommand` and `FindModuleCommandParser`.
+
+It allows users to obtain a list of modules starting with the keyword provided.<br>
+
+It uses the following methods provided by the `Model` interface.
+* `Model#updateFilteredModuleList()`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI
+* `Model#getHomeStatusAsBoolean()`: obtains the home status of Plannit.
+
+Given below is an example usage scenario and how the mechanism
+behaves when a user searches for modules in Plannit.
+
+**Step 1**. The user requests to search for a module in the Plannit by
+inputting the `find-module` command followed by a keyword.
+E.g.:
+```
+find-module CS
+```
+
+**Step 2**: The `LogicManager` uses the `AddressBookParser` and `FindModuleCommandParser`
+to parse the user input. After validating the arguments provided by the user, the user input
+is used to instantiate a `ModuleCodeStartsWithKeywordPredicate` object.
+
+**Step 3**: A `FindModuleCommand` object is instantiated using the `ModuleCodeStartsWithKeywordPredicate`
+obtained in **Step 2** which is returned to the `LogicManager`.
+
+**Step 4**: `LogicManager` calls the `FindModuleCommand#execute()` method. This method will first
+obtain the home status of Plannit by calling `Model#getHomeStatusAsBoolean()` and check if Plannit
+is currently at home.
+
+**Step 5**: The module list is then filtered using the `Model#updateFilteredModuleList()` method according
+to the `ModuleCodeStartsWithKeywordPredicate` object instantiated in **Step 2**.
+
+**Step 6**: A new `CommandResult` object is returned, indicating success.
+
+The following sequence diagram summarizes what happens when a user executes the `find-module` command:
+
+![GoToSequenceDiagram](images/GoToSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `GoToCommandParser`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+<div style="page-break-after: always;"></div>
+
+The following activity diagram summarizes what happens when a user executes a `FindModuleCommand`:
+
+![GoToActivityDiagram](images/GoToActivityDiagram.png)
+
+#### List module feature
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+The list person feature is similar and will be omitted
+</div>
+
+##### Implementation
+
+List module mechanism is facilitated by the `ListModuleCommand`.
+
+It allows users to obtain a list of every module in Plannit.<br>
+
+It uses the following methods provided by the `Model` interface.
+* `Model#updateFilteredModuleList()`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI
+* `Model#getHomeStatusAsBoolean()`: obtains the home status of Plannit.
+
+Given below is an example usage scenario and how the mechanism
+behaves when a user list all modules in Plannit.
+
+**Step 1**. The user requests to list all modules in Plannit by
+inputting the `list-module` command.
+E.g.:
+```
+list-module CS
+```
+
+**Step 2**: The `LogicManager` uses the `AddressBookParser` to parse the user input.
+After validating the arguments provided by the user, the user input is used to instantiate
+a `ListModuleCommand` object, which is returned to the `LogicManger`.
+
+**Step 3**: `LogicManager` calls the `ListModuleCommand#execute()` method. This method will first
+obtain the home status of Plannit by calling `Model#getHomeStatusAsBoolean()` and check if Plannit
+is currently at home.
+
+**Step 4**: The module list is then filtered using the `Model#updateFilteredModuleList()` method according
+to the `Model#PREDICATE_SHOW_ALL_MODULES` predicate.
+
+**Step 5**: A new `CommandResult` object is returned, indicating success.
+
+The following sequence diagram summarizes what happens when a user executes the `list-module` command:
+
+![GoToSequenceDiagram](images/GoToSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `GoToCommandParser`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+<div style="page-break-after: always;"></div>
+
+The following activity diagram summarizes what happens when a user executes a `ListModuleCommand`:
+
+![GoToActivityDiagram](images/GoToActivityDiagram.png)
+
+#### Goto module feature
+
+##### Implementation
 
 Goto module mechanism is facilitated by the `GoToCommand` and `GoToCommandParser`.
 
@@ -585,7 +694,6 @@ to parse the user input. After validating the arguments provided by the user, th
 is used to perform the following actions: <br>
 * Extract the `ModuleCode` of the module to navigate to in the `GoToCommandParser` using the method `ParserUtil::parseModuleCode`
 * Instantiate a `ModuleCodeMatchesKeywordPredicate` object
-
 
 **Step 3**: A `GoToCommand` object is instantiated using the `ModuleCodeMatchesKeywordPredicate` and `ModuleCode`
 obtained in **Step 2** which is returned to the `LogicManager`.
@@ -752,21 +860,50 @@ Use case ends.
   Use case resumes at step 2.
 
 #### Use case: UC03 - Find module
+**Preconditions**:
+* User is on the home page.
+
 **Main Success Scenario (MSS)**
-1. User chooses to search up a module's information.
-2. Plannit requests for module code.
-3. User enters the module code.
-4. Plannit searches for module and displays module details.
+1. User chooses to search up on modules with module code starting with specific keyword.
+2. Plannit requests for keyword.
+3. User enters the keyword.
+4. Plannit searches and displays a list of module with mode code starting with the specified keyword.
 
 Use case ends.
 
-Extensions:
-* 3a. Plannit detects that the specified module does not exist.
-    * 3a1. Plannit displays a text, informing that the specified module does not exist.
+#### Use case: UC04 - List module
+**Preconditions**:
+* User is on the home page.
 
-  Use case ends.
+**Main Success Scenario (MSS)**
+1. User chooses to obtain every module in Plannit.
+2. Plannit returns a list with every module in Plannit.
 
-#### Use case: UC04 - Add a task
+Use case ends.
+
+#### Use case: UC05 - Find person
+**Preconditions**:
+* User is on the home page.
+
+**Main Success Scenario (MSS)**
+1. User chooses to search up on person with names starting with specific keyword.
+2. Plannit requests for keyword.
+3. User enters the keyword.
+4. Plannit searches and displays a list of persons with names starting with the specified keyword.
+
+Use case ends.
+
+#### Use case: UC06 - List person
+**Preconditions**:
+* User is on the home page.
+
+**Main Success Scenario (MSS)**
+1. User chooses to obtain every person in Plannit.
+2. Plannit returns a list with every person in Plannit.
+
+Use case ends.
+
+#### Use case: UC07 - Add a task
 **Preconditions**:
 * User has completed [UC01](#use-case-uc01---add-a-module).
 * Module list is not empty.
@@ -790,7 +927,7 @@ Extensions:
 
   Use case ends.
 
-#### Use case: UC05 - Delete a task
+#### Use case: UC08 - Delete a task
 **Preconditions**:
 * User has completed [UC01](#use-case-uc01---add-a-module).
 * Module list is not empty.
@@ -815,7 +952,7 @@ Use case ends.
 
   Use case ends.
 
-#### Use case: UC06 - Swap task
+#### Use case: UC09 - Swap task
 **Precondition**
 * User has completed [UC01](#use-case-uc01---add-a-module).
 * Module list is not empty.
@@ -840,7 +977,7 @@ Use case ends.
 
   Use case ends.
 
-#### Use case: UC07 - Add a Module Link
+#### Use case: UC10 - Add a Module Link
 **Preconditions**:
 * User has completed [UC01](#use-case-uc01---add-a-module).
 * Module list is not empty.
@@ -862,7 +999,7 @@ Extension:
 
   Use case ends.
 
-#### Use case: UC08 - Delete a Module Link
+#### Use case: UC11 - Delete a Module Link
 **Main Success Scenario (MSS)**
 1. User requests for the deletion of a module-specific link.
 2. Plannit deletes the entered link from the specific module.
@@ -880,8 +1017,7 @@ Extension:
 
   Use case ends.
 
-
-#### Use case: UC09 - Add a contact
+#### Use case: UC12 - Add a contact
 **Main Success Scenario (MSS)**
 1.  User chooses to add a contact.
 2.  Plannit requests for the to-be-added contact detail.
@@ -909,7 +1045,7 @@ Use case ends.
 
   Use case ends.
 
-#### Use case: UC10 - Delete a contact
+#### Use case: UC13 - Delete a contact
 **Main Success Scenario (MSS)**
 1. User chooses to delete a contact.
 2. Plannit requests for the name of the contact.
@@ -925,7 +1061,7 @@ Extensions:
 
   Use case ends.
 
-#### Use case: UC11 - Find contact
+#### Use case: UC14 - Find contact
 **Main Success Scenario (MSS)**
 1. User chooses to search up his friend's email.
 2. Plannit requests for name of friend.
@@ -940,7 +1076,7 @@ Extensions:
 
   Use case ends.
 
-#### Use case: UC12 - Navigate to Home Page
+#### Use case: UC15 - Navigate to Home Page
 **Main Success Scenario (MSS)**
 1.  User requests to navigate to Home Page.
 2.  Plannit displays the Home Page.
@@ -953,22 +1089,24 @@ Use case ends.
 
   Use case ends.
 
-#### Use case: UC13 - Navigate to Module
+#### Use case: UC16 - Navigate to Module
 **Main Success Scenario (MSS)**
-1.  User requests to navigate to a specific module.
-2.  Plannit displays the module details.
+1. User requests to navigate to a specific module.
+2. Plannit requests for the module code of the specific module.
+3. User enters the module code.
+4. Plannit displays the module details.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. Module does not exist.
+* 1a. Module with given module code does not exist.
 
     * 1a1. Plannit displays an error message.
 
   Use case ends.
 
-#### Use case: UC14 - Exit program
+#### Use case: UC17 - Exit program
 **Main Success Scenario (MSS)**
 1.  User requests to exit program.
 2.  Plannit closes program.
