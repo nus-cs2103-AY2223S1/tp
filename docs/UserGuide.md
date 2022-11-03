@@ -283,6 +283,9 @@ Marks a module as done.
 - Marking a module as done will mark all active tasks belonging to that module as done.
 - You cannot execute this command while cd'd into any module.
 
+>:warning If there are `undone` tasks of a `done` module, you will be able to mark the module as done again, and the
+`undone` task will be marked as `done`. 
+
 Format: `done module <module code>`
 
 Shorthand: `done mod <module code>`
