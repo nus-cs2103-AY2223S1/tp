@@ -25,7 +25,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
 
     private final String className;
 
-    private final List<Session> sessions;
+    private final ArrayList<Session> sessions;
 
     /**
      * Constructs a {@code ModuleClass}.
@@ -49,7 +49,8 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
         requireAllNonNull(className, sessions);
         checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
         this.className = className;
-        this.sessions = sessions;
+        this.sessions = new ArrayList<>(sessions);
+        Collections.sort(this.sessions);
     }
 
     /**

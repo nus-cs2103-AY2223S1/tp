@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.taassist.model.uniquelist.exceptions.DuplicateElementException;
 import seedu.taassist.model.uniquelist.exceptions.ElementNotFoundException;
@@ -26,7 +27,23 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
 
     private final ObservableList<T> internalList = FXCollections.observableArrayList();
     private final ObservableList<T> internalUnmodifiableList =
-        FXCollections.unmodifiableObservableList(internalList);
+            FXCollections.unmodifiableObservableList(internalList);
+
+    /**
+     * Default constructor for UniqueList.
+     */
+    public UniqueList() {
+        // Internal list is re-sorted each time an element is added or updated.
+        internalList.addListener((ListChangeListener.Change<? extends T> change) -> {
+            boolean shouldSort = false;
+            while (change.next()) {
+                shouldSort |= change.wasAdded() || change.wasUpdated();
+            }
+            if (shouldSort) {
+                Collections.sort(change.getList());
+            }
+        });
+    }
 
     /**
      * Returns true if the list contains an equivalent element as the given argument.
@@ -46,7 +63,6 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
             throw new DuplicateElementException();
         }
         internalList.add(toAdd);
-        Collections.sort(internalList);
     }
 
     /**
@@ -61,7 +77,6 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
             }
         }
         internalList.addAll(toAddList);
-        Collections.sort(internalList);
     }
 
     /**
@@ -154,8 +169,8 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof UniqueList<?> // instanceof handles nulls
-            && internalList.equals(((UniqueList<?>) other).internalList));
+                || (other instanceof UniqueList<?> // instanceof handles nulls
+                && internalList.equals(((UniqueList<?>) other).internalList));
     }
 
     @Override
