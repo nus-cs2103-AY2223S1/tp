@@ -49,7 +49,7 @@ Gim uses a Command Line Interface (CLI), which may be new to some users. If you 
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`:help`** and pressing Enter will open the help window.<br>
 
-6. Refer to the [Commands Section](#commands) below for details of each command.
+6. Refer to the [Commands Section](#5-commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -64,7 +64,7 @@ The `Command Box` is where you can input your commands.
 
 ### 4.2. Exercise List
 
-The `Exercise List Window` displays the latest exercise you entered at the bottom of the list by default. All exercises added will be displayed in the list. The list may change or reorder depending on the command issued by you.
+The `Exercise List` displays exercise entries. When the application is first launched, the `Exercise List` displays all exercise entries in the system, arranged by the order in which they were added. Whenever you issue commands that may truncate/reorder the `Exercise List`, they will **only act upon the entries that are currently displayed in the `Exercise List`**.
 
 ### 4.3. Result Display
 
@@ -187,7 +187,7 @@ Example:
 
 ### 5.4. Filtering exercises by their name(s) : `:filter`
 
-Filters exercises in the displayed list with names containing any of the given keywords.
+Filters exercises, in the current [Exercise List](#42-exercise-list), with names containing any of the given keywords.
 
 Format: `:filter KEYWORD [KEYWORD]...`
 
@@ -226,7 +226,7 @@ Example:
 
 ### 5.6. Sorting exercises : `:sort`
 
-Sorts the list of exercises displayed in the Exercise List Window according to their date of completion, with the latest exercise completed displayed at the top of the list.
+Sorts the exercises, in the current [Exercise List](#42-exercise-list), according to their date of completion, with the latest exercise completed displayed at the top of the list.
 
 Format: `:sort`
 
@@ -239,7 +239,7 @@ Example:
 
 ### 5.7. Viewing all exercises within a time period : `:range`
 
-Shows a list of all exercises sorted within a date range; the entry with the most recent date will be displayed at the top of the list.
+Shows all exercises, among exercises in the current [Exercise List](#42-exercise-list), within the specified date range; the latest exercise completed is displayed at the top of the list.
 
 <div markdown="block" class="alert alert-info">
 
@@ -271,7 +271,7 @@ Example:
 
 ### 5.8. Listing Personal Records (PR): `:pr`
 
-Finds the Personal Record of certain exercises in the exercise tracker.
+Finds the [Personal Record](#9-glossary-of-terminologies) of certain exercises in the exercise tracker.
 
 <div markdown="block" class="alert alert-info">
 
@@ -420,11 +420,12 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 <br>
 **A**: You can do so by deleting the entry and adding a new entry.
 
-**Q**: Why is `:filter` not showing the "correct" list even though I have input a valid exercise name?
+**Q**: Why is `:filter`, `:range` or `:sort` not showing the "correct" list even though I have input valid parameters?
 <br>
-**A**: `:filter` works on the displayed list shown in the Exercise List Window. If your displayed list is empty or has been altered by list changing commands such as `:range` or `:filter`, the `:filter` command will not filter from the original full list.
+**A**: The three commands works on the exercises in the current [Exercise List](#42-exercise-list). If your current Exercise List has been altered by list-changing commands such as `:range` or `:filter`, the commands will act on the current Exercise List rather than the full list comprising all exercises in the system. 
+
 <br><br>
-If you would like to filter from the original full list instead, try executing the command `:list` to display the full list before running `:filter` again.
+If you would like to operate on the full list instead, try executing the command `:list` to display the full list before running the commands again.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -462,3 +463,5 @@ If you would like to filter from the original full list instead, try executing t
 * **Sets** : Number of cycles of reps that you complete.
 * **Weight**: Total weight (include barbell if applicable, exclude body weight).
 * **Personal Record (PR)**: Heaviest weight recorded in the exercise tracker for a specific exercise.
+
+<a href="#top">Back To Top</a>
