@@ -9,6 +9,11 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
 * Table of Contents 
 - [`Quick start`](#quick-start)
+- [`Property and client attributes`](#property-and-client-attributes)
+  - [Shared attributes](#shared-attributes)
+  - [Property attributes](#property-attributes)
+  - [Client attributes](#client-attributes)
+- [`Features systax`](#features-syntax)
 - [`Features in Condonery`](#features-in-condonery)
   - [Undoing commands : `undo`](#undoing-commands--undo)
   - [Viewing help : `help`](#viewing-help--help)
@@ -34,6 +39,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
     - [Filtering client profiles: filter -c](#filtering-client-profiles-filter--c)
     - [Deleting a client profile: delete -c](#deleting-a-client-profile-delete--c-index)
     - [Selecting a client profile: select -c](#selecting-a-client-profile-select--pc-index)
+- [`FAQ`](#faq)
 - [`Command summary`](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -309,7 +315,7 @@ Examples:
 * `list -p` followed by `delete -p 2` deletes the 2nd property in the address book.
 * `find -p Wall Street` followed by `delete -p 1` deletes the 1st property in the results of the `find -p` command.
 
-### Filtering profiles: `filter -p`
+### Filtering properties: `filter -p`
 
 Returns a filtered list of properties that fulfil the filter conditions for tags only.
 Format: `filter -p TAG...`
