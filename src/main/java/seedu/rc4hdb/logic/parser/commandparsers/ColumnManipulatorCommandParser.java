@@ -1,7 +1,6 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.rc4hdb.model.resident.fields.ResidentField.LETTER_TO_FIELD_NAME_MAPPINGS;
 
 import java.util.ArrayList;
@@ -36,33 +35,6 @@ public abstract class ColumnManipulatorCommandParser implements Parser<ColumnMan
     public abstract String getCommandWord();
 
     public abstract String getCommandPresentTense();
-
-    public static String getSpecifierIfPresent(String args, List<String> specifierList,
-                                               String errorMessage) throws ParseException {
-        requireAllNonNull(args, specifierList, errorMessage);
-        for (String specifier : specifierList) {
-            if (args.contains(specifier)) {
-                return specifier;
-            }
-        }
-        throw new ParseException(errorMessage);
-    }
-
-    public static String getArgumentsAfterSpecifierIfPresent(String args, List<String> specifierList,
-                                                             String errorMessage) throws ParseException {
-        requireAllNonNull(args, specifierList, errorMessage);
-        String result = args;
-        for (String specifier : specifierList) {
-            if (args.contains(specifier)) {
-                int indexAfterEndOfSpecifier = args.indexOf(specifier) + specifier.length();
-                result = args.substring(indexAfterEndOfSpecifier);
-            }
-        }
-        if (result.trim().isEmpty()) {
-            throw new ParseException(errorMessage);
-        }
-        return result;
-    }
 
     private static List<String> parseColumnsToShowOrHide(String args) {
         requireNonNull(args);

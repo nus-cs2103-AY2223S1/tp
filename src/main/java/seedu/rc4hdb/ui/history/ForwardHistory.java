@@ -36,6 +36,7 @@ public class ForwardHistory extends CommandHistory {
             return EMPTY_TEXT;
         }
         if (isLastCommand(forwardStack)) {
+            logger.log(Level.INFO, "No more previous commands in stack.");
             return forwardStack.getLast();
         }
         logger.log(Level.INFO, "Transferring from forward stack to backward stack.");

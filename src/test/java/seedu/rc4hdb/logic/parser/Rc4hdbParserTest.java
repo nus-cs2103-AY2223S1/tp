@@ -43,7 +43,6 @@ import seedu.rc4hdb.logic.commands.residentcommands.ShowOnlyCommand;
 import seedu.rc4hdb.logic.commands.venuecommands.VenueCommand;
 import seedu.rc4hdb.logic.commands.venuecommands.VenueViewCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.HideOnlyCommandParser;
-import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ShowOnlyCommandParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.resident.Resident;
@@ -114,14 +113,10 @@ public class Rc4hdbParserTest {
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertThrows(ParseException.class, ListCommandParser.SPECIFIER_USAGE, () ->
-                parser.parseCommand(ListCommand.COMMAND_WORD + " 3"));
-        assertThrows(ParseException.class, ListCommandParser.SPECIFIER_USAGE, () ->
-                parser.parseCommand(ListCommand.COMMAND_WORD + " /i"));
-        assertThrows(ParseException.class, ListCommandParser.SPECIFIER_USAGE, () ->
-                parser.parseCommand(ListCommand.COMMAND_WORD + " /e"));
-        assertThrows(ParseException.class, ListCommandParser.INVALID_FIELDS_ENTERED, () ->
-                parser.parseCommand(ListCommand.COMMAND_WORD + " /i n p f x"));
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " /i") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " /e") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " /i n p f x") instanceof ListCommand);
     }
 
     @Test

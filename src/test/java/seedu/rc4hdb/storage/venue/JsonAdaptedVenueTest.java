@@ -3,7 +3,7 @@ package seedu.rc4hdb.storage.venue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.rc4hdb.storage.venuebook.JsonAdaptedVenue.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
-import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_5_TO_6_PM;
+import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_5_TO_6PM;
 import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_6_TO_7PM;
 import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_TUESDAY_6_TO_7PM;
 import static seedu.rc4hdb.testutil.TypicalVenues.MEETING_ROOM;
@@ -20,7 +20,7 @@ import seedu.rc4hdb.storage.venuebook.JsonAdaptedVenue;
 
 public class JsonAdaptedVenueTest {
 
-    private static final List<JsonAdaptedRecurrentBooking> VALID_BOOKINGS = List.of(MR_ALICE_MONDAY_5_TO_6_PM,
+    private static final List<JsonAdaptedRecurrentBooking> VALID_BOOKINGS = List.of(MR_ALICE_MONDAY_5_TO_6PM,
             MR_ALICE_MONDAY_6_TO_7PM, MR_ALICE_TUESDAY_6_TO_7PM).stream().map(JsonAdaptedRecurrentBooking::new)
             .collect(Collectors.toList());
 
