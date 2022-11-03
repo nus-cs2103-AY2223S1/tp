@@ -32,8 +32,8 @@ public class PersonBuilder {
     public static final String DEFAULT_RISKTAG = "LOW";
     public static final String DEFAULT_PLANTAG = "Savings Plan";
     public static final String DEFAULT_CLIENTTAG = "POTENTIAL";
-    public static final String DEFAULT_INCOME = "$1000";
-    public static final String DEFAULT_MONTHLY = "$200";
+    public static final String DEFAULT_INCOME = "1000";
+    public static final String DEFAULT_MONTHLY = "200";
     private Name name;
     private Phone phone;
     private Email email;

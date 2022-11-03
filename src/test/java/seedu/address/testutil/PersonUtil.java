@@ -45,8 +45,8 @@ public class PersonUtil {
         sb.append(PREFIX_RISKTAG + person.getRiskTag().tagName + " ");
         sb.append(PREFIX_PLANTAG + person.getPlanTag().tagName + " ");
         sb.append(PREFIX_CLIENTTAG + person.getClientTag().tagName + " ");
-        sb.append(PREFIX_INCOME + person.getIncome().value + " ");
-        sb.append(PREFIX_MONTHLY + person.getMonthly().value + " ");
+        sb.append(PREFIX_INCOME + person.getIncome().value.substring(1) + " ");
+        sb.append(PREFIX_MONTHLY + person.getMonthly().value.substring(1) + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -65,9 +65,11 @@ public class PersonUtil {
         descriptor.getRiskTag().ifPresent(riskTag -> sb.append(PREFIX_RISKTAG).append(riskTag.tagName).append(" "));
         descriptor.getClientTag().ifPresent(
                 clientTag -> sb.append(PREFIX_CLIENTTAG).append(clientTag.tagName).append(" "));
-        descriptor.getMonthly().ifPresent(monthly -> sb.append(PREFIX_MONTHLY).append(monthly.value).append(" "));
+        descriptor.getMonthly().ifPresent(monthly -> sb.append(PREFIX_MONTHLY)
+                .append(monthly.value.substring(1)).append(" "));
         descriptor.getPlanTag().ifPresent(planTag -> sb.append(PREFIX_PLANTAG).append(planTag.tagName).append(" "));
-        descriptor.getIncome().ifPresent(incomeLevel -> sb.append(PREFIX_INCOME).append(incomeLevel.value).append(" "));
+        descriptor.getIncome().ifPresent(incomeLevel -> sb.append(PREFIX_INCOME)
+                .append(incomeLevel.value.substring(1)).append(" "));
 
         if (descriptor.getTags().isPresent()) {
             Set<NormalTag> tags = descriptor.getTags().get();

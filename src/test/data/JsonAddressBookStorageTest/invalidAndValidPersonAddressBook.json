@@ -6,9 +6,9 @@
     "riskTag": "HIGH",
     "planTag": "Savings Plan",
     "clientTag": "POTENTIAL",
-    "income": "$1000",
+    "income": "1000",
     "address": "4th street",
-    "monthly": "$1000"
+    "monthly": "1000"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
@@ -16,8 +16,8 @@
     "riskTag": "HIGH",
     "planTag": "Savings Plan",
     "clientTag": "CURRENT",
-    "income": "$1000",
+    "income": "1000",
     "address": "4th street",
-    "monthly": "$1000"
+    "monthly": "1000"
   } ]
 }
