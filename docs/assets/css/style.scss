@@ -5,21 +5,18 @@
 @import
   "minima/skins/{{ site.minima.skin | default: 'classic' }}",
   "minima/initialize";
+
+$light: #f2f3f4;
+
 @import "bootstrap/bootstrap";
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
 
 .icon {
     height: 21px;
     width: 21px
 }
 
-.text-bg-info {
-    background-color: #2196F3;
+h2, h3, h4, h5, h6 {
+  color: #e46c0a;
 }
 
-.text-bg-warning {
-    background-color: #FF9800;
-}
-
-.text-bg-danger {
-    background-color: #F44336;
-}
