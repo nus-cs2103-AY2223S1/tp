@@ -155,6 +155,11 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a person with the data stored in the builder.
+     *
+     * @return a Person with the stored fields, tags, modules and lessons.
+     */
     public Person build() {
         Person person = new Person(name, phone, email, address, github, tags, currModules, prevModules, planModules);
         for (Lesson lesson : lessons) {

@@ -54,7 +54,13 @@ public class LessonIndexCommand extends LessonCommand {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) return true;
+        if (o == null) {
+            return false;
+        }
+
+        if (o == this) {
+            return true;
+        }
 
         if (o instanceof LessonIndexCommand) {
             LessonIndexCommand lesson = (LessonIndexCommand) o;

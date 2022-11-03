@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
  * Command to show timetable for a contact.
  */
 public class TimetableIndexCommand extends TimetableCommand {
-    public static final String MESSAGE_TIMETABLE_ACKNOWLEDGEMENT = "Showing contact at index %d timetable as requested ...";
+    public static final String MESSAGE_TIMETABLE_ACKNOWLEDGEMENT = "Showing contact at index %d timetable as requested";
     public static final String MESSAGE_NO_LESSONS = "No lessons added to contact at index %d!";
 
     private Index index;
@@ -52,7 +52,13 @@ public class TimetableIndexCommand extends TimetableCommand {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) return true;
+        if (o == null) {
+            return false;
+        }
+
+        if (o == this) {
+            return true;
+        }
 
         if (o instanceof TimetableIndexCommand) {
             TimetableIndexCommand command = (TimetableIndexCommand) o;

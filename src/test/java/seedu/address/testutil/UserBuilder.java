@@ -3,7 +3,9 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Lesson;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
@@ -34,6 +36,7 @@ public class UserBuilder {
     private Set<CurrentModule> currModules;
     private Set<PreviousModule> prevModules;
     private Set<PlannedModule> planModules;
+    private Set<Lesson> lessons;
 
     /**
      * Creates a {@code UserBuilder} with the default details.
@@ -47,6 +50,7 @@ public class UserBuilder {
         currModules = new HashSet<>();
         prevModules = new HashSet<>();
         planModules = new HashSet<>();
+        lessons = new HashSet<>();
     }
 
     /**
@@ -61,6 +65,7 @@ public class UserBuilder {
         currModules = new HashSet<>(userToCopy.getCurrModules());
         prevModules = new HashSet<>(userToCopy.getPrevModules());
         planModules = new HashSet<>(userToCopy.getPlanModules());
+        lessons = new HashSet<>(userToCopy.getLessons());
     }
 
     /**
@@ -130,8 +135,30 @@ public class UserBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code lessons} into a {@code Set<Lesson>}
+     * and set it to the {@code User} that we are building.
+     */
+    public UserBuilder withLessons(Lesson... lessons) {
+        this.lessons = SampleDataUtil.getLessonSet(lessons);
+        return this;
+    }
+
+    /**
+     * Builds a new user with the data stored.
+     *
+     * @return User with all details, modules and lessons stored.
+     */
     public User build() {
-        return new ExistingUser(name, phone, email, address, github, currModules, prevModules, planModules);
+        User user = new ExistingUser(name, phone, email, address, github, currModules, prevModules, planModules);
+        for (Lesson lesson : lessons) {
+            try {
+                user.addLesson(lesson);
+            } catch (CommandException e) {
+                System.out.println(e);
+            }
+        }
+        return user;
     }
 
 }
