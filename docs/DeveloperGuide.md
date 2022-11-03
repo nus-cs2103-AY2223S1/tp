@@ -555,13 +555,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9. The system should save the data after each command has been processed.
 
 
-### Glossary
+### Full Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **GUI**: Graphical User Interface - A system of interactive visual components for computer software
 * **CLI**: Command Line Interface - A text based user interface to run programs
-
+* **Index**: A number indicating the order of a person within the contact list, used in conjunction with commands
+* **Parameter**: Refers to the information typed along with the commands. For example the command `add n/John Doe` means that the parameter is `n/John Doe`
+* **UML**: Unified Modelling Language - A Language based on drawing diagrams to describe models of the codebase
+* **UML Sequence Diagram**: Sequence diagrams model the interactions between various entities in a system, in a specific scenario.
+  Modelling such scenarios is useful, for example, to verify the design of the internal interactions is able to provide the expected outcomes.
+* **UML Activity Diagram**: activity diagrams (AD) can model workflows.  Flow charts are another type of diagram that can model workflows. 
+Activity diagrams are the UML equivalent of flow charts.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix B: Instructions for manual testing**
