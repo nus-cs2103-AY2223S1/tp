@@ -25,6 +25,7 @@ public class Student extends Person {
     public Student(Name name, Phone phone, Email email, Gender gender, Set<Tag> tags,
                    Location location, GithubUsername username, Set<ModuleCode> moduleCodes, Year year) {
         super(name, phone, email, gender, tags, location, username);
+        assert moduleCodes.size() > 0 : "At least 1 moduleCode present";
         this.moduleCodes.addAll(moduleCodes);
         this.year = year;
     }
@@ -83,13 +84,23 @@ public class Student extends Person {
         }
         return builder.toString();
     }
-
+    public ModuleCode getHighestModuleCode() {
+        assert moduleCodes.size() > 0 : "At least 1 moduleCode present";
+        return moduleCodes.stream().max(ModuleCode::compareTo).get();
+    }
     @Override
     public int compareModuleCode(Person person) {
+        ModuleCode highest = getHighestModuleCode();
         if (person instanceof Student) {
-            return compareName(person);
+            return highest.compareTo(((Student) person).getHighestModuleCode());
         }
-        return -1;
+        if (person instanceof Professor) {
+            return highest.compareTo(((Professor) person).getModuleCode());
+        }
+        if (person instanceof TeachingAssistant) {
+            return highest.compareTo(((TeachingAssistant) person).getModuleCode());
+        }
+        return this.compareModuleCode(person);
     }
 
     @Override

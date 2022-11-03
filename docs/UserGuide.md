@@ -19,7 +19,7 @@ This section will explain the parameters and the format of commands.
 
 | Prefix | Parameter       | Meaning                                                                                                        |
 |--------|-----------------|----------------------------------------------------------------------------------------------------------------|
-| n/     | NAME            | Name of person                                                                                                 |
+| n/     | NAME            | Name of person (case sensitive) .e.g `bob` and `Bob` are not the same                                          |
 | p/     | PHONE           | Phone number of person                                                                                         |
 | g/     | GENDER          | Gender of person (STRICTLY F or M)                                                                             |
 | git/   | GITHUB_USERNAME | GitHub Username of person                                                                                      |
@@ -28,7 +28,7 @@ This section will explain the parameters and the format of commands.
 | t/     | TAG             | Tag person (i.e tag as friend)                                                                                 |
 | r/     | RATING          | Rate Professor/Teaching Assistant (on a scale of 0 to 5)                                                       |
 | y/     | YEAR            | Year of Undergraduate Study (from 1 - 4)                                                                       |
-| l/     | LOCATION        | Location of Professor/Teaching Assistant/Student in NUS                                                        |
+| l/     | LOCATION        | Location of Professor/Teaching Assistant/Student in NUS. If not provided, default value is `NUS`.              |
 | s/     | SPECIALISATION  | Professor's Specialisation                                                                                     |
 | o/     | OFFICE_HOURS    | Professor's office hours for consultation <br>Refer to section [3](#3-features) for the format of OFFICE_HOURS |
 | typ/   | TYPE            | Type of Contacts. (STRICTLY prof or stu or ta)                                                                 |
@@ -100,7 +100,9 @@ This section will explain the parameters and the format of commands.
 The Add-Related commands include `student`, `prof` and `ta`. These are the commands related to adding a new person to the application.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-You cannot add people with same names, e.g. "Michelle" cannot be a student and a prof at the same time.
+You cannot add people with the same name AND same role. e.g. there cannot exist two Students both called "Joe", but a Student called "Joe" and a Professor called "Joe" can exist.
+
+Additionally, as names are case-sensitive, a Student called "joe" is not the same as a Student called "Joe", and so they can both be added. This applies to all roles.
 </div>
 
 ### 3.1.1 Adding a new Student Contact: `student`
@@ -352,7 +354,7 @@ This pie chart shows how many of each type of contact you have, and updates itse
 
 ## 3.6 Fast Template Command
 
-Returns a template with all the fields of a Person on the CLI.
+Returns a template with all the fields of a Person on the CLI so that users do not have to remember and enter prefixes themselves, and can easily add a new Person to the address book.
 
 Format: `tt PERSON`
 * PERSON can be `prof`, `student`, or `ta`.
