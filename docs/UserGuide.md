@@ -327,6 +327,11 @@ This can also be done by clicking File - Exit.
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TAB home folder.
 
+**Q**: I just created a new book and nothing changed?<br>
+**A**: The new TAB's name appears at the bottom left corner.
+
+![FAQ_Identify_New_Book](images/FAQ_Identify_New_Book.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary

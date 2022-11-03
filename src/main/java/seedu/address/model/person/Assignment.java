@@ -53,7 +53,7 @@ public class Assignment {
         requireNonNull(name);
         requireNonNull(grade);
         requireNonNull(weightage);
-        checkArgument(isValidGrade(grade), GRADE_CONSTRAINTS);
+        checkArgument(isValidRetrievedGrade(grade), GRADE_CONSTRAINTS);
         checkArgument(isValidWeightage(weightage), WEIGHTAGE_CONSTRAINTS);
         this.name = name;
         this.grade = grade;
@@ -63,7 +63,21 @@ public class Assignment {
     /**
      * Returns if a given string is a valid grade.
      */
-    public static boolean isValidGrade(String test) {
+    public static boolean isValidInputGrade(String test) {
+        if (!test.matches(GRADE_VALIDATION_REGEX)) {
+            return false;
+        } else {
+            String[] split = test.split("/");
+            Integer firstNumber = Integer.parseInt(split[0]);
+            Integer secondNumber = Integer.parseInt(split[1]);
+            return firstNumber <= secondNumber && secondNumber <= 100;
+        }
+    }
+
+    /**
+     * Returns if a given string is a valid grade.
+     */
+    public static boolean isValidRetrievedGrade(String test) {
         if (!test.matches(GRADE_VALIDATION_REGEX)) {
             return false;
         } else {
