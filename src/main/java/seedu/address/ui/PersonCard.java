@@ -34,22 +34,8 @@ public class PersonCard extends UiPart<Region> {
     private Label job;
     @FXML
     private Label id;
-    // @FXML
-    // private Label phone;
-    // @FXML
-    // private Label address;
     @FXML
     private Label email;
-    // @FXML
-    // private Label gender;
-    // @FXML
-    // private Label graduationDate;
-    // @FXML
-    // private Label cap;
-    // @FXML
-    // private Label university;
-    // @FXML
-    // private Label major;
     @FXML
     private FlowPane tags;
 
@@ -62,14 +48,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         job.setText(person.getJob().value);
-        // phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
-        // gender.setText(person.getGender().value);
-        // graduationDate.setText(person.getGraduationDate().value);
-        // cap.setText(person.getCap().toString());
-        // address.setText(person.getAddress().value);
-        // university.setText(person.getUniversity().value);
-        // major.setText(person.getMajor().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
