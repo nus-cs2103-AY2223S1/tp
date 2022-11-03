@@ -57,9 +57,7 @@ public class StudentUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         if (descriptor.getExams().isPresent()) {
             Set<Exam> tags = descriptor.getExams().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_EXAM);
-            } else {
+            if (!tags.isEmpty()) {
                 tags.forEach(s -> sb.append(PREFIX_EXAM).append(s.toString()).append(" "));
             }
         }

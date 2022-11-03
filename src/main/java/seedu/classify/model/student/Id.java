@@ -11,7 +11,7 @@ import seedu.classify.commons.util.AppUtil;
  */
 public class Id {
 
-    public static final String MESSAGE_CONSTRAINTS = "Id should only contain 3 digits and 1 character";
+    public static final String MESSAGE_CONSTRAINTS = "ID should only contain 3 digits followed by 1 character";
     public static final String VALIDATION_REGEX = "\\d{3}[a-zA-Z]";
     public final String value;
 
