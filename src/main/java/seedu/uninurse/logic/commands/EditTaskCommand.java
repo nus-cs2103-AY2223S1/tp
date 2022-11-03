@@ -105,8 +105,8 @@ public class EditTaskCommand extends EditGenericCommand {
             model.setPerson(patientToEdit, editedPatient);
             model.setPatientOfInterest(editedPatient);
 
-            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS,
-                    taskIndex.getOneBased(), editedPatient.getName(), initialTask, updatedTask), EDIT_TASK_COMMAND_TYPE);
+            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskIndex.getOneBased(),
+                    editedPatient.getName(), initialTask, updatedTask), EDIT_TASK_COMMAND_TYPE);
         } catch (DuplicateTaskException dte) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK);
         }
