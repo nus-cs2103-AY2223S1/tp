@@ -129,10 +129,10 @@ public class AttributeList {
      * @param attributeName the name of the attribute to be edited.
      * @param attributeValue the new value of the attribute to be edited.
      */
-    public void editAttribute(String attributeName, String attributeValue) {
+    public void editAttribute(String attributeName, String attributeValue) throws AttributeException {
         Attribute<?> oldAttribute = findAttribute(attributeName);
         if (oldAttribute == null) {
-            // throw something here later
+            throw new AttributeException("Attribute should not be null");
         }
         Attribute<?> newAttribute = createAttributeInstance(attributeName, attributeValue);
         updateAttribute(oldAttribute, newAttribute);
@@ -179,8 +179,11 @@ public class AttributeList {
      * @param oldAttribute The old Field object from the Person.
      * @param newAttribute The new Field object to be updated.
      */
-    public void updateAttribute(Attribute<?> oldAttribute, Attribute<?> newAttribute) {
+    public void updateAttribute(Attribute<?> oldAttribute, Attribute<?> newAttribute) throws AttributeException {
         int index = attributeList.indexOf(oldAttribute);
+        if (index < 0) {
+            throw new AttributeException("Attribute not found");
+        }
         attributeList.set(index, newAttribute);
     }
 
@@ -249,4 +252,14 @@ public class AttributeList {
         return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        } else if (o instanceof AttributeList) {
+            AttributeList obj = (AttributeList) o;
+            return attributeList.equals(obj.attributeList);
+        }
+        return false;
+    }
 }
