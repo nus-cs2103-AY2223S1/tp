@@ -23,7 +23,7 @@ public class PolicyDeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the policy identified by the index number used in the displayed policy list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: POLICY_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_POLICY_SUCCESS = "Deleted policy: %1$s";

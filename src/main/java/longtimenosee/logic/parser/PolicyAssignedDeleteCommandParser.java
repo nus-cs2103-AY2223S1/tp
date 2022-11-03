@@ -21,9 +21,15 @@ public class PolicyAssignedDeleteCommandParser implements Parser<PolicyDeleteAss
         Index personIndex;
         Index policyIndex;
 
+        String trimmedInput = args.trim();
+        String[] indexes = (trimmedInput.split(" "));
+
+        if (indexes.length != 2) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    PolicyDeleteAssignedCommand.MESSAGE_USAGE));
+        }
+
         try {
-            String trimmedInput = args.trim();
-            String[] indexes = (trimmedInput.split(" "));
             personIndex = ParserUtil.parseIndex(indexes[0]);
             policyIndex = ParserUtil.parseIndex(indexes[1]);
         } catch (ParseException pe) {

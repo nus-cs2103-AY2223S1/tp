@@ -21,22 +21,22 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
       4. [Saving Data](#saving-the-data)
       5. [Manually Editing Data File](#editing-the-data-file)
    2. [Client Features](#client-features)<br>
-      1. [Adding a Client](#adding-a-client-addclient)
+      1. [Adding a Client](#adding-a-client--addclient)
       2. [Listing all Clients](#listing-all-clients--allclients)
       3. [Editing a Client](#editing-a-client--editclient)
-      4. [Searching for a Client](#searching-for-clients-findclient)
+      4. [Searching for a Client](#searching-for-clients--findclient)
       5. [Deleting a Client](#deleting-a-client--deleteclient)
       6. [Sorting all Clients](#sorting-all-clients--sort)
-      7. [Pin a Client](#pin-a-client-pin)
+      7. [Pin a Client](#pin-a-client--pin)
    3. [Policy Features](#policy-features)<br>
-      1. [Adding a Policy](#adding-a-policy-addpolicy)
-      2. [Switching to Policy View](#switching-to-the-view-of-currently-listed-policies-policies)
-      3. [Listing all Policies](#viewing-all-policies-in-the-address-book-allpolicies)
-      4. [Deleting a Policy](#deleting-a-policy)
-      5. [Searching for a Policy](#searching-for-a-policy-findpolicy)
-      6. [Assigning a Policy to a Client](#assigning-a-policy-to-a-client-assign)
-      7. [Listing all Assigned Policies](#listing-out-policies-assigned-to-a-clientlistassigned)
-      8. [Deleting Assigned Policies from a Client](#deleting-assigned-policies-from-a-client-deleteassigned)
+      1. [Adding a Policy](#adding-a-policy--addpolicy)
+      2. [Switching to Policy View](#switching-to-the-view-of-currently-listed-policies--policies)
+      3. [Listing all Policies](#viewing-all-policies-in-the-address-book--allpolicies)
+      4. [Deleting a Policy](#deleting-a-policy--deletepolicy)
+      5. [Searching for a Policy](#searching-for-a-policy--findpolicy)
+      6. [Assigning a Policy to a Client](#assigning-a-policy-to-a-client--assign)
+      7. [Listing all Assigned Policies](#listing-out-policies-assigned-to-a-client--listassigned)
+      8. [Deleting Assigned Policies from a Client](#deleting-assigned-policies-from-a-client--deleteassigned)
       9. [Tracking your Income](#tracking-your-income---viewincome)
    4. [Event Features](#event-features)
       1. [Adding an Event](#adding-an-event--addevent)
@@ -99,8 +99,9 @@ As such, the features available to you are split into **4** main features:
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `n…` after them can be used multiple times and at least n times.<br>
-  e.g. `[t/TAG]0…​` can be used as `0…​` (i.e. 0 times).
+* Items with `…` after them can be used multiple times.<br>
+  e.g. `[t/TAG]…​` can be used as `​` (i.e. 0 times).<br>
+  and e.g. `c/cov…​` can be used 1 or more times.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -170,7 +171,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ## Client Features
 
-### Adding a client: `addClient`
+### Adding a client : `addClient`
 
 Adds a client to the address book.
 
@@ -224,9 +225,9 @@ Format: `allClients`
 
 Edits an existing client in the address book.
 
-Format: `editClient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] ​`
+Format: `editClient CLIENT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] ​`
 
-* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the client at the specified `CLIENT_INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
@@ -238,7 +239,7 @@ Examples:
 *  `editClient 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 *  `editClient 3 b/2000-01-01` Edits the birthday of the 3rd client to be the 1st January 2000.
 
-### Searching for Clients: `findClient`
+### Searching for Clients : `findClient`
 
 Search for clients based on certain [metrics](#metric)
 
@@ -275,9 +276,9 @@ Below is an example of what you will expect to see when you call `findClient n/a
 
 Deletes the specified client from the address book.
 
-Format: `deleteClient INDEX`
+Format: `deleteClient CLIENT_INDEX`
 
-* Deletes the client at the specified `INDEX`.
+* Deletes the client at the specified `CLIENT_INDEX`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -320,7 +321,7 @@ Below is an example of what you will expect to see when you call `sort email`:
 
 
 
-### Pin a Client: `pin`
+### Pin a Client : `pin`
 * Format: `pin [CLIENT_INDEX]`
 * Description: Allows pinning of important clients to be viewed separately with command `viewPin`
 * Example Usage: `pin 1` pins the first client on list
@@ -330,17 +331,17 @@ An existing client in your Client Book can be assigned to an Event or Policy.<br
 To find out how to do so, you can refer to the [Adding an Event](#adding-an-event--addevent) guide to assign a Client to an Event or refer to the [Assigning a Policy to a Client](#assigning-a-policy-to-a-client-assign) guide to find out how you can assign a Client to a Policy.
 
 ## Policy Features
-Store policies from a large assortment of companies, with different coverages and customised customisable commissions! Assign them to a client when you secure a deal with ease.
+Store policies from a large assortment of companies, with different coverages and customisable yearly commissions! Assign them to a client when you secure a deal with ease.
 
-### Adding a policy: `addPolicy`
+### Adding a policy : `addPolicy`
 
 Adds a policy to the address book.
 
-Format: `addPolicy ti/TITLE cmp/COMPANY_CODE cms/Y1COMMISION% Y2COMISSION% Y3ONWARDS% [cov/COVERAGE]1...`
+Format: `addPolicy ti/TITLE cmp/COMPANY_CODE cms/Y1COMMISION% Y2COMISSION% Y3ONWARDS% cov/COVERAGE...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A policy can one or more coverages (including 0).
-</div>
+A policy must have one or more coverages.
+</div>  
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 These are the valid coverages and their corresponding codes.
@@ -374,19 +375,23 @@ These are the valid companies and their corresponding codes.
 | AVI          | Aviva Limited                      |
 | FWD          | Singapore Private Limited          |
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Commissions must take positive percentages within 0% to 100%! (e.g. 10%, 3.5%, 1.0%)
+</div>  
+
 Examples:
 * `addPolicy ti/PruShield cmp/AIA cms/10% 5% 1% cov/LIFE`
 * `addPolicy ti/ManuInvest Duo cmp/MNF cms/6% 3% 1.5% cov/INVESTMENT cov/LIFE`
 
 
-### Switching to the view of currently listed policies: `policies`
+### Switching to the view of currently listed policies : `policies`
 Switches the display to show the current list of policies.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If you previously filtered the policy list and switched to view events/contacts/income, this command will allow you to return to the filtered list of policies. 
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you wish to view the **full** list of policies, you may do so with the command `allPolicies` . 
+If you wish to view the **full** list of policies, you may do so with the command `allPolicies`. 
 </div>
 
 Format: `policies`
@@ -394,18 +399,19 @@ Format: `policies`
 Example Usage: `policies`
 
 Example Result: Shows the currently listed policies on the screen.
+![Policies](./images/policies.png)
 
 
 
-### Viewing all policies in the address book: `allPolicies`
+### Viewing all policies in the address book : `allPolicies`
 Switches the display to show **all** the policies stored in the address book.
 
 Format: `allPolicies`
 Example Usage: `allPolicies`
 Example Result: Shows all policies stored in the address book, on the screen.
 
-### Deleting a policy
-* Format: `deletePolicy INDEX`
+### Deleting a policy : `deletePolicy`
+* Format: `deletePolicy POLICY_INDEX`
 
 * Deletes the policy at the specified `INDEX`.
 * The index refers to the index number shown in the displayed list of policies.
@@ -416,7 +422,7 @@ Examples:
 * `findPolicy PruShield` followed by `delete 1` deletes the 1st policy in the results of the `findPolicy` command.
 
 
-### Searching for a Policy: `findPolicy`
+### Searching for a Policy : `findPolicy`
 
 Search for policies based on certain metrics
 
@@ -437,16 +443,20 @@ Examples:
 * `findPolicy cmp/PRU` returns policies that belong to Prudential Assurance Company
 * `findPolicy ti/Shield cov/LIFE` returns polices with Shield in its title and covers the LIFE coverage type
 
-### Assigning a Policy to a Client: `assign` 
+### Assigning a Policy to a Client : `assign` 
 
 If you have successfully sealed a deal with a client, you can keep track of this by assigning the policy to your client! 
 
 If you have yet to add either your Client or Policy to the Application, you can refer to the [Adding a Client](#adding-a-client-add) or [Adding a Policy](#adding-a-policy) guides.
 
-Format: `assign INDEXOFCLIENT INDEXOFPOLICY pr/PREMIUM sd/STARTDATE ed/ENDDATE`
+Format: `assign CLIENT_INDEX POLICY_INDEX pr/PREMIUM sd/STARTDATE ed/ENDDATE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Premium should be any positive numeric value below `1000000000` with or without 2 decimal places.
 </div>
 
 Example Usage:
@@ -459,24 +469,24 @@ first client in the list from Step 2, with the following details:
   2. Start date of 10th October 2010
   3. End date of 12th October 2021
 
-### Listing out policies assigned to a client:`listAssigned`
+### Listing out policies assigned to a client : `listAssigned`
 
 If you'd like to recall which policies a client has taken up this command lists out, in the command box, the policies 
 that have been assigned to a specific client.
 
-Format: `listAssigned INDEXOFCLIENT`
+Format: `listAssigned CLIENT_INDEX`
 
 Example Usage:
 
 1. `findClient n/John Doe` to filter the list of clients to find `John Doe`.
-2. `listAssigned INDEXOFCLIENT` to list out the policies assigned to the first client in the list from Step 1.
+2. `listAssigned CLIENT_INDEX` to list out the policies assigned to the first client in the list from Step 1.
 
-### Deleting assigned policies from a client: `deleteAssigned`
+### Deleting assigned policies from a client : `deleteAssigned`
 
 Unfortunate, but it happens. If a client cancels their policy prematurely, reflect the deletion of their assigned policy
 in the address book using this command.
 
-Format: `deleteAssigned INDEXOFCLIENT INDEXOFASSIGNEDPOLICY`
+Format: `deleteAssigned CLIENT_INDEX ASSIGNED_POLICY_INDEX`
 
 Example Usage:
 1. Similar to [listAssigned](#listing-out-policies-assigned-to-a-clientlistassigned), filter the list for the desired client and find out which policies they have been assigned to.
@@ -514,9 +524,9 @@ Examples:
 * Example Result: add an event with `Ben Leong` from `12:00` to `13:00` for the `1st January 2023` for a CS101 consultation.
 
 
-Format: `deleteEvent INDEX`
+Format: `deleteEvent EVENT_INDEX`
 
-* Deletes the event at the specified `INDEX`.
+* Deletes the event at the specified `EVENT_INDEX`.
 * The index refers to the index number shown in the displayed event list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Example Usage: `deleteEvent 2`
@@ -629,17 +639,17 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 
 ### Commands For Policy
 
-| Action                     | Format, Examples                                                                                                                                                |
-|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Policy**            | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE] [cmp/POLICY_COMPANY]` <br/> e.g: `findPolicy cov/LIFE`                                                      |        
-| **Add Policy**             | `addPolicy [ti/POLICY_TITLE] [cmp/POLICY_COMPANY] [cms/POLICY_COMMISSION] [cov/POLICY_COVERAGE]` <br> e.g: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE`  |                                                                                                                         
-| **Delete Policy**          | `deletePolicy [INDEX of POLICY]` <br> e.g: `deletePolicy 1`                                                                                                     |                                                                                                                                                                                             
-| **View All Policies**      | `allPolicies`                                                                                                                                                   |
-| **View Filtered Policies** | `policies`                                                                                                                                                      |
-| **View Assigned Policies** | `assign [INDEX of CONTACT] [INDEX of POLICY] [pr/PREMIUM_PAID] [sd/START_DATE] [ed/END_DATE]` <br> e.g: `assignPolicy 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01` |
-| **Delete Assigned**        | `deleteAssigned [INDEX of CONTACT] [INDEX of POLICY]` <br> e.g: `deleteAssigned 1 1`                                                                            |                                                                                                                                                                                                               
-| **List Assigned**          | `listAssigned`                                                                                                                                                  |
-| **View Income**            | `viewIncome [YEAR]`                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                           
+| Action                     | Format, Examples                                                                                                                                               |
+|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Find Policy**            | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE] [cmp/POLICY_COMPANY]` <br/> e.g: `findPolicy cov/LIFE`                                                     |        
+| **Add Policy**             | `addPolicy [ti/POLICY_TITLE] [cmp/POLICY_COMPANY] [cms/POLICY_COMMISSION] [cov/POLICY_COVERAGE]` <br> e.g: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE` |                                                                                                                         
+| **Delete Policy**          | `deletePolicy [POLICY_INDEX]` <br> e.g: `deletePolicy 1`                                                                                                       |                                                                                                                                                                                             
+| **View All Policies**      | `allPolicies`                                                                                                                                                  |
+| **View Filtered Policies** | `policies`                                                                                                                                                     |
+| **View Assigned Policies** | `assign [CLIENT_INDEX] [POLICY_INDEX] [pr/PREMIUM_PAID] [sd/START_DATE] [ed/END_DATE]` <br> e.g: `assignPolicy 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01`       |
+| **Delete Assigned**        | `deleteAssigned [CLIENT_INDEX] [POLICY_INDEX]` <br> e.g: `deleteAssigned 1 1`                                                                                  |                                                                                                                                                                                                               
+| **List Assigned**          | `listAssigned`                                                                                                                                                 |
+| **View Income**            | `viewIncome [YEAR]`                                                                                                                                            |                                                                                                                                                                                                                                                                                                                                                                           
 
 Note: `allPolicies` shows all existing policies inside LTNS, while `policies` show all policies based on filter matrices placed previously.
 
@@ -649,7 +659,7 @@ Note: `allPolicies` shows all existing policies inside LTNS, while `policies` sh
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Find Event**           | `findEvent [desc/DESCRIPTION] [n/PERSON_NAME] [date/DATE]` <br/> e.g: `findEvent date/2022-05-05`                                                                               |
 | **Add Event**            | `addEvent [desc/DESCRIPTION] [n/NAME] [date/DATE] [st/START_TIME] [et/END_TIME]` <br> e.g: `addEvent desc/Meet Clement at Noon n/Clement Tan date/2022-10-10 st/12:00 et/13:00` |
-| **Delete Event**         | `deleteEvent [INDEX]` <br> e.g: `deleteEvent 1`                                                                                                                                 |
+| **Delete Event**         | `deleteEvent [EVENT_INDEX]` <br> e.g: `deleteEvent 1`                                                                                                                           |
 | **View All Events**      | `allEvents`                                                                                                                                                                     |
 | **View Filtered Events** | `events`                                                                                                                                                                        |
 | **View Calendar**        | `calendar`                                                                                                                                                                      |                                                                                                                                                                                                     

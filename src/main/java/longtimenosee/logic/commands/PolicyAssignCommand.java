@@ -25,10 +25,14 @@ public class PolicyAssignCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": assigns a policy to a client. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": assigns a policy to a client.\n"
             + "Parameters: "
-            + "(Index of client) "
-            + "(Index of policy) "
+            + "CLIENT_INDEX "
+            + "POLICY_INDEX "
+            + PREFIX_PREMIUM + "PREMIUM "
+            + PREFIX_START + "START_DATE "
+            + PREFIX_END + "END_DATE\n"
+            + "Example: assign 1 1 "
             + PREFIX_PREMIUM + "200.00 "
             + PREFIX_START + "2020-12-10 "
             + PREFIX_END + "2021-12-15";
@@ -80,8 +84,19 @@ public class PolicyAssignCommand extends Command {
                 policyToAdd, premium, startDate, endDate)); //add the policy
         //model.deletePerson(personToPin); optional because we don't alter the list
         return new CommandResult(String.format(success
-                ? MESSAGE_ASSIGN_POLICY_SUCCESS : MESSAGE_ASSIGN_PERSON_DUPLICATE, policyToAdd, personToAddTo),
+                ? MESSAGE_ASSIGN_POLICY_SUCCESS : MESSAGE_ASSIGN_PERSON_DUPLICATE, policyToAdd.getTitle(),
+                personToAddTo.getName()),
                 false, false, false, true, false, false);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PolicyAssignCommand // instanceof handles nulls
+                && targetPersonIndex.equals(((PolicyAssignCommand) other).targetPersonIndex) // state check
+                && targetPolicyIndex.equals(((PolicyAssignCommand) other).targetPersonIndex) // state check
+                && premium.equals(((PolicyAssignCommand) other).premium) // state check
+                && startDate.equals(((PolicyAssignCommand) other).startDate) // state check
+                && endDate.equals(((PolicyAssignCommand) other).endDate)); // state check
+    }
 }

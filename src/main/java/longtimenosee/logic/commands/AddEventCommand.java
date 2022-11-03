@@ -13,7 +13,7 @@ import longtimenosee.logic.commands.exceptions.CommandException;
 import longtimenosee.model.Model;
 import longtimenosee.model.event.Event;
 import longtimenosee.model.event.exceptions.OverlapEventException;
-import longtimenosee.model.person.exceptions.PersonNotFoundException;
+import longtimenosee.model.person.exceptions.PolicyNotFoundException;
 
 
 /**
@@ -73,7 +73,7 @@ public class AddEventCommand extends Command {
         }
         try {
             model.addEvent(toAdd, toAdd.getPersonName().fullName);
-        } catch (PersonNotFoundException e) {
+        } catch (PolicyNotFoundException e) {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         } catch (OverlapEventException e) {
             throw new CommandException(MESSAGE_OVERLAP_EVENT);

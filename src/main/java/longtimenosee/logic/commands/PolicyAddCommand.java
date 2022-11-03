@@ -16,12 +16,12 @@ import longtimenosee.model.policy.Policy;
 public class PolicyAddCommand extends Command {
     public static final String COMMAND_WORD = "addPolicy";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to the LTNS. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to the LTNS. \n"
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             //Todo: Replace message with a command that lists out different companies
-            + PREFIX_COMPANY + "'One of: {MNF, PRU, AXA, GEL, NTU, ETQ, TML, AIA, AVI, FWD}'"
-            + PREFIX_COMMISSION + "Year1% Year2% Remaining%"
+            + PREFIX_COMPANY + "COMPANY_CODE "
+            + PREFIX_COMMISSION + "Year1% Year2% Remaining% "
             + "[" + PREFIX_COVERAGES + "COVERAGE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "PruShield "
