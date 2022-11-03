@@ -229,9 +229,6 @@ public class ParserUtil {
     public static List<String> parseStudents(String students) throws ParseException {
         requireNonNull(students);
         String[] arr = students.split(",");
-        if (students.isBlank() || arr.length == 0) {
-            throw new ParseException(BLANK_STUDENT_LIST);
-        }
         ArrayList<String> result = Arrays.stream(arr).map(String::trim).filter(str -> !str.isBlank())
                 .collect(Collectors.toCollection(ArrayList::new));
         if (result.size() == 0) {
