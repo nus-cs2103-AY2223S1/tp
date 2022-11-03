@@ -64,7 +64,7 @@ public class Person {
     }
 
     public String getImageUrl() {
-        return this.imageUrl == null ? "file:src/main/resources/images/profile_pic.png" : this.imageUrl;
+        return this.imageUrl == null ? "file:src/main/resources/images/default_pic.png" : this.imageUrl;
     }
 
     public Occupation getOccupation() {
