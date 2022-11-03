@@ -4,18 +4,29 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+Cobb *-down-> "1" BuyerBook
+Cobb *-down-> "1" PropertyBook
+BuyerBook *-down-> "1" UniqueBuyerList
+PropertyBook *-down-> "1" UniquePropertyList
 
-UniqueTagList *-right-> "*" Tag
-UniquePersonList -right-> Person
 
-Person -up-> "*" Tag
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+UniqueBuyerList -down-> Buyer
+UniquePropertyList -down-> Property
+
+Buyer *--> Name
+Buyer *--> Phone
+Buyer *--> Priority
+Buyer *--> Email
+Buyer *--> PriceRange
+Buyer *--> Address
+Buyer *--> Characteristics
+Buyer *--> LocalDateTime
+Property *--> Address
+Property *--> Characteristics
+Property *--> LocalDateTime
+Property *--> PropertyName
+Property *--> Description
+Property *--> Price
+Property *--> Owner
 @enduml
