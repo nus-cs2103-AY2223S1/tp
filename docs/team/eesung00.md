@@ -25,9 +25,6 @@ Given below are my contributions to the project.
     * Managed releases `v1.2` - `v1.3` (2 releases) on Github.
     * Managed issues, pull request and milestones on Github.
 
-* **Enhancements to existing features**:
-    * to be added soon
-
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `archive`, `statistics` and `delete`: [#27](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/27/files), [#115](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/115/files#diff-b50feaf9240709b6b02fb9584696b012c2a69feeba89e409952cc2f401f373fb), [#190](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/190).
