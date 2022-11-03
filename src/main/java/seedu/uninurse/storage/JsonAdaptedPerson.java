@@ -92,7 +92,7 @@ class JsonAdaptedPerson {
         medications.addAll(source.getMedications().getInternalList().stream()
                 .map(JsonAdaptedMedication::new)
                 .collect(Collectors.toList()));
-        tasks.addAll(source.getTasks().getTasks().stream()
+        tasks.addAll(source.getTasks().getInternalList().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
         remarks.addAll(source.getRemarks().getInternalList().stream()

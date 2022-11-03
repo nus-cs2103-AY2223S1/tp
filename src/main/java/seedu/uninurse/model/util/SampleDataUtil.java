@@ -21,6 +21,7 @@ import seedu.uninurse.model.remark.RemarkList;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.DateTime;
+import seedu.uninurse.model.task.NonRecurringTask;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
@@ -42,14 +43,14 @@ public class SampleDataUtil {
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagList("colleagues", "friends"), getConditionList("ACL tear"),
                 getMedicationList(new Medication("Amoxicillin", "0.5 g every 8 hours")),
-                getTaskList(new Task("Change dressing on right arm", new DateTime("16-10-22 1015"))),
+                getTaskList(new NonRecurringTask("Change dressing on right arm", new DateTime("16-10-22 1015"))),
                 getRemarkList("Allergic to Amoxicillin")),
             new Patient(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), getTagList("neighbours"),
                 getConditionList("Type I Diabetes", "Hypertension"),
                 getMedicationList(new Medication("Ampicillin", "0.5 IV every 6 hours")),
-                getTaskList(new Task("Check blood glucose level", new DateTime("25-11-22 1300")),
-                        new Task("Administer insulin dose", new DateTime("30-12-22 1845"))),
+                getTaskList(new NonRecurringTask("Check blood glucose level", new DateTime("25-11-22 1300")),
+                        new NonRecurringTask("Administer insulin dose", new DateTime("30-12-22 1845"))),
                         getRemarkList("Requires wheelchair to move around")),
             new Patient(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), getTagList("family"),

@@ -3,6 +3,9 @@ package seedu.uninurse.model.task;
 import static java.lang.Integer.parseInt;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a Recurring Task for a Patient.
  */
@@ -27,13 +30,6 @@ public class RecurringTask extends Task {
     }
 
     /**
-     * Returns whether the task date is past the current date.
-     */
-    public boolean pastTaskDate() {
-        return super.getDateTime().isPastDate();
-    }
-
-    /**
      * Returns the next {@code RecurringTask} that's going to occur at the
      * RecurringTask's frequency
      */
@@ -52,7 +48,12 @@ public class RecurringTask extends Task {
             return false;
         }
 
-        int freq = parseInt(recurAndFreq[0].trim(), 10);
+        int freq;
+        try {
+            freq = parseInt(recurAndFreq[0].trim(), 10);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
 
         if (freq <= 0) {
             return false;
@@ -93,6 +94,19 @@ public class RecurringTask extends Task {
 
     public int getFrequency() {
         return frequency;
+    }
+
+    @Override
+    public List<Task> updateTask() {
+        ArrayList<Task> updatedTasks = new ArrayList<>();
+        RecurringTask nextRecurringTask = this;
+
+        while (nextRecurringTask.passedTaskDate()) {
+            updatedTasks.add(nextRecurringTask);
+            nextRecurringTask = nextRecurringTask.getNextRecurringTask();
+        }
+
+        return updatedTasks;
     }
 
     @Override

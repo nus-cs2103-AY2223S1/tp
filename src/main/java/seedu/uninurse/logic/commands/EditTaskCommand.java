@@ -13,9 +13,11 @@ import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.DateTime;
+import seedu.uninurse.model.task.NonRecurringTask;
 import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
+import seedu.uninurse.model.task.exceptions.DuplicateTaskException;
 
 /**
  * Edits the details of an existing Task for a patient.
@@ -86,7 +88,7 @@ public class EditTaskCommand extends EditGenericCommand {
                 editTaskDescriptor.getDateTime().orElse(initialTask.getDateTime()),
                 editTaskDescriptor.getRecurrenceAndFrequency().get());
         } else {
-            updatedTask = new Task(
+            updatedTask = new NonRecurringTask(
                 editTaskDescriptor.getDescription().orElse(initialTask.getTaskDescription()),
                 editTaskDescriptor.getDateTime().orElse(initialTask.getDateTime()));
         }
@@ -95,15 +97,19 @@ public class EditTaskCommand extends EditGenericCommand {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK);
         }
 
-        TaskList updatedTaskList = initialTaskList.edit(taskIndex.getZeroBased(), updatedTask);
+        try {
+            TaskList updatedTaskList = initialTaskList.edit(taskIndex.getZeroBased(), updatedTask);
 
-        Patient editedPatient = new Patient(patientToEdit, updatedTaskList);
+            Patient editedPatient = new Patient(patientToEdit, updatedTaskList);
 
-        model.setPerson(patientToEdit, editedPatient);
-        model.setPatientOfInterest(editedPatient);
+            model.setPerson(patientToEdit, editedPatient);
+            model.setPatientOfInterest(editedPatient);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS,
-                taskIndex.getOneBased(), editedPatient.getName(), initialTask, updatedTask), EDIT_TASK_COMMAND_TYPE);
+            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskIndex.getOneBased(),
+                    editedPatient.getName(), initialTask, updatedTask), EDIT_TASK_COMMAND_TYPE);
+        } catch (DuplicateTaskException dte) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK);
+        }
     }
 
     @Override

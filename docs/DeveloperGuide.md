@@ -130,6 +130,9 @@ The `Model` component,
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
+* each patient has a TaskList, which holds Tasks which can be NonRecurringTasks or RecurringTasks. The below Class diagram illustrates their relationship.
+<img src="images/TaskClassDiagram.png" width="450" />
+
 </div>
 
 

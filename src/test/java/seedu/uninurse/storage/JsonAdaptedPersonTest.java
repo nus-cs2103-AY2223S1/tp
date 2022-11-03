@@ -43,7 +43,7 @@ public class JsonAdaptedPersonTest {
             .stream()
             .map(JsonAdaptedMedication::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedTask> VALID_TASKS = BENSON.getTasks().getTasks().stream()
+    private static final List<JsonAdaptedTask> VALID_TASKS = BENSON.getTasks().getInternalList().stream()
             .map(JsonAdaptedTask::new)
             .collect(Collectors.toList());
     private static final List<JsonAdaptedRemark> VALID_REMARKS = BENSON.getRemarks().getInternalList().stream()

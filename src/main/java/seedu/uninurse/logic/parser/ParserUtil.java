@@ -29,6 +29,7 @@ import seedu.uninurse.model.remark.RemarkList;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.DateTime;
+import seedu.uninurse.model.task.NonRecurringTask;
 import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
@@ -277,7 +278,7 @@ public class ParserUtil {
             throw new ParseException(Task.MESSAGE_CONSTRAINTS);
         }
 
-        return new Task(trimmedTaskDescription);
+        return new NonRecurringTask(trimmedTaskDescription);
     }
 
     private static Task parseTaskWithDateTime(String taskDescription, String dateTime) throws ParseException {
@@ -295,7 +296,7 @@ public class ParserUtil {
         DateTime dateTime1 = trimmedDateTime.contains(" ")
                 ? new DateTime(trimmedDateTime) : DateTime.ofDate(trimmedDateTime);
 
-        return new Task(trimmedTaskDescription, dateTime1);
+        return new NonRecurringTask(trimmedTaskDescription, dateTime1);
     }
 
     private static Task parseRecurringTask(String taskDescription, String dateTime, String recurAndFreq)

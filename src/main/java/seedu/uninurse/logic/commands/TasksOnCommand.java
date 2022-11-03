@@ -34,8 +34,6 @@ public class TasksOnCommand extends DisplayTasksGenericCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.getFilteredPersonList()
-                .forEach(p -> p.getTasks().filterTasks(t -> t.isTaskOnDay(dayToCheck)));
         model.setDayOfInterest(dayToCheck);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, dayToCheck.getDate()), COMMAND_TYPE);
