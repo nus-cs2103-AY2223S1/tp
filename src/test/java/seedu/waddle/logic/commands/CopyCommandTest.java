@@ -49,41 +49,10 @@ public class CopyCommandTest {
         assertCommandSuccess(new CopyCommand(), model, expectedCommandResult, expectedModel);
 
         String actualClipboardData = getClipboardData();
-        String expectedClipboardData = "Spring Trip\n" +
-                "    Country: Australia\n" +
-                "    Duration: 14 Days\n" +
-                "    Dates: 2022-01-01 - 2022-01-14\n" +
-                "    Waddlers: 1\n" +
-                "    Budget: $300.00\n" +
-                "\n" +
-                "Day 1\n" +
-                "\n" +
-                "Day 2\n" +
-                "\n" +
-                "Day 3\n" +
-                "\n" +
-                "Day 4\n" +
-                "\n" +
-                "Day 5\n" +
-                "\n" +
-                "Day 6\n" +
-                "\n" +
-                "Day 7\n" +
-                "\n" +
-                "Day 8\n" +
-                "\n" +
-                "Day 9\n" +
-                "\n" +
-                "Day 10\n" +
-                "\n" +
-                "Day 11\n" +
-                "\n" +
-                "Day 12\n" +
-                "\n" +
-                "Day 13\n" +
-                "\n" +
-                "Day 14\n" +
-                "\n";
+        String expectedClipboardData = "Spring Trip\n    Country: Australia\n    Duration: 14 Days\n"
+                + "    Dates: 2022-01-01 - 2022-01-14\n    Waddlers: 1\n    Budget: $300.00\n\nDay 1\n\nDay 2\n"
+                + "\nDay 3\n\nDay 4\n\nDay 5\n\nDay 6\n\nDay 7\n\nDay 8\n\nDay 9\n\nDay 10\n\nDay 11\n\nDay 12\n"
+                + "\nDay 13\n\nDay 14\n\n";
         assert true;
         //assertEquals(expectedClipboardData, actualClipboardData);
     }
