@@ -106,6 +106,12 @@ Format: `delete p/GLOBAL-PERSON-INDEX`
 Examples:
 * `delete p/1` Deletes the first member.
 
+### Viewing all members: `userlist`
+
+Shows a list of all members and their details.
+
+Format: `userlist`
+
 
 ### Adding a team: `create`
 
@@ -137,12 +143,6 @@ Format: `editteam t/TEAM-INDEX n/NEW-TEAM-NAME`
 
 Examples:
 * `editteam t/1 n/TEAMNEW` Changes the first team's name to 'TEAMNEW'.
-
-### Viewing all members: `userlist`
-
-Shows a list of all members and their details.
-
-Format: `userlist`
 
 
 ### Assigning a member to a team: `assign`
@@ -252,18 +252,18 @@ Examples:
 
 | Action              | Format, Examples                                                                                                                                               |
 |---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**            | `help`                                                                                                                                                         |
 | **Member Add**      | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g. `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney` |
 | **Member Delete**   | `delete p/GLOBAL-PERSON-INDEX` <br> e.g. `delete p/1`                                                                                                          |
 | **Member Edit**     | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g.`edit 1 n/Johny p/91234567 e/johndoe@example.com`                                      |
+| **Member List**     | `userlist`                                                                                                                                                     |
+| **Team Add**        | `create n/TEAM-NAME` <br> e.g. `create n/TEAM1`                                                                                                                |
+| **Team Delete**     | `delteam TEAM-INDEX` <br> e.g. `delteam 1`                                                                                                                     |
+| **Team Edit**       | `editteam t/TEAM-INDEX n/NEW-TEAM-NAME` <br> e.g. `editteam t/1 n/TEAMNEW`                                                                                     |
 | **Member assign**   | `assign m/MEMBER-INDEX t/TEAM-INDEX` <br> e.g.`assign m/1 t/1`                                                                                                 |
 | **Member unAssign** | `unassign m/MEMBER-INDEX t/TEAM-INDEX` <br> e.g.`unassign m/1 t/1`                                                                                             |
-| **Member List**     | `userlist`                                                                                                                                                     |
-| **Help**            | `help`                                                                                                                                                         |
 | **Task Add**        | `taskadd t/TEAM-INDEX n/TASK-NAME [d/DD-MM-YYYY]` <br> e.g. `taskadd t/1 n/Finish project d/24-12-2023`                                                        |
 | **Task Delete**     | `taskdelete t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskdelete t/1 task/1`                                                                                    |
 | **Task Mark**       | `taskmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskmark t/1 task/1`                                                                                        |
 | **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                    |
 | **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX [n/NEW-TASK-NAME] [d/NEW DD-MM-YYYY]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                  |
-| **Team Add**        | `create n/TEAM-NAME` <br> e.g. `create n/TEAM1`                                                                                                                |
-| **Team Delete**     | `delteam TEAM-INDEX` <br> e.g. `delteam 1`                                                                                                                     |
-| **Team Edit**       | `editteam t/TEAM-INDEX n/NEW-TEAM-NAME` <br> e.g. `editteam t/1 n/TEAMNEW`                                                                                     |
