@@ -4,6 +4,7 @@ import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.util.NodeQueryUtils.hasText;
 import static org.testfx.util.NodeQueryUtils.isVisible;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import seedu.address.logic.commands.AddCommand;
 public class HelpWindowTest {
     @BeforeAll
     public static void setupSpec() throws Exception {
+        setHeadless();
         FxToolkit.registerPrimaryStage();
     }
 
@@ -24,6 +26,11 @@ public class HelpWindowTest {
             HelpWindow helpWindow = new HelpWindow();
             helpWindow.show();
         });
+    }
+
+    @AfterEach
+    public void tearDown() throws Exception {
+        FxToolkit.cleanupStages();
     }
 
     @Test
@@ -54,5 +61,17 @@ public class HelpWindowTest {
     @Test
     public void assertDefaultEx() {
         verifyThat("#ex", hasText(AddCommand.EXAMPLE));
+    }
+
+    private static void setHeadless() {
+        String osName = System.getProperty("os.name");
+        if (osName.contains("Windows")) {
+            System.loadLibrary("WindowsCodecs");
+        }
+        System.setProperty("testfx.robot", "glass");
+        System.setProperty("testfx.headless", "true");
+        System.setProperty("prism.order", "sw");
+        System.setProperty("prism.text", "t2k");
+        System.setProperty("java.awt.headless", "true");
     }
 }
