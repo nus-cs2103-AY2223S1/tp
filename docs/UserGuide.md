@@ -122,7 +122,9 @@ Clears all students, tasks and lessons from JARVIS.
 
 Format: `clear`
 
-**Warning! This action is irreversible! Please think twice before you use this!**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This action is irreversible! Please think twice before you use this command!
+</div>
 
 ### Exiting the program : `exit`
 
@@ -145,8 +147,8 @@ Format: `addstudent s/NAME m/MATRIC_NUM`
 * A maximum of 10 students can exist in the student list at any point in time. The user will not be allowed to add more students after reaching the limit of 10 students.
 
 Examples:
-* `addstudent s/John Doe m/A0123459G`
-* `addstudent s/Alex Yeoh m/A0123456A`
+* `addstudent s/John Doe m/A0123459G` adds a student named `John Doe` with matric number `A0123459G` to your student list.
+* `addstudent s/Alex Yeoh m/A0123456A` adds a student named `Alex Yeoh` with matric number `A0123456A` to your student list. 
 
 ### Deleting a student : `deletestudent`
 
@@ -158,7 +160,7 @@ Format: `deletestudent INDEX`
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deletestudent 2` deletes the 2nd student in JARVIS.
+* `deletestudent 2` deletes the 2nd student shown in your student list.
 
 ### Editing a student : `editstudent`
 
@@ -172,7 +174,8 @@ Format: `editstudent INDEX [s/NAME] [m/MATRIC_NUM]`
 * Existing values will be updated to the input values.
 
 Examples:
-*  `editstudent 1 s/John Do` edits the name of the 1st student to be `John Do`
+* `editstudent 1 s/John Do` edits the name of the 1st student in your student list to be `John Do`. The matric number of the 1st student will remain the same.
+* `editstudent 2 s/Alex Li m/A1234567Z` edits the name of the 2nd student in your student list to be `Alex Li` and matric number to be `A1234567Z`.
 
 ### Locating students by name: `findstudent`
 
@@ -184,11 +187,11 @@ Format: `findstudent KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`.
-* Persons matching at least one keyword will be returned (i.e. `OR` search)
+* Students matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `findstudent John` returns `john` and `John Doe`
+* `findstudent yeoh` returns `Alex Yeoh` and `Yeoh Hern Yu` in the sample student list you start with. 
 
 ### Adding grades to a student : `grade`
 
@@ -208,7 +211,7 @@ Format: `grade INDEX [ra1/MARKS] [ra2/MARKS] [mt/MARKS] [pa/MARKS] [fn/MARKS]`
 * At least one of the optional fields must be provided.
 
 Examples:
-* `grade 1 ra1/17 mt/55` add to the grades for the 1st student: 17 marks for RA1, 55 marks for midterms. 
+* `grade 1 ra1/17 mt/55` add to the grades for the 1st student in your student list: 17 marks for RA1 and 55 marks for midterms. 
 
 ### Setting mastery check result for a student : `mc`
 
@@ -223,7 +226,7 @@ Format: `mc INDEX num/MC_NUM r/MC_RESULT`
 * `MC_RESULT` is not case-sensitive.
 
 Examples:
-* `mc 1 num/1 r/PASS` sets the mastery check result for the 1st student to PASS.
+* `mc 1 num/1 r/pass` sets the mastery check result for the 1st student in your student list to `PASS`.
 
 <div style="page-break-after: always;"></div>
 
@@ -240,8 +243,8 @@ Format: `addtask t/TASK_DESC [d/DEADLINE]`
 * `d/DEADLINE` should be in the format `yyyy-MM-dd`
 
 Examples:
-* `addtask t/Prepare tutorial slides d/2022-11-01`
-* `addtask t/Mark missions`
+* `addtask t/Prepare tutorial slides d/2022-11-01` adds a task with description `Prepare tutorial slides` and deadline of `Nov-11-2022` to your task list.
+* `addtask t/Mark missions` adds a task with description `Mark missions` with no deadline to your task list.
 
 ### Deleting a task : `deletetask`
 
@@ -253,7 +256,7 @@ Format: `deletetask INDEX`
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deletetask 2` deletes the 2nd task in JARVIS.
+* `deletetask 2` deletes the 2nd task in your task list.
 
 ### Marking a task as done : `marktask`
 
@@ -267,7 +270,7 @@ Format: `marktask INDEX`
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `marktask 2` marks the 2nd task as done.
+* `marktask 2` marks the 2nd task in your task list as done.
 
 ### Marking a task as not done : `unmarktask`
 
@@ -279,7 +282,7 @@ Format: `unmarktask INDEX`
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `unmarktask 2` marks the 2nd task as not done.
+* `unmarktask 2` marks the 2nd task in your task list as not done.
 
 <div style="page-break-after: always;"></div>
 
@@ -298,7 +301,7 @@ Format: `addstudio [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/
 * `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`
 
 Examples:
-* `addstudio l/Studio 3 sd/2022-10-12 st/14:00 et/16:00`
+* `addstudio l/Studio 3 sd/2022-10-12 st/14:00 et/16:00` adds a studio lesson with description `Studio 3` on `Oct-12-2022` from `14:00` to `16:00`.
 
 ### Adding a consult lesson: `addconsult`
 
@@ -313,7 +316,8 @@ Format: `addconsult [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et
 * `si/STUDENT_INDEX` can be specified one or more times according to the number of attending students.
 
 Examples:
-* `addconsult l/Consultation on recursion sd/2022-10-14 st/12:00 et/14:00 si/3 si/4`
+* `addconsult l/Consultation on recursion sd/2022-10-14 st/12:00 et/14:00 si/3 si/4` adds a consult lesson with description `Consultation on recursion` on `Oct-14-2022` from `12:00` to `14:00` with the 3rd and 4th student in your student list.
+* `addconsult sd/2022-10-15 st/23:00 ed/2022-10-16 et/00:00 si/1` adds a consult lesson from `Oct-15-22 23:00` to `Oct-16-22 00:00` with the 1st student in your student list.
 
 ### Adding a mastery check lesson: `addmc`
 
@@ -328,7 +332,8 @@ Format: `addmc [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_
 * `si/STUDENT_INDEX` can be specified one or more times according to the number of attending students.
 
 Examples:
-* `addmc l/Mastery check 1 sd/2022-10-12 st/12:00 et/14:00 si/1 si/2`
+* `addmc l/Mastery check 1 sd/2022-10-12 st/12:00 et/14:00 si/1 si/2` adds a mastery check lesson with description `Mastery check 1` on `Oct-20-2022` from `12:00` to `14:00` with 1st and 2nd student in your student list.
+* `addmc sd/2022-11-13 st/23:00 ed/2022-11-14 et/00:00 si/1` adds a mastery check lesson from `Nov-13-2022 23:00` to `Nov-14-2022 00:00` with 1st student in your student list.
 
 ### Deleting a lesson : `deletelesson`
 
@@ -340,7 +345,7 @@ Format: `deletelesson INDEX`
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deletelesson 2` deletes the 2nd lesson in JARVIS.
+* `deletelesson 2` deletes the 2nd lesson in your lesson list.
 
 ### Marking a lesson as completed : `marklesson`
 
@@ -352,7 +357,7 @@ Format: `marklesson INDEX`
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `marklesson 2` marks the 2nd lesson as completed.
+* `marklesson 2` marks the 2nd lesson in your lesson list as completed.
 
 ### Marking a lesson as not completed : `unmarklesson`
 
@@ -364,7 +369,7 @@ Format: `unmarklesson INDEX`
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `unmarklesson 2` marks the 2nd lesson as not completed.
+* `unmarklesson 2` marks the 2nd lesson in your lesson list as not completed.
 
 ### Marking a student as present for a lesson : `markstudent`
 
@@ -379,7 +384,8 @@ Format: `markstudent li/LESSON_INDEX si/STUDENT_INDEX`
 * `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `markstudent li/2 si/3` marks the 3rd student in the 2nd lesson as present.
+* `markstudent li/2 si/3` marks the 3rd student in the student list within the 2nd lesson in your lesson list as present.
+
 
 ### Marking a student as absent for a lesson : `unmarkstudent`
 
@@ -392,7 +398,7 @@ Format: `unmarkstudent li/LESSON_INDEX si/STUDENT_INDEX`
 * `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `unmarkstudent li/2 si/3` marks the 3rd student in the 2nd lesson as absent.
+* `unmarkstudent li/2 si/3` marks the 3rd student in the student list within the 2nd lesson in your lesson list as absent.
 
 ### Adding a note to a lesson : `addnote`
 
@@ -408,8 +414,8 @@ Format: `addnote n/NOTE li/LESSON_INDEX [si/STUDENT_INDEX]`
 * `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `addnote n/Get back to jeff on streams li/1 si/2` adds a note for the 2nd student in the 1st lesson.
-* `addnote n/Get back to the class on streams li/1` adds a note for the 1st lesson.
+* `addnote n/Get back to jeff on streams li/1 si/2` adds a note for the 2nd student within the 1st lesson in your lesson list.
+* `addnote n/Get back to the class on streams li/2` adds a note for the 2nd lesson in your lesson list.
 
 ### Deleting a note from a lesson : `deletenote`
 
@@ -424,8 +430,8 @@ Format: `deletenote ni/NOTE_INDEX li/LESSON_INDEX [si/STUDENT_INDEX]`
 * `NOTE_INDEX`, `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `deletenote ni/1 li/1 si/2` deletes a note for the 2nd student from the 1st lesson.
-* `deletenote ni/1 li/1` deletes a note from the 1st lesson.
+* `deletenote ni/1 li/1 si/2` deletes the 1st note for the 2nd student within the 1st lesson in your lesson list.
+* `deletenote ni/2 li/1` deletes the 2nd note from the 1st lesson in your lesson list.
 
 ### Adding participation for a student in a lesson : `addpart`
 
@@ -440,7 +446,7 @@ Format: `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`
 * `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `addpart p/100 li/1 si/2` sets participation for the 2nd student from the 1st lesson to be 100.
+* `addpart p/100 li/1 si/2` sets participation for the 2nd student within the 1st lesson in your lesson list to be 100.
 
 <div style="page-break-after: always;"></div>
 
