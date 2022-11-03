@@ -24,12 +24,6 @@ public class ListCommand extends ColumnManipulatorCommand {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String COMMAND_PRESENT_TENSE = COMMAND_WORD;
-
-    public static final String INCLUDE_SPECIFIER = "/i";
-
-    public static final String EXCLUDE_SPECIFIER = "/e";
-
     private static final Logger logger = Logger.getLogger("ListCommand");
 
     /**

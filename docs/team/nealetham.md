@@ -1,156 +1,52 @@
 ---
 layout: page
-title: Project Portfolio Page for Neale Tham
+title: Project Portfolio Page for Neale
 ---
 
-## Overview
+### RC4HDB
 
-**RC4 Housing Database** offers a convenient and intuitive interface for RC4 housing management staff to streamline their daily operations.
-## Summary of Contributions
+RC4HDB is a desktop application which streamlines the daily workflow of RC4 housing management staff, by providing specialised features which solve their resident & venue management needs.
 
-### Code contributed:
+Given below is a summary of my notable contributions to the project. You can find my full contribution [here](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nealetham&breakdown=true).
 
-I contributed code to the following modules/classes:
-1. *Enter contributions here*
-2. *Enter contributions here*
-3. *Enter contributions here*
+### Project management
+* Setting up the GitHub team organization, repository, Codecov & Gradle.
+* Renaming the product & changing product icon.
+* Administrative tasks such as meeting minutes & work delegation in the weekly scrum meeting.
 
-You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nealetham&breakdown=true).
+### Code contribution
+* Enhancements to new & existing features
+  * Reworked the Ui to comply with our specifications & user's needs. ([#65](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/65), [#66](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/66), [#86](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/86), [#101](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/104), [#141](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/144), [#192](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/192))
+  * Reworked `find` to perform substring search ([#31](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/31)).
+  * Implemented all [quality-of-life](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#quality-of-life) functionalities. ([#104](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/104)).
+* Miscellaneous contributions
+  * Storage unit tests ([#201](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/201), [#276](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/276)).
+  * Sample residents, venues & bookings ([#182](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/182)).
 
-<!-- Please replace the placeholder in the above URL with your github username. -->
+### Documentation
+* User Guide
+  * Ported from `AB3` to `RC4HDB` to meet our specifications, as well as crafting the introduction.
+  * Re-organized UG into distinct sections i.e. file management, venue management etc.
+  * Added/Modified the [quality-of-life](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#quality-of-life) & find command sections.
+* Developer Guide
+  * Ported the DG from `AB3` to `RC4HDB`. Contributions to the Non-functional requirements section.
+  * Added section on the implementation of our GUI, & quality-of-life functionalities.
+  * Added section on manual testing for quality-of-life functionalities, & `help`, `exit` commands.
+  * Updated/Added the [Ui Component Diagram](../images/UiClassDiagram.png), [Command History Class Diagram](../images/CommandHistoryClassDiagram.png), & [Command History Activity Diagram](../images/CommandHistoryActivityDiagram.png)
 
-### Enhancements implemented:
-
-I made the following enhancements to our product:
-1. *Enter contributions here*
-2. *Enter contributions here*
-3. *Enter contributions here*
-
-### Graphical User Interface (GUI)
-
-In `AB3` the GUI was implemented using `PersonListPanel` and `PersonCard`. Each `Person` is graphically represented as
-a `PersonCard` which contains all fields of a `Person` i.e. `Name`,`Phone`, `Email`, `Address`, `Tags`
-
-Results from a command would be displayed in the `PersonListPanel`, which graphically is a single column list,
-with each row corresponding to a `PersonCard`.
-
-Insert Old Ui Image Here
-
-At any given time in RC4, there are approximately 300 individuals staying in RC4. With our goal of providing an
-efficient and productive means of handling administrative tasks, we thought that the current interface was unsuitable
-for visualizing large numbers of entries.
-
-As a consequence, we adapted the `PersonListPanel` and converted it to `ResidentTableView`. A `Resident` entry will no
-longer be represented graphically as a `PersonCard`, but as a row in our table. The fields for each respective
-`Resident` i.e. `Name`, `Phone Number`, `Email`, `Gender`, `House`, `Matric Number`, and `Tags`are now represented as
-columns in each row.
-
-Insert New Ui Image here
-
-Users will now be able to see more entries on the window as compared to before. Fields of a `Resident` are also
-structured and more easily identifiable. These two together can potentially increase productivity of our user.
-
-The implementation of the `ResidentTableView` is relatively simple and done so using `JavaFx TableView`. For our usage,
-there are no performance issues, but it is well known that `JavaFX TableView` is known to be memory hungry, and
-potentially laggy when the number of columns exceed 50. To see a discussion on this click
-[here](https://github.com/javafxports/openjdk-jfx/issues/409).
-
-
-Other minor updates I made to the GUI include:
-* Updating the application icon to a suitable image for our use
-* Updating the application name from `AddressBook` to `RC4HDB`
-* Removed the File Tab in the status bar header
-* Rearranged the layout of the interface. `CommandBox` is now at the bottom of the window as opposed to the top.
-
-
-### Keyboard Shortcut
-
-As `RC4HDB` is designed to be optimized for use via a Command Line Interface (CLI). We have introduced several
-keyboard shortcut commands to improve the quality-of-life of our users such that there is little need for them to lift
-their hands to grab the mouse.
-
-Below is a table that lists all of our keyboard shortcuts:
-
-INSERT TABLE HERE FROM UPDATED UG
-
-The implementation of the `F3` keyboard shortcut was relatively simple. It involved adding a listener to scene, which
-would refocus on the `TextField` within the `CommandBox` class during the event that the key
-is pressed.
-
-
-### Contributions to the UG:
-
-I contributed to the following sections of the user guide:
-1. *Enter contributions here*
-2. *Enter contributions here*
-3. *Enter contributions here*
-
-### Contributions to the DG:
-
-I contributed to the following sections of the developer guide:
-1. *Enter contributions here*
-2. *Enter contributions here*
-3. *Enter contributions here*
-
-In particular, I added/updated the following UML diagrams:
-1. []()
-2. []()
-3. []()
-
-<!-- Provide links to the diagrams in the appendix at the bottom of the page -->
-
-### Contributions to team-based tasks:
-
-I contributed to the following team-based tasks:
-1. *Enter contributions here*
-2. *Enter contributions here*
-3. *Enter contributions here*
-
-### Review/mentoring contributions:
-
-I reviewed the following pull requests:
-1. [Add profile photo for Naren #23](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/23)
-2. [Create skeletal project portfolio page #22](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/22)
-3. [Edit README #28](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/28)
-4. [Update index.md #29](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/29)
-
-I also gave guidance to my team on the following matters:
-1. *Enter contributions here*
-2. *Enter contributions here*
-3. *Enter contributions here*
-
-### Contributions beyond the project team:
-
-Beyond the project team, I also participated actively in the forum.
-
-These are some threads in which I offered help to my classmates:
-1. [Discussion on association, composition, aggregation](https://github.com/nus-cs2103-AY2223S1/forum/issues/86#issuecomment-1229400456)
-2. [Failing codecov/patch check](https://github.com/nus-cs2103-AY2223S1/forum/issues/330)
-3. [Bug: Wrong activity diagram](https://github.com/nus-cs2103-AY2223S1/forum/issues/338)
-
-<!-- Provide links to the threads here -->
-
-For the practical examination, I also surfaced critical bugs in the other team's product.
-
-Some examples of these are:
-1. []()
-2. []()
-3. []()
+### Community
+* Reviewed [***27*** pull requests](https://github.com/AY2223S1-CS2103T-W12-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me). Many had non-trivial review comments, such as [#110](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/110), [#257](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/257) & [#76](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/110). Discussions also took place offline.
+* Contributed to forum discussions, such as [differences between association, composition, aggregation](https://github.com/nus-cs2103-AY2223S1/forum/issues/86#issuecomment-1229400456) & [failing Codecov/patch check](https://github.com/nus-cs2103-AY2223S1/forum/issues/330).
+* Surface [***12*** potential bugs & suggestions](https://github.com/nealetham/ped/issues?q=is%3Aopen+is%3Aissue) for other teams during PE-D. These include [non-functioning theme switcher](https://github.com/nealetham/ped/issues/4) & [missing target-user & value proposition](https://github.com/nealetham/ped/issues/10).
 
 ## Appendix
 
 ### Contributions to the Developer Guide:
 
-1. ![]()
-2. ![]()
-3. ![]()
+These are the UML diagrams I have updated/added to the DG.
 
-<!-- Embed the diagrams here -->
+![](../images/UiClassDiagram.png)
 
-### Contributions to the User Guide:
+![](../images/CommandHistoryClassDiagram.png)
 
-1. ![]()
-2. ![]()
-3. ![]()
-
-<!-- Embed the diagrams here -->
+![](../images/CommandHistoryActivityDiagram.png)
