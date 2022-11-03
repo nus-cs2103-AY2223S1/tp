@@ -242,7 +242,7 @@ Format: `toggle-list-mode`
 
 ### Mark or unmark a survey as done or not done: `mark/unmark`
 
-Changes the status of the survey to done or not done. More specifically, mark changes the status of the specified survey to done while unmark changes the status of the specified survey to not done.
+Changes the status of the survey to done or not done. More specifically, mark changes the status of the specified survey to done while unmark changes the status of the specified survey to not done. Note that the name of the survey is case-sensitive.
 
 Format: `mark INDEX s/NAME OF SURVEY`, `unmark INDEX s/NAME OF SURVEY`
 
@@ -332,7 +332,9 @@ _Details coming soon ..._
 ## Parameters format
 
 **NAME**: Names should only contain alphanumeric characters and spaces, and it should not be blank.
+
 **PHONE**: Phone numbers should only contain numbers, and it should be at least 3 digits long.
+
 **EMAIL**: Emails should be of the format local-part@domain and adhere to the following constraints:
 
 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
@@ -343,9 +345,15 @@ _Details coming soon ..._
     - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 **ADDRESS**: Addresses can take any values, and it should not be blank.
+
 **GENDER**: Gender should only be 'male', 'female', or 'others', and it should not be blank.
+
 **BIRTHDATE**: Birthdate should be in the format of yyyy-mm-dd, it should be a valid date, and it should not be blank. Birthdate should also not be in the future.
+
 **RACE**: Race should only contain alphabetical characters and spaces, and it should not be blank.
+
 **RELIGION**: Religion should only contain alphabetical characters and spaces, and it should not be blank.
+
 **SURVEY**: Survey should only contain alphanumeric characters and spaces, and it should not be blank.
+
 **TAG**: Tags names should be alphanumeric.
