@@ -213,7 +213,7 @@ It requires one field:
 - a/: To be followed by INDEX of attendance to be marked
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Pupilist only allows the marking of one field in a single command.
+Pupilist only allows one field to be marked in a single command.
 It does not allow commands such as `mark h/2 a/1` or `mark a/2 a/3`.
 </div>
 
@@ -236,7 +236,7 @@ It requires one field:
 - a/: To be followed by INDEX of attendance to be unmarked
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Pupilist only allows for the unmarking of one field in a single command.
+Pupilist only allows one field to be unmarked in a single command.
 It does not allow commands such as `unmark h/2 a/1` or `unmark a/2 a/3`.
 </div>
 
