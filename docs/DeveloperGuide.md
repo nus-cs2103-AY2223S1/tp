@@ -766,7 +766,7 @@ The following sequence diagram summarizes what happens when a user executes the 
 
 #### Design consideration:
 
-##### Aspect: How goto executes
+##### Aspect: How `goto` executes
 
 * **Alternative 1 (current choice):** Navigate to a single module by module code and update home status.
     * Pros:
