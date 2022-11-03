@@ -9,8 +9,7 @@ public class NextOfKinTest {
 
     @Test
     public void toStringTest() {
-        NextOfKin jadon = JADON;
         String expectedToStringJadon = "Name: Jadon Sacho; Phone: 81234567; Email: jadon@example.com;";
-        assertEquals(expectedToStringJadon, jadon.toString());
+        assertEquals(expectedToStringJadon, JADON.toString());
     }
 }
