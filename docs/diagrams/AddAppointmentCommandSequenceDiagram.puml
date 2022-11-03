@@ -10,14 +10,14 @@ participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "appointmentSet:MaximumSortedList" as MaximumSortedList MODEL_COLOR
+participant ":MaximumSortedList" as MaximumSortedList MODEL_COLOR
 participant ":Appointment" as Appointment MODEL_COLOR
 end box
 
-[-> LogicManager : execute("aa 1 d/21-Jan-2023 12:30 PM l/Starbucks")
+[-> LogicManager : execute("aa 1 d/21-Jan-2023 \n 12:30 PM l/Starbucks")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("aa 1 d/21-Jan-2023 12:30 PM l/Starbucks")
+LogicManager -> AddressBookParser : parseCommand("aa 1 d/21-Jan-2023 \n 12:30 PM l/Starbucks")
 activate AddressBookParser
 
 create AddAppointmentCommandParser
@@ -27,7 +27,7 @@ activate AddAppointmentCommandParser
 AddAppointmentCommandParser  --> AddressBookParser
 deactivate AddAppointmentCommandParser
 
-AddressBookParser -> AddAppointmentCommandParser  : parse("1 d/21-Jan-2023 12:30 PM l/Starbucks")
+AddressBookParser -> AddAppointmentCommandParser  : parse("1 d/21-Jan-2023 \n 12:30 PM l/Starbucks")
 activate AddAppointmentCommandParser
 
 create Appointment
