@@ -67,7 +67,20 @@ When storing a tag, these are the alternatives to consider.
     * Java supports only single class inheritance. Limited support for associating `Item` to multiple `Tag`
 
 #### Creating a Tag
-<!-- TODO: Fill up -->
+
+##### Overview
+The `newtag` command creates a new tag in FoodRem which can be subsequently used in another command (`tag`) to tag items for classification.
+
+##### Feature Details
+1. The user specifies a tag name for the new tag when creating the new tag
+1. If the tag name of the new tag is not provided, the user will be prompted to enter the command correctly via an error message.
+1. If the new tag ( tag with the same tag name)  already exists in `model`, an error is thrown to inform the user that the tag already exists.
+1. If the tag storage of FoodRem is full, an error will be thrown to inform the user that the maximum limit of tags has been reached and no additional tags can be created and stored on FoodRem.
+1. If the new tag name has an invalid format, an error is thrown to inform the user of the invalid tag name format.
+1. If Step 5 completes without any exceptions, a new tag is successfully created and stored inside the tag storage.
+
+##### Feature Considerations
+`Tag` is implemented as a separate class (rather than having it as a set of `String` in `Item`). With this, we could have a separate `newtag` command instead so that when we create a `Tag` object, this specific tag can be referenced by different `Item` objects. We will also hence be able to check whether `Tag` objects of the same name has been created before and if so, prevent these duplicate `Tag` objects from being created. Hence, if different `Item` objects wants to reference `Tag` of the same name, they will all reference to the same `Tag` object.  Morover, this gives us more flexibility in creating other commands such as `deletetag` or `renametag` which we can apply to a specific tag and update made to this tag  will be reflected across all `Item` objects that reference this `Tag` object.
 
 #### Tagging an Item
 
@@ -90,7 +103,7 @@ The `tag item` command tags an item with the provided tag name in FoodRem. If bo
 
 ##### Feature Considerations
 
-* When the `TagCommand` is executed to tag a tag to an item, a copy of the item is created and the tag is added to it before replacing this new copy of the item with the original item in the list of items in FoodRem. We chose to replace the original item with the new item because this will allow the UI to detect a change in the `UniqueItemList` and thus update and show the item with their new tag included.
+When the `TagCommand` is executed to tag a tag to an item, a copy of the item is created and the tag is added to it before replacing this new copy of the item with the original item in the list of items in FoodRem. We chose to replace the original item with the new item because this will allow the UI to detect a change in the `UniqueItemList` and thus update and show the item with their new tag included.
 
 #### Filtering Items by Tag Name
 <!-- TODO: Fill up -->
