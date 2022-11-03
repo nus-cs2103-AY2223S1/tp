@@ -52,7 +52,7 @@
 
 ---
 
-## Introduction
+## **Introduction**
 
 > **What is Contactmation?**
 
@@ -67,11 +67,23 @@ each projects' group and subgroup, and delegate tasks to each group.
 Contactmation is for **project managers and supervisors** that want to maintain an organised view of their
 projects and streamline the management of their projects.
 
+#### Purpose of this guide
+
+This guide elaborates on all the features available in Contactmation that are necessary for the purpose of Contactmation.
+It also binds the features together with real examples that allows the users to gain a clearer idea of how the features 
+are utilised. Some key components of Contactmation are established, in hopes of demonstrating the benefits of 
+Contactmation to users.
+
+#### How to use this guide
+
+The [table of contents](#table-of-contents) gives a complete overview of the guide. Following it **sequentially** effectively
+portrays the expected common usage of Contactmation.
+
 ---
 
-## About
+## **About**
 
-### Graphic User Interface
+### What it looks like
 
 The following figure shows the different graphical components of our application.
 We will be referring to these terminologies throughout the user guide:
@@ -84,6 +96,36 @@ We will be referring to these terminologies throughout the user guide:
 
 - Ensure that `Java 11` and above is installed on your device. If you do not have `Java 11` installed, please refer to
   this [Java 11 installation guide](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk).
+- The current version of Contactmation can only be used in a desktop, but should work in all operating systems (such as 
+Windows, macOS and Linux etc.) as long as `Java 11` is installed.
+
+--- 
+
+## **Additional Information**
+
+### Definitions
+
+In this user guide, we define any parameters within **square brackets** ([ ]) e.g. `[t/new_tag]` as
+**optional parameters**, and commands within **angled brackets** (< >) e.g. `<command>` are **necessary parameters**.
+
+**Ellipses** `...` indicate that more than 1 input of a certain type can be given to a single command.
+For example, `[t/tags ...]` means that an optional number (0 or more) of `tags` can be added to a single
+user command, but `t/tags...` means that 1 or more `tags` can be given to a single user command.
+
+Other keywords utilised in the Guide is defined in the [Glossary](#glossary).
+
+### Scoping
+
+Since Contactmation is a multi group management contact application, it supports scoping to facilitate
+easy access between groups and subgroups of a group project.
+
+Scoping defines the relationship between different groups. For example, a subgroup can be contained within
+another group, similar to how a folder on your desktop can be contained within another folder.
+
+There may also be many subgroups under a group, similar to how there may be many sub folders under a folder.
+
+Adding to the analogy, your contacts can be thought of as files on your desktop. Contacts can thus be
+added to a group or a subgroup, similar to how files can be added into folders.
 
 ---
 
@@ -111,47 +153,69 @@ We will be referring to these terminologies throughout the user guide:
 
 ---
 
-# Features
+## **Features**
 
-## Definitions
+With Contactmation, you can not only use the **basic features** to manage your group project, but also use 
+**advanced features** to customise your experience to fit your personal needs.
 
-In this user guide, we define any parameters within **square brackets** e.g. `[t/new_tag]` as
-**optional parameters**, and commands within **angled brackets** e.g. `<command>` are **placeholder parameters**.
-
-**Ellipses** `...` indicate that more than 1 argument of a certain type can be given to a single command.
-For example, `[t/tags ...]` means that an optional number (0 or more) of `tags` can be added to a single
-user command, but `t/tags...` means that 1 or more `tags` can be given to a single user command.
-
-
-#### Other keywords
-- `item`: an object that is part of a team project (person, groups and tasks).
-- Scoping: the level of access of an `item` or an attribute of an `item` in your app. So when an item is in a scope, it
-  means the level of access of all the attributes of that item is within the scope of that item. It is explained in further
-  detail below.
-
-## Scoping
-
-Since Contactmation is a multi group management contact application, it supports scoping to facilitate
-easy access between groups and subgroups of a group project.
-
-Scoping defines the relationship between different groups. For example, a subgroup can be contained within
-another group, similar to how a folder on your desktop can be contained within another folder.
-
-There may also be many subgroups under a group, similar to how there may be many sub folders under a folder.
-
-Adding to the analogy, your contacts can be thought of as files on your desktop. Contacts can thus be
-added to a group or a subgroup, similar to how files can be added into folders.
-
-## **Basic features**
+## Basic features
 
 Now that you have finished setting up Contactmation, let’s start performing basic tasks with Contactmation.
 As Contactmation aims to help you manage your contacts, project groups and tasks, we will start off by performing
 a range of basic commands varying from adding a person to manipulating tasks and teams.
 
+The basic features are categorised as the following:
+1. General Commands
+2. Contact Commands
+3. Team Commands
+4. Task Commands
+
+## General commands
+You can use these commands used on all 3 categories of commands, namely **command**, **team**, and **task** commands.
+These commands are also irrespective of the [scope](#scoping) you are in.
+
+
+### Clear command: `clear`
+
+This command clears all group, contact and task entries from the application. You can do this to commemorate the end of 
+a project, and kickstart a new one.
+
+<div markdown="span" class="alert alert-primary">❗ **WARNING** <br>
+THIS ACTION IS IRREVERSIBLE! RUN THIS COMMAND AT YOUR OWN DISCRETION**
+</div>
+
+
+**Format:** `clear`
+
+### Find command: `find`
+
+Searches for a contact, group or task that matches the given `KEYWORD`. Searches may also include `MORE_KEYWORDS`
+to further narrow the search for a contact, subgroup or task within the current [scope](#scoping).
+
+**Format:** `<ITEM> find <KEYWORD> [<MORE_KEYWORDS>]`
+
+**Examples:**
+
+- `person find John Doe`
+- `task find task1 task2`
+- `team find task1 task2`
+
+### Exits the program: `exit`
+
+Exits the current session and closes the application.
+
+**Format:** `exit`
+
+---
+
 ## Contact commands
 
-### Constraints on contact information
+Now, you should use these set of commands to add the members of your project.
+The commands will allow you to add the necessary information on your members with ease as well.
+Moreover, our software ensures that the information of the member you added, as a contact, is valid.
+Contact-related commands precede with the `person` keyword.
 
+#### Things to note when using contact commands
 
 The following contact commands comply with these placeholder constraints:
 
@@ -159,9 +223,9 @@ The following contact commands comply with these placeholder constraints:
 - The `PHONE_NUMBER` of the contact must be at least 3 digits long.
 - The `EMAIL` of the contact must be in the format `local-part@domain`.
 
-    - `Local-part`: Only contain alphanumeric characters and these special characters, excluding
+    - `local-part`: Only contain alphanumeric characters and these special characters, excluding
       the parentheses, (+\_.-). The local-part may not start or end with any special characters.
-    - `Domain`:
+    - `domain`:
 
         - Ends with a domain label at least 2 characters long.
         - Have each domain label start and end with alphanumeric characters.
@@ -169,7 +233,7 @@ The following contact commands comply with these placeholder constraints:
 
 - The `ADDRESS` can take any values, but it should not be blank.
 - The `TAG` must be alphanumeric.
-- The `INDEX` must be a positive integer which cannot exceed the number of contacts currently displayed in the
+- The `INDEX` (the number of the person in the list) must be a positive integer which cannot exceed the number of contacts currently displayed in the
   application.
 - The `KEYWORD` and `MORE_KEYWORDS` must be alphanumeric.
 
@@ -198,7 +262,8 @@ You can use the `person delete` command to delete a contact from the list of per
 **Example**:
 
 - `person delete 1`
-
+  - this deletes the first person on the person list shown.
+  
 ### Listing all contacts
 
 Contactmation supports the `list` command that displays all of your contacts into a list of persons.
@@ -208,39 +273,6 @@ Contactmation supports the `list` command that displays all of your contacts int
 
 ---
 
-## General commands
-
-### Clear command: `clear`
-
-This command clears all group, contact and task entries from the application.
-
-<div markdown="span" class="alert alert-primary">❗ **WARNING** <br>
-**THIS ACTION IS IRREVERSIBLE! RUN THIS COMMAND AT YOUR OWN DISCRETION**
-</div>
-
-
-**Format:** `clear`
-
-### Find command: `find`
-
-Searches for a contact, group or task that matches the given `KEYWORD`. Searches may also include `MORE_KEYWORDS`
-to further narrow the search for a contact, subgroup or task within the current [scope](#scoping).
-
-**Format:** `<ITEM> find <KEYWORD> [<MORE_KEYWORDS>]`
-
-**Examples:**
-
-- `person find John Doe`
-- `task find task1 task2`
-- `team find task1 task2`
-
-### Exits the program: `exit`
-
-Exits the current session and closes the application.
-
-**Format:** `exit`
-
-
 ## Team commands
 
 
@@ -248,12 +280,12 @@ Contactmation allows you to group your contacts into teams, which allows you to 
 specific teams. Team-related commands in Contactmation begin with the `team` keyword.
 
 
-### Constraints on team information
+#### Things to note when using team commands
 
 The following team commands comply with these placeholder constraints:
 
 - The `TEAM NAME` must be alphanumeric.
-- The `INDEX` must be a positive integer which cannot exceed the number of contacts / teams currently displayed
+- The `INDEX`(the number of the team in the list) must be a positive integer which cannot exceed the number of contacts / teams currently displayed
   in the application.
 
 ### Create a Team
@@ -282,10 +314,9 @@ the team list.
 **Examples**:
 
 - `team delete 1`
+  - The above command deletes team number 1 in the list of teams.
 
-  The above command deletes team number 1 in the list of teams.
-
-### Removing contacts from group: `team remove`
+### Removing contacts from team: `team remove`
 
 Removes the contact from the current group by their currently specified `INDEX` as shown in
 the application window.
@@ -295,6 +326,7 @@ the application window.
 **Example:**
 
 - `team remove 3`
+  - This command removes contact number 3 in the specified team.
 
 ### Navigate to a Team
 
@@ -317,15 +349,17 @@ out of it.
 
 **Examples**:
 
-- `cg 1`
-
-  The above command allows you to navigate to team number 1 in the list of teams.
-
+- `cg 3`
+  - The above command allows you to navigate to team number 3 in the list of teams.
+  - Before:
+    ![Create Team Screenshot](images/user-guide-img/NavigateTeamBeforeScreenshot.PNG)
+  - After:
+    ![Create Team Screenshot](images/user-guide-img/NavigateTeamAfterScreenshot.PNG)
 - `cg ..`
 
 <aside>
-💡 If you are familiar with UNIX-based operating systems such as Linux, the navigation command (`cg`) in Contactmation 
-follows a similar syntax to the change directory command (`cd`)
+💡 If you are familiar with UNIX-based operating systems such as Linux or familiar with using terminal, the navigation 
+command (`cg`) in Contactmation follows a similar syntax to the change directory command (`cd`).
 
 </aside>
 
@@ -352,8 +386,7 @@ the person by using the `team remove` command.
 **Examples**:
 
 - `team remove 1`
-
-  The above command removes person number 1 from the list of persons within the team.
+  - The above command removes person number 1 from the list of persons within the team.
 
 ### Creating and Deleting a Subteam
 
@@ -362,10 +395,18 @@ Contactmation allows the creation and deletion of a subteam within a team using 
 
 
 ## Task commands
+After adding your **contacts**, and allocating them into **teams**, you can give them **tasks**!
+Task-related commands precede with the `task` keyword.
+
+#### Things to note when using contact commands
+- The `INDEX`(the number of the team in the list) must be a positive integer which cannot exceed the number of contacts / teams currently displayed
+in the application.
 
 ### Adding a task to a team: `task add`
 
-Adds a new task to an existing group scope. This group cannot be the root group.
+Adds a new task to an existing group scope. This group **cannot be the root group**.
+
+![Create Team Screenshot](images/user-guide-img/TaskAddScreenshot.PNG)
 
 **Format:** `task add t/<TITLE> d/<DESCRIPTION>`
 
@@ -382,6 +423,7 @@ Format: `task delete <INDEX>`
 Example:
 
 - `task delete 1`
+  - This command deletes the first task in the task list.
 
 ### Setting progress for tasks: `task progress`
 
@@ -389,17 +431,16 @@ Example:
 
 Sets the progress level for each task that has been listed.
 
-Format: `task progress i/<INDEX> <LEVEL>`
+Format: `task progress <INDEX> <LEVEL>`
 
 - Index indicates the index of the task in the list.
 - Level indicates the progress level, and can only be set to 25%, 50%, 75%, 100%.
 
 Example:
 - `task progress 1 25%`
+  - This sets the progress of the first task in the list as 25%.
 
-This sets the progress of the first task in the list as 25%.
-
-## Advanced features
+## **Advanced features**
 
 Now, there might be many things that you wish to do with managing your tasks and groups. However, it feels really,
 really tedious to perform multiple functions one after the other.
@@ -408,7 +449,7 @@ adding and customizing your own commands and features!
 
 Firstly, let’s understand what these commands are and how these commands work in Contactmation.
 
-## Advanced features overview: Chaining
+### Advanced features overview: Chaining
 
 Most of the commands in Contactmation can take in an input and give an output. This is similar to how your functions
 work in programming and mathematics.
@@ -434,7 +475,7 @@ Whenever (`;`) is used, the output of the previous commands are not passed on.
 
 All commands that produce an output supports the use of `|` to “pipe” their output to the subsequent commands.
 
-## Advanced feature constraints
+#### Advanced feature constraints
 
 While these advanced features can make your Contactmation experience a lot smoother, it is also subject to certain
 limitations. These are the following constraints for each keyword in the format section of each advanced feature
@@ -445,7 +486,7 @@ command:
 
 Here are some commands that will aid you in gaining better control over Contactmation:
 
-## Select command
+### Select command
 
 This command allows you to select a specific group, contact or task by their `INDEX`. While this command does nothing
 by itself, it is useful as a precursor to chaining other commands after it.
@@ -458,7 +499,7 @@ by itself, it is useful as a precursor to chaining other commands after it.
 
 ![Select command ui](images/SelectCommandUi)
 
-## Contains command
+### Contains command
 
 You can use the `contains` command which takes in an item and checks if it contains a certain attribute. If it does,
 then the attribute description will be shown in the result display if there is no further piping.
@@ -473,7 +514,7 @@ then the attribute description will be shown in the result display if there is n
 
 Here, we see that there are no `bug` attribute in the task `New Burger Recipes`.
 
-## Execute command
+### Execute command
 
 This command allows for the running of a `command` on a piped string.
 
@@ -483,7 +524,7 @@ This command allows for the running of a `command` on a piped string.
 
 - `Who lives in a pineapple under the sea | e`
 
-## Replace command
+### Replace command
 
 This command replaces a piece of text with another piece of text.
 
@@ -493,7 +534,7 @@ This command replaces a piece of text with another piece of text.
 
 - `r tetss te%ssts`
 
-## Foreach command
+### Foreach command
 
 Iterations can increase our workflow efficiency several fold, and through the `foreach` command, we can now cycle
 through all entries of an item type in the current scope and apply a command to them. This can be especially powerful
@@ -507,7 +548,7 @@ when combined with piping to do complex executions with a single command!
 
 ![Foreach command ui](images/ForeachCommandUi)
 
-## If / else command
+### If / else command
 
 This command behaves exactly like if else statements in programming languages. If the `CRITERIA` specified is met,
 then the command sequence will execute `COMMAND IF`, else it will execute `COMMAND ELSE` instead. The command
@@ -522,7 +563,7 @@ ensures that the application cannot run `COMMAND IF` and `COMMAND ELSE` in the s
 
 - `task select 1 if [[contains bug]] ;; [[mark]] ;; [[task delete]]`
 
-## Aliasing
+### Aliasing
 
 Aliasing is very useful to have in case you do not agree with the default naming scheme in Contactmation! Here’s
 how it works:
@@ -537,7 +578,7 @@ After running `alias group team`, you are now able to use the command `group` as
 
 ![Aliasing command ui](images/AliasingCommandUi)
 
-## Custom command / Macro
+### Custom command / Macro
 
 Do you ever feel tired from typing the same commands over and over again? Do you find yourself highlighting your
 commands and copying and pasting them? Macros are available in our application to solve this problem of yours.
@@ -560,7 +601,7 @@ When `markeverytask` is typed into the command box, all tasks become marked!
 
 ![Custom command ui 2](images/CustomCommandUi2)
 
-## Piecing multiple commands together
+### Piecing multiple commands together
 
 Here’s another example. You have just completed fixed a bunch of bugs you would like to mark off all tasks that
 was bugged as complete.
@@ -583,7 +624,7 @@ ratings:
 Using just 1 command sequence, you are able to do the work that many normal commands would similarly achieve and
 mark hundreds of tasks in a matter of seconds!
 
-## FAQ
+## **FAQ**
 
 > How can I install `Java 11`?
 
@@ -594,7 +635,7 @@ Follow the guide for installing `Java 11` [here](#prerequisites).
 This depends on what you will be using Contactmation for. It still can be used simply as an application
 for simply saving and organizing contacts.
 
-## Future plans
+## **Future plans**
 
 Our future plans for Contactmation includes:
 
@@ -606,13 +647,13 @@ Our future plans for Contactmation includes:
 - A pop-up window that shows the detailed form of descriptions to the user.
 - A for loop command to iterate through and count groups, contacts or tasks by their attribute.
 
-## Glossary
+## **Glossary**
 
 | Vocabulary       | Description                                                                                        |
-| ---------------- | -------------------------------------------------------------------------------------------------- |
+|------------------| -------------------------------------------------------------------------------------------------- |
 | Command sequence | What you, the user, would write in the command box for the execution of a command.                 |
 | Contact          | A contact with contact information.                                                                |
-| Group            | A container that contains people that work on a similar project.                                   |
+| Team             | A container that contains people that work on a similar project.                                   |
 | Index            | The numerical placing of a group, contact or task in the current application display.              |
 | Item             | An item can refer to a group, contact or task.                                                     |
 | Pipe             | The output of the previous section of commands will be used as input for the next set of commands. |
@@ -620,7 +661,7 @@ Our future plans for Contactmation includes:
 | Scope            | A constraint on the groups, people and tasks you are able to view at one time on the display.      |
 | Task             | Assigned to people or groups                                                                       |
 
-## Commands summary
+## **Commands summary**
 
 ### General commands summary
 
