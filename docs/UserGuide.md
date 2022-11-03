@@ -35,7 +35,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `addressbook.jar` from [here](https://github.com/AY2223S1-CS2103-F14-2/tp/releases).
+2. Download the latest `internconnect_v1.4.jar` from [here](https://github.com/AY2223S1-CS2103-F14-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your InternConnect.
 
@@ -131,11 +131,11 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 * Items with `...` after them can be used multiple times including zero times.
   e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/KIV`, `t/KIV t/offered` etc.
 
-* Items in curly brackets are mandatory.
-  e.g., `{mandatory_field_parameter/FIELD_DETAIL}`, all fields must be listed.
+* Items in curly brackets represent multiple parameters, and each of them is mandatory.
+  e.g., `{mandatory_field_parameter/FIELD_DETAIL}`, all fields that belong to mandatory fields must be listed.
 
 * Items in square brackets are optional.
-  e.g., `n/NAME p/PHONE e/EMAIL [t/TAG]` can be used as `n/Bobby p/91234567 e/bob@example.com t/KIV` or as `n/Bobby p/91234567 e/bob@example.com`
+  e.g., `n/NAME [t/TAG]` can be used as `n/Bobby t/KIV` or as `n/Bobby`
 
 * Parameters can be in any order, and are separated by a space.
   e.g., if the command specifies `n/NAME p/PHONE e/EMAIL`, `n/NAME e/EMAIL p/PHONE` is also acceptable.
@@ -168,6 +168,7 @@ Adds an applicant to InternConnect.
 Format: `add {mandatory_field_parameter/MANDATORY_FIELD_DETAIL} [t/TAG]...`
 
 * For `mandatory_field_parameter` arguments, please refer to the `parameter` of each fields in the [Identity Fields](#21-identity-fields) and [Data Fields](#22-data-fields) section above.
+* There are 11 `mandatory_field_parameter` in total, and you need to specify all of them.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV`
@@ -197,7 +198,7 @@ Edits an existing applicant in InternConnect.
 
 Format: `edit INDEX parameter/NEW_PARAMETER_DETAIL [parameter/NEW_PARAMETER_DETAIL]...`
 
-* For `parameter` arguments, please refer to the `parameter` of each fields in the [Fields](#2-fields) section above.
+* For `parameter` arguments, please refer to the `parameter` of each field in the [Fields](#2-fields) section above.
 * Edits the applicant at the specified `INDEX`. 
 * The index refers to the index number shown in the displayed applicants list. 
 * The index **must be a positive integer** 1, 2, 3, ... and not exceed the total records listed.
@@ -241,13 +242,13 @@ Format: `find parameter/KEYWORD [parameter/KEYWORD]...`
 
 Search Types:
 1. Matching word: Keywords will only match if there is a full matching word. E.g., `Bobby` will not match `Bobbys`.
-2. Substring: Keywords will match as long as a substring match exists. E.g., `Bob` will match `Bobby` and `Robobson`
-3. Numeric: Search will search by its numeric value. E.g., Both `3` and `3.0` will match `3.0`
+2. Substring: Keywords will match as long as a substring match exists. E.g., `@gmail.com` will match `jason@gmail.com` and `CS2103@gmail.com`
+3. Numeric: Search will search by its numeric value, rounded to 2 decimal places. E.g., Both `3` and `3.00000001` will match `3.00`
 
 | Field               | Search Type               | 
 |---------------------|---------------------------|
 | **Name**            | Matching word             | 
-| **Email**           | Substring                 | 
+| **Email**           | Substring                 |
 | **Phone**           | Substring                 |
 | **Address**         | Matching word             | 
 | **CAP**             | Numeric of `CURRENT_CAP`  | 
@@ -260,9 +261,9 @@ Search Types:
 
 Examples:
 * `find n/Bobby` Returns applicants with names matching `bobby` and `Bobby Cortez`
-* `find g/female c/3.5 2` returns female applicants with a CAP value of 3.5 or 2.0
-* `find g/male t/offered KIV` returns male applicants who have an offered or KIV tag attached to them
-* `find g/male e/gmail` returns male applicants who have a `gmail` substring in their email address
+* `find g/Female c/3.5 2` returns female applicants with a CAP value of `3.5` or `2.0`
+* `find g/Male t/offered KIV` returns male applicants who have an `offered` or `KIV` tag attached to them
+* `find g/Male e/gmail` returns male applicants who have a `gmail` substring in their email address
 
 
 ### 3.8 Importing applicants from an external JSON file: `import`
