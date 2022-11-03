@@ -11,7 +11,7 @@ This user guide will help you get started and understand how FABook can **seamle
 
 # Table of Contents
 
-* TOC 
+* TOC
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------

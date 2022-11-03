@@ -248,7 +248,7 @@ Step 2. The user decides to add a file path to  the 2nd person in the current li
 
 Step 3. `LogicManager` calls `LogicManager::execute` method that was implemented from `Logic` interface. Within the method, `AddressBookParser::parseCommand` is called on the user input `filePath` and a `Command` object is returned.
 
-Step 4. `AddressBookParser::parseCommand` will parse the user input and match the `COMMAND_WORD` to be `filepath` which is `SetPathFileCommand#COMMAND_WORD`. Thus a `SetPathFileCommandParser` object is instantiated which parses and checks the user arguments. 
+Step 4. `AddressBookParser::parseCommand` will parse the user input and match the `COMMAND_WORD` to be `filepath` which is `SetPathFileCommand#COMMAND_WORD` `SetPathFileCommandParser` object is instantiated which parses and checks the user arguments. 
 
 Step 5. `SetPathFileCommandParser` object parses the given user arguments. If the `PREFIX_FILEPATH` is present and there is no `IllegalValueException`, a `SetPersonFileCommand` object is instantiated with `index` and `filePath` obtained from the user arguments.
 
