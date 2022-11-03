@@ -7,7 +7,6 @@ import static seedu.taassist.testutil.TypicalStudents.getTypicalTaAssist;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.taassist.logic.commands.result.CommandResult;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.ModelManager;
 import seedu.taassist.model.TaAssist;

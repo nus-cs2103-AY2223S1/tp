@@ -3,7 +3,6 @@ package seedu.taassist.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import seedu.taassist.logic.commands.result.CommandResult;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.IsPartOfClassPredicate;

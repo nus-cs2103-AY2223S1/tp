@@ -9,8 +9,6 @@ import static seedu.taassist.logic.commands.actions.UiAction.UI_HELP;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.taassist.logic.commands.result.CommandResult;
-
 public class CommandResultTest {
     @Test
     public void equals() {

@@ -1,4 +1,4 @@
-package seedu.taassist.logic.commands.result;
+package seedu.taassist.logic.commands;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
@@ -75,8 +75,7 @@ public class CommandResult {
         requireNonNull(storage);
         assert hasUiAction();
 
-        StorageActionResult storageActionResult = storageAction.act(storage);
-        return new CommandResult(storageActionResult.combineFeedback(feedbackToUser));
+        return storageAction.act(storage);
     }
 
     @Override

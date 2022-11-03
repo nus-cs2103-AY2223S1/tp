@@ -18,7 +18,6 @@ import java.util.List;
 
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.logic.commands.result.CommandResult;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.student.NameContainsKeywordsPredicate;

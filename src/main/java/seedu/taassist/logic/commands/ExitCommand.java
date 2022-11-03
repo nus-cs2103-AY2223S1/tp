@@ -2,7 +2,6 @@ package seedu.taassist.logic.commands;
 
 import static seedu.taassist.logic.commands.actions.UiAction.UI_EXIT;
 
-import seedu.taassist.logic.commands.result.CommandResult;
 import seedu.taassist.model.Model;
 
 /**

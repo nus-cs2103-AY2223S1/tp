@@ -13,7 +13,6 @@ import java.util.Collection;
 import org.junit.jupiter.api.Test;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.logic.commands.result.CommandResult;
 import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.moduleclass.ModuleClass;

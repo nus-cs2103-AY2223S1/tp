@@ -3,7 +3,6 @@ package seedu.taassist.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.logic.commands.actions.UiAction.UI_UNFOCUS;
 
-import seedu.taassist.logic.commands.result.CommandResult;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.TaAssist;
 

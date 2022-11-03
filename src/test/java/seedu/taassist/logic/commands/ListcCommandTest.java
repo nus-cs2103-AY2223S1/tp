@@ -9,7 +9,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.taassist.logic.commands.result.CommandResult;
 import seedu.taassist.model.ModelManager;
 import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.UserPrefs;

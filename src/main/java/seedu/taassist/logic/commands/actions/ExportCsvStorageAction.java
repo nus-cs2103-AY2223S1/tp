@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 
-import seedu.taassist.logic.commands.exceptions.StorageActionException;
-import seedu.taassist.logic.commands.result.StorageActionResult;
+import seedu.taassist.logic.commands.CommandResult;
+import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.storage.Storage;
 
 /**
@@ -31,14 +31,14 @@ public class ExportCsvStorageAction implements StorageAction {
     }
 
     @Override
-    public StorageActionResult act(Storage storage) throws StorageActionException {
+    public CommandResult act(Storage storage) throws CommandException {
         String feedback;
         try {
             storage.exportAsCsv(fileName, fileData);
             feedback = String.format(MESSAGE_SUCCESS, fileName);
         } catch (IOException e) {
-            throw new StorageActionException(String.format(MESSAGE_EXPORT_FAILED, fileName));
+            throw new CommandException(String.format(MESSAGE_EXPORT_FAILED, fileName));
         }
-        return new StorageActionResult(feedback);
+        return new CommandResult(feedback);
     }
 }
