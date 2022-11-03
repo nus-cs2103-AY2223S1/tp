@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+
+
+participant ":CommandManager" as CommandManager LOGIC_COLOR
+participant "undoStack:Stack" as undoStack LOGIC_COLOR
+participant "lastCommand:UndoableCommand" as lastCommand LOGIC_COLOR
+
+[-> CommandManager:undo(model)
+activate CommandManager
+
+CommandManager -> undoStack:undoStack.pop()
+activate undoStack
+
+undoStack --> CommandManager:lastCommand
+deactivate undoStack
+
+CommandManager -> lastCommand:undo(model)
+activate lastCommand
+
+lastCommand --> CommandManager:result
+deactivate lastCommand
+
+CommandManager -->[:result
+deactivate CommandManager
+
+@enduml

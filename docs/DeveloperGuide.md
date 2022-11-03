@@ -320,9 +320,12 @@ Step 3. The user executes `add n/David …​` to add a new person. `CommandMana
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Logic#undo()` which calls `CommandManager#undo()` , which will pop the latest `UndoableCommand` from the `undoStack` and calls the `#UndoableCommand#undo()` method of that command which reverts the addressbook back to its previous state. The command popped is pushed to the `redoStack`.
 
-The following sequence diagram shows how the undo operation works:
+The following sequence diagram shows how the undo command works up till CommandManager:
 
-<img src="images/UndoSequenceDiagram.png" width="800" />
+<img src="images/UndoImplementationImages/UndoSequenceDiagram.png" width="800" />
+
+The next sequence diagram shows how CommandManager executes undo:
+<img src="images/UndoImplementationImages/CommandManagerUndoSequenceDiagram.png" width="800" />
 
 <br>
 
@@ -334,7 +337,7 @@ Step 6. The user executes `clear`, which calls `CommandManager#pushNewCommand()`
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/PushCommandActivityDiagram.png" width="250" />
+<img src="images/UndoImplementationImages/PushCommandActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
