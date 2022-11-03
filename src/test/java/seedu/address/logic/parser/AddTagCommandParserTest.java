@@ -68,7 +68,7 @@ public class AddTagCommandParserTest {
                 AddTagCommand.MESSAGE_USAGE);
 
         //Missing index
-        String missingIndex = PREFIX_DEADLINE + "23-11-2022" + " " + PREFIX_PRIORITY_STATUS + "HIGH";
+        String missingIndex = " " + PREFIX_DEADLINE + "23-11-2022" + " " + PREFIX_PRIORITY_STATUS + "HIGH";
         assertParseFailure(parser, missingIndex, expectedMessage);
 
         //Missing priority prefix and deadline prefix
@@ -92,11 +92,10 @@ public class AddTagCommandParserTest {
         String invalidIndexMessage = ParserUtil.MESSAGE_INVALID_INDEX;
         assertParseFailure(parser, "-1 " + PREFIX_PRIORITY_STATUS + "HIGH", invalidIndexMessage);
 
-        //Invalid index(Above INT_MAX_VALUE) (Waiting for merged code for bug to check again)
-        /*
+        //Invalid index(Above INT_MAX_VALUE)
         assertParseFailure(parser, "9999999999999999999999 " + PREFIX_PRIORITY_STATUS + "HIGH",
                 invalidIndexMessage);
-         */
+
 
         //Invalid status for priority tag
         assertParseFailure(parser, "1 " + PREFIX_PRIORITY_STATUS + "priority",

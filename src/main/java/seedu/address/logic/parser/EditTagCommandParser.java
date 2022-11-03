@@ -18,7 +18,8 @@ import seedu.address.model.tag.PriorityTag;
  * create a EditTagCommand object.
  */
 public class EditTagCommandParser implements Parser<EditTagCommand> {
-    public static final String INVALID_INDEX_EDIT_TAG = "The index for tagedit should be greater than 0 "
+    public static final String INVALID_INDEX_EDIT_TAG = "The index for tagedit should be an unsigned "
+            + "positive integer greater than 0 "
             + "and less than 2147483648.";
 
     @Override
@@ -27,9 +28,8 @@ public class EditTagCommandParser implements Parser<EditTagCommand> {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer
                 .tokenize(args, PREFIX_DEADLINE, PREFIX_PRIORITY_STATUS);
         Index index;
-        try {
-            Integer.parseInt(argumentMultimap.getPreamble());
-        } catch (NumberFormatException npe) {
+        //Added the check for slash to eliminate invalid prefixes from being recognised
+        if (argumentMultimap.getPreamble().isEmpty() || argumentMultimap.getPreamble().contains("/")) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     EditTagCommand.MESSAGE_USAGE));
         }

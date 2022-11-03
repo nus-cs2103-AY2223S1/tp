@@ -78,10 +78,8 @@ public class DeleteTagCommandParserTest {
         assertParseFailure(parser, "-1 " + PREFIX_TAG + "priority", invalidIndexMessage);
 
         //Invalid index(Above INT_MAX_VALUE) (Waiting for merged code for bug to check again)
-        /*
         assertParseFailure(parser, "9999999999999999999999 " + PREFIX_TAG + "priority",
                 invalidIndexMessage);
-         */
 
     }
 }
