@@ -71,7 +71,7 @@ section of this user guide or to an external website.
 | Component                              | Use                                                                                                                                                               |
 |----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Command Box**                        | This is where you **enter commands**.                                                                                                                             |
-| **Result Display**                     | This is where the detailed **results** of the command will be shown.                                                                                              |
+| **Result Display**                     | This is where the detailed **results** of your commands will be shown.                                                                                            |
 | **Guest Card**                         | This is where all **guest information** of a guest will be shown.                                                                                                 |
 | **Status Bar**                         | This shows the location of your **save file**.                                                                                                                    |
 | ![Phone](images/phone.png)             | This is the **phone number** of the guest.                                                                                                                        |
@@ -118,46 +118,46 @@ section of this user guide or to an external website.
    ![Ui](images/GuestBookIcon.png) <br><br>
 
 4. Double-click on `guestbook.jar` to start the app. 
-   * Alternatively, if you wish to use the `Terminal` or `Command Prompt`, enter 
+   * Alternatively, if you wish to use the `Terminal` or `Command Prompt`, navigate to the **home folder** and enter 
    `java -jar guestbook.jar` to start the app. 
 
    The GUI, similar to the image below, should pop up in a few seconds. Note that the GuestBook
    comes prepackaged with **sample data**.<br><br>
    ![Ui](images/Ui.png) <br><br>
 
-5. Type the command in the command box and press Enter to execute it. E.g., typing **`help`** and pressing Enter will open the help window.<br><br>
+5. Type your commands in the command box and press Enter to execute it. E.g., typing **`help`** and pressing Enter will open the help window.<br><br>
 
 6. To kickstart your journey, you can add a guest, _John Doe_, to GuestBook using the **`add`** command.
-   * **`add`** `n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named _John Doe_ to GuestBook. 
+   * `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named _John Doe_ to GuestBook along with the necessary information such as his particulars. 
 <br><br>
     
 7. To find _John Doe_, you can use the **`find`** command, and search through **any of _John Doe's_ fields**,
    such as his `name` or `room`. The command below can help you find guests that match the keywords you entered. For example,
-   * **`find`** `John Doe` : Finds all the guests who have at least one field containing _John_ or _Doe_ (case-insensitive).
+   * `find John Doe` : Finds all the guests who have at least one field containing _John_ or _Doe_ (case-insensitive).
      <br><br>
 
 8. To make changes to _John Doe_, you can use the **`edit`** command. This changes the guest's fields based on the new values you provide. The other values will remain unchanged. <br>
-For example, if _John Doe_ is the second guest in the list, and you want to change his room number to _05-55_, you can do this.
-    * **`edit`** `2` `rm/05-55`: Changes the `Room` of _John Doe_ to _05-55_ in GuestBook.
+For example, if _John Doe_ is the second guest in the list, and you want to change his room number to _05-55_, you can execute the following command.
+    * `edit 2 rm/05-55`: Changes the `Room` of _John Doe_ to _05-55_ in GuestBook.
       <br><br>
    
 9. After executing a **`find`** command, you might realise that some of your guests are no longer visible, as they are not in the current list.<br>
 To see a list of all your guests, you can use the **`list`** command.
-      * **`list`**: List all the guests in GuestBook.
+      * `list`: List all the guests in GuestBook.
         <br><br>
 
 10. In the event that a guest orders room service, you can add charges to the guest's bill using the **`bill`** command.<br>
 For example, you can charge the third guest _30.35_ by running the command below.
-    * **`bill`** `3` `b/+30.35`: Adds _30.35_ to the `bill` of the third guest.
+    * `bill 3 b/+30.35`: Adds _30.35_ to the `bill` of the third guest shown in the current list.
       <br><br>
 
 11. When a guest checks out of your hotel, you can remove the guest using the **`delete`** command.
 For example, you can check out the third guest by executing the command below.
-    * **`delete`** `3` : Deletes the third guest shown in the current list.
+    * `delete 3` : Deletes the third guest shown in the current list.
           <br><br>
 
 12. To clear your GuestBook of all entries, you can use the **`clear`** command.<br>
-    * **`clear`** : Deletes all guests.
+    * `clear` : Deletes all guests.
     <div markdown="block" class="alert alert-danger">
     
     :bangbang: **Warning:**<br>
@@ -167,7 +167,7 @@ For example, you can check out the third guest by executing the command below.
     </div>
     
 13. Finally, to quit GuestBook, you can run the **`exit`** command.
-    * **`exit`** : Exits the app.
+    * `exit` : Exits the app.
       <br><br>
     
 14. For more details, you can refer to the [Features](#features) below for the exact specifications of each command. Thank you and we hope you enjoy using GuestBook!
@@ -182,16 +182,16 @@ From this glossary section onwards, we will go into a deep dive of the commands 
 some technical terms present in the descriptions below, we have provided their definitions (contextualised
 to GuestBook) for you to get acquainted with. 
 
-| Term             | Definition                                                                                                                                          |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Alphanumeric** | Refers to characters that are numbers **0-9** and alphabets **A-Z**, both uppercase and lowercase.                                                  |
-| **dd/MM/yy**     | Refers to the date format, where dd stands for 2 digit days, 2 digit months and the last 2 digits for the year and they must be separated by a "/". |
-| **Guest**        | A guest staying at the hotel.                                                                                                                       |
-| **GUI**          | Stands for Graphical User Interface, it refers to an interface that allows users to interact with the system through friendly visuals.              |
-| **Hard disk**    | A data storage device used to store and retrieve data.                                                                                              |
-| **Index**        | The number that corresponds to the position of the Guest in the list. The index **must be a positive integer** like 1, 2 or 3.                      |
-| **Java**         | A programming language used to run GuestBook.                                                                                                       |
-| **JSON file**    | Stands for JavaScript Object Notation. It refers to a file format to store data.                                                                    |
+| Term             | Definition                                                                                                                                       |
+|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Alphanumeric** | Refers to characters that are numbers **0-9** and alphabets **A-Z**, both uppercase and lowercase.                                               |
+| **dd/MM/yy**     | Refers to the date format, where dd stands for 2 digit days, 2 digit months and the last 2 digits for the year. They must be separated by a "/". |
+| **Guest**        | A guest staying at the hotel.                                                                                                                    |
+| **GUI**          | Stands for Graphical User Interface, it refers to an interface that allows users to interact with the system through friendly visuals.           |
+| **Hard disk**    | A data storage device used to store and retrieve data.                                                                                           |
+| **Index**        | The number that corresponds to the position of the Guest in the list. The index **must be a positive integer** like 1, 2 or 3.                   |
+| **Java**         | A programming language used to run GuestBook.                                                                                                    |
+| **JSON file**    | Stands for JavaScript Object Notation. It refers to a file format to store data.                                                                 |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -291,8 +291,7 @@ using the [find command](#locating-guests) and then editing them accordingly!
 
 ### Billing a guest: `bill`
 
-This command updates the bill of a guest in GuestBook. Note that the bill here refers to the **total additional charges incurred**
-by the guest during their stay at your hotel and should **not include the cost of the room booking**.
+This command updates the bill of a guest in GuestBook. This command is typically used to **charge a guest** for services, such as room service.
 
 This command updates the bill of the guest at the specified `INDEX` of the current list. 
 Depending on the sign (`+` or `-`) of your input, the existing bill value will be **increased** 
@@ -304,6 +303,8 @@ or **decreased** respectively by the value you provide.
 
 **:information_source: Additional information:**<br>
 
+* Note that the bill here refers to the **total additional charges incurred**
+  by the guest during their stay at your hotel and should **not include the cost of the room booking**.
 * Refer to the [Field summary](#field-summary) for more information about the limitations
   of each field.
 </div>
@@ -348,6 +349,7 @@ will display all rooms that have been cleaned.
 
 **Examples**:
 * `find John` returns _john_ and _John Doe_
+* `find 01/01/23 - 07/01/23` returns _Alex Yeoh_ and _Bernice Yu_ (_Alex Yeoh_ was returned as the find command searches every individual search term. As such, **"-" is also a search term** and hence guests with no requests will be returned as well).
 * `find alex 99272758 03-68` returns _Alex Yeoh_, _Bernice Yu_, _Charlotte Oliveiro_
 (refer to the image below for the details of the guests)<br>
 <br>
@@ -360,13 +362,20 @@ will display all rooms that have been cleaned.
 * Searching for guests using incomplete keywords e.g. `170` will **not match** `170.00`.
 </div>
 
+<div markdown="block" class="alert alert-success">
+
+**:bulb: Tip:**<br>
+
+* To find guests based on their dates of stay, you should simply use the start and end dates without the hyphen ("-").
+</div>
+
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Listing all guests: `list`
 
-This command displays a list of all guests in GuestBook.
+This command displays a list of all guests in GuestBook, which is akin to going back to the homepage of GuestBook.
 
 <div markdown="block" class="alert alert-success">
 
@@ -388,7 +397,7 @@ This command deletes an existing guest in GuestBook from the current list.
 
 The guest specified at the `INDEX` is the guest you wish to delete. 
 
-This command is typically used when a guest has checked out of the hotel. 
+This command is typically used to **check a guest out** of the hotel. 
 
 <div markdown="block" class="alert alert-danger">
 
@@ -436,8 +445,8 @@ managers to keep track of the rooms that are cleaned or uncleaned for the day.
 
 This command clears **all entries** from GuestBook. 
 
-This command is typically used as a **hard reset** of all guest data in GuestBook. You should not be using
-this command unless you want to star the GuestBook on a clean slate.
+This command is typically used as a **hard reset** of all guest data in GuestBook. You **should not** be using
+this command unless you want to start the GuestBook on a **clean slate**.
 
 <div markdown="block" class="alert alert-danger">
 
@@ -474,7 +483,7 @@ save time, we have provided quick access to this user guide by entering the `hel
 This command exits the program.
 
 This command is used once you have finished with the administrative tasks on GuestBook. Do not worry, 
-all the data have already been saved by GuestBook and there is no further action needed.
+**all the data have already been saved by GuestBook** and there is no further action needed.
 
 **Format**: `exit`
 
@@ -508,7 +517,7 @@ Advanced users may change data directly by editing this data file.
 
 ## FAQ
 
-Listed here are some frequently asked questions. Should you require any other assistance, feel free to [contact us](#contact-us).
+Listed here are some frequently asked questions that we hope will be helpful for you should you encounter any problems. Should you require any other assistance, feel free to [contact us](#contact-us).
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and **overwrite the empty data file** it creates with the file that contains the data of your previous GuestBook home folder.
@@ -523,10 +532,16 @@ Listed here are some frequently asked questions. Should you require any other as
 **A**: **No**, GuestBook currently only supports the use of `guestbook.json` as the name of the saved data file.
 
 **Q**: Why are there no guests in my GuestBook?<br>
-**A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file is **corrupted**, causing GuestBook to reset it to prevent any malicious files from being used.
+**A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file has been **corrupted**, causing GuestBook to reset it to prevent any malicious files from being used.
 
-**Q**: Why am I getting error messages for fields that are correct, or I'm not even editing?<br>
-**A**: If you are using the `add`/`edit` commands and input the `name`/`request` fields, ensure that they do not contain any field prefixes after whitespace in their content (e.g., `rq/Extra bed & p/c`), as GuestBook could be parsing part of your input as another field. Consider using capital letters as this check is case-sensitive (`rq/Extra bed & P/C` will be parsed correctly). You may refer to [Field summary](#field-summary) for more information about field constraints.
+**Q**: Why am I getting error messages for fields that are correct, or that I'm not editing?<br>
+**A**: If you are using the `add`/`edit` commands and input the `name`/`request` fields, ensure that they do not contain any **field prefixes** after whitespace in their content (e.g., `rq/Extra bed & p/c`), as GuestBook could be parsing part of your input as another field. Consider using capital letters as this check is case-sensitive (`rq/Extra bed & P/C` will be parsed correctly). You may refer to [Field summary](#field-summary) for more information about field constraints.
+
+**Q**: I cannot find a guest staying on a particular date even though it should be within the dates of stay. Why is that so?<br>
+**A**: You may have entered a date **between** the start and end dates of the guest's stay (e.g, searching for `13/01/22 - 15/01/22` by entering `14/01/22`). Currently, this feature is **not supported** by GuestBook.
+
+**Q**: Why am I not able to add guests to the same room even though they have different dates of stay?<br>
+**A**: For this iteration of GuestBook, guests are added when they **check in** at the hotel and deleted when they **check out**. As such, there would not be different guests with the same room at any time. This feature is a safety check provided by GuestBook to ensure different guests are not allocated the same room during their stay. To ensure GuestBook remains simple and easy for you to use, each guest must have a **unique room** in GuestBook.
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -588,7 +603,7 @@ In the case where GuestBook rejects your command (`Invalid command format!`), yo
 --------------------------------------------------------------------------------------------------------------------
 
 ## Contact Us
-For enquiries or feedback, feel free to reach us at [guestbook.enquiries@gmail.com](mailto:guestbook.enquiries@gmail.com).
+For enquiries or feedback, feel free to reach us at [guestbook.enquiries@gmail.com](mailto:guestbook.enquiries@gmail.com), and we will get back to you as soon as possible!
 
 [Return to Table of Contents](#table-of-contents)
 
