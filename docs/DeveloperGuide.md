@@ -638,12 +638,8 @@ Priority legend
 | Game mode      | There are many ways to enjoy Minecraft, and the game mode describes how the game is being played |
 | Game type      | A synonym for game mode                                                                          |
 
-<div markdown="span" class="alert alert-info">
-
 For a complete glossary of Minecraft terms, please visit this page on the
 [Minecraft wiki](https://minecraft.fandom.com/wiki/Tutorials/Game_terms).
-
-</div>
 
 ### Other terminologies
 | Terminology   | Definition                                                                 |
