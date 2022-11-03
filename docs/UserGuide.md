@@ -225,10 +225,10 @@ Examples:
 
 ### Manually editing save file:
 
-For advanced users, the data and state of EZLEAD is stored in `data/addressbook.json`.
+For advanced users, the data and state of EZLead is stored in `data/addressbook.json`.
 You can manually modify the data directly by accessing this JSON file.
 
-However, EZLEAD cannot verify validity of the data if it was manually modified. Any invalid data will cause EZLEAD
+However, EZLead cannot verify validity of the data if it was manually modified. Any invalid data will cause EZLead
 to load in an EMPTY state.
 
 ![JSONSaveFile.png](images/JSONSaveFile.png)
