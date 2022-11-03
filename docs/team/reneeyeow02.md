@@ -21,12 +21,12 @@ Given below are my contributions to the project.
     * Credits: Took inspiration from AB3's person object.
     
 
-  * Implemented Leave status for Staff.
+  * Refactor insurance to leave status.
     * What it does: Allows user to view the leave status of a staff member.
     * Justification: Allowing the user to view the availability of a staff member is part of the main features of HR Pro Max++.
     
 
-  * Implemented view command.
+  * Implemented view command skeleton.
     * What it does: Allows user to view the Staff list attached to each Project.
     * Justification: Allowing the user to view the Staff list of a Project is part of the main features of HR Pro Max++.
     
