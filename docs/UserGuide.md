@@ -188,6 +188,8 @@ zero times.
   e.g. if you specify `p/1234 p/5678`, only `p/5678` will be taken.
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list_contact`, `exit` and `clear`) will be **ignored**.<br>
   e.g. if your specify `help 123`, it will be interpreted as `help`.
+- Contact and task name should only contain alphanumeric characters, commas, hyphens, apostrophe and spaces.<br>
+  e.g. `n/Dr. John-Doe` is acceptable, but `n/John!` is not.
 
 </div>
 
