@@ -356,8 +356,8 @@ Format: `client -v`
 
 ## Issue Commands
 
-> NOTE: Multiple issues can have the exact same fields, as it is possible for a project to have multiple of the same 
-> issues.
+> NOTE: Multiple issues can have the exact same fields (other than the issue id), as it is possible for a project to 
+> have multiple of the same issues.
 
 ### Adding an issue : `issue -a`
 
