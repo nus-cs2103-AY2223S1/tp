@@ -84,8 +84,10 @@ Name -[hidden]right-> StudentId
 StudentId -[hidden]right-> Email
 Email -[hidden]right-> Phone
 Phone -[hidden]right-> ClassGroup
-ClassGroup -[hidden]right-> AttendanceList
 AttendanceList -[hidden]right-> Tag
+ClassGroup -[hidden]right-> AttendanceList
+
+Tag -[hidden]right-> ToDo
 
 TaskTitle -[hidden]down-> TaskDescription
 
