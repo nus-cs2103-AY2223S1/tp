@@ -214,6 +214,8 @@ Format: `create n/TEAM-NAME`
 Examples:
 * `create n/Team1` Adds a team with the name Team1.
 
+Note that names should only contain alphanumerical characters and spaces, and it should not be blank.
+
 ![CreateTeamExample.png](images/CreateTeamExample.png)
 
 ### Deleting a team: `delteam`
