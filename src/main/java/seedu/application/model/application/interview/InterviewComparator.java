@@ -9,6 +9,7 @@ import seedu.application.model.application.Application;
  * fields. Applications are sorted by interview date first then interview time if date is the same.
  */
 public class InterviewComparator implements Comparator<Application> {
+
     @Override
     public int compare(Application i1, Application i2) {
         if (!i1.hasInterview()) {

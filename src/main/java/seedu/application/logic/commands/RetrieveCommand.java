@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.application.commons.core.Messages;
 import seedu.application.commons.core.index.Index;
 import seedu.application.logic.commands.exceptions.CommandException;
 import seedu.application.model.Model;
@@ -21,10 +20,19 @@ public class RetrieveCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_APPLICATION_IS_NOT_ARCHIVE = "The application by the index is not archived.\n"
+    public static final String MESSAGE_APPLICATION_IS_NOT_ARCHIVE = "The application provided by the"
+            + " index is not archived.\n"
             + "Please switch to archive list using <list-archive> command before using <retrieve> command.\n"
             + "Example: 1) " + ListArchiveCommand.COMMAND_WORD + "\n"
             + "              2) " + COMMAND_WORD + " 1";
+
+    public static final String MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX_RETRIEVE = "The application index "
+            + "provided is invalid!\n"
+            + "Please note that the index refers to the last shown list below\n"
+            + "To ensure the retrieve function works, please use <list-archive> command to show the current"
+            + " archived application list.\n"
+            + "Example: 1) " + ListArchiveCommand.COMMAND_WORD + "\n"
+            + "               2) " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_RETRIEVE_APPLICATION_SUCCESS = "Retrieved Application: %1$s";
 
@@ -44,7 +52,7 @@ public class RetrieveCommand extends Command {
         List<Application> lastShownList = model.getFilteredApplicationList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX_RETRIEVE);
         }
 
         Application applicationToRetrieve = lastShownList.get(targetIndex.getZeroBased());
