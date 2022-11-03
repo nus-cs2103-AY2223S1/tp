@@ -47,7 +47,7 @@ Given below are my contributions to the project.
     * What it does: Allows users to add a remark to an internship application.
     * Changes: Incorporated the `select` command to let the user view the full details of an internship application
       first before adding a remark.
-* **Contributions to the UG:**:
+* **Contributions to the UG**:
   * Added complete documentation for the following features: `add`, `delete`, `select`, `edit`, `list`.
   * Updated documentation for other features.
   * Added most of the screenshots in the UG.
@@ -62,7 +62,7 @@ Given below are my contributions to the project.
   * Managed release: [v1.3.2](https://github.com/AY2223S1-CS2103T-T11-2/tp/releases/tag/v1.3.2)
   * Maintained the issue tracker and milestones for the team
   * Created the features demo for v1.2
-* **Review/mentoring contributions:**:
+* **Review/mentoring contributions**:
   * Reviewed PRs (Examples: [#66](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/66),
   [#80](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/80),
   [#136](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/136))
