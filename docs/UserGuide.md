@@ -295,7 +295,7 @@ Format: `marko INDEX [-p] [-d]`
 * When an order is completed (marked as both `paid` and `delivered`), 
 the colour of the particular order's card will be in a darker shade than an uncompleted order. 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
 You can mark an order with insufficient stock as paid (to record pre-payments) but you **cannot** 
 mark an order with **insufficient stock** as **delivered**. 
 </div>
@@ -307,7 +307,9 @@ Examples:
 
 ### Clearing all existing data in TrackO : `clear`
 
-Clears all data (in both `Order List` and `Inventory List`) from TrackO.
+If you want clear all sample data present, `clear` is the command for you. 
+
+The command `clear` clears all data (in both `Order List` and `Inventory List`) from TrackO.
 
 1. Initiate the command to clear all data from TrackO. <br>
     Format: `clear`
