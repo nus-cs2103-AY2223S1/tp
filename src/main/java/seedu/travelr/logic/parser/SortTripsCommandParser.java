@@ -38,7 +38,7 @@ public class SortTripsCommandParser implements Parser<SortTripsCommand> {
         boolean reverse = argMultimap.getValue(PREFIX_REVERSE_ORDER).map(x -> true).orElse(false);
 
         Comparator<Trip> comp = COMPARE_BY_TITLE;
-        
+
         if (hasFactor) {
             switch (sortBy) {
             case "title":
