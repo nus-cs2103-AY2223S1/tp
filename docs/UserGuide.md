@@ -277,10 +277,13 @@ Sort the contact list by name in either ascending `A-Z` or descending `Z-A` orde
 Format: `sort A-Z n/`
 
 Example Command: `sort A-Z n/`
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Sort will only account for the first alphabet of the name. Sort by name will sort by alphabetical order.
+</div>
 
-Before executing the above command: ![before sorting](images/BeforeSort.png)
+Before executing the above command: ![before sorting](images/BeforeSortName.png)
 
-After executing the command: ![after sorting](images/AfterNameAscendingSort.png)
+After executing the command: ![after sorting](images/AfterSortName.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Contacts are sorted by name in `A-Z` order.
 </div>
@@ -289,7 +292,7 @@ Format: `sort Z-A n/`
 
 Example Command: `sort Z-A n/`
 
-After executing the command: ![after sorting descending](images/AfterNameDescendingSort.png)
+After executing the command: ![after sorting descending](images/AfterSortNameDesc.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Contacts are sorted by name in `Z-A` order.
 </div>
@@ -298,22 +301,37 @@ Contacts are sorted by name in `Z-A` order.
 
 Sort the contact list by moduleCode in either ascending `A-Z` or descending `Z-A` order.
 
-Format: `sort Z-A m/`
-
-Example Command: `sort Z-A m/`
-
-After executing the above command: ![after sorting](images/SortModuleCodeAscending.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-Module Codes sorted in order of CS1231S>CS2100>CS2103T>CS5000, lower level modules will appear higher.
-</div>
-
 Format: `sort A-Z m/`
 
 Example Command: `sort A-Z m/`
 
-After executing the above command: ![after sorting](images/SortModuleCodeDescending.png)
+Before executing the above command: ![before sorting](images/BeforeModuleCode.png)
+After executing the above command: ![after sorting](images/AfterModuleCodeA.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Module Codes sorted in order of CS1231S>CS2100>CS2103T>CS5000, higher level modules will appear higher.
+Module Codes sorted in ascending order. 
+The level of a module is defined by the value of the 4-digits within the module code whereby
+higher in numerical value means a high-level module.
+</div>
+
+Suppose the level of module code is the same (evey module has the same 4-digit), shown below:
+![same level](images/SameLevel.png)
+After executing the command `sort A-Z m/`:
+![sort same level](images/SortSameLevel.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Module Codes sorted in ascending order.
+Suppose two module codes have the same level (4-digit code), the two module codes will be sorted
+alphabetically.
+</div>
+
+You can also sort module codes in a descending manner whereby higher level module codes will appear higher. 
+Format: `sort Z-A m/`
+
+Example Command: `sort Z-A m/`
+
+After executing the above command: ![after sorting](images/SortReverse.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Module Codes sorted descending order.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -367,55 +385,88 @@ Examples:
 
 ## 3.7 Sharing-Related Commands
 
-Allow users to share the current state of their contact list.
+Allow users to share the entire state of their contact list. 
 
 ### 3.7.1 Export Contact as CSV: `export`
 
-User can export the current state of his/ her contact list into a CSV file.
+User can export the entire state of his/ her contact list into a comma-separated values(CSV) file.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Export will always export every single contact saved regardless of what  is currently shown on SoConnect's Graphical User Interface (GUI). 
+</div>
+
 
 Format: `export FILENAME`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-FILENAME cannot contain any of `$%&` symbols.
+FILENAME must fit the following restrictions:
+
+- Can ONLY contain alphabets (A-Z, a-z), digits (0-9), period(.), hyphen(-) or lowercase(_)
+- Must be between 3 and 30 characters inclusive. (3 <= length <= 30)
 </div>
 
 Examples:
-* `export test`
-* `export myContacts`
+* `export testing.csv`
+* `export myContacts.csv`
 
-Upon successfully exporting, users will see the CSV file:
-![after export](images/CSVfile.png)
+Step-by-Step guide:
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Please ensure you have added contacts into SoConnect (aside from the existing sample data). If you had 
+added contacts, a `data` directory can be found in the same directory as `SoConnect.jar`. 
 
-Also the directory where the exported file is located at will be displayed:
-![file directory](images/ExportSuccessful.png)
+You do not need 
+to create this directory manually. SoConnect will automatically create this directory to store your existing contacts.
+</div>
+
+![app and data](images/AppAndData.png)
+1. Simply type in `export myContacts` into the Command Line Interface in SoConnect
+![enter export](images/EnterExport.png)
+2. Upon successfully exporting, SoConnect will attempt to open the export 
+file:
+![after export](images/CsvExport.png)
+The file path is displayed in SoConnect:
+![file path](images/ExportFilePath.png)
 
 ### 3.7.2 Import address book in CSV format into address book: `import`
 
-User can import a CSV file generated by Export Contact to ease sharing of contact information.
+User can import a comma-separated values (CSV) file that is created via the export function in 3.7.1.
 
 Format: `import FILENAME.csv`
 
-<div markdown="span" class="alert alert-info">:information_source: Note:
-FILENAME cannot contain any of $%& symbols.
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+FILENAME must fit the following restrictions:
+
+- Can ONLY contain alphabets (A-Z, a-z), digits (0-9), period(.), hyphen(-) or lowercase(_)
+- Must be between 3 and 30 characters inclusive. (3 <= length <= 30)
 </div>
 
 Examples:
 * `import testing.csv`
 * `import myContacts.csv`
 
-Step by Step Guide:
+Step-by-Step Guide: 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Please ensure that the comma-separated values (CSV) file has the following headers.
+"myContacts" is to be replaced by your desired file name.
+</div>
+
+![import file field](images/ImportFileField.png)
 1. User create an import directory in the same directory as the SoConnect.jar
    ![Import File Location](images/ImportFileLocation.jpg)
 2. User adds the desired import file into the import directory
    ![Nested File Location](images/NestedImportFile.jpg)
-3. Enter into the CLI import sampleimportdata.csv
+3. Enter into the Command Line Interface(CLI) of SoConnect: `import sampleimportdata.csv`
 
 Before import:
-![before import](images/BeforeImport.png)
+![import file](images/ImportCommand.png)
 
 After import:
 ![after import](images/AfterImport.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Import will automatically detect duplicates. Duplicates will not be added.
+Import will inform you when a particular field in your CSV file is incorrect.
+</div>
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
