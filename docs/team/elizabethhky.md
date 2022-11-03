@@ -5,33 +5,40 @@ title: Hong Ker Yen Elizabeth's Project Portfolio Page
 
 ### Project: PetCode
 
-PetCode is a software app that aims to facilitate better working experience and boost business management efficiency for pet sale coordinators.
+PetCode is a software app that aims to facilitate better working experience and boost business management efficiency 
+for pet sale coordinators. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written 
+in Java, and has about 30 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: *to be added*.
-    * What it does: *to be added*.
-    * Justification: *to be added*.
-    * Highlights: *to be added*.
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Extended the Delete Command to three categories: Delete Buyer Command, Delete Supplier Command and Delete Deliverer Command.
+    * What it does: allows the user to delete different types of contacts at the specified index.
+    * Justification: This allows the user to delete contacts that have become outdated.
+    * Credits: The code was inspired by the original code given in AB3.
 
-* **New Feature**: *to be added*.
+* **New Feature**: Extended the Delete Command for two more categories: Delete Order Command and Delete Pet Command.
+    * What it does: allows the user to delete an order or pet at the specified index.
+    * Justification: This allows the user to delete orders that have been completed and pets that are no longer available for sale.
+    * Credits: The code was inspired by the original code given in AB3.
 
-* **Code contributed**: [RepoSense link]()
+* **Functionality**: Added more test utility classes.
+  * What it does: these test utility classes - ``
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=elizabethhky&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-    * *to be added*.
+    * Kept track and notified teammates of important deadlines. 
+    * Updated demo screenshots for each version release.
 
 * **Enhancements to existing features**:
-    * *to be added*.
-    * *to be added*.
+    * Wrote additional tests for existing features and json files to increase coverage by 6.10% (Pull requests [#140](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/140)).
 
 * **Documentation**:
     * User Guide:
-        * *to be added*.
-        * *to be added*.
+        * Add an introduction section to provide an overview of our application to new users.
+        * Deleting a contact or item. 
     * Developer Guide:
-        * *to be added*.
+        * Updated the `Model` Component.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): *to be added*.
