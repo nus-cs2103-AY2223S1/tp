@@ -22,7 +22,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonGroup;
 
 /**
- * Removes a person from a group in the TABS.
+ * Removes a person from a group in TABS.
  */
 public class DeleteGroupMemberCommand extends Command {
 

@@ -31,7 +31,7 @@ public class AddGroupMemberCommand extends Command {
             + "Example: " + COMMAND_WORD + " g/Group Alpha n/Alice Chee";
     public static final String MESSAGE_DUPLICATE_PERSON_IN_GROUP = "%1$s already exists in the group.";
     public static final String MESSAGE_INVALID_GROUP = "This group does not exist.";
-    public static final String MESSAGE_INVALID_PERSON = "%1$s is not in the TABS.";
+    public static final String MESSAGE_INVALID_PERSON = "%1$s is not in TABS.";
     public static final String MESSAGE_ASSIGN_GROUP_SUCCESS = "%1$s was added to group: %2$s";
 
     private final Name name;
