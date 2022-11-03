@@ -18,12 +18,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.boba.logic.commands.AddCommand;
 import seedu.boba.logic.commands.ClearCommand;
+import seedu.boba.logic.commands.DecreaseCommand;
 import seedu.boba.logic.commands.DeleteCommand;
 import seedu.boba.logic.commands.EditCommand;
 import seedu.boba.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.boba.logic.commands.ExitCommand;
 import seedu.boba.logic.commands.FindCommand;
 import seedu.boba.logic.commands.HelpCommand;
+import seedu.boba.logic.commands.IncreaseCommand;
 import seedu.boba.logic.commands.ListCommand;
 import seedu.boba.logic.parser.exceptions.ParseException;
 import seedu.boba.model.customer.Customer;
@@ -84,6 +86,20 @@ public class BobaBotParserTest {
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + PREFIX_EMAIL + EMAIL_FIRST_PERSON + " " + CustomerUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(EMAIL_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_phone_increase() throws Exception {
+        IncreaseCommand command = (IncreaseCommand) parser.parseCommand(IncreaseCommand.COMMAND_WORD
+                + " 10 " + PREFIX_PHONE + PHONE_FIRST_PERSON);
+        assertEquals(new IncreaseCommand(PHONE_FIRST_PERSON, "10"), command);
+    }
+
+    @Test
+    public void parseCommand_phone_decrease() throws Exception {
+        DecreaseCommand command = (DecreaseCommand) parser.parseCommand(DecreaseCommand.COMMAND_WORD
+                + " 10 " + PREFIX_PHONE + PHONE_FIRST_PERSON);
+        assertEquals(new DecreaseCommand(PHONE_FIRST_PERSON, "10"), command);
     }
 
     @Test

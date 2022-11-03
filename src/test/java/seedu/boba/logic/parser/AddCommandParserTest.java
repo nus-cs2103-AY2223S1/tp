@@ -5,6 +5,7 @@ import static seedu.boba.logic.commands.CommandTestUtil.BIRTHDAY_MONTH_DESC_AMY;
 import static seedu.boba.logic.commands.CommandTestUtil.BIRTHDAY_MONTH_DESC_BOB;
 import static seedu.boba.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.boba.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.boba.logic.commands.CommandTestUtil.EXCEED_MAX_INTEGER_REWARD_DESC;
 import static seedu.boba.logic.commands.CommandTestUtil.INVALID_BIRTHDAY_MONTH_DESC;
 import static seedu.boba.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.boba.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -158,6 +159,11 @@ public class AddCommandParserTest {
         assertParseFailure(parser,
             NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + BIRTHDAY_MONTH_DESC_BOB + INVALID_REWARD_DESC
             + TAG_DESC_GOLD + TAG_DESC_MEMBER, Reward.MESSAGE_CONSTRAINTS);
+
+        // exceed max integer reward
+        assertParseFailure(parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + BIRTHDAY_MONTH_DESC_BOB
+                + EXCEED_MAX_INTEGER_REWARD_DESC + TAG_DESC_GOLD + TAG_DESC_MEMBER, Reward.MESSAGE_MAX_INTEGER);
 
         // invalid tag
         assertParseFailure(parser,

@@ -1,18 +1,26 @@
 package seedu.boba.logic.parser;
 
 import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.boba.logic.commands.CommandTestUtil.BIRTHDAY_MONTH_DESC_AMY;
+import static seedu.boba.logic.commands.CommandTestUtil.BIRTHDAY_MONTH_DESC_BOB;
 import static seedu.boba.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.boba.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.boba.logic.commands.CommandTestUtil.INVALID_BIRTHDAY_MONTH_DESC;
 import static seedu.boba.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.boba.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.boba.logic.commands.CommandTestUtil.INVALID_NEGATIVE_REWARD_DESC;
 import static seedu.boba.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.boba.logic.commands.CommandTestUtil.INVALID_REWARD_DESC;
 import static seedu.boba.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.boba.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.boba.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.boba.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.boba.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.boba.logic.commands.CommandTestUtil.REWARD_DESC_AMY;
+import static seedu.boba.logic.commands.CommandTestUtil.REWARD_DESC_BOB;
 import static seedu.boba.logic.commands.CommandTestUtil.TAG_DESC_GOLD;
 import static seedu.boba.logic.commands.CommandTestUtil.TAG_DESC_MEMBER;
+import static seedu.boba.logic.commands.CommandTestUtil.VALID_BIRTHDAY_MONTH_AMY;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -36,6 +44,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.boba.logic.commands.EditCommand;
 import seedu.boba.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.boba.model.customer.BirthdayMonth;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.Name;
 import seedu.boba.model.customer.Phone;
@@ -89,6 +98,8 @@ public class EditCommandParserTest {
                 Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_REWARD_DESC,
                 Reward.MESSAGE_MAX_INTEGER); // invalid reward
+        assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_BIRTHDAY_MONTH_DESC,
+                BirthdayMonth.MESSAGE_CONSTRAINTS); // invalid birthday month
         assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_TAG_DESC,
                 Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
@@ -121,6 +132,10 @@ public class EditCommandParserTest {
                 Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_REWARD_DESC,
                 Reward.MESSAGE_MAX_INTEGER); // invalid reward
+        assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_NEGATIVE_REWARD_DESC,
+                Reward.MESSAGE_CONSTRAINTS); // invalid negative reward
+        assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_BIRTHDAY_MONTH_DESC,
+                BirthdayMonth.MESSAGE_CONSTRAINTS); // invalid birthday month
         assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_TAG_DESC,
                 Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
@@ -147,10 +162,11 @@ public class EditCommandParserTest {
     public void parse_phoneAllFieldsSpecified_success() {
         Phone targetPhone = PHONE_SECOND_PERSON;
         String userInput = " " + PREFIX_PHONE + targetPhone + PHONE_DESC_BOB + TAG_DESC_GOLD
-                + EMAIL_DESC_AMY + REWARD_DESC_AMY + NAME_DESC_AMY + TAG_DESC_MEMBER;
+                + EMAIL_DESC_AMY + REWARD_DESC_AMY + NAME_DESC_AMY + BIRTHDAY_MONTH_DESC_AMY + TAG_DESC_MEMBER;
 
         EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withReward(VALID_REWARD_AMY)
+                .withBirthdayMonth(VALID_BIRTHDAY_MONTH_AMY)
                 .withTags(VALID_TAG_GOLD, VALID_TAG_MEMBER).build();
         EditCommand expectedCommand = new EditCommand(targetPhone, descriptor);
 
@@ -327,5 +343,35 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetEmail, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_moreThanTwoPhone_failure() {
+        String userInput = " " + PHONE_DESC_AMY + PHONE_DESC_BOB + PHONE_DESC_AMY;
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_moreThanTwoEmail_failure() {
+        String userInput = " " + EMAIL_DESC_AMY + EMAIL_DESC_BOB + EMAIL_DESC_AMY;
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_moreThanOneName_failure() {
+        String userInput = " " + PHONE_DESC_AMY + NAME_DESC_AMY + NAME_DESC_BOB;
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_moreThanOneReward_failure() {
+        String userInput = " " + PHONE_DESC_AMY + REWARD_DESC_AMY + REWARD_DESC_BOB;
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_moreThanOneBirthdayMonth_failure() {
+        String userInput = " " + PHONE_DESC_AMY + BIRTHDAY_MONTH_DESC_AMY + BIRTHDAY_MONTH_DESC_BOB;
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
     }
 }
