@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import longtimenosee.model.event.Event;
 
 /**
- * Tests that a {@code Event}'s {@code Description} matches any of the keywords given.
+ * Tests that an {@code Event}'s {@code Description} contains the keywords given.
  */
 public class DescriptionContainsKeywordsPredicate implements Predicate<Event> {
     private final String keywords;
