@@ -37,7 +37,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_notBirthdayMonthWithTag_addSuccessful() throws Exception {
+    public void execute_personAcceptedByModelNoBirthdayWithTag_addSuccessful() throws Exception {
         BobaBotModelStubAcceptingPersonAdded modelStub = new BobaBotModelStubAcceptingPersonAdded();
         Customer validCustomer = new CustomerBuilder().withBirthdayMonth("10").withTags("BDAY").build();
 
@@ -48,7 +48,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_BirthdayMonthNoTag_addSuccessful() throws Exception {
+    public void execute_personAcceptedByModelBirthdayNoTag_addSuccessful() throws Exception {
         BobaBotModelStubAcceptingPersonAdded modelStub = new BobaBotModelStubAcceptingPersonAdded();
         Customer validCustomer = new CustomerBuilder().withBirthdayMonth("11").build();
 
