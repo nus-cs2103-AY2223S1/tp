@@ -20,7 +20,6 @@ Class Name
 Class StudentId
 Class Email
 Class Phone
-Class Picture
 Class ClassGroup
 Class AttendanceList
 Class Attendance
