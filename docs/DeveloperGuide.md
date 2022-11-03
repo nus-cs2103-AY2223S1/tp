@@ -52,7 +52,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delproj 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Current implementation
 The GUI reflects the entered projects, tasks, and staff members recorded in HR Pro Max++.
-There are 2 main columns, with the left column reflecting the `Project` and `Task` objects that are residing in the Model, and the right column reflecting the `Staff` objects that are residing in the Model.
+There are 3 main columns, which from left to right are for `Task`, `Project` and `Staff` from model.
 Directly adding or removing `Project`, `Task`, or `Staff` would update the `ProjectListPanel`, `TaskListPanel` and `StaffListPanel` to show their respective `ProjectCard`, `StaffCard` and `TaskCard` respectively.
 Each of the `ProjectCard`, `StaffCard` and `TaskCard` would display the fields under the corresponding `Project`, `Staff` and `Task` objects as discussed under [Model Component](#model-component).
 
@@ -192,11 +192,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delproj` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delproj 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `addproj n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -249,7 +249,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delproj`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -278,25 +278,21 @@ there are no duplicates in the task list.
 * When storing the task list, we ensured that both `Project List` and `Task List` are stored together
 in one file so that the file can be read easily.
 
-### \[Proposed\] Mark and unmark task
+### Mark and unmark task
 
-#### Proposed Implementation
-For tasks, they can either be marked as being completed or not. The proposed implementation would
+#### Implementation
+For tasks, they can either be marked as being completed or not. The implementation would
 be to add a new field `TaskMark` into each `Task` object and `TaskMark` will only accept a `true` or
 `false` value.
 
 The `true` value would mean that the task is marked as completed and the `false` value
 mean that the task is not yet done.
 
-The switching of `true` and `false` values for `TaskMark` will be facillitaed using `mark INDEX` and
-`unmark INDEX` commands.
+The switching of `true` and `false` values for `TaskMark` will be facillitaed using `marktask INDEX` and
+`unmarktask INDEX` commands.
 
-* `mark INDEX` This will mark the `Task` at the specified `INDEX` in the `Task List` as completed.
-* `unmark INDEX` This will mark the `Task` at the specified `INDEX` in the `Task List` as uncompleted.
-
-The following activity diagram summarizes how users are expected to use the commands.
-
-![Expected mark and unmark command usage](images/MarkAndUnmarkActivityDiagram.png)
+* `marktask INDEX` This will mark the `Task` at the specified `INDEX` in the `Task List` as completed.
+* `unmarktask INDEX` This will mark the `Task` at the specified `INDEX` in the `Task List` as uncompleted.
 
 The following sequence diagram shows how the mark command will run throughout HR Pro Max++.
 
@@ -304,8 +300,8 @@ The following sequence diagram shows how the mark command will run throughout HR
 
 #### Design Consideration:
 
-* Users when done with a task might just delete it and thus the need to mark
-task as complete or not is redundant.
+* Users when done with a Task might just delete it and thus the need to mark
+Task as complete or not is redundant.
   * Pros: Less memory since there is a need for task to have additional field and 2 extra commands
   * Cons: Some users might like to record what they have done, so they would not delete completed tasks.
   Having a way to mark task as completed or not will help them manage their task.
@@ -315,18 +311,47 @@ task as complete or not is redundant.
 
 #### Implementation
 
-For each project, there is a unique staff list and removing staff object from this list
-will remove staff that are part of the project. This can be done using a delete command
+For each Project, there is a Unique Staff list and removing Staff object from this list
+will remove Staff that are part of the project. This can be done using a delete command
 specifically for staff called `delstaff`. This `Staff` is then deleted.
 
-As the `AddressBook` contains a unique `UniqueProjectList`, we would look through and find for
-the project with the specified `PROJECT_NAME`. Then from that project we would look through its
-`UniqueStaffList` to find the staff with the specified `STAFF_NAME`.
+`delstaff Index pn/PROJECT_NAME ` : Get the Staff name of the Staff on the displayed Staff list identified
+by the INDEX. It then deletes the Staff from the Project identified by the PROJECT_NAME if the Staff exist.
 
-If there is no project with the `PROJECT_NAME` or staff with the `STAFF_NAME`, exception is thrown.
+To align with the current implementation of deleting from only the displayed Project and Staff list, we 
+will only allow Staff that are displayed to be deleted. Since we do not save which Project is currently on 
+display, we pass in the PROJECT_NAME to delete the Staff from the Project identified by the PROJECT_NAME. However, if the Project
+with the PROJECT_NAME is not displayed, the Staff cannot be deleted also due to the above-mentioned reason.
 
-* `delstaff pn/PROJECT_NAME sn/STAFF_NAME` : deletes the staff with specified staff name from
-the project with the specified project name
+It also uses `ModelManager` and the following fields to delete the task.
+* `FilteredStaffList` - get the Staff Name at the specified Index within this list
+* `FilteredProjectList`- get the Project with the specified PROJECT_NAME within this list
+
+It then searches if the Staff is within the Project's Staff list. If it is, the Staff is deleted and if not, exception is thrown.
+
+Example Usage:
+```
+Filtered Project list :
+1) CS2103T TP
+2) CS2102 project
+3) Orbital
+
+Filter Staff list:
+1) Andy
+2) Jayden
+3) Shawn
+4) Jia Wei
+5) Sherwin
+```
+If the command input is `delstaff 2 pn/CS2102 Project`
+Index 2 in this case would refer to Jayden and then we would find the Staff Jayden
+within CS2102 project's Staff list and delete Staff Jayden if it exist.
+
+Exception is thrown for the following cases:
+* If the Staff list or Project list is empty (Nothing is displayed).
+* If the PROJECT_NAME is for a Project not on display or not in HR Pro Max++.
+* If the INDEX is greater than the number of Staff on display currently, or if the INDEX is 0 or negative or exceed Int_MAX.
+* If there are any missing parameters.
 
 The activity diagram below shows how the `delstaff` command propagates through HR Pro Max++ to delete the staff.
 
@@ -334,26 +359,13 @@ The activity diagram below shows how the `delstaff` command propagates through H
 
 #### Design Consideration:
 
-The `delstaff` command could be implemented in the form `delstaff INDEX sn/STAFF_NAME`.
-* The `INDEX` would then refer to the project at that specific index of the projects displayed in the UI.
-* The `STAFF_NAME` would then be the keyword used to find a staff with a similar `STAFF_NAME` from
-the project with the specified index. This staff would then be deleted.
+The `delstaff` command could be implemented in the form `delstaff pn/PROJECT_NAME sn/STAFF_NAME`.
+* The `PROJECT_NAME` would then refer to a Project specified by the PROJECT_NAME in the Project List to delete the Staff from.
+* The `STAFF_NAME` would then refer to the Staff specified by the STAFF_NAME to delete from the Project's Staff list.
 
-Example:
-```
-Filtered project list :
-1) CS2103T TP
-2) CS2102 project
-3) Orbital
-```
+Pros: Easier to implement then the currrent implementation
 
-Index 2 in this case would refer to CS2102 project and then we would find the staff
-within CS2102 project staff list.
-
-Pros: Format similar to the delete command for project and task so would be easy to implement and spot bugs.
-
-Cons: Troublesome to delete since you might have to use multiple commands like list then find the `INDEX` before deleting.
-If you already know the `PROJECT_NAME` and `STAFF_NAME`, current implementation helps you to delete staff faster.
+Cons: Does not require Staff to be displayed to be deleted, can randomly delete Staff and lose track of what is being deleted from where.
 
 ## **Implementation**
 
@@ -644,13 +656,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `delproj 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delproj 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delproj`, `delproj x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
