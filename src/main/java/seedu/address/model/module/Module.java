@@ -87,7 +87,7 @@ public class Module implements Comparable<Module> {
      * Checks whether two modules have the same module code or same module name.
      *
      * @param otherModule The other module being compared against.
-     * @return true if the two Module objects have the same module code or module name;
+     * @return true if the two Module objects have the same module code;
      *         else return false
      */
     public boolean isSameModule(Module otherModule) {
@@ -99,7 +99,7 @@ public class Module implements Comparable<Module> {
      *
      * @param firstModule The first module being checked.
      * @param secondModule The second module being checked against.
-     * @return true if both Module objects have the same fields; else return false.
+     * @return true if both Module objects have the same module code; else return false.
      */
     public static boolean isSameModule(Module firstModule, Module secondModule) {
         return firstModule.equals(secondModule);
