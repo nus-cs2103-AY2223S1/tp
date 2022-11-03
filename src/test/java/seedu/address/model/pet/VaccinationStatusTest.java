@@ -62,4 +62,22 @@ public class VaccinationStatusTest {
         assertEquals(vsTrue.hashCode(), Boolean.hashCode(true));
         assertEquals(vsFalse.hashCode(), Boolean.hashCode(false));
     }
+
+    @Test
+    public void compareTo() {
+        VaccinationStatus vsTrue = new VaccinationStatus(true);
+        VaccinationStatus vsTrueCopy = new VaccinationStatus(true);
+        VaccinationStatus vsFalse = new VaccinationStatus(false);
+        VaccinationStatus vsFalseCopy = new VaccinationStatus(false);
+
+        //same booleans
+        assertEquals(vsTrue.compareTo(vsTrueCopy), 0);
+        assertEquals(vsFalse.compareTo(vsFalseCopy), 0);
+
+        //object is vaccinated, other is not
+        assertEquals(vsTrue.compareTo(vsFalse), 1);
+
+        //object is not vaccinated, other is
+        assertEquals(vsFalse.compareTo(vsTrue), -1);
+    }
 }
