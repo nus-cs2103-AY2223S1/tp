@@ -71,23 +71,22 @@ public class UnmarkQCommandTest {
     @Test
     public void equals() {
         Question q1 = new QuestionBuilder().withDescription("Q1").build();
-        Question q2 = new QuestionBuilder().withDescription("Q2").build();
         ModelStubAcceptingQuestionsAdded modelStub = new ModelStubAcceptingQuestionsAdded();
         modelStub.addQuestion(q1);
-        UnmarkQCommand markQ1Command = new UnmarkQCommand(INDEX_FIRST_QUESTION);
+        UnmarkQCommand markFirstQuestionCommand = new UnmarkQCommand(INDEX_FIRST_QUESTION);
 
         // same object -> returns true
-        assertTrue(markQ1Command.equals(markQ1Command));
+        assertTrue(markFirstQuestionCommand.equals(markFirstQuestionCommand));
 
         // same values -> returns true
-        UnmarkQCommand UnmarkQ1CommandCopy = new UnmarkQCommand(INDEX_FIRST_QUESTION);
-        assertTrue(markQ1Command.equals(UnmarkQ1CommandCopy));
+        UnmarkQCommand unmarkFirstQuestionCommandCopy = new UnmarkQCommand(INDEX_FIRST_QUESTION);
+        assertTrue(markFirstQuestionCommand.equals(unmarkFirstQuestionCommandCopy));
 
         // different types -> returns false
-        assertFalse(markQ1Command.equals(1));
+        assertFalse(markFirstQuestionCommand.equals(1));
 
         // null -> returns false
-        assertFalse(markQ1Command.equals(null));
+        assertFalse(markFirstQuestionCommand.equals(null));
     }
 
 

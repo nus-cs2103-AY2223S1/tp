@@ -67,23 +67,22 @@ public class MarkQCommandTest {
     @Test
     public void equals() {
         Question q1 = new QuestionBuilder().withDescription("Q1").build();
-        Question q2 = new QuestionBuilder().withDescription("Q2").build();
         ModelStubAcceptingQuestionsAdded modelStub = new ModelStubAcceptingQuestionsAdded();
         modelStub.addQuestion(q1);
-        MarkQCommand markQ1Command = new MarkQCommand(INDEX_FIRST_QUESTION);
+        MarkQCommand markFirstQuestionCommand = new MarkQCommand(INDEX_FIRST_QUESTION);
 
         // same object -> returns true
-        assertTrue(markQ1Command.equals(markQ1Command));
+        assertTrue(markFirstQuestionCommand.equals(markFirstQuestionCommand));
 
         // same values -> returns true
-        MarkQCommand MarkQ1CommandCopy = new MarkQCommand(INDEX_FIRST_QUESTION);
-        assertTrue(markQ1Command.equals(MarkQ1CommandCopy));
+        MarkQCommand markFirstQuestionCommandCopy = new MarkQCommand(INDEX_FIRST_QUESTION);
+        assertTrue(markFirstQuestionCommand.equals(markFirstQuestionCommandCopy));
 
         // different types -> returns false
-        assertFalse(markQ1Command.equals(1));
+        assertFalse(markFirstQuestionCommand.equals(1));
 
         // null -> returns false
-        assertFalse(markQ1Command.equals(null));
+        assertFalse(markFirstQuestionCommand.equals(null));
     }
 
     /**

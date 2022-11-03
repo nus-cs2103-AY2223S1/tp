@@ -58,24 +58,24 @@ public class AddQCommandTest {
     public void equals() {
         Question q1 = new QuestionBuilder().withDescription("Q1").build();
         Question q2 = new QuestionBuilder().withDescription("Q2").build();
-        AddQCommand AddQ1Command = new AddQCommand(q1);
-        AddQCommand addQ2Command = new AddQCommand(q2);
+        AddQCommand addFirstQuestionCommand = new AddQCommand(q1);
+        AddQCommand addSecondQuestionCommand = new AddQCommand(q2);
 
         // same object -> returns true
-        assertTrue(AddQ1Command.equals(AddQ1Command));
+        assertTrue(addFirstQuestionCommand.equals(addFirstQuestionCommand));
 
         // same values -> returns true
-        AddQCommand AddQ1CommandCopy = new AddQCommand(q1);
-        assertTrue(AddQ1Command.equals(AddQ1CommandCopy));
+        AddQCommand addFirstQuestionCommandCopy = new AddQCommand(q1);
+        assertTrue(addFirstQuestionCommand.equals(addFirstQuestionCommandCopy));
 
         // different types -> returns false
-        assertFalse(AddQ1Command.equals(1));
+        assertFalse(addFirstQuestionCommand.equals(1));
 
         // null -> returns false
-        assertFalse(AddQ1Command.equals(null));
+        assertFalse(addFirstQuestionCommand.equals(null));
 
         // different question -> returns false
-        assertFalse(AddQ1Command.equals(addQ2Command));
+        assertFalse(addFirstQuestionCommand.equals(addSecondQuestionCommand));
     }
 
     /**
