@@ -240,9 +240,6 @@ Optional parameters:
 - [Tags](#tag): `t/`
 - [Interested clients](#interested-clients): `ic/`
 
-Required parameters: `NAME`, `ADDRESS`, `PRICE`, `PROPERTY_TYPE`
-Optional Parameters: `TAG`, `IMAGE`, `INTERESTED_CLIENTS`, `PROPERTY_STATUS`
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 * A property can have any number of tags (including 0)
 * A property can have any number of interested clients (including 0)
