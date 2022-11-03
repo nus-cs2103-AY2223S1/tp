@@ -128,7 +128,7 @@ The following sequence diagram shows how a generic command `XYZCommand` is parse
 
 The `Model` component,
 
-* stores data in TA Assist:
+* stores data in TA-Assist:
   * all `Student` objects are contained in a `UniqueList` object.
   * all `ModuleClass` objects are also contained in a `UniqueList` object.
 * stores the currently 'selected' `StudentView` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<StudentView>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
@@ -139,7 +139,7 @@ The `Model` component,
 
 #### UniqueList
 
-The `UniqueList` class is a generic class that stores a collection of unique elements. In TA Assist, a `UniqueList` stores either all the `Student` objects or all the `ModuleClass` objects.
+The `UniqueList` class is a generic class that stores a collection of unique elements. In TA-Assist, a `UniqueList` stores either all the `Student` objects or all the `ModuleClass` objects.
 
 <img src="images/TaAssistObjectDiagram.png" width="600"/>
 
@@ -162,7 +162,7 @@ Similarly, objects that keep a reference of `Student`, `ModuleClass` or `Session
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both TA Assist data and user preference data in json format, and read them back into corresponding objects.
+* can save both TA-Assist data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `TaAssistStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -493,7 +493,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | User            | Delete students from my class            | Decide who to have in my class.          |
 | `* * *`  | User            | Give participation points to students    | Keep track of their participation in class. |
 | `* * *`  | User            | Take attendance of my students           | Keep track of their class attendance.    |
-| `* * *`  | User            | Delete students from TA Assist           | Keep my list of students concise.        |
+| `* * *`  | User            | Delete students from TA-Assist           | Keep my list of students concise.        |
 | `* * *`  | User            | View all my classes                      | See what classes I am teaching.          |
 | `* *  `  | Infrequent user | Remember the last used commands          | Quickly find the commands that I need.   |
 | `* *  `  | An expert user  | Create macros to perform multiple tasks  | Be more efficient at using the system.   |
@@ -504,28 +504,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `TA Assist` and the **Actor** is the `User`, unless specified otherwise)
+(For all use cases below, the **System** is `TA-Assist` and the **Actor** is the `User`, unless specified otherwise)
 
 **Use case: UC1 - Enter focus mode for a class**
 
 **MSS**
 1. User requests to enter focus mode for a class.
-2. TA Assist enters focus mode for the class.
-3. TA Assist indicates that the user is in the focus mode for the class.
-4. TA Assist lists all the students in the class.
-5. TA Assist lists all the sessions in the class.
+2. TA-Assist enters focus mode for the class.
+3. TA-Assist indicates that the user is in the focus mode for the class.
+4. TA-Assist lists all the students in the class.
+5. TA-Assist lists all the sessions in the class.
 
     Use case ends.
 
 **Extensions**
 * *a. User requests to exit focus mode.
-    * *a1. TA Assist exits focus mode.
-    * *a2. TA Assist indicates that the user has exited focus mode.
+    * *a1. TA-Assist exits focus mode.
+    * *a2. TA-Assist indicates that the user has exited focus mode.
 
       Use case ends.
 
 * 2a. The class does not exist.
-  * 2a1. TA Assist tells the user that the class does not exist.
+  * 2a1. TA-Assist tells the user that the class does not exist.
 
     Use case ends
 
@@ -542,19 +542,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to <u>enter focus mode for a class (UC1)</u>.
 2. User requests to allocate a score for a specific student in the class, for a specific session.
-3. TA Assist updates the score for the student.
-4. TA Assist indicates that the score for the student has been updated.
+3. TA-Assist updates the score for the student.
+4. TA-Assist indicates that the score for the student has been updated.
 
    Use case ends.
 
 **Extensions**
 * 3a. The student does not exist in the class.
-  * 3a1. TA Assist tells the user that the student does not exist.
+  * 3a1. TA-Assist tells the user that the student does not exist.
 
     Use case ends.
 
 * 3b. The session does not exist in the class.
-  * 3b1. TA Assist tells the user that the session does not exist.
+  * 3b1. TA-Assist tells the user that the session does not exist.
 
     Use case ends.
 
@@ -562,24 +562,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to add a student with the specified name and information.
-2. TA Assist creates a student with the given name.
-3. TA Assist indicates that the student has been added.
+2. TA-Assist creates a student with the given name.
+3. TA-Assist indicates that the student has been added.
 
    Use case ends.
 
 **Extensions**
 * 2a. The student name is empty.
-  * 2a1. TA Assist shows an error message.
+  * 2a1. TA-Assist shows an error message.
 
     Use case ends.
 
 * 2b. The student already exists.
-  * 2b1. TA Assist tells the user that the student already exists.
+  * 2b1. TA-Assist tells the user that the student already exists.
 
     Use case ends.
 
 * 2c. The student's phone number, email address, home address and/or class is/are provided.
-  * 2c1. TA Assist creates a student with a name along with these information.
+  * 2c1. TA-Assist creates a student with a name along with these information.
 
     Use case resumes at step 3.
 
@@ -587,10 +587,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to list students.
-2. TA Assist shows a list of students.
+2. TA-Assist shows a list of students.
 3. User requests to delete a specific student in the list.
-4. TA Assist deletes the student.
-5. TA Assist indicates that the student has been deleted.
+4. TA-Assist deletes the student.
+5. TA-Assist indicates that the student has been deleted.
 
    Use case ends.
 
@@ -600,7 +600,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-  * 3a1. TA Assist indicates that the index is invalid.
+  * 3a1. TA-Assist indicates that the index is invalid.
 
     Use case resumes at step 2.
 
@@ -608,19 +608,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to create a new class with the specified class name.
-2. TA Assist creates a new class with the given class name.
-3. TA Assist indicates that the class has been created.
+2. TA-Assist creates a new class with the given class name.
+3. TA-Assist indicates that the class has been created.
 
    Use case ends.
 
 **Extensions**
 * 2a. The class already exists.
-  * 2a1. TA Assist tells the user that the class already exists.
+  * 2a1. TA-Assist tells the user that the class already exists.
 
     Use case ends.
 
 * 2b. The class name is empty.
-  * 2b1. TA Assist shows an error message.
+  * 2b1. TA-Assist shows an error message.
 
     Use case ends.
 
@@ -629,19 +629,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to <u>enter focus mode for a class (UC1)</u>.
 2. User requests to create a new session for the class.
-3. TA Assist creates a new session for the class.
-4. TA Assist indicates that the session has been created.
+3. TA-Assist creates a new session for the class.
+4. TA-Assist indicates that the session has been created.
 
     Use case ends.
 
 **Extensions**
 * 3a. The session already exists.
-  * 3a1. TA Assist tells the user that the session already exists.
+  * 3a1. TA-Assist tells the user that the session already exists.
 
     Use case ends.
 
 * 3b. The session name is empty.
-    * 3b1. TA Assist shows an error message.
+    * 3b1. TA-Assist shows an error message.
 
       Use case ends.
 

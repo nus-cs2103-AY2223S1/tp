@@ -5,7 +5,7 @@ title: Rezwan Arefin's Project Portfolio Page
 
 ### Project: TA-Assist
 
-TA Assist is a desktop application targeted at NUS Teaching Assistants (TA). It helps them to keep track of their students' grades, attendance, and work submission status of relevant modules.
+TA-Assist is a desktop application targeted at NUS Teaching Assistants (TA). It helps them to keep track of their students' grades, attendance, and work submission status of relevant modules.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 Given below are my contributions to the project.
 
