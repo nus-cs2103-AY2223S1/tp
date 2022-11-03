@@ -887,8 +887,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * **v1.2** by 13 October 2022, Thursday, Week 9
    * **v1.3** by 27 October 2022, Thursday, Week 11
    * **v1.4** by 3 November 2022, Thursday, Week 12
-2. Pull requests should be approved by at least one other team member before merging into the master branch on GitHub.
-3. Rapportbook code should follow the Object-oriented paradigm primarily.
+2. Rapportbook code should follow the Object-oriented paradigm primarily.
 
 **Quality requirements**
 
@@ -950,13 +949,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a client
 
-   1. Prerequisite: The tag `friend` exists in Rapportbook.
+   1. Prerequisite: The tag `friends` exists in Rapportbook.
 
-   2. Test case: `add n=Laufey p=98980184 e=laufey@u.nus.edu a=123,Clementi r=janitor t=friend` <br>
+   2. Test case: `add n=Laufey p=98980184 e=laufey@u.nus.edu a=123,Clementi r=janitor t=friends` <br>
 
       Expected: A client named Laufey is successfully added. Details of the added client will be displayed in the status message.
 
-   3. Test case: `add p=98980184 e=laufey@u.nus.edu a=123,Clementi r=janitor t=friend`  or `a p=98980184 e=laufey@u.nus.edu a=123,Clementi r=janitor t=friend`
+   3. Test case: `add p=98980184 e=laufey@u.nus.edu a=123,Clementi r=janitor t=friends`  or `a p=98980184 e=laufey@u.nus.edu a=123,Clementi r=janitor t=friends`
 
       Expected: No client is added. Error details shown in the status message. Command box remains the same.
 
@@ -966,10 +965,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites:
 
-      1. The tags specified (eg. `t=friend`)in the command must exist in Rapportbook.
+      1. The tags specified (eg. `t=friends`)in the command must exist in Rapportbook.
       2. There are clients in the Rapportbook.
 
-   2. Test case: `edit 1 n=Laufey p=0162626003 r=Bluebirds in the spring t=friend` or `e 1 n=Laufey p=0162626003 r=Bluebirds in the spring t=friend` <br>
+   2. Test case: `edit 1 n=Laufey p=0162626003 r=Bluebirds in the spring t=friends` or `e 1 n=Laufey p=0162626003 r=Bluebirds in the spring t=friends` <br>
 
       Expected: First client is edited with the information specified. Fields not specified will not be changed.
 
@@ -981,11 +980,11 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites:
 
-      1. The tags specified (eg. `t=friend`)in the command must exist in Rapportbook.
+      1. The tags specified (eg. `t=friends`)in the command must exist in Rapportbook.
 
       2. A client is being shown eg. `show 1`.
 
-   2. Test case: `edit n=Laufey p=0162626003 r=Bluebirds in the spring t=friend` or `e n=Laufey p=0162626003 r=Bluebirds in the spring t=friend` <br>
+   2. Test case: `edit n=Laufey p=0162626003 r=Bluebirds in the spring t=friends` or `e n=Laufey p=0162626003 r=Bluebirds in the spring t=friends` <br>
 
       Expected: Client shown is edited with the information specified. Fields not specified will not be changed.
 
@@ -1009,9 +1008,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Creating tags
 
-   1. Test case: `tag create friend` or `t c friend`<br>
+   1. Test case: `tag create friends` or `t c friends`<br>
 
-      Expected: The tag `friend` will be created in Rapportbook. A message will be shown indicating the tag created.
+      Expected: The tag `friends` will be created in Rapportbook. A message will be shown indicating the tag created.
 
    2. Test case: `tag create 123`<br>
 
@@ -1019,11 +1018,11 @@ testers are expected to do more *exploratory* testing.
 
 2. Deleting tags
 
-   1. Prerequisite: The tag `friend` exists in Rapportbook.
+   1. Prerequisite: The tag `friends` exists in Rapportbook.
 
-   2. Test case: `tag delete friend` or `t d friend`<br>
+   2. Test case: `tag delete friends` or `t d friends`<br>
 
-      Expected: The tag `friend` will be deleted from Rapportbook, and all clients that are tagged with `friend` will lose the tag. A message will be shown indicating successful deletion.
+      Expected: The tag `friend` will be deleted from Rapportbook, and all clients that are tagged with `friends` will lose the tag. A message will be shown indicating successful deletion.
 
    3. Test case: `tag delete abc`<br>
 
@@ -1041,11 +1040,11 @@ testers are expected to do more *exploratory* testing.
 
       1. There are clients in Rapportbook.
 
-      2. The tag `friend` exists in Rapportbook.
+      2. The tag `friends` exists in Rapportbook.
 
-   2. Test case: `tag 1 friend` or `t 1 friend` <br>
+   2. Test case: `tag 1 friends` or `t 1 friends` <br>
 
-      Expected: First client will be tagged with `friend`. A message will be shown indicating success.
+      Expected: First client will be tagged with `friends`. A message will be shown indicating success.
 
 5. Removing tags from clients
 
@@ -1053,9 +1052,9 @@ testers are expected to do more *exploratory* testing.
 
       1. There are clients in Rapportbook.
 
-      2. The first client is tagged `friend`.
+      2. The first client is tagged `friends`.
 
-   2. Test case: `tag remove 1 friend` or `t r 1 friend`  <br>
+   2. Test case: `tag remove 1 friends` or `t r 1 friends`  <br>
 
       Expected: First client will no longer be tagged with `friend`. A message will be shown indicating success.
 
@@ -1063,9 +1062,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Filtering
 
-   1. Test case: `filter n=Laufey t=friend` or `f n=Laufey t=friend`
+   1. Test case: `filter n=Laufey t=friends` or `f n=Laufey t=friends`
 
-      Expected: The list will only show clients named Laufey **and** tagged friend. A message will be shown indicating successful filtering.
+      Expected: The list will only show clients named Laufey **and** tagged `friends`. A message will be shown indicating successful filtering.
 
 2. Listing filters
 
@@ -1079,13 +1078,13 @@ testers are expected to do more *exploratory* testing.
 
 3. Clearing filters
 
-   1. Prerequisite: `filter n=Laufey t=friend` has been applied.
+   1. Prerequisite: `filter n=Laufey t=friends` has been applied.
 
    2. Test case: `filter clear` or `f c` <br>
 
       Expected: All clients will be shown. Message box will display the number of clients in the list.
 
-   2. Test case: `filter clear t=friend`<br>
+   2. Test case: `filter clear t=friends`<br>
 
       Expected: All clients containing the name `laufey` will be shown. Message box will display the number of clients in the list.
 
