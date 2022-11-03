@@ -3,6 +3,8 @@ package seedu.address.model.appointment;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -46,16 +48,11 @@ public class AppointmentManager {
     public Appointment createNewAppointment(Patient patient, Nurse nurse, AppointmentDateTime appointmentDateTime)
             throws NurseIsBusyException, PatientIsBusyException {
         requireAllNonNull(patient, nurse, appointmentDateTime);
-        Optional<Appointment> appointment = findAppointment(Optional.of(nurse), Optional.of(patient),
-                appointmentDateTime);
-        if (appointment.isPresent()) {
-            Appointment foundAppointment = appointment.get();
-            if (foundAppointment.hasNurse(nurse)) {
-                throw new NurseIsBusyException();
-            }
-            if (foundAppointment.hasPatient(patient)) {
-                throw new PatientIsBusyException();
-            }
+        if (hasAppointment(patient, appointmentDateTime)) {
+            throw new PatientIsBusyException();
+        }
+        if (hasAppointment(nurse, appointmentDateTime)) {
+            throw new NurseIsBusyException();
         }
         Appointment newAppointment = new Appointment(patient, nurse, appointmentDateTime);
         this.appointments.add(newAppointment);
