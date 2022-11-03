@@ -62,11 +62,9 @@ public class EditIssueCommand extends IssueCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         ui.showIssues();
-
         if (!HasIntegerIdentifier.containsId(model.getFilteredIssueList(), issueId.getIdInt())) {
             throw new CommandException(String.format(MESSAGE_ISSUE_NOT_FOUND, issueId.getIdInt()));
         }
-
         Issue toEditIssue = model.getIssueById(issueId.getIdInt());
 
         if (newTitle != null) {

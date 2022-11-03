@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-DevEnable is a **desktop app for managing developer projects, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, DevEnable can get your project management tasks done faster than traditional GUI apps.
+DevEnable is a **desktop app for developers to manager their projects, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, DevEnable can get your project management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -51,7 +51,7 @@ DevEnable is a **desktop app for managing developer projects, optimized for use 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `client -a p/PROJECT_ID n/CLIENT_NAME [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`, `client -a p/PROJECT_ID n/CLIENT_NAME [e/CLIENT_EMAIL] [m/CLIENT_MOBILE]` are both acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. (Does not apply for Sort Command) <br>
   e.g. if you specify `m/12341234 m/56785678`, only `m/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
@@ -81,9 +81,12 @@ Format: `clear`
 ## Project Commands
 
 > NOTE: Clicking the Repository Link of a project will copy it to the clipboard
+
 ### Adding a project: `project -a`
 
 Adds a project to the AddressBook. A unique project ID will be automatically generated.
+
+![add project command](images/AddProjectCommand.png)
 
 Format: `project -a n/PROJECT_NAME [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
 
@@ -109,6 +112,8 @@ to the project.
 
 Edits a specified existing project.
 
+![edit_project_command](images/EditProjectCommand.png)
+
 Format: `project -e p/PROJECT_ID [n/PROJECT_NAME] [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
 
 * Edits the project with the specified `PROJECT_ID`. The ID refers to the unique ID generated upon adding a project.
@@ -130,6 +135,7 @@ client with `CLIENT_ID` 2.
 
 Removes the specified existing project.
 
+![delete_project_command](images/DeleteProjectCommand.png)
 Format: `project -d PROJECT_ID`
 
 * Deletes the project with the specified `PROJECT_ID`.
@@ -172,6 +178,8 @@ Examples:
 
 Pins a project to the top of the project list.
 
+![pin_project_command](images/PinProjectCommand.png)
+
 Format: `project -p PROJECT_ID`
 
 * Pins the project with the specified `PROJECT_ID`.
@@ -186,9 +194,12 @@ Examples:
 
 Sorts all projects based on a specified key.
 
+![sort_project_command](images/SortProjectCommand.png)
+
 Format: `project -s [p/PROJECT_ID] [d/DEADLINE] [i/ISSUE_COUNT] [n/PROJECT_NAME]`
 
-* Exactly one optional value (the prefix/the sorting key) is to be provided.
+* Exactly one optional value (the prefix/the sorting key) is to be provided 
+(Command will not accept multiple optional values).
 * Input 0/1 for each Prefix (e.g. p/0):
   * For `PROJECT_ID`, 0 for ascending and 1 for descending.
   * For `DEADLINE`, 0 for chronological and 1 for reverse chronological.
@@ -307,6 +318,8 @@ Examples:
 
 Pins a client to the top of the client list.
 
+![pin_client_command](images/PinClientCommand.png)
+
 Format: `client -p CLIENT_ID`
 
 * Pins the client with the specified `CLIENT_ID`.
@@ -321,9 +334,12 @@ Examples:
 
 Sorts all clients based on a specified key.
 
+![sort_client_command](images/SortClientCommand.png)
+
 Format: `client -s [c/CLIENT_ID] [n/CLIENT_NAME]`
 
-* Exactly one optional value (sorting key) to be provided.
+* Exactly one optional value (sorting key) to be provided 
+(Command will not accept multiple optional values).
 * Input 0/1 for each Prefix (e.g. c/1):
   * For `CLIENT_ID`, 0 for ascending and 1 for descending.
   * For `CLIENT_NAME`, 0 for alphabetical and 1 for reverse alphabetical
@@ -344,6 +360,8 @@ Format: `client -v`
 
 Adds an issue to the AddressBook. A unique issue ID will be automatically generated. 
 
+![add_issue_command](images/AddIssueCommand.png)
+
 Format: `issue -a p/PROJECT_ID t/TITLE [d/DEADLINE] [u/URGENCY]`
 
 * Adds the issue to the overall list of issues and to the list of issues of the project with the specified `PROJECT_ID`.
@@ -363,6 +381,8 @@ and to the `IssueList` of the project with `PROJECT_ID` 2.
 ### Editing an issue : `issue -e`
 
 Edits the specified existing issue. 
+
+![edit_issue_command](images/EditIssueCommand.png)
 
 Format: `issue -e i/ISSUE_ID [t/TITLE] [d/DEADLINE] [u/URGENCY]`
 
@@ -385,6 +405,8 @@ LOW(1).
 
 Removes the specified existing issue.
 
+![delete_issue_command](images/DeleteIssueCommand.png)
+
 Format: `issue -d ISSUE_ID`
 
 * Deletes the issue with the specified `ISSUE_ID`.
@@ -393,6 +415,12 @@ Format: `issue -d ISSUE_ID`
 Examples:
 * `issue -d 1` Deletes issue with `ISSUE_ID` 1.
 * `issue -d 3` Deletes issue with `ISSUE_ID` 3.
+
+### Listing all issues : `issue -l`
+
+Shows a list of all issues.
+
+Format: `issue -l`
 
 ### Finding an issue : `issue -f`
 
@@ -423,6 +451,8 @@ Examples:
 
 Pins an issue to the top of the issue list.
 
+![pin_issue_command](images/PinIssueCommand.png)
+
 Format: `issue -p ISSUE_ID`
 
 * Pins the issue with the specified `ISSUE_ID`. 
@@ -437,22 +467,27 @@ Examples:
 
 Sorts all issues based on a specified key.
 
+![sort_issue_command](images/SortIssueCommand.png)
+
 Format: `issue -s [i/ISSUE_ID] [d/DEADLINE] [u/URGENCY]`
 
-* Exactly one optional value (sorting key) to be provided.
+* Exactly one optional value (sorting key) to be provided 
+(Command will not accept multiple optional values).
 * Input 0/1 for each Prefix (e.g. i/0):
   * For `ISSUE_ID`, 0 for ascending and 1 for descending.
   * For `DEADLINE`, 0 for chronological and 1 for reverse chronological.
   * For `URGENCY`, 0 for ascending and 1 for descending.
 
 Examples: 
-* `issues -s i/0` Sorts list of issues based on `ISSUE_ID` from lowest to highest.
-* `issues -s d/0` Sorts list of issues based on `DEADLINE` from earliest to latest.
-* `issues -s u/1` Sorts list of issues based on `URGENCY` from highest to lowest.
+* `issue -s i/0` Sorts list of issues based on `ISSUE_ID` from lowest to highest.
+* `issue -s d/0` Sorts list of issues based on `DEADLINE` from earliest to latest.
+* `issue -s u/1` Sorts list of issues based on `URGENCY` from highest to lowest.
 
 ### Marking an issue: `issue -m`
  
 Marks specified existing issue as completed.
+
+![mark_issue_command](images/MarkIssueCommand.png)
 
 Format: `issue -m ISSUE_ID`
 
@@ -465,6 +500,8 @@ Examples:
 * `issue -m 8` Changes the `STATUS` of the issue with `ISSUE_ID` 8 to completed.
 
 ### Unmarking an issue: `issue -u`
+
+![unmark_issue_command](images/UnmarkIssueCommand.png)
 
 Marks specified existing issue as incomplete.
 
@@ -509,35 +546,34 @@ If your changes to the data file makes its format invalid, DevEnable will discar
 
 # Command summary
 
-| Action                         | Format, Examples |
-|--------------------------------|------------------|
-| **Add Project**                | `project -a`     |
-| **Edit Project**               | `project -e`     |
-| **Delete Project**             | `project -d`     |
-| **List Projects**              | `project -l`     |
-| **Find Project**               | `project -f`     |
-| **Pin Projects**               | `project -p`     |
-| **Sort Projects**              | `project -s`     |
-| **Set Default View (Project)** | `project -v`     |
-| **Add Client**                 | `client -a`      |
-| **Edit Client**                | `client -e`      |
-| **Delete Client**              | `client -d`      |
-| **List Clients**               | `client -l`      |
-| **Find Client**                | `client -f`      |
-| **Pin Clients**                | `client -p`      |
-| **Sort Clients**               | `client -s`      |
-| **Set Default View (Client)**  | `client -v`      |
-| **Add Issue**                  | `issue -a`       |
-| **Edit Issue**                 | `issue -e`       |
-| **Delete Issue**               | `issue -d`       |
-| **List Issues**                | `issue -l`       |
-| **Find Issue**                 | `issue -f`       |
-| **Pin Issue**                  | `issue -p`       |
-| **Sort Issues**                | `issue -s`       |
-| **Mark Issue**                 | `issue -m`       |
-| **Unmark Issue**               | `issue -u`       |
-| **Set Default View (Issue)**   | `issue -v`       |
-| **Clear**                      | `clear`          |
-| **Help**                       | `help`           |
-| **Exit**                       | `exit`           |
-
+| Action                         | Format                                                                          |
+|--------------------------------|:-------------------------------------------------------------------------------------------|
+| **Add Project**                | `project -a n/PROJECT_NAME [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE] `                     |
+| **Edit Project**               | `project -e p/PROJECT_ID [n/PROJECT_NAME] [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`       |
+| **Delete Project**             | `project -d PROJECT_ID`                                                                    |
+| **List Projects**              | `project -l`                                                                               |
+| **Find Projects**              | `project -f [n/PROJECT_NAME] [r/REPOSITORY] [p/PROJECT_ID] [c/CLIENT_ID] [l/CLIENT_LABEL]` |
+| **Pin Projects**               | `project -p PROJECT_ID`                                                                    |
+| **Sort Projects**              | `project -s [p/PROJECT_ID] [d/DEADLINE] [i/ISSUE_COUNT] [n/PROJECT_NAME]`                  |
+| **Set Default View (Project)** | `project -v`                                                                               |
+| **Add Client**                 | `client -a n/CLIENT_NAME p/PROJECT_ID [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`                  |
+| **Edit Client**                | `client -e c/CLIENT_ID [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`                 |
+| **Delete Client**              | `client -d CLIENT_ID`                                                                      |
+| **List Clients**               | `client -l`                                                                                |
+| **Find Clients**               | `client -f [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL] [c/CLIENT_ID]`               |
+| **Pin Clients**                | `client -p CLIENT_ID`                                                                      |
+| **Sort Clients**               | `client -s [c/CLIENT_ID] [n/CLIENT_NAME]`                                                  |
+| **Set Default View (Client)**  | `client -v`                                                                                |
+| **Add Issue**                  | `issue -a p/PROJECT_ID t/TITLE [d/DEADLINE] [u/URGENCY]`                                   |
+| **Edit Issue**                 | `issue -e i/ISSUE_ID [t/TITLE] [d/DEADLINE] [u/URGENCY]`                                   |
+| **Delete Issue**               | `issue -d ISSUE_ID`                                                                        |
+| **List Issues**                | `issue -l`                                                                                 |
+| **Find Issues**                | `issue -f [t/TITLE] [n/PROJECT_NAME] [p/PROJECT_ID] [u/URGENCY] [s/STATUS] [i/ISSUE_ID]`   |
+| **Pin Issues**                 | `issue -p ISSUE_ID`                                                                        |
+| **Sort Issues**                | `issue -s [i/ISSUE_ID] [d/DEADLINE] [u/URGENCY]`                                           |
+| **Mark Issue**                 | `issue -m ISSUE_ID`                                                                        |
+| **Unmark Issue**               | `issue -u ISSUE_ID`                                                                        |
+| **Set Default View (Issue)**   | `issue -v`                                                                                 |
+| **Clear**                      | `clear`                                                                                    |
+| **Help**                       | `help`                                                                                     |
+| **Exit**                       | `exit`                                                                                     |
