@@ -5,11 +5,13 @@ import static java.util.Objects.requireNonNull;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 
+import javafx.collections.transformation.FilteredList;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.converters.ModCodeConverter;
 import modtrekt.model.Model;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.module.Module;
+import modtrekt.model.task.Task;
 
 /**
  * Marks a module as done.
@@ -56,8 +58,10 @@ public class DoneModuleCommand extends Command {
 
         Module target = model.parseModuleFromCode(moduleCode);
 
-        // Check that the module is not already marked as done.
-        if (target.isDone()) {
+        FilteredList<Task> modulesTasks = model.getFilteredTaskList()
+                .filtered(task -> task.getModule().equals(moduleCode) && !task.isDone());
+
+        if (target.isDone() && modulesTasks.size() == 0) {
             throw new CommandException(String.format("Module %s is already marked as done.", moduleCode.toString()));
         }
 
