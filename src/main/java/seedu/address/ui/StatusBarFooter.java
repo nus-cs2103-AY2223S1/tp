@@ -15,14 +15,18 @@ public class StatusBarFooter extends UiPart<Region> {
     private static final String FXML = "StatusBarFooter.fxml";
 
     @FXML
-    private Label saveLocationStatus;
+    private Label saveBuyerLocationStatus;
+
+    @FXML
+    private Label savePropertyLocationStatus;
 
     /**
      * Creates a {@code StatusBarFooter} with the given {@code Path}.
      */
-    public StatusBarFooter(Path saveLocation) {
+    public StatusBarFooter(Path saveBuyerLocation, Path savePropertyLocation) {
         super(FXML);
-        saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
+        saveBuyerLocationStatus.setText(Paths.get(".").resolve(saveBuyerLocation).toString());
+        savePropertyLocationStatus.setText(Paths.get(".").resolve(savePropertyLocation).toString());
     }
 
 }

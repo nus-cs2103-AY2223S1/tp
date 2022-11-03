@@ -48,15 +48,18 @@ public class BuyerUtil {
      */
     public static String getEditBuyerDescriptorDetails(EditBuyerDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME + " ").append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE + " ").append(phone.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL + " ").append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS + " ").append(address.value).append(" "));
-        descriptor.getPriceRange().ifPresent(priceRange -> sb.append(PREFIX_PRICE_RANGE + " ")
+
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(" ").append(name.fullName).append(" "));
+        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(" ").append(phone.value).append(" "));
+        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(" ").append(email.value).append(" "));
+        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(" ").append(address.value)
+                .append(" "));
+        descriptor.getPriceRange().ifPresent(priceRange -> sb.append(PREFIX_PRICE_RANGE).append(" ")
                 .append(priceRange).append(" "));
         descriptor.getDesiredCharacteristics().ifPresent(desiredCharacteristics -> sb.append(PREFIX_CHARACTERISTICS)
-                .append(" ").append(desiredCharacteristics).append(" "));
-        descriptor.getPriority().ifPresent(priority -> sb.append(PREFIX_PRIORITY + " ")
+                .append(" ")
+                .append(desiredCharacteristics).append(" "));
+        descriptor.getPriority().ifPresent(priority -> sb.append(PREFIX_PRIORITY).append(" ")
                 .append(priority.specifiedPriority).append(" "));
         return sb.toString();
     }

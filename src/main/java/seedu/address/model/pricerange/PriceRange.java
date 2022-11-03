@@ -21,7 +21,7 @@ public class PriceRange {
      * and then followed by more digits. A decimal / floating point value is also valid.
      * This helps prevent "123a-123b" from being considered a valid input.
      */
-    public static final String VALIDATION_REGEX = "[0-9]*\\.?[0-9]+\\s?-\\s?[0-9]*\\.?[0-9]+";
+    public static final String VALIDATION_REGEX = "[0-9]*\\.?[0-9]+\\s*-\\s*[0-9]*\\.?[0-9]+";
 
     public final Price low;
     public final Price high;
