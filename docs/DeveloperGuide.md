@@ -10,7 +10,8 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * In order to change the contents page for User Guide and Developer Guide to follow numbering order, we reused code from https://github.com/lesterong/tp/blob/master/docs/assets/css/style.scss with minor modifications.
-
+* We have reused code from https://github.com/AY2122S2-CS2103T-W09-2/tp/blob/master/src/main/resources/view/Caramel.css and https://github.com/AY2122S2-CS2103T-W09-2/tp/blob/master/src/main/resources/view/Cinnamon.css
+for styling our User Interface (UI).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
