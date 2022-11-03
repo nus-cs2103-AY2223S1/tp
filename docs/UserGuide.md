@@ -345,7 +345,7 @@ Examples:
 
 * `find romance tragedy rate/5 date/2019-10-23`
 
-  *Finds all activities with a name or description containing `romance` or `tragedy` or both, or with a rating of 5, or with a date of 23 October 2019.
+  *Finds all activities with a name or description containing `romance` or `tragedy` or both, or with a rating of 5, or with a date of 23 October 2019.*
 
 ### 5.8 Finding activities with tags : `findTag`
 
