@@ -201,19 +201,6 @@ Examples:
 [Back to Project Glossary](#project-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Listing all Projects and Tasks :** `list`
-
-Show all the Projects and Tasks in the Project and Task list respectively.
-
-<div markdown="span" class="alert alert-primary"> 
-:bulb: **Tip:** After using a find command, you can use `list` to return the display to its original state.
-</div>
-
-Format: `list` displays a list of all the projects in HR Pro Max++.
-
-[Back to top](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
 ### **Finding Projects :** `findproj`
 
 Finds all Projects whose names match any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
@@ -562,6 +549,19 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+[Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+### **Listing all Projects and Tasks :** `list`
+
+Show all the Projects and Tasks in the Project and Task list respectively.
+
+<div markdown="span" class="alert alert-primary"> 
+:bulb: **Tip:** After using a find command, you can use `list` to return the display to its original state.
+</div>
+
+Format: `list` displays a list of all the projects and tasks in HR Pro Max++.
 
 [Back to top](#table-of-contents)
 
