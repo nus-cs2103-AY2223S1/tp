@@ -37,9 +37,20 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_personAcceptedByModelNoBirthdayWithTag_addSuccessful() throws Exception {
         BobaBotModelStubAcceptingPersonAdded modelStub = new BobaBotModelStubAcceptingPersonAdded();
-        Customer validCustomer = new CustomerBuilder().build();
+        Customer validCustomer = new CustomerBuilder().withBirthdayMonth("10").withTags("BDAY").build();
+
+        CommandResult commandResult = new AddCommand(validCustomer).execute(modelStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validCustomer), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validCustomer), modelStub.personsAdded);
+    }
+
+    @Test
+    public void execute_personAcceptedByModelBirthdayNoTag_addSuccessful() throws Exception {
+        BobaBotModelStubAcceptingPersonAdded modelStub = new BobaBotModelStubAcceptingPersonAdded();
+        Customer validCustomer = new CustomerBuilder().withBirthdayMonth("11").build();
 
         CommandResult commandResult = new AddCommand(validCustomer).execute(modelStub);
 

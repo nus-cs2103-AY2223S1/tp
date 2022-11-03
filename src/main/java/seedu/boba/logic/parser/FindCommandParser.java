@@ -7,7 +7,6 @@ import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import seedu.boba.logic.commands.EditCommand;
 import seedu.boba.logic.commands.FindCommand;
 import seedu.boba.logic.parser.exceptions.ParseException;
 import seedu.boba.model.customer.Email;
@@ -53,7 +52,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
                 findPersonDescriptor.setEmail(email);
             } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             }
 
             //Checks the assumption that either the Phone_Number or Email should be filled

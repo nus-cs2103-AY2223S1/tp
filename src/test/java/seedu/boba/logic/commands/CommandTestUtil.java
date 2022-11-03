@@ -59,6 +59,9 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_BIRTHDAY_MONTH_DESC = " " + PREFIX_BIRTHDAY_MONTH + "two"; // not integer value
     public static final String INVALID_REWARD_DESC = " " + PREFIX_REWARD; // empty string not allowed for rewards
+    public static final String INVALID_NEGATIVE_REWARD_DESC = " " + PREFIX_REWARD + "-1";
+    public static final String EXCEED_MAX_INTEGER_REWARD_DESC = " " + PREFIX_REWARD
+            + "2147483648"; // values more than max integer not allowed for rewards
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "GOLD*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

@@ -84,6 +84,15 @@ public class FindCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
+        if (isNull(predicate) && isNull(findPersonDescriptor.getEmail())) {
+            return other == this
+                    || (other instanceof FindCommand
+                    && findPersonDescriptor.getPhone().equals(((FindCommand) other).findPersonDescriptor.getPhone()));
+        } else if (isNull(predicate) && isNull(findPersonDescriptor.getPhone())) {
+            return other == this
+                    || (other instanceof FindCommand
+                    && findPersonDescriptor.getEmail().equals(((FindCommand) other).findPersonDescriptor.getEmail()));
+        }
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
                 && predicate.equals(((FindCommand) other).predicate)); // state check

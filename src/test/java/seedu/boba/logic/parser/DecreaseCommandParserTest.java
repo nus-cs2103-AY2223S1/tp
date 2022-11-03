@@ -5,13 +5,20 @@ import static seedu.boba.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.boba.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.boba.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.boba.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.boba.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.boba.testutil.TypicalEmails.EMAIL_FIRST_PERSON;
+import static seedu.boba.testutil.TypicalEmails.EMAIL_SECOND_PERSON;
 import static seedu.boba.testutil.TypicalPhones.PHONE_FIRST_PERSON;
+import static seedu.boba.testutil.TypicalPhones.PHONE_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.boba.logic.commands.DecreaseCommand;
+import seedu.boba.model.customer.Email;
+import seedu.boba.model.customer.Phone;
 import seedu.boba.model.customer.Reward;
 
 public class DecreaseCommandParserTest {
@@ -22,6 +29,34 @@ public class DecreaseCommandParserTest {
     private static final String MESSAGE_INVALID_REWARD = Reward.MESSAGE_MAX_INTEGER;
 
     private DecreaseCommandParser parser = new DecreaseCommandParser();
+
+    @Test
+    public void parse_validPhone_success() {
+        Phone targetPhone = PHONE_SECOND_PERSON;
+        String userInput = " 10 " + PREFIX_PHONE + targetPhone;
+        DecreaseCommand expectedCommand = new DecreaseCommand(targetPhone, "10");
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_moreThanOnePhone_failure() {
+        String userInput = " 10 " + PREFIX_PHONE + PHONE_FIRST_PERSON + " " + PREFIX_PHONE + PHONE_SECOND_PERSON;
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_moreThanOneEmail_failure() {
+        String userInput = " 10 " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + " " + PREFIX_EMAIL + EMAIL_SECOND_PERSON;
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_validEmail_success() {
+        Email targetEmail = EMAIL_SECOND_PERSON;
+        String userInput = " 10 " + PREFIX_EMAIL + targetEmail;
+        DecreaseCommand expectedCommand = new DecreaseCommand(targetEmail, "10");
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
 
     @Test
     public void parse_missingParts_failure() {
