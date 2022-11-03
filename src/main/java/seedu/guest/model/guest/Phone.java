@@ -14,7 +14,7 @@ public class Phone {
     private static final int MAX_LENGTH = 15;
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numeric characters. They must be at least " + MIN_LENGTH
+            "Phone numbers should only contain numbers. They must be at least " + MIN_LENGTH
                     + " digits and at most " + MAX_LENGTH + " digits long.";
 
     public static final String VALIDATION_REGEX = String.format("\\d{%d,%d}", MIN_LENGTH, MAX_LENGTH);

@@ -30,6 +30,7 @@ a master at using GuestBook in no time!
 
 --------------------------------------------------------------------------------------------------------------------
 ## How to use the User Guide
+
 * For a quick and easy way to **get started** with GuestBook, you can visit the [Quick Start](#quick-start) section.
 * To **understand the terms** we use in GuestBook, you can visit the [Glossary](#glossary) section.
 * To see the **amazing features** that GuestBook provides and how to use them, you can visit the [Features](#features) section.
@@ -42,6 +43,8 @@ a master at using GuestBook in no time!
 * As there is a lot of content covered in this guide, it would be good to browse through
 the contents once first. This will give you a clearer idea of how GuestBook functions. After which,
 go in-depth into the sections you are interested to learn more about.
+* Some information (e.g., constraints of fields) are placed in separate sections to prevent information overload.
+By following this incremental approach, we hope to make the content more digestible for you.
 </div>
 
 ### Style Guide
@@ -236,7 +239,7 @@ This command is typically used to **check a guest in** to your hotel with their 
 
 **:information_source: Additional information:**
 
-* Refer to the [Constraints of fields](#constraints-of-fields) for more information about the limitations
+* Refer to the [Field summary](#field-summary) for more information about the limitations
   of each field.
 </div>
 
@@ -266,7 +269,7 @@ you provide. The values that you **did not specify** to edit will remain **uncha
 
 **:information_source: Additional information:**<br>
 
-* Refer to the [Constraints of fields](#constraints-of-fields) for more information about the limitations
+* Refer to the [Field summary](#field-summary) for more information about the limitations
   of each field.
 </div>
 
@@ -302,7 +305,7 @@ or **decreased** respectively by the value you provide.
 
 * Note that the bill here refers to the **total additional charges incurred**
   by the guest during their stay at your hotel and should **not include the cost of the room booking**.
-* Refer to the [Constraints of fields](#constraints-of-fields) for more information about the limitations
+* Refer to the [Field summary](#field-summary) for more information about the limitations
   of each field.
 </div>
 
@@ -512,28 +515,6 @@ Advanced users may change data directly by editing this data file.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Constraints of fields
-
-The constraints of fields are placed in a separate section as we do not wish to flood you with too much 
-information at once. By following this incremental approach, we hope to make the content more digestible
-for you.
-
-| Field                  | Corresponding prefix | Constraint                                                                                                                                                                                                                                                                                                                                                                             |
-|------------------------|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`NAME`**             | `n/`                 | Should contain only **alphabets**, spaces, apostrophes ('), hyphens (-), periods (.) and commas(,). It must start with an alphanumeric character, and it should not be blank. It should not contain any prefixes as well.                                                                                                                                                              |
-| **`PHONE`**            | `p/`                 | Should contain only **numbers**, and it should be at least 3 digits and at most 15 digits long.                                                                                                                                                                                                                                                                                        |
-| **`EMAIL`**            | `e/`                 | Should contain only **alphanumeric characters** and '@' character. The local segment (before "@") should be at most 64 characters long, and the domain segment (after "@") should be at most 255 characters long. Special characters (`+`, `_`, `.`, `-`) can be included but **not as the first or last characters** of any segment. They also cannot be used adjacent to each other. |
-| **`ROOM`**             | `r/`                 | Should contain only **alphanumeric characters**, and it should be at least 1 character and at most 100 characters long. A hyphen can only be added if it is in between 2 alphanumeric characters.                                                                                                                                                                                      |
-| **`DATE_RANGE`**       | `dr/`                | Should follow the format dd/MM/yy - dd/MM/yy. The second date must be **later** than the first date.                                                                                                                                                                                                                                                                                   |
-| **`NUMBER_OF_GUESTS`** | `ng/`                | Should contain only **numbers**, and the values should only be between 1 to 4 inclusive.                                                                                                                                                                                                                                                                                               |
-| **`REQUEST`**          | `rq/`                | Is an **optional field**, and it should be at most 500 characters long. It should not contain any prefixes.                                                                                                                                                                                                                                                                            |
-| **`IS_ROOM_CLEAN`**    | `rc/`                | Should contain only `yes`, `no`, `y` or `n` (case-insensitive).                                                                                                                                                                                                                                                                                                                        |
-| **`BILL`**             | `b/`                 | Should contain only **numbers**, and can have up to 2 decimal places.                                                                                                                                                                                                                                                                                                                  |
-
-[Return to Table of Contents](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
-
 ## FAQ
 
 Listed here are some frequently asked questions that we hope will be helpful for you should you encounter any problems. Should you require any other assistance, feel free to [contact us](#contact-us).
@@ -551,13 +532,48 @@ Listed here are some frequently asked questions that we hope will be helpful for
 **A**: **No**, GuestBook currently only supports the use of `guestbook.json` as the name of the saved data file.
 
 **Q**: Why are there no guests in my GuestBook?<br>
-**A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file is **corrupted**, causing GuestBook to reset it to prevent any malicious files from being used.
+**A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file has been **corrupted**, causing GuestBook to reset it to prevent any malicious files from being used.
 
-**Q**: I cannot find a guest staying on a particular date even though it should be within the dates of stay. Why is that so?
-**A**: It is likely that you entered a date within the start and end dates of the guest's stay (e.g, for a guest staying from 13-01-2022 to 15-01-2022, you entered 14-01-2022 to try and find the guest). Currently, this feature is **not supported** by GuestBook.
+**Q**: Why am I getting error messages for fields that are correct, or that I'm not editing?<br>
+**A**: If you are using the `add`/`edit` commands and input the `name`/`request` fields, ensure that they do not contain any **field prefixes** after whitespace in their content (e.g., `rq/Extra bed & p/c`), as GuestBook could be parsing part of your input as another field. Consider using capital letters as this check is case-sensitive (`rq/Extra bed & P/C` will be parsed correctly). You may refer to [Field summary](#field-summary) for more information about field constraints.
 
-**Q**: Why am I not able to add guests to the same room even though they have different dates of stay?
-**A**: For this iteration of GuestBook, guests are only entered when they check in at the hotel. As such, there should not be a case where the same room is occupied by different people on different dates at that point in time. Thus, this feature is a safety check provided by GuestBook to ensure no guests are allocated the same room during their stay. In summary, to ensure GuestBook remains simple and easy for you to use, all rooms must be unique to each guest in GuestBook.
+**Q**: I cannot find a guest staying on a particular date even though it should be within the dates of stay. Why is that so?<br>
+**A**: You may have entered a date **between** the start and end dates of the guest's stay (e.g, searching for `13/01/22 - 15/01/22` by entering `14/01/22`). Currently, this feature is **not supported** by GuestBook.
+
+**Q**: Why am I not able to add guests to the same room even though they have different dates of stay?<br>
+**A**: For this iteration of GuestBook, guests are added when they **check in** at the hotel and deleted when they **check out**. As such, there would not be different guests with the same room at any time. This feature is a safety check provided by GuestBook to ensure different guests are not allocated the same room during their stay. To ensure GuestBook remains simple and easy for you to use, each guest must have a **unique room** in GuestBook.
+
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Field summary
+
+The format and constraints of fields in GuestBook are listed in the table below.
+
+In the case where GuestBook rejects your field inputs, you can refer to this section to use the right format.
+
+<div markdown="block" class="alert alert-warning">
+
+:exclamation: **Caution:**<br>
+
+* If you are specifying the `name`/`request` fields, ensure that they do not contain any field prefixes after whitespace in their content 
+(e.g., `rq/Extra bed & p/c`), as GuestBook may mistake part of your input as another field. 
+Consider using capital letters as this check is case-sensitive (`rq/Extra bed & P/C` will be understood correctly).
+</div>
+
+
+| Field                   | Corresponding prefix | Format/Constraints                                                                                                                                                                                                                                                                                                                                                                               |
+|-------------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`NAME`**              | `n/`                 | Should contain only **alphabets, spaces, and special characters (`'`, `-`, `.`, `,`, `/`)**.                                                                                                                                                                                                                                                                                                     |
+| **`PHONE`**             | `p/`                 | Should contain only **numbers**, and it should be at least 3 digits and at most 15 digits long.                                                                                                                                                                                                                                                                                                  |
+| **`EMAIL`**             | `e/`                 | Should contain only **alphanumeric characters and 1 `@` character**.<br/>The local segment (before `@`) should be at most 64 characters long, and the domain segment (after `@`) should be at most 255 characters long.<br/>Special characters (`+`, `_`, `.`, `-`) can be included but **not as the first or last characters** of any segment. They also cannot be used adjacent to each other. |
+| **`ROOM`**              | `r/`                 | Should contain only **alphanumeric characters and hyphens (`-`)**.<br/>A hyphen can only be added if it is in between 2 alphanumeric characters.                                                                                                                                                                                                                                                 |
+| **`DATE_RANGE`**        | `dr/`                | Should follow the format `dd/MM/yy - dd/MM/yy` with 2 valid dates and the second date should be later than the first date.                                                                                                                                                                                                                                                                       |
+| **`NUMBER_OF_GUESTS`**  | `ng/`                | Should contain only **numbers**, and be at least 1 and at most 4 numbers long.                                                                                                                                                                                                                                                                                                                   |
+| **`REQUEST`**           | `rq/`                | Is an **optional field**, and should be at most 500 characters long.                                                                                                                                                                                                                                                                                                                             |
+| **`IS_ROOM_CLEAN`**     | `rc/`                | Should be only `yes`, `no`, `y` or `n` (case-insensitive).                                                                                                                                                                                                                                                                                                                                       |
+| **`BILL`**              | `b/`                 | Should contain only **numbers, one optional decimal point (`.`), and one optional leading sign (`+`/`-`)**. <br/>Can have up to 2 decimal places and will be assumed to be positive if no leading sign is used.                                                                                                                                                                                  |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -565,15 +581,19 @@ Listed here are some frequently asked questions that we hope will be helpful for
 
 ## Command summary
 
+The format of commands in GuestBook are listed in the table below.
+
+In the case where GuestBook rejects your command (`Invalid command format!`), you can refer to this section to use the right command format.
+
 | Action                 | Format, Examples                                                                                                                                                                               |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                | `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]` <br> E.g., `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/20 - 24/05/22 ng/3`            |
-| **Bill**               | `bill INDEX b/BILL`<br> E.g., `bill 2 b/99.99`                                                                                                                                                 |
+| **Add**                | `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/20 - 24/05/22 ng/3`            |
+| **Bill**               | `bill INDEX b/BILL`<br> e.g., `bill 2 b/99.99`                                                                                                                                                 |
 | **Clear**              | `clear`                                                                                                                                                                                        |
-| **Delete**             | `delete INDEX`<br> E.g., `delete 3`                                                                                                                                                            |
-| **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`<br> E.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/4` |
+| **Delete**             | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                            |
+| **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`<br> e.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/4` |
 | **Exit**               | `exit`                                                                                                                                                                                         |
-| **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> E.g., `find James Jake`                                                                                                                                     |
+| **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                     |
 | **Help**               | `help`                                                                                                                                                                                         |
 | **List**               | `list`                                                                                                                                                                                         |
 | **Mark Rooms Unclean** | `markroomsunclean`                                                                                                                                                                             |                                                                                                                                                                                      |
@@ -583,7 +603,7 @@ Listed here are some frequently asked questions that we hope will be helpful for
 --------------------------------------------------------------------------------------------------------------------
 
 ## Contact Us
-For enquiries or feedback, feel free to let us know at [guestbook.enquiries@gmail.com](mailto:guestbook.enquiries@gmail.com), and we will get back to you as soon as possible!
+For enquiries or feedback, feel free to reach us at [guestbook.enquiries@gmail.com](mailto:guestbook.enquiries@gmail.com), and we will get back to you as soon as possible!
 
 [Return to Table of Contents](#table-of-contents)
 
