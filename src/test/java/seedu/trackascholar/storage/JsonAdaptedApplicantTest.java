@@ -25,7 +25,7 @@ public class JsonAdaptedApplicantTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_SCHOLARSHIP = " ";
     private static final String INVALID_APPLICATION_STATUS = "failure";
-    private static final String INVALID_MAJOR = "#friend";
+    private static final String INVALID_MAJOR = "#mathematics";
 
     private static final String VALID_NAME = ALICE.getFullName();
     private static final String VALID_PHONE = ALICE.getPhoneNumber();
@@ -137,8 +137,8 @@ public class JsonAdaptedApplicantTest {
     public void toModelType_invalidMajors_throwsIllegalValueException() {
         List<JsonAdaptedMajor> invalidMajors = new ArrayList<>(VALID_MAJORS);
         invalidMajors.add(new JsonAdaptedMajor(INVALID_MAJOR));
-        JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, invalidMajors, VALID_HAS_PINNED);
+        JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, invalidMajors, VALID_HAS_PINNED);
         assertThrows(IllegalValueException.class, applicant::toModelType);
     }
 
@@ -147,8 +147,8 @@ public class JsonAdaptedApplicantTest {
         List<JsonAdaptedMajor> invalidMajors = new ArrayList<>(VALID_MAJORS);
         invalidMajors.add(new JsonAdaptedMajor(VALID_MAJOR_1));
         invalidMajors.add(new JsonAdaptedMajor(VALID_MAJOR_2));
-        JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, invalidMajors, VALID_HAS_PINNED);
+        JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, invalidMajors, VALID_HAS_PINNED);
         assertThrows(IllegalValueException.class, applicant::toModelType);
     }
 

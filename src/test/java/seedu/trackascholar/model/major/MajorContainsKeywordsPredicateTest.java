@@ -67,7 +67,11 @@ public class MajorContainsKeywordsPredicateTest {
         assertTrue(predicate.test(new ApplicantBuilder().withMajors("Computer Science", "Mathematics").build()));
 
         // Mixed-case keywords
-        predicate = new MajorContainsKeywordsPredicate(Arrays.asList("cOmpuTEr", "mAtHEmatIcS"));
+        predicate = new MajorContainsKeywordsPredicate(Arrays.asList("cOmpuTEr", "scIEncE"));
+        assertTrue(predicate.test(new ApplicantBuilder().withMajors("Computer Science").build()));
+        predicate = new MajorContainsKeywordsPredicate(Arrays.asList("mAtHEmatIcS"));
+        assertTrue(predicate.test(new ApplicantBuilder().withMajors("Mathematics").build()));
+        predicate = new MajorContainsKeywordsPredicate(Arrays.asList("cOmpuTEr", "scIEncE", "mAtHEmatIcS"));
         assertTrue(predicate.test(new ApplicantBuilder().withMajors("Computer Science", "Mathematics").build()));
     }
 

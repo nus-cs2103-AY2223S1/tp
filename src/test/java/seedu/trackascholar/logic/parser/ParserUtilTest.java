@@ -25,14 +25,14 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+65123456";
     private static final String INVALID_SCHOLARSHIP = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_MAJOR = "#friend";
+    private static final String INVALID_MAJOR = "#mathematics";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "12345678";
     private static final String VALID_SCHOLARSHIP = "NUS Global Merit";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_MAJOR_1 = "friend";
-    private static final String VALID_MAJOR_2 = "neighbour";
+    private static final String VALID_MAJOR_1 = "Computer Science";
+    private static final String VALID_MAJOR_2 = "Mathematics";
 
     private static final String WHITESPACE = " \t\r\n";
 

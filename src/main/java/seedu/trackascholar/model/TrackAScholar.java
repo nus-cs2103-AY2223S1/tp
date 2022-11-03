@@ -152,5 +152,4 @@ public class TrackAScholar implements ReadOnlyTrackAScholar {
         return applicants.hashCode();
     }
 
-
 }

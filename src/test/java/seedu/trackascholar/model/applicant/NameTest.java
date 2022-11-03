@@ -37,4 +37,28 @@ public class NameTest {
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
     }
+
+    @Test
+    public void equalsIgnoreCase() {
+        String firstName = "peter";
+        String firstNameMixedCase = "PeTeR";
+        String secondName = "jack";
+        String secondNameMixedCase = "jACk";
+
+        // same name
+        assertTrue(new Name(firstName).equalsIgnoreCase(new Name(firstName)));
+        assertTrue(new Name(secondName).equalsIgnoreCase(new Name(secondName)));
+
+        // same name but mixed case
+        assertTrue(new Name(firstName).equalsIgnoreCase(new Name(firstNameMixedCase)));
+        assertTrue(new Name(secondName).equalsIgnoreCase(new Name(secondNameMixedCase)));
+
+        // different name
+        assertFalse(new Name(firstName).equalsIgnoreCase(new Name(secondName)));
+
+        // different name with mixed case
+        assertFalse(new Name(firstName).equalsIgnoreCase(new Name(secondNameMixedCase)));
+        assertFalse(new Name(secondName).equalsIgnoreCase(new Name(firstNameMixedCase)));
+        assertFalse(new Name(firstNameMixedCase).equalsIgnoreCase(new Name(secondNameMixedCase)));
+    }
 }
