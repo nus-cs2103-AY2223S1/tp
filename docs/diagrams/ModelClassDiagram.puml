@@ -18,6 +18,9 @@ Class Project
 Class UniqueTaskList
 Class Task
 
+Class UniqueStaffList
+Class Staff
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -36,9 +39,12 @@ ModelManager ---->"~* filtered" Project
 ModelManager --->"~* filtered" Task
 
 AddressBook *--> "1" UniqueProjectList
-UniqueProjectList ---> "~* all" Project
+UniqueProjectList .up.> "~* all" Project
+AddressBook *--> "1" UniqueStaffList
+UniqueStaffList .up.> "~* all" Staff
+ModelManager ---> "~* filtered" Staff
 
 AddressBook *--> "1" UniqueTaskList
-UniqueTaskList --> "~* all" Task
+UniqueTaskList .up.> "~* all" Task
 
 @enduml

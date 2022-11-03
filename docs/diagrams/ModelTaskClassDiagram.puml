@@ -8,6 +8,7 @@ Package Task <<Rectangle>>{
 Class Task
 Class TaskDeadline
 Class TaskDescription
+Class TaskMark
 
 }
 
@@ -17,6 +18,7 @@ Class ModelManager
 UniqueTaskList --> "~* all" Task
 Task *--> TaskDescription
 Task *--> TaskDeadline
+Task *--> TaskMark
 
 TaskDescription -[hidden]right-> TaskDeadline
 
