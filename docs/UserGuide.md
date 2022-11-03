@@ -7,13 +7,18 @@ title: User Guide
 
 > The sole app that university students will need to streamline their everyday routines.
 
-SoCompiler is a **desktop app for managing contacts and module details, optimized for use via a Command Line
-Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SOCompiler
-can get your contact and module management tasks done faster than traditional GUI apps.
+SoCompiler is a **desktop app for managing contacts and module details, optimized for use via a [Command Line
+Interface](#command-line-interface)** (CLI) while still having the benefits of a [Graphical User Interface](#graphical-user-interface) (GUI).
 
 You can add modules to the app, allowing you to store important information like the location, time and zoom links of your lectures and tutorials.
 
 You can also add people to the app, such as your professors, teaching assistants or just friends, allowing you store their email addresses, phone numbers, telegram handles and which modules they are from.
+
+If you are an SOC student, this app is perfect for you! SOCompiler can get your contact and module management tasks done faster than traditional GUI apps.
+
+Even if you are not, fret not! Just have a quick look at the [command summary](#command-summary) (they are rather intuitive) and start typing to give it a try!
+
+For first-time users, we also recommend you to first read through the various [person fields](#person-fields) as well as [module fields](#module-fields) to familarise yourself with what each field represent and their constraints.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,18 +28,18 @@ You can also add people to the app, such as your professors, teaching assistants
 - [Quick Start](#quick-start)
 - [Things to note](#things-to-note)
 - [Commands](#commands)
-    - [General Commands](#for-both-modules-and-contacts)
+    - [General Commands](#general-commands)
         - [List](#listing-all-modules-and-contacts-list)
         - [Find](#finding-keywords-in-contacts-andor-modules-find)
         - [Clear](#clearing-all-contacts-and-modules-clear)
         - [Help](#looking-for-help-help)
         - [Exit](#exiting-the-program-exit)
-    - [Commands for Contacts](#contacts)
+    - [Commands for Contacts](#commands-for-contacts)
         - [Add](#adding-a-contact-addp)
         - [Edit](#editing-a-contact-editp)
         - [Delete](#deleting-a-contact-deletep)
         - [Find](#finding-a-contact-findp)
-    - [Commands for Modules](#modules)
+    - [Commands for Modules](#commands-for-modules)
         - [Add](#adding-a-module-addm)
         - [Edit](#editing-a-module-editm)
         - [Delete](#deleting-a-module-deletem)
@@ -45,7 +50,7 @@ You can also add people to the app, such as your professors, teaching assistants
     - [Module code](#module-code)
     - [Email address](#email-address)
     - [Telegram handle](#telegram-handle)
-    - [Person tags](#person-tags)
+    - [Person tags](#tags)
 - [Module Fields](#module-fields)
     - [Module Code](#module-code)
     - [Lecture Details](#lecture-details)
@@ -85,7 +90,7 @@ You can also add people to the app, such as your professors, teaching assistants
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+* Words in `UPPER_CASE` are the [parameters](#parameters) to be supplied by you.<br>
   e.g. for add `n/NAME`, NAME is the parameter and can be replaced with John Doe.
 
 * Items in square brackets are optional.<br>
@@ -104,7 +109,7 @@ You can also add people to the app, such as your professors, teaching assistants
 
 # Commands
 
-## For both modules and contacts
+## General Commands
 
 ### Listing all modules and contacts: `list`
 
@@ -130,7 +135,7 @@ Fields that you can filter for contacts:
 * [Module code](#module-code)
 * [Email address](#email-address)
 * [Telegram handle](#telegram-handle)
-* [Person tags](#person-tags)
+* [Person tags](#tags)
 
 Format: `find KEYWORD [MORE_KEYWORDS]…​`
 
@@ -180,7 +185,7 @@ SoCompiler data are saved in the hard disk automatically after any command that 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Contacts
+## Commands for Contacts
 
 ### Adding a contact: `addp`
 
@@ -274,7 +279,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Modules
+## Commands for Modules
 
 ### Adding a module: `addm`
 
@@ -361,7 +366,7 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 
 | Field Type      | Field Description                         | Identifier | Restrictions (if any)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 |-----------------|-------------------------------------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name            | A person's name                           | n/         | Should only contain alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |           
+| Name            | A person's name                           | n/         | Should only contain [alphanumeric](#alphanumeric) characters                                                                                                                                                                                                                                                                                                                                                                                                                                                        |           
 | Phone Number    | A person's phone number                   | p/         | Should only contain numbers and be at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                   |           
 | Module Code     | The module code a person is associated to | m/         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |           
 | Email Address   | A person's email address                  | e/         | Should follow the format `local-part@domain`, where:<ol><li>`local-part` should only contain [alphanumeric](#alphanumeric) characters and the following characters: `+` `_` `.` `-` .<li>`domain` consists of two `domain labels` seperated by a `.`<ul><li> The second `domain label` should be at least 2 characters long.<li>`domain label` should start and end with alphanumeric characters.<li>Each `domain label` should only consist of alphanumeric characters, separated by hyphens if necessary. |
@@ -410,7 +415,7 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 * The telegram handle of the person.
 * Identified by prefix `tg/`.
 * Valid field to be searched using `Find` command.
-* Handle should start with a `@` symbol and only contain alphanumeric characters after `@`. It should be at least 5 characters long, not including `@`.
+* Handle should start with a `@` symbol and only contain [alphanumeric](#alphanumeric) characters after `@`. It should be at least 5 characters long, not including `@`.
 * Optional field.
 
 ### Tags
@@ -470,7 +475,7 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 
 * The zoom link of the lecture.
 * Identified by prefix `tz/`.
-* Zoom link should be a valid URL.
+* Zoom link should be a valid [URL](#url).
 * Optional field.
 
 ### Assignment Details
@@ -512,16 +517,30 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 1. Install the app in the other computer.
 2. Go to the location where your current app is in, there should be a file called `data` in the same location.
 3. Copy the entire file and either email yourself the file or use a thumb-drive to transfer it to the other computer.
-4. Move the copied file to the same location you placed the jar file in the new computer.
+4. Move the copied file to the same location you placed the [jar file](#jar-file) in the new computer.
 
 **Q**: What if my module has no zoom links? What if I don't have the contact number of my Teaching Assistant?<br>
 **A**: When adding a Module, all fields except `MODULE_CODE` are optional. When adding a contact, all fields except
 `NAME` are optional. These fields can be updated later with the
-[editp](#editing-a-contact--editp) or [editm](#editing-a-module--editm) commands.
+[editp](#editing-a-contact-editp) or [editm](#editing-a-module-editm) commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## GLOSSARY
+
+#### Command Line Interface
+* It is a text-based interface where users input commands (in the form of text) to interact with the computer/program.
+
+#### Graphical User Interface
+* It is a form of interface where users can interact with apps/electrical devices through graphical icons and audio indicators.
+
+#### Jar file
+* It is a way to package multiple Java class files and associated resources(text, images etc.) into one file. 
+* It is also typically used to deploy(run) an entire application.
+
+#### Parameters
+* It is a special kind of variable used in a function to refer to data provided.
+* In this case, it refers to the different fields you are providing to each person or module you want to add to the app, for example, name, phone number and module code for a person.
 
 #### Alphanumeric
 
