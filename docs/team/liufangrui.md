@@ -9,14 +9,14 @@ InterNUS is a desktop app for managing internship applications, optimized for us
 
 Given below are my contributions to the project.
 
-* **New Feature**: `to be added soon`
-  * What it does: `to be added soon`
-  * Justification: `to be added soon`
-  * Highlights: `to be added soon`
-  * Credits: `to be added soon`
+* **New Feature**: `Link Command`
+  * What it does: Allows the user to link a person and an internship together, specified person will then be displayed as contact person of the specified internship, and specified internship will be displayed as the internship of the person.
+  * Justification: When applying for internships, there is often a contact person that students will contact. It is important that we display this relationship between this person and internship to allow easy navigation when students intend to follow up on their internships
 
-* **New Feature**: `to be added soon`
-
+* **New Feature**: `Unlink Command`
+  * What it does: Allows the user to unlink a person and an internship that were previously linked together.
+  * Justification: There may be errors when students attempt to link a person and an internship together. In addition, students might decide to unlink the contact person after being accepted or rejected by the relevant internship. 
+  
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=liufangrui&breakdown=true)
 
 * **Project management**:
@@ -27,12 +27,8 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * `to be added soon`
+    * Added "Linking a person and an internship"
+    * Added "Unlinking a person and an internship"
+    * Added "Listing all persons"
   * Developer Guide:
-    * `to be added soon`
-
-* **Community**:
-  * `to be added soon`
-
-* **Tools**:
-  * `to be added soon`
+    * Added "Linking a person and an internship" implementation
