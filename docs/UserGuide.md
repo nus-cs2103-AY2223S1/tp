@@ -42,14 +42,14 @@ If you are a cashier working at a bubble tea shop, bobaBot can help you easily f
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `bobaBot.jar` from [here](https://github.com/AY2223S1-CS2103T-W09-1/tp/releases).
+2. Download the latest `bobaBot.jar` from [here](https://github.com/AY2223S1-CS2103T-W09-1/tp/releases).
 
-1. Decide where do you want your _home folder_ and copy the downloaded file to it.
+3. Decide where do you want your _home folder_ and copy the downloaded file to it.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample information.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample information.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * **`list`** : Lists all customers.
@@ -62,9 +62,13 @@ If you are a cashier working at a bubble tea shop, bobaBot can help you easily f
 
     * **`exit`** : Exits the app.
 
-1. Scroll down on the Customer list and Promotion list to see all the customers and on-going promotions.
+6. Scroll down on the Customer list and Promotion list to see all the customers and on-going promotions.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Command summary](#4-command-summary) below for a quick overview of commands.
+
+8. Refer to the [Features](#2-features) below for details of each command.
+
+9. Before starting a trial run, clear the sample information using `clear` command and add your actual customer information.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -650,3 +654,4 @@ _Details coming soon ..._
 | **Command**     | A command is a **directive** to a computer program to **perform a specific task**.                                                                                                                                                                                                                |
 | **Parameter**   | A **value** for a specified field.                                                                                                                                                                                                                                                                |
 | **Command box** | **Place** where the user **types** in the command.                                                                                                                                                                                                                                                |
+| **Tag**         | A remark that can be added to customers.                                                                                                                                                                                                                                                          |
