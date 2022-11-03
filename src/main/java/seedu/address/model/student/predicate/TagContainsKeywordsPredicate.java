@@ -19,8 +19,9 @@ public class TagContainsKeywordsPredicate implements Predicate<Student> {
 
     @Override
     public boolean test(Student student) {
+        // There is a need to convert tagName to lowercase so that the comparison is case-insensitive
         List<String> tagList = student.getTags().stream()
-                .map(tag -> tag.tagName)
+                .map(tag -> tag.tagName.toLowerCase())
                 .collect(Collectors.toList());
         /*
         There is only a need to check whether the tagList (the current tags of the student) contains the keyword.
