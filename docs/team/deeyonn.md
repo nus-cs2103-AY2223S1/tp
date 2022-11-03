@@ -69,7 +69,7 @@ Given below are my contributions to the project.
       [#181](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/181))
     * Modify checkout feature description.
       (PR
-      [#268](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/268))
+      [#269](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/269))
 
 
 * **Community**:
