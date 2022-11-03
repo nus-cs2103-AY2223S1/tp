@@ -339,6 +339,8 @@ You can only undo <em>undoable</em> commands!
 to reapply the initial changes!
 * Performing multiple `undo` commands may confuse you as to which <em>undoable</em> command you are
 undoing and how your WorkBook currently looks like!
+* Tracked WorkBook versions will reset once you `exit` the application!
+
 </div>
 
 ### 6.8. Redoing your previous command:
@@ -402,6 +404,7 @@ After you perform command: `redo`
 to remove the initial changes!
 * Performing multiple `redo` commands may confuse you as to which `undo` command you are
 redoing and how your WorkBook currently looks like!
+* Tracked WorkBook versions will reset once you `exit` the application!
 </div>
 
 ### 6.9. Viewing help:
