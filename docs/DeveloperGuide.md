@@ -245,6 +245,7 @@ The following classes had to be extended in order to support meeting list
 ### [Implemented] Storage for meetings
 #### Implementation
 <img src="images/ModifiedStorageClassDiagram.png" width="550" />
+
 The implementation of the storage for meetings closely follows the way address book was implemented. There were many classes 
 that had to be copied, and they included
 - `MeetingList`
@@ -270,6 +271,7 @@ The following classes had to be extended in order to support meeting list
 The app maintained its own internal list of meetings in the `ModelManager` and the 
 `LogicManager` would save the current model whenever the execute function to the `meetinglist.json`. As such, there
 was no need of having to create additional classes to support the model or logic classes
+
 <img src="images/ModifiedModelClassDiagram.png" width="450" />
 
 
