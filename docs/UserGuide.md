@@ -12,7 +12,11 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 ## 1 Introduction
 
+Welcome to **ProfNUS**! :blush:
 
+Are you a SoC professor who is busy with heavy research work, teaches many modules and manages hundreds of students and TAs at the same time? Do you feel dizzy changing from one platform to another such as Luminus or Canvas? Have you ever sent an email to the wrong group of students? Life is hard, but luckily, **ProfNUS** can help you out! **ProfNUS** is a comprehensive teaching management desktop application that assists SoC professor in terms of modules, students, TAs, and schedules. It is designed based on Command Line Interface (CLI), which perfectly fits SoC professors' habits and preferences. We also provide Graphic User Interface (GUI) for users to interact with our product.
+
+If you want to know more about how **ProfNUS** is able to ease your worries, go to the [Quick Start](#2-quick-start) and take your first step in **ProfNUS**!
 
 ## 2 Quick start
 
@@ -283,7 +287,7 @@ You can add a schedule by using this command.
 
  **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- Refer to section [Schedule Manager Command Parameters](#341-schedule-manager-command-parameters) for more information about the parameters
 
 </div>
 
@@ -321,7 +325,7 @@ Edits a schedule in the ProfNUS.
 
  **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- Refer to section [Schedule Manager Command Parameters](#341-schedule-manager-command-parameters) for more information about the parameters
 - You are expected to provide at least one optional parameter
 - Your newly typed parameters will overwrite corresponding existing information.
 
@@ -360,7 +364,7 @@ Deletes a schedule from the ProfNUS.
 
  **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- Refer to section [Schedule Manager Command Parameters](#341-schedule-manager-command-parameters) for more information about the parameters
 
 </div>
 
@@ -394,7 +398,7 @@ This command helps you clear all schedules/all schedules of selected modules.
 
  **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- Refer to section [Schedule Manager Command Parameters](#341-schedule-manager-command-parameters) for more information about the parameters
 - If no optional `MODULE_CODE` is given, all schedules will be cdeleted
 
 </div>
@@ -418,7 +422,7 @@ You can use this command to view the list of selected/all schedules.
 
  **:information_source: Note**<br>
 
-- Refer to section [Schedule Manager Command Parameters](#241-schedule-manager-command-parameters) for more information about the parameters
+- Refer to section [Schedule Manager Command Parameters](#341-schedule-manager-command-parameters) for more information about the parameters
 - Schedules matching at least one keyword will be returned to you.
 - You can view all your schedules by typing `view` without any parameter.
 
