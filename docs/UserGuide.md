@@ -300,6 +300,7 @@ Format: `add_task n/TASK_NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…
 - The contact index refers to the index number shown in the **displayed contact list**.
 - The contact index **must be a positive integer** 1, 2, 3, …​
 - Deadline must be in the format of **`dd-MM-yyyy HHmm`**.
+- If `HHmm` exceeds `2359`, it will overflow to the next day.
 
 Examples:
 
@@ -342,6 +343,7 @@ Format: `edit_task INDEX [n/TASK_NAME] [d/DESCRIPTION] [dl/DEADLINE]`
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - Deadline must be in the format of **`dd-MM-yyyy HHmm`**.
+- If `HHmm` exceeds `2359`, it will overflow to the next day.
 
 Examples:
 
