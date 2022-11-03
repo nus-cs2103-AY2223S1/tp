@@ -154,6 +154,19 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
+     *
+     * @param expectedMessage The message that is expected to be thrown.
+     * @param command        The command that is expected to throw the exception.
+     * @param actualModel   The model that the command is executed on.
+     */
+    public static void assertCommandFailure(String expectedMessage, Command command, Model actualModel) {
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
      * - the HealthContact, filtered patient list and selected patient in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
