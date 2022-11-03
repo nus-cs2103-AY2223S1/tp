@@ -54,6 +54,7 @@ Given below are my contributions to the project.
   * Credits:
     * Would like to thank @russeldash332 for the help in working through the code tracing with me 
       to understand how the UI panel is being displayed
+      
 * **Code contributed**: <br>
   [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jordanchua&breakdown=true)
 
