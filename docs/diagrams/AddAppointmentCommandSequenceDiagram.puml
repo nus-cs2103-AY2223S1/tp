@@ -15,6 +15,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":MaximumSortedList" as MaximumSortedList MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
 participant ":Appointment" as Appointment MODEL_COLOR
 end box
 
@@ -66,7 +67,11 @@ activate MaximumSortedList
 MaximumSortedList --> AddAppointmentCommand
 deactivate MaximumSortedList
 
+AddAppointmentCommand -> Model : updateCalendarEventList
+activate Model
 
+Model --> AddAppointmentCommand
+deactivate Model
 
 create CommandResult
 AddAppointmentCommand -> CommandResult : CommandResult(successMsg)

@@ -146,6 +146,7 @@ The `Model` component,
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
+*Figure 8. Improved class diagram showing the classes in the `Model`*
 </div>
 
 
@@ -154,6 +155,8 @@ The `Model` component,
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
+
+*Figure 9. Class diagram showing the classes in the `Storage`*
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -193,17 +196,24 @@ The appointment feature currently supports 3 different commands.
 #### Add Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager##execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser##parseCommand(userInput)` which parses the command.
+
 Step 2. If the user input matches the format for the command word for the `AddAppointmentCommand`, `AddressBookParser` will create an `AddAppointmentCommandParser` and will call the `AddAppointmentCommandParser##parse(args)` to parse the command.
+
 Step 3. Validation for the user input is performed, such as validating the client's `Index`, the format of the `DateTime` and `Location`.
+
 Step 4. If the user input is valid, a new `AddAppointmentCommand` object is created and returned to the `LogicManager`.
+
 Step 5. `LogicManager` will call `AddAppointmentCommand##execute(model)` method. Further validation is performed, such as checking whether a duplicate `Appointment` exists and whether the user has already scheduled the maximum number, 3, of `Appointments` for the specified client.
+
 Step 6. If the command is valid, the `add` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
+
 Step 7. `AddAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
 This is shown in the diagram below:
 
 ![Add Appointment Sequence Diagram](images/AddAppointmentCommandSequenceDiagram.png)
-<br> *Figure xx: Add Appointment Command Sequence Diagram*
+
+*Figure 11: Sequence Diagram showing the execution of an `aa` (Add Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be added for each command**
