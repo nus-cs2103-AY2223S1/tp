@@ -40,4 +40,6 @@ Given below are my contributions to the project.
     * Update User Guide with instruction instructions on accessing and editing data from local storage. (Pull Request [#\240](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/240))
 
 * **Contribution to DG**
-    * Edited DeveloperGuide to reflect change form AB3 to new project. (Pull Request [#\76]())
+    * Edited DeveloperGuide to reflect change form AB3 to new project. (Pull Request [#\73](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/73))
+    * Edited value proposition and target user in Developer Guide. (Pull Request [#\76](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/76))
+    * Add description and UML diagrams to show execution of create task and edit task commands. 
