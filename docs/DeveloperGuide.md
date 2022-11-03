@@ -324,23 +324,23 @@ Reason for choosing alternative 1: provide a way for users to quickly see which 
 
 #### Implementation
 
-The alias command will be executed by `AliasCommand`. Aliases added will be stored in a `UniqueAliasList`, while
-in-built command names (e.g. add, delete) will be stored in a constant `reservedCommandList`.
+The alias command will be executed by `AliasCommand`. Aliases added will be stored in a `AliasMap`, while
+in-built command names (e.g. add, delete) will be stored in a constant `LIST_RESERVED_KEYWORD` in the `ReservedKeyword` class.
 
 Given below is an example usage scenario and how the alias mechanism behaves at each step.
 
-1. The user launches the application for the first time. FRIDAY will initialise an `ALiasManager`
-with an empty `UniqueAliasList`.
+1. The user launches the application for the first time. FRIDAY will initialise a `Friday`
+with an empty `AliasMap`.
 
-2. The user executes `alias list ls` command to add an alias `ls` for the command `list`. The `alias` command
-will check that `list` is in the `reservedCommandList` and `ls` is not in the `UniqueAliasList`. After both conditions
-are fulfilled, an `Alias("list","ls")` object will be created and will be added to the `UniqueAliasList` with
-`Model#addAlias(Alias toadd)`.
+2. The user executes `alias a/ls k/list` command to add an alias `ls` for the command `list`. `FridayParser` will parse 
+`alias` and create a new `AliasCommandParser`.`AliasCommandParser` will parse `a/ls k/list` and create an `AlliasCommand` with `Alias("ls")` 
+and a `ReservedKeyword("list")`. When executing the `AliasCommand`, the command will check that `list` is in the `LIST_RESERVED_KEYWORD`,`ls` is not in the 
+`AliasMap` and `ls` is a valid alias. After all the conditions are fulfilled, `Model#addAlias(Alias("ls"), ReservedKeyword("list")))` will be called to add
+this alias-keyword mapping into `AliasMap`.
 
-3. The user executes `ls` using the alias of the `list` command. The `AliasManager` will check that
-the alias `ls` is assigned to a command (in this case it is `list`) in `FridayParser`. `commandWord` in
-`FridayParser` will then be assigned the name of the command in the `reservedCommandList` and the `ListCommand`
-is then executed.
+3. The user executes `ls` using the alias of the `list` command. `Model#getKeyword("ls")` will check `AliasMap` in `Model` 
+for a alias-keyword mapping. As there is a mapping of `ls` to `list`, `Model#getKeyword("ls")` will return `list`. 
+`list` will then be assigned to `commandWord` in `FridayParser`. `commandWord` will then be used to get the command to be executed.
 
 _{To add sequence diagram}_
 
