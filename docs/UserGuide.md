@@ -263,6 +263,9 @@ Shows all exercises, among exercises in the current [Exercise List](#42-exercise
 
 Format (1) : `:range start/START_DATE end/END_DATE`
 
+Parameter constraints:
+* Start date should be before end date. Otherwise, no exercises will be displayed.
+
 Example:
 * `:range start/25/10/2022 end/26/10/2022` Shows the exercises done between October 25, 2022 and October 26, 2022 (both inclusive).
 
@@ -274,7 +277,6 @@ Format (2) : `:range last/NUMBER_OF_DAYS`
 
 Parameter constraints:
 * Number of days **can only take non-negative integer values**, up to 5 digits.
-* Start date should be before end date. Otherwise, no exercises will be displayed.
 
 Example:
 * `:range last/3` Shows the exercises done today and the last 3 days.
