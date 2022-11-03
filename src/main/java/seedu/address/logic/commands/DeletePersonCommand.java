@@ -33,7 +33,7 @@ public class DeletePersonCommand extends Command {
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_PERSON_INDEX_DESCRIPTION)
-    private Index targetIndex;
+    private Index index;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -53,11 +53,11 @@ public class DeletePersonCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Person personToDelete = lastShownList.get(index.getZeroBased());
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
@@ -66,7 +66,7 @@ public class DeletePersonCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeletePersonCommand // instanceof handles nulls
-                && targetIndex.equals(((DeletePersonCommand) other).targetIndex)); // state check
+                && index.equals(((DeletePersonCommand) other).index)); // state check
     }
 
 }

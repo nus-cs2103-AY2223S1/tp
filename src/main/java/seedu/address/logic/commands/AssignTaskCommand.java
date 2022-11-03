@@ -43,7 +43,7 @@ public class AssignTaskCommand extends Command {
     public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
-    private Index taskIndex;
+    private Index index;
 
     @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, required = true,
             description = FLAG_TASK_ASSIGNEES_DESCRIPTION)
@@ -66,7 +66,7 @@ public class AssignTaskCommand extends Command {
         }
         requireNonNull(model);
         List<Task> taskList = model.getFilteredTaskList();
-        if (taskIndex.getZeroBased() >= taskList.size()) {
+        if (index.getZeroBased() >= taskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         List<String> assigneesList;
@@ -88,25 +88,25 @@ public class AssignTaskCommand extends Command {
             assigneePersonList.add(memberList.get(assigneeIndex - 1));
         }
         for (Person assignee : assigneePersonList) {
-            if (taskList.get(taskIndex.getZeroBased()).checkAssignee(assignee)) {
+            if (taskList.get(index.getZeroBased()).checkAssignee(assignee)) {
                 throw new CommandException(String.format(MESSAGE_DUPLICATE_ASSIGNMENT, assignee.getName()));
             }
         }
         for (Person assignee : assigneePersonList) {
-            Task originalTask = taskList.get(taskIndex.getZeroBased());
+            Task originalTask = taskList.get(index.getZeroBased());
             Task newTask = originalTask.assignTo(assignee);
 
             model.getTeam().setTask(originalTask, newTask);
         }
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS,
-                taskList.get(taskIndex.getZeroBased())));
+                taskList.get(index.getZeroBased())));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AssignTaskCommand // instanceof handles nulls
-                && taskIndex.equals(((AssignTaskCommand) other).taskIndex)) // state check
+                && index.equals(((AssignTaskCommand) other).index)) // state check
                 && Arrays.equals(assignees, ((AssignTaskCommand) other).assignees);
     }
 }

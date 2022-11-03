@@ -35,7 +35,7 @@ public class DeleteTaskCommand extends Command {
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
-    private Index targetIndex;
+    private Index index;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -55,11 +55,11 @@ public class DeleteTaskCommand extends Command {
         requireNonNull(model);
         List<Task> taskList = model.getFilteredTaskList();
 
-        if (targetIndex.getZeroBased() >= taskList.size()) {
+        if (index.getZeroBased() >= taskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToDelete = taskList.get(targetIndex.getZeroBased());
+        Task taskToDelete = taskList.get(index.getZeroBased());
         model.getTeam().removeTask(taskToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
@@ -68,7 +68,7 @@ public class DeleteTaskCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteTaskCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteTaskCommand) other).targetIndex)); // state check
+                && index.equals(((DeleteTaskCommand) other).index)); // state check
     }
 
 }

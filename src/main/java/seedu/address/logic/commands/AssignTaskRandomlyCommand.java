@@ -38,7 +38,7 @@ public class AssignTaskRandomlyCommand extends Command {
             + "There are less than %1$s tasks in your list.";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
-    private Index taskIndex;
+    private Index index;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -59,16 +59,16 @@ public class AssignTaskRandomlyCommand extends Command {
         List<Task> tasks = model.getFilteredTaskList();
         List<Person> members = model.getTeam().getTeamMembers();
 
-        if (taskIndex.getZeroBased() >= tasks.size()) {
-            throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex.getOneBased()));
+        if (index.getZeroBased() >= tasks.size()) {
+            throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, index.getOneBased()));
         }
-        if (tasks.get(taskIndex.getZeroBased()).getAssigneesList().size() == members.size()) {
+        if (tasks.get(index.getZeroBased()).getAssigneesList().size() == members.size()) {
             throw new CommandException(MESSAGE_ALL_MEMBERS_ASSIGNED);
         }
 
         List<Person> unassignedMembers = new ArrayList<>();
         for (Person person : members) {
-            if (!tasks.get(taskIndex.getZeroBased()).checkAssignee(person)) {
+            if (!tasks.get(index.getZeroBased()).checkAssignee(person)) {
                 unassignedMembers.add(person);
             }
         }
@@ -76,19 +76,19 @@ public class AssignTaskRandomlyCommand extends Command {
         Random random = new Random();
         Person assignee = unassignedMembers.get(random.nextInt(unassignedMembers.size()));
 
-        Task originalTask = tasks.get(taskIndex.getZeroBased());
+        Task originalTask = tasks.get(index.getZeroBased());
         Task newTask = originalTask.assignTo(assignee);
 
         model.getTeam().setTask(originalTask, newTask);
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS,
-                tasks.get(taskIndex.getZeroBased()).getName(), assignee.getName()));
+                tasks.get(index.getZeroBased()).getName(), assignee.getName()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AssignTaskRandomlyCommand // instanceof handles nulls
-                && taskIndex.equals(((AssignTaskRandomlyCommand) other).taskIndex)); // state check
+                && index.equals(((AssignTaskRandomlyCommand) other).index)); // state check
     }
 }

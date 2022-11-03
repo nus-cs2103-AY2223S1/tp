@@ -32,7 +32,7 @@ public class DeleteLinkCommand extends Command {
     public static final String MESSAGE_DELETE_LINK_SUCCESS = "Deleted Link: %1$s";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_LINK_INDEX_DESCRIPTION)
-    private Index targetIndex;
+    private Index index;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -51,10 +51,10 @@ public class DeleteLinkCommand extends Command {
         }
         requireNonNull(model);
         List<Link> lastShownList = model.getLinkList();
-        if (targetIndex.getOneBased() > lastShownList.size()) {
+        if (index.getOneBased() > lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_LINK_DISPLAYED_INDEX);
         }
-        Link linkToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Link linkToDelete = lastShownList.get(index.getZeroBased());
         model.deleteLink(linkToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_LINK_SUCCESS, linkToDelete));
     }
@@ -63,6 +63,6 @@ public class DeleteLinkCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteLinkCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteLinkCommand) other).targetIndex)); // state check
+                && index.equals(((DeleteLinkCommand) other).index)); // state check
     }
 }
