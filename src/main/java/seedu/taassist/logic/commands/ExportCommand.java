@@ -21,8 +21,8 @@ import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
-import seedu.taassist.model.session.SessionData;
-import seedu.taassist.model.student.IsPartOfClassPredicate;
+import seedu.taassist.model.student.predicate.IsPartOfClassPredicate;
+import seedu.taassist.model.student.SessionData;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.student.StudentModuleData;
 

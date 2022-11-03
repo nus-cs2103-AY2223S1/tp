@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.ModelManager;
 import seedu.taassist.model.UserPrefs;
-import seedu.taassist.model.student.NameContainsKeywordsPredicate;
+import seedu.taassist.model.student.predicate.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

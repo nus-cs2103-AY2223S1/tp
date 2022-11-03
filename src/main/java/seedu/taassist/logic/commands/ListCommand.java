@@ -5,7 +5,7 @@ import static seedu.taassist.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.student.IsPartOfClassPredicate;
+import seedu.taassist.model.student.predicate.IsPartOfClassPredicate;
 
 /**
  * Lists all students in TA-Assist or in the focused class to the user.

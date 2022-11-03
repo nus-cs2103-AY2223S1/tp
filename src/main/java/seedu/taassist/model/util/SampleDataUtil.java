@@ -22,8 +22,8 @@ import seedu.taassist.model.student.StudentModuleData;
  */
 public class SampleDataUtil {
 
-    private static final Session ASSIGNMENT_1 = new Session("Assignment 1", new Date(LocalDate.of(2022, 1, 1)));
-    private static final Session LAB_1 = new Session("Lab 1", new Date(LocalDate.of(2022, 10, 12)));
+    private static final Session ASSIGNMENT_1 = new Session("Assignment 1", new Date(LocalDate.parse("2022-01-01")));
+    private static final Session LAB_1 = new Session("Lab 1", new Date(LocalDate.parse("2022-10-12")));
     private static final Session TUTORIAL_1 = new Session("Tutorial 1", new Date(LocalDate.of(2022, 2, 28)));
 
     private static final ModuleClass CS1101S = new ModuleClass("CS1101S", List.of(LAB_1));

@@ -1,9 +1,10 @@
-package seedu.taassist.model.session;
+package seedu.taassist.model.student;
 
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.uniquelist.Identity;
 
 /**
@@ -19,7 +20,12 @@ public class SessionData implements Identity<SessionData>, Comparable<SessionDat
      */
     public SessionData(Session session, double grade) {
         requireAllNonNull(session);
-        this.session = session;
+        /*
+         * The following line is to remove references to date from the session.
+         * In a SessionData, only the name of the session matters. Also in the
+         * JSON file, only the name is saved.
+         */
+        this.session = new Session(session.getSessionName());
         this.grade = grade;
     }
 

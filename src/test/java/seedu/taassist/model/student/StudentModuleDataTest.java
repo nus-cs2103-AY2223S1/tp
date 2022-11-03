@@ -10,9 +10,6 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.taassist.model.session.SessionData;
-import seedu.taassist.model.student.StudentModuleData;
-
 class StudentModuleDataTest {
 
     @Test

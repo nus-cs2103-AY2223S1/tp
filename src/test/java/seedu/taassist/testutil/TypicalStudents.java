@@ -12,6 +12,8 @@ import static seedu.taassist.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1231S;
+import static seedu.taassist.testutil.TypicalSessions.LAB_1;
+import static seedu.taassist.testutil.TypicalSessions.TUTORIAL_1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,10 +37,13 @@ public class TypicalStudents {
             .withEmail("johnd@example.com").withPhone("98765432")
             .withModuleClasses(CS1101S, CS1231S).build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
+            .withEmail("heinz@example.com").withAddress("wall street")
+            .withModuleClasses(CS1101S).build()
+            .updateGrade(CS1101S, LAB_1, 100);
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
-            .withModuleClasses(CS1231S).build();
+            .withModuleClasses(CS1231S).build()
+            .updateGrade(CS1231S, TUTORIAL_1, 1);
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("9482427")
@@ -70,16 +75,16 @@ public class TypicalStudents {
      */
     public static TaAssist getTypicalTaAssist() {
         TaAssist taAssist = new TaAssist();
-        for (Student student : getTypicalStudents()) {
-            student.getModuleClasses().stream()
-                    .filter(c -> !taAssist.hasModuleClass(c))
-                    .forEach(taAssist::addModuleClass);
-            taAssist.addStudent(student);
-        }
+        getTypicalModuleClasses().forEach(taAssist::addModuleClass);
+        getTypicalStudents().forEach(taAssist::addStudent);
         return taAssist;
     }
 
     public static List<Student> getTypicalStudents() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return List.of(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE);
+    }
+
+    public static List<ModuleClass> getTypicalModuleClasses() {
+        return List.of(CS1101S, CS1231S);
     }
 }

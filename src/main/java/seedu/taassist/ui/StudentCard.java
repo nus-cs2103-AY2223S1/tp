@@ -11,7 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.taassist.commons.core.LogsCenter;
-import seedu.taassist.model.session.SessionData;
+import seedu.taassist.model.student.SessionData;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.student.StudentView;
 

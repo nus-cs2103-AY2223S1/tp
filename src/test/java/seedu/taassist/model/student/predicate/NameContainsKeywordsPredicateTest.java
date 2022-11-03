@@ -1,4 +1,4 @@
-package seedu.taassist.model.student;
+package seedu.taassist.model.student.predicate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.taassist.model.student.predicate.NameContainsKeywordsPredicate;
 import seedu.taassist.testutil.StudentBuilder;
 
 public class NameContainsKeywordsPredicateTest {

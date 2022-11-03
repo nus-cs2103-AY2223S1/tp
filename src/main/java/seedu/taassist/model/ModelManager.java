@@ -18,7 +18,7 @@ import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.commons.core.LogsCenter;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
-import seedu.taassist.model.student.IsPartOfClassPredicate;
+import seedu.taassist.model.student.predicate.IsPartOfClassPredicate;
 import seedu.taassist.model.student.MappedStudentViewList;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.student.StudentView;

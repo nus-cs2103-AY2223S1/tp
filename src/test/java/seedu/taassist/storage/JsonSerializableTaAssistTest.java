@@ -26,6 +26,10 @@ public class JsonSerializableTaAssistTest {
                 JsonSerializableTaAssist.class).get();
         TaAssist taAssistFromFile = dataFromFile.toModelType();
         TaAssist typicalStudentsTaAssist = TypicalStudents.getTypicalTaAssist();
+
+        System.out.println(JsonUtil.toJsonString(taAssistFromFile));
+        System.out.println(JsonUtil.toJsonString(typicalStudentsTaAssist));
+
         assertEquals(taAssistFromFile, typicalStudentsTaAssist);
     }
 

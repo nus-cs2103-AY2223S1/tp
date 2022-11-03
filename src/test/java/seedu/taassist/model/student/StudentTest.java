@@ -18,7 +18,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.session.SessionData;
 import seedu.taassist.testutil.StudentBuilder;
 
 public class StudentTest {

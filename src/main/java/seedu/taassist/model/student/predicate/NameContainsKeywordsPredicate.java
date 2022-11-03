@@ -1,9 +1,10 @@
-package seedu.taassist.model.student;
+package seedu.taassist.model.student.predicate;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.taassist.commons.util.StringUtil;
+import seedu.taassist.model.student.Student;
 
 /**
  * Tests that a {@code Student}'s {@code Name} matches any of the keywords given.

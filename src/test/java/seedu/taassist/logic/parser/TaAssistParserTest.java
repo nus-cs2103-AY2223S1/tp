@@ -44,7 +44,7 @@ import seedu.taassist.logic.commands.ViewCommand;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
-import seedu.taassist.model.student.NameContainsKeywordsPredicate;
+import seedu.taassist.model.student.predicate.NameContainsKeywordsPredicate;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.testutil.EditStudentDescriptorBuilder;
 import seedu.taassist.testutil.ModuleClassBuilder;
