@@ -266,8 +266,8 @@ What if you accidentally made a mistake and performed a wrong <em>undoable</em> 
 Workbook can help you to undo your changes after performing an undesirable <em>undoable</em> command! 
 Workbook will restore itself to the version before you performed the previous <em>undoable</em> command!
 
-WorkBook adds a new version for an <em>undoable</em> command and keeps track of all its previous versions, 
-allowing the `undo` command to be performed as many times to restore the WorkBook to any of its previous tracked versions. 
+WorkBook keeps track of all your previous <em>undoable</em> commands and its current version, allowing you to `undo` as many times
+to restore any desired state of your WorkBook.
 
 Format: `undo`
 * Undo the previous <em>undoable</em> command.
@@ -347,8 +347,9 @@ Now, what if you mistakenly performed an `undo` command?
 Workbook can help you to redo your changes after performing an undesirable `undo` command!
 Workbook will reverse the previous `undo` command and restore itself to the version before that!
 
-WorkBook adds a new version for an <em>undoable</em> command and keeps track of all its previous versions,
-allowing the `redo` command to be performed as many times as the number of `undo` commands you have performed!
+WorkBook keeps track of all your previous <em>undoable</em> commands and its current version,
+allowing the `redo` command to be performed as many times to reverse the
+`undo` commands you have performed!
 
 Format: `redo`
 * Redo the previous `undo` command.
