@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.property.PropertyNameContainsSubstringPredicate;
 
 /**
- * Finds and lists all properties in property book whose name contains any of the argument keywords.
+ * Finds and lists all properties in property book whose name contains the given string.
  * Keyword matching is case insensitive.
  */
 public class FindPropertiesCommand extends Command {
