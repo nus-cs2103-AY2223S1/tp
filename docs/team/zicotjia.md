@@ -37,4 +37,7 @@ Given below are my contributions to the project.
     * Highlights: Storage handling have to be modified to account for the new attributed in the Team class.
   
 * **Contribution to UG**
-    *  
+    * Update User Guide with instruction instructions on accessing and editing data from local storage. (Pull Request [#\253](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/253))
+
+* **Contribution to DG**
+    * Update
