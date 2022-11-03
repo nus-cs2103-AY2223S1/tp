@@ -13,6 +13,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.taassist.model.session.Session;
+import seedu.taassist.model.uniquelist.UniqueList;
 
 public class ModuleClassTest {
 
@@ -25,7 +26,8 @@ public class ModuleClassTest {
         assertThrows(NullPointerException.class, () -> new ModuleClass(null));
 
         // null session
-        assertThrows(NullPointerException.class, () -> new ModuleClass(validModuleClassName, null));
+        assertThrows(NullPointerException.class, () -> new ModuleClass(validModuleClassName,
+                (UniqueList<Session>) null));
 
         // null name
         assertThrows(NullPointerException.class, () -> new ModuleClass(null, validSessions));

@@ -88,8 +88,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
 
     public Session getSessionWithSameName(Session session) throws SessionNotFoundException {
         requireNonNull(session);
-        return sessions.stream().filter(s -> s.isSame(session)).findFirst()
-                .orElseThrow(SessionNotFoundException::new);
+        return sessions.findElement(session).orElseThrow(SessionNotFoundException::new);
     }
 
     /**
@@ -102,6 +101,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
             return this;
         }
         UniqueList<Session> newSessions = new UniqueList<>();
+        newSessions.addAll(sessions);
         newSessions.add(session);
         return new ModuleClass(className, newSessions);
     }
