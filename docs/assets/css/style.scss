@@ -74,4 +74,5 @@ body {
     counter-increment: item;
     content: counters(item, ".") ". ";
     color: #2a7ae2;
+    font-weight: bold;
 }
