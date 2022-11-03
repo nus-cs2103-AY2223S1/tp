@@ -14,13 +14,13 @@ Given below are my contributions to the project.
 
 * **New Feature**: Filter Contacts by Tag(s).
   * What it does: Lists out all persons in the contact list that have the tag(s) specified by the user.
-  * Justification: To allow you to quickly find all the people belonging to a specific category. 
-  * Highlights: 
+  * Justification: To allow you to quickly find all the people belonging to a specific category.
+  * Highlights:
 
   <img src="../images/FilterTagFriends.png" width="300" />
 
 * **New Feature**: Filter Contacts by Current Module(s).
-  * What it does: Lists out all persons in the contact list that have the current module(s) specified by the user in 
+  * What it does: Lists out all persons in the contact list that have the current module(s) specified by the user in
     their current modules list.
   * Justification: To allow you to quickly find all the people taking specific module(s).
   * Highlights:
@@ -44,10 +44,10 @@ Given below are my contributions to the project.
   <img src="../images/FilterPlanModCS3333.png" width="300" />
 
 * **New Feature**: Refreshing User and all Persons in the contact list when a New Semester starts.
-  * What it does: Moves all the current modules in the current module lists of both the user and all persons in the user's 
+  * What it does: Moves all the current modules in the current module lists of both the user and all persons in the user's
     contact list into their previous modules list.
-  * Justification: To allow user's to update their ConnectNUS app a new semester starts by clearing all modules from the 
-    current module lists of the user and their contacts, such that they are able to add new current modules that they 
+  * Justification: To allow user's to update their ConnectNUS app a new semester starts by clearing all modules from the
+    current module lists of the user and their contacts, such that they are able to add new current modules that they
     and their contacts will be taking in the upcoming semester to their app.
   * Highlights:
 
@@ -57,7 +57,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**: Update UI to display the user's profile.
   * Highlights:
-  
+
   <img src="../images/AddUserProfile.png" width="300" />
 
 * **Enhancements to existing features**: Update UI to display current, previous and planned modules for user and all persons in the contact list.

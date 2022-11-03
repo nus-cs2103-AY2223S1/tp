@@ -31,4 +31,5 @@ deactivate logic
 
 ui --[UI_COLOR]> user : PersonListPanel
 deactivate ui
+
 @enduml

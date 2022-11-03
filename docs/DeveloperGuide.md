@@ -37,14 +37,14 @@ title: Developer Guide
 ## **ConnectNUS Developer Guide**
 
 ConnectNUS is **designed for NUS Computer Science students** by providing a centralised platform for them to keep track
-of their and their friends' modules and timetables. ConnectNUS is **optimised for use via a Command Line Interface** (CLI) 
+of their and their friends' modules and timetables. ConnectNUS is **optimised for use via a Command Line Interface** (CLI)
 while still having the benefits of a **Graphical User Interface** (GUI).
 
-For Computer Science students who are generally fast typers, ConnectNUS is an excellent platform for you to get your CS 
-related tasks management done quickly, so you can spend less time searching through chats, and spend more time making 
+For Computer Science students who are generally fast typers, ConnectNUS is an excellent platform for you to get your CS
+related tasks management done quickly, so you can spend less time searching through chats, and spend more time making
 meaningful connections and engaging in productive work.
 
-The goal of this Developer Guide is to document and illustrate the underlying architecture of ConnectNUS, and provide 
+The goal of this Developer Guide is to document and illustrate the underlying architecture of ConnectNUS, and provide
 insights on how our product is designed, implemented and tested as well as the design considerations that were involved
 in the deciding the implementation of various features offered by ConnectNUS.
 
@@ -106,7 +106,7 @@ on how you can perform testing on the features in ConnectNUS. In this section, y
 3. The expected behaviour of the test command.
 
 You can jump into the various sections from the Table of Contents to view different sections of the Developer Guide, and
-click on [Scroll back to top](#table-of-contents), which can be found at the end of every section, to access the Table 
+click on [Scroll back to top](#table-of-contents), which can be found at the end of every section, to access the Table
 of Contents to quickly jump to another section without manually scrolling through the Developer Guide.
 
 As recommended in the introduction, we would like to direct you to read the [Glossary](#glossary) section next.
@@ -130,22 +130,22 @@ Developer Guide.
     <td>
       A text-based interface that is used to operate software (such as ConnectNUS) and operating systems. CLI
       allows a user to perform tasks by entering commands. </br>
-      Users enter the specific command, press “Enter”, and then wait for a response. 
+      Users enter the specific command, press “Enter”, and then wait for a response.
       After receiving the command, the CLI processes it accordingly and shows the output/result on the screen.
     </td>
   </tr>
   <tr>
     <td><strong>Graphical User Interface (GUI)</strong></td>
     <td>
-      A system of interactive visual components for computer software. A GUI displays objects that convey information, 
-      and represent actions that can be taken by the user. The objects change color, size, or visibility when the user 
+      A system of interactive visual components for computer software. A GUI displays objects that convey information,
+      and represent actions that can be taken by the user. The objects change color, size, or visibility when the user
       interacts with them.
     </td>
   </tr>
   <tr>
     <td><strong>Application Programming Interface (API)</strong></td>
     <td>
-      A a set of definitions and protocols for building and integrating application software and simplifies how 
+      A a set of definitions and protocols for building and integrating application software and simplifies how
       developers integrate new application components into an existing architecture.
     </td>
   </tr>
@@ -164,9 +164,9 @@ Developer Guide.
   <tr>
     <td><strong>Architecture</strong></td>
     <td>
-      Shows the overall organization of the system and can be viewed as a very high-level design. 
-      Consists of a set of interacting components that fit together to achieve the required functionality . It is a 
-      simple and technically viable structure that is well-understood and agreed-upon by everyone in the development 
+      Shows the overall organization of the system and can be viewed as a very high-level design.
+      Consists of a set of interacting components that fit together to achieve the required functionality . It is a
+      simple and technically viable structure that is well-understood and agreed-upon by everyone in the development
       team, and it forms the basis for the implementation..
     </td>
   </tr>
@@ -179,7 +179,7 @@ Developer Guide.
   <tr>
     <td><strong>Object-Oriented Programming (OOP)</strong></td>
     <td>
-      A computer programming model that organizes software design around data, or objects, rather than functions and logic. 
+      A computer programming model that organizes software design around data, or objects, rather than functions and logic.
       An object can be defined as a data field that has unique attributes and behavior.
     </td>
   </tr>
@@ -192,20 +192,20 @@ Developer Guide.
   <tr>
     <td><strong>Activity Diagram</strong></td>
     <td>
-      Models workflows, which define the flow in which a process or a set of tasks is executed. 
+      Models workflows, which define the flow in which a process or a set of tasks is executed.
     </td>
   </tr>
   <tr>
     <td><strong>Object Diagram</strong></td>
     <td>
-      Used to complement class diagrams. Object diagrams can be used to model different object 
+      Used to complement class diagrams. Object diagrams can be used to model different object
       structures that can result from a design represented by a given class diagram.
     </td>
   </tr>
   <tr>
     <td><strong>User Stories</strong></td>
     <td>
-       Short, simple descriptions of a feature told from the perspective of the person who desires the new capability, 
+       Short, simple descriptions of a feature told from the perspective of the person who desires the new capability,
        usually a user or customer of the system.
     </td>
   </tr>
@@ -433,18 +433,18 @@ Hence, we have decided that for this version we would limit the feature to only 
 batch and major for now.
 
 ### Refreshing to next semester
-ConnectNUS has a feature that helps you to update the previous module lists and clear the current module list of your profile 
-as well as any persons stored in the contact list at the start of each semester so that it is easy for you to update 
+ConnectNUS has a feature that helps you to update the previous module lists and clear the current module list of your profile
+as well as any persons stored in the contact list at the start of each semester so that it is easy for you to update
 yours and your friend's profiles.
 
 #### Implementation flow
 
-Given below is a sequence diagram to illustrate how the Next Semester feature, `nexsem`, behaves after the user gives the 
+Given below is a sequence diagram to illustrate how the Next Semester feature, `nexsem`, behaves after the user gives the
 respective command:
 
 ![Next Semester Sequence Diagram](images/NextSemesterSequenceDiagram.png)
 
-`nextsem` moves all `CurrentModule` in the `CurrentModule` set in your profile as well as any persons stored in the contact list 
+`nextsem` moves all `CurrentModule` in the `CurrentModule` set in your profile as well as any persons stored in the contact list
 to their respective `PreviousModule` sets. After which, the `CurrentModule` sets in both yours and all persons stored in the
 contact list will be cleared.
 
@@ -716,7 +716,7 @@ Given below are the proposed Methods to implement:
 
 ### Filter feature
 ConnectNUS has a filter function that allows you to filter all persons in your contact list according to `Tag`, `CurrentModule`,
-`PreviousModule` or `PlannedModule`. This allows you to find people who are taking specific mods such that you 
+`PreviousModule` or `PlannedModule`. This allows you to find people who are taking specific mods such that you
 are able to reach out to friends for collaboration more quickly.
 
 #### Implementation
@@ -728,9 +728,9 @@ The following sequence diagram summarizes what happens when a user executes a `f
 The `filterCurrModCommand`, `filterPrevModCommand` and `filterPlanModCommand` are executed in the same manner.
 
 `ModelManager`, which implements the `Model` class, stores an attribute `filteredPersons`, which is a `FilteredList` of `Person`s
-that is shown in the `MainWindow` class as a `PersonListPanel`. When a `filterTagCommand`, `filterCurrModCommand`, 
+that is shown in the `MainWindow` class as a `PersonListPanel`. When a `filterTagCommand`, `filterCurrModCommand`,
 `filterPrevModCommand` or `filterPlanModCommand` is given by the user, `Model`
-updates it's `filteredPersons` attribute to only contain `Person`s with any of the `Tag`s specified by the user. 
+updates it's `filteredPersons` attribute to only contain `Person`s with any of the `Tag`s specified by the user.
 The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
 
 #### Design considerations:
@@ -742,8 +742,8 @@ The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
   * Cons: the different filtering features would have to access different classes located in different packages to filter the contact list
 
 * **Alternative 2:** Abstracting out each filter feature as a different class which directly extends the command class.
-  * Pros: Less confusing for developers as each filtering feature would have to access different classes depending on the feature that is being filtered. Furthermore each filter feature's classes would belong in different packages within the programme due to the fact that it filters different features.
-  * Cons: Future implementations of filter functions for new features that may be added to the programme would have to be created from scractch.
+  * Pros: Less confusing for developers as each filtering feature would have to access different classes depending on the feature that is being filtered. Furthermore, each filter feature's classes would belong in different packages within the programme due to the fact that it filters different features.
+  * Cons: Future implementations of filter functions for new features that may be added to the programme would have to be created from scratch.
 
 * **Decision:** We decided to use alternative 2 as we do not foresee new features being added to the programme which would require filtering functions in the new feature based on the current purpose of our app. Furthermore, it would not be difficult to implement a parent abstract filter class for the filter function in future iterations should we need to do so.
 
