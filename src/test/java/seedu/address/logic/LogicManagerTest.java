@@ -14,15 +14,26 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.addcommands.AddBuyerCommand;
+import seedu.address.logic.commands.addcommands.AddDelivererCommand;
+import seedu.address.logic.commands.addcommands.AddSupplierCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Deliverer;
+import seedu.address.model.person.Supplier;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.TypicalBuyers;
+import seedu.address.testutil.TypicalDeliverers;
+import seedu.address.testutil.TypicalSuppliers;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -50,40 +61,99 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = "delete-b 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS_EMPTY, model);
     }
 
-//    @Test
-//    public void execute_storageThrowsIoException_throwsCommandException() {
-//        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-//        JsonAddressBookStorage addressBookStorage =
-//                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-//        JsonUserPrefsStorage userPrefsStorage =
-//                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-//        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-//        logic = new LogicManager(model, storage);
-//
-//        // Execute add command
-//        String addCommand = AddPersonCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-//                + ADDRESS_DESC_AMY;
-//        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-//        ModelManager expectedModel = new ModelManager();
-//        expectedModel.addPerson(expectedPerson);
-//        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-//        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-//    }
-//
-//    @Test
-//    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-//        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
-//    }
+    @Test
+    public void executeBuyer_storageThrowsIoException_throwsCommandException() {
+        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        JsonAddressBookStorage addressBookStorage =
+                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        logic = new LogicManager(model, storage);
+
+        // Execute add command
+        String addCommand = AddBuyerCommand.COMMAND_WORD + " " + PersonUtil.getAddCommandBody(TypicalBuyers.ALICE);
+        Buyer expectedPerson = new PersonBuilder(TypicalBuyers.ALICE).buildBuyer();
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.addBuyer(expectedPerson);
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void executeDeliverer_storageThrowsIoException_throwsCommandException() {
+        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        JsonAddressBookStorage addressBookStorage =
+                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        logic = new LogicManager(model, storage);
+
+        // Execute add command
+        String addCommand = AddDelivererCommand.COMMAND_WORD + " "
+                + PersonUtil.getAddCommandBody(TypicalDeliverers.ALICE);
+        Deliverer expectedPerson = new PersonBuilder(TypicalDeliverers.ALICE).buildDeliverer();
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.addDeliverer(expectedPerson);
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void executeSupplier_storageThrowsIoException_throwsCommandException() {
+        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        JsonAddressBookStorage addressBookStorage =
+                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        logic = new LogicManager(model, storage);
+
+        // Execute add command
+        String addCommand = AddSupplierCommand.COMMAND_WORD + " "
+                + PersonUtil.getAddCommandBody(TypicalSuppliers.ALICE);
+        Supplier expectedPerson = new PersonBuilder(TypicalSuppliers.ALICE).buildSupplier();
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.addSupplier(expectedPerson);
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void getFilteredBuyerList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredBuyerList().remove(0));
+    }
+
+    @Test
+    public void getFilteredSupplierList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredSupplierList().remove(0));
+    }
+
+    @Test
+    public void getFilteredDelivererList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredDelivererList().remove(0));
+    }
+
+    @Test
+    public void getFilteredOrdersList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOrderList().remove(0));
+    }
+
+    @Test
+    public void getFilteredPetList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPetList().remove(0));
+    }
 
     /**
      * Executes the command and confirms that
