@@ -67,4 +67,8 @@ public class SetPaidCommand extends Command {
                 && indexOfBill.equals(((SetPaidCommand) other).indexOfBill)); // state check
     }
 
+    public Index getIndexOfBill() {
+        return indexOfBill;
+    }
+
 }
