@@ -19,6 +19,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
+import seedu.address.model.client.NameEqualsKeywordPredicate;
 import seedu.address.model.remark.UniqueRemarkList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.TransactionLog;
@@ -67,7 +68,13 @@ public class EditClientCommand extends EditCommand {
         }
 
         model.setClient(clientToEdit, editedClient);
-        model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+
+        if (lastShownList.size() > 1) {
+            model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        } else {
+            model.updateFilteredClientList(new NameEqualsKeywordPredicate(editedClient));
+        }
+
         return warningMessage.isEmpty()
                 ? new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient))
                 : new CommandResult(String.format("WARNING!\n" + warningMessage
