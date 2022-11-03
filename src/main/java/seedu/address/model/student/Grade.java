@@ -2,8 +2,6 @@ package seedu.address.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Objects;
-
 /**
  * Represents a Student's grade in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidGrade(String)}
