@@ -766,18 +766,18 @@ point for testers to work on; testers are expected to do more exploratory testin
 
 1. Editing one parameter of an applicant on InternConnect
 
-   1. Prerequisites: One applicant without the email `johndoe@example.com`
+   1. Prerequisites: One applicant in the application.
 
-   2. Test case: `edit 1 e/johndoe@example.com`<br>
-      Expected: The email of the applicant in the first index is changed to `johndoe@example.com`
+   2. Test case: `edit 1 u/NUS`<br>
+      Expected: The university of the applicant in the first index is changed to `NUS`
 
 2. Editing multiple parameters of an applicant on InternConnect
 
-    1. Prerequisites: One applicant without the email `johndoe@example.com`
+    1. Prerequisites: One applicant in the application.
 
-    2. Test case: `edit 1 e/johndoe@example.com p/12345678 g/male`<br>
-       Expected: The email, phone number, and gender of the applicant in the first index is changed to 
-       `johndoe@example.com`, `12345678`, and `male` respectively.
+    2. Test case: `edit 1 u/NUS p/12345678 g/male`<br>
+       Expected: The university, phone number, and gender of the applicant in the first index is changed to 
+       `NUS`, `12345678`, and `male` respectively.
 
 
 ### 7.5 Deleting an applicant
