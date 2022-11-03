@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Monthly {
 
-    public static final String MESSAGE_CONSTRAINTS = "Monthly contribution can only take in a non-negative whole number";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Monthly contribution can only take in a non-negative whole number";
 
     /*
      * The first character of the address must not be a whitespace,
