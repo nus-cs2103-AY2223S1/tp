@@ -221,6 +221,7 @@ public class MainWindow extends UiPart<Stage> {
         ObservableList<Client> clientList = logic.getFilteredClientList();
         remarkListPanel.setRemarkList(FXCollections.observableArrayList());
         ObservableList<Transaction> transactions = FXCollections.observableArrayList();
+        double updatedNetTransaction = logic.calculateTotalTransaction(clientList);
         Iterator<Client> itr = clientList.listIterator();
         while (itr.hasNext()) {
             Client client = itr.next();
@@ -231,6 +232,7 @@ public class MainWindow extends UiPart<Stage> {
             }
         }
         transactionListPanel.setTransactionList(transactions);
+        netTransactionBox.setNetTransaction(updatedNetTransaction);
     }
 
     /**
