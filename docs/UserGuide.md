@@ -67,8 +67,7 @@ This section provides a summary of the parameters used for the commands in this 
 
 3. Copy the file to the folder you want to use as the _home folder_ for your NutriGoals.
 
-4. Double-click the file to start the app. A screen similar to the one below should appear in a few seconds. 
-Note how the app contains some sample data.
+4. Double-click the file to start the app. A screen similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 ![sampleUi](images/sampleUi.png)
 
 5. Type the command in the command box and press Enter to execute it. For example, typing `help` and pressing Enter will open 
@@ -83,6 +82,9 @@ the help window.
 * For new users, the app will contain sample data for these 3 days: 15 September 2022, 23 October 2022 and the current day. 
 * For example, you can try entering `list 2022-09-15` to view the sample food items on 15 September 2022. 
 * To delete food items from all days, enter `clear`.
+* If double-clicking `nutrigoals.jar` does not work, 
+  1. Navigate to the location where `nutrigoals.jar` is saved via the terminal.
+  2. Run the following in the terminal: `java -jar nutrigoals.jar`.
 
 </div>
 
@@ -158,8 +160,7 @@ Format: `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`
 * Each field can only be specified once.
 * `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner.
 * `CALORIE` can only take in a non-negative integer that is less than 2147483648
-* `FOOD_NAME` should only contain alphanumeric characters and spaces, and should not be blank. Names should also not 
-exceed 27 characters.
+* `FOOD_NAME` should only contain alphanumeric characters and spaces, and should not be blank. Names should also not exceed 27 characters.
 
 Example:
 
@@ -178,6 +179,15 @@ Example:
 **:information_source: Adding food items:**<br>
 
 A food item will **not** be added into the food list if the resulting total calorie intake for the day exceeds 2147483647 calories.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:fast_forward: Future update:**
+
+* The user will be able to add a food item to a specific date.
+* More meal categories will be added, e.g. `snack`.
 
 </div>
 
@@ -228,6 +238,14 @@ Example:
 **:information_source: About editing food items:**<br>
 
 A food item will **not** be edited if the resulting total calorie intake for the day exceeds 2147483647 calories.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:fast_forward: Future update:**
+
+More meal categories will be added, e.g. `snack`.
 
 </div>
 
