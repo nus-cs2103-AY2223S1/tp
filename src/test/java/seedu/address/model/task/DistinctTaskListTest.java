@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalExams.FINAL_EXAM;
 import static seedu.address.testutil.TypicalExams.MIDTERM_EXAM;
+import static seedu.address.testutil.TypicalModules.CS2030;
 import static seedu.address.testutil.TypicalModules.CS2040;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalTasks.TASK_A;
 import static seedu.address.testutil.TypicalTasks.TASK_B;
-import static seedu.address.testutil.TypicalModules.CS2030;
 import static seedu.address.testutil.TypicalTasks.TASK_D;
 import static seedu.address.testutil.TypicalTasks.getTypicalTasks;
 

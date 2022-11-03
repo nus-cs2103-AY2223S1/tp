@@ -16,6 +16,8 @@ import seedu.address.model.tag.exceptions.DeadlineTagUnchangedException;
 import seedu.address.model.tag.exceptions.PriorityTagAlreadyExistsException;
 import seedu.address.model.tag.exceptions.PriorityTagDoesNotExist;
 import seedu.address.model.tag.exceptions.PriorityTagUnchangedException;
+import seedu.address.model.task.exceptions.TaskAlreadyMarkedException;
+import seedu.address.model.task.exceptions.TaskAlreadyUnmarkedException;
 
 /**
  * Task class represents a task which stores the module code and the
@@ -131,10 +133,15 @@ public class Task {
     }
 
     /**
-     * Marks the task as complete
-     * and returns the task.
+     * Marks the task as complete and returns the task.
+     *
+     * @return a task with identical fields as {@this}, but labelled as complete.
+     * @throws TaskAlreadyMarkedException if the task is already marked.
      */
     public Task mark() {
+        if (isComplete()) {
+            throw new TaskAlreadyMarkedException();
+        }
         return new Task(module, description, TaskStatus.COMPLETE, priorityTag, deadlineTag, linkedExam);
     }
 
@@ -231,10 +238,15 @@ public class Task {
     }
 
     /**
-     * Unmarks (labels as incomplete) the task
-     * and returns the task.
+     * Unmarks (labels as incomplete) the task and returns the task.
+     *
+     * @return a task with identical fields as {@this} but labelled as incomplete.
+     * @throws TaskAlreadyUnmarkedException if the task is already unmarked.
      */
     public Task unmark() {
+        if (!isComplete()) {
+            throw new TaskAlreadyUnmarkedException();
+        }
         return new Task(module, description, TaskStatus.INCOMPLETE, priorityTag, deadlineTag, linkedExam);
     }
 

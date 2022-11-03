@@ -12,7 +12,6 @@ import static seedu.address.testutil.TypicalTasks.TASK_D;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.exam.Exam;
 import seedu.address.model.exam.ExamDate;
 import seedu.address.model.exam.ExamDescription;
 import seedu.address.model.module.ModuleCode;
@@ -49,8 +48,8 @@ public class JsonAdaptedTaskTest {
 
     @Test
     public void toModelType_invalidDescription_throwsIllegalValueException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(INVALID_DESCRIPTION, INVALID_MODULE, VALID_STATUS, VALID_PRIORITY_TAG,
-            VALID_DEADLINE_TAG, VALID_EXAM_DATE, VALID_EXAM_DESCRIPTION);
+        JsonAdaptedTask task = new JsonAdaptedTask(INVALID_DESCRIPTION, INVALID_MODULE, VALID_STATUS,
+            VALID_PRIORITY_TAG, VALID_DEADLINE_TAG, VALID_EXAM_DATE, VALID_EXAM_DESCRIPTION);
         String expectedMessage = TaskDescription.DESCRIPTION_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -122,7 +121,7 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_nullDeadlineTag_returnsTask() throws Exception {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_DESCRIPTION, VALID_MODULE, VALID_STATUS,
-            VALID_PRIORITY_TAG,null, VALID_EXAM_DATE, VALID_EXAM_DESCRIPTION);
+            VALID_PRIORITY_TAG, null, VALID_EXAM_DATE, VALID_EXAM_DESCRIPTION);
         Task expectedTask = new TaskBuilder(TASK_D).withDeadlineTag(null).build();
         assertTrue(expectedTask.hasAllSameFields(task.toModelType()));
     }

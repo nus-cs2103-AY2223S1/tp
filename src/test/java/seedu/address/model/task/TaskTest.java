@@ -14,13 +14,37 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.task.exceptions.TaskAlreadyMarkedException;
+import seedu.address.model.task.exceptions.TaskAlreadyUnmarkedException;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.TaskBuilder;
 
 public class TaskTest {
 
     @Test
-    public void editWithEditTaskDescriptor() {
+    public void mark_success() {
+        Task expectedTask = new TaskBuilder(TASK_A).withStatus("complete").build();
+        assertTrue(TASK_A.mark().hasAllSameFields(expectedTask));
+    }
+
+    @Test
+    public void mark_markedTask_throwsTaskAlreadyMarkedException() {
+        assertThrows(TaskAlreadyMarkedException.class, () -> TASK_D.mark());
+    }
+
+    @Test
+    public void unmark_success() {
+        Task expectedTask = new TaskBuilder(TASK_D).withStatus("incomplete").build();
+        assertTrue(TASK_D.unmark().hasAllSameFields(expectedTask));
+    }
+
+    @Test
+    public void unmark_unmarkedTask_throwsTaskAlreadyUnmarkedException() {
+        assertThrows(TaskAlreadyUnmarkedException.class, () -> TASK_A.unmark());
+    }
+
+    @Test
+    public void edit_withEditTaskDescriptor() {
 
         // null descriptor
         assertThrows(NullPointerException.class, () -> TASK_A.edit(null));
@@ -34,12 +58,13 @@ public class TaskTest {
         // different description
         EditTaskCommand.EditTaskDescriptor descriptorDescription = new EditTaskDescriptorBuilder()
             .withDescription(VALID_DESCRIPTION_DO_TUTORIAL).build();
-        Task taskADescriptionEdited = new TaskBuilder(TASK_A).withTaskDescription(VALID_DESCRIPTION_DO_TUTORIAL).build();
+        Task taskADescriptionEdited = new TaskBuilder(TASK_A)
+            .withTaskDescription(VALID_DESCRIPTION_DO_TUTORIAL).build();
         assertTrue(TASK_A.edit(descriptorDescription).hasAllSameFields(taskADescriptionEdited));
     }
 
     @Test
-    public void editWithModuleAndTaskDescription() {
+    public void edit_withModuleAndTaskDescription() {
         // null module and description
         assertThrows(NullPointerException.class, () -> TASK_A.edit(null, null));
 
@@ -50,7 +75,8 @@ public class TaskTest {
 
         // description edited
         TaskDescription description = new TaskDescription(VALID_DESCRIPTION_DO_TUTORIAL);
-        Task taskADescriptionEdited = new TaskBuilder(TASK_A).withTaskDescription(VALID_DESCRIPTION_DO_TUTORIAL).build();
+        Task taskADescriptionEdited = new TaskBuilder(TASK_A)
+            .withTaskDescription(VALID_DESCRIPTION_DO_TUTORIAL).build();
         assertTrue(TASK_A.edit(null, description).hasAllSameFields(taskADescriptionEdited));
     }
 
