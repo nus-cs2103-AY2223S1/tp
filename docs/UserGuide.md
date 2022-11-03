@@ -3,7 +3,7 @@ layout: page
 title: Modtrekt User Guide
 ---
 
-# Table of Contents
+## Table of Contents
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
 - [About the user guide](#about-the-user-guide)
@@ -36,7 +36,7 @@ title: Modtrekt User Guide
 - [Glossary](#glossary)
 
 
-# Introduction
+## Introduction
 
 ModtRekt is a desktop app created for NUS students to have a faster and more organised way to **manage their modules and
 tasks**. It ensures that you would **never forget another task or miss another deadline**. This way you can focus on
@@ -50,7 +50,7 @@ the benefits of a Graphical User Interface (GUI).
 This User Guide contains in-depth information which can help new users learn all the functionalities of Modtrekt. If you
 are an experienced user, there exists a command summary at the bottom which can bring you up to speed.
 
-# Quick Start
+## Quick Start
 
 1. Ensure you have Java 11 or above installed on your computer.
 
@@ -81,9 +81,9 @@ are an experienced user, there exists a command summary at the bottom which can 
 
 9. Refer to the Features below for details of each command.
 
-# About the user guide
+## About the user guide
 
-## Layout of window
+### Layout of window
 
 The image below shows what each window of the application represents.
 
@@ -93,7 +93,7 @@ The image below shows what each window of the application represents.
 - The command input is where you type in your commands
 - The Module List and Task Book automatically updates to show various modules and tasks depending on your commands.
 
-## General Command Syntax
+### General Command Syntax
 
 Every command starts with a **command phrase**, which may be single or multiple words.
 
@@ -129,7 +129,7 @@ We will surround **optional parameters** with square brackets (`[]`).
 
 That's it! You should now be able to understand the command syntax for the rest of this document.
 
-## Command Quirks
+### Command Quirks
 
 You may be wondering how to include quotes in your parameter values. For example, what if you want to add a task with the name `CS2103T "iP" Week 6`?
 
@@ -143,13 +143,13 @@ which tells ModtRekt to treat the quote as a normal character.
 
 > The command `add task "CS2103T \"iP\" Week 6" -d 2022-10-28` is equivalent to the previous example.
 
-# Features
+## Features
 
 In this section, we will cover the features of ModtRekt, and introduce the command syntaxes.
 
 > IMPORTANT: Every task was to be associated with a module. There may not be any standalone tasks without a created module.
 
-## Parameters and constraints summary
+### Parameters and constraints summary
 
 For the following parameters, all inputs cannot be blank
 
@@ -164,22 +164,22 @@ For the following parameters, all inputs cannot be blank
 | **priority**         | either `LOW`, `MEDIUM`, `HIGH`, `NONE`                                       | Input is case in-sensitive. E.g. `LoW` will match `LOW`          |
 
 
-## General
+### General
 
-### Help command: `help`
+#### Help command: `help`
 
 Shows a message which provides a link to this user guide.
 
 Sample execution of command `help`:
 ![help-message](images/UserGuidePictures/help-message.png)
 
-### Exit command: `exit`
+#### Exit command: `exit`
 
 Exits the application.
 
-## Modules
+### Modules
 
-### Adding a module: `add module`
+#### Adding a module: `add module`
 
 Adds a module to the application.
 
@@ -221,7 +221,7 @@ Examples:
 Sample execution of command `add mod CCA -n Volleyball -cr 0`:
 ![add-mod-verbose-sample](images/UserGuidePictures/add-mod-verbose-sample.png)
 
-### Removing a module: `remove module`
+#### Removing a module: `remove module`
 
 Deletes a module from the program. You have to specify a module code to delete.
 
@@ -242,7 +242,7 @@ Examples:
 Sample execution of command `remove mod CS2100`:
 ![remove-mod-sample](images/UserGuidePictures/remove-mod-sample.png)
 
-### Entering a module: `cd`
+#### Entering a module: `cd`
 
 Sets the current module page to the specified module.
 
@@ -261,7 +261,7 @@ Examples:
 Sample execution of command `cd CS2100`:
 ![cd-module-sample](images/UserGuidePictures/cd-module-sample.png)
 
-### Exiting a module: `cd`
+#### Exiting a module: `cd`
 
 Exits the current module page to revert to showing all modules.
 
@@ -275,7 +275,7 @@ Examples:
 Sample execution of command `cd ..`:
 ![cd-default-sample](images/UserGuidePictures/cd-default-sample.png)
 
-### Marks a module as done: `done module`
+#### Marks a module as done: `done module`
 
 Marks a module as done.
 
@@ -293,7 +293,7 @@ Examples:
 Sample execution of command `done module CS2100`:
 ![done-module-sample](images/UserGuidePictures/done-module-sample.png)
 
-### Marks undone a module: `undone module`
+#### Marks undone a module: `undone module`
 
 Marks a module as undone.
 
@@ -311,7 +311,7 @@ Examples:
 Sample execution of command `done module CS2105`, with CS2105 marked as done initially:
 ![undone-module-sample](images/UserGuidePictures/undone-module-sample.png)
 
-### Listing all modules: `list module`
+#### Listing all modules: `list module`
 
 Shows all the modules you have added.
 - Using the command without `-a` flag will show you only undone modules.
@@ -327,7 +327,7 @@ Examples:
 Sample execution of command `list module -a`:
 ![list-module-sample](images/UserGuidePictures/list-modules-sample.png)
 
-### Editing modules: `edit module`
+#### Editing modules: `edit module`
 
 Changes current parameters of selected module.
 
@@ -346,9 +346,9 @@ Examples:
 
 ![](./images/UserGuidePictures/edit_module.png)
 
-## Tasks
+### Tasks
 
-### Adding a task: `add task`
+#### Adding a task: `add task`
 
 Adds a task under a specific module.
 
@@ -376,7 +376,7 @@ Examples (Not CDed into a module):
 Sample execution of command `add "Assignment 1" -c CS2100 -d 2022-10-29`:
 ![add-task-sample](images/UserGuidePictures/add-task-sample.png)
 
-### Removing a task: `remove task`
+#### Removing a task: `remove task`
 
 Removes a task under a specific module.
 
@@ -393,7 +393,7 @@ Examples:
 Sample execution of command `remove task 1` with 2 active tasks displayed:
 ![remove-task-sample](images/UserGuidePictures/remove-task-sample.png)
 
-### Marking a task as done: `done task`
+#### Marking a task as done: `done task`
 
 Marks a task as done, specified via its index in the task list.
 
@@ -407,7 +407,7 @@ Examples:
 Sample execution of command `done task 1` with 6 active tasks displayed:
 ![done-task-sample](images/UserGuidePictures/done-task-sample.png)
 
-### Marking a task as undone: `undone task`
+#### Marking a task as undone: `undone task`
 
 Marks a task as undone, specified via its index in the task list.
 
@@ -421,7 +421,7 @@ Examples:
 Sample execution of command `undone task 6` with 6 active tasks displayed:
 ![undone-task-sample](images/UserGuidePictures/undone-task-sample.png)
 
-### Listing all tasks: `list task`
+#### Listing all tasks: `list task`
 
 Shows only the active tasks (i.e. tasks which are undone) by default.
 
@@ -437,7 +437,7 @@ Examples:
 - `list task -a` shows all tasks, including those marked as done.
 - `ls task` hides all done tasks.
 
-### Editing tasks: `edit task`
+#### Editing tasks: `edit task`
 
 Changes current parameters of selected task
 
@@ -458,7 +458,7 @@ Examples:
 
 ![](./images/UserGuidePictures/edit_task.png)
 
-# FAQ
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -470,16 +470,16 @@ the data of your previous ModuleList home folder.
 **Q**: Do I need a working internet connection to use this application?<br>
 **A**: No, it is not required. We have a backup data file of all NUS modules for AY2022-2023, so no internet is required.
 
-# Command Summary
+## Command Summary
 
-## General
+### General
 
 | Action            | Format          | Examples        |
 |-------------------|-----------------|-----------------|
 | **Help**          | `help`          | `help`          |
 | **Exit**          | `exit`          | `exit`          |
 
-## Modules
+### Modules
 
 | Action                      | Format                                                                                                                                                       | Examples                                                           |
 |-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
@@ -492,7 +492,7 @@ the data of your previous ModuleList home folder.
 | **Mark a module as undone** | `undone module <mod code>` <br/> `undone mod <mod code>`                                                                                                     | `undone module CS1101S` <br/> `undone mod CS1101S`                 |
 | **List modules**            | `list module [-a]` <br/> `list mod [-a]` <br/> `ls module [-a]` <br/> `ls mod [-a]`                                                                          | `list module`<br/> `list mod -a`<br/> `ls module`<br/> `ls mod -a` |
 
-## Tasks
+### Tasks
 
 | Action                    | Format                                                                                  | Examples                                             |
 |---------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------|
@@ -504,7 +504,7 @@ the data of your previous ModuleList home folder.
 | **List tasks**            | `list task [-a]` <br/> `ls task [-a]`                                                   | `list task`<br/>`ls task -a`                         |
 
 
-# Glossary
+## Glossary
 
 |             Terms | Description                                                                                             |
 |------------------:|---------------------------------------------------------------------------------------------------------|
