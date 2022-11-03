@@ -128,7 +128,8 @@ public class IncludeCommand extends Command {
             try {
                 checkArgument(Phone.isValidPhone(link), Phone.MESSAGE_CONSTRAINTS);
             } catch (IllegalArgumentException e) {
-                throw new CommandException("Whatsapp phone numbers should only contain numbers, and it should be at least 3 digits long");
+                throw new CommandException("Whatsapp phone numbers should only contain numbers, "
+                        + "and it should be at least 3 digits long");
             }
         }
         include(personToEdit, socialToEdit); //Includes the new social to the person to edit.
