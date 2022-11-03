@@ -78,7 +78,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_studentsFindByModel_findUnsuccessful() throws Exception {
+    public void execute_studentsFindByModel_noStudentFound() throws Exception {
         FindCommandTest.ModelStubAcceptingFinding modelStub = new FindCommandTest.ModelStubAcceptingFinding();
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         CommandResult commandResult = new FindCommand(predicate).execute(modelStub);
