@@ -35,12 +35,12 @@ Pupilist can get your scheduling done faster with single line CLI command inputs
 ## Glossary
 
 
-| Term       | Description                                                                                                                                                                                                                                                           |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CLI        | Command-Line Interface. Refers to programs that receive commands in the form of a single line of text.                                                                                                                                                                |
-| GUI        | Graphical User Interface. Refers to the screen displayed.                                                                                                                                                                                                             |
-| Parameter  | Refers to any information Pupilist may require to execute a specific command.<br> For example, the [`View`](#viewing-students-details-view) command requires a NAME parameter for Pupilist to display information of the Student, assuming a valid name in view mode. |
-| Prefixes   | A prefix indicates the type of field you are keying in. The list of prefixes supported by Pupilist can be found [here](#prefixes-summaries).                                                                                                                          |
+| Term       | Description                                                                                                                                                                                                                                                                   |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CLI        | Command-Line Interface. Refers to programs that receive commands in the form of a single line of text.                                                                                                                                                                        |
+| GUI        | Graphical User Interface. Refers to the screen displayed.                                                                                                                                                                                                                     |
+| Parameter  | Refers to any information Pupilist may require to execute a specific command.<br> For example, the [`View`](#viewing-students-details-view) command requires a NAME parameter for Pupilist to display information of a Student, assuming a valid name is given, in view mode. |
+| Prefixes   | A prefix indicates the type of field you are keying in. The list of prefixes supported by Pupilist can be found [here](#prefix-summary).                                                                                                                                      |
 
 ## Quick start
 
@@ -101,7 +101,7 @@ Examples:
 #### Adding Homework to student: `hw`
 
 This command adds a homework description to a student in Pupilist.
-Does not check for duplicate homework entries.<br>
+It does not check for duplicate homework entries.<br>
 **Usage**: View or list mode only
 
 Format: `hw INDEX h/HOMEWORK`
@@ -116,7 +116,7 @@ Examples:
 #### Adding Grade Progress to student: `grade`
 
 This command adds a grade progress description to a student in Pupilist.
-Pupilist does not check for duplicate grade progress entries.<br>
+It does not check for duplicate grade progress entries.<br>
 **Usage**: View or list mode only
 
 Format: `grade INDEX g/GRADE_PROGRESS`
@@ -132,7 +132,7 @@ Examples:
 #### Adding Attendance to student : `attendance`
 
 This command adds an attendance date to a student in Pupilist.
-Does not check for duplicate entries.<br>
+It does not check for duplicate entries.<br>
 **Usage**: View or list mode only
 
 Format: `attendance INDEX a/ATTENDANCE`
@@ -148,7 +148,7 @@ Examples:
 #### Adding Session to student: `session`
 
 This command adds a session day and time to a student, and is expected to repeat weekly.
-Does not check for duplicate entries.<br>
+It does not check for duplicate entries.<br>
 **Usage**: View or list mode only
 
 Format: `session INDEX s/TUITION_TIME`
@@ -213,8 +213,8 @@ It requires one field:
 - a/: To be followed by INDEX of attendance to be marked
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Only allows the marking of one field in a single command.
-Does not allow commands such as `mark h/2 a/1` or `mark a/2 a/3`.
+Pupilist only allows the marking of one field in a single command.
+It does not allow commands such as `mark h/2 a/1` or `mark a/2 a/3`.
 </div>
 
 Format: `mark [h/ a/]INDEX`
@@ -227,7 +227,7 @@ Examples:
 
 #### Unmarking specific field in student: `unmark`
 
-Use `unmark` command to unmark a specific field of a student in Pupilist.<br>
+This command unmarks a specific field of a student in Pupilist.<br>
 **Usage**: View mode only
 
 It requires one field:
@@ -236,8 +236,8 @@ It requires one field:
 - a/: To be followed by INDEX of attendance to be unmarked
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Allows for unmarking of only one field in a single command.
-Does not allow commands such as `unmark h/2 a/1` or `unmark a/2 a/3`.
+Pupilist only allows for the unmarking of one field in a single command.
+It does not allow commands such as `unmark h/2 a/1` or `unmark a/2 a/3`.
 </div>
 
 Format: `unmark [h/ a/]INDEX`
@@ -262,7 +262,7 @@ It requires at least one field:
 - g/: To be followed by INDEX of grade to be removed
 - s/: To be followed by INDEX of session to be removed
 
-Allows for edits of multiple fields in a single command. However, a single command should remove at most one item from each field. <br>
+Pupilist allows for edits of multiple fields in a single command. However, a single command should remove at most one item from each field. <br>
 
 Format: `remove [h/ a/ g/ s/]INDEX`
 
@@ -326,7 +326,7 @@ Examples:
 
 #### Viewing students details: `view`
 
-This command displays the full details of a student. Changest Pupilist to view mode, which is required to `edit` or `remove` a student's details.
+This command displays the full details of a student. It changes Pupilist to view mode, which is required to `edit` or `remove` a student's details.
 Only one student's details can be viewed at a time.<br>
 **Usage**: All modes
 
@@ -340,7 +340,7 @@ Format: `view NAME`
 
 #### Viewing daily schedule: `show`
 
-This command displays all sessions scheduled on a certain day of the week. Changes Pupilist to schedule mode.<br>
+This command displays all sessions scheduled on a certain day of the week. It changes Pupilist to schedule mode.<br>
 **Usage**: All modes
 
 Format: `show [DDD]`
@@ -432,7 +432,7 @@ _Details coming soon ..._
 | **Update Lesson plan** | `lesson INDEX lp/LESSON_PLAN`<br> e.g., `lesson 1 lp/Biology`                                                                                                                |
 | **View**               | `view NAME`<br> e.g., `view James Ho`                                                                                                                                        |
 
-### Prefixes summaries
+### Prefix summary
 
 
 | Prefix | Definition                | Usage                                                                                                                                                                       | Example              |
