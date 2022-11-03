@@ -54,8 +54,11 @@ public class StringUtil {
         requireNonNull(sentence);
         requireNonNull(sequence);
 
+        // @author NicholasTYD-reused
         // Solution below adapted from https://stackoverflow.com/a/86832
+        // with renaming of variables
         return Pattern.compile(Pattern.quote(sequence), Pattern.CASE_INSENSITIVE).matcher(sentence).find();
+        // @author
     }
 
     /**
