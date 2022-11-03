@@ -5,7 +5,7 @@ title: Desmond Yong Shao Tian's Project Portfolio Page
 
 ### Project: FindMyIntern
 
-**Overview**: FindMyIntern is a desktop application for keeping track of internship applications. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+**Overview**: FindMyIntern is a desktop application that helps students keep track of internship applications. It allows students to consolidate all these applications into a single place, manage these applications, and visualise their application statuses. The user interacts with it using a CLI, and it has a GUI created with JavaFX. FindMyIntern is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
