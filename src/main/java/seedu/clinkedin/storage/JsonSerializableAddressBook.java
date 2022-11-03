@@ -25,7 +25,7 @@ public class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
-    private final List<String> prefixMap;
+    private final List<String> prefixMap = new ArrayList<>();
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
@@ -35,7 +35,7 @@ public class JsonSerializableAddressBook {
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("prefixMap") List<String> prefixMap,
                                        @JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.prefixMap = prefixMap;
+        this.prefixMap.addAll(prefixMap);
         this.persons.addAll(persons);
     }
 
@@ -51,7 +51,7 @@ public class JsonSerializableAddressBook {
             prefixMapToList.add(prefix.getPrefix());
             prefixMapToList.add(sourcePrefixMap.get(prefix).getTagTypeName());
         }
-        prefixMap = prefixMapToList;
+        prefixMap.addAll(prefixMapToList);
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
