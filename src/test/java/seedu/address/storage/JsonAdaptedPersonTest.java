@@ -31,8 +31,8 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_RISKTAG = "jump";
     private static final String INVALID_PLANTAG = "sit";
     private static final String INVALID_CLIENTTAG = "stand";
-    private static final String INVALID_INCOME = "301222";
-    private static final String INVALID_MONTHLY = "201";
+    private static final String INVALID_INCOME = "asd301222";
+    private static final String INVALID_MONTHLY = "asd201";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_DATETIME = "21/05/2023 2359";
 
@@ -41,12 +41,12 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_INCOME = BENSON.getIncome().toString();
+    private static final String VALID_INCOME = BENSON.getIncome().toString().substring(1);
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_RISKTAG = BENSON.getRiskTag().toString();
     private static final String VALID_PLANTAG = BENSON.getPlanTag().tagName;
     private static final String VALID_CLIENTTAG = BENSON.getClientTag().toString();
-    private static final String VALID_MONTHLY = BENSON.getMonthly().toString();
+    private static final String VALID_MONTHLY = BENSON.getMonthly().toString().substring(1);
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
