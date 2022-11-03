@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Phone {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at 8 digits long";
+            "Phone numbers should only contain numbers, and it should be exactly 8 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
