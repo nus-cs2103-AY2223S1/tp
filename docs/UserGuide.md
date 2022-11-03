@@ -155,7 +155,7 @@ Example:
 
 Finds applications whose companies or positions contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 * The search is case-insensitive. e.g `google` will match `Google`.
 * The order of the keywords does not matter. e.g. `Tech Micron` will match `Micron Tech`.
@@ -223,6 +223,7 @@ Format: `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATIO
 * The index cannot be greater than the number of applications in the displayed list.
 * All fields must be provided.
 * Supports edit of the existing interview by overwriting the old interview.
+* Currently, we only support **ONE** interview in each of the application. _[COMING SOON: Multiple interviews in one application.]_
 
 Examples:
 * `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546` adds an interview to the application with displayed index `5`.

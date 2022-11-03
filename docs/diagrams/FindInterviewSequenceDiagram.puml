@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FindInterviewCommandParser" as FindInterviewCommandParser LOGIC_COLOR
+participant "e:FindInterviewCommand" as FindInterviewCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+
+end box
+[-> LogicManager : execute()
+activate LogicManager
+
+create FindInterviewCommandParser
+LogicManager -> FindInterviewCommandParser
+activate FindInterviewCommandParser
+
+create FindInterviewCommand
+FindInterviewCommandParser -> FindInterviewCommand : predicate
+activate FindInterviewCommand
+
+FindInterviewCommand --> FindInterviewCommandParser
+deactivate FindInterviewCommand
+
+FindInterviewCommandParser --> LogicManager : e
+deactivate
+
+
+
+LogicManager -> FindInterviewCommand : execute()
+activate FindInterviewCommand
+
+FindInterviewCommand -> Model : updateFilteredApplicationList()
+activate Model
+
+Model --> FindInterviewCommand
+deactivate Model
+
+create CommandResult
+FindInterviewCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindInterviewCommand : r
+deactivate CommandResult
+
+FindInterviewCommand --> LogicManager : r
+deactivate FindInterviewCommand
+FindInterviewCommand -[hidden]-> LogicManager : r
+destroy FindInterviewCommand
+FindInterviewCommandParser -[hidden]-> LogicManager : r
+destroy FindInterviewCommandParser
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
