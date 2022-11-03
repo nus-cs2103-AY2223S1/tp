@@ -63,13 +63,13 @@ public class TypicalTasks {
     public static final Task TASK_I = new TaskBuilder().withModule("cs2103t")
             .withTaskDescription("Task I")
             .build();
-    public static final Task TASKONE = new TaskBuilder().withTaskDescription("Task one").withModule("CS2030S").build();
-    public static final Task TASKTWO = new TaskBuilder().withTaskDescription("Task two").withModule("CS2030S").build();
-    public static final Task TASKTHREE = new TaskBuilder().withTaskDescription("HW1").withModule("CS2030S").build();
-    public static final Task TASKFOUR = new TaskBuilder().withTaskDescription("HW2").withModule("CS2040S").build();
-    public static final Task TASKFIVE = new TaskBuilder().withTaskDescription("HW3").withModule("CS2030S").build();
-    public static final Task HOMEWORK = new TaskBuilder().withTaskDescription("homework").withModule("CS2030s").build();
-    public static final Task PYP = new TaskBuilder()
+    public static final Task TASK_J = new TaskBuilder().withTaskDescription("Task one").withModule("CS2030S").build();
+    public static final Task TASK_K = new TaskBuilder().withTaskDescription("Task two").withModule("CS2030S").build();
+    public static final Task TASK_L = new TaskBuilder().withTaskDescription("HW1").withModule("CS2030S").build();
+    public static final Task TASK_M = new TaskBuilder().withTaskDescription("HW2").withModule("CS2040S").build();
+    public static final Task TASK_N = new TaskBuilder().withTaskDescription("HW3").withModule("CS2030S").build();
+    public static final Task TASK_O = new TaskBuilder().withTaskDescription("homework").withModule("CS2030s").build();
+    public static final Task TASK_P = new TaskBuilder()
             .withTaskDescription("PAST YEAR PAPER").withModule("CS2030s").build();
 
 
@@ -96,6 +96,6 @@ public class TypicalTasks {
 
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(TASK_A, TASK_B, TASK_C, TASK_D, TASK_E, TASK_F, TASK_G, TASK_H, TASK_I,
-                TASKONE, TASKTWO, TASKTHREE, TASKFOUR, TASKFIVE, HOMEWORK, PYP));
+              TASK_J, TASK_K, TASK_L, TASK_M, TASK_N, TASK_O, TASK_P));
     }
 }

@@ -5,8 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalExams.EXAMONE;
 import static seedu.address.testutil.TypicalExams.EXAMTWO;
-import static seedu.address.testutil.TypicalTasks.TASKONE;
-import static seedu.address.testutil.TypicalTasks.TASKTWO;
+//import static seedu.address.testutil.TypicalTasks.TASKONE;
+//import static seedu.address.testutil.TypicalTasks.TASKTWO;
+import static seedu.address.testutil.TypicalTasks.TASK_J;
+import static seedu.address.testutil.TypicalTasks.TASK_K;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,9 +22,9 @@ public class DistinctTaskListTest {
 
     @Test
     public void isExamLinkedToTask_returnsTrue() {
-        distinctTaskList.addTask(TASKONE);
-        Task editedTask = TASKONE.linkTask(EXAMONE);
-        distinctTaskList.replaceTask(TASKONE, editedTask, true);
+        distinctTaskList.addTask(TASK_J);
+        Task editedTask = TASK_J.linkTask(EXAMONE);
+        distinctTaskList.replaceTask(TASK_J, editedTask, true);
         assertTrue(distinctTaskList.isExamLinkedToTask(EXAMONE));
     }
 
@@ -32,20 +34,20 @@ public class DistinctTaskListTest {
     }
     @Test
     public void isExamLinkedToTask_returnsFalse() {
-        distinctTaskList.addTask(TASKONE);
-        Task editedTask = TASKONE.linkTask(EXAMTWO);
-        distinctTaskList.replaceTask(TASKONE, editedTask, true);
+        distinctTaskList.addTask(TASK_J);
+        Task editedTask = TASK_J.linkTask(EXAMTWO);
+        distinctTaskList.replaceTask(TASK_J, editedTask, true);
         assertFalse(distinctTaskList.isExamLinkedToTask(EXAMONE));
     }
 
     @Test
     public void isExamLinkedToTaskWithMultipleLinks_returnsTrue() {
-        distinctTaskList.addTask(TASKONE);
-        distinctTaskList.addTask(TASKTWO);
-        Task editedTask = TASKONE.linkTask(EXAMTWO);
-        Task editedTask2 = TASKTWO.linkTask(EXAMTWO);
-        distinctTaskList.replaceTask(TASKONE, editedTask, true);
-        distinctTaskList.replaceTask(TASKTWO, editedTask2, true);
+        distinctTaskList.addTask(TASK_J);
+        distinctTaskList.addTask(TASK_K);
+        Task editedTask = TASK_J.linkTask(EXAMTWO);
+        Task editedTask2 = TASK_K.linkTask(EXAMTWO);
+        distinctTaskList.replaceTask(TASK_J, editedTask, true);
+        distinctTaskList.replaceTask(TASK_K, editedTask2, true);
         assertTrue(distinctTaskList.isExamLinkedToTask(EXAMTWO));
     }
 
@@ -62,12 +64,12 @@ public class DistinctTaskListTest {
 
     @Test
     public void updateExamFieldForTaskWhereAllTasksLinkedToExam_success() {
-        distinctTaskList.addTask(TASKONE);
-        distinctTaskList.addTask(TASKTWO);
-        Task editedTask = TASKONE.linkTask(EXAMTWO);
-        Task editedTask2 = TASKTWO.linkTask(EXAMTWO);
-        distinctTaskList.replaceTask(TASKONE, editedTask, true);
-        distinctTaskList.replaceTask(TASKTWO, editedTask2, true);
+        distinctTaskList.addTask(TASK_J);
+        distinctTaskList.addTask(TASK_K);
+        Task editedTask = TASK_J.linkTask(EXAMTWO);
+        Task editedTask2 = TASK_K.linkTask(EXAMTWO);
+        distinctTaskList.replaceTask(TASK_J, editedTask, true);
+        distinctTaskList.replaceTask(TASK_K, editedTask2, true);
         distinctTaskList.updateExamFieldForTask(EXAMTWO, EXAMONE);
         assertTrue(distinctTaskList.taskList.get(0).getExam().equals(EXAMONE));
         assertTrue(distinctTaskList.taskList.get(1).getExam().equals(EXAMONE));
@@ -75,12 +77,12 @@ public class DistinctTaskListTest {
 
     @Test
     public void updateExamFieldForTaskWhereSomeTasksLinkedToExam_success() {
-        distinctTaskList.addTask(TASKONE);
-        distinctTaskList.addTask(TASKTWO);
-        Task editedTask = TASKONE.linkTask(EXAMTWO);
-        Task editedTask2 = TASKTWO.linkTask(new ExamBuilder().build());
-        distinctTaskList.replaceTask(TASKONE, editedTask, true);
-        distinctTaskList.replaceTask(TASKTWO, editedTask2, true);
+        distinctTaskList.addTask(TASK_J);
+        distinctTaskList.addTask(TASK_K);
+        Task editedTask = TASK_J.linkTask(EXAMTWO);
+        Task editedTask2 = TASK_K.linkTask(new ExamBuilder().build());
+        distinctTaskList.replaceTask(TASK_J, editedTask, true);
+        distinctTaskList.replaceTask(TASK_K, editedTask2, true);
         distinctTaskList.updateExamFieldForTask(EXAMTWO, EXAMONE);
         assertTrue(distinctTaskList.taskList.get(0).getExam().equals(EXAMONE));
         assertFalse(distinctTaskList.taskList.get(1).getExam().equals(EXAMONE));
@@ -88,22 +90,22 @@ public class DistinctTaskListTest {
 
     @Test
     public void updateExamFieldForTaskWhereSomeTasksLinkedToExam2_success() {
-        distinctTaskList.addTask(TASKONE);
-        distinctTaskList.addTask(TASKTWO);
-        Task editedTask = TASKONE.linkTask(EXAMTWO);
-        distinctTaskList.replaceTask(TASKONE, editedTask, true);
+        distinctTaskList.addTask(TASK_J);
+        distinctTaskList.addTask(TASK_K);
+        Task editedTask = TASK_J.linkTask(EXAMTWO);
+        distinctTaskList.replaceTask(TASK_J, editedTask, true);
         distinctTaskList.updateExamFieldForTask(EXAMTWO, EXAMONE);
         assertTrue(distinctTaskList.taskList.get(0).getExam().equals(EXAMONE));
         assertFalse(distinctTaskList.taskList.get(1).isLinked());
     }
     @Test
     public void updateExamFieldForTaskWhereNoTasksLinkedToExam() {
-        distinctTaskList.addTask(TASKONE);
-        distinctTaskList.addTask(TASKTWO);
-        Task editedTask = TASKONE.linkTask(new ExamBuilder().build());
-        Task editedTask2 = TASKTWO.linkTask(new ExamBuilder().build());
-        distinctTaskList.replaceTask(TASKONE, editedTask, true);
-        distinctTaskList.replaceTask(TASKTWO, editedTask2, true);
+        distinctTaskList.addTask(TASK_J);
+        distinctTaskList.addTask(TASK_K);
+        Task editedTask = TASK_J.linkTask(new ExamBuilder().build());
+        Task editedTask2 = TASK_K.linkTask(new ExamBuilder().build());
+        distinctTaskList.replaceTask(TASK_J, editedTask, true);
+        distinctTaskList.replaceTask(TASK_K, editedTask2, true);
         distinctTaskList.updateExamFieldForTask(EXAMTWO, EXAMONE);
         assertFalse(distinctTaskList.taskList.get(0).getExam().equals(EXAMONE));
         assertFalse(distinctTaskList.taskList.get(1).getExam().equals(EXAMONE));
@@ -111,8 +113,8 @@ public class DistinctTaskListTest {
 
     @Test
     public void updateExamFieldForTaskWhereNoLinks() {
-        distinctTaskList.addTask(TASKONE);
-        distinctTaskList.addTask(TASKTWO);
+        distinctTaskList.addTask(TASK_J);
+        distinctTaskList.addTask(TASK_K);
         distinctTaskList.updateExamFieldForTask(EXAMTWO, EXAMONE);
         assertFalse(distinctTaskList.taskList.get(0).isLinked());
         assertFalse(distinctTaskList.taskList.get(1).isLinked());
