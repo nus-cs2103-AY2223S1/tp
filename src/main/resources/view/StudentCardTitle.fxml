@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<HBox fx:id="hBox" spacing="10.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="title" HBox.hgrow="ALWAYS" />
+      <HBox HBox.hgrow="ALWAYS" />
+      <Text fx:id="grade" strokeType="OUTSIDE" strokeWidth="0.0" HBox.hgrow="ALWAYS">
+         <HBox.margin>
+            <Insets right="10.0" />
+         </HBox.margin>
+      </Text>
+   </children>
+</HBox>

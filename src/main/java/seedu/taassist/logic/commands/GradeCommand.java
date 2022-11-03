@@ -16,6 +16,7 @@ import seedu.taassist.logic.parser.ParserStudentIndexUtil;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.moduleclass.exceptions.SessionNotFoundException;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
 
@@ -60,7 +61,11 @@ public class GradeCommand extends Command {
         }
 
         ModuleClass focusedClass = model.getFocusedClass();
-        if (!focusedClass.hasSession(session)) {
+        Session existingSession;
+
+        try {
+            existingSession = focusedClass.getSessionWithSameName(session);
+        } catch (SessionNotFoundException snfe) {
             throw new CommandException(String.format(MESSAGE_INVALID_SESSION, session.getSessionName(), focusedClass));
         }
 
@@ -72,9 +77,9 @@ public class GradeCommand extends Command {
             throw new CommandException(e.getMessage());
         }
 
-        studentsToGrade.forEach(s -> model.setStudent(s, s.updateGrade(focusedClass, session, grade)));
+        studentsToGrade.forEach(s -> model.setStudent(s, s.updateGrade(focusedClass, existingSession, grade)));
 
-        String message = getSuccessMessage(studentsToGrade, session, grade);
+        String message = getSuccessMessage(studentsToGrade, existingSession, grade);
         return new CommandResult(message);
     }
 

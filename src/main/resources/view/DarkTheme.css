@@ -165,7 +165,14 @@
     -fx-background-color: #d9d9d9;
 }
 
-.cell_big_label, .titled-pane, .titled-pane > .title .label {
+.titled-pane, .titled-pane > .title Text {
+    -fx-font-family: "Lato";
+    -fx-font-weight: 700;
+    -fx-font-size: 18px;
+    -fx-fill: #144073;
+}
+
+.titled-pane, .titled-pane > .title .label {
     -fx-font-family: "Lato";
     -fx-font-weight: 700;
     -fx-font-size: 18px;
@@ -173,6 +180,9 @@
 }
 
 /* expanded behavior */
+.titled-pane:expanded > .title Text {
+    -fx-fill: white;
+}
 .titled-pane:expanded > .title .label {
     -fx-text-fill: white;
 }
@@ -187,11 +197,21 @@
 .list-cell:filled .titled-pane.not-graded > .title {
     -fx-background-color: #e44c4c;
 }
+.list-cell:filled .titled-pane.not-graded > .title Text {
+    -fx-fill: white;
+}
 .list-cell:filled .titled-pane.not-graded > .title .label {
     -fx-text-fill: white;
 }
 .list-cell:filled .titled-pane.not-graded > .title > .arrow-button .arrow {
     -fx-background-color: white;
+}
+
+.cell_big_label {
+    -fx-font-family: "Lato";
+    -fx-font-weight: 700;
+    -fx-font-size: 18px;
+    -fx-text-fill: #144073;
 }
 
 .cell_session_label {

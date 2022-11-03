@@ -5,7 +5,7 @@ title: Rezwan Arefin's Project Portfolio Page
 
 ### Project: TA-Assist
 
-TA Assist is a desktop application targeted at NUS Teaching Assistants (TA). It helps them to keep track of their students' grades, attendance, and work submission status of relevant modules.
+TA-Assist is a desktop application targeted at NUS Teaching Assistants (TA). It helps them to keep track of their students' grades, attendance, and work submission status of relevant modules.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 Given below are my contributions to the project.
 
@@ -21,12 +21,13 @@ Given below are my contributions to the project.
     * Implemented feature to display current focused class (if any) in the GUI using bindings. 
     * Added alert dialog to ask confirmation from users before starting with an empty data file if data load failed.
         * Additionally, the data file is backed up everytime TA-Assist is opened.
+    * Implemented collapsible student cards in the GUI to allow users to hide the student details.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=RezwanArefin01&breakdown=true).
 
 * **Project management**: To be added soon.
-    * Authored 18 issues to help keep track of current issues and progress.
-    * Reviewed 14 pull requests to ensure quality and consistency across the database.
+    * Authored 28 issues to help keep track of current issues and progress.
+    * Reviewed 34 pull requests to ensure quality and consistency across the database.
 
 * **Enhancements to existing features**: 
     * Fixed the help window not being loaded in Linux environment.
@@ -36,8 +37,9 @@ Given below are my contributions to the project.
     * Updated the `find` command to filter on the current displayed list instead of all students. 
 
 * **Documentation**: 
-    * Implementation details and sequence diagrams for the `grade` command.
-    * Implementation details and sequence diagrams for the `view` command.
+    * Added implementation details and sequence diagrams for the `grade` command to the DG. 
+    * Added implementation details and sequence diagrams for the `view` command in the DG.
+    * Updated class diagrams in the DG to reflect the changes made due to `grade` command.
 
 * **Community**: To be added soon.
 

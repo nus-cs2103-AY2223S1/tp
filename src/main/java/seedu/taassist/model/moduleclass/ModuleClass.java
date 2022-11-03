@@ -8,6 +8,7 @@ import static seedu.taassist.commons.util.StringUtil.caseInsensitiveEquals;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.taassist.model.moduleclass.exceptions.SessionNotFoundException;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.uniquelist.Identity;
 import seedu.taassist.model.uniquelist.UniqueList;
@@ -83,6 +84,12 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
      */
     public List<Session> getSessions() {
         return sessions.asUnmodifiableObservableList();
+    }
+
+    public Session getSessionWithSameName(Session session) throws SessionNotFoundException {
+        requireNonNull(session);
+        return sessions.stream().filter(s -> s.isSame(session)).findFirst()
+                .orElseThrow(SessionNotFoundException::new);
     }
 
     /**
