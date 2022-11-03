@@ -156,7 +156,7 @@ CodeConnect will happily accept deadlines that are in the past, in case you want
 Edits the specified task.
 
 Format:
-`edit {task_index} {field_prefix}{field_description}`
+`edit {task_index} {field_prefix + field_description}`
 
 Examples:
 * `edit 2 n/Rewatch lecture 6` - Renames task at index 2 to "Rewatch lecture 6"
@@ -377,7 +377,7 @@ CodeConnect data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-CodeConnect data are saved as a JSON file `[JAR file location]/data/codeconnect.json`. Advanced users are welcome to update data directly by editing that data file.
+CodeConnect data are saved as a JSON file either in  `[JAR file location]/data/contacts.json` for contacts or `[JAR file location]/data/task.json` for your tasks. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CodeConnect will discard all data and start with an empty data file at the next run.
@@ -401,7 +401,7 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 |----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**                   | `help`                                                                                                                                                                                                        |
 | **Add task**               | `add {task_name} by/{deadline} [m/{module_code}]` <br> e.g. `add finish problem set 5 by/next week sunday m/CS2040S`                                                                                          |
-| **Edit task**              | `edit {task_index} {field prefix}{field description}` <br> e.g. `edit 2 by/2022-12-12 23:59`                                                                                                                  |
+| **Edit task**              | `edit {task_index} {field prefix + field description}` <br> e.g. `edit 2 by/2022-12-12 23:59`                                                                                                                 |
 | **Delete task**            | `del {task_index}` <br> e.g. `del 5`                                                                                                                                                                          |
 | **Delete completed tasks** | `clean`                                                                                                                                                                                                       |
 | **Mark task**              | `mark {task_index}` <br> e.g. `mark 3`                                                                                                                                                                        |
@@ -411,7 +411,7 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 | **Add contact**            | `addc n/{name} p/{phone_number} [e/{email}] [a/{address}] [t/{tag}]... [m/{module}...] [gh/{github}] [tele/{telegram}]` <br> e.g., `addc n/Bob Martin p/98765432 tele/bobmartin00 m/CS1101S CS1231S t/friend` |
 | **List contacts**          | `listc`                                                                                                                                                                                                       |
 | **Delete contact**         | `delc {contact_index}`<br> e.g., `delc 3`                                                                                                                                                                     |
-| **Edit contact**           | `editc {contact_index} {field prefix + field description}` <br> e.g. `editc 2 p/91919100`                                                                                                                     |
+| **Edit contact**           | `editc {contact_index} {field_prefix + field_description}` <br> e.g. `editc 2 p/91919100`                                                                                                                     |
 | **Find contacts**          | `findc n/{name}` <br> `findc m/{module}`<br> `findc ts/{task_index}` <br> e.g., `findc n/John`, `findc m/CS1231S`, `findc ts/3`                                                                               |
 | **Quick contact search**   | `saveme`                                                                                                                                                                                                      |
 | **Clear contacts**         | `clear`                                                                                                                                                                                                       |
