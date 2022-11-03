@@ -17,7 +17,7 @@ import seedu.waddle.model.itinerary.Itinerary;
 /**
  * Lists all persons in the address book to the user.
  */
-public class ExportTextCommand extends Command {
+public class CopyCommand extends Command {
 
     public static final String COMMAND_WORD = "copy";
 

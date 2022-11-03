@@ -5,13 +5,13 @@ import java.time.LocalTime;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.waddle.commons.core.Text;
 import seedu.waddle.commons.exceptions.IllegalValueException;
 import seedu.waddle.model.item.Cost;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.Priority;
 import seedu.waddle.model.itinerary.Description;
-import seedu.waddle.model.text.Text;
 
 /**
  * Jackson-friendly version of {@link Item}.
@@ -73,7 +73,7 @@ public class JsonAdaptedItem {
 
         if (stars == null) {
             throw new IllegalValueException(
-                String.format(MISSING_FIELD_MESSAGE_FORMAT, Priority.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Priority.class.getSimpleName()));
         }
         if (!Priority.isValidPriority(stars)) {
             throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);

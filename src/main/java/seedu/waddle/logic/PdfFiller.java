@@ -13,11 +13,11 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 
+import seedu.waddle.commons.core.Text;
 import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.UniqueItemList;
 import seedu.waddle.model.itinerary.Itinerary;
-import seedu.waddle.model.text.Text;
 
 /**
  * Class to fill pdf acroform with itinerary details.
