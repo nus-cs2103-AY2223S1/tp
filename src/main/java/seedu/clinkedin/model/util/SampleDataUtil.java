@@ -37,30 +37,48 @@ public class SampleDataUtil {
         //        return null;
         //    to be rewritten.
         return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), getTagTypeMap("friends"),
-                    new Status("Application Received"), new Note("Has a dog."), new Rating("9"),
-                    getLinkSet(generateUrls("https://instagram.com", "https://github.com"))),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                        getTagTypeMap("colleagues", "friends"),
-                    new Status("Application Received"), EMPTY_NOTE, new Rating("5"), EMPTY_LINKS),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                        getTagTypeMap("neighbours"), new Status("OA in Progress"), EMPTY_NOTE,
-                    new Rating("7"), getLinkSet(generateUrls("https://google.com"))),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                        getTagTypeMap("family"), new Status("Application Withdrawn"), EMPTY_NOTE,
-                    new Rating("6"), getLinkSet(generateUrls("https://telegram.org"))),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                        getTagTypeMap("classmates"), new Status("Rejected"),
-                    new Note("Proficient in Python."), new Rating("3"), EMPTY_LINKS),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                        getTagTypeMap("colleagues"), new Status("Interview in Progress"), EMPTY_NOTE,
-                    new Rating("3"), getLinkSet(generateUrls("https://snapchat.com")))
+                new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+                        new Address("Blk 30 Geylang Street 29, #06-40"), getCombinedTagTypeMap(
+                        getIndividualTagTypeMap("Skill", "st/","Java", "DSA"),
+                        getIndividualTagTypeMap("Degree", "dt/","Bachelors"),
+                        getIndividualTagTypeMap("Job Type", "jtt/","Internship")),
+                        new Status("Application Received"), new Note("Has a dog."), new Rating("8"),
+                        getLinkSet(generateUrls("https://instagram.com", "https://github.com"))),
+                new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+                        new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                        getCombinedTagTypeMap(getIndividualTagTypeMap("Skill", "st/",
+                                "UI-UX", "React Native"), getIndividualTagTypeMap("Degree",
+                                "dt/","Bachelors"), getIndividualTagTypeMap("Job Type",
+                                "jtt/","Full-Time")),
+                        new Status("Application Received"), EMPTY_NOTE, new Rating("6"), EMPTY_LINKS),
+                new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                        getCombinedTagTypeMap(getIndividualTagTypeMap("Skill", "st/",
+                                "Data Analytics", "R"), getIndividualTagTypeMap("Degree",
+                                "dt/","Masters"), getIndividualTagTypeMap("Job Type",
+                                "jtt/","Full-Time")), new Status("OA in Progress"), EMPTY_NOTE,
+                        new Rating("8"), getLinkSet(generateUrls("https://google.com"))),
+                new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+                        new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                        getCombinedTagTypeMap(getIndividualTagTypeMap("Skill", "st/",
+                                "PostgreSQL", "ReactJS"), getIndividualTagTypeMap("Degree",
+                                "dt/","Bachelors"), getIndividualTagTypeMap("Job Type",
+                                "jtt/","Part-Time")), new Status("Application Withdrawn"), EMPTY_NOTE,
+                        new Rating("4"), getLinkSet(generateUrls("https://telegram.org"))),
+                new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+                        new Address("Blk 47 Tampines Street 20, #17-35"),
+                        getCombinedTagTypeMap(getIndividualTagTypeMap("Skill", "st/",
+                                "HTML", "CSS", "ReactJS"), getIndividualTagTypeMap("Degree",
+                                "dt/","Bachelors"), getIndividualTagTypeMap("Job Type",
+                                "jtt/","Internship")), new Status("Rejected"),
+                        new Note("Proficient in Python."), new Rating("6"), EMPTY_LINKS),
+                new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+                        new Address("Blk 45 Aljunied Street 85, #11-31"),
+                        getCombinedTagTypeMap(getIndividualTagTypeMap("Skill", "st/",
+                                "PostgreSQL", "ReactJS"), getIndividualTagTypeMap("Degree",
+                                "dt/","Bachelors"), getIndividualTagTypeMap("Job Type",
+                                "jtt/","Part-Time")), new Status("Interview in Progress"), EMPTY_NOTE,
+                        new Rating("9"), getLinkSet(generateUrls("https://snapchat.com")))
         };
     }
 
@@ -79,6 +97,26 @@ public class SampleDataUtil {
         UniqueTagTypeMap tags = new UniqueTagTypeMap();
         for (String tag: strings) {
             tags.mergeTag(new TagType("Skills", new Prefix("st/")), new Tag(tag));
+        }
+        return tags;
+    }
+
+
+    /**
+     * Returns a tag set containing the list of strings given.
+     */
+    public static UniqueTagTypeMap getCombinedTagTypeMap(UniqueTagTypeMap... tagTypeMaps) {
+        UniqueTagTypeMap tags = new UniqueTagTypeMap();
+        for (UniqueTagTypeMap tagTypeMap: tagTypeMaps) {
+            tags.mergeTagTypeMap(tagTypeMap);
+        }
+        return tags;
+    }
+
+    public static UniqueTagTypeMap getIndividualTagTypeMap(String tagType, String prefix, String... strings) {
+        UniqueTagTypeMap tags = new UniqueTagTypeMap();
+        for (String tag: strings) {
+            tags.mergeTag(new TagType(tagType, new Prefix(prefix)), new Tag(tag));
         }
         return tags;
     }
@@ -108,7 +146,7 @@ public class SampleDataUtil {
      */
     public static Set<Link> getLinkSet(URL... urls) {
         return Arrays.stream(urls)
-                    .map(Link::new)
-                    .collect(Collectors.toSet());
+                .map(Link::new)
+                .collect(Collectors.toSet());
     }
 }
