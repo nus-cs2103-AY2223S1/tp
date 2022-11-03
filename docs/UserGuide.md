@@ -297,21 +297,31 @@ A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognised as the 
 [Back to Table of Contents](#table-of-contents)
 
 ---
+
+## Migrating to TruthTable
+
+If you're looking to migrate your team information onto TruthTable, here is a step-by-step guide on how to do so.
+
+### Creating the team
+
+### Adding your members
+
+### Adding your links
+
+### Adding your tasks
+
+### Delegating work
+
+### Visualising progress
+
+[Back to Table of Contents](#table-of-contents)
+
+---
 ## Commands
+[](#understanding-truthtables-cli)
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Important notes on how to use the commands:**<br>
-
-- Quotes are optional for words (i.e. `add member "word"` and `add member word` are equivalent) when there is
-  to be passed into commands.
-  - However, if you want an argument to use multiple words, they should be surrounded with quotation marks.
-  - Otherwise, they will be treated as 2 separate words.
-  - For instance, `add member "two words"` indicates that you are
-    adding the member named `two words`. 
-  - However, `add member two words` is adding the member named `two` with some
-    other argument `word`.
-- Arguments are separated with "flags" (`add member "word" --email="sample@email.com"`)
+<div markdown="block" class="alert alert-info">**:information_source: Make sure you have read 
+[this section](#understanding-truthtables-cli) before continuing!**
 </div>
 
 <div markdown="span" class="alert alert-info">**For experienced command line users**
