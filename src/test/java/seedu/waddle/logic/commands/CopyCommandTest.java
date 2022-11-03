@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.waddle.logic.StageManager;
+import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.ModelManager;
 import seedu.waddle.model.UserPrefs;
@@ -39,7 +40,11 @@ public class CopyCommandTest {
         StageManager.getInstance().setWishStage(selectedItinerary);
         String expectedCommandResult = String.format(CopyCommand.MESSAGE_SUCCESS, selectedItinerary.getDescription());
 
-        assertCommandSuccess(new CopyCommand(), model, expectedCommandResult, expectedModel);
+        try {
+            new CopyCommand().execute(model);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
 
         String actualClipboardData = getClipboardData();
         String expectedClipboardData = "Spring Trip\n    Country: Australia\n    Duration: 14 Days\n"
