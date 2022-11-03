@@ -178,7 +178,11 @@ the displayed list of appointments in any way.
    this command only interacts with the `UniqueAppointmentList` and not the `UniquePersonList`, thus it will not modify
    the displayed list of patients in any way.
 
-<img src="images/ListActivityDiagram.png" width="500" />
+4. When user wants to view the full lists of both patients and appointments again, he/she can enter the command `list all`. 
+
+The activity diagram below summarises the above points.
+
+<img src="images/ListActivityDiagram.png" width="300" />
 
 To help you understand what is going on behind the scenes, here is a sequence diagram that demonstrates how
 `list patients` work:
@@ -186,14 +190,19 @@ To help you understand what is going on behind the scenes, here is a sequence di
 <img src="images/ListPatientsSequenceDiagram.png" width="500" />
 
 From the diagram, the `ListCommand` object passes the predicate to show all entries to the `ModelManager`, which
-will call onto a JavaFX function to modify the displayed list. For `list appts`, it follows a similar
-process as well.
+will call onto a JavaFX function to modify the displayed list. 
+
+For `list appts`, it follows a similar
+process as well, but with `updateFilteredAppointmentList()` instead. For `list all`, you can think of the
+behaviour as executing both `list patients` and `list appts`.
+
 
 **Aspect: How the command is implemented:**
-* **Alternative 1 (current choice):** `list patients` and `list appts` as a command words.
+* **Alternative 1 (current choice):** `list patients`, `list appts` and `list all` as a command word `list` with
+3 different descriptors which are not considered as arguments.
   * Pros: No additional parser class required
   * Cons: `ListCommand#execute()` will have more lines of code.
-* **Alternative 2:** `list` as a command word with arguments `patients` or `appts` following it.
+* **Alternative 2:** `list` as a command word with arguments `patients`/`appts`/`all` following it.
   * Pros: Seems more aligned with other commands that require more than 1 word of input
   * Cons: Require an additional `ListCommandParser` to work; more lines of code required.
 

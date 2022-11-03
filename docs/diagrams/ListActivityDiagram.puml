@@ -1,4 +1,5 @@
 @startuml
+!pragma useVerticalIf on
 start
 :User executes list command;
 
@@ -9,6 +10,8 @@ if () then ([list patients])
     :Show full patients list;
 else if () then ([list appts])
     :Show full appointments list;
+else if () then ([list all])
+    :Show full patients and appointments list;
 else ([else])
     :Throw exception;
 endif
