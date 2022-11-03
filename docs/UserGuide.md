@@ -318,12 +318,13 @@ Module Codes sorted in order of CS1231S>CS2100>CS2103T>CS5000, higher level modu
 
 ## 3.4 GitHub Command: `github`
 
-Opens the GitHub profile page associated with the specified person in the address book.
+Opens the GitHub profile page associated with the specified person in the contact list, through user's default browser.
 
 Format: `github INDEX`
 * Opens the GitHub profile page associated with the person at the specified `INDEX'
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …
+* If the GitHub username is not a registered username on GitHub, this command will open the GitHub 404 page
 
 Examples:
 * `github 1`
