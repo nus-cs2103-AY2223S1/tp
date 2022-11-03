@@ -65,6 +65,10 @@ public class EditExamCommand extends Command {
         requireNonNull(model);
         List<Exam> lastShownList = model.getFilteredExamList();
 
+        if(lastShownList.size() == 0) {
+            throw new CommandException("There is no exam in the exam list so edit operation cannot be done");
+        }
+
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
                     String.format(Messages.MESSAGE_INVALID_EXAM_INDEX_TOO_LARGE, lastShownList.size() + 1));

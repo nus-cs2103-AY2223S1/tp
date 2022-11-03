@@ -9,11 +9,11 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 - [Quick Start](#quick-start)
 - [Features](#features)
   - [Modules-Related Features](#modules-related-features)
-    - [Adding modules](#adding-modules)
+    - [Adding a module](#adding-a-module)
     - [Listing modules](#listing-modules)
     - [Finding modules](#finding-modules)
-    - [Deleting modules](#deleting-modules)
-    - [Editing modules](#editing-modules)
+    - [Deleting a module](#deleting-a-module)
+    - [Editing a module](#editing-a-module)
   - [Tasks-Related Features](#tasks-related-features)
     - [Adding a task](#adding-a-task)
     - [Deleting a task](#deleting-a-task)
@@ -24,9 +24,9 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
     - [Filtering the task list](#filtering-the-task-list)
     - [Finding tasks](#finding-tasks)
     - [Sorting the task list](#sorting-the-task-list)
-    - [Adding a tag to the task](#adding-the-tag-to-the-task)
+    - [Adding a tag to a task](#adding-a-tag-to-a-task)
     - [Editing the tag of a task](#editing-the-tags-of-a-task)
-    - [Deleting the tags from a task](#deletes-the-tags-of-a-task)
+    - [Deleting the tags of a task](#deleting-the-tags-of-a-task)
     - [Clearing the task list](#clearing-the-task-list)
   - [Exams-Related Features](#exams-related-features)
     - [Adding an exam](#adding-an-exam)
@@ -85,19 +85,19 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 
 ## Modules-related Features
 
-### Adding Modules
-Adds the module stored in module list
+### Adding a module
+Adds the module into the module list.
 
 Format: `m add c/MODULE_CODE m/MODULE_NAME mc/MODULAR_CREDIT`
-* Adds a module with a module code, module name and modular credit into
-the module list
-* `MODULE_CODE` refers to the module code of the module
-* `MODULE_NAME` refers to the name of the module
-* `MODULAR_CREDIT` refers to the number of modular credits that the module has
+* Adds a module with its module code, module name and modular credit into
+the module list.
+* `MODULE_CODE` refers to the module code of the module.
+* `MODULE_NAME` refers to the name of the module.
+* `MODULAR_CREDIT` refers to the number of modular credits that the module has.
 * `MODULE_CODE` must be at least 6 characters long and the first two characters
-of the module code must be an alphabetical character
-* `MODULAR_CREDIT` must be at least 0 and not more than 45
-* If the module name is empty, an error message will be displayed
+of the module code must be an alphabetical character.
+* `MODULAR_CREDIT` must be at least 0 and not more than 45.
+* If the module name is empty, an error message will be displayed.
 
 Examples:
 
@@ -105,14 +105,14 @@ Examples:
 code `cs2100`, the module name `computer organisation` and the modular credit `4`
 
 ### Listing Modules
-Lists modules stored in module list
+Lists modules stored in module list.
 
 Format: `m list`
-* Displays tasks that are stored in the module list
+* Displays modules that are stored in the module list.
 
 Example:
 
-`m list` displays modules that are stored in the module list
+`m list` displays modules that are stored in the module list.
 
 ### Finding module(s)
 Finds modules stored in the module list by the module code.
@@ -127,33 +127,34 @@ Examples:
 
 `m find 30` finds modules whose module code contains the `KEYWORD` '30' such as 'cs2030s'
 
-### Deleting modules
-Deletes the specified exam according to the index given.
+### Deleting a module
+Deletes the specified module according to the index given.
 
 Format: `m del INDEX`
-* Deletes the module at the specified index from the module list.
-* INDEX refers to the index number shown in the module list.
-* INDEX must be a positive integer 1, 2, 3, …​
-* If INDEX is non-positive or more than the number of modules in the module list, an error message will be displayed.
+* Deletes the module at the specified `INDEX` from the module list.
+* `INDEX` refers to the index number shown in the module list.
+* `INDEX` must be a positive integer 1, 2, 3, …​
+* If `INDEX` is non-positive or more than the number of modules in the module list, an error message will be displayed.
 
 Example:
 `m del 1` deletes the first module in the module list.
 
 `m del 3` deletes the third module in the module list.
 
-**Note:** All tasks and exams related to the module will be deleted after the module is deleted.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** All tasks and exams related to the module will be deleted after the module is deleted.
+</div>
 
-
-### Editing modules
+### Editing a module
 Edits the specified module by updating the existing values to the input values.
 
 Format: `m edit INDEX (must be a positive integer) [c/MODULE_CODE]* [m/MODULE_NAME]* [mc/MODULE_CREDIT]*`
-* Edits the module at the specified INDEX in the exam list.
+* Edits the module at the specified `INDEX` in the exam list.
 * `MODULE_CODE` refers to the module code of the module
 * `MODULE_NAME` refers to the name of the module
 * `MODULE_CREDIT` refers to the number of modular credits that the module has
-* The index must be a positive integer 1, 2, 3, …
-* If the index is a non-positive or more than the number of modules in the module list, an error message will be displayed.
+* `INDEX` must be a positive integer 1, 2, 3, …
+* If `INDEX` is a non-positive or more than the number of modules in the module list, an error message will be displayed.
 * The module cannot be edited if its module code is similar to an existing module in the module list. An error message will be displayed to inform the user that the module already exists in the module list.
 * At least one optional field of the module to edit must be provided. Otherwise, an error message will be shown.
 * `MODULE_CODE` must be at least 6 characters long and the first two characters of the module code must be an alphabetical character.
@@ -165,9 +166,9 @@ Examples:
 `m edit 1 m/Programming Methodology I mc/4` changes the module name of the first module in the module list to ‘Programming Methodology I` and the module credit to ‘4’.
 
 `m edit 2 c/cs2040 m/Data Structures and Algorithms mc/4` changes the module name of the second module in the module list to ‘Data Structures and Algorithms’, the module code to ‘cs2040’ and the module credit to ‘4’.
-<div markdown="span" class="alert alert-info">
 
-**Note:** If the module code of the module is edited, and the module is linked to some tasks and exams, the module of these tasks and exams will be changed to this edited module.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** If the module code of the module is edited, and the module is linked to some tasks and exams, the module of these tasks and exams will be changed to this edited module.
 </div>
 
 
@@ -178,10 +179,10 @@ Adds task into task list.
 
 Format: `t add m/MODULE d/DESCRIPTION`
 * Adds a task to the task list.
-* MODULE refers to the module which the task belongs to.
-* DESCRIPTION refers to the task description to be shown.
-* MODULE has to exist in the module list and be a valid module with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed.
-* If DESCRIPTION is empty, an error message will be displayed.
+* `MODULE` refers to the module code of the module which the task belongs to.
+* `DESCRIPTION` refers to the task description to be shown.
+* `MODULE` has to exist in the module list and be a valid module code with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed.
+* If `DESCRIPTION` is empty, an error message will be displayed.
 
 Example:
 `t add m/CS2105 d/Assignment 1` adds a task with the module as 'CS2105' and description as 'Assignment 1' into the task list.
@@ -190,9 +191,9 @@ Example:
 Deletes the specified task according to the index given
 
 Format: `t del INDEX`
-* Deletes the task at the specified index from the storage
-* The index refers to the index number shown in the task list.
-* The index must be a positive integer 1, 2, 3, …
+* Deletes the task at the specified `INDEX` from the task list. 
+* The `INDEX` refers to the index number shown in the task list.
+* The `INDEX` must be a positive integer 1, 2, 3, …
 * If the task list is empty and the user inputs any number, an error message will be displayed.
 * If the index is non-positive or more than the number of tasks in the list, an error message will be displayed.
 
@@ -200,24 +201,26 @@ Examples:
 
 `t del 1` deletes the first task in the task list
 
-`t del 3` deletes the first task in the task list
+`t del 3` deletes the third task in the task list
 
-**Note:** When the task is deleted, if it has a link to an exam, this link will be dropped.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** When the task is deleted, if it has a link to an exam, the task will be unlinked from the exam.
+</div>
 
 ### Editing a task
 Edits the specified task, by updating the existing values to the input values.
 
 Format: `t edit INDEX [m/MODULE]* [d/DESCRIPTION]*`
-* Edits the task at the specified INDEX in the task list. 
+* Edits the task at the specified `INDEX` in the task list. 
 * At least one of the optional fields must be provided.
 * The input values should not be the same as existing values.
-* If the index is non-positive or more than the number of tasks in the list, an error message will be displayed.
+* If `INDEX` is non-positive or more than the number of tasks in the list, an error message will be displayed.
 
 Examples:
 
 `t edit 1 d/Assignment 2` changes the description of the first task in the task list to 'Assignment 2'.
 
-`t edit 2 m/cs2040 d/tutorial 2` changes the module and description of the second task in the task list to 'CS2040' and 'tutorial 2' respectively.
+`t edit 2 m/CS2040 d/tutorial 2` changes the module and description of the second task in the task list to 'CS2040' and 'tutorial 2' respectively.
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** If a task is linked to an exam, and its module is changed, the task will be unlinked from the exam.
 </div>
@@ -226,10 +229,10 @@ Examples:
 Indicates the specified task is completed
 
 Format: `t mark INDEX`
-* Indicates the task at the specified INDEX in the task list is completed. 
-* The index refers to the index number shown in the task list. 
-* The index must be a positive integer 1, 2, 3, …​
-* If the index is non-positive or more than the number of tasks in the list, an error message will be displayed.
+* Indicates the task at the specified `INDEX` in the task list is completed. 
+* The `INDEX` refers to the index number shown in the task list. 
+* The `INDEX` must be a positive integer 1, 2, 3, …​
+* If the `INDEX` is non-positive or more than the number of tasks in the list, an error message will be displayed.
 
 Examples:
 
@@ -241,9 +244,9 @@ Examples:
 Indicates the specified task is not completed
 
 Format: `t unmark INDEX`
-* Indicates the task at the specified INDEX in the task list is not completed. 
-* The index refers to the index number shown in the task list. 
-* The index must be a positive integer 1, 2, 3, …​
+* Indicates the task at the specified `INDEX` in the task list is not completed. 
+* The `INDEX` refers to the index number shown in the task list. 
+* The `INDEX` must be a positive integer 1, 2, 3, …​
 * If the index is non-positive or more than the number of tasks in the list, an error message will be displayed.
 
 Examples:
@@ -267,13 +270,13 @@ Example:
 `t list` displays tasks that are stored in the task list
 
 ### Filtering the task list
-Filters the task list based on module, completion status, and/or link status.
+Filters the task list based on module code, completion status, and/or link status.
 
 Format: `t filter [m/MODULE/]* [c/COMPLETED]* [l/LINKED]*`
 * Filters the task list to show only tasks that fulfill all the stated conditions.
-* MODULE refers to the module to be filtered out.
-* COMPLETED should be y to filter tasks that are complete or n to filter tasks that are incomplete.
-* LINKED should be y to filter tasks that are linked to an exam or n to filter tasks that are not linked to any exam.
+* `MODULE` refers to the module code to be filtered out.
+* `COMPLETED` should be y to filter tasks that are complete or n to filter tasks that are incomplete.
+* `LINKED` should be y to filter tasks that are linked to an exam or n to filter tasks that are not linked to any exam.
 * At least one optional condition has to be specified, otherwise an error message will be displayed.
 
 Examples:
@@ -321,15 +324,15 @@ Examples:
 `t sort c/description` sorts all the tasks in the task list by task description
 
 
-### Adding the tag to the task
+### Adding a tag to a task
 Tags the priority status and the deadline to complete task 
 
 Format: `t tagadd INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`
 * A task can be tagged with either the priority status, the deadline or both 
 * The task is tagged at the specified `INDEX`. 
 * `INDEX` refers to the index number shown on the displayed task list. 
-* The index must be a positive number 1, 2, 3, …​
-* If the index is non-positive or greater than the number of tasks in the list, an error message
+* `INDEX` must be a positive number 1, 2, 3, …​
+* If `INDEX` is non-positive or greater than the number of tasks in the list, an error message
 will be displayed.
 * `PRIORITY STATUS` must be one of three priorities("high", "medium", "low")
 * `DEADLINE` must be in the format `DD-MM-YYYY`
@@ -368,7 +371,7 @@ from `HIGH` to `LOW`
 `t tagadd 1 dl/31-12-2022` followed by `t tagedit 1 dl/31-11-2022` updates the deadline of the task
 from `31-12-2022` to `31-11-2022`
 
-### Deletes the tags of a task
+### Deleting the tags of a task
 Deletes the tags associated with the task
 
 Format: `t tagdel INDEX t/KEYWORD [SECOND_KEYWORD]`
@@ -381,8 +384,8 @@ priority and deadline
 than 2
 * The tag of the task at the specified `INDEX` is deleted
 * `INDEX` refers to the index number shown on the displayed task list.
-* The index must be a positive number 1, 2, 3, …​
-* If the index is non-positive or greater than the number of tasks in the list, an error message 
+* `INDEX` must be a positive number 1, 2, 3, …​
+* If `INDEX` is non-positive or greater than the number of tasks in the list, an error message 
 will be displayed.
 * If duplicate keywords are used, the duplicate keyword will be ignored
 * The keywords are not case-sensitive so `PRIORITY` would be the same `priority`
@@ -417,14 +420,14 @@ Adds exam into exam list.
 Format: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`
 
 * Adds an exam to the exam list.
-* `MODULE` refers to the module of the exam
+* `MODULE` refers to the module code of the module of the exam
 * `EXAM_DESCRIPTION` refers to the description of the exam
 * `EXAM_DATE` refers to the date of the exam
 * The exam cannot be added if it is the same exam as an existing exam in the exam list. Otherwise, an error message will be displayed.
-* `MODULE` has to exist in the module list and be a valid module with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed. 
+* `MODULE` has to exist in the module list and be a valid module code with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed. 
 * `EXAM_DESCRIPTION` should not be empty. Otherwise, an error message will be displayed to the user. 
 * `EXAM_DATE` must be in the format `DD-MM-YYYY`, otherwise an error message will be shown. For example, 2022-12-28, 20-13-2022 are not in `DD-MM-YYYY` format
-* `EXAM_DATE` must not be earlier than today's date, otherwise an error message will be shown. For example, 20-08-2022 is a past date if the current date is 26-10-2022.
+* `EXAM_DATE` must not be earlier than today's date, otherwise an error message will be shown. For example, 20-08-2022 is an invalid input if the current date is 26-10-2022.
 
 Examples:
 `e add m/cs2030s ex/midterms ed/20-11-2022` adds the exam with the exam module as 'cs2030s',
@@ -436,17 +439,17 @@ Edits the specified exam by updating the existing values to the input values.
    
 Format: `e edit INDEX (must be a positive integer) [m/MODULE]* [ex/EXAM_DESCRIPTION]* [ed/EXAM_DATE]*`
 * Edits the exam at the specified INDEX in the exam list.
-* `MODULE` refers to the module of the exam
+* `MODULE` refers to the module code of the module of the exam 
 * `EXAM_DESCRIPTION` refers to the description of the exam
 * `EXAM_DATE` refers to the date of the exam
 * `INDEX` must be a positive integer 1, 2, 3, … 
-* If the index is a non-positive or more than the number of exams in the exam list, an error message will be displayed. 
+* If `INDEX` is a non-positive or more than the number of exams in the exam list, an error message will be displayed. 
 * The exam cannot be edited if it is the same exam as an existing exam in the exam list. An error message will be displayed to inform the user that the exam already exists in the exam list. 
 * At least one optional field of the exam to edit must be provided. Otherwise, an error message will be shown.
-* `MODULE` has to exist in the module list and be a valid module with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed.
+* `MODULE` has to exist in the module list and be a valid module code with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed.
 * `EXAM_DESCRIPTION` should not be empty. Otherwise, an error message will be displayed to the user. 
 * `EXAM_DATE` must be in the format `DD-MM-YYYY`, otherwise an error message will be shown. For example, 2022-12-28, 20-13-2022 are not in `DD-MM-YYYY` format
-* `EXAM_DATE` must not be earlier than today's date, otherwise an error message will be shown. For example, 20-08-2022 is a past date if the current date is 26-10-2022.
+* `EXAM_DATE` must not be earlier than today's date, otherwise an error message will be shown. For example, 20-08-2022 is an invalid input if the current date is 26-10-2022.
 Examples:
 
 `e edit 1 ex/finals ed/20-12-2022` changes the exam description of the first exam in the exam list to ‘finals’ and the exam date to ‘20-12-2022’.
@@ -455,7 +458,6 @@ Examples:
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** If the module of the exam is edited, and the exam is linked to some tasks, the tasks would be unlinked to the exam.
-The tasks cannot be linked to the exam as the tasks have a different module code from the exam.
 </div>
 
 
@@ -464,9 +466,9 @@ Deletes the specified exam according to the index given.
 
 Format: `e del INDEX`
 * Deletes the exam at the specified index from the exam list.
-* INDEX refers to the index number shown in the exam list.
-* INDEX must be a positive integer 1, 2, 3, …​
-* If INDEX is non-positive or more than the number of exams in the exam list, an error message will be displayed.
+* `INDEX` refers to the index number shown in the exam list.
+* `INDEX` must be a positive integer 1, 2, 3, …​
+* If `INDEX` is non-positive or more than the number of exams in the exam list, an error message will be displayed.
 
 Example:
 `e del 1` deletes the first exam in the exam list.
@@ -499,10 +501,10 @@ Examples:
 Unlinks the exam from the specified task according to the index given.
 
 Format: `e unlink INDEX`
-* Unlinks the exam from the task at the specific index from the task list.
-* INDEX refers to the index number shown in the task list of the task to be unlinked.
-* INDEX must be a positive integer 1, 2, 3, …​
-* If INDEX is non-positive or more than the number of tasks in the task list, an error message will be displayed.
+* Unlinks the exam from the task at the specific `INDEX` from the task list.
+* `INDEX` refers to the index number shown in the task list of the task to be unlinked.
+* `INDEX` must be a positive integer 1, 2, 3, …​
+* If `INDEX` is non-positive or more than the number of tasks in the task list, an error message will be displayed.
 
 Example:
 `e unlink 1` unlinks the first task in the task list from its current exam.
@@ -510,11 +512,11 @@ Example:
 ### Showing the tasks of an exam
 Shows all tasks linked to the specified exam according to the index given.
 
-Format: `e showt`
-* Shows all tasks that are linked to the exam at the specified index from the exam list.
-* INDEX refers to the index number of the exam shown in the exam list.
-* INDEX must be a positive integer 1, 2, 3, …​
-* If INDEX is non-positive or more than the number of exams in the exam list, an error message will be displayed.
+Format: `e showt INDEX`
+* Shows all tasks that are linked to the exam at the specified `INDEX` from the exam list.
+* `INDEX` refers to the index number of the exam shown in the exam list.
+* `INDEX` must be a positive integer 1, 2, 3, …​
+* If `INDEX` is non-positive or more than the number of exams in the exam list, an error message will be displayed.
 
 Example:
 `e showt 1` shows a list of all tasks linked to the first exam in the exam list.
@@ -566,34 +568,34 @@ MODPRO will discard all data stored and start with an empty data file.
 
 | Command       | Format and Examples                                                                                                               |
 |---------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| **Module**                                                                                                                                        |
-| **M add**     | **Format**: `m add c/MODULE_CODE m/MODULE_NAME mc/MODULAR_CREDIT`<br/> **Example**: `m add c/cs2103t m/software engineering mc/4` |
-| **M del**     | **Format**: `m del INDEX`<br/> **Example**: `m del 1`                                                                             |
-| **M edit**    | **Format**: `m edit INDEX [c/MODULE CODE]* [m/MODULE NAME]* [mc/MODULE CREDIT]*`<br/> **Example**: `edit 1 c/cs2040 mc/4`         |
-| **M list**    | **Format**: `m list`<br/> **Example**: `m list`                                                                                   |
-| **M find**    | **Format**: `m find KEYWORD`<br/> **Example**: `m find cs`                                                                        |
+| **Module**    |
+| **m add**     | **Format**: `m add c/MODULE_CODE m/MODULE_NAME mc/MODULAR_CREDIT`<br/> **Example**: `m add c/cs2103t m/software engineering mc/4` |
+| **m del**     | **Format**: `m del INDEX`<br/> **Example**: `m del 1`                                                                             |
+| **m edit**    | **Format**: `m edit INDEX [c/MODULE_CODE]* [m/MODULE_NAME]* [mc/MODULE_CREDIT]*`<br/> **Example**: `m edit 1 c/cs2040 mc/4`       |
+| **m list**    | **Format**: `m list`<br/> **Example**: `m list`                                                                                   |
+| **m find**    | **Format**: `m find KEYWORD`<br/> **Example**: `m find cs`                                                                        |
 | **Task**      |                                                                                                                                   |
-| **T add**     | **Format**: `t add m/MODULE d/DESCRIPTION`<br/> **Example**: `t add m/CS2105 d/Assignment 1`                                      |
-| **T del**     | **Format**: `t del INDEX`<br/> **Example**: `t del 1`                                                                             |
-| **T edit**    | **Format**: `t edit INDEX [m/MODULE]* [d/DESCRIPTION]*`<br/> **Example**: `t edit 1 d/Assignment 2`                               |
-| **T mark**    | **Format**: `t mark INDEX`<br/> **Example**: `t mark 1`                                                                           |
-| **T unmark**  | **Format**: `t unmark INDEX`<br/> **Example**: `t unmark 1`                                                                       |
-| **T list**    | **Format**: `t list`<br/> **Example**: `t list`                                                                                   |
-| **T sort**    | **Format**: `t sort c/CRITERIA`<br/> **Example**: `sort c/priority`                                                               |
-| **T filter**  | **Format**: `t filter [m/MODULE]* [c/COMPLETED]* [l/LINKED]*`<br/> **Example**: `filter m/cs2030 c/y`                             |
-| **T find**    | **Format**: `t find KEYWORD`<br/> **Example**: `t find watch lecture rec`                                                         |
-| **T tagadd**  | **Format**: `t tagadd INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`<br/> **Example**: `t tagadd 1 p/high dl/29-12-2022`              |
-| **T tagdel**  | **Format**: `t tagdel INDEX t/KEYWORD [SECOND_KEYWORD]`<br/> **Example**:`t tagdel 1 t/priority`                                  |
-| **T tagedit** | **Format**: `t tagedit INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`<br/> **Example**: `t tagedit 1 p/medium`                        |
-| **T clear**   | **Format**: `t clear`<br/> **Example**: `t clear`                                                                                 |
+| **t add**     | **Format**: `t add m/MODULE d/DESCRIPTION`<br/> **Example**: `t add m/CS2105 d/Assignment 1`                                      |
+| **t del**     | **Format**: `t del INDEX`<br/> **Example**: `t del 1`                                                                             |
+| **t edit**    | **Format**: `t edit INDEX [m/MODULE]* [d/DESCRIPTION]*`<br/> **Example**: `t edit 1 d/Assignment 2`                               |
+| **t mark**    | **Format**: `t mark INDEX`<br/> **Example**: `t mark 1`                                                                           |
+| **t unmark**  | **Format**: `t unmark INDEX`<br/> **Example**: `t unmark 1`                                                                       |
+| **t list**    | **Format**: `t list`<br/> **Example**: `t list`                                                                                   |
+| **t sort**    | **Format**: `t sort c/CRITERIA`<br/> **Example**: `t sort c/priority`                                                             |
+| **t filter**  | **Format**: `t filter [m/MODULE]* [c/COMPLETED]* [l/LINKED]*`<br/> **Example**: `t filter m/cs2030 c/y`                           |
+| **t find**    | **Format**: `t find KEYWORD`<br/> **Example**: `t find watch lecture rec`                                                         |
+| **t tagadd**  | **Format**: `t tagadd INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`<br/> **Example**: `t tagadd 1 p/high dl/29-12-2022`              |
+| **t tagdel**  | **Format**: `t tagdel INDEX t/KEYWORD [SECOND_KEYWORD]`<br/> **Example**:`t tagdel 1 t/priority`                                  |
+| **t tagedit** | **Format**: `t tagedit INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`<br/> **Example**: `t tagedit 1 p/medium`                        |
+| **t clear**   | **Format**: `t clear`<br/> **Example**: `t clear`                                                                                 |
 | **Exam**      |                                                                                                                                   |
-| **E add**     | **Format**: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`<br/> **Example**: `e add m/cs2013t ex/practical ed/29-10-2022`      |
-| **E edit**    | **Format**: `e edit INDEX [m/MODULE CODE]* [ex/EXAM DESCRIPTION]* [ed/EXAM DATE]*`<br/> **Example**: `e edit 1 c/cs2040`          |
-| **E del**     | **Format**: `e del INDEX`<br/> **Example**: `e del 1`                                                                             |
-| **E link**    | **Format**: `e link e/EXAM_INDEX t/TASK_INDEX`<br/> **Example**: `e link e/1 t/2`                                                 |
-| **E unlink**  | **Format**: `e unlink INDEX`<br/> **Example**: `e unlink 1`                                                                       |
-| **E showT**   | **Format**: `e showT INDEX`<br/> **Example**: `e showT 1`                                                                         |
+| **e add**     | **Format**: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`<br/> **Example**: `e add m/cs2013t ex/practical ed/29-10-2022`      |
+| **e edit**    | **Format**: `e edit INDEX [m/MODULE]* [ex/EXAM_DESCRIPTION]* [ed/EXAM_DATE]*`<br/> **Example**: `e edit 1 m/cs2040`               |
+| **e del**     | **Format**: `e del INDEX`<br/> **Example**: `e del 1`                                                                             |
+| **e link**    | **Format**: `e link e/EXAM_INDEX t/TASK_INDEX`<br/> **Example**: `e link e/1 t/2`                                                 |
+| **e unlink**  | **Format**: `e unlink INDEX`<br/> **Example**: `e unlink 1`                                                                       |
+| **e showt**   | **Format**: `e showt INDEX`<br/> **Example**: `e showt 1`                                                                         |
 | **Others**    |                                                                                                                                   |
-| **clearAll**  | **Format**: `clearAll`<br/> **Example**: `clearAll`                                                                               |
-| **Help**      | **Format**: `help`<br/> **Example**: `help`                                                                                       |
-| **Exit**      | **Format**: `exit`<br/> **Example**: `exit`                                                                                       |
+| **clearall**  | **Format**: `clearall`<br/> **Example**: `clearall`                                                                               |
+| **help**      | **Format**: `help`<br/> **Example**: `help`                                                                                       |
+| **exit**      | **Format**: `exit`<br/> **Example**: `exit`                                                                                       |
