@@ -2,14 +2,12 @@ package friday.logic;
 
 import static friday.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static friday.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-/*
 import static friday.logic.commands.CommandTestUtil.CONSULTATION_DESC_AMY;
 import static friday.logic.commands.CommandTestUtil.MASTERYCHECK_DESC_AMY;
 import static friday.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static friday.logic.commands.CommandTestUtil.TELEGRAMHANDLE_DESC_AMY;
- */
 import static friday.testutil.Assert.assertThrows;
-// import static friday.testutil.TypicalStudents.AMY;
+import static friday.testutil.TypicalStudents.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -19,7 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-// import friday.logic.commands.AddCommand;
+import friday.logic.commands.AddCommand;
 import friday.logic.commands.CommandResult;
 import friday.logic.commands.ListCommand;
 import friday.logic.commands.exceptions.CommandException;
@@ -28,11 +26,11 @@ import friday.model.Model;
 import friday.model.ModelManager;
 import friday.model.ReadOnlyFriday;
 import friday.model.UserPrefs;
-// import friday.model.student.Student;
+import friday.model.student.Student;
 import friday.storage.JsonFridayStorage;
 import friday.storage.JsonUserPrefsStorage;
 import friday.storage.StorageManager;
-// import friday.testutil.StudentBuilder;
+import friday.testutil.StudentBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -70,12 +68,12 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
-    /*
+
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonFridayStorage addressBookStorage =
+                new JsonFridayIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
@@ -90,7 +88,7 @@ public class LogicManagerTest {
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
-    */
+
 
     @Test
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
