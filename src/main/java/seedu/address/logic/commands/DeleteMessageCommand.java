@@ -21,9 +21,8 @@ public class DeleteMessageCommand extends MessageCommandGroup {
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the message. "
-            + "Parameters: "
-            + "[MESSAGE] \n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "\nParameters: [MESSAGE]"
+            + "\nExample: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Message deleted: %1$s";
 

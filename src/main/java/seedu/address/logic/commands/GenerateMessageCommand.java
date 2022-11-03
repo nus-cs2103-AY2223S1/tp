@@ -24,9 +24,8 @@ public class GenerateMessageCommand extends MessageCommandGroup {
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Generates a customised message for the person. "
-            + "Parameters: "
-            + "[PERSON_INDEX] [MESSAGE_INDEX] \n"
-            + "Example: " + COMMAND_WORD + " 1 2";
+            + "\nParameters: [PERSON_INDEX] [MESSAGE_INDEX]"
+            + "\nExample: " + COMMAND_WORD + " 1 2";
 
     public static final String MESSAGE_SUCCESS = "Message generated and copied to clipboard:\n%1$s";
 
