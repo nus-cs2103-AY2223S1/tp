@@ -339,11 +339,6 @@ Step 3. The user then decides to execute the command `list`. Commands that do no
 
 _{more aspects and alternatives to be added}_
 
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 #### Parameter hint feature
 
 The feature allows a user to view the correct prefixes and arguments of a command before entering the command.
