@@ -39,5 +39,5 @@ Given below are my contributions to the project.
     * Added implementation details of the listing of tasks, students and lessons.
 
 * **Community**:
-  * Helped Team CS2103T-T14-2 find bugs during PE-D
+  * Helped Team CS2103T-T14-2 find bugs during PE-D. 
   
