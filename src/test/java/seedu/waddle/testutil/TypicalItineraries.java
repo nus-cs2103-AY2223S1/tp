@@ -43,6 +43,24 @@ public class TypicalItineraries {
             .withCountry("France").withStartDate("2022-03-03")
             .withDuration("4").withPeople("4").withBudget("2200").build();
 
+    public static Itinerary getSpring() {
+        return new ItineraryBuilder().withName("Spring Trip")
+                .withCountry("Australia").withStartDate("2022-01-01")
+                .withDuration("14").withPeople("1").withBudget("300").build();
+    }
+
+    public static Itinerary getAutumn() {
+        return new ItineraryBuilder().withName("Autumn Hiking")
+                .withCountry("Canada").withStartDate("2022-02-02")
+                .withDuration("22").withPeople("2").withBudget("700").build();
+    }
+
+    public static Itinerary getGraduation() {
+        return new ItineraryBuilder().withName("Graduation Trip")
+                .withCountry("France").withStartDate("2022-03-03")
+                .withDuration("4").withPeople("4").withBudget("2200").build();
+    }
+
     // Manually added - Itinerary's details found in {@code CommandTestUtil}
     public static final Itinerary SUMMER = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_SUMMER)
             .withCountry(VALID_COUNTRY_SUMMER).withStartDate(VALID_START_DATE_SUMMER)
@@ -55,7 +73,9 @@ public class TypicalItineraries {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalItineraries() {} // prevents instantiation
+    private TypicalItineraries() {
+
+    } // prevents instantiation
 
     /**
      * Returns a {@code Waddle} with all the typical itineraries.
@@ -70,27 +90,29 @@ public class TypicalItineraries {
 
     public static List<Itinerary> getTypicalItineraries() {
         List<Item> typicalItems = TypicalItems.getTypicalItems();
+        Itinerary autumn = getAutumn();
+        Itinerary graduation = getGraduation();
 
         // configure AUTUMN
-        AUTUMN.addItem(typicalItems.get(0));
+        autumn.addItem(typicalItems.get(0));
         try {
-            AUTUMN.planItem(Index.fromZeroBased(0), new DayNumber("1"), VALID_START_TIME_2330);
+            autumn.planItem(Index.fromZeroBased(0), new DayNumber("1"), VALID_START_TIME_2330);
         } catch (CommandException e) {
             assert false : e.getMessage();
         }
 
         // configure GRADUATION
-        GRADUATION.addItem(typicalItems.get(1));
-        GRADUATION.addItem(typicalItems.get(2));
-        GRADUATION.addItem(typicalItems.get(3));
+        graduation.addItem(typicalItems.get(1));
+        graduation.addItem(typicalItems.get(2));
+        graduation.addItem(typicalItems.get(3));
         try {
-            GRADUATION.planItem(Index.fromZeroBased(0), new DayNumber("1"), VALID_START_TIME_0000);
-            GRADUATION.planItem(Index.fromZeroBased(0), new DayNumber("1"), VALID_START_TIME_1715);
-            GRADUATION.planItem(Index.fromZeroBased(0), new DayNumber("2"), VALID_START_TIME_1200);
+            graduation.planItem(Index.fromZeroBased(0), new DayNumber("1"), VALID_START_TIME_0000);
+            graduation.planItem(Index.fromZeroBased(0), new DayNumber("1"), VALID_START_TIME_1715);
+            graduation.planItem(Index.fromZeroBased(0), new DayNumber("2"), VALID_START_TIME_1200);
         } catch (CommandException e) {
             assert false : e.getMessage();
         }
 
-        return new ArrayList<>(Arrays.asList(SPRING, AUTUMN, GRADUATION));
+        return new ArrayList<>(Arrays.asList(SPRING, autumn, graduation));
     }
 }
