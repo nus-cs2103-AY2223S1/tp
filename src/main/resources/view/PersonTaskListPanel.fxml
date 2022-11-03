@@ -5,7 +5,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox styleClass="task-side-panel" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox styleClass="task-side-panel" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <Label fx:id="heading" prefHeight="17.0" prefWidth="550.0" styleClass="sub_heading" text="ASSOCIATED TASKS">
         <VBox.margin>
             <Insets bottom="5.0" />
