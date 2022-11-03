@@ -373,14 +373,14 @@ Format: `edit-task [t/TITLE] [d/DESCRIPTION] [by/YYYY-MM-DD] [addStu/STUDENT_1, 
     * `addStu/` adds the student names to the assignment while `deleteStu/` deletes students names if the exact name is already in the assignment task's student list.
 * Existing values will be updated to the input values.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Invalid input:**
+0000-00-00 is <strong>not</strong> considered a valid date.
+</div>
+
 Examples:
 * `edit-task 1 t/Assignment 1 d/Topics: Recursion addStu/Adam Lee, Ben Tang`
   Edits the title, description and student list of the 1st task in the task list, provided that it is an assignment task, to be `Assignment 1`, `Topics: Recursion` and `Adam Lee, Ben Tang` respectively.
 * `edit-task 2 deleteStu/Jackie Chan` Edits the student list of the 2nd task in the task list to delete the name `Jackie Chan`. All other students in the student list of the task are not affected.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Invalid input:**
-0000-00-00 is <strong>not</strong> considered a valid date.
-</div>
 
 ### Removing a Task : `remove-task`
 
