@@ -1,4 +1,4 @@
-# Wu Haohui's Project Portfolio Page
+## Wu Haohui's Project Portfolio Page
 
 
 ### Project: bobaBot
