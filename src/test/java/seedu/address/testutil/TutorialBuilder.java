@@ -12,7 +12,7 @@ public class TutorialBuilder {
 
     public static final String DEFAULT_CONTENT = "UML Diagrams";
     public static final String DEFAULT_GROUP = "T08";
-    public static final String DEFAULT_TIME = "2022-10-01T08:00:00";
+    public static final String DEFAULT_TIME = "2022-10-01 0800";
     public static final boolean DEFAULT_STATUS = false;
 
     private Content content;

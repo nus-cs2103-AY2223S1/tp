@@ -15,27 +15,27 @@ import seedu.address.model.tutorial.Tutorial;
 public class TypicalTutorials {
 
     public static final Tutorial TUTORIAL1 = new TutorialBuilder().withContent("UML Diagrams")
-            .withGroup("T08").withTime("2022-10-01T08:00:00")
+            .withGroup("T08").withTime("2022-10-01 0800")
             .withStatus(false).build();
 
     public static final Tutorial TUTORIAL2 = new TutorialBuilder().withContent("Developer Guide")
-            .withGroup("T09").withTime("2022-10-02T09:00:00")
+            .withGroup("T09").withTime("2022-10-02 0900")
             .withStatus(false).build();
 
     public static final Tutorial TUTORIAL3 = new TutorialBuilder().withContent("Defensive Coding")
-            .withGroup("T10").withTime("2022-11-02T13:00:00")
+            .withGroup("T10").withTime("2022-11-02 1300")
             .withStatus(true).build();
 
     public static final Tutorial TUTORIAL4 = new TutorialBuilder().withContent("Coding Standards")
-            .withGroup("T11").withTime("2022-10-02T07:30:00")
+            .withGroup("T11").withTime("2022-10-02 0730")
             .withStatus(true).build();
 
     public static final Tutorial TUTORIAL5 = new TutorialBuilder().withContent("Design Considerations")
-            .withGroup("T12").withTime("2022-09-04T09:00:00")
+            .withGroup("T12").withTime("2022-09-04 0900")
             .withStatus(false).build();
 
     public static final Tutorial TUTORIAL6 = new TutorialBuilder().withContent("Developer Guide")
-            .withGroup("T09").withTime("2022-10-09T09:00:00")
+            .withGroup("T09").withTime("2022-10-09 0900")
             .withStatus(true).build();
 
     // Can add more tutorials

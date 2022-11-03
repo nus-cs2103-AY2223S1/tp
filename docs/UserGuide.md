@@ -1,43 +1,46 @@
 ---
 layout: page
-title: User Guide
----
+title: SETA
 
 User Guide
 =======
 SETA is a **desktop application for CS2103T Teaching Assistants** to track their students’ and tutorials’ details, and
-questions asked by students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a
-Graphical User Interface (GUI). If you can type fast, SETA enables you to manage your tutorials and track your students
-more effectively than traditional GUI apps.
+questions asked by students. SETA is optimized for use via a Command Line Interface (CLI) while still having the
+benefits of a Graphical User Interface (GUI). If you can type fast, SETA enables you to track your students. manage your
+tutorials and note down questions more effectively than traditional GUI apps.
 
 * Table of Contents
-    * **Student**
-        * Adding a student: [`addstu`](#adding-a-student--addstu)
-        * Editing a student: [`editstu`](#editing-a-student-editstu)
-        * Adding student's attendance: [`attendance`](#adding-students-attendance--attendance)
-        * Adding student’s response: [`addresponse`](#adding-students-response-addresponse)
-        * Adding help tag to a student: [`helpstu`](#adding-help-tag-helpstu)
-        * Deleting a student: [`deletestu`](#deleting-a-student-deletestu)
-        * Finding a student: [`findstu`](#finding-a-student-findstu)
-        * Listing all students: [`liststu`](#listing-all-students-liststu)
-    * **Question**
-        * Adding a question: [`addq`](#adding-a-question--addq)
-        * Marking a question: [`markq`](#marking-a-question--markq)
-        * Unmarking a question: [`unmarkq`](#unmarking-a-question--unmarkq)
-        * Deleting a question: [`deleteq`](#deleting-a-question--deleteq)
-    * **Tutorial**
-        * Adding a tutorial: [`addtut`](#adding-a-tutorial--addtut)
-        * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial--deletetut)
-        * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
-    * **Exiting the program**: [`exit`](#exiting-the-program--exit)
+    * **[Quick Start](#quick-start)**
+    * **[Features](#features)**
+        * **Students**
+            * Adding a student: [`addstu`](#adding-a-student--addstu)
+            * Editing a student: [`editstu`](#editing-a-student-editstu)
+            * Adding student's attendance: [`attendance`](#adding-students-attendance--attendance)
+            * Adding student’s response: [`addresponse`](#adding-students-response-addresponse)
+            * Adding help tag to a student: [`helpstu`](#adding-help-tag-helpstu)
+            * Deleting a student: [`deletestu`](#deleting-a-student-deletestu)
+            * Finding a student: [`findstu`](#finding-a-student-findstu)
+            * Listing all students: [`liststu`](#listing-all-students-liststu)
+        * **Questions**
+            * Adding a question: [`addq`](#adding-a-question--addq)
+            * Marking a question: [`markq`](#marking-a-question--markq)
+            * Unmarking a question: [`unmarkq`](#unmarking-a-question--unmarkq)
+            * Deleting a question: [`deleteq`](#deleting-a-question--deleteq)
+        * **Tutorials**
+            * Adding a tutorial: [`addtut`](#adding-a-tutorial--addtut)
+            * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial--deletetut)
+            * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
+        * **Exiting the program**: [`exit`](#exiting-the-program--exit)
+    * **[FAQ](#faq)**
+    * **[Command Summary](#command-summary)**
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `seta.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-4/tp/releases).
+1. Download the latest `SETA.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your SETA.
 
@@ -46,12 +49,12 @@ more effectively than traditional GUI apps.
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`liststu`** and pressing Enter will
-   go to the student page, listing all the students.<br>
+   list all the students in the 'Student' column.<br>
 
 Some example commands you can try:
 
-* **`addstu`**`n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com` : Adds a student named `John Lim Jun Jie` to
-  the student list.
+* **`addstu`**`n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com` : Adds a student named `John Lim Jun Jie` to the
+  student list.
 
 * **`deletestu`**`3` : Deletes the 3rd student shown in the current list.
 
@@ -76,7 +79,7 @@ Some example commands you can try:
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME e/EMAIL`, `e/EMAIL n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
   the parameter will be taken.<br>
   e.g. if you specify `h/@johnlim h/@johnlimjj`, only `h/@johnlimjj` will be taken.
 
@@ -85,13 +88,16 @@ Some example commands you can try:
 
 </div>
 
+### <ins>Students</ins>
+
 ### Adding a student : `addstu`
 
 Adds a student to the student list.
 
 Format: `addstu n/NAME h/TELEGRAM_HANDLE e/EMAIL`
 
-* Telegram handle must start with a '@'.
+* Telegram handle must start with a '@', followed by an alphanumeric character.
+* After the first character, telegram handle can only contain alphanumeric character or underscore.
 * Email can only contain alphanumeric characters.
 
 Examples:
@@ -99,62 +105,73 @@ Examples:
 * `addstu n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com`
 * `addstu n/Mary Tan Xiao Li h/@marytxl e/marytxl@example.com`
 
-
 ### Editing a student: `editstu`
 
 Edits an existing student in the student list.
 
-Format: `edit INDEX [n/NAME] [h/TELEGRAM_HANDLE] [e/EMAIL] [a/ATTENDANCE]`
+Format: `editstu INDEX [n/NAME] [h/TELEGRAM_HANDLE] [e/EMAIL] [a/ATTENDANCE]`
 
 * Edits the student at the specified INDEX. The index represents the index number of the student in the student list.
-  The index must be a positive integer 0, 1, 2…
-* At least one of the fields (E.g. [n/NAME] or [e/EMAIL]) must be provided
+  The index must be a positive integer 1, 2…
+* At least one of the fields (E.g. [n/NAME] or [e/EMAIL]) must be provided.
 * Existing fields will be updated to the input values.
+* Editing a student with the same details as the student's original details will be accepted. 
+  (E.g. executing `editstu 1 h/@test` when student 1's telegram handle is already `@test`, will still be accepted as an edit.)
+* Input attendance value without any extra '0's before and after the intended attendance value. (E.g. '0' instead of '0000' and '3' instead of '003').
 
 Examples:
 
-* `editstu 1 h/@johnlim e/jljj@example.com Edits the telegram handle and email of the person at index 1 to be @johnlim and jljj@example.com respectively.`
-* `editstu 3 n/Mary Lee Jing Yi Edits the name of the person at index 3 to be Mary Lee Jing Yi.`
-
+* `editstu 1 h/@johnlim e/jljj@example.com` Edits the telegram handle and email of the 1st student to @johnlim and
+  jljj@example.com respectively.
+* `editstu 3 n/Mary Lee Jing Yi` Edits the name of the 3rd student to Mary Lee Jing Yi.
+* `editstu 2 a/5` Edits the attendance number of the 2nd student to 5.
 
 ### Adding student's attendance : `attendance`
 
-Increases or decreases the number of times a student attended tutorials.
+Increases student's attendance by 1.
 
-Format: `attendance INDEX s/SIGN v/VALUE`
+Format: `attendance INDEX`
 
-* Adds attendance to the student at the specified INDEX
+* Increment attendance to the student at the specified INDEX.
 * The index refers to the index number shown in the displayed student list.
-* The index must be a positive integer 1, 2. 3, …
-* decrease attendance value if `SIGN` is '-' and increase attendance value if `SIGN` is '+'
-* increase or decrease the specific student's attendance by `VALUE`
+* The index must be a positive integer 1, 2, 3, ….
 
-Examples:
+Example:
 
-* `attendance 1 s/- v/2`
-* `attendance 1 s/+ v/1`
-
+* `attendance 1`
 
 ### Adding student's response: `addresponse`
 
-Adds the number of messages a specified student sent during tutorial.
+Edits the number of messages a specified student sent during tutorial.
 
-Format: `addresponse n\NAME m\MESSAGE_COUNT`
+Format: `addresponse INDEX m/MESSAGE_COUNT`
 
-Examples:
+* Edits response count of the student at the specified INDEX.
+  * If `addresponse 1 m/7` is keyed in after `addresponse 1 m/2`, the response count for the first
+    student in the student list will be 7 instead of 2.
+* The `INDEX` refers to the index number shown in the displayed student list.
+* The `INDEX` must be a positive integer 1, 2, 3, ...
+* The `MESSAGE_COUNT` must be a positive integer 1, 2, 3, ...
+* If `m\0000000000` is given as an input, 0s will not be truncated and response will be displayed as
+`response: 000000000`
 
-* `addresponse n\John Doe m\7`
+Example:
+
+* `addresponse 1 m/7`
 
 ### Adding help tag: `helpstu`
 
 Adds a help tag to an existing student.
 
-Format: `helpstu NAME`
+Format: `helpstu INDEX`
+
+* Adds a help tag to the student at the specified INDEX.
+* The index refers to the index number shown in the displayed student list.
+* The index must be a positive integer 1, 2. 3, ….
 
 Example:
 
-* `helpstu John Lim Jun Jie`
-
+* `helpstu 2`
 
 ### Deleting a student: `deletestu`
 
@@ -162,29 +179,27 @@ Removes a specific student.
 
 Format: `deletestu INDEX`
 
-* Deletes the student at the specified INDEX
+* Deletes the student at the specified INDEX.
 * The index refers to the index number shown in the displayed student list.
-* The index must be a positive integer 1, 2. 3, …
+* The index must be a positive integer 1, 2. 3, ….
 
 Example:
 
-* `deletestu 2` 
-
+* `deletestu 2`
 
 ### Finding a student: `findstu`
 
-Find one or more specific students.
+Finds one or more specific students.
 
 Format: `findstu KEYWORD [MORE_KEYWORDS]`
 
-* Finds student(s) with specified KEYWORD [MORE_KEYWORDS] in their name(s)
-* The keyword is case-insensitive
+* Finds student(s) with specified KEYWORD [MORE_KEYWORDS] in their name(s).
+* The keyword is case-insensitive.
 
-Example:
+Examples:
 
 * `findstu bob`
 * `findstu john mary`
-
 
 ### Listing all students: `liststu`
 
@@ -192,10 +207,11 @@ Lists all students in the student list.
 
 Format: `liststu`
 
-Example: 
+Example:
 
 * `liststu`
 
+### <ins>Questions</ins>
 
 ### Adding a question : `addq`
 
@@ -203,10 +219,9 @@ Adds a question to the question list.
 
 Format: `addq QUESTION_DESCRIPTION`
 
-Examples:
+Example:
 
 * `addq what is the difference between self-invocation and call-backs for sequence diagrams?`
-
 
 ### Marking a question : `markq`
 
@@ -216,13 +231,13 @@ Format: `markq INDEX`
 
 * Marks the question at the specified INDEX as important.
 * The index refers to the index number shown in the displayed question list.
-* The index must be a positive integer 1, 2. 3, …
-*
+* The index must be a positive integer 1, 2, 3, ...
+* The index must be within the number of questions in the question list. E.g. There are 4 questions. The possible
+  indexes are 1, 2, 3 and 4.
 
-Examples:
+Example:
 
 * `markq 1` marks the first question in the question list as important
-
 
 ### Unmarking a question : `unmarkq`
 
@@ -232,13 +247,13 @@ Format: `unmarkq INDEX`
 
 * Marks the question at the specified INDEX as unimportant.
 * The index refers to the index number shown in the displayed question list.
-* The index must be a positive integer 1, 2. 3, …
-*
+* The index must be a positive integer 1, 2, 3, ...
+* The index must be within the number of questions in the question list. E.g. There are 4 questions. The possible
+  indexes are 1, 2, 3 and 4.
 
-Examples:
+Example:
 
 * `unmarkq 1` marks the first question in the question list as unimportant
-
 
 ### Deleting a question : `deleteq`
 
@@ -246,10 +261,16 @@ Deletes a question in the question list.
 
 Format: `deleteq INDEX`
 
-Examples:
+* The index refers to the index number shown in the displayed question list.
+* The index must be a positive integer 1, 2, 3, ...
+* The index must be within the number of questions in the question list. E.g. There are 4 questions. The possible
+  indexes are 1, 2, 3 and 4.
+
+Example:
 
 * `deleteq 1` deletes the first question from the question list
 
+### <ins>Tutorials</ins>
 
 ### Adding a tutorial : `addtut`
 
@@ -257,10 +278,12 @@ Adds a tutorial to the tutorial list.
 
 Format: `addtut g/GROUP_NUMBER c/CONTENT t/DATE TIME`
 
-Examples:
+* The format of the date must be in the YYYY-MM-DD.
+* The format of the time must be in 24h format HHmm.
 
-* `addtut g/T08 c/UML diagrams t/2022-10-01T08:00:00`
+Example:
 
+* `addtut g/T08 c/UML diagrams t/2022-10-01 1400`
 
 ### Deleting a tutorial : `deletetut`
 
@@ -268,15 +291,14 @@ Deletes a tutorial in the tutorial list.
 
 Format: `deletetut INDEX`
 
-* Deletes the tutorial at the specified INDEX
+* Deletes the tutorial at the specified INDEX.
 * The index refers to the index number shown in the displayed tutorial list.
-* The index must be a positive integer 1, 2. 3, …
+* The index must be a positive integer 1, 2. 3, … .
 *
 
 Example:
 
-* `deleteq 1`deletes the first tutorial from the tutorial list
-
+* `deletetut 1`deletes the first tutorial from the tutorial list
 
 ### Marking a tutorial: `marktut`
 
@@ -286,12 +308,25 @@ Format: `marktut INDEX`
 
 * Marks the tutorial at the specified `INDEX`.
 * The index refers to the index number shown in the displayed tutorial list.
-* The index must be a positive integer 1, 2, 3, ...
+* The index must be a positive integer 1, 2, 3, ... .
 
 Example:
 
 * `marktut 1` marks the first tutorial from the tutorial list as done.
 
+### Unmarking a tutorial: `unmarktut`
+
+Marks content in the tutorial as undone.
+
+Format: `unmarktut INDEX`
+
+* Marks the tutorial at the specified `INDEX`.
+* The index refers to the index number shown in the displayed tutorial list.
+* The index must be a positive integer 1, 2, 3, ...
+
+Example:
+
+* `unmarktut 1` marks the first tutorial from the tutorial list as undone.
 
 ### Exiting the program : `exit`
 
@@ -329,16 +364,16 @@ the data of your previous SETA home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
-| Action         | Format, Examples                    |
-|----------------|-------------------------------------|
-| **Add**        | `addstu`, `addq`, `addtut`          |
-| **Attendance** | `attendance`                        |
-| **Delete**     | `deletestu`, `deleteq`, `deletetut` |
-| **Edit**       | `editstu`                           |
-| **Find**       | `findstu`                           |  
-| **List**       | `liststu`                           |  
-| **Mark**       | `markq`, `unmarkq`, `marktut`       |
-| **Tag**        | `helpstu`                           |
-| **Exit**       | `exit`                              |
+| Action         | Format, Examples                           |
+|----------------|--------------------------------------------|
+| **Add**        | `addstu`, `addq`, `addtut`                 |
+| **Attendance** | `attendance`, `addresponse`                |
+| **Delete**     | `deletestu`, `deleteq`, `deletetut`        |
+| **Edit**       | `editstu`                                  |
+| **Find**       | `findstu`                                  |
+| **List**       | `liststu`                                  |
+| **Mark**       | `markq`, `unmarkq`, `marktut`, `unmarktut` |
+| **Tag**        | `helpstu`                                  |
+| **Exit**       | `exit`                                     |

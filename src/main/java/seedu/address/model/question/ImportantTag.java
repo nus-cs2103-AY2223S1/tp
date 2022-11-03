@@ -4,7 +4,7 @@ package seedu.address.model.question;
  */
 public class ImportantTag {
 
-    public static final String IMPORTANT = "IMPORTANT";
+    public static final String IMPORTANT = "Important";
 
     public final boolean isImportant;
 

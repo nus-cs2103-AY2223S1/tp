@@ -12,13 +12,26 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
+Class UniqueStudentList
+Class Student
+Class Telegram
 Class Email
 Class Name
-Class Phone
-Class Tag
+Class Response
+Class HelpTag
+Class Attendance
+
+Class UniqueQuestionList
+Class Question
+Class Description
+Class ImportantTag
+
+Class UniqueTutorialList
+Class Tutorial
+Class Group
+Class Content
+Class Time
+Class Status
 
 }
 
@@ -33,18 +46,38 @@ Model .left.> ReadOnlyAddressBook
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
+UniqueStudentList -[hidden]up-> ModelManager
+UniqueQuestionList -[hidden]up-> ModelManager
+UniqueTutorialList -[hidden]up-> ModelManager
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniqueStudentList
+UniqueStudentList --> "~* all" Student
+Student *--> Name
+Student *--> Telegram
+Student *--> Email
+Student *--> Response
+Student *--> Attendance
+Student *--> HelpTag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+AddressBook *--> "1" UniqueQuestionList
+UniqueQuestionList --> "~* all" Question
+Question *--> Description
+Question *--> ImportantTag
 
-ModelManager -->"~* filtered" Person
+AddressBook *--> "1" UniqueTutorialList
+UniqueTutorialList --> "~* all" Tutorial
+Tutorial *--> Group
+Tutorial *--> Content
+Tutorial *--> Time
+Tutorial *--> Status
+
+Name -[hidden]right-> Telegram
+Telegram -[hidden]right-> Email
+Email -[hidden]right-> Response
+Response -[hidden]right-> Attendance
+Attendance -[hidden]right-> HelpTag
+
+ModelManager -->"~* filtered" Student
+ModelManager -->"~* filtered" Question
+ModelManager -->"~* filtered" Tutorial
 @enduml

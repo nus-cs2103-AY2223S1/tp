@@ -47,18 +47,18 @@ public class EditStuCommand extends Command {
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the student list.";
 
     private final Index index;
-    private final EditStuCommand.EditStudentDescriptor editStudentDescriptor;
+    private final EditStudentDescriptor editStudentDescriptor;
 
     /**
      * @param index of the student in the filtered student list to edit
      * @param editStudentDescriptor details to edit the student with
      */
-    public EditStuCommand(Index index, EditStuCommand.EditStudentDescriptor editStudentDescriptor) {
+    public EditStuCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
         requireNonNull(editStudentDescriptor);
 
         this.index = index;
-        this.editStudentDescriptor = new EditStuCommand.EditStudentDescriptor(editStudentDescriptor);
+        this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
     }
 
     @Override
@@ -86,8 +86,7 @@ public class EditStuCommand extends Command {
      * Creates and returns a {@code Student} with the details of {@code studentToEdit}
      * edited with {@code editStudentDescriptor}.
      */
-    private static Student createEditedStudent(Student studentToEdit,
-                                               EditStuCommand.EditStudentDescriptor editStudentDescriptor) {
+    private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
         StuName updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
@@ -95,7 +94,7 @@ public class EditStuCommand extends Command {
         StuEmail updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Response response = studentToEdit.getResponse();
         Attendance attendance = editStudentDescriptor.getAttendance().orElse(studentToEdit.getAttendance());
-        HelpTag helpTag = editStudentDescriptor.getHelpTag().orElse(studentToEdit.getHelpTag());
+        HelpTag helpTag = studentToEdit.getHelpTag();
 
         return new Student(updatedName, updatedTelegram, updatedEmail, response, attendance, helpTag);
     }
@@ -127,7 +126,6 @@ public class EditStuCommand extends Command {
         private Telegram telegram;
         private StuEmail email;
         private Attendance attendance;
-        private HelpTag helptag;
 
         public EditStudentDescriptor() {}
 
@@ -135,7 +133,7 @@ public class EditStuCommand extends Command {
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditStudentDescriptor(EditStuCommand.EditStudentDescriptor toCopy) {
+        public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
             setTelegram(toCopy.telegram);
             setEmail(toCopy.email);
@@ -181,14 +179,6 @@ public class EditStuCommand extends Command {
             return Optional.ofNullable(attendance);
         }
 
-        public void setHelpTag(HelpTag helpTag) {
-            this.helptag = helptag;
-        }
-
-        public Optional<HelpTag> getHelpTag() {
-            return Optional.ofNullable(helptag);
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -197,12 +187,12 @@ public class EditStuCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditStuCommand.EditStudentDescriptor)) {
+            if (!(other instanceof EditStudentDescriptor)) {
                 return false;
             }
 
             // state check
-            EditStuCommand.EditStudentDescriptor e = (EditStuCommand.EditStudentDescriptor) other;
+            EditStudentDescriptor e = (EditStudentDescriptor) other;
 
             return getName().equals(e.getName())
                     && getTelegram().equals(e.getTelegram())

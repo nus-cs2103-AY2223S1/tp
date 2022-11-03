@@ -77,10 +77,7 @@ public class Question {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getDescription())
-                .append("\n")
-                .append(getImportantTag())
-                .append(" question");
+        builder.append(getDescription());
         return builder.toString();
     }
 
