@@ -213,7 +213,7 @@ Edits an existing patient in idENTify.
 Format: `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+* At least one of the optional parameters must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the patient will be removed i.e. adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without
@@ -233,7 +233,7 @@ Edits an existing patient's appointment in idENTify.
 Format: `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME_PERIOD] [t/TAG]…​`
 
 * Edits the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+* At least one of the optional parameters must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the appointment will be removed i.e. adding of tags is not cumulative.
 * You can remove all the appointment’s tags by typing `t/` without
@@ -459,34 +459,51 @@ Examples:
 * `unhide appts s/marked` unhides all appointments that has been marked.
 * `unhide appts s/UNMARKED` unhides all appointments that has been unmarked.
 
-#### Find results that satisify an input criteria: `find`
-Finds patients and appointments that matches all the given criteria specified.
+#### Find results that satisfy certain a criteria: `find`
+Finds patients and appointments that matches all the given parameters specified.
 
 Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`
 
-* At least 1 of the optional fields must be provided.
+* At least 1 of the optional parameters must be provided.
 * The search is **NOT** case-sensitive. e.g `n/hans` has same effect as `n/Hans`
+* All parameters, unless otherwise stated, support partial match.
+  * e.g. For partial match, when finding names, searching `John Do` can find someone named `John Doe`
+  * For a full match however, only `John Doe` can find `John Doe`.
+* Only *relevant* patients and appointments that satisfies all parameters will be displayed.
+  * View the `find r/Checkup` example below for a visual explanation.
+* Additional details on each parameter are listed in the tables below.
 
-* `[n/NAME]`, `[p/PHONE]`, `[e/EMAIL]`, `[a/ADDRESS]` and `[t/PATIENT_TAG]` are fields to find information about the patient (patient criteria).
-* `[r/REASON]`, `[ds/DATE_START]`, `[de/DATE_END]` and `[ta/APPOINTMENT_TAG]` are fields to find information about appointments (appointment criteria).
-  * `[ds/DATE_START]` searches for appointments occurring at or after `DATE_START`.
-  * `[ds/DATE_END]` searches for appointments occurring at or before `DATE_END`.
-* Only currently displayed patients and appointments that satisfies all criteria will be displayed.
-  * A patient must satisify all patient criteria and have at least 1 appointment that satisfies all the appointment criteria to be displayed.
-  * An appointment must satisify all appointment criteria and belong to a patient that satisfies all the patient criteria to be displayed.
-* All fields except `[ds/DATE_START]`, `[de/DATE_END]`, `[t/PATIENT_TAG]` and `[ta/APPOINTMENT_TAG]` supports partial match.
-  * e.g When finding names, searching `John Do` can find someone named `John Doe`.
-* For `[t/PATIENT_TAG]` and `[ta/APPOINTMENT_TAG]` fields, only tags with a full match will be matched
-  * e.g Finding a tag `Ea` will not match a tag labelled `Ear`.
-* `[ds/DATE_START]` must be a date equal to or before `[ds/DATE_END]`.
+| Patient Parameters                                                   | Additional Notes                                                              |
+|----------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| **[n/NAME]**<br/>**[p/PHONE]**<br/>**[e/EMAIL]**<br/>**[a/ADDRESS]** | -                                                                             |
+| **[t/PATIENT_TAG]...**                                               | Finds patients matching all the inputted tag(s).<br/>**Full match required.** |
 
-Examples:
+| Appointment Parameters   | Additional Notes                                                                                                                                             |
+|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **[r/REASON]**           | -                                                                                                                                                            |
+| **[ds/DATE_START]**      | Finds appointments occurring at or after the inputted date. <br/> **Must be a valid date.** <br/> **Date must be at or after [de/DATE_END], if present.**    |
+| **[de/DATE_END]**        | Finds appointments occurring at or before the inputted date. <br/> **Must be a valid date.** <br/> **Date must be at or after [de/DATE_START], if present.** |
+| **[ta/APPOINTMENT_TAG]** | Finds appointments matching all the appointment's tag(s).<br/> **Full match required.**                                                                      |
+
+Visual example of finding results by an appointment's reason, using `find r/Checkup`:
+
+Before `find r/Checkup`:
+
+  ![before `find r/Checkup`](images/FindCheckupReasonBefore.png)
+
+
+After `find r/Checkup`:
+
+  ![after `find r/Checkup`](images/FindCheckupReasonAfter.png)
+
+* Note that only *relevant* results are displayed.
+  * (i.e. The patient `Bernice Yu` is not displayed as she does not have an appointment with a reason containing `Checkup`).
+
+Other Examples:
 * `find n/John p/12345` displays all patients with `John` in their names and `12345` in their phone numbers, as well as all their appointments.
-* `find ds/2020-01-01 00:00` displays all appointments occuring at or after 1st of January 2020. It will also display all patients with at least one of said appointments.
+* `find ds/2020-01-01 00:00` displays all appointments occurring at or after 1st of January 2020. It will also display all patients with at least one of said appointments.
 * `find a/Clementi r/Sleep Apena` displays all patients whose address contains `Clementi` and has at least 1 appointment containing `Sleep Apena` as its reason. It will also only display appointments containing `Sleep Apena` of said patients.
 * `find ta/Throat ta/Nose` displays all appointments with both `Throat` and `Nose` tags, and all patients with at least one of said appointments.
-* `find t/throat` returns `Alex Yeoh`, `Bernice Yu` and `David Li` as they all contain the `Throat` tag. <br>
-  ![result for 'find t/throat'](images/FindThroatTagResult.png)
 
 ### Others
 

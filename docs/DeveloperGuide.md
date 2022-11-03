@@ -409,12 +409,14 @@ These objects are stored in a list field of the `JsonAdaptedPerson` and are stor
 
 The execution of the `mark`/`unmark` is quite similar to each other, with some minor differences.
 
+As with other idENTify
+
 Given below is an example usage scenario, where the user enters `mark 1` as the input,
 and how the mark mechanism behaves at each step.
 
 ![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
 
-The `unmark` command functions similiarly to `mark`, but with the use of `UnmarkCommandParser` and `UnmarkCommand`
+The `unmark` command functions similarly to `mark`, but with the use of `UnmarkCommandParser` and `UnmarkCommand`
 classes in place of `MarkCommandParser` and `MarkCommand` respectively.
 It also lacks the logic to add recurring appointments.
 
