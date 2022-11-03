@@ -259,10 +259,11 @@ Step 7. `FileUtil::checkValidPdfFilePath` method follows the given filePath to c
 Step 8. `SetPathFileCommand::execute` method will instantiate a new `Person` object with the original `Person` object's attributes and the new filePath. This `Person` object be set in `Model` and updated in `filterPersonList`.
 
 The following sequence diagram shows how the assigning filepath to a client feature works.
-**Insert sequence diagram here**
+![SetPersonFileSequenceDiagram](images/DeveloperGuide/FilePath/FilePathSequenceDiagram.png)
+
 
 The following activity diagram shows how the assigning filepath to a client feature works.
-**Insert activity diagram here**
+![SetPersonFileActivityDiagram](images/DeveloperGuide/FilePath/FilePathActivityDiagram.png)
 
 #### Design Considerations:
 **Would need Peter's Input on this**

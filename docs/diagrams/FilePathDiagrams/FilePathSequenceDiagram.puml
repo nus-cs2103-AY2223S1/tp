@@ -72,6 +72,7 @@ deactivate Model
 SetPersonFileCommand -> SetPersonFileCommand : get(index.getZeroBased())
 activate SetPersonFileCommand
 
+create BerniceYu
 SetPersonFileCommand -> BerniceYu
 activate BerniceYu
 
@@ -79,6 +80,7 @@ BerniceYu --> SetPersonFileCommand
 deactivate BerniceYu
 
 SetPersonFileCommand --> SetPersonFileCommand
+deactivate SetPersonFileCommand
 
 SetPersonFileCommand -> Model : setPerson()
 activate Model
