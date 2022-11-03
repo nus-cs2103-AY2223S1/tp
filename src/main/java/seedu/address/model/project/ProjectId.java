@@ -7,8 +7,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class ProjectId {
 
-    public static final String MESSAGE_CONSTRAINTS = "Project ID must be a positive integer, less than " +
-            Integer.MAX_VALUE + ".";
+    public static final String MESSAGE_CONSTRAINTS = "Project ID must be a positive integer, less than "
+            + Integer.MAX_VALUE + ".";
     public static final String MESSAGE_INVALID = "Project ID must be an integer. "
             + "No existing project with this project ID";
     private int projectId;
