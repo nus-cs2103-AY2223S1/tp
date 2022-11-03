@@ -569,38 +569,38 @@ Class-ify is a **class management application** built specially for **Singapore 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Role (As a/ an)                                     | Goal/ Function (I want to)                                  | Benefit (So that I)                                                           | Priority |
-|-----------------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------------------------|----------|
-| new user                                            | add new student records                                     |                                                                               | ***      |
-| new user                                            | delete student records                                      | can remove irrelevant or incorrect student records.                           | ***      |
-| new user                                            | update student records                                      | can keep my student records accurate and up to date.                          | ***      |
-| new user                                            | view all students that I am teaching                        |                                                                               | ***      |
-| new user                                            | find a particular student's record by name                  |                                                                               | ***      |
-| new user                                            | find a particular student's record by student ID            |                                                                               | ***      |
-| new user                                            | add in individual students' personal information            | can retrieve my student's information when necessary.                         | ***      |
-| new user                                            | add in individual students' academic results                | can keep track of their results over time.                                    | ***      |
-| teacher with multiple classes                       | categorise students into different classes                  | can keep my student records tidy and organised.                               | ***      |
-| new user                                            | store parent's details                                      | can contact and inform them if a student is not doing well.                   | ***      |
-| teacher with multiple classes                       | filter student records based on their class                 | can search for students in a particular class easily.                         | ***      |
-| new user                                            | get exam statistics from a class                            | can get an overview of my students' academic performance.                     | ***      |
-| new user                                            | flag out students who are under performing in class         | can quickly identify students who need more academic assistance.              | ***      |
-| new user                                            | sort the student records in terms of grades                 | can easily view the academic rankings of my student.                          | ***      |
-| teacher with many students                          | hide parent's information from view                         | can have an uncluttered view of my student's information.                     | ***      |
-| new user who is forgetful                           | automatically save the data without inputting a new command | do not need to worry about forgetting to save before I quit the application.  | ***      |
-| potential user                                      | try the application with sample data                        | can easily see how the application will look like when it is in use.          | ***      |
-| potential user                                      | see a summary of functionalities                            | have an idea of what I can do without referencing the user guide.             | **       |
-| new user                                            | purge all current data                                      | can get rid of sample/experimental data I used for exploring the application. | **       |
-| intermediate user                                   | add multiple student records with a single command          | can efficiently enter my students' information at once.                       | **       |
-| new user                                            | filter student records below a certain grade                | can identify students who scored below an acceptable grade.                   | **       |
-| teacher who might teach a different class next year | delete all student records from a particular class          | can remove the records of students that I am no longer teaching.              | **       |
-| new user                                            | undo previous commands                                      | can easily undo an accidental change.                                         | **       |
-| intermediate user                                   | create additional custom fields in student records          | can keep track of additional information of my students.                      | **       |
-| intermediate user                                   | share student details with other teachers                   | can share the data with another teacher who may take over the class.          | *        |
-| advanced user                                       | transfer and backup data from one computer to another       | will not lose my data if I switch to another computer.                        | *        |
-| advanced user                                       | update all students' exam grades with a single command      | can efficiently update my students' grades at once.                           | *        |
-| teacher who might teach the same class next year    | update the class name of all students in that class         | can save time updating each student's information individually.               | *        |
-| advanced user                                       | find out more advanced commands through suggestions         | can learn and extend the functionality of the app.                            | *        |
-| potential user                                      | follow a tutorial to introduce the basic commands           | can learn the basic functionalities step by step.                             | *        |
+| No. | Role (As a/ an)                                 | Goal/ Function (I want to)                                   | Benefit (So that I can)                                          | Priority |
+|-----|-------------------------------------------------|--------------------------------------------------------------|------------------------------------------------------------------|----------|
+| 1   | Teacher using Class-ify regularly               | Create new records for the students I am teaching            | Manage my students' information on Class-ify                     | ***      |
+| 2   | Teacher using Class-ify regularly               | Make changes to the student record                           | Keep my student records accurate and up to date                  | ***      |
+| 3   | Teacher using Class-ify regularly               | Delete individual student record                             | Remove irrelevant or past student records                        | ***      |
+| 4   | Teacher using Class-ify regularly               | Clear all student record                                     | Start on a clean state                                           | ***      |
+| 5   | Teacher using Class-ify regularly               | View a list of all my students I am teaching                 | Have an overview of all my students                              | ***      |
+| 6   | Teacher using Class-ify regularly               | Find the record of a student by his/ her name                | Save time looking through a long list of students                | ***      |
+| 7   | Teacher using Class-ify regularly               | Find the record of a student by his/ her ID                  | Save time looking through a long list of students                | ***      |
+| 8   | Teacher using Class-ify regularly               | Add details of the student's parent                          | Contact the parents when necessary                               | ***      |
+| 9   | Teacher using Class-ify regularly               | Add my student's grades for CA1, CA2, SA1 and SA2            | Keep track of their performance                                  | ***      |
+| 10  | Teacher using Class-ify regularly               | Save the records of my students I have entered               | Continue working on them after closing Class-ify                 | ***      |
+| 11  | Teacher using Class-ify regularly               | Create additional custom fields in the student records       | Keep track of additional information of my students              | **       |
+| 12  | Teacher using Class-ify regularly               | Undo previous commands                                       | Revert any accidental changes I made                             | **       |
+| 13  | Teacher with many classes                       | Organise my students into their classes                      | Keep my records organised and tidy                               | ***      |
+| 14  | Teacher with many classes                       | View a list of all my students in a class                    | Have an overview of all my students in the class                 | ***      |
+| 15  | Teacher with many classes                       | Hide parentâ€™s information from view                        | Have an uncluttered view of my students                          | ***      |
+| 16  | Teacher using Class-ify for the first time      | Have some sample records of students                         | See how Class-ify will look like when it is in use               | **       |
+| 17  | Teacher using Class-ify for the first time      | Delete all sample records of students                        | Start adding in my own students                                  | ***      |
+| 18  | Teacher using Class-ify for the first time      | See a summary of operations I can perform on Class-ify       | Have an idea of what I can do                                    | **       |
+| 19  | Teacher using Class-ify for the first time      | Follow a tutorial of Class-ify                               | Learn to navigate the application step by step                   | *        |
+| 20  | Teacher who is experienced using Class-ify      | Transfer and backup the records from one computer to another | Switch to another computer without losing all the records        | *        |
+| 21  | Teacher who is experienced using Class-ify      | Add multiple records of students at once                     | Save time adding students one by one                             | **       |
+| 22  | Teacher who is experienced using Class-ify      | Find out more advanced commands through suggestions          | Learn and extend the functionality of Class-ify                  | *        |
+| 23  | Teacher who is experienced using Class-ify      | Hide sensitive information                                   | Prevent unauthorised access of my student's personal information | *        |
+| 24  | Teacher giving exam feedback                    | View the grades of any of my students                        | Get an understanding of their results                            | ***      |
+| 25  | Teacher giving exam feedback                    | Get the mean score of my class for an exam                   | Understand the overral performance of my class                   | ***      |
+| 26  | Teacher giving exam feedback                    | Find out students who are under performing in my class       | Identify who needs more assistance                               | ***      |
+| 27  | Teacher giving exam feedback                    | Sort the record of my students in terms of their grades      | View the academic rankings of my students                        | ***      |
+| 28  | Teacher giving exam feedback                    | Filter a list of students who scored above a certain grade   | Reward them for their good results                               | **       |
+| 29  | Teacher taking the same class for the next year | Update the class name of all students in the class           | Save time editing the records one by one                         | **       |
+| 30  | Teacher who made a grading error                | Update multiple records with the new score                   | Save time editing the records one by one                         | **       |
 
 ### 6.3 Use cases
 
