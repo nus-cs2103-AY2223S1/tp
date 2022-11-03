@@ -27,7 +27,6 @@ import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.TaskDescription;
-import seedu.address.model.task.TaskStatus;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -231,7 +230,7 @@ public class ParserUtil {
     public static PriorityTag parsePriorityTag(String priorityTag) throws ParseException {
         requireNonNull(priorityTag);
         String trimmedPriorityStatus = priorityTag.strip();
-        if (!PriorityTag.isValidTag(priorityTag)) {
+        if (!PriorityTag.isValidTag(trimmedPriorityStatus)) {
             throw new ParseException(PriorityTag.PRIORITY_TAG_CONSTRAINTS);
         }
         return new PriorityTag(trimmedPriorityStatus);
@@ -296,21 +295,6 @@ public class ParserUtil {
             throw new ParseException(Criteria.CRITERIA_CONSTRAINTS);
         }
         return new Criteria(strippedCriteria);
-    }
-
-    /**
-     * Parses a {@code String status} into a {@code TaskStatus}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code status} is invalid.
-     */
-    public static TaskStatus parseStatus(String status) throws ParseException {
-        requireNonNull(status);
-        String trimmedStatus = status.trim();
-        if (!TaskStatus.isValidStatus(trimmedStatus)) {
-            throw new ParseException(TaskStatus.STATUS_CONSTRAINTS);
-        }
-        return TaskStatus.of(trimmedStatus);
     }
 
     /**
