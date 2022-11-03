@@ -32,7 +32,8 @@ public class CopyCommandTest {
     //        // select first itinerary
     //        Itinerary selectedItinerary = model.getFilteredItineraryList().get(0);
     //        StageManager.getInstance().setWishStage(selectedItinerary);
-    //        String expectedCommandResult = String.format(CopyCommand.MESSAGE_SUCCESS, selectedItinerary.getDescription());
+    //        String expectedCommandResult = String.format(CopyCommand.MESSAGE_SUCCESS,
+    //              selectedItinerary.getDescription());
     //
     //        assertCommandSuccess(new CopyCommand(), model, expectedCommandResult, expectedModel);
     //
