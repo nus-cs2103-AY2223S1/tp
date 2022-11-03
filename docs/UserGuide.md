@@ -13,7 +13,7 @@ can get your contact and module management tasks done faster than traditional GU
 
 You can add modules to the app, allowing you to store important information like the location, time and zoom links of your lectures and tutorials.
 
-You can also add people to the app, such as your professors, teaching assistants or just friends, allowing you store their email address, phone numbers, telegram handles and which modules they are from.
+You can also add people to the app, such as your professors, teaching assistants or just friends, allowing you store their email addresses, phone numbers, telegram handles and which modules they are from.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -22,20 +22,6 @@ You can also add people to the app, such as your professors, teaching assistants
 - [Overview](#welcome-to-socompilers-user-guide)
 - [Quick Start](#quick-start)
 - [Things to note](#things-to-note)
-- [Person Fields](#person-fields)
-    - [Name](#name)
-    - [Phone number](#phone-number)
-    - [Module code](#module-code)
-    - [Email address](#email-address)
-    - [Telegram handle](#telegram-handle)
-    - [Person tags](#person-tags)
-- [Module Fields](#module-fields)
-    - [Module Code](#module-code)
-    - [Lecture Details](#lecture-details)
-    - [Lecture Zoom Link](#lecture-zoom-link)
-    - [Tutorial Details](#tutorial-details)
-    - [Tutorial Zoom Link](#tutorial-zoom-link)
-    - [Assignment Details](#assignment-details)
 - [Commands](#commands)
     - [General Commands](#for-both-modules-and-contacts)
         - [List](#listing-all-modules-and-contacts-list)
@@ -53,6 +39,20 @@ You can also add people to the app, such as your professors, teaching assistants
         - [Edit](#editing-a-module-editm)
         - [Delete](#deleting-a-module-deletem)
         - [Find](#finding-a-module-findm)
+- [Person Fields](#person-fields)
+    - [Name](#name)
+    - [Phone number](#phone-number)
+    - [Module code](#module-code)
+    - [Email address](#email-address)
+    - [Telegram handle](#telegram-handle)
+    - [Person tags](#person-tags)
+- [Module Fields](#module-fields)
+    - [Module Code](#module-code)
+    - [Lecture Details](#lecture-details)
+    - [Lecture Zoom Link](#lecture-zoom-link)
+    - [Tutorial Details](#tutorial-details)
+    - [Tutorial Zoom Link](#tutorial-zoom-link)
+    - [Assignment Details](#assignment-details)
 - [Command Summary](#command-summary)
 - [FAQ](#faq)
 - [Glossary](#glossary)
@@ -134,7 +134,7 @@ Fields that you can filter for contacts:
 
 Format: `find KEYWORD [MORE_KEYWORDS]…​`
 
-* The search is case-insensitive; e.g. `cs2030s` will match `CS2030S`, or `Cs2030s`.
+* The search is *NOT* case-sensitive; e.g. `cs2030s` will match `CS2030S`, or `Cs2030s`.
 * The order of the keywords does not matter; e.g. `Friday 10am` will match `10am Friday`.
 * Only full words will be matched; e.g. `Cs2030` will not match `Cs2030S`.
 * Full words are characterized by having a space before and after the word; eg. Searching `Friday` will only match `Friday` and not `Friday,`
@@ -188,7 +188,7 @@ Adds a contact to the contact list.
 
 Format: `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM] [m/MODULE_CODE] [t/TAG]…​`
 
-* The `NAME` field is mandatory, all other fields are optional ([you can check here for more details on the individual fields](#person-fields)), attempting to add a person without a name with result in an error!
+* The `NAME` field is mandatory while all other fields are optional ([you can click here for more details on the individual fields](#person-fields)). If you attempt to add a person without a name, it will result in an error!
 * A contact can have any number of tags (including 0)
 
 <div markdown="span" class="alert alert-primary"> **Tip:**
@@ -262,7 +262,7 @@ Fields that you can filter for contacts:
 
 Format: `findp KEYWORD [MORE_KEYWORD]…​`
 
-* The search is case-insensitive; e.g. `alex` will match `Alex`, or `ALEX`.
+* The search is *NOT* case-sensitive; e.g. `alex` will match `Alex`, or `ALEX`.
 * The order of the keywords does not matter; e.g. `Bob McGhee` will match `McGhee Bob`.
 * Only full words will be matched; e.g. `ale` will not match `alex`.
 * Full words are characterized by having a space before and after the word; eg. Searching `Alex` will only match `Alex` and not `Alex-`
@@ -282,7 +282,7 @@ Adds a module to the module list.
 
 Format: `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​`
 
-* The `MODULE_CODE` field is mandatory, all other fields are optional ([you can check here for more details on the individual fields](#module-fields)), attempting to add a module without a module code with result in an error!
+* The `MODULE_CODE` field is mandatory while all other fields are optional ([you can click here for more details on the individual fields](#module-fields)). If you attempt to add a module without a module code, it will result in an error!
 * The `AssignmentDetails` can take in alphanumerical characters **along with spaces**.
 * A module can have any number of `AssignmentDetails` (including 0)
 
@@ -348,7 +348,7 @@ Fields that you can filter for modules:
 
 Format: `findm KEYWORD [MORE_KEYWORD]…​`
 
-* The search is case-insensitive; e.g. `cs2030s` will match `CS2030S`, or `Cs2030s`.
+* The search is *NOT* case-sensitive; e.g. `cs2030s` will match `CS2030S`, or `Cs2030s`.
 * The order of the keywords does not matter; e.g. `cs2100 cs2109s` will match `cs2109s cs2100`.
 * Any field associated with the module can be found using this command.
 * Only full words will be matched; e.g. `Cs2030` will not match `Cs2030S`.
