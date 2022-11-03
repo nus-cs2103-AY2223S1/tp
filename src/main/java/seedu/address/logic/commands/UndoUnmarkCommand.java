@@ -38,8 +38,6 @@ public class UndoUnmarkCommand extends Command {
             + "Undo Unmark is only for patient.";
     public static final String MESSAGE_OUT_OF_BOUND_DATE_AND_SLOT_INDEX = "The given date slot index is out of bounds."
             + "Please recheck the index.";
-    public static final String MESSAGE_INVALID_DATE_AND_SLOT_INDEX = "The visit dates has not reached."
-            + "Cannot undo unmark it as success visit.";
     public static final String MESSAGE_INVALID_DATE_AND_SLOT_INDEX_TWO = "This dates has already been marked as "
             + "success visited. " + "Cannot undo unmark it as success visit.";
 
@@ -74,7 +72,7 @@ public class UndoUnmarkCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_NURSE_UID);
         }
 
-        undounmarkAction(personToUndoUnmark, model);
+        undoUnmarkFailVisited(personToUndoUnmark, model);
 
         return new CommandResult(String.format(MESSAGE_UNDO_UNMARK_PATIENT_SUCCESS, personToUndoUnmark));
     }
@@ -87,38 +85,13 @@ public class UndoUnmarkCommand extends Command {
                         && this.dateSlotIndex.equals(((UndoUnmarkCommand) other).dateSlotIndex));
     }
 
-    private void undounmarkAction(Person personToUndoUnmark, Model model) throws CommandException {
-
+    private void undoUnmarkFailVisited(Person personToUndoUnmark, Model model) throws CommandException {
         List<DateSlot> dateSlotList = ((Patient) personToUndoUnmark).getDatesSlots();
-        List<DateSlot> updatedDateSlotList = new ArrayList<>(dateSlotList);
+        DateSlotManager undoUnmarker = new DateSlotManager(dateSlotList, dateSlotIndex);
+        List<DateSlot> updatedDateSlotList = undoUnmarker.undoUnmarkFailVisited();
 
-        if (dateSlotIndex.getZeroBased() >= dateSlotList.size()) {
-            throw new CommandException(MESSAGE_OUT_OF_BOUND_DATE_AND_SLOT_INDEX);
-        }
-
-        DateSlot dateToBeUndoUnmark = updatedDateSlotList.get(dateSlotIndex.getZeroBased());
-
-        if (!dateToBeUndoUnmark.getHasVisited()) {
-            throw new CommandException(MESSAGE_INVALID_DATE_AND_SLOT_INDEX);
-        }
-
-        if (dateToBeUndoUnmark.getIsSuccessVisit()) {
-            throw new CommandException(MESSAGE_INVALID_DATE_AND_SLOT_INDEX_TWO);
-        }
-
-        dateToBeUndoUnmark.markSuccess();
-        editPatient(model, personToUndoUnmark, updatedDateSlotList);
+        InternalEditor editor = new InternalEditor(model);
+        editor.editPatient(personToUndoUnmark, updatedDateSlotList);
     }
 
-    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) {
-        Uid uid = patient.getUid();
-        List<Person> lastShownList = model.getFilteredPersonList();
-        Optional<Person> personToEdit = lastShownList.stream().filter(p -> p.getUid().equals(uid)).findFirst();
-        Person confirmedPersonToEdit = personToEdit.get();
-        Person newPerson = new Patient(confirmedPersonToEdit.getUid(), confirmedPersonToEdit.getName(),
-                confirmedPersonToEdit.getGender(), confirmedPersonToEdit.getPhone(), confirmedPersonToEdit.getEmail(),
-                confirmedPersonToEdit.getAddress(), confirmedPersonToEdit.getTags(), dateSlotList);
-        model.setPerson(confirmedPersonToEdit, newPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
 }

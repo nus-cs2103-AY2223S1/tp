@@ -43,14 +43,8 @@ public class AssignCommand extends Command {
 
     public static final String MESSAGE_BOTH_NURSE = "The given uids are both nurses.";
     public static final String MESSAGE_BOTH_PATIENT = "The given uids are both patients.";
-    public static final String MESSAGE_INVALID_DATESLOT = "The date slot %1$s has already passed.";
-    public static final String MESSAGE_ASSIGNED_DATESLOT = "The date slot %1$s has been assigned already.";
     public static final String MESSAGE_OUTOFBOUND_DATESLOT_INDEX = "The date slot index given is out of bounds.";
 
-    public static final String MESSAGE_TIME_CRASHES = "There is already an exisiting homevisit in this dateslot %1$s."
-            + "Please assign another nurse";
-    public static final String MESSAGE_UNAVAILABLE_DATE = "The nurse is unavailable on this day %1$s. "
-            + "Please assign another nurse";
 
     private final Uid uid1;
     private final Uid uid2;
@@ -121,121 +115,26 @@ public class AssignCommand extends Command {
     }
 
     private void markAssign(Model model, Person patient, Person nurse) throws CommandException {
-        List<DateSlot> patientDateSlotList = ((Patient) patient).getDatesSlots();
+        Long patientUidNo = patient.getUid().getUid();
         Long nurseUidNo = nurse.getUid().getUid();
+        List<DateSlot> patientDateSlotList = ((Patient) patient).getDatesSlots();
         List<HomeVisit> nurseHomeVisitList = ((Nurse) nurse).getHomeVisits();
         List<Date> nurseFullyScheduledList = ((Nurse) nurse).getFullyScheduledDates();
+        List<Date> nurseUnavailableDates = ((Nurse) nurse).getUnavailableDates();
 
-        List<DateSlot> updatedDateSlotList = new ArrayList<>(patientDateSlotList);
-        List<HomeVisit> updatedHomeVisitList = new ArrayList<>(nurseHomeVisitList);
-        List<Date> updatedFullyScheduledList = new ArrayList<>(nurseFullyScheduledList);
-        if (dateslotIndex.isEmpty()) {
-            for (DateSlot dateslot : updatedDateSlotList) {
-                executeChecksAndActions(dateslot, updatedHomeVisitList, updatedFullyScheduledList,
-                        nurse, nurseUidNo, patient);
-            }
-        } else {
-            sortAndCheckIndexForPatient(updatedDateSlotList);
+        DateSlotManager marker = new DateSlotManager(patientDateSlotList, this.dateslotIndex);
+        List<DateSlot> updatedDateSlotList = marker.markAssigned(nurseHomeVisitList, nurseUnavailableDates, nurseUidNo);
 
-            for (Index index : dateslotIndex) {
-                DateSlot dateSlot = updatedDateSlotList.get(index.getZeroBased());
-                executeChecksAndActions(dateSlot, updatedHomeVisitList, updatedFullyScheduledList,
-                        nurse, nurseUidNo, patient);
-            }
-        }
-        editPatient(model, patient, updatedDateSlotList);
-        editNurse(model, nurse, updatedHomeVisitList, updatedFullyScheduledList);
+        HomeVisitManager creator = new HomeVisitManager(nurseHomeVisitList, nurseFullyScheduledList);
+        List<HomeVisit> updatedHomeVisitList = creator.createHomeVisitList(patientDateSlotList,
+                this.dateslotIndex, patientUidNo);
+        List<Date> updatedFullyScheduledList = creator.getFullyScheduledDateList();
+
+        InternalEditor editor = new InternalEditor(model);
+        editor.editPatient(patient, updatedDateSlotList);
+        editor.editNurse(nurse, updatedHomeVisitList, updatedFullyScheduledList);
     }
 
-    private void checkInvalid(DateSlot dateSlot) throws CommandException {
-        if (dateSlot.getHasVisited()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_DATESLOT, dateSlot.getDateSlotFormatted()));
-        }
-    }
-
-    private void checkAssigned(DateSlot dateSlot) throws CommandException {
-        if (dateSlot.getHasAssigned()) {
-            throw new CommandException(String.format(MESSAGE_ASSIGNED_DATESLOT, dateSlot.getDateSlotFormatted()));
-        }
-    }
-
-    private void checkCrashes(DateSlot dateSlot, List<HomeVisit> homeVisitList) throws CommandException {
-        Optional<HomeVisit> homeVisit = homeVisitList.stream().filter(
-                h -> h.getDateSlot().getDateTime().equals(dateSlot.getDateTime())).findFirst();
-        if (!homeVisit.isEmpty()) {
-            throw new CommandException(String.format(MESSAGE_TIME_CRASHES, dateSlot.getDateSlotFormatted()));
-        }
-    }
-
-    private void checkUnavailability(DateSlot dateSlot, Person nurse) throws CommandException {
-        List<Date> unavailabilityDateList = ((Nurse) nurse).getUnavailableDates();
-        Optional<Date> date = unavailabilityDateList.stream().filter(
-                d -> d.getDate().equals(dateSlot.getDate())).findFirst();
-        if (!date.isEmpty()) {
-            throw new CommandException(String.format(MESSAGE_UNAVAILABLE_DATE, dateSlot.getDateSlotFormatted()));
-        }
-    }
-
-    private void createHomeVisit(DateSlot date, Person patient, List<HomeVisit> homeVisitList,
-            List<Date> updatedFullyScheduledDateList) {
-        HomeVisit homeVisit = new HomeVisit(date, patient.getUid().getUid());
-        homeVisitList.add(homeVisit);
-        LocalDate localdate = date.getDate();
-        int frequencyCount = 0;
-        for (int i = 0; i < homeVisitList.size(); i++) {
-            LocalDate dateToCheck = homeVisitList.get(i).getDateSlot().getDate();
-            if (dateToCheck.equals(localdate)) {
-                frequencyCount++;
-            }
-        }
-        if (frequencyCount == 4) {
-            updatedFullyScheduledDateList.add(new Date(localdate));
-        }
-    }
-
-    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) {
-
-        Uid uid = patient.getUid();
-        List<Person> lastShownList = model.getFilteredPersonList();
-        Optional<Person> personToEdit = lastShownList.stream().filter(p -> p.getUid().equals(uid)).findFirst();
-        Person confirmedPersonToEdit = personToEdit.get();
-        Person newPerson = new Patient(confirmedPersonToEdit.getUid(), confirmedPersonToEdit.getName(),
-                confirmedPersonToEdit.getGender(), confirmedPersonToEdit.getPhone(), confirmedPersonToEdit.getEmail(),
-                confirmedPersonToEdit.getAddress(), confirmedPersonToEdit.getTags(), dateSlotList);
-        model.setPerson(confirmedPersonToEdit, newPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
-            List<Date> fullyScheduledDateList) throws CommandException {
-        Uid uid = nurse.getUid();
-        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
-        editPersonDescriptor.setHomeVisits(homeVisitList);
-        editPersonDescriptor.setFullyScheduledDates(fullyScheduledDateList);
-        EditCommand editCommand1 = new EditCommand(uid, editPersonDescriptor);
-        editCommand1.execute(model);
-    }
-
-    private void sortAndCheckIndexForPatient(List<DateSlot> dateSlotList) throws CommandException {
-        ReverseIndexComparator comp = new ReverseIndexComparator();
-        dateslotIndex.sort(comp);
-
-        if (dateslotIndex.get(0).getZeroBased() >= dateSlotList.size()) {
-            throw new CommandException(MESSAGE_OUTOFBOUND_DATESLOT_INDEX);
-        }
-
-    }
-
-    private void executeChecksAndActions(DateSlot dateSlot, List<HomeVisit> homeVisitList,
-            List<Date> fullyScheduledDate,
-            Person nurse, Long nurseUidNo, Person patient) throws CommandException {
-        checkInvalid(dateSlot);
-        checkAssigned(dateSlot);
-        checkCrashes(dateSlot, homeVisitList);
-        checkUnavailability(dateSlot, nurse);
-        dateSlot.mark(nurseUidNo);
-        createHomeVisit(dateSlot, patient, homeVisitList, fullyScheduledDate);
-    }
 
     @Override
     public boolean equals(Object other) {
@@ -247,3 +146,7 @@ public class AssignCommand extends Command {
     }
 
 }
+
+
+
+

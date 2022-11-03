@@ -81,16 +81,9 @@ public class DeleteCommand extends Command {
             throws CommandException {
         boolean hasDeleted = false;
         List<DateSlot> dateSlotList = ((Patient) person).getDatesSlots();
-        if (dateSlotList.size() == 0) {
-            return hasDeleted;
-        } else {
-            for (DateSlot dateSlot : dateSlotList) {
-                if (dateSlot.getHasAssigned()) {
-                    removeHomeVisit(model, dateSlot, personList);
-                    hasDeleted = true;
-                }
-            }
-        }
+        InternalHomeVisitRemoverFromDateSlot homeVisitRemover = new InternalHomeVisitRemoverFromDateSlot(model,
+                personList, dateSlotList);
+        hasDeleted = homeVisitRemover.removeHomeVisitsForDateSlot();
         return hasDeleted;
     }
 
@@ -98,74 +91,13 @@ public class DeleteCommand extends Command {
             throws CommandException {
         boolean hasUnmarked = false;
         List<HomeVisit> homeVisitList = ((Nurse) person).getHomeVisits();
-        if (homeVisitList.size() == 0) {
-            return hasUnmarked;
-        } else {
-            for (HomeVisit homevisit : homeVisitList) {
-                Long patientUidNo = homevisit.getHomeVisitPatientUidNo();
-                DateSlot dateSlot = homevisit.getDateSlot();
-                unmarkDateSlot(model, dateSlot, patientUidNo, personList);
-                hasUnmarked = true;
-            }
+        if (!homeVisitList.isEmpty()) {
+            InternalUnmarkerFromHomeVisit dateSlotUnmarker = new InternalUnmarkerFromHomeVisit(model, personList,
+                    homeVisitList);
+            dateSlotUnmarker.unmarkDateSlotForHomeVisit();
+            hasUnmarked = true;
         }
         return hasUnmarked;
     }
-
-    private void removeHomeVisit(Model model, DateSlot dateSlot, List<Person> personList) throws CommandException {
-        Long nurseUidNo = dateSlot.getNurseUidNo();
-        Person nurse = personList.stream().filter(p -> p.getUid().getUid().equals(nurseUidNo)).findFirst().get();
-        List<HomeVisit> nurseHomeVisitList = ((Nurse) nurse).getHomeVisits();
-        List<Date> nurseFullyScheduledList = ((Nurse) nurse).getFullyScheduledDates();
-        List<HomeVisit> updatedHomeVisitList = new ArrayList<>(nurseHomeVisitList);
-        List<Date> updatedFullyScheduledList = new ArrayList<>(nurseFullyScheduledList);
-
-        HomeVisit homeVisitToBeDeleted = updatedHomeVisitList.stream().filter(
-                h -> h.getDateSlot().getDateTime().equals(dateSlot.getDateTime())).findFirst().get();
-
-        updatedHomeVisitList.remove(homeVisitToBeDeleted);
-
-        Optional<Date> dateToBeDeleted = updatedFullyScheduledList.stream().filter(
-                h -> h.getDate().equals(dateSlot.getDate())).findFirst();
-
-        if (!dateToBeDeleted.isEmpty()) {
-            updatedFullyScheduledList.remove(dateToBeDeleted.get());
-        }
-
-        editNurse(model, nurse, updatedHomeVisitList, updatedFullyScheduledList);
-    }
-
-    private void unmarkDateSlot(Model model, DateSlot dateslot, Long patientUidNo, List<Person> personList)
-            throws CommandException {
-        Person patient = personList.stream().filter(
-                p -> p.getUid().getUid().equals(patientUidNo)).findFirst().get();
-        List<DateSlot> dateSlotList = ((Patient) patient).getDatesSlots();
-        List<DateSlot> updatedDateSlotList = new ArrayList<>(dateSlotList);
-        DateSlot dateSlotToBeUnmarked = updatedDateSlotList.stream().filter(
-                d -> d.getDateTime().equals(dateslot.getDateTime())).findFirst().get();
-        dateSlotToBeUnmarked.unmark();
-        editPatient(model, patient, updatedDateSlotList);
-    }
-
-    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) {
-
-        Uid uid = patient.getUid();
-        List<Person> lastShownList = model.getFilteredPersonList();
-        Optional<Person> personToEdit = lastShownList.stream().filter(p -> p.getUid().equals(uid)).findFirst();
-        Person confirmedPersonToEdit = personToEdit.get();
-        Person newPerson = new Patient(confirmedPersonToEdit.getUid(), confirmedPersonToEdit.getName(),
-                confirmedPersonToEdit.getGender(), confirmedPersonToEdit.getPhone(), confirmedPersonToEdit.getEmail(),
-                confirmedPersonToEdit.getAddress(), confirmedPersonToEdit.getTags(), dateSlotList);
-        model.setPerson(confirmedPersonToEdit, newPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
-            List<Date> fullyScheduledDateList) throws CommandException {
-        Uid uid = nurse.getUid();
-        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
-        editPersonDescriptor.setHomeVisits(homeVisitList);
-        editPersonDescriptor.setFullyScheduledDates(fullyScheduledDateList);
-        EditCommand editCommand1 = new EditCommand(uid, editPersonDescriptor);
-        editCommand1.execute(model);
-    }
 }
+

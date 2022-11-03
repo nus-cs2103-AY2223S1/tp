@@ -80,6 +80,12 @@ public class HomeVisit {
                         && homeVisitPatientUidNo.equals(((HomeVisit) other).homeVisitPatientUidNo)); // state check
     }
 
+    public HomeVisit clone() {
+        DateSlot dateSlot = this.getDateSlot();
+        Long patientUidNo = this.getHomeVisitPatientUidNo();
+        return new HomeVisit(dateSlot, patientUidNo);
+    }
+
     @Override
     public int hashCode() {
         return homeVisitDateSlot.hashCode() + homeVisitPatientUidNo.hashCode();

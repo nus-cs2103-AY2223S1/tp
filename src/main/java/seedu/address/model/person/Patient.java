@@ -107,7 +107,8 @@ public class Patient extends Person {
     }
 
     public String getDatesSlotsInString() {
-        String dateSlotsString = getDatesSlots().stream().map(x -> x.toString()).collect(Collectors.joining(","));
+        String dateSlotsString = getDatesSlots().stream().map(x -> x.toString()).collect(Collectors.joining(
+                ", "));
         if (dateSlotsString.length() == 0) {
             return String.format("Home Visits Date and Time: %s;", MESSAGE_FOR_EMPTY_DATESLOT);
         }

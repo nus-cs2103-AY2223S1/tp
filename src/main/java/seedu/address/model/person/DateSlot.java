@@ -59,7 +59,9 @@ public class DateSlot {
         this.hasAssigned = DEFAULT_BOOLEAN;
         this.isSuccessVisit = DEFAULT_BOOLEAN;
         this.nurseUidNo = DEFAULT_EMPTY_ASSIGNED_NURSE;
-        checkDateTime();
+        if (this.hasVisited == false) {
+            checkDateTime();
+        }
     }
 
     /**
@@ -77,7 +79,9 @@ public class DateSlot {
         this.hasAssigned = isAssigned;
         this.isSuccessVisit = isSucessVisit;
         this.nurseUidNo = nurseUidNo;
-        checkDateTime();
+        if (this.hasVisited == false) {
+            checkDateTime();
+        }
     }
 
     private static LocalDateTime parseDateSlot(String dateSlot) {
@@ -145,7 +149,7 @@ public class DateSlot {
      * Mark DateSlot as fail to visit.
      */
     public void markFail() {
-        this.isSuccessVisit = DEFAULT_BOOLEAN;
+        this.isSuccessVisit = false;
     }
 
     /**
@@ -224,6 +228,15 @@ public class DateSlot {
         return other == this // short circuit if same object
                 || (other instanceof DateSlot // instanceof handles nulls
                         && dateSlotTime.equals(((DateSlot) other).dateSlotTime)); // state check
+    }
+
+    public DateSlot clone() {
+        String dateSlotInString = this.getDateSlotInString();
+        Boolean hasVisited = this.getHasVisited();
+        Boolean hasAssigned = this.getHasAssigned();
+        Boolean isSuccessVisit = this.getIsSuccessVisit();
+        Long nurseUidNo = this.getNurseUidNo();
+        return new DateSlot(dateSlotInString, hasAssigned, hasVisited, isSuccessVisit, nurseUidNo);
     }
 
     @Override

@@ -3,9 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,10 +34,6 @@ public class UnmarkCommand extends Command {
     public static final String MESSAGE_UNMARK_PATIENT_SUCCESS = "Unmarked Patient as fail to visit: %1$s";
     public static final String MESSAGE_INVALID_NURSE_UID = "This uid gives a nurse." + " Please recheck the uid. "
             + "Unmark is only for patient.";
-    public static final String MESSAGE_OUT_OF_BOUND_DATE_AND_SLOT_INDEX = "The given date slot index is out of bounds."
-            + "Please recheck the index.";
-    public static final String MESSAGE_INVALID_DATE_AND_SLOT_INDEX = "The visit dates has not reached."
-            + "Cannot unmark it as fail to visit.";
 
     private final Uid uid;
     private final Index dateSlotIndex;
@@ -71,9 +65,18 @@ public class UnmarkCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_NURSE_UID);
         }
 
-        unmarkAction(personToUnmark, model);
+        unmarkSuccessVisit(personToUnmark, model);
 
         return new CommandResult(String.format(MESSAGE_UNMARK_PATIENT_SUCCESS, personToUnmark));
+    }
+
+    private void unmarkSuccessVisit(Person personToUnmark, Model model) throws CommandException {
+        List<DateSlot> dateSlotList = ((Patient) personToUnmark).getDatesSlots();
+        DateSlotManager unmarker = new DateSlotManager(dateSlotList, dateSlotIndex);
+        List<DateSlot> updatedDateSlotList = unmarker.unmarkSuccessVisited();
+
+        InternalEditor editor = new InternalEditor(model);
+        editor.editPatient(personToUnmark, updatedDateSlotList);
     }
 
     @Override
@@ -83,34 +86,5 @@ public class UnmarkCommand extends Command {
                         && this.uid.equals(((UnmarkCommand) other).uid) // state check
                         && this.dateSlotIndex.equals(((UnmarkCommand) other).dateSlotIndex));
     }
-
-    private void unmarkAction(Person personToUnmark, Model model) throws CommandException {
-        List<DateSlot> dateSlotList = ((Patient) personToUnmark).getDatesSlots();
-        List<DateSlot> updatedDateSlotList = new ArrayList<>(dateSlotList);
-
-        if (dateSlotIndex.getZeroBased() >= dateSlotList.size()) {
-            throw new CommandException(MESSAGE_OUT_OF_BOUND_DATE_AND_SLOT_INDEX);
-        }
-
-        DateSlot dateToBeUnmark = updatedDateSlotList.get(dateSlotIndex.getZeroBased());
-
-        if (!dateToBeUnmark.getHasVisited()) {
-            throw new CommandException(MESSAGE_INVALID_DATE_AND_SLOT_INDEX);
-        }
-
-        dateToBeUnmark.markFail();
-        editPatient(model, personToUnmark, updatedDateSlotList);
-    }
-
-    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) {
-        Uid uid = patient.getUid();
-        List<Person> lastShownList = model.getFilteredPersonList();
-        Optional<Person> personToEdit = lastShownList.stream().filter(p -> p.getUid().equals(uid)).findFirst();
-        Person confirmedPersonToEdit = personToEdit.get();
-        Person newPerson = new Patient(confirmedPersonToEdit.getUid(), confirmedPersonToEdit.getName(),
-                confirmedPersonToEdit.getGender(), confirmedPersonToEdit.getPhone(), confirmedPersonToEdit.getEmail(),
-                confirmedPersonToEdit.getAddress(), confirmedPersonToEdit.getTags(), dateSlotList);
-        model.setPerson(confirmedPersonToEdit, newPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
 }
+

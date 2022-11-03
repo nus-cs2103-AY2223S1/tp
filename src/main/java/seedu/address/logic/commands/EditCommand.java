@@ -128,21 +128,7 @@ public class EditCommand extends Command {
 
         Person confirmedPersonToEdit = personToEdit.get();
 
-        boolean haveDatesSlots = editPersonDescriptor.getDatesSlots().isPresent();
-        boolean haveDateSlotIndexes = editPersonDescriptor.getDateSlotIndexes().isPresent();
-        boolean haveUnavailableDates = editPersonDescriptor.getUnavailableDates().isPresent();
-        boolean haveUnavailableDateIndexes = editPersonDescriptor.getDateIndexes().isPresent();
-        boolean isNurse = editPersonDescriptor.getCategory().equals("N") || confirmedPersonToEdit instanceof Nurse;
-
-        if (isNurse) {
-            if (haveDateSlotIndexes || haveDatesSlots) {
-                throw new CommandException(MESSAGE_NURSE_INVALID_DATESLOT_EDIT);
-            }
-        } else {
-            if (haveUnavailableDates || haveUnavailableDateIndexes) {
-                throw new CommandException(MESSAGE_PATIENT_INVALID_UNAVAILABLE_DATE_EDIT);
-            }
-        }
+        checkDescriptionGiven(editPersonDescriptor, confirmedPersonToEdit);
 
         Person editedPerson = createEditedPerson(model, lastShownList, confirmedPersonToEdit, editPersonDescriptor);
 
@@ -158,15 +144,32 @@ public class EditCommand extends Command {
 
     }
 
+    private void checkDescriptionGiven(EditPersonDescriptor editPersonDescriptor, Person personToEdit)
+            throws CommandException {
+        boolean haveDatesSlots = editPersonDescriptor.getDatesSlots().isPresent();
+        boolean haveDateSlotIndexes = editPersonDescriptor.getDateSlotIndexes().isPresent();
+        boolean haveUnavailableDates = editPersonDescriptor.getUnavailableDates().isPresent();
+        boolean haveUnavailableDateIndexes = editPersonDescriptor.getDateIndexes().isPresent();
+        boolean isNurse = editPersonDescriptor.getCategory().equals("N") || personToEdit instanceof Nurse;
+
+        if (isNurse) {
+            if (haveDateSlotIndexes || haveDatesSlots) {
+                throw new CommandException(MESSAGE_NURSE_INVALID_DATESLOT_EDIT);
+            }
+        } else {
+            if (haveUnavailableDates || haveUnavailableDateIndexes) {
+                throw new CommandException(MESSAGE_PATIENT_INVALID_UNAVAILABLE_DATE_EDIT);
+            }
+        }
+    }
+
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    public Person createEditedPerson(Model model, List<Person> personList,
-            Person personToEdit, EditPersonDescriptor editPersonDescriptor)
-            throws CommandException {
+    public Person createEditedPerson(Model model, List<Person> personList, Person personToEdit,
+                                     EditPersonDescriptor editPersonDescriptor) throws CommandException {
         assert personToEdit != null;
-
         Category updatedCategory = editPersonDescriptor.getCategory().orElse(personToEdit.getCategory());
         Uid uid = editPersonDescriptor.getUid().orElse(personToEdit.getUid());
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -177,366 +180,93 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         if (personToEdit instanceof Patient && updatedCategory.isPatient()) {
-            Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
-                    .orElse(((Patient) personToEdit).getAttendingPhysician());
-            Optional<NextOfKin> updatedNextOfKin = editPersonDescriptor.getNextOfKin()
-                    .orElse(((Patient) personToEdit).getNextOfKin());
-            List<DateSlot> originalDateSlot = ((Patient) personToEdit).getDatesSlots();
-            Optional<List<DateSlot>> toBeUpdateDateSlot = editPersonDescriptor.getDatesSlots();
-            Optional<List<Index>> toBeUpdateDateSlotIndexes = editPersonDescriptor.getDateSlotIndexes();
-
-            List<DateSlot> updatedDateSlot = createEditedDateSlotList(originalDateSlot,
-                    toBeUpdateDateSlot, toBeUpdateDateSlotIndexes, model, personList);
-
-            return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
-                    updatedAddress, updatedTags, updatedDateSlot,
-                    updatedPhysician, updatedNextOfKin);
+            return createUpdatedPatient(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress,
+                    updatedTags, editPersonDescriptor, personToEdit, model, personList);
 
         } else if (updatedCategory.isPatient()) {
-            Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
-                    .orElse(((Patient) personToEdit).getAttendingPhysician());
-            Optional<NextOfKin> updatedNextOfKin = editPersonDescriptor.getNextOfKin()
-                    .orElse(((Patient) personToEdit).getNextOfKin());
-            List<DateSlot> updatedDateSlot = editPersonDescriptor.getDatesSlots().orElse(null);
-
-            return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
-                    updatedAddress, updatedTags, updatedDateSlot,
-                    updatedPhysician, updatedNextOfKin);
+            return createNewPatient(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress,
+                    updatedTags, editPersonDescriptor);
 
         } else if (personToEdit instanceof Nurse && updatedCategory.isNurse()) {
-            List<Date> originalDate = ((Nurse) personToEdit).getUnavailableDates();
-            Optional<List<Date>> toBeUpdateDate = editPersonDescriptor.getUnavailableDates();
-            Optional<List<Index>> toBeUpdateDateIndexes = editPersonDescriptor.getDateIndexes();
-
-            List<Date> updatedUnavailableDate = createEditedUnavailableDateList(originalDate, toBeUpdateDate,
-                    toBeUpdateDateIndexes, model, personList, personToEdit);
-
-            List<Date> updatedFullyScheduledDateList = editPersonDescriptor.getFullyScheduledDates()
-                    .orElse(((Nurse) personToEdit).getFullyScheduledDates());
-            List<HomeVisit> updatedHomeVisitList = editPersonDescriptor.getHomeVisits()
-                    .orElse(((Nurse) personToEdit).getHomeVisits());
-
-            return new Nurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                    updatedUnavailableDate, updatedHomeVisitList, updatedFullyScheduledDateList);
+            return createUpdatedNurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress,
+                    updatedTags, editPersonDescriptor, personToEdit, model, personList);
 
         } else if (updatedCategory.isNurse()) {
-            List<Date> updatedUnavailableDate = editPersonDescriptor.getUnavailableDates().orElse(null);
-            List<HomeVisit> updatedHomeVisitList = editPersonDescriptor.getHomeVisits().orElse(null);
-            List<Date> updatedFullyScheduledDateList = editPersonDescriptor.getFullyScheduledDates()
-                    .orElse(null);
+            return createNewNurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress,
+                    updatedTags, editPersonDescriptor);
 
-            return new Nurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                    updatedUnavailableDate, updatedHomeVisitList, updatedFullyScheduledDateList);
         } else {
             throw new IllegalArgumentException(Category.MESSAGE_CONSTRAINTS);
         }
     }
 
-    private List<DateSlot> createEditedDateSlotList(List<DateSlot> originalDateSlot,
-            Optional<List<DateSlot>> toBeUpdateDateSlots,
-            Optional<List<Index>> toBeUpdateDateSlotsIndexes,
-            Model model, List<Person> personList)
-            throws CommandException {
-        List<DateSlot> updatedDateSlot = new ArrayList<>();
+    private Patient createUpdatedPatient(Uid uid, Name updatedName, Gender updatedGender, Phone updatedPhone,
+                                         Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
+                                         EditPersonDescriptor editPersonDescriptor, Person personToEdit,
+                                         Model model, List<Person> personList) throws CommandException {
 
-        boolean isDateSlotNull = toBeUpdateDateSlots.equals(Optional.empty());
-        boolean isDateSlotIndexesNull = toBeUpdateDateSlotsIndexes.equals(Optional.empty());
-        List<DateSlot> toBeUpdateDateSlot = new ArrayList<>();
-        List<Index> toBeUpdateDateSlotIndexes = new ArrayList<>();
+        Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
+                .orElse(((Patient) personToEdit).getAttendingPhysician());
+        Optional<NextOfKin> updatedNextOfKin = editPersonDescriptor.getNextOfKin()
+                .orElse(((Patient) personToEdit).getNextOfKin());
 
-        if (!isDateSlotNull) {
-            toBeUpdateDateSlot = new ArrayList<>(toBeUpdateDateSlots.get());
-        }
-        if (!isDateSlotIndexesNull) {
-            toBeUpdateDateSlotIndexes = new ArrayList<>(toBeUpdateDateSlotsIndexes.get());
+        List<DateSlot> originalDateSlot = ((Patient) personToEdit).getDatesSlots();
+        Optional<List<DateSlot>> toBeUpdateDateSlot = editPersonDescriptor.getDatesSlots();
+        Optional<List<Index>> toBeUpdateDateSlotIndexes = editPersonDescriptor.getDateSlotIndexes();
+        EditedDateSlotCreator creator = new EditedDateSlotCreator(model, personList, originalDateSlot,
+                toBeUpdateDateSlot, toBeUpdateDateSlotIndexes);
+        List<DateSlot> updatedDateSlot = creator.createEditedDateSlotList();
 
-            // If the indexNo given is out of bounds of the existing list -> throw exception
-            for (Index indexNo : toBeUpdateDateSlotIndexes) {
-
-                if (indexNo.getZeroBased() >= originalDateSlot.size()) {
-                    throw new CommandException(MESSAGE_OUT_OF_BOUND_DATESLOTINDEX);
-                }
-
-            }
-        }
-
-        boolean isDateSlotEmpty = !isDateSlotNull && toBeUpdateDateSlot.isEmpty();
-        boolean isDateSlotIndexesEmpty = !isDateSlotIndexesNull && toBeUpdateDateSlotIndexes.isEmpty();
-
-        // Deletes all the dateTime in the existing list
-        if ((isDateSlotNull && isDateSlotIndexesEmpty) || (isDateSlotIndexesNull && isDateSlotEmpty)
-                || (isDateSlotEmpty && isDateSlotIndexesEmpty)) {
-
-            updatedDateSlot = new ArrayList<>();
-            deleteRespectiveHomeVisit(originalDateSlot, model, personList);
-
-            // Deletes the dateTime at specific index in the existing list
-        } else if ((isDateSlotNull || isDateSlotEmpty) && !isDateSlotIndexesEmpty) {
-
-            updatedDateSlot = new ArrayList<>(originalDateSlot);
-
-            ReverseIndexComparator comp = new ReverseIndexComparator();
-            toBeUpdateDateSlotIndexes.sort(comp);
-            for (Index index : toBeUpdateDateSlotIndexes) {
-                DateSlot dateSlotToBeDeleted = updatedDateSlot.get(index.getZeroBased());
-                if (dateSlotToBeDeleted.getHasAssigned()) {
-                    removeHomeVisit(model, dateSlotToBeDeleted, personList);
-                }
-                updatedDateSlot.remove(index.getZeroBased());
-            }
-
-            // Remain as original dateTime list, no changes made
-        } else if (isDateSlotNull && isDateSlotIndexesNull) {
-
-            updatedDateSlot = new ArrayList<>(originalDateSlot);
-
-            // Add the given dateTime to the existing list
-        } else if (!isDateSlotEmpty && (isDateSlotIndexesNull || isDateSlotIndexesEmpty)) {
-
-            updatedDateSlot = new ArrayList<>(originalDateSlot);
-            updatedDateSlot.addAll(toBeUpdateDateSlot);
-
-            // Change the dateTime at the specific index in the existing list to the given
-            // dateTime
-            // If index given more than date time given -> throws exception
-            // If date time given more than index given -> the extra date time will be added
-            // to the existing list
-        } else if (!isDateSlotEmpty && !isDateSlotIndexesEmpty) {
-
-            updatedDateSlot = new ArrayList<>(originalDateSlot);
-            if (toBeUpdateDateSlot.size() < toBeUpdateDateSlotIndexes.size()) {
-                throw new CommandException(MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX);
-            }
-
-            for (int i = 0; i < toBeUpdateDateSlotIndexes.size(); i++) {
-                int indexNoToBeUpdated = toBeUpdateDateSlotIndexes.get(i).getZeroBased();
-                DateSlot dateSlotToBeUpdated = toBeUpdateDateSlot.get(i);
-                DateSlot dateSlotToBeDeleted = updatedDateSlot.get(indexNoToBeUpdated);
-                if (dateSlotToBeDeleted.getHasAssigned()) {
-                    removeHomeVisit(model, dateSlotToBeDeleted, personList);
-                }
-                updatedDateSlot.set(indexNoToBeUpdated, dateSlotToBeUpdated);
-            }
-
-            if (toBeUpdateDateSlot.size() > toBeUpdateDateSlotIndexes.size()) {
-                for (int i = toBeUpdateDateSlotIndexes.size(); i < toBeUpdateDateSlot.size(); i++) {
-                    updatedDateSlot.add(toBeUpdateDateSlot.get(i));
-                }
-            }
-
-        }
-        return updatedDateSlot;
-
+        return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
+                updatedAddress, updatedTags, updatedDateSlot, updatedPhysician, updatedNextOfKin);
     }
 
-    private List<Date> createEditedUnavailableDateList(List<Date> originalDate,
-            Optional<List<Date>> toBeUpdateDates,
-            Optional<List<Index>> toBeUpdateDateIndexes,
-            Model model, List<Person> personList, Person nurse)
-            throws CommandException {
-        List<Date> updatedDate = new ArrayList<>();
+    private Patient createNewPatient(Uid uid, Name updatedName, Gender updatedGender, Phone updatedPhone,
+                                     Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
+                                     EditPersonDescriptor editPersonDescriptor) {
 
-        boolean isDateNull = toBeUpdateDates.equals(Optional.empty());
-        boolean isDateIndexesNull = toBeUpdateDateIndexes.equals(Optional.empty());
-        List<Date> toBeUpdateDate = new ArrayList<>();
-        List<Index> toBeUpdateDateIndex = new ArrayList<>();
+        Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
+                .orElse(Optional.empty());
+        Optional<NextOfKin> updatedNextOfKin = editPersonDescriptor.getNextOfKin()
+                .orElse(Optional.empty());
+        List<DateSlot> updatedDateSlot = editPersonDescriptor.getDatesSlots().orElse(null);
 
-        if (!isDateNull) {
-            toBeUpdateDate = new ArrayList<>(toBeUpdateDates.get());
-        }
-        if (!isDateIndexesNull) {
-            toBeUpdateDateIndex = new ArrayList<>(toBeUpdateDateIndexes.get());
-
-            // If the indexNo given is out of bounds of the existing list -> throw exception
-            for (Index indexNo : toBeUpdateDateIndex) {
-
-                if (indexNo.getZeroBased() >= originalDate.size()) {
-                    throw new CommandException(MESSAGE_OUT_OF_BOUND_DATESLOTINDEX);
-                }
-            }
-        }
-
-        boolean isDateEmpty = !isDateNull && toBeUpdateDate.isEmpty();
-        boolean isDateIndexesEmpty = !isDateIndexesNull && toBeUpdateDateIndex.isEmpty();
-
-        // Deletes all the date in the existing list
-        if ((isDateNull && isDateIndexesEmpty) || (isDateIndexesNull && isDateEmpty)
-                || (isDateEmpty && isDateIndexesEmpty)) {
-
-            updatedDate = new ArrayList<>();
-
-            // Deletes the date at specific index in the existing list
-        } else if ((isDateNull || isDateEmpty) && !isDateIndexesEmpty) {
-
-            updatedDate = new ArrayList<>(originalDate);
-
-            ReverseIndexComparator comp = new ReverseIndexComparator();
-            toBeUpdateDateIndex.sort(comp);
-            for (Index index : toBeUpdateDateIndex) {
-                updatedDate.remove(index.getZeroBased());
-            }
-
-            // Remain as original date list, no changes made
-        } else if (isDateNull && isDateIndexesNull) {
-
-            updatedDate = new ArrayList<>(originalDate);
-
-            // Add the given date to the existing list
-        } else if (!isDateEmpty && (isDateIndexesNull || isDateIndexesEmpty)) {
-
-            updatedDate = new ArrayList<>(originalDate);
-            for (Date date : toBeUpdateDate) {
-                removeAndUnmarkRepectiveHomeVisitAndDateSlot(model, nurse, date, personList);
-                updatedDate.add(date);
-            }
-
-            // Change the date at the specific index in the existing list to the given date
-            // If index given more than date given -> throws exception
-            // If date given more than index given -> the extra date will be added to the
-            // existing list
-        } else if (!isDateEmpty && !isDateIndexesEmpty) {
-
-            updatedDate = new ArrayList<>(originalDate);
-            if (toBeUpdateDate.size() < toBeUpdateDateIndex.size()) {
-                throw new CommandException(MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX);
-            }
-
-            for (int i = 0; i < toBeUpdateDateIndex.size(); i++) {
-                int indexNoToBeUpdated = toBeUpdateDateIndex.get(i).getZeroBased();
-                Date dateToBeUpdated = toBeUpdateDate.get(i);
-                removeAndUnmarkRepectiveHomeVisitAndDateSlot(model, nurse, dateToBeUpdated, personList);
-                updatedDate.set(indexNoToBeUpdated, dateToBeUpdated);
-            }
-
-            if (toBeUpdateDate.size() > toBeUpdateDateIndex.size()) {
-                for (int i = toBeUpdateDateIndex.size(); i < toBeUpdateDate.size(); i++) {
-                    removeAndUnmarkRepectiveHomeVisitAndDateSlot(model, nurse, toBeUpdateDate.get(i), personList);
-                    updatedDate.add(toBeUpdateDate.get(i));
-                }
-            }
-
-        }
-        return updatedDate;
-
+        return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
+                updatedAddress, updatedTags, updatedDateSlot, updatedPhysician, updatedNextOfKin);
     }
 
-    private Boolean deleteRespectiveHomeVisit(List<DateSlot> dateSlotList, Model model, List<Person> personList)
-            throws CommandException {
-        boolean hasDeleted = false;
-        if (dateSlotList.size() == 0) {
-            return hasDeleted;
-        } else {
-            for (DateSlot dateSlot : dateSlotList) {
-                if (dateSlot.getHasAssigned()) {
-                    removeHomeVisit(model, dateSlot, personList);
-                    hasDeleted = true;
-                }
-            }
-        }
-        return hasDeleted;
+    private Nurse createUpdatedNurse(Uid uid, Name updatedName, Gender updatedGender, Phone updatedPhone,
+                                     Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
+                                     EditPersonDescriptor editPersonDescriptor, Person personToEdit,
+                                     Model model, List<Person> personList) throws CommandException {
+
+        List<Date> originalDate = ((Nurse) personToEdit).getUnavailableDates();
+        Optional<List<Date>> toBeUpdateDate = editPersonDescriptor.getUnavailableDates();
+        Optional<List<Index>> toBeUpdateDateIndexes = editPersonDescriptor.getDateIndexes();
+        EditedUnavailableDateCreator creator = new EditedUnavailableDateCreator(model, personToEdit, personList,
+                originalDate, toBeUpdateDate, toBeUpdateDateIndexes);
+        List<Date> updatedUnavailableDate = creator.createEditedUnavailableDateList(editPersonDescriptor);
+
+        List<Date> updatedFullyScheduledDateList = editPersonDescriptor.getFullyScheduledDates()
+                .orElse(((Nurse) personToEdit).getFullyScheduledDates());
+        List<HomeVisit> updatedHomeVisitList = editPersonDescriptor.getHomeVisits()
+                .orElse(((Nurse) personToEdit).getHomeVisits());
+
+        return new Nurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                updatedUnavailableDate, updatedHomeVisitList, updatedFullyScheduledDateList);
     }
 
-    private boolean unmarkRespectiveDateSlot(Model model, Person person, List<Person> personList)
-            throws CommandException {
-        List<HomeVisit> homeVisitList = ((Nurse) person).getHomeVisits();
-        if (homeVisitList.size() == 0) {
-            return false;
-        } else {
-            for (HomeVisit homevisit : homeVisitList) {
-                Long patientUidNo = homevisit.getHomeVisitPatientUidNo();
-                DateSlot dateSlot = homevisit.getDateSlot();
-                unmarkDateSlot(model, dateSlot, patientUidNo, personList);
-            }
-            return true;
-        }
-    }
+    private Nurse createNewNurse(Uid uid, Name updatedName, Gender updatedGender, Phone updatedPhone,
+                                     Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
+                                     EditPersonDescriptor editPersonDescriptor) {
 
-    private void removeAndUnmarkRepectiveHomeVisitAndDateSlot(Model model, Person nurse,
-            Date unavailableDate, List<Person> personList)
-            throws CommandException {
+        List<Date> updatedUnavailableDate = editPersonDescriptor.getUnavailableDates().orElse(null);
+        List<HomeVisit> updatedHomeVisitList = editPersonDescriptor.getHomeVisits().orElse(null);
+        List<Date> updatedFullyScheduledDateList = editPersonDescriptor.getFullyScheduledDates()
+                .orElse(null);
 
-        List<HomeVisit> homeVisitList = ((Nurse) nurse).getHomeVisits();
-        List<HomeVisit> updatedHomeVisitList = new ArrayList<>(homeVisitList);
-        List<Date> fullyScheduledList = ((Nurse) nurse).getFullyScheduledDates();
-        List<Date> updatedFullyScheduledList = new ArrayList<>(fullyScheduledList);
-        for (HomeVisit homeVisit : homeVisitList) {
-            if (homeVisit.getDateSlot().getDate().equals(unavailableDate.getDate())) {
-                Long patientUid = homeVisit.getHomeVisitPatientUidNo();
-                unmarkDateSlot(model, homeVisit.getDateSlot(), patientUid, personList);
-                HomeVisit homeVisitToBeDeleted = updatedHomeVisitList.stream().filter(
-                        h -> h.getDateSlot().getDateTime().equals(homeVisit.getDateSlot().getDateTime()))
-                        .findFirst().get();
-                updatedHomeVisitList.remove(homeVisitToBeDeleted);
-            }
-        }
-
-        fullyScheduledList.remove(unavailableDate);
-
-        editNurseForUnavailableDate(updatedHomeVisitList, updatedFullyScheduledList);
-    }
-
-    private void removeHomeVisit(Model model, DateSlot dateSlot, List<Person> personList) throws CommandException {
-        Long nurseUidNo = dateSlot.getNurseUidNo();
-        Person nurse = personList.stream().filter(p -> p.getUid().getUid().equals(nurseUidNo)).findFirst().get();
-        List<HomeVisit> nurseHomeVisitList = ((Nurse) nurse).getHomeVisits();
-        List<Date> nurseFullyScheduledList = ((Nurse) nurse).getFullyScheduledDates();
-        List<HomeVisit> updatedHomeVisitList = new ArrayList<>(nurseHomeVisitList);
-        List<Date> updatedFullyScheduledList = new ArrayList<>(nurseFullyScheduledList);
-
-        HomeVisit homeVisitToBeDeleted = updatedHomeVisitList.stream().filter(
-                h -> h.getDateSlot().getDateTime().equals(dateSlot.getDateTime())).findFirst().get();
-
-        updatedHomeVisitList.remove(homeVisitToBeDeleted);
-
-        Optional<Date> dateToBeDeleted = updatedFullyScheduledList.stream().filter(
-                h -> h.getDate().equals(dateSlot.getDate())).findFirst();
-
-        if (!dateToBeDeleted.isEmpty()) {
-            updatedFullyScheduledList.remove(dateToBeDeleted.get());
-        }
-
-        editNurse(model, nurse, updatedHomeVisitList, updatedFullyScheduledList);
-    }
-
-    private void unmarkDateSlot(Model model, DateSlot dateslot, Long patientUidNo, List<Person> personList)
-            throws CommandException {
-        Person patient = personList.stream().filter(
-                p -> p.getUid().getUid().equals(patientUidNo)).findFirst().get();
-        List<DateSlot> dateSlotList = ((Patient) patient).getDatesSlots();
-        List<DateSlot> updatedDateSlotList = new ArrayList<>(dateSlotList);
-        DateSlot dateSlotToBeUnmarked = updatedDateSlotList.stream().filter(
-                d -> d.getDateTime().equals(dateslot.getDateTime())).findFirst().get();
-        dateSlotToBeUnmarked.unmark();
-        editPatient(model, patient, updatedDateSlotList);
-    }
-
-    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) {
-
-        Uid uid = patient.getUid();
-        List<Person> lastShownList = model.getFilteredPersonList();
-        Optional<Person> personToEdit = lastShownList.stream().filter(p -> p.getUid().equals(uid)).findFirst();
-        Person confirmedPersonToEdit = personToEdit.get();
-        Person newPerson = new Patient(confirmedPersonToEdit.getUid(), confirmedPersonToEdit.getName(),
-                confirmedPersonToEdit.getGender(), confirmedPersonToEdit.getPhone(), confirmedPersonToEdit.getEmail(),
-                confirmedPersonToEdit.getAddress(), confirmedPersonToEdit.getTags(), dateSlotList);
-        model.setPerson(confirmedPersonToEdit, newPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
-    }
-
-    private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
-            List<Date> fullyScheduledDateList) throws CommandException {
-        Uid uid = nurse.getUid();
-        EditCommand.EditPersonDescriptor editPersonDescriptor1 = new EditCommand.EditPersonDescriptor();
-        editPersonDescriptor1.setHomeVisits(homeVisitList);
-        editPersonDescriptor1.setFullyScheduledDates(fullyScheduledDateList);
-        EditCommand editCommand1 = new EditCommand(uid, editPersonDescriptor1);
-        editCommand1.execute(model);
-    }
-
-    private void editNurseForUnavailableDate(List<HomeVisit> homeVisitList, List<Date> fullyScheduledDateList) {
-        this.editPersonDescriptor.setHomeVisits(homeVisitList);
-        this.editPersonDescriptor.setFullyScheduledDates(fullyScheduledDateList);
+        return new Nurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                updatedUnavailableDate, updatedHomeVisitList, updatedFullyScheduledDateList);
     }
 
     @Override
@@ -855,4 +585,308 @@ public class EditCommand extends Command {
                     && getFullyScheduledDates().equals(e.getFullyScheduledDates());
         }
     }
+
+    public static class EditedDateSlotCreator {
+
+        public static final String MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX = "The dateSlot index "
+                + "provided is more than the dateSlot provided. "
+                + "Please remove the dateSlot index or add more dateSlot.";
+        private final Model model;
+        private final List<Person> personList;
+        private final List<DateSlot> originalDateSlotList;
+        private final List<DateSlot> toBeUpdateDateSlots;
+        private final List<Index> toBeUpdateDateSlotsIndexes;
+        private final Boolean isDateSlotsGivenNull;
+        private final Boolean isDateSlotIndexesGivenNull;
+        private final Boolean isDateSlotsGivenEmpty;
+        private final Boolean isDateSlotIndexesGivenEmpty;
+
+
+        EditedDateSlotCreator(Model model, List<Person> personList, List<DateSlot> originalDateSlots,
+                              Optional<List<DateSlot>> toBeUpdateDateSlots,
+                              Optional<List<Index>> toBeUpdateDateSlotsIndexes) {
+            this.model = model;
+            this.personList = personList;
+            this.originalDateSlotList = originalDateSlots;
+            this.isDateSlotsGivenNull = getIsDateSlotsGivenNull(toBeUpdateDateSlots);
+            this.isDateSlotIndexesGivenNull = getIsDateSlotIndexesGivenNull(toBeUpdateDateSlotsIndexes);
+            this.toBeUpdateDateSlots = createToBeUpdateDateSlotList(toBeUpdateDateSlots);
+            this.toBeUpdateDateSlotsIndexes = createToBeUpdatedIndexList(toBeUpdateDateSlotsIndexes);
+            this.isDateSlotsGivenEmpty = getIsDateSlotsGivenEmpty();
+            this.isDateSlotIndexesGivenEmpty = getIsDateSlotIndexesGivenEmpty();
+        }
+
+        private boolean getIsDateSlotsGivenNull(Optional<List<DateSlot>> toBeUpdateDateSlots) {
+            return toBeUpdateDateSlots.equals(Optional.empty());
+        }
+
+        private boolean getIsDateSlotIndexesGivenNull(Optional<List<Index>> toBeUpdateDateSlotIndexes) {
+            return toBeUpdateDateSlotIndexes.equals(Optional.empty());
+        }
+
+        private List<DateSlot> createToBeUpdateDateSlotList(Optional<List<DateSlot>> toBeUpdateDateSlots) {
+            List<DateSlot> toBeUpdateDateSlotList = new ArrayList<>();
+            if (!isDateSlotsGivenNull) {
+                toBeUpdateDateSlotList = new ArrayList<>(toBeUpdateDateSlots.get());
+            }
+            return toBeUpdateDateSlotList;
+        }
+
+        private List<Index> createToBeUpdatedIndexList(Optional<List<Index>> toBeUpdateDateSlotsIndexes) {
+            List<Index> toBeUpdateDateSlotIndexList = new ArrayList<>();
+            if (!isDateSlotIndexesGivenNull) {
+                toBeUpdateDateSlotIndexList = new ArrayList<>(toBeUpdateDateSlotsIndexes.get());
+            }
+            return toBeUpdateDateSlotIndexList;
+        }
+
+        private boolean getIsDateSlotsGivenEmpty() {
+            return !isDateSlotsGivenNull && toBeUpdateDateSlots.isEmpty();
+        }
+
+        private boolean getIsDateSlotIndexesGivenEmpty() {
+            return !isDateSlotIndexesGivenNull && toBeUpdateDateSlotsIndexes.isEmpty();
+        }
+        private List<DateSlot> createEditedDateSlotList() throws CommandException {
+
+            if (isDelete()) {
+                // Deletes all the dateTime in the existing list/ Deletes specific dateTime in the existing list
+                return removeActionForDateSlot();
+
+            } else if (isAdd()) {
+                // Add the given dateTime to the existing list
+                return addActionForDateSlot();
+
+            } else if (isEdit()) {
+                // Remove specific dateSlot in the existing list and add the given dateSlot
+                return editActionForDateSlot();
+
+            } else {
+                // Remain as original dateTime list, no changes made
+                return originalDateSlotList;
+            }
+        }
+
+        private Boolean isDelete() {
+            Boolean isAllDeleted =  (isDateSlotsGivenNull && isDateSlotIndexesGivenEmpty) ||
+                    (isDateSlotIndexesGivenNull && isDateSlotsGivenEmpty) ||
+                    (isDateSlotsGivenEmpty && isDateSlotIndexesGivenEmpty);
+            Boolean isSpecificDeleted = !isDateSlotIndexesGivenEmpty && (isDateSlotsGivenNull || isDateSlotsGivenEmpty);
+            return isAllDeleted || isSpecificDeleted;
+        }
+
+        private Boolean isAdd() {
+            return !isDateSlotsGivenEmpty && (isDateSlotIndexesGivenNull || isDateSlotIndexesGivenEmpty);
+        }
+
+        private Boolean isEdit() {
+            return !isDateSlotsGivenEmpty && !isDateSlotIndexesGivenEmpty;
+        }
+
+        private List<DateSlot> removeActionForDateSlot() throws CommandException {
+            DateSlotManager remover = new DateSlotManager(originalDateSlotList, toBeUpdateDateSlotsIndexes);
+            InternalHomeVisitRemoverFromDateSlot homeVisitRemover = new InternalHomeVisitRemoverFromDateSlot(model, personList,
+                    originalDateSlotList, toBeUpdateDateSlotsIndexes);
+            homeVisitRemover.removeHomeVisitsForDateSlot();
+            return remover.removeDateSlot();
+        }
+
+        private List<DateSlot> addActionForDateSlot() {
+            DateSlotManager adder = new DateSlotManager(originalDateSlotList);
+            return adder.addDateSlot(toBeUpdateDateSlots);
+        }
+
+        private List<DateSlot> editActionForDateSlot() throws CommandException {
+            checkDateSlotAndIndex();
+            DateSlotManager editor = new DateSlotManager(originalDateSlotList);
+            InternalHomeVisitRemoverFromDateSlot homeVisitRemover = new InternalHomeVisitRemoverFromDateSlot(model, personList,
+                    originalDateSlotList, toBeUpdateDateSlotsIndexes);
+            homeVisitRemover.removeHomeVisitsForDateSlot();
+            editor.removeDateSlot();
+            return editor.addDateSlot(toBeUpdateDateSlots);
+        }
+
+        private void checkDateSlotAndIndex() throws CommandException {
+            if (toBeUpdateDateSlots.size() < toBeUpdateDateSlotsIndexes.size()) {
+                throw new CommandException(MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX);
+            }
+        }
+    }
+
+    public static class EditedUnavailableDateCreator {
+
+        public static final String MESSAGE_OUT_OF_BOUND_UNAVAILABLE_DATE_INDEX = "The unavailable date index "
+                + "given is out of bounds of the existing list."
+                + " Please retype another index that is within the range or left it empty.";
+
+        public static final String MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLE_DATES_AND_UNAVAILABLE_DATE_INDEXES =
+                "The unavailable date index " + "provided is more than the unavailable date provided."
+                        + " Please remove the unavailable date index or add more unavailable date.";
+
+        private final Model model;
+        private final Person nurseToEdit;
+        private final List<Person> personList;
+        private final List<Date> originalUnavailableDateList;
+        private final List<Date> toBeUpdateUnavailableDates;
+        private final List<Index> toBeUpdateUnavailableDateIndexes;
+        private final Boolean isUnavailableDatesGivenNull;
+        private final Boolean isUnavailableDateIndexesGivenNull;
+        private final Boolean isUnavailableDatesGivenEmpty;
+        private final Boolean isUnavailableDateIndexesGivenEmpty;
+
+
+        EditedUnavailableDateCreator(Model model, Person nurseToEdit, List<Person> personList,
+                                     List<Date> originalUnavailableDates,
+                                     Optional<List<Date>> toBeUpdateUnavailableDates,
+                                     Optional<List<Index>> toBeUpdateUnavailableDateIndexes) {
+            this.model = model;
+            this.nurseToEdit = nurseToEdit;
+            this.personList = personList;
+            this.originalUnavailableDateList = originalUnavailableDates;
+            this.isUnavailableDatesGivenNull = getIsUnavailableDatesGivenNull(toBeUpdateUnavailableDates);
+            this.isUnavailableDateIndexesGivenNull = getIsUnavailableDateIndexesGivenNull(
+                    toBeUpdateUnavailableDateIndexes);
+            this.toBeUpdateUnavailableDates = createToBeUpdateUnavailableDateList(toBeUpdateUnavailableDates);
+            this.toBeUpdateUnavailableDateIndexes = createToBeUpdatedIndexList(toBeUpdateUnavailableDateIndexes);
+            this.isUnavailableDatesGivenEmpty = getIsUnavailableDatesGivenEmpty();
+            this.isUnavailableDateIndexesGivenEmpty = getIsUnavailableDateIndexesGivenEmpty();
+        }
+
+        private boolean getIsUnavailableDatesGivenNull(Optional<List<Date>> toBeUpdateUnavailableDates) {
+            return toBeUpdateUnavailableDates.equals(Optional.empty());
+        }
+
+        private boolean getIsUnavailableDateIndexesGivenNull(Optional<List<Index>> toBeUpdateUnavailableDateIndexes) {
+            return toBeUpdateUnavailableDateIndexes.equals(Optional.empty());
+        }
+
+        private List<Date> createToBeUpdateUnavailableDateList(Optional<List<Date>> toBeUpdateUnavailableDates) {
+            List<Date> toBeUpdateUnavailableDateList = new ArrayList<>();
+            if (!isUnavailableDatesGivenNull) {
+                toBeUpdateUnavailableDateList = new ArrayList<>(toBeUpdateUnavailableDates.get());
+            }
+            return toBeUpdateUnavailableDateList;
+        }
+
+        private List<Index> createToBeUpdatedIndexList(Optional<List<Index>> toBeUpdateUnavailableDateIndexes) {
+            List<Index> toBeUpdateUnavailableDateIndexList = new ArrayList<>();
+            if (!isUnavailableDateIndexesGivenNull) {
+                toBeUpdateUnavailableDateIndexList = new ArrayList<>(toBeUpdateUnavailableDateIndexes.get());
+            }
+            return toBeUpdateUnavailableDateIndexList;
+        }
+
+        private boolean getIsUnavailableDatesGivenEmpty() {
+            return !isUnavailableDatesGivenNull && toBeUpdateUnavailableDates.isEmpty();
+        }
+
+        private boolean getIsUnavailableDateIndexesGivenEmpty() {
+            return !isUnavailableDateIndexesGivenNull && toBeUpdateUnavailableDateIndexes.isEmpty();
+        }
+        private List<Date> createEditedUnavailableDateList(EditPersonDescriptor editPersonDescriptor)
+                throws CommandException {
+
+            if (isAllDelete()) {
+                // Deletes all the unavailable dates in the existing list
+                return removeAllActionForUnavailableDate();
+
+            } else if (isSpecificDelete()) {
+                // Deletes specific unavailable dates in the existing list
+                return removeSpecificActionForUnavailableDate();
+
+            } else if (isAdd()) {
+                // Add the given unavailable dates to the existing list
+                return addActionForUnavailableDate(editPersonDescriptor);
+
+            } else if (isEdit()) {
+                // Remove specific unavailable dates in the existing list and add the given unavailable dates
+                return editActionForUnavailableDates(editPersonDescriptor);
+
+            } else {
+                // Remain as original unavailable dates list, no changes made
+                return originalUnavailableDateList;
+            }
+        }
+
+        private Boolean isAllDelete() {
+            return (isUnavailableDatesGivenNull && isUnavailableDateIndexesGivenEmpty) ||
+                    (isUnavailableDateIndexesGivenNull && isUnavailableDatesGivenEmpty) ||
+                    (isUnavailableDatesGivenEmpty && isUnavailableDateIndexesGivenEmpty);
+        }
+
+        private Boolean isSpecificDelete() {
+            return !isUnavailableDateIndexesGivenEmpty && (isUnavailableDatesGivenNull ||
+                    isUnavailableDatesGivenEmpty);
+        }
+
+        private Boolean isAdd() {
+            return !isUnavailableDatesGivenEmpty && (isUnavailableDateIndexesGivenNull ||
+                    isUnavailableDateIndexesGivenEmpty);
+        }
+
+        private Boolean isEdit() {
+            return !isUnavailableDatesGivenEmpty && !isUnavailableDateIndexesGivenEmpty;
+        }
+
+        private List<Date> removeAllActionForUnavailableDate() throws CommandException {
+            return new ArrayList<>();
+        }
+
+        private List<Date> removeSpecificActionForUnavailableDate() throws CommandException {
+            sortIndex();
+            checkIndexOutOfBound();
+            for(Index index : toBeUpdateUnavailableDateIndexes) {
+                Date unavailableDate = originalUnavailableDateList.get(index.getZeroBased());
+                originalUnavailableDateList.remove(unavailableDate);
+            }
+            return originalUnavailableDateList;
+        }
+
+        private void sortIndex() {
+            ReverseIndexComparator comp = new ReverseIndexComparator();
+            this.toBeUpdateUnavailableDateIndexes.sort(comp);
+        }
+
+        public void checkIndexOutOfBound() throws CommandException {
+            if (toBeUpdateUnavailableDateIndexes.get(0).getZeroBased() >= originalUnavailableDateList.size()) {
+                throw new CommandException(MESSAGE_OUT_OF_BOUND_UNAVAILABLE_DATE_INDEX);
+            }
+        }
+
+        private List<Date> addActionForUnavailableDate(EditPersonDescriptor editPersonDescriptor) {
+            List<HomeVisit> homeVisitList = ((Nurse) nurseToEdit).getHomeVisits();
+            List<Date> fullyScheduledDateList = ((Nurse) nurseToEdit).getFullyScheduledDates();
+            InternalUnmarkerFromHomeVisit unmarker = new InternalUnmarkerFromHomeVisit(model,
+                    personList, homeVisitList);
+            unmarker.unmarkDateSlotForUnavailableDates(toBeUpdateUnavailableDates);
+
+            HomeVisitManager remover = new HomeVisitManager(homeVisitList, fullyScheduledDateList);
+            List<HomeVisit> updatedHomeVisitList = remover.removeHomeVisitFromUnavailableDates(
+                    toBeUpdateUnavailableDates);
+            List<Date> updatedFullyScheduledDateList = remover.getFullyScheduledDateList();
+            editPersonDescriptor.setHomeVisits(updatedHomeVisitList);
+            editPersonDescriptor.setFullyScheduledDates(updatedFullyScheduledDateList);
+
+            originalUnavailableDateList.addAll(toBeUpdateUnavailableDates);
+            return originalUnavailableDateList;
+        }
+
+        private List<Date> editActionForUnavailableDates(EditPersonDescriptor editPersonDescriptor)
+                throws CommandException {
+            checkDateSlotAndIndex();
+            removeSpecificActionForUnavailableDate();
+            addActionForUnavailableDate(editPersonDescriptor);
+            return originalUnavailableDateList;
+        }
+
+        private void checkDateSlotAndIndex() throws CommandException {
+            if (toBeUpdateUnavailableDates.size() < toBeUpdateUnavailableDateIndexes.size()) {
+                throw new CommandException(MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLE_DATES_AND_UNAVAILABLE_DATE_INDEXES);
+            }
+        }
+
+    }
+
+
 }
+

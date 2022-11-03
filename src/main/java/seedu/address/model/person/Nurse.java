@@ -75,7 +75,8 @@ public class Nurse extends Person {
     }
 
     public String getHomesVisitsInString() {
-        String homeVisitsString = homeVisitList.stream().map(x -> x.toString()).collect(Collectors.joining(","));
+        String homeVisitsString = homeVisitList.stream().map(x -> x.toString()).collect(Collectors.joining(
+                ", "));
         if (homeVisitsString.length() == 0) {
             return MESSAGE_FOR_EMPTY_HOMEVISITLIST;
         }
@@ -83,7 +84,8 @@ public class Nurse extends Person {
     }
 
     public String getUnavailableDatesInString() {
-        String unavailableString = unavailableDateList.stream().map(x -> x.toString()).collect(Collectors.joining(","));
+        String unavailableString = unavailableDateList.stream().map(x -> x.toString()).collect(Collectors.joining(
+                ", "));
         if (unavailableString.length() == 0) {
             return MESSAGE_FOR_EMPTY_UNAVAILABLEDATE;
         }
