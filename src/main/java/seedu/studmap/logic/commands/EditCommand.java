@@ -48,7 +48,7 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_ID + "ID] "
-            + "[" + PREFIX_GIT + "GITUSER] "
+            + "[" + PREFIX_GIT + "GITNAME] "
             + "[" + PREFIX_HANDLE + "TELEHANDLE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "

@@ -22,13 +22,13 @@ public class ParticipateCommand extends EditStudentCommand<ParticipateCommand.Pa
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Record the participation for a student identified by the index number used in the displayed"
-            + " student list.\n"
-            + "\n  Record participation for the participation component specified in the parameter."
-            + "\n  Parameters: INDEX (must be positive integer or use \"all\" to record everyone currently displayed)"
+            + " student list."
+            + "\nRecord participation for the participation component specified in the parameter."
+            + "\nParameters: INDEX (must be positive integer or use \"all\" to record everyone currently displayed)"
             + " OPTION (must be yes/no) "
-            + PREFIX_PARTICIPATION + " [PARTICIPATION COMPONENT]"
-            + "\n Example: " + COMMAND_WORD + " 1 yes " + PREFIX_PARTICIPATION + "P01"
-            + "\n Example: " + COMMAND_WORD + " all yes " + PREFIX_PARTICIPATION + "P02";
+            + PREFIX_PARTICIPATION + "PARTICIPATION_COMPONENT"
+            + "\nExample: " + COMMAND_WORD + " 1 yes " + PREFIX_PARTICIPATION + "P01"
+            + "\nExample: " + COMMAND_WORD + " all yes " + PREFIX_PARTICIPATION + "P02";
 
     public static final String MESSAGE_MARK_SINGLE_SUCCESS_PARTICIPATION = "Recorded Student as %1$s: %2$s";
     public static final String MESSAGE_MARK_MULTI_SUCCESS_PARTICIPATION = "Recorded %1$s students as %2$s";

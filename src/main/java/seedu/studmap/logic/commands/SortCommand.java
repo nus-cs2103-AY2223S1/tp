@@ -17,9 +17,9 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort the list "
-            + "by the attribute specified. \n "
-            + "Parameters: ORDER (asc or dsc) "
-            + "[" + PREFIX_ATTRIBUTE + "ATTRIBUTE]\n "
+            + "by the attribute specified. \n"
+            + "Parameters: ORDER(asc or dsc) "
+            + "" + PREFIX_ATTRIBUTE + "ATTRIBUTE\n"
             + "Example: " + COMMAND_WORD + " asc "
             + PREFIX_ATTRIBUTE + "name\n"
             + "Supported attributes: name, module, phone, id, git, handle, email, attendance, participation, "
