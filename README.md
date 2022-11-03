@@ -14,11 +14,11 @@ can lead to extra business cost.
 
 ### Other links
 
-* [About Us](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/docs/AboutUs.md)
+* [About Us](https://ay2223s1-cs2103t-t09-3.github.io/tp/AboutUs.html)
 
-* [Developer Guide](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/docs/DeveloperGuide.md)
+* [Developer Guide](https://ay2223s1-cs2103t-t09-3.github.io/tp/DeveloperGuide.html)
 
-* [User Guide](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/docs/UserGuide.md)
+* [User Guide](https://ay2223s1-cs2103t-t09-3.github.io/tp/UserGuide.html)
 
 ### Acknowledgements
 This project is based on the AddressBook-Level3 project created by the
