@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_EXAMONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_EXAMONE;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_KEYWORDS;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_NUMBER_OF_KEYWORDS;
@@ -50,7 +52,6 @@ public class ParserUtilTest {
     private static final String WHITESPACE = " \t\r\n";
 
     private static final String INVALID_TASK_DESCRIPTION = "";
-    private static final String INVALID_EXAM_DESCRIPTION = "";
     private static final String INVALID_EXAM_DATE_WRONG_FORMAT = "29 Dec 2024";
     private static final String INVALID_EXAM_DATE_DOES_NOT_EXIST = "29-02-2023";
     private static final String INVALID_EXAM_DATE_PAST_DATE = "20-02-2010";
@@ -70,7 +71,6 @@ public class ParserUtilTest {
 
     private static final String VALID_TASK_DESCRIPTION = "task 1";
 
-    private static final String VALID_EXAM_DESCRIPTION = "midterms";
     private static final String VALID_EXAM_DATE = "30-05-2025";
 
     private static final String VALID_MODULE_CODE = "cs2100";
@@ -126,58 +126,6 @@ public class ParserUtilTest {
         String taskDescriptionWithWhitespace = WHITESPACE + VALID_TASK_DESCRIPTION + WHITESPACE;
         TaskDescription expectedTaskDescription = new TaskDescription(VALID_TASK_DESCRIPTION);
         assertEquals(expectedTaskDescription, ParserUtil.parseDescription(taskDescriptionWithWhitespace));
-    }
-
-    @Test
-    public void parseExamDescription_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseExamDescription((String) null));
-    }
-
-    @Test
-    public void parseExamDescription_invalidValue_throwsExamDescription() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseExamDescription(INVALID_EXAM_DESCRIPTION));
-        assertThrows(ParseException.class, () -> ParserUtil.parseExamDescription(WHITESPACE));
-    }
-
-    @Test
-    public void parseExamDescription_validValueWithoutWhitespace_returnsExamDescription() throws Exception {
-        ExamDescription expectedExamDescription = new ExamDescription(VALID_EXAM_DESCRIPTION);
-        assertEquals(expectedExamDescription, ParserUtil.parseExamDescription(VALID_EXAM_DESCRIPTION));
-    }
-
-    @Test
-    public void parseExamDescription_validValueWithWhitespace_returnsTrimmedExamDescription() throws Exception {
-        String examDescriptionWithWhitespace = WHITESPACE + VALID_EXAM_DESCRIPTION + WHITESPACE;
-        ExamDescription expectedExamDescription = new ExamDescription(VALID_EXAM_DESCRIPTION);
-        assertEquals(expectedExamDescription, ParserUtil.parseExamDescription(examDescriptionWithWhitespace));
-    }
-
-    @Test
-    public void parseExamDate_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseExamDate((String) null));
-    }
-
-    @Test
-    public void parseExamDate_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class,
-            ExamDate.DATE_FORMAT_CONSTRAINTS, () -> ParserUtil.parseExamDate(INVALID_EXAM_DATE_WRONG_FORMAT));
-        assertThrows(ParseException.class,
-            ExamDate.VALID_DATE_CONSTRAINTS, () -> ParserUtil.parseExamDate(INVALID_EXAM_DATE_DOES_NOT_EXIST));
-        assertThrows(ParseException.class,
-            ExamDate.NOT_A_PAST_DATE_CONSTRAINTS, () -> ParserUtil.parseExamDate(INVALID_EXAM_DATE_PAST_DATE));
-    }
-
-    @Test
-    public void parseExamDate_validValueWithoutWhitespace_returnsExamDate() throws Exception {
-        ExamDate expectedExamDate = new ExamDate(VALID_EXAM_DATE);
-        assertEquals(expectedExamDate, ParserUtil.parseExamDate(VALID_EXAM_DATE));
-    }
-
-    @Test
-    public void parseExamDate_validValueWithWhitespace_returnsTrimmedExamDate() throws Exception {
-        String criteriaWithWhitespace = WHITESPACE + VALID_EXAM_DATE + WHITESPACE;
-        ExamDate expectedExamDate = new ExamDate(VALID_EXAM_DATE);
-        assertEquals(expectedExamDate, ParserUtil.parseExamDate(criteriaWithWhitespace));
     }
 
     @Test
@@ -492,6 +440,64 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseExamDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseExamDate((String) null));
+    }
+
+    @Test
+    public void parseExamDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class,
+            ExamDate.DATE_FORMAT_CONSTRAINTS, () -> ParserUtil.parseExamDate(INVALID_EXAM_DATE_WRONG_FORMAT));
+        assertThrows(ParseException.class,
+            ExamDate.VALID_DATE_CONSTRAINTS, () -> ParserUtil.parseExamDate(INVALID_EXAM_DATE_DOES_NOT_EXIST));
+        assertThrows(ParseException.class,
+            ExamDate.NOT_A_PAST_DATE_CONSTRAINTS, () -> ParserUtil.parseExamDate(INVALID_EXAM_DATE_PAST_DATE));
+    }
+
+    @Test
+    public void parseExamDate_validValueWithoutWhitespace_returnsExamDate() throws Exception {
+        ExamDate expectedExamDate = new ExamDate(VALID_EXAM_DATE);
+        assertEquals(expectedExamDate, ParserUtil.parseExamDate(VALID_EXAM_DATE));
+    }
+
+    @Test
+    public void parseExamDate_validValueWithWhitespace_returnsTrimmedExamDate() throws Exception {
+        String criteriaWithWhitespace = WHITESPACE + VALID_EXAM_DATE + WHITESPACE;
+        ExamDate expectedExamDate = new ExamDate(VALID_EXAM_DATE);
+        assertEquals(expectedExamDate, ParserUtil.parseExamDate(criteriaWithWhitespace));
+    }
+
+    @Test
+    public void parseExamDate_validDateWithWhitespace_returnsTrimmedDate() throws Exception {
+        String examDateWithWhitespace = WHITESPACE + VALID_DATE_EXAMONE + WHITESPACE;
+        ExamDate examDate = new ExamDate(VALID_DATE_EXAMONE);
+        assertEquals(examDate, ParserUtil.parseExamDate(examDateWithWhitespace));
+    }
+
+    @Test
+    public void parseExamDesc_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseExamDescription((String) null));
+    }
+
+    @Test
+    public void parseExamDesc_invalidDesc_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseExamDescription(""));
+    }
+
+    @Test
+    public void parseExamDesc_validDescWithoutWhitespace_returnsDesc() throws Exception {
+        ExamDescription examDescription = new ExamDescription(VALID_DESCRIPTION_EXAMONE);
+        assertEquals(examDescription, ParserUtil.parseExamDescription(VALID_DESCRIPTION_EXAMONE));
+    }
+
+    @Test
+    public void parseExamDesc_validDescWithWhitespace_returnsTrimmedDesc() throws Exception {
+        String examDateWithWhitespace = WHITESPACE + VALID_DESCRIPTION_EXAMONE + WHITESPACE;
+        ExamDescription examDescription = new ExamDescription(VALID_DESCRIPTION_EXAMONE);
+        assertEquals(examDescription, ParserUtil.parseExamDescription(examDateWithWhitespace));
     }
 
 }
