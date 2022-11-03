@@ -192,16 +192,15 @@ Examples:
 
 ### Add an event: `addEvent`
 
-Adds a new event in the application.
+Adds a new event to the application.
 
-Format: `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`
+Format: `addEvent e/EVENT_TITLE d/DATE t/TIME p/PURPOSE`
 
-* The compulsory parameters are: event name (`n`), date (`d`), time (`t`) and purpose (`p`)
+* The compulsory parameters are: event title (`e`), date (`d`), time (`t`) and purpose (`p`)
 
 Examples:
-* `addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`
-* `addEvent n/Banana Discount 10% d/20-04-2022 t/14:00 p/10% discount on all bananas`
-
+* `addEvent e/Shoe Sale d/30/05/2022 t/11:00 p/30 dollar discount on all shoes`
+* `addEvent e/Banana Discount d/20/04/2022 t/14:00 p/20 cent discount on all bananas`
 
 ### Editing an event : `editEvent`
 
