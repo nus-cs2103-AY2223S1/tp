@@ -664,11 +664,11 @@ The following activity diagram summarizes what happens when a user executes a `L
 
 ![ListModuleActivityDiagram](images/ListModuleActivityDiagram.png)
 
-#### Goto module feature
+#### Navigate to module feature
 
 ##### Implementation
 
-Goto module mechanism is facilitated by the `GoToCommand` and `GoToCommandParser`.
+Navigate to module mechanism is facilitated by the `GoToCommand` and `GoToCommandParser`.
 
 It allows users to navigate to a specific module given their respective module code, displaying information
 (i.e. tasks, links and contacts) that are associated to that module.<br>
@@ -727,6 +727,52 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 The following activity diagram summarizes what happens when a user executes a `GoToCommand`:
 
 ![GoToActivityDiagram](images/GoToActivityDiagram.png)
+
+#### Navigate to home feature
+
+##### Implementation
+
+Navigate to home mechanism is facilitated by the `HomeCommand`.
+
+It navigates users back to the home page of Plannit, showing all modules and persons stored in Plannit.<br>
+
+It uses the following methods provided by the `Model` interface.
+* `Model#goToHomePage()`: Sets home status to true and update module list and person list to show all modules and persons respectively, reflecting the changes accordingly in the GUI
+
+Given below is an example usage scenario and how the mechanism
+behaves when a user navigates back to the home page of Plannit.
+
+**Step 1**. The user requests to go home by inputting the `home` command.
+E.g.:
+```
+home
+```
+
+**Step 2**: The `LogicManager` uses the `AddressBookParser` to parse the user input.
+After validating the arguments provided by the user, the user input is used to instantiate
+a `HomeCommand` object, which is returned to the `LogicManger`.
+
+**Step 3**: `LogicManager` calls the `HomeCommand#execute()` method. This method will then
+call the `Model#goToHomePage()` method which perform the following actions:
+* Set home status to true
+* Update module list to show all modules
+* Update person list to show all persons
+
+**Step 5**: A new `CommandResult` object is returned, indicating success.
+
+The following sequence diagram summarizes what happens when a user executes the `home` command:
+
+![HomeSequenceDiagram](images/HomeSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `GoToCommandParser`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+<div style="page-break-after: always;"></div>
+
+The following activity diagram summarizes what happens when a user executes a `HomeCommand`:
+
+![HomeActivityDiagram](images/HomeActivityDiagram.png)
 
 #### Design consideration:
 
