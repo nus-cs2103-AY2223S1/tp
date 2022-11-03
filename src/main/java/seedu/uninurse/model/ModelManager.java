@@ -213,7 +213,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateRecurringTasks() {
-        filteredPersons.forEach(p -> p.getTasks().updateRecurringTasks());
+        filteredPersons.forEach(p -> p.getTasks().updateTasks());
     }
 
     @Override

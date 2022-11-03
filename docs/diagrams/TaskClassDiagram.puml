@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Class TaskList
+Class "{abstract}\nTask" as Task
+Class DateTime
+Class NonRecurringTask
+Class RecurringTask
+enum "<<enumeration>>\nRecurrence" as Recurrence {
+    DAY
+    WEEK
+    MONTH
+    YEAR
+    DAYS
+    WEEKS
+    MONTHS
+    YEARS
+}
+}
+
+RecurringTask : Recurrence recurrence
+
+Class HiddenOutside #FFFFFF
+
+TaskList -> "*" Task
+
+Task -> "1" DateTime : has
+
+NonRecurringTask -up-|> Task
+RecurringTask -up-|> Task
+
+@enduml

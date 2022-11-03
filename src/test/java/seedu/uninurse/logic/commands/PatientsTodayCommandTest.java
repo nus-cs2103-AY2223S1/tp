@@ -12,7 +12,7 @@ import seedu.uninurse.model.ModelManager;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.DateTime;
-import seedu.uninurse.model.task.Task;
+import seedu.uninurse.model.task.NonRecurringTask;
 import seedu.uninurse.testutil.PersonBuilder;
 
 class PatientsTodayCommandTest {
@@ -35,7 +35,8 @@ class PatientsTodayCommandTest {
     @Test
     public void execute_onePatientToday_showsOnePatient() throws Exception {
         Patient patientForToday = new PersonBuilder()
-                                        .withTasks(new Task("test", new DateTime(getCurrentDate()))).build();
+                                        .withTasks(new NonRecurringTask("test",
+                                                new DateTime(getCurrentDate()))).build();
 
         CommandResult addCommand = new AddPatientCommand(patientForToday).execute(model);
         CommandResult addCommand2 = new AddPatientCommand(patientForToday).execute(expectedModel);
