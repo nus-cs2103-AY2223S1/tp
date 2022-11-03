@@ -26,9 +26,9 @@ public class TimePeriod {
     private final LocalDateTime end;
 
     /**
-     * Start time must be before end time.
-     * @param start Starting time.
-     * @param end Ending time.
+     * Start datetime must be before end datetime.
+     * @param start Starting datetime.
+     * @param end Ending datetime.
      */
     public TimePeriod(LocalDateTime start, LocalDateTime end) {
         requireAllNonNull(start, end);
@@ -37,6 +37,12 @@ public class TimePeriod {
         this.end = end;
     }
 
+    /**
+     * Returns true if 2 datetime values represent a valid time period.
+     * @param start Starting datetime.
+     * @param end Ending datetime.
+     * @return True if start is before end, False otherwise.
+     */
     public static boolean isValidTimePeriod(LocalDateTime start, LocalDateTime end) {
         if (start == null || end == null) {
             return false;

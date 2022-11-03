@@ -1,18 +1,23 @@
 package jarvis.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static jarvis.testutil.Assert.assertThrows;
+import static jarvis.testutil.TypicalStudents.ALICE;
+import static jarvis.testutil.TypicalStudents.HOON;
+import static jarvis.testutil.TypicalStudents.getTypicalStudents;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.List;
+import java.util.Set;
 import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
 
 import jarvis.model.exceptions.InvalidParticipationException;
 import jarvis.model.exceptions.StudentNotFoundException;
-import jarvis.model.util.SampleStudentUtil;
 
 class StudioParticipationTest {
-    private final TreeSet<Student> students = new TreeSet<>(List.of(SampleStudentUtil.getSampleStudents()));
+    private final Set<Student> students = new TreeSet<>(getTypicalStudents());
     private final StudioParticipation studioParticipation = new StudioParticipation(students);
 
     @Test
@@ -20,22 +25,18 @@ class StudioParticipationTest {
         assertThrows(NullPointerException.class,
                 () -> studioParticipation.setParticipationForStudent(null, 100)); // null student
 
-        Student studentToRemove = students.first();
-        students.remove(studentToRemove);
-        StudioParticipation differentStudents = new StudioParticipation(students);
         assertThrows(StudentNotFoundException.class,
-                () -> differentStudents.setParticipationForStudent(studentToRemove, 100));
+                        () -> studioParticipation.setParticipationForStudent(HOON, 100));
     }
 
     @Test
     void setParticipationForStudent_invalidParticipation_exceptionThrown() {
-        Student student = students.first();
         assertThrows(InvalidParticipationException.class,
-                () -> studioParticipation.setParticipationForStudent(student, -1));
+                () -> studioParticipation.setParticipationForStudent(ALICE, -1));
         assertThrows(InvalidParticipationException.class,
-                () -> studioParticipation.setParticipationForStudent(student, 501));
+                () -> studioParticipation.setParticipationForStudent(ALICE, 501));
         assertThrows(InvalidParticipationException.class,
-                () -> studioParticipation.setParticipationForStudent(student, 700));
+                () -> studioParticipation.setParticipationForStudent(ALICE, 700));
     }
 
     @Test
@@ -43,27 +44,23 @@ class StudioParticipationTest {
         assertThrows(NullPointerException.class,
                 () -> studioParticipation.getParticipationForStudent(null)); // null student
 
-        Student studentToRemove = students.first();
-        students.remove(studentToRemove);
-        StudioParticipation differentStudents = new StudioParticipation(students);
         assertThrows(StudentNotFoundException.class,
-                () -> differentStudents.getParticipationForStudent(studentToRemove));
+                () -> studioParticipation.getParticipationForStudent(HOON));
     }
 
     @Test
     void testParticipation_validArguments() {
-        Student student = students.first();
-        assertEquals(0, studioParticipation.getParticipationForStudent(student)); // default participation is 0
-        studioParticipation.setParticipationForStudent(student, 100);
-        assertEquals(100, studioParticipation.getParticipationForStudent(student));
-        studioParticipation.setParticipationForStudent(student, 200);
-        assertEquals(200, studioParticipation.getParticipationForStudent(student));
+        assertEquals(0, studioParticipation.getParticipationForStudent(ALICE)); // default participation is 0
+        studioParticipation.setParticipationForStudent(ALICE, 100);
+        assertEquals(100, studioParticipation.getParticipationForStudent(ALICE));
+        studioParticipation.setParticipationForStudent(ALICE, 200);
+        assertEquals(200, studioParticipation.getParticipationForStudent(ALICE));
 
         // Boundary values
-        studioParticipation.setParticipationForStudent(student, 500);
-        assertEquals(500, studioParticipation.getParticipationForStudent(student));
-        studioParticipation.setParticipationForStudent(student, 0);
-        assertEquals(0, studioParticipation.getParticipationForStudent(student));
+        studioParticipation.setParticipationForStudent(ALICE, 500);
+        assertEquals(500, studioParticipation.getParticipationForStudent(ALICE));
+        studioParticipation.setParticipationForStudent(ALICE, 0);
+        assertEquals(0, studioParticipation.getParticipationForStudent(ALICE));
     }
 
     @Test
@@ -75,13 +72,11 @@ class StudioParticipationTest {
     void testEquals() {
         StudioParticipation sameValues = new StudioParticipation(students);
 
-        Student studentToRemove = students.first();
-        students.remove(studentToRemove);
-        StudioParticipation differentStudents = new StudioParticipation(students);
-
         StudioParticipation differentParticipation = new StudioParticipation(students);
-        Student student = students.first();
-        differentParticipation.setParticipationForStudent(student, 350);
+        differentParticipation.setParticipationForStudent(ALICE, 350);
+
+        students.add(HOON);
+        StudioParticipation differentStudents = new StudioParticipation(students);
 
         // same values -> returns true
         assertTrue(studioParticipation.equals(sameValues));

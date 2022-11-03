@@ -1,8 +1,14 @@
 package jarvis.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static jarvis.testutil.Assert.assertThrows;
+import static jarvis.testutil.TypicalStudents.ALICE;
+import static jarvis.testutil.TypicalStudents.HOON;
+import static jarvis.testutil.TypicalStudents.getTypicalStudents;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.List;
+import java.util.Set;
 import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
@@ -10,11 +16,10 @@ import org.junit.jupiter.api.Test;
 import jarvis.model.exceptions.InvalidNoteException;
 import jarvis.model.exceptions.NoStudentsInLessonException;
 import jarvis.model.exceptions.StudentNotFoundException;
-import jarvis.model.util.SampleStudentUtil;
 
 class LessonNotesTest {
 
-    private final TreeSet<Student> students = new TreeSet<>(List.of(SampleStudentUtil.getSampleStudents()));
+    private final Set<Student> students = new TreeSet<>(getTypicalStudents());
     private final LessonNotes lessonNotes = new LessonNotes(students);
 
     @Test
@@ -37,14 +42,13 @@ class LessonNotesTest {
 
     @Test
     public void addStudentNote_invalidNote_exceptionThrown() {
-        Student student = students.first();
-        assertThrows(NullPointerException.class, () -> lessonNotes.addNote(student,null));
+        assertThrows(NullPointerException.class, () -> lessonNotes.addNote(ALICE,null));
 
         String empty = "";
-        assertThrows(InvalidNoteException.class, () -> lessonNotes.addNote(student, empty));
+        assertThrows(InvalidNoteException.class, () -> lessonNotes.addNote(ALICE, empty));
 
         String whitespace = "    ";
-        assertThrows(InvalidNoteException.class, () -> lessonNotes.addNote(student, whitespace));
+        assertThrows(InvalidNoteException.class, () -> lessonNotes.addNote(ALICE, whitespace));
     }
 
     @Test
@@ -52,10 +56,7 @@ class LessonNotesTest {
         String note = "Valid note";
         assertThrows(NullPointerException.class, () -> lessonNotes.addNote(null, note));
 
-        Student studentToRemove = students.first();
-        students.remove(studentToRemove);
-        LessonNotes differentStudents = new LessonNotes(students);
-        assertThrows(StudentNotFoundException.class, () -> differentStudents.addNote(studentToRemove, note));
+        assertThrows(StudentNotFoundException.class, () -> lessonNotes.addNote(HOON, note));
     }
 
     @Test
@@ -78,36 +79,34 @@ class LessonNotesTest {
 
     @Test
     public void addStudentNote_validNote() {
-        Student student = students.first();
         String note1 = "Line 1";
         String note2 = "2nd line: ^*!"; // non-alphanumeric characters
         String note3 = "  text   "; // leading and trailing whitespace
         StringBuilder sb = new StringBuilder();
 
-        lessonNotes.addNote(student, note1);
+        lessonNotes.addNote(ALICE, note1);
         sb.append("1. ").append(note1.strip()).append("\n");
-        assertEquals(sb.toString(), lessonNotes.getStudentNotesString(student));
-        lessonNotes.addNote(student, note2);
+        assertEquals(sb.toString(), lessonNotes.getStudentNotesString(ALICE));
+        lessonNotes.addNote(ALICE, note2);
         sb.append("2. ").append(note2.strip()).append("\n");
-        assertEquals(sb.toString(), lessonNotes.getStudentNotesString(student));
-        lessonNotes.addNote(student, note3);
+        assertEquals(sb.toString(), lessonNotes.getStudentNotesString(ALICE));
+        lessonNotes.addNote(ALICE, note3);
         sb.append("3. ").append(note3.strip()).append("\n");
-        assertEquals(sb.toString(), lessonNotes.getStudentNotesString(student));
+        assertEquals(sb.toString(), lessonNotes.getStudentNotesString(ALICE));
     }
 
     @Test
     public void testEquals() {
         LessonNotes sameValues = new LessonNotes(students);
 
-        Student studentToRemove = students.first();
-        students.remove(studentToRemove);
-        LessonNotes differentStudents = new LessonNotes(students);
-
         LessonNotes differentGeneralNotes = new LessonNotes(students);
         differentGeneralNotes.addNote("Line 1");
 
         LessonNotes differentStudentNote = new LessonNotes(students);
-        differentStudentNote.addNote(students.first(), "Line 1");
+        differentStudentNote.addNote(ALICE, "Line 1");
+
+        students.add(HOON);
+        LessonNotes differentStudents = new LessonNotes(students);
 
         // same values -> returns true
         assertTrue(lessonNotes.equals(sameValues));

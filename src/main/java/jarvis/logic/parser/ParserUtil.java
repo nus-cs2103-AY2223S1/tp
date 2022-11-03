@@ -34,6 +34,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_MCNUM = "Mastery check number has to be 1 or 2.";
     public static final String MESSAGE_INVALID_MCRESULT = "Mastery check result has to be \"PASS\" or \"FAIL\"";
 
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     /**
@@ -103,7 +104,7 @@ public class ParserUtil {
     public static TaskDeadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         try {
-            LocalDate trimmedDeadline = LocalDate.parse(deadline.trim());
+            LocalDate trimmedDeadline = LocalDate.parse(deadline.trim(), DATE_FORMATTER);
             return new TaskDeadline(trimmedDeadline);
         } catch (DateTimeParseException e) {
             throw new ParseException(TaskDeadline.MESSAGE_CONSTRAINTS);
@@ -199,7 +200,7 @@ public class ParserUtil {
         requireNonNull(date);
 
         try {
-            return LocalDate.parse(date.trim());
+            return LocalDate.parse(date.trim(), DATE_FORMATTER);
         } catch (DateTimeParseException e) {
             throw new ParseException(TimePeriod.MESSAGE_CONSTRAINTS_DATE);
         }

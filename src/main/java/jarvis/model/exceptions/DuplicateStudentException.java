@@ -1,8 +1,7 @@
 package jarvis.model.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Students (Students are considered duplicates if they have the
- * same identity).
+ * Signals that the operation will result in duplicate Students.
  */
 public class DuplicateStudentException extends RuntimeException {
     public DuplicateStudentException() {
