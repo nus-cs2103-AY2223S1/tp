@@ -159,10 +159,10 @@ TrackO's functionalities!
          It costs `$0.89` to make these keychains, and you will be selling them at `$3.50` each.
        * You can add these items to TrackO, with the following command:
       
-      ```
-      addi i/Teddy bear keychains q/350 
-      d/Great for kids! t/New sp/3.50 cp/0.89
-      ```
+         ```
+         addi i/Teddy bear keychains q/350 
+         d/Great for kids! t/New sp/3.50 cp/0.89
+         ```
       
        * This command also helps to add a short description to the item and tags it as `New`.
 
@@ -172,20 +172,20 @@ TrackO's functionalities!
 2. Next, we move on to order management:
 
     1. Adding an order: `addo`
-      * If you have a customer named `Jonathan Chee` living at `43 Clementi Road, 639433` with an email address `JonChee@gmail.com` and phone number of
+       * If you have a customer named `Jonathan Chee` living at `43 Clementi Road, 639433` with an email address `JonChee@gmail.com` and phone number of
         `96785944`. This customer has ordered 1 `Teddy bear keychain`.
-      * First, enter the customer details into the [command box](#layout) using the following command:
-        ```
-        addo n/Jonathan Chee p/96785944 e/JonChee@gmail.com  
-        a/43 Clementi Road, 639433
-        ```
-      * Next, to add the items ordered by the customer, enter the following command into the [command box](#layout):
-        ```
-        i/teddy bear keychains q/1
-        ```
-      * Lastly, type `done` to finish adding an order to TrackO!
+       * First, enter the customer details into the [command box](#layout) using the following command:
+         ```
+         addo n/Jonathan Chee p/96785944 e/JonChee@gmail.com  
+         a/43 Clementi Road, 639433
+         ```
+       * Next, to add the items ordered by the customer, enter the following command into the [command box](#layout):
+         ```
+         i/teddy bear keychains q/1
+         ```
+       * Lastly, type `done` to finish adding an order to TrackO!
         
-        You should see this order appear in TrackO at index 5 as shown below:
+         You should see this order appear in TrackO at index 5 as shown below:
 
     <div markdown="span" class="alert alert-primary">:bulb: **Note:**
     If an item is not in your inventory, TrackO does not allow you to add that item to an order!
@@ -194,9 +194,9 @@ TrackO's functionalities!
    2. Finding order(s): `findo`
       * Our application allows you to search for orders by different fields (e.g. payment status, delivery status, customer details).
       * To find orders to be delivered to `Clementi` which have not been paid for, enter the following command to the [command box](#layout):
-      ```
-      findo -P a/Clementi
-      ```
+         ```
+         findo -P a/Clementi
+         ```
    You should see these orders appear in the [order list](#layout).
 
    3. Listing order(s): `listo`
