@@ -1,7 +1,22 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.UnmarkQCommand.MESSAGE_UNMARK_QUESTION_SUCCESS;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_QUESTION;
+import static seedu.address.testutil.TypicalQuestions.getTypicalAddressBook;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -16,19 +31,7 @@ import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.QuestionBuilder;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.UnmarkQCommand.MESSAGE_UNMARK_QUESTION_SUCCESS;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_QUESTION;
-import static seedu.address.testutil.TypicalQuestions.getTypicalAddressBook;
 
 public class UnmarkQCommandTest {
 
