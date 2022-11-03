@@ -154,11 +154,11 @@ public class ParserUtil {
      */
     public static Goods parseGoods(String goods) throws ParseException {
         requireNonNull(goods);
-        String trimmedGoods = goods.trim();
+        String trimmedGoods = goods.trim().replaceAll("\\s{2,}", " ");
         if (!Goods.isValidName(trimmedGoods)) {
             throw new ParseException(Goods.MESSAGE_CONSTRAINTS);
         }
-        return new Goods(goods);
+        return new Goods(trimmedGoods);
     }
 
     /**
@@ -171,7 +171,7 @@ public class ParserUtil {
         requireNonNull(price);
         String trimmedPrice = price.trim();
         Price.parsePriceArguments(trimmedPrice);
-        return new Price(price);
+        return new Price(trimmedPrice);
     }
 
     /**
@@ -184,7 +184,7 @@ public class ParserUtil {
         requireNonNull(quantity);
         String trimmedQuantity = quantity.trim();
         Quantity.parseQuantityArguments(trimmedQuantity);
-        return new Quantity(quantity);
+        return new Quantity(trimmedQuantity);
     }
 
 
@@ -200,6 +200,6 @@ public class ParserUtil {
         if (!Date.isValidDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new Date(date);
+        return new Date(trimmedDate);
     }
 }
