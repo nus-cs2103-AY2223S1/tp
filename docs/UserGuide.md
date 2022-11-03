@@ -109,6 +109,7 @@ This section gives a breakdown of each attribute and its parameter counterpart.
 #### Price
 * Refers to the general price to purchase a unit for a property.
 * Each property can only have one price.
+* Max value is 2,147,483,647
 
 * Parameter: `p/`
 * Example: `p/1,000,000`
@@ -185,8 +186,6 @@ This section gives a breakdown of each attribute and its parameter counterpart.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/1,000,000 p/2,000,000`, only `p/2,000,000` will be taken.
-
-* For `PRICE` argument, max value is 2,147,483,647
 
 * Extraneous parameters or arguments for commands that do not any (such as `help`, `list`, `exit`, `clear -p`  and `clear -c`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
