@@ -32,26 +32,27 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
 ## Table of Contents
 
 1. [Using this Guide](#using-this-guide)
-2. [Useful Notation](#useful-notations)
+2. [Useful Notations and Glossary](#useful-notations-and-glossary)
 3. [Quick start](#quick-start)
 4. [Features](#features)
    1. [Viewing help `help`](#viewing-help--help)
-   2. [Adding/Deleting contacts in CLInkedIn](#addingdeleting-contacts-in-clinkedin)
-      1. [Adding a person `add`](#adding-a-person-add)
-      2. [Deleting a person `delete`](#deleting-a-person--delete)
-   3. [Adding/Editing/Deleting Tag Types in CLInkedIn](#addingdeleting-contacts-in-clinkedin)
+   2. [Adding/Deleting candidates in CLInkedIn](#addingdeleting-candidates-in-clinkedin)
+      1. [Adding a candidate `add`](#adding-a-candidate-add)
+      2. [Deleting a candidate `delete`](#deleting-a-candidate--delete)
+   3. [Adding/Editing/Deleting Tag Types in CLInkedIn](#addingeditingdeleting-tag-types-in-clinkedin)
       1. [Creating a custom tag type `createTagType`](#creating-a-custom-tag-type-createtagtype)
       2. [Editing tag type name `editTagType`](#editing-tag-type-name-edittagtype)
       3. [Deleting an existing tag type `deleteTagType`](#deleting-an-existing-tag-type-deletetagtype)
-   4. [Modifying contacts in CLInkedIn](#modifying-contacts-in-clinkedin)
-      1. [Editing a person `edit`](#editing-a-person--edit)
-      2. [Adding an optional tag `addTag`](#adding-a-tag-to-an-existing-person--addtag)
-      3. [Deleting an optional tag `deleteTag`]([#deleting-a-tag-of-an-existing-person--deletetag)
+   4. [Modifying entries in CLInkedIn](#modifying-entries-in-clinkedin)
+      1. [Editing a candidate `edit`](#editing-a-candidate--edit)
+      2. [Adding an optional tag `addTag`](#adding-a-tag-to-an-existing-candidate--addtag)
+      3. [Deleting an optional tag `deleteTag`]([#deleting-a-tag-of-an-existing-candidate--deletetag)
       4. [Adding optional information `addNote`](#adding-optional-information-addnote)
       5. [Deleting optional information `deleteNote`](#deleting-optional-information-deletenote)
       6. [Adding optional rating `addRate`](#adding-optional-rating-addrate)
-      7. [Adding optional links `addLink`](#adding-optional-links-addlink)
-      8. [Deleting links `deleteLink`](#deleting-links-deletelink)
+      7. [Deleting optional rating `deleteRate`](#deleting-optional-rating-deleterate)
+      8. [Adding optional links `addLink`](#adding-optional-links-addlink)
+      9. [Deleting optional links `deleteLink`](#deleting-optional-links-deletelink)
    5. [Modifying contacts view in CLInkedIn](#modifying-contacts-view-in-clinkedin)
       1. [Viewing the details of a person `view`](#viewing-the-details-of-a-person--view)
       2. [Listing all persons `list`](#listing-all-persons--list)
@@ -61,8 +62,8 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
       6. [Undoing previous command `undo`](#undoing-previous-command-undo)
       7. [Redoing previous command `redo`](#redoing-previous-command-redo)
       8. [Viewing statistics `stats`](#viewing-statistics-based-on-ratings-of-candidates-stats)
-      9. [Importing contacts `import`](#importing-an-addressbook-import)
-      10. [Exporting contacts `export`](#importing-an-addressbook-import)
+      9. [Exporting the data in CLInkedIn `export`](#exporting-the-data-in-clinkedin-export)
+      10. [Importing data into CLInkedIn `import`](#importing-data-into-clinkedin-import)
       11. [Exiting CLInkedIn `exit`](#exiting-clinkedin--exit)
    6. [Miscellaneous Features/Commands](#miscellaneous-featurescommands)
       1. [Saving the data](#saving-the-data)
@@ -72,14 +73,12 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
 
 ## Using this guide
 
-If this is the first time you are viewing this user guide, do read the section on [Introduction to CLInkedIn](#introduction). Otherwise,
 - If you are just setting up, please take a look at [Quick start](#quick-start).
 - If you are unsure of how to use CLInkedIn, the [Command Summary](#command-summary) table is a good place to start. 
 - If you are a developer and want to help out, please take a look at the [CLInkedIn Developer Guide](https://ay2223s1-cs2103t-t13-3.github.io/tp/DeveloperGuide.html).
- 
 
 --------------------------------------------------------------------------------------------------------------------
-## Useful Notations
+## Useful Notations and Glossary 
 
 While exploring CLInkedIn's features with this user guide, do take note of these symbols used in the user guide and what information they represent.
 
@@ -90,20 +89,31 @@ While exploring CLInkedIn's features with this user guide, do take note of these
 | :bulb: | Additional information such as tips or notes |
 | :wrench: | Help with common technical issues |
 
+The following glossary table provides clarification of the terms commonly used in CLInkedIn:
+
+|   Term    | Meaning                                                                                                                                             |
+|:---------:|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Candidate | An entry in CLInkedIn. You can add a candidate with the `add` command.                                                                              |
+|  Status   | Application stage the candidate is in. Example: `Application Received`, `OA in Progress`, `Shortlisted for Interview`, `Accepted`, `Rejected`, etc. |
+|   Note    | Optional description of candidate related to their information.                                                                                     |
+|  Rating   | Numerical representation of candidate, 1 means that candidate is least desirable, 10 means that the candidate is most desirable.                    |
+|   Links   | Webpages to find more information about the candidate.                                                                                              |
+| TAG_TYPE  | Description of tag, eg: GPA, Skill, Degree, Job Type, etc. Only used in the following commands `createTagType`, `editTagType`, `deleteTagType`.     |
+| TAG_ALIAS | Prefix for tag type. Used in `add` and `edit` commands to specify prefix of attribute.                                                              |
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Ensure you have Java [`11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above installed in your Computer.
 
-1. Download the latest `CLInkedIn.jar` from [here](https://github.com/AY2223S1-CS2103T-T13-3/tp/releases).
+2. Download the latest `CLInkedIn.jar` from [here](https://github.com/AY2223S1-CS2103T-T13-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your `CLInkedIn` application.
+3. Copy the file to the folder you want to use as the _home folder_ for your `CLInkedIn` application.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -116,7 +126,7 @@ While exploring CLInkedIn's features with this user guide, do take note of these
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -151,10 +161,11 @@ While exploring CLInkedIn's features with this user guide, do take note of these
 
 ## Viewing help : `help`
 
-Shows a message explaining how to access the help page, as well as a list of commands and their descriptions.
+You can use this command to view a message explaining how to access the help page, as well as a list of commands and their descriptions.
 Alternatively, you can obtain help on a specific command by typing `help` followed by the command name.
 
 ![help message](images/helpMessage.png)
+Above is a screenshot of the help pop up window when the `help` command is input.
 
 Format:
 
@@ -171,13 +182,13 @@ Examples:
 - `help add` will display the usage of the `add` command.
 - `help 123` will display an error message as `123` is not a valid command name.
 
-## Adding/Deleting contacts in CLInkedIn
+## Adding/Deleting candidates in CLInkedIn
 
-The following functions deal with adding or deleting contacts from your address book in CLInkedIn.
+You can add or delete candidates from your address book in CLInkedIn.
 
-### Adding a person: `add`
+### Adding a candidate: `add`
 
-Adds a person to the address book.
+Adds a candidate to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/STATUS [note/NOTE] [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​ [rate/RATING] [l/LINK]…​`
 
@@ -191,13 +202,12 @@ You can have any number and any kind of tags (including 0).
 
 Examples:
 
-- `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/OA in Progress st/Java dt/Bachelors jt/Internship rate/4`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/OA in Progress st/Java dt/Bachelors jt/Internship rate/4` adds a candidate of name `John Doe`, phone number `98765432`, email `johnd@example.com`, address `John street, block 123, #01-01`, status `OA`, skill tag `Java`, degree tag `Bachelors`, job tag of `Internship` and rating of `4`.
+* `add n/Betsy Crowe st/java e/betsycrowe@example.com a/Newgate Prison p/1234567 s/Rejected` adds a candidate of name `Betsy Crowe`, skill tag of `java`, email of `betsycrowe@example.com`, address of `Newgate Prison` and status of `Rejected`.
 
-* `add n/Betsy Crowe st/java e/betsycrowe@example.com a/Newgate Prison p/1234567 s/Rejected`
+### Deleting a candidate : `delete`
 
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
+Deletes the candidate of that index from the address book.
 
 Format: `delete INDEX`
 
@@ -221,7 +231,7 @@ Format: `createTagType TAG_TYPE TAG_ALIAS`
 - Creates a new `TAG_TYPE` tag type.
 - `TAG_ALIAS` can be used to add tags to this custom tag type.
 
-Examples:
+Example:
 
 - `createTagType GPA gpat` creates a tag type `GPA` with `gpat` as its tag alias.
 
@@ -235,9 +245,7 @@ Edits the name and alias of an existing tag type to `NEW_TAG_TYPE` and `NEW_TAG_
 
 Format: `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS`
 
-Examples: `editTagType GPA-Grade gpat-grdt`
-
-- Edits name of the `GPA` tag type to `Grade` and its tag alias from `gpat` to `grdt`
+Example: `editTagType GPA-Grade gpat-grdt` edits name of the `GPA` tag type to `Grade` and its tag alias from `gpat` to `grdt`
 
 ### Deleting an existing tag type: `deleteTagType`
 
@@ -245,17 +253,15 @@ Deletes an existing tag type and its corresponding tag alias.
 
 Format: `deleteTagType TAG_TYPE`
 
-Examples: `deleteTagType GPA`
+Example: `deleteTagType GPA` deletes the `GPA` tag type.
 
-- Deletes the `GPA` tag type.
+## Modifying entries in CLInkedIn
 
-## Modifying contacts in CLInkedIn
+The following functions deal with modifying the information about the candidates saved in CLInkedIn.
 
-The following functions deal with modifying the information about the contacts saved in CLInkedIn.
+### Editing a candidate : `edit`
 
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
+Edits an existing candidate in the address book.
 
 Format: `edit INDEX [n/NEW_NAME] [p/NEW_PHONE] [e/NEW_EMAIL] [a/NEW_ADDRESS] [s/NEW_STATUS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jtt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<custom_tag_prefix>/OLD_TAG-NEW_TAG] [note/NEW_NOTE] [rate/NEW_RATING] [l/NEW_LINK]…​`
 
@@ -263,15 +269,15 @@ Format: `edit INDEX [n/NEW_NAME] [p/NEW_PHONE] [e/NEW_EMAIL] [a/NEW_ADDRESS] [s/
 * At least one of the optional fields must be provided.
 * While editing the **Skill** tags, the existing `OLD_SKILL` of the person will be renamed to `NEW_SKILL` provided the Skill Tag Type has not been deleted (Same for **Degree**, **JobType** and **Custom** tags).
 * While editing the **Notes** of a person, their existing notes will be overwritten by the new input. Therefore, it is not possible to edit individual notes (i.e. if you input `edit 1 note/Good at Java` and the person already has a note `Good at Python`, the person's note(s) will be changed to `Good at Java`).
-* While editing the **Links** of a person, their existing links will be overwritten by the new input. Therefore, it is not possible to edit individual links (i.e. if you input `edit 1 l/https://github.com/JohnDoe` and the person already has a link `https://instagram.com/JohnDoe`, the person's link(s) will be changed to `https://github.com/JohnDoe`). The `l/` prefix can be used multiple times in the command to add multiple links.
+* While editing the **Links** of a person, their existing links will be overwritten by the new input. Therefore, it is not possible to edit individual links (i.e. if you input `edit 1 l/https://github.com/JohnDoe` and the person already has a link `https://instagram.com/JohnDoe`, the person's link(s) will be changed to `https://github.com/JohnDoe`). The `l/` prefix can be used multiple times in the command to add multiple links. 
 
 Examples:
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 dt/Bachelors-Masters` Edits the Degree tag `Bachelors` of the 2nd person to be `Masters`.
-* `edit 3 n/PersonA n/PersonB` Edits the name of the 3rd person first to `PersonA` and then to `PersonB`. Hence the final name of 3rd person is set to `PersonB`.
-* `edit 2 l/https://github.com/JohnDoe l/https://instagram.com/JohnDoe` Edits by replacing all existing links with the provided links.
+* `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+* `edit 2 dt/Bachelors-Masters` edits the Degree tag `Bachelors` of the 2nd person to be `Masters`.
+* `edit 3 n/PersonA n/PersonB` edits the name of the 3rd person first to `PersonA` and then to `PersonB`. Hence the final name of 3rd person is set to `PersonB`.
+* `edit 2 l/https://github.com/JohnDoe l/https://instagram.com/JohnDoe` edits by replacing all existing links with the provided links.
 
-### Adding a tag to an existing person : `addTag`
+### Adding a tag to an existing candidate : `addTag`
 
 Adds a tag to an existing person in the address book.
 
@@ -281,10 +287,10 @@ Format: `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<alias>
 * At least one of the optional fields must be provided.
 
 Examples:
-* `addTag 3 st/Java` Adds a **Skill** tag `Java` to the 3rd person.
-* `edit 2 dt/Bachelors` Adds a **Degree** tag `Bachelors` to the 2nd person.
+* `addTag 3 st/Java` Adds a Skill tag `Java` to the 3rd candidate.
+* `edit 2 dt/Bachelors` Adds a Degree tag `Bachelors` to the 2nd candidate.
 
-### Deleting a tag of an existing person : `deleteTag`
+### Deleting a tag of an existing candidate : `deleteTag`
 
 Deletes a tag of an existing person in the address book.
 
@@ -294,8 +300,8 @@ Format: `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jtt/JOB_TYPE_TAG] [<ali
 * At least one of the optional fields must be provided.
 
 Examples:
-* `deleteTag 3 st/Java` Deletes the **Skill** tag `Java` of the 3rd person.
-* `deleteTag 2 dt/Bachelors` Deletes the **Degree** tag `Bachelors` of the 2nd person.
+* `deleteTag 3 st/Java` Deletes the Skill tag `Java` of the 3rd candidate.
+* `deleteTag 2 dt/Bachelors` Deletes the Degree tag `Bachelors` of the 2nd candidate.
 
 ### Adding optional information: `addNote`
 
@@ -304,8 +310,7 @@ Adds additional optional information (notes) to a person
 Format: `addNote INDEX note/NOTE`
 * The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​
-
-- The note's content will be taken as the input after the `note/` prefix.
+* The note's content will be taken as the input after the `note/` prefix.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 A person can have any number of notes (including 0).
@@ -334,13 +339,13 @@ Format: `deleteNote INDEX`
 <strong>This command will delete all the notes</strong> of the person. CLInkedIn does not support deleting individual notes. Calling this command will delete all the notes of the person. If you wish to edit the existing notes of the person, please refer to the [`edit`](#editing-a-person--edit) command for more information.
 </div>
 
-Examples:
+Example:
 
-- `deletNote 4` deletes all notes of the 4th person in the address book.
+- `deleteNote 4` deletes all notes of the 4th person in the address book.
 
 ### Adding optional rating: `addRate`
 
-Adds a numerical representation of candidates to make quick comparisons between candidates.
+Adds Rating, a numerical representation of candidates, to make quick comparisons between candidates.
 
 Format: `addRate INDEX rate/<RATING>`
 
@@ -348,9 +353,22 @@ Format: `addRate INDEX rate/<RATING>`
 - The index must be a positive integer 1, 2, 3, …​
 - The rating must be an integer between 1 and 10 inclusive.
 
-Examples:
+Example:
 
 - `addRate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
+
+### Deleting optional rating: `deleteRate`
+
+Deletes rating of candidates. 
+
+Format: `deleteRate INDEX`
+
+- The index refers to the index number shown in the displayed person list.
+- The index must be a positive integer 1, 2, 3, …​
+
+Example:
+
+- `deleteRate 4` deletes the rating of the 4th candidate in the address book.
 
 ### Adding optional links: `addLink`
 
@@ -362,17 +380,17 @@ Format: `addLink INDEX l/<LINK>`
 - The index must be a positive integer 1, 2, 3, …​
 - The link must be a valid link with a protocol.
 
-Examples:
+Example:
 
-- `addLink 2 l/https://www.instagram.com l/https://github.com` adds links to the instagram and github page ` to the 2nd person in the address book.
+- `addLink 2 l/https://www.instagram.com l/https://github.com` adds links to the instagram and github page ` to the 2nd candidate in the address book.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 If the link is not a platform recognised by CLInkedIn (LinkedIn, GitHub, Instagram, Telegram, Twitter, Snapchat, Discord, Facebook) then a general icon for links is displayed.
 </div>
 
-### Deleting links: `deleteLink`
+### Deleting optional links: `deleteLink`
 
-Deletes all links of a person.
+Deletes all links of a candidate.
 
 Format: `deleteLink INDEX`
 
@@ -381,13 +399,13 @@ Format: `deleteLink INDEX`
 
 Examples:
 
-- `deleteLink 4` deletes all links of the 4th person in the address book.
+- `deleteLink 4` deletes all links of the 4th candidate in the address book.
 
 ## Modifying contacts view in CLInkedIn
 
 ### Viewing the details of a person : `view`
 
-Show details of a person in CLInkedIn.
+Show details of a candidate in CLInkedIn.
 
 Format: `view INDEX`
 
@@ -438,10 +456,9 @@ There are 2 types of find commands: general `find` and `find` by prefix.
 
 * Prefixes are used to specify which fields to search for the keywords in.
 
-Format: `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/STATUS] [rate/RATING]
+Format: `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/STATUS] [rate/RATING] [MORE_TAGGED_KEYWORDS]...`
 
-[MORE_TAGGED_KEYWORDS]...`
-
+<div markdown="span" class="alert alert-primary">:bulb: **Note**
 - The search is case-insensitive. e.g `hans` will match `Hans`
 - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 - The personal information and tags will be searched.
@@ -450,17 +467,15 @@ Format: `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMA
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 - Search can be further refined by specifying the type of tag to search for.
   e.g. `find n/John p/867` will return `John Doe` with phone number `8675309`
+</div>
 
 Examples:
-
 - `find John` returns `john` and `John Doe`
 - `find Java` returns list of candidates with Java skills
-
 - `find alex david` returns `Alex Yeoh`, `David Li`
 - `find n/John` returns `John Doe`
 - `find n/alex n/david` returns `Alex Yeoh`, `David Li`
-
-* `find s/application pending` returns list of candidates with status `application pending`
+- `find s/application pending` returns list of candidates with status `application pending`
 
 ### Clearing all contacts : `clear`
 
@@ -475,7 +490,8 @@ Reverts the address book to the state before the previous command was executed.
 Format: `undo`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Undo can be used multiple times to undo multiple commands.
+- Undo can be used multiple times to undo multiple commands.
+- Features that modify contacts view (`sort`, `view`) cannot be undone.
 </div>
 
 ### Redoing previous command: `redo`
@@ -485,7 +501,7 @@ Reverts the address book to the state before the previous undo command was execu
 Format: `redo`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Redo can be used multiple times to redo multiple commands.
+- Redo can be used multiple times to redo multiple commands.
 </div>
 
 ### Viewing Statistics based on ratings of candidates: `stats`
@@ -504,7 +520,7 @@ Format: `stats`
 Example:
 * `stats` displays the rating statistics of the candidates in the current filtered list.
 
-### Exporting the addressbook: `export`
+### Exporting the data in CLInkedIn: `export`
 
 Exports the data for the displayed list of candidates to the specified location in the specified format. 
 
@@ -520,14 +536,14 @@ Examples:
 Alternatively to export files using GUI, you can either go to `Export` -> `Export` in the Menu Bar or enter the command `export`.
 </div>
 
-### Importing an addressbook: `import`
+### Importing data into CLInkedIn: `import`
 
 Imports the data for candidates from the specified file.
 
 Format: `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>`
 * The format of the file must be JSON or CSV.
-* Data being import will be merged with the existing data in the addressbook.
-* Candidates whose name already exists in the addressbook will be ignored.
+* Data being import will be merged with the existing data in CLInkedIn.
+* Candidates whose name already exists in CLInkedIn will be ignored.
 
 Examples:
 * `import path//Desktop/sample/data.csv` imports the list of candidates from `data.csv` in the `sample` directory of the `Desktop` to the addressbook.
@@ -541,11 +557,11 @@ Alternatively to import files using GUI, you can either go to `Import` -> `Impor
 Exits the program.
 
 Format: `exit`
-* Alternatively, you can also go to `File' -> `Exit` in the Menu Bar.
+* Alternatively, you can also go to `File` -> `Exit` in the Menu Bar.
 
 ## Miscellaneous Features/Commands
 
-The following miscallenous features are implemented in CLInkedIn and are available to users.
+The following miscellaneous features are implemented in CLInkedIn and are available to users.
 
 ### Saving the data
 

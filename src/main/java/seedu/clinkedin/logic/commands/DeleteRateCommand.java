@@ -18,7 +18,7 @@ import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
  * Deletes rating of an existing person in the address book.
  */
 public class DeleteRateCommand extends Command {
-    public static final String COMMAND_WORD = "deleterate";
+    public static final String COMMAND_WORD = "deleteRate";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the rating for the person identified by the index number used"
