@@ -237,28 +237,11 @@ public class Travelr implements ReadOnlyTravelr {
     }
 
     /**
-     * Sorts the BucketList according to provided Comparator.
+     * Sorts the Event list according to provided Comparator.
      * @param comp
      */
-    public void sortBucketList(Comparator<Event> comp) {
+    public void sortEvents(Comparator<Event> comp) {
         bucketList.sort(comp);
-        comp = this.makeBucketComparator(comp);
         allEventsList.sort(comp);
-    }
-
-    private Comparator<Event> makeBucketComparator(Comparator<Event> comp) {
-        return (x, y) -> {
-            int xInBucket = bucketList.contains(x) ? 1 : 0;
-            int yInBucket = bucketList.contains(y) ? 1 : 0;
-            // This partitions the events within bucket list and events outside the bucket list.
-            if (xInBucket != yInBucket) {
-                return xInBucket - yInBucket;
-            } else if (xInBucket == 0) {
-                //This checks if both events are outside the bucket list. If so, do nothing.
-                return 0;
-            } else {
-                return comp.compare(x, y);
-            }
-        };
     }
 }

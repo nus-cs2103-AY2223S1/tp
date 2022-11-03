@@ -297,7 +297,7 @@ Examples:
 | `eventcount` | Sort by trips' number of events in ascending order |
 
 #### Sorting events within bucketlist: `sort-e`
-Sorts the events in Bucket List according to alphabetical order.
+Sorts all events according to alphabetical order.
 
 Format: `sort-e [r/]`
 - Order of sort reversed when the `r/` prefix is provided.
