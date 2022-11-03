@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import static seedu.address.commons.util.StringUtil.trimAndReplaceMultipleSpaces;
-import static seedu.address.logic.parser.ParserUtil.parseCap;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -13,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.job.Id;
 import seedu.address.model.job.Title;
 import seedu.address.model.person.Address;
@@ -61,7 +61,7 @@ class JsonAdaptedPerson {
             @JsonProperty("cap") String cap,
             @JsonProperty("university") String university,
             @JsonProperty("major") String major,
-                             @JsonProperty("id") String id,
+            @JsonProperty("id") String id,
             @JsonProperty("title") String title,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = trimAndReplaceMultipleSpaces(name);
@@ -175,8 +175,11 @@ class JsonAdaptedPerson {
         if (cap == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Cap.class.getSimpleName()));
         }
-        // isValidCap is already handled inside the parseCap() method
-        final Cap modelCap = parseCap(cap);
+        double[] capValues = StringUtil.convertToDoubleArray(StringUtil.splitBySlash(cap));
+        if (!Cap.isValidCap(capValues[0], capValues[1])) {
+            throw new IllegalValueException(Cap.MESSAGE_CONSTRAINTS);
+        }
+        final Cap modelCap = new Cap(capValues[0], capValues[1]);
 
         if (university == null) {
             throw new IllegalValueException(

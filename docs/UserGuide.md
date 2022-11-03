@@ -7,7 +7,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 # Table of Contents
 
-1. [Quick Start](#quick-start)
+1. [Quick Start](#1-quick-start)
 2. [Fields](#2-fields)
    1. [Identity Fields](#21-identity-fields)
    2. [Data Fields](#22-data-fields)
@@ -305,10 +305,14 @@ Switches between different lists in InternConnect stored in `data/` folder.
 Format: `checkout FILE_NAME`
 
 * `FILE_NAME` should not include any extension, as it would always be a JSON file.
-* The command will create a new list populated with the sample data if the specified `FILE_NAME.json` doesn't exist. Otherwise, it will switch to a previously created list.
+* The command will attempt to load the specified `FILE_NAME.json` file in the `data/` folder.
+* If the file contains invalid data or have an invalid format, the contents of the file will be erased and an empty 
+addressbook will be loaded.
+* If the file doesn't exist, a new file will be created, populated with sample data.
+* If the file contains valid data, the file will be loaded.
 
 Examples:
-* `checkout 27-oct-2022` loads data from `data/27-oct-2022.json` if it exists. Otherwise, a new file will be created and populated with sample data.
+* `checkout 27-oct-2022` attempt to load data from `data/27-oct-2022.json`.
 
 
 ### 3.11 Clearing all entries: `clear`
