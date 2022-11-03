@@ -10,7 +10,7 @@ CinternS is a desktop app for managing internship applications, optimised for us
 Given below are my contributions to the project.
 
 * **New Feature**: Include `Interview` as one of the fields of `Application`.
-    * What it does: `Interview` contains its own fields, including `Round`, `InterviewDate`, `InterviewTime` and `Location`. All of them which in turns are included into a separated list to be displayed on the GUI.
+    * What it does: `Interview` contains its own fields, including `Round`, `InterviewDate`, `InterviewTime` and `Location`, all of which are in turn included into a separated list to be displayed on the GUI.
     * Justification:  This allows the user to have a quick and clear glance at his / her past and future interviews so that the user can better manage his / her internship applications.
     * Highlights: This enhancement provides two additional commands:
       1. `AddInterviewCommand`: Allows user to add new interview to existing application.
