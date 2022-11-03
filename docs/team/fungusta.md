@@ -5,8 +5,9 @@ title: Peter Fung's Project Portfolio Page
 
 ### Project: FABook
 
-FABook is for mid-tier financial advisors who have to manage many current and potential clients. They often have trouble scheduling client meet-ups for both time and location as they have difficulty keeping track of clients’ information (name, address, portfolio).
-They want a product to store all this information in one place.
+FABook is your **dependable assistant** who **reminds you of meetings** and **consolidates crucial information** like financial plans and client information right at your fingertips! You can now focus on giving your full attention to your clients without having to worry about things slipping your mind.
+
+**FABook is optimized for a financial adviser to use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FABook can get your contact management tasks done faster than traditional GUI apps.
 
 Given below are my contributions to the project.
 
@@ -19,16 +20,17 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=fungusta&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=fungusta&tabRepo=AY2223S1-CS2103T-T10-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-    * [to be added soon]
+    * Set up GitHub Issues and Milestones for tasks to be completed before certain deadlines.
+    * Contributed in reviewing Pull Requests made by other members of the team.
 
 * **Enhancements to existing features**:
     * Contact Finding by Address
-      * Finds and lists out all people in FABook that address contains any of the keywords input by user
+      * Finds and lists out all people in FABook that address contains any of the keywords input by user.
+      * Improved polymorphism of `Command` class by adding an abstract child `FindCommand` for find commands.
 
 * **Documentation**:
-    * Issue Tracker
-      * Set up issue tracker for team to keep track of tasks at hand
-      * Set up milestones with deadlines to ensure that deadlines are met
+  * User Guide:
+    * Added information for setting client PDF files and opening client PDF files.
+    * Fixed typos and mistakes that occurred.
+    * Updated format for commands.
 
-* **Community**:
-    * [to be added soon]
