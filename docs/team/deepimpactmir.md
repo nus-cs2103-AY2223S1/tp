@@ -9,35 +9,45 @@ Survin is a desktop application for surveyors to use to keep track of people the
 
 Given below are my contributions to the project.
 
-- **New Feature**: Added the ability to delete surveyees by attributes.
+-   **New Feature**: `mark` and `unmark` commands.
 
-  - What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  - Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  - Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  - Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+    -   What it does: Allows the user to mark whether a certain survey of a person is done. Users can use unmark to set it as not done.
+    -   Justification: This feature allows the user to track whether surveys are completed or not, which helps the user to better keep track of the progress of the surveys.
+    -   Highlights: Implementing this feature necessitate a change in how data is stored since we have to store a new boolean field `isDone` in `Survey` to ensure that the status of a survey is persistent.
 
-- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=deepimpactmir&breakdown=true)
+-   **Updated Feature**: `delete` surveyees by attributes.
 
-- **Project management**:
+    -   What it does: Allows the user to delete surveyees by `RACE`, `RELIGION` or `SURVEY`.
+    -   Justification: This is particularly helpful for surveyors since they might want to delete all persons that is in a particular survey.
 
-  - To be added soon
+-   **New Feature**: `undo` command.
 
-- **Enhancements to existing features**:
+    -   What it does: allows the user to undo all previous commands one at a time. Note that we only implemented `undo` but not `redo`.
+    -   Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
+    -   Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+    -   Credits: Borrowed heavily from AddressBook-4 with little changes.
 
-  - To be added soon
+-   **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=deepimpactmir&breakdown=true)
 
-- **Documentation**:
+-   **Project management**:
 
-  - User Guide:
-    - Added documentation for the features `delete` [\#56]()
-  - To be added soon
+    -   Upgraded the versions of `gradle`, `junit`, `javafx` in `build.gradle` [\#83](https://github.com/AY2223S1-CS2103-F13-2/tp/pull/83)
 
-- **Community**:
+-   **Enhancements to existing features**:
 
-  - To be added soon
+    -   To be added soon
 
-- **Tools**:
+-   **Documentation**:
 
-  - To be added soon
+    -   User Guide:
+        -   Add documentation for the features `delete`, `mark`, `undo`.
 
-- _{you can add/remove categories in the list above}_
+-   **Community**:
+
+    -   To be added soon
+
+-   **Tools**:
+
+    -   To be added soon
+
+-   _{you can add/remove categories in the list above}_
