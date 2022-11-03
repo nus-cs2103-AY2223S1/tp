@@ -125,4 +125,12 @@ public class AddToGroupCommand extends Command {
         return groupedPerson;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddToGroupCommand // instanceof handles nulls
+                && index.equals(((AddToGroupCommand) other).index)
+                && groupToAdd.equals(((AddToGroupCommand) other).groupToAdd));
+    }
+
 }

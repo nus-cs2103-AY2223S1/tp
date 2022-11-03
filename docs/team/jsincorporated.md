@@ -9,6 +9,19 @@ uNivUSal is a desktop application used to link CS2103T users to all the modes of
 
 Given below are my contributions to the project.
 
+* **New Feature**: Added the ability to group contacts.
+  * What it does: Allows the user to categorize their contacts into groups.
+  * Commands: `addtogroup` `ungroup` `group`
+  * Justification: This feature significantly improves the usability of the product as it allows users to more effectively manage their contacts.
+  * Highlights: This enhancement also adds a popup window for each group, along with an `Email All` button which should be useful for TAs and Professors.
+
+
+* **New Feature**: Added the ability to email all the contacts in a group.
+  * What it does: Allows the user to contact all members of a group by email with a single command.
+  * Justification: As our application is targeted towards TAs and Professors, this feature significantly enhances the application as they often have to message all students in a tutorial/module.
+  * Highlights: This command works with any web browsers and email clients, whichever is set as the default on the user's computer.
+
+
 * **New Feature**: Added the ability to undo/redo previous commands.
     * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
     * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
@@ -17,7 +30,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jsincorporated&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16)
 
 * **Project management**:
     * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
