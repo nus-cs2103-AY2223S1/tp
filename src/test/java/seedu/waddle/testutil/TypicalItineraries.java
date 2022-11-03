@@ -12,12 +12,20 @@ import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_TIME_0000;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_TIME_1200;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_TIME_1715;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_TIME_2330;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.waddle.commons.core.index.Index;
+import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Waddle;
+import seedu.waddle.model.item.Item;
+import seedu.waddle.model.itinerary.DayNumber;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
@@ -61,6 +69,28 @@ public class TypicalItineraries {
     }
 
     public static List<Itinerary> getTypicalItineraries() {
+        List<Item> typicalItems = TypicalItems.getTypicalItems();
+
+        // configure AUTUMN
+        AUTUMN.addItem(typicalItems.get(0));
+        try {
+            AUTUMN.planItem(Index.fromZeroBased(0), new DayNumber("1"), VALID_START_TIME_2330);
+        } catch (CommandException e) {
+            assert false : e.getMessage();
+        }
+
+        // configure GRADUATION
+        GRADUATION.addItem(typicalItems.get(1));
+        GRADUATION.addItem(typicalItems.get(2));
+        GRADUATION.addItem(typicalItems.get(3));
+        try {
+            GRADUATION.planItem(Index.fromZeroBased(0), new DayNumber("1"), VALID_START_TIME_0000);
+            GRADUATION.planItem(Index.fromZeroBased(0), new DayNumber("1"), VALID_START_TIME_1715);
+            GRADUATION.planItem(Index.fromZeroBased(0), new DayNumber("2"), VALID_START_TIME_1200);
+        } catch (CommandException e) {
+            assert false : e.getMessage();
+        }
+
         return new ArrayList<>(Arrays.asList(SPRING, AUTUMN, GRADUATION));
     }
 }

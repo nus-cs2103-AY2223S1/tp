@@ -14,6 +14,7 @@ import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITEM_DURATION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.waddle.testutil.Assert.assertThrows;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -94,20 +95,20 @@ public class CommandTestUtil {
     public static final String VALID_DURATION_ART = "60";
     public static final String VALID_DURATION_BEACH = "240";
 
-    public static final String VALID_START_TIME_SHOPPING = "23:30";
-    public static final String VALID_START_TIME_SKINNY = "00:00";
-    public static final String VALID_START_TIME_ART = "17:15";
-    public static final String VALID_START_TIME_BEACH = "12:00";
+    public static final LocalTime VALID_START_TIME_2330 = LocalTime.parse("23:30");
+    public static final LocalTime VALID_START_TIME_0000 = LocalTime.parse("00:00");
+    public static final LocalTime VALID_START_TIME_1715 = LocalTime.parse("17:15");
+    public static final LocalTime VALID_START_TIME_1200 = LocalTime.parse("12:00");
 
     public static final String VALID_COST_SHOPPING = "0";
     public static final String VALID_COST_SKINNY = "10";
     public static final String VALID_COST_ART = "100";
     public static final String VALID_COST_BEACH = "1000";
 
-    public static final String VALID_PRIORITY_SHOPPING = "2";
-    public static final String VALID_PRIORITY_SKINNY = "3";
-    public static final String VALID_PRIORITY_ART = "4";
-    public static final String VALID_PRIORITY_BEACH = "5";
+    public static final int VALID_PRIORITY_SHOPPING = 2;
+    public static final int VALID_PRIORITY_SKINNY = 3;
+    public static final int VALID_PRIORITY_ART = 4;
+    public static final int VALID_PRIORITY_BEACH = 5;
 
     public static final String ITEM_DESC_DESC_SHOPPING = " " + PREFIX_DESCRIPTION + VALID_ITEM_DESC_SHOPPING;
     public static final String ITEM_DESC_DESC_SKINNY = " " + PREFIX_DESCRIPTION + VALID_ITEM_DESC_SKINNY;
@@ -119,10 +120,10 @@ public class CommandTestUtil {
     public static final String ITEM_DURATION_DESC_ART = " " + PREFIX_ITEM_DURATION + VALID_DURATION_ART;
     public static final String ITEM_DURATION_DESC_BEACH = " " + PREFIX_ITEM_DURATION + VALID_DURATION_BEACH;
 
-    public static final String START_TIME_DESC_SHOPPING = " " + PREFIX_START_TIME + VALID_START_TIME_SHOPPING;
-    public static final String START_TIME_DESC_SKINNY = " " + PREFIX_START_TIME + VALID_START_TIME_SKINNY;
-    public static final String START_TIME_DESC_ART = " " + PREFIX_START_TIME + VALID_START_TIME_ART;
-    public static final String START_TIME_DESC_BEACH = " " + PREFIX_START_TIME + VALID_START_TIME_BEACH;
+    public static final String START_TIME_DESC_2300 = " " + PREFIX_START_TIME + VALID_START_TIME_2330;
+    public static final String START_TIME_DESC_0000 = " " + PREFIX_START_TIME + VALID_START_TIME_0000;
+    public static final String START_TIME_DESC_1715 = " " + PREFIX_START_TIME + VALID_START_TIME_1715;
+    public static final String START_TIME_DESC_1220 = " " + PREFIX_START_TIME + VALID_START_TIME_1200;
 
     public static final String COST_DESC_SHOPPING = " " + PREFIX_COST + VALID_COST_SHOPPING;
     public static final String COST_DESC_SKINNY = " " + PREFIX_COST + VALID_COST_SKINNY;
