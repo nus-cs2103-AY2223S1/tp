@@ -11,7 +11,8 @@ import modtrekt.model.module.ModCode;
  */
 public class CdModuleCommand extends Command {
     public static final String COMMAND_WORD = "cd";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " <module code>: cds into specified module.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " <alphanumeric mod code of 6-9 characters>: "
+            + "cds into specified module.\n"
             + COMMAND_WORD + " ..: cds out of current module.";
 
     @Parameter(description = "<module code>: the module code to cd into, or '..' to cd out.",

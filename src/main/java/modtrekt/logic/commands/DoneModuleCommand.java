@@ -19,7 +19,7 @@ public class DoneModuleCommand extends Command {
     public static final String COMMAND_WORD = "done module";
     public static final String COMMAND_ALIAS = "done mod";
 
-    @Parameter(description = "<module code>",
+    @Parameter(description = "<alphanumeric mod code of 6-9 characters>",
             required = true, converter = ModCodeConverter.class)
 
     private ModCode moduleCode;
