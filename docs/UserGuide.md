@@ -191,6 +191,14 @@ Examples:
 * `addEvent e/Shoe Sale d/30/05/2022 t/11:00 p/30 dollar discount on all shoes`
 * `addEvent e/Banana Discount d/20/04/2022 t/14:00 p/20 cent discount on all bananas`
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** A new event that has the same event title as an existing event in the application cannot be added to the application.<br><br>
+
+For example, if the application currently has a event with an event title `Car Sale`, the input `addEvent e/Car Sale d/10/10/2022 t/10:40 p/5000 dollars off all cars`
+will not run and will output the error message `This event already exists in the address book`.
+</div>
+
+
 ### Editing an event : `editEvent`
 
 Edits an existing event in the application.
