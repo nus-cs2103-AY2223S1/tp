@@ -58,14 +58,20 @@ A brief display of important information for **inventory** and **tasks**.
 
 ![LabelledStatsPanel](images/labelledstatspanel.png)
 
-**More information**
 
-* **(A)** `Incomplete` tasks refers to tasks that are shown as `Not Done`.
-* **(B)** `Overdue` tasks refers to tasks that are both `Not Done` and has a deadline that is
+  <details>
+  <summary style='font-size: 18px'>
+    More details (Click me)
+  </summary>
+  
+  * **(A)** `Incomplete` tasks refers to tasks that are shown as `Not Done`.
+
+  * **(B)** `Overdue` tasks refers to tasks that are both `Not Done` and has a deadline that is
   before the current date.
-  * For example: Today's date is **_11 Feb 2022_** and your task's deadline is _**10 Feb 2022**_, this will be counted as `Overdue`.
-* **(C)** `Upcoming` tasks refers to tasks that have deadlines that are **in the future and inclusive of today**, that are yet to be completed i.e. `Not Done`.
-  * For example: You have an incomplete task. Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or later**_, this will be counted as `Upcoming`.
+    * For example: Today's date is **_11 Feb 2022_** and your task's deadline is _**10 Feb 2022**_, this will be counted as `Overdue`.
+  * **(C)** `Upcoming` tasks refers to tasks that have deadlines that are **in the future and inclusive of today**, that are yet to be completed i.e. `Not Done`.
+    * For example: You have an incomplete task. Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or later**_, this will be counted as `Upcoming`.
+</details>
 
 ## 3.2 Colors used for Inventory
 
@@ -425,38 +431,42 @@ re-run Salesy.
 | 🟠&nbsp;Orange | Running at a `moderate` level, can consider restocking soon. | **More than and equal to 120%** of minimum stock specified and **less than 165%** of minimum stock. |
 | 🟢&nbsp;Green  | Running at a `healthy` level, no worries about restocking.   | **More than and equal to 165%** of minimum stock specified.                                         |
 
-<div markdown="span" class="alert alert-info">
+<details>
+  <summary style='font-size: 18px'>
+    Notes on how the colours are determined: (Click me)
+  </summary>
 
-**Notes on how the colours are determined:**
-
+**What is _minimum stock_?**
 * Minimum stock refers the minimum amount of stock in which the canteen vendor feel is required for
 daily operations.
-* The minimum stock is a parameter supplied by the user when using the `addItem` command.
+* The minimum stock is a parameter supplied by the user when using the [`addItem`](#41-add-suppliertasksupply-item-add) command.
 * Current stock refers to the amount of stock the canteen vendor current have in the inventory.
 
 **Example on how the colours are determined:**
 
 Context: a user wants to keep track of the amount of eggs in its inventory.
 
-For example, the minimum stock required for daily operation is 100.
+For example, the minimum stock required for daily operation is `100`.
 
-When it shows **green** colour: Our current stock is **More than and equal to 165%** of minimum stock specified.
+When it shows **green** colour: Our current stock is **More than and equal to `165%`** of minimum stock specified.
 
-1. For this case, 165% of 100 eggs is 165 eggs.
-2. If our current stock has 165 eggs and above it will display green.
+1. For this case, `165%` of `100` eggs is `165` eggs.
+2. If our current stock has `165` eggs and above it will display green.
 
-When it shows **yellow** colour: Our current stock must be **More than and equal to 120%** of minimum stock specified 
-and **less than 165%** of minimum stock specified.
+When it shows **yellow** colour: Our current stock must be **More than and equal to `120%`** of minimum stock specified 
+and **less than `165%`** of minimum stock specified.
 
-1. For this case, 120% of 100 eggs is 120 eggs and 165% if 100 eggs 165 eggs.
-2. If our current stock is between 120 eggs inclusive and 165 eggs exclusive it will display yellow.
+1. For this case, `120%` of `100` eggs is `120` eggs and `165%` if `100` eggs `165` eggs.
+2. If our current stock is between `120` eggs inclusive and `165` eggs exclusive it will display yellow.
 
-When it shows **red** colour: Our current stock must be **Less than 120%** of minimum stock specified.
+When it shows **red** colour: Our current stock must be **Less than `120%`** of minimum stock specified.
 
-1. For this case, 120% of 100 eggs is 120 eggs.
-2. If our current stock is less than 120 eggs it will display red.
+1. For this case, `120%` of `100` eggs is `120` eggs.
+2. If our current stock is less than `120` eggs it will display red.
 
-</div>
+</details>
+
+[Back to Colors](#32-colors-used-for-inventory)
 
 [//]: # (@@author hauchongtang-reused)
 [//]: # (Both definitions: 6.2 and 6.3 taken from https://byjus.com/gate/difference-between-cli-and-gui/#:~:text=GUI%20lets%20a%20user%20interact,offer%20both%20CLI%20and%20GUI.)
@@ -471,4 +481,4 @@ When it shows **red** colour: Our current stock must be **Less than 120%** of mi
 * In a GUI, you get various menus for making things easy, such as buttons, windows, scrollbars etc. It is very intuitive yet simple to use, even for a newbie.
 * In the case of Salesy, we utilize the GUI to give the user a visual view of their commands done from the CLI.
 
-[back to quick start](#1-quick-start)
+[Back to Top](#)
