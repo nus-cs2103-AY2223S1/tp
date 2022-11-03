@@ -10,7 +10,7 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
 public class IsRoomClean {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "IsRoomClean field should only contain any case-insensitive versions of the strings"
+            "IsRoomClean field should only contain any case-insensitive versions of the strings "
                     + "\"yes\", \"no\", \"y\" or \"n\".";
     public static final String VALIDATION_REGEX = "^yes$|^no$|^y$|^n$";
     public static final String DEFAULT_IS_ROOM_CLEAN = "yes";
