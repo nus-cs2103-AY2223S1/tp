@@ -33,6 +33,8 @@ public class ListMessageCommand extends MessageCommandGroup {
             return new CommandResult(MESSAGE_NO_MESSAGES);
         }
 
+        model.clearTargetPerson();
+
         return new CommandResult(MESSAGE_SUCCESS, SecondaryPaneState.MESSAGE_TEMPLATES);
     }
 

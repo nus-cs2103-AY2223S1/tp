@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.message.Message;
+import seedu.address.ui.SecondaryPaneState;
 
 /**
  *  Creates a message template in the address book.
@@ -41,7 +42,9 @@ public class CreateMessageCommand extends MessageCommandGroup {
         }
 
         model.createMessage(toCreate);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toCreate));
+        model.clearTargetPerson();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toCreate),
+                SecondaryPaneState.MESSAGE_TEMPLATES);
     }
 
     @Override

@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.message.Message;
+import seedu.address.ui.SecondaryPaneState;
 
 
 /**
@@ -47,7 +48,14 @@ public class DeleteMessageCommand extends MessageCommandGroup {
         Message message = messages.get(index.getZeroBased());
 
         model.deleteMessage(message);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, message));
+        model.clearTargetPerson();
+
+        if (model.getMessages().isEmpty()) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS, message),
+                SecondaryPaneState.WELCOME);
+        }
+        return new CommandResult(String.format(MESSAGE_SUCCESS, message),
+                SecondaryPaneState.MESSAGE_TEMPLATES);
     }
 
     @Override
