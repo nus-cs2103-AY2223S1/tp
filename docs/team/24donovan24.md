@@ -17,7 +17,7 @@ Given below are my contributions to the project.
 * **New Feature**: Sort command ([PR #100](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/100))
     * What it does: Allows users to sort any displayed list of exercises by date of completion.
     * Justification: This feature is essential as sorting the exercises by date of completion allows users to better track their workout progression.
-    * Highlights: 
+    * Highlights:
         * A defensive copy of the default ordering of exercises based off entry date has to be maintained to allow users to toggle between a sorted ordering and the default ordering.
         * Utilise Open-Closed Principle to accommodate other sorting orders should sorting criteria change in future.
 
@@ -33,7 +33,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for `:sort` command ([PR #125](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/125)) 
+        * Added documentation for `:sort` command ([PR #125](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/125))
         * Added documentation for `:filter` command with some edits to existing documentation as per discussed by team ([PR #133](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/133))
         * FAQ ([PR #133](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/133))
 
@@ -43,7 +43,7 @@ Given below are my contributions to the project.
 * **Community**:
     * Reviewed Team Members' PRs.
     * Participate and contribute to weekly team meetings.
-  
+
 * **Tools**:
     * PlantUML: Creating UML diagrams.
 
@@ -68,4 +68,4 @@ Given below are my contributions to the project.
   * Modify REGEX, constructors and tests to fit new Sets constraints ([PR #62](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/62))
   * Rename all occurrences of Email to Sets ([PR #53](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/53))
   * Update UseCases and NFRs of DeveloperGuide ([PR #42](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/42))
-  * Add header and table of contents for UserGuide.md ([PR #38](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/38))
+  * Add header and table of contents for UserGuide.md ([PR #38](https://githubcom/AY2223S1-CS2103T-T15-4/tp/pull/38))
