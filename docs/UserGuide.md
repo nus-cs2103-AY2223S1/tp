@@ -125,7 +125,7 @@ section of this user guide or to an external website.
 5. Type your commands in the command box and press Enter to execute it. E.g., typing **`help`** and pressing Enter will open the help window.<br><br>
 
 6. To kickstart your journey, you can add a guest, _John Doe_, to GuestBook using the **`add`** command.
-   * `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named _John Doe_ to GuestBook. 
+   * `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named _John Doe_ to GuestBook along with the necessary information such as his particulars. 
 <br><br>
     
 7. To find _John Doe_, you can use the **`find`** command, and search through **any of _John Doe's_ fields**,
@@ -145,7 +145,7 @@ To see a list of all your guests, you can use the **`list`** command.
 
 10. In the event that a guest orders room service, you can add charges to the guest's bill using the **`bill`** command.<br>
 For example, you can charge the third guest _30.35_ by running the command below.
-    * `bill 3 b/+30.35`: Adds _30.35_ to the `bill` of the third guest.
+    * `bill 3 b/+30.35`: Adds _30.35_ to the `bill` of the third guest shown in the current list.
       <br><br>
 
 11. When a guest checks out of your hotel, you can remove the guest using the **`delete`** command.
@@ -288,8 +288,7 @@ using the [find command](#locating-guests) and then editing them accordingly!
 
 ### Billing a guest: `bill`
 
-This command updates the bill of a guest in GuestBook. This command is typically used to **charge a guest** for services, such as room service. Note that the bill here refers to the **total additional charges incurred**
-by the guest during their stay at your hotel and should **not include the cost of the room booking**.
+This command updates the bill of a guest in GuestBook. This command is typically used to **charge a guest** for services, such as room service.
 
 This command updates the bill of the guest at the specified `INDEX` of the current list. 
 Depending on the sign (`+` or `-`) of your input, the existing bill value will be **increased** 
@@ -301,6 +300,8 @@ or **decreased** respectively by the value you provide.
 
 **:information_source: Additional information:**<br>
 
+* Note that the bill here refers to the **total additional charges incurred**
+  by the guest during their stay at your hotel and should **not include the cost of the room booking**.
 * Refer to the [Constraints of fields](#constraints-of-fields) for more information about the limitations
   of each field.
 </div>
@@ -345,7 +346,7 @@ will display all rooms that have been cleaned.
 
 **Examples**:
 * `find John` returns _john_ and _John Doe_
-* `find 01/01/23 - 07/01/23` returns _Alex Yeoh_ (as he has no requests) and _Bernice Yu_.
+* `find 01/01/23 - 07/01/23` returns _Alex Yeoh_ and _Bernice Yu_ (_Alex Yeoh_ was returned as the find command searches every individual search term. As such, **"-" is also a search term** and hence guests with no requests will be returned as well).
 * `find alex 99272758 03-68` returns _Alex Yeoh_, _Bernice Yu_, _Charlotte Oliveiro_
 (refer to the image below for the details of the guests)<br>
 <br>
@@ -358,13 +359,20 @@ will display all rooms that have been cleaned.
 * Searching for guests using incomplete keywords e.g. `170` will **not match** `170.00`.
 </div>
 
+<div markdown="block" class="alert alert-success">
+
+**:bulb: Tip:**<br>
+
+* To find guests based on their dates of stay, you should simply use the start and end dates without the hyphen ("-").
+</div>
+
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Listing all guests: `list`
 
-This command displays a list of all guests in GuestBook, providing you a quick and efficient way to view all your guests.
+This command displays a list of all guests in GuestBook, which is akin to going back to the homepage of GuestBook.
 
 <div markdown="block" class="alert alert-success">
 
@@ -386,7 +394,7 @@ This command deletes an existing guest in GuestBook from the current list.
 
 The guest specified at the `INDEX` is the guest you wish to delete. 
 
-This command is typically used when a guest has **checked out** of the hotel. 
+This command is typically used to **check a guest out** of the hotel. 
 
 <div markdown="block" class="alert alert-danger">
 
@@ -512,7 +520,7 @@ for you.
 
 | Field                  | Corresponding prefix | Constraint                                                                                                                                                                                                                                                                                                                                                                             |
 |------------------------|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`NAME`**             | `n/`                 | Should contain only **alphabets**, spaces, apostrophes ('), hyphens (-), periods (.) and commas(,). It must start with an alphanumeric character, and it should not be blank.It should not contain any prefixes as well.                                                                                                                                                               |
+| **`NAME`**             | `n/`                 | Should contain only **alphabets**, spaces, apostrophes ('), hyphens (-), periods (.) and commas(,). It must start with an alphanumeric character, and it should not be blank. It should not contain any prefixes as well.                                                                                                                                                              |
 | **`PHONE`**            | `p/`                 | Should contain only **numbers**, and it should be at least 3 digits and at most 15 digits long.                                                                                                                                                                                                                                                                                        |
 | **`EMAIL`**            | `e/`                 | Should contain only **alphanumeric characters** and '@' character. The local segment (before "@") should be at most 64 characters long, and the domain segment (after "@") should be at most 255 characters long. Special characters (`+`, `_`, `.`, `-`) can be included but **not as the first or last characters** of any segment. They also cannot be used adjacent to each other. |
 | **`ROOM`**             | `r/`                 | Should contain only **alphanumeric characters**, and it should be at least 1 character and at most 100 characters long. A hyphen can only be added if it is in between 2 alphanumeric characters.                                                                                                                                                                                      |
@@ -546,10 +554,10 @@ Listed here are some frequently asked questions that we hope will be helpful for
 **A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file is **corrupted**, causing GuestBook to reset it to prevent any malicious files from being used.
 
 **Q**: I cannot find a guest staying on a particular date even though it should be within the dates of stay. Why is that so?
-**A**: It is likely that you entered a date within the start and end dates of the guest's stay (e.g, for a guest staying from 13-01-2022 to 15-01-2022, you entered 14-01-2022 to try and find the guest). Currently, this is **not supported** in GuestBook.
+**A**: It is likely that you entered a date within the start and end dates of the guest's stay (e.g, for a guest staying from 13-01-2022 to 15-01-2022, you entered 14-01-2022 to try and find the guest). Currently, this feature is **not supported** by GuestBook.
 
 **Q**: Why am I not able to add guests to the same room even though they have different dates of stay?
-**A**: As we expect guests to check in at the hotel itself, we did not support this function so that GuestBook remains simple and easy to use. As such, all the rooms must be unique to each guest in GuestBook.
+**A**: For this iteration of GuestBook, guests are only entered when they check in at the hotel. As such, there should not be a case where the same room is occupied by different people on different dates at that point in time. Thus, this feature is a safety check provided by GuestBook to ensure no guests are allocated the same room during their stay. In summary, to ensure GuestBook remains simple and easy for you to use, all rooms must be unique to each guest in GuestBook.
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -575,7 +583,7 @@ Listed here are some frequently asked questions that we hope will be helpful for
 --------------------------------------------------------------------------------------------------------------------
 
 ## Contact Us
-For enquiries or feedback, feel free to let us know at [guestbook.enquiries@gmail.com](mailto:guestbook.enquiries@gmail.com), and we will get back to you within 3 working days!
+For enquiries or feedback, feel free to let us know at [guestbook.enquiries@gmail.com](mailto:guestbook.enquiries@gmail.com), and we will get back to you as soon as possible!
 
 [Return to Table of Contents](#table-of-contents)
 
