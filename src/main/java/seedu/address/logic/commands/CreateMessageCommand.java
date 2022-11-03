@@ -16,9 +16,8 @@ public class CreateMessageCommand extends MessageCommandGroup {
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates the message. "
-            + "Parameters: "
-            + "[MESSAGE] \n"
-            + "Example: " + COMMAND_WORD + " Hello {name}!";
+            + "\nParameters: [MESSAGE]"
+            + "\nExample: " + COMMAND_WORD + " Hello {name}!";
 
     public static final String MESSAGE_SUCCESS = "New message created: %1$s";
     public static final String MESSAGE_DUPLICATE_MESSAGE = "Message %1$s already exist in the address book";
