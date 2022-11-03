@@ -141,20 +141,24 @@ This section gives a breakdown of each attribute and its option counterpart.
 * Refers to the clients that are interested in a property.
 * Each property can have multiple clients interested in it.
 * This option takes in **case-insensitive** arguments and attempts to link it to the name of a client.
-* Arguments will not be accepted if it links to no clients, or if it links to more than one client.
+* Can take in multiple space-delimited arguments.
+* An argument will not be accepted if it links to no clients, or if it links to more than one client.
+  * An input containing both accepted and unaccepted arguments will not throw an error. The accepted arguments will still be used to link interested clients to the property.
 
 * Option: `ic/`
-* Example: `ic/Samuel`, `ic/bob`
+* Example: `ic/Samuel`, `ic/bob jedrek JANICE`
 
 ### Client attributes
 #### Interested properties
 * Refers to properties that a client is interested in.
 * Each client can be interested in multiple properties.
 * This option takes in **case-insensitive** arguments and attempts to link it to the name of a property.
-* Arguments will not be accepted if it links to no properties, or if it links to more than one property.
+* Can take in multiple space-delimited arguments.
+* An argument will not be accepted if it links to no clients, or if it links to more than one client.
+  * An input containing both accepted and unaccepted arguments will not throw an error. The accepted arguments will still be used to link interested properties to the client..
 
 * Option: `ip/`
-* Example: `ip/duxton`, `ip/rosewood`
+* Example: `ip/duxton`, `ip/rosewood duxton FAIRFIELD`
 
 --------------------------------------------------------------------------------------------------------------------
 
