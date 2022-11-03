@@ -425,6 +425,9 @@ prefix for both the user and the program, and the user does not need to worry ab
 
 ### Checking modules left
 
+This feature compares the user's current and previous modules list with a fixed list of CS Core Requirements or focus area
+modules. The program then finds the difference between the user's lists and the fixed list and outputs it onto the ResultDisplay. 
+
 #### Design considerations
 
 Currently, we have tailored this feature towards AY21/22 enrolled Computer Science students as we have yet to implement

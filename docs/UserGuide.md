@@ -419,6 +419,10 @@ Format: `clear`
 * Every contact in the address book including their information is cleared.
 * User profile does not get deleted.
 
+<div markdown="span" class="alert alert-primary">
+❗**Caution:** This command will delete every contact and their details.
+</div>
+
 [Scroll back to top](#table-of-contents)
 
 ## Module features
