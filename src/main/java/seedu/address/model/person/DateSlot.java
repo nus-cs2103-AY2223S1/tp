@@ -77,7 +77,9 @@ public class DateSlot {
         this.hasAssigned = isAssigned;
         this.isSuccessVisit = isSucessVisit;
         this.nurseUidNo = nurseUidNo;
-        checkDateTime();
+        if (hasVisited == false) {
+            checkDateTime();
+        }
     }
 
     private static LocalDateTime parseDateSlot(String dateSlot) {
