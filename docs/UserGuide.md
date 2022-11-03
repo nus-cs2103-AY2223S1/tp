@@ -125,14 +125,18 @@ Examples:
 
 Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ [ud/UNAVAILABLE_DATE]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
-:bulb:**Tips**:
+:bulb:**Tips:**<br>
 
 - A nurse can have any number of tags (including 0).
+
 - A nurse can have any number of unavailable date (including 0).
+
 - The unavailable date must be in `yyyy-MM-dd` format, eg `2022-11-11`.
+
 - You may type it in any order.
+
 - To add a nurse, type `c/N` specifically.
 
 </div>
@@ -189,11 +193,14 @@ Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ds/D
 - The unavailable date works similar to the date and time edit excepts using different indicator `ud/` and `udi/` to indicate the date and the index.
 - The **unavailable date** is only applicable to **nurse**.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block" class="alert alert-warning">
+
+:exclamation: **Caution:**<br>
 
 - When changing a date slot in the existing list, if the old date slot is assigned, it will be deassigned and the new date slot will be in "not assigned status".
 
 - When changing an unavailable date in the existing list or adding a new unavailable date in the existing list from a nurse, the date slot assigned to that nurse will be checked against the unavailable date. If the date slot is on the same day with the unavailable date, it will auto deassign that date slot from the nurse.
+
 </div>
 
 Examples:
@@ -383,11 +390,14 @@ Healthcare Xpress data are saved in the hard disk automatically after any comman
 
 Healthcare Xpress data are saved as a JSON file `[JAR file location]/data/healthcarexpress.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block" class="alert alert-warning">
 
-* If your changes to the data file makes its format invalid, Healthcare Xpress Record System will discard all data and start with an empty data file at the next run.
+:exclamation: **Caution:**<br>
+
+- If your changes to the data file makes its format invalid, Healthcare Xpress Record System will discard all data and start with an empty data file at the next run.
 
 - NOT RECOMMENDED : It is not recommended to change the 'date slot' of a patient and 'homevisits', 'unavailable date' and 'fully scheduled date' of a nurse in the file. The system is unable to check the correctness and whether there is time crash and other issues if you change it manually in the data file.
+
 </div>
 
 ### Archiving data files `[coming in v2.0]`
