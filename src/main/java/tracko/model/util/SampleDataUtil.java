@@ -1,5 +1,7 @@
 package tracko.model.util;
 
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -50,21 +52,25 @@ public class SampleDataUtil {
         return new Order[] {
             new Order(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
+                    LocalDateTime.of(2022, Month.OCTOBER, 11, 11, 42),
                     new ArrayList<ItemQuantityPair>(
                             List.of(new ItemQuantityPair(INVENTORY_ITEM_1.getRecordedItem(), new Quantity(2)))
                     ), true, true),
             new Order(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                    LocalDateTime.of(2022, Month.OCTOBER, 12, 12, 15),
                     new ArrayList<ItemQuantityPair>(
                             List.of(new ItemQuantityPair(INVENTORY_ITEM_2, new Quantity(4)))
                     ), true, false),
             new Order(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                    LocalDateTime.of(2022, Month.OCTOBER, 13, 13, 12),
                     new ArrayList<ItemQuantityPair>(
                             List.of(new ItemQuantityPair(INVENTORY_ITEM_3, new Quantity(3)))
                     ), false, true),
             new Order(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                    LocalDateTime.of(2022, Month.OCTOBER, 14, 20, 12),
                     new ArrayList<ItemQuantityPair>(
                             List.of(new ItemQuantityPair(INVENTORY_ITEM_4, new Quantity(1)))
                     ), false, false),
