@@ -666,11 +666,11 @@ command `list orders` before using `filter-o`. When filtering pets, use the comm
 Displays only Orders based on the given attribute(s). There are three possible attributes to filter: Additional
 requests, Order status, Price range.
 
-| Attribute           | Prefix | Format                       | Example         |
-|---------------------|--------|------------------------------|-----------------|
-| Additional requests | o_ar   | o_ar/KEYWORD                 | ar/non-shedding |
-| Order Status        | o_st   | o_st/KEYWORD                 | os/Negotiating  |
-| Price Range         | o_pr   | o_pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
+| Attribute           | Prefix | Format                       | Example           |
+|---------------------|--------|------------------------------|-------------------|
+| Additional requests | o_ar   | o_ar/KEYWORD                 | o_ar/non-shedding |
+| Order Status        | o_st   | o_st/KEYWORD                 | o_st/Negotiating  |
+| Price Range         | o_pr   | o_pr/LOWER_PRICE-UPPER_PRICE | o_pr/100-456        |
 
 Format: `filter-o PREFIX/INPUT`
 
@@ -678,10 +678,11 @@ Examples:
 
 * `filter-o o_st/Pending`
 * `filter-o o_st/Negotiating o_pr/90-900`
-* `filter-o o_ar/good with children o_st/Delivering o_pr/80-100`
+* `filter-o o_ar/good o_st/Delivering o_pr/80-100`
 
 Notes:
 
+* For additional requests, there cannot be spaces (ie. filter-o o_ar/good for kids).
 * Having multiple prefixes of the same type is allowed. One example of this is:
 `filter-o os/Pending os/Delivering`. However, only the latest input will be taken, in the example above, the order status the app will use to filter orders is the "Delivering" status.
 * Note that Order Statuses are case-sensitive, so the input `filter-o os/delivering` may throw an error. To play safe, use the following words for Order status only:

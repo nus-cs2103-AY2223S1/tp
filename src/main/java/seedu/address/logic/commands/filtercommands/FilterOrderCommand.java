@@ -16,14 +16,14 @@ import seedu.address.model.order.Order;
 public class FilterOrderCommand extends FilterCommand {
     public static final String COMMAND_WORD = "filter-o";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all pets with attributes: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all Orders with attributes: "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: PREFIX/[KEYWORDS] PREFIX/[KEYWORDS] ...\n"
             + "There are three possible attributes to filter: Additional requests, Order status, Price range \n"
-            + "For Additional requests, use the prefix 'ar' \n"
-            + "For Order status, use the prefix 'os' \n"
-            + "For Price range, use the prefix 'pr' followed by '/' and use '-' to indicate the range. \n"
-            + "Example: " + COMMAND_WORD + " ar/flufy os/Pending pr/5.5-20.2";
+            + "For Additional requests, use the prefix 'o_ar' \n"
+            + "For Order status, use the prefix 'o_st' \n"
+            + "For Price range, use the prefix 'o_pr' followed by '/' and use '-' to indicate the range. \n"
+            + "Example: " + COMMAND_WORD + " o_ar/flufy o_st/Pending o_pr/5.5-20.2";
 
     private final Predicate<Order> additionalRequestPredicate;
     private final Predicate<Order> orderStatusPredicate;
