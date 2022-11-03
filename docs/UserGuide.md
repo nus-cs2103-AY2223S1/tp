@@ -538,8 +538,15 @@ The format and constraints of fields in GuestBook are listed in the table below.
 
 In the case where GuestBook rejects your field inputs, you can refer to this section to use the right format.
 
-Please note that if you are specifying the `name`/`request` fields, ensure that they do not contain any field prefixes after whitespace in their content (e.g., `rq/Extra bed & p/c`), as GuestBook could be parsing part of your input as another field.
-Consider using capital letters as this check is case-sensitive (`rq/Extra bed & P/C` will be parsed correctly).
+<div markdown="block" class="alert alert-warning">
+
+:exclamation: **Caution:**<br>
+
+* If you are specifying the `name`/`request` fields, ensure that they do not contain any field prefixes after whitespace in their content 
+(e.g., `rq/Extra bed & p/c`), as GuestBook may mistake part of your input as another field. 
+Consider using capital letters as this check is case-sensitive (`rq/Extra bed & P/C` will be understood correctly).
+</div>
+
 
 | Field                   | Corresponding prefix | Format/Constraints                                                                                                                                                                                                                                                                                                                                                                               |
 |-------------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
