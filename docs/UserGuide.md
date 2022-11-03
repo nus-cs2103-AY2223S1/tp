@@ -61,6 +61,8 @@ SoConnect is a **desktop app for managing contacts and tasks**. It aims to help 
 
 * Tasks will be referred to as Todos
 
+* `INDEX` is used in commands to refer to a specific contact or todo by their index number on the currently displayed contact list and todo list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​
+
 </div>
 
 ## Contact Management Features
@@ -84,7 +86,7 @@ Edits an existing contact in your SoConnect.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
-* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed list of contacts. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the contact at the specified `INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values, provided that the input values do not violate constraints set by other features. For example, editing a name with input value that is considered duplicate in `add` feature is not allowed.
 
@@ -139,15 +141,28 @@ Example:
 
 ### Sorting contacts : `sort`
 
-Sort the list of contacts displayed by certain parameter(s).
+Sorts the list of contacts displayed by 1 or more parameter(s) chosen by you.
 
-Default sorting orders:
-* Alphabetical order for *names* (n/), *emails* (e/), *addresses* (a/).
-* Increasing order for *phone numbers* (p/).
-* Contacts that have a specified *tag* (t/TAG) appear before those without the *tag* (t/TAG).
+How *names (n/)*, *emails (e/)*, *addresses (a/ )* are sorted:
+* In alphabetical order. (e.g. `Al` comes before `Alfred` which comes before `Brad`)
+* Case insensitive. (e.g. `Al`, `al`, `AL`, and `aL` are identical when it comes to sorting)
+
+How *phone numbers (p/)* are sorted: 
+* In increasing numerical order. (e.g. `123` comes before `125` which comes before `1234`)
+
+How *tags (t/TAG)* are sorted:
+* Contacts with the *TAG* you specified will come before contacts without the *TAG*.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+* When sorting by tags, unlike other parameters, you have to specify a value (an existing `TAG`) to sort by.
+* For other parameters (i.e. `n/ e/ a/ p/`), values provided are ignored. (e.g. sorting by `n/Alfred` is a valid command, the list will be sorted by name and the given value `Alfred` is ignored)
+
+</div>
 
 Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
-* To sort in reverse order, use these modified parameters: `[n/!] [p/!] [e/!] [a/!] [t/!TAG]`.
+* To sort in reverse order from the orders given above, use these modified parameters: `[n/!] [p/!] [e/!] [a/!] [t/!TAG]`.
 * To sort with multiple parameters, arrange the parameters in order of decreasing priority.
   * The list will be sorted by the first parameter.
   * If ties occur (e.g. both contacts have the exact same name), the second parameter will be used to sort the tied contacts.
@@ -155,9 +170,9 @@ Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
   * Repeat until the tie is resolved or there are no more parameters.
 
 Example:
-* `sort n/` sorts by names. (E.g. `David` appears before `Mike`)
-* `sort t/!friend` sorts by the `friend` tag in reverse. (E.g. `Mike` appears before `David` who has the `friend` tag)
-* `sort t/friend n/` sorts by the `friend` tag first, followed by names. (E.g. `David` and `Fred` who have the `friend` tag appear before `Mike`, `David` appears before `Fred`)
+* `sort n/` sorts by names. (e.g. `David` appears before `Mike`)
+* `sort t/!friend` sorts by the `friend` tag in reverse. (e.g. `Mike` appears before `David` who has the `friend` tag)
+* `sort t/friend n/` sorts by the `friend` tag first, followed by names. (e.g. `David` and `Fred` who have the `friend` tag appear before `Mike`, `David` appears before `Fred`)
 
 ### Deleting a contact : `delete`
 
@@ -166,8 +181,6 @@ Deletes the specified contact from your SoConnect.
 Format: `delete INDEX`
 
 * Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed list of contacts.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in your SoConnect.
@@ -217,6 +230,7 @@ Example:
 ### Adding a Tag to a Contact: `tag add`
 
 Adds an existing tag to an existing contact.
+* `Coming soon in v1.5`, we will upgrade `tag add` to add tags to todos.
 
 Format: `tag add INDEX t/TAG`
 
@@ -228,7 +242,7 @@ A contact can have any number of tags. Add as many as you want.
 **:information_source: Note:** The tag has to be made first before you can add it into a contact.
 </div>
 
-* Adds a `TAG` to the contact at the specified `INDEX`. The index refers to the index number shown in the displayed list of contacts. The index **must be a positive integer** 1, 2, 3, …​
+* Adds a `TAG` to the contact at the specified `INDEX`.
 
 Example:
 * `tag add 1 t/friend` adds the friend tag to the first contact shown in the list.
@@ -236,10 +250,11 @@ Example:
 ### Removing a Tag from a Contact: `tag remove`
 
 Removes an existing tag from an existing contact.
+* `Coming soon in v1.5`, we will upgrade `tag remove` to remove tags from todos.
 
 Format: `tag remove INDEX t/TAG`
 
-* Removes a `TAG` from the contact at the specified `INDEX`. The index refers to the index number shown in the displayed list of contacts. The index **must be a positive integer** 1, 2, 3, …​
+* Removes a `TAG` from the contact at the specified `INDEX`.
 
 Example:
 * `tag remove 1 t/friend` removes the friend tag from the first contact shown in the list.
@@ -284,13 +299,27 @@ Format: `customise show [t/] [p/] [e/] [a/]`
 * Information that can be changed from being hidden to being shown: Tags, Phone Number, Email, Address.
 * After using the command, the information specified is shown.
 * If the information specified is already shown, it will stay shown.
-* In `v1.5`, we will include `customise show all`, a shortcut to show all information.
+* `Coming soon in v1.5`, we will include `customise show all`, a shortcut to show all information.
 
 Example:
 * `customise show a/` The application now shows addresses in the list of contacts.
 * `customise show p/ t/` The application now shows phone numbers and tags in the list of contacts.
 
 ## Todo Management Features
+
+A todo is a task that needs completing. A todo consists of 
+1. a description
+2. a date for the deadline of the task
+3. the priority of the task 
+4. (optional) tags to help you categorise your todos
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+* Duplicate todos are not allowed (to help you avoid adding a todo that you forgot you already added). If you need to have todos with the same description, you are still able to do so, as long as the todos have different tags, dates, or priorities.
+* Priority of a todo can strictly only be `low`, `medium`, or `high`. `Coming soon in v1.5`, we will add smarter priorities (to accept other variations such as `Low`, `Medium`, `High`, `L`, `M`, `H`).
+
+</div>
 
 ### Adding a todo: `todo add`
 
@@ -299,7 +328,6 @@ Adds a todo to your SoConnect.
 Format: `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​`
 
 * `DATE` should be of the format dd-MM-yyyy (e.g. 24-03-2022).
-* `PRIORITY` can only be `low`, `medium`, `high`.
 * The todo list will always be sorted by date from earliest to latest (for todos with the same date, they will be sorted in decreasing priority order).
 
 Examples:
@@ -312,10 +340,11 @@ Edits an existing todo in your SoConnect.
 
 Format: `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​`
 
-* Edits the todo at the specified `INDEX`. The index refers to the index number shown in the displayed todo list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the todo at the specified `INDEX`.
 * At least one of the optional fields must be provided.
 * Parameters given will overwrite the existing values completely.
-  * For example, giving 1 tag in the edit command will erase all existing tags except the one given in the edit command.
+  * For example, giving 1 or more tag(s) in the edit command will replace all existing tags with the ones given in the edit command.
+  * `Coming soon in v1.5`, you can use `tag add` and `tag remove` to modify tags in a todo instead of only using `todo edit`.
 
 Examples:
 *  `todo edit 1 d/Read notes for ST2334` Edits the description of the 1st todo to be `Read notes for ST2334`.
@@ -328,8 +357,6 @@ Deletes the specified todo from your SoConnect.
 Format: `delete INDEX`
 
 * Deletes the todo at the specified `INDEX`.
-* The index refers to the index number shown in the displayed todo list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `todo show` followed by `todo delete 2` deletes the 2nd todo shown in your SoConnect.
@@ -340,7 +367,7 @@ Clears all todos from your SoConnect.
 
 Format: `todo clear`
 
-### Filter todos shown : `todo show`
+### Filtering todos shown : `todo show`
 
 Shows a filtered list of todos in your SoConnect.
 
