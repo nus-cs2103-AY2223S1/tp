@@ -225,16 +225,16 @@ Adds a property to the property directory.
 Format: `add -p n/NAME a/ADDRESS p/PRICE h/PROPERTY_TYPE [-i] [s/PROPERTY_STATUS] [t/TAG]… [ic/INTERESTED_CLIENTS]…​`
 
 Mandatory parameters:
-- Name: `n/`
-- Address: `a/`
-- Price: `p/`
-- Property type: `h/`
+- [Name](#name): `n/`
+- [Address](#address): `a/`
+- [Price](#price): `p/`
+- [Property type](#property-type): `h/`
 
 Optional parameters:
-- Image: `-i`
-- Property status: `s/`
-- Tags: `t/`
-- Interested clients: `ic/`
+- [Image](#image): `-i`
+- [Property status](#property-status): `s/`
+- [Tags](#tag): `t/`
+- [Interested clients](#interested-clients): `ic/`
 
 Required parameters: `NAME`, `ADDRESS`, `PRICE`, `PROPERTY_TYPE`
 Optional Parameters: `TAG`, `IMAGE`, `INTERESTED_CLIENTS`, `PROPERTY_STATUS`
@@ -392,13 +392,13 @@ Adds a client profile to the client directory.
 Format: `add -c n/NAME a/ADDRESS [-i] [t/TAG]… [ip/INTERESTED_PROPERTIES]…`
 
 Mandatory parameters:
-- Name: `n/`
-- Address: `a/`
+- [Name](#name): `n/`
+- [Address](#address): `a/`
 
 Optional parameters:
-- Image: `-i`
-- Tags: `t/`
-- Interested properties: `ip/`
+- [Image](#image): `-i`
+- [Tags](#tag): `t/`
+- [Interested properties](#interested-properties): `ip/`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A client can have any number of tags (including 0)
