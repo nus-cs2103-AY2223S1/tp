@@ -24,6 +24,7 @@ public class TaskProgressCommand extends Command {
     private final TaskContainsKeywordsPredicate predicate;
 
     public TaskProgressCommand(TaskContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 
