@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import tracko.commons.core.index.Index;
+import tracko.commons.util.AppUtil;
 import tracko.commons.util.StringUtil;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.item.Description;
@@ -175,16 +176,15 @@ public class ParserUtil {
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
         String trimmedPrice = price.trim();
-        Double doublePrice;
 
-        try {
-            doublePrice = Double.parseDouble(trimmedPrice);
-        } catch (NumberFormatException e) {
+        if (!(StringUtil.isNonNegativeUnsignedDouble(trimmedPrice))) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
 
-        if (!(StringUtil.isNonNegativeUnsignedFloat(trimmedPrice)
-                && Price.isValidPrice(doublePrice))) {
+        Double doublePrice = Double.parseDouble(trimmedPrice);
+
+        if (!Price.isValidPrice(doublePrice)
+                || !AppUtil.checkDoubleLessThanMaxInt(doublePrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
 

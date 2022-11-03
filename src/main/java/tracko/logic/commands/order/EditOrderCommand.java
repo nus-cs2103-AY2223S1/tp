@@ -62,6 +62,11 @@ public class EditOrderCommand extends Command {
     public static final String MESSAGE_NO_CHANGE_IN_QUANTITY =
             "New item quantity is the same as the old item quantity. No edits required.";
 
+    public static final String MESSAGE_QUANTITY_INVALID = "Quantity should be an integer less than 2,147,483,648.";
+
+    public static final String MESSAGE_QUANTITY_ACCOMPANIED_WITH_ITEM = "Item prefix should be "
+            + "accompanied with a quantity prefix, and vice versa.";
+
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;
 
