@@ -2,20 +2,19 @@ package seedu.address.logic.commands.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_2103;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class TaskProgressCommandTest {
 
-    Tag firstTag = new Tag(VALID_TAG_2103);
+    // Tag firstTag = new Tag(VALID_TAG_2103);
 
     // Todo: Fix the tag lists
     private static Set<Tag> firstTagList = new HashSet<>();

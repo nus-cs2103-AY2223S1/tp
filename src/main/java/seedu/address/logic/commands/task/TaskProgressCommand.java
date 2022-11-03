@@ -23,6 +23,10 @@ public class TaskProgressCommand extends Command {
 
     private final TaskContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates an TaskProgressCommand to with the specified {@code TaskContainsKeywordsPredicate}
+     * @param predicate
+     */
     public TaskProgressCommand(TaskContainsKeywordsPredicate predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;
