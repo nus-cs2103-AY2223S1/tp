@@ -20,8 +20,8 @@ public class RemoveCommandTest {
 
     @Test
     public void equals() {
-        ApplicationStatus acceptedStatus = new ApplicationStatus("accepted");
-        ApplicationStatus rejectedStatus = new ApplicationStatus("rejected");
+        ApplicationStatus acceptedStatus = new ApplicationStatus(ApplicationStatus.ACCEPTED);
+        ApplicationStatus rejectedStatus = new ApplicationStatus(ApplicationStatus.REJECTED);
         RemoveCommand removeFirstCommand = new RemoveCommand(acceptedStatus);
         RemoveCommand removeSecondCommand = new RemoveCommand(rejectedStatus);
 

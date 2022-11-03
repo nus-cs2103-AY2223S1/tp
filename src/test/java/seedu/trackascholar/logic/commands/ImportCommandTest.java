@@ -27,7 +27,7 @@ public class ImportCommandTest {
 
     @Test
     public void constructor_nullApplicant_throwsAssertionError() {
-        assertThrows(AssertionError.class, () -> new ImportCommand("r", null));
+        assertThrows(AssertionError.class, () -> new ImportCommand(ImportCommand.REPLACE, null));
     }
 
     @Test
@@ -36,7 +36,7 @@ public class ImportCommandTest {
         // new model after importing
         Path importedFilePath =
                 Paths.get("src/test/data/JsonImportCommandTest", "duplicateApplicantTrackAScholar.json");
-        ImportCommand importCommand = new ImportCommand("r", importedFilePath);
+        ImportCommand importCommand = new ImportCommand(ImportCommand.REPLACE, importedFilePath);
 
         JsonTrackAScholarStorage jsonTrackAScholarStorage = new JsonTrackAScholarStorage(importedFilePath);
 
@@ -60,7 +60,7 @@ public class ImportCommandTest {
         // you want to show that current model after importing is the same as the
         // new model after importing
         Path importedFilePath = Paths.get("src/test/data/JsonImportCommandTest", "similarApplicantTrackAScholar.json");
-        ImportCommand importCommand = new ImportCommand("r", importedFilePath);
+        ImportCommand importCommand = new ImportCommand(ImportCommand.REPLACE, importedFilePath);
 
         JsonTrackAScholarStorage jsonTrackAScholarStorage = new JsonTrackAScholarStorage(importedFilePath);
 
@@ -84,7 +84,7 @@ public class ImportCommandTest {
         // you want to show that current model after importing is the same as the
         // new model after importing
         Path importedFilePath = Paths.get("src/test/data/JsonImportCommandTest", "newApplicantTrackAScholar.json");
-        ImportCommand importCommand = new ImportCommand("r", importedFilePath);
+        ImportCommand importCommand = new ImportCommand(ImportCommand.REPLACE, importedFilePath);
 
         JsonTrackAScholarStorage jsonTrackAScholarStorage = new JsonTrackAScholarStorage(importedFilePath);
 
@@ -110,7 +110,7 @@ public class ImportCommandTest {
         // new model after importing
         Path importedFilePath =
                 Paths.get("src/test/data/JsonImportCommandTest", "duplicateApplicantTrackAScholar.json");
-        ImportCommand importCommand = new ImportCommand("k", importedFilePath);
+        ImportCommand importCommand = new ImportCommand(ImportCommand.KEEP, importedFilePath);
 
         JsonTrackAScholarStorage jsonTrackAScholarStorage = new JsonTrackAScholarStorage(importedFilePath);
 
@@ -134,7 +134,7 @@ public class ImportCommandTest {
         // you want to show that current model after importing is the same as the
         // new model after importing
         Path importedFilePath = Paths.get("src/test/data/JsonImportCommandTest", "similarApplicantTrackAScholar.json");
-        ImportCommand importCommand = new ImportCommand("k", importedFilePath);
+        ImportCommand importCommand = new ImportCommand(ImportCommand.KEEP, importedFilePath);
 
         JsonTrackAScholarStorage jsonTrackAScholarStorage = new JsonTrackAScholarStorage(importedFilePath);
 
@@ -158,7 +158,7 @@ public class ImportCommandTest {
         // you want to show that current model after importing is the same as the
         // new model after importing
         Path importedFilePath = Paths.get("src/test/data/JsonImportCommandTest", "newApplicantTrackAScholar.json");
-        ImportCommand importCommand = new ImportCommand("k", importedFilePath);
+        ImportCommand importCommand = new ImportCommand(ImportCommand.KEEP, importedFilePath);
 
         JsonTrackAScholarStorage jsonTrackAScholarStorage = new JsonTrackAScholarStorage(importedFilePath);
 
