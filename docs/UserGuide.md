@@ -22,7 +22,7 @@ No other technical knowledge is required.
 
 ### How to read this guide
 
-* Text in blue are links. You can click on them to navigate to different parts of the guide.
+* Text in [blue](#how-to-read-this-guide) are links. You can click on them to navigate to different parts of the guide.
 * Text in **bold** are used to place emphasis on certain things. They are noteworthy and important.
 * Text in `this` are related to commands and names of things (proper nouns) in Minefriends.
 * Tables are used to provide better organisation of command syntax for easy understanding.
