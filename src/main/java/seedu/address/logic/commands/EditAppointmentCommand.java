@@ -14,6 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.EditAppointmentDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Person;
 import seedu.address.model.util.MaximumSortedList;
 import seedu.address.model.util.exceptions.SortedListException;
@@ -37,6 +38,7 @@ public class EditAppointmentCommand extends Command {
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Appointment was edited \nFrom: %1$s\nTo: %2$s";
     public static final String MESSAGE_NO_APPOINTMENT_TO_EDIT = "This client does not have an appointment to edit\n"
             + "Use command \"aa\" to add appointment instead";
+    public static final String MESSAGE_UNCHANGED_LOCATION = "The edited location is unchanged\n";
     private final Index personIndex;
     private final Index appointmentIndex;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -92,6 +94,13 @@ public class EditAppointmentCommand extends Command {
         if (editAppointmentDescriptor.getDateTime().isPresent()
                 && model.hasPersonWithSameAppointmentDateTime(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT_DATE_TIME);
+        }
+
+        if (editAppointmentDescriptor.getLocation().isPresent()) {
+            Location location = editAppointmentDescriptor.getLocation().get();
+            if (location.equals(appointmentToEdit.getLocation())) {
+                throw new CommandException(MESSAGE_UNCHANGED_LOCATION);
+            }
         }
 
         try {

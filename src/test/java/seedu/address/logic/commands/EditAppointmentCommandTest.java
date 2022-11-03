@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT_DATE_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_23_JAN_2023;
@@ -10,8 +11,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_WESTMALL;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.EditAppointmentCommand.MESSAGE_UNCHANGED_LOCATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.MUSAB_WITH_NO_APPT;
 
 import org.junit.jupiter.api.Test;
@@ -195,6 +198,57 @@ public class EditAppointmentCommandTest {
 
         assertCommandFailure(editAppointmentCommand, testModel, expectedMessage);
     }
+
+    @Test
+    public void execute_editAppointmentWithDuplicateDateTime_failure() {
+        // Create testModel
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+        Person testPerson = new PersonBuilder(MUSAB_WITH_NO_APPT)
+                .withAppointment(new AppointmentBuilder()
+                        .withDateTime(VALID_DATETIME_21_JAN_2023)
+                        .withLocation(VALID_LOCATION_NUS).build())
+                .build();
+        Person testPerson2 = new PersonBuilder(BOB)
+                .withAppointment(new AppointmentBuilder()
+                        .withDateTime(VALID_DATETIME_22_JAN_2023)
+                        .withLocation(VALID_LOCATION_NUS).build())
+                .build();
+        testModel.addPerson(testPerson);
+        testModel.addPerson(testPerson2);
+
+        // Create editAppointmentCommand
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+        descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_21_JAN_2023));
+        EditAppointmentCommand editAppointmentCommand =
+                new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor);
+
+        String expectedMessage = MESSAGE_DUPLICATE_APPOINTMENT_DATE_TIME;
+
+        assertCommandFailure(editAppointmentCommand, testModel, expectedMessage);
+    }
+
+    @Test
+    public void execute_editAppointmentWithUnchangedLocation_failure() {
+        // Create testModel
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+        Person testPerson = new PersonBuilder(MUSAB_WITH_NO_APPT)
+                .withAppointment(new AppointmentBuilder()
+                        .withDateTime(VALID_DATETIME_21_JAN_2023)
+                        .withLocation(VALID_LOCATION_NUS).build())
+                .build();
+        testModel.addPerson(testPerson);
+
+        // Create editAppointmentCommand
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+        descriptor.setLocation(new Location(VALID_LOCATION_NUS));
+        EditAppointmentCommand editAppointmentCommand =
+                new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor);
+
+        String expectedMessage = MESSAGE_UNCHANGED_LOCATION;
+
+        assertCommandFailure(editAppointmentCommand, testModel, expectedMessage);
+    }
+
     @Test
     public void equals() {
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
