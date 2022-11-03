@@ -12,6 +12,8 @@ import seedu.taassist.model.student.SessionData;
  */
 class JsonAdaptedSessionData {
 
+    public static final String MISSING_NAME_MESSAGE = "Session's name field is missing!";
+
     @JsonProperty("session")
     private final String sessionName;
     private final double grade;
@@ -41,6 +43,9 @@ class JsonAdaptedSessionData {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public SessionData toModelType() throws IllegalValueException {
+        if (sessionName == null) {
+            throw new IllegalValueException(MISSING_NAME_MESSAGE);
+        }
         if (!Session.isValidSessionName(sessionName)) {
             throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
         }

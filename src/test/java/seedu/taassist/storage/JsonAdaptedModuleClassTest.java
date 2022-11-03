@@ -1,7 +1,6 @@
 package seedu.taassist.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.taassist.storage.JsonAdaptedModuleClass.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1231S;
 
@@ -47,8 +46,8 @@ public class JsonAdaptedModuleClassTest {
         List<JsonAdaptedSession> sessions = getValidSessions();
         JsonAdaptedModuleClass moduleClass =
                 new JsonAdaptedModuleClass(null, sessions);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleClass.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, moduleClass::toModelType);
+        assertThrows(IllegalValueException.class, JsonAdaptedModuleClass.MISSING_NAME_MESSAGE,
+                moduleClass::toModelType);
     }
 
 }
