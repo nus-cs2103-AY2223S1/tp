@@ -128,6 +128,11 @@ public class Social {
     }
 
     /**
+     * Sets the Preferred link to null
+     */
+    public void deletePreferred() { this.preferred = null;}
+
+    /**
      * Returns Whatsapp link of the person.
      *
      * @return Whatsapp link of the person.

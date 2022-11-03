@@ -21,7 +21,8 @@ public class ExcludeCommand extends Command {
         WHATSAPP,
         TELEGRAM,
         EMAIL,
-        INSTAGRAM
+        INSTAGRAM,
+        PREFERRED
     }
 
     public static final String COMMAND_WORD = "exclude";
@@ -32,7 +33,7 @@ public class ExcludeCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Link deleted";
     public static final String MESSAGE_WRONG_SOCIAL = "No such Social media.\n"
-            + "Valid Social media includes: WHATSAPP, TELEGRAM, EMAIL, INSTAGRAM";
+            + "Valid Social media includes: WHATSAPP, TELEGRAM, EMAIL, INSTAGRAM, PREFERRED";
 
     private final Index index;
     private final String social;
@@ -90,6 +91,10 @@ public class ExcludeCommand extends Command {
 
         case INSTAGRAM:
             p.getSocial().deleteInstagram();
+            break;
+
+        case PREFERRED:
+            p.getSocial().deletePreferred();
             break;
 
         default:
