@@ -9,9 +9,38 @@ future tasks. With our app, teams management would be easier than ever.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Index
 
-Coming soon!
+- [GUI](#gui)
+- [Quick Start](#quick-start)
+- [Features](#features)
+- [Command Summary](#command-summary)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## GUI
+
+<img src= "images/GUIExplanation.png">
+
+### userlist
+
+<img src= "images/userlist.png">
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Quick Start
+
+1. Ensure that you have Java `11` installed in your computer.
+2. Download the latest EZLead.jar from [here](https://github.com/AY2223S1-CS2103T-W09-3/tp/releases/download/v1.3.2/EzLead.jar).
+3. Copy the file to the folder you want to use as the home folder for your EZLead app.
+4. Double-click the file to start the app.
+5. Type the command in the command box and press Enter to execute it.<br>Some example commands you can try:
+  * `userlist`: Shows the global list of all members and their details.
+  * `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney`: Adds a member named `John Doe` to the app.
+  * `delete p/2`: Deletes the 2nd member shown in the global member list.
+  * `clear`: Deletes all teams, members and tasks.
+  * `exit`: Exits the app.
+6. Refer to the [Features](#features) section in this user guide for more details on commands
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,8 +53,17 @@ Coming soon!
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `create t/TEAM-NAME`, `TEAM-NAME` is a parameter which can be used as `create t/UIDevelopers`.
 
+* Items in square brackets are optional.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `m/John`, `m/John m/Jane` etc.
+
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurence of the parameter will be taken.
+  e.g. if the command specifies `task/1 task/2`, only `task/2` will be taken.
+
+* Commands are case-sensitive.
+  e.g. You cannot enter HeLp instead of help
 
 </div>
 
@@ -37,188 +75,206 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Viewing all team names: `view all`
+### Adding a member: `add`
 
-Shows all the team names.
+Adds a new person to EZLead.
 
-Format: `view all`
-
-### Viewing a team's details: `view`
-
-Shows a specific team's details, tasks, and members.
-
-Format: `view t/TEAM-NAME`
+Format: `add n/NAME p/PHONE-NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 Examples:
-* `view t/UIDevelopers` Shows the UIDevelopers team details, tasks, and members.
+* `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney` Adds a new
+  person with the following details to the global member list.
 
-### Adding an employee: `employee add`
+![AddPersonExample.png](images/AddPersonExample.png)
 
-Adds a new employee.
+### Editing a member's details: `edit`
 
-Format: `employee add n/NAME`
+Edits a member's details. Require at least one optional parameters.
 
-Examples:
-* `employee add n/John Doe` Adds a new employee with the name John Doe.
-* `employee add n/James` Adds a new employee with the name James.
-
-### Editing an employee's details: `employee edit`
-
-Edits an employee's details.
-
-Format: `employee edit n/NAME e/EMAIL c/CONTACT-NUMBER`
+Format: `edit INDEX [n/NAME] [p/PHONE-NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 Examples:
-* `employee edit n/John Doe e/johndoe1@example.com c/12345678
-<<<<<<< HEAD
-  Edits the employee John Doe's email to johndoe1@example.com and contact number to 12345678.
-=======
-Edits the employee John Doe's email to johndoe1@example.com and contact number to 12345678.
->>>>>>> master
+* `edit 1 n/Johny p/91234567 e/johndoe@example.com` Edits the first member's name in the global member list to Johny, email to
+  johndoe1@example.com and contact number to 91234567.
 
-### Deleting an employee: `employee delete`
+### Deleting a member: `delete`
 
-Deletes an employee.
+Deletes a member.
 
-Format: `employee delete n/NAME`
+Format: `delete p/GLOBAL-PERSON-INDEX`
 
 Examples:
-* `employee delete n/John Doe` Deletes the employee named John Doe.
+* `delete p/1` Deletes the first member.
 
-### Adding a team: `team add`
+### Viewing all members: `userlist`
 
-Adds a team with the given name.
+Shows a list of all members and their details.
 
-Format: `team add t/TEAM-NAME`
+Format: `userlist`
 
-Examples:
-* `team add t/UIDevelopers` Adds a team with the name UIDevelopers.
 
-### Changing a team's name: `team rename`
+### Adding a team: `create`
 
-Changes a team's name to the given name.
+Adds a team with the given name to EZLead.
 
-Format: `team rename o/TEAM-NAME n/NEW-TEAM-NAME`
+Format: `create n/TEAM-NAME`
 
 Examples:
-* `team rename o/UIDevelopers n/UnitTesters` Changes the name of the team UIDevelopers to UnitTesters.
+* `create n/Team1` Adds a team with the name Team1.
 
-### Deleting a team: `team delete`
+Note that names should only contain alphanumerical characters and spaces, and it should not be blank.
 
-Deletes the given team.
+![CreateTeamExample.png](images/CreateTeamExample.png)
 
-Format: `team delete t/TEAM-NAME`
+### Deleting a team: `delteam`
 
-Examples:
-* `team delete t/UIDevelopers` Deletes the team UIDevelopers.
+Deletes the given team from EZLead.
 
-### Adding team member/s: `team link`
-
-Adds the given person/s to the team.
-
-Format: `team link t/TEAM-NAME m/TEAM-MEMBER...`
+Format: `delteam TEAM-INDEX`
 
 Examples:
-* `team link t/UIDevelopers m/John m/Jane` Adds John and Jane to the team UIDevelopers.
+* `delteam 1` Deletes the first team.
 
-### Removing team member/s: `team delink`
+### Changing a team's name: `editteam`
 
-Removes the given person/s from the team.
+Changes a team's name (specified by index) to the given name.
 
-Format: `team delink t/TEAM-NAME m/TEAM-MEMBER...`
-
-Examples:
-* `team delink t/UIDevelopers m/John m/Jane` Removes John and Jane from the team UIDevelopers.
-
-### Adding a task: `task add`
-
-Adds a new task.
-
-Format: `task add t/TASK-DESCRIPTION`
+Format: `editteam t/TEAM-INDEX n/NEW-TEAM-NAME`
 
 Examples:
-* `task add t/Create GUI for the Duke app` Adds a new task with the description "Create GUI for the Duke app".
+* `editteam t/1 n/TEAMNEW` Changes the first team's name to 'TEAMNEW'.
 
-### Adding a deadline: `task deadline`
 
-Adds a new task with a deadline.
+### Assigning a member to a team: `assign`
 
-Format: `task deadline t/TASK-DESCRIPTION d/DEADLINE`
+assigns a member to a team.
 
-Examples:
-* `task deadline t/Implement a payment system d/12/12/2023` Adds a new task with
-<<<<<<< HEAD
-  the description "Implement a payment system" and the deadline of 12th December 2023.
-=======
-the description "Implement a payment system" and the deadline of 12th December 2023.
->>>>>>> master
+Format: `assign m/MEMBER-INDEX t/TEAM-INDEX`
 
-### Updating a task description: `task update`
+<div markdown="block" class="alert alert-info">
 
-Updates a task's description.
+**:information_source: Note:**<br>
 
-Format: `task update o/OLD-TASK-DESCRIPTION n/NEW-TASK-DESCRIPTION`
+MEMBER-INDEX is the index from the userlist (refer to `Viewing all members` section below).
+
+</div>
 
 Examples:
-* `task update o/Implement an authentication system n/Implement an authentication system with encryption`
-<<<<<<< HEAD
-  Updates the task "Implement an authentication system" to "Implement an authentication system with encryption".
-=======
-Updates the task "Implement an authentication system" to "Implement an authentication system with encryption".
->>>>>>> master
+* `assign m/1 t/1` Assigns the first member in the global member list to the first team.
 
-### Assigning a task to a team: `task assign`
+![AssignMemberExample.png](images/AssignMemberExample.png)
 
-Assigns a task to a specific team.
+### UnAssigning a member to a team: `unassign`
 
-Format: `task assign t/TASK-DESCRIPTION n/TEAM-NAME`
+removes a member from a team.
 
-Examples:
-* `task assign t/Create GUI for the Duke app n/UIDevelopers` Assigns the task "Create GUI for the Duke app" to the
-  team UIDevelopers.
+Format: `unassign m/MEMBER-INDEX t/TEAM-INDEX`
 
-### Deleting a task `task delete`
+<div markdown="block" class="alert alert-info">
 
-Deletes a task.
+**:information_source: Note:**<br>
 
-Format: `task delete t/TASK-DESCRIPTION`
+MEMBER-INDEX is the index from the userlist (refer to `Viewing all members` section below).
+
+</div>
 
 Examples:
-* `task delete t/Create GUI for the Duke app` Deletes the task "Create GUI for the Duke app".
+* `unassign m/1 t/1` removes the first member in the global member list from the first team.
 
-### Marking a task as completed `task mark`
+### Adding a task: `taskadd`
+
+Adds a new task to a team. Additionally, you may opt to set a deadline for the task (optional).
+
+Format: `taskadd t/TEAM-INDEX n/TASK-NAME [d/DD-MM-YYYY]`
+
+Examples:
+* `taskadd t/1 n/Finish project d/24-12-2023` Adds a new task to team with index 1 with the description
+  "Finish project". The deadline set here is 24 December 2023.
+
+![TaskAddExample.png](images/TaskAddExample.png)
+
+### Deleting a task `taskdelete`
+
+Deletes a task in a specific team.
+
+Format: `taskdelete t/TEAM-INDEX task/TASK-INDEX`
+
+Examples:
+* `taskdelete t/1 task/1` Deletes the first task in the first team.
+
+### Marking a task as completed `taskmark`
 
 Marks a task as completed.
 
-Format: `task mark t/TASK-DESCRIPTION`
+Format: `taskmark t/TEAM-INDEX task/TASK-INDEX`
 
 Examples:
-* `task mark t/Create GUI for the Duke app` Marks the task "Create GUI for the Duke app" as completed.
+* `taskmark t/1 task/1` Marks the first task in the first team as completed.
+
+### UnMarking a task `taskunmark`
+
+Marks a task as pending.
+
+Format: `taskunmark t/TEAM-INDEX task/TASK-INDEX`
+
+Examples:
+* `taskunmark t/1 task/1` Marks the first task in the first team as pending.
+
+### Updating a task description: `taskedit`
+
+Updates a task's description. Require at least one optional parameters.
+
+Format: `taskedit t/TEAM-INDEX task/TASK-INDEX [n/NEW-TASK-NAME] [d/NEW DD-MM-YYYY]`
+
+Examples:
+* `taskedit t/1 task/1 n/Finish assignment d/12-12-2022` Updates the first task in the first team with new description
+  'Finish assignment'. Adding a deadline to the task is optional.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: TIP:**<br>
+
+* To add deadline to an already existing task, use the command `taskedit t/TEAM-INDEX task/TASK-INDEX d/NEW DD-MM-YYYY`
+
+</div>
+
+### Manually editing save file:
+
+For advanced users, the data and state of EZLEAD is stored in `data/addressbook.json`.
+You can manually modify the data directly by accessing this JSON file.
+
+However, EZLEAD cannot verify validity of the data if it was manually modified. Any invalid data will cause EZLEAD
+to load in an EMPTY state.
+
+![JSONSaveFile.png](images/JSONSaveFile.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-Coming Soon!
+**Q**: What should be the index of the member to be specified to assign and unassign members from a team?
+
+**A**: You can use the index of the member provided in the user list. You can access user list by using the command `userlist`.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
-| Action              | Format, Examples                                                                                                                                            |
-|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Member Add**      | `add n/NAME p/PHONE e/EMAIL a/ADDRESS t/TAG` <br> e.g. `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney` |
-| **Member Delete**   | `delete p/GLOBAL-PERSON-INDEX` <br> e.g. `delete p/1`                                                                                                       |
-| **Member Edit**     | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]` <br> e.g.`edit 1 n/Johny p/91234567 e/johndoe@example.com`                                    |
-| **Member assign**   | `assign m/MEMBER-INDEX t/TEAM-INDEX` <br> e.g.`assign m/1 t/1`                                                                                              |
-| **Member unAssign** | `unassign m/MEMBER-INDEX t/TEAM-INDEX` <br> e.g.`unassign m/1 t/1`                                                                                          |
-| **Member List**     | `userlist`                                                                                                                                                  |
-| **Help**            | `help`                                                                                                                                                      |
-| **Task Add**        | `taskadd t/TEAM-INDEX n/TASK-NAME [d/YYYY-MM-DD]` <br> e.g. `taskadd t/1 n/Finish project d/2023-12-24`                                                     |
-| **Task Delete**     | `taskdelete t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskdelete t/1 task/1`                                                                                 |
-| **Task Mark**       | `taskmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskmark t/1 task/1`                                                                                     |
-| **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                 |
-| **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX n/NEW-TASK-NAME` <br> e.g. `taskedit t/1 task/1 n/Finish assignment`                                                 |
-| **Team Add**        | `createteam n/TEAM-NAME` <br> e.g. `createteam n/TEAM1`                                                                                                     |
-| **Team Delete**     | `deleteteam t/TEAM-INDEX` <br> e.g. `deleteteam t/1`                                                                                                        |
-| **Team Edit**       | `editteam t/TEAM-INDEX n/NEW-TEAM-NAME` <br> e.g. `editteam t/1 n/TEAMNEW`                                                                                  |
+| Action              | Format, Examples                                                                                                                                               |
+|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**            | `help`                                                                                                                                                         |
+| **Member Add**      | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g. `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney` |
+| **Member Delete**   | `delete p/GLOBAL-PERSON-INDEX` <br> e.g. `delete p/1`                                                                                                          |
+| **Member Edit**     | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g.`edit 1 n/Johny p/91234567 e/johndoe@example.com`                                      |
+| **Member List**     | `userlist`                                                                                                                                                     |
+| **Team Add**        | `create n/TEAM-NAME` <br> e.g. `create n/TEAM1`                                                                                                                |
+| **Team Delete**     | `delteam TEAM-INDEX` <br> e.g. `delteam 1`                                                                                                                     |
+| **Team Edit**       | `editteam t/TEAM-INDEX n/NEW-TEAM-NAME` <br> e.g. `editteam t/1 n/TEAMNEW`                                                                                     |
+| **Member assign**   | `assign m/MEMBER-INDEX t/TEAM-INDEX` <br> e.g.`assign m/1 t/1`                                                                                                 |
+| **Member unAssign** | `unassign m/MEMBER-INDEX t/TEAM-INDEX` <br> e.g.`unassign m/1 t/1`                                                                                             |
+| **Task Add**        | `taskadd t/TEAM-INDEX n/TASK-NAME [d/DD-MM-YYYY]` <br> e.g. `taskadd t/1 n/Finish project d/24-12-2023`                                                        |
+| **Task Delete**     | `taskdelete t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskdelete t/1 task/1`                                                                                    |
+| **Task Mark**       | `taskmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskmark t/1 task/1`                                                                                        |
+| **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                    |
+| **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX [n/NEW-TASK-NAME] [d/NEW DD-MM-YYYY]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                  |
+
