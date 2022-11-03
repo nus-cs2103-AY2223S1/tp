@@ -615,4 +615,10 @@ the typed in command in response.
 Through a `GUI`, users interact with a system or application by clicking on these elements. The system then responds to the user's actions
 by updating the user interface.
 
+### Parameter
+
+Parameters are the changeable inputs that you can give for a specific part of a command. For example, in the portion 
+`i/NAME` of the `addi` command, `NAME` can be replaced with the input that is meaningful to you (e.g, `i/Cookie` or 
+`i/Keychain`).
+
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
