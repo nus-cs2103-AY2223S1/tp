@@ -21,7 +21,8 @@ import seedu.travelr.model.trip.Trip;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
-    private static final String INVALID_DATE_ERROR_MESSAGE = "Invalid date provided. \nPlease check if you have accounted for leap years.";
+    private static final String INVALID_DATE_ERROR_MESSAGE = "Invalid date provided.\n"
+            + "Please check if you have accounted for leap years.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
