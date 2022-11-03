@@ -22,9 +22,4 @@ deactivate Model
 
 [<--Model
 deactivate Model
-
--> Model: updateApplicationListWithInterview( )
-activate Model
-[<-- Model
-deactivate Model
 @enduml

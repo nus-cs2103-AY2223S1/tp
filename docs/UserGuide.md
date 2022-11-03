@@ -39,9 +39,8 @@ title: User Guide
 
 3. Copy the file to the folder you want to use as the _home folder_ for your **CinternS** app.
 
-4. Double-click the file to start the app. In case that does not work, you can also open your terminal, change directory to the one with the jar file, and run the command `java -jar CinternS.jar`.
-
-   The GUI similar to the below should appear in a few seconds. When the app is started for the first time, sample data is included to help you get started.<br>
+4. Double-click the file to start the app. If this does not launch the app, open a command window in the directory containing the `CinternS.jar` file and launch it with the command `java -jar CinternS.jar` instead. <br><br>
+    The GUI similar to the below should appear in a few seconds. When the app is started for the first time, sample data is included to help you get started.<br>
    ![Ui](images/Ui.png)
 
 5. Type commands into the command box and press Enter to execute them.<br>
@@ -162,6 +161,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The keywords are only searched for inside the applications' companies and positions.
 * Only full words will be matched e.g. `ByteDance` will not match `ByteDances`.
 * Applications matching at least one keyword will be returned (i.e. `OR` search). e.g. `Google Shopee` will match `Shopee HQ` and `Google Singapore`.
+* `find` command is also able to search for archived applications with matching keywords and  `retrieve` command can be used on the last shown list. However, please ensure that the index provided is within the last shown list and the selected application is archived.
 
 Example:
 * `find Software` returns the `Google` and `Wise` applications since their positions contain the keyword "software".
@@ -172,7 +172,7 @@ Example:
 
 Edits an existing application in CinternS.
 
-Format: `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [s/STATUS] [t/TAG]...`
+Format: `edit INDEX [c/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [s/STATUS] [t/TAG]...`
 
 * Edits the application at the specified `INDEX`. 
 * The index refers to the index number shown in the displayed application list. 
@@ -253,6 +253,7 @@ Format: `archive INDEX`
 * The index refers to the index number shown in the displayed internship application list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index cannot be greater than the number of applications in the displayed list.
+* Interview related to the archived application will also be updated in the interview list once the application is archived.
 
 Example:
 * `list` followed by `archive 2` archives the 2nd internship application in the list.
@@ -303,8 +304,6 @@ Format: `remind`
 
 * Archived interviews will not be displayed even if they fall within the next week.
 * If there are no upcoming interviews, a blank window will be displayed.
-* `remind` can only be used on the main application list page (i.e. not to be used on the list-archive page).
-* To refresh the list of upcoming interviews, close the reminder window (if it is currently opened) and input the `remind` command again.
 
 ### Showing the statistics of applications: `stats`
 

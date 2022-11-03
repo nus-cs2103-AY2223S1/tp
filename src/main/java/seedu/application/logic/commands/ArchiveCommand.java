@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.application.commons.core.Messages;
 import seedu.application.commons.core.index.Index;
 import seedu.application.logic.commands.exceptions.CommandException;
 import seedu.application.model.Model;
@@ -24,7 +23,14 @@ public class ArchiveCommand extends Command {
     public static final String MESSAGE_ARCHIVE_APPLICATION_SUCCESS = "Archived Application: %1$s";
 
     public static final String MESSAGE_APPLICATION_EXIST_IN_ARCHIVE = "Application is already archived.\n"
-            + "Please use <list> command to show the current application list\n"
+            + "Please use <list> command to show the current application list.\n"
+            + "Example: 1) " + ListCommand.COMMAND_WORD + "\n"
+            + "               2) " + COMMAND_WORD + " 1";
+
+    public static final String MESSAGE_INVALID_INDEX_ARCHIVE = "The application index provided is invalid!\n"
+            + "Please note that the index refers to the last shown list below\n"
+            + "To ensure the archive function works, please use <list> command to show the current"
+            + " unarchived application list\n"
             + "Example: 1) " + ListCommand.COMMAND_WORD + "\n"
             + "               2) " + COMMAND_WORD + " 1";
 
@@ -44,7 +50,7 @@ public class ArchiveCommand extends Command {
         List<Application> lastShownList = model.getFilteredApplicationList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_INDEX_ARCHIVE);
         }
 
         Application applicationToArchive = lastShownList.get(targetIndex.getZeroBased());
@@ -54,7 +60,6 @@ public class ArchiveCommand extends Command {
         }
 
         model.archiveApplication(applicationToArchive);
-        model.updateApplicationListWithInterview();
         return new CommandResult(String.format(MESSAGE_ARCHIVE_APPLICATION_SUCCESS, applicationToArchive));
     }
 

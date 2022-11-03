@@ -40,6 +40,20 @@ public class InterviewTest {
                 .build();
         assertFalse(INTERVIEW_GOOGLE.isOnSameTime(editedGoogleInterview));
 
+        // across different date but within one hour -> return true
+        Interview editedFacebookInterview = new InterviewBuilder(INTERVIEW_FACEBOOK).withInterviewDate("2022-10-02")
+                .withInterviewTime("0001").build();
+        editedGoogleInterview = new InterviewBuilder(INTERVIEW_GOOGLE).withInterviewDate("2022-10-01")
+                .withInterviewTime("2359").build();
+        assertTrue(editedFacebookInterview.isOnSameTime(editedGoogleInterview));
+
+        // across different date but one hour apart -> return false
+        editedFacebookInterview = new InterviewBuilder(INTERVIEW_FACEBOOK).withInterviewDate("2022-10-02")
+                .withInterviewTime("0159").build();
+        editedGoogleInterview = new InterviewBuilder(INTERVIEW_GOOGLE).withInterviewDate("2022-10-01")
+                .withInterviewTime("2359").build();
+        assertFalse(editedFacebookInterview.isOnSameTime(editedGoogleInterview));
+
     }
 
     @Test
