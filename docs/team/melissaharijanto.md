@@ -5,17 +5,17 @@ title: Melissa Anastasia Harijanto's Project Portfolio Page
 
 ## Project: TrackO
 
-**TrackO** is a desktop application that helps small home-based business owners manage their orders and inventory 
-efficiently in the form of an integrated solution built using Java with around 15 kLOC. The user interacts with the 
+**TrackO** is a desktop application that helps small home-based business owners manage their orders and inventory
+efficiently in the form of an integrated solution built using Java with around 15 kLOC. The user interacts with the
 application via a CLI, and the application responds with its GUI, created with JavaFX.
 
 Given below are my contributions to the project.
 
 ### Summary of Contributions
- 
-  - **Code contributed**: Click here for 
+
+  - **Code contributed**: Click here for
     [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=melissaharijanto&breakdown=true).
-  
+
   - **Major Enhancement**: Implement the UI of the application.
     - What was done: Create a [design draft](https://www.figma.com/file/h6iechtBx1GaeJ6kKeqadb/CS2103T-UI-Design?node-id=0%3A1),
     then implement it into the application with JavaFX.
@@ -34,9 +34,9 @@ Given below are my contributions to the project.
     - Relevant pull request(s): [#82](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/82),
     [#87](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/87),
     [#111](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/111),
-    [#139](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/139), 
+    [#139](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/139),
     [#192](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/192)
-    
+
   - **More Features/Enhancements Added**:
     - **Implement the base model for `java.tracko.model.item`**
       - What was done: Added the base code for `Item` (`ItemName`, `InventoryList`, `Item`, `Description`, `Quantity`
@@ -47,22 +47,22 @@ Given below are my contributions to the project.
         - This was one of my earliest exposures to the code base (aside from the tutorial tasks), and implementing this
         made me understand it more.
       - Relevant pull request(s): [#58](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/58)
-      
+
     - **Implement the following commands: `edito`, `listi`, `findi`**
       - What they do:
         - `edito`: Edits orders.
         - `listi`: Lists all the existing inventory items.
         - `findi`: Finds existing inventory items that match certain keyword(s) inputted by the user.
       - Relevant pull request(s): [#111](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/111)
-    
+
     - **Implement order completion status**
       - What it does: Orders now have a completion status: `paid` or `delivered`.
       - Relevant pull request(s): [#104](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/104)
-    
+
     - **Implement feature to calculate the price of an order's list of ordered items**
       - What it does: Implement methods to calculate the price of the customer's ordered items.
       - Relevant pull request(s): [#131](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/131)
-    
+
     - **Write test cases**
       - What was done: Implemented JUnit test cases for the following:
         - `EditOrderDescriptorTest`
@@ -95,7 +95,7 @@ Given below are my contributions to the project.
       - Relevant pull request(s): [#41](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/41),
       [#111](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/111/files),
       [#147](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/147)
-      
+
   - **Contributions to the DG**:
     - Added use cases for the Developer's Guide
       - Relevant pull request(s): [#48](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/48)
