@@ -1,3 +1,7 @@
+// @@author DaneMarc
+// Reused from https://github.com/AY2122S2-CS2103T-W09-2/tp/blob/master/src/main/resources/view/Cinnamon.css
+// with modifications
+
 .list-cell:filled {
     -fx-background-color: #4bbfd0;
     -fx-border-color: #4bbfd0;
