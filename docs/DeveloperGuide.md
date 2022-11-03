@@ -229,7 +229,7 @@ and populated with sample data. `Model` and `Storage` are then loaded with the s
 
 ![CheckoutState2](images/CheckoutState2.png)
 
-The following sequence diagram shows how the branch operation works:
+The following sequence diagram shows how the checkout operation works:
 
 ![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
 
