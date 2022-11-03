@@ -22,7 +22,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddPersonCommand(Person person) {
-        return AddPersonCommand.COMMAND_WORD + " " + getPersonDetails(person);
+        return AddPersonCommand.FULL_COMMAND + " " + getPersonDetails(person);
     }
 
     /**
@@ -30,12 +30,12 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
-        sb.append("-" + FLAG_NAME_STR + "\"").append(person.getName().fullName).append("\" ");
-        sb.append("-" + FLAG_PHONE_STR + "\"").append(person.getPhone().value).append("\" ");
-        sb.append("-" + FLAG_EMAIL_STR + "\"").append(person.getEmail().value).append("\" ");
-        sb.append("-" + FLAG_ADDRESS_STR + "\"").append(person.getAddress().value).append("\" ");
+        sb.append(FLAG_NAME_STR + "\"").append(person.getName().fullName).append("\" ");
+        sb.append(FLAG_PHONE_STR + "\"").append(person.getPhone().value).append("\" ");
+        sb.append(FLAG_EMAIL_STR + "\"").append(person.getEmail().value).append("\" ");
+        sb.append(FLAG_ADDRESS_STR + "\"").append(person.getAddress().value).append("\" ");
         person.getTags().stream().forEach(
-                s -> sb.append("-" + FLAG_TAG_STR + "\"").append(s.tagName).append("\" ")
+                s -> sb.append(FLAG_TAG_STR + "\"").append(s.tagName).append("\" ")
         );
         return sb.toString();
     }

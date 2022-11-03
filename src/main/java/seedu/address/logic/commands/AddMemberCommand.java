@@ -36,7 +36,7 @@ public class AddMemberCommand extends Command {
     public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_MEMBER_INDEX_DESCRIPTION)
-    private Index targetPersonIndex;
+    private Index index;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -56,10 +56,10 @@ public class AddMemberCommand extends Command {
         }
         requireNonNull(model);
         List<Person> memberList = model.getFilteredPersonList();
-        if (targetPersonIndex.getOneBased() > memberList.size() || targetPersonIndex.getOneBased() <= 0) {
+        if (index.getOneBased() > memberList.size() || index.getOneBased() <= 0) {
             throw new CommandException(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS);
         }
-        Person toAdd = memberList.get(targetPersonIndex.getZeroBased());
+        Person toAdd = memberList.get(index.getZeroBased());
         Team team = model.getTeam();
         if (team.hasMember(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -73,6 +73,6 @@ public class AddMemberCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddMemberCommand // instanceof handles nulls
-                && targetPersonIndex == (((AddMemberCommand) other).targetPersonIndex)); // state check
+                && index == (((AddMemberCommand) other).index)); // state check
     }
 }

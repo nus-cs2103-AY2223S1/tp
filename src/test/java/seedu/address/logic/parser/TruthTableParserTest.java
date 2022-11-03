@@ -1,6 +1,32 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddLinkCommand;
+import seedu.address.logic.commands.AddMemberCommand;
+import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.logic.commands.AddTeamCommand;
+import seedu.address.model.person.Person;
+import seedu.address.model.team.Link;
+import seedu.address.model.team.Task;
+import seedu.address.model.team.Team;
+import seedu.address.testutil.LinkBuilder;
+import seedu.address.testutil.LinkUtil;
+import seedu.address.testutil.ParserHelper;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.TaskUtil;
+import seedu.address.testutil.TeamBuilder;
+import seedu.address.testutil.TeamUtil;
 
 public class TruthTableParserTest {
 
@@ -8,31 +34,54 @@ public class TruthTableParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        /*
-        AddCommand command = (AddCommand) parser.parseCommand(AddCommand.commandSpec.name());
-/       assertEquals(new AddCommand(), command);*/
+        AddCommand command = (AddCommand) parser.parseCommand(AddCommand.COMMAND_WORD);
+        assertEquals(new AddCommand(), command);
     }
 
     @Test
     public void parseCommand_addLink() throws Exception {
-
+        Link link = new LinkBuilder().build();
+        AddLinkCommand command =
+                (AddLinkCommand) parser.parseCommand(LinkUtil.getAddLinkCommand(link));
+        assertEquals(link.getDisplayedName(), ParserHelper.getLinkName(command));
+        assertEquals(link.getUrl(), ParserHelper.getUrl(command));
     }
     @Test
     public void parseCommand_addMember() throws Exception {
-
+        AddMemberCommand command =
+                (AddMemberCommand) parser.parseCommand(
+                        AddMemberCommand.FULL_COMMAND + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(INDEX_FIRST_PERSON, ParserHelper.getIndex(command));
     }
     @Test
     public void parseCommand_addPerson() throws Exception {
-
+        Person person = new PersonBuilder().build();
+        AddPersonCommand command =
+                (AddPersonCommand) parser.parseCommand(PersonUtil.getAddPersonCommand(person));
+        assertEquals(person.getName(), ParserHelper.getName(command));
+        assertEquals(person.getPhone(), ParserHelper.getPhone(command));
+        assertEquals(person.getEmail(), ParserHelper.getEmail(command));
+        assertEquals(person.getAddress(), ParserHelper.getAddress(command));
     }
     @Test
     public void parseCommand_addTask() throws Exception {
-
+        Task task = new TaskBuilder().build();
+        AddTaskCommand command =
+                (AddTaskCommand) parser.parseCommand(TaskUtil.getAddTaskCommand(task));
+        assertEquals(task.getName(), ParserHelper.getTaskName(command));
+        assertTrue(Arrays.equals(new String[] {"1","2"},
+                ParserHelper.getAssignees(command)));
+        assertEquals(task.getDeadline().get(), ParserHelper.getDeadline(command));
     }
 
     @Test
     public void parseCommand_addTeam() throws Exception {
-
+        Team team = new TeamBuilder().build();
+        String debug = TeamUtil.getAddTeamCommand(team);
+        AddTeamCommand command =
+                (AddTeamCommand) parser.parseCommand(TeamUtil.getAddTeamCommand(team));
+        assertEquals(team.getTeamName(), ParserHelper.getTeamName(command));
+        assertEquals(team.getDescription(), ParserHelper.getDescription(command));
     }
 
     @Test
