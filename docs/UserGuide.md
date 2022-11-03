@@ -3,12 +3,11 @@ layout: page
 title: User Guide
 ---
 
-<p align="center">
-  <img width="250" height="250" src="../src/main/resources/images/OmniHealth_logo.png">
+<p align="center" width="100%">
+    <img width="250" src="images/OmniHealth_logo.png" alt="">
 </p>
 
 ## About OmniHealth
-
 
 OmniHealth is a **Patient Management System** tailored to private clinicians to manage patients' details, records and upcoming appointments.
 As a private clinician, you can manage and monitor your patient database all in one location. 
@@ -152,37 +151,37 @@ Here are some general guidelines for you to better understand the command format
 
 ### Key Definitions
 #### Patient
-| Input Fields | Flag | Description |
-|--------------|------|-------------|
+| Input Fields | Flag | Description                                                                       |
+|--------------|------|-----------------------------------------------------------------------------------|
+| Name         | n/   | Name of the patient, which accepts alphanumeric characters, and must not be blank |
+| Birthdate    | b/   | Birthdate of the patient, given in dd-MM-yyy                                      |
+| Phone Number | p/   | Phone number of the patient, restricted to 5-15 integers                          |
+| Email        | e/   | Email of the patient, which needs to be in the format local-part@domain           |
+| Address      | a/   | Address of the patient, taking any value but cannot be blank                      |
+
+#### Appointment
+| Input Fields | Flag  | Description                                                                                                               |
+|--------------|-------|---------------------------------------------------------------------------------------------------------------------------|
+| Index        | NIL   | Index of the patient                                                                                                      |
+| Date & Time  | d/    | Date and time of the appointment, given in the format dd-MM-yyyy HHmm <br/> Note: Appointments cannot be set in the past! |                                     |
 
 #### Record
-| Input Fields | Flag | Description |
-|--------------|------|-------------|
+| Input Fields   | Flag | Description                                                                                                 |
+|----------------|------|-------------------------------------------------------------------------------------------------------------|
+| Date & Time    | d/   | Date and time of the record, given in the format dd-MM-yyyy HHmm <br/> Note: Dates cannot be in the future! |
+| Record Details | r/   | Details of the record, taking any value but cannot be blank                                                 |
+| Medication     | m/   | Medication prescribed, if any                                                                               |                                                                          
+
 
 ## Features
-### General Commands
-#### Viewing help: `help`
+> This section covers each of the features in detail. Before continuing, please ensure you have read the section on [Command Formats](#Command Format)!
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-#### Displaying the full list: `showall`
-
-Clears search parameters of a find or rfind command to undo the search.
-
-* If the patient list is displayed, the unfiltered patient list will be shown instead.
-* If the record list is displayed, the unfiltered record list will be shown instead.
-
-Format: `showall`
-
-#### Exiting the program: `exit`
-
-Exits the program.
-
-Format: `exit`
+What you should expect to find:
+* A description of the feature
+* The format of the command
+* The expected behaviour of the feature
+* Example usages of the feature
+* Important points to note about the feature
 
 ### Patient Commands
 > Commands relating to the patient list, such as adding and deleting patients
@@ -286,6 +285,7 @@ Format: `clear`
 
 ### Appointment Commands
 > Commands for adding and clearing appointments
+
 #### Adding an appointment: `appt`
 
 Adds an appointment for a specified patient. This command is only valid in the patient list view.
@@ -329,6 +329,7 @@ Examples:
 
 ### Record Commands
 > Commands relating to the record list of a patient, such as adding or deleting a record
+
 #### Adding a record: `radd`
 
 Adds a new record to a given patient.
@@ -432,7 +433,34 @@ Clears all records of a specific patient from Omnihealth.
 
 Format: `rclear`
 
+### General Commands
+> Some general commands for the application
+
+#### Viewing help: `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+#### Displaying the full list: `showall`
+
+Clears search parameters of a find or rfind command to undo the search.
+
+* If the patient list is displayed, the unfiltered patient list will be shown instead.
+* If the record list is displayed, the unfiltered record list will be shown instead.
+
+Format: `showall`
+
+#### Exiting the program: `exit`
+
+Exits the program.
+
+Format: `exit`
+
 ### Saving & Loading
+> Useful information relating to saving and loading of patient data
 
 #### Saving the data
 
@@ -453,12 +481,26 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+**Q**: My computer doesn't have Java 11! How can I install it? <br>
+**A**: You can find the details of this on [Oracle's website](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html), 
+where there is a comprehensive guide on how to install Java for most existing operating systems.
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous OmniHealth home folder.
+**Q**: How can I transfer my data to another Computer? <br>
+**A**: First, locate the data file as described by the section [editing the data file](#Editing the data file). After installing the application in 
+your new computer, transfer the old data file into the folder `[JAR file location]/data/`. If an existing `patientlist.json` already exists, 
+choose to overwrite the file. You can now open the application in the new computer and your old data will be there!
 
-**Q**: Is there a limit to the number of patients/records that I can add?<br>
-**A**: Yes, and the maximum number of patients/records that can be added is 2147483647.
+**Q**: Is there a limit to the number of patients/records that I can add? <br>
+**A**: There is a limit of patients and records of about 2 million patients/records. This limit may be expanded in the future if necessary.
+
+**Q**: Do I need an internet connection to use OmniHealth? <br>
+**A**: All of OmniHealth's functionality can be used offline! No internet connection is required.
+
+**Q**: Is my data stored on the cloud? <br>
+**A**: Unfortunately, there is no cloud saving compatibility currently supported by OmniHealth. However, you can still utilise various
+free services such as Google Drive to store your data online if you wish!
+The data file can be found in the JSON file under `[JAR file location]/data/patientlist.json`. 
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -483,6 +525,3 @@ _Details coming soon ..._
 | **Edit Record**          | `redit INDEX [d/RECORD_DATE_TIME] [r/RECORD_DETAILS] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever m/Paracetamol`                                                       |
 | **Find Record**          | `rfind [d/RECORD_DATE] [r/RECORD_DETAILS] [m/MEDICATION] `<br> e.g., `rfind d/10-2022 r/Covid-19 m/Panadol`                                                                             |
 | **Clear Records**        | `rclear`                                                                                                                                                                                |
-                                                                                                                                                    |
-                                                                 
-
