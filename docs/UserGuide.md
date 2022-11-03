@@ -9,6 +9,7 @@ track of your daily food consumption – the more consistent you are, the more l
 fitness goals that you have set for yourself! However, without the right tools, tracking what you have consumed can be 
 tedious and at times disorganised. With NutriGoals, you can keep track of your consumption quickly and easily, without 
 worrying about organising your data.
+
 * Table of Contents
 {:toc}
 
@@ -293,6 +294,10 @@ Example:
 
 * `target 2500` sets a target calorie intake of 2500 calories for the current day and displays the list of foods for the current day.
 
+Example after entering `target 2500`:
+
+![target](images/target.png)
+
 ### Viewing a summary of the calorie intake progress: `review`
 
 Shows the total calories consumed, the calorie target and the deficient or excess amount of calories for the current day. The list of foods for the current day will also be displayed.
@@ -322,6 +327,12 @@ with an ideal weight of 48kg.
 * `setup g/m w/70 h/175 i/70 a/20` sets up a user profile for a 20-year-old male who is 70kg and 175cm,
 with an ideal weight of 70kg.
 
+<div id="setup-eg"></div>
+
+Example after entering `setup g/m w/70 h/175 i/70 a/20`:
+
+![setup](images/setup.png)
+
 ### Viewing the user's profile: `profile`
 
 Displays the user's information stored during [setup](#setting-up-a-user-profile-setup).
@@ -344,6 +355,20 @@ Format: `suggest`
 
 * A user can only get an estimated suggested daily calorie intake after setup.
 
+
+Example after entering `suggest`:
+
+![suggest](images/suggest.png)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+The suggested amount of calorie is based on the example user profile created [here](#setup-eg).
+
+</div>
+
+
 ### Locating the nearest gym in NUS: `locate`
 
 Locates and ranks the nearest gyms to user's location in NUS.
@@ -356,14 +381,27 @@ Example:
 
 * `locate S17` returns a list of gyms sorted from nearest to furthest from S17.
 
-:fast_forward: **Future update:**<br>
+Example after entering `locate com2`:
+
+![locate](images/locate.png)
+
+<div markdown="block" class="alert alert-info">
+
+**:fast_forward: Future update:**<br>
+
 More nus locations will be added.
+
+</div>
 
 ### Suggesting a healthy-lifestyle tip: `tip`
 
 Suggests a random tip to help the user adopt a healthier lifestyle.
 
 Format: `tip`
+
+Example after entering `tip`:
+
+![tip](images/tip.png)
 
 ### Clearing all food items: `clear`
 
@@ -429,9 +467,9 @@ _More food items coming soon in a future release..._
 | **Review**  | `review`                                                | `review`                         |
 | **List**    | `list [DATE]`                                           | `list`                           |
 | **Setup**   | `setup g/GENDER w/WEIGHT h/HEIGHT i/IDEAL_WEIGHT a/AGE` | `setup g/m w/70 h/175 i/70 a/20` |
-| **Locate**  | `locate LOCATION`                                       | `locate CLB`                     |
 | **Profile** | `profile`                                               | `profile`                        |
 | **Suggest** | `suggest`                                               | `suggest`                        |
+| **Locate**  | `locate LOCATION`                                       | `locate CLB`                     |
 | **Tip**     | `tip`                                                   | `tip`                            |
 | **Clear**   | `clear`                                                 | `clear`                          |
 | **Exit**    | `exit`                                                  | `exit`                           |
