@@ -14,9 +14,9 @@ import seedu.address.model.task.exceptions.DatePastException;
 
 public class TaskDeadlineTest {
 
-    private TaskDeadline deadline1 = new TaskDeadline(LocalDate.of(2023,03,03));
-    private TaskDeadline deadline2 = new TaskDeadline(LocalDate.of(2023,03,03));
-    private TaskDeadline deadline3 = new TaskDeadline(LocalDate.of(2023,04,04));
+    private TaskDeadline deadline1 = new TaskDeadline(LocalDate.of(2023, 03, 03));
+    private TaskDeadline deadline2 = new TaskDeadline(LocalDate.of(2023, 03, 03));
+    private TaskDeadline deadline3 = new TaskDeadline(LocalDate.of(2023, 04, 04));
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -38,7 +38,7 @@ public class TaskDeadlineTest {
         assertNotEquals(null, deadline1);
 
         // different types -> returns false
-        assertNotEquals(deadline1, LocalDate.of(2022,12,12));
+        assertNotEquals(deadline1, LocalDate.of(2022, 12, 12));
 
         // same deadline -> returns true
         assertEquals(deadline1, deadline2);

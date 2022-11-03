@@ -10,9 +10,9 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 public class TaskDateTest {
-    private TaskDate date1 = new TaskDate(LocalDate.of(2023,03,03));
-    private TaskDate date2 = new TaskDate(LocalDate.of(2023,03,03));
-    private TaskDate date3 = new TaskDate(LocalDate.of(2023,04,04));
+    private TaskDate date1 = new TaskDate(LocalDate.of(2023, 03, 03));
+    private TaskDate date2 = new TaskDate(LocalDate.of(2023, 03, 03));
+    private TaskDate date3 = new TaskDate(LocalDate.of(2023, 04, 04));
     @Test
     public void equals() {
 
@@ -23,7 +23,7 @@ public class TaskDateTest {
         assertNotEquals(null, date1);
 
         // different types -> returns false
-        assertNotEquals(date1, LocalDate.of(2022,12,12));
+        assertNotEquals(date1, LocalDate.of(2022, 12, 12));
 
         // same deadline -> returns true
         assertEquals(date1, date2);
