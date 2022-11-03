@@ -38,9 +38,9 @@ Given below are my contributions to the project.
   * Contributions to the User Guide:
     * Added documentation for the `makeStats` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#generating-pie-charts-of-statistics-of-the-people-tagged-to-an-event-in-the-event-list--makestats)) feature.
     * Modified `addPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#adding-a-contact-addperson))
-      and `editPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#editing-a-contact--editperson)) feature slightly to include new date of birth field.
+      and `editPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#editing-a-contact--editperson)) features slightly to include new date of birth field.
   * Contributions to the Developer Guide:
-    Added implementation details of date of birth field in `addPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#add-date-of-birth))
+    * Added implementation details of date of birth field in `addPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#add-date-of-birth))
       and `editPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#edit-date-of-birth)) feature.
 
 * **Contributions to team-based tasks**:
