@@ -559,7 +559,7 @@ readability of the code.
 
 #### Find module feature
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-The find person feature is similar and will be omitted
+Find person feature is similar and will be omitted.
 </div>
 
 ##### Implementation
@@ -600,7 +600,7 @@ to the `ModuleCodeStartsWithKeywordPredicate` object instantiated in **Step 2**.
 
 The following sequence diagram summarizes what happens when a user executes the `find-module` command:
 
-![GoToSequenceDiagram](images/GoToSequenceDiagram.png)
+![FindModuleSequenceDiagram](images/FindModuleSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `GoToCommandParser`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -610,11 +610,11 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 
 The following activity diagram summarizes what happens when a user executes a `FindModuleCommand`:
 
-![GoToActivityDiagram](images/GoToActivityDiagram.png)
+![FindModuleActivityDiagram](images/FindModuleActivityDiagram.png)
 
 #### List module feature
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-The list person feature is similar and will be omitted
+List person feature is similar and will be omitted.
 </div>
 
 ##### Implementation
@@ -652,7 +652,7 @@ to the `Model#PREDICATE_SHOW_ALL_MODULES` predicate.
 
 The following sequence diagram summarizes what happens when a user executes the `list-module` command:
 
-![GoToSequenceDiagram](images/GoToSequenceDiagram.png)
+![ListModuleSequenceDiagram](images/ListModuleSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `GoToCommandParser`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -662,7 +662,7 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 
 The following activity diagram summarizes what happens when a user executes a `ListModuleCommand`:
 
-![GoToActivityDiagram](images/GoToActivityDiagram.png)
+![ListModuleActivityDiagram](images/ListModuleActivityDiagram.png)
 
 #### Goto module feature
 
@@ -673,11 +673,11 @@ Goto module mechanism is facilitated by the `GoToCommand` and `GoToCommandParser
 It allows users to navigate to a specific module given their respective module code, displaying information
 (i.e. tasks, links and contacts) that are associated to that module.<br>
 
-It uses the following methods provided by `ModelManager` which implements the `Model` interface.
-* `ModelManager::getModuleUsingModuleCode`: Retrieves a `Module` object using the `ModuleCode` object associated wih that `Module`
-* `ModelManager::updateFilteredModuleList`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI
-* `ModelManager::updateFilteredPersonList`: Update the current person list and filter it according to the given predicate `Predicate<Person> predicate`, reflecting the changes accordingly in the GUI
-* `ModelManager::setHomeStatus`: Sets the home status of Plannit.
+It uses the following methods provided by the `Model` interface.
+* `Model#getModuleUsingModuleCode()`: Retrieves a `Module` object using the `ModuleCode` object associated wih that `Module`
+* `Model#updateFilteredModuleList()`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI
+* `Model#updateFilteredPersonList()`: Update the current person list and filter it according to the given predicate `Predicate<Person> predicate`, reflecting the changes accordingly in the GUI
+* `Model#setHomeStatus()`: Sets the home status of Plannit.
 
 Given below is an example usage scenario and how the mechanism
 behaves when a user navigates to a module in Plannit.
@@ -692,25 +692,25 @@ goto CS1231
 **Step 2**: The `LogicManager` uses the `AddressBookParser` and `GoToCommandParser`
 to parse the user input. After validating the arguments provided by the user, the user input
 is used to perform the following actions: <br>
-* Extract the `ModuleCode` of the module to navigate to in the `GoToCommandParser` using the method `ParserUtil::parseModuleCode`
+* Extract the `ModuleCode` of the module to navigate to in the `GoToCommandParser` using the method `ParserUtil#parseModuleCode()`
 * Instantiate a `ModuleCodeMatchesKeywordPredicate` object
 
 **Step 3**: A `GoToCommand` object is instantiated using the `ModuleCodeMatchesKeywordPredicate` and `ModuleCode`
 obtained in **Step 2** which is returned to the `LogicManager`.
 
-**Step 4**: `LogicManager` calls the `GoToCommand::execute` method. This method will first
+**Step 4**: `LogicManager` calls the `GoToCommand#execute()` method. This method will first
 obtain the `Module` associated with the `ModuleCode` obtained in **Step 2** by calling
-`ModelManager::getModuleUsingModuleCode`.
+`Model#getModuleUsingModuleCode()`.
 
-**Step 5**: The module list is then filtered using the `ModelManager::updateFilteredModuleList` method according
+**Step 5**: The module list is then filtered using the `Model#updateFilteredModuleList()` method according
 to the `ModuleCodeMatchesKeywordPredicate` object instantiated in **Step 2**.
 
 **Step 6**: A `PersonIsInModulePredicate` object is then instantiated with the `Module` object obtained in **Step 4**.
 
-**Step 7**: The person list is then filtered using the `ModelManager::updateFilteredPersonList` method according
+**Step 7**: The person list is then filtered using the `Model#updateFilteredPersonList()` method according
 to the `PersonIsInModulePredicate` object instantiated in **Step 6**.
 
-**Step 8**: The home status of Plannit is set to false via `ModelManager::SetHomeStatus`.
+**Step 8**: The home status of Plannit is set to false via `Model#SetHomeStatus()`.
 
 **Step 9**: A new `CommandResult` object is returned, indicating success.
 

@@ -1,18 +1,31 @@
 @startuml
 start
-:User executes GoToCommand;
+:User executes a goto command;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([keyword violate the given restrictions]
+:GoToCommandParser parses the user input;
+
+if () then ([user input is valid]
 )
-:Show error message;
+:Obtain ModuleCode from user input;
+:Create a new ModuleCodeMatchesKeywordPredicate from user input;
+    if () then ([ModuleCode is valid]
+    )
+    :Obtain Module from ModuleCode;
+    :Filters module list according to ModuleCodeMatchesKeywordPredicate;
+    :Create a new PersonIsInModulePredicate from Module;
+    :Filters person list according to PersonIsInModulePredicate;
+    :Set home status to false;
+    :Show success message;
+    else ([else]
+    )
+    :Show no such module error message;
+    endif
 else ([else]
 )
-:Filters module and person list according to keyword;
-:Set home status to false;
-:Update GUI to show filtered module and contact list;
+:Show error message with valid command format;
 endif
 stop
 @enduml
