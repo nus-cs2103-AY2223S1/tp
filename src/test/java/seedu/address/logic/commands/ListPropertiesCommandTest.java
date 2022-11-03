@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.showPropertyAtIndex;
+import static seedu.address.logic.commands.PropertyCommandTestUtil.showPropertyAtIndex;
 import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;

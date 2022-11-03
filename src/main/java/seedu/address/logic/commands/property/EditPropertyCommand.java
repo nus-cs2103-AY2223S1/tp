@@ -23,6 +23,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.address.Address;
+import seedu.address.model.buyer.Name;
+import seedu.address.model.buyer.Phone;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Owner;
@@ -110,7 +112,12 @@ public class EditPropertyCommand extends Command {
         Characteristics updatedCharacteristics = descriptor
                 .getCharacteristics()
                 .orElse(propertyToEdit.getCharacteristics().orElse(null));
-        Owner updatedOwner = descriptor.getOwner().orElse(propertyToEdit.getOwner());
+
+        // Allows for the changing of owner name and owner phone individually
+        Name updatedOwnerName = descriptor.getOwnerName().orElse(propertyToEdit.getOwner().getName());
+        Phone updatedOwnerPhone = descriptor.getOwnerPhone().orElse(propertyToEdit.getOwner().getPhone());
+        Owner updatedOwner = new Owner(updatedOwnerName, updatedOwnerPhone);
+
 
         // Should this be updated
         LocalDateTime entryTime = propertyToEdit.getPropertyEntryTime();
@@ -148,6 +155,8 @@ public class EditPropertyCommand extends Command {
         private Description description;
         private Characteristics characteristics;
         private Owner owner;
+        private Name ownerName;
+        private Phone ownerPhone;
 
         public EditPropertyDescriptor() {}
 
@@ -162,13 +171,16 @@ public class EditPropertyCommand extends Command {
             setAddress(toCopy.address);
             setCharacteristics(toCopy.characteristics);
             setOwner(toCopy.owner);
+            setOwnerName(toCopy.ownerName);
+            setOwnerPhone(toCopy.ownerPhone);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, price, address, description, address, characteristics, owner);
+            return CollectionUtil.isAnyNonNull(name, price, address, description, address, characteristics,
+                    ownerName, ownerPhone);
         }
 
         public void setName(PropertyName propertyName) {
@@ -209,6 +221,23 @@ public class EditPropertyCommand extends Command {
         public Optional<Owner> getOwner() {
             return Optional.ofNullable(owner);
         }
+
+        public void setOwnerName(Name name) {
+            this.ownerName = name;
+
+        }
+        public Optional<Name> getOwnerName() {
+            return Optional.ofNullable(ownerName);
+        }
+
+        public void setOwnerPhone(Phone phone) {
+            this.ownerPhone = phone;
+        }
+        public Optional<Phone> getOwnerPhone() {
+            return Optional.ofNullable(ownerPhone);
+        }
+
+
 
         public void setCharacteristics(Characteristics characteristics) {
             this.characteristics = characteristics;
