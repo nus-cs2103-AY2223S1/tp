@@ -60,7 +60,7 @@ public class LinkExamCommand extends Command {
             throw new CommandException(TASK_ALREADY_LINKED);
         }
         Exam exam = exams.get(examIndex.getZeroBased());
-        if (!Module.isSameModule(task.getModule(), exam.getModule())) {
+        if (!task.getModule().isSameModule(exam.getModule())) {
             throw new CommandException(DIFFERENT_MODULE_CODE);
         }
         Task linkedTask = task.linkTask(exam);

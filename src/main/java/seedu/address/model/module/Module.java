@@ -11,7 +11,7 @@ import seedu.address.model.module.exceptions.NullModuleCodeException;
  */
 public class Module implements Comparable<Module> {
 
-    private static final String MESSAGE_NO_TASKS_FOR_MODULE = "You have no tasks for this module";
+    public static final String MESSAGE_NO_TASKS_FOR_MODULE = "You have no tasks for this module";
 
     private final ModuleCode moduleCode;
     private int totalNumOfTasks;
@@ -61,9 +61,9 @@ public class Module implements Comparable<Module> {
      * @param numOfCompletedTasks The number of completed tasks the module has.
      * @param totalNumOfTasks The total number of tasks the module has.
      */
-    public Module(ModuleCode moduleCode, ModuleName moduleName, ModuleCredit moduleCredit,
+    private Module(ModuleCode moduleCode, ModuleName moduleName, ModuleCredit moduleCredit,
                   int numOfCompletedTasks, int totalNumOfTasks) {
-        requireAllNonNull(moduleCode, moduleName, moduleCredit, numOfCompletedTasks, totalNumOfTasks);
+        requireAllNonNull(moduleCode, moduleName, moduleCredit);
         this.moduleCode = moduleCode;
         this.moduleName = moduleName;
         this.moduleCredit = moduleCredit;
@@ -84,7 +84,7 @@ public class Module implements Comparable<Module> {
     }
 
     /**
-     * Checks whether two modules have the same module code or same module name.
+     * Checks whether two modules have the same module code.
      *
      * @param otherModule The other module being compared against.
      * @return true if the two Module objects have the same module code or module name;
@@ -92,17 +92,6 @@ public class Module implements Comparable<Module> {
      */
     public boolean isSameModule(Module otherModule) {
         return this.equals(otherModule);
-    }
-
-    /**
-     * Checks whether two modules have the same module fields.
-     *
-     * @param firstModule The first module being checked.
-     * @param secondModule The second module being checked against.
-     * @return true if both Module objects have the same fields; else return false.
-     */
-    public static boolean isSameModule(Module firstModule, Module secondModule) {
-        return firstModule.equals(secondModule);
     }
 
     /**
@@ -125,7 +114,7 @@ public class Module implements Comparable<Module> {
      * @throws NullModuleCodeException if the current module or other module {@code otherModule}
      *     has a null module code field.
      */
-    public boolean hasSameModuleCode(Module otherModule) throws NullModuleCodeException {
+    private boolean hasSameModuleCode(Module otherModule) throws NullModuleCodeException {
         requireNonNull(otherModule);
         if (moduleCode == null || otherModule.moduleCode == null) {
             throw new NullModuleCodeException();
@@ -140,7 +129,7 @@ public class Module implements Comparable<Module> {
      * @return true if the two Module objects have the same module name;
      *         else return false
      */
-    public boolean hasSameModuleName(Module otherModule) {
+    private boolean hasSameModuleName(Module otherModule) {
         if (moduleName != null && otherModule.moduleName != null) {
             return moduleName.equals(otherModule.moduleName);
         }
@@ -154,7 +143,7 @@ public class Module implements Comparable<Module> {
      * @return true if the two Module objects have the same module credit;
      *         else return false
      */
-    public boolean hasSameModuleCredit(Module otherModule) {
+    private boolean hasSameModuleCredit(Module otherModule) {
         if (moduleCredit != null && otherModule.moduleCredit != null) {
             return moduleCredit.equals(otherModule.moduleCredit);
         }
@@ -219,7 +208,7 @@ public class Module implements Comparable<Module> {
 
         Module otherModule = (Module) other;
 
-        return hasSameModuleCode(otherModule);
+        return hasSameModuleCode(otherModule) ;
     }
 
     @Override
