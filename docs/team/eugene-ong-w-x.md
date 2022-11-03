@@ -9,15 +9,15 @@ SoConnect is a **contact management and task management desktop app** that aims 
 
 Given below are my contributions to SoConnect.
 
-* **New Feature**: Added the ability to sort a list of contacts.
+* **New Sort Feature**: Added the ability to sort a list of contacts.
     * What it does: Allows the user to sort the contact list by a selected parameter. User can sort in reverse as well as combine multiple parameters to sort the list by.
     * Justification: This feature improves SoConnect's utility as it provides the user freedom in choosing how their contact list is displayed.
-    * Highlights: This enhancement affects the parameters of contacts (e.g. name, address, email, phone, tags). For every parameter stored in a contact, it is necessary to design the sorting order and implement it accordingly. It required an in-depth analysis on how every parameter should be logically sorted. The implementation too was challenging as it required changes to multiple levels of the model component of SoConnect.
+    * Highlights: This enhancement affects the parameters of contacts (e.g. name, address, email, phone, tags). For every parameter stored in a contact, it is necessary to design the sorting order and implement it accordingly. It required an in-depth analysis on how every parameter should be logically sorted. The implementation was challenging as it required changes to multiple levels of the model component of SoConnect.
 
-* **New Features**: Added the ability to add, remove, edit, and filter tasks (referred to as todos).
+* **New Todo Features**: Added the ability to add, remove, edit, and filter tasks (referred to as todos).
     * What it does: Allows the user to manage todos in addition to contacts. Basic management features such as adding, removing, editing todos are available. Users can also filter the todos displayed.
     * Justification: This feature significantly improves SoConnect's utility as users can now use it to manage both contacts and tasks, making SoConnect multipurpose.
-    * Highlights: This enhancement affects the design of SoConnect as it now stores data of todos in addition to data of contacts. It required in-depth analysis on design alternatives. The implementation too was tedious as it required heavy modifications to the model, storage, and logic components.
+    * Highlights: This enhancement affects the design of SoConnect as it now stores data of todos in addition to data of contacts. It required in-depth analysis on design alternatives. The implementation was tedious as it required heavy modifications to the model, storage, and logic components.
     * Credits: The design and implementation of the todo management features borrows from the original contact management features of AddressBook Level-3, which SoConnect is evolved from. This is to ensure that the contact management features and the todo management features of SoConnect integrate seamlessly together instead of being 2 distinctly different products.
 
 * **Code contributed**:
