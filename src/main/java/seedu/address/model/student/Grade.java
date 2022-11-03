@@ -1,4 +1,5 @@
 package seedu.address.model.student;
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Objects;
@@ -42,12 +43,9 @@ public class Grade {
      * @param grade A valid grade.
      */
     public Grade(String grade) {
-        if (!Objects.equals(grade, "")) {
-            checkArgument(isValidGrade(grade), MESSAGE_CONSTRAINTS);
-            value = grade;
-        } else {
-            value = "PENDING...";
-        }
+        requireNonNull(grade);
+        checkArgument(isValidGrade(grade), MESSAGE_CONSTRAINTS);
+        value = grade;
     }
 
     /**

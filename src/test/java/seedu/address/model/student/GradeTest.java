@@ -3,6 +3,8 @@ package seedu.address.model.student;
 import org.junit.jupiter.api.Test;
 import seedu.address.model.tag.Tag;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -11,6 +13,17 @@ public class GradeTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Grade(null));
+    }
+
+    @Test
+    public void constructor_validGrade() {
+         // empty string can be passed into constructor
+    }
+
+    @Test
+    public void constructor_invalidGrade_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new Grade(""));
+        assertThrows(IllegalArgumentException.class, () -> new Grade(" "));
     }
 
     @Test
