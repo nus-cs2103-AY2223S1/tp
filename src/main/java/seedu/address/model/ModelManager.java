@@ -131,32 +131,6 @@ public class ModelManager implements Model {
         addressBook.setProject(target, editedProject);
     }
 
-    //=========== Staff ================================================================================
-
-    @Override
-    public boolean hasStaff(Staff staff) {
-        requireNonNull(staff);
-        return addressBook.hasStaff(staff);
-    }
-
-    @Override
-    public void deleteStaff(Staff target) {
-        addressBook.removeStaff(target);
-    }
-
-    @Override
-    public void addStaff(Staff staff) {
-        addressBook.addStaff(staff);
-        updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
-    }
-
-    @Override
-    public void setStaff(Staff target, Staff editedStaff) {
-        requireAllNonNull(target, editedStaff);
-
-        addressBook.setStaff(target, editedStaff);
-    }
-
     //=========== Tasks ================================================================================
 
     @Override
@@ -181,22 +155,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTask);
 
         addressBook.setTask(target, editedTask);
-    }
-
-    // TODO: 19/10/2022 might not need this??
-    @Override
-    public void setTargetTask(Task target) {
-        requireNonNull(target);
-        if (this.targetTask.isEmpty()) {
-            this.targetTask.add(target);
-        } else {
-            this.targetTask.set(0, target);
-        }
-    }
-
-    @Override
-    public ArrayList<Task> getTargetTask() {
-        return targetTask;
     }
 
     @Override

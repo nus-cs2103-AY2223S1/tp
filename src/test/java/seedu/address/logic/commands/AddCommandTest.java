@@ -162,26 +162,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasStaff(Staff staff) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteStaff(Staff target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addStaff(Staff staff) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setStaff(Staff target, Staff editedStaff) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Project> getFilteredProjectList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -207,16 +187,6 @@ public class AddCommandTest {
 
         @Override
         public void setTask(Task target, Task editedTask) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setTargetTask(Task target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ArrayList<Task> getTargetTask() {
             throw new AssertionError("This method should not be called.");
         }
 

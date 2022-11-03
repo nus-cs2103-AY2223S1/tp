@@ -96,22 +96,6 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasStaff_nullStaff_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasStaff(null));
-    }
-
-    @Test
-    public void hasStaff_staffNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasStaff(STAFF_1));
-    }
-
-    @Test
-    public void hasStaff_staffInAddressBook_returnsTrue() {
-        modelManager.addStaff(STAFF_1);
-        assertTrue(modelManager.hasStaff(STAFF_1));
-    }
-
-    @Test
     public void getFilteredStaffList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStaffList().remove(0));
     }
