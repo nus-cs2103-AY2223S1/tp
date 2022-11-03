@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -10,7 +11,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 
 /**
  * Includes a Social media to an existing person in uNivUSal.
@@ -115,9 +118,23 @@ public class IncludeCommand extends Command {
         //gets the person to be edited;
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Socials socialToEdit = findSocial(social);
+        if (socialToEdit == Socials.EMAIL) {
+            try {
+                checkArgument(Email.isValidEmail(link), Email.MESSAGE_CONSTRAINTS);
+            } catch (IllegalArgumentException e) {
+                throw new CommandException(Email.MESSAGE_CONSTRAINTS);
+            }
+        } else if (socialToEdit == Socials.WHATSAPP) {
+            try {
+                checkArgument(Phone.isValidPhone(link), Phone.MESSAGE_CONSTRAINTS);
+            } catch (IllegalArgumentException e) {
+                throw new CommandException("Whatsapp phone numbers should only contain numbers, and it should be at least 3 digits long");
+            }
+        }
         include(personToEdit, socialToEdit); //Includes the new social to the person to edit.
 
         ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        model.setPerson(personToEdit, personToEdit);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }

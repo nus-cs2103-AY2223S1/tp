@@ -55,7 +55,9 @@ public class Person {
         this.groups.addAll(groups);
         this.social = social;
         if (social.getEmail() == null || social.getEmail().equals("<none>")) {
-            this.social.addEmail(email.toString());
+            if (email.toString() != "") {
+                this.social.addEmail(email.toString());
+            }
         }
     }
 

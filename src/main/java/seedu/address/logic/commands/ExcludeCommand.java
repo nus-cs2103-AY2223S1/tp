@@ -21,7 +21,8 @@ public class ExcludeCommand extends Command {
         WHATSAPP,
         TELEGRAM,
         EMAIL,
-        INSTAGRAM
+        INSTAGRAM,
+        PREFERRED
     }
 
     public static final String COMMAND_WORD = "exclude";
@@ -32,7 +33,7 @@ public class ExcludeCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Link deleted";
     public static final String MESSAGE_WRONG_SOCIAL = "No such Social media.\n"
-            + "Valid Social media includes: WHATSAPP, TELEGRAM, EMAIL, INSTAGRAM";
+            + "Valid Social media includes: WHATSAPP, TELEGRAM, EMAIL, INSTAGRAM, PREFERRED";
 
     private final Index index;
     private final String social;
@@ -92,6 +93,10 @@ public class ExcludeCommand extends Command {
             p.getSocial().deleteInstagram();
             break;
 
+        case PREFERRED:
+            p.getSocial().deletePreferred();
+            break;
+
         default:
             throw new CommandException(MESSAGE_WRONG_SOCIAL);
         }
@@ -111,6 +116,7 @@ public class ExcludeCommand extends Command {
         exclude(personToEdit, socialToEdit); //Includes the new social to the person to edit.
 
         ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        model.setPerson(personToEdit, personToEdit);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }

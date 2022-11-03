@@ -31,7 +31,7 @@ public class Social {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    private static final String SCHEME = "http://";
+    private static final String SCHEME = "https://";
 
     private static final String WHATSAPP_DOMAIN = "wa.me/";
 
@@ -126,6 +126,11 @@ public class Social {
     public void deleteInstagram() {
         links[3] = null;
     }
+
+    /**
+     * Sets the Preferred link to null
+     */
+    public void deletePreferred() { this.preferred = null;}
 
     /**
      * Returns Whatsapp link of the person.
@@ -255,6 +260,7 @@ public class Social {
                 throw new SocialException("No Telegram Link");
             }
             URI uri = new URI(SCHEME + TELEGRAM_DOMAIN + getTelegram());
+            System.out.println(uri.toString());
             Desktop desktop = java.awt.Desktop.getDesktop();
             desktop.browse(uri);
         } catch (URISyntaxException e) {
