@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_ONE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -10,6 +12,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THREE;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +41,10 @@ import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.EditTeamCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindMemberCommand;
+import seedu.address.logic.commands.FindPersonCommand;
+import seedu.address.logic.commands.FindTaskCommand;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.Task;
@@ -242,13 +250,37 @@ public class TruthTableParserTest {
 
     @Test
     public void parseCommand_findMember() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String nameCommandString = FindMemberCommand.FULL_COMMAND + " "
+                + FLAG_NAME_STR + " "
+                + keywords.stream().collect(Collectors.joining(" "));
+        FindMemberCommand nameFindCommand = (FindMemberCommand) parser.parseCommand(nameCommandString);
+        assertTrue(Arrays.equals(keywords.toArray(), ParserHelper.getNameKeyWords(nameFindCommand)));
+
+        String emailCommandString = FindMemberCommand.FULL_COMMAND + " "
+                + FLAG_EMAIL_STR + " "
+                + keywords.stream().collect(Collectors.joining(" "));
+        FindMemberCommand emailFindCommand = (FindMemberCommand) parser.parseCommand(emailCommandString);
+        assertTrue(Arrays.equals(keywords.toArray(), ParserHelper.getEmailKeyWords(nameFindCommand)));
     }
 
     @Test
     public void parseCommand_findPerson() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String commandString = FindPersonCommand.FULL_COMMAND + " "
+                + keywords.stream().collect(Collectors.joining(" "));
+        FindPersonCommand command = (FindPersonCommand) parser.parseCommand(commandString);
+        assertEquals(new NameContainsKeywordsPredicate(keywords),
+                ParserHelper.getNameContainsKeywordsPredicate(command));
     }
     @Test
     public void parseCommand_findTask() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String commandString = FindTaskCommand.FULL_COMMAND + " "
+                + FLAG_NAME_STR + " "
+                + keywords.stream().collect(Collectors.joining(" "));
+        FindTaskCommand nameFindCommand = (FindTaskCommand) parser.parseCommand(commandString);
+        assertTrue(Arrays.equals(keywords.toArray(), ParserHelper.getNameKeyWords(nameFindCommand)));
     }
 
     @Test

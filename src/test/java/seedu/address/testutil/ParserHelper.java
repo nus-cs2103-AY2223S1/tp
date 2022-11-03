@@ -11,6 +11,7 @@ import seedu.address.logic.parser.Order;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Phone;
 import seedu.address.model.team.Description;
 import seedu.address.model.team.LinkName;
@@ -182,6 +183,42 @@ public class ParserHelper {
         for (int i = 0; i < args.size(); i++) {
             CommandLine.Model.ArgSpec arg = args.get(i);
             if (arg.paramLabel().equals("<deadline>")) {
+                return arg.getValue();
+            }
+        }
+        return null;
+    }
+
+    public static String[] getNameKeyWords(Command command) {
+        CommandLine.Model.CommandSpec commandSpec = CommandLine.Model.CommandSpec.forAnnotatedObject(command);
+        List<CommandLine.Model.ArgSpec> args = commandSpec.args();
+        for (int i = 0; i < args.size(); i++) {
+            CommandLine.Model.ArgSpec arg = args.get(i);
+            if (arg.paramLabel().equals("<nameKeywords>")) {
+                return arg.getValue();
+            }
+        }
+        return null;
+    }
+
+    public static String[] getEmailKeyWords(Command command) {
+        CommandLine.Model.CommandSpec commandSpec = CommandLine.Model.CommandSpec.forAnnotatedObject(command);
+        List<CommandLine.Model.ArgSpec> args = commandSpec.args();
+        for (int i = 0; i < args.size(); i++) {
+            CommandLine.Model.ArgSpec arg = args.get(i);
+            if (arg.paramLabel().equals("<emailKeywords>")) {
+                return arg.getValue();
+            }
+        }
+        return null;
+    }
+
+    public static NameContainsKeywordsPredicate getNameContainsKeywordsPredicate(Command command) {
+        CommandLine.Model.CommandSpec commandSpec = CommandLine.Model.CommandSpec.forAnnotatedObject(command);
+        List<CommandLine.Model.ArgSpec> args = commandSpec.args();
+        for (int i = 0; i < args.size(); i++) {
+            CommandLine.Model.ArgSpec arg = args.get(i);
+            if (arg.paramLabel().equals("keywords")) {
                 return arg.getValue();
             }
         }
