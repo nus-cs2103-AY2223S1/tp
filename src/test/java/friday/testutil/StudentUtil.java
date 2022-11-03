@@ -35,50 +35,59 @@ public class StudentUtil {
      * Returns the part of command string for the given {@code student}'s details.
      */
     public static String getStudentDetails(Student student) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + student.getName().fullName + " ");
-        sb.append(PREFIX_TELEGRAMHANDLE + student.getTelegramHandle().value + " ");
-        sb.append(PREFIX_CONSULTATION + student.getConsultation().toString() + " ");
-        sb.append(PREFIX_MASTERYCHECK + student.getMasteryCheck().toString() + " ");
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(PREFIX_NAME + student.getName().fullName + " ");
+        stringBuilder.append(PREFIX_TELEGRAMHANDLE + student.getTelegramHandle().value + " ");
+        stringBuilder.append(PREFIX_CONSULTATION + student.getConsultation().toString() + " ");
+        stringBuilder.append(PREFIX_MASTERYCHECK + student.getMasteryCheck().toString() + " ");
         student.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> stringBuilder.append(PREFIX_TAG + s.tagName + " ")
         );
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
     /**
      * Returns the part of command string for the given {@code EditStudentDescriptor}'s details.
      */
     public static String getEditStudentDescriptorDetails(EditStudentDescriptor descriptor) {
-        StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getTelegramHandle().ifPresent(phone -> sb.append(PREFIX_TELEGRAMHANDLE).append(phone.value)
+        StringBuilder stringBuilder = new StringBuilder();
+        descriptor.getName().ifPresent(name ->
+                stringBuilder.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getTelegramHandle().ifPresent(phone ->
+                stringBuilder.append(PREFIX_TELEGRAMHANDLE).append(phone.value)
                 .append(" "));
-        descriptor.getConsultation().ifPresent(email -> sb.append(PREFIX_CONSULTATION).append(email.toString())
+        descriptor.getConsultation().ifPresent(email ->
+                stringBuilder.append(PREFIX_CONSULTATION).append(email.toString())
                 .append(" "));
-        descriptor.getMasteryCheck().ifPresent(address -> sb.append(PREFIX_MASTERYCHECK).append(address.toString())
+        descriptor.getMasteryCheck().ifPresent(address ->
+                stringBuilder.append(PREFIX_MASTERYCHECK).append(address.toString())
                 .append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                stringBuilder.append(PREFIX_TAG);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                tags.forEach(s -> stringBuilder.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
     /**
      * Returns the part of command string for the given {@code EditGradeDescriptor}'s grades.
      */
     public static String getEditGradesDescriptorDetails(EditGradeDescriptor descriptor) {
-        StringBuilder sb = new StringBuilder();
-        descriptor.getRa1().ifPresent(ra1 -> sb.append(PREFIX_RA1).append(ra1.score).append(" "));
-        descriptor.getRa2().ifPresent(ra2 -> sb.append(PREFIX_RA2).append(ra2.score).append(" "));
-        descriptor.getMt().ifPresent(mt -> sb.append(PREFIX_MIDTERM).append(mt.score).append(" "));
-        descriptor.getFt().ifPresent(ft -> sb.append(PREFIX_FINALS).append(ft.score).append(" "));
-        descriptor.getPa().ifPresent(pa -> sb.append(PREFIX_PRACTICAL).append(pa.score).append(" "));
-        return sb.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        descriptor.getRa1().ifPresent(ra1 ->
+                stringBuilder.append(PREFIX_RA1).append(ra1.getScore()).append(" "));
+        descriptor.getRa2().ifPresent(ra2 ->
+                stringBuilder.append(PREFIX_RA2).append(ra2.getScore()).append(" "));
+        descriptor.getMt().ifPresent(mt ->
+                stringBuilder.append(PREFIX_MIDTERM).append(mt.getScore()).append(" "));
+        descriptor.getFt().ifPresent(ft ->
+                stringBuilder.append(PREFIX_FINALS).append(ft.getScore()).append(" "));
+        descriptor.getPa().ifPresent(pa ->
+                stringBuilder.append(PREFIX_PRACTICAL).append(pa.getScore()).append(" "));
+        return stringBuilder.toString();
     }
 }

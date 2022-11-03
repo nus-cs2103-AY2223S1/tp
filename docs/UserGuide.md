@@ -8,11 +8,21 @@ use via a Command Line Interface** (CLI) while still having the benefits of a Gr
 type fast, FRIDAY can get your contact management tasks done faster than traditional GUI apps.
 
 ### Table of Contents
-1. Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Quickstart
 
+1.Ensure you have Java 11 or above installed in your Computer.
+
+2.Download the latest FRIDAY.jar from here
+
+3.Copy the file to the folder you want to use as the home folder for your FRIDAY system.
+
+4.Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
+
+--------------------------------------------------------------------------------------------------------------------
+![Startup.png](images/Startup.png)
 ## Features
 
 1. Add students
@@ -69,9 +79,16 @@ type fast, FRIDAY can get your contact management tasks done faster than traditi
 
 </div>
 
+### Clearing all existing data: `clear`
+
+Clears all existing data in FRIDAY, resulting in an empty Student list.
+
+Format: `clear`
+
 ### Adding a student: `add`
 
 Adds a student to FRIDAY, with the given name, Telegram handle, consultation date, Mastery Check date, and tags.
+All student names and Telegram handles must be unique.
 
 Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`
 
@@ -79,10 +96,9 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 A student can have any number of tags (including 0).
 </div>
 
-Example:
-![AddCommand.png](images/AddCommand.png)
+Example: `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16`
 
-Outcome:
+Outcome: a student named Alex Yeoh is added.
 ![AddCommandOutcome.png](images/AddCommandOutcome.png)
 
 ### Deleting a student: `delete`
@@ -145,7 +161,7 @@ Format: `find KEYWORDS`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
-Note: Multiple keywords can be entered.
+Note: Multiple keywords can be entered and each keyword is separated by a space.
 Note: when searching for exam grade use format `find [exam_name:EXAM_SCORE]`
 </div>
 
@@ -157,9 +173,29 @@ Outcome:
 
 ### Viewing all students: `list`
 
-Lists all students in FRIDAY.
+Lists all students in FRIDAY. This command helps you to reset the sorting and finding done by the `sort` and `find` command respectively.
 
 Format: `list`
+
+### Sorting students: `sort`
+
+Sorts all students in FRIDAY with the given criteria, in ascending or descending order.
+If the `find` command was run before this, using `sort` will undo the result and all students will be sorted.
+
+Format: `sort CRITERIA/ORDER`
+
+* `CRITERIA` can be `n` (name), `t` (Telegram handle), `c` (consultation), `m` (Mastery Check), or the following grades: `ra1`, `ra2`, `mt`, `pa`, `mt`, and `ft`
+* `ORDER` can be `a` (ascending) or `d` (descending)
+* Names and Telegram handles are sorted in alphabetical order
+* Consultations and Mastery Checks are sorted by time
+* Grades are sorted in numerical order
+* Students with missing details (e.g. missing Telegram handles) will be shown first when sorted in descending order.
+
+Example: enter `sort m/a` with an unsorted list of students.
+![SortCommand.png](images/SortCommand.png)
+
+Outcome: students are sorted by Mastery Check date, from earliest to latest.
+![SortCommandOutcome.png](images/SortCommandOutcome.png)
 
 ### Marking a student's Mastery Check as passed: `mark`
 
@@ -189,43 +225,35 @@ The index of the student can be seen from the student list.<br>
 Example after entering `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed):
 ![UnmarkCommandOutcome.png](images/UnmarkCommandOutcome.png)
 
-### Sorting students: `sort`
-
-Sorts all students in FRIDAY with the given criteria, in ascending or descending order.
-
-Format: `sort CRITERIA/ORDER`
-
-* `CRITERIA` can be `n` (name), `t` (Telegram handle), `c` (consultation), `m` (Mastery Check), or the following grades: `ra1`, `ra2`, `mt`, `pa`, `mt`, and `ft`
-* `ORDER` can be `a` (ascending) or `d` (descending)
-* Names and Telegram handles are sorted in alphabetical order
-* Consultations and Mastery Checks are sorted by time
-* Grades are sorted in numerical order
-
-Example:
-![SortCommand.png](images/SortCommand.png)
-
-Outcome:
-![SortCommandOutcome.png](images/SortCommandOutcome.png)
-
 ### Adding aliases: `alias`
 
-Adds an alias for a command into FRIDAY.
+Adds an alias for a command into FRIDAY, which you can use in place of the default command keywords.<br>
+This allows you to be more efficient in using FRIDAY.
 
-Format: `alias a/ALIAS k/KEYWORD`
+Format: `alias a/ALIAS k/COMMAND_KEYWORD`
 
-`KEYWORD` must be the default command keyword (e.g `add` in Adding students)
-`ALIAS` must not be a default command keyword
+* `COMMAND_KEYWORD` must be a default command keyword (e.g `add` in Adding students)
+* `ALIAS` must not be a default command keyword and contain exactly one word
+
+Example:
+* `alias a/ls k/list` adds an alias `ls` for the viewing all students command `list`.<br>
+Now, typing `ls` into the command box will execute the `list` command.
+* `alias a/a k/add` adds an alias `a` for the adding a student command `add`.<br>
+Now, typing `a n/John Doe` will add a student named John Doe into FRIDAY.
 
 
 ### Deleting aliases: `unalias`
 
-Deletes an existing alias in FRIDAY.
+Deletes an existing alias, which is no longer needed, in FRIDAY.
 
 Format: `unalias a/ALIAS`
 
-### View all aliases: `aliaslist`
+Example:
+* `unalias a/ls` will delete the alias `ls` if it exists in FRIDAY.
 
-View all aliases in FRIDAY.
+### Viewing aliases: `aliaslist`
+
+Views all aliases in FRIDAY, so that you know what aliases you have created and the commands they are for.
 
 Format: `aliaslist`
 
@@ -237,9 +265,13 @@ Format: `guide`
 
 ### Getting help: `help`
 
-Shows a summary of commands along with their command word. Also includes a link to FRIDAY's user guide.
+Shows a summary of commands along with their command word used in FRIDAY. This allows you to have an easily accessible summary when using FRIDAY.<br>
+It also includes a link to this User Guide if needed.
+
 
 Format: `help`
+
+[Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -261,7 +293,7 @@ Format: `help`
 | **Unmark a student's Mastery Check**         | `unmark INDEX`                                                                                           |
 | **View all students**                        | `list`                                                                                                   |
 | **Sort students**                            | `sort CRITERIA/ORDER`                                                                                    |
-| **Add Alias**                                | `alias a/ALIAS k/KEYWORD`                                                                                |
+| **Add Alias**                                | `alias a/ALIAS k/COMMAND_KEYWORD`                                                                        |
 | **Delete Alias**                             | `unalias a/ALIAS`                                                                                        |
 | **View all alias**                           | `aliaslist`                                                                                              |
 | **Get a link to the User Guide**             | `guide`                                                                                                  |

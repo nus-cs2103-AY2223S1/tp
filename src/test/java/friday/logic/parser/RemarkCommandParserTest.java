@@ -12,6 +12,10 @@ import friday.commons.core.index.Index;
 import friday.logic.commands.RemarkCommand;
 import friday.model.student.Remark;
 
+// @@author HowSuen-reused
+// Reused from https://nus-cs2103-ay2223s1.github.io/tp/tutorials/AddRemark.html
+// with minor modifications
+
 public class RemarkCommandParserTest {
     private RemarkCommandParser parser = new RemarkCommandParser();
     private final String nonEmptyRemark = "Some remark.";

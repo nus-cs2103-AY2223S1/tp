@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+Participant ":LogicManager" as logicManager LOGIC_COLOR
+Participant "scp:SortCommandParser" as sortCommandParser LOGIC_COLOR
+Participant "sc:SortCommand" as sortCommand LOGIC_COLOR
+Participant "r:CommandResult" as commandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+Participant "m:ModelManager" as modelManager MODEL_COLOR
+Participant "ss:SortedList" as sortedList MODEL_COLOR
+end box
+
+[-> logicManager : execute("sort n/a")
+activate logicManager LOGIC_COLOR
+
+logicManager -[LOGIC_COLOR]> sortCommandParser : parse("n/a")
+activate sortCommandParser LOGIC_COLOR
+
+create sortCommand
+sortCommandParser -[LOGIC_COLOR]> sortCommand : sortCommand(c)
+activate sortCommand LOGIC_COLOR
+
+sortCommand --[LOGIC_COLOR]> sortCommandParser : ""sc""
+deactivate sortCommand
+
+sortCommandParser --[LOGIC_COLOR]> logicManager : ""sc""
+deactivate sortCommandParser
+
+logicManager -[LOGIC_COLOR]> sortCommand : sc.execute(m)
+activate sortCommand LOGIC_COLOR
+
+sortCommand -[MODEL_COLOR]> modelManager : m.updateSortedStudentList(c)
+activate modelManager MODEL_COLOR
+
+modelManager -[MODEL_COLOR]> sortedList : ss.setComparator(c)
+activate sortedList MODEL_COLOR
+
+sortedList --[MODEL_COLOR]> modelManager
+deactivate sortedList
+
+modelManager --[MODEL_COLOR]> sortCommand
+deactivate modelManager
+
+create commandResult
+sortCommand -[LOGIC_COLOR]> commandResult
+activate commandResult LOGIC_COLOR
+
+commandResult --[LOGIC_COLOR]> sortCommand : ""r""
+deactivate commandResult
+
+sortCommand --[LOGIC_COLOR]> logicManager : ""r""
+deactivate sortCommand
+
+[<[LOGIC_COLOR]-- logicManager : ""r""
+
+deactivate logicManager
+@enduml

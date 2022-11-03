@@ -1,7 +1,7 @@
 package friday.logic.parser;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class ArgumentMultimap {
 
     /** Prefixes mapped to their respective arguments**/
-    private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
+    private final Map<Prefix, List<String>> argMultimap = new LinkedHashMap<>();
 
     /**
      * Associates the specified argument value with {@code prefix} key in this map.
@@ -45,6 +45,14 @@ public class ArgumentMultimap {
     public int size() {
         argMultimap.remove(new Prefix(""));
         return argMultimap.size();
+    }
+
+    /**
+     * Returns the first prefix in this map.
+     */
+    public Optional<Prefix> getFirstPrefix() {
+        argMultimap.remove(new Prefix(""));
+        return argMultimap.keySet().stream().findFirst();
     }
 
     /**

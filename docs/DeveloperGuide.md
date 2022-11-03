@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+This project is based on the Friday-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -24,7 +24,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W15-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -115,7 +115,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/masteryCheck/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -136,7 +136,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/masteryCheck/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -175,23 +175,23 @@ This section describes some noteworthy details on how certain features are imple
 
 [comment]: <> (![UndoRedoState0]&#40;images/UndoRedoState0.png&#41;)
 
-[comment]: <> (Step 2. The user executes `delete 5` command to delete the 5th student in the FRIDAY. The `delete` command calls `Model#commitFriday&#40;&#41;`, causing the modified state of the FRIDAY after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted FRIDAY state.)
+[comment]: <> (Step 2. The user executes `delete 5` command to delete the 5th student in the FRIDAY. The `delete` command calls `Model#commitFriday&#40;&#41;`, causing the modified state of the FRIDAY after the `delete 5` command executes to be saved in the `fridayStateList`, and the `currentStatePointer` is shifted to the newly inserted FRIDAY state.)
 
 [comment]: <> (![UndoRedoState1]&#40;images/UndoRedoState1.png&#41;)
 
-[comment]: <> (Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook&#40;&#41;`, causing another modified FRIDAY state to be saved into the `addressBookStateList`.)
+[comment]: <> (Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitFriday&#40;&#41;`, causing another modified FRIDAY state to be saved into the `fridayStateList`.)
 
 [comment]: <> (![UndoRedoState2]&#40;images/UndoRedoState2.png&#41;)
 
-[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook&#40;&#41;`, so the FRIDAY state will not be saved into the `addressBookStateList`.)
+[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitFriday&#40;&#41;`, so the FRIDAY state will not be saved into the `fridayStateList`.)
 
 [comment]: <> (</div>)
 
-[comment]: <> (Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook&#40;&#41;`, which will shift the `currentStatePointer` once to the left, pointing it to the previous FRIDAY state, and restores the FRIDAY to that state.)
+[comment]: <> (Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoFriday&#40;&#41;`, which will shift the `currentStatePointer` once to the left, pointing it to the previous FRIDAY state, and restores the FRIDAY to that state.)
 
 [comment]: <> (![UndoRedoState3]&#40;images/UndoRedoState3.png&#41;)
 
-[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather)
+[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Friday state, then there are no previous Friday states to restore. The `undo` command uses `Model#canUndoFriday&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather)
 
 [comment]: <> (than attempting to perform the undo.)
 
@@ -205,17 +205,17 @@ This section describes some noteworthy details on how certain features are imple
 
 [comment]: <> (</div>)
 
-[comment]: <> (The `redo` command does the opposite — it calls `Model#redoAddressBook&#40;&#41;`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the FRIDAY to that state.)
+[comment]: <> (The `redo` command does the opposite — it calls `Model#redoFriday&#40;&#41;`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the FRIDAY to that state.)
 
-[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size&#40;&#41; - 1`, pointing to the latest FRIDAY state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.)
+[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `fridayStateList.size&#40;&#41; - 1`, pointing to the latest FRIDAY state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.)
 
 [comment]: <> (</div>)
 
-[comment]: <> (Step 5. The user then decides to execute the command `list`. Commands that do not modify the FRIDAY, such as `list`, will usually not call `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` or `Model#redoAddressBook&#40;&#41;`. Thus, the `addressBookStateList` remains unchanged.)
+[comment]: <> (Step 5. The user then decides to execute the command `list`. Commands that do not modify the FRIDAY, such as `list`, will usually not call `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` or `Model#redoAddressBook&#40;&#41;`. Thus, the `fridayStateList` remains unchanged.)
 
 [comment]: <> (![UndoRedoState4]&#40;images/UndoRedoState4.png&#41;)
 
-[comment]: <> (Step 6. The user executes `clear`, which calls `Model#commitAddressBook&#40;&#41;`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all FRIDAY states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.)
+[comment]: <> (Step 6. The user executes `clear`, which calls `Model#commitAddressBook&#40;&#41;`. Since the `currentStatePointer` is not pointing at the end of the `fridayStateList`, all FRIDAY states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.)
 
 [comment]: <> (![UndoRedoState5]&#40;images/UndoRedoState5.png&#41;)
 
@@ -250,57 +250,74 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Sort feature
 
+#### Rationale
+This is a feature that enables the sorting of students using various criteria. With many students to keep track of, we
+decided to add this feature to allow users to quickly organize their students in different ways.
+
 #### Implementation
 
-The sort command will be executed by `SortCommand`. `SortCommandParser` uses `Prefix`es and `Order`s in `CliSyntax` to
-parse the user input and decide what comparator is passed to `SortCommand`. The sorted list is stored as `sortedStudents`
-in `ModelManager`, and is updated every time `SortCommand` is run. 
+The current implementation of the sort feature allows users to sort all students based on the given criteria, in ascending
+or descending order. The classes corresponding to the current list of criteria are: `Name`, `TelegramHandle`, `Consultation`,
+`MasteryCheck`, and `Grade`.
 
-To assist with the sorting, classes `Name`, `TelegramHandle`, `Consultation`, and `MasteryCheck` implement the `Comparable` 
+In this section, we will use the following Activity Diagram to outline the process when the `sort` command is executed.
+
+![Sort Command Activity Diagram](images/SortCommandActivityDiagram.png)
+
+The `sort` command will be executed by `SortCommand`. Before that, `SortCommandParser` uses instances of `Prefix` and
+`Order` in `CliSyntax` to parse the user input and decide what comparator is passed to `SortCommand`. The sorted list
+is stored as `sortedStudents` in `ModelManager`, and is updated every time `SortCommand` is run.
+
+To assist with the sorting, classes `Name`, `TelegramHandle`, `Consultation`, and `MasteryCheck` implement the `Comparable`
 interface, where the natural ordering of `String` and `LocalDate` are used to implement the `compareTo` method. The `Grade`
-class does not implement the interface as its attributes are public. 
+class does not implement the interface as its attributes are `String`s.
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
-Step 1. The user launches the application. FRIDAY will initialise an `ObservableList` named `students` and a `SortedList`
-named `sortedStudents` according to the data file.
+1. FRIDAY initialises an `ObservableList<Student>` named `students` and
+a `SortedList<Student>` named `sortedStudents` upon launch.
 
-Step 2. The user executes `sort n/a` command to sort the students by name in ascending order. `SortCommandParser` will
-check that the command is valid, and pass a `comparator` that orders the student names alphabetically to `SortCommand`.
+2. The user executes `sort n/a` command to sort the students by name in ascending order.
 
-Step 3. `SortCommand` will call `Model#updateSortedStudentList(Comparator<Student> comparator)` to update `sortedStudents`
-with the given `comparator`. The list `students` is then set to `sortedStudents`, and
-`StudentListPanel#setList(ObservableList<Student> studentList)` is called to refresh the UI `ListView` with the new
-`students` list.
+3. The user input is passed to
+`LogicManager`, which then calls the `SortCommandParser#parse` method to parse the argument `n/a`.
 
-_{To add sequence diagram}_
+4. The `SortCommandParser` checks that the criteria and order are valid, and creates a `SortCommand` with a `Comparator`
+that orders the student names alphabetically.
 
-_{To add activity diagram}_
+5. The `LogicManager` calls the `SortCommand#execute` method, which in turn calls  `Model#updateSortedStudentList`
+to update `sortedStudents` with the given `Comparator`.
+
+6. The list `students` is set to `sortedStudents`, and the `StudentListPanel#setList` method is called to refresh the
+`ListView` in the UI with the new `students` list.
+
+The following Sequence Diagram summarises the aforementioned steps.
+
+![Sort Command Sequence Diagram](images/SortCommandSequenceDiagram.png)
 
 #### Design considerations:
-
-**Aspect: How to display the sorted list**
-
-* Refreshes the list of students in the UI whenever a command is executed
-    * Pros: Easy to implement.
-    * Cons: May have performance issues with large number of students.
 
 **Aspect: How many criteria should the sort command accept**
 
 * **Alternative 1 (current choice):** Accept only one criterion
     * Pros: Clear to the user, and easy to implement.
-    * Cons: Unable to further sort details with a secondary criteria when the first criteria of some students match.
+    * Cons: Unable to further sort students with a secondary criteria when the first criteria of some students match.
 
 * **Alternative 2:** Accept multiple criteria and sort in the order they are given
     * Pros: More precise sorting when many students have matching details, e.g. same Mastery Check dates.
     * Cons: Sorting becomes confusing for the user and difficult to implement if many criteria are given.
 
-**Aspect: How to sort empty details**
+**Aspect: How to sort missing details**
 
-* Students with empty details are sorted last in ascending order, and first in descending order
-    * Pros: When sorting in ascending order, students with empty details are shown at the bottom to reduce clutter.
-            Users can sort a detail in descending order to see which students have the detail empty.
-    * Cons: Top of the list may be cluttered with empty details when sorted in descending order.
+* **Alternative 1 (current choice)** Students with missing details are sorted last in ascending order, and first in descending order
+    * Pros: When sorting in ascending order, students with missing details are shown at the bottom to reduce clutter.
+            Users can sort a detail in descending order to see which students have the detail missing.
+    * Cons: Top of the list may be cluttered with students with missing details when sorted in descending order.
+
+* **Alternative 2** Students with missing details are sorted last in descending order.
+  * Pros: Students with relevant details are immediately available at the top of the list.
+
+Reason for choosing alternative 1: provide a way for users to quickly see which students have missing details.
 
 
 ### Alias feature
@@ -312,17 +329,17 @@ in-built command names (e.g. add, delete) will be stored in a constant `reserved
 
 Given below is an example usage scenario and how the alias mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. FRIDAY will initialise an `ALiasManager`
+1. The user launches the application for the first time. FRIDAY will initialise an `ALiasManager`
 with an empty `UniqueAliasList`.
 
-Step 2. The user executes `alias list ls` command to add an alias `ls` for the command `list`. The `alias` command 
+2. The user executes `alias list ls` command to add an alias `ls` for the command `list`. The `alias` command
 will check that `list` is in the `reservedCommandList` and `ls` is not in the `UniqueAliasList`. After both conditions
 are fulfilled, an `Alias("list","ls")` object will be created and will be added to the `UniqueAliasList` with
 `Model#addAlias(Alias toadd)`.
 
-Step 3. The user executes `ls` using the alias of the `list` command. The `AliasManager` will check that
-the alias `ls` is assigned to a command (in this case it is `list`) in `AddressBookParser`. `commandWord` in
-`AddressBookParser` will then be assigned the name of the command in the `reservedCommandList` and the `ListCommand`
+3. The user executes `ls` using the alias of the `list` command. The `AliasManager` will check that
+the alias `ls` is assigned to a command (in this case it is `list`) in `FridayParser`. `commandWord` in
+`FridayParser` will then be assigned the name of the command in the `reservedCommandList` and the `ListCommand`
 is then executed.
 
 _{To add sequence diagram}_
@@ -336,6 +353,11 @@ _{To add activity diagram}_
 _{To add other design considerations}_
 
 ### Grade Feature
+FRIDAY allows the user to record their students' grades for assessments and examinations in CS1101S. There are 5 
+assessments in CS1101S, namely Reading Assessment 1 (RA1), Reading Assessment 2 (RA2), Practical Assessment, Midterm 
+exam, and the Final exam. Each student in FRIDAY will have a list of their grades for the 5 assessments, showing the 
+name of the assessment and the student's score for the assessment. Users are able to view and edit the individual 
+students' grades for the assessments.
 
 #### Implementation
 The `grade` command is executed by `GradeCommand`. In CS1101S, the 5 main examinations are Reading Assessment 1, Reading Assessment 2, Practical Assessment, Midterm exam, and Final exam, which are denoted by "ra1", "ra2", "pa", "mt", and "ft" respectively.
@@ -345,14 +367,13 @@ The grades are then stored in a `GradesList` which is unique for every student a
 
 Given below is an example usage scenario and how the grading mechanism behaves at each step.
 
-Step 1. The user executes the `grade 5 ra1/90 pa/69.90` command to edit the grades of Reading Assessment 1 and 
+1. The user executes the `grade 5 ra1/90 pa/69.90` command to edit the grades of Reading Assessment 1 and
 Practical Assessment for the 5th student in FRIDAY. `GradeCommandParser` checks that the command is valid, and searches for the specific scores from the user's input using the `Prefix` of the examinations. `GradeCommandParser` then creates a new `EditGradeDescriptor` which is then used to create the new `GradeCommand`.
 
-Step 2. The `GradeCommand` will access the `GradesList` of the specified student and the individual grades specified by the user. The `GradesList` is updated, where Reading Assessment 1 and Practical Assessment examinations are updated with the new scores, and the other examinations have the same scores as before.
+2. The `GradeCommand` will access the `GradesList` of the specified student and the individual grades specified by the user. The `GradesList` is updated, where Reading Assessment 1 and Practical Assessment examinations are updated with the new scores, and the other examinations have the same scores as before.
 
-{Sequence Diagram}
-
-{Activity Diagram}
+The following Sequence Diagram shows the aforementioned steps.
+<img src="images/GradeSequenceDiagram.png" width="574" />
 
 #### Design considerations:
 
@@ -382,10 +403,10 @@ and return matches.
 
 Example of current implementation of find feature
 
-Step 1. The user launches the application for the first time. FRIDAY will initialise a list of all the fields
+1. The user launches the application for the first time. FRIDAY will initialise a list of all the fields
 and their data into a list of students.
 
-Step 2. When user types in the find command the logic will tell the program to go through all the fields for every
+2. When user types in the find command the logic will tell the program to go through all the fields for every
 student inside the student class and return the student if there is a successful match in any of the fields
 
 --------------------------------------------------------------------------------------------------------------------
@@ -465,6 +486,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Delete a student**
 
+**System: FRIDAY**
+
+**Actor: User**
+
 **MSS**
 
 1.  User requests to list students
@@ -487,6 +512,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 **Use case: List a student's details**
+
+**System: FRIDAY**
+
+**Actor: User**
 
 **MSS**
 
@@ -511,6 +540,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 **Use case: Add details to a student**
+
+**System: FRIDAY**
+
+**Actor: User**
 
 **MSS**
 
@@ -541,6 +574,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Edit details of a student**
 
+**System: FRIDAY**
+
+**Actor: User**
+
 **MSS**
 
 1. User requests to list students
@@ -569,6 +606,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 **Use case: Edit remarks for a student**
+
+**System: FRIDAY**
+
+**Actor: User**
 
 **MSS**
 
@@ -599,6 +640,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Delete details of a student**
 
+**System: FRIDAY**
+
+**Actor: User**
+
 **MSS**
 
 1. User requests to list students
@@ -627,6 +672,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 **Use case: Edit grades for a student**
+
+**System: FRIDAY**
+
+**Actor: User**
 
 **MSS**
 
@@ -657,6 +706,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Sort students**
 
+**System: FRIDAY**
+
+**Actor: User**
+
 **MSS**
 
 1. User requests to sort students with a specific criteria and order
@@ -685,6 +738,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 **Use case: Mark a student's Mastery Check as passed.**
+
+**System: FRIDAY**
+
+**Actor: User**
 
 **MSS**
 
@@ -715,6 +772,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Unmark a student's Mastery Check.**
 
+**System: FRIDAY**
+
+**Actor: User**
+
+**MSS**
+
 1. User requests to list students
 2. FRIDAY shows a list of students
 3. User requests to unmark the Mastery Check of a specific student
@@ -740,7 +803,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -785,7 +847,19 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+
+### Adding a student
+1. Adding a student with different details
+   1. Prerequisites: A student named "Alex Yeoh" and a student with Telegram handle "tommy123" have already been added.
+   2. Test case: `add n/Jacelyn c/2022-07-08` <br>
+      Expected: A student named Jacelyn with consultation date 8 July 2022 is added.
+   3. Test case: `add n/alex yeoh` <br>
+      Expected: No student is added. Error details shown in the status message.
+   4. Test case: `add n/Tom t/tommy123` <br>
+      Expected: No student is added. Error details shown in the status message.
+   5. Other incorrect delete commands to try: `add`, `add Ben`, `add n/` <br>
+      Expected: Similar to previous.
+
 
 ### Deleting a student
 
@@ -802,7 +876,19 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
+### Sorting students
+1. Sorting students with different criteria and order
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+    2. Test case: `sort t/a` <br>
+       Expected: Students sorted by Telegram handle in alphabetical order. Students with missing Telegram handles are sorted last.
+    3. Test case: `sort m/d` <br>
+       Expected: Students sorted by Mastery Check dates, from latest to earliest. Students with missing Mastery Check dates are sorted first.
+    4. Test case: `sort g/a` <br>
+       Expected: Students not sorted. Error details shown in the status message.
+    5. Other incorrect delete commands to try: `sort`, `sort n/`, `sort n/b` <br>
+       Expected: Similar to previous.
+
 
 ### Saving data
 
@@ -810,4 +896,3 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_

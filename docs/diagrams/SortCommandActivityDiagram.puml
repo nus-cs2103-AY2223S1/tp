@@ -1,0 +1,29 @@
+@startuml
+
+!include style.puml
+title Sorting students
+
+start
+
+:Receives a ""sort"" command;
+
+if () then ([valid command])
+    :Parses the ""sort""
+    command, criteria and order;
+
+    :Sorts all students based on the criteria and order;
+
+    :Displays all sorted students to the user;
+
+    :Shows a success message;
+
+else ([else])
+
+    :Shows an invalid
+    command message;
+
+endif
+
+stop
+
+@enduml

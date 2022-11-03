@@ -2,7 +2,6 @@ package friday.logic.commands;
 
 import static friday.commons.util.CollectionUtil.requireAllNonNull;
 import static friday.logic.parser.CliSyntax.PREFIX_REMARK;
-import static friday.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 
@@ -12,6 +11,10 @@ import friday.logic.commands.exceptions.CommandException;
 import friday.model.Model;
 import friday.model.student.Remark;
 import friday.model.student.Student;
+
+// @@author HowSuen-reused
+// Reused from https://nus-cs2103-ay2223s1.github.io/tp/tutorials/AddRemark.html
+// with minor modifications
 
 /**
  * Changes the remark of an existing student in FRIDAY.
@@ -56,8 +59,6 @@ public class RemarkCommand extends Command {
                 studentToEdit.getGradesList());
 
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-
         return new CommandResult(generateSuccessMessage(editedStudent));
     }
 

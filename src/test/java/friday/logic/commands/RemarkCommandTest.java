@@ -23,6 +23,10 @@ import friday.model.student.Remark;
 import friday.model.student.Student;
 import friday.testutil.StudentBuilder;
 
+// @@author HowSuen-reused
+// Reused from https://nus-cs2103-ay2223s1.github.io/tp/tutorials/AddRemark.html
+// with minor modifications
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
  */
@@ -78,10 +82,7 @@ public class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new Friday(model.getFriday()), new UserPrefs());
-        expectedModel.setStudent(firstStudent, editedStudent);
-
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(remarkCommand, model, expectedMessage, model);
     }
 
     @Test
