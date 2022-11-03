@@ -138,6 +138,10 @@ Want start using TrackO from scratch? Enter the [`clear`](#clearing-all-data-in-
 
 ## Layout
 
+The image below describes TrackO's layout:
+
+<img src="./images/user-guide/TrackOLayout.png">
+
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -169,12 +173,12 @@ TrackO's functionalities!
     1. Adding an order: `addo`
       * If you have a customer named `Jonathan Chee` living at `43 Clementi Road, 639433` with an email address `JonChee@gmail.com` and phone number of
         `96785944`. This customer has ordered 1 `Teddy bear keychain`.
-      * First, enter the customer details into the [command box](link to layout section) using the following command:
+      * First, enter the customer details into the [command box](#layout) using the following command:
         ```
         addo n/Jonathan Chee p/96785944 e/JonChee@gmail.com  
         a/43 Clementi Road, 639433
         ```
-      * Next, to add the items ordered by the customer, enter the following command into the [command box](link to layout section):
+      * Next, to add the items ordered by the customer, enter the following command into the [command box](#layout):
         ```
         i/teddy bear keychains q/1
         ```
@@ -187,16 +191,16 @@ TrackO's functionalities!
 
    2. Finding order(s): `findo`
       * Our application allows you to search for orders by different fields (eg. payment status, delievery status, customer details).
-      * To find orders to be delivered to `Clementi` which have not been paid for, enter the following command to the [command box](link to layout section):
+      * To find orders to be delivered to `Clementi` which have not been paid for, enter the following command to the [command box](#layout):
       ```
       findo -P a/Clementi
       ```
-   You should see these orders appear in the [order list](link to layout).
+   You should see these orders appear in the [order list](#layout).
 
    3. Listing order(s): `listo`
        * To view all your orders again, enter `listo`.
 
-   You should see these orders appear in the [order list](link to layout).
+   You should see these orders appear in the [order list](#layout).
 
 Now that you're done trying out some commands, you can enter `exit` to leave the application. We hope that this short tutorial was helpful! 
 To check out more commands, you can head over to our [features section](#features).
