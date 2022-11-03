@@ -117,7 +117,7 @@ public class AddConditionCommandTest {
         Condition condition = new Condition("H1N1");
         AddConditionCommand addConditionCommand = new AddConditionCommand(INDEX_SECOND_PERSON, condition);
         assertCommandFailure(addConditionCommand, model,
-                String.format(AddConditionCommand.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
+                String.format(Messages.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
     }
 
     @Test

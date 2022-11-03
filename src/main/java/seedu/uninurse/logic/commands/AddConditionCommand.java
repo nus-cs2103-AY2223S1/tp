@@ -25,16 +25,15 @@ public class AddConditionCommand extends AddGenericCommand {
             + PREFIX_CONDITION + "CONDITION\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 "
             + PREFIX_CONDITION + "Hypertension";
-
     public static final String MESSAGE_ADD_CONDITION_SUCCESS = "New condition added to %1$s: %2$s";
-    public static final String MESSAGE_DUPLICATE_CONDITION = "This condition already exists in %1$s's condition list";
     public static final CommandType ADD_CONDITION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index index;
     private final Condition condition;
 
     /**
-     * Creates an AddConditionCommand to add a {@code Condition} to the specified person.
+     * Creates an AddConditionCommand to add a condition to the specified person.
+     *
      * @param index The index of the person in the filtered person list to add the condition.
      * @param condition The condition of the person to be added to.
      */
@@ -60,7 +59,7 @@ public class AddConditionCommand extends AddGenericCommand {
         try {
             updatedConditionList = patientToEdit.getConditions().add(condition);
         } catch (DuplicateConditionException dce) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
+            throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
         }
 
         Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
@@ -85,7 +84,7 @@ public class AddConditionCommand extends AddGenericCommand {
         }
 
         // state check
-        AddConditionCommand command = (AddConditionCommand) other;
-        return index.equals(command.index) && condition.equals((command.condition));
+        AddConditionCommand o = (AddConditionCommand) other;
+        return index.equals(o.index) && condition.equals((o.condition));
     }
 }
