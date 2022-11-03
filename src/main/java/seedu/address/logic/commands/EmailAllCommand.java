@@ -84,4 +84,11 @@ public class EmailAllCommand extends Command {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EmailAllCommand // instanceof handles nulls
+                && groupToEmail.equals(((EmailAllCommand) other).groupToEmail));
+    }
+
 }
