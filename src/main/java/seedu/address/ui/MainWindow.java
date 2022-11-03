@@ -92,12 +92,21 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
 
-    void registerShortcutsForTabs() {
+    private void registerShortcutsForTabs() {
         registerShortcut(tabPane, contactsTab, new KeyCodeCombination(KeyCode.DIGIT1,
                 KeyCombination.CONTROL_DOWN));
         registerShortcut(tabPane, calendarTab, new KeyCodeCombination(KeyCode.DIGIT2,
                 KeyCombination.CONTROL_DOWN));
     }
+
+    private void registerCalendarNavigationForCalendarTab(CalendarDisplay calendarDisplay) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (calendarTab.isSelected()) {
+                calendarDisplay.handleKeyPressed(event);
+            }
+        });
+    }
+
     /**
      * Sets the accelerator of a MenuItem.
      * @param keyCombination the KeyCombination value of the accelerator
@@ -149,6 +158,7 @@ public class MainWindow extends UiPart<Stage> {
 
         calendarDisplay = new CalendarDisplay(logic, primaryStage);
         calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
+        registerCalendarNavigationForCalendarTab(calendarDisplay);
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
