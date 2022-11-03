@@ -72,22 +72,22 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
 ## Property and client attributes
 
-In Condonery, properties and clients can hold many different attributes. These attributes are denoted by options (e.g. `n/` for name) when using commands like `add -p`, `add -c`, `edit -p` or `edit -c`.
-This section gives a breakdown of each attribute and its option counterpart.
+In Condonery, properties and clients can hold many different attributes. These attributes are denoted by parameters (e.g. `n/` for name) when using commands like `add -p`, `add -c`, `edit -p` or `edit -c`.
+This section gives a breakdown of each attribute and its parameter counterpart.
 
 ### Shared attributes
 #### Name
 * Refers to the name of a property or client.
 * Each property or client can only have one name.
 
-* Option: `n/`
+* Parameter: `n/`
 * Example: `n/PINNACLE@DUXTON`
 
 #### Address
 * Refers to the address of a property or client.
 * Each property or client can only have one address.
 
-* Option: `a/`
+* Parameter: `a/`
 * Example: `a/Cantonment Rd, #1G, 085301`
 
 #### Tag
@@ -95,22 +95,22 @@ This section gives a breakdown of each attribute and its option counterpart.
 * The only requirement for tags is that they have to be alphanumerical.
 * Each property or client can have multiple tags.
 
-* Option: `t/`
+* Parameter: `t/`
 * Example: `t/High-end`, `t/Friend`
 
 #### Image
 * Refers to the given image for a property or client.
 * Each property or client can only have one image.
-* The user will be prompted to select an image in a separate window after successful usage of this option in the context of whichever command the optionwas used for.
+* The user will be prompted to select an image in a separate window after successful usage of this parameter in the context of whichever command the parameter was used for.
 
-* Option: `-i`
+* Parameter: `-i`
 
 ### Property attributes
 #### Price
 * Refers to the general price to purchase a unit for a property.
 * Each property can only have one price.
 
-* Option: `p/`
+* Parameter: `p/`
 * Example: `p/1,000,000`
 
 #### Property type
@@ -120,9 +120,9 @@ This section gives a breakdown of each attribute and its option counterpart.
   * HDB
   * CONDO
   * LANDED
-* Arguments for this option are case-insensitive.
+* Arguments for this parameter are case-insensitive.
 
-* Option: `h/`
+* Parameter: `h/`
 * Example: `h/HDB`, `h/Condo`
 
 #### Property status
@@ -132,32 +132,32 @@ This section gives a breakdown of each attribute and its option counterpart.
   * AVAILABLE
   * SOLD
   * PENDING
-* Arguments for this option are case-insensitive.
+* Arguments for this parameter are case-insensitive.
 
-* Option: `s/`
+* Parameter: `s/`
 * Example: `s/AVAILABLE`, `s/PENDING`
 
 #### Interested clients
 * Refers to the clients that are interested in a property.
 * Each property can have multiple clients interested in it.
-* This option takes in **case-insensitive** arguments and attempts to link it to the name of a client.
+* This parameter takes in **case-insensitive** arguments and attempts to link it to the name of a client.
 * Can take in multiple space-delimited arguments.
 * An argument will not be accepted if it links to no clients, or if it links to more than one client.
   * An input containing both accepted and unaccepted arguments will not throw an error. The accepted arguments will still be used to link interested clients to the property.
 
-* Option: `ic/`
+* Parameter: `ic/`
 * Example: `ic/Samuel`, `ic/bob jedrek JANICE`
 
 ### Client attributes
 #### Interested properties
 * Refers to properties that a client is interested in.
 * Each client can be interested in multiple properties.
-* This option takes in **case-insensitive** arguments and attempts to link it to the name of a property.
+* This parameter takes in **case-insensitive** arguments and attempts to link it to the name of a property.
 * Can take in multiple space-delimited arguments.
 * An argument will not be accepted if it links to no clients, or if it links to more than one client.
   * An input containing both accepted and unaccepted arguments will not throw an error. The accepted arguments will still be used to link interested properties to the client..
 
-* Option: `ip/`
+* Parameter: `ip/`
 * Example: `ip/duxton`, `ip/rosewood duxton FAIRFIELD`
 
 --------------------------------------------------------------------------------------------------------------------
@@ -171,8 +171,8 @@ This section gives a breakdown of each attribute and its option counterpart.
 * Demarcaters `-p` and `-c` after each command word represent interactions with the property and client directory respectively.<br>
   e.g. `add -p` is used to add properties in the property directory while `add -c` is used to add clients in the client directory.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add -p n/NAME`, `NAME` is a parameter which can be used as `add -p n/PINNACLE@DUXTON`.
+* Words in `UPPER_CASE` are the arguments to be supplied by the user.<br>
+  e.g. in `add -p n/NAME`, `NAME` is an argument which can be used as `add -p n/PINNACLE@DUXTON`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/PINNACLE@DUXTON t/luxury` or as `n/PINNACLE@DUXTON`.
@@ -186,9 +186,9 @@ This section gives a breakdown of each attribute and its option counterpart.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/1,000,000 p/2,000,000`, only `p/2,000,000` will be taken.
 
-* For `PRICE` parameter, max value is 2,147,483,647
+* For `PRICE` argument, max value is 2,147,483,647
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `clear -p`  and `clear -c`) will be ignored.<br>
+* Extraneous parameters or arguments for commands that do not any (such as `help`, `list`, `exit`, `clear -p`  and `clear -c`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
