@@ -70,7 +70,7 @@
         </rowConstraints>
     </GridPane>
     <VBox alignment="CENTER">
-        <ImageView fx:id="flagIcon">
+        <ImageView fx:id="pinIcon">
             <image>
                 <Image url="@../images/pin.png" />
             </image>

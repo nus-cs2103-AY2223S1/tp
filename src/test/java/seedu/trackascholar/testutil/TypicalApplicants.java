@@ -32,7 +32,7 @@ public class TypicalApplicants {
     public static final Applicant BENSON = new ApplicantBuilder().withName("Benson Meier")
             .withPhone("98765432").withEmail("johnd@example.com")
             .withScholarship("Merit").withApplicationStatus("accepted")
-            .withMajors("Computer Science", "Mathematics").build();
+            .withMajors("Computer Science", "Mathematics").build_pinned();
     public static final Applicant CARL = new ApplicantBuilder().withName("Carl Kurz")
             .withPhone("95352563").withEmail("heinz@example.com")
             .withScholarship("Sports").withApplicationStatus("pending").build();
