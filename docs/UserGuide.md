@@ -415,7 +415,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 
 ### Home page commands
 | Action                                                           | Format, Examples                                                                                                                                                  |
-|------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [**Help**](#viewing-help--help)                                  | `help`                                                                                                                                                            |
 | [**Add Itinerary**](#creating-a-new-itinerary--add)              | `add d/DESCRIPTION [c/COUNTRY] du/DURATION sd/START DATE [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `add d/Germanyyyy c/Germany du/14 sd/2022-05-10 p/4 b/7500` |
 | [**List Itineraries**](#listing-all-itineraries--list)           | `list`                                                                                                                                                            |
@@ -428,7 +428,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 
 ### Item planning page commands
 | Action                                                       | Format, Examples                                                                                         |
-|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | [**Add Item**](#adding-an-item--add)                         | `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g.,`add d/Visit Taj Mahal p/5 c/40 du/180` |
 | [**Edit Item**](#editing-the-details-of-an-item--edit)       | `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g., `edit 4.1 c/50`               |
 | [**Delete Item**](#deleting-an-item--delete)                 | `delete INDEX`<br> e.g., `delete 3`                                                                      |
