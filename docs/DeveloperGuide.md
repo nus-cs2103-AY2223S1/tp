@@ -237,7 +237,7 @@ Additionally, the classes implement the following operations:
 Given below is an example usage scenario and how the grade progress feature behaves at each step.
 
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the sample data and
-each person in the `AddressBook` contains an empty `GradeProgressList` object.
+assume each person in the `AddressBook` contains an empty `GradeProgressList` object.
 
 Step 2. The user executes `grade 2 g/Math: B` command to insert the grade, `Math: B` in the 2nd person in the `AddressBook`.
 1. The `grade` command calls the `Model#getFilteredPersonList()` to get the current list of persons prior to the grade progress command.
@@ -278,6 +278,7 @@ The following sequence diagram shows how the grade progress command operation wo
 <div markdown="span" class="alert alert-info">
 :information_source: **Note** The lifeline for `GradeProgressCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
 ### Session feature
 
 #### Implementation
@@ -320,14 +321,12 @@ Step 1. The user executes a `view benson meier` command which puts the `Person` 
 Step 2. The user executes an `edit s/1 Mon 08:30` command which edits the index 0 of the `SessionList` displayed on the GUI. This creates a new Session instance with the string input of the format `EEE HH:mm`.
 		The `Session` instances in the `SessionList` of the `Person` is immediately sorted using the `Session` class `compareTo` implementation.
 
-Step 3. The user executes a `list` command which puts the Pupilist application into list view, displaying multiple Persons to the user.
-
-Step 4. The user executes an `add 1 s/ Tue 09:00` command which creates a new instance of `Session` with the string input of the format `EEE HH:mm` and adds it to the `SessionList` of the `Person` of the first Person Card shown in the GUI.
+Step 3. The user executes an `session 1 s/ Tue 09:00` command which creates a new instance of `Session` with the string input of the format `EEE HH:mm` and adds it to the `SessionList` of the `Person` of the first Person Card shown in the GUI.
 	The `Session` instances in the modified `SessionList` of the `Person` is immediately sorted using the `Session` class `compareTo` implementation.
 	
-Step 5. The user executes a `view Alice Pauline` command which puts the `Person` with the name Alice Pauline in view mode.
+Step 4. The user executes a `view Alice Pauline` command which puts the `Person` with the name Alice Pauline in view mode.
 
-Step 6. The user executes a `remove s/3` command which removes the instance of `Session` in index 2 of the `SessionList` of the `Person` displayed in the GUI in view mode. The Session 
+Step 5. The user executes a `remove s/3` command which removes the instance of `Session` in actual index 2 of the `SessionList` of the `Person` displayed in the GUI in view mode. The Session 
 	instances in the `SessionList` of the `Person` in view are then immediately sorted using the `Session` class `compareTo` implementation.
 		
 #### Design considerations:
@@ -342,6 +341,52 @@ Step 6. The user executes a `remove s/3` command which removes the instance of `
   * Pros: Less of a workaround. More accurate backstage representation of user input.
   * Cons: Harder to implement. Have to concatenate `DayOfWeek` and `LocalDateTime` in `toString` method, which may affect performance with a large `SessionList`.
 
+### Attendance Feature
+
+#### Implementation
+
+The attendance feature is facilitated by `AttendanceCommand`, `AttendanceList` and `AttendanceList` classes.
+`AttendanceCommand` extends `Command` abstract class that has  abstract method, `execute()`.
+`Attendance` deals with the actual attendance inputs while the
+`AttendanceList` deals with the list of `Attendance`.
+The `AttendanceList` is the object that is displayed in the `AddressBook`.
+Additionally, the classes implement the following operations:
+- `AttendanceList#addAttendance(Attendance)` - Adds attendance to the attendance list.
+- `AttendanceList#clearList()` - Clears all stored attendance of the Person
+- `AttendanceList#editAtIndex(index)` - Edits the attendance at the given index with the new given attendance.
+
+These operations are exposed in command executions such as `AttendanceCommand#execute()` and `EditCommand#createEditedPerson()`.
+`Attendance#clearList()` is used for testing purposes only.
+
+Given below is an example usage scenario and how the adding attendance mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The address book will be initialized with the initial address book state.
+
+Step 2. The user executes `attendance 1 a/2022-08-08` to add attendance to the first person in the address book.
+The `Attendance` command calls `AttendanceList#addAttendance(Attendance)` and adds the task to the list.
+
+The following sequence shows how adding attendance works:
+
+![AttendanceSequenceDiagram](images/AttendanceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note** The lifeline for `AttendanceCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+Step 3. The user decides to edit the attendance to 2022-08-12 instead.
+They go into full view mode with the `view` command and execute `edit 1 a/2022-08-12`, which calls `AttendanceList#editAtIndex()` and replaces the old description with the new one.
+
+#### Design considerations:
+
+**Aspect: Format of user input in Attendance**
+
+* **Alternative 1 (current choice):** Use `LocalDateTimeFormatter` as formatter for `LocalDate`.
+    * Pros: Easier to implement, uses only one imported Java class `LocalDate` for encapsulating user input and intuitive for user.
+    * Cons: Cannot differentiate between `Session` timings on the same day. Hence, a `Person` who has two `Session` on the same day, who is present for one or the other cannot be differentiated. 
+
+* **Alternative 2:** Use of `LocalDateTime` instead of `LocalDate`.
+    * Pros: Able to differentiate `Attendance` between two `Session` timings on the same day.
+    * Cons: Longer user input. This results in longer user input every time the user adds an `Attendance` to a `Person`. May result in cumulative inconvenience over a long period of time. Can be solved by initial implementation by adding two `Attendance`.
 
 ### Remove feature
 
