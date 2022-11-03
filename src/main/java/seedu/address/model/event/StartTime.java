@@ -32,7 +32,7 @@ public class StartTime implements Comparable<StartTime> {
         assert !startTime.isBlank();
         checkArgument(isValidStartTimeFormat(startTime), MESSAGE_FORMAT_CONSTRAINTS);
         checkArgument(isValidStartTimeValue(startTime), String.format(MESSAGE_VALUE_CONSTRAINTS, startTime));
-        String [] parsedTime = startTime.split(TIME_DELIMITER, 2);
+        String[] parsedTime = startTime.split(TIME_DELIMITER, 2);
         this.time = LocalTime.of(Integer.parseInt(parsedTime[0]), Integer.parseInt(parsedTime[1]));
     }
 
