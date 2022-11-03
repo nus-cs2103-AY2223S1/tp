@@ -62,7 +62,6 @@ future tasks. With our app, teams management would be easier than ever.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurence of the parameter will be taken.
   e.g. if the command specifies `task/1 task/2`, only `task/2` will be taken.
 
-
 * Commands are case-sensitive.
   e.g. You cannot enter HeLp instead of help
 
