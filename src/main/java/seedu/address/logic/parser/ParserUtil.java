@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -12,12 +13,14 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.exceptions.DateOutOfRangeException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -25,9 +28,12 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DATE_FORMAT = "Deadline must follow the dd/MM/yyyy format.";
-    public static final String DATE_FORMAT = "dd-MM-yyyy";
 
+
+    private static final String DATE_FORMAT = "dd-MM-uuuu";
+
+    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern(DATE_FORMAT)
+            .withResolverStyle(ResolverStyle.STRICT);
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -137,8 +143,8 @@ public class ParserUtil {
     public static seedu.address.model.task.Name parseTaskName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!seedu.address.model.task.Name.isValidName(trimmedName)) {
+            throw new ParseException(seedu.address.model.task.Name.MESSAGE_CONSTRAINTS);
         }
         return new seedu.address.model.task.Name(trimmedName);
     }
@@ -165,17 +171,24 @@ public class ParserUtil {
      * @throws ParseException if the given task {@code deadline} is in an invalid format.
      */
     public static Optional<LocalDate> parseDeadline(String deadline) throws ParseException {
-        if (deadline == null) {
+        String trimmedDeadline;
+
+        try {
+            trimmedDeadline = deadline.trim();
+        } catch (NullPointerException e) {
             return Optional.empty();
         }
 
-        String trimmedDeadline = deadline.trim();
-
         try {
-            LocalDate date = LocalDate.parse(trimmedDeadline, DateTimeFormatter.ofPattern(DATE_FORMAT));
+            LocalDate date = LocalDate.parse(trimmedDeadline, DATE_TIME_FORMAT);
+            if (!Task.isValidDeadline(date)) {
+                throw new DateOutOfRangeException();
+            }
             return Optional.ofNullable(date);
+        } catch (DateOutOfRangeException e) {
+            throw new ParseException(Task.MESSAGE_INVALID_DATE_VALUE);
         } catch (DateTimeParseException e) {
-            throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
+            throw new ParseException(Task.MESSAGE_INVALID_DATE_FORMAT);
         }
     }
 }

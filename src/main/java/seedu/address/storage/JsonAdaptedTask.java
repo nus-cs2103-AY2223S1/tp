@@ -14,6 +14,8 @@ import seedu.address.model.task.Task;
  */
 public class JsonAdaptedTask {
 
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
+
     private final String name;
     private final LocalDate deadline;
     private final Boolean isDone;
@@ -44,6 +46,19 @@ public class JsonAdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Task toModelType() throws IllegalValueException {
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    seedu.address.model.team.Name.class.getSimpleName()));
+        }
+
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+
+        if (deadline != null && !Task.isValidDeadline(deadline)) {
+            throw new IllegalValueException(Task.MESSAGE_INVALID_DATE_VALUE);
+        }
+
         return new Task(new Name(name), deadline, isDone);
     }
 }

@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -119,6 +120,8 @@ public interface Model {
 
     public Team getTeam(Name name);
 
+    public boolean teamNameExists(Name name);
+
     ObservableList<Task> getFilteredTaskList();
 
     public Name getTeamName(Index teamIndex);
@@ -129,6 +132,8 @@ public interface Model {
 
     public boolean teamHasMember(Index p, Index t);
 
+    boolean teamHasTask(Index index, Task task);
+
     void addTask(Index index, Task task);
 
     void markTask(Index teamIndex, Index taskIndex);
@@ -137,6 +142,6 @@ public interface Model {
 
     void deleteTask(Index teamIndex, Index taskIndex);
 
-    void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName);
+    void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName, LocalDate newDeadline);
 
 }

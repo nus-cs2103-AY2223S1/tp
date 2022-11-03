@@ -1,9 +1,14 @@
 package seedu.address.model.util;
 
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
@@ -12,6 +17,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+import seedu.address.model.team.Team;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -40,11 +47,47 @@ public class SampleDataUtil {
         };
     }
 
+    public static Team[] getSampleTeams() {
+        return new Team[] {
+            new Team(new seedu.address.model.team.Name("Frontend")),
+            new Team(new seedu.address.model.team.Name("Backend"))
+        };
+    }
+
+    public static Task[] getSampleTasks() {
+        return new Task[] {
+            new Task(new seedu.address.model.task.Name("Create GUI for the app"),
+                LocalDate.of(2022, 12, 1), true),
+            new Task(new seedu.address.model.task.Name("Beginning of year meeting"),
+                LocalDate.of(2023, 1, 5)),
+            new Task(new seedu.address.model.task.Name("Meeting with Client A"),
+                LocalDate.of(2022, 12, 20)),
+            new Task(new seedu.address.model.task.Name("Implement a payment system"),
+                null),
+            new Task(new seedu.address.model.task.Name("Implement Feature A using javascript"),
+                null)
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+        Person[] samplePersons = getSamplePersons();
+        Team[] sampleTeams = getSampleTeams();
+        Task[] sampleTasks = getSampleTasks();
+
+        for (int i = 0; i < sampleTeams.length; i++) {
+            sampleAb.addTeam(sampleTeams[i]);
         }
+
+        for (int i = 0; i < samplePersons.length; i++) {
+            sampleAb.addPerson(samplePersons[i]);
+            sampleAb.addPersonToTeam(samplePersons[i], sampleTeams[i % sampleTeams.length]);
+        }
+
+        for (int i = 0; i < sampleTasks.length; i++) {
+            sampleAb.addTask(Index.fromZeroBased(i % sampleTeams.length), sampleTasks[i]);
+        }
+
         return sampleAb;
     }
 
@@ -57,4 +100,14 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a deadline with the given date in string.
+     */
+    public static Optional<LocalDate> getDeadline(String deadline) {
+        try {
+            return ParserUtil.parseDeadline(deadline);
+        } catch (ParseException e) {
+            return Optional.empty();
+        }
+    }
 }

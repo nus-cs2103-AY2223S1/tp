@@ -26,7 +26,7 @@
                 </HBox>
             <HBox spacing="5">
                 <Label text="Deadline:" />
-<!--                <Label fx:id="deadline" text="\$deadline" />-->
+                <Label fx:id="deadline" text="\$deadline" />
                 <padding>
                     <Insets top="10.0" />
                 </padding>

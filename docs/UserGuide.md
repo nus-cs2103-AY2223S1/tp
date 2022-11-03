@@ -62,6 +62,7 @@ future tasks. With our app, teams management would be easier than ever.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurence of the parameter will be taken.
   e.g. if the command specifies `task/1 task/2`, only `task/2` will be taken.
 
+
 * Commands are case-sensitive.
   e.g. You cannot enter HeLp instead of help
 
@@ -82,8 +83,8 @@ Adds a new person to EZLead.
 Format: `add n/NAME p/PHONE-NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 Examples:
-* `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney` Adds a new
-  person with the following details to the global member list.
+* `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney` Adds a new 
+person with the following details to the global member list.
 
 ![AddPersonExample.png](images/AddPersonExample.png)
 
@@ -94,8 +95,8 @@ Edits a member's details. Require at least one optional parameters.
 Format: `edit INDEX [n/NAME] [p/PHONE-NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 Examples:
-* `edit 1 n/Johny p/91234567 e/johndoe@example.com` Edits the first member's name in the global member list to Johny, email to
-  johndoe1@example.com and contact number to 91234567.
+* `edit 1 n/Johny p/91234567 e/johndoe@example.com` Edits the first member's name in the global member list to Johny, email to 
+johndoe1@example.com and contact number to 91234567.
 
 ### Deleting a member: `delete`
 
@@ -147,7 +148,7 @@ Examples:
 
 ### Assigning a member to a team: `assign`
 
-assigns a member to a team.
+assigns a member to a team. 
 
 Format: `assign m/MEMBER-INDEX t/TEAM-INDEX`
 
@@ -188,8 +189,8 @@ Adds a new task to a team. Additionally, you may opt to set a deadline for the t
 Format: `taskadd t/TEAM-INDEX n/TASK-NAME [d/DD-MM-YYYY]`
 
 Examples:
-* `taskadd t/1 n/Finish project d/24-12-2023` Adds a new task to team with index 1 with the description
-  "Finish project". The deadline set here is 24 December 2023.
+* `taskadd t/1 n/Finish project d/24-12-2023` Adds a new task to team with index 1 with the description 
+"Finish project". The deadline set here is 24 December 2023.
 
 ![TaskAddExample.png](images/TaskAddExample.png)
 
@@ -227,8 +228,8 @@ Updates a task's description. Require at least one optional parameters.
 Format: `taskedit t/TEAM-INDEX task/TASK-INDEX [n/NEW-TASK-NAME] [d/NEW DD-MM-YYYY]`
 
 Examples:
-* `taskedit t/1 task/1 n/Finish assignment d/12-12-2022` Updates the first task in the first team with new description
-  'Finish assignment'. Adding a deadline to the task is optional.
+* `taskedit t/1 task/1 n/Finish assignment d/12-12-2022` Updates the first task in the first team with new description 
+'Finish assignment'. Adding a deadline to the task is optional.
 
 <div markdown="block" class="alert alert-info">
 
@@ -254,7 +255,11 @@ to load in an EMPTY state.
 
 **Q**: What should be the index of the member to be specified to assign and unassign members from a team?
 
+<<<<<<< HEAD
 **A**: You can use the index of the member provided in the user list. You can access user list by using the command `userlist`.
+=======
+**A**: You can use the index of the member provided in the user list. You can access user list by using the command `userlist`.    
+>>>>>>> 55d866053b35d32b118853e2714ff2ec28d6d700
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -277,4 +282,3 @@ to load in an EMPTY state.
 | **Task Mark**       | `taskmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskmark t/1 task/1`                                                                                        |
 | **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                    |
 | **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX [n/NEW-TASK-NAME] [d/NEW DD-MM-YYYY]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                  |
-

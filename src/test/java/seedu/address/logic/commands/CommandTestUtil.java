@@ -7,6 +7,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -53,6 +57,37 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String VALID_TEAM_NAME_FRONTEND = "Frontend";
+    public static final String VALID_TEAM_NAME_BACKEND = "Backend (payment system)";
+
+    public static final String TEAM_INDEX_1 = " " + PREFIX_TEAM_INDEX + "1";
+    public static final String TEAM_INDEX_2 = " " + PREFIX_TEAM_INDEX + "2";
+
+    public static final String TASK_INDEX_1 = " " + PREFIX_TASK_INDEX + "1";
+    public static final String TASK_INDEX_2 = " " + PREFIX_TASK_INDEX + "2";
+
+    public static final String VALID_TASK_NAME_STUDY = "Study for exam";
+    public static final String VALID_TASK_NAME_COOK = "Cook for 4 people";
+    public static final String VALID_TASK_NAME_REVIEW = "Review PR";
+    public static final String VALID_TASK_DEADLINE_STUDY = "02-01-2022";
+    public static final String VALID_TASK_DEADLINE_COOK = "24-10-2022";
+
+    public static final String TASK_NAME_DESC_STUDY = " " + PREFIX_TASK_NAME + VALID_TASK_NAME_STUDY;
+    public static final String TASK_NAME_DESC_COOK = " " + PREFIX_TASK_NAME + VALID_TASK_NAME_COOK;
+    public static final String TASK_NAME_DESC_REVIEW = " " + PREFIX_TASK_NAME + VALID_TASK_NAME_REVIEW;
+    public static final String TASK_DEADLINE_DESC_STUDY = " " + PREFIX_TASK_DEADLINE + VALID_TASK_DEADLINE_STUDY;
+    public static final String TASK_DEADLINE_DESC_COOK = " " + PREFIX_TASK_DEADLINE + VALID_TASK_DEADLINE_COOK;
+
+    public static final String INVALID_TEAM_INDEX = " " + PREFIX_TEAM_INDEX + "A"; // only positive integers are allowed
+    public static final String INVALID_TASK_INDEX = " " + PREFIX_TASK_INDEX + "A"; // only positive integers are allowed
+
+    public static final String INVALID_TASK_NAME_DESC = " " + PREFIX_TASK_NAME
+            + "Fix bugs&"; // '&' not allowed in names
+    public static final String INVALID_TASK_DEADLINE_DESC_1 = " " + PREFIX_TASK_DEADLINE
+            + "2022-01-01"; // wrong date format
+    public static final String INVALID_TASK_DEADLINE_DESC_2 = " " + PREFIX_TASK_DEADLINE
+            + "32-12-2022"; // date does not exist
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

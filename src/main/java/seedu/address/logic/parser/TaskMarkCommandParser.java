@@ -29,7 +29,8 @@ public class TaskMarkCommandParser implements Parser<TaskMarkCommand> {
         Index taskIndex;
         Index teamIndex;
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TEAM_INDEX, PREFIX_TASK_INDEX)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_TEAM_INDEX, PREFIX_TASK_INDEX)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskMarkCommand.MESSAGE_USAGE));
         }
 

@@ -30,9 +30,10 @@ public class TaskCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
-
     @FXML
     private CheckBox isDone;
+    @FXML
+    private Label deadline;
 
 
     /**
@@ -44,6 +45,9 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         isDone.setSelected(task.getIsDone());
         name.setText(task.getName().fullName);
+        name.setWrapText(true);
+        deadline.setWrapText(true);
+        deadline.setText(task.getDeadlineString());
 
     }
 

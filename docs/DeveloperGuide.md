@@ -311,7 +311,7 @@ Given below is an example usage scenario
 Step 1. The user wants to change the phone number of a person to 80779043. Said person is indexed number 4 in
 the global list. The user executes `edit 1 p/80779043`.
 
-Step 2. The parser will create a `edit` command. This `edit command` will call `Model#getFilteredList()`
+Step 2. The parser will create an `edit` command. This `edit command` will call `Model#getFilteredList()`
 to get the `person` specified by the index in the command then create a new `person` with the modified info.
 `Model#updateFiltedPersonList` is called to update all teams with the edited members.
 
@@ -347,7 +347,7 @@ Step 2. The user assigns some members into the newly created team using the `ass
 Step 3. The user realises that the team has completed their work and is no longer needed, and proceeds to delete the team using the `deleteteam t/1` command (Given that the team created in Step 1 is the team in index 1).
 
 The following sequence diagram shows how the delete team operation works:
-![DeleteTeamSequenceDaigram](images/DeleteTeamSequenceDiagram.png)
+![DeleteTeamSequenceDiagram](images/DeleteTeamSequenceDiagram.png)
 
 ### Edit Team Feature
 
@@ -362,6 +362,9 @@ Step 1. The user executes `editteam t/1 n/Team1` to change the name of first tea
 Step 2. The `editTeam` command is created by the parser using the given team index and new name. It calls
 `Model#setTeamName`to change the name of the required team.
 
+The following sequence diagram shows how the edit team operation works:
+![EditTeamSequenceDiagram](images/EditTeamSequenceDiagram.png)
+
 ### Assign Member Feature
 
 #### Implementation
@@ -375,6 +378,9 @@ Step 1. The user executes `assign m/1 t/1` to assign the first person as a membe
 Step 2. The `assignMember` command is created by the parser using the given member's index (global person index) and
 team's index. It calls `Model#addPersonToTeam` to add the person to given team.
 
+The following sequence diagram shows how the assign member operation works:
+![AssignMemberSequenceDiagram](images/AssignMemberSequenceDiagram.png)
+
 ### unAssign Member Feature
 
 #### Implementation
@@ -387,6 +393,9 @@ Step 1. The user executes `unassign m/1 (global person index) t/1` to unAssign t
 
 Step 2. The `unassignMember` command is created by the parser using the given member's index (global person index) and
 team's index. It calls `Model#removePersonFromTeam` to remove the person from given team.
+
+The following sequence diagram shows how the unassign team operation works:
+![UnAssignMemberSequenceDiagram](images/UnAssignMemberSequenceDiagram.png)
 
 _{more aspects and alternatives to be added}
 

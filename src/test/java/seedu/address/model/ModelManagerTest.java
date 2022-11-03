@@ -5,8 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalTeams.BACKEND;
+import static seedu.address.testutil.TypicalTeams.FRONTEND;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.team.Team;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -88,6 +92,24 @@ public class ModelManagerTest {
         assertTrue(modelManager.hasPerson(ALICE));
     }
 
+    @Test
+    public void hasTeam_teamInAddressBook_returnsTrue() {
+        modelManager.addTeam(FRONTEND);
+        assertTrue(modelManager.hasTeam(FRONTEND));
+    }
+
+    @Test
+    public void setTeamName_validTeamName_setsTeamName() {
+        modelManager.addTeam(FRONTEND);
+        Team teamToEdit = modelManager.getTeam(FRONTEND.getName());
+        modelManager.setTeamName(INDEX_FIRST_PERSON, BACKEND.getName());
+        assertEquals(teamToEdit.getName(), BACKEND.getName());
+    }
+
+    @Test
+    public void deleteTeam_validTeamName_teamNotInModelManager() {
+
+    }
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));

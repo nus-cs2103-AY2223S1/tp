@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.isNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
@@ -10,6 +11,13 @@ import java.util.Optional;
  * Represents a Task in the address book.
  */
 public class Task {
+
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Deadline must follow the dd-MM-yyyy format "
+            + ", must be a valid date and in between year 1900 and 2100.";
+    public static final String MESSAGE_INVALID_DATE_VALUE = "Deadline must be in between the year 1900 and 2100";
+
+    private static final LocalDate EARLIEST_DATE = LocalDate.of(1899, 12, 31);
+    private static final LocalDate LATEST_DATE = LocalDate.of(2101, 1, 1);
 
     private Name name;
     private Optional<LocalDate> deadline;
@@ -46,12 +54,32 @@ public class Task {
         return this.name;
     }
 
-    public void editName(Name newName) {
-        this.name = newName;
+    /**
+     * Edits the taskname and deadline of the Task
+     *
+     * @param newName The new task name.
+     * @param newDeadline The new deadline provided.
+     */
+    public void editTaskDesc(Name newName, LocalDate newDeadline) {
+        if (!isNull(newName)) {
+            this.name = newName;
+        }
+        if (!isNull(newDeadline)) {
+            this.deadline = Optional.ofNullable(newDeadline);
+        }
     }
 
     public Optional<LocalDate> getDeadline() {
         return this.deadline;
+    }
+
+    public static boolean isValidDeadline(LocalDate deadline) {
+        return deadline.isAfter(EARLIEST_DATE) && deadline.isBefore(LATEST_DATE);
+    }
+
+    public String getDeadlineString() {
+        Optional<String> date = getDeadline().map(LocalDate::toString);
+        return date.orElse("");
     }
 
     public boolean getIsDone() {
@@ -102,7 +130,8 @@ public class Task {
         return other == this // short circuit if same object
                 || (other instanceof Task // instanceof handles nulls
                 && name.equals(((Task) other).getName())
-                && getDeadline().equals(((Task) other).getDeadline())); // state check
+                && getDeadline().equals(((Task) other).getDeadline()))
+                && getIsDone() == ((Task) other).getIsDone(); // state check
     }
 
     @Override

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -224,6 +225,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean teamNameExists(seedu.address.model.team.Name name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public seedu.address.model.team.Name getTeamName(Index teamIndex) {
             throw new AssertionError("This method should not be called.");
         }
@@ -240,6 +246,11 @@ public class AddCommandTest {
 
         @Override
         public boolean teamHasMember(Index p, Index t) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean teamHasTask(Index index, Task t) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -264,7 +275,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName) {
+        public void editTask(Index teamIndex, Index taskIndex,
+                             seedu.address.model.task.Name newName, LocalDate newDeadline) {
             throw new AssertionError("This method should not be called.");
         }
     }

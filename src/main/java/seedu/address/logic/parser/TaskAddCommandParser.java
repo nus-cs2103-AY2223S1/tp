@@ -19,6 +19,7 @@ import seedu.address.model.task.Task;
  * Parses input arguments and creates a new TaskAddCommand object
  */
 public class TaskAddCommandParser implements Parser<TaskAddCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the TaskAddCommand
      * and returns a TaskAddCommand object for execution.
@@ -31,7 +32,8 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
 
         Index index;
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TEAM_INDEX, PREFIX_TASK_NAME)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_TEAM_INDEX, PREFIX_TASK_NAME)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskAddCommand.MESSAGE_USAGE));
         }
 
@@ -42,6 +44,7 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
         }
 
         Name taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASK_NAME).get());
+
         LocalDate taskDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).orElse(null))
                                            .orElse(null);
 

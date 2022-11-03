@@ -7,8 +7,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -59,9 +61,35 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void addAll_duplicatePerson_throwsDuplicatePersonException() {
+        uniquePersonList.add(ALICE);
+        List<Person> listWithDuplicate = new ArrayList<>();
+        listWithDuplicate.add(ALICE);
+        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.addAll(listWithDuplicate));
+    }
+
+    @Test
+    public void getPerson_personWithNameIsInList_returnPerson() {
+        uniquePersonList.add(ALICE);
+        assertEquals(ALICE, uniquePersonList.getPerson(ALICE.getName()));
+    }
+
+    @Test
+    public void getPerson_nullName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.getPerson(null));
+    }
+
+    @Test
+    public void getPerson_nameNotInList_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.getPerson(BENSON.getName()));
+    }
+
+    @Test
     public void setPerson_nullTargetPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(null, ALICE));
     }
+
+
 
     @Test
     public void setPerson_nullEditedPerson_throwsNullPointerException() {
