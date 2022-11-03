@@ -72,20 +72,20 @@ public class AppointmentManager {
      * @return True if the given nurse has an appointment during the given dateTime
      */
     public boolean hasAppointment(Nurse nurse, AppointmentDateTime appointmentDateTime) {
-        return nurse.appointments.stream()
-                .anyMatch(appt -> appt.getAppointmentDateTime().equals(appointmentDateTime));
+        return nurse.hasAppointment(appointmentDateTime);
     }
 
     /**
-     * Returns true if the given person has an appointment during the given dateTime
+     * Returns true if the given patient has an appointment during the given
+     * dateTime
      *
-     * @param person              The person to check
+     * @param patient             The patient to check
      * @param appointmentDateTime The appointment date time to check
-     * @return True if the given person has an appointment during the given dateTime
+     * @return True if the given patient has an appointment during the given
+     *         dateTime
      */
     public boolean hasAppointment(Patient patient, AppointmentDateTime appointmentDateTime) {
-        return patient.appointments.stream()
-                .anyMatch(appt -> appt.getAppointmentDateTime().equals(appointmentDateTime));
+        return patient.hasAppointment(appointmentDateTime);
     }
 
     /**

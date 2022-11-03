@@ -26,7 +26,7 @@ public class Patient extends Person {
     public final List<DateSlot> dateSlots = new ArrayList<>();
     private final Optional<Physician> attendingPhysician;
     private final Optional<NextOfKin> nextOfKin;
-    public Set<Appointment> appointments = new HashSet<>();
+    private final Set<Appointment> appointments = new HashSet<>();
 
     /**
      * Initialise patient with no attending physician and no next of kin.
@@ -178,5 +178,17 @@ public class Patient extends Person {
                 .filter(appointment -> appointment.getAppointmentDateTime().equals(appointmentDateTime)
                         && appointment.getNurse().equals(nurse))
                 .findFirst();
+    }
+
+    /**
+     * Returns true if the patient has an appointment at a given appointment date
+     * time
+     *
+     * @param appointmentDateTime The appointment date time to check
+     * @return True if the patient has an appointment at the given appointment date
+     *         time
+     */
+    public boolean hasAppointment(AppointmentDateTime appointmentDateTime) {
+        return appointments.stream().anyMatch(appt -> appt.getAppointmentDateTime().equals(appointmentDateTime));
     }
 }

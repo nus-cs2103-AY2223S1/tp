@@ -24,7 +24,7 @@ public class Nurse extends Person {
     private final List<HomeVisit> homeVisitList = new ArrayList<>();
     private final List<Date> unavailableDateList = new ArrayList<>();
     private final List<Date> fullyScheduledDateList = new ArrayList<>();
-    public Set<Appointment> appointments = new HashSet<>();
+    private final Set<Appointment> appointments = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -157,5 +157,16 @@ public class Nurse extends Person {
                 .filter(appointment -> appointment.getAppointmentDateTime().equals(appointmentDateTime)
                         && appointment.getPatient().equals(patient))
                 .findFirst();
+    }
+
+    /**
+     * Returns true if the nurse has an appointment at a given appointment date time
+     *
+     * @param appointmentDateTime The appointment date time to check
+     * @return True if the nurse has an appointment at the given appointment date
+     *         time
+     */
+    public boolean hasAppointment(AppointmentDateTime appointmentDateTime) {
+        return appointments.stream().anyMatch(appt -> appt.getAppointmentDateTime().equals(appointmentDateTime));
     }
 }
