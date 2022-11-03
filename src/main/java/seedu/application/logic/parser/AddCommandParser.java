@@ -21,6 +21,7 @@ import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
 import seedu.application.model.application.Status;
+import seedu.application.model.application.exceptions.InvalidFutureApplicationException;
 import seedu.application.model.tag.Tag;
 
 /**
@@ -50,10 +51,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        Application application = new Application(company, contact, email, position, date, status, tagList);
-
-        return new AddCommand(application);
+        try {
+            Application application = new Application(company, contact, email, position, date, status, tagList);
+            return new AddCommand(application);
+        } catch (InvalidFutureApplicationException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 
     /**

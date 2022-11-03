@@ -27,6 +27,7 @@ import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
 import seedu.application.model.application.Status;
+import seedu.application.model.application.exceptions.InvalidFutureApplicationException;
 import seedu.application.model.tag.Tag;
 
 /**
@@ -98,7 +99,8 @@ public class EditCommand extends Command {
      * edited with {@code editApplicationDescriptor}.
      */
     private static Application createEditedApplication(Application applicationToEdit,
-                                                       EditApplicationDescriptor editApplicationDescriptor) {
+                                                       EditApplicationDescriptor
+                                                               editApplicationDescriptor) throws CommandException {
         assert applicationToEdit != null;
 
         Company updatedCompany = editApplicationDescriptor.getCompany().orElse(applicationToEdit.getCompany());
@@ -108,16 +110,19 @@ public class EditCommand extends Command {
         Date updatedDate = editApplicationDescriptor.getDate().orElse(applicationToEdit.getDate());
         Status updatedStatus = editApplicationDescriptor.getStatus().orElse(applicationToEdit.getStatus());
         Set<Tag> updatedTags = editApplicationDescriptor.getTags().orElse(applicationToEdit.getTags());
-
-        Application editedApplication = new Application(updatedCompany, updatedContact, updatedEmail, updatedPosition,
-                updatedDate, updatedStatus, updatedTags);
-        if (applicationToEdit.hasInterview()) {
-            editedApplication = new Application(editedApplication, applicationToEdit.getInterview().get());
+        try {
+            Application editedApplication = new Application(updatedCompany, updatedContact, updatedEmail,
+                    updatedPosition, updatedDate, updatedStatus, updatedTags);
+            if (applicationToEdit.hasInterview()) {
+                editedApplication = new Application(editedApplication, applicationToEdit.getInterview().get());
+            }
+            if (applicationToEdit.isArchived()) {
+                editedApplication = editedApplication.setToArchive();
+            }
+            return editedApplication;
+        } catch (InvalidFutureApplicationException e) {
+            throw new CommandException(e.getMessage());
         }
-        if (applicationToEdit.isArchived()) {
-            editedApplication = editedApplication.setToArchive();
-        }
-        return editedApplication;
     }
 
     @Override
