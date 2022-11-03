@@ -134,7 +134,7 @@ TrackO's functionalities!
 
 1. We start off by getting to know how to manage your **inventory**!
    1. Adding an item: `addi`
-       * Say your small business has `350` units of the new item, `Teddy bear keychain` currently in your physical inventory.
+       * If your small business has `350` units of the new item, `Teddy bear keychain` currently in your physical inventory.
          It costs `$0.89` to make these keychains and you will be selling them at `$3.50` each.
        * You can add these items to TrackO, with the following command:
          `addi i/Teddy bear keychains q/350 d/Great for kids! t/New sp/3.50 cp/0.89`
@@ -145,17 +145,17 @@ You should see this item appear in TrackO at index 5 as shown below:
 2. Next, we move on to order management:
     1. Adding an order: `addo`
       * If you have a customer named `Jonathan Chee` living at `43 Clementi Road, 639433` with an email address `JonChee@gmail.com` and phone number of
-        `96785944`. This customer ordered 1 `Teddy bear keychain`.
+        `96785944`. This customer has ordered 1 `Teddy bear keychain`.
       * First, enter the customer details into the [command box](link to layout section) using the following command:
         ```
         addo n/Jonathan Chee p/96785944 e/JonChee@gmail.com a/43 Clementi Road, 639433
         ```
    
-      * Next, to input the items ordered by the customer, enter the following command into the [command box](link to layout section):
+      * Next, to add the items ordered by the customer, enter the following command into the [command box](link to layout section):
         ```
         i/teddy bear keychain q/1
         ```
-      * Lastly, type `done` to complete the add order command!
+      * Lastly, type `done` to finish adding an order to TrackO!
       
    You should see this order appear in TrackO at index 5 as shown below:
 
@@ -479,7 +479,9 @@ The command `clear` clears all data (in both `Order List` and `Inventory List`) 
 - Keyword `cancel` : aborts the command to clear all data in TrackO. No changes to data in TrackO after this input. 
 - `clear` ignores any input after. (e.g. `clear chair` will have the same effect as `clear`)
 
-:bulb: The keywords `confirm` and `done` are case-sensitive. Thus, only the keywords in lower case are accepted.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The keywords `confirm` and `done` are case-sensitive. Thus, only the keywords in lower case are accepted.
+</div>
 
 ### Getting help: `help`
 
