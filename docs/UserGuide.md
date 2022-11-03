@@ -11,7 +11,7 @@ Welcome to the REal-Time User Guide!
 REal-Time is a desktop application for _Real-Estate agents_ to manage client information, schedule meetings,
 and track client offers and listings.
 
-
+_[More to be added]_
 
 ## About
 
@@ -23,6 +23,8 @@ If you can type fast, REal-Time can get your contact management tasks done faste
 The **"REa"** in **REal-Time** stands for _Real-Estate agents_, which is the intended target user of our application!
 
 ## Using this guide
+
+_[More to be added]_
 
 # Table of Contents
 {: .no_toc}
@@ -66,6 +68,7 @@ pressing Enter will open the help window.<br>
 
 # Layout
 
+[More to be added]
 [Screenshot to be added]
 
 ___
@@ -486,15 +489,15 @@ ___
 [](#listing-listings-listl)
 # Prefix Summary
 
-| Prefix | Meaning              | Used in                                                                                                                                                                     | Example                       |
-|--------|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
-| `a/`   | Address of client    | [Add Client](#adding-a-client-addc)<br/> [Add Listing](#adding-a-listing-addl) <br/> [Edit Client](#editing-a-client--editc)<br/> [Edit Listing](#editing-a-listing--editl) | `a/123, Clementi Rd, 1234665` |
-| `ap/`  | Asking Price         | [Add Listing](#adding-a-listing-addl) <br/> [Edit Listing](#editing-a-listing--editl)                                                                                       | `ap/500000`                   |
-| `d/`   | Date and time        | [Add Meeting](#adding-a-meeting-addm)<br/>[Edit Meeting](#editing-a-meeting--editm)                                                                                         | `d/2022-10-20 12:00`          |
-| `e/`   | Email                | [Add Client](#adding-a-client-addc)<br/>[Edit Client](#editing-a-client--editc)                                                                                             | `e/johndoe@example.com`       |
-| `l/`   | Listing ID           | [Add Listing](#adding-a-listing-addl)<br/>[Add Offer](#adding-an-offer-addo)<br/> [Edit Listing](#editing-a-listing--editl)<br/>[Edit Offer](#editing-an-offer--edito)      | `l/BEDOK_NORTH_RD_BLK123`     |
-| `n/`   | Name of client/owner | [Add Client](#adding-a-client-addc)<br/>[Add Offer](#adding-an-offer-addo)<br/>[Edit Client](#editing-a-client--editc)<br/>[Edit Offer](#editing-an-offer--edito)           | `n/John Doe`                  |
-| `o/`   | Offer price          | [Add Offer](#adding-an-offer-addo)<br/>[Edit Offer](#editing-an-offer--edito)                                                                                               | `o/700000`                    |
-| `p/`   | Phone number         | [Add Client](#adding-a-client-addc)<br/>[Edit Client](#editing-a-client--editc)                                                                                             | `p/12345678`                  |
-| `t/`   | Tag                  | [Add Client](#adding-a-client-addc)<br/> [Add Listing](#adding-a-listing-addl) <br/> [Edit Client](#editing-a-client--editc)<br/> [Edit Listing](#editing-a-listing--editl) | `t/4room`                     |
+| Prefix | Description                                                             | Used in                                                                                                                                                                                                                                                    | Example                       |
+|--------|-------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
+| `a/`   | **Address** of the Client or the Listing.                               | [Add Client](#adding-a-client-addc)<br/> [Add Listing](#adding-a-listing-addl) <br/> [Edit Client](#editing-a-client--editc)<br/> [Edit Listing](#editing-a-listing--editl)                                                                                | `a/123, Clementi Rd, 1234665` |
+| `ap/`  | **Asking Price** of the Owner in a Listing.                             | [Add Listing](#adding-a-listing-addl) <br/> [Edit Listing](#editing-a-listing--editl)                                                                                                                                                                      | `ap/500000`                   |
+| `d/`   | **Date and time** of a Meeting with a Client.                           | [Add Meeting](#adding-a-meeting-addm)<br/>[Edit Meeting](#editing-a-meeting--editm)                                                                                                                                                                        | `d/2022-10-20 12:00`          |
+| `e/`   | **Email** of the Client.                                                | [Add Client](#adding-a-client-addc)<br/>[Edit Client](#editing-a-client--editc)                                                                                                                                                                            | `e/johndoe@example.com`       |
+| `l/`   | **Listing ID** by the user for a Listing. Can be specified by the user. | [Add Listing](#adding-a-listing-addl)<br/>[Add Offer](#adding-an-offer-addo)<br/> [Edit Listing](#editing-a-listing--editl)<br/>[Edit Offer](#editing-an-offer--edito)                                                                                     | `l/BEDOK_NORTH_RD_BLK123`     |
+| `n/`   | **Name** of Client or Owner of a Listing                                | [Add Client](#adding-a-client-addc)<br/>[Add Listing](#adding-a-listing-addl) <br/>[Add Offer](#adding-an-offer-addo)<br/>[Edit Client](#editing-a-client--editc)<br/>[Edit Offer](#editing-an-offer--edito)<br/>[Edit Listing](#editing-a-listing--editl) | `n/John Doe`                  |
+| `o/`   | **Offer price** by a Client                                             | [Add Offer](#adding-an-offer-addo)<br/>[Edit Offer](#editing-an-offer--edito)                                                                                                                                                                              | `o/700000`                    |
+| `p/`   | **Phone number** of a Client                                            | [Add Client](#adding-a-client-addc)<br/>[Edit Client](#editing-a-client--editc)                                                                                                                                                                            | `p/12345678`                  |
+| `t/`   | **Tag** to specify a unique trait of a Listing or Client                | [Add Client](#adding-a-client-addc)<br/> [Add Listing](#adding-a-listing-addl) <br/> [Edit Client](#editing-a-client--editc)<br/> [Edit Listing](#editing-a-listing--editl)                                                                                | `t/4room`                     |
 
