@@ -20,7 +20,7 @@ public class TypicalQuestions {
     public static final Question Q1 =
             new QuestionBuilder().withDescription(VALID_DESCRIPTION_Q1).withImportantTag(false).build();
     public static final Question Q2 =
-            new QuestionBuilder().withDescription(VALID_DESCRIPTION_Q2).withImportantTag(false).build();
+            new QuestionBuilder().withDescription(VALID_DESCRIPTION_Q2).withImportantTag(true).build();
 
     private TypicalQuestions() {} // prevents instantiation
 

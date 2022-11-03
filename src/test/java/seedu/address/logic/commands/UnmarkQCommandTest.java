@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.UnmarkQCommand.MESSAGE_UNMARK_QUESTION_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_QUESTION;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_QUESTION;
 import static seedu.address.testutil.TypicalQuestions.getTypicalAddressBook;
 
 import java.nio.file.Path;
@@ -45,15 +46,15 @@ public class UnmarkQCommandTest {
     @Test
     public void execute_questionUnmarkedByModel_markSuccessful() {
 
-        Question questionToBeUnmarked = model.getFilteredQuestionList().get(INDEX_FIRST_QUESTION.getZeroBased());
+        Question questionToBeUnmarked = model.getFilteredQuestionList().get(INDEX_SECOND_QUESTION.getZeroBased());
         Question editedQuestion = new QuestionBuilder(questionToBeUnmarked)
                 .withImportantTag(false)
                 .build();
-        UnmarkQCommand unmarkQCommand = new UnmarkQCommand(INDEX_FIRST_QUESTION);
+        UnmarkQCommand unmarkQCommand = new UnmarkQCommand(INDEX_SECOND_QUESTION);
 
         String expectedMessage = String.format(MESSAGE_UNMARK_QUESTION_SUCCESS, editedQuestion);
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.setQuestion(model.getFilteredQuestionList().get(0), editedQuestion);
+        expectedModel.setQuestion(model.getFilteredQuestionList().get(1), editedQuestion);
 
         assertCommandSuccess(unmarkQCommand, model, expectedMessage, expectedModel);
     }
