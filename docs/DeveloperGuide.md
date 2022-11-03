@@ -148,6 +148,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+Changed features will also be described here.
 
 ### Add feature
 
@@ -174,7 +175,34 @@ Step 6: The `AddCommand` communicates with the `Model` to add the person by call
 Step 7: `AddCommand` then returns a new `CommandResult` with the result of the execution.
 
 ![Sequence diagram for the Add Command](images/AddSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
+### Edit feature
+
+#### Implementation
+
+The Edit mechanism is facilitated by `EditCommand` and `EditCommandParser`. It allows users to edit a contact from their contact list and specify which attribute of the contacts' `Name`, `Phone`, `Email`, `Birthday`, `Address`, and `Tags` to be changed with the `Person` contact created.
+
+#### Example Usage
+
+Step 1: The user inputs `edit 1 p/91234567 e/johndoe@example.com`. This the phone number and email address of the person with an index of 1 to be `91234567` and `johndoe@example.com` respectively.
+
+Step 2: `LogicManager` calls `AddressBookParser#parseCommand` with the user input.
+
+Step 3: `AddressBookParser` will parse the command word and create a new `EditCommandParser` and call its function `parse` with the index as the arguments.
+
+Step 4: The `EditCommandParser#parse` will then parse the arguments and create a new `EditCommand` object.
+
+Step 5: The `LogicManager` then calls `EditCommand#execute`.
+
+Step 6: The `EditCommand` communicates with the `Model` to add the person by calling `Model#editPerson`.
+
+Step 7: `EditCommand` then returns a new `CommandResult` with the result of the execution.
+
+![Sequence diagram for the Edit Command](images/EditSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Insurance feature
 
@@ -263,7 +291,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 #### Implementation
 
-The remind mechanism is facilitated by `RemindCommand` and `RemindCommandParser`. It allows users to set a reminder message and date, for a contact from the contact list.
+The Remind mechanism is facilitated by `RemindCommand` and `RemindCommandParser`. It allows users to set a reminder message and date, for a contact from the contact list.
 
 The `Reminder` objects for each `Person` is stored in the `Person` object as a `SortedList` where the predicate for sorting is based on the `date` attribute in `Reminder`.
 
