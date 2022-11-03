@@ -137,26 +137,14 @@ Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d
 - Existing values will be updated to the input values.
 - At least one of the optional fields must be provided.
 - Date format accepted is: dd/mm/yyyy.
+- Gender format accepted are: `M`/`m`/`Male`/`male` for male, `F`/`f`/`Female`/`female` for female.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
+*  `editPerson 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
    `91234567` and `johndoe@example.com` respectively.
-*  `edit 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s contact: edits name to be `Charlotte`,
-edits gender to be `Female` and edits date of birth to be `3.4.1998`.
-
-__Optional Parameter 1: Gender__
-
-Format: `edit INDEX [g/GENDER]`
-
-- Edits the gender of a person in the contact list. The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
-for male, `F`/`f`/`Female`/`female` for female.
-- `INDEX` must be **a positive integer** (i.e 1,2,3…)
-- `INDEX` must be within the range of the contact list index (i.e. from 1 to size of contact list).
-
-Examples:
-* `edit 1 g/M`
-* `edit 2 g/f`
-* `edit 3 g/F`
+*  `editPerson 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
+*  `editPerson 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s name to be `Charlotte`,
+    gender to be `Female` and date of birth to be `3/4/1998`.
 
 ### Locating persons by name: `find`
 
@@ -196,7 +184,8 @@ Adds a new event to the application.
 
 Format: `addEvent e/EVENT_TITLE d/DATE t/TIME p/PURPOSE`
 
-* The compulsory parameters are: event title (`e`), date (`d`), time (`t`) and purpose (`p`)
+* The compulsory parameters are: event title (`e`), date (`d`), time (`t`) and purpose (`p`).
+* Only alphanumeric characters are allowed for event title (`e`) and purpose (`p`).
 
 Examples:
 * `addEvent e/Shoe Sale d/30/05/2022 t/11:00 p/30 dollar discount on all shoes`
@@ -211,7 +200,9 @@ Format: `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`
 - Edits the event at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed event list.
   The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
 - At least one of the optional fields must be provided.
-- Existing values will be updated to the input values.
+- Existing values will be updated to the input values. 
+- Only alphanumeric characters are allowed for event title (`e`) and purpose (`p`).
+
 
 Examples:
 *  `editEvent 1 e/Toy Dinosaur Sale t/10/10/AM` Edits the event title and time of the 1st event to be
