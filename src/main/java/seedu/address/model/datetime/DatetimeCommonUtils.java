@@ -65,10 +65,7 @@ public class DatetimeCommonUtils {
     public static final String DATETIME_MESSAGE_CONSTRAINTS =
             DATETIME_MESSAGE_CONSTRAINTS_BASE + ", e.g. 2023-01-01 08:00";
     public static final String DATETIME_MESSAGE_CONSTRAINTS_UNPARSABLE =
-            DATETIME_MESSAGE_CONSTRAINTS_BASE + ", and it must be valid!";
-
-    public static final String DATETIME_MESSAGE_CONSTRAINTS_DATETIMEPASSED = "Please input a date and time that is "
-            + "after the current date and time. The date and time as of now is ";
+            DATETIME_MESSAGE_CONSTRAINTS_BASE + ", and it must be valid!";;
 
     /**
      * Converts a DayOfWeek to a readable form, e.g. Mon, Tue
