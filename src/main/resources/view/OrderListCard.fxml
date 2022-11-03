@@ -121,7 +121,7 @@
                            <Insets top="10.0" />
                         </VBox.margin>
                      </Label>
-                     <Label fx:id="additionalRequestDescription">
+                     <Label fx:id="additionalRequestsDescription">
                         <VBox.margin>
                            <Insets left="5.0" />
                         </VBox.margin></Label>
