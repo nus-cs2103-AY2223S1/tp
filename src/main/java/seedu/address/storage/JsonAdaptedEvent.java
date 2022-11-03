@@ -1,5 +1,8 @@
 package seedu.address.storage;
 
+import static seedu.address.model.event.StartTime.MESSAGE_FORMAT_CONSTRAINTS;
+import static seedu.address.model.event.StartTime.MESSAGE_VALUE_CONSTRAINTS;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -90,8 +93,10 @@ public class JsonAdaptedEvent {
         if (this.startTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Start Time"));
         }
-        if (!StartTime.isValidStartTime(startTime)) {
-            throw new IllegalValueException(StartTime.MESSAGE_CONSTRAINTS);
+        if (!StartTime.isValidStartTimeFormat(startTime)) {
+            throw new IllegalValueException(MESSAGE_FORMAT_CONSTRAINTS);
+        } else if (!StartTime.isValidStartTimeValue(startTime)) {
+            throw new IllegalValueException(String.format(MESSAGE_VALUE_CONSTRAINTS, startTime));
         }
         final StartTime modelStartTime = new StartTime(startTime);
 
