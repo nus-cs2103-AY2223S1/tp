@@ -296,7 +296,7 @@ Format: `marko INDEX [-p] [-d]`
 the colour of the particular order's card will be in a darker shade than an uncompleted order. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can mark an order with insufficient stock as paid (to record pre-payments) but you **cannot** 
+You can mark an order with insufficient stock as paid (to record payments for pre-orders) but you **cannot** 
 mark an order with **insufficient stock** as **delivered**. 
 </div>
 
