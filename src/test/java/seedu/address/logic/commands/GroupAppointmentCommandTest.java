@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -46,5 +48,21 @@ public class GroupAppointmentCommandTest {
                 new GroupAppointmentCommand(Key.MARK), model,
                 String.format(GroupAppointmentCommand.MESSAGE_SUCCESS_APPOINTMENTS, "mark"),
                 expectedModel3);
+    }
+
+    @Test
+    public void equals() {
+        GroupAppointmentCommand ungroupAppointmentCommand = new GroupAppointmentCommand(Key.TAG);
+
+        // same object -> returns true
+        assertTrue(ungroupAppointmentCommand.equals(ungroupAppointmentCommand));
+
+        // same values -> returns true
+        GroupAppointmentCommand ungroupAppointmentCommandCopy = new GroupAppointmentCommand(Key.TAG);
+        assertTrue(ungroupAppointmentCommand.equals(ungroupAppointmentCommandCopy));
+
+        // different values -> returns false
+        GroupAppointmentCommand ungroupAppointmentCommand2 = new GroupAppointmentCommand(Key.MARK);
+        assertFalse(ungroupAppointmentCommand2.equals(ungroupAppointmentCommand));
     }
 }
