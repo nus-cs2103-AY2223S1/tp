@@ -156,7 +156,7 @@ Examples:
 
 ### Searching keyword: `find`
 
-Find projects whose field (to be specified by user) contains any of the given keyword(s).
+Finds projects whose field (as specified by user) contains any of the given keyword(s).
 The four fields that the user can search by are:
 
 1. `ProjectName`
@@ -172,7 +172,7 @@ Format for each variant of `find`:
 4. `Tags`: `find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`
 
 * the `/` in the above examples shows multiple input parameters. <br>
-  e.g. `find -i/A0123456X A0123456G` will search for all students with either student ID of *A0123456X* or *A0123456G*.
+  e.g. `find -i A0123456X/A0123456G` will search for all students with either student ID of *A0123456X* or *A0123456G*.
 * Only the four specified fields above could be searched, and only one field can be searched at any one time.
 * The keyword is case-insensitive, e.g. `Neural NetWORK` will match `neural network`.
 * The keyword could contain spaces, e.g. `practical guide of machine learning` is allowed.
@@ -186,9 +186,14 @@ Examples:
 * `find -t Neural Network` searches for all projects with at least one tag containing `Neural Network`.
 * `find -p Neural/Network / Data` searches for all projects with `Neural` or `Network` or `Data` in their titles.
 
+Remark: 
+
+* A neat alternative to `list`: `find -i a` or `find -i /a` will function the same way as `list` and returns a list 
+  of all students, as student ID always begins with letter 'a'.
+
 ### Edit student details: `edit`
 
-Edit student details according to the input.
+Edits student details according to the input.
 
 Format: `edit STUDENT_ID [n/STUDENT_NAME] [p/FYP_NAME] [e/EMAIL] [t/TAG]…​`
 
