@@ -494,13 +494,13 @@ NUScheduler checks the following:
   * The local part cannot start or end with a special character
   * The local part must begin and end with an alphabet or number 
 
-* Domain (the characters in your email after `@`) of the emails must be one of the following valid NUS email domains.
+* Domain (the characters in your email after `@`) of the emails must be one of the following valid NUS email domains:
 
-  * `@u.nus.edu`
-  * `@u.duke.nus.edu`
-  * `@nus.edu.sg`
-  * `@comp.nus.edu.sg`
-  * `@u.yale-nus.edu.sg`
+  * `u.nus.edu`
+  * `u.duke.nus.edu`
+  * `nus.edu.sg`
+  * `comp.nus.edu.sg`
+  * `u.yale-nus.edu.sg`
 
 ### Transfer data to another computer
 
