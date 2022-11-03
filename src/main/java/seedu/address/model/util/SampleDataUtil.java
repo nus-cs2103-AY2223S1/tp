@@ -2,7 +2,6 @@ package seedu.address.model.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.Set;
 import java.util.stream.Collectors;
 
