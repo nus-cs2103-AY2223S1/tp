@@ -21,17 +21,19 @@ If you are looking to help develop this project, take a look at our [Developer G
 ## Table of Contents
 
 * [Introduction](#introduction)
-* [Layout]
-* [Using this guide]
+* [Layout](#layout)
+* [Using this guide](#using-this-guide)
+* [Command guide](#command-guide)
 * [Quick start](#quick-start)
-* [Features]
-  * Inventory management
+* [Tutorial](#tutorial)
+* [Features](#features)
+  * [Inventory management](#uinventory-managementu)
     * [Adding an inventory item: `addi`](#adding-an-inventory-item-addi)
-    * [Listing all inventory items: `list`](#listing-all-inventory-items-listi)
+    * [Listing all inventory items: `listi`](#listing-all-inventory-items-listi)
     * [Finding an inventory item: `findi`](#finding-an-inventory-item-findi)
     * [Deleting an inventory item: `deletei`](#deleting-an-inventory-item-deletei)
     * [Editing an inventory item: `editi`](#editing-an-inventory-item-editi)
-  * Order management
+  * [Order management](#uorder-managementu)
     * [Adding an order: `addo`](#adding-an-order-addo)
     * [Listing all orders: `listo`](#listing-all-orders-listo)
     * [Finding order(s): `findo`](#finding-orders-findo)
@@ -39,9 +41,10 @@ If you are looking to help develop this project, take a look at our [Developer G
     * [Deleting an order: `deleto`](#deleting-an-order-deleteo)
     * [Editing an order: `edito`](#editing-an-order-edito)
     * [Marking an order as paid/delivered: `marko`](#marking-an-order-as-paiddelivered-marko)
-  * [Getting help](#getting-help-help)
-  * [Clearing data in TrackO](#clearing-all-data-in-tracko-clear)
-  * [Exiting TrackO](#exiting-tracko--exit)
+  * [General features](#ugeneral-featuresu)
+    * [Getting help: `help`](#getting-help-help)
+    * [Clearing data in TrackO: `clear`](#clearing-all-data-in-tracko-clear)
+    * [Exiting TrackO: `exit`](#exiting-tracko--exit)
 * [Command Summary](#command-summary)
 * [Glossary](#glossary)
 
@@ -52,12 +55,12 @@ and inventory items. It is an **integrated solution** that merges the process of
 place, optimized for use via a Command Line Interface ([CLI](#cli)), while still having the benefits of a Graphical User Interface
 ([GUI](#gui)).
 
-If you prefer and are fast at typing, **TrackO** can get your order and inventory management tasks done faster than
+If you love to type, **TrackO** can get your order and inventory management tasks done faster than
 the traditional solution of pen and paper, and even popular GUI applications such as spreadsheets
 (_e.g, Microsoft Excel, Google Sheets, etc._).
 
 Even if you are not _that_ comfortable with typing, fret not! **TrackO** is built with you
-in mind -- the functionalities are beginner-friendly and extremely easy to pick up.
+in mind. The functionalities are beginner-friendly and extremely easy to pick up.
 
 As a broad overview, **TrackO** provides users with the ability to:
 * View and manage inventory data
@@ -69,59 +72,141 @@ Currently, **TrackO** only supports tracking inventory items that are countable 
 Our development team will introduce more powerful inventory tracking functionalities _(e.g. by weight, by litres, etc)_
 in future enhancements of the product (stay tuned!).
 
---------------------------------------------------------------------------------------------------------------------
+Interested? Jump straight to our [Quick Start section](#quick-start) to get started now! 
+
+---
+## Using this guide
+Feeling overwhelmed already? Fret not because we're here to help you integrate this application seamlessly into your 
+business operations.
+
+As a first time user, we understand that it might be daunting to start up the application without sufficient instructions. So, we have prepared
+a [Quick start](#quick-start) section in this guide to equip you with the knowledge to start up TrackO for your business.
+
+Next, after starting up TrackO, you might be confused by the unfamiliar layout. As such, we have prepared a breakdown of the **layout** which
+you can find [here](#layout). This section of the guide will help you understand the different sections of the [GUI](#gui) as well as 
+their roles in this application. 
+
+After familiarising yourself with the [GUI](#gui), we have included a [tutorial section](#tutorial) where you can use some 
+example commands to play around with some of our sample data and get to know TrackO's features a bit better. 
+
+Following that, as our application uses commands which require specific inputs. To help you out with learning the command formats used
+in this guide, you can head over to the [Command Guide](#command-guide) section of this guide. This will come in handy for you when 
+you're ready to get some in-depth exposure to our [features](#features). Because our applications helps your business handle 
+orders and inventory, we have split our commands into 2 sections. You can click [here](#uorder-managementu) to find commands 
+related to **managing orders** and click [here](#uinventory-managementu) to find commands which help with **inventory management**. For more **general features**, 
+you can go to [this section](#ugeneral-featuresu) as well!
+
+Lastly, we have included a handy [command summary](#command-summary) for when you're proficient at using TrackO and just want to take a quick look
+at any commands you need!
+
+p.s. Not too sure about some technical terms in this guide? Check out our [glossary](#glossary) to get a better understand all the technical jargon! 
+
+-------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `TrackO.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-3/tp/releases).
+2. Download the latest `TrackO.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your TrackO. { INSERT SCREENSHOTS HERE }
+3. Copy the file to the folder you want to use as the _home folder_ for your TrackO. { INSERT SCREENSHOTS HERE }
 
-1. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. The application will already contain some sample
+   data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`listo`** and pressing Enter will show a list of existing orders.<br>
-   Some example commands you can try:
+5. To start out with some commands, head over to the [tutorial section](#tutorial) of this user guide!
 
-    * **`listo`** : Lists all orders.
+6. If you'd like to skip the tutorial, head over to the [features section](#features) below for some of the 
+more technical specifications of each command.
 
-    * **`addi`**`n/Keychain q/200 d/This is a metal keychain sp/15.00 cp/10.00` : Adds an inventory item named `Keychain`, which has quantity `200`, description `This is a metal keychain`, selling price `$15.00` and cost price `$10.00` to the inventory list.
-
-    * **`deleteo`**`3` : Deletes the 3rd order shown in the current list.
-
-    * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Want start using TrackO from scratch? Enter the [`clear`](##clearing-all-data-in-tracko-clear) command to remove all application data.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
+## Layout
 
-## Features
+--------------------------------------------------------------------------------------------------------------------
+## Tutorial
 
-<div markdown="block" class="alert alert-info">
+To get you started, here are some simple commands you can try out on our sample data before getting to know more of
+TrackO's functionalities! 
 
-**:information_source: Notes about the command format:**<br>
+1. We start off by getting to know how to manage your **inventory**!
+   1. Adding an item: `addi`
+       * If your small business has `350` units of the new item, `Teddy bear keychain` currently in your physical inventory.
+         It costs `$0.89` to make these keychains and you will be selling them at `$3.50` each.
+       * You can add these items to TrackO, with the following command:
+         `addi i/Teddy bear keychains q/350 d/Great for kids! t/New sp/3.50 cp/0.89`
+       * This command also helps to add a short description to the item and tags it as `New`.
+
+You should see this item appear in TrackO at index 5 as shown below:
+   <br/>
+2. Next, we move on to order management:
+    1. Adding an order: `addo`
+      * If you have a customer named `Jonathan Chee` living at `43 Clementi Road, 639433` with an email address `JonChee@gmail.com` and phone number of
+        `96785944`. This customer has ordered 1 `Teddy bear keychain`.
+      * First, enter the customer details into the [command box](link to layout section) using the following command:
+        ```
+        addo n/Jonathan Chee p/96785944 e/JonChee@gmail.com a/43 Clementi Road, 639433
+        ```
+   
+      * Next, to add the items ordered by the customer, enter the following command into the [command box](link to layout section):
+        ```
+        i/teddy bear keychain q/1
+        ```
+      * Lastly, type `done` to finish adding an order to TrackO!
+      
+   You should see this order appear in TrackO at index 5 as shown below:
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+If an item is not in your inventory, TrackO does not allow you to add that item to an order!
+</div>
+
+   2. Finding order(s): `findo`
+      * Our application allows you to search for orders by different fields (eg. payment status, delievery status, customer details).
+      * To find orders to be delivered to `Clementi` which have not been paid for, enter the following command to the [command box](link to layout section):
+      ```
+      findo -P a/Clementi
+      ```
+   You should see these orders appear in the [order list](link to layout).
+
+   3. Listing order(s): `listo`
+       * To view all your orders again, enter `listo`.
+
+   You should see these orders appear in the [order list](link to layout).
+
+Now that you're done trying out some commands, you can enter `exit` to leave the application. We hope that this short tutorial was helpful! 
+To check out more commands, you can head over to our [features section](#features).
+
+-------
+## Command guide
+This section of the user guide helps to break down the formatting used for commands in this user guide.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `addo n/NAME`, `NAME` is a parameter which can be used as `addo n/John Doe`.
 
 * Parameters in square brackets `[]` are optional. <br>
-  e.g. in `findo KEYWORD [MORE_KEYWORDS]`, only the first `KEYWORD` is compulsory. The rest are optional. 
+  e.g. in `findo KEYWORD [MORE_KEYWORDS]`, only the first `KEYWORD` is compulsory. The rest are optional.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `i/ITEM_NAME q/QUANTITY`, `q/QUANTITY i/ITEM_NAME` is also acceptable.
 
-* All command keywords (e.g. `addo`, `marko`, `editi`, etc.), prefixes (e.g.`p/`, `i/`, etc.) 
-and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**. 
+* All command keywords (e.g. `addo`, `marko`, `editi`, etc.), prefixes (e.g.`p/`, `i/`, etc.)
+  and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**.<br/>
+  e.g. `addo` is a valid command keyword, but `addO` is invalid. 
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `listi`, `listo`,`clear` and `exit`) will be ignored.<br>
+* If you use parameters for commands that do not take in parameters (such as `listi`, `listo`,`clear` and `exit`), these parameters will be ignored.<br>
   e.g. if the command specifies `listi 123`, it will be interpreted as `listi`.
+--------------------------------------------------------------------------------------------------------------------
+## Features
 
-</div>
+This section contains some technical specifications of how to use the commands in TrackO.
 
+### <u>**Inventory management**</u>
 ### Adding an inventory item: `addi`
 
 Adds an item to the list of tracked inventory.
@@ -203,6 +288,8 @@ Examples:
 * `editi 3 t/` removes the tags of the item at index 3.
 * `editi 3 t/bedroom t/premium` updates the tags of the item at index 3 to be `bedroom` and `premium`
 
+-------------------------------------------------------------------------
+### <u>**Order management**</u>
 ### Adding an order: `addo`
 
 Creates an order to be added to the list of orders tracked by TrackO.
@@ -258,10 +345,11 @@ the parameter will be taken in. Eg. `findo a/Clementi a/Geylang` will search for
 in their address.
 <br><br/>
 * The search keywords used are case-insensitive. e.g. `keychain` will match `Keychain`
-* The order of the keywords does not matter. e.g. `apple keychain` will match `Keychain Apple`
+* The order of the keywords does not matter. e.g. `findo a/Geylang n/Alex` will also give the same results as `findo n/Alex a/Geylang`
 * Only full words will be matched e.g. `Gardens,` will not match `Gardens` and `keychain` will not match `keychains`
-* Orders matching at least one keyword will be returned<br>
-  e.g. `findo apple keychain` will return `apple painting`, `banana keychain`
+* Orders matching at least one keyword will be returned (i.e. `OR` search).<br>
+  e.g. `findo i/apple keychain` will return `apple painting` and `banana keychain`
+
 
 Examples:
 * `findo n/Alex a/Clementi` returns all orders with the name `Alex` and an address including the word `Clementi`
@@ -375,6 +463,7 @@ Examples:
 * `marko 1 -d` Marks the order at index `1` in the currently displayed list as `delivered`.
 * `marko 1 -p -d` Marks the order at index `1` in the currently displayed list as both `paid` and `delivered`.
 
+### **<u>General features</u>**
 ### Clearing all data in TrackO: `clear`
 
 If you want clear all sample data present, `clear` is the command for you. 
@@ -390,7 +479,9 @@ The command `clear` clears all data (in both `Order List` and `Inventory List`) 
 - Keyword `cancel` : aborts the command to clear all data in TrackO. No changes to data in TrackO after this input. 
 - `clear` ignores any input after. (e.g. `clear chair` will have the same effect as `clear`)
 
-:bulb: The keywords `confirm` and `done` are case-sensitive. Thus, only the keywords in lower case are accepted.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The keywords `confirm` and `done` are case-sensitive. Thus, only the keywords in lower case are accepted.
+</div>
 
 ### Getting help: `help`
 
