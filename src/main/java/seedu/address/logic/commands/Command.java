@@ -9,6 +9,8 @@ import seedu.address.ui.Ui;
  */
 public abstract class Command {
 
+    public static final String ID_OVERFLOW = "The project book is full!";
+    
     /**
      * Executes the command and returns the result message.
      *

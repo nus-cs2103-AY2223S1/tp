@@ -60,6 +60,10 @@ public class AddIssueCommand extends IssueCommand {
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
 
+        if (!projectId.isValid()) {
+            throw new CommandException(ID_OVERFLOW);
+        }
+
         if (!model.hasProjectId(projectId.getIdInt())) {
             throw new CommandException(MESSAGE_PROJECT_NOT_FOUND);
         }

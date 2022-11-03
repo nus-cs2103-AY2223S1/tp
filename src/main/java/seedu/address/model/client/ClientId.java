@@ -18,9 +18,6 @@ public class ClientId {
      */
     public ClientId(int id) {
         requireNonNull(id);
-        if (!isValidClientId(Integer.toString(id))) {
-            throw new IllegalArgumentException();
-        }
 
         this.clientId = id;
     }
@@ -35,6 +32,13 @@ public class ClientId {
      */
     public boolean isEmpty() {
         return false;
+    }
+
+    /**
+     * Checks if this ClientID is valid.
+     */
+    public boolean isValid() {
+        return clientId > 0;
     }
 
     /**
