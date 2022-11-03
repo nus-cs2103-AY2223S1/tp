@@ -24,7 +24,7 @@ public class UnparticipateCommand extends EditStudentCommand<UnparticipateComman
             + "student list.\n"
             + "Removes participation record for the participation component specified in the parameter.\n"
             + "Parameters: INDEX (must be positive integer) "
-            + PREFIX_PARTICIPATION + "PARTICIPATION_COMPONENT\n"
+            + PREFIX_PARTICIPATION + "COMPONENT\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PARTICIPATION + "P01\n"
             + "Example: " + COMMAND_WORD + " all " + PREFIX_PARTICIPATION + "P02";
 
