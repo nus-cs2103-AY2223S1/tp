@@ -63,18 +63,23 @@ From top to bottom:
 
 To learn more about other GUI Features, click [**here**](#gui-features).
 
-### Try the app for yourself!
+Now that you understand the GUI, lets try inputting a command into the app!
 
-Try typing some of the following commands in the “Enter command here...” box and press “ENTER” to execute the command
+Try typing the command `ls --module CS2103T` in the “Enter command here...” box and press “ENTER” to execute the command.
 
-   Some example commands you can try:
+<div markdown="span" class="alert alert-primary">:bulb: **What does this command do?**
+Lists all tasks associated with the module `CS2103T`.
+</div>
 
-   - `add -n Tutorial 3 -m CS2103T -d 2022-09-16` :
+The GUI should be updated as shown below:
+
+![GUIwalkaround2](images/user-guide/GUIwalkaround2.png)
+
+   Some other example commands you can try:
+   - `add -n Tutorial 3 -m CS2103T -d 2022-10-10`:
      Adds a task called `Tutorial 3` for the module `CS2103T` with the deadline `2022-09-16` into the task list.
    - `mark 1` :
      Marks the first task in the list as complete.
-   - `ls --module CS2103T` :
-     Lists all tasks associated with the module `CS2103T`.
    - `delete 2` : 
      Deletes the second task in the list.
    - `edit 3 -n Assignment 2` : 
