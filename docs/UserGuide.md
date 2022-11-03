@@ -378,6 +378,10 @@ Examples:
   Edits the title, description and student list of the 1st task in the task list, provided that it is an assignment task, to be `Assignment 1`, `Topics: Recursion` and `Adam Lee, Ben Tang` respectively.
 * `edit-task 2 deleteStu/Jackie Chan` Edits the student list of the 2nd task in the task list to delete the name `Jackie Chan`. All other students in the student list of the task are not affected.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Invalid input:**
+0000-00-00 is <strong>not</strong> considered a valid date.
+</div>
+
 ### Removing a Task : `remove-task`
 
 Removes a specified task from the Task List (Can be a ToDo, Deadline or Assignment).
