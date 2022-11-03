@@ -20,8 +20,8 @@ public class Email {
             + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
     // alphanumeric and special characters
     // Taken from https://stackoverflow.com/a/50126486
-    private static final String LOCAL_PART_REGEX = "^([A-Za-z0-9-_.]+";
-    private static final String DOMAIN_REGEX = "[A-Za-z0-9-_]+(?:\\.[A-Za-z0-9]+)+)$";
+    private static final String LOCAL_PART_REGEX = "^([A-Za-z0-9])([A-Za-z0-9-_\\+.]+";
+    private static final String DOMAIN_REGEX = "([A-Za-z0-9])[A-Za-z0-9-]*(?:\\.[A-Za-z0-9]{2,})+)$";
 
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
@@ -43,7 +43,8 @@ public class Email {
      */
     public static boolean isValidEmail(String test) {
         System.out.println("VALIDATION_REGEX: " + VALIDATION_REGEX);
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX)
+            && !test.endsWith("-");
     }
 
     @Override

@@ -279,7 +279,7 @@ public class CommandTestUtil {
 
         @Override
         public void clearTargetPerson() {
-            throw new AssertionError("This method should not be called.");
+            // do nothing
         }
 
         @Override

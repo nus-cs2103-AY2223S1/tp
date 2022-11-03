@@ -36,10 +36,10 @@ public class PersonTest {
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_NAME_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlicePhone));
 
-        // same name, all other attributes different except for email -> returns true
+        // same name, all other attributes different except for email -> returns false
         Person editedAliceEmail = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_NAME_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAliceEmail));
+        assertFalse(ALICE.isSamePerson(editedAliceEmail));
 
         // different name, all other attributes same -> returns false
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
