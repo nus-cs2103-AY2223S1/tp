@@ -63,5 +63,4 @@ public class ModuleBuilder {
     public Module build() {
         return new Module(moduleCode, moduleName, moduleCredit);
     }
-
 }
