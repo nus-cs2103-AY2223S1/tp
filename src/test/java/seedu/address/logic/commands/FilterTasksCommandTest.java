@@ -31,7 +31,7 @@ public class FilterTasksCommandTest {
     public void executeValidModuleTasksFound_success() throws Exception {
         FilterPredicate predicate = new FilterPredicate(Optional.of(CS2030), Optional.empty(),
                 Optional.empty());
-        String expectedMessage =String.format(FilterTasksCommand.MESSAGE_SUCCESS, predicate);
+        String expectedMessage = String.format(FilterTasksCommand.MESSAGE_SUCCESS, predicate);
 
         FilterTasksCommand filterTasksCommand = new FilterTasksCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
@@ -43,7 +43,7 @@ public class FilterTasksCommandTest {
     public void executeValidCompletionStatusTasksFound_success() throws Exception {
         FilterPredicate predicate = new FilterPredicate(Optional.empty(), Optional.of(true),
                 Optional.empty());
-        String expectedMessage =String.format(FilterTasksCommand.MESSAGE_SUCCESS, predicate);
+        String expectedMessage = String.format(FilterTasksCommand.MESSAGE_SUCCESS, predicate);
 
         FilterTasksCommand filterTasksCommand = new FilterTasksCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
@@ -55,7 +55,7 @@ public class FilterTasksCommandTest {
     public void executeValidLinkStatusTasksFound_success() throws Exception {
         FilterPredicate predicate = new FilterPredicate(Optional.empty(), Optional.empty(),
                 Optional.of(true));
-        String expectedMessage =String.format(FilterTasksCommand.MESSAGE_SUCCESS, predicate);
+        String expectedMessage = String.format(FilterTasksCommand.MESSAGE_SUCCESS, predicate);
 
         FilterTasksCommand filterTasksCommand = new FilterTasksCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
@@ -67,7 +67,7 @@ public class FilterTasksCommandTest {
     public void executeAllConditionsPresentTasksFound_success() throws Exception {
         FilterPredicate predicate = new FilterPredicate(Optional.of(CS2030), Optional.of(false),
                 Optional.of(false));
-        String expectedMessage =String.format(FilterTasksCommand.MESSAGE_SUCCESS, predicate);
+        String expectedMessage = String.format(FilterTasksCommand.MESSAGE_SUCCESS, predicate);
 
         FilterTasksCommand filterTasksCommand = new FilterTasksCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
@@ -79,7 +79,7 @@ public class FilterTasksCommandTest {
     public void executeNoTasksFound_success() throws Exception {
         FilterPredicate predicate = new FilterPredicate(Optional.of(CS2030), Optional.of(false),
                 Optional.of(true));
-        String expectedMessage =String.format(FilterTasksCommand.MESSAGE_NO_RESULTS, predicate);
+        String expectedMessage = String.format(FilterTasksCommand.MESSAGE_NO_RESULTS, predicate);
 
         FilterTasksCommand filterTasksCommand = new FilterTasksCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);

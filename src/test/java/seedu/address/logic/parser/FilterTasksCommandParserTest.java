@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.COMPLETION_STATUS_DESC_NO;
 import static seedu.address.logic.commands.CommandTestUtil.COMPLETION_STATUS_DESC_YES;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPLETION_STATUS_DESC;
@@ -74,20 +73,20 @@ public class FilterTasksCommandParserTest {
                 Optional.of(true));
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + MODULE_DESC_CS2030 + COMPLETION_STATUS_DESC_YES +
-                        LINK_STATUS_DESC_YES, new FilterTasksCommand(expectedPredicate));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + MODULE_DESC_CS2030 + COMPLETION_STATUS_DESC_YES
+                + LINK_STATUS_DESC_YES, new FilterTasksCommand(expectedPredicate));
 
         // multiple modules - last module accepted
-        assertParseSuccess(parser, MODULE_DESC_CS2040 + MODULE_DESC_CS2030 + COMPLETION_STATUS_DESC_YES +
-                LINK_STATUS_DESC_YES, new FilterTasksCommand(expectedPredicate));
+        assertParseSuccess(parser, MODULE_DESC_CS2040 + MODULE_DESC_CS2030 + COMPLETION_STATUS_DESC_YES
+                + LINK_STATUS_DESC_YES, new FilterTasksCommand(expectedPredicate));
 
         // multiple completion status - last completion status accepted
-        assertParseSuccess(parser, MODULE_DESC_CS2030 + COMPLETION_STATUS_DESC_NO + COMPLETION_STATUS_DESC_YES +
-                LINK_STATUS_DESC_YES, new FilterTasksCommand(expectedPredicate));
+        assertParseSuccess(parser, MODULE_DESC_CS2030 + COMPLETION_STATUS_DESC_NO + COMPLETION_STATUS_DESC_YES
+                + LINK_STATUS_DESC_YES, new FilterTasksCommand(expectedPredicate));
 
         // multiple link status - last link status accepted
-        assertParseSuccess(parser, MODULE_DESC_CS2030 + COMPLETION_STATUS_DESC_YES + LINK_STATUS_DESC_NO +
-                LINK_STATUS_DESC_YES, new FilterTasksCommand(expectedPredicate));
+        assertParseSuccess(parser, MODULE_DESC_CS2030 + COMPLETION_STATUS_DESC_YES + LINK_STATUS_DESC_NO
+                + LINK_STATUS_DESC_YES, new FilterTasksCommand(expectedPredicate));
     }
 
     @Test
