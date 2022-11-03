@@ -10,6 +10,7 @@ in the form of an integrated solution built using Java with around 15 kLOC. The 
 CLI, and the application responds with its GUI, created with JavaFX.
 
 ## Summary of Contributions
+
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=sohenze&breakdown=true)
 
 * **Enhancements implemented**:
@@ -102,6 +103,7 @@ CLI, and the application responds with its GUI, created with JavaFX.
     * Relevant pull request(s): [#123](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/123),
     [#128](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/128)
   * Assisted teammates in fixing bugs introduced after merging different pull requests
+    * Relevant pull request(s): [#128](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/128)
   
 * **Contributions beyond the project team:**:
   * Assisted in detecting bugs and offered solutions and insights to another project team:
