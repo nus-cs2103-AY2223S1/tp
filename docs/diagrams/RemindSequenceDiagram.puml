@@ -11,10 +11,6 @@ participant "r:RemindCommand" as RemindCommand LOGIC_COLOR
 participant "c:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-end box
-
 [-> MainWindow : fillInnerParts()
 activate MainWindow
 
@@ -23,12 +19,6 @@ activate LogicManager
 
 LogicManager -> RemindCommand : execute()
 activate RemindCommand
-
-RemindCommand -> Model : updateFilteredApplicationsWithUpcomingInterviewList()
-activate Model
-
-Model --> RemindCommand
-deactivate Model
 
 create CommandResult
 RemindCommand -> CommandResult :

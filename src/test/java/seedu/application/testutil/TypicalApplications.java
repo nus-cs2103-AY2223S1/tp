@@ -15,6 +15,7 @@ import static seedu.application.logic.commands.CommandTestUtil.VALID_STATUS_GOOG
 import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_PREFERRED;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_TECH_COMPANY;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -48,7 +49,8 @@ public class TypicalApplications {
     public static final Application WISE = new ApplicationBuilder().withCompany("Wise")
             .withContact("88228822").withDate("2022-08-28")
             .withEmail("wise@example.com").withPosition("Software Engineer").withTags("financialService")
-            .withInterview(new InterviewBuilder().withInterviewDate("2022-10-28").build()).build();
+            .withInterview(new InterviewBuilder().withInterviewDate(LocalDate.now().plusDays(1)).build())
+            .build();
 
     // Manually added - Application's details found in {@code CommandTestUtil}
     public static final Application GOOGLE = new ApplicationBuilder().withCompany(VALID_COMPANY_GOOGLE)

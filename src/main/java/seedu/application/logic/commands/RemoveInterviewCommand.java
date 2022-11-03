@@ -43,7 +43,6 @@ public class RemoveInterviewCommand extends Command {
         Application applicationToRemoveInterview = lastShownList.get(targetIndex.getZeroBased());
         Application editedApplication = new Application(applicationToRemoveInterview);
         model.setApplication(applicationToRemoveInterview, editedApplication);
-        model.updateApplicationListWithInterview();
 
         assert applicationToRemoveInterview.getInterview().isPresent();
         Interview removedInterview = applicationToRemoveInterview.getInterview().get();

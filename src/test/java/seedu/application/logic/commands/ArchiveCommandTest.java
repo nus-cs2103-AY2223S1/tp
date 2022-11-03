@@ -11,7 +11,6 @@ import static seedu.application.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION
 
 import org.junit.jupiter.api.Test;
 
-import seedu.application.commons.core.Messages;
 import seedu.application.commons.core.index.Index;
 import seedu.application.model.Model;
 import seedu.application.model.ModelManager;
@@ -45,7 +44,7 @@ public class ArchiveCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getApplicationBook().getApplicationList().size());
         ArchiveCommand archiveCommand = new ArchiveCommand(outOfBoundIndex);
 
-        assertCommandFailure(archiveCommand, model, Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+        assertCommandFailure(archiveCommand, model, ArchiveCommand.MESSAGE_INVALID_INDEX_ARCHIVE);
     }
 
     @Test
@@ -64,7 +63,7 @@ public class ArchiveCommandTest {
         // ensures that outOfBoundIndex is still in bounds of application book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getApplicationBook().getApplicationList().size());
         ArchiveCommand archiveCommand = new ArchiveCommand(outOfBoundIndex);
-        assertCommandFailure(archiveCommand, model, Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+        assertCommandFailure(archiveCommand, model, ArchiveCommand.MESSAGE_INVALID_INDEX_ARCHIVE);
     }
 
     @Test

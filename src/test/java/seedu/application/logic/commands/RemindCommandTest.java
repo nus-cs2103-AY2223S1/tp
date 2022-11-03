@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import seedu.application.model.Model;
 import seedu.application.model.ModelManager;
 import seedu.application.model.UserPrefs;
-import seedu.application.model.application.UpcomingInterviewPredicateStub;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code RemindCommand}.
@@ -26,12 +25,10 @@ public class RemindCommandTest {
 
     @Test
     public void execute_noUpcomingInterviews() {
-        UpcomingInterviewPredicateStub predicate = new UpcomingInterviewPredicateStub();
         CommandResult expectedCommandResult = new CommandResult(SHOWING_REMIND_MESSAGE, true, false, false);
         RemindCommandStub command = new RemindCommandStub();
-        expectedModel.updateFilteredApplicationsWithUpcomingInterviewList(predicate);
         assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredApplicationsWithUpcomingInterviewList());
+        assertEquals(Collections.emptyList(), model.getApplicationsWithUpcomingInterviewList());
     }
 
     @Test
@@ -39,12 +36,10 @@ public class RemindCommandTest {
         Model localModel = new ModelManager(getTypicalApplicationBookWithUpcomingInterview(), new UserPrefs());
         Model localExpectedModel = new ModelManager(getTypicalApplicationBookWithUpcomingInterview(), new UserPrefs());
 
-        UpcomingInterviewPredicateStub predicate = new UpcomingInterviewPredicateStub();
         CommandResult expectedCommandResult = new CommandResult(SHOWING_REMIND_MESSAGE, true, false, false);
         RemindCommandStub command = new RemindCommandStub();
-        localExpectedModel.updateFilteredApplicationsWithUpcomingInterviewList(predicate);
         assertCommandSuccess(command, localModel, expectedCommandResult, localExpectedModel);
-        assertEquals(Arrays.asList(WISE), localModel.getFilteredApplicationsWithUpcomingInterviewList());
+        assertEquals(Arrays.asList(WISE), localModel.getApplicationsWithUpcomingInterviewList());
     }
 
 }

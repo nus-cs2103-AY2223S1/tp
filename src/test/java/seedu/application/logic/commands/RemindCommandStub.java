@@ -3,7 +3,6 @@ package seedu.application.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.application.model.Model;
-import seedu.application.model.application.UpcomingInterviewPredicateStub;
 
 /**
  * Reminds users of upcoming interviews within 1 week from now stored in CinternS.
@@ -20,13 +19,9 @@ public class RemindCommandStub extends Command {
 
     public static final String SHOWING_REMIND_MESSAGE = "Opened reminder window.";
 
-    private static final UpcomingInterviewPredicateStub UPCOMING_INTERVIEW_PREDICATE =
-            new UpcomingInterviewPredicateStub();
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredApplicationsWithUpcomingInterviewList(UPCOMING_INTERVIEW_PREDICATE);
         return new CommandResult(SHOWING_REMIND_MESSAGE, true, false, false);
     }
 

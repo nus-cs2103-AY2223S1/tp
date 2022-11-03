@@ -38,7 +38,7 @@ public interface Logic {
     ObservableList<Application> getApplicationListWithInterview();
 
     /** Returns an unmodifiable view of the filtered list of applications with upcoming interview*/
-    ObservableList<Application> getFilteredApplicationListWithUpcomingInterview();
+    ObservableList<Application> getApplicationListWithUpcomingInterview();
 
     /**
      * Returns the user prefs' application book file path.
