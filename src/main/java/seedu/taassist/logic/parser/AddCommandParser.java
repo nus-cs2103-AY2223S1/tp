@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import seedu.taassist.logic.commands.AddCommand;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.moduleclass.StudentModuleData;
+import seedu.taassist.model.student.StudentModuleData;
 import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;

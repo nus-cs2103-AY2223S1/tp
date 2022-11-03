@@ -1,4 +1,4 @@
-package seedu.taassist.model.moduleclass;
+package seedu.taassist.model.student;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.session.SessionData;
 import seedu.taassist.model.uniquelist.Identity;
@@ -28,15 +29,20 @@ public class StudentModuleData implements Identity<StudentModuleData>, Comparabl
      */
     public StudentModuleData(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
-        this.moduleClass = moduleClass;
+        /*
+         * The following line is to remove references to session from the module class.
+         * In a StudentModuleData, only the name of the module class is used. Also in the
+         * JSON file, only the name is saved.
+         */
+        this.moduleClass = new ModuleClass(moduleClass.getClassName());
     }
 
     /**
      * Constructs a {@code StudentModuleData} with the given module class and list of session data.
      */
     public StudentModuleData(ModuleClass moduleClass, List<SessionData> sessionDataList) {
-        requireAllNonNull(moduleClass, sessionDataList);
-        this.moduleClass = moduleClass;
+        this(moduleClass);
+        requireAllNonNull(sessionDataList);
         this.sessionDataList.setElements(sessionDataList);
     }
 

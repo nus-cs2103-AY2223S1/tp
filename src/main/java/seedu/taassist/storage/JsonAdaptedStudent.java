@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.taassist.commons.exceptions.IllegalValueException;
-import seedu.taassist.model.moduleclass.StudentModuleData;
+import seedu.taassist.model.student.StudentModuleData;
 import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;

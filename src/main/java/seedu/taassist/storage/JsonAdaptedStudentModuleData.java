@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.taassist.commons.exceptions.IllegalValueException;
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.moduleclass.StudentModuleData;
+import seedu.taassist.model.student.StudentModuleData;
 import seedu.taassist.model.session.SessionData;
 
 /**

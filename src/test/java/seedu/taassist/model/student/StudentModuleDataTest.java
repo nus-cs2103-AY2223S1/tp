@@ -1,4 +1,4 @@
-package seedu.taassist.model.moduleclass;
+package seedu.taassist.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,6 +11,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import seedu.taassist.model.session.SessionData;
+import seedu.taassist.model.student.StudentModuleData;
 
 class StudentModuleDataTest {
 
