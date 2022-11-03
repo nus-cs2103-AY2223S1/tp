@@ -68,6 +68,9 @@ Boxes such as this one with a light bulb :bulb: are used to provide some tips wh
 #### Hyperlinks
 Throughout this user guide, there are hyperlinks which you can click on to get more information about something. To go back to where you were, you can use the `back` button on your browser.
 
+#### Command summary
+If you are already familiar with the features of HobbyList and just want a quick summary of the commands, you can refer to this [command summary table](#8-command-summary).
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Quick start
