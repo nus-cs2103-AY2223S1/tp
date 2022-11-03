@@ -187,7 +187,7 @@ on the jar file in the folder. This to ensure the jar file is using the correct 
 
 Step 6: The GUI similar to the below should appear in a few seconds. Do note that the app contains some sample data.
 
-  <img src="images/QuickStart7.png" width="390" />
+  <img src="images/Ui.png" width="390" />
 
 Step 7: Refer to the [Features](#features) section below to for more details on how to use ConnectNUS.
 
