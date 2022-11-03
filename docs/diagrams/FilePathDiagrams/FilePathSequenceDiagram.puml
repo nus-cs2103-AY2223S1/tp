@@ -85,13 +85,13 @@ deactivate SetPersonFileCommand
 SetPersonFileCommand -> Model : setPerson()
 activate Model
 
-Model --> SetPersonFileCommand 
+Model --> SetPersonFileCommand
 deactivate Model
 
 SetPersonFileCommand -> Model : updateFilterPersonList()
 activate Model
 
-Model --> SetPersonFileCommand 
+Model --> SetPersonFileCommand
 deactivate Model
 
 SetPersonFileCommand --> LogicManager : CommandResult
