@@ -13,7 +13,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Supplier;
 
@@ -55,8 +54,6 @@ public class EditSupplierCommand extends EditCommand {
     private static Supplier createEditedSupplier(Supplier supplierToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert supplierToEdit != null;
 
-        PersonCategory updatedPersonCategory =
-                editPersonDescriptor.getPersonCategory().orElse(supplierToEdit.getPersonCategory());
         Name updatedName = editPersonDescriptor.getName().orElse(supplierToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(supplierToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(supplierToEdit.getEmail());

@@ -5,7 +5,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
 
 /**
@@ -28,19 +27,10 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setPersonCategory(person.getPersonCategory());
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
-    }
-
-    /**
-     * Sets the {@code PersonCategory} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withPersonCategory(String personCategory) {
-        descriptor.setPersonCategory(PersonCategory.getFromString(personCategory));
-        return this;
     }
 
     /**

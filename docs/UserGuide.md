@@ -221,7 +221,7 @@ instead of the usual CLI interface.
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Adding a buyer: `add-b`
+#### Adding a buyer : `add-b`
 
 Adds a buyer to the contacts. A buyer is a person who would like to buy pet(s) and places one or more orders describing what kind
 of pet(s) he/she would like.
@@ -277,7 +277,7 @@ Alternatively, check out [Add Command using the popup window](#adding-a-contact-
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Adding a deliverer: `add-d`
+#### Adding a deliverer : `add-d`
 
 Adds a deliverer to your contact list. A deliverer delivers pets from suppliers to buyers.
 
@@ -290,7 +290,7 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Adding a supplier: `add-s`
+#### Adding a supplier : `add-s`
 
 Adds a supplier to address book. A supplier feeds, trains, and takes care of pets for sale.
 
@@ -339,7 +339,7 @@ Alternatively, check out [Add Command using the popup window](#adding-a-contact-
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Adding an order to a buyer: `add-o`
+#### Adding an order to a buyer : `add-o`
 
 Adds an order to a buyer contact. This is especially useful when an existing buyer has a new order, or when the buyer confirms the order some time after being added to the contacts.
 
@@ -378,7 +378,7 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Adding a pet to a supplier: `add-p`
+#### Adding a pet to a supplier : `add-p`
 
 Adds a pet to a supplier contact. This is especially useful when an existing supplier has a new pet for sale or when the supplier tells you what are the pets he/she owns some time after being added to the contacts.
 
@@ -400,7 +400,7 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Adding a contact with a popup window: `add`
+#### Adding a contact with a popup window : `add`
 
 Adds a contact with a pop-up window that has prompt texts for what to input without the need to enter any
 prefixes. This reduces the need to memorise prefixes.
@@ -598,7 +598,7 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Finding a BUYER : `find-b`
+#### Finding a buyer : `find-b`
 
 Displays all buyers who match ONE specific attribute. Check out
 the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
@@ -615,7 +615,7 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Finding a DELIVERER : `find-d`
+#### Finding a deliverer : `find-d`
 
 Displays all deliverers who match ONE specific attribute. Check out
 the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
@@ -632,7 +632,7 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Finding a SUPPLIER : `find-s`
+#### Finding a supplier : `find-s`
 
 Displays all suppliers who match ONE specific attribute. Check out
 the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
@@ -661,7 +661,7 @@ command `list orders` before using `filter-o`. When filtering pets, use the comm
 
 </div>
 
-#### Filtering ORDERS : `filter-o`
+#### Filtering orders : `filter-o`
 
 Displays only Orders based on the given attribute(s). There are three possible attributes to filter: Additional
 requests, Order status, Price range.
@@ -695,7 +695,7 @@ Notes:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-#### Filtering PETS : `filter-p`
+#### Filtering pets : `filter-p`
 
 Displays only Pets based on the given attributes. There are five possible attributes to filter: Color, Name,
 Price, Species, Vaccination status.

@@ -89,7 +89,6 @@ public class OrderCard extends UiPart<Region> {
         // TODO: debug this
         byDate.setText("Complete order by: " + order.getByDate());
         settledPrice.setText(order.getSettledPrice().toString());
-        // TODO: debug this
         additionalRequestsDescription.setText(order.getAdditionalRequests().toString());
     }
 

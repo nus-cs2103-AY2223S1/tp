@@ -14,7 +14,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
 
 /**
@@ -44,7 +43,7 @@ public abstract class EditCommand extends Command {
     final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index                of the person in the filtered person list to edit.
+     * @param index Index of the person in the filtered person list to edit.
      * @param editPersonDescriptor details to edit the person with.
      */
     EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -78,7 +77,6 @@ public abstract class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private PersonCategory personCategory;
         private Name name;
         private Phone phone;
         private Email email;
@@ -89,10 +87,8 @@ public abstract class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setPersonCategory(toCopy.personCategory);
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -103,17 +99,8 @@ public abstract class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(personCategory, name, phone, email, address);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address);
         }
-
-        public void setPersonCategory(PersonCategory personCategory) {
-            this.personCategory = personCategory;
-        }
-
-        public Optional<PersonCategory> getPersonCategory() {
-            return Optional.ofNullable(personCategory);
-        }
-
         public void setName(Name name) {
             this.name = name;
         }
@@ -161,8 +148,7 @@ public abstract class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
-            return getPersonCategory().equals(e.getPersonCategory())
-                    && getName().equals(e.getName())
+            return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress());
