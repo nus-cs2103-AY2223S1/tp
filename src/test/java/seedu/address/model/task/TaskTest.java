@@ -93,9 +93,9 @@ public class TaskTest {
         Task taskACopy = new TaskBuilder(TASK_A).build();
         assertTrue(taskA.equals(taskACopy));
 
-        // same module and description but with other different fields -> return true
+        // same module and description but with other different fields -> return false
         Task taskDCopy = new TaskBuilder(TASK_D).withStatus("incomplete").withExam(null).build();
-        assertTrue(taskD.equals(taskDCopy));
+        assertFalse(taskD.equals(taskDCopy));
 
         // different types -> returns false
         assertFalse(taskA.equals(5));

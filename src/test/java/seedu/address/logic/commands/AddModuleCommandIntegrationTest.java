@@ -26,7 +26,7 @@ public class AddModuleCommandIntegrationTest {
 
     @Test
     public void execute_addUniqueModule_success() {
-        Module module = new ModuleBuilder().build();
+        Module module = new ModuleBuilder().withModuleCode("CS9999").build();
         AddModuleCommand addModuleCommand = new AddModuleCommand(module);
         String expectedMessage = AddModuleCommand.MODULE_ADDED_SUCCESS;
 
@@ -37,8 +37,8 @@ public class AddModuleCommandIntegrationTest {
 
     @Test
     public void execute_addSameModule_throwsCommandException() {
-        model.addModule(new ModuleBuilder().build());
-        Module module = new ModuleBuilder().build();
+        model.addModule(new ModuleBuilder().withModuleCode("CS2111").build());
+        Module module = new ModuleBuilder().withModuleCode("CS2111").build();
         //Checks that model has module
         assertTrue(model.hasModule(module));
         AddModuleCommand addModuleCommand = new AddModuleCommand(module);
