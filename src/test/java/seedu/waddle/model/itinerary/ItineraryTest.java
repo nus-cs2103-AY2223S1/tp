@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITINERARY_DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTER;
 import static seedu.waddle.testutil.TypicalItineraries.SUMMER;
@@ -31,15 +31,15 @@ public class ItineraryTest {
         assertTrue(SUMMER.isSameItinerary(editedSummer));
 
         // different name, all other attributes same -> returns false
-        editedSummer = new ItineraryBuilder(SUMMER).withName(VALID_NAME_WINTER).build();
+        editedSummer = new ItineraryBuilder(SUMMER).withName(VALID_ITINERARY_DESC_WINTER).build();
         assertFalse(SUMMER.isSameItinerary(editedSummer));
 
         // name differs in case, all other attributes same -> returns false
-        Itinerary editedWinter = new ItineraryBuilder(WINTER).withName(VALID_NAME_WINTER.toLowerCase()).build();
+        Itinerary editedWinter = new ItineraryBuilder(WINTER).withName(VALID_ITINERARY_DESC_WINTER.toLowerCase()).build();
         assertFalse(WINTER.isSameItinerary(editedWinter));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_WINTER + " ";
+        String nameWithTrailingSpaces = VALID_ITINERARY_DESC_WINTER + " ";
         editedWinter = new ItineraryBuilder(WINTER).withName(nameWithTrailingSpaces).build();
         assertFalse(WINTER.isSameItinerary(editedWinter));
     }
@@ -63,7 +63,7 @@ public class ItineraryTest {
         assertFalse(SUMMER.equals(WINTER));
 
         // different name -> returns false
-        Itinerary editedSummer = new ItineraryBuilder(SUMMER).withName(VALID_NAME_WINTER).build();
+        Itinerary editedSummer = new ItineraryBuilder(SUMMER).withName(VALID_ITINERARY_DESC_WINTER).build();
         assertFalse(SUMMER.equals(editedSummer));
 
         // different country -> returns false

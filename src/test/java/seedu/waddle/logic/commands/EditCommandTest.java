@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.logic.commands.CommandTestUtil.DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_TEST;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITINERARY_DESC_TEST;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITINERARY_DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -54,10 +54,10 @@ public class EditCommandTest {
         Itinerary lastItinerary = model.getFilteredItineraryList().get(indexLastItinerary.getZeroBased());
 
         ItineraryBuilder itineraryInList = new ItineraryBuilder(lastItinerary);
-        Itinerary editedItinerary = itineraryInList.withName(VALID_NAME_TEST).withCountry(VALID_COUNTRY_WINTER)
+        Itinerary editedItinerary = itineraryInList.withName(VALID_ITINERARY_DESC_TEST).withCountry(VALID_COUNTRY_WINTER)
                 .withPeople(VALID_PEOPLE_SUMMER).build();
 
-        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_NAME_TEST)
+        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_ITINERARY_DESC_TEST)
                 .withCountry(VALID_COUNTRY_WINTER).withPeople(VALID_PEOPLE_SUMMER).build();
         EditCommand editCommand = new EditCommand(indexLastItinerary, descriptor);
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITINERARY_SUCCESS, editedItinerary);
@@ -85,9 +85,9 @@ public class EditCommandTest {
         showItineraryAtIndex(model, INDEX_FIRST_ITINERARY);
 
         Itinerary itineraryInFilteredList = model.getFilteredItineraryList().get(INDEX_FIRST_ITINERARY.getZeroBased());
-        Itinerary editedItinerary = new ItineraryBuilder(itineraryInFilteredList).withName(VALID_NAME_TEST).build();
+        Itinerary editedItinerary = new ItineraryBuilder(itineraryInFilteredList).withName(VALID_ITINERARY_DESC_TEST).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITINERARY,
-                new EditItineraryDescriptorBuilder().withName(VALID_NAME_TEST).build());
+                new EditItineraryDescriptorBuilder().withName(VALID_ITINERARY_DESC_TEST).build());
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITINERARY_SUCCESS, editedItinerary);
 
         Model expectedModel = new ModelManager(new Waddle(model.getWaddle()), new UserPrefs());
@@ -119,7 +119,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidItineraryIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredItineraryList().size() + 1);
-        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_NAME_WINTER).build();
+        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_ITINERARY_DESC_WINTER).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX);
@@ -137,7 +137,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getWaddle().getItineraryList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditItineraryDescriptorBuilder().withName(VALID_NAME_WINTER).build());
+                new EditItineraryDescriptorBuilder().withName(VALID_ITINERARY_DESC_WINTER).build());
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX);
     }
 

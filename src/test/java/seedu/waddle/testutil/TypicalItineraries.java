@@ -6,8 +6,8 @@ import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITINERARY_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITINERARY_DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_SUMMER;
@@ -36,11 +36,11 @@ public class TypicalItineraries {
             .withDuration("4").withPeople("4").withBudget("2200").build();
 
     // Manually added - Itinerary's details found in {@code CommandTestUtil}
-    public static final Itinerary SUMMER = new ItineraryBuilder().withName(VALID_NAME_SUMMER)
+    public static final Itinerary SUMMER = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_SUMMER)
             .withCountry(VALID_COUNTRY_SUMMER).withStartDate(VALID_START_DATE_SUMMER)
             .withDuration(VALID_DURATION_SUMMER).withPeople(VALID_PEOPLE_SUMMER)
             .withBudget(VALID_BUDGET_SUMMER).build();
-    public static final Itinerary WINTER = new ItineraryBuilder().withName(VALID_NAME_WINTER)
+    public static final Itinerary WINTER = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_WINTER)
             .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_WINTER)
             .withDuration(VALID_DURATION_WINTER).withPeople(VALID_PEOPLE_WINTER)
             .withBudget(VALID_BUDGET_WINTER).build();

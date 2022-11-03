@@ -12,7 +12,7 @@ import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_DURATION_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_PEOPLE_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_START_DATE_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.NAME_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.ITINERARY_DESC_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_SUMMER;
@@ -22,7 +22,7 @@ import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITINERARY_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_SUMMER;
@@ -59,7 +59,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_SUMMER, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_ITINERARY_DESC_SUMMER, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -71,10 +71,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_SUMMER, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + ITINERARY_DESC_DESC_SUMMER, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_SUMMER, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + ITINERARY_DESC_DESC_SUMMER, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -120,8 +120,8 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ITINERARY;
         String userInput = targetIndex.getOneBased() + COUNTRY_DESC_SUMMER + PEOPLE_DESC_SUMMER
-                + START_DATE_DESC_SUMMER + DURATION_DESC_SUMMER + NAME_DESC_SUMMER + BUDGET_DESC_SUMMER;
-        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_NAME_SUMMER)
+                + START_DATE_DESC_SUMMER + DURATION_DESC_SUMMER + ITINERARY_DESC_DESC_SUMMER + BUDGET_DESC_SUMMER;
+        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_ITINERARY_DESC_SUMMER)
                 .withCountry(VALID_COUNTRY_SUMMER).withStartDate(VALID_START_DATE_SUMMER)
                 .withDuration(VALID_DURATION_SUMMER).withPeople(VALID_PEOPLE_SUMMER)
                 .withBudget(VALID_BUDGET_SUMMER).build();
@@ -145,8 +145,8 @@ public class EditCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_ITINERARY;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_SUMMER;
-        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_NAME_SUMMER).build();
+        String userInput = targetIndex.getOneBased() + ITINERARY_DESC_DESC_SUMMER;
+        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_ITINERARY_DESC_SUMMER).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

@@ -6,7 +6,7 @@ import static seedu.waddle.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.waddle.logic.commands.CommandTestUtil.BUDGET_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.NAME_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.ITINERARY_DESC_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_SUMMER;
 import static seedu.waddle.testutil.Assert.assertThrows;
@@ -81,7 +81,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_SUMMER + COUNTRY_DESC_SUMMER + START_DATE_DESC_SUMMER
+        String addCommand = AddCommand.COMMAND_WORD + ITINERARY_DESC_DESC_SUMMER + COUNTRY_DESC_SUMMER + START_DATE_DESC_SUMMER
                 + DURATION_DESC_SUMMER + PEOPLE_DESC_SUMMER + BUDGET_DESC_SUMMER;
         Itinerary expectedItinerary = new ItineraryBuilder(SUMMER).build();
         ModelManager expectedModel = new ModelManager();
