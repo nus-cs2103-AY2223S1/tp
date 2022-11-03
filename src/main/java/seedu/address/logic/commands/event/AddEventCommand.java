@@ -21,7 +21,7 @@ public class AddEventCommand extends EventCommand {
     public static final String COMMAND_OPTION = "a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
-            + ": Adds an event to NUScheduler."
+            + ": Adds an event to NUScheduler.\n"
             + "Parameters: "
             + PREFIX_NAME + "TITLE "
             + PREFIX_START_DATE + "START "

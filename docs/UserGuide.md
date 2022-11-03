@@ -504,4 +504,4 @@ You can simply install the app in the other computer and overwrite the data file
 | **Edit Event**                     | `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`                                  |
 | **View Events**                    | `event -v`                                                                             |
 | **View Upcoming Event(s)**         | `event -u DAYS`                                                                        |
-| **Find Event**                     | `event -f KEYWORD_OR_DATE [MORE]…`                                                     |
+| **Find Event**                     | `event -f KEYWORD_OR_DATE [MORE_KEYWORDS_OR_DATES]…`                                   |
