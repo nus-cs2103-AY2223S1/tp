@@ -11,12 +11,15 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class StudentListPanel
+Class StudentCard
 Class StatusBarFooter
 Class CommandBox
 Class TaskListPanel
-Class TaskCard
+Class "<<interface>>\n TaskCard" as TaskCard
+Class ToDoCard
+Class DeadlineCard
+Class AssignmentCard
 }
 
 package Model <<Rectangle>> {
@@ -34,36 +37,44 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" StudentListPanel
 MainWindow *-down-> "1" TaskListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
-PersonListPanel -down-> "*" PersonCard
+StudentListPanel -down-> "*" StudentCard
 TaskListPanel -down-> "*" TaskCard
+
+ToDoCard .up-|> TaskCard
+AssignmentCard .up-|> TaskCard
+DeadlineCard .up-|> TaskCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+StudentListPanel --|> UiPart
+StudentCard --|> UiPart
 TaskListPanel --|> UiPart
-TaskCard ---|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+ToDoCard -down-|> UiPart
+AssignmentCard -down-|> UiPart
+DeadlineCard -down-|> UiPart
 
-PersonCard ..> Model
-TaskCard ..> Model
+StudentCard .down.> Model
+ToDoCard ..down.> Model
+DeadlineCard ..down.> Model
+AssignmentCard ..down.> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+StudentListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
-TaskListPanel -[hidden]left- PersonListPanel
-TaskCard -[hidden]left- PersonCard
+TaskListPanel -[hidden]left- StudentListPanel
+TaskCard -[hidden]left- StudentCard
 
 MainWindow -[hidden]-|> UiPart
 @enduml

@@ -18,15 +18,25 @@ package "AddressBook Storage" #F4F6F6{
 Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
 Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
+Class JsonAdaptedStudent
 Class JsonAdaptedTag
+Class JsonAdaptedAttendanceList
+Class JsonAdaptedAttendance
 }
 
 package "TaskBook Storage" #F4F6F6{
 Class "<<interface>>\nTaskBookStorage" as TaskBookStorage
 Class JsonTaskBookStorage
 Class JsonSerializableTaskBook
-Class JsonAdaptedTask
+Class "{{abstract}}\nJsonAdaptedTask" as JsonAdaptedTask
+Class JsonAdaptedDeadline
+Class JsonAdaptedToDo
+Class JsonAdaptedAssignment
+}
+
+package "Other Storage" #F4F6F6 {
+Class InputHistory
+Class ImageStorage
 }
 
 }
@@ -46,12 +56,21 @@ Storage --|> UserPrefsStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableAddressBook --> "*" JsonAdaptedStudent
+JsonAdaptedStudent --> "*" JsonAdaptedTag
+JsonAdaptedStudent --> "1" JsonAdaptedAttendanceList
+JsonAdaptedAttendanceList --> "0...12" JsonAdaptedAttendance
+
+
 
 JsonTaskBookStorage .up.|> TaskBookStorage
 JsonTaskBookStorage ..> JsonSerializableTaskBook
 JsonSerializableTaskBook --> "*" JsonAdaptedTask
+
+JsonAdaptedDeadline -up-|> JsonAdaptedTask
+JsonAdaptedToDo -up-|> JsonAdaptedTask
+JsonAdaptedAssignment -up-|> JsonAdaptedTask
+
 
 Storage -[hidden]-> StorageManager
 AddressBookStorage -[hidden]right-> TaskBookStorage

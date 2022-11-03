@@ -89,8 +89,4 @@ public class TaskList implements Iterable<Task> {
                 && internalList.equals(((TaskList) other).internalList));
     }
 
-    @Override
-    public int hashCode() {
-        return internalList.hashCode();
-    }
 }

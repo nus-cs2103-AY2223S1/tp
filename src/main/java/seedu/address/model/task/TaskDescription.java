@@ -49,9 +49,4 @@ public class TaskDescription {
                 && description.equals(((TaskDescription) other).description)); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return description.hashCode();
-    }
-
 }

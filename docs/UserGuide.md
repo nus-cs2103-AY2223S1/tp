@@ -9,7 +9,7 @@ title: User Guide
 ## Introduction
 
 ### About GREWZ
-Tired of opening multiple applications for your teaching needs? Look no further!
+Tired of opening multiple applications for your teaching needs? Proficient in typing? Look no further!
 
 GREWZ helps **university teaching assistants** to maintain the information of the students in their classes by collating 
 a list of students' personal details, as well as keeping a task book to help them keep track of their personal work.
@@ -120,7 +120,8 @@ Format: `add n/NAME i/STUDENT_ID [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS_GROUP] [t/T
 * A student can have any number of tags (including 0).
 
 <div markdown="span" class="alert alert-warning">:information_source: **Note:**
-Students CANNOT have the same name. GREWZ is case-insensitive but space-sensitive.
+Students CANNOT have the same name. 
+GREWZ naming convention is [case-insensitive](#glossary), but [whitespace-sensitive](#glossary).
 This means that it does not allow for students with the exact same name to be keyed into the application. 
 Thus trying to add a student with the name `Ben` and `ben` will not work.
 Student ID must also be unique.
@@ -185,7 +186,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [i/STUDENT_ID] [t/TAG
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
 * You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
-* This command does not offer editing a student's profile picture. To do this, refer to [upload](#uploading-changing-student-profile-picture-upload-pic)
+* This command does not offer editing a student's profile picture. To do this, refer to [upload](#uploading-changing-student-profile-picture-upload-pic).
 
 Examples:
 * `edit 1 p/91234567 e/studentEmail@example.com` Edits the phone number and email of the 1st student in the list to be `91234567` and `studentEmail@example.com` respectively.
@@ -224,12 +225,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student list.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-### Clearing all entries : `clear`
-
-Clears all entries from the student list.
-
-Format: `clear`
-
 ## Attendance commands
 [Back to Top ↑](#introduction)
 
@@ -267,8 +262,8 @@ Marks attendance of given student in class list. In this case, we use 0 for abse
 Format: `attendance mark INDEX l/LESSON m/ATTENDANCE_VALUE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
-The first lesson starts from 1. GREWZ only accepts 0 and 1 for attendance values which correspond to absent and present respectively.
-As it is faster for you to type numerical values over full words, we adopted such an approach for your convenience.
+The first lesson starts from index 1. GREWZ only accepts 0 and 1 for attendance values which correspond to absent and present respectively.
+We adopted such an approach as it is faster for you to type numerical values over full words.
 </div>
 
 Examples:
@@ -319,6 +314,10 @@ Examples:
 * `task t/Prepare slides for studio d/Topic Environment Model`
 * `task t/Collect robot d/At MakersLab`
 
+Expected outcome: <br>
+![AddingToDo](images/AddingToDo.png) <br>
+After adding a ToDo task
+
 #### Adding a Deadline
 
 Adds a ***Deadline*** (A type of Task) to the Task List.
@@ -332,6 +331,10 @@ Format: `task t/TITLE d/DESC by/YYYY-MM-DD`
 Examples:
 * `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12`
 * `task t/Collect robot d/At MakersLab by/2019-09-10`
+
+Expected outcome: <br>
+![AddingDeadline](images/AddingDeadline.png) <br>
+After adding a Deadline task
 
 #### Adding an Assignment
 
@@ -348,11 +351,15 @@ Examples:
 * `task t/Assignment 1 d/Description here addStu/Adam Tan, Wong Zhu Yi, Robin Hood`
 * `task t/Midterm Assignment d/This is a challenging assignment addStu/Alvin, Simon, Theodore`
 
+Expected outcome: <br>
+![AddingAssignment](images/AddingAssignment.png) <br>
+After adding an Assignment task
+
 ### Editing Tasks : `edit-task`
 
 Edits an existing tasks in the task list.
 
-Format: `edit-task [t/TITLE] [d/DESCRIPTION] [deleteStu/STUDENT_1, STUDENT_2]`
+Format: `edit-task [t/TITLE] [d/DESCRIPTION] [by/YYYY-MM-DD] [addStu/STUDENT_1, STUDENT_2] [deleteStu/STUDENT_1, STUDENT_2]`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -363,7 +370,7 @@ Format: `edit-task [t/TITLE] [d/DESCRIPTION] [deleteStu/STUDENT_1, STUDENT_2]`
 * Existing values will be updated to the input values.
 
 Examples:
-* `edit-task 1 t/Assignment 1 d/Topics: Recursion addStu/Adam Lee, Ben Tang deleteStu/Zack Yu, Xenia Ng`
+* `edit-task 1 t/Assignment 1 d/Topics: Recursion addStu/Adam Lee, Ben Tang`
   Edits the title, description and student list of the 1st task in the task list, provided that it is an assignment task, to be `Assignment 1`, `Topics: Recursion` and `Adam Lee, Ben Tang` respectively.
 * `edit-task 2 deleteStu/Jackie Chan` Edits the student list of the 2nd task in the task list to delete the name `Jackie Chan`. All other students in the student list of the task are not affected.
 
@@ -378,8 +385,14 @@ Format: `remove-task INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `remove-task 2` deletes the 2nd student in the task list.
+* `remove-task 2` deletes the 2nd task in the task list.
 ---
+
+### Clearing all entries : `clear`
+
+Clears all entries from the student list as well as task list.
+
+Format: `clear`
 
 ### Navigating User Input History: `↑`, `↓`
 
@@ -432,7 +445,7 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 
 **Q:** What is the difference between the different types of tasks?
 <br />
-**A:** All the three tasks essentially have a task title and description. What differentiate them is that a deadline task has date property where you can set its deadline and an assignment task has a student property where you can add a list of student who are yet to complete the assignment task. Lastly, the todo task doesn't have either of these fields.
+**A:** All the three tasks essentially have a task title and description. What differentiates them is that a deadline task has date property where you can set its deadline and an assignment task has a student property where you can add a list of student who are yet to complete the assignment task. Lastly, the todo task has neither of these fields.
 
 **Q:** How to add a student if I do not have their student ID?
 <br />
@@ -465,6 +478,7 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 | **Attendance Delete** | `attendance delete INDEX`                                                                                         | `attendance delete 1`                                                             |
 | **Attendance Mark**   | `attendance mark INDEX l/LESSON m/ATTENDANCE_VALUE`                                                               | `attendance mark 1 l/1 m/1`                                                       |
 | **Clear**             | `clear`                                                                                                           |                                                                                   |
+| **Class**             | `class`                                                                                                           | `class 1 c/CS2030S Lab 32`                                                        |
 | **Delete**            | `delete INDEX`                                                                                                    | `delete 3`                                                                        |
 | **Edit**              | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​`                          | `edit 2 n/James Lee e/jameslee@example.com`                                       |
 | **Find**              | `find KEYWORD [MORE_KEYWORDS]...`                                                                                 | `find James Jake`                                                                 |
@@ -496,5 +510,7 @@ If you do not have Java `11` installed, you can download it [here](https://www.o
 | **Deadline**                               | Deadline is a task with a title, description and due date.                                                                                     |
 | **Assignment**                             | Assignment is a task with title, description and a list of students that needs to finish the task.                                             |
 | **Attendance List**                        | Attendance list is a record of the student's attendance for his class.                                                                         |
+| **Case-sensitive**                         | Case-sensitive is the ability to differentiate between capital and lower case letters                                                          |
+| **Space-insensitive**                      | Space-insensitive is the lack of ability to differentiate between blank spaces in words.                                                       |
 
 [Back to Top ↑](#introduction)
