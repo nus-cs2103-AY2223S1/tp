@@ -100,6 +100,7 @@ public class StringUtil {
         return String.format("%d %s", count, count == 1 ? singular : plural);
     }
 
+    //@@author jontmy-reused
     /**
      * Python's shlex for Java.
      * Source: https://stackoverflow.com/questions/1082953/shlex-alternative-for-java
