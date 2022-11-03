@@ -31,7 +31,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -153,7 +153,7 @@ which contains `u`, `nus`, and `edu` as `DOMAIN_LABEL` separated by `.`
 
 * All leading and trailing whitespaces will be trimmed, while multiple whitespaces in between words will be replaced by a single whitespace.
 
-* All duplicate checks and find command keywords are case-insensitive.
+* All find command keywords and duplicate checks for applicants are case-insensitive.
   e.g., `JACOB@example.com` will be considered equal to `jacob@EXAMPLE.COM`.
 
 </div>
@@ -294,7 +294,7 @@ Format: `export`
 * Exported JSON file will be stored in `data/export/` folder
 
 Examples:
-* `find u/NUS` followed by `export` exports the result of the `find` command to a JSON file.
+* `find u/NUS` followed by `export` exports the displayed list from the `find` command to a JSON file.
 
 
 ### 3.10 Checkout a new or existing list: `checkout`
