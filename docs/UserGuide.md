@@ -7,7 +7,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 # Table of Contents
 
-1. [Quick Start](#quick-start)
+1. [Quick Start](#1-quick-start)
 2. [Fields](#2-fields)
    1. [Identity Fields](#21-identity-fields)
    2. [Data Fields](#22-data-fields)
@@ -299,8 +299,9 @@ Switches between different lists in InternConnect stored in `data/` folder.
 Format: `checkout FILE_NAME`
 
 * `FILE_NAME` should not include any extension, as it would always be a JSON file.
-* The command will attempt to load the specified `FILE_NAME.json`.
-* If the file contains invalid data, the contents of the file will be erased and an empty addressbook will be loaded.
+* The command will attempt to load the specified `FILE_NAME.json` file in the `data/` folder.
+* If the file contains invalid data or have and invalid format, the contents of the file will be erased and an empty 
+addressbook will be loaded.
 * If the file doesn't exist, a new file will be created, populated with sample data.
 * If the file contains valid data, the file will be loaded.
 
