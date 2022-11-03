@@ -14,7 +14,7 @@ if () then ([else])
 ([Item index is in valid range of Item List])elseif () then ([else])
   :Error: Item has already been tagged;
    stop
- else (([Specified Item does not contain tag]))
+ else ([Specified Item does not contain tag])
 endif
   :Tag Command successfully executes.
 Item gets tagged with tag.;
