@@ -2,6 +2,11 @@
 layout: page
 title: User Guide
 ---
+
+<p align="center">
+  <img src="./images/user-guide/tuthub.png" />
+</p>
+
 * Table of Contents
 {:toc}
 

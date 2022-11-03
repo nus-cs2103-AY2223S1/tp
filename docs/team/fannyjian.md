@@ -15,7 +15,7 @@ Around 4.3k lines of code according to the [RepoSense Link](https://nus-cs2103-a
 
 - **New Feature**: Added `view` command
   - Purpose: Allows information in the list to be condensed, and users to select specific tutors to view full information if interested.
-  - Highlights: This command can be executed in two ways - either by entering the command in the `Command Box` or clicking on the `Tutor List Card`. The latter required abstracting out the `CommandExecutor` class for relevant UI Parts to execute commands.
+  - Highlights: This command can be executed in two ways - either by entering the command in the `Command Box` or clicking on the `Tutor List Card`. The latter required extracting out the `CommandExecutor` class for relevant UI Parts to execute commands.
 
 - **Enhancement**: Created a simpler and more pleasing GUI
   - Purpose: Improve the user experience to make the app more professional and appealing to professors.
