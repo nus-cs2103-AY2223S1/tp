@@ -226,31 +226,48 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
-### Opening of Person specific PDF files
+### Assigning PDF files feature
 
-### Implementation
+The assigning pdf file to a client feature allows the user to store the file path of a pdf stored on the user's device. The filePath in FABook is represented with by a `FilePath` class. A `FilePath` class requires a `String` filePath. A `Person` object Has-A `FilePath` object.
 
-The opening mechanism is facilitated by `OpenPersonFileCommand` and `FileUtil`.
+Implementation of the opening PDF file of client feature is built on top of the way that the PDF filepath is stored.
 
-`OpenPersonFileCommand` extends from `Command` and implements its own execute method.
+#### Implementation
 
-`OpenPersonFileCommand` stores the target index of the list of persons, whose PDF will be opened.
+The mechanism is facilitated by `SetPersonFileCommand` and `FileUtil`.
 
-`FileUtil` implements `FileUtil#openPdfFile(String)` — If PDF file in from the String exists,
-the PDF will be opened.
-It's exposed in the `OpenPersonFileCommand` as `OpenPersonFileCommand#execute(Model)`
+`SetPersonFileCommand` extends from `Command`. It overwrites the `Command` execute method to determine if the given filepath is valid and create an "EditedPerson" `Person` object.
 
-Given below is an example usage scenario and how the open file mechanism behaves at each step.
+The `FileUtil::checkValidPdfFilePath` method is used in `SetPersonFileCommand` to check the validity of the file path. The method follows the given filePath to check if the file exists and if the given filepath is of type `.pdf`.
+
+Given below is an example usage scenario and how the set file mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time.
 
-Step 2. The user executes `file 2` command to open the file of the 2nd person in the address book.
+Step 2. The user decides to add a file path to  the 2nd person in the current list of contacts in the address book using the `filepath 2 f/C:\Users\Eugene Tay\Downloads\Tutorial_8_qns.pdf` command.
 
-Step 3. The parser will parse the input command `file` and target index `2` and store the target index in the
-newly created `OpenPersonFileCommand`.
+Step 3. `LogicManager` calls `LogicManager::execute` method that was implemented from `Logic` interface. Within the method, `AddressBookParser::parseCommand` is called on the user input `filePath` and a `Command` object is returned.
 
-Step 4. `OpenPersonFileCommand#execute(Model)` is called by the Logic Manager while in turn calls
-`FileUtil#openPdfFile(String)` and the PDF file stored in the file path will be opened on the Users default PDF viewer.
+Step 4. `AddressBookParser::parseCommand` will parse the user input and match the `COMMAND_WORD` to be `filepath` which is `SetPathFileCommand#COMMAND_WORD`. Thus a `SetPathFileCommandParser` object is instantiated which parses and checks the user arguments. 
+
+Step 5. `SetPathFileCommandParser` object parses the given user arguments. If the `PREFIX_FILEPATH` is present and there is no `IllegalValueException`, a `SetPersonFileCommand` object is instantiated with `index` and `filePath` obtained from the user arguments.
+
+Step 6. `SetPathFileCommand::execute` method is called in `LogicManager`. This method will check if the given PDF filepath is valid with `FileUtil::checkValidPdfFilePath` method.
+
+Step 7. `FileUtil::checkValidPdfFilePath` method follows the given filePath to check if the file exists and if the given filepath is of type `.pdf`.
+
+Step 8. `SetPathFileCommand::execute` method will instantiate a new `Person` object with the original `Person` object's attributes and the new filePath. This `Person` object be set in `Model` and updated in `filterPersonList`.
+
+The following sequence diagram shows how the assigning filepath to a client feature works.
+**Insert sequence diagram here**
+
+The following activity diagram shows how the assigning filepath to a client feature works.
+**Insert activity diagram here**
+
+#### Design Considerations:
+**Would need Peter's Input on this**
+
+
 
 ### Person Enhancement
 
