@@ -34,4 +34,5 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
 
 ## Acknowledgments
   * This project is a part of the **se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
-  * This project is built upon **AddressBook Level-3**
+  * This project is built upon **AddressBook Level-3**. See their [website](https://nus-cs2103-ay2223s1.github.io/tp/) for more information.
+  * This project uses Java's [Time package](https://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html). 
