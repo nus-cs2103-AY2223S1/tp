@@ -7,8 +7,6 @@ import java.util.regex.Pattern;
 
 import seedu.masslinkers.commons.core.index.Index;
 import seedu.masslinkers.logic.commands.DeleteCommand;
-import seedu.masslinkers.logic.commands.DeleteInterestCommand;
-import seedu.masslinkers.logic.commands.EditCommand;
 import seedu.masslinkers.logic.parser.exceptions.ParseException;
 
 /**
@@ -29,14 +27,14 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_MISSING_ARGUMENTS, DeleteInterestCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MISSING_ARGUMENTS, DeleteCommand.MESSAGE_USAGE));
         }
 
         try {
             index = ParserUtil.parseIndex(args);
             return new DeleteCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(pe.getMessage(), EditCommand.MESSAGE_USAGE));
+            throw new ParseException(pe.getMessage() + "\n" + DeleteCommand.MESSAGE_USAGE);
         }
     }
 

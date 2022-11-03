@@ -5,6 +5,7 @@ import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_ARGUMENTS;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_INPUT;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_UNEXPECTED_PREFIX;
+import static seedu.masslinkers.logic.parser.ModCommandParser.INDEX_FORMAT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.masslinkers.commons.core.index.Index;
 import seedu.masslinkers.commons.util.StringUtil;
+import seedu.masslinkers.logic.commands.ModCommand;
 import seedu.masslinkers.logic.parser.exceptions.ParseException;
 import seedu.masslinkers.model.interest.Interest;
 import seedu.masslinkers.model.student.Email;
@@ -49,8 +51,7 @@ public class ParserUtil {
             Set<String> illegalChars = Arrays.stream(splittedArgs)
                     .filter(x -> !StringUtil.isNonZeroUnsignedInteger(x))
                     .collect(Collectors.toSet());
-            // another method will have to catch this ParseException (KIV for better design)
-            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENTS, illegalChars.iterator().next(), "%1$s"));
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENTS, illegalChars.iterator().next()));
         }
 
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
@@ -200,8 +201,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code mod} is invalid.
      */
     public static Mod parseMod(String mod) throws ParseException {
-        String trimmedUpperCasedMod = mod.trim().toUpperCase();
-        checkForPrefix(trimmedUpperCasedMod);
+        String trimmedMod = mod.trim();
+        checkForPrefix(trimmedMod);
+        String trimmedUpperCasedMod = trimmedMod.toUpperCase();
 
         // checks if there is a space in the input
         try {
@@ -287,5 +289,31 @@ public class ParserUtil {
         if (splittedArgs.length > 1) {
             throw new ParseException(MESSAGE_INVALID_INPUT);
         }
+    }
+
+    //@@author jonasgwt
+    /**
+     * Extracts out the index of the student specified in the user command.
+     *
+     * @param args The user command.
+     * @return The index of the student in String.
+     */
+    public static String getIndexFromCommand(String args) throws ParseException {
+        String[] splittedArgs = args.split("\\s+");
+        List<String> validIndexes = Arrays.stream(splittedArgs)
+                .filter(x -> INDEX_FORMAT.matcher(x.trim()).matches())
+                .collect(Collectors.toList());
+
+        // no valid index
+        if (validIndexes.isEmpty()) {
+            throw new ParseException(ModCommand.MESSAGE_INDEX_EMPTY);
+        }
+
+        // valid index is not after the command word
+        if (!validIndexes.get(0).equals(splittedArgs[0])) {
+            throw new ParseException(String.format(ModCommand.INVALID_ARGUMENTS, splittedArgs[0]));
+        }
+
+        return validIndexes.iterator().next();
     }
 }

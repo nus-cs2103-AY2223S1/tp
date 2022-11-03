@@ -9,7 +9,6 @@ import static seedu.masslinkers.logic.parser.ParserUtil.parseIndex;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -41,14 +40,13 @@ public class DeleteInterestCommandParser implements Parser<DeleteInterestCommand
                     String.format(MESSAGE_MISSING_ARGUMENTS, DeleteInterestCommand.MESSAGE_USAGE));
         }
 
-        String indexFromCommand = getIndexFromCommand(trimmedArgs);
+        String indexFromCommand = ParserUtil.getIndexFromCommand(trimmedArgs);
         Set<Interest> interestSet;
 
         try {
             interestSet = getInterestsFromCommand(trimmedArgs);
         } catch (IllegalArgumentException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_INTERESTS,
-                    DeleteInterestCommand.MESSAGE_USAGE), e);
+            throw new ParseException(MESSAGE_INVALID_INTERESTS, e);
         }
 
         try {
@@ -62,22 +60,6 @@ public class DeleteInterestCommandParser implements Parser<DeleteInterestCommand
         }
 
         return new DeleteInterestCommand(index, interestSet);
-    }
-
-    /**
-     * Extracts out the index of the student specified in the user command.
-     *
-     * @param args The user command.
-     * @return The index of the student in String.
-     */
-    private String getIndexFromCommand(String args) throws ParseException {
-        String[] splitArgs = args.split("\\s+");
-        String index = splitArgs[0];
-        final Matcher matcher = INDEX_FORMAT.matcher(index.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(MESSAGE_INDEX_EMPTY);
-        }
-        return index;
     }
 
     /**

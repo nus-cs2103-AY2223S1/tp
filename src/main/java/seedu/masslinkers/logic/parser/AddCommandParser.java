@@ -40,7 +40,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_GITHUB, PREFIX_INTEREST, PREFIX_MOD);
         if (!argMultimap.getPreamble().isEmpty()) {
             String invalidArgs = argMultimap.getPreamble();
-            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENTS, invalidArgs, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENTS, invalidArgs) + "\n"
+                    + AddCommand.MESSAGE_USAGE);
         }
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TELEGRAM)) {
             throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS, AddCommand.MESSAGE_USAGE));

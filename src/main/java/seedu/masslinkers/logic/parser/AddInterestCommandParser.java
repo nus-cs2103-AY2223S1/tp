@@ -8,7 +8,6 @@ import static seedu.masslinkers.logic.parser.ParserUtil.parseIndex;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -40,7 +39,7 @@ public class AddInterestCommandParser implements Parser<AddInterestCommand> {
                     String.format(MESSAGE_MISSING_ARGUMENTS, AddInterestCommand.MESSAGE_USAGE));
         }
 
-        String indexFromCommand = getIndexFromCommand(trimmedArgs);
+        String indexFromCommand = ParserUtil.getIndexFromCommand(trimmedArgs);
         Set<Interest> interestSet;
 
         try {
@@ -61,22 +60,6 @@ public class AddInterestCommandParser implements Parser<AddInterestCommand> {
         }
 
         return new AddInterestCommand(index, interestSet);
-    }
-
-    /**
-     * Extracts out the index of the student specified in the user command.
-     *
-     * @param args The user command.
-     * @return The index of the student in String.
-     */
-    private String getIndexFromCommand(String args) throws ParseException {
-        String[] splittedArgs = args.split("\\s+");
-        String index = splittedArgs[0];
-        final Matcher matcher = INDEX_FORMAT.matcher(index.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(MESSAGE_INDEX_EMPTY);
-        }
-        return index;
     }
 
     /**
