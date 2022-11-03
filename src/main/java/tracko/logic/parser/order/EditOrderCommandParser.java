@@ -3,7 +3,6 @@ package tracko.logic.parser.order;
 import static java.util.Objects.requireNonNull;
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tracko.logic.commands.order.EditOrderCommand.MESSAGE_QUANTITY_ACCOMPANIED_WITH_ITEM;
-import static tracko.logic.commands.order.EditOrderCommand.MESSAGE_QUANTITY_INVALID;
 import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
 

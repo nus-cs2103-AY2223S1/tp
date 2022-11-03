@@ -511,7 +511,9 @@ done by `Item#isSameItem`, which returns true if both the newly inputted `Item` 
       `MESSAGE_ONE_ORDERED_ITEM` will be thrown. This is because **an order cannot have zero ordered items**.
     - The newly inputted`Quantity` is different from the existing `Quantity`. If it is, then it will update 
 to the newly inputted `Quantity`.
-    - Otherwise, nothing happens.
+      - Otherwise, a `CommandException` with `MESSAGE_NO_CHANGE_IN_QUANTITY` will be thrown. This is to warn users that
+      the newly inputted `Quantity` is the same as the existing `Quantity` and does not update the `Quantity` field at
+      all. 
 
 Step 4. The `Order` at the target index is then replaced by the newly created `Order` using `Model#setOrder()`, 
 successfully executing the edit order command in the `Model`. `Model#refreshData` is called to refresh the GUI, and 
