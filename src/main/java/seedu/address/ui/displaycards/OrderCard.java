@@ -90,7 +90,7 @@ public class OrderCard extends UiPart<Region> {
         byDate.setText("Complete order by: " + order.getByDate());
         settledPrice.setText(order.getSettledPrice().toString());
         // TODO: debug this
-        // additionalRequestsDescription.setText(order.getAdditionalRequests().toString());
+        additionalRequestsDescription.setText(order.getAdditionalRequests().toString());
     }
 
     @Override
