@@ -16,16 +16,22 @@ Class UserPrefs
 
 Class UniqueStudentList
 Class Student
+Class Name
 Class StudentId
 Class Email
-Class ClassGroup
-Class Name
 Class Phone
+Class ClassGroup
+Class AttendanceList
+Class Attendance
 Class Tag
 
-Class Task
+Class "{abstract}\nTask" as Task
+Class ToDo
+Class Deadline
+Class Assignment
 Class TaskTitle
 Class TaskDescription
+Class FormatDate
 Class TaskList
 }
 
@@ -46,17 +52,26 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueStudentList
 UniqueStudentList --> "~* all" Student
-Student *--> Name
-Student *--> Phone
-Student *--> Email
-Student *--> ClassGroup
-Student *--> StudentId
+Student *--> "1" Name
+Student *--> "1" StudentId
+Student *--> "0..1" Phone
+Student *--> "0..1" Email
+Student *--> "0..1" ClassGroup
 Student *--> "*" Tag
+Student *--> "1" AttendanceList
+AttendanceList *--> "0..12" Attendance
 
 TaskBook *--> "1" TaskList
-TaskList --> "~* all" Task
-Task *--> TaskTitle
-Task *--> TaskDescription
+TaskList --> "~*" Task
+ToDo -up-|> Task
+Deadline -up-|> Task
+Assignment -up-|> Task
+
+Deadline *--> "1" FormatDate
+Task *-right-> "1" TaskTitle
+Task *-right-> "1" TaskDescription
+
+
 
 ReadOnlyAddressBook -[hidden]right> ReadOnlyUserPrefs
 ReadOnlyUserPrefs -[hidden]right-> ReadOnlyTaskBook
@@ -64,16 +79,22 @@ ReadOnlyUserPrefs -[hidden]right-> ReadOnlyTaskBook
 AddressBook -[hidden]right> UserPrefs
 UserPrefs -[hidden]right-> TaskBook
 
-Name -[hidden]right-> Phone
+Name -[hidden]right-> StudentId
 StudentId -[hidden]right-> Email
-Email -[hidden]right-> ClassGroup
-ClassGroup -[hidden]right-> Tag
+Email -[hidden]right-> Phone
+Phone -[hidden]right-> ClassGroup
+AttendanceList -[hidden]right-> Tag
+ClassGroup -[hidden]right-> AttendanceList
 
-TaskTitle -[hidden]right-> TaskDescription
+Tag -[hidden]right-> ToDo
+
+TaskTitle -[hidden]down-> TaskDescription
 
 TaskList -[hidden]right-> UniqueStudentList
-Task -[hidden]right-> Student
-TaskDescription -[hidden]right-> Name
+Task -[hidden]left-> Student
+
+ToDo -[hidden]right-> Deadline
+Deadline -[hidden]right-> Assignment
 
 ModelManager -->"~* filtered" Student
 @enduml
