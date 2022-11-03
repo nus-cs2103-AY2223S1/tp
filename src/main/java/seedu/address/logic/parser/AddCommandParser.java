@@ -67,9 +67,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         Boolean haveUnavailableDate = arePrefixesPresent(argMultimap, PREFIX_UNAVAILABLE_DATE);
 
         Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
-
         Boolean isPatient = category.categoryName.equals(PATIENT_SYMBOL);
         Boolean isNurse = category.categoryName.equals(NURSE_SYMBOL);
+
+        if (isNurse && isPatient) {
+            throw new ParseException(MESSAGE_INVALID_CATEGORY);
+        }
         if (isPatient && haveUnavailableDate) {
             throw new ParseException(AddCommand.MESSAGE_INVALID_FIELD_PATIENT);
         }
@@ -88,17 +91,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         List<Date> unavailableDateList = ParserUtil.parseDates(argMultimap.getAllValues(PREFIX_UNAVAILABLE_DATE));
 
         Person person;
-
         if (isNurse) {
             person = new Nurse(id, name, gender, phone, email, address, tagList, unavailableDateList);
-
-        } else if (isPatient) {
-            person = new Patient(id, name, gender, phone, email, address, tagList, dateTimeSlotList);
-
-        } else {
-            throw new ParseException(MESSAGE_INVALID_CATEGORY);
         }
-
+        person = new Patient(id, name, gender, phone, email, address, tagList, dateTimeSlotList);
         return new AddCommand(person);
     }
 
