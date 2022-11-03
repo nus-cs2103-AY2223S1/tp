@@ -201,10 +201,10 @@ Adds an internship application to FindMyIntern.
   <span class="badge text-bg-info">INFO</span>
 </div>
 <div markdown="span">
-**Multiple internship applications under the same company **<br>
-To add multiple internship applications under the same company, simply provide a different `TAG` to it.
+**Multiple internship applications under the same company**<br>
+To add multiple internship applications under the same company, simply provide a different `TAG` to it.<br>
 
-Two internship application are considered as duplicates if both their `COMPANY` and `TAG` are identical. 
+Two internship applications are considered as **duplicates** if both their `COMPANY` and `TAG` are identical. 
 </div>
 </div>
 
