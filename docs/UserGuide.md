@@ -3,6 +3,12 @@ layout: page
 title: User Guide
 ---
 
+<p align="center">
+  <img src="./images/GimLogo.png"/>
+</p>
+
+<div style="page-break-after: always;"></div>
+
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
@@ -12,8 +18,7 @@ title: User Guide
 ## 1. Introduction
 
 ### 1.1. What is Gim?
-
-Gim is a desktop app for **managing and tracking gym exercises**, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are an avid Vim user and can type fast, then look no further because Gim commands are inspired by those of Vim. Not only can Gim help you **keep track of your workouts and personal records**, Gim can also help you to **craft a workout** based on your personal records!
+Gim is a desktop app for **managing gym exercises**. Gim allows you to **keep track of your progress** and **craft personalised workout plans**. Gim commands are inspired by those of [Vim](#9-glossary-of-terminologies). Gim is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 ### 1.2. Who is this guide for?
 Are you a gym-goer looking to use Gim to track your exercises? This user guide will get you started in no time and help you navigate through Gim's features. For a quick start guide, head over to [Getting Started](#3-getting-started).
@@ -31,6 +36,15 @@ Gim uses a Command Line Interface (CLI), which may be new to some users. If you 
 * Refer to our [Command Summary](#8-command-summary) to have a quick overview of the different commands and their respective formats.
 * Refer to our [Glossary of Terminologies](#9-glossary-of-terminologies) to learn key terms that are used in this User Guide.
 
+### 2.1 Useful Notations
+While exploring Gim's features with this user guide, do take note of these symbols used in the user guide and what they represent.
+
+|        Symbol        | Meaning               |
+|:--------------------:|-----------------------|
+| :information_source: | Important information |
+|    :exclamation:     | Warning or Caution    |
+|        :bulb:        | Tips                  |
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -39,7 +53,7 @@ Gim uses a Command Line Interface (CLI), which may be new to some users. If you 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `gim.jar` from [here](https://github.com/AY2223S1-CS2103T-T15-4/tp/releases).
+2. Download the latest `gim.jar` [here](https://github.com/AY2223S1-CS2103T-T15-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Gim.
 
@@ -66,19 +80,19 @@ The `Command Box` is where you can input your commands.
 
 The `Exercise List` displays exercise entries. When the application is first launched, the `Exercise List` displays all exercise entries in the system, arranged by the order in which they were added. Whenever you issue commands that may truncate/reorder the `Exercise List`, they will **only act upon the entries that are currently displayed in the `Exercise List`**.
 
-### 4.3. Result Display 
+### 4.3. Result Display
 
-The `Result Display Window` displays feedback after executing a command. This includes feedback for both feedback for correctly and incorrectly entered commands.
+The `Result Display Window` displays feedback after executing a command. This includes feedback for both correctly and incorrectly entered commands.
 
 ### 4.4. Recognised Exercise Name List
 
-The `Recognised Exercise Name List Window` provides you a list of all unique exercise names that are currently registered in the system. 
+The `Recognised Exercise Name List Window` provides you a list of all unique exercise names that are currently registered in the system.
 <br><br>This list updates in real time and allows you to keep track of the exercises you have input in the past. As such, you are able to keep track of what you named your exercises; you would also be able to quickly identify any misspellings in the name of your inputted exercises.
 
 ![RecognisedList](images/RecognisedExercisesOrientation.png)
 
-* The `Recognised Exercises Count` displays the number of unique exercises registered in the system. 
-* The `System Exercise Entries Count` displays the total number of exercise entries in the system. 
+* The `Recognised Exercises Count` displays the number of unique exercises registered in the system.
+* The `System Exercise Entries Count` displays the total number of exercise entries in the system.
 <br>
 
 **Adding and Deleting from the Exercise Name List**
@@ -86,7 +100,7 @@ The `Recognised Exercise Name List Window` provides you a list of all unique exe
 The `Recognised Exercise Name List Window` is generated based on the exercise entries in the system. Hence, the Recognised Exercise Name List is automatically updated whenever you add or delete an entry from the system.
 
 <div id="names" markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
-Exercise names are recognised as equal if, upon removing white spaces and setting the names to lowercase, the names are the same.<br><br> 
+Exercise names are recognised as equal if, upon removing white spaces and setting the names to lowercase, the names are the same.<br><br>
 i.e. "Bench Press", "BENCH PRESS", "BenchPress" will be logged as the same exercise for your convenience in adding.<br><br>
 However, the first time you add an exercise with an unrecognised name, the Recognised Exercise Name List will save the form you have input. Choose wisely!
 </div>
@@ -125,7 +139,7 @@ However, the first time you add an exercise with an unrecognised name, the Recog
 
 ### 5.1. Adding an exercise: `:add`
 
-Adds an exercise that we have done for the day. If an exercise (identified by their names) is added for the first time, it is automatically registered as a new unique exercise. 
+Adds an exercise that we have done for the day. If an exercise (identified by their names) is added for the first time, it is automatically registered as a new unique exercise.
 
 Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 
@@ -139,24 +153,24 @@ Parameter constraints:
 * The reps **must be a positive integer, up to 3 digits, with no leading zeroes**.
   * Examples: 1, 2, 3, 10, 100...
 * The date **must be a valid date**.
-  * Accepted formats: 
-    * DAY/MONTH/YEAR 
-    * YEAR/MONTH/DAY 
-    * DAY-MONTH-YEAR 
-    * YEAR-MONTH-DAY 
-    * DAY MONTH YEAR 
+  * Accepted formats:
+    * DAY/MONTH/YEAR
+    * YEAR/MONTH/DAY
+    * DAY-MONTH-YEAR
+    * YEAR-MONTH-DAY
+    * DAY MONTH YEAR
     * YEAR MONTH DAY
-  * DAY: 1 or 2 valid digits allowed 
-  * MONTH: 1 or 2 valid digits allowed 
+  * DAY: 1 or 2 valid digits allowed
+  * MONTH: 1 or 2 valid digits allowed
   * YEAR: 4 valid digits allowed
-  * Examples: 27/10/2022, 27-10-2022, 27/10/22... 
+  * Examples: 27/10/2022, 27-10-2022... 
   * `d/DATE` field is left optional, will store exercise with current date if no date field is found
 
 <div style="page-break-after: always;"></div>
 
 Examples:
 * `:add n/Squat w/30 s/3 r/5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps for today's date.
-* `:add n/Deadlift w/60 s/1 r/1 d/27-01-22` Adds a deadlift exercise of weight 60kg for 1 set of 1 rep for 27th January 2022.
+* `:add n/Deadlift w/60 s/1 r/1 d/27/01/2022` Adds a deadlift exercise of weight 60kg for 1 set of 1 rep for 27th January 2022.
 
 ![AddCommand](images/AddCommand.png)
 
@@ -249,6 +263,9 @@ Shows all exercises, among exercises in the current [Exercise List](#42-exercise
 
 Format (1) : `:range start/START_DATE end/END_DATE`
 
+Parameter constraints:
+* Start date should be before end date. Otherwise, no exercises will be displayed.
+
 Example:
 * `:range start/25/10/2022 end/26/10/2022` Shows the exercises done between October 25, 2022 and October 26, 2022 (both inclusive).
 
@@ -260,7 +277,6 @@ Format (2) : `:range last/NUMBER_OF_DAYS`
 
 Parameter constraints:
 * Number of days **can only take non-negative integer values**, up to 5 digits.
-* Start date should be before end date.
 
 Example:
 * `:range last/3` Shows the exercises done today and the last 3 days.
@@ -402,13 +418,13 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 
 ## 7. FAQ
 
-**Q**: When should I use the `:list` command? 
+**Q**: When should I use the `:list` command?
 <br>
 **A**: The `:list` command resets the display of the exercise list, displaying all the exercise entries in the system (in the order the entries were input in the system). This can be used after commands, such as `:filter` or `:range` are used to change the display list.
 
 **Q**: Can I change the name of my uniquely registered exercise?
 <br>
-**A**: To change the way it is represented, you can find the exercise with the name, delete the entries and re-enter the exercises with your new name of choice. 
+**A**: To change the way it is represented, you can find the exercise with the name, delete the entries and re-enter the exercises with your new name of choice.
 
 <div markdown="block" class="alert alert-info">
 
@@ -423,6 +439,7 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 **Q**: Why is `:filter`, `:range` or `:sort` not showing the "correct" list even though I have input valid parameters?
 <br>
 **A**: The three commands works on the exercises in the current [Exercise List](#42-exercise-list). If your current Exercise List has been altered by list-changing commands such as `:range` or `:filter`, the commands will act on the current Exercise List rather than the full list comprising all exercises in the system. 
+
 <br><br>
 If you would like to operate on the full list instead, try executing the command `:list` to display the full list before running the commands again.
 
@@ -433,22 +450,22 @@ If you would like to operate on the full list instead, try executing the command
 
 ## 8. Command Summary
 
-| Action                          | Format                                         | Examples                                |
-|---------------------------------|------------------------------------------------|-----------------------------------------|
-| **Add exercise**                | :add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]    | :add n/Deadlift w/60 s/1 r/1 d/27-10-22 |
-| **Delete exercise**             | :del INDEX                                     | :del 3                                  |
-| **List all exercises**          | :list                                          | :list                                   |
-| **Filter exercise(s)**          | :filter KEYWORD [KEYWORD]...                   | :filter Deadlift Squat                  |
-| **Clear all exercises**         | :clear confirm/                                | :clear confirm/                         |
-| **Sort exercises**              | :sort                                          | :sort                                   |
-| **View range (1)**              | :range start/START_DATE end/END_DATE           | :range start/25/10/2022 end/26/10/2022  |
-| **View range (2)**              | :range last/NUMBER_OF_DAYS                     | :range last/3                           |
-| **List Personal Record(s) (1)** | :pr n/NAME [n/NAME]...                         | :pr n/Deadlift n/Squat                  |
-| **List Personal Record(s) (2)** | :pr all/                                       | :pr all/                                |
-| **Generate workout (1)**        | :gen INDEX [, INDEX]... level/DIFFICULTY_LEVEL | :gen 1, 2 level/easy                    |
-| **Generate workout (2)**        | :gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL | :gen n/Deadlift level/easy              |
-| **Help menu**                   | :help                                          | :help                                   |
-| **Exit program**                | :wq                                            | :wq                                     |
+| Action                          | Format                                         | Examples                                  |
+|---------------------------------|------------------------------------------------|-------------------------------------------|
+| **Add exercise**                | :add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]    | :add n/Deadlift w/60 s/1 r/1 d/27/10/2022 |
+| **Delete exercise**             | :del INDEX                                     | :del 3                                    |
+| **List all exercises**          | :list                                          | :list                                     |
+| **Filter exercise(s)**          | :filter KEYWORD [KEYWORD]...                   | :filter Deadlift Squat                    |
+| **Clear all exercises**         | :clear confirm/                                | :clear confirm/                           |
+| **Sort exercises**              | :sort                                          | :sort                                     |
+| **View range (1)**              | :range start/START_DATE end/END_DATE           | :range start/25/10/2022 end/26/10/2022    |
+| **View range (2)**              | :range last/NUMBER_OF_DAYS                     | :range last/3                             |
+| **List Personal Record(s) (1)** | :pr n/NAME [n/NAME]...                         | :pr n/Deadlift n/Squat                    |
+| **List Personal Record(s) (2)** | :pr all/                                       | :pr all/                                  |
+| **Generate workout (1)**        | :gen INDEX [, INDEX]... level/DIFFICULTY_LEVEL | :gen 1, 2 level/easy                      |
+| **Generate workout (2)**        | :gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL | :gen n/Deadlift level/easy                |
+| **Help menu**                   | :help                                          | :help                                     |
+| **Exit program**                | :wq                                            | :wq                                       |
 
 --------------------------------------------------------------------------------------------------------------------
 
