@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.time.temporal.ChronoField;
 import java.util.Comparator;
 
@@ -28,16 +29,17 @@ public class InterviewDateTime {
      */
     public static final DateTimeFormatter INPUT_DATE_FORMAT = new DateTimeFormatterBuilder()
             .parseCaseInsensitive()
-            .appendPattern("[d MMM yyyy HH:mm]")
-            .appendPattern("[d MMM yyyy, h:mm a]")
+            .appendPattern("[d MMM uuuu HH:mm]")
+            .appendPattern("[d MMM uuuu, h:mm a]")
             .appendPattern("[d MMM HH:mm]")
             .appendPattern("[d MMM, h:mm a]")
-            .appendPattern("[d/M/yyyy HH:mm]")
-            .appendPattern("[d/M/yyyy, h:mm a]")
+            .appendPattern("[d/M/uuuu HH:mm]")
+            .appendPattern("[d/M/uuuu, h:mm a]")
             .appendPattern("[d/M HH:mm]")
             .appendPattern("[d/M, h:mm a]")
-            .parseDefaulting(ChronoField.YEAR_OF_ERA, LocalDate.now().getYear())
-            .toFormatter();
+            .parseDefaulting(ChronoField.YEAR, LocalDate.now().getYear())
+            .toFormatter()
+            .withResolverStyle(ResolverStyle.STRICT);
 
     public static final DateTimeFormatter DISPLAY_DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy, h:mm a");
 

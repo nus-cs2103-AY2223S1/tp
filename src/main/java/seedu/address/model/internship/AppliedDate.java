@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.time.temporal.ChronoField;
 import java.util.Comparator;
 
@@ -26,12 +27,13 @@ public class AppliedDate {
      */
     public static final DateTimeFormatter INPUT_DATE_FORMAT = new DateTimeFormatterBuilder()
             .parseCaseInsensitive()
-            .appendPattern("[d MMM yyyy]")
+            .appendPattern("[d MMM uuuu]")
             .appendPattern("[d MMM]")
-            .appendPattern("[d/M/yyyy]")
+            .appendPattern("[d/M/uuuu]")
             .appendPattern("[d/M]")
-            .parseDefaulting(ChronoField.YEAR_OF_ERA, LocalDate.now().getYear())
-            .toFormatter();
+            .parseDefaulting(ChronoField.YEAR, LocalDate.now().getYear())
+            .toFormatter()
+            .withResolverStyle(ResolverStyle.STRICT);
 
     public static final DateTimeFormatter DISPLAY_DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
 
