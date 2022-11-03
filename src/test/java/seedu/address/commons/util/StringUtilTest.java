@@ -251,4 +251,42 @@ public class StringUtilTest {
                 "test 123"); // Multiple spaces in between and multiple leading and trailing spaces
     }
 
+    //---------------- Tests for splitBySlash --------------------------------------
+
+    @Test
+    public void splitBySlash() {
+        assertThrows(NullPointerException.class, () -> StringUtil.splitBySlash(null)); // null value
+
+        String[] expectedStrArr = {"hehehehe", "hehehehe"};
+        String[] secondExpectedStrArr = {"a", "b", "c", "d"};
+        String[] thirdExpectedStrArr = {"hey ", " whatsup"};
+
+        assertEquals(StringUtil.splitBySlash("hehehehe/hehehehe")[0], expectedStrArr[0]); // 2 str
+        assertEquals(StringUtil.splitBySlash("hehehehe/hehehehe")[1], expectedStrArr[1]); // 2 str
+
+        assertEquals(StringUtil.splitBySlash("a/b/c/d")[0], secondExpectedStrArr[0]); // >=3 str
+        assertEquals(StringUtil.splitBySlash("a/b/c/d")[1], secondExpectedStrArr[1]); // >=3 str
+        assertEquals(StringUtil.splitBySlash("a/b/c/d")[2], secondExpectedStrArr[2]); // >=3 str
+        assertEquals(StringUtil.splitBySlash("a/b/c/d")[3], secondExpectedStrArr[3]); // >=3 str
+
+        assertEquals(StringUtil.splitBySlash("hey / whatsup")[0],
+                thirdExpectedStrArr[0]); // strings with whitespace
+        assertEquals(StringUtil.splitBySlash("hey / whatsup")[1],
+                thirdExpectedStrArr[1]); // strings with whitespace
+    }
+
+    //---------------- Tests for convertToDoubleArray --------------------------------------
+
+    @Test
+    public void convertToDoubleArray() {
+        assertThrows(NullPointerException.class, () -> StringUtil.convertToDoubleArray(null));
+
+        String[] strArr = {"4.2", "3.2"};
+        String[] secondStrArr = {"4.19", "3.199"};
+        double[] expectedArr = {4.2, 3.2};
+        double[] expectedSecondArr = {4.19, 3.199};
+
+        assertEquals(StringUtil.convertToDoubleArray(strArr)[0], expectedArr[0]);
+        assertEquals(StringUtil.convertToDoubleArray(secondStrArr)[0], expectedSecondArr[0]);
+    }
 }
