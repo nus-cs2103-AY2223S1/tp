@@ -1,12 +1,11 @@
 @startuml
 start
-:User inputs cancel command;
-if () then ([validInput])
-:AddressBookParser;
-:CancelCommandParser;
-:CancelCommand;
-:Remove Appointment;
-stop
+:User executes cancel command;
+
+if () then ([valid index])
+    :Shows list with cancelled appointment;
 else ([else])
+    :Throw exception, list unchanged;
+endif
 stop
 @enduml

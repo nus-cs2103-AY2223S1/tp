@@ -234,6 +234,28 @@ Our team decided to change the user input format of the cancel command from `can
 to `cancel APPOINTMENT_INDEX`, so it is faster for
 the user to key in, and also more similar to the other commands with only 1 index.
 
+### \[Implemented\] Hide Patients
+The hide patients command hides patients based on at least 1 tag or name given. If more than 1 tag or name is given,
+then any patients that match that tag or name will be hidden.
+For example, hide patients t/nose t/ear will hide all patients that has either a nose or ear tag.
+
+#### Implementation
+The key idea of hide and other organisational commands is to allow users to successively filter out patients,
+so that they can operate on a small list that they are interested in. For example, `hide patients n/Alex` and then
+followed by `hide patients t/ear` should apply both hide commands successively, each time hide is applied on the current
+shown list instead of the entire patient list.
+
+To implement this, and to ensure that hide works well with other organisational features such as find and unhide, we
+maintain an overarching HiddenPredicateSingleton which captures the state of the current patient list. This singleton
+serves as a global predicate which is updated every time an organisational command like `hide patients` is entered.
+
+Each time the command is executed, the current patient predicate will be combined with (AND operation) a predicate
+that is the complement of the given condition, since the predicate is the predicate to show the patients, and thus
+to hide we will have to apply a NOT operation to the given condition e.g `hide patients t/ear` means we should
+combine the current patient list predicate with a predicate that will fail if the patient tag contains ear.
+The activity diagram below will illustrate a hide patient process.
+
+
 ### \[Implemented\] Group Patient
 
 The group mechanism implements the following operations:
@@ -501,23 +523,31 @@ more efficient than alternative 2.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                      | I want to …​                                           | So that I can…​                                                               |
-|----------|------------------------------|--------------------------------------------------------|-------------------------------------------------------------------------------|
-| `* * *`  | starting user                | view a help screen                                     | understand how this application works                                         |
-| `* * *`  | user                         | search idENTify                                        | find specific patients and information faster                                 |
-| `* * *`  | user                         | add a contact of the patient                           | keep track of the patient's contact details                                   |
-| `* * *`  | user                         | delete a contact of the patient                        | remove the patient from my contacts when no longer needed                     |
-| `* * *`  | user                         | book an appointment for the patient                    | schedule the patient to meet the doctor                                       |
-| `* * *`  | user                         | cancel an appointment for the patient                  | ensure that the appointment schedule is updated and accurate                  |
-| `* * *`  | user                         | save the data of my contacts when I exit the app       | not lose the contacts when I open the app again                               |
-| `* * *`  | user                         | mark an appointment as done                            | know that the patient has already visited                                     |
-| `* *`    | user                         | edit information about a patient                       | merge and keep his information up to date                                     |
-| `* *`    | clumsy user                  | edit an existing appointment                           | fix my error in setting their appointment details                             |
-| `* *`    | clumsy user                  | unmark an appointment as done                          | change my appointment state without deleting and adding the appointment again |
-| `*`      | user                         | have my patients sorted by their names                 | look up their information more quickly                                        |
-| `*`      | user                         | have my appointments sorted by their datetime          | arrange appintments more efficiently                                          |
-| `*`      | user                         | have my patients grouped by their tags                 | check patients' problems more easily                                          |
-| `*`      | user                         | have my appointments grouped by their patients or tags | check and arrange appointments in one go                                      |
+| Priority | As a …​       | I want to …​                                     | So that I can…​                                                               |
+|----------|---------------|--------------------------------------------------|-------------------------------------------------------------------------------|
+| `* * *`  | starting user | view a help screen                               | understand how this application works                                         |
+| `* * *`  | user          | search some patients by keywords                 | find specific patients and information faster                                 |
+| `* * *`  | user          | search some appointment by keywords              | find specific appointments and information faster                             |
+| `* * *`  | user          | add a contact of the patient                     | keep track of the patient's contact details                                   |
+| `* * *`  | user          | delete a contact of the patient                  | remove the patient from my contacts when no longer needed                     |
+| `* * *`  | user          | book an appointment for the patient              | schedule the patient to meet the doctor                                       |
+| `* * *`  | user          | cancel an appointment for the patient            | ensure that the appointment schedule is updated and accurate                  |
+| `* * *`  | user          | save the data of my contacts when I exit the app | not lose the contacts when I open the app again                               |
+| `* *`    | clumsy user   | edit information about a patient                 | merge and keep his information up to date                                     |
+| `* *`    | clumsy user   | edit an existing appointment                     | fix my error in setting their appointment details                             |
+| `* * *`  | user          | mark an appointment as done                      | know that the patient has already visited                                     |
+| `* *`    | user          | unmark an appointment as not done                | change my appointment state without deleting and adding the appointment again |
+| `*`      | user          | sort my patients by their names                  | look up their information faster                                              |
+| `*`      | user          | sort my appointments by their datetime           | arrange appointments more efficiently                                         |
+| `*`      | user          | group my patients by their tags                  | check patients' problems more easily                                          |
+| `*`      | user          | group my appointments by some keys               | view and arrange appointments in one go                                       |
+| `*`      | user          | ungroup my patients                              | view the original patient list                                                |
+| `*`      | user          | ungroup my appointments                          | view the original appointment list                                            |
+| `*`      | user          | hide my patients by some conditions              | concentrate on other patients not satisfying the conditions                   |
+| `*`      | user          | hide my appointments by some conditions          | deal with appointments that do not satisfy the conditions better              |
+| `*`      | user          | unhide my patients                               | view the original patient list                                                |
+| `*`      | user          | unhide my appointments                           | view the original appointment list                                            |
+| `*`      | lazy user     | view my previous commands                        | avoid repeating to input the same or similar commands over and over again     |
 
 *{More to be added}*
 
@@ -525,7 +555,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `idENTify` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use Case: UC01 - Add a Patient**
+**Use Case: UC01 - Show a list of all patients**
+
+**Guarantees**: A list of all patients’ contact is shown.
+
+**MSS**
+
+1. User requests to list all patients.
+2. idENTify shows a list of all patients.
+
+
+    Use case ends.
+
+**Extensions**
+- 2a. The list is empty.
+
+
+     Use case ends.
+
+**Use Case: UC02 - Show a list of all appointments**
+
+**Guarantees**: A list of all appointments is shown.
+
+**MSS**
+1. User requests to list all appointments.
+2. idENTify shows a list of all appointments.
+
+
+     Use case ends.
+
+
+
+**Extensions**
+- 2a. The list is empty.
+
+
+    Use case ends.
+
+**Use Case: UC03 - Add a Patient**
 
 **Guarantees**: A patient contact is added into idENTify.
 
@@ -535,7 +602,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. idENTify adds the patient.
 
 
-    Use case ends
+     Use case ends.
 
 
 **Extensions**
@@ -545,52 +612,73 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1a2. User enters new data.
   - Steps 1a1-1a2 are repeated until the data entered are correct.
 
-  Use case resumes at step 2.
+    Use case resumes at step 2.
 
-**Use Case: UC02 - Show a list of patients**
+**Use Case: UC04 - Book an appointment**
 
-**Guarantees**: A list of patients’ contact is shown.
-
-**MSS**
-
-1. User requests to list patients
-2. idENTify shows a list of patients.
-
-    Use case ends
-
-**Extensions**
-- 2a. The list is empty.
-
-
-     Use case ends
-
-**Use Case: UC03 - Show a list of appointments**
-
-**Guarantees**: A list of appointments is shown.
+**Guarantees:** An appointment is booked for the patient only if the data entered are correct.
 
 **MSS**
-1. User requests to list appointments
-2. idENTify shows a list of appointments
 
-   Use case ends
+1.  User gets the <ins>list of patients(UC01)<ins>.
+2.  User requests to book an appointment for a specified patient.
+3.  idENTify shows that an appointment has been booked for that patient.
+
+
+    Use case ends.
 
 **Extensions**
-- 2a. The list is empty.
 
-    Use case ends
+* 2a.  idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
 
-**Use Case: UC04 - Delete a patient**
+    Use case resumes at step 3.
+
+**Use Case: UC05 - Delete a patient**
 
 **Guarantees**: The patient will be deleted from the patient list only if the data entered are correct.
 
 **MSS**
-1. User gets the <ins>list of patients(UC02)<ins>.
+1. User gets the <ins>list of patients(UC01)<ins>.
 2. User requests to delete a specific patient in the list.
 3. idENTify deletes the patient.
 
-    Use case ends
 
-**Use Case: UC05 - find a patient**
+    Use case ends.
+
+**Extensions**
+
+* 2a.  idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
+  
+    Use case resumes at step 3.
+
+**Use Case: UC06 - cancel an appointment**
+
+
+**Guarantees:** The appointment will be deleted from the appointment list only if the data entered are correct.
+
+**MSS**
+1.  User gets the <ins>list of appointments(UC02)<ins>.
+2.  User requests to cancel a specific appointment in the list.
+3.  idENTify shows that the appointment has been cancelled.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct. 
+
+    Use case resumes at step 3.
+
+**Use Case: UC07 - find a patient**
 
 **Guarantees:**  A list of patients that matches the given query if applicable.
 1.  User requests to find a patient.
@@ -606,58 +694,75 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use Case: UC06 -  Book an appointment**
+**Use Case: UC08 - find an appointment**
 
-**Guarantees:** An appointment is booked for the patient only if the data entered are correct.
-
-**MSS**
-
-1.  User gets the <ins>list of patients(UC02)<ins>.
-2.  User requests to book an appointment for a specified patient.
-3.  idENTify shows that an appointment has been booked for that patient.
+**Guarantees:**  A list of appointments that matches the given query if applicable.
+1.  User requests to find an appointment.
+2.  idENTify shows a list of appointments that matches the given query.
 
 
     Use case ends.
 
 **Extensions**
 
-* 2a.  idENTify detects an error in the entered data.
-  - 2a1. idENTify shows an error message.
-  - 2a2. User enters new data.
-  - Steps 2a1-2a2 are repeated until the data entered are correct.
+- 2a. The list is empty.
 
-  Use case resumes at step 3.
-
-**Use Case: UC07 - cancel an appointment**
-
-
-**Guarantees:** The appointment will be deleted from the appointment list only if the data entered are correct.
-
-**MSS**
-1.  User gets the <ins>list of appointments(UC03)<ins>.
-2.  User requests to cancel a specific appointment in the list.
-3.  idENTify shows that the appointment has been cancelled.
 
     Use case ends.
 
-**Extensions**
-
-* 2a. idENTify detects an error in the entered data.
-  - 2a1. idENTify shows an error message.
-  - 2a2. User enters new data.
-  - Steps 2a1-2a2 are repeated until the data entered are correct.
-
-
-  Use case resumes at step 3.
-
-**Use Case: UC08 - mark an appointment**
+**Use Case: UC09 - mark an appointment**
 
 **Guarantees:** The appointment will be marked as done only if the data entered are correct.
 
 **MSS**
-1.  User gets the <ins>list of appointments(UC03)<ins>.
+1.  User gets the <ins>list of appointments(UC02)<ins>.
 2.  User requests to mark a specified appointment for a specified patient.
 3.  idENTify marks the selected appointment.
+
+
+    Use case ends.
+
+
+**Extensions**
+
+* 2a. idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
+
+    Use case resumes at step 3.
+
+**Use Case: UC10 - unmark an appointment**
+
+**Guarantees:** The appointment will be unmarked as not done only if the data entered are correct.
+
+**MSS**
+1.  User gets the <ins>list of appointments(UC02)<ins>.
+2.  User requests to mark a specified appointment for a specified patient.
+3.  idENTify marks the selected appointment.
+
+
+    Use case ends.
+
+
+**Extensions**
+
+* 2a. idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
+
+    Use case resumes at step 3.
+
+**Use Case: UC11 - edit a patient**
+
+**Guarantees:** The patient's contact will have its fields edited only if the data entered are correct.
+
+**MSS**
+1.  User gets the <ins>list of patients(UC01)<ins>.
+2.  User requests to edit a specified patient details.
+3.  idENTify edits the selected patient contact.
+
 
     Use case ends.
 
@@ -668,10 +773,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 2a2. User enters new data.
   - Steps 2a1-2a2 are repeated until the data entered are correct.
 
+    Use case resumes at step 3.
 
-  Use case resumes at step 3.
-
- **Use Case: UC09 - edit an appointment**
+ **Use Case: UC12 - edit an appointment**
 
 **Guarantees:** The appointment will have its fields edited only if the data entered are correct.
 
@@ -680,27 +784,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  User requests to edit a specified appointment for a specified patient.
 3.  idENTify edits the selected appointment.
 
-    Use case ends.
-
-**Extensions**
-
-* 2a. idENTify detects an error in the entered data.
-  - 2a1. idENTify shows an error message.
-  - 2a2. User enters new data.
-  - Steps 2a1-2a2 are repeated until the data entered are correct.
-
-
-  Use case resumes at step 3.
-
-
-**Use Case: UC10 - edit a patient**
-
-**Guarantees:** The patient's contact will have its fields edited only if the data entered are correct.
-
-**MSS**
-1.  User gets the <ins>list of patients(UC02)<ins>.
-2.  User requests to edit a specified patient details.
-3.  idENTify edits the selected patient contact.
 
     Use case ends.
 
@@ -711,34 +794,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 2a2. User enters new data.
   - Steps 2a1-2a2 are repeated until the data entered are correct.
 
+    Use case resumes at step 3.
 
-  Use case resumes at step 3.
+**Use Case: UC13 - sort the patient list**
 
-**Use Case: UC11 - sort the patient list**
-
-**Guarantees:** There does not exist two patients with both the same name and the same phone number.
+**Guarantees:** The patient list will be sorted in ascending order.
 
 **MSS**
-1.  User gets the <ins>list of patients(UC02)<ins>.
+1.  User gets the <ins>list of patients(UC01)<ins>.
 2.  idENTify displays the patient list sorted by their names.
+
 
     Use case ends.
 
 **Extensions**
 
 * 2a. idENTify detects multiple patients with the same name.
-    - 2a1. idENTify compares their phone numbers.
-    - 2a2. idENTify sort them by their phone numebrs.
+    - 2a1. idENTify compares their other information.
+    - 2a2. idENTify sort them by their other information.
     - 2a3. idENTify displays the sorted patient list.
 
-    
-**Use Case: UC12 - sort the appointment list**
 
-**Guarantees:** There does not exist two appointments occurring at the same time and attached with the same patient.
+    Use case ends.
+    
+**Use Case: UC14 - sort the appointment list**
+
+**Guarantees:** The appointment list will be sorted in ascending order.
 
 **MSS**
-1.  User gets the <ins>list of appointments(UC03)<ins>.
+1.  User gets the <ins>list of appointments(UC02)<ins>.
 2.  idENTify displays the appointment list sorted by their datetime.
+
 
     Use case ends.
 
@@ -750,70 +836,185 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a3. idENTify displays the sorted appointment list.
 
 
-**Use Case: UC13 - group patients**
+    Use case ends.
 
-**Guarantees:** There are restricted types of tags assigned to patients.
+**Use Case: UC15 - group patients**
+
+**Guarantees:** Patients will be grouped by their tags.
 
 **MSS**
-1.  User gets the <ins>list of patients(UC02)<ins>.
-2.  User enters command to group patients.
-3.  idENTify displays the patient list grouped by their tags.
+1. User enters command to group patients.
+2. idENTify displays the patient list grouped by their tags.
+
 
     Use case ends.
 
 **Extensions**
 
-* 3a. idENTify detects multiple patients with the same tags.
-    - 3a1. idENTify compares their other information.
-    - 3a2. idENTify sort them by the information mentioned above.
-    - 3a3. idENTify displays the sorted patient list.
+* 2a. idENTify detects multiple patients with the same tags.
+    - 2a1. idENTify compares their other information.
+    - 2a2. idENTify sort them by their other information.
+    - 2a3. idENTify displays the sorted patient list.
 
 
-**Use Case: UC14 - group appointments**
+    Use case ends.
 
-**Guarantees:** There are restricted types of tags assigned to appointments and every appointment is attached to one 
-and only one patient.
+**Use Case: UC16 - group appointments**
+
+**Guarantees:** Appointments will be grouped by their some criteria.
 
 **MSS**
-1.  User gets the <ins>list of appointments(UC03)<ins>.
-2.  User enters command to group appointments either by their tags or patient or mark status.
-3.  idENTify displays the appointment list grouped by the specified key.
+1. User enters command to group appointments with some criterion.
+2. idENTify displays the appointment list grouped according to the specified criterion.
+
 
     Use case ends.
 
 **Extensions**
 
-* 2a. idENTify detects an error in the entered data.
-    - 2a1. idENTify shows an error message.
-    - 2a2. User enters new data.
-    - Steps 2a1-2a2 are repeated until the data entered are correct. 
-  Use case resumes at step 3.
-
-* 3a. idENTify detects multiple appointments with the same keys.
-    - 3a1. idENTify compares their other information.
-    - 3a2. idENTify sort them by the information mentioned above.
-    - 3a3. idENTify displays the sorted appointment list.
+* 1a. idENTify detects an error in the entered data.
+    - 1a1. idENTify shows an error message.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered are correct.
   
+      Use case resumes at step 2.
 
-**Use Case: UC15 - ungroup patients**
+
+* 2a. idENTify detects multiple appointments that should have the same order.
+    - 2a1. idENTify compares their other information.
+    - 2a2. idENTify sort them by their other information.
+    - 2a3. idENTify displays the sorted appointment list.
+
+
+    Use case ends.
+
+**Use Case: UC17 - ungroup patients**
+
+**Guarantees:** The patient list will be the same as before grouping.
 
 **MSS**
-1.  User gets the <ins>list of patients(UC02)<ins>.
-2.  User enters command to ungroup patients.
-3.  idENTify displays the patient list sorted by default comparator (UC11).
+1. User enters command to ungroup patients.
+2. idENTify displays the patient list <ins>sorted by default(UC13)<ins>.
+
 
     Use case ends.
 
 
-**Use Case: UC16 - ungroup appointments**
+**Use Case: UC18 - ungroup appointments**
+
+**Guarantees:** The appointment list will be the same as before grouping.
 
 **MSS**
-1.  User gets the <ins>list of appointments(UC03)<ins>.
-2.  User enters command to ungroup appointments.
-3.  idENTify displays the patient list sorted by default comparator (UC12).
+1. User enters command to ungroup appointments.
+2. idENTify displays the appointment list <ins>sorted by default(UC14)<ins>.
+
 
     Use case ends.
 
+
+**Use Case: UC19 - hide patients**
+
+**Guarantees:** Patients satisfying given conditions will not be shown.
+
+**MSS**
+1. User enters command to hide patients with specified conditions.
+2. idENTify displays the patient list without hidden patients.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. idENTify detects an error in the entered data.
+  - 1a1. idENTify shows an error message.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered are correct.
+
+    Use case resumes at step 2.
+
+**Use Case: UC20 - hide appointments**
+
+**Guarantees:** Appointments satisfying given conditions will not be shown.
+
+**MSS**
+1. User enters command to hide appointments with specified conditions.
+2. idENTify displays the appointment list without hidden appointments.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. idENTify detects an error in the entered data.
+  - 1a1. idENTify shows an error message.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered are correct.
+
+    Use case resumes at step 2.
+
+**Use Case: UC21 - unhide patients**
+
+**Guarantees:** The patient list will be the same as before hiding.
+
+**MSS**
+1. User enters command to unhide patients.
+2. idENTify displays the <ins>whole patient list (UC01)<ins>.
+
+
+    Use case ends.
+
+
+**Use Case: UC22 - unhide appointments**
+
+**Guarantees:** The appointment list will be the same as before hiding.
+
+**MSS**
+1. User enters command to unhide appointments.
+2. idENTify displays the <ins>whole appointment list (UC02)<ins>.
+
+
+    Use case ends.
+
+
+**Use Case: UC23 - clear entries**
+
+**Guarantees:** All entries will be cleared.
+
+**MSS**
+1. User enters command to clear all entries of current patient and appointment lists.
+2. idENTify displays an empty patient list and an empty appointment list.
+
+
+    Use case ends.
+
+**Use Case: UC24 - show help page**
+
+**Guarantees:** A help page will be provided.
+
+**MSS**
+1. User enters command to ask for help about how to use the app.
+2. idENTify shows a page including some information to help users.
+
+
+    Use case ends.
+
+**Use Case: UC24 - show command history**
+
+**MSS**
+1. User enters command to view previous commands.
+2. idENTify shows previous commands to users.
+
+
+    Use case ends.
+
+**Use Case: UC25 - exit the app**
+
+**MSS**
+1. User enters command to exit.
+2. idENTify saves current data and exits.
+
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
@@ -858,7 +1059,7 @@ and only one patient.
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. It is recommended to follow the steps and sections in order.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -871,38 +1072,222 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample patient and appointment information. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a patient
 
-### Deleting a person
+1. Test case: `add n/John Doe p/12345678`
+   1. Expected results:
+      1. An acknowledgement message regarding the added patient appears.
+      2. A new entry appears in the patient list with the name `John Doe`, phone number `12345678` and 0 upcoming appointments.
+2. Test case: `add n/John`
+   1. Expected results:
+      1. An invalid command format error message appears.
+      2. No new entries are added.
+      
+### Deleting a patient
+Section Prerequisites: Completed all the steps in the previous section `Adding a patient`.
 
-1. Deleting a person while all persons are being shown
+1. Test case: `delete 6` It should be a patient without any upcoming appointments.
+   1. Expected results:
+      1. An acknowledgement message regarding the patient deleted appears.
+      2. The patient should no longer appear in the patient list.
+   
+2. Test case: `delete 6`. It should be a patient with at least 1 upcoming appointment.
+   1. Expected results:
+      1. Similar to previous
+      2. Additionally, there should be no more appointments belonging to the patient in the appointment list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+3. Test case: `delete 0`
+    1. Expected results:
+       1. An invalid command format error message appears.
+       2. No entries in the patient appointment lists were deleted.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+### Booking an appointment
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+Section Prerequisite: Completed all the steps in the previous section `Deleting a patient`.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+1. Test case: `book 1 r/Swimmer's Ear d/2022-12-30 10:00`
+   1. Expected results:
+      1. An acknowledgement message that an appointment was booked for the target patient appears.
+      2. A new entry with the reason `Swimmer's Ear`, date `Dec 30 2022 10:00` and state `Non-recurring` should appear in the appointment list.
 
-1. _{ more test cases …​ }_
+2. Test case: `book 2 r/Rhinitis d/2020-10-10 10:30 pe/1Y`
+   1. Expected results:
+      1. Similar to previous, but with a new appointment entry with reason `Rhinitis`, date `2020-10-10` and state `Recurring every 1 year` should appear instead.
 
-### Saving data
+3. Test case `book`
+   1. Expected result: 
+      1. An invalid command format error message appears.
+      2. No new entries are added.
 
-1. Dealing with missing/corrupted data files
+### Cancelling an appointment
+Section Prerequisite: Completed all the steps in the previous section `Booking an appointment`.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Test case: `cancel 1`.
+   1. Expected results:
+      1. An acknowledgement message that the target appointment was deleted appears.
+      2. The appointment should no longer appear on the appointment list.
 
-1. _{ more test cases …​ }_
+2. Test case: `cancel 9999`.
+   1. Expected results:
+      1. An invalid appointment index error message appears.
+      2. No entries in the patient or appointment lists were deleted.
+
+### Editing existing patients
+Section Prerequisite: At least 1 patient exists in the patient list.
+
+1. Test case: `edit patients 1 e/test@example.com a/Blk 10 Clementi Street #12-34`
+   1. Expected results:
+      1. An acknowledgement message that the patient's information was edited appears.
+      2. The patient entry contains the updated email and address information.
+
+2. Test case: `edit patients 1 n/Jane`
+   1. Expected result: Same as previous, but contains with only the name updated. You may need to scroll down to see the updated patient entry.
+
+3. Test case: `edit`
+   1. Expected results:
+      1. A command incomplete message appears.
+      2. No entries in the patient or appointment lists were modified.
+
+### Editing existing appointments
+Section Prerequisite: At least 1 appointment exists in the patient list.
+
+1. Test case: `edit appts 1 r/Sore Throat`
+   1. Expected results:
+       1. An acknowledgement message that the appointment's information was edited appears.
+       2. The appointment entry contains the updated reason.
+  
+2. Test case: `edit appts`
+   1. Expected results:
+       1. An invalid command format error message appears.
+       2. No entries in the patient or appointment lists were modified.
+      
+### Marking appointments as complete
+Section Prerequisite: The 2nd appointment in the appointment list should be unmarked. If the appointment is marked or missing, replace the `2` in the following commands with another appointment entry that is currently unmarked.
+
+1. Test case: `mark 2`
+   1. Expected results:
+      1. An acknowledgement message that the appointment was marked appears.
+      2. The appointment's mark status changes from `[]` to `[X]`.
+
+2. Test case: `mark 2`
+   1. Expected results:
+      1. An error message indicated that the appointment is already marked appears.
+      2. There is no change in the mark status of the appointment.
+
+### Marking appointments as incomplete
+Section Prerequisite: Completed all the steps in the previous section `Marking appointments as complete`.
+
+Repeat the same test cases in the previous section, but using `unmark 2` instead. 
+
+The expected results should be similar as those in the previous section, but with acknowledgment messages indicating 
+that the appointment was unmarked, and that the appointment's marked status changes from `[X]` to `[]`.
+
+### Listing results
+Section Prerequisite: There is at least 1 entry in each of the patient and appointment lists.
+
+- **Note**: Filter the list using a find command (E.g., `find n/test r/test`) before performing any test case in this section.
+  - Ensure that the resulting patient and appointment lists contains fewer patients and appointments prior to entering the command.
+  - It is fine if no results are displayed.
+
+1. Test case: `list patients`
+   1. Expected results:
+      1. An acknowledgement message that all patients are listed appears.
+      2. The patient list displays all patients.
+      3. The other list (appointment list in this case) should stay unchanged.
+
+2. Test case: `list appts`
+   1. Expected result: Same as previous, but with appointments instead.
+
+3. Test case: `list all`
+   1. Expected results:
+      1. An acknowledgement message that all patients and appointment are listed appears.
+      2. Both patient and appointment lists displays all results.
+
+4. Test case: `list`
+   1. Expected results:
+      1. A command incomplete message appears.
+      2. Both patient and appointment lists stay unchanged.
+
+### Grouping/Ungrouping results
+Section Prerequisite: There are at least 2 entries in each of the patient and appointment lists with different tags
+attached to them.
+
+1. Test case: `group patients`
+   1. Expected results:
+      1. An acknowledgement message that all patients are grouped appears.
+      2. Entries in the patient list with similar tags should be grouped together, with behaviour as specified in the user guide.
+      
+2. Test case: `ungroup patients`
+   1. Expected results:
+       1. An acknowledgement message that all patients are ungrouped appears.
+       2. The changes to the patient list that occurred in the previous test case should be reverted.
+       
+3. Test case: `group appts k/tag`
+   1. Expected result: Similar to test case 1, but with appointments grouped with their tags instead.
+
+4. Test case: `ungroup appts`
+   1. Expected result: Similar to test case 2, but with appointments instead.
+
+### Hiding/Unhiding results
+Section Prerequisite: There is a patient named `Bernice` with at least 1 appointment. There is also at least 1 appointment
+in the appointment list with the reason `Checkup`.
+It is recommended to have more patients and appointments so that the behaviour of this command becomes more clear.
+
+- **Note**: For all test cases in this section, a message displaying the number of filtered results should appear after every valid input.
+
+1. Test case: `hide patients n/Bernice`
+   1. Expected results:
+      2. There are no more patients containing the name `Bernice` in the patient list.
+      3. There are no more appointments belonging to a patient containing the name `Bernice` in the appointment list.
+
+2. Test case: `unhide patients n/Bernice`
+   1. Expected result: The results hidden in the previous test case should reappear.
+
+3. Test case: `hide appts r/Checkup`
+   1. Expected result: There are no more appointments containing the reason `Checkup` in the appointment list.
+
+4. Test case: `unhide appts r/Checkup`
+   1. Expected result: The results hidden in the previous test case should reappear.
+
+### Finding results
+Section Prerequisites: Those previously mentioned in `Hiding/Unhiding results`.
+
+**Note**: Enter `list all` after performing every test case in this section. Similarly to the previous section, a message
+displaying the number of filtered results should appear after every valid input.
+
+1. Test case: `find n/Bernice`
+   1. Expected results:
+      1. Only patients containing the name `Bernice` appear in the patient list.
+      2. Only appointments belonging to a patient containing the name `Bernice` appear in the appointment list.
+
+2. Test case: `find r/Checkup`
+   1. Expected results:
+      1. Only appointments containing the reason `Checkup` appear in the appointment list.
+      2. Only patients with at least 1 such appointment will appear in the patient list.
+      
+### Dealing with save data issues
+
+1. Test Case: Dealing with missing files
+   1. If there is no save data present, the application will open with a new data file filled with sample data
+   2. To simulate a missing file:
+      1. Head to the location of your save data. The location of the save data is indicated at the bottom left of the idENTify app.
+      2. Delete the file `idENTify.json`
+      3. Relaunch the app.
+   3. Expected result: A new file will be created with some sample patients and appointments.
+
+2. Test case: Dealing with corrupted files
+   1. If save data is corrupted, the application will open with an empty data file. 
+   2. To simulate a missing file:
+      1. Head to the location of your save data, in the same way as the previous test case.
+      2. Open the file `idENTify.json`, and corrupt the file (E.g. Delete the very first line of the `idENTify.json` file).
+      3. Relaunch the app.
+   3. Expected result: A new file will be created with no patients or appointments.

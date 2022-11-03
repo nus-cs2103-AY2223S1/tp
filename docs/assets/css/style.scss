@@ -11,9 +11,13 @@
     width: 21px
 }
 
+<<<<<<< HEAD
 /* Adapted from : https://www.w3schools.com/csSref/pr_gen_counter-reset.php */
 /* Adapted from: https://github.com/shd101wyy/markdown-preview-enhanced/issues/1034 */
 
+=======
+// https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Counter_Styles/Using_CSS_counters
+>>>>>>> 5f2b43ba802f9bbbf05bfaf3b09116cab90acf5a
 body {
     counter-reset: h2;
 }
@@ -30,11 +34,14 @@ body {
     counter-reset: h5;
 }
 
+<<<<<<< HEAD
 
 .index h2:before {
     counter-increment: h2;
     content: counter(h2) ". ";
 }
+=======
+>>>>>>> 5f2b43ba802f9bbbf05bfaf3b09116cab90acf5a
 
 .index h3:before {
     counter-increment: h3;
@@ -47,7 +54,15 @@ body {
 }
 
 
+<<<<<<< HEAD
 /* Adapted from: https://dev.to/adamlombard/css-automatically-number-nested-lists-59ei */
+=======
+h5:before {
+  content: counter(h2, decimal) "." counter(h3, decimal) "." counter(h4, decimal) "." counter(h5, decimal) ". ";
+  counter-increment: h5;
+}
+
+>>>>>>> 5f2b43ba802f9bbbf05bfaf3b09116cab90acf5a
 
 #markdown-toc, #markdown-toc ul {
     list-style-type: none;
@@ -59,7 +74,23 @@ body {
 }
 
 
+<<<<<<< HEAD
 li:before {
     counter-increment: item;
     content: counters(item, ".", decimal) ". ";
+=======
+// Third Level
+#markdown-toc > li > ul > li > ul > li {
+  margin-left: 28px;
+}
+
+// Fourth Level
+#markdown-toc > li > ul > li > ul > li > ul > li {
+  margin-left: 34px;
+}
+
+#markdown-toc li:before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+>>>>>>> 5f2b43ba802f9bbbf05bfaf3b09116cab90acf5a
 }
