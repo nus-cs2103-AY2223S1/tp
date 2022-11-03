@@ -5,14 +5,12 @@ import static seedu.taassist.commons.util.AppUtil.checkArgument;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.commons.util.StringUtil.caseInsensitiveEquals;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.uniquelist.Identity;
+import seedu.taassist.model.uniquelist.UniqueList;
 
 /**
  * Represents a Class in TA-Assist.
@@ -26,7 +24,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
 
     private final String className;
 
-    private final List<Session> sessions;
+    private final UniqueList<Session> sessions;
 
     /**
      * Constructs a {@code ModuleClass}.
@@ -37,7 +35,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
         requireNonNull(className);
         checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
         this.className = className;
-        sessions = new ArrayList<Session>();
+        this.sessions = new UniqueList<>();
     }
 
     /**
@@ -50,8 +48,23 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
         requireAllNonNull(className, sessions);
         checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
         this.className = className;
+        this.sessions = new UniqueList<>();
+        this.sessions.addAll(sessions);
+    }
+
+    /**
+     * Constructs a {@code ModuleClass} with the provided unique list of {@code Session}-s.
+     *
+     * @param className A valid class name.
+     * @param sessions A unique list of sessions.
+     */
+    public ModuleClass(String className, UniqueList<Session> sessions) {
+        requireAllNonNull(className, sessions);
+        checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
+        this.className = className;
         this.sessions = sessions;
     }
+
 
     /**
      * Returns true if a given string is a valid class name.
@@ -69,7 +82,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
      * if modification is attempted.
      */
     public List<Session> getSessions() {
-        return Collections.unmodifiableList(sessions);
+        return sessions.asUnmodifiableObservableList();
     }
 
     /**
@@ -81,18 +94,22 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
         if (hasSession(session)) {
             return this;
         }
-        List<Session> newSessions = new ArrayList<>(sessions);
+        UniqueList<Session> newSessions = new UniqueList<>();
         newSessions.add(session);
-        Collections.sort(newSessions);
         return new ModuleClass(className, newSessions);
     }
 
     /**
      * Returns a new {@code ModuleClass} by removing the {@code session}.
      */
-    public ModuleClass removeSession(Session session) {
-        requireNonNull(session);
-        List<Session> newSessions = sessions.stream().filter(s -> !s.isSame(session)).collect(Collectors.toList());
+    public ModuleClass removeSession(Session toRemove) {
+        requireNonNull(toRemove);
+        UniqueList<Session> newSessions = new UniqueList<>();
+        for (Session session : sessions) {
+            if (!session.isSame(toRemove)) {
+                newSessions.add(session);
+            }
+        }
         return new ModuleClass(className, newSessions);
     }
 
@@ -125,7 +142,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
     }
 
     public boolean hasSession(Session toCheck) {
-        return sessions.stream().anyMatch(toCheck::isSame);
+        return sessions.contains(toCheck);
     }
 
     @Override
