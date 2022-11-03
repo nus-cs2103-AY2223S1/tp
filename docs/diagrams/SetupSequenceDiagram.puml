@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+!$userInput = ("setup w/70 g/m i/65 h/170 a/20")
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":NutriGoalsParser" as NutriGoalsParser LOGIC_COLOR
+participant ":SetupCommandParser" as SetupCommandParser LOGIC_COLOR
+participant "t:SetupCommand" as SetupCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("$userInput")
+activate LogicManager
+
+LogicManager -> NutriGoalsParser : parseCommand("$userInput")
+activate NutriGoalsParser
+
+create SetupCommandParser
+NutriGoalsParser -> SetupCommandParser
+activate SetupCommandParser
+
+SetupCommandParser --> NutriGoalsParser
+deactivate SetupCommandParser
+
+NutriGoalsParser -> SetupCommandParser : parse("$userInput")
+activate SetupCommandParser
+
+create SetupCommand
+SetupCommandParser -> SetupCommand
+activate SetupCommand
+
+SetupCommand --> SetupCommandParser : t
+deactivate SetupCommand
+
+SetupCommandParser --> NutriGoalsParser : t
+deactivate SetupCommandParser
+SetupCommandParser -[hidden]-> NutriGoalsParser
+destroy SetupCommandParser
+
+NutriGoalsParser --> LogicManager : t
+deactivate NutriGoalsParser
+
+LogicManager -> SetupCommand : execute()
+activate SetupCommand
+
+SetupCommand -> Model : setUserDetails(user)
+activate Model
+
+Model --> SetupCommand
+deactivate Model
+
+SetupCommand -> Model : getUserDetails()
+activate Model
+
+Model --> SetupCommand
+deactivate Model
+
+create CommandResult
+SetupCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SetupCommand
+deactivate CommandResult
+
+SetupCommand --> LogicManager : result
+deactivate SetupCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml

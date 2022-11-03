@@ -12,8 +12,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+This project is based on the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -31,6 +30,13 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 the [diagrams](https://github.com/AY2223S1-CS2103T-T17-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
+
+For sequence diagrams, the lifeline of an object should end at the destroy marker (X). However, due to a limitation of 
+PlantUML, the lifeline reaches the end of the diagram.
+
 </div>
 
 ### Architecture
@@ -126,9 +132,6 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -260,8 +263,8 @@ Given below is an example usage scenario of how the setup mechanism behaves at e
 
 Step 1. The user launches the application.
 
-Step 2. The user executes `Setup`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is called
-subsequently, which then creates an `SetupCommand` object.
+Step 2. The user executes `setup h/170 w/65 i/60 g/m a/20`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` 
+is called subsequently, which then creates an `SetupCommand` object.
 
 Step 3. The `SetupCommand` created is executed by `SetupCommand#execute()`.
 
@@ -271,6 +274,9 @@ Step 4. `SetupCommand#execute()` calls the following methods from `Model`:
 * `Model#getUserDetails()`
 
 Step 5. `SetupCommand#execute()` returns a `CommandResult` which displays the user's information.
+
+The following diagram illustrates how the setup operation works.
+![SetupSequenceDiagram](./images/SetupSequenceDiagram.png)
 
 ### Profile feature
 
@@ -319,6 +325,10 @@ Step 2. The user executes `list 2022-07-29` command, which calls `LogicManager#e
 `ListCommandParser#parse()` is then called to make sense of the date argument supplied by the user.
 
 Step 3. A `ListCommand` object is created with an `IsFoodAddedOnThisDatePredicate` object. The predicate is initialised with 29 July 2022 as the date.
+
+The following object diagram illustrates this.
+
+![ListObjectDiagram](./images/ListObjectDiagram.png)
 
 Step 4. `ListCommand` is then executed by `ListCommand#execute()`, which calls the following methods from `Model`:
 
@@ -390,7 +400,7 @@ Step 1. The user launches the application today.
 
 Step 2. The user executes `suggest` command, which creates a `SuggestCommand` object.
 
-Step 3. The `SuggestCommand` created is executed by `SuggestCommand#execute()`
+Step 3. The `SuggestCommand` created is executed by `SuggestCommand#execute()`.
 
 Step 4. `SuggestCommand#execute()` then calls the following methods from `Model`:
 
@@ -403,6 +413,32 @@ The following activity diagram outlines what happens when a user executes the `s
 
 ![SuggestActivityDiagram](images/SuggestActivityDiagram.png)
 
+### Find feature
+
+#### Implementation
+
+The find mechanism is facilitated by `FindCommand`, which extends `Command`. It overrides the following operations
+
+* `FindCommand#execute()`: Looks through all previously consumed food items and searches for those whose name matches the predicate. Returns the average calorie content for that particular food item if it is inside the list. If it is not in the list, checks if the food item is in the default list provided, and returns the suggested calorie content from the default list.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application.
+
+Step 2. The user executes `find Banana` command, which calls `LogicManager#execute()`.
+`NutriGoals#parseCommand()` is called subsequently, which then creates a `FindCommandParser` object.
+`FindCommandParser#parse()` is then called to make sense of the food name supplied by the user.
+
+Step 3. A `FindCommand` object is created and then executed by `FindCommand#execute()`.
+
+Step 4. The `FindCommand#execute()` then calls the following methods from `Model`
+
+* `Model#getFoodCalorieList()`
+* `Model#getUnfilteredFoodList()`
+
+Step 5. The `FindCommand#execute()` returns a `CommandResult` that displays the calorie content of the food item specified by the user which in this case is Banana.
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
 ### Locate gym feature
 
@@ -446,11 +482,14 @@ The following activity diagram outlines what happens when a user executes the `l
 
 **Target user profile**:
 
-* Wishes to track their daily calorie intake.
-* Is reasonably comfortable using CLI apps.
-* Knows how much calories are in the food they just ate.
+* NUS students
+* Wishes to get healthier or fitter
+* Wishes to track their daily calorie intake
+* Wants to know how many calories they should consume daily
+* Wants to know how many calories are in their food
+* Is reasonably comfortable using CLI apps
 
-**Value proposition**: To manage and calculate calorie intake quickly.
+**Value proposition**: Help users manage and calculate their calorie intake quickly, get recommendations on their daily calorie intake, learn about the calorie content of food items and find the nearest gyms in NUS in order to meet their health and fitness goals
 
 ### User stories
 
@@ -463,14 +502,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | food enthusiast | calculate my daily calorie intake                                 | know how nutrient dense my food is                                    |
 | `* * *`  | careless user   | edit a meal wrongly recorded                                      | change my food records easily                                         |
 | `* * *`  | forgetful user  | find my list of foods consumed for any day                        | get a better understanding of my eating habits                        |
-| `* *`    | user            | key in the calorie intake for each type of food                   | know how much calories a particular food contains                     |
-| `* *`    | user            | specify my body composition                                       | find out how much calories is should be consuming based on my profile |
+| `* *`    | user            | key in the calorie intake for each type of food                   | remember how many calories a particular food I have consumed contains |
+| `* *`    | user            | specify my body composition                                       | find out how many calories I should be consuming based on my profile  |
 | `* *`    | user            | calculate my BMI                                                  | know if my current weight is in a healthy range                       |
 | `* *`    | sedentary user  | get information on healthy lifestyle habits                       | adopt a more active lifestyle                                         |
 | `* *`    | nus student     | find the nearest gym in school based on where I am at             | know where to go if I want to exercise                                |
 | `* *`    | user            | get a suggested daily calorie intake based on my body composition | know what would be a reasonable calorie target                        |
 | `* *`    | user            | find the calorie content of a food item                           | know how many calories I am consuming for a particular food           |
-| `*`      | forgetful user  | receive reminders about my calorie deficiency / excess            | know if I should consume more / less calories                         |
+| `*`      | forgetful user  | receive information about my calorie deficiency / excess          | know if I should consume more / less calories                         |
 
 *{More to be added}*
 
@@ -494,6 +533,12 @@ specified otherwise)
 
     * 1a1. NutriGoals displays a default message.
 
+      Use case ends.
+
+* 1b. The date provided is invalid.
+
+    * 1b1. NutriGoals shows an error message.
+  
       Use case ends.
 
 **Use case: UC-2 Add a meal**
@@ -688,7 +733,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder.
 
     2. Double-click the jar file Expected: Shows the GUI with a set of sample food items. The window size may not be
        optimum.

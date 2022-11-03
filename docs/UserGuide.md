@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-NutriGoals is a desktop app that tracks a user’s diet and calorie consumption. It is targeted at NUS students who wish to improve their current lifestyle by adopting a healthier one. Studies have shown the benefits of keeping 
+NutriGoals is a desktop app for **NUS students who wish to improve their current lifestyle by adopting a healthier one**.
+With NutriGoals, you can **track your diet and calorie consumption**. Studies have shown the benefits of keeping 
 track of your daily food consumption – the more consistent you are, the more likely you are to achieve the various 
 fitness goals that you have set for yourself! However, without the right tools, tracking what you have consumed can be 
 tedious and at times disorganised. With NutriGoals, you can keep track of your consumption quickly and easily, without 
@@ -13,6 +14,49 @@ worrying about organising your data.
 
 --------------------------------------------------------------------------------------------------------------------
 <div markdown="block" class="index">
+
+## About the user guide
+
+### Navigating the user guide
+
+If you are a **new user**, the [Quick start](#quick-start) section provides instructions for you on how to get started.
+
+Once you have set up NutriGoals, you can check out the [Screen layout](#screen-layout) section to get familiar with the different components of NutriGoals. 
+To learn the basics of using NutriGoals, head over to the [Features](#features) section.
+
+If you are an **experienced user**, you can refer to the [Command summary](#command-summary) section for an overview of NutriGoals' commands.
+
+If you have any queries about using NutriGoals, you can check out the [FAQ](#faq) section. 
+
+### Reading the user guide
+
+#### Icons
+
+This section aims to help you understand the icons used in this guide.
+
+| Icon                 | Meaning                                                           |
+|----------------------|-------------------------------------------------------------------|
+| :information_source: | Extra information that you may find useful.                       |
+| :exclamation:        | Information you should take note of to avoid encountering errors. |
+| :fast_forward:       | Information about future updates to a feature.                    |
+
+#### Parameters
+
+This section provides a summary of the parameters used for the commands in this guide.
+
+| Prefix | Parameter      | Meaning                                             | Input                                                                        |
+|--------|----------------|-----------------------------------------------------|------------------------------------------------------------------------------|
+| `n/`   | `FOOD_NAME`    | Name of the food item                               | Alphanumeric value with 1 to 27 characters (inclusive)                       |
+| `c/`   | `CALORIE`      | Number of calories                                  | Integer from 0 to 2147483647 (inclusive)                                     |
+| `t/`   | `MEAL_TYPE`    | Meal that the food item belongs to                  | `breakfast`, `lunch` or `dinner` (not case sensitive)                        |
+| `g/`   | `GENDER`       | Your gender                                         | `M` or `F` (not case sensitive)                                              |
+| `w/`   | `WEIGHT`       | Your weight in kg                                   | Integer from 10 to 199 (inclusive)                                           |
+| `h/`   | `HEIGHT`       | Your height in cm                                   | Integer from 100 to 219 (inclusive)                                          |
+| `i/`   | `IDEAL_WEIGHT` | Your ideal weight in kg                             | Integer from 10 to 199 (inclusive)                                           |
+| `a/`   | `AGE`          | Your age in years                                   | Integer from 1 to 99 (inclusive)                                             |
+|        | `INDEX`        | Index of the food item in the list displayed        | Integer from 1 to the number of food items in the list displayed (inclusive) |
+|        | `DATE`         | Date that the food items were added into NutriGoals | Valid date and in the format `yyyy-MM-dd`                                    |
+|        | `LOCATION`     | Location in NUS                                     | `COM2`, `S13`, `S17`, `CLB`, `UHC`, `LT1`, `LT9`, `AS6` (not case sensitive) |
 
 ## Quick start
 
@@ -35,7 +79,7 @@ the help window.
 
 :information_source: **Note:**<br>
 
-* For first-timers, the app will contain sample data for these 3 days: 15 September 2022, 23 October 2022 and the current day. 
+* For new users, the app will contain sample data for these 3 days: 15 September 2022, 23 October 2022 and the current day. 
 * For example, you can try entering `list 2022-09-15` to view the sample food items on 15 September 2022. 
 * To delete food items from all days, enter `clear`.
 
@@ -46,7 +90,8 @@ the help window.
 :exclamation: **Warning:**<br>
 
 Upon launching the application, some files responsible for the storage of your data will be created in the same folder 
-as `nutrigoals.jar`. Do not delete or edit these files. 
+as `nutrigoals.jar`. If you are a new user, you are advised not to edit these files. If your changes to the data file 
+makes its format invalid, NutriGoals will discard all your data and start with an empty data file.
 
 </div>
 
@@ -58,10 +103,13 @@ as `nutrigoals.jar`. Do not delete or edit these files.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Note:**<br>
+:information_source: **About Food List:**<br>
 
 * Food items displayed in Food List are sorted according to meal type, in the order: breakfast, lunch, dinner.
 * Upon launching the application, Food List will display food items recorded on the current day.
+
+:information_source: **About Progress Bar:**<br>
+
 * Progress Bar changes based on the total calorie intake for the current day as compared to the target calorie intake.
 * To check the total calorie intake for the current day and the target calorie intake, refer to the `review` command [here](#viewing-a-summary-of-the-calorie-intake-progress-review).
 * The Progress Bar percentage can go beyond 100%, but note that if the target calorie intake is set to 0, the 
@@ -78,9 +126,9 @@ percentage will be fixed at 100%.
 
 **:information_source: Notes about the command format:**<br>
 
-* Texts in `UPPER_CASE` are arguments provided by the user.
+* Texts in `UPPER_CASE` are parameters provided by the user.
   * E.g. in `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`, `FOOD_NAME`, `CALORIE` and `MEAL_TYPE` are parameters that can be used as `add n/sushi c/300 t/dinner`.
-* Arguments in square brackets are optional.
+* Parameters in square brackets are optional.
 * The parameters can be in any order.
   * E.g. `add n/bubble tea c/200 t/dinner` is the same as `add c/200 n/bubble tea t/dinner`.
 * Integer values are values between 1 and 2147483647 (inclusive).
@@ -128,7 +176,7 @@ Example:
 
 **:information_source: Adding food items:**<br>
 
-A food item will not be added into the food list if the resulting total calorie intake for the day exceeds 2147483647 calories.
+A food item will **not** be added into the food list if the resulting total calorie intake for the day exceeds 2147483647 calories.
 
 </div>
 
@@ -178,13 +226,13 @@ Example:
 
 **:information_source: About editing food items:**<br>
 
-A food item will not be edited if the resulting total calorie intake for the day exceeds 2147483647 calories.
+A food item will **not** be edited if the resulting total calorie intake for the day exceeds 2147483647 calories.
 
 </div>
 
 ### Listing all foods for a day: `list`
 
-Shows a list of all food items and their respective calories for the specified day (if any).
+Shows a list of all food items and their calories for the specified day (if any).
 
 Format: `list [DATE]`
 
@@ -200,7 +248,7 @@ Example:
 
 **:information_source: Note:**<br>
 
-`DATE` must be a valid date for the command to be executed. Note that the year `0000` is considered invalid.
+`DATE` **must be a valid date** for the command to be executed. Note that the year `0000` is considered invalid.
 
 * E.g. `list 2022-02-31` is an invalid command.
 * E.g. `list 0000-01-01` is an invalid command. 
@@ -240,7 +288,7 @@ Format: `target CALORIE`
 
 * `CALORIE` can only take on integer values in between 0 and 2147483647 inclusively.
 * The initial target calorie intake is set at 2000 calories.
-* The percentage for the progress bar display will be based on the target calorie intake.
+
 Example:
 
 * `target 2500` sets a target calorie intake of 2500 calories for the current day and displays the list of foods for the current day.
@@ -329,19 +377,29 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
-
-NutriGoals data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
+**Q**: I do not have Java `11` installed in my Computer. How do I install it?<br>
+**A**: To download Java `11`, visit this [site](https://www.oracle.com/java/technologies/downloads/#java11). Choose the 
+file to download based on your Computer's system (such as macOS and Windows).
+
+**Q**: How do I save my NutriGoals data?<br>
+**A**: NutriGoals data are saved automatically after any command that changes the data. There is no need to save manually.
+
+**Q**: Where is my NutriGoals data stored?<br>
+**A**: When you use the application, a folder named `Data` will be created in the same folder as `nutrigoals.jar`. Your 
+data is stored in the file named `nutrigoals.json`, which is located in the `Data` folder.
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NutriGoals home folder.
 
-**Q**: What are the included food items for the [find](#finding-the-calorie-content-of-a-food-item-find) feature?<br>
-**A**: The included food items are listed below. <br>
+**Q**: Does NutriGoals need an internet connection to work?<br>
+**A**: No, NutriGoals can still work normally even without an internet connection.
+
+**Q**: What are the food items for the [find](#finding-the-calorie-content-of-a-food-item-find) feature?<br>
+**A**: The food items are listed below.<br>
 
 * ban mian
 * bubble tea
@@ -371,6 +429,7 @@ _More food items coming soon in a future release..._
 | **Review**  | `review`                                                | `review`                         |
 | **List**    | `list [DATE]`                                           | `list`                           |
 | **Setup**   | `setup g/GENDER w/WEIGHT h/HEIGHT i/IDEAL_WEIGHT a/AGE` | `setup g/m w/70 h/175 i/70 a/20` |
+| **Locate**  | `locate LOCATION`                                       | `locate CLB`                     |
 | **Profile** | `profile`                                               | `profile`                        |
 | **Suggest** | `suggest`                                               | `suggest`                        |
 | **Tip**     | `tip`                                                   | `tip`                            |

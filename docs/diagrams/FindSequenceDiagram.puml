@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":NutriGoalsParser" as NutriGoalsParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find Banana")
+activate LogicManager
+
+LogicManager -> NutriGoalsParser : parseCommand("find Banana")
+activate NutriGoalsParser
+
+create FindCommandParser
+NutriGoalsParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> NutriGoalsParser
+deactivate FindCommandParser
+
+NutriGoalsParser -> FindCommandParser : parse("Banana")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand --> FindCommandParser : f
+deactivate FindCommand
+
+FindCommandParser --> NutriGoalsParser : f
+deactivate FindCommandParser
+FindCommandParser -[hidden]-> NutriGoalsParser
+destroy FindCommandParser
+
+NutriGoalsParser --> LogicManager : f
+deactivate NutriGoalsParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : getFoodCalorieList()
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+FindCommand -> Model : getUnfilteredFoodList()
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml
