@@ -34,7 +34,7 @@ public class PriorityTag implements Comparable<PriorityTag> {
      */
     public static boolean isValidTag(String testTag) {
         if (testTag == null) {
-            return true;
+            return false;
         }
         String testTagStatus = testTag.toLowerCase();
         return testTagStatus.matches(VALIDATION_REGEX);

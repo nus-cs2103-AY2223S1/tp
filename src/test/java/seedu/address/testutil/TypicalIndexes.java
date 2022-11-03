@@ -27,6 +27,10 @@ public class TypicalIndexes {
     public static final Index INDEX_TWELVE_TASK = Index.fromOneBased(12);
     public static final Index INDEX_THIRTEENTH_TASK = Index.fromOneBased(13);
     public static final Index INDEX_FOURTEENTH_TASK = Index.fromOneBased(14);
+    public static final Index INDEX_PRIORITY_TAG_TASK = Index.fromOneBased(7);
+    public static final Index INDEX_DEADLINE_TAG_TASK = Index.fromOneBased(8);
+
+    public static final Index INDEX_LAST_TASK = Index.fromOneBased(9);
 
     public static final Index INDEX_FIRST_EXAM = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_EXAM = Index.fromOneBased(2);

@@ -54,10 +54,12 @@ public class TypicalTasks {
         .build();
     public static final Task TASK_G = new TaskBuilder().withModule("cs2100")
             .withTaskDescription("Task G")
+            .withPriorityTag(new PriorityTagBuilder().build())
             .build();
 
     public static final Task TASK_H = new TaskBuilder().withModule("cs2103t")
             .withTaskDescription("Task H")
+            .withDeadlineTag(new DeadlineTagBuilder().build())
             .build();
 
     public static final Task TASK_I = new TaskBuilder().withModule("cs2103t")
