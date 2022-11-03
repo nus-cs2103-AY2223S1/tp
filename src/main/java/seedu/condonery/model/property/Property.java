@@ -40,6 +40,7 @@ public class Property {
         this.name = name;
         this.address = address;
         this.price = price;
+        this.tags.addAll(tags);
         this.propertyTypeEnum = propertyTypeEnum;
         this.propertyStatusEnum = propertyStatusEnum;
         this.interestedClients.addAll(interestedClients);
