@@ -519,7 +519,7 @@ allowing you to quickly refresh ConnectNUS for all persons and user for the next
 
 Format: `nextsem`
 
-Example:
+Examples:
 
 * `nextsem` moves all current modules into the previous modules list of the user and all contacts and removes all modules in the current modules list.
 
@@ -555,9 +555,9 @@ Format for contact: `lesson INDEX l/TYPE m/MODULE_CODE day/DAY_NUMBER start/STAR
 
 Examples:
 
-`lesson user l/tut m/CS2103T d/1 start/12:00 end/13:00`
+* `lesson user l/tut m/CS2103T d/1 start/12:00 end/13:00` adds a Tutorial slot for the module CS2103T on Monday, from 12:00 to 13:00 in the **user's** timetable.
 
-`lesson 2 l/lec m/CS2101 d/5 start/09:00 end/11:00`
+* `lesson 2 l/lec m/CS2101 d/5 start/09:00 end/11:00` adds a Lecture slot for the module CS2101 on Friday, from 09:00 to 11:00 in the **second displayed contact's** timetable.
 
 [Scroll back to top](#table-of-contents)
 
@@ -590,9 +590,9 @@ command again to view the updated timetable!
 
 Examples:
 
-`timetable user`
+* `timetable user` will display the **user's** timetable.
 
-`timetable 1`
+* `timetable 1` will display the **first displayed contact's** timetable.
 
 [Scroll back to top](#table-of-contents)
 
@@ -615,13 +615,13 @@ Format for contact: `remove INDEX l/TYPE m/MODULE_CODE day/DAY_NUMBER start/STAR
 
 Examples:
 
-`remove user l/lec m/CS2109S d/5 start/10:00 end/12:00`
+* `remove user l/lec m/CS2109S d/5 start/10:00 end/12:00` deletes the Lecture slot of module CS2109S on Friday from 10:00 to 12:00 in the **user's** timetable.
 
-`remove 1 l/rec m/CS2100 d/2 start/16:00 end/18:00`
+* `remove 1 l/rec m/CS2100 d/2 start/16:00 end/18:00` deletes the Recitation slot of module CS2100 on Tuesday from 16:00 to 18:00 in the **first displayed contact's** timetable.
 
-`remove user l/lab m/CS2040S d/3 start/12:00 end/14:00`
+* `remove user l/lab m/CS2040S d/3 start/12:00 end/14:00` deletes the Lab slot of the module CS2040S on Wednesday from 12:00 to 14:00 in the **user's** timetable.
 
-`remove 8 l/tut m/CS2103T d/4 start/14:00 end/15:00`
+* `remove 8 l/tut m/CS2103T d/4 start/14:00 end/15:00` deletes the Tutorial slot of the module CS2103T on Thursday from 14:00 to 15:00 in the **eighth displayed contact's** timetable.
 
 [Scroll back to top](#table-of-contents)
 
@@ -652,7 +652,7 @@ Examples:
 
 <img src="images/filtertag friends.png" width="800" />
 
-`filtertag friends family` lists all contacts with either a friends or family tag.
+* `filtertag friends family` lists all contacts with either a friends or family tag.
 
 <img src="images/filtertag friends family.png" width="800" />
 
@@ -670,7 +670,7 @@ Format: `filtercurrmod CURRENT_MODULE [CURRENT_MODULE]…`
 
 Examples:
 
-`filtercurrmod CS1000` lists all contacts with module code CS1000 in their current modules list.
+* `filtercurrmod CS1000` lists all contacts with module code CS1000 in their current modules list.
 
 <img src="images/filtercurrmod CS1000.png" width="800" />
 
@@ -688,7 +688,7 @@ Format: `filterprevmod PREVIOUS_MODULE [PREVIOUS_MODULE]…`
 
 Examples:
 
-`filterprevmod CS2000` lists all contacts with module code CS2000 in their previous modules list.
+* `filterprevmod CS2000` lists all contacts with module code CS2000 in their previous modules list.
 
 <img src="images/filterprevmod CS2000.png" width="800" />
 
@@ -706,7 +706,7 @@ Format: `filterplanmod PLANNED_MODULE [PLANNED_MODULE]…`
 
 Examples:
 
-`filterplanmod CS23333` lists all contacts with module code CS3333 in their planned modules list.
+* `filterplanmod CS23333` lists all contacts with module code CS3333 in their planned modules list.
 
 <img src="images/filterplanmod CS3333.png" width="800" />
 
@@ -758,7 +758,7 @@ Format: `undo` `redo`
 
 Examples:
 
-* `add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue g/rjkoh t/Classmate curr/CS2100 prev/CS1101S plan/CS2109`adds module contact Ruijie to your contact list with all the details specified.
+* To demonstrate the `undo`/`redo` feature, we will first add a contact into our contact list by inputting the command `add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue g/rjkoh t/Classmate curr/CS2100 prev/CS1101S plan/CS2109` which adds module contact Ruijie to our contact list with all the details specified.
 
 <img src="images/UndoRedoExample0.png" width="800" />
 
