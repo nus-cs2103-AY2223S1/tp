@@ -10,9 +10,11 @@ title: User Guide
 
 Welcome to Coydir's User Guide!
 
-**Even Thanos had to read the User Guide before he learnt how to wield the power of the infinity stones...**
+## **Coydir /(‘kohy-də)/**
 
-**This guide will teach you the ropes so that you too can command the infinite power of Coydir the universe has never seen before!! Or simply feel free to look around! :p**
+> **Financial Resources may be the lifeblood of a company, but human resources are the brains.** - Rob Silzer
+
+Revolutionize your company and become an Industry Leader today with Coydir!
 
 ---
 
