@@ -15,6 +15,7 @@ class CapTest {
         assertFalse(Cap.isValidCap(10.0, 5.0)); // cap value greater than its maximum
         assertFalse(Cap.isValidCap(0.0, 4.0));
         assertFalse(Cap.isValidCap(0, 5));
+        assertFalse(Cap.isValidCap(101, 102)); // maximum cap value > 100
 
         // valid cap
         assertTrue(Cap.isValidCap(4.99, 5.0)); // max value can be of any value greater than or equal to cap value
@@ -22,5 +23,6 @@ class CapTest {
         assertTrue(Cap.isValidCap(1.0, 4.0));
         assertTrue(Cap.isValidCap(2, 3)); // both cap value and maximum cap value can be an integer
         assertTrue(Cap.isValidCap(5, 5));
+        assertTrue(Cap.isValidCap(90, 100));
     }
 }
