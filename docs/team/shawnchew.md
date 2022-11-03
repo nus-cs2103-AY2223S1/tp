@@ -29,9 +29,7 @@ Given below are my contributions to the project.
         * To be added
 
 * **Community**:
-    * To be added
-
-* **Tools**:
-    * To be added
+    * Found 13 bugs in team [CS2103-T10-3](https://github.com/shawnchew/ped)'s product during PE-D.
+    
 
 </div>
