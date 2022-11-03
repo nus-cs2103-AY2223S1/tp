@@ -12,8 +12,7 @@ public class Index {
     private final int zeroBasedIndex;
 
     /**
-     * Index can only be created by calling {@link Index#fromZeroBased(int)} or
-     * {@link Index#fromOneBased(int)}.
+     * Index can only be created by calling factory methods fromZeroBased() or fromOneBased().
      */
     private Index(int zeroBasedIndex) {
         if (zeroBasedIndex < 0) {
@@ -32,14 +31,18 @@ public class Index {
     }
 
     /**
-     * Creates a new {@code Index} using a zero-based index.
+     * Creates a new Index using a zero-based index.
+     *
+     * @param zeroBasedIndex the integer that is zero-based
      */
     public static Index fromZeroBased(int zeroBasedIndex) {
         return new Index(zeroBasedIndex);
     }
 
     /**
-     * Creates a new {@code Index} using a one-based index.
+     * Creates a new Index using a one-based index.
+     *
+     * @param oneBasedIndex the integer that is one-based
      */
     public static Index fromOneBased(int oneBasedIndex) {
         return new Index(oneBasedIndex - 1);

@@ -12,8 +12,8 @@ import java.util.logging.SimpleFormatter;
  * Configures and manages loggers and handlers, including their logging level
  * Named Loggers can be obtained from this class
  * These loggers have been configured to output messages to the console and a .log file by default,
- *   at the INFO level. A new .log file with a new numbering will be created after the log
- *   file reaches 5MB big, up to a maximum of 5 files.
+ * at the INFO level. A new .log file with a new numbering will be created after the log
+ * file reaches 5MB big, up to a maximum of 5 files.
  */
 public class LogsCenter {
     private static final int MAX_FILE_COUNT = 5;
@@ -29,6 +29,8 @@ public class LogsCenter {
      * Loggers obtained *AFTER* this initialization will have their logging level changed
      * Logging levels for existing loggers will only be updated if the logger with the same name
      * is requested again from the LogsCenter.
+     *
+     * @param config the config file to obtain the logging level
      */
     public static void init(Config config) {
         currentLogLevel = config.getLogLevel();
@@ -60,8 +62,8 @@ public class LogsCenter {
     }
 
     /**
-     * Adds the consoleHandler to the logger.
-     * Creates the consoleHandler if it is null.
+     * Adds the console handler to the logger.
+     * Creates the console handler if it is null.
      */
     private static void addConsoleHandler(Logger logger) {
         if (consoleHandler == null) {
