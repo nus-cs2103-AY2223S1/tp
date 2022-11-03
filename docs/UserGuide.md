@@ -89,7 +89,7 @@ person with the following details to the global member list.
 
 ### Editing a member's details: `edit`
 
-Edits a member's details.
+Edits a member's details. Require at least one optional parameters.
 
 Format: `edit INDEX [n/NAME] [p/PHONE-NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
