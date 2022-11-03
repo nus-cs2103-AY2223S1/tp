@@ -24,7 +24,6 @@ public class TagContainsKeywordsPredicate implements Predicate<Student> {
         String tagString = student.getTags().stream()
                 .map(tag -> tag.tagName)
                 .collect(Collectors.joining(" "));
-        System.out.println(tagString);
         /*
          There is only a need to check whether the tagString (the current tags of the student) contains
          the keyword.

@@ -16,7 +16,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -76,7 +75,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new ClassContainsDatePredicate(dateToFind));
 
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
+            List<String> tags = ParserUtil.parseTagsList(argMultimap.getAllValues(PREFIX_TAG));
             return new FindCommand(new TagContainsKeywordsPredicate(tags));
         } else {
             // Other prefixes that are not supported by the search system, or no prefix found.
