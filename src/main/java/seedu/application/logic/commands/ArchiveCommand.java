@@ -60,7 +60,6 @@ public class ArchiveCommand extends Command {
         }
 
         model.archiveApplication(applicationToArchive);
-        model.updateApplicationListWithInterview();
         return new CommandResult(String.format(MESSAGE_ARCHIVE_APPLICATION_SUCCESS, applicationToArchive));
     }
 

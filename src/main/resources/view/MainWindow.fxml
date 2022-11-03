@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="CinternS" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="800" minWidth="800" onCloseRequest="#handleExit" title="CinternS" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/internship.png" />
   </icons>

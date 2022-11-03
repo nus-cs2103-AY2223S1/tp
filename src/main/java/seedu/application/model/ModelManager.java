@@ -7,15 +7,14 @@ import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.application.commons.core.GuiSettings;
 import seedu.application.commons.core.LogsCenter;
 import seedu.application.model.application.Application;
+import seedu.application.model.application.UpcomingInterviewPredicate;
 import seedu.application.model.application.interview.Interview;
 import seedu.application.model.application.interview.InterviewComparator;
 
@@ -27,9 +26,9 @@ public class ModelManager implements Model {
     private final VersionedApplicationBook versionedApplicationBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Application> filteredApplications;
-    private final FilteredList<Application> filteredApplicationsWithUpcomingInterviews;
     private final SortedList<Application> sortedFilteredApplications;
-    private final ObservableList<Application> applicationsWithInterview;
+    private final FilteredList<Application> applicationsWithInterview;
+    private final ObservableList<Application> applicationsWithUpcomingInterviews;
 
     /**
      * Initializes a ModelManager with the given versionedApplicationBook and userPrefs.
@@ -44,8 +43,8 @@ public class ModelManager implements Model {
         filteredApplications = initialiseFilteredList(this.versionedApplicationBook);
         sortedFilteredApplications = new SortedList<>(filteredApplications);
         initialiseSortOrder();
-        applicationsWithInterview = filterApplicationsWithInterview();
-        filteredApplicationsWithUpcomingInterviews = new FilteredList<>(applicationsWithInterview);
+        applicationsWithInterview = filterApplicationsWithInterview().filtered(Model.HIDE_ARCHIVE_IN_LIST);
+        applicationsWithUpcomingInterviews = filterApplicationsWithUpcomingInterview();
     }
 
     public ModelManager() {
@@ -97,14 +96,16 @@ public class ModelManager implements Model {
     }
 
     private ObservableList<Application> filterApplicationsWithInterview() {
-        ObservableList<Application> applicationsWithInterview = FXCollections.observableList(
-            versionedApplicationBook
-                        .getApplicationList()
-                        .stream()
-                        .filter(application -> application.getInterview().isPresent() && !application.isArchived())
-                        .collect(Collectors.toList()));
-        applicationsWithInterview.sort(new InterviewComparator());
-        return applicationsWithInterview;
+        return versionedApplicationBook.getApplicationList()
+                .filtered(Application::hasInterview)
+                .sorted(new InterviewComparator());
+    }
+
+    private ObservableList<Application> filterApplicationsWithUpcomingInterview() {
+        return versionedApplicationBook.getApplicationList()
+                .filtered(application -> application.hasInterview() && !application.isArchived())
+                .filtered(new UpcomingInterviewPredicate())
+                .sorted(new InterviewComparator());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -238,8 +239,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Application> getFilteredApplicationsWithUpcomingInterviewList() {
-        return filteredApplicationsWithUpcomingInterviews.sorted(new InterviewComparator());
+    public ObservableList<Application> getApplicationsWithUpcomingInterviewList() {
+        return applicationsWithUpcomingInterviews;
     }
 
     @Override
@@ -254,14 +255,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Application> getAllApplicationsInBook() {
-        return versionedApplicationBook.getApplicationList();
+    public void updateApplicationListWithInterview(Predicate<Application> predicate) {
+        requireNonNull(predicate);
+        applicationsWithInterview.setPredicate(predicate);
     }
 
     @Override
-    public void updateFilteredApplicationsWithUpcomingInterviewList(Predicate<Application> predicate) {
-        requireNonNull(predicate);
-        filteredApplicationsWithUpcomingInterviews.setPredicate(predicate);
+    public ObservableList<Application> getAllApplicationsInBook() {
+        return versionedApplicationBook.getApplicationList();
     }
 
     @Override
@@ -341,20 +342,6 @@ public class ModelManager implements Model {
     @Override
     public void redoApplicationBook() {
         versionedApplicationBook.redo();
-    }
-
-    /**
-     * Updates the interview list.
-     */
-    @Override
-    public void updateApplicationListWithInterview() {
-        applicationsWithInterview.clear();
-        applicationsWithInterview.addAll(filteredApplications);
-        applicationsWithInterview.removeIf(application -> application.getInterview().isEmpty());
-        for (Application app : applicationsWithInterview) {
-            assert app.hasInterview();
-        }
-        applicationsWithInterview.sort(new InterviewComparator());
     }
 
     @Override

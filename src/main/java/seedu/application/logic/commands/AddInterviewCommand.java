@@ -85,7 +85,6 @@ public class AddInterviewCommand extends Command {
         }
 
         model.setApplication(applicationToEdit, editedApplication);
-        model.updateApplicationListWithInterview();
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedApplication));
     }
 

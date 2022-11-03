@@ -133,19 +133,30 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
     -fx-text-fill: white;
+    -fx-wrap-text: true;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: white;
+    -fx-wrap-text: true;
+    -fx-border-color: transparent transparent derive(LIGHTSEAGREEN, -30%) transparent;
 }
 
 .cell_small_label_fade {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: derive(GREY, 70%);
-    -fx-pref-width: 100;
+    -fx-min-width: 100;
+}
+
+.cell_status {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 13px;
+    -fx-min-width: 55;
+    -fx-max-width: 55;
+    -fx-alignment: CENTER;
 }
 
 .stack-pane {

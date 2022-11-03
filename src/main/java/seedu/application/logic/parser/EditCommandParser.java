@@ -19,6 +19,7 @@ import seedu.application.commons.core.index.Index;
 import seedu.application.logic.commands.EditCommand;
 import seedu.application.logic.commands.EditCommand.EditApplicationDescriptor;
 import seedu.application.logic.parser.exceptions.ParseException;
+import seedu.application.logic.parser.exceptions.ParseIntegerOverflowException;
 import seedu.application.model.tag.Tag;
 
 /**
@@ -39,6 +40,9 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseIntegerOverflowException e) {
+            // Rethrow exception if index formatted correctly but too large to store in an int
+            throw e;
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
