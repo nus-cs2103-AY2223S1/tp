@@ -329,7 +329,6 @@ Examples:
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HackAssist home folder.
 
-add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
 --------------------------------------------------------------------------------------------------------------------
 ## Member Parameters
 
