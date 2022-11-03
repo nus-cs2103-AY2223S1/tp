@@ -1,8 +1,6 @@
 package seedu.address.logic.parser;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
@@ -12,15 +10,11 @@ import java.time.format.ResolverStyle;
  * a new LocalDateTime object
  */
 public class DateTimeParser {
-    public static final String DATE_TIME_FORMAT = "d-MMM-uuuu hh:mm a";
-    private static final String DATE_FORMAT = "d-MMM-uuuu";
-    private static final String TIME_FORMAT = "hh:mm a";
+    public static final String DATE_TIME_FORMAT = "d-MM-uuuu HH:mm";
+
     private static final DateTimeFormatter dateTimeFormatter = java.time.format
             .DateTimeFormatter.ofPattern(DATE_TIME_FORMAT).withResolverStyle(ResolverStyle.STRICT);
-    private static final DateTimeFormatter dateFormatter = java.time.format
-            .DateTimeFormatter.ofPattern(DATE_FORMAT);
-    private static final DateTimeFormatter timeFormatter = java.time.format
-            .DateTimeFormatter.ofPattern(TIME_FORMAT);
+
 
     /**
      * Parses the given {@code String} representing a date and time
@@ -31,28 +25,6 @@ public class DateTimeParser {
      */
     public static LocalDateTime parseLocalDateTimeFromString(String str) {
         return LocalDateTime.parse(str, DateTimeParser.dateTimeFormatter);
-    }
-
-    /**
-     * Parses the given {@code String} representing a date
-     * and returns a LocalDate object.
-     *
-     * @param str String representing the LocalDate to be returned.
-     * @return LocalDate parsed from the input String.
-     */
-    public static LocalDate parseLocalDateFromString(String str) {
-        return LocalDate.parse(str, DateTimeParser.dateFormatter);
-    }
-
-    /**
-     * Parses the given {@code String} representing a Time
-     * and returns a LocalTime object.
-     *
-     * @param str String representing the LocalTime to be returned.
-     * @return LocalTime parsed from the input String.
-     */
-    public static LocalTime parseLocalTimeFromString(String str) {
-        return LocalTime.parse(str, DateTimeParser.timeFormatter);
     }
 
     /**
