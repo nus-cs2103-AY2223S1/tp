@@ -27,8 +27,8 @@ import seedu.address.model.student.predicate.TagContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
-    public static final String ONLY_ONE_PREFIX_MESSAGE = "You can only search with 1 prefix, "
-            + "either n/, p/, np/, e/, a/, dt/ or t/";
+    public static final String ONLY_ONE_PREFIX_MESSAGE = "You can only search with 1 prefix for "
+            + "n/, p/, np/, e/, a/, dt/, or multiple prefixes for t/.\n" + "Examples: find n/Ben, find t/Java t/Python";
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
