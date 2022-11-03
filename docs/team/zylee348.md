@@ -44,7 +44,7 @@ Given below are my contributions to the project.
         * Added the GUI walk-through
         * Added implementation details of the add and delete member features
     * Developer Guide:
-        * The add/delete member section
+        * Added the add/delete member section
 
 
 * **Community**:
