@@ -388,7 +388,7 @@ and launch module-related links from Plannit in a swift manner. Additionally, th
 enables you to attach your own meanings to generically-named links, saving you the
 hassle of searching and remembering links.
 
-E.g., Using the alias `tut t10 v fun` to label the link `nus-sg.zoom.us/j/81374731875?pwd=ZE9hWFlNVGJVNEREhVVEs5Zz09`
+E.g., Using the alias `tutorial zoom` to label the link `nus-sg.zoom.us/j/81374731875?pwd=ZE9hWFlNVGJVNEREhVVEs5Zz09`
 allows you to join the zoom room effortlessly whenever you want to.
 
 #### 2.3.1. Add link
