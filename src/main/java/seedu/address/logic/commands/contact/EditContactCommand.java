@@ -69,7 +69,7 @@ public class EditContactCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = CommandUtil.createEditedPerson(personToEdit, editPersonDescriptor);
+        Person editedPerson = CommandUtil.createEditedPersonWithSameTags(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

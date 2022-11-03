@@ -162,7 +162,7 @@ public class Task {
     }
 
     /**
-     * Returns true if both tasks have the same name.
+     * Returns true if both tasks have the same description, deadline and tags.
      * This defines a weaker notion of equality between two tasks.
      *
      * @param otherTask Another task.
@@ -175,8 +175,8 @@ public class Task {
 
         return otherTask != null
                 && description.equalsIgnoreCase(otherTask.getDescription())
-                && deadline.equals(otherTask.getDeadline());
-                // && tags.equals(otherTask.getTags());
+                && deadline.equals(otherTask.getDeadline())
+                && tags.equals(otherTask.getTags());
     }
 
     /**
