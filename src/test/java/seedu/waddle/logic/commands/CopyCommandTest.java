@@ -1,7 +1,6 @@
 package seedu.waddle.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.waddle.testutil.TypicalItineraries.getTypicalWaddle;
 
 import java.awt.Toolkit;
