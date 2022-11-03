@@ -20,7 +20,7 @@ If you prefer typing only and want to record your experiences with your hobby ac
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. **About this User Guide**
+## **2. About this User Guide**
 
 ### 2.1 What is this user guide for?
 This user guide provides you with all the information required for you to become adept at using HobbyList. You will learn all the features that HobbyList has to offer and how to make use of them to the fullest to keep records of all your hobby activities. There are information on the basic commands such as [add](#51-adding-a-hobby-activity--add), [delete](#53-deleting-an-activity--delete), [list](#54-listing-all-hobby-activities--list) and [rate](#55-rating-an-activity-rate), and also advanced features such as [renaming command names](#514-renaming-the-commands).
@@ -73,7 +73,7 @@ If you are already familiar with the features of HobbyList and just want a quick
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Quick start
+## **3. Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -111,12 +111,12 @@ If you are already familiar with the features of HobbyList and just want a quick
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. HobbyList User Interface
+## **4. HobbyList User Interface**
 to be added
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Features
+## **5. Features**
 <a name="command-info"></a>
 <div markdown="block" class="alert alert-info">
 
@@ -484,7 +484,7 @@ If you really want to, you can shorten the commands to a single character to spe
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Managing data
+## **6. Managing data**
 
 ### 6.1 Saving the data
 
@@ -500,14 +500,14 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. FAQ
+## **7. FAQ**
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HobbyList home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 8. Command summary
+## **8. Command summary**
 
 | Action                            | Format                                                                   | Examples                                                                                                                                               |
 |-----------------------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
