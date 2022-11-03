@@ -43,6 +43,10 @@ public class Date implements Comparable<Date> {
         }
     }
 
+    boolean isAfter(LocalDate date) {
+        return this.value.isAfter(date);
+    }
+
     private LocalDate parseLocalDate(String dateString) {
         return LocalDate.parse(dateString, COMMAND_DATE_FORMATTER);
     }
