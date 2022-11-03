@@ -6,12 +6,10 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPatients.getTypicalPatientsHealthContact;
 
-
 import java.util.Comparator;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -28,17 +26,6 @@ public class SortAppointmentCommandTest {
 
     @Test
     public void execute_validSortAppointmentName_success() {
-        /*
-        Patient patientToSelect = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
-        SelectPatientCommand selectPatientCommand = new SelectPatientCommand(INDEX_FIRST_PATIENT);
-
-        String expectedMessage = String.format(SelectPatientCommand.MESSAGE_SUCCESS, patientToSelect);
-
-        ModelManager expectedModel = new ModelManager(model.getHealthContact(), new UserPrefs());
-        expectedModel.selectPatient(patientToSelect);
-
-        assertCommandSuccess(selectPatientCommand, model, expectedMessage, expectedModel);
-        */
         class NameComparator implements Comparator<Appointment> {
             @Override
             public int compare(Appointment first, Appointment second) {
@@ -55,12 +42,6 @@ public class SortAppointmentCommandTest {
 
     @Test
     public void execute_invalidSortAppointmentCriteria_throwCommandException() {
-        /*
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPatientList().size() + 1);
-        SelectPatientCommand selectPatientCommand = new SelectPatientCommand(outOfBoundIndex);
-
-        assertCommandFailure(selectPatientCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
-         */
 
         SortAppointmentCommand sortAppointmentCommand = new SortAppointmentCommand("invalid", true);
         assertCommandFailure(sortAppointmentCommand, model, SortAppointmentCommand.MESSAGE_USAGE);
@@ -80,6 +61,7 @@ public class SortAppointmentCommandTest {
         String expectedMessage = String.format(SortAppointmentCommand.MESSAGE_SORT_SUCCESS, "test");
         ModelManager expectedModel = new ModelManager(model.getHealthContact(), new UserPrefs());
         expectedModel.sortAppointments(new TestComparator(), true);
+        assertCommandSuccess(sortAppointmentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -95,6 +77,7 @@ public class SortAppointmentCommandTest {
         String expectedMessage = String.format(SortAppointmentCommand.MESSAGE_SORT_SUCCESS, "slot");
         ModelManager expectedModel = new ModelManager(model.getHealthContact(), new UserPrefs());
         expectedModel.sortAppointments(new SlotComparator(), true);
+        assertCommandSuccess(sortAppointmentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -110,31 +93,11 @@ public class SortAppointmentCommandTest {
         String expectedMessage = String.format(SortAppointmentCommand.MESSAGE_SORT_SUCCESS, "doctor");
         ModelManager expectedModel = new ModelManager(model.getHealthContact(), new UserPrefs());
         expectedModel.sortAppointments(new DoctorComparator(), true);
+        assertCommandSuccess(sortAppointmentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void equals() {
-        /*
-        SelectPatientCommand selectFirstCommand = new SelectPatientCommand(INDEX_FIRST_PATIENT);
-        SelectPatientCommand selectSecondCommand = new SelectPatientCommand(INDEX_SECOND_PATIENT);
-
-        // same object -> returns true
-        assertTrue(selectFirstCommand.equals(selectFirstCommand));
-
-        // same values -> returns true
-        SelectPatientCommand selectFirstCommandCopy = new SelectPatientCommand(INDEX_FIRST_PATIENT);
-        assertTrue(selectFirstCommand.equals(selectFirstCommandCopy));
-
-        // different types -> returns false
-        assertFalse(selectFirstCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(selectFirstCommand.equals(null));
-
-        // different patient -> returns false
-        assertFalse(selectFirstCommand.equals(selectSecondCommand));
-         */
-
         SortAppointmentCommand sortAppointmentCommand = new SortAppointmentCommand("name", true);
         SortAppointmentCommand sortAppointmentCommandCopy = new SortAppointmentCommand("name", true);
         SortAppointmentCommand sortAppointmentCommandDifferent = new SortAppointmentCommand("test", true);
@@ -156,6 +119,7 @@ public class SortAppointmentCommandTest {
         assertFalse(sortAppointmentCommand.equals(sortAppointmentCommandDifferent));
 
         // different order -> returns false
+        assertFalse(sortAppointmentCommand.equals(sortAppointmentCommandDifferent2));
 
     }
 }

@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CRITERIA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 
 import seedu.address.logic.commands.SortBillCommand;
-import seedu.address.logic.commands.SortPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -32,8 +31,8 @@ public class SortBillCommandParser implements Parser<SortBillCommand> {
             throw new ParseException(SortBillCommand.MESSAGE_USAGE);
         }
 
-        if (!(criteria.toLowerCase().equals("name")|| criteria.toLowerCase().equals("amount")
-                || criteria.toLowerCase().equals("date") || criteria.toLowerCase().equals("status"))) {
+        if (!(criteria.toLowerCase().equals("name") || criteria.toLowerCase().equals("amount")
+                 || criteria.toLowerCase().equals("date") || criteria.toLowerCase().equals("status"))) {
             throw new ParseException(SortBillCommand.MESSAGE_USAGE);
         }
 

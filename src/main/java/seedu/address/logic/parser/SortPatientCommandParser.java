@@ -31,8 +31,8 @@ public class SortPatientCommandParser implements Parser<SortPatientCommand> {
             throw new ParseException(SortPatientCommand.MESSAGE_USAGE);
         }
 
-        if (!(criteria.toLowerCase().equals("name")|| criteria.toLowerCase().equals("phone")
-                || criteria.toLowerCase().equals("email") || criteria.toLowerCase().equals("address"))) {
+        if (!(criteria.toLowerCase().equals("name") || criteria.toLowerCase().equals("phone")
+                 || criteria.toLowerCase().equals("email") || criteria.toLowerCase().equals("address"))) {
             throw new ParseException(SortPatientCommand.MESSAGE_USAGE);
         }
 

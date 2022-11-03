@@ -32,7 +32,7 @@ public class SortAppointmentCommandParser implements Parser<SortAppointmentComma
             throw new ParseException(SortAppointmentCommand.MESSAGE_USAGE);
         }
 
-        if (!(criteria.toLowerCase().equals("name")|| criteria.toLowerCase().equals("test")
+        if (!(criteria.toLowerCase().equals("name") || criteria.toLowerCase().equals("test")
                 || criteria.toLowerCase().equals("slot") || criteria.toLowerCase().equals("doctor"))) {
             throw new ParseException(SortAppointmentCommand.MESSAGE_USAGE);
         }

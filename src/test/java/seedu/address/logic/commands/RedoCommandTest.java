@@ -5,7 +5,6 @@ import static seedu.address.testutil.TypicalPatients.getTypicalPatientsHealthCon
 
 import org.junit.jupiter.api.Test;
 
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -22,7 +21,7 @@ public class RedoCommandTest {
         try {
             expectedModel.redo();
         } catch (CommandException e) {
-            assertEquals(e.getMessage(), "Undo cannot be done as there was no previous change in data");
+            assertEquals(e.getMessage(), "Redo cannot be done as there is no previous change in data to be restored");
         }
     }
 }
