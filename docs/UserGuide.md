@@ -96,15 +96,20 @@ Format: `help`
 
 Format: `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ [ds/DATE_AND_SLOT]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
-:bulb:**Tips:**
+:bulb:**Tips:**<br>
 
 - A patient can have any number of tags (including 0).
+
 - A patient can have any number of home-visit date and slot (including 0).
+
 - Date and slot need to be in the format of `yyyy-MM-dd,SLOT_NUMBER`, eg `2022-11-11,2`.
+
 - The slot timing is fixed and slots are only from 10am to 4pm.
+
 - **Slot 1: 10am, Slot 2: 12pm, Slot 3: 2pm, Slot 4: 4pm.** The `SLOT_NUMBER` can only be from 1 to 4.
+
 - To add a patient, type `c/P` specifically.
 
 </div>
