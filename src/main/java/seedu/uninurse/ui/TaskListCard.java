@@ -65,7 +65,7 @@ public class TaskListCard extends UiPart<Region> {
             return String.format("%s (Today)", dateString);
         }
         if (daysFromToday == 1) {
-            return String.format("%s (Tommorow)", dateString);
+            return String.format("%s (Tomorrow)", dateString);
         }
         if (daysFromToday < 0) {
             if (daysFromToday == -1) {
