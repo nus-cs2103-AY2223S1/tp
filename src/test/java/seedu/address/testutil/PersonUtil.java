@@ -41,7 +41,7 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + student.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
         sb.append(PREFIX_TELEGRAM + student.getTelegram().telegram + " ");
-        sb.append(PREFIX_MODULE + student.getTutorialModule().moduleCode + " ");
+        sb.append(PREFIX_MODULE + student.getModuleCode().moduleCode + " ");
         sb.append(PREFIX_TUTORIAL + student.getTutorialName().fullName + " ");
         sb.append(PREFIX_ATTENDANCE + String.valueOf(student.getAttendance().value) + " ");
         sb.append(PREFIX_PARTICIPATION + String.valueOf(student.getParticipation().value) + " ");

@@ -89,6 +89,18 @@ public class DatetimeRange {
     }
 
     /**
+     * Returns true if {@code DatetimeRange} overlap with each other.
+     */
+    public boolean isOverlapping(DatetimeRange other) {
+        requireNonNull(other);
+        if (other == this) {
+            return true;
+        }
+
+        return startDatetime.isBefore(other.endDatetime) && other.startDatetime.isBefore(endDatetime);
+    }
+
+    /**
      * Converts this DatetimeRange into a human-readable form.
      *
      * @return Human-readable representation of the DatetimeRange

@@ -37,10 +37,10 @@ public class TypicalConsultations {
             .withVenue("COM1-0203").withTimeslot("2022-10-31 13:00", "2022-10-31 14:00")
             .withDescription("testing").build();
     public static final Consultation CONSULTATION4 = new ConsultationBuilder().withName("Stu4").withModule("CS2103T")
-            .withVenue("COM1-0203").withTimeslot("2022-10-31 14:00", "2022-10-31 15:00")
+            .withVenue("COM1-0203").withTimeslot("2022-10-31 15:00", "2022-10-31 16:00")
             .withDescription("testing").build();
     public static final Consultation CONSULTATION5 = new ConsultationBuilder().withName("Stu5").withModule("CS2103T")
-            .withVenue("COM1-0203").withTimeslot("2022-12-31 23:00", "2023-01-01 00:30")
+            .withVenue("COM1-0203").withTimeslot("2022-12-31 23:00", "2022-12-31 23:30")
             .withDescription("testing").build();
 
     // Manually added
