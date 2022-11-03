@@ -47,7 +47,7 @@ FoodWhere (FW) is a **desktop app for managing food reviews, optimized for use v
   e.g. in `sadd n/NAME a/ADDRESS`, `NAME` and `ADDRESS` are parameters which can be used as `sadd n/John Doe Eatery a/ABC Ave`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAGS]` can be used as `n/John Doe Eatery t/opensDaily` or as `n/John Doe`.
+  e.g `n/NAME [t/TAGS]` can be used as `n/John Doe Eatery t/opendaily` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAGS]…​` can be used as ` ` (i.e. 0 times), `t/opendaily`, `t/petfriendly` etc.
@@ -85,7 +85,7 @@ Adds a stall.
 Format: `sadd n/NAME a/ADDRESS [t/TAGS]…`
 
 Example:
-* `sadd n/John Doe Eatery a/Blk 123 Bedok South t/VeryNice`
+* `sadd n/John Doe Eatery a/Blk 123 Bedok South t/verynice`
 
 ### Adding a review: `radd`
 
@@ -179,12 +179,12 @@ Format: `sfind n/KEYWORD [KEYWORDS]… t/KEYWORD [KEYWORDS]…`
 * The order of the keywords does not matter e.g. `Johns Eatery` will match `Eatery Johns`
 * Using `n/` and `t/` will search name and tag fields of stall respectively.
 * Only full words will be matched e.g. `Joh` will not match `John`, `table` or `tableFor` will not match `tableFor4`.
-* Stalls matching at least one keyword in each respective field will be returned (i.e. OR search) e.g. `n/ John Doe` will return `John Eatery`, `Doe Restaurant`
+* Stalls matching at least one keyword in each respective field will be returned (i.e. OR search) e.g. `n/John Doe` will return `John Eatery`, `Doe Restaurant`
 
 Examples:
 * `sfind n/eatery` returns `Johns eatery` and `Doe eatery`.
-* `sfind t/opensDaily veryNice` returns all stalls that has the tag `opensDaily` OR `veryNice`.
-* `sfind n/eatery t/opensDaily` returns all stalls where name includes `eatery` OR has the tag `opensDaily`.
+* `sfind t/opensDaily veryNice` returns all stalls that has the tag `opensdaily` OR `verynice`.
+* `sfind n/eatery t/opensDaily` returns all stalls where name includes `eatery` OR has the tag `opensdaily`.
 
 ### Finding a review: `rfind`
 
@@ -195,12 +195,12 @@ Format: `rfind n/KEYWORD [KEYWORD]… t/KEYWORD [KEYWORD]…`
 * The order of the keywords does not matter e.g. `Johns Eatery` will match `Eatery Johns`
 * Using `n/` and `t/` will search name and tag fields of review respectively.
 * Only full words will be matched e.g. `Joh` will not match `John`, `table` or `tableFor` will not match `tableFor4`.
-* Reviews matching at least one keyword in each respective field will be returned (i.e. OR search) e.g. `n/ John Doe` will return `John Eatery`, `Doe Restaurant`
+* Reviews matching at least one keyword in each respective field will be returned (i.e. OR search) e.g. `n/John Doe` will return `John Eatery`, `Doe Restaurant`
 
 Examples:
 * `rfind n/eatery` returns reviews `Johns eatery` and `Doe eatery`.
-* `rfind t/opensDaily veryNice` returns all reviews that has the tag `opensDaily` OR `veryNice`.
-* `rfind n/eatery t/opensDaily` returns all reviews where name includes `eatery` OR has the tag `opensDaily`.
+* `rfind t/opensDaily veryNice` returns all reviews that has the tag `opensdaily` OR `verynice`.
+* `rfind n/eatery t/opensDaily` returns all reviews where name includes `eatery` OR has the tag `opensdaily`.
 
 ### Sorting stall list: `ssort`
 
@@ -258,7 +258,7 @@ FoodWhere checks for duplicates to a limited extent.
 * Since food stalls may have generic names, stall duplicates are checked via name and address, that is if both the names and address are the same (case-insensitive).
   * e.g. The food stall named "PartyOuting" at address "North Street" and the food stall named "PartYouTing" at address "north street" are the same stall.
   * e.g. The food stall named "Mixed Veg Rice" at address "North Street" and the food stall named "Mixed Veg Rice" at address "South Street" are different stalls.
-* Reviews are considered duplicates if they are on the same stall and have the same content (case-sensitive), rating and date.
+* Reviews are considered duplicates if they are on the same stall and have the same content (case-sensitive), rating, date and set of tags.
 
 ### Saving the data
 
@@ -324,11 +324,24 @@ Should FoodWhere be unable to interpret the data file, FoodWhere will start with
 | `STALL_INDEX`  | A positive integer from 1 and the number of stalls in the stall list, inclusive                             |
 | `TAGS`         | A nonempty alphanumeric token without spaces, case insensitive                                              |
 
+## Stored data format
+
+This table highlights how the various data of the stalls and reviews are stored in the application or data file. Note that this is not the only valid way the data can be stored in the data file.
+
+| Data field     | Format                                                                                                    |
+|----------------|-----------------------------------------------------------------------------------------------------------|
+| Address        | Any ASCII text                                                                                            |
+| Content        | Any ASCII text                                                                                            |
+| Date           | DD/MM/YYYY                                                                                                |
+| Name           | Nonempty alphanumeric string with spaces, capitalisation preserved                                        |
+| Rating         | An integer from 0 to 5                                                                                    |
+| Tag            | Nonempty lowercase alphanumeric token without spaces                                                      |
+
 ## Future features (unimplemented)
 
 Attempt to use the following features could result in user confusion, an error message or accidentally typing in an unexpected valid command.
 
-* Copying stalls using commands to allow them to be pasted in an external application.
+* Copying stall/review data using commands to allow them to be pasted in an external application.
   * This would need to be handled for each field, which would need significant additional effort.
 * Showing reviews/stalls that match more of the `sfind`/`rfind` search terms first
 * Finding reviews by rating
