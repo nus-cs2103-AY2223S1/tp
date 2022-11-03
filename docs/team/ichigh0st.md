@@ -25,7 +25,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to add `Profile`s to and remove `Profile`s from an `Event`. (Pull Requests [#118](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/118), [#127](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/127))
     * What it does: Allows the user to track an event's attendees.
-    * Justification: This feature improves the user experience significantly as a user can link profiles to events and record down the attendees of an `event.
+    * Justification: This feature improves the user experience significantly as a user can link profiles to events and record down the attendees of an event.
     * Highlights: This feature affects the way data is stored and greatly increases dependency between classes so it required an in-depth analysis of design alternatives. It was challenging to write unit tests because of the dependencies.
     * Credits: Co-authored with [Kee Seow Han](https://github.com/KSHan29)
 
@@ -35,9 +35,6 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**: Updated the UI to create space for a list of `Event`s (Pull Request [#63](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/63))
   * Credits: This feature is adapted from code in [AddressBook Level-3](https://github.com/se-edu/addressbook-level3)
-
-* **Project management**:
-    *
 
 * **Documentation**:
     * User Guide:
