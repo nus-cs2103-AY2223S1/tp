@@ -50,7 +50,7 @@ ModelManager -right-> "1" CommandHistory
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+UniquePersonList ---> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
