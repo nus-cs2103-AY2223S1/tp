@@ -1,0 +1,20 @@
+{
+  "_comment": "TrackAScholar save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "applicants" : [ {
+    "name" : "Anderson",
+    "phone" : "43214321",
+    "email" : "anderson@example.com",
+    "scholarship" : "Global Merit",
+    "applicationStatus": "pending",
+    "majors" : [ "Business" ],
+    "hasPinned" : false
+  }, {
+    "name" : "Benjamin Franklin",
+    "phone" : "98769876",
+    "email" : "bennyboi@example.com",
+    "scholarship" : "Merit",
+    "applicationStatus": "accepted",
+    "majors" : [ "Computer Science", "Mathematics" ],
+    "hasPinned" : false
+  } ]
+}

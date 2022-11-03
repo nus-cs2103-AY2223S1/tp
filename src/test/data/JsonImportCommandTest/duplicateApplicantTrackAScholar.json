@@ -1,0 +1,60 @@
+{
+  "_comment": "TrackAScholar save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "applicants" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "scholarship" : "Global Merit",
+    "applicationStatus": "pending",
+    "majors" : [ "Business" ],
+    "hasPinned" : false
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "scholarship" : "Merit",
+    "applicationStatus": "accepted",
+    "majors" : [ "Computer Science", "Mathematics" ],
+    "hasPinned" : false
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "email" : "heinz@example.com",
+    "scholarship" : "Sports",
+    "applicationStatus": "pending",
+    "majors" : [ ],
+    "hasPinned" : false
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "email" : "cornelia@example.com",
+    "scholarship" : "Arts",
+    "applicationStatus": "rejected",
+    "majors" : [ "friends" ],
+    "hasPinned" : false
+  }, {
+    "name" : "Elle Meyer",
+    "phone" : "9482224",
+    "email" : "werner@example.com",
+    "scholarship" : "Global Merit",
+    "applicationStatus": "pending",
+    "majors" : [ ],
+    "hasPinned" : false
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "email" : "lydia@example.com",
+    "scholarship" : "Global Merit",
+    "applicationStatus": "pending",
+    "majors" : [ ],
+    "hasPinned" : false
+  }, {
+    "name" : "George Best",
+    "phone" : "9482442",
+    "email" : "anna@example.com",
+    "scholarship" : "Global Merit",
+    "applicationStatus": "accepted",
+    "majors" : [ ],
+    "hasPinned" : false
+  } ]
+}

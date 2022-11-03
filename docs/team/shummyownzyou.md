@@ -7,20 +7,28 @@ title: ShummyOwnzYou's Project Portfolio Page
 
 Given below are my contributions to the project.
 
-* **New Feature**: `to be added soon`
+* **New Feature**: Added `FilterCommand` and `ApplicationStatusPredicate` class under `applicant` package with Benjy
 
-* **New Feature**: `to be added soon`
+* **New Feature**: Added `SortCommand` and its relevant parser, test cases and `Comparator` in `Applicant`. 
 
-* **Code contributed**: `to be added soon`
+* **Code contributed**: Refer to https://github.com/AY2223S1-CS2103T-W10-3/tp/tree/master
+  and https://github.com/AY2223S1-CS2103T-W10-3/tp/pulls?q=is%3Apr+author%3Ashummyownzyou+.
 
-* **Project management**: `to be added soon`
+* **Enhancements to existing features**: 
+  * Added `StatusPredicate` class under `model` with Benjy.
+  * Refactored `AddressBook` to `TrackAScholar` and `Person` to `Applicant`, 
+along with all related methods and parameter names.
+  * Updated `LogicManager` to display pinned applicants on the UI.
+  * Changed `Unpin` command to unpin by name instead of index.
 
-* **Enhancements to existing features**: `to be added soon`
+* **Documentation**:
+    * User Guide: Added pin command in features.
+    * Developer Guide: Added the sort command implementation, sort command
+    sequence diagram, sort command activity diagram and Use Case 5.
 
-* **Documentation**: `to be added soon`
-    * User Guide:
-    * Developer Guide:
+* **Community**: 
+  * Reviewed several PRs, including https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/124
+  and https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/111.
+  * Found several bugs for CS2103T-T17-1 and suggested improvements.
 
-* **Community**: `to be added soon`
 
-* **Tools**: `to be added soon`

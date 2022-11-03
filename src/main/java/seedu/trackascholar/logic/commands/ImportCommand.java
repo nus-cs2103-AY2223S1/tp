@@ -33,13 +33,31 @@ public class ImportCommand extends Command {
     public static final String MESSAGE_INVALID_FILE_DATA_FORMAT = "Invalid file data format!";
     public static final String MESSAGE_SUCCESS = "Imported new file";
 
-    private final Path importedFilePath = Paths.get("data", "trackAScholarImport.json");
+    private final Path importedFilePath;
     private final String str;
 
+    /**
+     * Create a new instance of ImportCommand which will either replace or keep duplicate applicants
+     * in the current model
+     *
+     * @param str to input 'k' or 'r'
+     */
     public ImportCommand(String str) {
         this.str = str;
+        importedFilePath = Paths.get("data", "trackAScholarImport.json");
     }
 
+    /**
+     * ImportCommand only used for testing to import specific files instead of the expected file
+     *
+     * @param str to input 'k' or 'r'
+     * @param newPath filePath of the imported file
+     */
+    public ImportCommand(String str, Path newPath) {
+        assert newPath != null;
+        this.str = str;
+        importedFilePath = newPath;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -68,4 +86,14 @@ public class ImportCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS));
 
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ImportCommand // instanceof handles nulls
+                && this.str.equals(((ImportCommand) other).str) // check str
+                && this.importedFilePath.equals(((ImportCommand) other).importedFilePath)); // check path
+    }
+
+
 }
