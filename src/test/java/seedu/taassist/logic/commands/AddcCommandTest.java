@@ -127,7 +127,7 @@ public class AddcCommandTest {
 
     //==================================== Model Stubs ===============================================================
 
-    private class ModelStubWithOneModuleClass extends ModelStub {
+    private static class ModelStubWithOneModuleClass extends ModelStub {
         private final ModuleClass moduleClass;
 
         public ModelStubWithOneModuleClass(ModuleClass moduleClass) {
@@ -149,6 +149,12 @@ public class AddcCommandTest {
         @Override
         public void addModuleClasses(Set<ModuleClass> moduleClasses) {
             requireAllNonNull(moduleClasses);
+        }
+
+        @Override
+        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
+            return moduleClass;
         }
     }
 }

@@ -1,7 +1,9 @@
 package seedu.taassist.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
@@ -19,6 +21,7 @@ import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.stubs.ModelStub;
+import seedu.taassist.model.stubs.ModelStubWithNoModuleClass;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.testutil.StudentBuilder;
 
@@ -26,7 +29,7 @@ class UnassignCommandTest {
 
     @Test
     public void execute_noModuleClass_throwsCommandException() {
-        ModelStubWithNoModuleClasses modelStub = new ModelStubWithNoModuleClasses();
+        ModelStubWithNoModuleClass modelStub = new ModelStubWithNoModuleClass();
         List<Index> indices = new ArrayList<>();
 
         UnassignCommand unassignCommand = new UnassignCommand(indices, CS1101S);
@@ -113,26 +116,10 @@ class UnassignCommandTest {
     }
 
     /**
-     * A Model stub that pretends to have no module classes.
-     */
-    private class ModelStubWithNoModuleClasses extends ModelStub {
-
-        @Override
-        public boolean hasModuleClass(ModuleClass moduleClass) {
-            return false;
-        }
-
-        @Override
-        public ObservableList<ModuleClass> getModuleClassList() {
-            return FXCollections.observableArrayList();
-        }
-    }
-
-    /**
      * A Model stub with one filtered student with an assigned class: CS1101S.
      * Always says it has a module.
      */
-    private class ModelStubOneStudentAndModule extends ModelStub {
+    private static class ModelStubOneStudentAndModule extends ModelStub {
 
         private Student student = new StudentBuilder(ALICE).withModuleClasses(CS1101S).build();
 
@@ -155,13 +142,18 @@ class UnassignCommandTest {
         public boolean hasModuleClass(ModuleClass moduleClass) {
             return true;
         }
+
+        @Override
+        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            return moduleClass;
+        }
     }
 
     /**
      * Model stub with multiple filtered students with one same assigned class.
      * Always says it has a module.
      */
-    private class ModelStubMultipleStudentsOneModule extends ModelStub {
+    private static class ModelStubMultipleStudentsOneModule extends ModelStub {
 
         private List<Student> students = new ArrayList<>();
 
@@ -183,12 +175,19 @@ class UnassignCommandTest {
 
         @Override
         public void setStudent(Student target, Student editedStudent) {
+            requireAllNonNull(target, editedStudent);
             students.set(students.indexOf(target), editedStudent);
         }
 
         @Override
         public boolean hasModuleClass(ModuleClass moduleClass) {
             return true;
+        }
+
+        @Override
+        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
+            return moduleClass;
         }
     }
 }

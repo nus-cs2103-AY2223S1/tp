@@ -24,7 +24,7 @@ public class AddsCommand extends Command {
     public static final String COMMAND_WORD = "adds";
 
     public static final String MESSAGE_USAGE = "> Creates a new session for a class.\n"
-            + "Paramaters: "
+            + "Parameters: "
             + PREFIX_SESSION + "SESSION_NAME "
             + "[" + PREFIX_DATE + "DATE]\n"
             + "Example: " + COMMAND_WORD + " "

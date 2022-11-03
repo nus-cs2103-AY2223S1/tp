@@ -2,9 +2,7 @@ package seedu.taassist.model.session;
 
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import seedu.taassist.model.uniquelist.Identity;
 
@@ -35,21 +33,6 @@ public class SessionData implements Identity<SessionData>, Comparable<SessionDat
 
     public double getGrade() {
         return grade;
-    }
-
-    /**
-     * Returns a list of session data by updating {@code oldSessionDataList} where the
-     * specified {@code session} has specified {@code grade}.
-     * If the {@code session} is not found, a new session with the {@code grade} is created.
-     */
-    public static List<SessionData> getUpdatedSessionDataList(List<SessionData> oldSessionDataList,
-            Session session, double grade) {
-        requireAllNonNull(oldSessionDataList, session);
-        List<SessionData> newSessionDataList = oldSessionDataList.stream()
-                .filter(sessionData -> !sessionData.getSession().equals(session))
-                .collect(Collectors.toList());
-        newSessionDataList.add(new SessionData(session, grade));
-        return newSessionDataList;
     }
 
     @Override

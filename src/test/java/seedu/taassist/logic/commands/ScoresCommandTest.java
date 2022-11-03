@@ -17,6 +17,7 @@ import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.stubs.ModelStub;
+import seedu.taassist.model.stubs.ModelStubNeverInFocusMode;
 
 class ScoresCommandTest {
 
@@ -28,7 +29,7 @@ class ScoresCommandTest {
     @Test
     void execute_notInFocusMode_throwsException() {
         ScoresCommand scoresCommand = new ScoresCommand(new Session(VALID_SESSION_LAB1));
-        ModelStubNotInFocusMode modelStub = new ModelStubNotInFocusMode();
+        ModelStubNeverInFocusMode modelStub = new ModelStubNeverInFocusMode();
         String expectedMessage =
                 String.format(Messages.MESSAGE_NOT_IN_FOCUS_MODE, ScoresCommand.COMMAND_WORD);
         assertThrows(CommandException.class, expectedMessage, () -> scoresCommand.execute(modelStub));
@@ -85,28 +86,10 @@ class ScoresCommandTest {
         assertFalse(scoresCommand.equals(new ScoresCommand(differentSession)));
     }
 
-
-
-    /**
-     * A Model stub that pretends to not be in focus mode
-     */
-    private class ModelStubNotInFocusMode extends ModelStub {
-
-        @Override
-        public boolean isInFocusMode() {
-            return false;
-        }
-
-        @Override
-        public ModuleClass getFocusedClass() {
-            return null;
-        }
-    }
-
     /**
      * A Model stub that pretends to be in focus mode.
      */
-    private class ModelStubInFocusMode extends ModelStub {
+    private static class ModelStubInFocusMode extends ModelStub {
 
         private ModuleClass focusedClass;
 

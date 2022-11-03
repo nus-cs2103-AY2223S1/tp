@@ -15,13 +15,19 @@ should be used. Start by looking at the [quick start](#quick-start) guide to get
 
 
 ## Quick Start
-1. Ensure you have **Java `11`** or above installed in your Computer.
+1. Ensure you have **Java `11`** or above installed in your computer.
 2. Download the latest `taassist.jar` from [here](https://github.com/AY2223S1-CS2103T-T12-1/tp/releases/tag/v1.3).
 3. **Copy** the file to the folder you want to use as the _home folder_ for your TA-Assist.
 4. **Double-click** the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the
    app contains sample data.
 
 ![sample gui](images/sampleGui.png)
+
+{% include important.html content="
+
+If you encounter any issues in launching and using the app, feel free refer to the [FAQ section](#frequently-asked-questions-faq)!
+
+" %}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -51,7 +57,7 @@ be run in focus mode. On the other hand, commands that are available only in foc
 
 Let's first begin with the commands available in the default mode.
 
-</div>
+
 
 | Command    | Format                                                             |
 | ---------- |--------------------------------------------------------------------|
@@ -146,11 +152,18 @@ Format: `find KEYWORD...
 * To clear the current search, use the `list` command.
 
 Examples:
-* `find John` finds students with **John** in their name (case-insensitive), i.e. **John Doe**, **John Brown**, **harry jOHn**, etc.
-* `find ben chris` finds students with either **ben** or a **chris** in their name, i.e. **chris ben**, **ChRIs wonders**, **bEn ten**, etc.
+* `find bert` finds students with **bert** in their name (case-insensitive), i.e. **Edbert Geraldy**, **Bert Hendrick**, **Gerard Albert**, etc.
+* `find ben chris` finds students with either **ben** or a **chris** in their name, i.e. **chris ben**, **wonders ChRIs**, **bEn ten**, etc.
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+{% include tip.html content="
+
+The `find` command performs its search over the currently displayed student list and replaces the displayed list with
+its search result.  If you need to revert to the original list of all students, you may use the [`list` command](#list-all-students-list).
+
+" %}
 
 ### List all students: `list`
 
@@ -179,8 +192,12 @@ Adds one or more classes to TA-Assist.
 
 Format: `addc c/CLASS_NAME...`
 * Add classes with specified names. 
-* The class names are **case-insensitive** (i.e. if a class with a name **CS1101S** already exists, `addc c/cs1101s` does not add a
-new class `cs1101s`).
+* The class names are **case-insensitive**.
+  * e.g. If a class with a name **CS1101S** already exists, `addc c/cs1101s` does not add a
+  new class `cs1101s`.
+* If there are duplicate class names, the class name is taken to be the last valid class parameter `c/`.
+  * e.g. If a class with a name **CS1101S** does not exist, `addc c/CS1101S c/cs1101s` adds one class with the name
+  **cs1101s**.
 
 Examples:
 * `addc c/CS2103T c/CS2100` adds the classes named **CS2103T** and **CS2100**.
@@ -210,7 +227,7 @@ Assigns students to a class.
 
 Format: `assign INDEX... c/CLASS_NAME`
 * Assigns students specified by the given indices to an existing `CLASS_NAME` class.
-* The class names are **case-insensitive**.
+* The class name is **case-insensitive**.
 
 Example:
 * `list` followed by `assign 1 3 5 6 c/CS1231S` assigns the **1st**, **3rd**, **5th** and **6th** student in the displayed student list to the **CS1231S** class.
@@ -225,7 +242,7 @@ Unassigns students from a class.
 
 Format: `unassign INDEX... c/CLASS_NAME`
 * Unassigns students specified by the given indices from an existing `CLASS_NAME` class.
-* The class names are **case-insensitive**.
+* The class name is **case-insensitive**.
 
 Example:
 * `list` followed by `unassign 1 3 5 6 c/CS1231S` unassigns the **1st**, **3rd**, **5th** and **6th** student in the displayed student list from the **CS1231S** class.
@@ -291,7 +308,6 @@ The following commands are only available in [**focus mode**](#modes).
 | `grade`   | `grade INDEX... s/SESSION_NAME g/GRADE_VALUE` |
 | `scores`  | `scores s/SESSION_NAME`                       |
 | `view`    | `view INDEX`                                  |
-| `lists`   | `lists`                                       |
 | `export`  | `export`                                      |
 | `unfocus` | `unfocus`                                     |
 
@@ -332,7 +348,11 @@ overall grade for the module CS2100.
 Format: `adds s/SESSION_NAME... [d/DATE]`
 * Creates new sessions with names `SESSION_NAME` on the same `DATE`. If the `DATE` field is empty, the current date is used instead.
 * `DATE` field should follow the format `YYYY-MM-DD`.
-* The session names are **case-insensitive** (i.e. if a session **Lab 1** already exists, `adds s/lab 1` does not create a new session **lab 1**). 
+* The session names are **case-insensitive**.
+  * e.g. If a session **Lab 1** already exists, `adds s/lab 1` does not create a new session **lab 1**. 
+* If there are session names, the session name is taken to be the last valid session parameter `s/`.
+  * e.g. If a session with a name **LAB1** does not exist, `adds s/LAB1 s/lab1` adds one session with the name
+    **lab1**.
 
 Example:
 - `adds s/Lab1 s/Tutorial1 d/2022-08-11` creates sessions `Lab1` and `Tutorial1` on 11 August 2022.
@@ -388,7 +408,7 @@ Example:
   <img src="images/scoresAssignment1Result.png" width="600"/>
 
   In the above example,
-  * **Bernice Yu** has been allocated a score of **10.0** for **tutorial 1** 
+  * **Bernice Yu** has been allocated a score of **10.0** for **tutorial 1**.
   * **tutorial 1** for **Alex Yeoh**, **Charlotte Oliveiro** and **Irfan Ibrahim** have not been graded, hence their cells have been marked red.
 
 ### View session grades of student: `view`
@@ -404,17 +424,6 @@ Format: `view INDEX`
 
 Example:
 * `grade 2 s/Lab 1 g/93` then `view 2` returns `1. Lab 1: 93`, which is the grade of the student at index 2 for the session **Lab 1**.
-
-### List all sessions: `lists`
-
-{% include note.html content="
-
-Lists the sessions that have been created for the focused class.
-
-" %}
-
-Format: `lists`
-* Lists the sessions that have been created for the focused class.
 
 ### Export class data: `export`
 
@@ -453,7 +462,16 @@ Exits focus mode.
 Format: `unfocus`
 * Alternatively, you can exit focus mode by clicking on the button shown [here](#enter-focus-mode-focus).
 
-## FAQ
-**Q**: How do I transfer my data to another computer?
+## Frequently Asked Questions (FAQ)
+
+**Q**: How do I install Java?
+
+**A**: You may refer to [Oracle's JDK Installation Guide](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A).
+
+**Q**: I double-clicked the JAR file but was unable to start the app. What do I do?
+
+**A**: Open your preferred terminal and navigate to the directory the JAR file is located in. Then type in `java -jar TaAssist.jar` to run the application.
+
+**Q**: How do I transfer my data to another Computer?
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TA-Assist home folder.

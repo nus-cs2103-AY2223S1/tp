@@ -2,63 +2,25 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":TaAssistParser" as TaAssistParser LOGIC_COLOR
-participant ":FocusCommandParser" as FocusCommandParser LOGIC_COLOR
 participant "c:FocusCommand" as FocusCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant "m:ModuleClass" as ModuleClass MODEL_COLOR
 end box
 
-[-> LogicManager : execute("focus c/CS1101S")
-activate LogicManager
-
-LogicManager -> TaAssistParser : parseCommand("focus c/CS1101S")
-activate TaAssistParser
-
-create FocusCommandParser
-TaAssistParser -> FocusCommandParser
-activate FocusCommandParser
-
-FocusCommandParser --> TaAssistParser
-deactivate FocusCommandParser
-
-TaAssistParser -> FocusCommandParser: parse("CS1101S")
-activate FocusCommandParser
-
-
-create ModuleClass
-FocusCommandParser -> ModuleClass
-activate ModuleClass
-
-ModuleClass --> FocusCommandParser: m
-deactivate ModuleClass
-
-
-create FocusCommand
-FocusCommandParser -> FocusCommand: m
+[-> FocusCommand: execute(model)
 activate FocusCommand
 
-FocusCommand --> FocusCommandParser: c
-deactivate FocusCommand
+FocusCommand -> Model: hasModuleClass(toBeFocused)
+activate Model
 
-FocusCommandParser --> TaAssistParser: c
-deactivate FocusCommandParser
-FocusCommandParser -[hidden]-> TaAssistParser
-destroy FocusCommandParser
+Model --> FocusCommand: classExists
+deactivate Model
 
-TaAssistParser --> LogicManager: c
-deactivate TaAssistParser
-
-LogicManager -> FocusCommand: execute()
-activate FocusCommand
-
-opt module class exists
-    FocusCommand -> Model: enterFocusMode(m)
+opt classExists is true
+    FocusCommand -> Model: enterFocusMode(toBeFocused)
     activate Model
     Model --> FocusCommand
     deactivate Model
@@ -71,10 +33,7 @@ activate CommandResult
 CommandResult --> FocusCommand
 deactivate CommandResult
 
-FocusCommand --> LogicManager: result
+FocusCommand -->[: result
 deactivate FocusCommand
-
-LogicManager -->[
-deactivate LogicManager
 
 @enduml

@@ -137,6 +137,7 @@ public class Student implements Identity<Student>, Comparable<Student> {
     /**
      * Returns a new student by updating this student's grade for the
      * given {@code session} in {@code moduleClass}.
+     * Assumption: The student is assigned to the module class, and the session exists in the module class.
      */
     public Student updateGrade(ModuleClass moduleClass, Session session, double grade) {
         requireAllNonNull(moduleClass, session);

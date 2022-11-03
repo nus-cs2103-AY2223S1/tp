@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.moduleclass.exceptions.ModuleClassNotFoundException;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.UniqueList;
@@ -128,7 +129,9 @@ public class TaAssist implements ReadOnlyTaAssist {
      */
     public void addModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
-        moduleClasses.add(moduleClass);
+        if (!moduleClasses.contains(moduleClass)) {
+            moduleClasses.add(moduleClass);
+        }
     }
 
     /**
@@ -162,6 +165,14 @@ public class TaAssist implements ReadOnlyTaAssist {
         setStudents(updatedStudents);
     }
 
+    /**
+     * Returns an existing module class with the same name as {@code moduleClass}.
+     */
+    public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+        requireNonNull(moduleClass);
+        Optional<ModuleClass> foundModuleClass = moduleClasses.findElement(moduleClass);
+        return foundModuleClass.orElseThrow(ModuleClassNotFoundException::new);
+    }
 
     /**
      * Adds the {@code sessions} to the {@code moduleClass}.
@@ -170,7 +181,7 @@ public class TaAssist implements ReadOnlyTaAssist {
         requireAllNonNull(moduleClass, sessions);
         ModuleClass oldModuleClass = moduleClass;
         for (Session session: sessions) {
-            moduleClass = moduleClass.addSession(session);;
+            moduleClass = moduleClass.addSession(session);
         }
         setModuleClass(oldModuleClass, moduleClass);
         return moduleClass;

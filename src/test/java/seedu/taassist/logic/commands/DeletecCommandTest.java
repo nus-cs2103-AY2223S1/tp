@@ -28,6 +28,7 @@ import seedu.taassist.model.ModelManager;
 import seedu.taassist.model.UserPrefs;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.stubs.ModelStub;
+import seedu.taassist.model.stubs.ModelStubWithNoModuleClass;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.UniqueList;
 import seedu.taassist.model.uniquelist.exceptions.ElementNotFoundException;
@@ -145,46 +146,6 @@ public class DeletecCommandTest {
 
     //==================================== Model Stubs ===============================================================
 
-    private static class ModelStubWithNoModuleClass extends ModelStub {
-
-        @Override
-        public void removeModuleClasses(Collection<ModuleClass> moduleClasses) {
-            requireAllNonNull(moduleClasses);
-        }
-
-        @Override
-        public void removeModuleClass(ModuleClass moduleClass) {
-            requireNonNull(moduleClass);
-        }
-
-        @Override
-        public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
-            requireAllNonNull(moduleClasses);
-            return false;
-        }
-
-        @Override
-        public boolean hasModuleClass(ModuleClass moduleClass) {
-            requireNonNull(moduleClass);
-            return false;
-        }
-
-        @Override
-        public ObservableList<ModuleClass> getModuleClassList() {
-            return new UniqueList<ModuleClass>().asUnmodifiableObservableList();
-        }
-
-        @Override
-        public ObservableList<Student> getStudentList() {
-            return new UniqueList<Student>().asUnmodifiableObservableList();
-        }
-
-        @Override
-        public boolean isInFocusMode() {
-            return false;
-        }
-    }
-
     private static class ModelStubWithFixedModuleClasses extends ModelStub {
         private Set<ModuleClass> moduleClasses = new HashSet<>(Arrays.asList(CS1101S, CS1231S));
 
@@ -207,6 +168,11 @@ public class DeletecCommandTest {
         @Override
         public ObservableList<Student> getStudentList() {
             return new UniqueList<Student>().asUnmodifiableObservableList();
+        }
+
+        @Override
+        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            return moduleClass;
         }
 
         @Override
@@ -266,7 +232,14 @@ public class DeletecCommandTest {
 
         @Override
         public void setStudent(Student oldStudent, Student newStudent) {
+            requireAllNonNull(oldStudent, newStudent);
             this.student = newStudent;
+        }
+
+        @Override
+        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
+            return moduleClass;
         }
 
         @Override
@@ -313,6 +286,11 @@ public class DeletecCommandTest {
         public void removeModuleClasses(Collection<ModuleClass> moduleClasses) {
             requireAllNonNull(moduleClasses);
             moduleClasses.forEach(this::removeModuleClass);
+        }
+
+        @Override
+        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            return moduleClass;
         }
     }
 }

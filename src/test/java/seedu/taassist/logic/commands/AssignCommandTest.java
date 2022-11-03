@@ -1,7 +1,9 @@
 package seedu.taassist.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
@@ -19,6 +21,7 @@ import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.stubs.ModelStub;
+import seedu.taassist.model.stubs.ModelStubWithNoModuleClass;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.testutil.StudentBuilder;
 
@@ -26,7 +29,7 @@ class AssignCommandTest {
 
     @Test
     public void execute_noModuleClass_throwsCommandException() {
-        ModelStubWithNoModuleClasses modelStub = new ModelStubWithNoModuleClasses();
+        ModelStubWithNoModuleClass modelStub = new ModelStubWithNoModuleClass();
         List<Index> indices = new ArrayList<>();
 
         AssignCommand assignCommand = new AssignCommand(indices, CS1101S);
@@ -46,7 +49,6 @@ class AssignCommandTest {
 
         AssignCommand assignCommand = new AssignCommand(indices, CS1101S);
         String expectedMessage = Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
-
         assertThrows(CommandException.class, expectedMessage, () -> assignCommand.execute(modelStub));
     }
 
@@ -105,25 +107,9 @@ class AssignCommandTest {
     }
 
     /**
-     * A Model stub that pretends to have no module classes.
-     */
-    private class ModelStubWithNoModuleClasses extends ModelStub {
-
-        @Override
-        public boolean hasModuleClass(ModuleClass moduleClass) {
-            return false;
-        }
-
-        @Override
-        public ObservableList<ModuleClass> getModuleClassList() {
-            return FXCollections.observableArrayList();
-        }
-    }
-
-    /**
      * A Model stub with one filtered student. Always says it has a module.
      */
-    private class ModelStubWithOneStudent extends ModelStub {
+    private static class ModelStubWithOneStudent extends ModelStub {
 
         // ALICE with no module classes
         private Student student = new StudentBuilder(ALICE).withModuleClasses().build();
@@ -135,19 +121,27 @@ class AssignCommandTest {
 
         @Override
         public void setStudent(Student target, Student editedStudent) {
+            requireAllNonNull(target, editedStudent);
             student = editedStudent;
         }
 
         @Override
         public boolean hasModuleClass(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
             return true;
+        }
+
+        @Override
+        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
+            return moduleClass;
         }
     }
 
     /**
      * Model stub with multiple filtered students. Always says it has a module.
      */
-    private class ModelStubWithMultipleStudents extends ModelStub {
+    private static class ModelStubWithMultipleStudents extends ModelStub {
 
         private List<Student> students = new ArrayList<>();
 
@@ -164,12 +158,20 @@ class AssignCommandTest {
 
         @Override
         public void setStudent(Student target, Student editedStudent) {
+            requireAllNonNull(target, editedStudent);
             students.set(students.indexOf(target), editedStudent);
         }
 
         @Override
         public boolean hasModuleClass(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
             return true;
+        }
+
+        @Override
+        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
+            return moduleClass;
         }
     }
 }

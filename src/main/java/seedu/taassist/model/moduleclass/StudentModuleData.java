@@ -18,6 +18,8 @@ import seedu.taassist.model.uniquelist.UniqueList;
  */
 public class StudentModuleData implements Identity<StudentModuleData>, Comparable<StudentModuleData> {
 
+    private static final double DUMMY_GRADE = 0.0;
+
     private final ModuleClass moduleClass;
     private final UniqueList<SessionData> sessionDataList = new UniqueList<>();
 
@@ -54,16 +56,17 @@ public class StudentModuleData implements Identity<StudentModuleData>, Comparabl
      */
     public Optional<SessionData> findSessionData(Session target) {
         requireNonNull(target);
-        return sessionDataList.findElement(new SessionData(target, 0.0));
+        return sessionDataList.findElement(new SessionData(target, DUMMY_GRADE));
     }
 
     /**
      * Returns a new {@code StudentModuleData} by removing the given session from the list of session data.
+     * If the session is not present, the original {@code StudentModuleData} is returned.
      */
     public StudentModuleData removeSession(Session session) {
         requireNonNull(session);
         List<SessionData> newSessionDataList = sessionDataList.asUnmodifiableObservableList().stream()
-                .filter(sessionData -> !sessionData.getSession().equals(session))
+                .filter(sessionData -> !sessionData.getSession().isSame(session))
                 .collect(Collectors.toList());
         return new StudentModuleData(moduleClass, newSessionDataList);
     }
@@ -71,6 +74,7 @@ public class StudentModuleData implements Identity<StudentModuleData>, Comparabl
     /**
      * Returns a new {@code StudentModuleData} by updating the grade in the given {@code session}.
      * If the session does not exist in the list of session data, a new session data is added.
+     * Assumption: the session exists in the module class.
      */
     public StudentModuleData updateGrade(Session session, double grade) {
         requireAllNonNull(session);

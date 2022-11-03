@@ -21,7 +21,7 @@ public class AddcCommand extends Command {
 
     public static final String MESSAGE_USAGE = "> Adds classes to TA-Assist.\n"
             + "Parameters: "
-            + PREFIX_MODULE_CLASS + "CLASS_NAME\n"
+            + PREFIX_MODULE_CLASS + "CLASS_NAME...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_CLASS + "CS1231" + " "
             + PREFIX_MODULE_CLASS + "CS1101S";
@@ -47,7 +47,8 @@ public class AddcCommand extends Command {
 
         for (ModuleClass moduleClass : moduleClasses) {
             if (model.hasModuleClass(moduleClass)) {
-                duplicateClasses.add(moduleClass);
+                ModuleClass existingModuleClass = model.getModuleClassWithSameName(moduleClass);
+                duplicateClasses.add(existingModuleClass);
             } else {
                 newClasses.add(moduleClass);
             }
