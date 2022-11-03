@@ -15,7 +15,7 @@ import seedu.classify.model.student.NamePredicate;
 import seedu.classify.model.student.Student;
 
 /**
- * Deletes an existing student record from the class list, using the student’s name or the student’s ID.
+ * Deletes an existing student record from the list, using the student’s name or ID.
  */
 public class DeleteCommand extends Command {
 

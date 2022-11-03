@@ -13,6 +13,7 @@ import seedu.classify.model.student.Id;
 import seedu.classify.model.student.IdPredicate;
 import seedu.classify.model.student.NameContainsKeywordsPredicate;
 
+//@@author minjiunn
 public class FindCommandParserTest {
 
     private FindCommandParser parser = new FindCommandParser();

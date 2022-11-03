@@ -48,6 +48,7 @@ import seedu.classify.model.student.Phone;
 import seedu.classify.model.student.Student;
 import seedu.classify.testutil.StudentBuilder;
 
+//@@author linuschancs
 public class AddStudentCommandParserTest {
     private AddStudentCommandParser parser = new AddStudentCommandParser();
 
