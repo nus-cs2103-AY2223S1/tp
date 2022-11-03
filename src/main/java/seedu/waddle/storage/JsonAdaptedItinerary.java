@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.waddle.commons.exceptions.IllegalValueException;
 import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
+import seedu.waddle.model.item.exceptions.DuplicateItemException;
 import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
@@ -140,13 +141,6 @@ class JsonAdaptedItinerary {
 
         Itinerary itinerary = new Itinerary(modelName, modelCountry, modelStartDate, modelDuration,
                 modelPeople, modelBudget);
-        for (JsonAdaptedItem jsonAdaptedItem : items) {
-            Item item = jsonAdaptedItem.toModelType();
-            if (itinerary.hasItem(item)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_ITEM);
-            }
-            itinerary.addItem(item);
-        }
 
         final List<Day> modelDays = new ArrayList<>();
         for (JsonAdaptedDay jsonAdaptedDay : days) {
@@ -155,6 +149,15 @@ class JsonAdaptedItinerary {
         }
         itinerary.setDays(modelDays);
         itinerary.calculateSpending();
+
+        for (JsonAdaptedItem jsonAdaptedItem : items) {
+            Item item = jsonAdaptedItem.toModelType();
+            try {
+                itinerary.addItem(item);
+            } catch (DuplicateItemException e) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ITEM);
+            }
+        }
 
         return itinerary;
     }
