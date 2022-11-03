@@ -27,8 +27,12 @@ public class DeleteGroupCommandParser implements Parser<DeleteGroupCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteGroupCommand.MESSAGE_USAGE));
         }
 
-        GroupName name = ParserUtil.parseGroupName(argMultimap.getValue(PREFIX_GROUP).get());
-
+        GroupName name;
+        try {
+            name = ParserUtil.parseGroupName(argMultimap.getValue(PREFIX_GROUP).get());
+        } catch (ParseException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
+        }
         Group group = new Group(name, new HashSet<>());
 
         return new DeleteGroupCommand(group);

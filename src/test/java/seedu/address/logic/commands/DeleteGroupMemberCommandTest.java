@@ -11,7 +11,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonGroup;
 import seedu.address.model.person.testutil.PersonBuilder;
 
 /**
@@ -23,12 +25,12 @@ public class DeleteGroupMemberCommandTest {
     private Model model = new ModelManager(new AddressBook(getTypicalAddressBook()), new UserPrefs());
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DeleteGroupMemberCommand("CS2101", null));
+        assertThrows(NullPointerException.class, () -> new DeleteGroupMemberCommand(new PersonGroup("CS2101"), null));
     }
 
     @Test
     public void constructor_nullGroup_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DeleteGroupMemberCommand(null, "nameHere"));
+        assertThrows(NullPointerException.class, () -> new DeleteGroupMemberCommand(null, new Name("nameHere")));
     }
 
     @Test
@@ -36,7 +38,7 @@ public class DeleteGroupMemberCommandTest {
         Person personToAddGroup = model.getPersonWithName(CARL.getName()).get(0);
         Person editedPerson = new PersonBuilder(personToAddGroup).build();
         DeleteGroupMemberCommand deleteGroupMemberCommand =
-                new DeleteGroupMemberCommand("Alpha", CARL.getName().fullName);
+                new DeleteGroupMemberCommand(new PersonGroup("Alpha"), CARL.getName());
 
         String expectedMessage = String.format(DeleteGroupMemberCommand.MESSAGE_INVALID_GROUP);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -49,7 +51,7 @@ public class DeleteGroupMemberCommandTest {
         Person personToAddGroup = model.getPersonWithName(CARL.getName()).get(0);
         Person editedPerson = new PersonBuilder(personToAddGroup).build();
         DeleteGroupMemberCommand deleteGroupMemberCommand =
-                new DeleteGroupMemberCommand("Alpha", "Bob");
+                new DeleteGroupMemberCommand(new PersonGroup("Alpha"), new Name("Bob"));
 
         String expectedMessage = String.format(DeleteGroupMemberCommand.MESSAGE_INVALID_PERSON);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
