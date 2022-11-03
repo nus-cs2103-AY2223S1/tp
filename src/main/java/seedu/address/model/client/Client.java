@@ -122,6 +122,13 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     }
 
     /**
+     * Checks if this client has a valid id.
+     */
+    public boolean hasValidId() {
+        return this.clientId.isValid();
+    }
+
+    /**
      * Represents an Empty Client.
      */
     public static class EmptyClient extends Client {

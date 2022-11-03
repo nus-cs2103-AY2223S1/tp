@@ -65,6 +65,12 @@ public class AddClientCommand extends ClientCommand {
         }
 
         Client toAddClient = toAddClientWithoutModel.apply(model);
+
+        if (!toAddClient.hasValidId()) {
+            throw new CommandException(ID_OVERFLOW);
+        }
+
+
         Project toModifyProject = model.getProjectById(projectId.getIdInt());
 
         if (!toModifyProject.getClient().isEmpty()) {
