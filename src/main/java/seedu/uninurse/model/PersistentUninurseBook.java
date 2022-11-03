@@ -56,26 +56,26 @@ public class PersistentUninurseBook {
      * Reverts to an earlier version of UninurseBook.
      */
     public CommandResult undo() {
-        CommandResult ret = new CommandResult("", CommandType.EMPTY);
+        CommandResult commandResult = new CommandResult("", CommandType.EMPTY);
         if (canUndo()) {
-            ret = uninurseBookVersions.get(currentVersion).getCommandResult();
+            commandResult = uninurseBookVersions.get(currentVersion).getCommandResult();
             currentVersion--;
             handleChange();
         }
-        return ret;
+        return commandResult;
     }
 
     /**
      * Reverts to a later version of UninurseBook.
      */
     public CommandResult redo() {
-        CommandResult ret = new CommandResult("", CommandType.EMPTY);
+        CommandResult commandResult = new CommandResult("", CommandType.EMPTY);
         if (canRedo()) {
             currentVersion++;
             handleChange();
-            ret = uninurseBookVersions.get(currentVersion).getCommandResult();
+            commandResult = uninurseBookVersions.get(currentVersion).getCommandResult();
         }
-        return ret;
+        return commandResult;
     }
 
     /**

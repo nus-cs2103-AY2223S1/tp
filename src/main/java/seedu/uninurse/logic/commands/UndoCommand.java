@@ -22,7 +22,7 @@ public class UndoCommand extends Command {
             throw new CommandException(MESSAGE_FAILURE);
         }
         model.saveCurrentPatientListTracker();
-        CommandResult undoneCommand = model.undo();
-        return new CommandResult(MESSAGE_SUCCESS + undoneCommand.getFeedbackToUser(), UNDO_COMMAND_TYPE);
+        CommandResult undoneCommandResult = model.undo();
+        return new CommandResult(MESSAGE_SUCCESS + undoneCommandResult.getFeedbackToUser(), UNDO_COMMAND_TYPE);
     }
 }

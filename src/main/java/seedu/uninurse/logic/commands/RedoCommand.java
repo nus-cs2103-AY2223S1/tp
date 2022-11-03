@@ -22,8 +22,8 @@ public class RedoCommand extends Command {
             throw new CommandException(MESSAGE_FAILURE);
         }
 
-        CommandResult redoneCommand = model.redo();
+        CommandResult redoneCommandResult = model.redo();
         model.saveCurrentPatientListTracker();
-        return new CommandResult(MESSAGE_SUCCESS + redoneCommand.getFeedbackToUser(), REDO_COMMAND_TYPE);
+        return new CommandResult(MESSAGE_SUCCESS + redoneCommandResult.getFeedbackToUser(), REDO_COMMAND_TYPE);
     }
 }
