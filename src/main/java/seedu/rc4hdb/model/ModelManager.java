@@ -59,7 +59,7 @@ public class ModelManager implements Model {
         // Set up observable instances
         this.visibleFields = FXCollections.observableArrayList(ResidentField.LOWERCASE_FIELDS);
         this.hiddenFields = FXCollections.observableArrayList();
-        this.observableVenueList = venueBook.getVenueList();
+        this.observableVenueList = this.venueBook.getVenueList();
         if (observableVenueList.isEmpty()) {
             logger.info("No venues found in venue list.");
             this.observableBookingList = FXCollections.observableArrayList();
