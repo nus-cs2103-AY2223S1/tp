@@ -57,6 +57,10 @@ public class AddProjectCommand extends ProjectCommand {
 
         Project toAddProject = toAddProjectWithoutModel.apply(model);
 
+        if (!toAddProject.hasValidId()) {
+            throw new CommandException(ID_OVERFLOW);
+        }
+
         if (model.hasProject(toAddProject)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
