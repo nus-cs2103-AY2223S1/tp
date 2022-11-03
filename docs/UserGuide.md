@@ -11,7 +11,7 @@ If you can type fast, there is an added benefit which is that HR Pro Max++ can g
 
 Here are some shortcuts to get help:
 * To set up HR Pro Max++, go to our [Quick start section](#quick-start).
-* Unsure of some terms, go to our [Glossary section](#glossary).
+* If you are unsure of some of the terms, go to our [Glossary section](#glossary).
 * To see how all our commands work, head to our [Features section](#features).
 
 --------------------------------------------------------------------------------------------------------------------
@@ -25,17 +25,17 @@ Here are some shortcuts to get help:
 In this User Guide, there might some terms unknown to you. We have provided elaboration on some
 of these terms in the hopes that it will clear your doubts.
 
-| Terms         | Description                                                                                                                        |
-|---------------|------------------------------------------------------------------------------------------------------------------------------------|
-| **GUI**       | GUI stands for Graphical User Interface and it refers to the [window opened](#user-interface) when HR Pro Max++ application is ran |
-| **CLI**       | CLI refers to Command Line Interface and it refers to the [area](#command-box) where users can input commands in the form of text. |
-| **Prefix**    | Prefix is the placeholder to indicate the type of information inputted. Here is a [list of all the prefixes](#prefix-summary)      |
-| **Parameter** | Parameters are the information that are needed to be passed togther with the command such that it can be executed.                 |
+| Terms         | Description                                                                                                                         |
+|---------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| **GUI**       | GUI stands for Graphical User Interface and it refers to the [window opened](#user-interface) when HR Pro Max++ application is ran. |
+| **CLI**       | CLI refers to Command Line Interface and it refers to the [area](#command-box) where users can input commands in the form of text.  |
+| **Prefix**    | Prefix is the placeholder to indicate the type of information inputted. Here is a [list of all the prefixes](#prefix-summary).      |
+| **Parameter** | Parameters are the information that are needed to be passed togther with the command such that it can be executed.                  |
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Quick start**
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. Please kindly refer [here](https://blog.hubspot.com/website/check-java-verison) for further instructions on how to do so.
 
 2. Download the latest `HR_Pro_Max++.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-3/tp/releases).
 
@@ -169,7 +169,6 @@ Note:
   * PROJECT_DEADLINE should follow the YYYY-MM-DD format.
 ```
 
-
 Examples:
 * `addproj pn/2103T TP pb/100000 pd/2022-01-01` creates a new Project with project name `2103T TP`, a budget of `$100000` and a deadline 
 at `2022-01-01`
@@ -211,7 +210,8 @@ Format: `findproj KEYWORD [MORE_KEYWORDS]`
 Note: 
   * `KEYWORDS` must not be an empty string.
   * The findproj command is case-insensitive such that 'merger' will match 'MERGER'
-  * The findproj command will match Project name if there is a partial match, 'me' or 'mE' will both match 'MERGER'
+  * The findproj command will match Project name if there is a partial match, 'me' or 'mE' 
+    will both match 'MERGER'
 ```
 
 Examples:
@@ -230,7 +230,8 @@ Sorts the Project list according to deadline.
 
 ```yaml
 Warning !!!: 
-  * This command is irreversible, you will not be able to get back the original ordering after this command.
+  * This command is irreversible, you will not be able to get back the original ordering 
+    after this command.
 ```
 
 Format: `sortproj` sorts all projects in ascending order of deadline. 
@@ -295,12 +296,14 @@ Format: `addstaff INDEX sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STA
 ```yaml
 Note:
  * Staff names must be unique.
- * INDEX refers to the numbering of the desired Project in the currently displayed Project list.
+ * INDEX refers to the numbering of the desired Project in the currently displayed Project
+   list.
  * All fields for Staff members are required, except `TAGS`
- * If no Projects are currently shown on the Project list, addstaff will give an error. Use list to display all 
-   Projects. If no Projects are present, add a Project first using the addproj command.
- * If Staff is added successfully, the displayed Staff list will be updated to show the Staff list 
-   of the Project where the Staff is added to.
+ * If no Projects are currently shown on the Project list, addstaff will give an error. 
+   Use list to display all Projects. If no Projects are present, add a Project first 
+   using the addproj command.
+ * If Staff is added successfully, the displayed Staff list will be updated to show the 
+   Staff list of the Project where the Staff is added to.
 ```
 
 Examples:
@@ -321,14 +324,15 @@ Format: `delstaff INDEX pn/PROJECT_NAME`
 ```yaml
 Note:
   * INDEX refers to Staff in displayed Staff list. It is the Staff to be deleted.
-  * PROJECT_NAME refers to the Project in displayed Project list where the Staff is deleted from.
+  * PROJECT_NAME refers to the Project in displayed Project list where the Staff is deleted
+    from.
   * Recommended to use the view command on a Project before deleting a Staff from it.
   * A possible interaction is if you view the Staff list of Project A then try 
     to delete Staff at index 1 (call this Staff Tom) from Project B, it will delete 
     Staff Tom from Project B if Staff Tom is also part of Project B.
   * The index must be a positive integer 1, 2, 3, …​
-  * If Staff is deleted successfully, it will update the displayed Staff list to show the Staff list 
-    of the Project where the Staff was deleted from.
+  * If Staff is deleted successfully, it will update the displayed Staff list to show the 
+    Staff list of the Project where the Staff was deleted from.
 ```
 
 Examples:
@@ -368,10 +372,14 @@ t/TAGS]`
 
 ```yaml
 Note:
-  * All fields in the `[]` are optional, but at least one of the optional fields must be provided.
-  * Recommended to use the view command on a Project before editing a Staff in its Staff list.
-  * INDEX refers to the numbering of the Staff in the displayed Staff list. It is the Staff to be edited.
-  * PROJECT_NAME refers to the numbering of the Project in the displayed Project list where the Staff is to be edited.
+  * All fields in the `[]` are optional, but at least one of the optional fields must be 
+    provided.
+  * Recommended to use the view command on a Project before editing a Staff in its Staff 
+    list.
+  * INDEX refers to the numbering of the Staff in the displayed Staff list. It is the 
+    Staff to be edited.
+  * PROJECT_NAME refers to the numbering of the Project in the displayed Project list 
+    where the Staff is to be edited.
   * A possible interaction is if you view the Staff list of Project A then try
     to edit Staff at index 1 (call this Staff Tom) from Project B, it will try to edit
     Staff Tom from Project B if Staff Tom is also part of Project B.
@@ -395,8 +403,9 @@ Format: `findstaff KEYWORDS`
 Note:
   * `KEYWORDS` must not be an empty string. 
   * For `findstaff` to work as expected, the current active Staff list must be non-empty.
-  * The findstaff command is case-insensitive such that 'hans' will match 'HANS'
-  * The findstaff command will match Staff name if there is a partial match, 'ha' or 'hA' will both match 'HANS'
+  * The findstaff command is case-insensitive such that 'hans' will match 'HANS'.
+  * The findstaff command will match Staff name if there is a partial match, 'ha' or 
+    'hA' will both match 'HANS'.
 ```
 
 Examples:
@@ -489,7 +498,8 @@ Sorts all Tasks in displayed Task list by deadline. Earlier deadlines will be pl
 
 ```yaml
 Warning !!!: 
-* This command is irreversible, you will not be able to get back the original ordering after this command.
+* This command is irreversible, you will not be able to get back the original ordering 
+  after this command.
 ```
 
 Format: `sorttask`
