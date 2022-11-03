@@ -24,7 +24,6 @@ import seedu.taassist.logic.commands.GradeCommand;
 import seedu.taassist.logic.commands.HelpCommand;
 import seedu.taassist.logic.commands.ListCommand;
 import seedu.taassist.logic.commands.ListcCommand;
-import seedu.taassist.logic.commands.ListsCommand;
 import seedu.taassist.logic.commands.ScoresCommand;
 import seedu.taassist.logic.commands.UnassignCommand;
 import seedu.taassist.logic.commands.UnfocusCommand;
@@ -105,9 +104,6 @@ public class TaAssistParser {
 
         case ListcCommand.COMMAND_WORD:
             return new ListcCommand();
-
-        case ListsCommand.COMMAND_WORD:
-            return new ListsCommand();
 
         case ExportCommand.COMMAND_WORD:
             return new ExportCommand();

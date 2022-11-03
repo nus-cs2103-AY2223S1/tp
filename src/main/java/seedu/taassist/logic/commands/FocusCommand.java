@@ -1,11 +1,13 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.commons.core.Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST;
+import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
+import seedu.taassist.commons.core.Messages;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.moduleclass.exceptions.ModuleClassNotFoundException;
 
 /**
  * Enters focus mode for the specified class.
@@ -15,8 +17,10 @@ public class FocusCommand extends Command {
     public static final String COMMAND_WORD = "focus";
 
     public static final String MESSAGE_USAGE = "> Enters focus mode for the specified class.\n"
-            + "Parameters: c/CLASS_NAME\n"
-            + "Example: " + COMMAND_WORD + " c/CS1101S";
+            + "Parameters: "
+            + PREFIX_MODULE_CLASS + "CLASS_NAME\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_MODULE_CLASS + " CS1101S";
     public static final String MESSAGE_ENTERED_FOCUS_MODE = "Entered focus mode for [ %s ].";
 
     private final ModuleClass targetClass;
@@ -33,13 +37,18 @@ public class FocusCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasModuleClass(targetClass)) {
-            throw new CommandException(String.format(MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
+        ModuleClass existingModuleClass;
+
+        try {
+            existingModuleClass = model.getModuleClassWithSameName(targetClass);
+        } catch (ModuleClassNotFoundException mcnfe) {
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
                     model.getModuleClassList()));
         }
 
-        model.enterFocusMode(targetClass);
-        return new CommandResult(String.format(MESSAGE_ENTERED_FOCUS_MODE, targetClass), false, false, true, false);
+        model.enterFocusMode(existingModuleClass);
+        return new CommandResult(String.format(MESSAGE_ENTERED_FOCUS_MODE, existingModuleClass),
+                false, false, true, false);
     }
 
     @Override

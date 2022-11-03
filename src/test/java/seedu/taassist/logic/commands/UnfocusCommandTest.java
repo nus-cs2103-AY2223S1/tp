@@ -8,15 +8,15 @@ import org.junit.jupiter.api.Test;
 
 import seedu.taassist.commons.core.Messages;
 import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.stubs.ModelStub;
+import seedu.taassist.model.stubs.ModelStubInFocusMode;
+import seedu.taassist.model.stubs.ModelStubNeverInFocusMode;
 
 class UnfocusCommandTest {
 
     @Test
     void execute_notInFocusMode_throwsCommandException() {
         UnfocusCommand unfocusCommand = new UnfocusCommand();
-        ModelStubNotInFocusMode modelStub = new ModelStubNotInFocusMode();
+        ModelStubNeverInFocusMode modelStub = new ModelStubNeverInFocusMode();
         String expectedMessage = String.format(Messages.MESSAGE_NOT_IN_FOCUS_MODE, UnfocusCommand.COMMAND_WORD);
         assertThrows(CommandException.class, expectedMessage, () -> unfocusCommand.execute(modelStub));
     }
@@ -32,39 +32,4 @@ class UnfocusCommandTest {
                 commandResult.getFeedbackToUser());
         assertFalse(modelStub.isInFocusMode());
     }
-
-    /**
-     * A Model stub that is always not in focus mode.
-     */
-    private class ModelStubNotInFocusMode extends ModelStub {
-
-        @Override
-        public boolean isInFocusMode() {
-            return false;
-        }
-    }
-
-    /**
-     * A Model stub that is focusing on a class.
-     */
-    private class ModelStubInFocusMode extends ModelStub {
-
-        private boolean inFocusMode = true;
-
-        @Override
-        public boolean isInFocusMode() {
-            return inFocusMode;
-        }
-
-        @Override
-        public void exitFocusMode() {
-            inFocusMode = false;
-        }
-
-        @Override
-        public ModuleClass getFocusedClass() {
-            return new ModuleClass("CS2103T");
-        }
-    }
-
 }

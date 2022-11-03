@@ -101,7 +101,7 @@ How the `Logic` component works:
 3. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -116,11 +116,15 @@ How the parsing works:
 * When called upon to parse a user command, the `TaAssistParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TaAssistParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+The following sequence diagram shows how a generic command `XYZCommand` is parsed from user input with the help of `XYZCommandParser`.
+
+<img src="images/XYZCommandParserSequenceDiagram.png" width="800"/>
+
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
 
 The `Model` component,
 
@@ -185,7 +189,7 @@ The following methods in `TaAssist` manages the adding and deleting of module cl
 - `TaAssist#removeModuleClass(ModuleClass moduleClass)` - Removes the provided module class from the list of module classes created.
 
 ### Assigning students to module classes
-<img src="images/AssignCommandSequenceDiagram.png" width="700" />
+<img src="images/AssignCommandSequenceDiagram.png" width="500" />
 
 Each student object contains a collection of `StudentModuleData` where module classes and the grades the student obtained for the sessions of the module classes are stored. When the user assigns students to a module class, a new `StudentModuleData` object is created and added to the collection for each student.
 
@@ -292,9 +296,9 @@ The above methods are also exposed to the `Model` interface.
 
 The `Logic` component calls these methods in `Model` to execute commands that require access to the state of the focus mode.
 
-For example, the following sequence diagram shows how the `focus` command activates focus mode with the `CS1101S` module class:
+For example, the following sequence diagram shows how the `focus` command activates focus mode:
 
-<img src="images/FocusCommandSequenceDiagram.png" width="700" />
+<img src="images/FocusCommandSequenceDiagram.png" width="400" />
 
 On the other hand, the `unfocus` command deactivates focus mode by setting `focusedClass` to `null`.
 
@@ -340,9 +344,13 @@ determine the object's identity and `Value` for its satellite values.
 
 ### Managing Sessions within a Class
 
-As `ModuleClass` is immutable, there exists no methods to add/delete/modify the `Session`-s associated with a `ModuleClass`. 
-The only way to do so is by constructing new `ModuleClass` instances, then replacing the new instance over the old one by
-calling `Model#setModuleClass(ModuleClass target, ModuleClass newModuleClass)`.
+As `ModuleClass` is immutable, we will construct new `ModuleClass` instances each time we modify the attributes of a `ModuleClass` object.
+The following methods in `ModuleClass` constructs new `ModuleClass` instances based on the current `ModuleClass` instance:
+- `ModuleClass#addSession(session)` - Constructs a new `ModuleClass` with the provided `Session` added into the session list.
+- `ModuleClass#removeSession(session)` - Constructs a new `ModuleClass` with the provided `Session` removed from the session list.
+
+In addition, methods such as `addSessions` and `removeSessions` are also provided in `Model` and 
+`TaAssist` to help manage sessions within a class.
 
 For example, the following sequence diagram shows how the command `adds s/Lab1`
 creates a `Session` named "Lab1" and adds it inside the focused class.
@@ -494,8 +502,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *  `  | User            | Assign weightage to my created assignments | Estimate the overall performance of my students. |
 | `* * *`  | User            | Change participation marks previously given to my students | Correctly and accurately reflect the marks for my students. |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is `TA Assist` and the **Actor** is the `User`, unless specified otherwise)
@@ -639,7 +645,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-*{More to be added}*
 ### Non-Functional Requirements
 
 1. Should work on any mainstream OS with Java 11 or above installed.
@@ -673,16 +678,17 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file 
+   
+   Expected: Shows the GUI with a set of sample students and classes. The window size may not be optimum on certain resolutions.
 
-2. Saving window preferences
+1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-3. _{ more test cases …​ }_
+   1. Re-launch the app by double-clicking the jar file.
+   
+   Expected: The most recent window size and location is retained.
 
 ### Deleting a student
 
@@ -690,21 +696,64 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-   2. Test case: `delete 1`<br>
+   1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   3. Test case: `delete 0`<br>
+   1. Test case: `delete 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+### Adding sessions
+
+1. Adding a session to a class
+
+   1. Prerequisites: The class `CS1231S` exists in TA-Assist without any sessions assigned. 
+      TA-Assist is currently in focus mode and is focusing on the `CS1231S` class.
+
+   1. Test case: `adds s/Tut 1`<br>
+      Expected: A session named `Tut 1` is added with the current system date and is displayed on the session list.
+
+   1. Test case: `adds s/Tut 1 d/2022-01-01`<br>
+      Expected: A session named `Tut 1` is added with its date set to `1st January 2022` and is displayed on the session list.
+
+   1. Test case: `adds s/Lab 1 d/2019-02-29`<br>
+      Expected: Session is not created as `29th February 2019` is not a valid date.
+
+1. Batch adding sessions to a class
+
+   1. Prerequisites: The class `CS1231S` exists in TA-Assist without any sessions assigned.
+   TA-Assist is currently in focus mode and is focusing on the `CS1231S` class.
+
+   1. Test case: `adds s/Tut 2 s/Lab 2`<br>
+      Expected: Two sessions named `Tut 2` and `Lab 2` is added with the current system date and is displayed on the session list.
+
+   1. Test case: `adds s/Tut 3 s/Lab 3 d/2000-01-01`<br>
+      Expected: Two sessions named `Tut 3` and `Lab3` is added with its date set to `1st January 2000` and is displayed on the session list.
+   
+   1. Test case: `adds s/Tut 4 d/2000-02-02 s/Lab 4 d/2020-04-20`<br>
+      Expected: Two sessions named `Tut 4` and `Lab 4` is added with its date set to `20th April 2020` and is displayed on the session list.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Data file is corrupted
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisite: Jar file has been launched and data files have been generated.
 
-2. _{ more test cases …​ }_
+   1. Close the application. Open `data/taassist.json` and add some random characters.
+
+   1. Re-launch the app.
+   
+   Expected: An alert box appears stating the data file has been corrupted and queries the user if they want to continue
+   with a new data file.
+
+1. Data file is missing
+
+   1. Prerequisite: Jar file has been launched and data files have been generated.
+
+   1. Close the application. Rename `data/taassist.json` to `data/taassist.json.bak`.
+
+   1. Re-launch the app.
+
+   Expected: TA-Assist launches normally and re-generates the sample data similar to when the application is first launched.

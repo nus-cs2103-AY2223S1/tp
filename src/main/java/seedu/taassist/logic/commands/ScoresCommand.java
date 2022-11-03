@@ -17,9 +17,11 @@ public class ScoresCommand extends Command {
 
     public static final String COMMAND_WORD = "scores";
 
-    public static final String MESSAGE_USAGE = "> Displays student's scores for a session within the focused class.\n"
-            + "Parameters: " + PREFIX_SESSION + "SESSION_NAME\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_SESSION + "Lab1";
+    public static final String MESSAGE_USAGE = "> Displays students' scores for a session within the focused class.\n"
+            + "Parameters: "
+            + PREFIX_SESSION + "SESSION_NAME\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_SESSION + "Lab1";
 
     public static final String MESSAGE_SUCCESS = "Listed scores of all students for session [ %s ].";
 

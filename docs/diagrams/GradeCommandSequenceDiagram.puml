@@ -16,7 +16,7 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> GradeCommand: execute()
+[-> GradeCommand: execute(model)
 activate GradeCommand
 
 GradeCommand -> Model: getFocusedClass()
