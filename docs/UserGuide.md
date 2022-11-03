@@ -58,13 +58,12 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 | **List People**      | `list`                                                                                                                                                                                                                         |
 | **Clear**            | `clear`                                                                                                                                                                                                                        |
 | **Help**             | `help`                                                                                                                                                                                                                         |
-| **Add Task**         | `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` |
-| **Edit Task**        | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/ISDONE]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                        |
+| **Add Task**         | `addTask n/TASK_NAME d/DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12` |
+| **Edit Task**        | `editTask INDEX [n/TASK_NAME] [d/DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                        |
 | **Delete Task**      | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`                                                                                                                                                                             |
 | **List Tasks**       | `listTasks`                                                                                                                                                                                                                    |
-| **Filter Task**      | `filter [c/TASK_CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                           |
-| **Sort by Deadline** | `sortByDeadline [o/ORDER]` <br> e.g., `sortByDeadline o/asc`                                                                                                                                                                   |
-| **Sort by Priority** | `sortByPriority [o/ORDER]` <br> e.g., `sortByPriority o/desc`                                                                                                                                                                  |
+| **Filter Tasks**      | `filter [c/CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                           |
+| **Sort Tasks** | `sort [pr/ORDER] [dl/ORDER]` <br> e.g., `sort pr/asc`                                                                                                                                                                   |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -225,7 +224,7 @@ The following commands are for viewing and managing your hackathon tasks. These 
 
 Adds a task to the task list. Note that you cannot add a task if another task with the same name already exists in the task list. 
 
-Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]`
+Format: `addTask n/TASK_NAME d/DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]`
 
 * If the optional parameter `pe/EMAIL_OF_PERSON_ASSIGNED` is provided, the task will be assigned to that member. If not, it will remain unassigned. 
 
@@ -253,7 +252,7 @@ Examples:
 
 Edits the parameter(s) of an existing task in the task list. You can also use this command to mark tasks as `completed` or to assign the task to a team member. 
 
-Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]`
+Format: `editTask INDEX [n/TASK_NAME] [d/DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]`
 
 * Edits the task at the specified index. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​ and less than or equal to the number of tasks in the task list.
 * At least one of the optional fields must be provided.
