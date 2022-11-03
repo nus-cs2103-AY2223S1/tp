@@ -95,7 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `BobaBotParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `BobaBotModel` when it is executed (e.g. to add a customer).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -112,7 +112,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `BobaBotParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `BobaBotParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 
@@ -120,8 +120,8 @@ How the parsing works:
 
 The class diagram below expands the details of Command and Parser part in the Logic component above, showing the details of how commands are parsed and created
 
-Simple commands without arguments including `clear` `list` `exit` `help` are created directly by `AddressBookParser`<br/>
-To parse complex commands with arguments, including `add` `find` `edit` `delete`, `AddressBookParser` will create customized parser corresponding to the command. <br/>
+Simple commands without arguments including `clear` `list` `exit` `help` are created directly by `BobaBotParser`<br/>
+To parse complex commands with arguments, including `add` `find` `edit` `delete`, `BobaBotParser` will create customized parser corresponding to the command. <br/>
 The customized parser will parse the arguments and create the command
 
 The diagram also includes some new classes involved. For example, the `find` command depends on new predicates in the `BobaBotModel` component to allow all-info and fuzzy search (more detail in the `find` command description)
@@ -143,7 +143,7 @@ The `BobaBotModel` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `BobaBotModel` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) bobaBotModel is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) bobaBotModel is given below. It has a `Tag` list in the `BobaBot`, which `Person` references. This allows `BobaBot` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -158,7 +158,7 @@ The `BobaBotModel` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `BobaBotStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `BobaBotModel` component (because the `Storage` component's job is to save/retrieve objects that belong to the `BobaBotModel`)
 
 ### Common classes
@@ -179,7 +179,7 @@ This feature allows the user to add a new Customer.
 **Below is a sample usage and how the add sequence behaves at each step.**
 
 1. User chooses the Customer he/she wants to add and enters the command `add n/Bob p/12345678 e/johnd@example.com m/1 r/5000 t/GOLD t/MEMBER`
-2. The `LogicManager` redirects this command to `AddressBookParser`, which parses the command via `AddCommandParser` and
+2. The `LogicManager` redirects this command to `BobaBotParser`, which parses the command via `AddCommandParser` and
    returns the `AddCommand` containing the Customer with all the required fields
 3. The `LogicManager` executes the `AddCommand` and Customer is added to database
 4. The `CommandResult` reflects this Customer
@@ -219,7 +219,7 @@ This feature allows the user to edit any fields of a Customer, and supports edit
 **Below is a sample usage and how the edit sequence behaves at each step.**
 
 1. User chooses the Customer he/ she wants to edit and enters the command `edit e/test@gmail/com n/Bob`
-2. The `LogicManager` redirects this command to `AddressBookParser`, which parses the command via `EditCommandParser` and
+2. The `LogicManager` redirects this command to `BobaBotParser`, which parses the command via `EditCommandParser` and
 returns the `EditCommand` containing the Customer with all the new fields that are supposed to be edited to
 3. The `LogicManager` executes the `EditCommand` and Customer to be edited is updated with the new fields
 4. The `CommandResult` reflects the changes made to this Customer
@@ -259,7 +259,7 @@ This feature is an extension to the above Edit feature to ease the process of ed
 **Below is a sample usage and how the increase/ decrease sequence behaves at each step.**
 
 1. User chooses the Customer he/ she wants to increase or decrease the Reward points for and enters the command `incr 100 e/test@gmail/com` or `decr 100 e/test@gmail/com`
-2. The `LogicManager` redirects this command to `AddressBookParser`, which parses the command via `IncreaseCommandParser` or `DecreaseCommandParser` and
+2. The `LogicManager` redirects this command to `BobaBotParser`, which parses the command via `IncreaseCommandParser` or `DecreaseCommandParser` and
    returns the `IncreaseCommand` or `DecreaseCommand` containing how much to increment or decrement the existing Reward points by
 3. The `LogicManager` executes the `IncreaseCommand` or `DecreaseCommand` which implicitly creates and executes the equivalent `EditCommand` for the new Reward value
 4. The `CommandResult` reflects the changes made to this Customer
@@ -276,7 +276,7 @@ This feature enables the user to remove a customer from bobaBot via either the `
 
 1. User chooses the Customer he/she wants to delete and enters the command `delete p/12345678`
 2. The `MainWindow` class retrieves the user's input and passes it on to the `LogicManager` through the `execute` method
-3. The `LogicManager` redirects this command to `AddressBookParser` via the `parseCommand` method and creates a temporary `DeleteCommandParser` object 
+3. The `LogicManager` redirects this command to `BobaBotParser` via the `parseCommand` method and creates a temporary `DeleteCommandParser` object 
 4. The `DeleteCommandParser` object parses the command and returns the `DeleteCommand` containing the details of the Customer to delete
 5. The `LogicManager` executes the `DeleteCommand`, removing the Customer from bobaBot and returning a `CommandResult` object
 6. The `CommandResult` reflects the removal of this Customer
@@ -320,7 +320,7 @@ The feature also supports fuzzy search based on `Soundex` when searching by name
 **Below is a sample usage and how the find sequence behaves at each step.**
 
 1. User chooses the Customer he/ she wants to find and enters the command `find Aschcroft`
-2. The `LogicManager` redirects this command to `AddressBookParser`, which parses the command via `FindCommandParser` and
+2. The `LogicManager` redirects this command to `BobaBotParser`, which parses the command via `FindCommandParser` and
    returns the `FindCommand` containing the predicate
 3. The `LogicManager` executes the `FindCommand` and update the filtered list with matching `Person`
 4. The `CommandResult` reflects the number of customers listed
@@ -352,37 +352,37 @@ or just search for occurrence of keywords (including name) vaguely.
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedBobaBot`. It extends `BobaBot` with an undo/redo history, stored internally as an `bobaBotStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedBobaBot#commit()` — Saves the current address book state in its history.
+* `VersionedBobaBot#undo()` — Restores the previous address book state from its history.
+* `VersionedBobaBot#redo()` — Restores a previously undone address book state from its history.
 
-These operations are exposed in the `BobaBotModel` interface as `BobaBotModel#commitAddressBook()`, `BobaBotModel#undoAddressBook()` and `BobaBotModel#redoAddressBook()` respectively.
+These operations are exposed in the `BobaBotModel` interface as `BobaBotModel#commitBobaBot()`, `BobaBotModel#undoBobaBot()` and `BobaBotModel#redoBobaBot()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedBobaBot` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th customer in the address book. The `delete` command calls `BobaBotModel#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th customer in the address book. The `delete` command calls `BobaBotModel#commitBobaBot()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `bobaBotStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new customer. The `add` command also calls `BobaBotModel#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new customer. The `add` command also calls `BobaBotModel#commitBobaBot()`, causing another modified address book state to be saved into the `bobaBotStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `BobaBotModel#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `BobaBotModel#commitBobaBot()`, so the address book state will not be saved into the `bobaBotStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the customer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `BobaBotModel#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the customer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `BobaBotModel#undoBobaBot()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `BobaBotModel#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial BobaBot state, then there are no previous BobaBot states to restore. The `undo` command uses `BobaBotModel#canUndoBobaBot()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -395,17 +395,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `BobaBotModel#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `BobaBotModel#redoBobaBot()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `BobaBotModel#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `bobaBotStateList.size() - 1`, pointing to the latest address book state, then there are no undone BobaBot states to restore. The `redo` command uses `BobaBotModel#canRedoBobaBot()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `BobaBotModel#commitAddressBook()`, `BobaBotModel#undoAddressBook()` or `BobaBotModel#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `BobaBotModel#commitBobaBot()`, `BobaBotModel#undoBobaBot()` or `BobaBotModel#redoBobaBot()`. Thus, the `bobaBotStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `BobaBotModel#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `BobaBotModel#commitBobaBot()`. Since the `currentStatePointer` is not pointing at the end of the `bobaBotStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
