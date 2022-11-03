@@ -407,18 +407,24 @@ These objects are stored in a list field of the `JsonAdaptedPerson` and are stor
 
 ### Mark/Unmark feature
 
-The execution of the `mark`/`unmark` is quite similar to each other, with some minor differences.
+The parameters involved in the `mark`/`unmark` commands is the same as that of the `cancel` command. 
+All 3 commands take in a single parameter denoting the desired appointment number to modify. 
 
-As with other idENTify
+As such, the `mark`/`unmark` commands also extend the `SelectAppointmentCommand` class, and are parsed similarly as well -
+firstly through the `AddressBookParser` to identify the inputted command as a `mark`/`unmark` command, 
+then followed by a second parse in `MarkCommandParser`/`UnmarkCommandParser` to create a `MarkCommand`/`UnmarkCommand` object,
+which is then executed to mark/unmark the target appointment.
+
+However, the `mark` command comes with an additional step during the `execute` method. 
+It checks if an appointment is recurring, and adds a future unmarked appointment at the designated date if needed.
 
 Given below is an example usage scenario, where the user enters `mark 1` as the input,
-and how the mark mechanism behaves at each step.
+and how the `mark` mechanism behaves at each step.
 
 ![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
 
-The `unmark` command functions similarly to `mark`, but with the use of `UnmarkCommandParser` and `UnmarkCommand`
-classes in place of `MarkCommandParser` and `MarkCommand` respectively.
-It also lacks the logic to add recurring appointments.
+The `unmark` sequence diagram is identical to the `mark` sequence diagram but lacks the `opt` frame.
+It also contains the `UnmarkCommandParser` and `UnmarkCommand` classes in place of `MarkCommandParser` and `MarkCommand` respectively.
 
 #### Design considerations:
 
@@ -439,13 +445,12 @@ constructor directly
 ![MarkSequenceDiagram](images/FindClassDiagram.png)
 
 The `find` command,
-* Takes in 2 predicates `CombinedPersonPredicate` and `CombinedAppointmentPredicate`.
-* `CombinedPersonPredicate` stores all person related search strings and tests for all patients that satisfies all
-the search terms.
-* `CombinedAppointmentPredicate` stores all appointment related search tags and tests for all appointments that
-satisfies all the search terms.
-* These 2 predicates are then used together in `FindCommand#execute()` to create a single predicate that displays all 
-* the relevant patient and appointments.
+* Takes in 2 classes `CombinedPersonPredicate` and `CombinedAppointmentPredicate` which inherit from the java `Predicate` class.
+* `CombinedPersonPredicate` stores all person related search parameters and tests for all patients that satisfies all
+of them.
+* `CombinedAppointmentPredicate` stores all appointment related search parameters and tests for all appointments that
+satisfies all of them.
+* These 2 predicates are then used together in `FindCommand#execute()` to create a single predicate that displays all the relevant patient and appointments.
 
 #### Design considerations:
 
@@ -453,21 +458,27 @@ satisfies all the search terms.
 * **Alternative 1:** Store all search terms in `FindCommand` and use `Predicate#and` to combine the
 the search predicates.
     * Pros: Easy and quick to implement. No extra classes needed.
-    * Cons: There is no way to override the `Predicate#equals()`. Testability of `FindCommand` would be low.
+    * Cons: Low testability of `FindCommand`. There is no way to override the `Predicate#equals()`, so we will be unable to check if two `Predicate`s have the same search parameters.
 
 * **Alternative 2:** Create 1 class for each search term
 (E.g `NameContainsSequencePredicate`, `AppointmentContainsReasonPredicate` etc.). Create a `CombinedPersonPredicate`
 and a `CombinedAppointmentPredicate` that takes in all these 'lesser' predicates and combine them to form the actual
-predicate to filter the list with.
-    * Pros: Testability of `FindCommand` would be very high.
-    * Cons: Large amount of classes needed. There would also be the issue of excessive duplication of code.
-It would also be time-consuming to add in potential new predicates in the future as much more test cases would be needed
+predicate to filter the list with. All these classes will be subclasses of `Predicate`.
+    * Pros: 
+      * Very high testability of `FindCommand`, as we can now override `equals()`.
+      * Having separate `CombinedPersonPredicate` and `CombinedAppointmentPredicate` classes would also allow patients and appointments to be tested separately,
+enhancing cohesion and decreasing coupling through the Separation of Concerns principle.
+    * Cons: 
+      * Large amount of classes needed. There would also be the issue of excessive duplication of code. 
+      * Time-consuming to add in potential new predicates in the future as much more test cases would be needed
 to test each individual class.
 
 * **Alternative 3 (current choice):** Keep the `CombinedPersonPredicate` and `CombinedAppointmentPredicate`,
 and store the relevant search terms into each predicate. Combine those search terms in the predicate class itself.
-    * Pros: Testability of `FindCommand` would be high. Extending the method features in the future would also be
-more efficient than alternative 2.
+    * Pros: 
+      * High testability of `FindCommand`.
+      * Extending the method features in the future would be more convenient than alternative 2. 
+      * The benefit of being able to separately test patients and appointments as mentioned in alternative 2 is preserved.
     * Cons: Slightly less testable than alternative 2. However, the increased efficiency is worth the tradeoff.
 
 --------------------------------------------------------------------------------------------------------------------

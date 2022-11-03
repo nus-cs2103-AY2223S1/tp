@@ -466,24 +466,24 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/
 
 * At least 1 of the optional parameters must be provided.
 * The search is **NOT** case-sensitive. e.g `n/hans` has same effect as `n/Hans`
-* All parameters, unless otherwise stated, support partial match.
-  * e.g. For partial match, when finding names, searching `John Do` can find someone named `John Doe`
-  * For a full match however, only `John Doe` can find `John Doe`.
+* All parameters, unless otherwise stated, support *partial match*.
+  * *Partial match*: searching `John Do` matches `John Doe`
+  * *Full match*: Only `John Doe` matches `John Doe`.
 * Only *relevant* patients and appointments that satisfies all parameters will be displayed.
   * View the `find r/Checkup` example below for a visual explanation.
 * Additional details on each parameter are listed in the tables below.
 
-| Patient Parameters                                                   | Additional Notes                                                              |
+| Patient Related Parameters                                           | Additional Notes                                                              |
 |----------------------------------------------------------------------|-------------------------------------------------------------------------------|
 | **[n/NAME]**<br/>**[p/PHONE]**<br/>**[e/EMAIL]**<br/>**[a/ADDRESS]** | -                                                                             |
 | **[t/PATIENT_TAG]...**                                               | Finds patients matching all the inputted tag(s).<br/>**Full match required.** |
 
-| Appointment Parameters   | Additional Notes                                                                                                                                             |
-|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **[r/REASON]**           | -                                                                                                                                                            |
-| **[ds/DATE_START]**      | Finds appointments occurring at or after the inputted date. <br/> **Must be a valid date.** <br/> **Date must be at or after [de/DATE_END], if present.**    |
-| **[de/DATE_END]**        | Finds appointments occurring at or before the inputted date. <br/> **Must be a valid date.** <br/> **Date must be at or after [de/DATE_START], if present.** |
-| **[ta/APPOINTMENT_TAG]** | Finds appointments matching all the appointment's tag(s).<br/> **Full match required.**                                                                      |
+| Appointment Related Parameters | Additional Notes                                                                                                                                                 |
+|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **[r/REASON]**                 | -                                                                                                                                                                |
+| **[ds/DATE_START]**            | Finds appointments occurring **at or after** the inputted date. <br/> **Must be a valid date.** <br/> **Date must be at or after [de/DATE_END], if present.**    |
+| **[de/DATE_END]**              | Finds appointments occurring **at or before** the inputted date. <br/> **Must be a valid date.** <br/> **Date must be at or after [de/DATE_START], if present.** |
+| **[ta/APPOINTMENT_TAG]**       | Finds appointments matching all the appointment's tag(s).<br/> **Full match required.**                                                                          |
 
 Visual example of finding results by an appointment's reason, using `find r/Checkup`:
 
@@ -497,7 +497,9 @@ After `find r/Checkup`:
   ![after `find r/Checkup`](images/FindCheckupReasonAfter.png)
 
 * Note that only *relevant* results are displayed.
-  * (i.e. The patient `Bernice Yu` is not displayed as she does not have an appointment with a reason containing `Checkup`).
+  * The patient `Bernice Yu` is not displayed as she does not have an appointment with a reason containing `Checkup`.
+  * `David Li`'s appointment is not displayed as its reason does not contain `Checkup`.
+    * Consequently, `David Li` does not appear in the patient list, as he is *irrelevant* to the search.
 
 Other Examples:
 * `find n/John p/12345` displays all patients with `John` in their names and `12345` in their phone numbers, as well as all their appointments.
