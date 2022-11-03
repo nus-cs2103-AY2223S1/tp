@@ -498,8 +498,7 @@ public class EditCommand extends Command {
         editNurse(model, nurse, updatedHomeVisitList, updatedFullyScheduledList);
     }
 
-    private void unmarkDateSlot(Model model, DateSlot dateslot, Long patientUidNo, List<Person> personList)
-            throws CommandException {
+    private void unmarkDateSlot(Model model, DateSlot dateslot, Long patientUidNo, List<Person> personList) {
         Person patient = personList.stream().filter(
                 p -> p.getUid().getUid().equals(patientUidNo)).findFirst().get();
         List<DateSlot> dateSlotList = ((Patient) patient).getDatesSlots();
