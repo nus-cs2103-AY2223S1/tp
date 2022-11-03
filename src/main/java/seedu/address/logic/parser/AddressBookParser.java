@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddQCommand;
 import seedu.address.logic.commands.AddResponseCommand;
 import seedu.address.logic.commands.AddStuCommand;
@@ -14,18 +13,14 @@ import seedu.address.logic.commands.AddTutorialCommand;
 import seedu.address.logic.commands.AttendanceCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteQCommand;
 import seedu.address.logic.commands.DeleteStuCommand;
 import seedu.address.logic.commands.DeleteTutorialCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditStuCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindStuCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HelpStuCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListStuCommand;
 import seedu.address.logic.commands.MarkQCommand;
 import seedu.address.logic.commands.MarkTutorialCommand;
@@ -61,23 +56,14 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
         case AddQCommand.COMMAND_WORD:
             return new AddQCommandParser().parse(arguments);
 
         case AddStuCommand.COMMAND_WORD:
             return new AddStuCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
         case EditStuCommand.COMMAND_WORD:
             return new EditStuCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
 
         case DeleteQCommand.COMMAND_WORD:
             return new DeleteQCommandParser().parse(arguments);
@@ -88,14 +74,8 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
         case FindStuCommand.COMMAND_WORD:
             return new FindStuCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
 
         case ListStuCommand.COMMAND_WORD:
             return new ListStuCommand();

@@ -23,6 +23,7 @@ public class ResponseTest {
         assertFalse(Response.isValidResponse("  ")); // spaces only
         assertFalse(Response.isValidResponse("Response")); // non-numeric
         assertFalse(Response.isValidResponse("909hihi")); // alphabets within digits
+        assertFalse(Response.isValidResponse("test123")); // alphabet before digit
         assertFalse(Response.isValidResponse("9 0")); // spaces within digits
 
         // valid Responses
