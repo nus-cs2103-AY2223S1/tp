@@ -1,8 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -35,7 +36,8 @@ public class CreateTeamCommandTest {
     }
     @Test
     public void execute_teamAcceptedByModel_addSuccessful() throws Exception {
-        CreateTeamCommandTest.ModelStubAcceptingTeamAdded modelStub = new CreateTeamCommandTest.ModelStubAcceptingTeamAdded();
+        CreateTeamCommandTest.ModelStubAcceptingTeamAdded modelStub =
+                new CreateTeamCommandTest.ModelStubAcceptingTeamAdded();
         Team validTeam = new TeamBuilder().build();
 
         CommandResult commandResult = new CreateTeamCommand(validTeam).execute(modelStub);
@@ -50,7 +52,8 @@ public class CreateTeamCommandTest {
         CreateTeamCommand createTeamCommand = new CreateTeamCommand(validTeam);
         ModelStub modelStub = new ModelStubWithTeam(validTeam);
 
-        assertThrows(CommandException.class, CreateTeamCommand.MESSAGE_DUPLICATE_TEAM, () -> createTeamCommand.execute(modelStub));
+        assertThrows(CommandException.class, CreateTeamCommand.MESSAGE_DUPLICATE_TEAM,
+                () -> createTeamCommand.execute(modelStub));
     }
 
 
