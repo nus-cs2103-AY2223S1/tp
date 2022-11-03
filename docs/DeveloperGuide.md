@@ -155,7 +155,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Implemented\] List patients/appointments feature
+### List Feature
 
 #### Implementation
 The list patients/appointments mechanism is facilitated by the `UniquePersonList` and `UniqueAppointmentList`
@@ -199,7 +199,7 @@ process as well.
 
 We ultimately went with Alternative 1 since we do not expect `list` to take in many different arguments.
 
-### \[Implemented\] Cancel feature 
+### Cancel Feature 
 
 #### Implementation
 The implemented cancel feature allows users to cancel a patient's appointment based on its index in the appointment list. <br>
@@ -234,7 +234,7 @@ Our team decided to change the user input format of the cancel command from `can
 to `cancel APPOINTMENT_INDEX`, so it is faster for
 the user to key in, and also more similar to the other commands with only 1 index.
 
-### \[Implemented\] Hide patients/appointments
+### \[Implemented\] Hide Feature
 - The `hide patients` command hides patients based on at least 1 tag or name given. If more than 1 tag or name is given,
 then any patients that match that tag or name will be hidden.
 For example, `hide patients t/nose t/ear` will hide all patients that has either a nose or ear tag.
@@ -273,7 +273,7 @@ both the status and tag conditions.
 * We decided to go with any match so that it is easier for users if they want to hide many types of entries at one go,
 as opposed to all match since the user will have to key in hide many times successively.
 
-### \[Implemented\] Group Patient
+### Group Patient Feature
 
 The group mechanism implements the following operations:
 
@@ -305,7 +305,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Current choice:** Use a different comparator from default so that a heavy weight can be assigned to the value of a
   tag group where a patient belongs.
 
-### \[Implemented\] Group Appointment
+### Group Appointment Feature
 
 The group mechanism implements the following operations:
 
@@ -338,7 +338,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Current choice:** Use a different comparator from default so that a heavy weight can be assigned to the value of a
   tag group where a patient belongs or the patient attached to the appointment.
 
-### \[Implemented\] Ungroup
+### Ungroup Feature
 
 The ungroup mechanism implements the following operations:
 
@@ -380,7 +380,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   as default settings. To be more specific, the patient list will be sorted by patients' names and the appointemnt 
   list will be sorted by datetime.
 
-### \[Implemented\] Book feature
+### Book Feature
 
 #### Implementation
 
@@ -444,7 +444,7 @@ These objects are stored in a list field of the `JsonAdaptedPerson` and are stor
   * Pros: Easier to maintain as there's only one appointment object.
   * Cons: Harder and more costly to track of each person's appointments, especially if the person himself is edited or deleted in the process.
 
-### Mark/Unmark feature
+### Mark/Unmark Feature
 
 The execution of the `mark`/`unmark` is quite similar to each other, with some minor differences.
 
@@ -471,7 +471,7 @@ constructor directly
     * Cons: The `CommandResult` object generated at the end of the command will not have the `Index` of the appointment
   recorded in it. This makes it harder to debug using `CommandResult` when bugs occur.
 
-### Find `execute()` implementation
+### Find Feature
 
 ![MarkSequenceDiagram](images/FindClassDiagram.png)
 
@@ -1308,4 +1308,13 @@ displaying the number of filtered results should appear after every valid input.
       2. Open the file `idENTify.json`, and corrupt the file (E.g. Delete the very first line of the `idENTify.json` file).
       3. Relaunch the app.
    3. Expected result: A new file will be created with no patients or appointments.
+
+  
+## **Appendix: Effort**
+Our project was harder than Address Book Level3(AB3) because AB3 only deals with Persons, while our project includes Appointments as well. There was a huge learning curve at the start as we were very unfamiliar with what most of the classes do. After familiarizing ourselves with some of the necessary classes to implement our new enhancements, we also had a hard time writing new test cases as our new features caused the existing test cases to fail. It took a long time for us to figure out that the existing static variables used for the test cases were the problem as our new test cases involved altering the list of appointments in those variables.
    
+In v1.2, we updated the GUI to contain 2 listviews: one for patients and one for appointments. We found out that changes to our appointment fields, such as marking them as completed, were not properly reflected on the listviews. We had to spent time researching how to use the Observer pattern(ie. Extractors) to reflect such changes. We also had to differentiate similar commands by using a descriptor word(patients/appts), and spent some time learning regex in order to update the AddressBookParser's pattern checking. As our mark, unmark, edit appts and cancel features also used the same mechanism to retrieve the specified appointment, we had to spent time refactoring our Parser classes to reduce duplication of such code.
+   
+In v1.3, we implemented our organisation features: hide, unhide, group, ungroup and find. While they all individually worked as expected, we had a hard time integrating hide/unhide/find to work well together, as these commands all deal with inserting a Predicate into the filtered list. It took some time for us to figure out how to keep track of the current Predicate in each filtered list and to add onto this Predicate while executing any hide/unhide/find command.
+   
+Overall, we are satisfied with our project given the time constraints and huge learning curve for the starting weeks. While workload is relatively high, it was an enjoyable experience to be working in a group.
