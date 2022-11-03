@@ -313,7 +313,7 @@ in the event list.
 Format: `makeStats INDEX t/STATISTIC_TYPE`
 
 * The `INDEX` refers to the index number shown in the displayed event list.
-* The `INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
+* The `INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
 * The `STATISTIC_TYPE` refers to the type of statistical data being generated.
 * The `STATISTIC_TYPE` must be either `a` or `g`, where `a` stands for age and is specified to generate a pie chart showcasing
 the distribution of ages across age groups, while `g` stands for gender and is specified to generate a pie chart showcasing
