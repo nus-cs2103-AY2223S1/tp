@@ -5,8 +5,8 @@ title: Ong Wee Marcus's Project Portfolio Page
 
 ### Project: Duke The Market
 
-Duke The Market is a desktop contact management system application
-used for managing customer contacts in department stores. The user interacts with it using a CLI,
+Duke The Market is a desktop system application
+used for managing customer contacts and events in department stores. The user interacts with it using a CLI,
 and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
