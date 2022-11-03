@@ -32,10 +32,6 @@ public class DatetimeRange {
         this.endDatetime = endDatetime;
     }
 
-    public LocalDateTime getStartDatetime() {
-        return startDatetime;
-    }
-
     /**
      * Creates a DatetimeRange from formatted strings, when start date and end date is same.
      * Does not do any validation on input, may throw a DateTimeParseException
