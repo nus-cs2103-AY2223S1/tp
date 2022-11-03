@@ -4,10 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
-participant ":ListTasks\nCommandParser" as ListTasksCommandParser LOGIC_COLOR
-participant ":ListTasksCommand" as ListTasksCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
-participant "<<class>>\nArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant "cmd:ListTasksCommand" as ListTasksCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 
 end box
 
@@ -15,45 +13,23 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute(cmd)
+[-> LogicManager : execute("list task")
 activate LogicManager
 
-LogicManager -> ModtrektParser : parseCommand(cmd)
+LogicManager -> ModtrektParser : parseCommand("list task")
 activate ModtrektParser
 
-create ListTasksCommandParser
-ModtrektParser -> ListTasksCommandParser
-activate ListTasksCommandParser
-
-ListTasksCommandParser --> ModtrektParser
-deactivate ListTasksCommandParser
-
-ModtrektParser -> ListTasksCommandParser : parse(flags)
-activate ListTasksCommandParser
-
-create ArgumentTokenizer
-ListTasksCommandParser -> ArgumentTokenizer : isFlagPresent(flags, "-a")
-activate ArgumentTokenizer
-
-ArgumentTokenizer --> ListTasksCommandParser : showAll?
-deactivate ArgumentTokenizer
-
 create ListTasksCommand
-ListTasksCommandParser -> ListTasksCommand
+ModtrektParser -> ListTasksCommand
 activate ListTasksCommand
 
-ListTasksCommand --> ListTasksCommandParser : command
+
+
+ListTasksCommand --> ModtrektParser
 deactivate ListTasksCommand
 
-ListTasksCommandParser --> ModtrektParser : command
-deactivate ListTasksCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-ListTasksCommandParser -[hidden]-> ModtrektParser
-destroy ListTasksCommandParser
-
-ModtrektParser --> LogicManager : command
+ModtrektParser --> LogicManager : cmd
 deactivate ModtrektParser
-
 LogicManager -> ListTasksCommand : execute()
 activate ListTasksCommand
 
@@ -79,7 +55,7 @@ create CommandResult
 ListTasksCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ListTasksCommand : result
+CommandResult --> ListTasksCommand
 deactivate CommandResult
 
 ListTasksCommand --> LogicManager : result

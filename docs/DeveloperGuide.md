@@ -752,11 +752,9 @@ There was an alternative we considered for users to select the task to mark as d
 
 * **Alternative 2:** Using the task index of the current module (current implementation):
     * Pro: Users can mark tasks as done by their index easily without much typing.
-    * Con: Users now have to use `cd` to change the current module tied to the task they want to mark as done.
     * Con: Users now have to use `ls` and `ls -A` to view undone tasks or all tasks respectively.
 
-Seeing as we prioritize a CLI, we chose the second option as it would be simpler for users,
-even though the `cd` and `ls` commands add a bit of overhead.
+Seeing as we prioritize a CLI, we chose the second option as it would be simpler for users to use.
 
 #### Current implementation
 
@@ -772,7 +770,7 @@ Notice how we explicitly prevent a done task from being marked as done again. Ev
 is inconsequential from a data perspective (nothing in a `Task` changes other than the creation of a new instance),
 it is still a user error that should be handled:
 
-> Suppose that a user intended to mark a task as undone, but accidentally entered the `done` command instead.
+> Suppose that a user intended to mark a task as undone, but accidentally entered the `done task` command instead.
 By displaying an error instead of silently accepting the erroneous command, the user is notified and
 can enter the correct command next—this results in better UX!
 
@@ -807,6 +805,11 @@ The sequence diagram below details the interactions between the command, parser,
 for the`ls` and `ls -a` commands:
 
 <img src="images/tasks/ListingSequenceDiagram.png" width="1000" />
+
+The `list` command delegates parsing to JCommander, which records the absence or presence of the `-a` flag as
+a boolean `areDoneTasksShown`.
+
+This boolean variable is used to determine the presence of the `-a` flag in the sequence diagram above.
 
 ## Documentation, logging, testing, configuration, dev-ops
 
