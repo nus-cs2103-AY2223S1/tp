@@ -327,11 +327,11 @@ Examples:
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HackAssist home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HackAssist home folder.<br>
 **Q**: Do i need internet to run HackAssist?<br>
-**A**: Internet is not needed to run the application.
-**q**: Will my data be lost after closing the application?
-**A**: No, your data will be stored in the `HackAssist.json` file. Data will only be lost if `HackAssist.json` file is deleted.
+**A**: Internet is not needed to run the application.<br>
+**q**: Will my data be lost after closing the application?<br>
+**A**: No, your data will be stored in the `HackAssist.json` file. Data will only be lost if `HackAssist.json` file is deleted.<br>
 **Q**: How do i backup my data?<br>
 **A**: Create a copy of the `HackAssist.json` file in another directory.
 
@@ -363,3 +363,4 @@ Examples:
 | Word               | Definition                                                                                                                                                 |
 |-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | GUI                 | Graphical User Interface - The Visual representation of the application                                                                                            |
+| Parameter           | Input to the command called                                                                                  |
