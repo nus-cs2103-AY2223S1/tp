@@ -69,7 +69,6 @@ public class UnmarkTaskCommand extends Command {
         return new Task(name, module, deadline, updatedStatus);
     }
 
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
