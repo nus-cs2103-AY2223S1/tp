@@ -5,7 +5,6 @@ import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Patient's medical condition.
- * Guarantees: immutable; is valid as declared in {@link #isValidCondition(String)}
  */
 public class Condition {
     public static final String MESSAGE_CONSTRAINTS = "Conditions can take any values, and it should not be blank";
