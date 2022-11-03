@@ -9,6 +9,31 @@ Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyCommandHistory" as ReadOnlyCommandHistory
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 
+Package Person as PersonPackage{
+Class Person
+Class Address
+Class Email
+Class Name
+Class Phone
+Class IncomeLevel
+Class Monthly
+Class HiddenModel2 #FFFFFF
+Class HiddenModel3 #FFFFFF
+}
+
+Package Tag as TagPackage{
+Class "{abstract}\nTag" as Tag
+Class NormalTag
+Class PlanTag
+Class RiskTag
+}
+
+Package Appointment as AppointmentPackage{
+Class Appointment
+Class Location
+Class DateTime
+}
+
 Class "<<interface>>\nModel" as Model
 Class AddressBook
 Class CommandHistory
