@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.ui.SecondaryPaneState;
 
 /**
  *  Deletes a reminder in the reminder list.
@@ -48,6 +49,9 @@ public class ReminderDeleteCommand extends ReminderCommandGroup {
         Reminder toDelete = reminderList.get(index.getZeroBased());
         model.deleteReminder(toDelete);
 
+        if (!model.hasTargetPerson()) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete), SecondaryPaneState.WELCOME);
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
     }
 
