@@ -71,7 +71,6 @@ public class ArgumentMultimap {
                 return true;
             }
         }
-
         return sizeOffset > 1;
     }
 }
