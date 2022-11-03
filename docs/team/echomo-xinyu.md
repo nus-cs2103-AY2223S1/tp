@@ -36,7 +36,7 @@ Given below are my contributions to the project.
 * **Community**:
   * Review **many** *(if not most)* **of the PRs related to code by the whole group** with detailed insights and comments;
     * Some prominent examples: [#96](https://github.com/AY2223S1-CS2103T-T09-4/tp/pull/96), [#169](https://github.com/AY2223S1-CS2103T-T09-4/tp/pull/169), [#198](https://github.com/AY2223S1-CS2103T-T09-4/tp/pull/198) 
-    * Hold high standard of code quality and enforce this standard in PR rview.
+    * Hold high standard of code quality and enforce this standard in PR review.
     * Spot bugs and request for change during review stage rather than let them slip into code base.
   * Have the best knowledge about the overall code base and clear idea about current progress of each group members (closely monitor all actions on GitHub by group members);
   * Actively participate in the discussion during weekly meetings, provide concrete suggestions for various topics, and is highly involved for workload distribution by being a reliable source for estimating time and difficulty of a task;
