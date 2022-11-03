@@ -24,12 +24,14 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NameIsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.RemovePersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
 
+    public static final Index VALID_INDEX = Index.fromZeroBased(0);
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -60,6 +62,16 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    //used in remove
+    public static final String HOMEWORK_DESC_AMY_REM = " " + PREFIX_HOMEWORK + "1";
+    public static final String GRADE_PROGRESS_DESC_AMY_REM = " " + PREFIX_GRADE_PROGRESS + "1";
+    public static final String ATTENDANCE_DESC_AMY_REM = " " + PREFIX_ATTENDANCE + "1";
+    public static final String SESSION_DESC_AMY_REM = " " + PREFIX_SESSION + "1";
+    public static final String FIRST_PERSON_NAME = "alice Pauline";
+    public static final String FIRST_PERSON_PHONE = "94351253";
+    public static final String FIRST_PERSON_LESSON_PLAN = "Algorithms";
+    public static final String FIRST_PERSON_TAGS = "friends";
+
     // used in edit, hence index is included
     public static final String HOMEWORK_DESC_AMY = " " + PREFIX_HOMEWORK + "1 " + VALID_HOMEWORK_AMY;
     public static final String GRADE_PROGRESS_DESC_AMY = " " + PREFIX_GRADE_PROGRESS
@@ -78,6 +90,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final RemoveCommand.RemovePersonDescriptor DESC_AMY_REM;
+    public static final RemoveCommand.RemovePersonDescriptor DESC_BOB_REM;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withLessonPlan(VALID_LESSON_PLAN_AMY)
@@ -85,6 +100,19 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withLessonPlan(VALID_LESSON_PLAN_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    static {
+        DESC_AMY_REM = new RemovePersonDescriptorBuilder().withSession(VALID_SESSION_AMY)
+                .withSessionIndex(VALID_INDEX).withHomework(VALID_HOMEWORK_AMY)
+                .withHomeworkIndex(VALID_INDEX).withGradeProgress(VALID_GRADE_PROGRESS_AMY)
+                .withGradeProgressIndex(VALID_INDEX).withAttendance(VALID_ATTENDANCE_AMY)
+                .withAttendanceIndex(VALID_INDEX).build();
+        DESC_BOB_REM = new RemovePersonDescriptorBuilder().withSession(VALID_SESSION_BOB)
+                .withSessionIndex(VALID_INDEX).withHomework(VALID_HOMEWORK_BOB)
+                .withHomeworkIndex(VALID_INDEX).withGradeProgress(VALID_GRADE_PROGRESS_BOB)
+                .withGradeProgressIndex(VALID_INDEX).withAttendance(VALID_ATTENDANCE_BOB)
+                .withAttendanceIndex(VALID_INDEX).build();
     }
 
     /**
