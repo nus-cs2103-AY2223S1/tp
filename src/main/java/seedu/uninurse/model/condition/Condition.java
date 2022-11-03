@@ -1,14 +1,13 @@
 package seedu.uninurse.model.condition;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.AppUtil.checkArgument;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Patient's medical condition.
  * Guarantees: immutable; is valid as declared in {@link #isValidCondition(String)}
  */
 public class Condition {
-
     public static final String MESSAGE_CONSTRAINTS = "Conditions can take any values, and it should not be blank";
 
     /*
@@ -20,18 +19,21 @@ public class Condition {
     public final String condition;
 
     /**
-     * Constructs a {@code Condition}.
+     * Constructs a condition.
      *
      * @param condition A valid condition.
      */
     public Condition(String condition) {
-        requireNonNull(condition);
+        requireAllNonNull(condition);
         checkArgument(isValidCondition(condition), MESSAGE_CONSTRAINTS);
         this.condition = condition;
     }
 
     /**
-     * Returns true if a given string is a valid condition.
+     * Checks if a given string is a valid condition.
+     *
+     * @param test The given string to be tested.
+     * @return True if a given string is a valid condition.
      */
     public static boolean isValidCondition(String test) {
         return test.matches(VALIDATION_REGEX);

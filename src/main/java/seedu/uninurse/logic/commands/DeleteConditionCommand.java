@@ -1,6 +1,5 @@
 package seedu.uninurse.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_CONDITION_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
@@ -24,16 +23,14 @@ public class DeleteConditionCommand extends DeleteGenericCommand {
             + PREFIX_OPTION_CONDITION_INDEX + " TAG_INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 " + PREFIX_OPTION_CONDITION_INDEX
             + " 2";
-
     public static final String MESSAGE_DELETE_CONDITION_SUCCESS = "Deleted condition %1$d from %2$s: %3$s";
-
     public static final CommandType DELETE_CONDITION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index patientIndex;
     private final Index conditionIndex;
 
     /**
-     * Creates a DeleteConditionCommand to delete a {@code Condition} from the specified patient.
+     * Creates a DeleteConditionCommand to delete a condition from the specified patient.
      *
      * @param patientIndex The index of the patient in the filtered patient list to delete the condition.
      * @param conditionIndex The index of the condition in the patient's condition list.
@@ -47,7 +44,7 @@ public class DeleteConditionCommand extends DeleteGenericCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+        requireAllNonNull(model);
         List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
@@ -87,7 +84,7 @@ public class DeleteConditionCommand extends DeleteGenericCommand {
         }
 
         // state check
-        DeleteConditionCommand command = (DeleteConditionCommand) other;
-        return patientIndex.equals(command.patientIndex) && conditionIndex.equals((command.conditionIndex));
+        DeleteConditionCommand o = (DeleteConditionCommand) other;
+        return patientIndex.equals(o.patientIndex) && conditionIndex.equals((o.conditionIndex));
     }
 }
