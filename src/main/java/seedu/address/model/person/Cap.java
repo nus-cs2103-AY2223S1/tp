@@ -13,7 +13,7 @@ public class Cap {
     public static final String MESSAGE_MAXIMUM_CAP_REQUIRED =
             "CAPs should consist of two values, namely the current CAP value and its maximum value, e.g. 4.0/5.0";
     public static final String MESSAGE_NUMERIC_VALUE_REQUIRED =
-            "CAP values should only be numeric and should not contain alphabetical characters!";
+            "CAP values should only be numeric, they should not contain symbols and alphabetical characters!";
     public static final double MINIMUM = 0.0;
     public static final String CAP_SEPARATOR = "/";
     public static final String VALIDATION_REGEX = "[\\s]*[0-9][\\s]*[.]?[\\s]*[0-9]*[\\s]*";
