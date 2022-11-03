@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.question.Question;
 import seedu.address.model.question.UniqueQuestionList;
 import seedu.address.model.student.Student;
@@ -188,11 +190,6 @@ public class AddressBook implements ReadOnlyAddressBook {
                 && students.equals(((AddressBook) other).students));
     }
 
-    //////////////////////////////////////////////////
-
-
-    //// question-level operations
-
     /**
      * Returns true if a question with the same identity as {@code question} exists in the address book.
      */
@@ -219,6 +216,26 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedQuestion);
 
         questions.setQuestion(target, editedQuestion);
+    }
+
+    /**
+     * Marks the question with the given index {@code index} in the question list as important.
+     * {@code index} must be a valid index.
+     */
+    public void markQuestion(Index index) {
+        requireAllNonNull(index);
+
+        questions.markQuestion(index);
+    }
+
+    /**
+     * Marks the question with the given index {@code index} in the question list as unimportant.
+     * {@code index} must be a valid index.
+     */
+    public void unmarkQuestion(Index index) {
+        requireAllNonNull(index);
+
+        questions.unmarkQuestion(index);
     }
 
     /**

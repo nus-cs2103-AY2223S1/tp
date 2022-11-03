@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.question.Question;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
@@ -120,6 +121,18 @@ public interface Model {
      * book.
      */
     void setQuestion(Question target, Question editedQuestion);
+
+    /**
+     * Marks a question in the question list as important based on the index given.
+     * @param index
+     */
+    void markQuestion(Index index);
+
+    /**
+     * Marks a question in the question list as unimportant based on the index given.
+     * @param index
+     */
+    void unmarkQuestion(Index index);
 
     /** Returns an unmodifiable view of the filtered question list */
     ObservableList<Question> getFilteredQuestionList();
