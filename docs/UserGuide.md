@@ -80,7 +80,7 @@ FYP projects in a concise manner.
 
 * `FYP_NAME` and `DEADLINE_NAME` should only include alphanumeric characters and spaces but
 **cannot start with a space**.<br>
-  e.g. `Support vector machine: some improvements` is invalid
+  e.g. ` Support vector machine: some improvements` is invalid
 
 * `DEADLINE_DATETIME` can be in the format of **"DD-MM-YYYY HH:mm"** or **"YYYY-MM-DD HH:mm"**.<br>
   e.g. `05-11-2022 08:00`, `2022-11-05 08:00`.
