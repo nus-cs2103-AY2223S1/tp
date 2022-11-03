@@ -104,8 +104,8 @@ Format: `findi KEYWORD [MORE_KEYWORDS]`
   e.g. `shirt` will return `dress shirt`, `collared shirt`
 
 Examples:
-- `findi oil` returns items with item names containing keyword `oil` such as `Olive Oil` and `Vegetable Oil`
-- `findi yellow pillow` returns items with the item name containing keywords `yellow` and `pillow` such as `yellow blanket`, `ergonomic pillow` and `yellow pillow`
+- `findi oil` returns items with item names containing the keyword `oil` such as `Olive Oil` and `Vegetable Oil`
+- `findi yellow pillow` returns items with the item names containing the keywords `yellow` and `pillow` such as `yellow blanket`, `ergonomic pillow` and `yellow pillow`
 
 ### Deleting an inventory item : `deletei`
 
