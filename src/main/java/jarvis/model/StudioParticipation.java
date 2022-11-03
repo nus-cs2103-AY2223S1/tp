@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import jarvis.model.exceptions.InvalidParticipationException;
 import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
@@ -44,7 +45,9 @@ public class StudioParticipation {
     }
 
     public void setParticipationForStudent(Student student, int i) {
-        assert i >= 0 && i <= 500 : "Participation value must be between 0 and 500 inclusive";
+        if (i < 0 || i > 500) {
+            throw new InvalidParticipationException("Participation value must be between 0 and 500 inclusive");
+        }
         if (!participation.containsKey(student)) {
             throw new StudentNotFoundException();
         }

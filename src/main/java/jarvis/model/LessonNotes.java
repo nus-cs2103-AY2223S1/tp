@@ -1,8 +1,5 @@
 package jarvis.model;
 
-import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
-import static java.util.Objects.requireNonNull;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -58,7 +55,6 @@ public class LessonNotes {
      * @param notes Lines to append to the overall lesson notes.
      */
     public void addNote(String notes) {
-        requireNonNull(notes);
         if (notes.isBlank()) {
             throw new InvalidNoteException("Note cannot be empty");
         }
@@ -71,7 +67,6 @@ public class LessonNotes {
      * @param notes Note to add for the student.
      */
     public void addNote(Student student, String notes) {
-        requireAllNonNull(student, notes);
         if (notes.isBlank()) {
             throw new InvalidNoteException("Note cannot be empty");
         }

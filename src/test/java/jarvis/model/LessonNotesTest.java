@@ -101,7 +101,6 @@ class LessonNotesTest {
         LessonNotes differentStudentNote = new LessonNotes(students);
         differentStudentNote.addNote(students.first(), "Line 1");
 
-
         // same values -> returns true
         assertTrue(lessonNotes.equals(sameValues));
 

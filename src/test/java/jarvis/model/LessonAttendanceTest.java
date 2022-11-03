@@ -83,7 +83,6 @@ class LessonAttendanceTest {
         Student presentStudent = students.first();
         differentAttendance.markAsPresent(presentStudent);
 
-
         // same values -> returns true
         assertTrue(lessonAttendance.equals(sameValues));
 
