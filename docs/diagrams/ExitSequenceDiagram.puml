@@ -58,6 +58,7 @@ StorageManager --> LogicManager
 deactivate StorageManager
 LogicManager --> MainWindow
 
+create CommandBox
 MainWindow -> CommandBox
 activate CommandBox
 
