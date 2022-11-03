@@ -11,13 +11,13 @@ SoConnect is a **desktop app for managing contacts and tasks**. It aims to help 
 
 ### New Feature: Advanced Search Functionality
 
-**What it does**: Allows user to have a mini Google inside SoConnect. The search command can generate relevant search result, even in the event of mistyping or only partial information is available.
+**What it does**: Allows user to have a mini Google inside SoConnect. The search command can generate relevant search results, even in the event of mistyping or only partial information is available.
 
 **Justification**: This feature improves the user productivity significantly because a user will not need to provide full information upon searching and the app could still return accurate and relevant result based on the query. 
 
-**Highlight**: This enhancement replaces the previous `find` functionality. The search feature itself requires careful design on how the algorithm works, especially on the relevancy reduction level.
+**Highlight**: This enhancement replaces the previous `find` feature. The search feature itself requires careful design on how the algorithm works, especially on the relevancy reduction level.
 
-**Credit**: This feature is adapted from the `find` feature, which only allows full word match result to be returned.
+**Credit**: This feature is adapted from the `find` feature, which only allows full word match results to be returned.
 
 ### Code Contribution
 
@@ -42,7 +42,7 @@ Up until 2 November 2022, I have contributed 1781 LoC (roughly 4,185 additions a
   * Added implementation details and sequence diagram for the `search` feature (Pull requests [\#152](), [\#75]()).
 
 **Community**:
-* 24 PRs reviewed (with 64 review comments).
+* 24 PRs [reviewed](https://github.com/AY2223S1-CS2103T-W15-1/tp/pulls?q=is%3Apr+reviewed-by%3A%40me+) (with 64 review comments).
 * Contributed to 4 posts in forum discussions.
 * Reported 26 bugs and suggestions for other teams in the class.
 
