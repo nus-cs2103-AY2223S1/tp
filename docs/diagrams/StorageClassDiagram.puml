@@ -28,10 +28,15 @@ package "TaskBook Storage" #F4F6F6{
 Class "<<interface>>\nTaskBookStorage" as TaskBookStorage
 Class JsonTaskBookStorage
 Class JsonSerializableTaskBook
-Class JsonAdaptedTask
+Class "{{abstract}}\nJsonAdaptedTask" as JsonAdaptedTask
 Class JsonAdaptedDeadline
 Class JsonAdaptedToDo
 Class JsonAdaptedAssignment
+}
+
+package "Other Storage" #F4F6F6 {
+Class InputHistory
+Class ImageStorage
 }
 
 }
