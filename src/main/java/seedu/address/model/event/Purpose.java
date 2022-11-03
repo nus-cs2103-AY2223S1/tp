@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Purpose implements Comparable<Purpose> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Purpose can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Purpose should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
