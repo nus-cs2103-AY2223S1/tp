@@ -16,12 +16,13 @@ title: FinBook User Guide
    4.1. [Managing a client](#41-managing-a-client)<br>
    &emsp; 4.1.1. [Adding a client: `add`](#411-adding-a-client-add)<br>
    &emsp; 4.1.2. [Editing a client: `edit`](#412-editing-a-client--edit)<br>
-   &emsp; 4.1.3. [Deleting a client: `delete`](#413-deleting-a-client--delete)<br>
-   &emsp; &emsp; 4.1.3.1. [Deleting a single client](#4131-deleting-a-single-client)<br>
-   &emsp; &emsp; 4.1.3.2. [Deleting multiple clients](#4132-deleting-multiple-clients)<br>
-   &emsp; 4.1.4. [Listing all clients: `list`](#414-listing-all-clients--list)<br>
-   &emsp; 4.1.5. [Finding a client: `find`](#415-finding-a-client--find)<br>
-   &emsp; 4.1.6. [Viewing Portfolio of a specific client: `view`](#416-viewing-portfolio-of-a-specific-client-view)<br>
+   &emsp; 4.1.3. [Removing a client's details: `remove`](#413-removing-a-client's-details--remove)<br>
+   &emsp; 4.1.4. [Deleting a client: `delete`](#414-deleting-a-client--delete)<br>
+   &emsp; &emsp; 4.1.4.1. [Deleting a single client](#4141-deleting-a-single-client)<br>
+   &emsp; &emsp; 4.1.4.2. [Deleting multiple clients](#4142-deleting-multiple-clients)<br>
+   &emsp; 4.1.5. [Listing all clients: `list`](#415-listing-all-clients--list)<br>
+   &emsp; 4.1.6. [Finding a client: `find`](#416-finding-a-client--find)<br>
+   &emsp; 4.1.7. [Viewing Portfolio of a specific client: `view`](#417-viewing-portfolio-of-a-specific-client-view)<br>
    4.2. [Data privacy](#42-data-privacy)<br>
    &emsp; 4.2.1. [Locking the application: `lock`](#421-locking-the-application--lock)<br>
    &emsp; 4.2.2. [Setting or updating the password: `password`](#422-setting-or-updating-the-password--password)<br>
@@ -130,7 +131,8 @@ For example,
 | e/     | EMAIL                                    | Email of client<br/> **:information_source: Parameter restrictions:**<br> Emails should be of the format local-part@domain and adhere to the following constraints: <br/> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.<br/> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. <br/> &emsp;The domain name must: <br/>&emsp;&emsp; - end with a domain label at least 2 characters long<br/>&emsp;&emsp; - have each domain label start and end with alphanumeric characters<br/>&emsp;&emsp;- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. | **Valid Examples:** <br/>- john@gmail.com<br/>- jo_doe@abc.com.sg <br/>**Invalid Examples:** <br/>- john_@example.com<br/>- john@example_.com |
 | a/     | ADDRESS                                  | Address of client<br/> **:information_source: Parameter restrictions:**<br> - Addresses can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | **Valid Examples:** <br/>- Blk 123 @Flower Street, #01-01<br/>- abc <br/>                                                                     |
 | i/     | INCOME                                   | Income of client<br/> **:information_source: Parameter restrictions:**<br> - Income should start with $ followed by numbers and should be at least 1 digit long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | **Valid Examples:** <br/>- $8250 <br/>- $0 <br/>  **Invalid Examples:** <br/>- $10k<br/>- 5000 <br/>                                          |
-| m/     | MEETINGDATE or <br/> MEETINGDATEWITHTIME | Meeting date and time of client<br/> **:information_source: Parameter restrictions:**<br> Date should be in the form of dd MMM yyyy [HH:mm]. Meeting time is optional.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | **Valid Examples:** <br/>- 20 Nov 2022 <br/>- 05 Oct 2023 10:30 <br/>  **Invalid Examples:** <br/>- 13-Aug-2022 <br/>- 15 Jul 2023 16.30      |
+| m/     | MEETINGDATE or <br/> MEETINGDATEWITHTIME | Date and time of meeting with client<br/> **:information_source: Parameter restrictions:**<br> - Date should be in the form of dd MMM yyyy [HH:mm]. Meeting time is optional.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | **Valid Examples:** <br/>- 20 Nov 2022 <br/>- 05 Oct 2023 10:30 <br/>  **Invalid Examples:** <br/>- 13-Aug-2022 <br/>- 15 Jul 2023 16.30      |
+| ml/    | MEETINGLOCATION                          | Location of meeting with client<br/> **:information_source: Parameter restrictions:**<br> - Location can be in the form of either an address (for in-person meetings), or a link (for online meetings).<br> - Addresses can take any values, and it should not be blank.<br> Links should be of the format protocol://host, and links compliant with the format will be automatically detected by Finbook, and the meeting will be automatically categorised as online.                                                                                                                                                                                                                                                                                                                                             | **Valid Examples:** <br/>- 13 Computing Drive <br/>- https://nus-sg.zoom.us/j/83478736459?pwd=MlhydFJOVGp5Yks2TU5rSENwR21mZz09 <br/>          |
 | t/     | TAG                                      | Tag of client <br/> **:information_source: Parameter restrictions:**<br>-Tags names should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | **Valid Examples:** <br/>- VIPClient <br/>- 10 <br/>  **Invalid Examples:** <br/>- VIP-Client <br/>- * <br/>                                  |
 | r/     | RISK                                     | Risk level of client's portfolio <br/> **:information_source: Parameter restrictions:**<br>- Risk level can take any values, and it should not be blank.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | **Valid Examples:** <br/>- High <br/>- abc <br/>                                                                                              |
 | pl/    | PLANS                                    | Plans regarding client's portfolio <br/> **:information_source: Parameter restrictions:**<br>- Plan names should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | **Valid Examples:** <br/>- NTUC Income Plan <br/>- OCBC Plan 2020 <br/>                                                                       |                                                                          
@@ -211,8 +213,8 @@ For example,
 
 Adds a client to the FinBook so that you will not forget your client's personal information.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME [m/UPCOMING_MEETING_DATES] [t/TAGS] [r/RISK_LEVEL]
-[pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME [m/UPCOMING_MEETING_DATES] [ml/MEETING_LOCATION]
+[t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
 
 * `add` command will refresh the portfolio panel to display "`no client selected for view yet!`".
 
@@ -234,11 +236,14 @@ Examples:
 
 * `add` command will refresh the portfolio panel to display "no client selected for view yet!".
 * `m/UPCOMING_MEETING_DATES` can be in the `dd Mmm yyyy` or `dd Mmm yyyy HH:mm` format.
+* The income `i/`, meeting date `m/`, meeting location `ml/`, tags `t/`, risk `r/`, plans `pl/` and notes `note/` fields
+  are optional fields, and you may leave them empty.
 
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Only the latest parameter of each prefix is accepted. Eg. `add n/Johnny n/John p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000` will only add the client name as John. 
+If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+e.g. `add n/Johnny n/John p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000` will take the client's name to be John.
 </div>
 
 [⬆ back to Table of Contents](#table-of-contents)
@@ -247,15 +252,16 @@ Only the latest parameter of each prefix is accepted. Eg. `add n/Johnny n/John p
 
 ### 4.1.2. Editing a client : `edit`
 
-Edits an existing client in the FinBook so that you can maintain an updated list of your clients’ personal information for better analysis.
+Edits an existing client in the FinBook so that you can maintain an updated list of your clients’ personal information when your client's information change.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] [m/UPCOMING_MEETING_DATES]
-[t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
+[ml/MEETING_LOCATION] [t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
   The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+* For parameters that are not tags, plans or notes, existing values will be overwritten by the input values.
+* For tags, plans, or notes, the input values will be added to existing values, so you do not have to type everything
+  again when you want to add a tag, plan, or note.
 * `edit` command will automatically view the updated portfolio of the edited client.
 
 Examples:
@@ -269,6 +275,39 @@ Examples:
 **:information_source: Notes:**
 
 * `edit` command will automatically view the updated portfolio of the edited client.
+* To remove tags, plans, or notes, refer
+  to [4.1.3. Removing a client's details : `remove`](#413-removing-a-client's-details--remove)
+</div>
+
+[⬆ back to Table of Contents](#table-of-contents)
+
+---
+
+### 4.1.3. Removing a client's details : `remove`
+
+Removes an existing client's tags, plans, or notes in the FinBook so that you can maintain an updated list of your
+clients’ personal information when your client's information change.
+
+Format: `remove INDEX [t/TAGS] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
+
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
+  The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* The input values will be removed from existing tags, plans or notes.
+* `remove` command will automatically view the updated portfolio of the edited client.
+
+Examples:
+
+* `remove 1 t/friends pl/NTUC Income Health` Removes the tag `friends` and the plan `NTUC Income Health` from the 1st
+  client, and automatically displays the updated portfolio of the 1st client.
+* `remove 2 note/Plans to save for college education` Removes the note `Plans to save for college education` from the
+  2nd client, and automatically displays the updated portfolio of the 2nd client.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**
+
+* `remove` command will automatically view the updated portfolio of the edited client.
 
 </div>
 
@@ -276,7 +315,7 @@ Examples:
 
 ---
 
-### 4.1.3. Deleting a client : `delete`
+### 4.1.4. Deleting a client : `delete`
 
 Four formats of deleting a client so that you can easily so that maintain an updated list of your clients’ personal information.
 
@@ -291,7 +330,7 @@ Four formats of deleting a client so that you can easily so that maintain an upd
 
 <br>
 
-#### 4.1.3.1. Deleting a single client
+#### 4.1.4.1. Deleting a single client
 
 **Deletes the specified client from the FinBook.**
 
@@ -306,7 +345,7 @@ Examples:
 
 <br>
 
-#### 4.1.3.2. Deleting multiple clients
+#### 4.1.4.2. Deleting multiple clients
 
 **Deletes multiple specified clients from the FinBook.**
 
@@ -348,9 +387,9 @@ Example:
 
 ---
 
-### 4.1.4. Listing all clients : `list`
+### 4.1.5. Listing all clients : `list`
 
-Shows a list of all clients in the FinBook.
+Shows a list of all clients in the FinBook so that you can see the complete list of all your clients at a glance.
 
 Format: `list`
 
@@ -358,10 +397,11 @@ Format: `list`
 
 ---
 
-### 4.1.5. Finding a client : `find`
+### 4.1.6. Finding a client : `find`
 
 Finds all clients whose names or tags contain any of the specified keywords (case-insensitive) and displays them as a
-list with index numbers.
+list with index numbers, so that you can find the client you are looking for without having to scroll through all of
+your clients.
 
 Format: `find [n/NAME] [t/TAG]`
 
@@ -380,7 +420,7 @@ Examples:
 
 ---
 
-### 4.1.6. Viewing Portfolio of a specific client: `view`
+### 4.1.7. Viewing Portfolio of a specific client: `view`
 
 Views a specific's client portfolio so that you can analyse each client before their meeting.
 
