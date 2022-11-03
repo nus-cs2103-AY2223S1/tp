@@ -300,7 +300,7 @@ Format: `checkout FILE_NAME`
 
 * `FILE_NAME` should not include any extension, as it would always be a JSON file.
 * The command will attempt to load the specified `FILE_NAME.json` file in the `data/` folder.
-* If the file contains invalid data or have and invalid format, the contents of the file will be erased and an empty 
+* If the file contains invalid data or have an invalid format, the contents of the file will be erased and an empty 
 addressbook will be loaded.
 * If the file doesn't exist, a new file will be created, populated with sample data.
 * If the file contains valid data, the file will be loaded.
