@@ -92,9 +92,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_OUT_OF_BOUND_DATESLOTINDEX = "The dateSlot index given is out of bounds "
             + "of the existing list." + "Please retype another index that is within the range or left it empty.";
 
-    public static final String MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLEDATES_AND_UNAVAILABLEDATESINDEX =
-            "The unavailable date index " + "provided is more than the unavailable date provided."
-                    + "Please remove the unavailable date index or add more unavailable date.";
+    public static final String MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLEDATES_AND_UNAVAILABLEDATESINDEX = "The unavailable date index "
+            + "provided is more than the unavailable date provided."
+            + "Please remove the unavailable date index or add more unavailable date.";
 
     public static final String MESSAGE_OUT_OF_BOUND_UNAVAILABLEDATESINDEX = "The unavailable date index "
             + "given is out of bounds of the existing list."
@@ -791,7 +791,7 @@ public class EditCommand extends Command {
          * @return {@code Optional#empty()} if {@code physician} is null.
          */
         public Optional<Optional<Physician>> getPhysician() {
-            return (physician.isPresent()) ? Optional.of(physician) : Optional.empty();
+            return (physician != null) ? Optional.of(physician) : Optional.empty();
         }
 
         /**
@@ -810,7 +810,7 @@ public class EditCommand extends Command {
          * @return {@code Optioanl.empty()} if {@code nextOfKin} is null.
          */
         public Optional<Optional<NextOfKin>> getNextOfKin() {
-            return (nextOfKin.isPresent()) ? Optional.of(nextOfKin) : Optional.empty();
+            return (nextOfKin != null) ? Optional.of(nextOfKin) : Optional.empty();
         }
 
         /**
