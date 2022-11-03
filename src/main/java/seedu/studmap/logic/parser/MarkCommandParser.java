@@ -17,7 +17,6 @@ public class MarkCommandParser extends EditStudentCommandParser<MarkCommand.Mark
 
     public static final String MESSAGE_INVALID_OPTION = "Option must either be 'present' or 'absent' for attendance";
 
-
     @Override
     public Prefix[] getPrefixes() {
         return new Prefix[]{PREFIX_CLASS};
@@ -38,15 +37,17 @@ public class MarkCommandParser extends EditStudentCommandParser<MarkCommand.Mark
     public EditStudentCommand<MarkCommand.MarkCommandStudentEditor> getIndexCommand(
             ArgumentMultimap argMultimap, IndexListGenerator indexListGenerator) throws ParseException {
 
-        String[] preamble = argMultimap.getPreamble().split("\\s+");
-        if (preamble.length != 2) {
-            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
-        }
+        String[] preamble = separatePreamble(argMultimap.getPreamble());
 
         MarkCommand.MarkCommandStudentEditor editor = null;
 
-        String className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).orElse(""));
         boolean attended = parseOption(preamble[1]);
+
+        if (argMultimap.getValue(PREFIX_CLASS).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, getUsageMessage()));
+        }
+
+        String className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).orElse(""));
         Attendance attendance = new Attendance(className, attended);
         editor = new MarkCommand.MarkCommandStudentEditor(attendance);
 
