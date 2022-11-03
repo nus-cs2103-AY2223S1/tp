@@ -31,10 +31,17 @@ import seedu.address.logic.commands.DeletePersonCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.DeleteTeamCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditLinkCommand;
+import seedu.address.logic.commands.EditPersonCommand;
+import seedu.address.logic.commands.EditTaskCommand;
+import seedu.address.logic.commands.EditTeamCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 import seedu.address.testutil.LinkBuilder;
 import seedu.address.testutil.LinkUtil;
 import seedu.address.testutil.ParserHelper;
@@ -175,29 +182,62 @@ public class TruthTableParserTest {
 
     @Test
     public void parseCommand_editLink() throws Exception {
-    }
-
-    @Test
-    public void parseCommand_editMember() throws Exception {
+        Link link = new LinkBuilder().build();
+        String commandString = EditLinkCommand.FULL_COMMAND + " "
+                + INDEX_ONE.getOneBased() + " "
+                + LinkUtil.getLinkDetails(link);
+        EditLinkCommand command = (EditLinkCommand) parser.parseCommand(commandString);
+        assertEquals(INDEX_ONE, ParserHelper.getIndex(command));
+        assertEquals(link.getDisplayedName(), ParserHelper.getLinkName(command));
+        assertEquals(link.getUrl(), ParserHelper.getUrl(command));
     }
 
     @Test
     public void parseCommand_editPerson() throws Exception {
+        Person person = new PersonBuilder().build();
+        String commandString = EditPersonCommand.FULL_COMMAND + " "
+                + INDEX_ONE.getOneBased() + " "
+                + PersonUtil.getPersonDetails(person);
+        EditPersonCommand command = (EditPersonCommand) parser.parseCommand(commandString);
+        assertEquals(person.getName(), ParserHelper.getName(command));
+        assertEquals(person.getPhone(), ParserHelper.getPhone(command));
+        assertEquals(person.getEmail(), ParserHelper.getEmail(command));
+        assertEquals(person.getAddress(), ParserHelper.getAddress(command));
     }
 
     @Test
     public void parseCommand_editTask() throws Exception {
+        Task task = new TaskBuilder().build();
+        String commandString = EditTaskCommand.FULL_COMMAND + " "
+                + INDEX_ONE.getOneBased() + " "
+                + TaskUtil.getTaskDetailsWithNameFlag(task);
+        EditTaskCommand command = (EditTaskCommand) parser.parseCommand(commandString);
+        assertEquals(task.getName(), ParserHelper.getTaskName(command));
+        assertTrue(Arrays.equals(new String[] {"1","2"},
+                ParserHelper.getAssignees(command)));
+        assertEquals(task.getDeadline().get(), ParserHelper.getDeadline(command));
     }
     @Test
     public void parseCommand_editTeam() throws Exception {
+        Team team = new TeamBuilder().build();
+        String commandString = EditTeamCommand.FULL_COMMAND + " "
+                + TeamUtil.getTeamDetailsWithNameFlag(team);
+        EditTeamCommand command = (EditTeamCommand) parser.parseCommand(commandString);
+        assertEquals(team.getTeamName(), ParserHelper.getTeamName(command));
+        assertEquals(team.getDescription(), ParserHelper.getDescription(command));
+
     }
 
     @Test
     public void parseCommand_exit() throws Exception {
+        ExitCommand command = (ExitCommand) parser.parseCommand(ExitCommand.COMMAND_WORD);
+        assertEquals(new ExitCommand(), command);
     }
 
     @Test
     public void parseCommand_find() throws Exception {
+        FindCommand command = (FindCommand) parser.parseCommand(FindCommand.COMMAND_WORD);
+        assertEquals(new FindCommand(), command);
     }
 
     @Test

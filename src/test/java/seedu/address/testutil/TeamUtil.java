@@ -19,4 +19,12 @@ public class TeamUtil {
         sb.append(FLAG_DESCRIPTION_STR + "\"").append(team.getDescription().toString()).append("\" ");
         return sb.toString();
     }
+
+    public static String getTeamDetailsWithNameFlag(Team team) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(FLAG_NAME_STR + " ").append(team.getTeamName().toString()).append(" ");
+        sb.append(FLAG_DESCRIPTION_STR + "\"").append(team.getDescription().toString()).append("\" ");
+        return sb.toString();
+    }
+
 }

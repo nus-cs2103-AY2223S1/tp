@@ -93,8 +93,8 @@ public class EditTeamCommand extends Command {
         }
         requireNonNull(model);
 
-        if (arguments.name != null) {
-            editTeamDescriptor.name = arguments.name;
+        if (arguments.teamName != null) {
+            editTeamDescriptor.name = arguments.teamName;
         }
         if (arguments.description != null) {
             editTeamDescriptor.description = arguments.description;
@@ -136,7 +136,7 @@ public class EditTeamCommand extends Command {
 
     private static class Arguments {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_TEAM_NAME_DESCRIPTION)
-        private TeamName name;
+        private TeamName teamName;
 
         @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG},
                 description = FLAG_TEAM_DESCRIPTION_DESCRIPTION)
@@ -148,7 +148,7 @@ public class EditTeamCommand extends Command {
                 return true;
             } else if (other instanceof Arguments) {
                 Arguments target = (Arguments) other;
-                return this.name == null ? false : this.name.equals(target.name)
+                return this.teamName == null ? false : this.teamName.equals(target.teamName)
                         && this.description == null ? false : this.description.equals(target.description);
             } else {
                 return false;

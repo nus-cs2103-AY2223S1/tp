@@ -116,8 +116,8 @@ public class EditTaskCommand extends Command {
         if (arguments.deadline != null) {
             editTaskDescriptor.setDeadline(arguments.deadline);
         }
-        if (arguments.name != null) {
-            editTaskDescriptor.setName(arguments.name);
+        if (arguments.taskName != null) {
+            editTaskDescriptor.setName(arguments.taskName);
         }
         List<Task> taskList = model.getTeam().getTaskList();
 
@@ -172,7 +172,7 @@ public class EditTaskCommand extends Command {
 
     private static class Arguments {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_TASK_NAME_DESCRIPTION)
-        private TaskName name;
+        private TaskName taskName;
 
         @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG},
                 parameterConsumer = LocalDateTimeConverter.class, description = FLAG_TASK_DEADLINE_DESCRIPTION)
@@ -188,7 +188,7 @@ public class EditTaskCommand extends Command {
                 return true;
             } else if (other instanceof Arguments) {
                 Arguments target = (Arguments) other;
-                return this.name == null ? false : this.name.equals(target.name)
+                return this.taskName == null ? false : this.taskName.equals(target.taskName)
                         && this.deadline == null ? false : this.deadline.equals(target.deadline)
                         && Arrays.equals(assignees, target.assignees);
             } else {

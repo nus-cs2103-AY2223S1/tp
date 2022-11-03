@@ -22,4 +22,15 @@ public class TaskUtil {
         sb.append(FLAG_DEADLINE_STR + " ").append(task.getDeadlineStorage());
         return sb.toString();
     }
+
+    /**
+     * Returns the part of command string for the given {@code person}'s details.
+     */
+    public static String getTaskDetailsWithNameFlag(Task task) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(FLAG_NAME_STR + "\" ").append(task.getName().toString()).append("\" ");
+        sb.append(FLAG_ASSIGNEE_STR).append(" 1 2").append(" "); //TODO add proper indexes
+        sb.append(FLAG_DEADLINE_STR + " ").append(task.getDeadlineStorage());
+        return sb.toString();
+    }
 }
