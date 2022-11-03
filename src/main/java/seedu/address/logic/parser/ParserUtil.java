@@ -80,8 +80,10 @@ public class ParserUtil {
     public static AppliedDate parseAppliedDate(String appliedDate) throws ParseException {
         requireNonNull(appliedDate);
         String trimmedAppliedDate = appliedDate.trim();
-        if (!AppliedDate.isValidAppliedDate(trimmedAppliedDate)) {
-            throw new ParseException(AppliedDate.MESSAGE_CONSTRAINTS);
+        if (!AppliedDate.isValidFormat(trimmedAppliedDate)) {
+            throw new ParseException(AppliedDate.FORMAT_CONSTRAINTS);
+        } else if (!AppliedDate.isValidDate(trimmedAppliedDate)) {
+            throw new ParseException(AppliedDate.DATE_CONSTRAINTS);
         }
         return new AppliedDate(trimmedAppliedDate);
     }
@@ -96,8 +98,10 @@ public class ParserUtil {
     public static InterviewDateTime parseInterviewDateTime(String date) throws ParseException {
         requireNonNull(date);
         String trimmedInterviewDate = date.trim();
-        if (!InterviewDateTime.isValidInterviewDateTime(trimmedInterviewDate)) {
-            throw new ParseException(InterviewDateTime.MESSAGE_CONSTRAINTS);
+        if (!InterviewDateTime.isValidFormat(trimmedInterviewDate)) {
+            throw new ParseException(InterviewDateTime.FORMAT_CONSTRAINTS);
+        } else if (!InterviewDateTime.isValidDateTime(trimmedInterviewDate)) {
+            throw new ParseException(InterviewDateTime.DATE_TIME_CONSTRAINTS);
         }
         return new InterviewDateTime(trimmedInterviewDate);
     }

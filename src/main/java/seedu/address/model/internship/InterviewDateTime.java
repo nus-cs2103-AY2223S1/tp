@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.time.temporal.ChronoField;
 import java.util.Comparator;
 
@@ -17,10 +18,12 @@ import java.util.Comparator;
  */
 public class InterviewDateTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date/time should be one of these formats:\n"
+    public static final String FORMAT_CONSTRAINTS = "Date/time should be one of these formats:\n"
             + "[d MMM yyyy HH:mm] or [d/M/yyyy HH:mm] or [d MMM yyyy, h:mm a] or [d/M/yyyy, h:mm a]\n"
             + "Year can be omitted to default to current year.\n"
             + "When using AM/PM format, include a comma after the date.";
+
+    public static final String DATE_TIME_CONSTRAINTS = "Date and time provided is invalid.";
 
     /*
      * For the dateTime 23/10/2022 09:00, the following formats are accepted:
@@ -28,15 +31,15 @@ public class InterviewDateTime {
      */
     public static final DateTimeFormatter INPUT_DATE_FORMAT = new DateTimeFormatterBuilder()
             .parseCaseInsensitive()
-            .appendPattern("[d MMM yyyy HH:mm]")
-            .appendPattern("[d MMM yyyy, h:mm a]")
+            .appendPattern("[d MMM uuuu HH:mm]")
+            .appendPattern("[d MMM uuuu, h:mm a]")
             .appendPattern("[d MMM HH:mm]")
             .appendPattern("[d MMM, h:mm a]")
-            .appendPattern("[d/M/yyyy HH:mm]")
-            .appendPattern("[d/M/yyyy, h:mm a]")
+            .appendPattern("[d/M/uuuu HH:mm]")
+            .appendPattern("[d/M/uuuu, h:mm a]")
             .appendPattern("[d/M HH:mm]")
             .appendPattern("[d/M, h:mm a]")
-            .parseDefaulting(ChronoField.YEAR_OF_ERA, LocalDate.now().getYear())
+            .parseDefaulting(ChronoField.YEAR, LocalDate.now().getYear())
             .toFormatter();
 
     public static final DateTimeFormatter DISPLAY_DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy, h:mm a");
@@ -51,26 +54,55 @@ public class InterviewDateTime {
      */
     public InterviewDateTime(String interviewDateTime) {
         requireNonNull(interviewDateTime);
-        checkArgument(isValidInterviewDateTime(interviewDateTime), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidFormat(interviewDateTime), FORMAT_CONSTRAINTS);
+        checkArgument(isValidDateTime(interviewDateTime), DATE_TIME_CONSTRAINTS);
         this.interviewDateTime = LocalDateTime.parse(interviewDateTime, INPUT_DATE_FORMAT);
         value = this.interviewDateTime.format(DISPLAY_DATE_FORMAT);
     }
 
     /**
-     * Check if a given string is a valid interviewDateTime.
+     * Returns true if a given string has a valid DateTime format.
+     * @param interviewDateTime The given string to be checked.
      * @return true if it is valid.
      */
-    public static boolean isValidInterviewDateTime(String interviewDateTime) {
+    public static boolean isValidFormat(String interviewDateTime) {
         if (interviewDateTime.isEmpty()) {
             return false;
         }
 
         try {
-            INPUT_DATE_FORMAT.parse(interviewDateTime);
+            INPUT_DATE_FORMAT.withResolverStyle(ResolverStyle.LENIENT).parse(interviewDateTime);
             return true;
         } catch (DateTimeParseException e) {
             return false;
         }
+    }
+
+    /**
+     * Returns true if a given string represents a valid date and time.
+     * @param interviewDateTime The given string to be checked.
+     * @return true if it is valid.
+     */
+    public static boolean isValidDateTime(String interviewDateTime) {
+        if (interviewDateTime.isEmpty()) {
+            return false;
+        }
+
+        try {
+            INPUT_DATE_FORMAT.withResolverStyle(ResolverStyle.STRICT).parse(interviewDateTime);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Check if a given string is a valid interviewDateTime.
+     * @param interviewDateTime The given string to be checked.
+     * @return true if it is valid.
+     */
+    public static boolean isValidInterviewDateTime(String interviewDateTime) {
+        return isValidFormat(interviewDateTime) && isValidDateTime(interviewDateTime);
     }
 
     /**

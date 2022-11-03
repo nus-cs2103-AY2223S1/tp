@@ -27,12 +27,14 @@ public class AppliedDateTest {
 
         // invalid applied dates
         assertFalse(AppliedDate.isValidAppliedDate("23 October 2022")); // only MMM or M
-        assertFalse(AppliedDate.isValidAppliedDate("23 Oct 22")); // only yyyy
+        assertFalse(AppliedDate.isValidAppliedDate("23 Oct 22")); // only uuuu
+        assertFalse(AppliedDate.isValidAppliedDate("29 Feb 2023")); // 29 Feb on non-leap years
 
         // valid applied dates
-        assertTrue(AppliedDate.isValidAppliedDate("23 Oct 2022")); // d MMM yyyy
+        assertTrue(AppliedDate.isValidAppliedDate("23 Oct 2022")); // d MMM uuuu
         assertTrue(AppliedDate.isValidAppliedDate("23 Oct")); // d MMM
-        assertTrue(AppliedDate.isValidAppliedDate("23/10/2022")); // d/M/yyyy
+        assertTrue(AppliedDate.isValidAppliedDate("23/10/2022")); // d/M/uuuu
         assertTrue(AppliedDate.isValidAppliedDate("23/10")); // d/M
+        assertTrue(AppliedDate.isValidAppliedDate("29/02/2024")); // 29 Feb on leap year
     }
 }
