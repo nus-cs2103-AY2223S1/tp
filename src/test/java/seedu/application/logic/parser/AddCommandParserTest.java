@@ -13,6 +13,7 @@ import static seedu.application.logic.commands.CommandTestUtil.INVALID_COMPANY_D
 import static seedu.application.logic.commands.CommandTestUtil.INVALID_CONTACT_DESC;
 import static seedu.application.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.application.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.application.logic.commands.CommandTestUtil.INVALID_FUTURE_DATE_DESC;
 import static seedu.application.logic.commands.CommandTestUtil.INVALID_POSITION_DESC;
 import static seedu.application.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.application.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -47,6 +48,7 @@ import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
 import seedu.application.model.application.Status;
+import seedu.application.model.application.exceptions.InvalidFutureApplicationException;
 import seedu.application.model.tag.Tag;
 import seedu.application.testutil.ApplicationBuilder;
 
@@ -107,6 +109,13 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, COMPANY_DESC_FACEBOOK + CONTACT_DESC_FACEBOOK + DATE_DESC_FACEBOOK
                 + EMAIL_DESC_FACEBOOK + POSITION_DESC_FACEBOOK + STATUS_DESC_FACEBOOK,
                 new AddCommand(expectedApplication));
+    }
+
+    @Test
+    public void parse_futureDateInput_failure() {
+        String expectedMessage = new InvalidFutureApplicationException().getMessage();
+        assertParseFailure(parser, COMPANY_DESC_FACEBOOK + CONTACT_DESC_FACEBOOK + INVALID_FUTURE_DATE_DESC
+                + EMAIL_DESC_FACEBOOK + POSITION_DESC_FACEBOOK + STATUS_DESC_FACEBOOK, expectedMessage);
     }
 
     @Test

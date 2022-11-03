@@ -29,7 +29,7 @@ import seedu.application.model.application.Application;
 public class TypicalApplications {
 
     public static final Application SHOPEE = new ApplicationBuilder().withCompany("Shopee")
-            .withContact("94201239").withDate("2022-12-31").withStatus("interview")
+            .withContact("94201239").withDate("2022-10-31").withStatus("interview")
             .withEmail("shopee@example.com").withPosition("Frontend Engineer").withTags("consumerTech").build();
 
     public static final Application BYTEDANCE = new ApplicationBuilder().withCompany("ByteDance")
