@@ -143,6 +143,7 @@ Example:
 `m del 3` deletes the third module in the module list.
 
 <div markdown="span" class="alert alert-info">
+
 :information_source: **Note:** All tasks and exams related to the module will be deleted after the module is deleted.
 </div>
 
@@ -169,6 +170,7 @@ Examples:
 `m edit 2 c/cs2040 m/Data Structures and Algorithms mc/4` changes the module name of the second module in the module list to ‘Data Structures and Algorithms’, the module code to ‘cs2040’ and the module credit to ‘4’.
 
 <div markdown="span" class="alert alert-info">
+
 :information_source: **Note:** If the module code of the module is edited, and the module is linked to some tasks and exams, the module of these tasks and exams will be changed to this edited module.
 </div>
 
@@ -223,6 +225,7 @@ Examples:
 
 `t edit 2 m/CS2040 d/tutorial 2` changes the module and description of the second task in the task list to 'CS2040' and 'tutorial 2' respectively.
 <div markdown="span" class="alert alert-info">
+
 :information_source: **Note:** If a task is linked to an exam, and its module is changed, the task will be unlinked from the exam.
 </div>
 
@@ -276,8 +279,8 @@ Filters the task list based on module code, completion status, and/or link statu
 Format: `t filter [m/MODULE/]* [c/COMPLETED]* [l/LINKED]*`
 * Filters the task list to show only tasks that fulfill all the stated conditions.
 * `MODULE` refers to the module code to be filtered out.
-* `COMPLETED` should be y to filter tasks that are complete or n to filter tasks that are incomplete.
-* `LINKED` should be y to filter tasks that are linked to an exam or n to filter tasks that are not linked to any exam.
+* `COMPLETED` should be `y` to filter tasks that are complete or `n` to filter tasks that are incomplete.
+* `LINKED` should be `y` to filter tasks that are linked to an exam or `n` to filter tasks that are not linked to any exam.
 * At least one optional condition has to be specified, otherwise an error message will be displayed.
 
 Examples:
@@ -459,6 +462,7 @@ Examples:
 
 `e edit 2 m/cs2030s ex/midterms ed/22-12-2022` changes the exam description of the second exam in the exam list to ‘midterms’, the exam module to ‘cs2030s’ and the exam date as ‘22-12-2022’.
 <div markdown="span" class="alert alert-info">
+
 :information_source: **Note:** If the module of the exam is edited, and the exam is linked to some tasks, the tasks would be unlinked to the exam.
 </div>
 
