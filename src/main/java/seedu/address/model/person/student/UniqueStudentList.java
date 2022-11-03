@@ -41,8 +41,8 @@ public class UniqueStudentList implements Iterable<Student> {
         if (contains(toAdd)) {
             throw new DuplicateStudentException();
         }
-        internalList.add(toAdd);
         toAdd.updateTimeAddedToList();
+        internalList.add(toAdd);
     }
 
     /**
