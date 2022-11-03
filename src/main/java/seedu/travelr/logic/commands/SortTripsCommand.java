@@ -18,7 +18,7 @@ public class SortTripsCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts trips within Travelr.\n"
             + "Parameters (Optional): "
             + PREFIX_SORTBY + "FACTOR " + PREFIX_REVERSE_ORDER + "\n"
-            + "By default this command will sort by titles alphabetically if there's no given factor.\n"
+            + "By default this command will sort by titles alphabetically if no parameter is supplied.\n"
             + PREFIX_REVERSE_ORDER + " will make the trips be sorted in reverse order.\n"
             + "Available factors: \n"
             + "title : sorts by trip titles alphabetically" + "\n"

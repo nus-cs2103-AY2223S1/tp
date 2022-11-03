@@ -282,7 +282,7 @@ Format: `sort [by/FACTOR] [r/]`
 - FACTOR is case-insensitive
 - Completed and incomplete trips are sorted separately.
 - Order of sort reversed when the `r/` prefix is provided.
-- The trips will be sorted by their title in alphabetical order by default.
+- If no parameters are given, the trips will be sorted by their title in alphabetical order by default.
 - A valid FACTOR must be provided if the `by/` prefix is provided.
 - Extraneous parameters for `r/` prefix will be ignored.
 
@@ -291,7 +291,6 @@ Examples:
 
 | FACTOR | Description |
 | --- | --- |
-| nothing | Default sort will be used |
 | `title` | Sort by trips' title in alphabetical order |
 | `time` | Sort by trips' date in chronological order |
 | `location` | Sort by trips' location in alphabetical order |
