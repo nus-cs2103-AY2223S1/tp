@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/janelleljt.md)]
 
 - Role: Developer
-- Responsibilities: Feature design and DevOps
+- Responsibilities: Documentation
 
 ### Yang Jiacheng
 
@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jiacheng-y.md)]
 
 - Role: Developer
-- Responsibilities: Feature design and DevOps
+- Responsibilities: Testing
 
 ### Soh Enze
 
@@ -57,4 +57,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/sohenze.md)]
 
 - Role: Developer
-- Responsibilities: Feature design and DevOps
+- Responsibilities: Feature design
