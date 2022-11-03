@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.appointment.Date;
 import seedu.address.model.appointment.Time;
 

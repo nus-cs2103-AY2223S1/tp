@@ -7,6 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.appointment.Time;
 
 public class TimeTest {

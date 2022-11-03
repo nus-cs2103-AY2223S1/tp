@@ -4,11 +4,11 @@ package seedu.address.testutil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.logic.parser.DateTimeParser;
-import seedu.address.model.calendar.CalendarEvent;
-import seedu.address.model.calendar.CalendarMonth;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.DateTime;
 import seedu.address.model.appointment.Location;
+import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.calendar.CalendarMonth;
 import seedu.address.model.person.Name;
 
 /**
