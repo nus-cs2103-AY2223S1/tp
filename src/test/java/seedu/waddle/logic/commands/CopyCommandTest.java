@@ -1,10 +1,7 @@
 package seedu.waddle.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.waddle.logic.commands.CommandTestUtil.showItineraryAtIndex;
-import static seedu.waddle.testutil.TypicalIndexes.INDEX_FIRST_ITINERARY;
 import static seedu.waddle.testutil.TypicalItineraries.getTypicalWaddle;
 
 import java.awt.Toolkit;
@@ -15,8 +12,6 @@ import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.waddle.commons.core.Messages;
-import seedu.waddle.logic.LogicManager;
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.ModelManager;

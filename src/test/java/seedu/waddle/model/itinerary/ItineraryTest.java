@@ -35,7 +35,8 @@ public class ItineraryTest {
         assertFalse(SUMMER.isSameItinerary(editedSummer));
 
         // name differs in case, all other attributes same -> returns false
-        Itinerary editedWinter = new ItineraryBuilder(WINTER).withName(VALID_ITINERARY_DESC_WINTER.toLowerCase()).build();
+        Itinerary editedWinter = new ItineraryBuilder(WINTER).withName(VALID_ITINERARY_DESC_WINTER
+                .toLowerCase()).build();
         assertFalse(WINTER.isSameItinerary(editedWinter));
 
         // name has trailing spaces, all other attributes same -> returns false

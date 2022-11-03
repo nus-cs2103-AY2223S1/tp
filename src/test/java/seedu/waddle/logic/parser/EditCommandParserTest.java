@@ -146,7 +146,8 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_ITINERARY;
         String userInput = targetIndex.getOneBased() + ITINERARY_DESC_DESC_SUMMER;
-        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_ITINERARY_DESC_SUMMER).build();
+        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder()
+                .withName(VALID_ITINERARY_DESC_SUMMER).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

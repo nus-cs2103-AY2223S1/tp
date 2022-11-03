@@ -42,6 +42,20 @@ public class TypicalItineraries {
     public static final Itinerary GRADUATION = new ItineraryBuilder().withName("Graduation Trip")
             .withCountry("France").withStartDate("2022-03-03")
             .withDuration("4").withPeople("4").withBudget("2200").build();
+    // Manually added - Itinerary's details found in {@code CommandTestUtil}
+    public static final Itinerary SUMMER = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_SUMMER)
+            .withCountry(VALID_COUNTRY_SUMMER).withStartDate(VALID_START_DATE_SUMMER)
+            .withDuration(VALID_DURATION_SUMMER).withPeople(VALID_PEOPLE_SUMMER)
+            .withBudget(VALID_BUDGET_SUMMER).build();
+    public static final Itinerary WINTER = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_WINTER)
+            .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_WINTER)
+            .withDuration(VALID_DURATION_WINTER).withPeople(VALID_PEOPLE_WINTER)
+            .withBudget(VALID_BUDGET_WINTER).build();
+    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+
+    private TypicalItineraries() {
+
+    } // prevents instantiation
 
     public static Itinerary getSpring() {
         return new ItineraryBuilder().withName("Spring Trip")
@@ -60,22 +74,6 @@ public class TypicalItineraries {
                 .withCountry("France").withStartDate("2022-03-03")
                 .withDuration("4").withPeople("4").withBudget("2200").build();
     }
-
-    // Manually added - Itinerary's details found in {@code CommandTestUtil}
-    public static final Itinerary SUMMER = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_SUMMER)
-            .withCountry(VALID_COUNTRY_SUMMER).withStartDate(VALID_START_DATE_SUMMER)
-            .withDuration(VALID_DURATION_SUMMER).withPeople(VALID_PEOPLE_SUMMER)
-            .withBudget(VALID_BUDGET_SUMMER).build();
-    public static final Itinerary WINTER = new ItineraryBuilder().withName(VALID_ITINERARY_DESC_WINTER)
-            .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_WINTER)
-            .withDuration(VALID_DURATION_WINTER).withPeople(VALID_PEOPLE_WINTER)
-            .withBudget(VALID_BUDGET_WINTER).build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-
-    private TypicalItineraries() {
-
-    } // prevents instantiation
 
     /**
      * Returns a {@code Waddle} with all the typical itineraries.

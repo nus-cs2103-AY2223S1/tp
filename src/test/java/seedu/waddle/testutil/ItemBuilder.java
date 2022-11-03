@@ -1,19 +1,10 @@
 package seedu.waddle.testutil;
 
-import java.time.LocalTime;
-
 import seedu.waddle.model.item.Cost;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.Priority;
-import seedu.waddle.model.item.StartTime;
-import seedu.waddle.model.itinerary.Budget;
-import seedu.waddle.model.itinerary.Country;
-import seedu.waddle.model.itinerary.Date;
 import seedu.waddle.model.itinerary.Description;
-import seedu.waddle.model.itinerary.Itinerary;
-import seedu.waddle.model.itinerary.ItineraryDuration;
-import seedu.waddle.model.itinerary.People;
 
 /**
  * A utility class to help with building Item objects.

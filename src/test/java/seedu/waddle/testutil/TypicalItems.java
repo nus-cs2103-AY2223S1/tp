@@ -22,7 +22,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.waddle.model.item.Item;
-import seedu.waddle.model.itinerary.Itinerary;
 
 /**
  * A utility class containing a list of {@code Itinerary} objects to be used in tests.
