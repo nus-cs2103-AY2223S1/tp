@@ -369,7 +369,7 @@ Format: `edit-task [t/TITLE] [d/DESCRIPTION] [by/YYYY-MM-DD] [addStu/STUDENT_1, 
 * Existing values will be updated to the input values.
 
 Examples:
-* `edit-task 1 t/Assignment 1 d/Topics: Recursion addStu/Adam Lee, Ben Tang deleteStu/Zack Yu, Xenia Ng`
+* `edit-task 1 t/Assignment 1 d/Topics: Recursion addStu/Adam Lee, Ben Tang`
   Edits the title, description and student list of the 1st task in the task list, provided that it is an assignment task, to be `Assignment 1`, `Topics: Recursion` and `Adam Lee, Ben Tang` respectively.
 * `edit-task 2 deleteStu/Jackie Chan` Edits the student list of the 2nd task in the task list to delete the name `Jackie Chan`. All other students in the student list of the task are not affected.
 
@@ -384,7 +384,7 @@ Format: `remove-task INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `remove-task 2` deletes the 2nd student in the task list.
+* `remove-task 2` deletes the 2nd task in the task list.
 ---
 
 ### Clearing all entries : `clear`
