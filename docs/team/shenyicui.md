@@ -46,4 +46,3 @@ Given below are my contributions to the project.
     [#91](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/91), [#94](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/94)
   * Reported bugs and added suggestions for other teams in the class 
     * [#93](https://github.com/AY2223S1-CS2103T-T12-2/tp/issues/93), [#92](https://github.com/AY2223S1-CS2103T-T12-2/tp/issues/92), [#110](https://github.com/AY2223S1-CS2103T-T12-2/tp/issues/110)
-  
