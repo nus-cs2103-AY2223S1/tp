@@ -62,6 +62,9 @@ public class ParserUtil {
         String[] names = input.split(" ");
         final Set<Name> nameSet = new HashSet<>();
         for (String name : names) {
+            if (name.length() == 0) {
+                continue;
+            }
             nameSet.add(parseName(name));
         }
         return nameSet;
@@ -75,6 +78,9 @@ public class ParserUtil {
         String[] tags = input.split(" ");
         final Set<Tag> tagSet = new HashSet<>();
         for (String tag : tags) {
+            if (tag.length() == 0) {
+                continue;
+            }
             tagSet.add(parseTag(tag));
         }
         return tagSet;

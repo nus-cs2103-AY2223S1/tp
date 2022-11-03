@@ -82,6 +82,7 @@ public class Review {
 
         return otherReview != null
                 && otherReview.getName().equals(getName())
+                && otherReview.getAddress().equals(getAddress())
                 && otherReview.getDate().equals(getDate())
                 && otherReview.getContent().equals(getContent())
                 && otherReview.getRating().equals(getRating())

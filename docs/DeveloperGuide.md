@@ -9,7 +9,10 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* [Creating a pop-up menu in JavaFX](https://stackoverflow.com/questions/20635192/how-to-create-popup-menu)
+* [Removing a JavaFX row in run-time](https://stackoverflow.com/a/70961583)
+* [Getting the row index constraint for given node](https://stackoverflow.com/a/70961583)
+* [Using new DateTimeFormatter to do strict date parsing](https://stackoverflow.com/a/30478777)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -213,6 +216,46 @@ The following activity diagram summarizes what happens when a user executes a ne
 - The Review adding commands are straight to the point and efficient for users to add Review for Stall in FoodWhere.
 - The prefixes allow users to understand what the different types of data fields Review need in order to be created.
 
+### Finding stalls and reviews feature
+
+#### What is finding stalls and reviews feature about?
+
+This feature is used to find stalls and reviews in FoodWhere by name and/or by tags. It uses the following two commands:
+* `sfind`: Finds stalls
+* `rfind`: Finds reviews
+
+`sfind` allows users to find stalls in `AddressBook` by names, through matching of input keyword(s) with stall names. Additionally, users can find stalls by tags, through matching of input keyword(s) with stall tags.
+
+`rfind` allows users to find reviews in `AddressBook` by names, through matching of input keyword(s) with review names. Additionally, users can find reviews by tags, through matching of input keyword(s) with review tags.
+
+For the command, the feature extends `command`, and is implemented as such:
+* `sfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`
+* `rfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`
+
+#### Implementation Flow of finding stalls and reviews feature
+
+Given below is an example usage scenario and how the finding stalls and reviews mechanism behaves at each step.
+
+Step 1. The user executes `sfind n/eatery` command to find all stalls where stall name contains the word 'eatery'.
+Step 2. The user input will be sent to `SFindCommandParser`.
+Step 3. The keyword `eatery` will be parsed as a Name.
+Step 4. The parser creates a `StallContainsKeywordsPredicate` using the Name created, while setting the tag attribute to null.
+Step 5. The predicate is used to create a new `SFindCommand`.
+Step 6. When the SFindCommand executes, the predicate will be sent to ModelManager to filter out stalls that satisfy the predicate.
+
+
+![AddTodo1](images/sfind.png)
+
+#### UML Diagram for finding stalls/ reviews
+
+The following activity diagram summarizes what happens when a user executes a new `sfind` or `rfind` command:
+
+<img src="images/FindActivityDiagram.png" width="250" />
+
+#### Design considerations:
+- Allow usage of multiple attributes (name and/ or tag) as search term to filter out stalls/ reviews that has the specified keywords
+- Users can enter multiple search keywords to find all relevant stalls/ reviews
+
 ### Listing all Reviews feature
 
 #### What is listing all Reviews feature about?
@@ -312,6 +355,43 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Design considerations:
 - Multiple fields of a Review can be edited in one go to increase the efficiency of the user of our application.
+
+### Review Sorting feature
+
+#### What is Review Sorting feature about?
+
+The Sort Review mechanism is facilitated by `Model` and `ReviewsComparatorList`. This feature allows the user to sort all reviews by specified criterion.
+
+The list of supported sorting criteria is stored in `ReviewsComparatorList` enum class as enum constants. Each enum constant has a `Comparator<Review>` field that will be passed in as an argument for `Model.sortReviews()` for sorting the review list.
+
+For the command, the feature extends `command`, and is implemented as such:
+* `rsort CRITERION`
+
+#### Implementation Flow of Review Sorting feature
+
+Given below is an example usage scenario and how the sorting of all reviews mechanism behaves at each step.
+
+Note: FoodWhere comes with preloaded data, and can be started on a fresh state with the `clear` command.
+
+Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
+
+Step 2. The user executes `rsort reversedname` command to sort `Review` by name (from Z to A, followed by 9 to 0).
+
+Step 3. Since the user input is valid, the `AddressBookParser` will create a `RSortCommandParser` to parse the command arguments, `reversedname`.
+
+Step 4. `RSortCommandParser` will parse the criterion to a `ReviewsComparatorList` object. The `ReviewsComparatorList` object will then be passed to the returned `RSortCommand` object as its argument.
+
+Step 5. In `LogicManager`, the returned `RSortCommand` is executed.
+
+Step 6. `model.sortReviews()` will interact with the model to sort reviews using the custom comparator that is retrieved from `ReviewsComparatorList.getComparator()`.
+
+![SortReview](images/SortReview.png)
+
+#### UML Diagram for Sorting Review
+
+The following activity diagram summarizes what happens when a user executes a new `rsort` command:
+
+<img src="images/SortReviewActivityDiagram.png" width="250" />
 
 ### \[Proposed\] Undo/redo feature
 
@@ -524,9 +604,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. User issues the correct command with the wrong syntax
-
     * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
-
+  
       Use case ends.
 
 ****
@@ -552,7 +631,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ****
 
 **Use case 4: Delete a food review**
-
 **MSS**
 
 1. User starts FoodWhere.
@@ -603,7 +681,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. User uses list food reviews command with the wrong syntax.
-
     * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
@@ -690,21 +767,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ****
 
-**Use case 11: Exiting the program**
-
-**Preconditions**
-- User is currently using FoodWhere.
-
-**MSS**
-
-1. User enters a command to exit FoodWhere.
-2. FoodWhere saves all changes to disk and closes.
-
-   Use case ends.
-
-****
-
-**Use case 9: Find food stalls**
+**Use case 11: Find food stalls**
 
 **MSS**
 
@@ -721,12 +784,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Tag
 
       Use case resumes from step 3.
-* 2b. User uses find food stalls command with the wrong syntax.
+* 2b. User uses the find food stalls command with the wrong syntax.
     * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
 ****
-**Use case 10: Find food reviews**
+    
+**Use case 12: Find food reviews**
 
 **MSS**
 
@@ -744,14 +808,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 3.
 * 2b. User uses find food reviews command with the wrong syntax.
-    * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
+    * 2b1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
 
-**Use case 8: Clearing data**
-
-**Use case 12: Clearing data**
-
+**Use case 13: Clearing data**
 
 **Preconditions**
 - User is currently using FoodWhere.
@@ -763,6 +824,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+****
+
+**Use case 14: Exiting the program**
+
+**Preconditions**
+- User is currently using FoodWhere.
+
+**MSS**
+
+1. User enters a command to exit FoodWhere.
+2. FoodWhere saves all changes to disk and closes.
+
+   Use case ends.
 
 ****
 

@@ -61,6 +61,10 @@ FoodWhere (FW) is a **desktop app for managing food reviews, optimized for use v
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `slist`, `rlist`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Extraneous parameters for commands that take in parameters (such as `sadd`, `rdel`, `sedit` and `rsort`) will be interpreted as part of the command preamble if there are no parameters specified before it, and part of the previous parameter otherwise.<br>
+  e.g. a command `ssort name n/Eatery` fails as the preamble is interpreted to be `name n/Eatery`, which is not a valid criterion.<br>
+  e.g. a command `sadd n/Finnish Delights p/Alex Jones a/Blk 23 North View Road` fails as the name is interpreted to be `Finnish Delights p/Alex Jones`, which is not a valid name as it contains a slash.
+
 * Not all mistakes may be reported for an invalid command.<br>
   e.g. given an invalid command `sadd`, the user would be informed of one of the mistakes, in this case, missing name or missing address. There is no guarantee which mistake will be reported if multiple mistakes are present.
 
@@ -247,6 +251,14 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+### Duplicate checking
+
+FoodWhere checks for duplicates to a limited extent.
+* Since food stalls may have generic names, stall duplicates are checked via name and address, that is if both the names and address are the same (case-insensitive).
+  * e.g. The food stall named "PartyOuting" at address "North Street" and the food stall named "PartYouTing" at address "north street" are the same stall.
+  * e.g. The food stall named "Mixed Veg Rice" at address "North Street" and the food stall named "Mixed Veg Rice" at address "South Street" are different stalls.
+* Reviews are considered duplicates if they are on the same stall and have the same content (case-sensitive), rating and date.
 
 ### Saving the data
 
