@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Comparator;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.bill.Bill;
@@ -52,7 +51,7 @@ public class SortBillCommand extends Command {
             StatusComparator statusComparator = new StatusComparator();
             model.sortBills(statusComparator, this.isAscending);
         } else {
-            throw new CommandException(Messages.MESSAGE_INVALID_SORT_CRITERIA);
+            throw new CommandException(MESSAGE_USAGE);
         }
 
         String message = String.format(MESSAGE_SORT_SUCCESS, this.criteria);
@@ -97,5 +96,20 @@ public class SortBillCommand extends Command {
         public int compare(Bill first, Bill second) {
             return first.getPaymentStatus().toString().compareTo(second.getPaymentStatus().toString());
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof SortBillCommand)) {
+            return false;
+        }
+
+        SortBillCommand e = (SortBillCommand) other;
+        return criteria.equals(e.criteria)
+                && isAscending == e.isAscending;
     }
 }

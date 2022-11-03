@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new {@code SortAppointmentCommand} object
  */
-public class SortAppointmentCommandParser {
+public class SortAppointmentCommandParser implements Parser<SortAppointmentCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
      * and returns a {@code RemarkCommand} object for execution.
@@ -25,6 +25,15 @@ public class SortAppointmentCommandParser {
         String bool = argMultimap.getValue(PREFIX_ORDER).orElse("");
 
         if (!bool.toLowerCase().equals("asc") && !bool.toLowerCase().equals("desc")) {
+            throw new ParseException(SortAppointmentCommand.MESSAGE_USAGE);
+        }
+
+        if (criteria.equals("")) {
+            throw new ParseException(SortAppointmentCommand.MESSAGE_USAGE);
+        }
+
+        if (!(criteria.toLowerCase().equals("name")|| criteria.toLowerCase().equals("test")
+                || criteria.toLowerCase().equals("slot") || criteria.toLowerCase().equals("doctor"))) {
             throw new ParseException(SortAppointmentCommand.MESSAGE_USAGE);
         }
 
