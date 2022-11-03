@@ -57,9 +57,10 @@ Given below are my contributions to the project.
     * Implemented in [PR #157](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/157)
   * Developer Guide `find` section
     * Implemented in [PR #120](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/120)
-  * Icon for GitHub Pages on Firefox
+  * Icon for GitHub Pages
     * Implemented in [PR #221](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/221)
-
+  * User Guide Improvements
+    * Implemented in [PR #227](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/227)
 * **Community**:
   * Reported bugs for other teams ([#1 - #6](https://github.com/albertZhangTJ/ped/issues))
 
