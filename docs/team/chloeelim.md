@@ -14,8 +14,30 @@ Given below are my contributions to the project.
 * **Key Contribution**: Added the `Iteration` model [#84](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/84)
   * What it does: Iterations serve as a form of 'version control' for users, allowing them to track
   the progress of commission through revised versions of their artworks.
-  * Highlights: Created the classes for `Iteration` and its associated attributes (except images),
-  and integrated it into Commissions (via a `UniqueIterationList`), and the UI, Model, and Storage components.
+  * Highlights:
+    * Created the classes for `Iteration` and its associated attributes (except images),
+    and integrated it into Commissions (via a `UniqueIterationList`), and the UI, Model, and Storage components.
+    * As the new `Iteration` model had to be integrated with the different components of the system,
+    this enhancement was quite huge, and required a good understanding of how the various components of
+    the system worked together.
+
+
+* **Key Contribution**: GUI support for add commands (`addcus`, `addcom`, `additer`)
+  [#114](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/114)
+  * What it does: Allows users to also create a new Customer, Commission, and Iteration via the GUI. Also supports
+    uploading of images to ArtBuddy via drag-and-drop, and file upload.
+  * Justification: We recognise that executing add commands via the CLI might be a hassle, especially in the
+    case of creating objects with extreme input parameters (like a Commission with a long description, or when dealing
+    with long file paths when adding an image to an Iteration). Allowing users to also input `add` commands via
+    the GUI accommodates to these extreme cases, enhancing user-friendliness.
+  * Highlights:
+    * Creating 3 new functional windows was a rather big challenge, especially in JavaFX. Issues with spacing
+    and alignment kept cropping up between different OS systems and screen sizes, and it was difficult to
+    find help on these bugs since JavaFX isn't exactly a popular frontend framework.
+    * Keeping in mind possible future extensions to edit commands via GUI, each window had to be further abstracted
+    out into its own class.
+    * It was also fun trying to add the image upload and drag and drop features. The add tag support feature by GUI
+    was especially fun to implement and design!
 
 
 * **New Feature**: Added `Iteration` related commands
@@ -26,16 +48,6 @@ Given below are my contributions to the project.
     [#84](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/84)
     * Added `edititer` command to edit a specified iteration from the currently selected commission
     [#123](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/123)
-  
-
-* **New Feature**: GUI support for add commands (`addcus`, `addcom`, `additer`)
-[#114](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/114)
-  * What it does: Allows users to also create a new Customer, Commission, and Iteration via the GUI. Also supports
-  uploading of images to ArtBuddy via drag-and-drop, and file upload.
-  * Justification: We recognise that executing add commands via the CLI might be a hassle, especially in the
-  case of creating objects with extreme input parameters (like a Commission with a long description, or when dealing
-  with long file paths when adding an image to an Iteration). Allowing users to also input `add` commands via
-  the GUI accommodates to these extreme cases, enhancing user-friendliness.
 
 
 * **New Feature**: Statistics View in `CustomerDetailsPane` [#138](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/138)
@@ -46,10 +58,11 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Enhanced UI 'theme': Created a [mockup](https://www.figma.com/file/neC7oxzQ9L8R8NkfYdd2De/Untitled) of the UI
   using Figma, and updated the styling in AB according to the mockup designed
-  [#72](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/72).
+  ([#72](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/72) and
+  [#93](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/93)).
   
   * Added UI Components `CommissionDetailsPane` [#84](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/84)
-  and `IterationListItem`: To display a view of a commission's details, and a list view of its iterations.
+  and `IterationListItem` [#89](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/89): To display a view of a commission's details, and a list view of its iterations.
   
   * Added test cases for `Iteration` classes and its related commands (`additer`, `deliter`, and `edititer`)
   ([#100](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/100) and
