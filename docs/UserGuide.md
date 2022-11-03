@@ -7,11 +7,11 @@ HR Pro Max++ is a **desktop app for team leads in SMEs to manage Projects, Staff
 It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 Our simple and intuitive commands will help you quickly learn how to use HR Pro Max++ to quickly finish all your Project Management Tasks.
-If you can type fast, there is an added benefit which is that HR Pro Max++ can get your Project management Tasks done faster than traditional GUI apps.
+If you can type fast, you will be able to make the most of HR Pro Max++, and get your Project management Tasks done faster than traditional GUI apps.
 
 Here are some shortcuts to get help:
 * To set up HR Pro Max++, go to our [Quick start section](#quick-start).
-* If you are unsure of some of the terms, go to our [Glossary section](#glossary).
+* If you are unsure of the terminology, check our [Glossary section](#glossary).
 * To see how all our commands work, head to our [Features section](#features).
 
 --------------------------------------------------------------------------------------------------------------------
@@ -27,24 +27,29 @@ of these terms in the hopes that it will clear your doubts.
 
 | Terms         | Description                                                                                                                         |
 |---------------|-------------------------------------------------------------------------------------------------------------------------------------|
-| **GUI**       | GUI stands for Graphical User Interface and it refers to the [window opened](#user-interface) when HR Pro Max++ application is ran. |
+| **GUI**       | GUI stands for Graphical User Interface and it refers to the [window opened](#user-interface) when HR Pro Max++ application is run. |
 | **CLI**       | CLI refers to Command Line Interface and it refers to the [area](#command-box) where users can input commands in the form of text.  |
 | **Prefix**    | Prefix is the placeholder to indicate the type of information inputted. Here is a [list of all the prefixes](#prefix-summary).      |
-| **Parameter** | Parameters are the information that are needed to be passed togther with the command such that it can be executed.                  |
+| **Parameter** | Parameters are the information that are needed to be passed together with the command such that it can be executed.                 |
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Quick start**
 
-1. Ensure you have Java `11` or above installed in your Computer. Please kindly refer [here](https://blog.hubspot.com/website/check-java-verison) for further instructions on how to do so.
+1. Ensure you have Java `11` or above is installed in your Computer. Please kindly refer to [this guide](https://blog.hubspot.com/website/check-java-verison) for further instructions on how to do so.
 
 2. Download the latest `HR_Pro_Max++.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your Project management application.
+3. Copy the jar file to the folder you want to use as the _home folder_ for your Project management application.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the jar file to start the app. The GUI similar to the below should appear in a few seconds. Note that the app contains some sample data.<br>
+   ```yaml
+   Note:
+   If you are an Apple user, you may not be able to double-click the jar file to start the app.
+   In that case, you can either right click the jar file and run it from the drop-down menu, or run the following command in the terminal: java -jar HR_Pro_Max++.jar
+   ```
    ![Ui](images/Ui.png)
-5. You can proceed to the next section for a quick [overview of the user interface](#user-interface).
-6. Refer to the [Features](#features) below for details of the commands you can use.
+6. You can proceed to the next section for a quick [overview of the user interface](#user-interface).
+7. Refer to the [Features](#features) below for details of the commands you can use.
 
 [Back to top](#table-of-contents)
 
@@ -82,29 +87,29 @@ For example, entering an incorrect `addproj` command like shown below will cause
 
 ### **Task Panel**
 This section in the user interface displays the list of Tasks that you have entered into the app. 
-For information on all commands that can be used to manipulate the Task Panel, refer to the [Task Commands](#task-commands) section.
+For information on all commands that are related to Tasks, refer to the [Task Commands](#task-commands) section.
 
 ![Task Panel](images/TaskPanel.png)
 
 ### **Project Panel**
 This section in the user interface displays the list of Projects that you have entered into the app.
 When first starting the program, the `Project` list will contain some sample data as shown.
-FOr information on all commands that can be used to manipulate the Project Panel, refer to the [Project Commands](#project-commands) section.
+For information on all commands that are related to Projects, refer to the [Project Commands](#project-commands) section.
 
 ![Project Panel](images/ProjectPanel.png)
 
 ### **Staff Panel**
 This section in the user interface displays the list of Staff that you have entered into the app.
 When first starting the program, the `Staff` list will be empty by default. 
-To see how to view the `Staff` list attached to a Project, you can check [this](#view-the-staff-list-within-a-project--view) segment of the user guide.
-For information on all commands that can be used to manipulate the Staff Panel, refer to the [Staff Commands](#staff-commands) section.
+To see how to view the `Staff` list attached to a Project, you can check [this](#view-the-staff-list-within-a-project--view) section of the user guide.
+For information on all commands that are related to Staff, refer to the [Staff Commands](#staff-commands) section.
 
 ![Staff Panel](images/StaffPanel.png)
 
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-## **Features**
+# **Features**
 
 <div markdown="block" class="alert alert-info">
 
@@ -117,7 +122,7 @@ For information on all commands that can be used to manipulate the Staff Panel, 
   e.g. in `addproj pn/PROJECT_NAME`, `PROJECT_NAME` is a parameter which can be used in `addproj pn/2103T TP pb/100000 pd/2022-01-01`.
 
 * Items in square brackets are optional.<br>
-  e.g `pn/PROJECT_NAME [t/TAG]` can be used as `pn/2101 t/fun` or as `pn/2101`.
+  e.g. `pn/PROJECT_NAME [t/TAG]` can be used as `pn/2101 t/fun` or as `pn/2101`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/fun`, `t/fun t/expensive` etc.
@@ -125,10 +130,10 @@ For information on all commands that can be used to manipulate the Staff Panel, 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `pn/PROJECT_NAME pb/PROJECT_BUDGET`, `pb/PROJECT_BUDGET pn/PROJECT_NAME` is also acceptable.
 
-* If a command requires both index and parameters, the index has to come before the parameters. The parameters behind the index can be arranged in any order.
+* If a command requires both index and parameters, the index has to come before the parameters. The parameters behind the index can be arranged in any order.<br>
   e.g. For the `delstaff` command, its format is `editstaff INDEX pn/PROJECT_NAME` and this must be strictly adhered to. Putting the index at the back will give an error.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `sp/12341234 sp/56785678`, only `sp/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -136,13 +141,12 @@ For information on all commands that can be used to manipulate the Staff Panel, 
 
 </div>
 
-**
 
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Project Commands**
-This segment contains information regarding all the commands that can be used to manage Projects.
+This section contains information regarding all the commands that can be used to manage Projects.
 
 ### Project Glossary
 
@@ -150,8 +154,8 @@ This segment contains information regarding all the commands that can be used to
 |----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **PROJECT_NAME**     | _Name of Project_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> - No character limit. <br> - Project names must be unique. <br> - If you want to enter two Projects of the same name, you can add a number behind to uniquely identify the Projects e.g. Artemis2. |
 | **PROJECT_BUDGET**   | _Budget allocated to the Project_ <br> - Only numbers are allowed. <br> - Budget is in SGD.                                                                                                                                                                                                                                                       |
-| **PROJECT_DEADLINE** | _Deadline of the Project_ <br> - PROJECT_DEADLINE should be entered in the YYYY-MM-DD format.                                                                                                                                                                                                                                                     |
-| **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional, allow multiple words and have a limit of 50 characters. Spaces are allowed but not a empty tag.                                                                                                                                     |
+| **PROJECT_DEADLINE** | _Deadline of the Project_ <br> - Project deadline should be entered in the YYYY-MM-DD format.                                                                                                                                                                                                                                                     |
+| **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional, allow multiple words and have a limit of 50 characters. <br> - Spaces are allowed but not an empty tag unless you are using the edit commands.                                                                                      |
 
 [Back to top](#table-of-contents)
 
@@ -179,25 +183,17 @@ at `2022-01-01`
 [Back to Project Glossary](#project-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Deleting a Project :** `delproj`
+### **Listing all Projects and Tasks :** `list`
 
-Deletes the Project at the specified `INDEX` from the Project list.
+Show all the Projects and Tasks in the Project and Task list respectively.
 
-Format: `delproj INDEX`
+<div markdown="span" class="alert alert-primary"> 
+:bulb: **Tip:** After using a find command, you can use `list` to return the display to its original state.
+</div>
 
-```yaml
-Note:
-  * INDEX refers to numbering of the Projects shown in the displayed Project list.
-  * INDEX must be a positive integer 1, 2, 3, …​
-  * Staff list will not display any Staff by default. You will have to use the [view command](#view-the-staff-list-within-a-project--view) to see the Staff of that Project.
-```
+Format: `list`
 
-Examples:
-* `list` followed by `delproj 2` deletes the 2nd Project in the displayed list of Projects.
-* `findproj 2103T TP` followed by `delproj 1` deletes the 1st Project in the results of the `findproj` command.
-
-[Back to top](#table-of-contents)<br>
-[Back to Project Glossary](#project-glossary)
+[Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Finding Projects :** `findproj`
@@ -267,10 +263,37 @@ Examples:
 [Back to Project Glossary](#project-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
+### **Deleting a Project :** `delproj`
+
+Deletes the Project at the specified `INDEX` from the Project list.
+
+Format: `delproj INDEX`
+
+```yaml
+Note:
+  * INDEX refers to numbering of the Projects shown in the displayed Project list.
+  * INDEX must be a positive integer 1, 2, 3, …​
+  * Staff list will not display any Staff by default. You will have to use the [view command](#view-the-staff-list-within-a-project--view) to see the Staff of that Project.
+```
+
+Examples:
+* `list` followed by `delproj 2` deletes the 2nd Project in the displayed list of Projects.
+* `findproj 2103T TP` followed by `delproj 1` deletes the 1st Project in the results of the `findproj` command.
+
+[Back to top](#table-of-contents)<br>
+[Back to Project Glossary](#project-glossary)
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Staff Commands**
 
 Since each Project contains a list of Staff, we recommend that before using Staff commands on any Project, 
 you should first use the [view command](#view-the-staff-list-within-a-project--view) to display the Project's attached Staff list.
+
+```yaml
+Warning !!!:
+  * Failing to do so may result in the Staff commands not working as intended.
+```
+
 
 ### Staff Glossary
 
@@ -281,7 +304,7 @@ you should first use the [view command](#view-the-staff-list-within-a-project--v
 | **STAFF_TITLE**      | _Work title of Staff_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> If `-` should be used, replace it with a space instead.                                                                                                                              |
 | **STAFF_DEPARTMENT** | _Department of Staff_ <br> - Only alphanumeric characters and spaces are allowed. Special characters such as `.`, `'`, or `-` cannot be used. <br> If `-` should be used, replace it with a space instead.                                                                                                                              |
 | **LEAVE_STATUS**     | _Staff member's leave status_ <br> - Should be specified as a boolean value. Input `true` for a staff member that is on leave, and `false` for one that is present.                                                                                                                                                                     |
-| **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional, allow multiple words and have a limit of 50 characters. Spaces are allowed but not a empty tag.                                                                                                                           |
+| **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional, allow multiple words and have a limit of 50 characters. Spaces are allowed but not an empty tag unless you are using the edit commands.                                                                                   |
 
 [Back to top](#table-of-contents)
 
@@ -419,7 +442,7 @@ Staff whose name contains `Adrian` or `Lam` are also listed.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Task Commands**
-This segment contains information on all the commands related to Tasks.
+This section contains information on all the commands related to Tasks.
 
 ### Task Glossary
 
@@ -497,7 +520,7 @@ Examples:
 Sorts all Tasks in displayed Task list by deadline. Earlier deadlines will be placed first.
 
 ```yaml
-Warning !!!: 
+Warning !!!:
 * This command is irreversible, you will not be able to get back the original ordering 
   after this command.
 ```
@@ -549,8 +572,8 @@ Examples:
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-## General Commands
-This segment contains information on all the commands that are not related to any specific feature.
+## **General Commands**
+This section contains information on all the commands that are not related to any specific feature.
 
 ### **Help :** `help`
 
@@ -606,7 +629,7 @@ There is no need to save manually.
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-## **FAQ**
+# **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HR Pro Max++ home folder.
@@ -614,8 +637,12 @@ There is no need to save manually.
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+# **Summary**
+This section contains a summary of all the commands and prefixes in HR Pro Max++.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Command Summary**
-This segment contains summary tables of all the commands you can use in HR Pro Max++.
+This section contains summary tables of all the commands you can use in HR Pro Max++.
 ### **Project Commands Summary**
 
 | Action                    | Format, Examples                                                                                      |
