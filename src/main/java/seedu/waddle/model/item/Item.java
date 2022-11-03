@@ -5,7 +5,7 @@ import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalTime;
 
 import seedu.waddle.model.itinerary.Description;
-import seedu.waddle.model.text.Text;
+import seedu.waddle.commons.core.Text;
 
 /**
  * Represents an item in the itinerary.

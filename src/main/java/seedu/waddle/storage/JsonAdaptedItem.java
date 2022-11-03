@@ -11,7 +11,7 @@ import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.Priority;
 import seedu.waddle.model.itinerary.Description;
-import seedu.waddle.model.text.Text;
+import seedu.waddle.commons.core.Text;
 
 /**
  * Jackson-friendly version of {@link Item}.

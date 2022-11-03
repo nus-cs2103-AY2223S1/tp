@@ -19,7 +19,7 @@ import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.UniqueItemList;
-import seedu.waddle.model.text.Text;
+import seedu.waddle.commons.core.Text;
 
 /**
  * Represents a Person in the address book.

@@ -16,7 +16,7 @@ import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.ItineraryDuration;
 import seedu.waddle.model.itinerary.People;
-import seedu.waddle.model.text.Text;
+import seedu.waddle.commons.core.Text;
 
 /**
  * Jackson-friendly version of {@link Itinerary}.
