@@ -214,7 +214,7 @@ To check out more commands, you can head over to our [features section](#feature
 ## Command guide
 This section of the user guide helps to break down the formatting used for commands in this user guide.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the [parameters](#parameter) to be supplied by the user.<br>
   e.g. in `addo n/NAME`, `NAME` is a parameter which can be used as `addo n/John Doe`.
 
 * Parameters in square brackets `[]` are optional. <br>
@@ -617,7 +617,7 @@ by updating the user interface.
 
 ### Parameter
 
-Parameters are the changeable inputs that you can give for a specific part of a command. For example, in the portion 
+`Parameter`s are the changeable inputs that you can give for a specific part of a command. For example, in the portion 
 `i/NAME` of the `addi` command, `NAME` can be replaced with the input that is meaningful to you (e.g, `i/Cookie` or 
 `i/Keychain`).
 
