@@ -1,4 +1,4 @@
-package jarvis.model.student;
+package jarvis.model;
 
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalStudents.ALICE;
