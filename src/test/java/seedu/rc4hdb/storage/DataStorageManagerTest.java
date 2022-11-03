@@ -54,14 +54,14 @@ public class DataStorageManagerTest {
 
     @Test
     public void setDataStoragePath_validFilePath_filePathSet() {
-        Path expectedPath = Path.of("SomeFile");
+        Path expectedPath = getTempFilePath("SomeFile");
         dataStorageManager.setDataStorageFolderPath(expectedPath);
         assertEquals(expectedPath, dataStorageManager.getDataStorageFolderPath());
     }
 
     @Test
     public void setDataStoragePath_getObservableFolderPath() {
-        Path expectedPath = Path.of("SomeFile");
+        Path expectedPath = getTempFilePath("SomeFile");
         dataStorageManager.setDataStorageFolderPath(expectedPath);
         assertEquals(new ObservableItem<>(expectedPath), dataStorageManager.getObservableFolderPath());
     }
@@ -73,7 +73,7 @@ public class DataStorageManagerTest {
 
     @Test
     public void deleteDataFolder_existingFolder_folderDeleted() throws Exception {
-        Path folderPath = testFolder.resolve("ToBeDeleted");
+        Path folderPath = getTempFilePath("ToBeDeleted");
         FileUtil.createDirIfMissing(folderPath);
         dataStorageManager.deleteDataFolder(folderPath);
         assertFalse(FileUtil.isFolderExists(folderPath));
@@ -81,7 +81,7 @@ public class DataStorageManagerTest {
 
     @Test
     public void deleteDataFolder_folderDoesNotExist_throwsNoSuchFileException() {
-        Path toBeDeleted = testFolder.resolve("ToBeDeleted");
+        Path toBeDeleted = getTempFilePath("ToBeDeleted");
         assertThrows(NoSuchFileException.class, () -> dataStorageManager.deleteDataFolder(toBeDeleted));
     }
 
@@ -92,7 +92,7 @@ public class DataStorageManagerTest {
 
     @Test
     public void createDataFolder_folderDoesNotExist_folderCreated() throws Exception {
-        Path toBeCreated = testFolder.resolve("ToBeCreated");
+        Path toBeCreated = getTempFilePath("ToBeCreated");
         assertFalse(FileUtil.isFolderExists(toBeCreated));
         dataStorageManager.createDataFolder(toBeCreated);
         assertTrue(FileUtil.isFolderExists(toBeCreated));
@@ -100,7 +100,7 @@ public class DataStorageManagerTest {
 
     @Test
     public void createDataFolder_folderAlreadyExist_throwsFileAlreadyExistException() throws Exception {
-        Path toBeCreated = testFolder.resolve("ToBeCreated");
+        Path toBeCreated = getTempFilePath("ToBeCreated");
         FileUtil.createDirIfMissing(toBeCreated);
         assertThrows(FileAlreadyExistsException.class, () -> dataStorageManager.createDataFolder(toBeCreated));
     }
