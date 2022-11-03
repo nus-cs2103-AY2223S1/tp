@@ -1,5 +1,6 @@
 package seedu.waddle.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.waddle.testutil.TypicalItineraries.getTypicalWaddle;
 
@@ -48,12 +49,28 @@ public class CopyCommandTest {
         assertCommandSuccess(new CopyCommand(), model, expectedCommandResult, expectedModel);
 
         String actualClipboardData = getClipboardData();
-        String expectedClipboardData = "Spring Trip\n    Country: Australia\n    Duration: 14 Days\n"
-                + "    Dates: 2022-01-01 - 2022-01-14\n    Waddlers: 1\n    Budget: $300.00\n\nDay 1\n\nDay 2\n"
-                + "\nDay 3\n\nDay 4\n\nDay 5\n\nDay 6\n\nDay 7\n\nDay 8\n\nDay 9\n\nDay 10\n\nDay 11\n\nDay 12\n"
-                + "\nDay 13\n\nDay 14\n\n";
-        assert true;
-        //assertEquals(expectedClipboardData, actualClipboardData);
+        String expectedClipboardData = "Spring Trip" + System.lineSeparator()
+                + "    Country: Australia" + System.lineSeparator()
+                + "    Duration: 14 Days" + System.lineSeparator()
+                + "    Dates: 2022-01-01 - 2022-01-14" + System.lineSeparator()
+                + "    Waddlers: 1" + System.lineSeparator()
+                + "    Budget: $300.00" + System.lineSeparator()
+                + System.lineSeparator() + "Day 1" + System.lineSeparator()
+                + System.lineSeparator() + "Day 2" + System.lineSeparator()
+                + System.lineSeparator() + "Day 3" + System.lineSeparator()
+                + System.lineSeparator() + "Day 4" + System.lineSeparator()
+                + System.lineSeparator() + "Day 5" + System.lineSeparator()
+                + System.lineSeparator() + "Day 6" + System.lineSeparator()
+                + System.lineSeparator() + "Day 7" + System.lineSeparator()
+                + System.lineSeparator() + "Day 8" + System.lineSeparator()
+                + System.lineSeparator() + "Day 9" + System.lineSeparator()
+                + System.lineSeparator() + "Day 10" + System.lineSeparator()
+                + System.lineSeparator() + "Day 11" + System.lineSeparator()
+                + System.lineSeparator() + "Day 12" + System.lineSeparator()
+                + System.lineSeparator() + "Day 13" + System.lineSeparator()
+                + System.lineSeparator() + "Day 14" + System.lineSeparator() + System.lineSeparator();
+        //assert true;
+        assertEquals(expectedClipboardData, actualClipboardData);
     }
 
     private String getClipboardData() {
