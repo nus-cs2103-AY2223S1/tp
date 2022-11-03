@@ -171,7 +171,7 @@ public class AddCommandParserTest {
         // invalid interview date time
         assertParseFailure(parser, COMPANY_DESC_TIKTOK + LINK_DESC_TIKTOK + DESCRIPTION_DESC_TIKTOK
                 + APPLIED_DATE_DESC_TIKTOK + TAG_DESC_BACKEND + TAG_DESC_FRONTEND
-                + INVALID_INTERVIEW_DATE_TIME_DESC, InterviewDateTime.MESSAGE_CONSTRAINTS);
+                + INVALID_INTERVIEW_DATE_TIME_DESC, InterviewDateTime.FORMAT_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_COMPANY_DESC + LINK_DESC_TIKTOK + DESCRIPTION_DESC_TIKTOK

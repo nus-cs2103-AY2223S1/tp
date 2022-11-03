@@ -34,8 +34,7 @@ public class AppliedDate {
             .appendPattern("[d/M/uuuu]")
             .appendPattern("[d/M]")
             .parseDefaulting(ChronoField.YEAR, LocalDate.now().getYear())
-            .toFormatter()
-            .withResolverStyle(ResolverStyle.STRICT);
+            .toFormatter();
 
     public static final DateTimeFormatter DISPLAY_DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
 
@@ -58,6 +57,8 @@ public class AppliedDate {
 
     /**
      * Returns true if a given string has a valid DateTime format.
+     * @param appliedDate The given string to be checked.
+     * @return true if it is valid.
      */
     public static boolean isValidFormat(String appliedDate) {
         if (appliedDate.isEmpty()) {
@@ -65,19 +66,17 @@ public class AppliedDate {
         }
 
         try {
-            INPUT_DATE_FORMAT.parse(appliedDate);
+            INPUT_DATE_FORMAT.withResolverStyle(ResolverStyle.LENIENT).parse(appliedDate);
             return true;
         } catch (DateTimeParseException e) {
-            if (e.getMessage().contains("unparsed text")) {
-                return false;
-            } else {
-                return true;
-            }
+            return false;
         }
     }
 
     /**
      * Returns true if a given string represents a valid date.
+     * @param appliedDate The given string to be checked.
+     * @return true if it is valid.
      */
     public static boolean isValidDate(String appliedDate) {
         if (appliedDate.isEmpty()) {
@@ -85,19 +84,17 @@ public class AppliedDate {
         }
 
         try {
-            INPUT_DATE_FORMAT.parse(appliedDate);
+            INPUT_DATE_FORMAT.withResolverStyle(ResolverStyle.STRICT).parse(appliedDate);
             return true;
         } catch (DateTimeParseException e) {
-            if (e.getMessage().contains("Invalid date")) {
-                return false;
-            } else {
-                return true;
-            }
+            return false;
         }
     }
 
     /**
-     * Returns true if a given string is a valid appliedDate.
+     * Checks if a given string is a valid appliedDate.
+     * @param appliedDate The given string to be checked.
+     * @return true if it is valid.
      */
     public static boolean isValidAppliedDate(String appliedDate) {
         return isValidFormat(appliedDate) && isValidDate(appliedDate);
