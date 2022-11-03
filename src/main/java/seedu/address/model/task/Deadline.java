@@ -1,36 +1,21 @@
 package seedu.address.model.task;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.Objects;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Deadline in the task book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Deadline implements Task {
-    private TaskTitle title;
-    private TaskDescription description;
+public class Deadline extends Task {
     private FormatDate date;
 
     /**
      * Every field must be present and not null.
      */
     public Deadline(TaskTitle title, TaskDescription description, FormatDate date) {
-        requireAllNonNull(title, description, date);
-        this.title = title;
-        this.description = description;
+        super(title, description);
+        requireNonNull(date);
         this.date = date;
-    }
-
-    @Override
-    public TaskTitle getTitle() {
-        return title;
-    }
-
-    @Override
-    public TaskDescription getDescription() {
-        return description;
     }
 
     public FormatDate getDate() {
@@ -52,23 +37,14 @@ public class Deadline implements Task {
         }
 
         Deadline otherStudent = (Deadline) other;
-        return otherStudent.getTitle().equals(getTitle())
-                && otherStudent.getDescription().equals(getDescription())
+        return super.equals(otherStudent)
                 && otherStudent.getDate().equals(getDate());
-    }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, description, date);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append("; Description: ")
-                .append(getDescription())
+        builder.append(super.toString())
                 .append("; Date: ")
                 .append(getDate().toString());
 
