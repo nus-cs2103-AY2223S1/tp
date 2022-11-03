@@ -49,6 +49,15 @@ public class SFindCommandParserTest {
     }
 
     @Test
+    public void parse_emptyPreamble_failure() {
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, SFindCommand.MESSAGE_USAGE);
+
+        // missing prefix
+        assertParseFailure(parser, VALID_NAME_BOB,
+                expectedMessage);
+
+    }
+    @Test
     public void parse_fieldMissing_failure() {
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, SFindCommand.MESSAGE_USAGE);
 

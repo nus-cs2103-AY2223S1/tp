@@ -53,8 +53,11 @@ public class RFindCommandParserTest {
     public void parse_fieldMissing_failure() {
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RFindCommand.MESSAGE_USAGE);
 
-        // missing prefix
+        // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + TAG_DESC_FRIEND,
+                expectedMessage);
+        //missing both prefix
+        assertParseFailure(parser, VALID_NAME_BOB,
                 expectedMessage);
     }
 
