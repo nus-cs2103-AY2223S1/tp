@@ -67,4 +67,8 @@ public class SetUnpaidCommand extends Command {
                 || (other instanceof SetUnpaidCommand // instanceof handles nulls
                 && indexOfBill.equals(((SetUnpaidCommand) other).indexOfBill)); // state check
     }
+
+    public Index getIndexOfBill() {
+        return indexOfBill;
+    }
 }
