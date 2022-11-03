@@ -56,7 +56,7 @@ In TA-Assist, you can switch into a mode called the **focus** mode, which lets y
 be run in focus mode. On the other hand, commands that are available only in focus mode cannot be executed in the default (unfocused) mode.
 
 Let's first begin with the commands available in the default mode.
-
+</div>
 
 
 | Command    | Format                                                             |
