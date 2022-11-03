@@ -37,6 +37,12 @@ public class Nurse extends Person {
         this.fullyScheduledDateList.addAll(fullyScheduledDates);
     }
 
+    public Nurse(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address, Set<Tag> tags,
+            List<Date> unavailableDates) {
+        super(uid, name, gender, phone, email, address, tags);
+        this.unavailableDateList.addAll(unavailableDates);
+    }
+
     public Category getCategory() {
         return new Category("N");
     }

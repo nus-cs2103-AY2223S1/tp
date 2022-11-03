@@ -92,10 +92,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Person person;
 
         if (isNurse) {
-            List<HomeVisit> nullHomeVisitList = new ArrayList<>();
-            List<Date> nullFullyScheduledDateList = new ArrayList<>();
-            person = new Nurse(id, name, gender, phone, email, address, tagList, unavailableDateList,
-                    nullHomeVisitList, nullFullyScheduledDateList);
+            person = new Nurse(id, name, gender, phone, email, address, tagList, unavailableDateList);
 
         } else if (isPatient) {
             person = new Patient(id, name, gender, phone, email, address, tagList, dateTimeSlotList);
