@@ -12,7 +12,7 @@ public class Major {
     public static final String MESSAGE_CONSTRAINTS = "Majors should only contain alphanumeric characters and spaces, "
             + "and adhere to the following constraints:\n"
             + "1. Major should not be empty\n"
-            + "2. An applicant can only take up at most 2 Majors";
+            + "2. An applicant can only take up at most 2 distinct Majors";
     public static final int MAXIMUM_NUMBER_OF_MAJORS = 2;
     private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
@@ -41,6 +41,15 @@ public class Major {
      */
     public String getMajorName() {
         return major;
+    }
+
+    /**
+     * Returns true if both majors have the same name.
+     * This defines a weaker notion of equality between two majors.
+     */
+    public boolean isSameMajor(Major otherMajor) {
+        return otherMajor != null
+                && otherMajor.getMajorName().equalsIgnoreCase(this.getMajorName());
     }
 
     @Override

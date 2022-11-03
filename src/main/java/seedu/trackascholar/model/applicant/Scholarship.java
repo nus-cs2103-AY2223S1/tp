@@ -64,6 +64,6 @@ public class Scholarship implements Comparable<Scholarship> {
 
     @Override
     public int compareTo(Scholarship other) {
-        return this.scholarship.compareTo(other.scholarship);
+        return this.scholarship.compareToIgnoreCase(other.scholarship);
     }
 }

@@ -9,7 +9,9 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction - Overview of the application
+## Introduction  
+
+This is an overview of the application.
 
 #### What is TrackAScholar?
 
@@ -17,18 +19,16 @@ TrackAScholar (TAS) helps university administrative staff manage scholarship app
 It stores all applicant's details such as contact info and scholarship applied etc. all in one place.
 TrackAScholar (TAS) is a one of a kind desktop app.It is the **only** application that any university administrative staff needs.
 
-TAS have many functions that university administrative staff will find to be useful.
+TAS have many functions that university administrative staff can use to help speed up the application process immensly.
 
 These functions include:
 1. Pinning of important applicants. 
 2. Easy edit of applicant's detail.
 For example, you typed in the wrong name.You can easily edit the wrong name to the correct one.
-3. Finding a particular applicant. 
+3. Finding a particular applicant by a certain trait.
 For example, you can find a particular applicant in a large list of over 100 applicants just by keying in the applicant's name.
-4. Filtering of applicants by a certain trait, for instance application status. 
-Filtering by application status divides the list to 3 portions according to the 3 different types application status. 
-
-These functions will speed up the application process immensely.
+4. Filtering of applicants by application status. 
+Filtering by application status divides the list to 3 portions according to the 3 different types of application status. 
 
 TAS is **optimised for use via a Command Line Interface (CLI)** while simultaneously having the benefits of a **Graphical User Interface
 (GUI)**. If you can type fast, TAS can handle your scholarship application process faster than conventional GUI apps.
@@ -39,10 +39,10 @@ It is stated that on average 1.7 million university scholarships are given out e
 it is found that only 1 in 8 student actually wins a scholarship.This brings us to about more than 10 million applications a year.
 
 As such, many universities often take an extended period of many months to process these applications.
-University administrative staff often have to work overtime to process this large amount of applications.
+University administrative staff often have to work overtime to process these large number of applications.
 Poor scholarship management procedures employed in many of these universities further complicates the process. 
 
-TrackAScholar (TAS) is an app designed for university administrative staff members to streamline the scholarship management procedure. .
+TrackAScholar (TAS) is an app designed for university administrative staff members to streamline the scholarship management procedure. 
 
 TrackAScholar (TAS) seeks to 
 1. Reduce the time taken for university to process the scholarships
@@ -59,7 +59,9 @@ The current version is version 1.3.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Legend - explanation of signs which may help the user better understand the documentation
+## Legend 
+
+Explanation of signs which may help the user better understand the documentation
 
 :information_source: **Notes:** Notes are placed in this guide to specify extra details and elaboration.
 
@@ -107,7 +109,9 @@ The current version is version 1.3.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Overview of TrackAScholar app - This is how the application will look like when opened
+## Overview of TrackAScholar app  
+
+This is how the application will look like when opened.
 
 ![Overview of TrackAScholar app](images/UserGuideCommands/TrackAScholarOverview.png)
 
@@ -168,7 +172,7 @@ Adds an applicant with the following details to the TrackAScholar:
 * `NAME`: Name of applicant.
 * `PHONE_NUMBER`: Phone number of Applicant.
 * `EMAIL`: Email of Applicant.
-* `SSCHOLARSHIP`: Scholarship that applicant has applied for.
+* `SCHOLARSHIP`: Scholarship that applicant has applied for.
 * `APPLICATION_STATUS`: Status of scholarship application for the applicant, can only be either `PENDING`, `ACCEPTED` or `REJECTED`.
 * `MAJOR`: A Major taken up by the applicant.
 
@@ -182,7 +186,7 @@ Duplicate names are not allowed in TrackAScholar, as such any attempts to add an
 </div>
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**
-An applicant can have at most 2 majors(including 0).
+An applicant can have at most 2 majors (including 0).
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -222,7 +226,7 @@ Edits an existing applicant stored in TrackAScholar.
 
 Format: 
 ```
-edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MAJOR]…​
+edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MAJOR] [as/APPLICATION_STATUS]…​
 ```
 
 * Edits the applicant at the specified `INDEX`. 
@@ -499,11 +503,11 @@ exit
 
 ### Saving the data
 
-TrackAScholar data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+TrackAScholar data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-TrackAScholar data are saved as a JSON file `[JAR file location]/data/trackAScholar.json`. Advanced users are welcome to update data directly by editing that data file.
+TrackAScholar data is saved as a JSON file `[JAR file location]/data/trackAScholar.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TrackAScholar will discard all data and start with an empty data file at the next run.

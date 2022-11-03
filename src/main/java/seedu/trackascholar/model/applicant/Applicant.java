@@ -125,7 +125,7 @@ public class Applicant {
         }
 
         return otherApplicant != null
-                && otherApplicant.getName().equals(getName());
+                && otherApplicant.getFullName().equalsIgnoreCase(this.getFullName());
     }
 
     /**
@@ -233,7 +233,7 @@ public class Applicant {
 
         Set<Major> majors = getMajors();
         if (!majors.isEmpty()) {
-            builder.append("\n Majors: ");
+            builder.append("\n Major(s): ");
             majors.forEach(builder::append);
         }
 
