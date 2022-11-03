@@ -259,7 +259,7 @@ Edits an existing internship application in FindMyIntern.
 * When editing `INTERVIEW_DATE_TIME`, the [application status](#application-status) will change to "Shortlisted".
 * When editing tags, the existing tags will be removed and replaced with the input tags.
 * Tags can be removed by typing `t/` without specifying any tags after it.
-* Editing an internship application is only allowed if it does not result in a duplicates. See [`add` command](#adding-an-internship-application-add) to see what are considered duplicates.
+* Editing an internship application is only allowed if it does not result in duplicates. Two internship applications are considered as **duplicates** if both their `COMPANY` and `TAG` are identical.
 * See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
 
