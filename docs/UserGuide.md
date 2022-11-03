@@ -8,7 +8,7 @@ title: User Guide
 JeeqTracker is a desktop application created for **home-based business owners / resellers** that helps them manage the clients
 that they interact with by keeping track of their **`BUY / SELL`** transactions, and **`REMARKS`** of clients.
 
-While it has a GUI (Graphical User Interface), most of the user interactions happen using a CLI (Command Line Interface).
+While it has a GUI (Graphical User Interface), most of the user interactions happen by typing simple commands into a [CLI](#user-interface-overview). (Command Line Interface).
 If you can type fast, JeeqTracker can get business
 interactions recorded faster and simpler than traditional GUI applications.
 
@@ -97,6 +97,7 @@ This application UI is split into `5 sections`.
 * `List Of Clients`: Every client that you have will appear here
 * `Transaction details`: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client-view), or it will show all transactions with every client if you use the [filter command](#filtering-buy-or-sell-transactions-filter)
 * `Remarks Of Specified Client`: Remarks of specified client will appear here
+* `Net amount` : This section displays the net amount transacted with all clients currently displayed in the `List Of Clients` panel on the left.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -140,6 +141,8 @@ Below are some symbols that you may encounter in the User Guide.
 |------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
 | <div markdown="span" class="alert alert-danger">:exclamation: Danger Message</div> | Danger, something that could cause irreversible damage when done incorrectly |
 | <div markdown="span" class="alert alert-warning">:warning: Warning Message</div>   | Warning, something that could go wrong and should be noted                   |
+| <div markdown="span" class="alert alert-bulb">:bulb: Tip Message</div>             | Tip, something that can aid you to optimally utilise JeeqTracker             |
+
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -163,8 +166,8 @@ Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`
 > <div markdown="span" class="alert alert-warning">:warning: **You cannot add a client with a name that already exists in JeeqTracker**: Names are considered duplicates even if they differ by case sensitivity or whitespaces!
 
 Examples:
-* `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com`
-* `add n/John a/Yishun Street 81 p/9876543 e/john@yahoo.com t/friends t/supplier`
+* `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com` creates a new Alice client with the inputted details.
+* `add n/John a/Yishun Street 81 p/9876543 e/john@yahoo.com t/friends t/supplier` creates a new John client with the inputted details.
 
 ![Ui](images/SampleAddCommand.png)
 
@@ -187,7 +190,7 @@ Example:
 
 ### Editing a client: `edit`
 
-Edits the details of the `client` at the specified index number in the list displayed on the left panel.
+Edits the details of the `client` at the specified index number in the displayed client list on the left panel.
 
 Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
 
@@ -196,7 +199,8 @@ Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
 | `INDEX`   | Refers to the index number shown in the displayed list. <br/> - **Must be positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​ |
 | `FIELDS`  | Refers to the parameters to be changed for the client <br/> - `[n/NAME]` <br/> - `[a/ADDRESS]` <br/> - `[p/PHONE]` <br/> - `[e/EMAIL]`<br/> - `[t/TAG]`            |
 
-> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a client.
+
 
 Examples:
 * `edit 1 m/client a/Blk 221 Yishun St 81` replaces the 1<sup>st</sup> client's address with the new input.
@@ -210,13 +214,13 @@ Examples:
 [Back to Table of Contents](#table-of-contents)
 
 ### Deleting a client: `delete`
-> <div markdown="span" class="alert alert-danger">❗ :warning: **If you delete a client, it will be gone forever**: Be very careful here!
+> <div markdown="span" class="alert alert-danger">❗ **If you delete a client, it will be gone forever**: Be very careful here!
 
 Deletes the specified `client`from JeeqTracker.
 
 Format: `delete INDEX m/client`
 
-* The `INDEX` refers to the index number shown in the displayed list.
+* The `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 
 Examples:
@@ -293,6 +297,8 @@ Examples:
 * `sell 1 q/50 g/Chicken price/5.55 d/07/11/2000` creates a sell transaction to the 1<sup>st</sup> client in
 the list on the 07/11/2000.
 
+![Ui](images/SampleBuySellCommand2.png)
+
 [Back to Table of Contents](#table-of-contents)
 
 ### Editing a transaction: `edit`
@@ -308,7 +314,7 @@ Format: `edit INDEX m/transaction FIELDS [MORE_FIELDS]...`
 
 Example:
 
-`edit 1 m/transaction q/100 g/Apples price/1.5`
+`edit 1 m/transaction q/100 g/Apples price/1.5` edits the transaction at index 1 in the displayed transaction list.
 
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a transaction.
 
@@ -322,11 +328,10 @@ Format: `delete INDEX m/transaction`
 
 * `INDEX` refers to the index number shown in the display transaction list. `It must be a positive integer within the range display, and must not contain any signs e.g. +1, -3`.
 
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can delete a transaction.
 Example:
 
-`delete 1 m/transaction`
-
-> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
+`delete 1 m/transaction` deletes the transaction at index 1 in the displayed transaction list.
 
 > <div markdown="span" class="alert alert-danger">❗ **Deleting a transaction is an irreversible process! It will be gone forever**: Be very careful here!
 
@@ -334,7 +339,8 @@ Example:
 
 ### Filtering buy or sell transactions: `filter`
 
-Filters the buy or sell transactions of all the clients.
+Filters the buy or sell transactions of all the clients. The filtered transactions will be displayed in the transaction panel while the client list panel will display
+all the clients.
 
 Format: `filter TYPE`
 
@@ -354,13 +360,14 @@ Examples:
 Sorts the specified client's transaction by either the latest transaction or oldest transaction.
 
 Format: `sort INDEX ORDER`
-
-* The `INDEX` refers to the index number shown in the displayed client list.
-* The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
-* The `INDEX` **must not contain any signs** e.g +1, -3, …​
-* The `ORDER` refers to how the transaction will be sorted. It can only be sorted by
-  `oldest` or `latest`.
 * If no clients made any transactions, the transaction section will be blank.
+
+| Parameter | Constraints                                                                                                                                                                            |
+|:----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`   | - Refers to the index number shown in the display client list. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
+| `ORDER`   | - Refers to how the transaction will be sorted. <br/> - Order of sorting can only be `oldest` or `latest`.<br/>                                                                        |
+
+
 
 Examples:
 * `sort 1 latest` displays the 1<sup>st</sup> client transactions sorted by the latest transaction on top.
@@ -376,11 +383,12 @@ Creates a new remark for the specified client.
 
 Format: `remark INDEX REMARK [t/TAG]...`
 
-* The `INDEX` refers to the index number shown in the displayed client list.
-* The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
-* `TAG` is optional.
-* Multiple `TAG` can be tagged to the client.
-* The parameter `REMARK` cannot be empty.
+| Parameter | Constraints                                                                                                                                                                            |
+|:----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`   | - Refers to the index number shown in the display client list.**<br/> <br/> - **Must be a positive integer within the range displayed  **- Must not contain any signs** e.g +1, -3, …​ |
+| `REMARK`  | - Refers to the new remark, it is a required field                                                                                                                                     |
+| `TAG`     | - Refers to the tag for the new remark, it is an optional field.  <br/> - Multiple tags can be tagged to the remark.                                                                   |
+
 
 Examples:
 * `remark 1 punctual buyer` adds the remark `punctual buyer` to the client at index 1.
@@ -402,7 +410,7 @@ Format: `edit INDEX m/remark REMARK`
 
 Example:
 
-`edit 1 m/remark Client replies very fast`
+`edit 1 m/remark Client replies very fast` edits the remark at index 1 to 'Client replies very fast' in the displayed remark list. 
 
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
 
@@ -416,17 +424,17 @@ Format: `delete INDEX m/remark`
 
 * `INDEX` refers to the index number shown in the display remark list. `It must be a positive integer within the range display, and must not contain any signs e.g. +1, -3`.
 
-> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can delete a remark.
 
 > <div markdown="span" class="alert alert-danger">❗ **Deleting a remark is an irreversible process! It will be gone forever**: Be very careful here!
 
 Example:
 
-`delete 1 m/remark`
+`delete 1 m/remark` deletes the remark at index 1 in the displayed remark list.
 
 [Back to Table of Contents](#table-of-contents)
 
-## Miscellaneous Commands
+## **Miscellaneous Commands**
 
 ### Clearing all entries: `clear`
 
@@ -434,13 +442,11 @@ Clears all entries which include `clients`, `remarks` and `transactions` from Je
 
 Format: `clear`
 
-> <div markdown="span" class="alert alert-danger">❗ :warning: Information cleared by clear command cannot be retrieved.
+> <div markdown="span" class="alert alert-danger">❗ Information cleared by clear command cannot be retrieved.
 
 Example:
 
 * `clear` clears all client's entries together with the remarks and transactions.
-
-> <div markdown="span" class="alert alert-danger">❗ Information cleared by clear command cannot be retrieved!
 
 [Back to Table of Contents](#table-of-contents)
 
