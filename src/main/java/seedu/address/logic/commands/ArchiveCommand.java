@@ -19,10 +19,8 @@ public class ArchiveCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": archives the task identified by the index number used in the displayed task list.\n"
-            + "parameters:\n"
-            + "1. INDEX (must be a positive integer)\n"
-            + "EXAMPLE:\n"
-            + "1. archive 1\n";
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: archive 1";
 
     public static final String MESSAGE_ARCHIVED_TASK_SUCCESS = "Task archived!\n" + "Task: %1$s";
 
