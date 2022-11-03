@@ -175,6 +175,8 @@ Step 6: The `AddCommand` communicates with the `Model` to add the person by call
 Step 7: `AddCommand` then returns a new `CommandResult` with the result of the execution.
 
 ![Sequence diagram for the Add Command](images/AddSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Edit feature
 
@@ -199,6 +201,8 @@ Step 6: The `EditCommand` communicates with the `Model` to add the person by cal
 Step 7: `EditCommand` then returns a new `CommandResult` with the result of the execution.
 
 ![Sequence diagram for the Edit Command](images/EditSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Insurance feature
 
