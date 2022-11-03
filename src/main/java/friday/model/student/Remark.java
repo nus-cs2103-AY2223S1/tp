@@ -2,6 +2,9 @@ package friday.model.student;
 
 import static java.util.Objects.requireNonNull;
 
+// @@author HowSuen-reused
+// Reused from https://nus-cs2103-ay2223s1.github.io/tp/tutorials/AddRemark.html
+
 /**
  * Represents a Student's remark in FRIDAY.
  * Guarantees: immutable; is always valid
