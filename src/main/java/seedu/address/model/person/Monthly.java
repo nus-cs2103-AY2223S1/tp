@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's Income Level in the address book.
+ * Represents a Person's Monthly Contribution in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidMonthly(String)}
  */
 public class Monthly {
@@ -20,9 +20,9 @@ public class Monthly {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Monthly}.
      *
-     * @param monthly A valid address.
+     * @param monthly A valid monthly contribution.
      */
     public Monthly(String monthly) {
         requireNonNull(monthly);
@@ -31,7 +31,7 @@ public class Monthly {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid monthly.
      */
     public static boolean isValidMonthly(String test) {
         return test.matches(VALIDATION_REGEX);
