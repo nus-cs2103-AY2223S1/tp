@@ -20,6 +20,7 @@ Class Name
 Class StudentId
 Class Email
 Class Phone
+Class Picture
 Class ClassGroup
 Class AttendanceList
 Class Attendance
@@ -56,13 +57,14 @@ Student *--> "1" Name
 Student *--> "1" StudentId
 Student *--> "0..1" Phone
 Student *--> "0..1" Email
+Student *--> "0..1" Picture
 Student *--> "0..1" ClassGroup
 Student *--> "*" Tag
-Student *--> "0..1" AttendanceList
+Student *--> "1" AttendanceList
 AttendanceList *--> "0..12" Attendance
 
 TaskBook *--> "1" TaskList
-TaskList --> "~* all" Task
+TaskList --> "~*" Task
 ToDo -up-|> Task
 Deadline -up-|> Task
 Assignment -up-|> Task
@@ -70,6 +72,7 @@ Assignment -up-|> Task
 Deadline *--> "1" FormatDate
 Task *-right-> "1" TaskTitle
 Task *-right-> "1" TaskDescription
+
 
 
 ReadOnlyAddressBook -[hidden]right> ReadOnlyUserPrefs
@@ -81,13 +84,18 @@ UserPrefs -[hidden]right-> TaskBook
 Name -[hidden]right-> StudentId
 StudentId -[hidden]right-> Email
 Email -[hidden]right-> Phone
+Phone -[hidden]right-> Picture
+Picture -[hidden]right-> ClassGroup
 ClassGroup -[hidden]right-> AttendanceList
 AttendanceList -[hidden]right-> Tag
 
-TaskTitle -[hidden]up-> TaskDescription
+TaskTitle -[hidden]down-> TaskDescription
 
 TaskList -[hidden]right-> UniqueStudentList
 Task -[hidden]left-> Student
+
+ToDo -[hidden]right-> Deadline
+Deadline -[hidden]right-> Assignment
 
 ModelManager -->"~* filtered" Student
 @enduml
