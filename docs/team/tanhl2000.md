@@ -28,7 +28,7 @@ Given below are my contributions to the project.
           2. The piechart appears in a seperate window, allowing users to multi-task and view both the statistics as well as the main
           application window.
         * Justification: In order for marketing departments to manage their marketing events, they need a way to view the statistics of events so as to evaluate their successes (related command `makeStats` see below).
-        * Highlights: This feature requires using the charts section of the JavaFX library, which is otherwise not used in this application.
+        * Highlights: This feature requires using the charts package of the JavaFX library, which is otherwise not used in this application.
 
   * **Testing**
     * Added unit tests for date, added date related tests for add and edit persons.
