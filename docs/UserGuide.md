@@ -287,8 +287,8 @@ command:
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:**<br/>
 You may view the tasks added to a module by navigating to a module's page 
-using the [`goto`](##252-navigate-between-modules) command. <br>
-Alternatively, you may double-click on a module to ["peek"](#224-peeking-at-tasks) at a 
+using the [`goto`](##252-navigate-between-modules) command. Alternatively,
+you may double-click on a module to ["peek"](#224-peeking-at-tasks) at a 
 module's tasks while on the home page.
 </div>
 
@@ -790,7 +790,7 @@ open a window with a link that directs you to our user guide!
 
 Format: `help`
 
-#### Minor enhancement [coming in v2.0] <br>
+#### Minor enhancement [coming in v1.5] <br>
 Stay tuned for Plannit v2.0, where we will be including a table showing all commands
 within the help window!
 
