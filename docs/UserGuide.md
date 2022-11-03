@@ -109,7 +109,7 @@ in future enhancements of the product (stay tuned!).
   e.g. in `findo KEYWORD [MORE_KEYWORDS]`, only the first `KEYWORD` is compulsory. The rest are optional. 
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `i/ITEM_NAME q/QUANTITY`, `q/QUANTITY i/ITEM_NAME` is also acceptable.
 
 * All command keywords (e.g. `addo`, `marko`, `editi`, etc.), prefixes (e.g.`p/`, `i/`, etc.) 
 and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**. 
@@ -126,7 +126,7 @@ and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**.
 
 Adds an item to the list of tracked inventory.
 
-Format: `addi n/ITEM_NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE`
+Format: `addi i/ITEM_NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An inventory item's name must be more than 1 character long.
@@ -137,8 +137,8 @@ An inventory item can have any number of tags (including 0). A tag should only c
 </div>
 
 Examples:
-* `addi n/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1`
-* `addi n/Chair q/10 d/This is a wooden dining chair t/Furniture sp/50 cp/20`
+* `addi i/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1`
+* `addi i/Chair q/10 d/This is a wooden dining chair t/Furniture sp/50 cp/20`
 
 ### Listing all inventory items: `listi`
 
@@ -336,6 +336,11 @@ Examples:
 
 Marks an existing order in the order list as paid and/or delivered. 
 
+<div markdown="block" class="alert alert-info">
+:information_source: **Warning:** `marko` is irreversible. This means that you cannot unmark an order that is marked as 
+paid and/or delivered. 
+</div>
+
 Format: `marko INDEX [-p] [-d]`
 
 * Marks the order at the specified `INDEX` as paid and/or delivered. 
@@ -350,6 +355,11 @@ Format: `marko INDEX [-p] [-d]`
 * When an order is completed (marked as both `paid` and `delivered`), 
 the colour of the particular order's card will be in a darker shade than an uncompleted order. 
 
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+You can mark an order with insufficient stock as paid (to record payments for pre-orders) but you **cannot** 
+mark an order as **delivered** if there is **insufficient stock** of the item(s) involved in the order.
+</div>
+
 Examples:
 * `marko 1 -p` Marks the order at index `1` in the currently displayed list as `paid`. 
 * `marko 1 -d` Marks the order at index `1` in the currently displayed list as `delivered`.
@@ -357,7 +367,9 @@ Examples:
 
 ### Clearing all data in TrackO: `clear`
 
-Clears all data (in both `Order List` and `Inventory List`) from TrackO.
+If you want clear all sample data present, `clear` is the command for you. 
+
+The command `clear` clears all data (in both `Order List` and `Inventory List`) from TrackO.
 
 1. Initiate the command to clear all data from TrackO. <br>
     Format: `clear`
