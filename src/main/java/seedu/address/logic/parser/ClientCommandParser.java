@@ -129,7 +129,10 @@ public class ClientCommandParser implements Parser<ClientCommand> {
 
         ClientWithoutModel clientWithoutModel = new ClientWithoutModel(name, mobile, email,
                 new ArrayList<>(), new Pin(false));
-        ProjectId projectId = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
+
+        //
+        ProjectId projectId =
+                ParserUtil.parseProjectId(argMultimap.getFirstWordValue(PREFIX_PROJECT_ID).get());
 
         return new AddClientCommand(clientWithoutModel, projectId);
     }
@@ -154,7 +157,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         Name newName = null;
         ClientEmail newEmail = null;
         ClientMobile newMobile = null;
-        ClientId newClientId = ParserUtil.parseClientId(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+        ClientId newClientId = ParserUtil.parseClientId(argMultimap.getFirstWordValue(PREFIX_CLIENT_ID).get());
 
         if (!anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOBILE)) {
             throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS,
@@ -230,14 +233,14 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_ID)) {
-            parseIndexValidity(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+            parseIndexValidity(argMultimap.getFirstWordValue(PREFIX_CLIENT_ID).get());
         }
 
         ClientContainsKeywordsPredicate predicate =
                 new ClientContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_NAME),
                         argMultimap.getAllValues(PREFIX_EMAIL),
                         argMultimap.getAllValues(PREFIX_MOBILE),
-                        argMultimap.getAllValues(PREFIX_CLIENT_ID));
+                        argMultimap.getAllFirstWordValues(PREFIX_CLIENT_ID));
 
         return new FindClientCommand(predicate);
     }
@@ -265,7 +268,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
 
         if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_ID)) {
             sortPrefix = PREFIX_CLIENT_ID;
-            key = ParserUtil.parseClientNameSort(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+            key = ParserUtil.parseClientNameSort(argMultimap.getFirstWordValue(PREFIX_CLIENT_ID).get());
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {

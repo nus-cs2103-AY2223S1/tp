@@ -81,6 +81,13 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         return this.projectId.getIdInt();
     }
 
+    /**
+     * Check if the project has a valid id.
+     */
+    public boolean hasValidId() {
+        return this.projectId.isValid();
+    }
+
     public void addIssue(Issue toAddIssue) {
         this.issueList.add(toAddIssue);
     }

@@ -491,4 +491,15 @@ public class ParserUtil {
         }
         return Integer.parseInt(trimmedKey);
     }
+
+    /**
+     * Parse a string to get only the first word of said string.
+     * @param str string to parse
+     * @return the first word of the string
+     */
+    public static String getFirstWord(String str) {
+        requireNonNull(str);
+
+        return str.split(" ", 2)[0];
+    }
 }

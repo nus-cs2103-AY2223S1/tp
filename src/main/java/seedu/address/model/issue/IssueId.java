@@ -19,7 +19,15 @@ public class IssueId {
      */
     public IssueId(int id) {
         requireNonNull(id);
+
         this.issueId = id;
+    }
+
+    /**
+     * Checks if this IssueID is valid.
+     */
+    public boolean isValid() {
+        return issueId > 0;
     }
 
     /**
