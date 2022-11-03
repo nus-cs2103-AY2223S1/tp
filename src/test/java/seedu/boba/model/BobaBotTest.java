@@ -19,7 +19,11 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.boba.model.customer.Customer;
+import seedu.boba.model.customer.Email;
+import seedu.boba.model.customer.Phone;
+import seedu.boba.model.customer.Reward;
 import seedu.boba.model.customer.exceptions.DuplicatePersonException;
+import seedu.boba.model.customer.exceptions.PersonNotFoundException;
 import seedu.boba.testutil.CustomerBuilder;
 
 public class BobaBotTest {
@@ -81,6 +85,40 @@ public class BobaBotTest {
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> bobaBot.getPersonList().remove(0));
+    }
+
+    @Test
+    public void findNum_returnsTrue() {
+        bobaBot.addPerson(ALICE);
+        assertEquals(bobaBot.findNum(new Phone("94351253")), 0);
+    }
+
+    @Test
+    public void findNum_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> bobaBot.findNum(new Phone("94351253")));
+    }
+
+    @Test
+    public void findEmail_returnsTrue() {
+        bobaBot.addPerson(ALICE);
+        assertEquals(bobaBot.findEmail(new Email("alice@example.com")), 0);
+    }
+
+    @Test
+    public void findEmail_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> bobaBot.findEmail(new Email("alice@example.com")));
+    }
+
+    @Test
+    public void getCurrentRewardViaPhone_returnsTrue() {
+        bobaBot.addPerson(ALICE);
+        assertEquals(bobaBot.getCurrentReward(new Phone("94351253")), new Reward("123"));
+    }
+
+    @Test
+    public void getCurrentRewardViaEmail_returnsTrue() {
+        bobaBot.addPerson(ALICE);
+        assertEquals(bobaBot.getCurrentReward(new Email("alice@example.com")), new Reward("123"));
     }
 
     /**

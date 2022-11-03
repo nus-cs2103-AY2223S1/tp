@@ -15,8 +15,8 @@ public class VersionedBobaBotTest {
 
     @Test
     public void are_equals() {
-        VersionedBobaBot bbbt = new VersionedBobaBot(bbt, 20);
-        assertEquals(bbbt, bbbt);
-        assertEquals(bbbt, new VersionedBobaBot(bbt));
+        VersionedBobaBot versionedBobaBot = new VersionedBobaBot(bbt, 20);
+        assertEquals(versionedBobaBot, versionedBobaBot);
+        assertEquals(versionedBobaBot, new VersionedBobaBot(bbt));
     }
 }
