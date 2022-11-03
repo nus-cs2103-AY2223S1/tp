@@ -17,13 +17,7 @@ public class DateComparator implements Comparator<Date> {
     public int compare(Date date1, Date date2) {
         LocalDate d1 = date2.date;
         LocalDate d2 = date1.date;
-        if (d1.isBefore(d2)) {
-            return -1;
-        } else if (d1.isAfter(d2)) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return d1.compareTo(d2);
     }
 
 }

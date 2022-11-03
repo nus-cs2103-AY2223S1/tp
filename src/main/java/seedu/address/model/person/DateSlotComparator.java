@@ -17,13 +17,7 @@ public class DateSlotComparator implements Comparator<DateSlot> {
     public int compare(DateSlot dateTimeSlot1, DateSlot dateTimeSlot2) {
         LocalDateTime d1 = dateTimeSlot1.dateSlotTime;
         LocalDateTime d2 = dateTimeSlot2.dateSlotTime;
-        if (d1.isBefore(d2)) {
-            return -1;
-        } else if (d1.isAfter(d2)) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return d1.compareTo(d2);
     }
 
 }
