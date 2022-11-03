@@ -124,9 +124,11 @@ Want start using TrackO from scratch? Enter the [`clear`](##clearing-all-data-in
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Layout
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Tutorial
 
 To get you started, here are some simple commands you can try out on our sample data before getting to know more of
@@ -180,6 +182,7 @@ Now that you're done trying out some commands, you can enter `exit` to leave the
 To check out more commands, you can head over to our [features section](#features).
 
 -------
+
 ## Command guide
 This section of the user guide helps to break down the formatting used for commands in this user guide.
 
@@ -201,12 +204,15 @@ This section of the user guide helps to break down the formatting used for comma
 
 * If you use parameters for commands that do not take in parameters (such as `listi`, `listo`,`clear` and `exit`), these parameters will be ignored.<br>
   e.g. if the command specifies `listi 123`, it will be interpreted as `listi`.
+
 --------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 This section contains some technical specifications of how to use the commands in TrackO.
 
-### <u>**Inventory management**</u>
+### <u>Inventory management</u>
+
 ### Adding an inventory item: `addi`
 
 Adds an item to the list of tracked inventory.
@@ -289,7 +295,9 @@ Examples:
 * `editi 3 t/bedroom t/premium` updates the tags of the item at index 3 to be `bedroom` and `premium`
 
 -------------------------------------------------------------------------
-### <u>**Order management**</u>
+
+### <u>Order management</u>
+
 ### Adding an order: `addo`
 
 Creates an order to be added to the list of orders tracked by TrackO.
@@ -361,8 +369,6 @@ Examples:
 Completed orders are orders which have been paid **and** delivered. You can search using both -p **and** -d to find completed orders! 
 </div>
 
-
-
 ### Sorting orders by time created: `sorto`
 
 Sorts the displayed list of orders by the time at which they were created.
@@ -415,11 +421,13 @@ Format: `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUA
 `2` `Apples` and `3` `Bananas`. Inputting `edito 4 i/Bananas q/0` will remove the `Bananas` from the fourth order's list of ordered items, leaving only
 the `2` `Apples`.
 
-Note:
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+
 * Only orders which are not marked as `paid` or `delivered` can be edited.
 * The order's created time cannot be edited.
-* An order's paid status and delivery status also cannot be edited through this command. To modify those, 
+* An order's paid status and delivery status also cannot be edited through this command. To modify those,
   see [`marko`](#marking-an-order-as-paid-or-delivered-marko) instead.
+</div>
 
 Examples:
 * `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`
@@ -464,6 +472,7 @@ Examples:
 * `marko 1 -p -d` Marks the order at index `1` in the currently displayed list as both `paid` and `delivered`.
 
 ### **<u>General features</u>**
+
 ### Clearing all data in TrackO: `clear`
 
 If you want clear all sample data present, `clear` is the command for you. 
