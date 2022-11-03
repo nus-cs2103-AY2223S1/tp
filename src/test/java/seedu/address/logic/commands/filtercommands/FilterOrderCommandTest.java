@@ -3,7 +3,6 @@ package seedu.address.logic.commands.filtercommands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.util.Arrays;
@@ -12,6 +11,9 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -96,7 +98,9 @@ public class FilterOrderCommandTest {
 
     @Test
     public void generatePredicate_noMatchingKeywords_noOrdersFound() {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
+        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, 0),
+                false, false, true, ListCommand.LIST_ORDER, false, null,
+                false, null, null);
 
         AdditionalRequestPredicate<Order> additionalRequestPredicate = new AdditionalRequestPredicate<>(
                 Arrays.asList("laxative"));
@@ -107,13 +111,17 @@ public class FilterOrderCommandTest {
         FilterOrderCommand command = new FilterOrderCommand(additionalRequestPredicate, orderOrderStatusPredicate,
                 priceRangePredicate);
         oExpectedModel.updateFilteredOrderList(command.generatePredicate());
-        assertCommandSuccess(command, oModel, expectedMessage, oExpectedModel);
+        command.execute(oModel);
+
+        assertCommandSuccess(command, oModel, expectedResult, oExpectedModel);
         assertEquals(Collections.emptyList(), oModel.getFilteredOrderList());
     }
 
     @Test
     public void generatePredicate_matchingAdditionalRequest_oneOrderFound() {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
+        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, 1),
+                false, false, true, ListCommand.LIST_ORDER, false, null,
+                false, null, null);
 
         AdditionalRequestPredicate<Order> additionalRequestPredicate = new AdditionalRequestPredicate<>(
                 Arrays.asList("Good with children"));
@@ -127,13 +135,15 @@ public class FilterOrderCommandTest {
         FilterOrderCommand command = new FilterOrderCommand(additionalRequestPredicate, defaultPredicate,
                 defaultPredicate);
         oExpectedModel.updateFilteredOrderList(command.generatePredicate());
-        assertCommandSuccess(command, oModel, expectedMessage, oExpectedModel);
+        assertCommandSuccess(command, oModel, expectedResult, oExpectedModel);
         assertEquals(Arrays.asList(TypicalOrders.ORDER_1), oModel.getFilteredOrderList());
     }
 
     @Test
     public void generatePredicate_matchingOrderStatus_oneOrderFound() {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
+        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, 1),
+                false, false, true, ListCommand.LIST_ORDER, false, null,
+                false, null, null);
 
         OrderStatusPredicate<Order> orderStatusPredicate = new OrderStatusPredicate<>(OrderStatus.PENDING);
         Predicate<Order> defaultPredicate = new Predicate<Order>() {
@@ -145,13 +155,15 @@ public class FilterOrderCommandTest {
 
         FilterOrderCommand command = new FilterOrderCommand(defaultPredicate, orderStatusPredicate, defaultPredicate);
         oExpectedModel.updateFilteredOrderList(command.generatePredicate());
-        assertCommandSuccess(command, oModel, expectedMessage, oExpectedModel);
+        assertCommandSuccess(command, oModel, expectedResult, oExpectedModel);
         assertEquals(Arrays.asList(TypicalOrders.ORDER_1), oModel.getFilteredOrderList());
     }
 
     @Test
     public void generatePredicate_exactMatchingPriceRange_oneOrderFound() {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
+        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, 1),
+                false, false, true, ListCommand.LIST_ORDER, false, null,
+                false, null, null);
 
         PriceRangePredicate<Order> priceRangePredicate = new PriceRangePredicate<>(new Price(200.00),
                 new Price(400.00));
@@ -164,13 +176,15 @@ public class FilterOrderCommandTest {
 
         FilterOrderCommand command = new FilterOrderCommand(defaultPredicate, defaultPredicate, priceRangePredicate);
         oExpectedModel.updateFilteredOrderList(command.generatePredicate());
-        assertCommandSuccess(command, oModel, expectedMessage, oExpectedModel);
+        assertCommandSuccess(command, oModel, expectedResult, oExpectedModel);
         assertEquals(Arrays.asList(TypicalOrders.ORDER_1), oModel.getFilteredOrderList());
     }
 
     @Test
     public void generatePredicate_widePriceRange_twoOrdersFound() {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 2);
+        CommandResult expectedResult = new CommandResult(String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, 2),
+                false, false, true, ListCommand.LIST_ORDER, false, null,
+                false, null, null);
 
         PriceRangePredicate<Order> priceRangePredicate = new PriceRangePredicate<>(new Price(200), new Price(800));
         Predicate<Order> defaultPredicate = new Predicate<Order>() {
@@ -182,7 +196,7 @@ public class FilterOrderCommandTest {
 
         FilterOrderCommand command = new FilterOrderCommand(defaultPredicate, defaultPredicate, priceRangePredicate);
         oExpectedModel.updateFilteredOrderList(command.generatePredicate());
-        assertCommandSuccess(command, oModel, expectedMessage, oExpectedModel);
+        assertCommandSuccess(command, oModel, expectedResult, oExpectedModel);
         assertEquals(Arrays.asList(TypicalOrders.ORDER_1, TypicalOrders.ORDER_2), oModel.getFilteredOrderList());
     }
 }
