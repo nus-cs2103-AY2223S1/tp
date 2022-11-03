@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TEAM;
 import static seedu.address.testutil.TypicalTasks.PACK;
 import static seedu.address.testutil.TypicalTasks.STUDY;
 import static seedu.address.testutil.TypicalTeams.getTypicalAddressBookWithTeams;
+import static seedu.address.testutil.TypicalTeams.getTypicalAddressBookWithTeams2;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,34 +20,33 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
+import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.TypicalTeams;
 
 public class TaskMarkCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBookWithTeams(), new UserPrefs());
 
     @Test
-    public void execute_markMarkedTask_success() {
+    public void execute_markMarkedTask_failure() {
         Task defaultTask = new TaskBuilder(PACK).build();
         defaultTask.markAsDone();
 
         TaskMarkCommand taskMarkCommand = new TaskMarkCommand(INDEX_FIRST_TEAM, INDEX_THIRD_TASK);
         String expectedMessage = String.format(TaskMarkCommand.MESSAGE_ALREADY_MARKED, defaultTask);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        expectedModel.markTask(INDEX_FIRST_TEAM, INDEX_THIRD_TASK);
-        assertCommandSuccess(taskMarkCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(taskMarkCommand, model, expectedMessage);
     }
 
     @Test
     public void execute_markUnmarkedTask_success() {
         Task defaultTask = new TaskBuilder(STUDY).build();
-        defaultTask.markAsNotDone();
+        defaultTask.markAsDone();
 
         TaskMarkCommand taskMarkCommand = new TaskMarkCommand(INDEX_FIRST_TEAM, INDEX_FIRST_TASK);
         String expectedMessage = String.format(TaskMarkCommand.MESSAGE_SUCCESS, defaultTask);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        expectedModel.markTask(INDEX_FIRST_TEAM, INDEX_FIRST_TASK);
+        Model expectedModel = new ModelManager(getTypicalAddressBookWithTeams2(), new UserPrefs());
+        expectedModel.markTask(INDEX_FIRST_TEAM,INDEX_FIRST_TASK);
         assertCommandSuccess(taskMarkCommand, model, expectedMessage, expectedModel);
     }
 
