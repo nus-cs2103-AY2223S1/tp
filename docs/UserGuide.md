@@ -59,7 +59,7 @@ place, optimized for use via a Command Line Interface ([CLI](#cli)), while still
 
 If you love to type, **TrackO** can get your order and inventory management tasks done faster than
 the traditional solution of pen and paper, and even popular GUI applications such as spreadsheets
-(_e.g, Microsoft Excel, Google Sheets, etc._).
+(_e.g. Microsoft Excel, Google Sheets, etc._).
 
 Even if you are not _that_ comfortable with typing, fret not! **TrackO** is built with you
 in mind. The functionalities are beginner-friendly and extremely easy to pick up.
@@ -68,7 +68,7 @@ As a broad overview, **TrackO** provides users with the ability to:
 * View and manage inventory data
 * View and manage order data
 * Ensure consistency between inventory and order data
-_(e.g, automatically updating in-stock quantities on marking orders as paid/delivered)_
+_(e.g. automatically updating in-stock quantities on marking orders as paid/delivered)_
 
 Currently, **TrackO** only supports tracking inventory items that are countable by units _(e.g. 1 apple, 2 cookies, etc.)_.
 Our development team will introduce more powerful inventory tracking functionalities _(e.g. by weight, by litres, etc.)_
@@ -372,7 +372,7 @@ Format: `i/ITEM_NAME q/QUANTITY`
 * You must input an item name that matches an existing item in your inventory list.
 * The name matching is case-insensitive, e.g. `i/pEn q/3` and `i/pen q/3` will both add `3` quantities (or units) of the inventory item `Pen` to the created order.
 * You must input a quantity of integer value more than 0, e.g. `q/1` or `q/3` but NOT `q/0` or `q/-1`.
-* If you input an item name that matches previously entered item, the quantity of the added item will be updated instead, e.g., `i/Box q/3` followed by `i/Box q/4` will only add a total of `4` quantities (or units) of `Box` to the created order
+* If you input an item name that matches previously entered item, the quantity of the added item will be updated instead, e.g. `i/Box q/3` followed by `i/Box q/4` will only add a total of `4` quantities (or units) of `Box` to the created order
 
 Lastly, to end the command, you can enter `done` to tell TrackO to track the order or `cancel` to completely abort the command.
 
@@ -581,23 +581,23 @@ Format: `exit`
 
 ## Command summary
 
-| Action                       | Format, Examples                                                                                                                                                                                                                                           |
-|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add An Inventory Item**    | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE` <br> e.g., `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture sp/79.99 cp/50.00 [t/TAG]…​`                                                                                 |
-| **Delete An Inventory Item** | `deletei INDEX`<br> e.g., `deletei 3`                                                                                                                                                                                                                      |                                                                                                                                                        
-| **List All Inventory Items** | `listi`                                                                                                                                                                                                                                                    |
-| **Find Inventory Item(s)**   | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `findi blue shirt`                                                                                                                                                                                             |
-| **Edit An Inventory Item**   | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [sp/SELL_PRICE] [cp/COST_PRICE] [t/TAG]…​`<br> e.g., `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                                                               |
-| **Add An Order**             | `addo n/NAME p/PHONE e/EMAIL a/ADDRESS` <br> e.g., `addo n/John Doe p/91234567 e/johndoe@example.com a/48 Westwood Terrace` <br> then, `i/ITEM_NAME q/QUANTITY` as many times as required <br>e.g. `i/Pillow q/2` <br>followed by `done` or `cancel`       |
-| **List All Orders**          | `listo`                                                                                                                                                                                                                                                    |
+| Action                       | Format, Examples                                                                                                                                                                                                                                        |
+|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add An Inventory Item**    | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE` <br> e.g. `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture sp/79.99 cp/50.00 [t/TAG]…​`                                                                               |
+| **Delete An Inventory Item** | `deletei INDEX`<br> e.g. `deletei 3`                                                                                                                                                                                                                    |                                                                                                                                                        
+| **List All Inventory Items** | `listi`                                                                                                                                                                                                                                                 |
+| **Find Inventory Item(s)**   | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g. `findi blue shirt`                                                                                                                                                                                           |
+| **Edit An Inventory Item**   | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [sp/SELL_PRICE] [cp/COST_PRICE] [t/TAG]…​`<br> e.g. `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                                                             |
+| **Add An Order**             | `addo n/NAME p/PHONE e/EMAIL a/ADDRESS` <br> e.g. `addo n/John Doe p/91234567 e/johndoe@example.com a/48 Westwood Terrace` <br> then, `i/ITEM_NAME q/QUANTITY` as many times as required <br> e.g. `i/Pillow q/2` <br>followed by `done` or `cancel`    |
+| **List All Orders**          | `listo`                                                                                                                                                                                                                                                 |
 | **Find Order(s)**            | `findo [-d OR -D] [-p OR -P] [i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]] [a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]] [n/NAME_KEYWORD [MORE_NAME_KEYWORDS]]`, where all flags are optional and only 1 prefix is compulsory <br> e.g. `findo -d i/keychain n/Alex` |
-| **Delete An Order**          | `deleteo INDEX` <br> e.g., `deleteo 2`                                                                                                                                                                                                                     |
-| **Edit An Order**            | `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUANTITY]` <br> e.g., `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`                                                                                     |
-| **Mark An Order**            | `marko INDEX [-p] [-d]` <br> e.g., `marko 2 -d`, `marko 3 -p -d`                                                                                                                                                                                           |
-| **Sort Orders**              | `sorto new` or `sorto old`                                                                                                                                                                                                                                 |
-| **Clear**                    | `clear`<br/> followed by `confirm` or `cancel` when prompted                                                                                                                                                                                               |
-| **Getting Help**             | `help`                                                                                                                                                                                                                                                     |
-| **Exit**                     | `exit`                                                                                                                                                                                                                                                     |
+| **Delete An Order**          | `deleteo INDEX` <br> e.g. `deleteo 2`                                                                                                                                                                                                                   |
+| **Edit An Order**            | `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUANTITY]` <br> e.g. `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`                                                                                   |
+| **Mark An Order**            | `marko INDEX [-p] [-d]` <br> e.g. `marko 2 -d`, `marko 3 -p -d`                                                                                                                                                                                         |
+| **Sort Orders**              | `sorto new` or `sorto old`                                                                                                                                                                                                                              |
+| **Clear**                    | `clear`<br/> followed by `confirm` or `cancel` when prompted                                                                                                                                                                                            |
+| **Getting Help**             | `help`                                                                                                                                                                                                                                                  |
+| **Exit**                     | `exit`                                                                                                                                                                                                                                                  |
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
