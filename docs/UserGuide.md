@@ -1,16 +1,22 @@
 <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
 
-# User Guide
+# User Guide for bobaBot
 
 ---
-bobaBot is a **desktop application** for managing customers’ membership details. It is **optimized for Command Line Interface (CLI) while retaining some benefits of the Graphical User Interface (GUI)**. If you are a cashier working at a bubble tea shop and can type fast, bobaBot can help you easily find and manage your customers’ membership information as compared to other GUI applications.
+bobaBot is a **cheap & easy-to-use desktop application** for managing bubble tea shop customers’ membership details.<br/>
+
+bobaBot offers simple **adding**, **enquiring**, and **maintaining** of customer information.
+It features a **membership rewards system**, **fuzzy search**, and **undo / redo** function.
+It is **optimised for staffs who prefer to type fast**. <br/>
+
+If you are a cashier working at a bubble tea shop, bobaBot can help you easily find and manage your customers’ membership information as compared to other GUI applications.
 
 ---
 
 ## Table of Contents
 
 1. [Quick start](#1-quick-start) <br>
-1. <details><summary><a href="#4-features">Features</a></summary>
+2. <details><summary><a href="#4-features">Features</a></summary>
       2.1. <a href="#21-viewing-help--help">Help</a><br>
       2.2. <a href="#22-adding-a-customer-add">Add</a><br>
       2.3. <a href="#23-editing-a-customers-details-edit">Edit</a><br>
@@ -26,8 +32,9 @@ bobaBot is a **desktop application** for managing customers’ membership detail
       2.13. <a href="#213-gui-calculator-calc-gui">Calculator</a><br>
       2.14. <a href="#214-exiting-the-program--exit">Exit</a><br>
    </details>
-1. [FAQ](#3-faq) <br>
-1. [Command summary](#4-command-summary) <br>
+3. [FAQ](#3-faq) <br>
+4. [Command summary](#4-command-summary) <br>
+5. [List of Terminologies](#5-list-of-terminologies) <br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -37,9 +44,9 @@ bobaBot is a **desktop application** for managing customers’ membership detail
 
 1. Download the latest `bobaBot.jar` from [here](https://github.com/AY2223S1-CS2103T-W09-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your bobaBot.
+1. Decide where do you want your _home folder_ and copy the downloaded file to it.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample information.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -90,15 +97,8 @@ bobaBot is a **desktop application** for managing customers’ membership detail
 
 </div>
 
-### 2.1 Viewing help : `help`
 
-Shows a message explaining how to access the help page.
-
-![help message](images/screenshots/HelpCommand/HelpCommand.png)
-
-Format: `help`
-
-### 2.2 Adding a Customer: `add`
+### 2.1 Adding a Customer: `add`
 
 Adds a Customer to bobaBot.
 
@@ -142,7 +142,7 @@ Examples:
     <img src="images/screenshots/AddCommand/AddCommandResult.png"><br>
     </details>
 
-### 2.3 Editing a Customer’s details: `edit`
+### 2.2 Editing a Customer’s details: `edit`
 
 Edits an existing Customer in bobaBot.
 
@@ -185,7 +185,7 @@ Examples:
     <img src="images/screenshots/EditCommand/EditCommand_EmailResult.png"><br>
     </details>
 
-### 2.4 Increasing a Customer’s Reward points: `incr`
+### 2.3 Increasing a Customer’s Reward points: `incr`
 
 Increases the Reward points of existing Customer in bobaBot.
 
@@ -223,7 +223,7 @@ Examples:
     <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmailResult.png"><br>
     </details>
 
-### 2.5 Decreasing a Customer’s Reward points: `decr`
+### 2.4 Decreasing a Customer’s Reward points: `decr`
 
 Decreases the Reward points of existing Customer in bobaBot.
 
@@ -261,7 +261,7 @@ Examples:
     <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmailResult.png"><br>
     </details>
 
-### 2.6 Listing all customers : `list`
+### 2.5 Listing all customers : `list`
 
 Shows a list of all Customers in bobaBot.
 
@@ -281,7 +281,7 @@ After executing the ListCommand:
 <img src="images/screenshots/ListCommand/ListCommandResult.png"><br>
 </details>
 
-### 2.7 Locating customers by name: `find`
+### 2.6 Locating customers by name / email / phone number: `find`
 
 Finds Customers whose information (including name, phone, email, address) contain any of the given keywords.
 
@@ -396,7 +396,7 @@ Examples:
     <img src="images/screenshots/FindCommand/FindCommand_EmailResult.png"><br>
     </details>
 
-### 2.8 Deleting a Customer : `delete`
+### 2.7 Deleting a Customer : `delete`
 
 Removes a Customer from bobaBot.
 
@@ -441,7 +441,7 @@ Examples:
     <img src="images/screenshots/DeleteCommand/DeleteCommand_EmailResult.png"><br>
     </details>
 
-### 2.9 Undo a Command : `undo`
+### 2.8 Undo a Command : `undo`
 
 Reverts a command that has been executed. Returns bobaBot to the previous state before executing the command.
 
@@ -467,7 +467,7 @@ After executing the UndoCommand (Deleted Customer <code>Alex Yeoh</code> is back
 * bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
 </div>
 
-### 2.10 Redo an UndoCommand : `redo`
+### 2.9 Redo an UndoCommand : `redo`
 
 Reverts the UndoCommand. Returns bobaBot to the state before executing the UndoCommand.
 
@@ -496,7 +496,7 @@ After executing the RedoCommand (The Customer <code>Alex Yeoh</code> is removed 
 * bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
 </div>
 
-### 2.11 Clearing all entries : `clear`
+### 2.10 Clearing all entries : `clear`
 
 Clears all Customers from the bobaBot.
 
@@ -516,7 +516,7 @@ After executing the ClearCommand:
 <img src="images/screenshots/ClearCommand/ClearCommandResult.png"><br>
 </details>
 
-### 2.12 Calculate: `calc`
+### 2.11 Calculate: `calc`
 
 Do basic arithmetic calculation including +, -, *, /. Allow multiple operators and precedence
 
@@ -544,7 +544,7 @@ After executing the CalculateCommand:
 * Please do not enter spaces, e.g.`1 + 1` does not work.
 </div>
 
-### 2.13 GUI Calculator: `calc-gui`
+### 2.12 GUI Calculator: `calc-gui`
 
 Launch a GUI calculator. A calculator window will pop-up
 
@@ -563,6 +563,14 @@ After executing the CalculatorGuiCommand:
 <br>
 <img src="images/screenshots/CalculateCommand/NewCalculatorGUIResult.png"><br>
 </details>
+
+### 2.13 Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/screenshots/HelpCommand/HelpCommand.png)
+
+Format: `help`
 
 ### 2.14 Exiting the program : `exit`
 
@@ -629,3 +637,16 @@ _Details coming soon ..._
 | **List**       | `list`                                                                                                                                                                                                                                                                               |
 | **Help**       | `help`                                                                                                                                                                                                                                                                               |
 | **Exit**       | `exit`                                                                                                                                                                                                                                                                               |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 5. List of terminologies
+
+
+| Term            | Meaning                                                                                                                                                                                                                                                                                           |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CLI**         | Abbreviation for **Command-Line Interface**. A command-line interface receives commands from a user in the form of lines of text. This provides a means of setting parameters for the environment, invoking executables and providing information to them as to what actions they are to perform. |
+| **GUI**         | Abbreviation for **Graphical User Interface**. A graphical user interface allows users to interact with electronic devices through graphical icons and audio indicator such as primary notation.                                                                                                  |
+| **Command**     | A command is a **directive** to a computer program to **perform a specific task**.                                                                                                                                                                                                                |
+| **Parameter**   | A **value** for a specified field.                                                                                                                                                                                                                                                                |
+| **Command box** | **Place** where the user **types** in the command.                                                                                                                                                                                                                                                |
