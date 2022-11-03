@@ -63,6 +63,9 @@ public class Student {
         return helpTag.getBool();
     }
 
+    /**
+     * Returns a StuName object with its fullname attribute converted to all lowercase and with spaces removed.
+     */
     public StuName nameToLowercaseRemoveSpaces(String name) {
         name = name.replaceAll("\\s", "");
         name = name.toLowerCase();
