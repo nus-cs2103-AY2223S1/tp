@@ -63,7 +63,7 @@ public class UngroupCommand extends Command {
         }
 
         Person personToUngroup = lastShownList.get(index.getZeroBased());
-        Person removedPerson = createGroupedPerson(personToUngroup, groupToRemove);
+        Person removedPerson = createUngroupedPerson(personToUngroup, groupToRemove);
 
         if (!personToUngroup.isSamePerson(removedPerson) && model.hasPerson(removedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -81,7 +81,7 @@ public class UngroupCommand extends Command {
      * Creates and returns a {@code Person} with the group {@code groupToRemove}
      * removed from {@code personToUngroup}.
      */
-    private Person createGroupedPerson(Person personToUngroup, Group groupToRemove) throws CommandException {
+    private Person createUngroupedPerson(Person personToUngroup, Group groupToRemove) throws CommandException {
         assert personToUngroup != null;
 
         Occupation occupation = personToUngroup.getOccupation();
@@ -104,6 +104,14 @@ public class UngroupCommand extends Command {
         }
 
         return new Person(occupation, name, phone, email, tutorial, address, tags, social, updatedGroups);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UngroupCommand // instanceof handles nulls
+                && index.equals(((UngroupCommand) other).index)
+                && groupToRemove.equals(((UngroupCommand) other).groupToRemove));
     }
 
 }
