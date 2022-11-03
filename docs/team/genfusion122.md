@@ -1,4 +1,7 @@
-# Justin Widodo's Project Portfolio Page
+---
+layout: page
+title: Justin Widodo's Project Portfolio Page
+---
 
 ### Project: Yellow Pages
 Yellow Pages is a desktop address book application used for students in universities. User interaction is done through CLI and its GUI is created using JavaFX

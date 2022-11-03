@@ -19,7 +19,7 @@ public class SortMeetingsCommandParser implements Parser<SortMeetingsCommand> {
      */
     @Override
     public Command parse(String userInput) throws ParseException {
-        String upperCaseInput = userInput.trim().toUpperCase();
+        String upperCaseInput = userInput.strip().toUpperCase();
         if (upperCaseInput.equals(SortMeetingsCommand.ASCENDING_ARGS)) {
             return new SortMeetingsCommand(true);
         } else if (upperCaseInput.equals(SortMeetingsCommand.DESCENDING_ARGS)) {

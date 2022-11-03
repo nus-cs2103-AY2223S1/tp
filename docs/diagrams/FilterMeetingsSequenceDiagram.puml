@@ -15,10 +15,10 @@ box Model MODEL_COLOR_T1
 participant "model:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute\n("filtermeetingsbetween\n 10-10-2022 1010 ;;;\n20-10-2022 1010")
+[-> LogicManager : execute\n(userInput)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand\n("filtermeetingsbetween\n 10-10-2022 1010 ;;;\n20-10-2022 1010")
+LogicManager -> AddressBookParser : parseCommand\n(userInput)
 activate AddressBookParser
 
 create FilterMeetingCommandParser
