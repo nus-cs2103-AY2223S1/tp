@@ -141,7 +141,7 @@ the application's sample data.
 
 The image below describes TrackO's layout:
 
-<img src="./images/user-guide/TrackOLayout.png">
+<img src="./images/user-guide/TrackOLayout.png" alt="TrackOLayout">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
