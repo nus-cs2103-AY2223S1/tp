@@ -3,7 +3,6 @@ package swift.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static swift.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static swift.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static swift.testutil.Assert.assertThrows;
 import static swift.testutil.TypicalPersons.ALICE;
