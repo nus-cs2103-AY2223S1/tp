@@ -429,15 +429,15 @@ _{more aspects and alternatives to be added}_
 
 ### \[Enhanced\] ***Add*** Feature
 
-This feature was enhanced to help teacher assistants add students' profiles with ease.
+This feature was enhanced to help teaching assistants add students' profiles with ease.
 The feature uses the command :
 * `add` n/NAME, i/STUDENTID, [p/PHONE], [e/EMAIL], [c/CLASSGROUP], [t/TAGS]
 
 
 #### Feature Updates
-* ~~Compulsory~~ Optional Fields to Fill in (Fields in Square Bracket are Optional).
+* Optional Fields to Fill in (Fields in Square Bracket are Optional).
 * ***Only*** Name and Student ID are a must.
-* Provides a **more flexibly way** of adding students' profiles.
+* Provides a **more flexible way** of adding students' profiles.
 
 The improved feature allows user to leave certain fields empty if they do not have the information to fill them.
 
@@ -481,7 +481,7 @@ Activity Diagram for Improved AddCommand Feature
 
 **Target user profile**:
 
-* Tech savvy university teacher assistants
+* Tech savvy university teaching assistants
 * has a need to manage student contacts
 * Prefer desktop apps over other types
 * Can type fast
@@ -489,27 +489,32 @@ Activity Diagram for Improved AddCommand Feature
 * Is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* Teacher assistant have a lot of students information to manage and our product will make it easier for teacher assistants to remember student information, such as names, faces, attendance, etc
-* Teacher assistants also want to ensure their students are doing well and our product will ensure that they can keep track of student's performance
+* teaching assistant have a lot of students information to manage and our product will make it easier for teaching assistants to remember student information, such as names, faces, attendance, etc
+* teaching assistants also want to ensure their students are doing well and our product will ensure that they can keep track of student's performance
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                     | I want to …​                                              | So that I can…​                                       |
-|----------|-----------------------------|-----------------------------------------------------------|-------------------------------------------------------|
-| `* * *`  | teacher assistant           | be able to add comments                                   | monitor my students' progress.                        |
-| `* * *`  | teacher assistant           | be able to retrieve my student's contact details          | look them up easily.                                  |
-| `* * *`  | teacher assistant           | be able to recognise my students from different tutorials | identify them.                                        |
-| `* * *`  | teacher assistant           | track the date and time while using my app                | so that I can be on time for my classes.              |
-| `* * *`  | forgetful teacher assistant | record attendance                                         | keep track of my students.                            |
-| `* * *`  | teacher assistant           | add student's profiles flexibly                           | create profiles based on limited student information. |
+| Priority | As a …​                               | I want to …​                                                  | So that I can…​                                       |
+|----------|---------------------------------------|---------------------------------------------------------------|-------------------------------------------------------|
+| `* * *`  | teaching assistant                    | be able to add comments                                       | monitor my students' progress.                        |
+| `* * *`  | teaching assistant                    | be able to retrieve my student's contact details              | look them up easily.                                  |
+| `* * *`  | teaching assistant                    | be able to recognise my students from different tutorials     | identify them.                                        |
+| `* * *`  | teaching assistant                    | track the deadline of my tasks                                | complete them on time.                                |
+| `* * *`  | teaching assistant                    | be able to remove tasks that I have completed                 | focus on uncompleted tasks                            |
+| `* * *`  | forgetful teaching assistant          | record attendance                                             | keep track of my students.                            |
+| `* * *`  | teaching assistant                    | add student's profiles flexibly                               | create profiles based on limited student information. |
+| `* * *`  | teaching assistant with many students | keep track of student submissions                             | remind them to complete their work.                   |
+| `* * *`  | teaching assistant                    | have a quick way to differentiate tasks                       | carry out my tasks more efficiently.                  |
+| `* *`    | teaching assistant with many students | have a quick way to find students by what I remember them for | search for their contacts faster.                     |
+| `* *`    | teaching assistant with limited time  | quickly type out repeated commands                            | perform my duties faster                              |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `GREWZ` and the **Actor** is the `teacher assistant`, unless specified otherwise)
+(For all use cases below, the **System** is the `GREWZ` and the **Actor** is the `teaching assistant`, unless specified otherwise)
 
 **Use case: UC01 - Add a Student**
 
@@ -517,94 +522,94 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Tutor adds the student by entering the command with student details.
+1. User adds the student by entering the command with student details.
 2. GREWZ adds student.
 Use case ends.
 
 **Extensions**
 
 * 1a. GREWZ detects an error in entered data.
-    * 1a1. GREWZ responds with an error message
-    * 1a2. User enters command with student details
-    * Repeat steps until data is correct
-    Use case resumes in step 2
+    * 1a1. GREWZ responds with an error message.
+    * 1a2. User enters command with student details.
+    * Repeat steps until data is correct.
+    Use case resumes in step 2.
 
 **Use case: UC02 - Delete a Student**
 
 **Guarantees:** A student contact is deleted from GREWZ.
 
 **MSS**
-1. Tutor deletes a specific student contact by entering the command along with the index that corresponds to the student.
+1. User deletes a specific student contact by entering the command along with the index that corresponds to the student.
 2. Student contact is deleted.
-Use case ends
+Use case ends.
 
 **Use case: UC03 - Edit a Student**
 
 **Guarantees:** Student's details are changed in GREWZ
 
 **MSS**
-1. Tutor edits a specific student contact by entering the command along with the index that corresponds to the student.
-2. Student contact in GREWZ is edited
-Use case ends
+1. User edits a specific student contact by entering the command along with the index that corresponds to the student.
+2. Student contact in GREWZ is edited.
+Use case ends.
 
 **Extension**
-* 1a. GREWZ detects that the index given is invalid
-    * 1a1. GREWZ responds with an error message
-    * 1a2. User re-enters the command with valid index
-    Use case resumes in step 2
+* 1a. GREWZ detects that the index given is invalid.
+    * 1a1. GREWZ responds with an error message.
+    * 1a2. User re-enters the command with valid index.
+    Use case resumes in step 2.
 
 **Use case: UC04 - Add attendance to Student**
 
 **Guarantees:**  An attendance is added to the Student.
 
 **MSS**
-1. Tutor adds attendance to student by entering command with student index, module and number of lessons.
+1. User adds attendance to student by entering command with student index, module and number of lessons.
 2. GREWZ adds attendance to student.
 Use case ends.
 
 **Extensions**
 * 1a. GREWZ detects an error in entered data.
-    * 1a1. GREWZ responds with an error message
-    * 1a2. User enters command with student details
-    * Repeat steps until data is correct
-    Use case resumes in step 2
+    * 1a1. GREWZ responds with an error message.
+    * 1a2. User enters command with student details.
+    * Repeat steps until data is correct.
+    Use case resumes in step 2.
 
 **Use case: UC05 - Delete attendance of a Student**
 
 **Guarantees:**  An attendance is deleted from the Student.
 
 **MSS**
-1. Tutor deletes attendance to student by entering command with student index.
+1. User deletes attendance to student by entering command with student index.
 2. GREWZ deletes the attendance of the student.
 
 **Extensions**
 * 1a. GREWZ detects an error in entered data.
-    * 1a1. GREWZ responds with an error message
-    * 1a2. User enters command with correct student index and command
-    * Repeat steps until data is correct
-    Use case resumes in step 2
+    * 1a1. GREWZ responds with an error message.
+    * 1a2. User enters command with correct student index and command.
+    * Repeat steps until data is correct.
+    Use case resumes in step 2.
 
 **Use case: UC06 - Mark attendance of Student**
 
 **Guarantees:**  An attendance is deleted from the Student.
 
 **MSS**
-1. Tutor marks attendance of student by entering command with student index, lesson number, marked value.
+1. User marks attendance of student by entering command with student index, lesson number, marked value.
 2. GREWZ marks/unmarks the attendance of the student.
 
 **Extensions**
-* 1a. GREWZ detects an error in entered data or attendancelist is not present
-    * 1a1. GREWZ responds with an error message
-    * 1a2. User enters command with correct student index and data
-    * Repeat steps until data is correct
-    Use case resumes in step 2
+* 1a. GREWZ detects an error in entered data or attendancelist is not present.
+    * 1a1. GREWZ responds with an error message.
+    * 1a2. User enters command with correct student index and data.
+    * Repeat steps until data is correct.
+    Use case resumes in step 2.
 
 **Use case: UC07 - Find a Student**
 
-**Guarantees:**  A Tutor can search to find Student details with limited information.
+**Guarantees:**  A user can search to find Student details with limited information.
 
 **MSS**
-1. Tutor searches for student details by entering command with keywords.
+1. User searches for student details by entering command with keywords.
 2. GREWZ returns a list of students whose details match the keywords, completely or partially.
    Use case ends.
 
@@ -613,87 +618,98 @@ Use case ends.
 **Guarantees:**  A class group is added to the Student.
 
 **MSS**
-1. Tutor adds class group to student by entering command with index of student and class group.
+1. User adds class group to student by entering command with index of student and class group.
 2. GREWZ adds class group to student.
 Use case ends.
 
 **Extensions**
 * 1a. GREWZ detects an error in entered index.
-    * 1a1. GREWZ responds with an error message
-    * 1a2. User enters command with student details
-    * Repeat steps until data is correct
-    Use case resumes in step 2
+    * 1a1. GREWZ responds with an error message.
+    * 1a2. User enters command with student details.
+    * Repeat steps until data is correct.
+    Use case resumes in step 2.
 
 **Use case: UC09 - Add a ToDo Task**
 
-**Guarantees:** A tutor can add a ToDo task to the TaskBook with a given title and description.
+**Guarantees:** A user can add a ToDo task to the TaskBook with a given title and description.
 
 **MSS**
-1. Tutor enters correct command with title and description into the command input.
+1. User enters correct command with title and description into the command input.
 2. GREWZ adds the ToDo task to the TaskBook and displays it.
 Use case ends.
 
 **Extensions**
 * 1a. GREWZ detects an error in the given command format.
-    * 1a1. GREWZ responds with an error message
-    * 1a2. User re-enters the command with title and description
-    * Repeat steps until command input is correct
-    Use case resumes in step 2
+    * 1a1. GREWZ responds with an error message.
+    * 1a2. User re-enters the command with title and description.
+    * Repeat steps until command input is correct.
+    Use case resumes in step 2.
 
 **Use case: UC10 - Add a Deadline Task**
 
-**Guarantees:**  A tutor can add a task to the TaskBook along with a given deadline.
+**Guarantees:**  A user can add a deadline to the TaskBook along with a given deadline.
 
 **MSS**
-1. Tutor adds task to student by entering command with title, description and deadline.
+1. User adds task to student by entering command with title, description and deadline.
 2. Task is added to the TaskBook and the deadline is displayed as well.
    Use case ends.
 
 **Extensions**
 * 1a. GREWZ detects an error in the given date format.
-    * 1a1. GREWZ responds with an error message
+    * 1a1. GREWZ responds with an error message.
     * 1a2. User enters command with corrected date format.
-    * Repeat steps until data is correct
-      Use case resumes in step 2
+    * Repeat steps until data is correct.
+      Use case resumes in step 2.
 
+**Use case: UC11 - Add an Assignment Task**
 
-**Use case: UC11 - Uploading a Student Picture**
+**Guarantees:**  A user can add an assignment to the TaskBook along with a given list of student names.
 
 **MSS**
-1. Tutor enters a upload picture command with the index of student.
-2. File chooser is opened.
-3. Tutor selects picture to upload.
-4. Picture is uploaded and saved in images folder.
-5. Use case ends
+1. User adds task to student by entering command with title, description and list of students.
+2. Task is added to the TaskBook and the list of students is displayed as well.
+   Use case ends.
+
+**Use case: UC12 - Uploading a Student Picture**
+
+**MSS**
+1. User enters a upload picture command with the index of student.
+2. User selects picture to upload.
+3. Picture is uploaded and saved in images folder.
+4. Use case ends.
 
 **Extensions**
 * 1a. GREWZ detects an invalid index.
   * 1a1. GREWZ responds with an error message.
   * 1a2. User enters command with corrected index.
   * Repeat steps until index is correct.
-    Use case resumes in step 2
+    Use case resumes in step 2.
 
 * 3a. Picture is not of JPG format.
   * 3a1. GREWZ detects invalid file.
   * 3a2. GREWZ responds with an error message.
-  Use case ends
+  Use case ends.
 
-**Use case: UC12 - Remove a Task**
+**Use case: UC13 - Remove a Task**
 
-**Guarantees:** A tutor can remove a task from the TaskBook with the given index.
+**Guarantees:** A user can remove a task from the TaskBook with the given index.
 
 **MSS**
-1. Tutor removes task from TaskBook by entering command with given task index.
+1. User removes task from TaskBook by entering command with given task index.
 2. GREWZ removes the specified task from TaskBook.
 
 **Extensions**
 * 1a. GREWZ detects an invalid task index.
-  * 1a1. GREWZ responds with an error message
-  * 1a2. User enters command with correct task index
-  * Repat steps until index is valid
-  Use case resumes in step 2
+  * 1a1. GREWZ responds with an error message.
+  * 1a2. User enters command with correct task index.
+  * Repat steps until index is valid.
+  Use case resumes in step 2.
 
+**Use case: UC14 - Navigating through previously keyed in commands**
 
+**MSS**
+1. User goes to previous command by pressing a key.
+2. User goes to next command by pressing a different key.
 *{More to be added}*
 
 ### Non-Functional Requirements
