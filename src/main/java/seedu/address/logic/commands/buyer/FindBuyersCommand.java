@@ -6,7 +6,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.buyer.NameContainsKeywordsPredicate;
+import seedu.address.model.buyer.BuyerNameContainsSubstringPredicate;
 
 /**
  * Finds and lists all buyers in buyer book whose name contains any of the argument keywords.
@@ -21,11 +21,12 @@ public class FindBuyersCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final BuyerNameContainsSubstringPredicate predicate;
 
-    public FindBuyersCommand(NameContainsKeywordsPredicate predicate) {
+    public FindBuyersCommand(BuyerNameContainsSubstringPredicate predicate) {
         this.predicate = predicate;
     }
+
 
     @Override
     public CommandResult execute(Model model) {
