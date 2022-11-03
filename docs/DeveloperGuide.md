@@ -414,9 +414,9 @@ The following sequence diagram shows how changes are propagated to the `UI` thro
 
 <img src="images/UiMainScreen.png" width="600" />
 
-The main screen consists of components:
-* `ResultDisplay`, showing the classes the user has added; 
-* `ResultDisplay` consists of `ModuleClassListPanel`, each row representing a `ModuleClassCard`, and `StudentListPanel`, each row representing a `StudentCard`;
+The main screen consists of the following components:
+* `ResultDisplay` shows the results produced by the command input from the user; 
+* `ModuleClassListPanel`, each row representing a `ModuleClassCard`, and `StudentListPanel`, each row representing a `StudentCard`;
 * `CommandBox`, the Command Line Interface (CLI) for user to key in command and
 * `HelpWindow` shown with a help button, redirect users to our User Guide to facilitate their usage;
 

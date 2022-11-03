@@ -36,13 +36,13 @@ should be used. Start by looking at the [quick start](#quick-start) guide to get
   * e.g `n/NAME [c/CLASS_NAME]` can be used as `n/John Doe c/CS1231S` or as `n/John Doe`.
 * Items with `...` after them can be used multiple times.
   * e.g. `[c/CLASS_NAME...]` can be used as ` ` (i.e. 0 times since it is also optional), `c/CS1101S`, `c/CS2030 c/ST2334` etc.
-* Parameters, excluding the index parameter, can be in any order.
+* Parameters, excluding index parameters, can be in any order.
   * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
   * e.g. while `assign INDEX c/CLASS_NAME` is acceptable, `assign c/CLASS_NAME INDEX` is not acceptable.
-* If a parameter is expected only once in the command but you specified it multiple times, the parser takes the last occurrence of the parameter only.
-  * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` are being taken.
+* If a parameter is expected only once in a command but you specified it multiple times, the parser takes only the last occurrence of the parameter.
+  * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) are ignored by the parser.
-  * e.g. if the command specifies `help 123`, the parser interprets as `help`.
+  * e.g. if the command specifies `help 123`, the parser interprets it as `help`.
 
 ### Modes
 In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to (module) class. Therefore,
@@ -78,7 +78,7 @@ Redirects you to this User Guide page. If the attempt was unsuccessful, the foll
 " %}
 
 ![help message](images/helpMessage.png)
-The above message emerges when the redirection failed.
+The above message emerges when the redirection fails.
 
 
 Format: `help`
@@ -108,7 +108,7 @@ Edits an existing student in TA-Assist.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
 * Edits student data at the specified `INDEX`.
-* Only fields that are specified are being modified.
+* Only specified fields are modified.
 
 Examples:
 * `edit 2 n/John Doe` changes the 2nd student’s name to **John Doe**.
@@ -161,7 +161,7 @@ Shows a list of all the students.
 " %}
 
 Format: `list`
-* The list of students you see contains all the students in TA-Assist.
+* The displayed list of students contains all the students in TA-Assist.
 
 {% include important.html content="
 
@@ -330,12 +330,12 @@ overall grade for the module CS2100.
 " %}
 
 Format: `adds s/SESSION_NAME... [d/DATE]`
-* Creates new sessions with name `SESSION_NAME` on the same `DATE`. If the `DATE` field is empty, the current date is being used.
+* Creates new sessions with names `SESSION_NAME` on the same `DATE`. If the `DATE` field is empty, the current date is used instead.
 * `DATE` field should follow the format `YYYY-MM-DD`.
 * The session names are **case-insensitive** (i.e. if a session **Lab 1** already exists, `adds s/lab 1` does not create a new session **lab 1**). 
 
 Example:
-- `adds s/Lab1 s/Tutorial1 d/2022-08-11` creates sessions `Lab1` and `Tutorial1` on 11  August 2022.
+- `adds s/Lab1 s/Tutorial1 d/2022-08-11` creates sessions `Lab1` and `Tutorial1` on 11 August 2022.
 
 ### Delete sessions: `deletes`
 
