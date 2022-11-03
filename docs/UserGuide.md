@@ -275,7 +275,7 @@ Restores the state of CinternS before the change made by the previous command.
 Format: `undo`
 
 * There must be a previous state to restore to.
-* Commands that do not change the state, e.g. list, find, etc., will not be undone.
+* Commands that do not change the state, e.g. list, find, sort etc., will not be undone.
 
 Example:
 * `delete 1` followed by `undo` makes no change to the application list or the interview list.

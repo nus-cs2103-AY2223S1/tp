@@ -35,6 +35,6 @@ Given below are my contributions to the project.
         * Added implementation details of the `archive` and `statistics` feature: [#91](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/91/files#diff-1a95edf069a4136e9cb71bee758b0dc86996f6051f0d438ec2c424557de7160b), [#190](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/190)
 
 * **Community**:
-    * PR reviewed highlights (add later)
+    * PR reviewed highlights: [#58](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/58), [#109](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/109)
     * Reported 13 bugs for other teams in the class
 
