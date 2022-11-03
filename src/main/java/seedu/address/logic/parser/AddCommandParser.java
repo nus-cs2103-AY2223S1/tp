@@ -14,7 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_UNAVAILABLE_DATE;
 import static seedu.address.model.category.Category.NURSE_SYMBOL;
 import static seedu.address.model.category.Category.PATIENT_SYMBOL;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -27,7 +26,6 @@ import seedu.address.model.person.Date;
 import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.HomeVisit;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
