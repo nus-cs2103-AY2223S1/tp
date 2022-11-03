@@ -43,13 +43,15 @@ If you encounter any issues in launching and using the app, feel free refer to t
 * Items with `...` after them can be used multiple times.
   * e.g. `[c/CLASS_NAME...]` can be used as ` ` (i.e. 0 times since it is also optional), `c/CS1101S`, `c/CS2030 c/ST2334` etc.
 * Parameters, excluding index parameters, can be in any order.
-  * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  * e.g. if you specify `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
   * e.g. while `assign INDEX c/CLASS_NAME` is acceptable, `assign c/CLASS_NAME INDEX` is not acceptable.
 * If a parameter is expected only once in a command but you specified it multiple times, the parser takes only the last occurrence of the parameter.
   * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) are ignored by the parser.
-  * e.g. if the command specifies `help 123`, the parser interprets it as `help`.
-* The constraints of each parameter has been provided in [the Appendix](#parameters-and-constraints) for your reference.
+  * e.g. if you specify `help 123`, the parser interprets it as `help`.
+* Extraneous parameters for commands that do not expect such parameters may be parsed incorrectly.
+  * e.g. if you specify `addc c/CS1231S n/CS2030S`, the parser interprets it as adding a class named "CS1231S n/CS2030S", which is not a valid class name. Hence, TA-Assist throws an error.
+* All parameters and their constraints have been provided in [the Appendix](#parameters-and-constraints) for your reference.
 
 ### Modes
 In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to (module) class. Therefore,
@@ -480,6 +482,11 @@ Format: `unfocus`
 ## Appendix
 
 ### Parameters and Constraints
+
+For all parameters, the following constraints are applied:
+* As Ta-Assist uses prefixes such as `p/` and `c/` to identify the start of a new parameter, all parameters have the implicit constraint that they must not contain prefixes
+  of another parameter if that other parameter is being used in a command. 
+  * e.g. We can not add a student with the address `Commongrove n/123A` as the `n/123A` prefix will be parsed by Ta-Assist as the Student's name.
 
 The following is the list of all parameters used in TA-Assist along with its constraints:
 
