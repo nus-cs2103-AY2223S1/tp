@@ -236,13 +236,12 @@ Additionally, the classes implement the following operations:
 
 Given below is an example usage scenario and how the grade progress feature behaves at each step.
 
-Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the sample data and
-assume each person in the `AddressBook` contains an empty `GradeProgressList` object.
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the sample data.
 
-Step 2. The user executes `grade 2 g/Math: B` command to insert the grade, `Math: B` in the 2nd person in the `AddressBook`.
-1. The `grade` command calls the `Model#getFilteredPersonList()` to get the current list of persons prior to the grade progress command.
-2. The command then calls the creation of a new `Person` with the updated grade progress list.
-3. `Model#setPerson()` is invoked and then `Model#updateFilteredPersonList()` is invoked to update the `AddressBook` entirely with the `grade` command.
+Step 2. The user uses `view Roy Balakhrisnan` who is a `Person` without any grade progress.
+
+Step 2. The user executes `grade 1 g/Math: B` command to insert the grade, `Math: B` to the `Person`'s `GradeProgressList` in the `AddressBook`.
+The `GradeProgress` command calls `GradeProgress#addGradeProgress(GradeProgress)` and adds the task to the list.
 
 Step 3. Upon successful entry of grade inputs, the `CommandResult()` message will be invoked.
 
@@ -326,7 +325,7 @@ Step 3. The user executes an `session 1 s/ Tue 09:00` command which creates a ne
 	
 Step 4. The user executes a `view Alice Pauline` command which puts the `Person` with the name Alice Pauline in view mode.
 
-Step 5. The user executes a `remove s/3` command which removes the instance of `Session` in actual index 2 of the `SessionList` of the `Person` displayed in the GUI in view mode. The Session 
+Step 5. The user executes a `remove s/3` command which removes the instance of `Session` in index 2 of the `SessionList` of the `Person` (since SessionList implementation uses zero-based indexing) displayed in the GUI in view mode. The Session 
 	instances in the `SessionList` of the `Person` in view are then immediately sorted using the `Session` class `compareTo` implementation.
 		
 #### Design considerations:
@@ -362,7 +361,9 @@ Given below is an example usage scenario and how the adding attendance mechanism
 
 Step 1. The user launches the application for the first time. The address book will be initialized with the initial address book state.
 
-Step 2. The user executes `attendance 1 a/2022-08-08` to add attendance to the first person in the address book.
+Step 2. The user uses `view Roy Balakhrisnan`, who is a `Person` with no attendance in his attendance list.
+
+Step 3. The user executes `attendance 1 a/2022-08-08` to add attendance to him in the address book.
 The `Attendance` command calls `AttendanceList#addAttendance(Attendance)` and adds the task to the list.
 
 The following sequence shows how adding attendance works:
