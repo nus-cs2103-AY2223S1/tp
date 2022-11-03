@@ -10,8 +10,8 @@ title: HR Pro Max++
 
 **HR Pro Max++ is a desktop app for team leads in SMEs to manage projects and staff members under them. It is optimized for use via a Command Line Interface(CLI)**. While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using HR Pro Max++, head over to the [_Quick Start_ section of the **User Guide**](https://nus-cs2103-ay2223s1.github.io/tp/UserGuide.html#quick-start).
-* If you are interested about developing HR Pro Max++, the [**Developer Guide**](https://nus-cs2103-ay2223s1.github.io/tp/DeveloperGuide.html) is a good place to start.
+* If you are interested in using HR Pro Max++, head over to the [_Quick Start_ section of the **User Guide**](https://ay2223s1-cs2103t-t09-3.github.io/tp/UserGuide.html#quick-start).
+* If you are interested about developing HR Pro Max++, the [**Developer Guide**](https://ay2223s1-cs2103t-t09-3.github.io/tp/DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
