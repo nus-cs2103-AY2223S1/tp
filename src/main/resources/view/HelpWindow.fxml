@@ -5,16 +5,14 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.VBox?>
-
-<?import javafx.scene.control.ScrollPane?>
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11"
-         xmlns:fx="http://javafx.com/fxml/1" minHeight="80" minWidth="650">
+<fx:root maxHeight="470.0" maxWidth="750.0" minHeight="470.0" minWidth="750.0" resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -25,21 +23,21 @@
         <URL value="@DarkTheme.css" />
       </stylesheets>
 
-      <VBox prefWidth="750" VBox.vgrow="ALWAYS" fx:id="helpContainer">
+      <VBox fx:id="helpContainer" minHeight="450.0" minWidth="750.0" prefHeight="450.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
 
-        <ScrollPane fitToWidth="true" fitToHeight="true">
+        <ScrollPane fitToHeight="true" fitToWidth="true">
           <VBox styleClass="commands-summary-vbox">
 
             <Label styleClass="help-title-label" text="Help Command Summary" wrapText="true"/>
             <TableView fx:id="commandFeaturesTableView">
               <VBox.margin>
-                <Insets top="10.0"/>
+                <Insets top="10.0" />
               </VBox.margin>
             </TableView>
           </VBox>
         </ScrollPane>
 
-        <HBox alignment="CENTER" fx:id="helpMessageContainer">
+        <HBox fx:id="helpMessageContainer" alignment="CENTER">
           <children>
             <Label fx:id="helpMessage" text="Label" wrapText="true">
               <HBox.margin>
