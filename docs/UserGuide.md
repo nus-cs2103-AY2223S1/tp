@@ -29,7 +29,7 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 
    * **`listPersons`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the application.
+   * **`addPerson`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/22/3/1993` : Adds a contact named `John Doe` to the application.
 
    * **`deletePerson`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -84,19 +84,13 @@ Adds a contact to the application.
 Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB`
 
 - The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), gender (`g`), date of birth(`d`).
-- Date format accepted is: dd/mm/yyyy.
+- Date format accepted is: `dd/mm/yyyy`.
 - Date cannot be after the current date.
+- The genders accepted by the contact list are: `M`/`m`/`Male`/`male` for male, `F`/`f`/`Female`/`female` for female.
 
 Examples:
 * `addPerson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/03/2002`
 * `addPerson n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 g/f d/14/12/1998`
-
-__Additional Parameter 1: Gender__
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER`
-
-- Adds gender to a person in the contact list. The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
-for male, `F`/`f`/`Female`/`female` for female.
 
 ### Listing all persons : `listPersons`
 
@@ -137,28 +131,16 @@ Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d
   The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index. This command is invalid if `INDEX` is a non-positive integer.
 - Existing values will be updated to the input values.
 - At least one of the optional fields must be provided.
-- Date format accepted is: dd/mm/yyyy.
+- Date format accepted is: `dd/mm/yyyy`.
 - Date cannot be after the current date.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
-   `91234567` and `johndoe@example.com` respectively.
-*  `edit 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s contact: edits name to be `Charlotte`,
-edits gender to be `Female` and edits date of birth to be `3.4.1998`.
-
-__Optional Parameter 1: Gender__
-
-Format: `edit INDEX [g/GENDER]`
-
-- Edits the gender of a person in the contact list. The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
+- The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
 for male, `F`/`f`/`Female`/`female` for female.
-- `INDEX` must be **a positive integer** (i.e 1,2,3…)
-- `INDEX` must be within the range of the contact list index (i.e. from 1 to size of contact list).
 
 Examples:
-* `edit 1 g/M`
-* `edit 2 g/f`
-* `edit 3 g/F`
+*  `editPerson 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
+   `91234567` and `johndoe@example.com` respectively.
+*  `editPerson 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s contact: edits name to be `Charlotte`,
+edits gender to be `Female` and edits date of birth to be `3/4/1998`.
 
 ### Locating persons by name: `find`
 
@@ -330,10 +312,10 @@ in the event list.
 
 ### Generating pie charts of statistics of the people tagged to an event in the event list : `makeStats`
 
-Format: `makeStats EVENT_INDEX t/STATISTIC_TYPE`
+Format: `makeStats INDEX t/STATISTIC_TYPE`
 
-* The `EVENT_INDEX` refers to the index number shown in the displayed event list.
-* The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
+* The `INDEX` refers to the index number shown in the displayed event list.
+* The `INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
 * The `STATISTIC_TYPE` refers to the type of statistical data being generated.
 * The `STATISTIC_TYPE` must be either `a` or `g`, where `a` stands for age and is specified to generate a pie chart showcasing
 the distribution of ages across age groups, while `g` stands for gender and is specified to generate a pie chart showcasing
@@ -380,7 +362,7 @@ _Details coming soon ..._
 
 | Action           | Format, Examples                                                                                                                                                                       |
 |------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] [d/DOB] [t/TAG]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20 MAR 2002` |
+| **AddPerson**    | `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB` <br> e.g., `addPerson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/3/2002`   |
 | **Clear**        | `clear`                                                                                                                                                                                |
 | **DeletePerson** | `deletePerson INDEX`<br> e.g., `deletePerson 3`                                                                                                                                        |
 | **EditPerson**   | `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`                                              |
@@ -391,7 +373,8 @@ _Details coming soon ..._
 | **EditEvent**    | `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`<br> e.g., `editEvent 2 e/Chocolate Sale p/10% off all chocolates`                                                      |
 | **FindEvents**   | `findEvents KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvents Sale Discount`                                                                                                              |
 | **ListEvents**   | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                      |
-| **MailEvent**    | `mailEvent INDEX`<br> e.g., `mailEvent 3`                                                                                                                                              |                                                                                                                                      |
+| **MakeStats**    | `makeStats INDEX t/STATISTIC_TYPE`<br> e.g., `makeStats 1 t/g`                                                                                                                         |
+| **MailEvent**    | `mailEvent INDEX`<br> e.g., `mailEvent 3`                                                                                                                                              |
 | **TagEvent**     | `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                              |
 | **UntagEvent**   | `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                          |
 | **Help**         | `help`                                                                                                                                                                                 |
