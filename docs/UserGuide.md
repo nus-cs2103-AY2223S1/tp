@@ -60,7 +60,7 @@ Refer to the [Features](#features) below for details of each command.
 
 5. Storage Location: This is where you can see the location of HackAssist data file.
 
-6. Tasks List Setting: This portion displays what the current sort and filter setting for Tasks List are, if any. |
+6. Tasks List Setting: This portion displays what the current sort and filter setting for Tasks List are, if any.
 
 --------------------------------------------------------------------------------------------------------------------
 
