@@ -39,7 +39,7 @@ public class AssignTaskAllCommand extends Command {
             + PREFIX_GROUP + "GROUP "
             + PREFIX_TASK + "TASK "
             + PREFIX_WORKLOAD + "WORKLOAD "
-            + PREFIX_DEADLINE + "DEADLINE\n"
+            + "[" + PREFIX_DEADLINE + "DEADLINE" + "]\n"
             + "Example: " + COMMAND_WORD
             + " g/Group Alpha task/Coursework 0 w/High d/2022-01-01 23:59";
 
