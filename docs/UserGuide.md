@@ -117,7 +117,8 @@ Format: `add c/COMPANY ct/CONTACT e/EMAIL p/POSITION d/DATE_APPLIED s/STATUS [t/
 1. <code>DATE_APPLIED</code> must be specified in the format <em>yyyy-MM-dd</em>.<br>
 2. <code>CONTACT</code> must be 5-15 digits long. <i>[COMING SOON: allowing spaces and country codes in contacts]</i><br>
 3. <code>STATUS</code> must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.<br>
-4. Tags must be alphanumeric and cannot contain spaces.
+4. Do note that an <b>interview</b> <code>STATUS</code> does not imply that the application has an associated interview in the interview list.<br>
+5. Tags must be alphanumeric and cannot contain spaces.
 </div>
 
 * Note that you currently cannot add two applications with the same company and position at the same time. This is to help prevent accidentally adding duplicate applications. If you do intend to add another similar application (e.g. if you are applying to the same company in a later year), you will need to delete the old application first. This validation check is planned to be improved in a future version.
@@ -156,7 +157,7 @@ Example:
 
 Finds applications whose companies or positions contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 * The search is case-insensitive. e.g `google` will match `Google`.
 * The order of the keywords does not matter. e.g. `Tech Micron` will match `Micron Tech`.
@@ -224,6 +225,7 @@ Format: `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATIO
 * The index cannot be greater than the number of applications in the displayed list.
 * All fields must be provided.
 * Supports edit of the existing interview by overwriting the old interview.
+* Currently, we only support **ONE** interview in each of the application. _[COMING SOON: Multiple interviews in one application.]_
 * _[COMING SOON: Checks to prevent adding an interview to an application depending on the status. E.g. If you are adding an interview to an application that already has the `offered` status, CinternS will block it and notify you of the problem.]_
 
 Examples:
@@ -283,7 +285,7 @@ Restores the state of CinternS before the change made by the previous command.
 Format: `undo`
 
 * There must be a previous state to restore to.
-* Commands that do not change the state, e.g. list, find, etc., will not be undone.
+* Commands that do not change the state, e.g. list, find, sort, etc., will not be undone.
 
 Example:
 * `delete 1` followed by `undo` makes no change to the application list or the interview list.
@@ -306,6 +308,7 @@ Shows a list of all upcoming interviews within the next 1 week, sorted by interv
 Format: `remind`
 
 * Archived interviews will not be displayed even if they fall within the next week.
+* Interviews at the current date and time are not considered upcoming as they are considered to have passed.
 * If there are no upcoming interviews, a blank window will be displayed.
 
 ### Showing the statistics of applications: `stats`

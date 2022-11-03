@@ -3,6 +3,9 @@ package seedu.application.model.application;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.application.testutil.ApplicationBuilder;
@@ -32,58 +35,72 @@ public class UpcomingInterviewPredicateTest {
 
     @Test
     public void test_isUpcomingInterview_returnsTrue() {
-        UpcomingInterviewPredicateStub predicate = new UpcomingInterviewPredicateStub();
+        UpcomingInterviewPredicate predicate = new UpcomingInterviewPredicate();
 
-        // interview is a minute later
-        assertTrue(predicate.test(new ApplicationBuilder().withInterview(
-                new InterviewBuilder().withInterviewDate("2022-10-26").withInterviewTime("1801").build()).build()));
+        // interviews at the present date and time are not considered upcoming as
+        // they are considered to have passed
 
-        // interview is an hour later
+        // EP: interview is a minute later
         assertTrue(predicate.test(new ApplicationBuilder().withInterview(
-                new InterviewBuilder().withInterviewDate("2022-10-26").withInterviewTime("1900").build()).build()));
+                new InterviewBuilder().withInterviewDate(LocalDate.now())
+                        .withInterviewTime(LocalTime.now().plusMinutes(1)).build()).build()));
 
-        // interview is a day later
+        // EP: interview is an hour later
         assertTrue(predicate.test(new ApplicationBuilder().withInterview(
-                new InterviewBuilder().withInterviewDate("2022-10-27").withInterviewTime("1800").build()).build()));
+                new InterviewBuilder().withInterviewDate(LocalDate.now())
+                        .withInterviewTime(LocalTime.now().plusHours(1)).build()).build()));
 
-        // interview is exactly a week later
+        // EP: interview is a day later
         assertTrue(predicate.test(new ApplicationBuilder().withInterview(
-                new InterviewBuilder().withInterviewDate("2022-11-02").withInterviewTime("1800").build()).build()));
+                new InterviewBuilder().withInterviewDate(LocalDate.now().plusDays(1))
+                        .withInterviewTime(LocalTime.now()).build()).build()));
+
+        // EP: interview is exactly a week later
+        assertTrue(predicate.test(new ApplicationBuilder().withInterview(
+                new InterviewBuilder().withInterviewDate(LocalDate.now().plusDays(7))
+                        .withInterviewTime(LocalTime.now()).build()).build()));
     }
 
     @Test
     public void test_isNotUpcomingInterview_returnsFalse() {
-        UpcomingInterviewPredicateStub predicate = new UpcomingInterviewPredicateStub();
+        UpcomingInterviewPredicate predicate = new UpcomingInterviewPredicate();
 
-        // interview was a minute earlier
+        // EP: interview was a minute earlier
         assertFalse(predicate.test(new ApplicationBuilder().withInterview(
-                new InterviewBuilder().withInterviewDate("2022-10-26").withInterviewTime("1759").build()).build()));
+                new InterviewBuilder().withInterviewDate(LocalDate.now())
+                        .withInterviewTime(LocalTime.now().minusMinutes(1)).build()).build()));
 
-        // interview was a week earlier
+        // EP: interview was a week earlier
         assertFalse(predicate.test(new ApplicationBuilder().withInterview(
-                new InterviewBuilder().withInterviewDate("2022-10-19").withInterviewTime("1800").build()).build()));
+                new InterviewBuilder().withInterviewDate(LocalDate.now().minusDays(7))
+                        .withInterviewTime(LocalTime.now()).build()).build()));
 
-        // interview is one week and one minute later
+        // EP: interview is one week and one minute later
         assertFalse(predicate.test(new ApplicationBuilder().withInterview(
-                new InterviewBuilder().withInterviewDate("2022-11-02").withInterviewTime("1801").build()).build()));
+                new InterviewBuilder().withInterviewDate(LocalDate.now().plusDays(7))
+                        .withInterviewTime(LocalTime.now().plusMinutes(1)).build()).build()));
 
-        // interview is one year later
+        // EP: interview is one year later
         assertFalse(predicate.test(new ApplicationBuilder().withInterview(
-                new InterviewBuilder().withInterviewDate("2023-10-26").withInterviewTime("1800").build()).build()));
+                new InterviewBuilder().withInterviewDate(LocalDate.now().plusYears(1))
+                        .withInterviewTime(LocalTime.now()).build()).build()));
     }
 
     @Test
     public void test_interviewIsArchived_returnsFalse() {
-        UpcomingInterviewPredicateStub predicate = new UpcomingInterviewPredicateStub();
+        UpcomingInterviewPredicate predicate = new UpcomingInterviewPredicate();
 
+        // Heuristic: No more than one invalid input in a test case
+        // interview is present and upcoming, but is archived
         assertFalse(predicate.test(new ApplicationBuilder().withInterview(
-                new InterviewBuilder().withInterviewDate("2022-10-26").withInterviewTime("1900").build())
+                new InterviewBuilder().withInterviewDate(LocalDate.now().plusDays(1))
+                        .withInterviewTime(LocalTime.now()).build())
                 .withArchiveStatus(true).build()));
     }
 
     @Test
     public void test_interviewIsEmpty_returnsFalse() {
-        UpcomingInterviewPredicateStub predicate = new UpcomingInterviewPredicateStub();
+        UpcomingInterviewPredicate predicate = new UpcomingInterviewPredicate();
 
         assertFalse(predicate.test(new ApplicationBuilder().build()));
     }
