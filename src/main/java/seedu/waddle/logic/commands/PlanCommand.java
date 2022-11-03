@@ -24,8 +24,8 @@ public class PlanCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Schedules an item identified "
             + "by the index number used in the item list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_DAY_NUMBER + "DAY NUMBER] "
-            + "[" + PREFIX_START_TIME + "START TIME] "
+            + PREFIX_DAY_NUMBER + "DAY NUMBER "
+            + PREFIX_START_TIME + "START TIME "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DAY_NUMBER + "1 "
             + PREFIX_START_TIME + "12:00 ";

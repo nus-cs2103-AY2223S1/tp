@@ -28,7 +28,7 @@ public class AddItemCommand extends Command {
             + "[" + PREFIX_COST + "COST]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Visit Taj Mahal "
-            + PREFIX_PRIORITY + "3";
+            + PREFIX_ITEM_DURATION + "180";
 
     public static final String MESSAGE_SUCCESS = "New item added:\n%1$s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists";
