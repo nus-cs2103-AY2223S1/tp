@@ -302,6 +302,7 @@ Shows a list of all upcoming interviews within the next 1 week, sorted by interv
 Format: `remind`
 
 * Archived interviews will not be displayed even if they fall within the next week.
+* Interviews at the current date and time are not considered upcoming as they are considered to have passed.
 * If there are no upcoming interviews, a blank window will be displayed.
 
 ### Showing the statistics of applications: `stats`
