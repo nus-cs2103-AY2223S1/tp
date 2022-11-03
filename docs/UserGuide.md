@@ -339,8 +339,8 @@ Example:
 
 ### Filtering buy or sell transactions: `filter`
 
-Filters the buy or sell transactions of all the clients. The filtered transactions will be displayed in the transaction panel while the client list panel will display
-all the clients.
+Filters the buy or sell transactions of all the clients. After executing this command, the filtered transactions will be 
+displayed in the transaction panel while the client list panel will display all the clients.
 
 Format: `filter TYPE`
 
