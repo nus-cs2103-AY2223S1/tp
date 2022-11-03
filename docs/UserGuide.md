@@ -171,26 +171,19 @@ This section gives a breakdown of each attribute and its parameter counterpart.
 **:information_source: Notes about the command format:**<br>
 
 * Demarcaters `-p` and `-c` after each command word represent interactions with the property and client directory respectively.<br>
-  e.g. `add -p` is used to add properties in the property directory while `add -c` is used to add clients in the client directory.
-
+  * e.g. `add -p` is used to add properties in the property directory while `add -c` is used to add clients in the client directory.
 * Words in `UPPER_CASE` are the arguments to be supplied by the user.<br>
   e.g. in `add -p n/NAME`, `NAME` is an argument which can be used as `add -p n/PINNACLE@DUXTON`.
-
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/PINNACLE@DUXTON t/luxury` or as `n/PINNACLE@DUXTON`.
-
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PRICE`, `p/PRICE n/NAME` is also acceptable.
-
+  * e.g. if the command specifies `n/NAME p/PRICE`, `p/PRICE n/NAME` is also acceptable.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/1,000,000 p/2,000,000`, only `p/2,000,000` will be taken.
-
+  * e.g. if you specify `p/1,000,000 p/2,000,000`, only `p/2,000,000` will be taken.
 * Extraneous parameters or arguments for commands that do not any (such as `help`, `list`, `exit`, `clear -p`  and `clear -c`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
+  * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -252,7 +245,7 @@ Optional parameters:
 
 Examples:
 * `add n/PINNACLE@DUXTON a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450 p/1,000,000 s/AVAILABLE h/HDB t/cheap`
-* `add n/SEMAKAU LANDFILL a/Straits Boulevard p/1,000 s/AVAILABLE h/HDB t/high-end`
+* `add n/SEMAKAU LANDFILL a/Straits Boulevard p/1,000 s/AVAILABLE h/HDB t/high-end ic/sam bob`
 
 
 ### Listing all properties : `list -p`
@@ -265,7 +258,7 @@ Format: `list -p`
 
 Edits an existing property in the property directory.
 
-Format: `edit -p INDEX [n/NAME] [a/ADDRESS] [p/PRICE] [s/PROPERTY_STATUS] [h/PROPERTY_TYPE] [t/TAG]…​`
+Format: `edit -p INDEX [n/NAME] [a/ADDRESS] [p/PRICE] [s/PROPERTY_STATUS] [h/PROPERTY_TYPE] [t/TAG]… [ic/INTERESTED_CLIENTS…]​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tips:**
 * Edits the property at the specified `INDEX`. The index refers to the index number shown in the displayed property list. The index **must be a positive integer** 1, 2, 3, …​
@@ -407,7 +400,7 @@ If your changes to the data file makes its format invalid, both the Property dir
 
 Adds a client profile to the client directory.
 
-Format: `add -c n/NAME a/ADDRESS [-i] [t/TAG]… [ip/INTERESTED_PROPERTIES]…`
+Format: `add -c n/NAME a/ADDRESS [-i] [t/TAG]… [ip/INTERESTED_PROPERTIES…]`
 
 Mandatory parameters:
 - [Name](#name): `n/`
@@ -441,7 +434,7 @@ Format: `list -c`
 
 Edits an existing client profile in the client directory.
 
-Format: `edit -c INDEX [n/NAME] [a/ADDRESS] [t/TAG]...`
+Format: `edit -c INDEX [n/NAME] [a/ADDRESS] [t/TAG]… [ip/INTERESTED_PROPERTIES…]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tips:**
 * Edits the client profile at the specified `INDEX`. The index refers to the index number shown in the displayed client profile list. The index **must be a positive integer** 1, 2, 3, …​
