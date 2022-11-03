@@ -175,8 +175,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setTuitionClass(TuitionClass target, TuitionClass editedClass) {
         requireNonNull(editedClass);
-        tuitionClasses.setTuitionClass(target, editedClass);
         editedClass.updateTimeAddedToList();
+        tuitionClasses.setTuitionClass(target, editedClass);
 
         //find and edit every person in this class
         for (Student student : students) {

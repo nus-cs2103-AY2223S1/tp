@@ -50,8 +50,8 @@ public class UniqueTuitionClassList implements Iterable<TuitionClass> {
         if (contains(toAdd)) {
             throw new DuplicateTuitionClassException();
         }
-        internalList.add(toAdd);
         toAdd.updateTimeAddedToList();
+        internalList.add(toAdd);
     }
 
     /**

@@ -41,8 +41,8 @@ public class UniqueTutorList implements Iterable<Tutor> {
         if (contains(toAdd)) {
             throw new DuplicateTutorException();
         }
-        internalList.add(toAdd);
         toAdd.updateTimeAddedToList();
+        internalList.add(toAdd);
     }
 
     /**
