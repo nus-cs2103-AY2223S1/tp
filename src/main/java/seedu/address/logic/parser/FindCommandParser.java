@@ -76,8 +76,6 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
-//            String tagToFind = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()).tagName.trim();
-//            String[] tagKeywords = tagToFind.split("\\s+");
             return new FindCommand(new TagContainsKeywordsPredicate(tags));
         } else {
             // Other prefixes that are not supported by the search system, or no prefix found.
