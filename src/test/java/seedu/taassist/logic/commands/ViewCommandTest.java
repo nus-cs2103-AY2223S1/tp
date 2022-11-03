@@ -54,8 +54,8 @@ class ViewCommandTest {
         ViewCommand viewCommand = new ViewCommand(Index.fromOneBased(1));
         ModelStubOneStudentWithGrades modelStub = new ModelStubOneStudentWithGrades();
         String expectedMessage = String.format(ViewCommand.MESSAGE_SUCCESS, ALICE.getName()) + "\n"
-            + "1. " + ASSIGNMENT_1.getSessionName() + ": 50.0" + "\n"
-            + "2. " + LAB_1.getSessionName() + ": 100.0";
+            + "1. " + LAB_1.getSessionName() + ": 100.0" + "\n"
+            + "2. " + ASSIGNMENT_1.getSessionName() + ": 50.0";
         ModelStubOneStudentWithGrades expectedModel = new ModelStubOneStudentWithGrades();
         assertCommandSuccess(viewCommand, modelStub, expectedMessage, expectedModel);
     }
