@@ -9,7 +9,6 @@ import static jarvis.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
 import static java.util.Objects.requireNonNull;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -76,7 +75,8 @@ public class AddConsultCommand extends Command {
         model.updateFilteredLessonList(Model.PREDICATE_SHOW_ALL_LESSONS);
         List<Lesson> allLessonList = model.getFilteredLessonList();
 
-        Set<Student> studentSet = new TreeSet<>(Comparator.comparing(s -> s.getName().toString()));
+        Set<Student> studentSet = new TreeSet<>();
+
         for (Index studentIndex : studentIndexSet) {
             if (studentIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);

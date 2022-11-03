@@ -28,7 +28,9 @@ import jarvis.model.TimePeriod;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_MARK = "Mark has to be a non-negative number.";
+    public static final String MESSAGE_INVALID_MARK_FORMAT = "Mark has to be a non-negative number.";
+    public static final String MESSAGE_INVALID_MARK_VALUE = "Mark cannot be greater than the total mark"
+                                                            + " for the assessment.";
     public static final String MESSAGE_INVALID_MCNUM = "Mastery check number has to be 1 or 2.";
     public static final String MESSAGE_INVALID_MCRESULT = "Mastery check result has to be \"PASS\" or \"FAIL\"";
 
@@ -147,23 +149,27 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String marks} into the corresponding double that indicates the mark.
+     * Parses a {@code String marks} into the corresponding double that indicates the mark
+     * for the given {@code Assessment assessment}.
      *
      * @return A double representing the mark.
      * @throws ParseException If the given {@code String mark} is invalid.
      */
-    public static double parseMarks(String marks) throws ParseException {
+    public static double parseMarks(String marks, Assessment assessment) throws ParseException {
         requireNonNull(marks);
         String trimmedMarks = marks.trim();
         double value;
         try {
             value = Double.parseDouble(trimmedMarks);
+            if (value > assessment.getTotalMarks()) {
+                throw new ParseException(MESSAGE_INVALID_MARK_VALUE);
+            }
         } catch (NumberFormatException nfe) {
-            throw new ParseException(MESSAGE_INVALID_MARK);
+            throw new ParseException(MESSAGE_INVALID_MARK_FORMAT);
         }
 
         if (value < 0) {
-            throw new ParseException(MESSAGE_INVALID_MARK);
+            throw new ParseException(MESSAGE_INVALID_MARK_FORMAT);
         }
         return value;
     }

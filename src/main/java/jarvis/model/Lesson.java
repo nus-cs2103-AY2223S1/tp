@@ -5,7 +5,7 @@ import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -20,7 +20,7 @@ import javafx.collections.ObservableList;
  * Represents a Lesson in JARVIS.
  * Guarantees: details are present and not null.
  */
-public abstract class Lesson {
+public abstract class Lesson implements Comparable<Lesson> {
 
     // Identity fields
     private final LessonDesc lessonDesc;
@@ -98,13 +98,17 @@ public abstract class Lesson {
         return observableStudentList;
     }
 
+    public boolean hasStudent(Student student) {
+        return studentList.contains(student);
+    }
+
     public void setStudent(Student targetStudent, Student editedStudent) {
         if (studentList.contains(targetStudent)) {
             attendance.setStudent(targetStudent, editedStudent);
             notes.setStudent(targetStudent, editedStudent);
             studentList.remove(targetStudent);
             studentList.add(editedStudent);
-            studentList.sort(Comparator.comparing(s -> s.getName().toString()));
+            Collections.sort(studentList);
             observableStudentList.setAll(studentList);
         }
     }
@@ -201,5 +205,17 @@ public abstract class Lesson {
 
     public void unmarkClash() {
         hasClash = false;
+    }
+
+    @Override
+    public int compareTo(Lesson l) {
+        if (isCompleted != l.isCompleted()) {
+            return isCompleted ? 1 : -1;
+        }
+        if (isCompleted) {
+            return l.startDateTime().compareTo(this.startDateTime());
+        } else {
+            return this.startDateTime().compareTo(l.startDateTime());
+        }
     }
 }

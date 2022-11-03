@@ -94,7 +94,11 @@ public class LessonBook implements ReadOnlyLessonBook {
 
     public void setStudent(Student targetStudent, Student editedStudent) {
         for (Lesson l: lessons) {
+            if (!l.hasStudent(targetStudent)) {
+                continue;
+            }
             l.setStudent(targetStudent, editedStudent);
+            lessons.setLesson(l, l);
         }
     }
 
