@@ -221,6 +221,7 @@ Format: `editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. 
   The index **must be a positive integer** 1, 2, 3, …​
+* User input should be different from the previous information that the patient has.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -245,6 +246,7 @@ Format: `editappointment INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:m
 * Edits the appointment at the specified `INDEX`.
   The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* User input should be different from the previous information that the appointment has.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -261,6 +263,7 @@ Format: `editbill INDEX [a/amount] [d/bill date]` `eb INDEX [a/amount] [d/bill d
 
 * Edits the bill at the specified `INDEX`. The index refers to the index number shown in the displayed bill list. 
   The index **must be a positive integer** 1, 2, 3, …​
+* User input should be different from the previous information that the bill has.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
