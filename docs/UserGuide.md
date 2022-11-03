@@ -116,6 +116,8 @@ Format: `editstu INDEX [n/NAME] [h/TELEGRAM_HANDLE] [e/EMAIL] [a/ATTENDANCE]`
   The index must be a positive integer 0, 1, 2…
 * At least one of the fields (E.g. [n/NAME] or [e/EMAIL]) must be provided.
 * Existing fields will be updated to the input values.
+* Editing a student with the same details as the student's original details will be accepted. 
+  (E.g. executing `editstu 1 h/@test` when student 1's telegram handle is already `@test`, will still be accepted as an edit.)
 
 Examples:
 
