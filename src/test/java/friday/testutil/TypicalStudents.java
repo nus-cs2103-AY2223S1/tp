@@ -78,7 +78,18 @@ public class TypicalStudents {
         return ab;
     }
 
+    public static Friday getTypicalFridayForTest() {
+        Friday ab = new Friday();
+        for (Student student : getTypicalStudentsForTest()) {
+            ab.addStudent(student);
+        }
+        return ab;
+    }
+
     public static List<Student> getTypicalStudents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+    public static List<Student> getTypicalStudentsForTest() {
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON));
     }
 }

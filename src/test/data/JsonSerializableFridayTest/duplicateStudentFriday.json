@@ -1,16 +1,22 @@
 {
-  "students": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
+  "students" : [ {
+    "name" : "Alex Yeoh",
+    "telegramHandle" : "al3xx",
+    "consultation" : "2022-10-24",
+    "masteryCheck" : "2022-08-16",
+    "masteryCheckIsDone" : false,
     "remark" : "",
-    "tagged": [ "friends" ]
-  }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street",
-    "remark" : ""
-  } ]
+    "tagged" : [ "Colour blind" ],
+    "gradesList" : [ "67", "100", "0", "0", "89" ]
+  },{
+    "name" : "Alex Yeoh",
+    "telegramHandle" : "al3xy",
+    "consultation" : "2022-10-30",
+    "masteryCheck" : "2022-08-16",
+    "masteryCheckIsDone" : false,
+    "remark" : "",
+    "tagged" : [ "Colour blind" ],
+    "gradesList" : [ "67", "54", "0", "0", "54" ]
+  }],
+  "aliases" : [ ]
 }
