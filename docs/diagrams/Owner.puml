@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Property {
+-PropertyName propertyName
+-Address address
+-Description description
+-Owner Owner
+-LocalDateTime propertyEntryTime
+
++ boolean isSameProperty(Property otherProperty)
+}
+
+class Price {
+-String value
+-Double numericalValue
+
++ boolean isGreaterThanOrEqual(Price p)
++ boolean isSmallerThanOrEqual(Price p)
+}
+
+class Characteristics {
+-String[] characteristicsArray
+
++boolean isValidCharacteristics(String test)
++boolean containsCharacteristic(String characteristic)
+}
+
+class Owner {
+-Name name
+-Phone phone
+
++getName()
++getPhone()
+}
+
+
+Property --> "     characteristics 0..1" Characteristics
+Property --> "price 1" Price
+Property "1" --> "1 owner     "Owner
+
+@enduml

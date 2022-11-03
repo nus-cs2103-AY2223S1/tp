@@ -5,46 +5,75 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyBuyerBook" as ReadOnlyBuyerBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nReadOnlyPropertyBook" as ReadOnlyPropertyBook
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class BuyerBook
+Class PropertyBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
+Class UniqueBuyerList
+Class UniquePropertyList
+
+Class Buyer
 Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
+Class PriceRange
+Class Characteristics
+Class Priority
 
+Class LocalDateTime
+Class Property
+Class PropertyName
+Class Price
+Class Description
+Class Owner
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+BuyerBook .up.|> ReadOnlyBuyerBook
+PropertyBook .up.|> ReadOnlyPropertyBook
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+Model .down.> ReadOnlyUserPrefs
+Model .down.> ReadOnlyBuyerBook
+Model .down.> ReadOnlyPropertyBook
+ModelManager -left-> "1" BuyerBook
+ModelManager -down-> "1" UserPrefs
+ModelManager -right-> "1" PropertyBook
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+BuyerBook *--> "1" UniqueBuyerList
+PropertyBook *--> "1" UniquePropertyList
+UniqueBuyerList --> "~* all" Buyer
+Buyer *--> Name
+Buyer *--> Phone
+Buyer *--> Priority
+Buyer *--> Email
+Buyer *--> PriceRange
+Buyer *--> Address
+Buyer *--> Characteristics
+Buyer *--> LocalDateTime
+UniquePropertyList --> "~* all" Property
+Property *--> Address
+Property *--> Characteristics
+Property *--> LocalDateTime
+Property *--> PropertyName
+Property *--> Description
+Property *--> Price
+Property *--> Owner
 
-Name -[hidden]right-> Phone
+ModelManager -[hidden]up-> ReadOnlyPropertyBook
+Name -[hidden]left-> Phone
 Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Address -[hidden]left-> PriceRange
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Buyer
+ModelManager -->"~* filtered" Property
 @enduml
