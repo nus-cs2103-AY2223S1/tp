@@ -7,6 +7,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_CLIENT;
+import static seedu.address.testutil.TypicalRemark.BAD_BUYER;
 import static seedu.address.testutil.TypicalRemark.GOOD_BUYER;
 
 import java.nio.file.Path;
@@ -36,14 +38,11 @@ public class EditRemarkCommandTest {
     @Test
     public void execute_allFieldsValidIndex_success() throws CommandException {
         Model modelStub = new EditRemarkCommandTest.ModelStub(new ClientBuilder().build());
-        Model expectedModel = new EditRemarkCommandTest.ModelStub(new ClientBuilder().build());
 
         EditRemarkCommand editRemarkCommand = new EditRemarkCommand(INDEX_FIRST_CLIENT, editedRemark);
 
         String expectedMessage =
                 String.format(EditRemarkCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedRemark);
-
-
 
         CommandResult result = editRemarkCommand.execute(modelStub);
         assertEquals(result.getFeedbackToUser(), expectedMessage);
@@ -54,7 +53,7 @@ public class EditRemarkCommandTest {
         Model modelStub = new EditRemarkCommandTest.ModelStub(new ClientBuilder().build());
 
         assertThrows(CommandException.class, () ->
-                new EditRemarkCommand(INDEX_SECOND_CLIENT, editedRemark).execute(modelStub));
+                new EditRemarkCommand(INDEX_THIRD_CLIENT, editedRemark).execute(modelStub));
     }
 
     @Test
@@ -64,6 +63,14 @@ public class EditRemarkCommandTest {
 
         assertThrows(CommandException.class, () ->
                 new EditRemarkCommand(INDEX_SECOND_CLIENT, editedRemark).execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicateRemark_throwsCommandException() {
+        Model modelStub = new EditRemarkCommandTest.ModelStub(new ClientBuilder().build());
+
+        assertThrows(CommandException.class, () ->
+                new EditRemarkCommand(INDEX_FIRST_CLIENT, BAD_BUYER).execute(modelStub));
     }
 
     @Test
@@ -95,10 +102,12 @@ public class EditRemarkCommandTest {
         private Client client;
         private final UniqueClientList clientList = new UniqueClientList();
         private final Remark remarkToEdit = GOOD_BUYER;
+        private final Remark anotherRemark = BAD_BUYER;
 
         public ModelStub(Client client) {
             this.client = client;
             this.client.addRemark(remarkToEdit);
+            this.client.addRemark(anotherRemark);
             clientList.add(client);
         }
 
