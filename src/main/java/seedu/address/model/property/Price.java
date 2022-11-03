@@ -24,6 +24,12 @@ public class Price {
     public Price(String price) {
         requireNonNull(price);
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
+
+        char c = price.charAt(price.length() - 1);
+        if (c == 'd' || c == 'f') {
+            price = price.substring(0, price.length() - 1);
+        }
+
         value = price;
         numericalValue = Double.parseDouble(price);
     }
@@ -40,8 +46,6 @@ public class Price {
         }
         return value >= 0;
     }
-
-    // TODO testing for these methods
 
     /**
      * Returns true if the stored numerical value is greater than or equal to a given {@code Price}.

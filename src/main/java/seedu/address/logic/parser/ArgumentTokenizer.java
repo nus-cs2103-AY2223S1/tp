@@ -74,7 +74,7 @@ public class ArgumentTokenizer {
         int endingPrefixIndex = argsString.indexOf(" " + prefix, fromIndex);
         return prefixIndex != -1
                 ? prefixIndex + 1 // +1 as offset for whitespace
-                : endingPrefixIndex != -1
+                : endingPrefixIndex != -1 && endingPrefixIndex == argsString.length() - 1 - prefix.length()
                 ? endingPrefixIndex + 1 // +1 as offset for whitespace
                 : -1;
     }

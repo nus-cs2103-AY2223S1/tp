@@ -20,11 +20,8 @@ import seedu.address.logic.commands.buyer.EditBuyerCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.BuyerBook;
 import seedu.address.model.Model;
-import seedu.address.model.PropertyBook;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.NameContainsKeywordsPredicate;
-import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditBuyerDescriptorBuilder;
 
 /**
@@ -46,35 +43,32 @@ public class BuyerCommandTestUtil {
     public static final String VALID_DESIRED_CHARACTERISTICS_BOB = "Jurong; 3-Room";
     public static final String VALID_PRIORITY_HIGH = "HIGH";
     public static final String VALID_PRIORITY_LOW = "LOW";
-    public static final String VALID_NAME_HOME = "Home";
-    public static final String VALID_ADDRESS_HOME = "25 College Avenue East";
-    public static final String VALID_PRICE_HOME = "0";
-    public static final String VALID_DESCRIPTION_HOME = "Tembu";
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
-    public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String PRICE_RANGE_DESC_AMY = " " + PREFIX_PRICE_RANGE + VALID_PRICE_RANGE_AMY;
-    public static final String PRICE_RANGE_DESC_BOB = " " + PREFIX_PRICE_RANGE + VALID_PRICE_RANGE_BOB;
+    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + " " + VALID_NAME_AMY;
+    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + " " + VALID_NAME_BOB;
+    public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + " " + VALID_PHONE_AMY;
+    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + " " + VALID_PHONE_BOB;
+    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + " " + VALID_EMAIL_AMY;
+    public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + " " + VALID_EMAIL_BOB;
+    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + " " + VALID_ADDRESS_AMY;
+    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + " " + VALID_ADDRESS_BOB;
+    public static final String PRICE_RANGE_DESC_AMY = " " + PREFIX_PRICE_RANGE + " " + VALID_PRICE_RANGE_AMY;
+    public static final String PRICE_RANGE_DESC_BOB = " " + PREFIX_PRICE_RANGE + " " + VALID_PRICE_RANGE_BOB;
     public static final String DESIRED_CHARACTERISTICS_DESC_AMY = " " + PREFIX_CHARACTERISTICS
-            + VALID_DESIRED_CHARACTERISTICS_AMY;
+            + " " + VALID_DESIRED_CHARACTERISTICS_AMY;
     public static final String DESIRED_CHARACTERISTICS_DESC_BOB = " " + PREFIX_CHARACTERISTICS
-            + VALID_DESIRED_CHARACTERISTICS_BOB;
-    public static final String TAG_DESC_PRIORITY_HIGH = " " + PREFIX_PRIORITY + VALID_PRIORITY_HIGH;
-    public static final String TAG_DESC_PRIORITY_LOW = " " + PREFIX_PRIORITY + VALID_PRIORITY_LOW;
+            + " " + VALID_DESIRED_CHARACTERISTICS_BOB;
+    public static final String TAG_DESC_PRIORITY_HIGH = " " + PREFIX_PRIORITY + " " + VALID_PRIORITY_HIGH;
+    public static final String TAG_DESC_PRIORITY_LOW = " " + PREFIX_PRIORITY + " " + VALID_PRIORITY_LOW;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + " " + "James&"; // '&' not allowed in names
+    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + " " + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + " " + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_PRICE_RANGE_DESC = " " + PREFIX_PRICE_RANGE + "200"; // missing upper end value
+    public static final String INVALID_PRICE_RANGE_DESC = " " + PREFIX_PRICE_RANGE + " " + "200";
+    // missing upper end value
     public static final String INVALID_DESIRED_CHARACTERISTICS_DESC = " " + PREFIX_CHARACTERISTICS;
     // empty string not allowed for desired characteristics
-    public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "zzz";
+    public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + " " + "zzz";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -138,24 +132,6 @@ public class BuyerCommandTestUtil {
     }
 
     /**
-     * Executes the given {@code command}, confirms that <br>
-     * - a {@code CommandException} is thrown <br>
-     * - the CommandException message matches {@code expectedMessage} <br>
-     * - the PropertyBook, filtered property list and selected property in {@code actualModel} remain unchanged
-     */
-    public static void assertPropertyCommandFailure(Command command, Model actualModel, String expectedMessage) {
-        // we are unable to defensively copy the model for comparison later, so we can
-        // only do so by copying its components.
-        PropertyBook expectedPropertyBook = new PropertyBook(actualModel.getPropertyBook());
-        List<Property> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPropertyList());
-
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedPropertyBook, actualModel.getPropertyBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPropertyList());
-    }
-
-
-    /**
      * Updates {@code model}'s filtered list to show only the buyer at the given {@code targetIndex} in the
      * buyer book.
      */
@@ -169,19 +145,6 @@ public class BuyerCommandTestUtil {
         assertEquals(1, model.getFilteredBuyerList().size());
     }
 
-    /**
-     * Updates {@code model}'s filtered list to show only the property at the given {@code targetIndex} in the
-     * {@code model}'s property book.
-     */
-    public static void showPropertyAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPropertyList().size());
-
-        Property property = model.getFilteredPropertyList().get(targetIndex.getZeroBased());
-        final String[] splitName = property.getPropertyName().fullName.split("\\s+");
-        model.updateFilteredPropertyList(new PropertyNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-
-        assertEquals(1, model.getFilteredPropertyList().size());
-    }
 
 
 }

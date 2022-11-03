@@ -29,17 +29,17 @@ public class BuyerUtil {
      */
     public static String getBuyerDetails(Buyer buyer) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + buyer.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + buyer.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + buyer.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + buyer.getAddress().value + " ");
+        sb.append(PREFIX_NAME + " " + buyer.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + " " + buyer.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + " " + buyer.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + " " + buyer.getAddress().value + " ");
         if (buyer.getPriceRange().isPresent()) {
-            sb.append(PREFIX_PRICE_RANGE + buyer.getPriceRange().get().toString());
+            sb.append(PREFIX_PRICE_RANGE + " " + buyer.getPriceRange().get().toString());
         }
         if (buyer.getDesiredCharacteristics().isPresent()) {
-            sb.append(PREFIX_CHARACTERISTICS + buyer.getDesiredCharacteristics().get().toString());
+            sb.append(PREFIX_CHARACTERISTICS + " " + buyer.getDesiredCharacteristics().get().toString());
         }
-        sb.append(PREFIX_PRIORITY + buyer.getPriority().toString() + " ");
+        sb.append(PREFIX_PRIORITY + " " + buyer.getPriority().toString() + " ");
         return sb.toString();
     }
 
@@ -48,15 +48,15 @@ public class BuyerUtil {
      */
     public static String getEditBuyerDescriptorDetails(EditBuyerDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        descriptor.getPriceRange().ifPresent(priceRange -> sb.append(PREFIX_PRICE_RANGE)
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME + " ").append(name.fullName).append(" "));
+        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE + " ").append(phone.value).append(" "));
+        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL + " ").append(email.value).append(" "));
+        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS + " ").append(address.value).append(" "));
+        descriptor.getPriceRange().ifPresent(priceRange -> sb.append(PREFIX_PRICE_RANGE + " ")
                 .append(priceRange).append(" "));
         descriptor.getDesiredCharacteristics().ifPresent(desiredCharacteristics -> sb.append(PREFIX_CHARACTERISTICS)
-                .append(desiredCharacteristics).append(" "));
-        descriptor.getPriority().ifPresent(priority -> sb.append(PREFIX_PRIORITY)
+                .append(" ").append(desiredCharacteristics).append(" "));
+        descriptor.getPriority().ifPresent(priority -> sb.append(PREFIX_PRIORITY + " ")
                 .append(priority.specifiedPriority).append(" "));
         return sb.toString();
     }
