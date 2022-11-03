@@ -105,12 +105,8 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
 
         if (isItemPrefixPresent && isQuantityPrefixPresent) {
             String item = argMultimap.getValue(PREFIX_ITEM).get();
-            try {
-                Integer quantity = Integer.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get());
-                editOrderDescriptor.setUnlinkedItemToEdit(new Pair<String, Integer>(item, quantity));
-            } catch (NumberFormatException nfe) {
-                throw new ParseException(MESSAGE_QUANTITY_INVALID);
-            }
+            Integer quantity = ParserUtil.parseNonNegativeUnsignedInteger(argMultimap.getValue(PREFIX_QUANTITY).get());
+            editOrderDescriptor.setUnlinkedItemToEdit(new Pair<String, Integer>(item, quantity));
         }
     }
 }
