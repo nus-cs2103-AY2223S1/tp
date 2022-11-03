@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.GITHUB_USERNAME_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -119,7 +119,7 @@ public class StudentCommandParserTest {
         // no github username input
         Person expectedPerson = new StudentBuilder(AMY).withModuleCodes(VALID_MODULE_CODE_AMY)
                 .withYear(VALID_YEAR_AMY).withTags(VALID_TAG_FRIEND).withLocation(VALID_LOCATION_AMY).build();
-        System.out.println(expectedPerson.getUsername());
+
         assertParseSuccess(studentParser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + GENDER_DESC_BOB
                         + GENDER_DESC_AMY + MODULE_CODE_DESC_AMY + YEAR_DESC_AMY + TAG_DESC_FRIEND + LOCATION_DESC_AMY,
                 new StudentCommand((Student) expectedPerson));
@@ -131,7 +131,7 @@ public class StudentCommandParserTest {
         Person expectedPerson = new StudentBuilder(AMY).withModuleCodes(VALID_MODULE_CODE_AMY)
                 .withGithubUsername(VALID_GITHUB_AMY).withTags(VALID_TAG_FRIEND)
                 .withLocation(VALID_LOCATION_AMY).build();
-        System.out.println(expectedPerson.getUsername());
+
         assertParseSuccess(studentParser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + GENDER_DESC_BOB
                         + GENDER_DESC_AMY + MODULE_CODE_DESC_AMY + TAG_DESC_FRIEND + GITHUB_USERNAME_DESC_AMY
                         + GITHUB_USERNAME_DESC_AMY + LOCATION_DESC_AMY,
@@ -143,7 +143,7 @@ public class StudentCommandParserTest {
         // no year input
         Person expectedPerson = new StudentBuilder(AMY).withModuleCodes(VALID_MODULE_CODE_AMY)
                 .withGithubUsername(VALID_GITHUB_AMY).withTags(VALID_TAG_FRIEND).build();
-        System.out.println(expectedPerson.getUsername());
+
         assertParseSuccess(studentParser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + GENDER_DESC_BOB
                         + GENDER_DESC_AMY + MODULE_CODE_DESC_AMY + TAG_DESC_FRIEND + GITHUB_USERNAME_DESC_AMY,
                 new StudentCommand((Student) expectedPerson));
@@ -192,7 +192,7 @@ public class StudentCommandParserTest {
             + TAG_DESC_HUSBAND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid Module Code
-        assertParseFailure(studentParser, NAME_DESC_AMY + INVALID_MODULE_CODE + PHONE_DESC_AMY
+        assertParseFailure(studentParser, NAME_DESC_AMY + INVALID_MODULE_CODE_DESC + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + GENDER_DESC_AMY
                 + TAG_DESC_HUSBAND, ModuleCode.MESSAGE_CONSTRAINTS);
 
@@ -217,7 +217,7 @@ public class StudentCommandParserTest {
                 + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(studentParser, INVALID_NAME_DESC + INVALID_MODULE_CODE + PHONE_DESC_AMY
+        assertParseFailure(studentParser, INVALID_NAME_DESC + INVALID_MODULE_CODE_DESC + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + GENDER_DESC_AMY
                 + TAG_DESC_HUSBAND, Name.MESSAGE_CONSTRAINTS);
 

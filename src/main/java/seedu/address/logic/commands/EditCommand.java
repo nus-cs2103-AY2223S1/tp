@@ -65,7 +65,7 @@ public class EditCommand extends Command {
         + "[" + PREFIX_LOCATION + "LOCATION] "
         + "[" + PREFIX_GITHUBUSERNAME + "GITHUB USERNAME] "
         + "[" + PREFIX_RATING + "RATING] "
-        + "[" + PREFIX_OFFICEHOUR + "RATING]\n"
+        + "[" + PREFIX_OFFICEHOUR + "OFFICE_HOURS]\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
         + PREFIX_EMAIL + "johndoe@example.com ";
@@ -255,8 +255,6 @@ public class EditCommand extends Command {
         private Specialisation specialisation;
         private OfficeHour officeHour;
 
-
-
         public EditPersonDescriptor() {
         }
 
@@ -410,6 +408,7 @@ public class EditCommand extends Command {
 
         @Override
         public boolean equals(Object other) {
+
             // short circuit if same object
             if (other == this) {
                 return true;
