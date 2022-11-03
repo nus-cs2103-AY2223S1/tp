@@ -20,6 +20,11 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because a user may want to see what they have typed beforehand if they do not remember.
   * Highlights: This enhancement uses a First-In-First-Out (FIFO) data structure in the form of a queue to present the command history.
 
+* **New Feature**: Added a profile picture that changes accordingly to whatever the contact's occupation is.
+  * What it does: allows the user to see easily what the occupation is for each contact in a pictorial form.
+  * Justification: This feature improves the product because a user may want to know what roles all their contacts hold at a glance.
+  * Highlights: This enhancement uses new images saved into the resources folder to be bundled into the JAR file and a function to determine the right image to display.
+
 * **New Enhancement**: Enhanced the delete command to be multi-functional.
   * What it does: allows the user to allows the user to not just delete contacts but also delete specific fields of people.
   * Justification: This feature improves the product significantly because a user may want to update contacts that no longer use those fields.
