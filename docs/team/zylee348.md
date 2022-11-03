@@ -35,6 +35,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Updated the GUI colour scheme (Pull requests #149)
     * Updated the error messages for some existing features (Pull requests #193, #207)
+    * Refactored the original AB3 `add` and `find` command to `addperson` and `findperson`
 
 
 * **Documentation**:
