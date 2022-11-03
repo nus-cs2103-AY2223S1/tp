@@ -19,7 +19,7 @@ This section will explain the parameters and the format of commands.
 
 | Prefix | Parameter       | Meaning                                                                                                        |
 |--------|-----------------|----------------------------------------------------------------------------------------------------------------|
-| n/     | NAME            | Name of person                                                                                                 |
+| n/     | NAME            | Name of person (case sensitive) .e.g `bob` and `Bob` are not the same                                          |
 | p/     | PHONE           | Phone number of person                                                                                         |
 | g/     | GENDER          | Gender of person (STRICTLY F or M)                                                                             |
 | git/   | GITHUB_USERNAME | GitHub Username of person                                                                                      |
@@ -100,7 +100,9 @@ This section will explain the parameters and the format of commands.
 The Add-Related commands include `student`, `prof` and `ta`. These are the commands related to adding a new person to the application.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-You cannot add people with same names, e.g. "Michelle" cannot be a student and a prof at the same time.
+You cannot add people with the same name AND same role. e.g. there cannot exist two Students both called "Joe", but a Student called "Joe" and a Professor called "Joe" can exist.
+
+Additionally, as names are case-sensitive, a Student called "joe" is not the same as a Student called "Joe", and so they can both be added. This applies to all roles.
 </div>
 
 ### 3.1.1 Adding a new Student Contact: `student`

@@ -20,6 +20,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ProfCommand;
 import seedu.address.logic.commands.StudentCommand;
 import seedu.address.logic.commands.TaCommand;
+import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonMatchesPredicate;
 import seedu.address.model.person.Professor;
@@ -128,13 +129,33 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getGender().ifPresent(address -> sb.append(PREFIX_GENDER).append(address.value).append(" "));
+        descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender.value).append(" "));
+        descriptor.getLocation().ifPresent(location -> sb.append(PREFIX_LOCATION).append(location.value).append(" "));
+        descriptor.getYear().ifPresent(year -> sb.append(PREFIX_YEAR).append(year.value).append(" "));
+        descriptor.getGithubUsername().ifPresent(username -> sb.append(PREFIX_GITHUBUSERNAME)
+                .append(username.value).append(" "));
+        descriptor.getRating().ifPresent(rating -> sb.append(PREFIX_RATING).append(rating.value).append(" "));
+        descriptor.getOfficeHour().ifPresent(officeHour -> sb.append(PREFIX_OFFICEHOUR)
+                .append(officeHour.value).append(" "));
+        descriptor.getSpecialisation().ifPresent(specialisation -> sb
+                .append(PREFIX_SPECIALISATION)
+                .append(specialisation.value)
+                .append(" "));
+        descriptor.getModuleCode().ifPresent(moduleCode-> sb.append(PREFIX_MODULE_CODE)
+                .append(moduleCode.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
                 sb.append(PREFIX_TAG);
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+        sb.append(" ");
+        if (descriptor.getModuleCodes().isPresent()) {
+            Set<ModuleCode> modules = descriptor.getModuleCodes().get();
+            if (!modules.isEmpty()) {
+                modules.forEach(s -> sb.append(PREFIX_MODULE_CODE).append(s.value).append(" "));
             }
         }
         return sb.toString();
@@ -202,7 +223,7 @@ public class PersonUtil {
             commandDetails += PREFIX_YEAR + String.join(" ", predicate.getYearsList()) + " ";
         }
 
-        System.out.println(commandDetails);
+
         return commandDetails;
     }
 }
