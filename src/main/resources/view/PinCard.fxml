@@ -25,7 +25,7 @@
                 <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label styleClass="title_name" text="Major(s):" />
+                <Label minHeight="-Infinity" minWidth="-Infinity" styleClass="title_name" text="Major(s):" />
                 <FlowPane fx:id="majors" />
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="10">
@@ -38,8 +38,8 @@
                 </ImageView>
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label styleClass="title_name" text="Scholarship Name:"></Label>
-                <Label fx:id="scholarship" styleClass="cell_small_label" text="\$scholarship" />
+                <Label minHeight="-Infinity" minWidth="-Infinity" styleClass="title_name" text="Scholarship Name:"></Label>
+                <Label minHeight="-Infinity" minWidth="-Infinity" fx:id="scholarship" styleClass="cell_small_label" text="\$scholarship" />
                 <ImageView>
                     <image>
                         <Image url="@../images/scholarship.png" />
@@ -47,8 +47,8 @@
                 </ImageView>
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label styleClass="title_name" text="Email:" />
-                <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+                <Label minHeight="-Infinity" minWidth="-Infinity" styleClass="title_name" text="Email:" />
+                <Label minHeight="-Infinity" minWidth="-Infinity" fx:id="email" styleClass="cell_small_label" text="\$email" />
                 <ImageView>
                     <image>
                         <Image url="@../images/mail.png" />

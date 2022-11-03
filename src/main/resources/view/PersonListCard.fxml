@@ -23,7 +23,7 @@
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
       <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label">
+        <Label  fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
@@ -32,12 +32,12 @@
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <HBox alignment="CENTER_LEFT" spacing="10">
-        <Label styleClass="title_name" text="Major(s):" />
+        <Label minHeight="-Infinity" minWidth="-Infinity" styleClass="title_name" text="Major(s):" />
         <FlowPane fx:id="majors" />
       </HBox>
       <HBox alignment="CENTER_LEFT" spacing="10">
         <Label styleClass="title_name" text="Application Status:"/>
-        <Label fx:id="applicationStatus" styleClass="cell_pending_label" text="\$applicationStatus" />
+        <Label  fx:id="applicationStatus" styleClass="cell_pending_label" text="\$applicationStatus" />
         <ImageView>
           <image>
             <Image url="@../images/application_status.png" />
@@ -45,8 +45,8 @@
         </ImageView>
       </HBox>
       <HBox alignment="CENTER_LEFT" spacing="10">
-        <Label styleClass="title_name" text="Scholarship Name:"></Label>
-        <Label fx:id="scholarship" styleClass="cell_small_label" text="\$scholarship" />
+        <Label minHeight="-Infinity" minWidth="-Infinity" styleClass="title_name" text="Scholarship Name:"></Label>
+        <Label minHeight="-Infinity" minWidth="-Infinity" fx:id="scholarship" styleClass="cell_small_label" text="\$scholarship" />
         <ImageView>
           <image>
             <Image url="@../images/scholarship.png" />
@@ -54,8 +54,8 @@
         </ImageView>
       </HBox>
       <HBox alignment="CENTER_LEFT" spacing="10">
-        <Label styleClass="title_name" text="Email:" />
-        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+        <Label minHeight="-Infinity" minWidth="-Infinity" styleClass="title_name" text="Email:" />
+        <Label minHeight="-Infinity" minWidth="-Infinity" fx:id="email" styleClass="cell_small_label" text="\$email" />
         <ImageView>
           <image>
             <Image url="@../images/mail.png" />
