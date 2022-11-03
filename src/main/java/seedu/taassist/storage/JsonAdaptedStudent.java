@@ -8,12 +8,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.taassist.commons.exceptions.IllegalValueException;
-import seedu.taassist.model.student.StudentModuleData;
 import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;
 import seedu.taassist.model.student.Phone;
 import seedu.taassist.model.student.Student;
+import seedu.taassist.model.student.StudentModuleData;
 
 /**
  * Json-friendly version of {@link Student}.

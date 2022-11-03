@@ -14,12 +14,12 @@ import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.commons.util.CollectionUtil;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
-import seedu.taassist.model.student.StudentModuleData;
 import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;
 import seedu.taassist.model.student.Phone;
 import seedu.taassist.model.student.Student;
+import seedu.taassist.model.student.StudentModuleData;
 
 /**
  * Edits the details of an existing student in TA-Assist.

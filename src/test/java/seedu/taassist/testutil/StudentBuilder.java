@@ -1,7 +1,9 @@
 package seedu.taassist.testutil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.StudentModuleData;
@@ -62,7 +64,7 @@ public class StudentBuilder {
      * Set the {@code moduleClasses} to the {@code Student} that we are building.
      */
     public StudentBuilder withModuleClasses(ModuleClass... moduleClasses) {
-        this.moduleData = SampleDataUtil.getModuleDataList(moduleClasses);
+        this.moduleData = Arrays.stream(moduleClasses).map(StudentModuleData::new).collect(Collectors.toList());
         return this;
     }
 
