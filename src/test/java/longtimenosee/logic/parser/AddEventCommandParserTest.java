@@ -85,6 +85,18 @@ public class AddEventCommandParserTest {
         //missing desc prefix
         assertParseFailure(parser, NAME_DESC_AMY + DATE_DESC_AMY + START_DESC_AMY
                 + END_DESC_AMY, expectedMessage);
+        //missing start_date prefix
+        assertParseFailure(parser, NAME_DESC_AMY
+                + DESCRIPTION_DESC_AMY + DATE_DESC_AMY
+                + END_DESC_AMY, expectedMessage);
+        //missing end_date prefix
+        assertParseFailure(parser, NAME_DESC_AMY
+                + DESCRIPTION_DESC_AMY + DATE_DESC_AMY + START_DESC_AMY,
+                expectedMessage);
+        //missing date prefix
+        assertParseFailure(parser, NAME_DESC_AMY
+                + DATE_DESC_AMY + START_DESC_AMY
+                + END_DESC_AMY, expectedMessage);
 
     }
 
