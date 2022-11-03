@@ -120,6 +120,8 @@ public interface Model {
 
     public Team getTeam(Name name);
 
+    public boolean teamNameExists(Name name);
+
     ObservableList<Task> getFilteredTaskList();
 
     public Name getTeamName(Index teamIndex);
