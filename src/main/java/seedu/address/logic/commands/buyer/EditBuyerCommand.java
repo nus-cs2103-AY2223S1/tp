@@ -106,6 +106,9 @@ public class EditBuyerCommand extends Command {
         PriceRange updatedPriceRange = editBuyerDescriptor
                 .getPriceRange()
                 .orElse(buyerToEdit.getPriceRange().orElse(null));
+        if (updatedPriceRange != null && updatedPriceRange.getIsReset()) {
+            updatedPriceRange = null;
+        }
         Characteristics updatedCharacteristics = editBuyerDescriptor
                 .getDesiredCharacteristics()
                 .orElse(buyerToEdit.getDesiredCharacteristics().orElse(null));

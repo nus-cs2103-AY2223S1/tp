@@ -142,13 +142,11 @@ public class ParserUtil {
     public static PriceRange parsePriceRange(String range) throws ParseException {
         requireNonNull(range);
         String trimmedRange = range.trim();
-        /*TODO: Currently the price range accepted has to be in the exact format of LOW - HIGH
-        with no allowance for extra white spaces within e.g 200 -     500.
-        Accepted white spaces are only around e.g "    200 - 500     ".
-        Something to consider for further enhancement if we want to make it
-        more flexible, but not a priority!*/
         if (!PriceRange.isValidPriceRange(trimmedRange)) {
             throw new ParseException(PriceRange.MESSAGE_CONSTRAINTS);
+        }
+        if (trimmedRange.isEmpty()) {
+            return PriceRange.RESET_PRICE_RANGE;
         }
         return new PriceRange(trimmedRange);
     }
