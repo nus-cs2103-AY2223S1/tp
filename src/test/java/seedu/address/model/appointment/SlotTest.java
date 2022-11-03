@@ -76,17 +76,17 @@ public class SlotTest {
 
     @Test
     public void isValidDateTime() {
-        assertThrows(NullPointerException.class, () -> Slot.isValidDateTime(null));
-        assertFalse(Slot.isValidDateTime(""));
-        assertTrue(Slot.isValidDateTime("2012-12-31 01:02"));
-        assertTrue(Slot.isValidDateTime("2012-12-31 23:59"));
-        assertTrue(Slot.isValidDateTime("2023-06-30 23:59"));
-        assertFalse(Slot.isValidDateTime("2021-12-40 11:22"));
-        assertFalse(Slot.isValidDateTime("2021-13-01 11:22"));
-        assertFalse(Slot.isValidDateTime("9999-12-31 1:22"));
-        assertFalse(Slot.isValidDateTime("2021-12-10 01:0"));
-        assertFalse(Slot.isValidDateTime("2021-1-10 01:00"));
-        assertFalse(Slot.isValidDateTime("0000-12-10 00:00"));
+        assertThrows(NullPointerException.class, () -> Slot.isValidSlot(null));
+        assertFalse(Slot.isValidSlot(""));
+        assertTrue(Slot.isValidSlot("2012-12-31 01:02"));
+        assertTrue(Slot.isValidSlot("2012-12-31 23:59"));
+        assertTrue(Slot.isValidSlot("2023-06-30 23:59"));
+        assertFalse(Slot.isValidSlot("2021-12-40 11:22"));
+        assertFalse(Slot.isValidSlot("2021-13-01 11:22"));
+        assertFalse(Slot.isValidSlot("9999-12-31 1:22"));
+        assertFalse(Slot.isValidSlot("2021-12-10 01:0"));
+        assertFalse(Slot.isValidSlot("2021-1-10 01:00"));
+        assertFalse(Slot.isValidSlot("0000-12-10 00:00"));
     }
 
     @Test

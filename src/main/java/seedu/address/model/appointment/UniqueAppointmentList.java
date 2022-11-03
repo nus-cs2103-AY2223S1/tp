@@ -33,7 +33,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
      */
     public boolean contains(Appointment toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameAppointment);
     }
 
     /**
@@ -62,7 +62,9 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
             throw new AppointmentNotFoundException();
         }
 
-        if (!target.equals(editedAppointment) && contains(editedAppointment)) {
+        boolean hasNewAppointment = internalList.stream().filter(a -> !a.equals(target))
+                .anyMatch(a -> a.equals(editedAppointment));
+        if (hasNewAppointment) {
             throw new DuplicateAppointmentException();
         }
 

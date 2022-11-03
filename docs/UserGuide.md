@@ -125,6 +125,7 @@ slot, and doctor.
   * The appointment times for different patients with the same doctor do not clash with one another.
   * The same patient/doctor does not have multiple appointments with times that clash with one another.
 
+
 #### Command word
 
 `addappointment`, `aa`

@@ -38,6 +38,13 @@ public class MedicalTest {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if two medical tests are same.
+     */
+    public boolean isSameMedicalTest(MedicalTest medicalTest) {
+        return this.medicalTestName.toLowerCase().equals(medicalTest.medicalTestName.toLowerCase());
+    }
+
     @Override
     public String toString() {
         return medicalTestName;

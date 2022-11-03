@@ -78,7 +78,7 @@ class JsonAdaptedBill {
         if (slot == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Slot.class.getSimpleName()));
         }
-        if (!Slot.isValidDateTime(slot)) {
+        if (!Slot.isValidSlot(slot)) {
             throw new IllegalValueException(Slot.MESSAGE_CONSTRAINTS);
         }
         final Slot modelSlot = new Slot(slot);
@@ -112,7 +112,7 @@ class JsonAdaptedBill {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     BillDate.class.getSimpleName()));
         }
-        if (!BillDate.isValidDate(billDate)) {
+        if (!BillDate.isValidBillDate(billDate)) {
             throw new IllegalValueException(BillDate.MESSAGE_CONSTRAINTS);
         }
         final BillDate modelBillDate = new BillDate(billDate);
