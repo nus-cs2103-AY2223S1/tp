@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox maxHeight="-Infinity" minHeight="100.0" minWidth="-Infinity" prefHeight="100.0" prefWidth="50.0" spacing="5.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" minHeight="100.0" minWidth="-Infinity" prefHeight="100.0" prefWidth="50.0" spacing="5.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="BOTTOM_LEFT" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0">
          <children>
