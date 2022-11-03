@@ -36,4 +36,9 @@ public class UndoCommand extends Command {
 
         return new CommandResult(MESSAGE_UNDO_SUCCESS, false, false, true, false, false);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof UndoCommand;
+    }
 }
