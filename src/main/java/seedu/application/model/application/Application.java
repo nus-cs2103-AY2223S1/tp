@@ -2,6 +2,7 @@ package seedu.application.model.application;
 
 import static seedu.application.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
@@ -9,6 +10,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.application.model.application.exceptions.InvalidFutureApplicationException;
 import seedu.application.model.application.interview.Interview;
 import seedu.application.model.application.interview.exceptions.InvalidInterviewException;
 import seedu.application.model.tag.Tag;
@@ -44,13 +46,14 @@ public class Application {
      * @param tags Set of tags the user can add to the application.
      */
     public Application(Company company, Contact contact, Email email, Position position, Date date, Status status,
-            Set<Tag> tags) {
+            Set<Tag> tags) throws InvalidFutureApplicationException {
         requireAllNonNull(company, contact, email, position, date, tags);
         this.company = company;
         this.contact = contact;
         this.email = email;
         this.position = position;
         this.date = date;
+        applicationDateIsInFuture(date);
         this.status = status;
         this.tags.addAll(tags);
         this.interview = Optional.empty();
@@ -169,6 +172,12 @@ public class Application {
         return otherApplication != null
                 && otherApplication.company.equals(company)
                 && otherApplication.position.equals(position);
+    }
+
+    private void applicationDateIsInFuture(Date date) {
+        if (date.value.isAfter(LocalDate.now())) {
+            throw new InvalidFutureApplicationException();
+        }
     }
 
     private void interviewIsAfterApplication(Interview interview, Application application) {

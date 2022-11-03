@@ -41,7 +41,7 @@ public class CommandTestUtil {
     public static final String VALID_CONTACT_GOOGLE = "11111111";
     public static final String VALID_CONTACT_FACEBOOK = "22222222";
     public static final String VALID_DATE_GOOGLE = "2022-01-01";
-    public static final String VALID_DATE_FACEBOOK = "2024-02-29";
+    public static final String VALID_DATE_FACEBOOK = "2022-11-03";
     public static final String VALID_EMAIL_GOOGLE = "google@example.com";
     public static final String VALID_EMAIL_FACEBOOK = "facebook@example.com";
     public static final String VALID_POSITION_GOOGLE = "Software Engineer";
@@ -68,11 +68,11 @@ public class CommandTestUtil {
 
     //Interview fields
     public static final String VALID_ROUND_GOOGLE = "Technical interview";
-    public static final String VALID_INTERVIEW_DATE_GOOGLE = "2024-10-12";
+    public static final String VALID_INTERVIEW_DATE_GOOGLE = "2022-12-12";
     public static final String VALID_INTERVIEW_TIME_GOOGLE = "1100";
     public static final String VALID_LOCATION_GOOGLE = "11, Kallang Way 6, 118436";
     public static final String VALID_ROUND_FACEBOOK = "Online assessment";
-    public static final String VALID_INTERVIEW_DATE_FACEBOOK = "2025-12-25";
+    public static final String VALID_INTERVIEW_DATE_FACEBOOK = "2022-11-03";
     public static final String VALID_INTERVIEW_TIME_FACEBOOK = "1700";
     public static final String VALID_LOCATION_FACEBOOK = "Skype";
     public static final String ROUND_DESC_GOOGLE = " " + PREFIX_ROUND + VALID_ROUND_GOOGLE;
