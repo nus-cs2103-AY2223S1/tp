@@ -16,8 +16,16 @@ Given below are my contributions to the project.
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+  * What it does: allows the user to see up to their last five previous commands typed.
+  * Justification: This feature improves the product significantly because a user may want to see what they have typed beforehand if they do not remember.
+  * Highlights: This enhancement uses a First-In-First-Out (FIFO) data structure in the form of a queue to present the command history.
 
-* **Code contributed**: [RepoSense link]()
+* **New Enhancement**: Enhanced the delete command to be multi-functional.
+  * What it does: allows the user to allows the user to not just delete contacts but also delete specific fields of people.
+  * Justification: This feature improves the product significantly because a user may want to update contacts that no longer use those fields.
+  * Highlights: This enhancement affects existing commands. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands and validators.
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=Jnwkm&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16)
 
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
