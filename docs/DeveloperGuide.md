@@ -576,7 +576,7 @@ Section by : [Dominic](https://github.com/domoberzin)
 ### Add task
 
 In this section, the functionality of `add` task feature, expected execution path, and the interactions between
-`AddTaskCommand`, `AddDeadlineCommand`, `AddTaskCommandParser`, and other objects will be discussed.
+`AddTaskCommand`, `AddDeadlineCommand`, `AddTaskCommand`, `ModtRektParser` and other objects will be discussed.
 Deadlines are an extension of tasks, and have a due date. For the most part, their implementations are
 similar, and areas where they differ will be highlighted. As such, please consider deadline to be synonymous
 with task, unless explicitly stated.
@@ -596,9 +596,13 @@ Information regarding tasks/deadlines can be recognised in the CLI using tags.
 
 These tags are:
 
-- `-t <task name/description>`
+- `<task name/description>`
 - `-d <YYYY-MM-DD>` (this is only required for adding deadlines)
 - `-c <module_code>`
+
+Note that the task `task name/description` tag was specified to be the [main
+parameter](https://jcommander.org/#_main_parameter), a feature that JCommander allows for, 
+and as such, a tag is not required for it. Do note that it is a **mandatory** argument.
 
 
 #### Design considerations
@@ -623,7 +627,7 @@ reduce the compulsory AddTaskCommand parameters.
     * Cons: Slightly more complicated as more errors need to be handled (invalid index etc.). Users
       may also be more prone to adding the task to the wrong module.
 
-* **Alternative 2:** Require the user to specify the module code.
+* **Alternative 2 (current choice):** Require the user to specify the module code.
     * Pros: Reduces the chance of error by the user, users will not need to remember the module index.
     * Cons: User has to type more information in the command.
 
@@ -638,21 +642,20 @@ the flow is exactly the same for both tasks and deadlines.
 
 <img src="images/TaskPUMLs/AddTask/TaskAddPathExecution.png" width="800" />
 
-The diagram below shows how the add command work with input `add -m -c CS2103T`
+The diagram below shows how the add command work with input `add task "Assignment 1" -c CS2103T`
 
 <img src="images/TaskPUMLs/AddTask/TaskAddSequenceDiagram.png" width="1200" />
 
-The arguments are first parsed through `ModtrektParser` to identify the command word. The command word will help
-identify the type of `Parser` needed to parse the rest of the arguments. In this case it is `AddTaskCommandParser`. After
-parsing the arguments, a deadline or a task object is created, depending on the presence of a deadline flag. The task
-would be used to instantiate an `AddTaskCommand`. When the `AddTaskCommand` is executed, the `Model` would add the task
+The arguments are first parsed through `ModtrektParser` to identify the type of `Command` to be returned, based on the command word
+and tags specified. In this case it is `AddTaskCommand`. After parsing the arguments, a task object is created. A task
+objected would be used to instantiated by the created `AddTaskCommand`. When the `AddTaskCommand` is executed, the `Model` would add the task
 to the `TaskList`. After adding the task, the `Model` invokes its own method to update the task count of the module
 whose code is associated with the task.
 
 ### Remove Task
 
 In this section, the functionality of `remove` task feature, expected execution path, and the interactions between the
-`RemoveTaskCommand`, `RemoveTaskCommandParser`, and other objects will be discussed.
+`RemoveTaskCommand`, `ModtRektParser`, and other objects will be discussed.
 
 #### What is the remove task feature
 
@@ -662,26 +665,28 @@ The `remove` task features allows users to remove a task/deadline that they have
 Removal of a `Task` would result in the reduction of the task count of the `Module` with the module code the task
 is associated with.
 
+The task removed is specified by its **index** on the displayed list.
+
 #### Current implementation
 
 The diagram below showcases the path execution for when removing a task
 
 <img src="images/TaskPUMLs/RemoveTask/TaskRemovePathExecution.png" width="800" />
 
-The diagram below shows how the remove command work with input `remove -t 1`
+The diagram below shows how the remove command work with input `remove task 1`
 
 <img src="images/TaskPUMLs/RemoveTask/TaskRemoveSequenceDiagram.png" width="1200" />
 
-The arguments are first parsed through `ModtrektParser` to identify the command word. The command word will help
-identify the type of `Parser` needed to parse the rest of the arguments. In this case it is `RemoveTaskCommandParser`. After
-obtaining the index, it would be used to instantiate a `RemoveTaskCommand`. When the `RemoveTaskCommand` is executed, it would
+The arguments are first parsed through `ModtrektParser` to identify the type of `Command` to be returned, based on the command word
+and tags specified. A `RemoveTaskCommand` would then be instantiated, and the `1` specified in the command would be utilised
+as the parameter within the command to locate the task in the stored list. When the `RemoveTaskCommand` is executed, it would
 first obtain the `Task` using the index. Then it would remove the `Task` from the `TaskList`. Using the saved
 `Task` it would then reduce the task count of the `Module` whose code is equal to that of the removed `Task`.
 
 ### Edit Task
 
 In this section, the functionality of `edit` task feature, expected execution path, and the interactions between the
-`EditTaskCommand`, `ModtrektParser`, and other objects will be discussed.
+`EditTaskCommand`, `ModtRektParser`, and other objects will be discussed.
 
 #### What is the edit task feature
 
@@ -710,7 +715,7 @@ The diagram below showcases the path execution for when edit a task
 
 <img src="images/TaskPUMLs/EditTask/TaskEditPathExecution.png" width="800" />
 
-The diagram below shows how the remove command work with input `edit -t 1 -c CS2103T -ds Assignmet 2`
+The diagram below shows how the remove command work with input `edit task 1 -c CS2103T -ds Assignment 2`
 
 Note that the sequence diagram has been kept simple, as the logic flow for `addTask(t)` and
 `removeTask(t)` have been covered in greater detail in the earlier diagrams.
@@ -869,7 +874,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view all active tasks and deadlines
-2. ModtRekt shows all active tasks and deadlines, categorised into modules
+2. ModtRekt shows all active tasks and deadlines.
 
    Use case ends.
 
@@ -950,9 +955,262 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: User marks a task as done**
+
+**MSS**
+
+1. User requests to mark a task as done.
+2. ModtRekt updates the task to display a `done` tag. It also reduces the `Active Tasks`
+   counter by 1.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+    * 2a1. ModtRekt shows an error message when the command is entered.
+
+  Use case ends.
+
+* 2a. Task is currently marked as done.
+    * 2a1. ModtRekt shows an error message when the command is entered to indicate to the user that the task is
+      already marked as done.
+
+  Use case ends.
+
+**Use case: User marks a task as undone**
+
+**MSS**
+
+1. User requests to mark a task as undone.
+2. ModtRekt removes the `done` tag of the task. It also increases the `Active Tasks`
+   counter by 1.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+    * 2a1. ModtRekt shows an error message when the command is entered.
+
+  Use case ends.
+
+* 2a. Task is currently marked as undone.
+    * 2a1. ModtRekt shows an error message when the command is entered to indicate to the user that the task is
+      already marked as undone.
+
+  Use case ends.
 
 
-*{More to be added}*
+**Use case: Edit a task**
+
+**MSS**
+
+1. User requests to edit a task, and specifies new details such as description, priority 
+   or deadline.
+2. ModtRekt updates the task information to reflect the new details
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+    * 2a1. ModtRekt shows an error message when the command is entered.
+
+    Use case ends.
+
+* 2b. Module code does not exist within the displayed list.
+    * 2a1. ModtRekt shows an error message when the command is entered.
+
+    Use case ends.
+
+* 2b. Updated details are invalid, for example date is in an invalid format.
+    * 2a1. ModtRekt shows an error message when the command is entered.
+
+    Use case ends.
+
+
+**Use case: Add a module**
+
+**MSS**
+
+1. User requests to add a module, specifying only its module code.
+2. ModtRekt adds the module to the displayed list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The module code specified is invalid (i.e. not on NUSMods).
+  * 2a1. ModtRekt shows an error message, prompting user to utilise the verbose
+    add module command.
+  
+  Use case ends.
+
+**Use case: Add a module with verbose command**
+
+**MSS**
+
+1. User requests to add a module, specifying a code, title and credits.
+2. ModtRekt adds the module to the displayed list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Credits that the user specifies is greater than 2 digits or is negative.
+  * 2a1. ModtRekt shows an error message indicating that the credit input is invalid.
+  
+  Use case ends.
+
+* 2b. Code that the user specifies is not within 6-9 characters, or contains non-alphanumeric characters.
+  * 2b1. ModtRekt shows an error message indicating that the code input is invalid.
+  
+  Use case ends.
+
+* 2c. User input contains a syntax error, for example a missing flag or an additional input.
+    * 2c1. ModtRekt shows an error message indicating that the syntax of the command is invalid,
+    and shows the user the proper command syntax.
+
+  Use case ends.
+
+
+**Use case: Remove a module**
+
+**MSS**
+
+1. User requests to remove a module, specifying a code.
+2. ModtRekt removes the module from the displayed list
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Module code does not exist within the displayed list
+    * 2a1. ModtRekt shows an error message when the command is entered.
+
+  Use case ends.
+
+
+**Use case: Edit a module**
+
+**MSS**
+
+1. User requests to edit a module, specifying a code and editing details such as its credit or name.
+2. ModtRekt updates the specified module with new details.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Module code does not exist within the displayed list.
+  * 2a1. ModtRekt shows an error message when the command is entered.
+
+    Use case ends.
+
+* 2b. Updated details are invalid, for example credit exceeds 2 digits or is negative.
+    * 2a1. ModtRekt shows an error message when the command is entered, indicating that the credit input is invalid.
+
+
+**Use case: User `cd`'s into a module**
+
+**MSS**
+
+1. User requests to `cd` into a module.
+2. ModtRekt updates task list to display the tasks under that module, and adds a 
+   selected tag to the module on the interface.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Module code does not exist within the displayed list.
+    * 2a1. ModtRekt shows an error message when the command is entered.
+
+    Use case ends.
+
+**Use case: User `cd`'s back to the main page**
+
+**MSS**
+
+1. User runs the command `cd ..`.
+2. ModtRekt updates task list to display all tasks, and removes the
+   selected tag on the module that was `cd`-ed out of.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User is not `cd`-ed into a module.
+  * 2a1. ModtRekt shows an error message saying that all tasks are already being displayed.
+      
+  Use case ends.
+
+**Use case: User marks a module as done**
+
+**MSS**
+
+1. User requests to mark a module as done.
+2. ModtRekt updates module to display a `done` tag, and also marks
+    all the tasks under that module as `done` as well. It also updates the `MCs Completed`
+    counter to add the credits of the module.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Module code does not exist within the displayed list.
+  * 2a1. ModtRekt shows an error message when the command is entered.
+
+  Use case ends.
+
+* 2a. Module is currently marked as done.
+    * 2a1. ModtRekt shows an error message when the command is entered to indicate to the user that the module is
+      already marked as done.
+
+  Use case ends.
+
+**Use case: User marks a module as undone**
+
+**MSS**
+
+1. User requests to mark a module as undone.
+2. ModtRekt removes the `done` tag of the module. It also reduces the `MCs Completed`
+   counter by the number of credits of the module.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Module code does not exist within the displayed list.
+    * 2a1. ModtRekt shows an error message when the command is entered.
+
+  Use case ends.
+
+
+* 2a. Module is not currently marked as done.
+    * 2a1. ModtRekt shows an error message when the command is entered to indicate to the user that the module is 
+    already marked as undone.
+
+  Use case ends.
+
+**Use case: View all active modules**
+
+**MSS**
+
+1. User requests to view all active modules.
+2. ModtRekt shows all active modules.
+
+   Use case ends.
+
+**Use case: View all modules, including those marked as done**
+
+**MSS**
+
+1. User requests to view all modules, including those marked as done.
+2. ModtRekt shows all modules, including those marked as done.
+
+   Use case ends.
 
 ### Non-Functional Requirements
 
