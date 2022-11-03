@@ -62,6 +62,8 @@ To navigate to see a particular command, you can click on the link in blue.
    ![Ui](images/Ui.png)
 
 <div markdown="block" class="alert alert-info">
+
+**Important Note:**<br>
 The window is empty because no friends have been added yet. Adding more friends will change the look of the window.
 </div>
 <ol start="5">
@@ -122,6 +124,17 @@ Format: `help`
 In the `Help` window, upon choosing a specific command, a description,
 and an example will be shown for that specific command along with the
 specific parameters for that command.
+
+<div markdown="block" class="alert alert-info">
+
+**Important Note:**<br>
+- The help window will be launched automatically on startup for new users 
+(or if you do not have the file data/addressbook.json) to view the commands 
+available in Minefriends. 
+
+- Subsequent launches of Minefriends will not show the help window on launch.
+
+</div>
 
 Example:<br>
 Upon typing `help` or clicking on the `help` option, a help window
@@ -315,6 +328,7 @@ Format: `suggest [dt/DAY_TIME_IN_WEEK]* [k/KEYWORD]*`
 
 <div markdown="block" class="alert alert-info"> 
 
+**Important Note:**<br>
 When you type in `suggest dt/now`, Minefriends uses the current time shown on your computer/device
 to search for friends playing at that current time.
 
