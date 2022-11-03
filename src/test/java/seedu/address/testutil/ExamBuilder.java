@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.exam.ExamDate;
 import seedu.address.model.exam.ExamDescription;
+import seedu.address.model.module.DistinctModuleList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 
@@ -23,10 +24,14 @@ public class ExamBuilder {
      * Creates a {@code ExamBuilder} with the default details.
      */
     public ExamBuilder() {
-        module = new Module(new ModuleCode(DEFAULT_MODULE));
+        Module m = new Module(new ModuleCode(DEFAULT_MODULE));
+        DistinctModuleList list = new DistinctModuleList();
+        list.addModule(m);
         examDescription = new ExamDescription(DEFAULT_DESCRIPTION);
         examDate = new ExamDate(DEFAULT_DATE);
+        module = new Module(new ModuleCode(DEFAULT_MODULE));
     }
+
 
     /**
      * Initializes the ExamBuilder with the data of {@code examToCopy}.
@@ -64,4 +69,5 @@ public class ExamBuilder {
     public Exam build() {
         return new Exam(module, examDescription, examDate);
     }
+
 }
