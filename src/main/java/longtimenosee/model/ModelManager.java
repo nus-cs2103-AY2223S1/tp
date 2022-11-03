@@ -126,6 +126,9 @@ public class ModelManager implements Model {
     public FinancialAdvisorIncome getIncome() {
         return income;
     }
+    public void pinPerson(Person person) {
+        person.setPin(!person.getPin());
+    }
 
     @Override
     public void sort(Comparator<Person> comparator) {

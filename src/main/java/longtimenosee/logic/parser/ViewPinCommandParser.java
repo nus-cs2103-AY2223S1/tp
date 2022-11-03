@@ -7,7 +7,7 @@ import longtimenosee.model.person.predicate.PinnedPersonPredicate;
 /**
  * parses the command to view pinned clients.
  */
-public class ViewPinCommandParser {
+public class ViewPinCommandParser implements Parser<ViewPinCommand> {
     /**
      * Parses the viewPin in the context of the ViewPin Command
      * and returns a ViewPinCommand object for execution.

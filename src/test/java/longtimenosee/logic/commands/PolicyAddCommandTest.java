@@ -159,6 +159,10 @@ public class PolicyAddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void pinPerson(Person p) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public boolean hasPolicy(Policy toAdd) {
