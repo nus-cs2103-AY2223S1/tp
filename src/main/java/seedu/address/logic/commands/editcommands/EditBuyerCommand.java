@@ -14,7 +14,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
 
 /**
@@ -55,9 +54,6 @@ public class EditBuyerCommand extends EditCommand {
      */
     private static Buyer createEditedBuyer(Buyer buyerToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert buyerToEdit != null;
-
-        PersonCategory updatedPersonCategory =
-                editPersonDescriptor.getPersonCategory().orElse(buyerToEdit.getPersonCategory());
         Name updatedName = editPersonDescriptor.getName().orElse(buyerToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(buyerToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(buyerToEdit.getEmail());
