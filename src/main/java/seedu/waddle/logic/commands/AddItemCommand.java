@@ -10,6 +10,7 @@ import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.item.Item;
+import seedu.waddle.model.item.exceptions.DuplicateItemException;
 import seedu.waddle.model.itinerary.Itinerary;
 
 
@@ -28,7 +29,7 @@ public class AddItemCommand extends Command {
             + "[" + PREFIX_COST + "COST]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Visit Taj Mahal "
-            + PREFIX_PRIORITY + "3";
+            + PREFIX_ITEM_DURATION + "180";
 
     public static final String MESSAGE_SUCCESS = "New item added:\n%1$s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists";
@@ -51,10 +52,11 @@ public class AddItemCommand extends Command {
 
         Itinerary itinerary = stageManager.getSelectedItinerary();
 
-        if (itinerary.hasItem(toAdd)) {
+        try {
+            itinerary.addItem(toAdd);
+        } catch (DuplicateItemException e) {
             throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
-        itinerary.addItem(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

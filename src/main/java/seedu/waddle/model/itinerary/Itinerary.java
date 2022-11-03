@@ -20,6 +20,7 @@ import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.UniqueItemList;
+import seedu.waddle.model.item.exceptions.DuplicateItemException;
 
 /**
  * Represents a Person in the address book.
@@ -140,6 +141,11 @@ public class Itinerary {
      * @param item Item to be added.
      */
     public void addItem(Item item) {
+        for (Day day: days) {
+            if (day.hasItem(item)) {
+                throw new DuplicateItemException();
+            }
+        }
         this.unscheduledItemList.add(item);
         sortUnscheduledItemList();
     }
