@@ -9,6 +9,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.remark.Remark;
 import seedu.uninurse.model.remark.RemarkList;
@@ -69,11 +70,11 @@ public class DeleteRemarkCommand extends DeleteGenericCommand {
 
         Patient editedPatient = new Patient(patientToEdit, updatedRemarkList);
 
-        model.setPerson(patientToEdit, editedPatient);
+        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_DELETE_REMARK_SUCCESS, remarkIndex.getOneBased(),
-                editedPatient.getName(), deletedRemark), DELETE_REMARK_COMMAND_TYPE);
+                editedPatient.getName(), deletedRemark), DELETE_REMARK_COMMAND_TYPE, patientListTracker);
     }
 
     @Override

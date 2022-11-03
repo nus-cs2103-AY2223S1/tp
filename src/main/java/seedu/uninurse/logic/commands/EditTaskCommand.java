@@ -11,6 +11,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.NonRecurringTask;
@@ -102,11 +103,12 @@ public class EditTaskCommand extends EditGenericCommand {
 
             Patient editedPatient = new Patient(patientToEdit, updatedTaskList);
 
-            model.setPerson(patientToEdit, editedPatient);
+            PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
             model.setPatientOfInterest(editedPatient);
 
-            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskIndex.getOneBased(),
-                    editedPatient.getName(), initialTask, updatedTask), EDIT_TASK_COMMAND_TYPE);
+            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS,
+                    taskIndex.getOneBased(), editedPatient.getName(), initialTask, updatedTask),
+                    EDIT_TASK_COMMAND_TYPE, patientListTracker);
         } catch (DuplicateTaskException dte) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK);
         }

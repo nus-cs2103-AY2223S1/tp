@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.uninurse.commons.core.GuiSettings;
+import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.DateTime;
 
@@ -68,26 +69,26 @@ public interface Model {
      * Deletes the given person.
      * The person must exist in the uninurse book.
      */
-    void deletePerson(Patient target);
+    PatientListTracker deletePerson(Patient target);
 
     /**
      * Deletes the given persons.
      * The persons must exist in the uninurse book.
      */
-    void clearPersons(List<Patient> targets);
+    PatientListTracker clearPersons(List<Patient> targets);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the uninurse book.
      */
-    void addPerson(Patient person);
+    PatientListTracker addPerson(Patient person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the uninurse book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the uninurse book.
      */
-    void setPerson(Patient target, Patient editedPerson);
+    PatientListTracker setPerson(Patient target, Patient editedPerson);
 
     /**
      * Returns an unmodifiable view of the filtered person list
@@ -147,17 +148,17 @@ public interface Model {
     /**
      * Reverts to an earlier version of UninurseBook.
      */
-    void undo();
+    CommandResult undo();
 
     /**
      * Reverts to a later version of UninurseBook.
      */
-    void redo();
+    CommandResult redo();
 
     /**
      * Makes a snapshot of the current UninurseBook.
      */
-    void makeSnapshot(PatientListTracker patientListTracker);
+    void makeSnapshot(CommandResult commandResult);
 
     /**
     * Updates the TaskList of each patient with new RecurringTasks if the existing RecurringTask are past their

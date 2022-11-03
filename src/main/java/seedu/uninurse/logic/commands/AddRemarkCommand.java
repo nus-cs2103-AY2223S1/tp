@@ -9,6 +9,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.remark.Remark;
 import seedu.uninurse.model.remark.RemarkList;
@@ -68,11 +69,11 @@ public class AddRemarkCommand extends AddGenericCommand {
 
         Patient editedPatient = new Patient(patientToEdit, updatedRemarkList);
 
-        model.setPerson(patientToEdit, editedPatient);
+        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_ADD_REMARK_SUCCESS, editedPatient.getName(), remark),
-                ADD_REMARK_COMMAND_TYPE);
+                ADD_REMARK_COMMAND_TYPE, patientListTracker);
     }
 
     @Override
