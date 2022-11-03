@@ -339,8 +339,8 @@ Example:
 
 ### Filtering buy or sell transactions: `filter`
 
-Filters the buy or sell transactions of all the clients. The filtered transactions will be displayed in the transaction panel while the client list panel will display
-all the clients.
+Filters the buy or sell transactions of all the clients. After executing this command, the filtered transactions will be 
+displayed in the transaction panel while the client list panel will display all the clients.
 
 Format: `filter TYPE`
 
@@ -442,11 +442,13 @@ Clears all entries which include `clients`, `remarks` and `transactions` from Je
 
 Format: `clear`
 
-> <div markdown="span" class="alert alert-danger">❗ Information cleared by clear command cannot be retrieved.
+> <div markdown="span" class="alert alert-danger">❗ Information cleared by clear command cannot be retrieved. Only use this if you want to clear **all** data of `clients`, `remarks` and `transactions`.
 
 Example:
 
 * `clear` clears all client's entries together with the remarks and transactions.
+
+![Ui](images/SampleClearCommand.png)
 
 [Back to Table of Contents](#table-of-contents)
 
