@@ -7,12 +7,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Profile's phone number in the NUScheduler.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
-public class Phone {
+public class Phone implements Comparable<Phone> {
 
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numeric characters, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+    public static final String MESSAGE_CONSTRAINTS = "Phone numbers should only contain numeric characters, "
+            + "and it should be at least 3 characters and at most 15 characters long";
+    public static final String VALIDATION_REGEX = "\\d{3,15}";
     public final String value;
 
     /**
@@ -43,6 +43,13 @@ public class Phone {
         return other == this // short circuit if same object
                 || (other instanceof Phone // instanceof handles nulls
                 && value.equals(((Phone) other).value)); // state check
+    }
+
+    @Override
+    public int compareTo(Phone other) {
+        Long thisValue = Long.parseLong(value);
+        Long otherValue = Long.parseLong(other.value);
+        return thisValue.compareTo(otherValue);
     }
 
     @Override

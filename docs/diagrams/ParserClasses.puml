@@ -11,6 +11,7 @@ package "Parser classes"{
 Class "<<interface>>\nParser" as Parser
 Class NuSchedulerParser
 Class XCommandParser
+Class YCommandParser
 Class CliSyntax
 Class ParserUtil
 Class ArgumentMultimap
@@ -23,10 +24,12 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> NuSchedulerParser
 
 NuSchedulerParser .down.> XCommandParser: creates >
-NuSchedulerParser .down.> YCommand : creates >
+NuSchedulerParser .down.> YCommandParser : creates >
+YCommandParser ..> YCommand : creates >
 XCommandParser ..> ZXCommandParser : creates >
 ZXCommandParser ..> ZXCommand : creates >
 NuSchedulerParser ..> Command : returns >
+YCommandParser .up..|> Parser
 XCommandParser .up.|> Parser
 ZXCommandParser .up.|> Parser
 XCommandParser ..> ArgumentMultimap

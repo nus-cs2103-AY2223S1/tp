@@ -35,17 +35,12 @@ import seedu.address.testutil.EditProfileDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BERNICE = "Bernice Yu";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_NAME_ROY = "Roy Balakrishnan";
     public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BERNICE = "99272758";
+    public static final String VALID_PHONE_AMY_PLUS_ONE = "11111112";
     public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_PHONE_ROY = "92624417";
     public static final String VALID_EMAIL_AMY = "amy@u.nus.edu";
-    public static final String VALID_EMAIL_BERNICE = "berniceyu@u.duke.nus.edu";
     public static final String VALID_EMAIL_BOB = "bob@u.nus.edu";
-    public static final String VALID_EMAIL_ROY = "royb@u.nus.edu";
 
     public static final String VALID_TELEGRAM_AMY = "amy_doe";
 
@@ -53,8 +48,6 @@ public class CommandTestUtil {
 
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_TAG_FRIENDS = "friends";
-    public static final String VALID_TAG_COLLEAGUES = "colleagues";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -100,7 +93,6 @@ public class CommandTestUtil {
     public static final String INVALID_TITLE_DESC = " " + PREFIX_NAME + "Lunch&Dinner";
     public static final String INVALID_START_DESC = " " + PREFIX_START_DATE + "2020/02/02 abcd";
     public static final String INVALID_END_DESC = " " + PREFIX_END_DATE + "efgh 2020/15/02";
-    public static final String INVALID_PROFILE_INDEX = " " + PREFIX_PROFILE + "10";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

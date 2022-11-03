@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+![NUScheduler](images/logoText.png)
+
 NUScheduler is a desktop app for **NUS students who have a large network of contacts to manage, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUScheduler can get your contact management tasks done faster than traditional GUI apps.
 
 With NUScheduler, you can store the contact details of the NUS community around you and manage your classes and events effectively.
@@ -16,14 +18,14 @@ With NUScheduler, you can store the contact details of the NUS community around 
 
 ## Using this guide
 
-This user guide provides you with the information necessary to start using NUScheduler. 
+This user guide provides you with the information necessary to start using NUScheduler.
 
 In this user guide, you may encounter the following icons:
 
 <div markdown="block" class="meaning-icons-container">
 
 * :information_source: **Additional Information:** Provides general information that you might find helpful.
-* :bulb: **Tips:** Provides good to know information on how to more effectively utilise NUScheduler.    
+* :bulb: **Tips:** Provides good to know information on how to more effectively utilise NUScheduler.
 
 </div>
 
@@ -68,6 +70,18 @@ The following is the main user interface of NUScheduler.
 * **Profile List**: Displays the list of profiles stored and the relevant details.
 * **Event List**: Displays the list of events stored and the relevant details.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the user interface:**<br>
+
+* The profile list is in alphabetical order while the event list is in chronological order, sorted by their starting date.
+
+* In each profile, the name, email and phone number will always be displayed while the telegram username and tags will only be displayed if they exist.
+
+* In each event, the title, start date, end date and duration of the event will always be displayed while the participants of the event and tags will only be displayed if they exist.
+
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -77,7 +91,7 @@ The following is the main user interface of NUScheduler.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `profile -a n/NAME`, `NAME` is a parameter which can be used as `profile -a n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -98,15 +112,7 @@ The following is the main user interface of NUScheduler.
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Command words and option flags are case-sensitive i.e. `profile -v` will work, but not `PROFILE -v` and `profile -V`. 
-
-**:information_source: Notes about the display:**<br>
-
-* `Profile`'s are listed in alphabetical order while `Event`'s are listed in chronological order, sorted by their starting date.
-
-* Under `Profile`, the `Name`, `Email` and `PhoneNumber` will always be displayed while `Telegram` and `Tag`s will only be displayed if they exist.
-
-* Under `Event`, the `Title`, `StartDate`, `EndDate` and duration of event will always be displayed while `Attendees`, the participants of an `Event` and `Tag`s will only be displayed if they exist.
+* Command words and option flags are case-sensitive i.e. `profile -v` will work, but not `PROFILE -v` and `profile -V`.
 
 </div>
 
@@ -121,13 +127,13 @@ Each profile is a set of contact information about a person in your NUS communit
 A profile must contain the following information:
 
 * Name, limited to 24 alphanumeric characters including spaces
-* Phone number, limited to numeric characters with at least 3 characters
-* A valid NUS email, e.g. `u.nus.edu`, see [Accepted Email Formats](#accepted-email-formats) for the full list of accepted email domains
+* Phone number, limited to numeric characters with at least 3 characters and at most 15 characters
+* A valid NUS email, e.g. `u.nus.edu`, see [Accepted Email Formats](#accepted-email-formats) for the full list of accepted email formats
 
 A profile may also contain:
 
 * Telegram username
-* Tags to categorise your profiles, limited to 24 characters
+* Tags to categorise your profiles, each limited to 24 characters
 
 </div>
 
@@ -244,7 +250,7 @@ Example:
 
 Adds one or more existing profiles as attendees to an existing event in NUScheduler.
 
-Format: `event -ap EVENT_INDEX pr/PROFILE_INDEX…​`
+Format: `event -ap EVENT_INDEX pr/PROFILE_INDEX…`
 
 * Adds profiles at the specified `PROFILE_INDEX`. This index refers to the index number shown in the displayed profile list. The index **must be a positive integer less than 10000** e.g. 1, 2, 3, …​, 9999
 * Profiles are added to the event at the specified `EVENT_INDEX`. This index refers to the index number shown in the displayed event list. It follows the same constraints as `PROFILE_INDEX`.
@@ -263,7 +269,7 @@ Example:
 
 Removes one or more attendees from an existing event in NUScheduler.
 
-Format: `event -dp EVENT_INDEX pr/ATTENDEE_INDEX…​`
+Format: `event -dp EVENT_INDEX pr/ATTENDEE_INDEX…`
 
 * Removes attendees at the specified `ATTENDEE_INDEX`. This index refers to the index number shown in the displayed attendee list of the event. The index **must be a positive integer less than 10000** e.g. 1, 2, 3, …​, 9999
 * Attendees are removed from the event at the specified `EVENT_INDEX`. This index refers to the index number shown in the displayed event list. It follows the same constraints as `ATTENDEE_INDEX`.
@@ -396,12 +402,12 @@ Access the previous commands you've made within each session.
 
 Use shortcuts to quickly enter tags.
 
-Example: 
+Example:
 
-* `profile -a n/Damith e/damith@comp.nus.edu.sg p/65164359 t/prof` Creates a profile with the name `Damith` and tag `professor`.
-* `event -e 1 t/tut` Edits the tag of the 1st event shown to `tutorial`.  
+* `profile -a n/Damith e/damith@comp.nus.edu.sg p/65164359 t/prof` Creates a profile with the name `Damith` and the tag `professor`.
+* `event -e 1 t/tut` Edits the tag of the 1st event shown to `tutorial`.
 
-| Shortcut | Result       | 
+| Shortcut | Result       |
 |----------|--------------|
 | assm     | assignment   |
 | lec      | lecture      |
@@ -410,7 +416,6 @@ Example:
 | rec      | recitation   |
 | ta       | tutor        |
 | tut      | tutorial     |
-
 
 #### Quick Links
 
@@ -481,13 +486,21 @@ Example:
 
 ### Accepted email formats
 
-NUScheduler checks the emails of your profiles against a list of valid NUS email domains.
+NUScheduler checks the following:
 
-* `@u.nus.edu`
-* `@u.duke.nus.edu`
-* `@nus.edu.sg`
-* `@comp.nus.edu.sg`
-* `@u.yale-nus.edu.sg`
+* Local part (the characters in your email before `@`) of the emails must follow these rules: 
+
+  * Only alphanumeric characters and these special characters, `+`, `_`, `.`, `-` are allowed
+  * The local part cannot start or end with a special character
+  * The local part must begin and end with an alphabet or number 
+
+* Domain (the characters in your email after `@`) of the emails must be one of the following valid NUS email domains.
+
+  * `@u.nus.edu`
+  * `@u.duke.nus.edu`
+  * `@nus.edu.sg`
+  * `@comp.nus.edu.sg`
+  * `@u.yale-nus.edu.sg`
 
 ### Transfer data to another computer
 
