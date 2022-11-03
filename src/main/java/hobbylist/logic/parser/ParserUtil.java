@@ -138,6 +138,10 @@ public class ParserUtil {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
+            System.out.println(tagName);
+            if (tagName.length() > 15) {
+                throw new ParseException(Tag.TAG_NAME_TOO_LONG);
+            }
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
